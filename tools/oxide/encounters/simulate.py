@@ -69,7 +69,7 @@ BST_FLOOR, BST_CEIL = 250, 600
 TOP_SIX_WEIGHT = 0.25
 # A later option is waited for only when it beats the best one now by this.
 DEFER_MARGIN = 1.05
-HONEY_FROM = "Gardenia"          # Honey is sold in Floaroma, Gardenia's split
+HONEY_FROM = scripted.HONEY_FROM  # Honey is sold in Floaroma, Gardenia's split
 HONEY_SLOTS = (0.40, 0.20, 0.20, 0.10, 0.05, 0.05)
 WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
 KIND_WORDS = {"land": "grass", "surf": "surf", "old_rod": "Old Rod",
@@ -368,36 +368,142 @@ def _roll(option, box, rng, drawn=()):
     return sorted(live)[-1]
 
 
-def run(target, deaths=0, starter=None, seed=None, root=None):
-    """Play one run to the end of `target`. Returns the log, the box and its
-    worth, as plain data for the tool and the command line."""
+def context(target, root=None):
+    """What every run to `target` shares: the sidecar, the split order, the
+    values and the capture areas. `confidence` builds it once for all its
+    runs; `run` builds its own when given none."""
     root = root or model.repo_root()
     sidecar = model.load_sidecar() or {}
     rank = progression.split_index(sidecar)
     if target not in rank:
         raise ValueError(f"no such split: {target}")
-    rng = random.Random(seed)
     values = Values(root, target, sidecar)
     values.plan_lines = {dex.line_of(root, src["requires"]) for src in scripted.load(root)
                          if src.get("requires") and src.get("simulate", True)
                          and any(dex.line_of(root, sp) in values.wanted for sp in src["pool"])}
+    return {"root": root, "target": target, "sidecar": sidecar, "rank": rank, "values": values,
+            "areas": world(target, root),
+            "starter_src": next(s for s in scripted.load(root) if s["kind"] == "starter")}
+
+
+def can_give(area):
+    """Every species an area's options can give, for the Box sim's lock list."""
+    return sorted({sp for o in area["options"] for sp in o.shares})
+
+
+def start_from_save(save, encounters, target, root=None, ctx=None):
+    """The state a real save leaves a run in (Ian's request 2): {"members":
+    [{species, area, alive}], "used": {area names}, "split", "unmatched"}.
+
+    Every Pokemon in the party and the boxes spends the capture of the place
+    it was met, or of its egg's source for an egg or a hatched Pokemon. A met
+    location names a place, and the sim's areas are places, so the two match
+    by name; a place the sim splits in several (Mt. Coronet's captures) is
+    matched to the one whose tables give that Pokemon. The graveyard is the
+    run of boxes at the end that fills backwards (Ian, 2026-09-27): the last
+    box, and the one before it while the one after is full; a Pokemon there
+    is dead. The tool's own Caught list (`encounters`, area file to species)
+    marks the places whose encounter left nothing in the save, a Pokemon that
+    fled or fainted. The run resumes in the save's level-cap split."""
+    ctx = ctx or context(target, root)
+    root = ctx["root"]
+    by_name = {a["name"]: a for a in ctx["areas"]}
+    counts = collections.Counter(m["box"] for m in save.get("boxes") or [])
+    grave, b = set(), save.get("box_count") or 0
+    while b >= 1:
+        grave.add(b)
+        if counts[b] < 30:
+            break
+        b -= 1
+    members, used, unmatched = [], set(), []
+    # The game's place names use a typographic apostrophe (Rowan’s Briefcase)
+    # where the tool's use a plain one.
+    norm = lambda name: (name or "").replace("’", "'")
+    by_name = {norm(k): v for k, v in by_name.items()}
+    starter_place = ctx["starter_src"].get("capture_area") or "Route 201"
+
+    def area_for(place, species):
+        place = norm(place)
+        if place in by_name:
+            return by_name[place]["name"]
+        family = dex.line_of(root, species)
+        near = [a for a in ctx["areas"] if a["name"].startswith(place) and a["name"] not in used]
+        for a in near:
+            if any(dex.line_of(root, sp) == family for sp in can_give(a)):
+                return a["name"]
+        return near[0]["name"] if near else None
+
+    for mon in (save.get("party") or []) + (save.get("boxes") or []):
+        if not mon.get("species", "").startswith("SPECIES_"):
+            continue
+        place = mon.get("egg_location") or mon.get("met_location") or ""
+        # The starter's place is its own met location, not a sim area.
+        name = starter_place if norm(place) == norm(starter_place) else area_for(place, mon["species"])
+        if name:
+            used.add(name)
+        elif place:
+            unmatched.append(f"{mon['name']} from {place}")
+        members.append({"species": mon["species"], "area": name or place,
+                        "alive": mon.get("box") not in grave, "slot": mon["slot"]})
+    where = locations.location_of(root)
+    by_key = scripted.by_key()
+    for key in encounters or {}:
+        src = by_key.get(key)
+        name = (src.get("capture_area") or src.get("label")) if src else where.get(key)
+        if name in by_name:
+            used.add(name)
+    split = ((save.get("progress") or {}).get("split") or {}).get("name")
+    return {"members": members, "used": used, "split": split if split in ctx["rank"] else None,
+            "unmatched": unmatched, "graveyard": sorted(grave)}
+
+
+def run(target, deaths=0, starter=None, seed=None, root=None, locks=None, start=None, ctx=None):
+    """Play one run to the end of `target`. Returns the log, the box and its
+    worth, as plain data for the tool and the command line.
+
+    `locks` is {area: species, or "" to leave it unused}: the player's own
+    picks (Ian's request 1), taken as they are, never waited on, with every
+    other area played for the best box around them. `start` is the state a
+    save leaves (`start_from_save`, request 2): its Pokemon already in the box
+    and its places spent, the run resuming in its split, where a place left
+    behind unused is still open with what the player has now. Every area's
+    entry says what the area could give, the decision made there and its
+    margin, the lead of the best option over the next, for `confidence`."""
+    ctx = ctx or context(target, root)
+    root, rank, values = ctx["root"], ctx["rank"], ctx["values"]
+    locks = locks or {}
+    rng = random.Random(seed)
     box = Box(root, values)
-    areas = world(target, root)
-    starter_src = next(s for s in scripted.load(root) if s["kind"] == "starter")
-    starter = starter or rng.choice(starter_src["pool"])
-    # The starter spends the capture of the place scripted.json names for it.
-    # That was Route 201 until the starter got a met location of its own,
-    # Rowan's Briefcase (Ian, 2026-09-27), which leaves Route 201's table a
-    # capture from the first step.
-    where = starter_src.get("capture_area") or "Route 201"
-    log = [{"area": where, "split": "Roark", "choice": "the starter",
-            "species": starter, "value": box.add(starter, where), "options": []}]
-    areas = [a for a in areas if a["name"] != where]
+    areas = list(ctx["areas"])
+    log = []
+    if start:
+        for m in start["members"]:
+            box.add(m["species"], m["area"])
+            box.members[-1]["alive"] = m["alive"]
+            log.append({"area": m["area"], "split": start["split"] or "Roark",
+                        "choice": "in your save" + ("" if m["alive"] else ", dead"),
+                        "species": m["species"], "value": box.members[-1]["value"],
+                        "from_save": True, "options": []})
+        areas = [a for a in areas if a["name"] not in start["used"]]
+        now_rank = rank.get(start["split"], 0)
+        areas = [a if rank.get(a["split"], 99) >= now_rank else dict(a, split=start["split"])
+                 for a in areas]
+        repel_used = now_rank > 0
+    else:
+        starter = starter or rng.choice(ctx["starter_src"]["pool"])
+        # The starter spends the capture of the place scripted.json names for
+        # it. That was Route 201 until the starter got a met location of its
+        # own, Rowan's Briefcase (Ian, 2026-09-27), which leaves Route 201's
+        # table a capture from the first step.
+        where = ctx["starter_src"].get("capture_area") or "Route 201"
+        log.append({"area": where, "split": "Roark", "choice": "the starter",
+                    "species": starter, "value": box.add(starter, where), "options": []})
+        areas = [a for a in areas if a["name"] != where]
+        repel_used = False
 
     # Deaths land between captures, at random points of the run.
     n = len(areas)
     death_at = collections.Counter(rng.randrange(n + 1) for _ in range(max(0, deaths)))
-    repel_used = False
     roark = [a for a in areas if a["split"] == "Roark"]
     drawn = set()
     pending = list(areas)
@@ -426,11 +532,25 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
                    if o.repel is not None and o.split == "Roark"), default=0.0)
         return rep - plain
 
+    def margin(best, other):
+        return round((best - other) / best, 3) if best > 0 else 0.0
+
     while pending:
         a = pending.pop(0)
         kill(death_at.pop(step, 0), f"before {a['name']}")
         step += 1
         now = a["split"]
+        gives = can_give(a)
+        if a["name"] in locks:
+            sp = locks[a["name"]]
+            entry = {"area": a["name"], "split": now, "locked": True, "can_give": gives,
+                     "options": [], "decision": "your pick"}
+            if not sp:
+                entry.update(choice=None, species=None, value=None, note="left unused, your pick")
+            else:
+                entry.update(choice="your pick", species=sp, value=box.add(sp, a["name"]))
+            log.append(entry)
+            continue
         opts = [o for o in a["options"] if usable(o, now)]
         # The early repel goes where it gains most among the Roark areas
         # still to come, judged again at each one.
@@ -454,16 +574,19 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
                        if rank.get(b["split"], 99) > rank.get(opt.split, 99)), len(pending))
             pending.insert(at, back)
             log.append({"area": a["name"], "split": now, "wait": opt.label,
-                        "until": opt.split})
+                        "until": opt.split, "decision": f"wait for the {opt.label}",
+                        "margin": margin(best_later[0], best_now[0])})
             continue
         ev, opt = best_now
-        entry = {"area": a["name"], "split": now,
+        second = scored[1][0] if len(scored) > 1 else 0.0
+        entry = {"area": a["name"], "split": now, "can_give": gives,
                  "options": [{"label": o.label, "gain": round(g, 1)} for g, o in scored[:4]]}
         if opt is None or ev <= 0:
-            entry.update(choice=None, species=None, value=None,
-                         note="nothing here the box does not already have")
+            entry.update(choice=None, species=None, value=None, decision="nothing new",
+                         margin=0.0, note="nothing here the box does not already have")
             log.append(entry)
             continue
+        entry.update(decision=opt.label, margin=margin(ev, max(second, best_later[0])))
         sp = _roll(opt, box, rng, drawn)
         if opt.kind == "legendary":
             drawn.add(sp)
@@ -481,12 +604,15 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
         kill(death_at.pop(k), "at the end of the split")
 
     alive = box.alive_values()
+    name = lambda sp: {"value": sp, "label": dex.display_name(sp)}
     return {
         "split": target, "cap": values.cap, "deaths": deaths, "seed": seed,
-        "starter": starter,
-        "log": [dict(e, label=dex.display_name(e["species"])) if e.get("species")
+        "starter": starter, "locks": locks,
+        "log": [dict(e, label=dex.display_name(e["species"]),
+                     can_give=[name(sp) for sp in e.get("can_give", [])])
+                if e.get("species")
                 else dict(e, label=dex.display_name(e["death"])) if e.get("death")
-                else e for e in log],
+                else dict(e, can_give=[name(sp) for sp in e.get("can_give", [])]) for e in log],
         "box": [dict(m, label=dex.display_name(m["species"]),
                      stage=values.stage(m["species"]),
                      stage_label=dex.display_name(values.stage(m["species"])))
@@ -497,6 +623,44 @@ def run(target, deaths=0, starter=None, seed=None, root=None):
         "sum_alive": round(sum(alive), 1),
         "top_six": round(sum(sorted(alive, reverse=True)[:6]), 1),
     }
+
+
+def confidence(target, deaths=0, starter=None, locks=None, start=None, runs=40, areas=10,
+               seed=0, root=None):
+    """How sure the sim is of its calls at the next `areas` places not yet
+    decided (Ian's request 3). It plays `runs` runs from the same state with
+    different luck and, for each place, reports the call most runs make there
+    (catch with an option, or wait for a later table), the share of runs that
+    make it, and the mean margin of that call over the next best. The first
+    place's margin is exact, since the box it meets is known; later places
+    depend on earlier luck, which the share measures."""
+    ctx = context(target, root)
+    order, tally, margins = [], {}, {}
+    for i in range(runs):
+        out = run(target, deaths, starter, seed * 1000 + i, root, locks, start, ctx)
+        seen = set()
+        for e in out["log"]:
+            name = e.get("area")
+            if not name or e.get("from_save") or e.get("locked") or e.get("death") \
+                    or name in seen or "decision" not in e:
+                continue
+            seen.add(name)
+            if name not in tally:
+                order.append(name)
+                tally[name] = collections.Counter()
+                margins[name] = collections.defaultdict(list)
+            tally[name][e["decision"]] += 1
+            margins[name][e["decision"]].append(e.get("margin") or 0.0)
+    rows = []
+    for name in order[:areas]:
+        total = sum(tally[name].values())
+        calls = tally[name].most_common()
+        top, n = calls[0]
+        rows.append({"area": name, "decision": top, "share": round(n / total, 2),
+                     "margin": round(sum(margins[name][top]) / len(margins[name][top]), 2),
+                     "others": [{"decision": d, "share": round(k / total, 2)} for d, k in calls[1:4]],
+                     "runs": total})
+    return {"split": target, "runs": runs, "areas": rows}
 
 
 # -- the per-area analysis ------------------------------------------------------

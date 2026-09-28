@@ -591,7 +591,8 @@ CanalaveCity_08AB:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, CanalaveCity_098F
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, CanalaveCity_099B
     GoTo CanalaveCity_09A7
 CanalaveCity_0900:

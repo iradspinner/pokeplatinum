@@ -466,6 +466,16 @@ function toggle_additional_field_options() {
 }
 
 function applySyncLuaVisibility() {
+    // Oxide patch: under the Oxide title Sync reads the OxiDex's save bridge,
+    // so it is always shown and the menu's Lua toggle does not apply.
+    if (typeof TITLE === "string" && TITLE == "Platinum Oxide") {
+        $('#sync-master').hide();
+        $('#sync-lua').show();
+        if (typeof updateHeaderShellState === "function") {
+            updateHeaderShellState();
+        }
+        return;
+    }
     var syncEnabled = localStorage.syncLua == '1';
     var usesHttpLuaSync = typeof TITLE === "string" && (
         TITLE.includes("Imperium") ||

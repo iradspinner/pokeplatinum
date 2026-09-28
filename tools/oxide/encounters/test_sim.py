@@ -104,9 +104,78 @@ def check_areas(results):
                     f"{len(rows)} areas"))
 
 
+def check_requests(results):
+    """Ian's three Box sim requests of 2026-09-27: picks locked by drop list,
+    a start from the save, and how sure the sim is of its next calls."""
+    root = model.repo_root()
+    free = simulate.run("Gardenia", seed=1)
+    places = [e for e in free["log"] if e.get("can_give") and e.get("species")
+              and e["area"] != free["log"][0]["area"]]
+    a, b = places[0], places[1]
+    pick = next(o["value"] for o in a["can_give"] if o["value"] != a["species"])
+    locked = simulate.run("Gardenia", seed=1, locks={a["area"]: pick, b["area"]: ""})
+    at = {e["area"]: e for e in locked["log"] if e.get("area") and not e.get("wait")}
+    results.append(("a locked place gives the Pokemon picked for it, a place left unused gives "
+                    "nothing, and every other place is still played",
+                    at[a["area"]].get("species") == pick and at[a["area"]].get("locked")
+                    and at[b["area"]].get("species") is None and at[b["area"]].get("locked")
+                    and len([e for e in locked["log"] if e.get("species")]) >= len(places) - 1,
+                    f"{a['area']}: {dex.display_name(pick)}; {b['area']}: unused"))
+
+    # A save, as savefile.parse gives it: one Pokemon in the party and a
+    # graveyard that has run back from the last box into the one before.
+    world = simulate.world("Wake", root)
+    spots = [(w["name"], simulate.can_give(w)[0]) for w in world if simulate.can_give(w)][:34]
+
+    def mon(i, box=None, slot=0):
+        name, sp = spots[i]
+        return {"species": sp, "name": dex.display_name(sp), "met_location": name,
+                "egg_location": None, "slot": f"box {box}" if box else "party 1",
+                **({"box": box, "box_slot": slot} if box else {})}
+
+    boxes = [mon(1 + i, 18, i + 1) for i in range(30)] + [mon(31, 17, 1), mon(32, 16, 1)]
+    save = {"party": [mon(0)], "boxes": boxes, "box_count": 18,
+            "progress": {"split": {"index": 1, "name": "Gardenia", "cap": 26}}}
+    where = {stem: loc for stem, loc in __import__(
+        "tools.oxide.encounters.locations", fromlist=["x"]).location_of(root).items()}
+    caught_stem = next(stem for stem, loc in where.items()
+                       if loc == spots[33][0] and stem.startswith("encounters_"))
+    start = simulate.start_from_save(save, {caught_stem: spots[33][1]}, "Wake", root)
+    alive = {m["area"]: m["alive"] for m in start["members"]}
+    results.append(("a save's places are spent and its Pokemon counted; the graveyard is the "
+                    "last box and, while that is full, the one before it",
+                    start["graveyard"] == [17, 18] and alive[spots[1][0]] is False
+                    and alive[spots[31][0]] is False and alive[spots[32][0]] is True
+                    and alive[spots[0][0]] is True and spots[33][0] in start["used"]
+                    and start["split"] == "Gardenia" and not start["unmatched"],
+                    f"graveyard {start['graveyard']}, {len(start['used'])} places spent"))
+    resumed = simulate.run("Wake", seed=2, start=start)
+    played = [e for e in resumed["log"] if e.get("area") and not e.get("from_save")
+              and not e.get("death")]
+    results.append(("the run resumes from the save: no spent place is played again and "
+                    "nothing is played in a split before the save's",
+                    not {e["area"] for e in played} & start["used"]
+                    and all(rank_of(e["split"]) >= rank_of("Gardenia") for e in played)
+                    and sum(1 for e in resumed["log"] if e.get("from_save")) == len(start["members"]),
+                    f"{len(played)} places played"))
+
+    conf = simulate.confidence("Gardenia", runs=6, areas=5, seed=3)
+    again = simulate.confidence("Gardenia", runs=6, areas=5, seed=3)
+    results.append(("confidence names the next five calls, how many of the replays make each, "
+                    "and its lead; the same seed gives the same answer",
+                    len(conf["areas"]) == 5 and conf == again
+                    and all(0 < r["share"] <= 1 and r["runs"] == 6 and r["margin"] >= 0
+                            for r in conf["areas"]),
+                    "; ".join(f"{r['area']} {r['share']:.0%}" for r in conf["areas"][:3])))
+
+
+def rank_of(split):
+    return progression.split_index(model.load_sidecar()).get(split, 99)
+
+
 def main():
     results = []
-    for check in (check_runs, check_scarcity, check_areas):
+    for check in (check_runs, check_scarcity, check_areas, check_requests):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

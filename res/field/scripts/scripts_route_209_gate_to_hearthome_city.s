@@ -28,7 +28,8 @@ Route209GateToHearthomeCity_CoordEvent_Rival:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, Route209GateToHearthomeCity_StartRivalBattleTurtwig
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route209GateToHearthomeCity_StartRivalBattleChimchar
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, Route209GateToHearthomeCity_StartRivalBattleChimchar
     GoTo Route209GateToHearthomeCity_StartRivalBattlePiplup
     End
 

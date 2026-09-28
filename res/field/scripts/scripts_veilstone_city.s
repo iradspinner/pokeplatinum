@@ -1034,7 +1034,8 @@ VeilstoneCity_0F0E:
 VeilstoneCity_0F26:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 625
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, VeilstoneCity_0FB1
     SetVarFromValue VAR_0x8004, 626
     CompareVarToValue VAR_0x800C, 393
@@ -1044,7 +1045,7 @@ VeilstoneCity_0F26:
 VeilstoneCity_0F58:
     GetPlayerStarterSpecies VAR_0x800C
     SetVarFromValue VAR_0x8004, 622
-    CompareVarToValue VAR_0x800C, 390
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, VeilstoneCity_0FB1
     SetVarFromValue VAR_0x8004, 623
     CompareVarToValue VAR_0x800C, 393

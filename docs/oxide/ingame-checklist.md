@@ -165,6 +165,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
+- [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
+  Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
+  Lucas uses the Turtwig line. With Turtwig, Barry has Scorbunny; with Piplup,
+  Turtwig. The Jubilife TV mask, the Veilstone Department Store socialite's
+  mask and the Underground Man's doll are the fire starter's.
+- [ ] Once the battle log lands (main track): fight two trainers, save, and
+  both battles show in the OxiDex's Battle Log, with the right knockouts.
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon

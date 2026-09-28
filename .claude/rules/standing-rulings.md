@@ -29,7 +29,10 @@ read, so they are written here too. Each is a standing instruction.
   strengthening "rarer than in the base ROM" of 2026-09-23). A Choice-locked
   boss is weaker in play than its score: its AI picks a fixed move against a
   given lead, so the player chooses the lock and switches to something immune.
-  The balance plan's item and trainer passes carry it.
+  The balance plan's item and trainer passes carry it. For the player it is
+  absolute (Ian, 2026-09-27): no Life Orb and no Choice item is ever
+  obtainable, and the best offensive items the player gets are the
+  type-boosting ones (Charcoal, Mystic Water and the like).
 - Several sessions work at once, and a local session named "Oxide Overseer"
   coordinates them: the docs outside each track's own files, pushes to
   `oxide`, merges, and in-game testing. A local session messages it with
@@ -65,7 +68,7 @@ read, so they are written here too. Each is a standing instruction.
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
-  browser, never a bare path (Ian, 2026-09-27): the encounter tool's viewer at
+  browser, never a bare path (Ian, 2026-09-27): the OxiDex's viewer at
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
   branch), or the GitHub page of the pushed branch. The `doc-links` skill has
   the forms.
