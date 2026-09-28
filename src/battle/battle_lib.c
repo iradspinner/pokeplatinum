@@ -6527,6 +6527,11 @@ BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *batt
             continue;
         }
 
+        // The copied rises are the holder's own stat changes, so its Contrary
+        // turns them into falls, as it does in the later games; the herb is
+        // then used while a stat can still fall.
+        BOOL contrary = Battler_Ability(battleCtx, holder) == ABILITY_CONTRARY;
+
         for (int foe = 0; foe < maxBattlers; foe++) {
             u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
             BOOL copied = FALSE;
@@ -6540,7 +6545,14 @@ BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *batt
                 int stages = (raises >> (stat * 3)) & 7;
                 s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
 
-                if (stages && *boost < MAX_STAT_STAGE) {
+                if (stages == 0) {
+                    continue;
+                }
+
+                if (contrary && *boost > MIN_STAT_STAGE) {
+                    *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
+                    copied = TRUE;
+                } else if (contrary == FALSE && *boost < MAX_STAT_STAGE) {
                     *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
                     copied = TRUE;
                 }
@@ -6550,6 +6562,7 @@ BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *batt
 
             if (copied) {
                 battleCtx->msgBattlerTemp = holder;
+                battleCtx->calcTemp = contrary;
                 *subscript = subscript_mirror_herb;
                 return TRUE;
             }
@@ -6632,17 +6645,23 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
 
     // The Absorb Bulb and the Cell Battery are used up to raise Sp. Atk or
     // Attack one stage when a Water or an Electric move hits the holder.
+    // Contrary turns the rise into a fall, so with it the item is used while
+    // the stat can still fall (hg-engine's CheckDefenderItemEffectOnHit,
+    // which asks MoldBreakerAbilityCheck, so a Mold Breaker attacker's hit
+    // leaves Contrary out). calcTemp tells the subscript which way to go.
     case HOLD_EFFECT_ABSORB_BULB:
     case HOLD_EFFECT_CELL_BATTERY: {
         int stat = itemEffect == HOLD_EFFECT_ABSORB_BULB ? BATTLE_STAT_SP_ATTACK : BATTLE_STAT_ATTACK;
         int type = itemEffect == HOLD_EFFECT_ABSORB_BULB ? TYPE_WATER : TYPE_ELECTRIC;
+        BOOL contrary = Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_CONTRARY);
 
         if (DEFENDING_MON.curHP
             && CurrentMoveType(battleCtx) == type
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && DEFENDING_MON.statBoosts[stat] < MAX_STAT_STAGE) {
+            && (contrary ? DEFENDING_MON.statBoosts[stat] > MIN_STAT_STAGE : DEFENDING_MON.statBoosts[stat] < MAX_STAT_STAGE)) {
             battleCtx->msgBattlerTemp = battleCtx->defender;
             battleCtx->msgTemp = stat;
+            battleCtx->calcTemp = contrary;
             *subscript = subscript_item_raise_stat_on_hit;
             result = TRUE;
         }
@@ -6650,18 +6669,26 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     }
 
     // The Weakness Policy is used up to raise Attack and Sp. Atk two stages
-    // each when a supereffective move hits the holder.
-    case HOLD_EFFECT_WEAKNESS_POLICY:
+    // each when a supereffective move hits the holder, or with Contrary to
+    // lower them, as above.
+    case HOLD_EFFECT_WEAKNESS_POLICY: {
+        BOOL contrary = Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_CONTRARY);
+
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE
-                || DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE)) {
+            && (contrary
+                    ? (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] > MIN_STAT_STAGE
+                          || DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] > MIN_STAT_STAGE)
+                    : (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE
+                          || DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE))) {
             battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->calcTemp = contrary;
             *subscript = subscript_weakness_policy;
             result = TRUE;
         }
         break;
+    }
 
     // The Air Balloon bursts when a damaging move hits its holder.
     case HOLD_EFFECT_AIR_BALLOON:

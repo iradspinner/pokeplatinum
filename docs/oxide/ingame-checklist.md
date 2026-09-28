@@ -172,7 +172,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   and Ability Shield and Covert Cloak in a double battle. A Mold Breaker foe's
   Ground move into a player's Levitate holder wearing an Ability Shield
   misses, and its Electric move is drawn to a Lightning Rod partner that
-  wears one.
+  wears one. A Contrary holder of a Weakness Policy, Absorb Bulb,
+  Cell Battery or Mirror Herb has the stat fall ("harshly fell" for the
+  Policy) and the item is used.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
