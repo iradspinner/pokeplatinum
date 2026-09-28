@@ -164,6 +164,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   that still floats clear of its shadow, or sinks into it, is worth a note
   with its name.
 
+- [ ] **Evolution moves** (the "Eevee with Charm" entry, with `main-evo-moves`
+  merged). In the kit ROM only, Sylveon has a stand-in evolution move. One
+  Rare Candy evolves the kit's Eevee, and on evolving it learns Moonblast,
+  with the forget-a-move prompt if it knows four. The Move Relearner then
+  lists Moonblast for it. No species outside the kit has an evolution move
+  until the balance track sets them.
+
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's

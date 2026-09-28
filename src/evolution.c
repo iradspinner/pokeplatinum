@@ -461,7 +461,8 @@ static void Evolution_Main(EvolutionData *evolutionData)
     case EVOLUTION_STATE_CHECK_LEARN_MOVE:
         u16 moveID;
 
-        switch (Pokemon_LevelUpMove(evolutionData->mon, &evolutionData->levelUpMoveIndex, &moveID)) {
+        // Oxide: the new form's evolution moves as well as this level's.
+        switch (Pokemon_EvolutionLevelUpMove(evolutionData->mon, &evolutionData->levelUpMoveIndex, &moveID)) {
         case LEARNSET_MOVE_ALREADY_KNOWN:
             break;
         case LEARNSET_NO_MOVE_TO_LEARN:

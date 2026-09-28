@@ -26,6 +26,9 @@
 // slots and some new species fill more than twenty of them. The wotbl records
 // are variable length, so this only sizes the buffer a lookup reads into.
 #define MAX_LEARNSET_ENTRIES        34
+// Platinum Oxide: a learnset entry at this level is an evolution move,
+// learned when the Pokemon evolves into the species (Pokemon_EvolutionLevelUpMove).
+#define LEARNSET_EVOLUTION_MOVE_LEVEL 0
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
