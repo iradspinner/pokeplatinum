@@ -179,8 +179,7 @@
       "from": {"file": "res/npc_trades/foppa_magikarp.json"},
       "pick": "random",
       "requires": "SPECIES_FINNEON",
-      "simulate": false,
-      "note": "To become Meloetta (Ian, 2026-09-26), which needs work first; until then its Magikarp is left out of the simulator."
+      "note": "Meloetta for a Finneon (Ian, 2026-09-26, in the game since 2026-09-27): it keeps the Finneon's level and IVs and arrives knowing Relic Song. The trade file keeps its old name, foppa_magikarp.json."
     },
     {
       "id": "distortion_world_giratina",

@@ -39,7 +39,7 @@
         },
         {
             "id": "TestKit_Text_MenuForms",
-            "en_US": "Rotom and Giratina"
+            "en_US": "Form changers"
         },
         {
             "id": "TestKit_Text_MenuEevee",
@@ -543,7 +543,11 @@
                 "Rotom is in its Wash form, and\n",
                 "Giratina in its Origin form.\r",
                 "Each summary should show its\n",
-                "form’s own stats and types."
+                "form’s own stats and types.\r",
+                "Meloetta knows Relic Song. Each\n",
+                "hit turns it Pirouette or back\r",
+                "to Aria. It is Aria again when it\n",
+                "switches out or the battle ends."
             ]
         },
         {

@@ -3006,6 +3006,21 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
         spriteTemplate->palette = 244 + shiny + form * 2;
         break;
 
+    // Platinum Oxide: Aria is Meloetta's ordinary sprite. Pirouette's back and
+    // front sprites, then its normal and shiny palettes, are appended to
+    // pl_otherpoke after Arceus's Fairy form.
+    case SPECIES_MELOETTA:
+        if (form > 0) {
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            spriteTemplate->character = pokemon_z_04_meloetta_pirouette_back_NCGR + (face / 2);
+            spriteTemplate->palette = pokemon_z_06_meloetta_pirouette_normal_NCLR + shiny;
+        } else {
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+            spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            spriteTemplate->palette = species * 6 + 4 + shiny;
+        }
+        break;
+
     default:
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
         spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
@@ -3087,6 +3102,11 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
             monForm = 0;
         }
         break;
+    case SPECIES_MELOETTA:
+        if (monForm > MELOETTA_FORM_COUNT - 1) {
+            monForm = 0;
+        }
+        break;
     }
 
     return monForm;
@@ -3117,6 +3137,15 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
     // Platinum Oxide: kept for every sprite, not only Spinda's front, for the
     // personality's colour variation (HueShiftPokemonPalette).
     spriteTemplate->personality = personality;
+
+    // Platinum Oxide: Diamond and Pearl's sprite archives stop at the Egg's
+    // vanilla index, so the species added after Arceus would read past their
+    // end (contests draw with these). They use Platinum's sprites, as the
+    // Platinum-only forms below do.
+    if (species > SPECIES_ARCEUS && species < SPECIES_EGG) {
+        BuildPokemonSpriteTemplate(spriteTemplate, species, gender, face, shiny, form, personality);
+        return;
+    }
 
     form = Pokemon_SanitizeFormId(species, form);
 
@@ -3374,6 +3403,12 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
 
 static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
+    // Platinum Oxide: as in BuildPokemonSpriteTemplateDP, the species added
+    // after Arceus have no Diamond and Pearl height entry.
+    if (species > SPECIES_ARCEUS && species < SPECIES_EGG) {
+        return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
+    }
+
     // TODO enum values?
     form = Pokemon_SanitizeFormId(species, form);
 
@@ -5174,6 +5209,11 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     case SPECIES_ROTOM:
         if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
             monSpecies = (FORM_DATA_ROTOM_HEAT - 1) + monForm;
+        }
+        break;
+    case SPECIES_MELOETTA:
+        if (monForm && monForm <= MELOETTA_FORM_COUNT - 1) {
+            monSpecies = (FORM_DATA_MELOETTA_PIROUETTE - 1) + monForm;
         }
         break;
     default:

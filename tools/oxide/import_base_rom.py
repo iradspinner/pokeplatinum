@@ -1287,6 +1287,7 @@ REBUILT_TRADES = {
     0: "Oreburgh: any Pokemon for a shiny Vullaby",
     1: "Eterna: any Pokemon for a shiny Popplio",
     2: "Snowpoint: a Snover for a shiny Suicune, Serious, 15 across (2026-09-26)",
+    3: "Route 226: the Meister trades a Meloetta for a Finneon (2026-09-27)",
 }
 
 TEXT_BANKS_SKIPPED = {
@@ -1317,6 +1318,10 @@ TEXT_BANKS_SKIPPED = {
         "player to the Underground Man for the Explorer Kit says the tunnels are sealed",
     477: "the Route 207 woman's search for Mira no longer ends in all nine evolution "
          "stones (Ian, 2026-09-27), so her two lines drop the promise",
+    643: "the Meister on Route 226 trades a Meloetta rather than a Magikarp "
+         "(2026-09-27), and two of his lines name it",
+    370: "the trade nicknames: the Meister's Meloetta is MELOETTA, not the Magikarp's "
+         "Foppa (2026-09-27)",
 }
 # The gift clowns are gone (Ian, 2026-09-27; the encounter track's
 # clown-replacements.md): each house's bank loses the giver's lines and the

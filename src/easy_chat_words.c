@@ -29,7 +29,7 @@
 #include "res/text/bank/union_words.h"
 
 static const u16 sTextBankEntryCounts[] = {
-    TEXT_BANK_SPECIES_NAME_ENTRY_COUNT,
+    EASY_CHAT_SPECIES_WORD_COUNT, // Platinum Oxide: held; see defs.h
     TEXT_BANK_MOVE_NAMES_UPPERCASE_ENTRY_COUNT,
     TEXT_BANK_POKEMON_TYPE_NAMES_ENTRY_COUNT,
     TEXT_BANK_ABILITY_NAMES_UPPERCASE_ENTRY_COUNT,

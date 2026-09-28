@@ -586,10 +586,11 @@ def diverged_why(path):
 
 
 # The three per-species archives are built from one registry, in this order:
-# nothing, the species, EGG, BAD_EGG, then the twelve alternate-form records.
-# Phase 4 element 3 inserted 159 species before EGG, so everything after the
-# natives sits at a different index from the reference ROM's. This maps a
-# reference index onto the built one so the two can still be compared.
+# nothing, the species, EGG, BAD_EGG, the twelve alternate-form records, then
+# the new species' forms (NEW_FORM_RECORDS). Phase 4 element 3 inserted 159 species before EGG, and Meloetta one more, so
+# everything after the natives sits at a different index from the reference
+# ROM's. This maps a reference index onto the built one so the two can still
+# be compared.
 SPECIES_ARCHIVES = ("poketool/personal/pl_personal.narc",
                     "poketool/personal/evo.narc",
                     "poketool/personal/wotbl.narc")
@@ -647,24 +648,34 @@ CONTENT_ARCHIVES = {
 # Members Oxide appended after the reference's last; the rest still compare.
 APPENDED = {
     "battle/graphic/pl_batt_obj.narc": (1, "the Fairy type icon (Phase 4 element 1)"),
-    "poketool/pokegra/pl_pokegra.narc": (954, "six for each of the 159 new species"),
-    "poketool/pokegra/height.narc": (636, "four for each of the 159 new species"),
+    "poketool/pokegra/pl_pokegra.narc": (960, "six for each of the 160 new species "
+                                               "(element 3's 159 and Meloetta)"),
+    "poketool/pokegra/height.narc": (640, "four for each of the 160 new species "
+                                         "(element 3's 159 and Meloetta)"),
     "itemtool/itemdata/item_icon.narc": (94, "a sprite and a palette for each of element 7's 46 new items and the Ice Stone"),
-    "poketool/pokegra/pl_otherpoke.narc": (4, "Arceus's Fairy form, for element 7's Pixie Plate: back, front, normal and shiny palettes"),
+    "poketool/pokegra/pl_otherpoke.narc": (8, "back, front, normal and shiny palettes of Arceus's "
+                                              "Fairy form (element 7's Pixie Plate), then the "
+                                              "same four of Meloetta's Pirouette"),
 }
 # Single-member tables whose member Oxide grew by appending records: the built
 # member must begin with the reference's.
 GROWN = {
     "poketool/poke_edit/pl_poke_data.narc": "each species' 89-byte sprite record, "
-                                            "the 159 new species' after the base ROM's 494",
+                                            "the 160 new species' after the base ROM's 494",
 }
+
+
+# Form records of the new species, appended after the reference's twelve:
+# Meloetta's Pirouette. Being last, they move nothing the reference has, so
+# the shift for everything after the natives is the new species alone.
+NEW_FORM_RECORDS = 1
 
 
 def reference_to_built(i, n_built, n_ref):
     """Where reference member i lives in the built archive."""
     if i < REF_NATIVE_COUNT:
         return i
-    return i + (n_built - n_ref)
+    return i + (n_built - n_ref - NEW_FORM_RECORDS)
 
 
 # The species record grew from 44 bytes to 48 in Phase 4 element 2, so
@@ -742,7 +753,7 @@ def check_personal(b, r, path):
             bad.append(i)
     print(f"{path}: {len(b)} members against the reference's {len(r)}; "
           f"{len(bad)} disagree, {len(intended)} differ only at the intended bytes"
-          + (f", {extra} are new species" if extra else "")
+          + (f", {extra} are new species and their forms" if extra else "")
           + (f"; {hidden} of the shared records carry a hidden ability, which the "
              f"reference has no slot for" if hidden else ""))
     if bad:
@@ -823,7 +834,7 @@ def check_species_archive(b, r, path):
     print(f"{path}: {len(b)} members against the reference's {len(r)}; {len(bad)} disagree"
           + (" (compared as decoded learnsets, the entry format widened in element 4)"
              if learnsets else "")
-          + (f", {extra} are new species" if extra > 0 else ""))
+          + (f", {extra} are new species and their forms" if extra > 0 else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))

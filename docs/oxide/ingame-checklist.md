@@ -48,6 +48,11 @@ replacement is on the way. When the new chip is in, and before any playtest:
   post-game, May, Steven, Red and Gold showing their own battle sprites.
   Shadow Force's animation carries one changed byte nobody has explained;
   note anything odd about it.
+- [ ] Once `main-meloetta` merges, **your current save still loads**: the
+  Pokedex keeps its seen and caught counts, and mail and greetings read as
+  before. On mail written before it, an egg or a Deoxys, Unown, Burmy,
+  Wormadam, Shellos or Gastrodon form shows the icon one place along; that is
+  known and harmless (`save-layout.md`, the Meloetta section).
 
 - [ ] Once `main-battlelog` merges, **the battle log**: your current save
   loads and plays as before. Fight two trainers, save, and the OxiDex's
@@ -195,6 +200,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
   merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
   second use empties it. An HM taught from the case stays.
+- [ ] **Meloetta's forms** (the "Form changers" entry, with `main-meloetta`
+  merged). The kit gives a Lv. 50 Meloetta with Relic Song in its first slot.
+  In one of the menu's wild battles, switch it in: a Relic Song that hits turns
+  it into Pirouette (orange hair, Normal and Fighting, "transformed!"), and the
+  next one that hits turns it back to Aria. A Relic Song that misses changes
+  nothing. Switched out as Pirouette, it comes back in as Aria. After a battle
+  ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
+  Aria's stats.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -292,6 +305,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   in the Hearthome contest. The Pokedex, the party and box icons, the starter
   choice, Rowan's introduction and the Great Marsh binoculars keep standard
   colours, and so does a Substitute doll (the base ROM tinted the doll).
+- [ ] A species added by Oxide (any of the 159, or Meloetta) entered in the
+  Hearthome Super Contest draws its own sprite. Contests draw from Diamond and
+  Pearl's sprite archive, which stops at Arceus; before the fix of 2026-09-27
+  these species read past its end.
 
 ## 4. The ordinary ROM, mid-game
 
@@ -434,6 +451,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Galarian Weezing or Galarian Rapidash, with the Galarian sprite and name.
   An untouched Koffing still becomes ordinary Weezing at level 35, and a
   Ponyta ordinary Rapidash at 40.
+
+- [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
+  to him twice; the first time powers up the Pokedex): he asks for a Finneon
+  for his precious MELOETTA. The trade gives a Meloetta named MELOETTA, OT
+  Meister, holding a Lum Berry, at the Finneon's level and knowing Relic
+  Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
+  "Its melodies sway the hearts of all who hear them..." with the Melody
+  Pokemon category.
 
 ## 5. The ordinary ROM, after the League
 

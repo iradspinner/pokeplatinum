@@ -166,6 +166,9 @@ poke_icon_files += [
     rotom_frost_icon,
     rotom_fan_icon,
     rotom_mow_icon,
+    # Platinum Oxide: new species' form icons go last, so vanilla's keep
+    # their indices; ICON_* in species_icon_palettes.h.template follows.
+    meloetta_pirouette_icon,
 ]
 
 otherpoke_files = []

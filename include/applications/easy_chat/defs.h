@@ -71,7 +71,20 @@ enum ABCModeChars {
     ABC_MODE_CHAR_COUNT,
 };
 
-#define MOVE_WORD(move)           (TEXT_BANK_SPECIES_NAME_ENTRY_COUNT + move)
+// Platinum Oxide: the species group is held at 655 words, the size it reached
+// with the 159 new species, instead of following the species name bank. Word
+// ids run on from one group to the next and are saved in mail and trainer
+// messages, so a longer bank (Meloetta made it 656 names) would move every word
+// after the species. Nothing is lost: the new species are not in the Easy Chat
+// list (sPokemonWords stops at the natives), and the Egg words past the new
+// species were never offered.
+#define EASY_CHAT_SPECIES_WORD_COUNT 655
+
+#if EASY_CHAT_SPECIES_WORD_COUNT > TEXT_BANK_SPECIES_NAME_ENTRY_COUNT
+#error "the Easy Chat species group has more words than the species name bank has names"
+#endif
+
+#define MOVE_WORD(move)           (EASY_CHAT_SPECIES_WORD_COUNT + move)
 #define TYPE_WORD(type)           (MOVE_WORD(TEXT_BANK_MOVE_NAMES_UPPERCASE_ENTRY_COUNT) + type)
 #define ABILITY_WORD(ability)     (TYPE_WORD(TEXT_BANK_POKEMON_TYPE_NAMES_ENTRY_COUNT) + ability)
 #define TRAINER_WORD(bankEntry)   (ABILITY_WORD(TEXT_BANK_ABILITY_NAMES_UPPERCASE_ENTRY_COUNT) + bankEntry)

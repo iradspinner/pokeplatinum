@@ -536,7 +536,7 @@ def calc_sprite(sprite_set, filename):
 
 def dex_list():
     """Every species in the tree, as one row each: what the list view needs and
-    nothing it does not, because there are 652 of them."""
+    nothing it does not, because there are over 650 of them."""
     root = model.repo_root()
     caught = _captures()
     rows = []

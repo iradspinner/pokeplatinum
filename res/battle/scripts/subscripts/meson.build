@@ -395,4 +395,5 @@ subscript_files = files(
     'subscript_mirror_herb.s',
     'subscript_red_card.s',
     'subscript_eject_button.s',
+    'subscript_relic_song_form.s',
 )

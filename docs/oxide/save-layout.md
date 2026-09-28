@@ -200,6 +200,47 @@ A save made in the League split reads as the Barry split, capped at 71 until
 the player enters the Elite Four again. A save made after the Champion reads
 as the League split, capped at 78 until the Champion is beaten again.
 
+## Meloetta: the species-sized save data is held, not grown (2026-09-27)
+
+Meloetta is species 653, so the Egg and Bad Egg moved up to 654 and 655 and
+`MAX_SPECIES` became 655. Three saved things were sized by the species count.
+Each is now held at the size the 159 new species gave it, so a save made
+before Meloetta reads exactly as it did:
+
+| Saved data | Was sized by | Held at | Checked in |
+|---|---|---|---|
+| Pokedex language bytes | `MAX_SPECIES + 1` | 655, `DEX_LANGUAGE_SLOTS` | `src/pokedex.c` |
+| Battle Hall streaks, three arrays | `MAX_SPECIES` | 654 each, `BATTLE_HALL_SPECIES_SLOTS` | `src/battle_hall_win_records.c` |
+| Easy Chat species group (word ids) | the species name bank | 655 words, `EASY_CHAT_SPECIES_WORD_COUNT` | `include/applications/easy_chat/defs.h` |
+
+The Pokedex would have kept its size, since padding absorbs one byte, but
+the four flag bytes after the language bytes would each have moved by one,
+`pokedexObtained` among them. The seen, caught and gender flags stay 21 words:
+Meloetta takes bit 12 of the last word, and the Deoxys forms packed into bits
+24 to 31 of that word leave room up to species 664, which `src/pokedex.c` now
+checks as well. The Easy Chat hold costs no words, because the new species
+were never in the Easy Chat list and the Egg words past them were never
+offered. The word bank archive built after the hold is byte for byte the one
+built before it.
+
+Each hold is a compile-time check, so the next species added fails to build
+until someone decides. Raising a hold moves that data on every existing save
+and needs a section here.
+
+A stored egg keeps its real species, with the egg bit beside it; the Egg's
+species number is only produced when the game reads the Pokemon. So no egg in
+a save changes meaning when the Egg's number moves. The daycare, the Pokedex,
+the trade and hatch paths and the encounter tool's save reader all use the
+constant or the egg bit, never a bare number.
+
+One thing does move, and only on screen: mail stores each party Pokemon's
+icon as its index in the icon archive. Meloetta's icon goes in before the
+Egg's, so on mail written before this change, an egg, or a Deoxys, Unown,
+Burmy, Wormadam, Shellos or Gastrodon in a form with its own icon, shows the
+icon one place along. Giratina, Shaymin and Rotom forms are stored under their
+base species' icon and are unaffected. Element 3 moved the same icons by 159
+places and was not recorded here.
+
 ## The battle log, a new block in sector 44 (2026-09-28)
 
 The last 60 trainer battles, for the OxiDex, are kept in flash sector 44 of

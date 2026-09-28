@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/forms.h"
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -5212,6 +5213,7 @@ enum AfterMoveHitState {
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
     AFTER_MOVE_HIT_STATE_FLAME_BURST, // Oxide
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
+    AFTER_MOVE_HIT_STATE_RELIC_SONG, // Oxide
 
     AFTER_MOVE_HIT_STATE_END
 };
@@ -5312,6 +5314,30 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
                 battleCtx->msgBattlerTemp = battleCtx->attacker;
 
                 LOAD_SUBSEQ(subscript_lose_hp_from_item);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                machineState = STATE_BREAK_OUT;
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+
+        case AFTER_MOVE_HIT_STATE_RELIC_SONG:
+            // Oxide: a Relic Song that hit switches Meloetta between Aria and
+            // Pirouette, once per use however many targets it hit, as in
+            // hg-engine. A Pokemon transformed into Meloetta keeps its form.
+            if (battleCtx->moveCur == MOVE_RELIC_SONG
+                && ATTACKING_MON.species == SPECIES_MELOETTA
+                && ATTACKING_MON.curHP
+                && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+                && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)) {
+                battleCtx->msgBattlerTemp = battleCtx->attacker;
+                battleCtx->scriptTemp = ATTACKING_MON.formNum == MELOETTA_FORM_ARIA
+                    ? MELOETTA_FORM_PIROUETTE
+                    : MELOETTA_FORM_ARIA;
+
+                LOAD_SUBSEQ(subscript_relic_song_form);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

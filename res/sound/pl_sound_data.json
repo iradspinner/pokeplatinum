@@ -12956,11 +12956,13 @@
 			"fileName":	"glimmora/cry.sbnk",
 			"waves":	["WAVE_ARC_PV678", "", "", ""]
 		}, {
+			"name":	"BANK_PV679",
+			"fileName":	"meloetta/cry.sbnk",
+			"waves":	["WAVE_ARC_PV679", "", "", ""]
+		}, {
 			"name":	"BANK_PV516_SKY",
 			"fileName":	"shaymin/forms/sky/cry.sbnk",
 			"waves":	["WAVE_ARC_PV516_SKY", "", "", ""]
-		}, {
-			"name":	""
 		}, {
 			"name":	""
 		}, {
@@ -15207,10 +15209,11 @@
 			"name":	"WAVE_ARC_PV678",
 			"fileName":	"glimmora/cry.swar"
 		}, {
+			"name":	"WAVE_ARC_PV679",
+			"fileName":	"meloetta/cry.swar"
+		}, {
 			"name":	"WAVE_ARC_PV516_SKY",
 			"fileName":	"shaymin/forms/sky/cry.swar"
-		}, {
-			"name":	""
 		}, {
 			"name":	""
 		}, {

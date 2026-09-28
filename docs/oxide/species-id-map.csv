@@ -158,3 +158,4 @@ species_id,constant,name,dex_pos,natdex,kind,donor_index
 650,SPECIES_CERULEDGE,Ceruledge,362,937,species,987
 651,SPECIES_GLIMMET,Glimmet,363,969,species,1019
 652,SPECIES_GLIMMORA,Glimmora,364,970,species,1020
+653,SPECIES_MELOETTA,Meloetta,503,648,species,698
