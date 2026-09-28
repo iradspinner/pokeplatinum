@@ -1156,6 +1156,21 @@ that stay. None blocks anything.
    species gained short in-game names (A-NINETALS); the OxiDex keeps the
    folder's name for them (Alolan Ninetales), from form_names.py's table.
 
+42. **The save reader follows element 7's Bag (2026-09-28, through the
+   Overseer).** Element 7 widened three Bag pockets (Items 165 to 187,
+   Medicine 40 to 63, Berries 64 to 65), so the normal block grew by 184
+   bytes to 0xD0D4 and the variables and flags after the Bag moved
+   (save-layout.md, "The Bag grew"). The reader summed the pocket defines
+   that were plain numbers, and the TM pocket's is now the expression
+   NUM_TMHMS, so the variables read at 0xCD4. It now takes the Bag struct's
+   own pockets and works each size out from the bag and item headers, item
+   constants by their ids: the variables are at 0xE64. A layout change
+   costs a new game, not a converter (Ian, 2026-09-28), so the reader marks
+   the new layout current. A save on an older one still gives its party and
+   boxes, which sit where they did. Its split is not read, its flags are
+   refused, and `cli save` reports it as needing a new game (exit 2). Ian's
+   saves up to now are all on the older layout.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule

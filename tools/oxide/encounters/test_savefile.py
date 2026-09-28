@@ -19,7 +19,10 @@ import tempfile
 
 from . import savefile as S
 
-NORMAL_SIZE, BOX_SIZE = 0xD01C, 0x121E4
+# The layout this build writes: 0xD01C until element 7 widened the Bag by 184
+# bytes (2026-09-28).
+NORMAL_SIZE, BOX_SIZE = 0xD0D4, 0x121E4
+OLD_NORMAL_SIZE = 0xD01C
 IAN_COPY = os.path.expanduser("~/roms/oxide-save-2026-09-21.sav")
 # His first save on a current ROM (53b863005), in his room after the intro.
 IAN_CURRENT = os.path.expanduser("~/roms/oxide-save-2026-09-27-53b863005.sav")
@@ -70,9 +73,11 @@ def footer(body, block, save_counter, block_counter, size):
 
 
 def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
-              money=12345):
+              money=12345, normal_size=NORMAL_SIZE):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
-    copy of each block is newer (0 leaves that copy's block unwritten)."""
+    copy of each block is newer (0 leaves that copy's block unwritten).
+    `normal_size` other than this build's makes a save on an older layout."""
+    NORMAL_SIZE = normal_size
     data = bytearray(b"\xff" * 0x80000)
     normal = bytearray(NORMAL_SIZE - S.FOOTER_SIZE)
     struct.pack_into("<HH", normal, S.TRAINER_ID_AT, 25097, 32454)
@@ -154,8 +159,10 @@ def main():
     pr = s["progress"]
     results.append(("the save's progress: money and badges from the trainer, the level-cap "
                     "split from its variable (after the party and the bag), with the engine's cap",
+                    # 0xDAC until element 7's Bag (2026-09-28): the TM pocket's
+                    # size is NUM_TMHMS now, which the reader resolves.
                     pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
-                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xE64
                     # the split names are the simulator's, so it can resume there
                     and S._vars_layout()["splits"][7] == "HQ"
                     and S._vars_layout()["splits"][12] == "Post",
@@ -163,6 +170,21 @@ def main():
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))
+    # A save on the layout before element 7's Bag (Ian: a layout change costs a
+    # new game, 2026-09-28): its party still reads, its variables do not.
+    older = make_save(party, {}, normal_size=OLD_NORMAL_SIZE)
+    o = S.parse(older, "older")
+    try:
+        S.flag(older, "FLAG_HAS_POKEDEX")
+        flag_refused = False
+    except S.SaveError:
+        flag_refused = True
+    results.append(("a save on the layout before element 7 still gives its party, but not its "
+                    "split, and says it needs a new game; its flags are refused",
+                    o["party"] and o["party"][0]["species"] == "SPECIES_CHIMCHAR"
+                    and o["progress"]["split"] is None and o["progress"]["money"] == 12345
+                    and any("older layout" in m and "new game" in m for m in o["era"]["mismatches"])
+                    and flag_refused, "; ".join(o["era"]["mismatches"])[:120]))
 
     # Read-only: reading the file leaves it byte for byte as it was.
     with tempfile.TemporaryDirectory() as tmp:
@@ -217,11 +239,14 @@ def main():
     if os.path.exists(IAN_COPY):
         ian = S.read(IAN_COPY)
         first = ian["party"][0] if ian["party"] else {}
+        # His saves predate element 7's Bag: the party reads, and the save is
+        # reported as made on an older layout.
         results.append(("Ian's save of 2026-09-21 (its working copy): Chimchar at level 6 with "
-                        "Blaze, on Oxide's layout, nothing contradicting this build",
+                        "Blaze, reported as an older layout than this build's",
                         first.get("species") == "SPECIES_CHIMCHAR" and first.get("level") == 6
                         and S._level("SPECIES_CHIMCHAR", first.get("exp", 0)) == 6
-                        and first.get("ability") == "Blaze" and not ian["era"]["mismatches"]
+                        and first.get("ability") == "Blaze"
+                        and any("older layout" in m for m in ian["era"]["mismatches"])
                         and ian["blocks"][1]["copy"] == "backup",
                         S.describe(first) if first else "no party"))
     else:
@@ -229,14 +254,17 @@ def main():
     if os.path.exists(IAN_CURRENT) and os.path.exists(IAN_COPY):
         now = S.read(IAN_CURRENT)
         old = open(IAN_COPY, "rb").read()
-        results.append(("Ian's first save on a current ROM: the same layout, an empty party, "
-                        "3000 money, Roark's split at cap 16; his older save has the Pokedex "
-                        "flag set, read from the same place",
-                        now["blocks"][0]["size"] == 0xD01C and not now["party"]
-                        and now["progress"]["money"] == 3000
-                        and now["progress"]["split"] == {"index": 0, "name": "Roark", "cap": 16}
-                        and not now["era"]["mismatches"] and S.flag(old, "FLAG_HAS_POKEDEX")
-                        and not S.flag(open(IAN_CURRENT, "rb").read(), "FLAG_HAS_POKEDEX"),
+        try:
+            S.flag(old, "FLAG_HAS_POKEDEX")
+            refused = False
+        except S.SaveError:
+            refused = True
+        results.append(("Ian's save of 2026-09-27 on a pre-element-7 ROM: the old layout, an "
+                        "empty party and 3000 money read; its split and flags are not read, "
+                        "and it is reported as needing a new game",
+                        now["blocks"][0]["size"] == OLD_NORMAL_SIZE and not now["party"]
+                        and now["progress"]["money"] == 3000 and now["progress"]["split"] is None
+                        and any("new game" in m for m in now["era"]["mismatches"]) and refused,
                         str(now["progress"])))
     else:
         print(f"  skip  Ian's current save: no working copy at {IAN_CURRENT}")
