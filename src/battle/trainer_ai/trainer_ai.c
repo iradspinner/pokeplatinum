@@ -3681,6 +3681,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, BATTLER_OPP(battler)),
                             Battler_HeldItemEffect(battleCtx, BATTLER_OPP(battler)),
+                            BATTLER_OPP(battler),
                             BattleMon_Get(battleCtx, BATTLER_OPP(battler), BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, BATTLER_OPP(battler), BATTLEMON_TYPE_2, NULL),
                             &effectiveness);
@@ -3801,6 +3802,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, defender1),
                             Battler_HeldItemEffect(battleCtx, defender1),
+                            defender1,
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_2, NULL),
                             &effectiveness);
@@ -3819,6 +3821,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, defender2),
                             Battler_HeldItemEffect(battleCtx, defender2),
+                            defender2,
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_2, NULL),
                             &effectiveness);
@@ -3860,6 +3863,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, defender1),
                             Battler_HeldItemEffect(battleCtx, defender1),
+                            defender1,
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_2, NULL),
                             &effectiveness);
@@ -3878,6 +3882,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, defender2),
                             Battler_HeldItemEffect(battleCtx, defender2),
+                            defender2,
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_2, NULL),
                             &effectiveness);
@@ -4154,6 +4159,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                 Battler_Ability(battleCtx, battleCtx->moveHitBattler[battler]),
                 Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                 BattleSystem_GetItemData(battleCtx, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT),
+                BATTLER_NONE,
                 Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL),
                 Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL),
                 &effectiveness);
@@ -4171,6 +4177,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             Battler_Ability(battleCtx, battleCtx->moveHitBattler[battler]),
                             Battler_HeldItemEffect(battleCtx, battleCtx->moveHitBattler[battler]),
+                            battleCtx->moveHitBattler[battler],
                             BattleMon_Get(battleCtx, battleCtx->moveHitBattler[battler], BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, battleCtx->moveHitBattler[battler], BATTLEMON_TYPE_2, NULL),
                             &effectiveness);

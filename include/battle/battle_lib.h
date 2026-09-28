@@ -476,11 +476,14 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
  * @param attackerAbility
  * @param defenderAbility
  * @param defenderItemEffect
+ * @param defender              Oxide: the defending battler, whose Ingrain or
+ *                              Smack Down grounds an Air Balloon's holder, or
+ *                              BATTLER_NONE for a Pokemon not in battle
  * @param defenderType1
  * @param defenderType2
  * @param[out] moveStatusMask
  */
-void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask);
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defender, int defenderType1, int defenderType2, u32 *moveStatusMask);
 
 /**
  * @brief Check if a battler's move failed to execute for the turn.

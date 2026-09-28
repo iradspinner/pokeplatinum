@@ -2960,7 +2960,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     return damage;
 }
 
-void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask)
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defender, int defenderType1, int defenderType2, u32 *moveStatusMask)
 {
     int chartEntry;
     u8 moveType;
@@ -2990,8 +2990,12 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else if (defenderItemEffect == HOLD_EFFECT_AIR_BALLOON // Oxide, element 7
         && moveType == TYPE_GROUND
+        && (defender == BATTLER_NONE
+            || (battleCtx->battleMons[defender].moveEffectsMask & (MOVE_EFFECT_INGRAIN | MOVE_EFFECT_SMACKED_DOWN)) == FALSE)
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && move != MOVE_THOUSAND_ARROWS) {
+        // The grounding test of BattleSystem_ApplyTypeChart's Air Balloon
+        // branch: Ingrain and Smack Down bring its holder down.
         *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
@@ -9712,6 +9716,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                         Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                         Battler_Ability(battleCtx, defender),
                         Battler_HeldItemEffect(battleCtx, defender),
+                        defender,
                         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL),
                         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL),
                         &moveStatusFlags);
