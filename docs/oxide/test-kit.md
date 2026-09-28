@@ -88,6 +88,7 @@ With the cap at 16, what to look for:
   level, and it is still Lv. 16 after a trip into the PC and back.
 - Raising the cap to Gardenia's 26 lets the same Pokemon gain Exp. again.
 
+## The move sets
 
 One set per four moves, a batch of effect scripts at a time. Each is a block in
 the kit script that loads four move ids into `VAR_0x8006` to `VAR_0x8009` and

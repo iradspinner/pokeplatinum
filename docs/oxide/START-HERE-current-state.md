@@ -5,7 +5,8 @@ Written 2026-09-15, rewritten 2026-09-20. This file deliberately carries **no
 status**: status moves faster than any snapshot, and a stale snapshot is worse
 than none. For where things stand, read the top block of `docs/oxide/tracker.md`
 on branch `oxide` of `iradspinner/pokeplatinum`; for the encounter tool, the
-"Resuming cold" section of `docs/oxide/encounter-tool-build-plan.md`. The G:
+"Resuming cold" section of `docs/oxide/encounter-tool-build-plan.md`; for the
+balance track, `docs/oxide/balance-plan.md`. The G:
 folder holds mirrors of both, refreshed by `tools/oxide/sync-docs.sh`, and the
 mirror can lag the repo by a session.
 
@@ -20,15 +21,17 @@ source, not to patch a ROM. Hobby project, no QA gate.
 The work runs in phases. Phases 0 to 2 (setup, survey, approach) are done. Phase 3
 carried Ian's earlier hand edits from an old DSPRE-edited ROM ("the base ROM") into
 the source tree, so nothing of his was lost by switching to a source build. Phase 4
-is the actual engine port and is under way, one element at a time. Alongside,
-a separate **encounter tool** for designing the wild encounter tables is built,
-and the pass that writes the tables from the species pick-list has started.
+is the actual engine port, one element at a time. Alongside run two tracks of
+their own: the **Platinum OxiDex** (OxiDex for short), the encounter tool that
+designs the wild encounter tables, and the **balance track**, which analyses and
+tunes the whole game's balance.
 
-## The three surfaces and who owns what
+## The surfaces and who owns what
 
 | Surface | Owns |
 |---|---|
-| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | All source edits, builds, commits, pushes. `docs/oxide/` in the repo is the live design doc, tracker and notes. |
+| Claude Code in WSL2, `~/pokeplatinum`, branch `oxide` | Source edits, commits, pushes and merges, by several sessions at once, each on its own branch or worktree; the Oxide Overseer merges them. Builds run on GitHub while the CPU is degraded (gotcha 7). `docs/oxide/` in the repo is the live design doc, tracker and notes. |
+| Claude Code cloud sessions (claude.ai/code) | Jobs on their own `cloud/<track>-<topic>` branches, built on a healthy VM; they report through the branch and the Overseer merges them (`CLAUDE.md`, "Cloud sessions"). |
 | A chat in this project (this file's audience) | Design questions, Hardlove donor analysis, base-ROM archaeology, anything that needs a second opinion before it becomes code. Produces notes, not commits. Notes it writes land in the G: folder and are brought into `docs/oxide/` when they matter. |
 | The project folder `G:\...\Hardlove Gold-Platinum Oxide Integration Project` | Both ROMs, both DSPRE extractions, and mirror copies of the docs. |
 
@@ -39,13 +42,16 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 1. `docs/oxide/design-doc.md`: what the project is, ground truth, scope, working rules, findings log.
 2. `docs/oxide/tracker.md`: open work, next steps, what is waiting on Ian. Finished work is in `tracker-archive.md`, read when the tracker points there.
-3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase2-approach-breakdown.md` (why build from the decomp, and the Phase 4 order), `phase3-base-rom-inventory.md` and `phase3-answers-and-trainer-format.md` (what the base ROM changed and what Ian said to keep), `phase3-scripts-and-events-plan.md` (how the scripts came over), `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-gifts.md`.
-4. For the encounter tool: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
+3. Only as the tracker points you there: `phase1-hg-engine-survey.md` (what hg-engine is and its feature menu), `phase3-base-rom-inventory.md` (what the base ROM changed, with its corrections at the top) and `phase3-answers-and-trainer-format.md` (the base ROM's trainer format), `phase4-engine-change-answers.md` (what Phase 4 ports beyond the four expansions, and why), `species-pick-list.md`, `pokemon-sources.md` (every non-land source of a Pokemon in the tree).
+4. For the OxiDex: `encounter-tool-build-plan.md` first, then `encounter-tool-design.md` sections 1, 2 and 6, then `encounter-design-survey.md` only for a number's provenance. For the pass that writes the tables: `encounter-authoring-plan.md`.
 
 ## Decided, do not relitigate without reason
 
+Ian's standing rulings, which every session follows, are in
+`.claude/rules/standing-rulings.md`; this list keeps the older structural ones.
+
 - Build from the decomp (approach C). Patching a ROM and DSPRE-only editing are
-  both ruled out, for reasons in `phase2-approach-breakdown.md`.
+  both ruled out, for reasons in the design doc, section 4.
 - Hardlove's content comes over; Hardlove's battle AI does not. Platinum's own AI
   is the baseline, updated for the new moves and abilities.
 - Ian's earlier base-ROM edits are preserved: overworld events, scripts, text,
@@ -66,10 +72,12 @@ frozen 2026-09-15. Treat them as background, not current status.
 
 ## Gotchas worth knowing before touching anything
 
-1. **The base ROM is irreplaceable input.** `Platinum Unlocked - Challenge -
-   Adjusted v1.1.nds` in the project folder (pinned copy `~/roms/base.nds`) is what
-   every verify tool compares against and the only source for re-checking
-   anything Phase 3 carried over. Do not delete or overwrite it.
+1. **The base ROM is irreplaceable input.** Since 2026-09-26 it is `Platinum Oxide
+   base ROM 2026-08-31 (from Example ROM Test.nds).nds` in the project folder
+   (pinned copy `~/roms/base.nds`), what every verify tool compares against and
+   the only source for re-checking anything carried over. The earlier `Platinum
+   Unlocked - Challenge - Adjusted v1.1.nds` stays as the record of 2026-08-11.
+   Do not delete or overwrite either.
 2. **The importers need a vanilla reference too.** `~/roms/vanilla.nds` is a
    byte-exact Rev 1 build from `main`. Don't rebuild it per session.
 3. **Do not reformat `res/` JSON files wholesale.** The repo's formatting is not
@@ -83,11 +91,13 @@ frozen 2026-09-15. Treat them as background, not current status.
 5. **86 of the field scripts are machine-generated.** Each says so in its first
    line. They are correct against the base ROM and not the repo's idiom; do not
    take them as examples of how to write a script.
-6. **Two sessions in parallel means one status home each.** The tracker is for
-   Phases 0 to 5, the build plan for the encounter tool. Editing the other
-   track's file is how the merge conflicts happened.
+6. **Several sessions in parallel means one status home each.** The tracker is
+   for the main track and the Overseer, `encounter-tool-build-plan.md` for the
+   OxiDex, `balance-plan.md` for the balance track. Editing another track's file
+   is how the merge conflicts happened.
 7. **The build machine's CPU is degraded** until its warranty replacement
-   arrives (2026-09-22). Builds can crash and pass on a retry, so GitHub builds
-   every push to `oxide` and prints the ROM's SHA-1; a ROM is trusted when its
-   hash matches that one. A result from the build machine that looks wrong may
-   be the hardware, so rerun it before chasing it.
+   arrives (2026-09-22), and there are no local builds until then (Ian,
+   2026-09-23). ROMs are built on GitHub: every push to `oxide` prints the
+   ROM's SHA-1, and `tools/oxide/fetch-rom` builds any pushed commit and
+   downloads the ROM for Ian. A result from the build machine that looks wrong
+   may be the hardware, so rerun it before chasing it.

@@ -35,8 +35,9 @@ battle sub-scripts, HGSS's equivalents of Platinum's `battle/skill/waza_seq.narc
 (501 members) and `battle/skill/sub_seq.narc` (297). **That is a guess from the
 member counts alone.** Neither was decoded and neither member matches its
 Platinum counterpart byte for byte, which is expected between two games but is
-not evidence either way. Identifying them is its own job and element 4 will need
-it.
+not evidence either way. Element 4 never needed them: its effect scripts came
+from hg-engine's source through `tools/oxide/convert_battle_scripts.py`, and
+its animations from Platinum's own.
 
 ## The move record
 
@@ -84,8 +85,9 @@ count and is right as far as it goes, but three of the numbers matter separately
   is `MOVE_NONE`, printed as `-`.
 - Ids 468, 469 and 470 are named `MOVE_468`, `MOVE_469`, `MOVE_470` and
   described as `--`. Those are the three inaccessible tail records the retail
-  game ships and `tools/dataproc/src/moveproc.c` reproduces in
-  `pack_extra_moves()`. Hardlove kept them and started its own moves at 471,
+  game ships, which vanilla's `moveproc.c` packed in `pack_extra_moves()`;
+  Oxide keeps them as ordinary move directories with the same bytes
+  (`MOVE_UNUSED_468` to `_470`). Hardlove kept them and started its own moves at 471,
   Hone Claws, running unbroken to 922, Malignant Chain.
 
 So the real new content is **452 moves at ids 471..922**.
@@ -132,9 +134,9 @@ redesigns (Growth to Grass, Super Fang and Pain Split to Dark physical 1 power,
 Covet to Fairy). Each is still the right move in the right slot.
 
 **Conclusion: donor move id == Oxide move id for 0..467, and the new moves can be
-appended contiguously from 468 up.** No translation layer, ever. Whether Oxide
-fills 468, 469 and 470 with the donor's placeholders or with real moves is a free
-choice, since nothing references them.
+appended contiguously from 468 up.** No translation layer, ever. Oxide keeps
+468, 469 and 470 as the retail placeholders, so its new moves start at 471 as
+the donor's do.
 
 ## Names and descriptions
 
@@ -226,7 +228,7 @@ user's side, plus Conversion 2).
 The three that store 24 are Rototiller, Flower Shield and Teatime, 8|16,
 all-adjacent plus the user. Platinum has no single range for that, so those three
 need a decision rather than an import. `donor_moves.range_to_platinum` returns
-`None` for them.
+`None` for them, and `import_moves.py` gives them `RANGE_ALL`.
 
 Whether hg-engine's engine really treats the field as a mask or just happens to
 have assigned powers of two to a plain enum is not something the data settles;
@@ -244,9 +246,10 @@ looks like hg-engine dropping the flag rather than a coincidence, but the cause
 was not traced. Ignoring that bit, only 37 of 468 flag bytes differ, mostly
 Magic Coat and Snatch eligibility.
 
-If Oxide imports the donor's flags as they are, King's Rock stops working. The
-import should either keep Platinum's flag byte for natives or reinstate the bit
-from the move's own class and power.
+If Oxide imports the donor's flags as they are, King's Rock stops working.
+Settled: `import_moves.py` gives every damaging new move the bit, the later
+games' rule, and Ian extended it to the natives' damaging moves on 2026-09-22
+(the `port-element` skill).
 
 ### Contest data is only half there
 
@@ -259,9 +262,9 @@ simply missing from whatever table hg-engine rebuilt from. Not worth chasing.
 
 For the 452 new moves the contest effect is only ever 0 or 5 (`NONE` or `BASIC`)
 and the contest type is spread over 0..4 with no obvious rule. **hg-engine did
-not author contest data for its new moves.** Oxide has Super Contests, so the 452
-new moves will need a contest effect and type assigned from somewhere else, or
-a default.
+not author contest data for its new moves.** Oxide has Super Contests, so
+`import_moves.py` gives the new moves a default: the donor's `NONE` or `BASIC`
+effect, and the contest type most of Platinum's moves of the same type carry.
 
 ### Priority
 

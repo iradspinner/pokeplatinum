@@ -120,8 +120,8 @@ imports as level 1.
 
 Nine slots of `(u16 method, u16 param, u16 target)`. Methods 0 to 26 are
 Platinum's own `EVO_*` numbering unchanged; anything above is hg-engine's. The
-159 pick-list species need ten methods, eight of which Platinum already has, and
-these four it does not:
+159 pick-list species need twelve methods, counting the natives that evolve into
+one of them, eight of which Platinum already has, and these four it does not:
 
 | Method | Seen on | What it is |
 |---|---|---|
@@ -131,8 +131,9 @@ these four it does not:
 | 47 | Primeape to Annihilape, param 20 | use Rage Fist twenty times |
 
 Method 47 has no Generation 4 equivalent and no room to count move uses, so
-Annihilape needs a different trigger; that is a decision for the port, not a
-port of the donor's value.
+Annihilape needed a different trigger: the pick-list's evolution table gives
+level 50, as it gives plain levels for Lurantis and Goodra, and `res/pokemon`
+has those.
 
 **Three natives gain an evolution**: Primeape to Annihilape, Scyther to Kleavor
 (method 7, use item 321, the Black Augurite) and Eevee to Sylveon.
@@ -140,7 +141,7 @@ port of the donor's value.
 **Two donor targets dangle.** Hisuian Sliggoo points at 2804 and Dartrix's
 second branch at 2822, both past the end of Hardlove's own 1476 records, because
 the table was built against a newer hg-engine. 2804 is Hisuian Goodra, which is
-in the pick-list and has to be repointed at Oxide's id. 2822 is Hisuian
+in the pick-list and is repointed at Oxide's id. 2822 is Hisuian
 Decidueye, which is not in the pick-list, so that branch is dropped and Dartrix's
 personality-split evolution collapses to a plain level 36.
 

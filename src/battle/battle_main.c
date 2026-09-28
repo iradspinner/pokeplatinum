@@ -35,6 +35,7 @@
 #include "overlay011/particle_helper.h"
 
 #include "bag.h"
+#include "battle_log.h"
 #include "bg_window.h"
 #include "cell_transfer.h"
 #include "comm_manager.h"
@@ -73,6 +74,8 @@
 #include "sprite_util.h"
 #include "string_gf.h"
 #include "string_template.h"
+#include "system_vars.h"
+#include "vars_flags.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -128,6 +131,7 @@ static void BattleSys_SetRenderControlFlags(BattleSystem *battleSys);
 static void SysTask_FlyInMessageBox(SysTask *task, void *inBattleSys);
 static BOOL TrainerIsGymLeaderE4OrChampion(u16 trainerClass);
 static void BattleMain_AssignRecordingRoles(BattleSystem *battleSys, FieldBattleDTO *dto);
+static void BattleMain_RecordBattleLog(BattleSystem *battleSys, FieldBattleDTO *dto);
 static void BattleMain_SetNetworkIconStrength(void);
 
 static const RenderOamTemplate sOamTemplate = {
@@ -701,6 +705,8 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
         BattleSystem_InitCaptureAttempt(battleSys, Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_1], 0));
     }
 
+    BattleMain_RecordBattleLog(battleSys, dto);
+
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
         Party_Copy(battleSys->parties[battlerId], dto->parties[battlerId]);
         Heap_Free(battleSys->parties[battlerId]);
@@ -745,6 +751,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     ParticleSystem_FreeAll();
 
     BattleAnimSystem_Delete(battleSys->battleAnimSys);
+    BattleLog_SetBattleContext(NULL);
     BattleContext_Free(battleSys->battleCtx);
 
     for (battlerId = 0; battlerId < battleSys->maxBattlers; battlerId++) {
@@ -1068,6 +1075,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
     }
 
     battleSys->battleCtx = BattleContext_New(battleSys);
+    BattleLog_SetBattleContext(battleSys->battleCtx);
 
     for (i = 0; i < MAX_BATTLERS; i++) {
         battleSys->parties[i] = Party_New(HEAP_ID_BATTLE);
@@ -2260,4 +2268,164 @@ static void BattleMain_SetNetworkIconStrength(void)
     } else if (CommServerClient_IsInitialized()) {
         NetworkIcon_SetStrength(WM_LINK_LEVEL_3 - WM_GetLinkLevel());
     }
+}
+
+// Platinum Oxide: the battle log's side of a trainer battle
+// (src/battle_log.c, docs/oxide/battle-log.md).
+
+// Where an opponent sits in the record: trainer A's party first, then B's.
+static int BattleLog_EnemySlot(BattleSystem *battleSys, int battler, int partySlot, int countA)
+{
+    if ((battleSys->battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG))
+        && BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+        return countA + partySlot;
+    }
+
+    return partySlot;
+}
+
+static BOOL BattleLog_IsAIPartner(BattleSystem *battleSys, int battler)
+{
+    return (battleSys->battleType & BATTLE_TYPE_2vs2)
+        && BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2;
+}
+
+static u16 BattleLog_Species(Pokemon *mon)
+{
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+        return BATTLE_LOG_SPECIES_EGG;
+    }
+
+    return (Pokemon_GetValue(mon, MON_DATA_FORM, NULL) << 11) | Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+}
+
+static void BattleMain_RecordBattleLog(BattleSystem *battleSys, FieldBattleDTO *dto)
+{
+    BattleContext *battleCtx = battleSys->battleCtx;
+    BattleLogRecord record;
+    int i, countA, countB;
+
+    // Trainer battles only, and not a link, the Frontier or a video playing back.
+    if ((battleSys->battleType & BATTLE_TYPE_TRAINER) == FALSE
+        || (battleSys->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER))
+        || (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING)
+        || dto->saveData == NULL) {
+        return;
+    }
+
+    MI_CpuClear8(&record, sizeof(record));
+    MI_CpuFill8(record.enemyKnockedOutBy, 0xFF, sizeof(record.enemyKnockedOutBy));
+    MI_CpuFill8(record.playerKnockedOutBy, 0xFF, sizeof(record.playerKnockedOutBy));
+
+    BOOL twoTrainers = (battleSys->battleType & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) != FALSE;
+
+    record.trainerIDs[0] = battleSys->trainerIDs[BATTLER_ENEMY_1];
+    record.trainerIDs[1] = twoTrainers ? battleSys->trainerIDs[BATTLER_ENEMY_2] : 0;
+    record.turns = BattleContext_Get(battleSys, battleCtx, BATTLECTX_TOTAL_TURNS, NULL);
+    record.levelCapSplit = SystemVars_GetLevelCapSplit(SaveData_GetVarsFlags(dto->saveData));
+
+    switch (battleSys->resultMask & 0x3F) {
+    case BATTLE_RESULT_WIN:
+        record.flags |= BATTLE_LOG_FLAG_WON;
+        break;
+    case BATTLE_RESULT_LOSE:
+        record.flags |= BATTLE_LOG_FLAG_LOST;
+        break;
+    case BATTLE_RESULT_DRAW:
+        record.flags |= BATTLE_LOG_FLAG_WON | BATTLE_LOG_FLAG_LOST;
+        break;
+    }
+
+    if (battleSys->battleType & BATTLE_TYPE_DOUBLES) {
+        record.flags |= BATTLE_LOG_FLAG_DOUBLE;
+    }
+
+    if ((battleSys->battleType & BATTLE_TYPE_2vs2) && (battleSys->battleType & BATTLE_TYPE_AI)) {
+        record.flags |= BATTLE_LOG_FLAG_AI_PARTNER;
+    }
+
+    if (twoTrainers) {
+        record.flags |= BATTLE_LOG_FLAG_TWO_TRAINERS;
+    }
+
+    // The player's own party, in party order, which switching in battle
+    // leaves alone.
+    Party *party = battleSys->parties[BATTLER_PLAYER_1];
+    record.playerCount = Party_GetCurrentCount(party);
+
+    for (i = 0; i < record.playerCount && i < MAX_PARTY_SIZE; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+        record.playerSpecies[i] = BattleLog_Species(mon);
+        record.playerPersonality[i] = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL) & 0xFF;
+        record.playerLevel[i] = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    }
+
+    countA = Party_GetCurrentCount(battleSys->parties[BATTLER_ENEMY_1]);
+    countB = twoTrainers ? Party_GetCurrentCount(battleSys->parties[BATTLER_ENEMY_2]) : 0;
+
+    if (countA > MAX_PARTY_SIZE) {
+        countA = MAX_PARTY_SIZE;
+    }
+
+    if (countA + countB > MAX_PARTY_SIZE) {
+        countB = MAX_PARTY_SIZE - countA;
+    }
+
+    record.enemyCounts = countA | (countB << 4);
+
+    for (i = 0; i < countA + countB; i++) {
+        Pokemon *mon = i < countA
+            ? Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_1], i)
+            : Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_2], i - countA);
+
+        record.enemySpecies[i] = BattleLog_Species(mon);
+        record.enemyLevel[i] = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    }
+
+    // Who knocked out whom. A slot on the other side only when that side's
+    // move made the faint as it ran; the partner or the player's own side is
+    // 6, and anything else 7.
+    for (i = 0; i < battleCtx->oxideFaintCount; i++) {
+        const u8 *faint = battleCtx->oxideFaints[i];
+        int fainted = faint[0], faintedSlot = faint[1];
+        int attacker = faint[2], attackerSlot = faint[3];
+        BOOL byMove = attacker != BATTLER_NONE && attacker != fainted;
+        u8 credit;
+
+        if (BattleSystem_GetBattlerSide(battleSys, fainted) == BATTLE_SIDE_ENEMY) {
+            int slot = BattleLog_EnemySlot(battleSys, fainted, faintedSlot, countA);
+
+            if (slot >= MAX_PARTY_SIZE) {
+                continue;
+            }
+
+            if (byMove == FALSE || BattleSystem_GetBattlerSide(battleSys, attacker) == BATTLE_SIDE_ENEMY) {
+                credit = BATTLE_LOG_KO_INDIRECT;
+            } else if (BattleLog_IsAIPartner(battleSys, attacker)) {
+                credit = BATTLE_LOG_KO_PARTNER;
+            } else {
+                credit = attackerSlot;
+            }
+
+            BattleLog_SetKnockOut(record.enemyKnockedOutBy, slot, credit);
+        } else {
+            if (BattleLog_IsAIPartner(battleSys, fainted) || faintedSlot >= MAX_PARTY_SIZE) {
+                continue;
+            }
+
+            if (byMove == FALSE) {
+                credit = BATTLE_LOG_KO_INDIRECT;
+            } else if (BattleSystem_GetBattlerSide(battleSys, attacker) == BATTLE_SIDE_PLAYER) {
+                credit = BATTLE_LOG_KO_PARTNER;
+            } else {
+                int slot = BattleLog_EnemySlot(battleSys, attacker, attackerSlot, countA);
+                credit = slot < MAX_PARTY_SIZE ? slot : BATTLE_LOG_KO_INDIRECT;
+            }
+
+            BattleLog_SetKnockOut(record.playerKnockedOutBy, faintedSlot, credit);
+        }
+    }
+
+    BattleLog_Append(dto->saveData, &record);
 }

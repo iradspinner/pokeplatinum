@@ -97,6 +97,7 @@ pokeplatinum_c = files(
     'boot.c',
     'savedata/save_table.c',
     'savedata.c',
+    'battle_log.c',
     'system_data.c',
     'save_player.c',
     'trainer_info.c',

@@ -2,6 +2,8 @@
 
 Written 2026-09-25 for Ian's question: are there changes that many or most ROM hacks make, which Oxide should take too? Measured against the reference calculators in `~/roms/balance-refs/`, the donor engine and published documentation. Nothing in `res/`, `src/` or the tools was changed.
 
+The "Oxide now" columns describe the tree of 2026-09-25. Ian answered the ten questions on 2026-09-26 (the section before the appendix), and much of it is now in the tree: the native moves at modern numbers (answer 1, merged in 62bc4f3fb), with setup and debuff PP and priority added by the Kaizo comparison's answers; the modern abilities, type immunities, critical hits, Defog and Rapid Spin (answers 4, 5 and 7, `cloud/element5-staples`, merged); hidden abilities, level caps, restored items, always-Set and the trade strip (element 8, merged); and the Pocket PC to answer 10's rulings (`docs/oxide/pocket-pc.md`). Still open at `HEAD`: the nine species' stat buffs and the ability pass (answers 8 and 9, the balance track's design pass 3; Pikachu's Defense is still 30), field moves by badge alone (element 8), and Mints, Ability Capsule, Ability Patch and Bottle Caps, done on `cloud/element7-items` but not merged. The tracker has the current state of each.
+
 Yes, and the biggest one is cheap. Five or six of the seven references use the Generation 5 to 7 numbers for the weak Generation 4 moves (25-power multi-hit moves, 40-power Fury Cutter, 75-power Giga Drain and Drain Punch, 120-power Thrash and Petal Dance). Oxide's 452 new moves already carry modern numbers, but 31 of those 40 native moves are still at their Generation 4 values. The second staple is the set of modern battle rules that every expansion engine ships by default: Sturdy works like a Focus Sash, Lightning Rod and Storm Drain grant immunity, Grass is immune to powder, Electric cannot be paralysed, critical hits do 1.5x, and Defog clears both sides. Oxide still runs all of these on Generation 4 rules. Many other staples are already in or planned: Fairy, reusable TMs, trade evolutions replaced, obedient trades and the EV and IV viewer are done, and hidden abilities, Mints, Ability Patch and level caps are planned.
 
 Recommended, most useful first:
@@ -93,7 +95,7 @@ Every row below was checked in Oxide's battle code. Oxide's battle-code changes 
 | Frostbite replacing freeze | An option in pokeemerald-expansion, off by default | Not a staple | |
 | Level-scaled experience formula (Generation 5 or 7) | Default in the expansion engines | Ruled out. The flat Generation 4 formula stays (Ian, 2026-09-20) | |
 | Mega Evolution, Z-moves and gems | Radical Red and Unbound have Megas | Ruled out (Ian, 2026-09-20). Gyarados M and Lopunny M are ordinary evolutions | |
-| Choice items | | Ruled: rare in Oxide, because the lock can be baited (Ian, 2026-09-23) | |
+| Choice items | | Ruled: rare in Oxide, because the lock can be baited (Ian, 2026-09-23); since tightened to nearly gone from trainers, and never obtainable by the player, with no Life Orb either (Ian, 2026-09-26 and 2026-09-27; the standing rulings) | |
 
 ## Quality of life
 
