@@ -8,6 +8,11 @@ const DEFAULT_FRAGSHEET_SPLIT_DATA = {
     "types": []
 }
 let hasDetailedSplitData = true;
+// Oxide patch (VENDORED.md 19): thirteen split slots, for Oxide's thirteen
+// level-cap splits; upstream has nine. The stats view, split 9 upstream,
+// is 13, past the last split. A title with fewer splits hides the rest.
+const FRAGSHEET_SPLIT_SLOTS = 13;
+const FRAGSHEET_STATS_VIEW = 13;
 
 function isMobileFragsheetViewport() {
     return window.innerWidth <= 960;
@@ -55,12 +60,22 @@ function syncSplitTabVisibility(splitConfig) {
 
     $('#all-tab').toggle(hasDetailedSplitData);
     $('#stats-tab').toggle(!isMobileFragsheetViewport());
-    for (let splitIndex = 0; splitIndex < 9; splitIndex++) {
+    for (let splitIndex = 0; splitIndex < FRAGSHEET_SPLIT_SLOTS; splitIndex++) {
         const hasSplit = hasDetailedSplitData && typeof splitTitles[splitIndex] !== "undefined";
         $(`#split-${splitIndex}-tab`)
             .toggle(hasSplit)
             .text(hasSplit ? `${splitTitles[splitIndex]}` : "");
     }
+}
+
+// A split column's heading: upstream's S1 to E4, or under Oxide the split's
+// own name, since Oxide's splits are not eight gyms and a League.
+function fragsheetSplitHeader(index, fallback) {
+    if (TITLE === "Platinum Oxide" && typeof splitTitles !== "undefined"
+        && Array.isArray(splitTitles) && splitTitles[index]) {
+        return splitTitles[index]
+    }
+    return fallback
 }
 
 function initializeSplits() {
@@ -85,9 +100,9 @@ function refreshFragsheetSplitConfig() {
     splitTitles = splitConfig.titles
     lvlcaps = splitConfig.lvls
     syncSplitTabVisibility(splitConfig)
-    // A source change can remove the selected split; 9 is the IVs view.
-    if (typeof activeSplit === "number" && ((activeSplit < 9 && !splitTitles[activeSplit])
-        || (activeSplit === 9 && isMobileFragsheetViewport()))) {
+    // A source change can remove the selected split; FRAGSHEET_STATS_VIEW is the IVs view.
+    if (typeof activeSplit === "number" && ((activeSplit < FRAGSHEET_STATS_VIEW && !splitTitles[activeSplit])
+        || (activeSplit === FRAGSHEET_STATS_VIEW && isMobileFragsheetViewport()))) {
         activeSplit = "all-simple"
         $('.tab[data-split]').removeClass('active')
         $('#all-simple-tab').addClass('active')
@@ -224,7 +239,8 @@ function setColumnDefs() {
             },
         },
         {
-            headerName: 'S1',
+            headerName: fragsheetSplitHeader(0, 'S1'),
+            headerTooltip: fragsheetSplitHeader(0, 'S1'),
             field: 'split0',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -232,7 +248,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S2',
+            headerName: fragsheetSplitHeader(1, 'S2'),
+            headerTooltip: fragsheetSplitHeader(1, 'S2'),
             field: 'split1',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -240,7 +257,8 @@ function setColumnDefs() {
             hide: activeSplit != "all" 
         },
         {
-            headerName: 'S3',
+            headerName: fragsheetSplitHeader(2, 'S3'),
+            headerTooltip: fragsheetSplitHeader(2, 'S3'),
             field: 'split2',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -248,7 +266,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S4',
+            headerName: fragsheetSplitHeader(3, 'S4'),
+            headerTooltip: fragsheetSplitHeader(3, 'S4'),
             field: 'split3',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -256,7 +275,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S5',
+            headerName: fragsheetSplitHeader(4, 'S5'),
+            headerTooltip: fragsheetSplitHeader(4, 'S5'),
             field: 'split4',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -264,7 +284,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S6',
+            headerName: fragsheetSplitHeader(5, 'S6'),
+            headerTooltip: fragsheetSplitHeader(5, 'S6'),
             field: 'split5',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -272,7 +293,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S7',
+            headerName: fragsheetSplitHeader(6, 'S7'),
+            headerTooltip: fragsheetSplitHeader(6, 'S7'),
             field: 'split6',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -280,7 +302,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'S8',
+            headerName: fragsheetSplitHeader(7, 'S8'),
+            headerTooltip: fragsheetSplitHeader(7, 'S8'),
             field: 'split7',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -288,7 +311,8 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
-            headerName: 'E4',
+            headerName: fragsheetSplitHeader(8, 'E4'),
+            headerTooltip: fragsheetSplitHeader(8, 'E4'),
             field: 'split8',
             width: 55,
             cellRenderer: splitsCellRenderer,
@@ -296,12 +320,52 @@ function setColumnDefs() {
             hide: activeSplit != "all"
         },
         {
+            headerName: fragsheetSplitHeader(9, 'S10'),
+            headerTooltip: fragsheetSplitHeader(9, 'S10'),
+            field: 'split9',
+            width: 55,
+            cellRenderer: splitsCellRenderer,
+            menuTabs: [],
+            hide: activeSplit != "all" || typeof splitTitles === "undefined"
+                || !(Array.isArray(splitTitles) && splitTitles[9])
+        },
+        {
+            headerName: fragsheetSplitHeader(10, 'S11'),
+            headerTooltip: fragsheetSplitHeader(10, 'S11'),
+            field: 'split10',
+            width: 55,
+            cellRenderer: splitsCellRenderer,
+            menuTabs: [],
+            hide: activeSplit != "all" || typeof splitTitles === "undefined"
+                || !(Array.isArray(splitTitles) && splitTitles[10])
+        },
+        {
+            headerName: fragsheetSplitHeader(11, 'S12'),
+            headerTooltip: fragsheetSplitHeader(11, 'S12'),
+            field: 'split11',
+            width: 55,
+            cellRenderer: splitsCellRenderer,
+            menuTabs: [],
+            hide: activeSplit != "all" || typeof splitTitles === "undefined"
+                || !(Array.isArray(splitTitles) && splitTitles[11])
+        },
+        {
+            headerName: fragsheetSplitHeader(12, 'S13'),
+            headerTooltip: fragsheetSplitHeader(12, 'S13'),
+            field: 'split12',
+            width: 55,
+            cellRenderer: splitsCellRenderer,
+            menuTabs: [],
+            hide: activeSplit != "all" || typeof splitTitles === "undefined"
+                || !(Array.isArray(splitTitles) && splitTitles[12])
+        },
+        {
             headerName: 'KOs',
             field: 'totalKo',
             width: 65,
             cellStyle: { 'font-weight': 'bold' },
             menuTabs: [],
-            hide: activeSplit == 9
+            hide: activeSplit == FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Battles',
@@ -309,7 +373,7 @@ function setColumnDefs() {
             width: 80,
             cellStyle: { 'font-weight': 'bold' },
             menuTabs: [],
-            hide: !showSaveFileBattles || activeSplit == 9
+            hide: !showSaveFileBattles || activeSplit == FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'KO Share',
@@ -317,63 +381,63 @@ function setColumnDefs() {
             width: activeSplit == "all" ? 105 : 575,
             cellRenderer: progressBarRenderer,
             menuTabs: [],
-            hide: activeSplit == 9
+            hide: activeSplit == FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Ability',
             field: 'ability',
             width: 145,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Nature',
             field: 'nature',
             width: 105,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Hp',
             field: 'hp',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Atk',
             field: 'at',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Def',
             field: 'df',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'SpA',
             field: 'sa',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'SpD',
             field: 'sd',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
         {
             headerName: 'Spe',
             field: 'sp',
             width: 65,
             menuTabs: [],
-            hide: activeSplit != 9
+            hide: activeSplit != FRAGSHEET_STATS_VIEW
         },
 
     ];
@@ -391,7 +455,7 @@ function displayFragHistory(rowData) {
     $('#split-1-container').empty()
     $('.split-container').hide()
     $('#stat-title').text(`${rowData.species}'s Battles`)
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < FRAGSHEET_SPLIT_SLOTS; i++) {
         let container = $(`#split-1-container`)
         let fragList = rowData[`split${i}FragInfo`]
         let seenTrainers = {}
@@ -640,7 +704,7 @@ function normalizeFragSplitIndex(splitIndex) {
     }
 
     const parsed = Number(splitIndex)
-    if (!Number.isFinite(parsed) || parsed < 0 || parsed > 8) {
+    if (!Number.isFinite(parsed) || parsed < 0 || parsed >= FRAGSHEET_SPLIT_SLOTS) {
         return null
     }
 
@@ -1249,7 +1313,7 @@ function createRowData() {
             encRow.sp = setData.ivs.sp
         }
 
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < FRAGSHEET_SPLIT_SLOTS; i++) {
             encRow[`split${i}`] = 0
             encRow[`split${i}FragInfo`] = []
         }
@@ -1281,8 +1345,8 @@ function createRowData() {
                     addFragEntryToRowSplit(encRow, index, fragEntry)
                     break
                 }
-                if (index == 8 && level > minCap && (activeSplit == "all" || activeSplit == "all-simple" || activeSplit == 8)) {
-                    addFragEntryToRowSplit(encRow, 8, fragEntry)
+                if (Number(index) === lvlcaps.length - 1 && level > minCap && (activeSplit == "all" || activeSplit == "all-simple" || activeSplit == index)) {
+                    addFragEntryToRowSplit(encRow, index, fragEntry)
                 }
             }
         }

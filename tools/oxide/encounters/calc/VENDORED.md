@@ -184,8 +184,22 @@ calculator checks fail if the offline ones are lost.
     `getBattleLogSplitTabsConfig` takes Oxide's thirteen level-cap split
     names from `window.oxideBattleLogSplitTitles` under the "Platinum Oxide"
     title. `js/oxide/save_sync.js` fetches the log after each new save and
-    sets those names. Upstream's `splitData` is left alone: the Fragsheet
-    reads it too, and has room for nine splits.
+    sets those names.
+
+19. **The Fragsheet's thirteen splits** (2026-09-28, Ian's answer on build
+    plan item 36). Upstream's Fragsheet has nine split slots, and matched
+    "Platinum Oxide" to vanilla Platinum's nine gyms by name. The blob's
+    `splits` (`calc_export.splits`: Oxide's level-cap splits and caps, in
+    the game's order) now fill `splitData["Platinum Oxide"]` in
+    `js/initialize.js`. `js/fragsheet/aggrid_options.js` has thirteen slots
+    (`FRAGSHEET_SPLIT_SLOTS`), four more split columns, and headings from
+    each split's name under the Oxide title, with the full name as a
+    tooltip. Its stats view moved from split 9 to 13
+    (`FRAGSHEET_STATS_VIEW`). The last split now takes every level above
+    the one before it by its own index, not a fixed 8. `index.html` has the
+    four more tabs, and the stats tab at 13. A title with nine splits hides
+    the rest, as before. `test_battlelog` checks the patch, and it was
+    checked in headless Chrome on a save with a synthetic log.
 
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.

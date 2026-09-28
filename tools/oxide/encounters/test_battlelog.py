@@ -221,6 +221,31 @@ def main():
                         and text.index("Leader Roark and Youngster Tristan") < text.index("Youngster Tristan: won"),
                         text.splitlines()[0] if text else f"exit {rc}"))
 
+    # -- the Fragsheet's thirteen splits (Ian, 2026-09-28) ----------------------------------
+    from . import calc_export
+    sp = calc_export.splits()
+    results.append(("the calculator's blob lists Oxide's thirteen splits in the game's order, each "
+                    "with its cap, the last at 100",
+                    [s["name"] for s in sp] == ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron",
+                                                "Candice", "HQ", "Galactic", "Volkner", "Barry", "League",
+                                                "Post"]
+                    and sp[0]["cap"] == 16 and sp[-1]["cap"] == 100
+                    and all(a["cap"] < b["cap"] for a, b in zip(sp, sp[1:])), str([s["cap"] for s in sp])))
+    calc = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "calc")
+    read = lambda *p: open(os.path.join(calc, *p), encoding="utf-8").read()
+    grid, page, init = read("js", "fragsheet", "aggrid_options.js"), read("index.html"), read("js", "initialize.js")
+    results.append(("the Fragsheet has thirteen split slots, the stats view moved to 13 and no "
+                    "comparison left against the old 9 (VENDORED.md patch 19)",
+                    "const FRAGSHEET_SPLIT_SLOTS = 13;" in grid and "activeSplit == 9" not in grid
+                    and "activeSplit != 9" not in grid and "i < 9;" not in grid
+                    and all(f"field: 'split{i}'" in grid for i in range(13))
+                    and all(f'id="split-{i}-tab"' in page for i in range(13))
+                    and 'id="stats-tab" data-split="13"' in page, ""))
+    results.append(("under the Oxide title the Fragsheet takes its split names and caps from the "
+                    "blob, rather than vanilla Platinum's by a match on the title",
+                    'splitData[TITLE] = {' in init and 'data["splits"].map(function (s) { return s.cap })' in init,
+                    ""))
+
     # -- Ian's saves, from before the log ------------------------------------------------
     for label, copy in (("2026-09-21", T.IAN_COPY), ("2026-09-27", T.IAN_CURRENT)):
         if not os.path.exists(copy):

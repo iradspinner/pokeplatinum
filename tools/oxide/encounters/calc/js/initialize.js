@@ -2344,6 +2344,18 @@ function loadDataSource(data) {
     }
     $('#save-pok').show()
 
+    // Oxide patch: the Fragsheet's splits are Oxide's thirteen level-cap
+    // splits with their caps (calc_export.splits). Without this entry the
+    // Fragsheet matched the title to vanilla Platinum's by name.
+    if (TITLE == "Platinum Oxide" && Array.isArray(data["splits"])
+        && typeof splitData !== "undefined") {
+      splitData[TITLE] = {
+        lvls: data["splits"].map(function (s) { return s.cap }),
+        titles: data["splits"].map(function (s) { return s.name }),
+        types: []
+      }
+    }
+
     // imperium changes
     if (TITLE.includes("Emerald Imperium")) {
 

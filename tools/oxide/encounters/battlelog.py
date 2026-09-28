@@ -351,13 +351,12 @@ def calc_payload(log, save=None):
                                "aiSpecies": o["calc_species"] or "Unknown", "aiLevel": o["level"],
                                "aiPartySlot": o["slot"]})
         events.append({"type": "session_end"})
-    n = _names()
+    from . import calc_export
     return {
         "version": "oxide-save-v1", "sourceType": "save-file", "preserveDuplicateTrainers": True,
         "overflow": False, "omittedCorruptRecordCount": 0, "corruptRecordReason": "",
         "recordCount": len(log.get("records") or []),
-        "splits": [{"index": i, "name": name, "cap": n["caps"].get(name)}
-                   for i, name in sorted(n["splits"].items())],
+        "splits": calc_export.splits(),
         "pokemonBattleCounters": list(counters.values()),
         "events": events,
     }
