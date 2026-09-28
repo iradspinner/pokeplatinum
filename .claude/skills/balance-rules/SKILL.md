@@ -27,6 +27,16 @@ later dated ruling wins; say which in the report.
 - Check the proposal against every ruling below, point by point, and say in
   the report that you did.
 
+## The goal
+
+Every Pokemon should have an important niche at the point the player has it,
+while some lines stay stronger than others (Ian, 2026-09-28): Garchomp
+outvalues Furret, but only one can carry Gardenia's split; Mamoswine
+outvalues Aggron late, yet Aggron is one of the best physical walls. The
+super-wanted lines sit marginally above average. The encounter tool's tiers
+(starter-adjacent, gate, preferred, filler) are availability labels, not
+intended power, so "filler" never means "may stay weak".
+
 ## Levels and splits
 
 The caps are Roark 16, Gardenia 26, Fantina 33, Maylene 39, Wake 44, Byron

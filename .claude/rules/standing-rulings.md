@@ -88,3 +88,10 @@ read, so they are written here too. Each is a standing instruction.
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
   in advance, never from an earlier loss.
+- Every Pokemon in the game should have an important niche at the point the
+  player has it, while it stays fine for some lines to be stronger than
+  others (Ian, 2026-09-28). Garchomp outvalues Furret, but only one of them
+  can carry Gardenia's split; Mamoswine outvalues Aggron late, yet Aggron is
+  one of the best physical walls. Ian's super-wanted lines sit marginally
+  above average, a personal bias. The encounter tool's tiers are availability
+  labels only, not intended power.
