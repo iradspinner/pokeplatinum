@@ -28,7 +28,10 @@ for unsaved edits, the trainer's JSON as the builder holds it:
 
 The fight is the trainer's story fight when it has one (with this team in
 its place; a rival's other starters and a tag partner as stored), else the
-ordinary trainer's own fight in the split B6 places it in. Its weather is
+ordinary trainer's own fight in the split B6 places it in. In place of a
+stem, both entry points take a pair key from pairs.py (two stems joined by
+"+"), with unsaved edits as {stem: JSON}: a double against two trainers at
+once, scored as one fight against both teams (Ian, 2026-09-28). Its weather is
 its map's, and a trainer in the engine's permanent Trick Room table fights
 under it. Nothing is stored: a saved team stales its fight's scores in the
 usual way, and rescore.py recomputes them.
@@ -111,9 +114,56 @@ def party_of(stem, data_json=None):
     return sets[0][1]["tr_id"], [data._mon(sp, s) for sp, s in sets]
 
 
+@functools.lru_cache(maxsize=None)
+def _pairs():
+    from . import pairs
+    return {p["key"]: p for p in pairs.pairs()}
+
+
+def resolve_pair(key, edits=None):
+    """The fight a double against two trainers at once is scored in (Ian,
+    2026-09-28): one fight against both teams, as the story tag battles
+    are, both parties counted as one. `key` is the pair finder's (two
+    stems joined by "+"), and `edits` is {stem: the trainer's JSON as the
+    builder holds it} for either or both sides. A pair that is a story
+    fight (Mars and Jupiter, Flint and Volkner) is scored as that fight.
+    The player's partner, where the game gives one, is not on the player's
+    side yet, as for the story tag battles; the scorer has no model of two
+    Pokemon on the field at once either."""
+    entry = _pairs().get(key)
+    if entry is None:
+        raise ValueError(f"{key}: no such pair (tools/oxide/balance/pairs.py)")
+    edits = edits or {}
+    ids, teams = [], []
+    for st in entry["stems"]:
+        tr_id, party = party_of(st, edits.get(st))
+        ids.append(tr_id)
+        teams.append(party)
+    trainers = data.oxide_trainers()
+    if entry["story"]:
+        fight = next(f for f in data.fights()["fights"] if f["key"] == entry["story"])
+        by_id = dict(zip(ids, teams))
+        fteams = [by_id.get(t, trainers[t]["party"]) for t in fight["tr_ids"]]
+        parties = [[m for team in fteams for m in team]] if fight.get("tag") else fteams
+        return {"fight": dict(fight, trainers=None), "parties": parties, "split": fight["split"],
+                "weather": pressure.fight_weather(fight["tr_ids"]), "story": fight["key"], "pair": entry}
+    split = entry["split"]
+    if split not in pool.SPLITS:
+        raise ValueError(f"{key}: not placed in a split with a cap")
+    constants = {trainers[i]["constant"] for i in ids}
+    fight = {"key": f"pair:{key}", "label": key, "split": split, "tr_ids": ids, "tag": True,
+             "trick_room": bool(constants & room_trainers("sPermanentTrickRoomTrainers"))}
+    return {"fight": fight, "parties": [[m for team in teams for m in team]], "split": split,
+            "weather": pressure.fight_weather(ids), "story": None, "pair": entry}
+
+
 def resolve(stem, data_json=None):
     """The fight the trainer's team is scored in: {fight, parties, split,
-    weather, story}."""
+    weather, story}. A pair key (two stems joined by "+") names a double
+    against two trainers at once, and its `data_json` is {stem: JSON} for
+    either side (resolve_pair)."""
+    if "+" in stem:
+        return resolve_pair(stem, data_json)
     tr_id, party = party_of(stem, data_json)
     trainers = data.oxide_trainers()
     constant = "TRAINER_" + stem.upper()
@@ -358,7 +408,7 @@ def main(argv=None):
         print(json.dumps(fit_estimate(), indent=1))
         return 0
     if not args.stem:
-        ap.error("name a trainer's file stem, or --fit")
+        ap.error("name a trainer's file stem, a pair key (two stems joined by +), or --fit")
     print(json.dumps((score if args.score else estimate)(args.stem), indent=1))
     return 0
 
