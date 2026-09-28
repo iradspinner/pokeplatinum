@@ -2331,6 +2331,13 @@ function loadDataSource(data) {
             && typeof window.extendSavArraysToGen67 === "function") {
           window.extendSavArraysToGen67()
         }
+        // Oxide patch: met places by Oxide's own ids (calc_export.met_locations).
+        // The Platinum table runs on into HeartGold's places past Platinum's
+        // ids, so Rowan's Briefcase, which Oxide added, read as New Bark Town.
+        if (TITLE == "Platinum Oxide" && Array.isArray(data["met_locations"])
+            && typeof locations !== "undefined") {
+          locations["Pt"] = data["met_locations"].slice()
+        }
       } else {
         console.warn("Save include tables were requested but are unavailable.")
       }

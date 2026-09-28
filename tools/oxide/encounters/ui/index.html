@@ -1415,6 +1415,7 @@ async function simulate(first) {
   try {
     $("#simgo").disabled = true;
     SIM = await api("/api/simulate?" + q);
+    if (!Array.isArray(SIM.log)) throw new Error("The OxiDex server sent no run: restart it");
     if (first) {
       $("#simsplit").innerHTML = SIM.splits.map(sp =>
         `<option ${sp === SIM.split ? "selected" : ""}>${esc(sp)}</option>`).join("");
@@ -2799,6 +2800,9 @@ $("#simconf").onclick = async () => {
   $("#simconfout").innerHTML = `<p class="sub">Replaying the run from here.</p>`;
   try {
     const c = await api("/api/simulate/confidence?" + simQuery(SIM ? SIM.seed || 0 : 0));
+    // A server older than the page answers without the table (it read the
+    // path as an ordinary run); say so rather than fail on the missing field.
+    if (!Array.isArray(c.areas)) throw new Error("The OxiDex server is older than this page: restart it");
     $("#simconfout").innerHTML = `<table class="grid"><thead><tr><th>Next places</th><th>Call</th>
         <th class="num" title="Share of ${c.runs} replays making this call">Sure</th>
         <th class="num" title="The call's lead over the next best option, as a share of its gain">Lead</th></tr></thead>
