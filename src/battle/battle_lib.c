@@ -6519,6 +6519,18 @@ BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *batt
             return FALSE;
         }
 
+        // Only a trainer battle, as in hg-engine, whose subscript 491 ends
+        // at once in a wild battle and keeps the card, whichever side holds
+        // it. The battler dragged out is on either side only in a trainer
+        // battle, where each trainer has a party to replace it from; in a
+        // wild battle a player's card would make the wild Pokemon flee and a
+        // wild Pokemon's card would send the player's attacker away, and
+        // Dragon Tail's wild-battle rule, which the subscript borrows, ended
+        // the battle as if the player had fled in both.
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE) {
+            return FALSE;
+        }
+
         // The subscript runs Dragon Tail's switch on the attacker, so the two
         // trade places until it ends: it puts them back.
         battleCtx->sideEffectMon = holder;

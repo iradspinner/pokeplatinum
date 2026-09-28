@@ -3636,10 +3636,10 @@ TestKit_ItemEjectButton:
     GoTo TestKit_GiveItemPair
 
 /* The Red Card: Chansey against a wild Rattata that knows only Tackle.
-   When a Tackle hits the Chansey holding it, "CHANSEY held up its Red
-   Card against the wild RATTATA!" and, as with Dragon Tail against a wild
-   Pokemon, the battle ends. Sending a trainer's Pokemon away needs a
-   trainer battle, which the kit does not have. */
+   In a wild battle the card does nothing, as in hg-engine: a Tackle into
+   the Chansey holding it brings no message, the battle goes on, and the
+   card is still in its summary afterwards. Sending a trainer's Pokemon
+   away needs a trainer battle, which the kit does not have. */
 TestKit_ItemRedCard:
     SetVar VAR_0x8000, SPECIES_RATTATA
     SetVar VAR_0x8001, ABILITY_NONE

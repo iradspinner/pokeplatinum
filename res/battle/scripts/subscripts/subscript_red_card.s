@@ -7,7 +7,8 @@
 // sends away the defender; the real defender waits in the side-effect
 // battler, and both are put back at the end. Suction Cups and Ingrain hold
 // the target in place and keep the card; otherwise TryDragonTail's rules
-// decide, which in a wild battle end it.
+// decide. It runs only in a trainer battle (the trigger checks), so the
+// battler dragged out, on either side, is replaced from its own party.
 _000:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_SUCTION_CUPS, _end
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_INGRAIN, _end
@@ -25,7 +26,6 @@ _000:
 _delete:
     DeletePokemon BTLSCR_DEFENDER
     Wait
-    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_TRAINER, _flee
     HealthBoxSlideOut BTLSCR_DEFENDER
     Wait
     SwitchAndUpdateMon BTLSCR_FORCED_OUT
@@ -40,12 +40,6 @@ _delete:
     WaitButtonABTime 30
     UpdateVarFromVar OPCODE_SET, BTLVAR_SWITCHED_MON, BTLVAR_DEFENDER
     Call BATTLE_SUBSCRIPT_HAZARDS_CHECK
-    GoTo _end
-
-_flee:
-    FadeOutBattle
-    Wait
-    UpdateVar OPCODE_FLAG_ON, BTLVAR_RESULT_MASK, BATTLE_RESULT_PLAYER_FLED
 
 _end:
     UpdateVarFromVar OPCODE_SET, BTLVAR_ATTACKER, BTLVAR_DEFENDER
