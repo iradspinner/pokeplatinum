@@ -151,9 +151,13 @@ def low_byte(ratio, want_gender, want_slot, default):
 
 
 def default_moves(learnset, level):
-    """`BoxPokemon_SetDefaultMoves`, move for move."""
+    """`BoxPokemon_SetDefaultMoves`, move for move. A level-0 entry is an
+    evolution move (2026-09-28): taught only when a Pokemon evolves into the
+    species, never given to a wild, gift or trainer Pokemon, so it is skipped."""
     slots = []
     for lv, move in learnset:
+        if lv == 0:
+            continue
         if lv > level:
             break
         if move in slots:
