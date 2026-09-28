@@ -2102,12 +2102,43 @@ lands, and each change is re-scored as it lands.
    effective power, counting what it brings from a pre-evolution evolved
    on time. Where the proposal would break that, or lengthen a gap Oxide
    already has, the nearest such move stays at its current level:
-   Hippopotas's Earthquake (37), Polteageist's Shadow Ball (48) and Tapu
-   Koko's Discharge (45). Eleven such moves would reach a stage the flags
-   or the bar hold, Grovyle's Leaf Blade at 29 for Sceptile among them;
-   the proposal lists them for Ian. Ninety-six stages already go more than
-   one split without one on Oxide's lists; the proposal names them for the
-   learnset pass.
+   Hippopotas's Earthquake (37) and Polteageist's Shadow Ball (48). Ten
+   such moves would reach a stage the flags or the bar hold, Grovyle's
+   Leaf Blade at 29 for Sceptile among them; the proposal lists them for
+   Ian. Sixty-seven stages already go more than one split without one on
+   Oxide's lists; the proposal names them, and the later-moves job below
+   fills what it can. These counts include Ian's exemption (2026-09-27):
+   a stage the player can evolve by the end of Gardenia's split, by level
+   or by a stone reachable by then, is not held to the rule, since only a
+   player who keeps it back meets the gap.
+
+   The later games' level-up moves (Ian, 2026-09-27) are proposed by
+   `laterlearn.py` in `docs/oxide/later-moves-proposal.md`. For each of the
+   335 Platinum species Oxide keeps obtainable, it takes the moves from
+   Generation 5 on that a later game teaches by level-up and puts each
+   through the generator's rules, on top of the learnset proposal. A move
+   qualifies when the engine runs it in full or lacks only its doubles
+   effect (Ian: Flame Burst is placeable). Lunar Blessing and Throat Chop
+   wait for element 4's follow-up, and the report shows where each would
+   go. The first report left out 173 rows as moves the engine cannot run,
+   but 108 of those were moves it runs. The move-pool survey covers only
+   moves some learnset teaches today, and the tool took a move missing
+   from it for a broken one; it now asks the survey's engine test about
+   any move. Moves the later games give only by TM, tutor or egg are in
+   `docs/oxide/later-moves-tm.tsv` for the TM pass.
+
+   | Later level-up moves | Rows |
+   |---|---|
+   | Added | 349 |
+   | Replaces a weaker Generation 4 move | 11 |
+   | For Ian | 125 |
+   | Relearner only | 242 |
+   | Once element 4 fixes them | 2 |
+   | Left out (engine 53, dead weight 16, past 78 one) | 70 |
+
+   Of the stages with an own-type gap, 33 are filled from a later game,
+   16 go to Ian because the rules would place the move too late or on a
+   stage the flags or the bar hold, and 26 have nothing to take.
 
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
