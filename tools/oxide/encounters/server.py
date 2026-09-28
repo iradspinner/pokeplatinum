@@ -964,7 +964,30 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 starter = (q.get("starter") or [None])[0] or None
                 seed = (q.get("seed") or [None])[0]
                 seed = int(seed) if seed not in (None, "") else None
-                out = simulate.run(split, max(0, min(deaths, 60)), starter, seed)
+                # The player's own picks (area to species, "" for unused), and
+                # whether to start from the save the Sync bridge watches.
+                locks = json.loads((q.get("locks") or ["{}"])[0] or "{}")
+                start = None
+                if (q.get("from_save") or ["0"])[0] == "1":
+                    save = savewatch.WATCHER.current()
+                    if save is None:
+                        return self._send({"error": "no save read yet: set its path in "
+                                                    "the Calc tab's save bar"}, 409)
+                    start = simulate.start_from_save(save, st.encounters, split)
+                    if start["split"] and progression.split_index(st.sidecar).get(start["split"], 0) \
+                            > progression.split_index(st.sidecar).get(split, 0):
+                        return self._send({"error": f"the save is already in {start['split']}'s "
+                                                    f"split, past {split}"}, 409)
+                if len(parts) > 2 and parts[2] == "confidence":
+                    out = simulate.confidence(split, max(0, min(deaths, 60)), starter, locks,
+                                              start, seed=seed or 0)
+                    return self._send(out)
+                out = simulate.run(split, max(0, min(deaths, 60)), starter, seed, locks=locks,
+                                   start=start)
+                if start:
+                    out["from_save"] = {"split": start["split"], "used": sorted(start["used"]),
+                                        "unmatched": start["unmatched"],
+                                        "graveyard": start["graveyard"]}
                 out["splits"] = [sp for sp in progression.SPLITS if sp != "Post"]
                 out["starters"] = [{"value": sp, "label": dex.display_name(sp)} for sp in
                                    next(src["pool"] for src in st.scripted

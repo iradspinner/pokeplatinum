@@ -573,6 +573,14 @@ table.facts td { padding: 1px 0; }
 #simin label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 #simin input, #simin select { width: 150px; }
 #simin #simgo { align-self: flex-start; }
+#simin input[type=checkbox] { width: auto; }
+/* Ian's own picks (request 1): a drop list on each place's row; a locked row
+   is marked as place is everywhere, a row from the save is quieter. */
+.simlock { margin-left: 6px; max-width: 150px; font-size: 13.5px; padding: 1px 4px; }
+.simrow.locked { box-shadow: inset 3px 0 0 var(--place-ink); }
+.simrow.saved { color: var(--dim); }
+#simconfout table.grid { font-size: 14.5px; margin-top: 6px; }
+#simconfout td.num { white-space: nowrap; }
 #simlog { padding: 14px 20px 40px; }
 #simbox { padding: 14px 16px; border-left: 1px solid var(--rule); background: var(--panel); }
 .simrow { display: grid; grid-template-columns: 170px 48px 1fr 52px; column-gap: 8px;
@@ -781,7 +789,14 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <label>Up to the end of <select id="simsplit"></select></label>
     <label>Deaths <input id="simdeaths" type="number" min="0" max="60" value="0" class="num"></label>
     <label>Starter <select id="simstarter"><option value="">at random</option></select></label>
+    <label title="Start from the save the Calc tab's save bar watches: its Pokemon in the box, their places spent">
+      Start from my save <input type="checkbox" id="simsave"></label>
+    <p class="sub" id="simsavestate"></p>
+    <p class="sub"><span id="simlocks">No picks locked.</span>
+      <button class="linkish" id="simclear" title="Let the sim choose every place again">Clear picks</button></p>
     <button id="simgo">Regenerate</button>
+    <button id="simconf" title="Replay the run many times from here and say how often each of the next calls comes out the same">How sure is it?</button>
+    <div id="simconfout"></div>
     <p class="sub" id="simseed"></p>
     <div id="simsum"></div>
   </section>
@@ -1386,10 +1401,17 @@ async function restore(p) {
 // ---- the box simulator -------------------------------------------------
 
 let SIM = null;
+// Ian's picks, place to species ("" to leave the place unused), kept in this
+// browser so a reload keeps them (request 1).
+let SIMLOCKS = {};
+try { SIMLOCKS = JSON.parse(localStorage.getItem("oxidex-simlocks") || "{}"); } catch (e) { SIMLOCKS = {}; }
+const saveLocks = () => { try { localStorage.setItem("oxidex-simlocks", JSON.stringify(SIMLOCKS)); } catch (e) {} };
+const simQuery = seed => new URLSearchParams({
+  split: $("#simsplit").value || "League", deaths: $("#simdeaths").value || 0,
+  starter: $("#simstarter").value, seed, locks: JSON.stringify(SIMLOCKS),
+  from_save: $("#simsave").checked ? 1 : 0 });
 async function simulate(first) {
-  const q = new URLSearchParams({
-    split: $("#simsplit").value || "League", deaths: $("#simdeaths").value || 0,
-    starter: $("#simstarter").value, seed: Math.floor(Math.random() * 1e9) });
+  const q = simQuery(Math.floor(Math.random() * 1e9));
   try {
     $("#simgo").disabled = true;
     SIM = await api("/api/simulate?" + q);
@@ -1407,11 +1429,25 @@ async function simulate(first) {
 function drawSim() {
   const d = SIM;
   $("#simseed").textContent = `Seed ${d.seed}, level cap ${d.cap}.`;
+  const nlocks = Object.keys(SIMLOCKS).length;
+  $("#simlocks").textContent = nlocks ? `${nlocks} pick${nlocks === 1 ? "" : "s"} locked.` : "No picks locked.";
+  const fs = d.from_save;
+  $("#simsavestate").textContent = fs ? `From your save: ${fs.used.length} places spent, resuming in `
+    + `${fs.split || "Roark"}'s split; graveyard box${fs.graveyard.length === 1 ? "" : "es"} `
+    + `${fs.graveyard.join(", ") || "none"}.` + (fs.unmatched.length ? ` Not placed: ${fs.unmatched.join("; ")}.` : "")
+    : "";
   $("#simsum").innerHTML = `<p><b class="num">${d.worth}</b> box worth</p>
     <p class="sub">${d.alive} alive, ${d.dead} dead. The living sum to ${d.sum_alive};
       the best six to ${d.top_six}, which count a quarter again.</p>`;
   let split = null;
   const rows = [];
+  // A drop list of what the place can give: the sim's choice, a Pokemon to
+  // lock in, or the place left unused. Only a place's final row has one.
+  const lockSel = e => !(e.can_give && e.can_give.length) ? "" :
+    `<select class="simlock" data-area="${esc(e.area)}" title="Lock this place and replay the rest around it">
+      <option value="">sim's choice</option>${e.can_give.map(o => `<option value="${o.value}"${
+        SIMLOCKS[e.area] === o.value ? " selected" : ""}>${esc(o.label)}</option>`).join("")}
+      <option value="-"${SIMLOCKS[e.area] === "" ? " selected" : ""}>leave unused</option></select>`;
   d.log.forEach(e => {
     if (e.death) {
       rows.push(`<div class="simrow death"><span></span><span></span>
@@ -1428,15 +1464,16 @@ function drawSim() {
       return;
     }
     if (!e.species) {
-      rows.push(`<div class="simrow none"><span class="where">${esc(e.area)}</span><span></span>
-        <span class="how">${esc(e.note || "nothing new")}</span><span></span></div>`);
+      rows.push(`<div class="simrow none${e.locked ? " locked" : ""}"><span class="where">${esc(e.area)}</span><span></span>
+        <span class="how">${esc(e.note || "nothing new")}${lockSel(e)}</span><span></span></div>`);
       return;
     }
     const alt = (e.options || []).slice(1, 3).map(o => `${o.label} ${o.gain}`).join("; ");
-    rows.push(`<div class="simrow" title="${esc(alt ? "Next best: " + alt : "")}">
+    rows.push(`<div class="simrow${e.locked ? " locked" : ""}${e.from_save ? " saved" : ""}"
+        title="${esc(alt ? "Next best: " + alt : "")}">
       <span class="where">${esc(e.area)}</span>${icon(e.species, true)}
       <span><a href="#" class="spname" data-sp="${e.species}">${esc(e.label)}</a>
-        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span></span>
+        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span>${lockSel(e)}</span>
       <span class="num">${e.value}</span></div>`);
   });
   $("#simlog").innerHTML = rows.join("");
@@ -2744,6 +2781,35 @@ window.addEventListener("beforeunload", ev => {
   if (TRDIRTY) { ev.preventDefault(); ev.returnValue = ""; }
 });
 $("#simgo").onclick = () => simulate(false);
+$("#simsave").onchange = () => { $("#simconfout").innerHTML = ""; simulate(false); };
+$("#simclear").onclick = () => { SIMLOCKS = {}; saveLocks(); simulate(false); };
+$("#simlog").addEventListener("change", ev => {
+  const sel = ev.target.closest(".simlock");
+  if (!sel) return;
+  if (sel.value === "") delete SIMLOCKS[sel.dataset.area];
+  else SIMLOCKS[sel.dataset.area] = sel.value === "-" ? "" : sel.value;
+  saveLocks();
+  simulate(false);
+});
+// How sure the sim is of its next calls (request 3): the call most replays
+// make at each place, how often, and its lead over the next best.
+$("#simconf").onclick = async () => {
+  const b = $("#simconf");
+  b.disabled = true;
+  $("#simconfout").innerHTML = `<p class="sub">Replaying the run from here.</p>`;
+  try {
+    const c = await api("/api/simulate/confidence?" + simQuery(SIM ? SIM.seed || 0 : 0));
+    $("#simconfout").innerHTML = `<table class="grid"><thead><tr><th>Next places</th><th>Call</th>
+        <th class="num" title="Share of ${c.runs} replays making this call">Sure</th>
+        <th class="num" title="The call's lead over the next best option, as a share of its gain">Lead</th></tr></thead>
+      <tbody>${c.areas.map(r => `<tr title="${esc(r.others.map(o => `${o.decision} ${pct(o.share)}`).join("; "))}">
+        <td>${esc(r.area)}</td><td>${esc(r.decision)}</td><td class="num">${pct(r.share)}</td>
+        <td class="num">${pct(r.margin)}</td></tr>`).join("")}</tbody></table>
+      <p class="sub">${c.runs} replays with different luck. The first place's lead is exact; further on,
+        the share says how often earlier luck leads to the same call.</p>`;
+  } catch (e) { $("#simconfout").innerHTML = ""; toast(e.message, true); }
+  finally { b.disabled = false; }
+};
 $("#simlog").addEventListener("click", ev => {
   const hit = ev.target.closest("[data-sp]");
   if (!hit) return;
