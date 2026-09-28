@@ -478,9 +478,10 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
  * @param defenderItemEffect
  * @param defenderType1
  * @param defenderType2
+ * @param defender              The defending battler, or BATTLER_NONE for a party Pokemon (Oxide: for the Air Balloon's grounding)
  * @param[out] moveStatusMask
  */
-void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask);
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, int defender, u32 *moveStatusMask);
 
 /**
  * @brief Check if a battler's move failed to execute for the turn.
