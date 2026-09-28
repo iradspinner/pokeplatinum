@@ -70,7 +70,10 @@ def sight(obj):
 
 
 def _stem(const):
-    return const.replace("TRAINER_", "").lower()
+    """The trainer's file stem: its constant without the leading TRAINER_
+    only, since a class can hold the word too (TRAINER_ACE_TRAINER_DENNIS
+    is ace_trainer_dennis)."""
+    return const.removeprefix("TRAINER_").lower()
 
 
 def _events(header):

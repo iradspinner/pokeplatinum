@@ -6,6 +6,7 @@ Runs no Node: it reads b6.json as rescore.py saved it, and checks that
 each B6 score's fingerprint matches its inputs and is verified, as test_b3
 does for the scores before B6.
 """
+import os
 import sys
 
 from . import b6, data, pool
@@ -129,6 +130,22 @@ def check_gauntlet(results):
                     f"{len(sizes)} sections" if ok else f"{sizes}, Coronet {coronet}, 1F {vr}"))
 
 
+def check_pairs(results):
+    """Every trainer the pair finder names, opponent or partner, has a file
+    in res/trainers/data, and each key is its stems joined by "+", so the
+    team builder's pair view can open both teams by the key."""
+    from . import pairs
+    ps = pairs.pairs()
+    folder = os.path.join(data.ROOT, "res", "trainers", "data")
+    missing = sorted({st for p in ps for st in p["stems"] + p["partners"]
+                      if not os.path.exists(os.path.join(folder, f"{st}.json"))})
+    bad_keys = [p["key"] for p in ps if p["key"] != "+".join(p["stems"])]
+    results.append(("every pair names trainers with files, keyed by their stems",
+                    not missing and not bad_keys,
+                    f"no file: {missing[:5]}; bad keys: {bad_keys[:3]}" if missing or bad_keys
+                    else f"{len(ps)} entries"))
+
+
 def check_fingerprints(results):
     """Every B6 score (the ordinary trainers and each fight's levers)
     matches its inputs as they are now, and a second run has verified it."""
@@ -142,7 +159,7 @@ def check_fingerprints(results):
 def main():
     results = []
     for check in (check_placements, check_scale, check_bases, check_levers, check_species,
-                  check_teamscore, check_gauntlet, check_fingerprints):
+                  check_teamscore, check_gauntlet, check_pairs, check_fingerprints):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
