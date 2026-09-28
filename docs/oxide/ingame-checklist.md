@@ -386,6 +386,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
+- [ ] Koffing and Ponyta take a Moon Stone (`main-galar-stones`). With either
+  in the party, choose Use on a Moon Stone from the Bag. Koffing and Ponyta
+  are marked ABLE, and the rest of the party NOT ABLE unless it has a Moon
+  Stone evolution of its own. Using it plays the evolution scene into
+  Galarian Weezing or Galarian Rapidash, with the Galarian sprite and name.
+  An untouched Koffing still becomes ordinary Weezing at level 35, and a
+  Ponyta ordinary Rapidash at 40.
 
 ## 5. The ordinary ROM, after the League
 

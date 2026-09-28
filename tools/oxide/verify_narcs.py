@@ -613,7 +613,8 @@ DIVERGED_MEMBERS = {
     },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
-                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447}
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447,
+                    77, 109}
                    | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
@@ -622,8 +623,10 @@ DIVERGED_MEMBERS = {
                "Golbat, Chansey, Pichu, Cleffa, Igglybuff, Togepi, Azurill, "
                "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
                "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
-               "Moon Stone; and sixteen lose the trade entries the base ROM left "
-               "beside its level-up routes (element 8)",
+               "Moon Stone; sixteen lose the trade entries the base ROM left "
+               "beside its level-up routes (element 8); and Ponyta and Koffing "
+               "gain a Moon Stone branch to their Galarian forms beside their "
+               "level evolutions (Ian, 2026-09-28)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
