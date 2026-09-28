@@ -110,8 +110,12 @@ push your branch, run `tools/oxide/fetch-rom <commit>` (or `--testkit`), and
 check the downloaded ROM, with `bash tools/oxide/integrate.sh --verify-only
 --rom <path>` for the whole gate. The guard hook refuses `make rom`, `make
 testkit`, a full `ninja` and `integrate.sh` without `--rom`; `ninja -C build
--j2 <targets>` for a few helper files is allowed. Run one test suite at a
-time across all sessions, since several at once is all-core load again.
+-j2 <targets>` for a few helper files is allowed. With turbo boost off
+(Windows' maximum processor state at 99%, as Ian keeps it), up to three
+heavy jobs may run at once across all sessions, each pinned to its own
+performance core, and every result is checked by a second run (Ian,
+2026-09-27; the design doc's findings log has the test). Three is the
+ceiling: six crashed Node. If turbo is back on, run one at a time.
 Rerun a failed test before believing it. The `Makefile` puts the 3.13
 venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.
