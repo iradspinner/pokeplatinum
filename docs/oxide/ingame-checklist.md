@@ -170,6 +170,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   with the forget-a-move prompt if it knows four. The Move Relearner then
   lists Moonblast for it. No species outside the kit has an evolution move
   until the balance track sets them.
+- [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
+  merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
+  second use empties it. An HM taught from the case stays.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
