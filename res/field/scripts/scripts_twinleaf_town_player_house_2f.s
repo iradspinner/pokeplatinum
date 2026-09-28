@@ -3699,7 +3699,9 @@ TestKit_ItemRoseliBerry:
    and the second swaps it back; the Patch then makes it Steadfast, after
    which a Capsule has no effect. Both have no effect on the Ditto, whose
    species has one ordinary ability; the Patch would make it Imposter, so
-   try the Capsule first. The summary shows the ability after each. */
+   try the Capsule first. The summary shows the ability after each. Each
+   asks first ("Change MACHAMP's Ability to ...?"); No leaves the item in
+   the Bag and goes back to choosing a Pokemon. */
 TestKit_ItemAbilities:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 5, TestKit_PartyFull

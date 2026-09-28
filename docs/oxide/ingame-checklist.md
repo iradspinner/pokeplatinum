@@ -171,7 +171,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   messages. Then each held item beside a Pokemon holding nothing; the Pixie
   Plate's Arceus pink in its summary and in battle; the Roseli Berry with no
   number, Check Tag, planting or Poffin in the Bag. From the Bag on a party
-  member: the Ability Capsule and Patch, the Mints and the Bottle Caps, with
+  member: the Ability Capsule and Patch (each asks yes or no first), the Mints and the Bottle Caps, with
   the Bottle Cap's stat list and the IV viewer showing 31 afterwards. The TM
   Case check: No. 01, No. 92, HM 01, HM 08 in that order, each with its move.
   Then save, turn the game off and reload: the Bag (it grew), a swapped
