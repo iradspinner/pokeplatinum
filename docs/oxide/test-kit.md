@@ -59,7 +59,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
 | Sprite heights | four wild Pokemon at Lv. 5 in turn: Wooloo, Sinistea, Rookidee, Fletchling | the new species' placement: the first, third and fourth stand on their shadows, Sinistea hovers just above |
 | Level caps | puts the player in any of the thirteen level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
-| Element 7 items | one of each of the 46 new items, and a battle for each held item (entries below) | element 7's items |
+| Element 7 items | one of each of the 46 new items and the Ice Stone, and a battle for each held item (entries below) | element 7's items and its follow-up |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
@@ -321,7 +321,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 ## The item entries
 
 Element 7's items have their own menu, "Element 7 items". Its first entry,
-"All new items", puts one of each of the 46 in the Bag, for their names,
+"All new items", puts one of each of the 46, and the Ice Stone, in the Bag, for their names,
 icons, pockets and descriptions. The Items, Medicine and Berries pockets
 were widened to hold one of every item of their kind, so all 46 arrive
 unless those pockets were already holding other items near their size. The
@@ -360,6 +360,7 @@ have random IVs and natures, so "about" in the table below is loose.
 | Mints, Bottle Caps | A Lv. 20 Machamp (below the later games' level 50, as the caps work at any level), with two Adamant Mints, a Modest and a Serious Mint, two Bottle Caps and a Gold Bottle Cap in the Medicine pocket | An Adamant Mint: "The Adamant Mint changed how MACHAMP's stats grow!"; Attack rises and Sp. Atk falls by a tenth against the Machamp's own nature, which its summary still names; a second Adamant Mint has no effect. A Bottle Cap asks "Hyper Train which stat?" with a list of six; on a stat below 31, "MACHAMP's Attack was maxed out by Hyper Training!", the IV viewer (R on the stat page) shows 31 and the stat rises; on a stat already at 31 it has no effect and stays in the Bag; B on the list goes back to choosing a Pokemon. The Gold Bottle Cap does all six | element 7, Mints and Bottle Caps |
 | TM Case check | TM92, HM08, TM01 and HM01, added in that order, and no Pokemon | The TM Case sorts them No. 01 (Focus Punch), No. 92 (Trick Room), HM 01 (Cut), HM 08 (Rock Climb), exactly as before the TM cap came off; using one shows ABLE and NOT ABLE beside the party, and a move taught by an HM still cannot be forgotten. Nothing past TM92 exists yet, so this checks that nothing moved | element 7, the TM mechanism |
 | Contrary on items | Snorlax given Contrary: Rest, Body Slam, Protect, Splash; foe a wild Machamp that knows only Karate Chop | The first chop into the Snorlax holding the policy (super effective) brings "SNORLAX's Attack harshly fell!" and the same for its Sp. Atk, and the policy is gone; the other Snorlax's stats stay. The Absorb Bulb, the Cell Battery, the stat Berries and the Mirror Herb follow the same rule | Contrary, element 7 follow-up |
+| Vulpix, Ice Stone | Two Lv. 20 Vulpix, with an Ice Stone and a Fire Stone in the Items pocket | Both stones show ABLE beside a Vulpix. The Ice Stone evolves one into Alolan Ninetales, Ice and Fairy in its summary; the Fire Stone the other into Ninetales. The Ice Stone's icon (pale blue) and description are in the Bag, and "All new items" gives one too | Ice Stone, element 7 follow-up |
 
 ## Not built yet
 

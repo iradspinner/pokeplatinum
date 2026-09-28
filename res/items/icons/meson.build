@@ -340,6 +340,7 @@ item_icon_pngs = files(
     'jolly_mint.png',
     'naive_mint.png',
     'serious_mint.png',
+    'ice_stone.png',
 )
 
 item_icon_pals = files(
@@ -740,6 +741,7 @@ item_icon_pals = files(
     'jolly_mint.pal',
     'naive_mint.pal',
     'serious_mint.pal',
+    'ice_stone.pal',
 )
 
 item_icon_anim_jsons = files('generic_anim.json')

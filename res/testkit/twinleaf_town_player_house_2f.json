@@ -948,7 +948,7 @@
         {
             "id": "TestKit_Text_ItemsAll",
             "en_US": [
-                "One of each of the 46 new items\n",
+                "One of each of the 47 new items\n",
                 "is in the Bag."
             ]
         },
@@ -1079,6 +1079,17 @@
         {
             "id": "TestKit_Text_MenuItemContrary",
             "en_US": "Contrary on items"
+        },
+        {
+            "id": "TestKit_Text_MenuItemIceStone",
+            "en_US": "Vulpix, Ice Stone"
+        },
+        {
+            "id": "TestKit_Text_ItemIceStone",
+            "en_US": [
+                "Two Vulpix, an Ice Stone\n",
+                "and a Fire Stone."
+            ]
         }
     ]
 }

@@ -3174,7 +3174,7 @@ TestKit_StapleKaizoMoves:
     GoTo TestKit_GivePokemonWithMoves
 
 /* Element 7's items (docs/oxide/test-kit.md, "The item entries"). "All new
-   items" puts one of each of the 46 in the bag, for their names, icons,
+   items" puts one of each of the 46, and the Ice Stone, in the bag, for their names, icons,
    pockets and descriptions; the entries after it set up a battle for one
    item or a group. */
 TestKit_Items:
@@ -3206,6 +3206,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemMintsCaps, 23
     AddListMenuEntry TestKit_Text_MenuItemTMs, 24
     AddListMenuEntry TestKit_Text_MenuItemContrary, 25
+    AddListMenuEntry TestKit_Text_MenuItemIceStone, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3233,6 +3234,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 23, TestKit_ItemMintsCaps
     GoToIfEq VAR_0x8004, 24, TestKit_ItemTMs
     GoToIfEq VAR_0x8004, 25, TestKit_ItemContrary
+    GoToIfEq VAR_0x8004, 26, TestKit_ItemIceStone
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3282,6 +3284,7 @@ TestKit_ItemsAll:
     AddItem ITEM_JOLLY_MINT, 1, VAR_RESULT
     AddItem ITEM_NAIVE_MINT, 1, VAR_RESULT
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
+    AddItem ITEM_ICE_STONE, 1, VAR_RESULT
     Message TestKit_Text_ItemsAll
     GoTo TestKit_WaitAndClose
 
@@ -3719,6 +3722,20 @@ TestKit_ItemContrary:
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveItemPair
+
+/* The Ice Stone and Vulpix's two evolutions: two Lv. 20 Vulpix, with an Ice
+   Stone and a Fire Stone in the Bag. Both stones show ABLE beside a Vulpix.
+   The Ice Stone evolves one into Alolan Ninetales (Ice and Fairy), and the
+   Fire Stone the other into Ninetales, as Eevee's stones pick its branch. */
+TestKit_ItemIceStone:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ICE_STONE, 1, VAR_RESULT
+    AddItem ITEM_FIRE_STONE, 1, VAR_RESULT
+    Message TestKit_Text_ItemIceStone
+    GoTo TestKit_WaitAndClose
 
 /* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
    Capsules and the Ability Patch in the Bag. A Capsule used on the Machamp

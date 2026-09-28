@@ -226,7 +226,7 @@ Element 7's items broke that for three pockets, so they grew:
 
 | Pocket | Kinds of item | Was | Is |
 |---|---|---|---|
-| Items | 185 | 165 | 187 |
+| Items | 186 (the Ice Stone, 2026-09-28, took one of the two spare) | 165 | 187 |
 | Medicine | 61 | 40 | 63 |
 | Berries | 65 | 64 | 65 |
 
