@@ -69,6 +69,20 @@ static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battle
 
 static const Fraction sStatStageBoosts[];
 
+// Oxide, element 7: whether a species can still evolve, for the Eviolite.
+// A species can when its evolution record's first slot is in use, which is
+// hg-engine's test. It reads the evolution archive, so it is asked once, when
+// a battler comes in, and kept in BattleMon.canEvolve for the damage
+// calculation, which runs many times a turn in the AI's scoring.
+static BOOL Species_CanEvolve(int species)
+{
+    u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
+    SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
+
+    NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, species);
+    return evolutions[0].method != EVO_NONE;
+}
+
 void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, partySlot);
@@ -124,6 +138,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
     battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
+    battleCtx->battleMons[battler].canEvolve = Species_CanEvolve(battleCtx->battleMons[battler].species);
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) {
         battleCtx->battleMons[battler].ability = ABILITY_NONE;
@@ -7963,18 +7978,6 @@ static BOOL Move_IsPunching(int move)
     return FALSE;
 }
 
-// Oxide, element 7: whether a species can still evolve, for the Eviolite.
-// A species can when its evolution record's first slot is in use, which is
-// hg-engine's test.
-static BOOL Species_CanEvolve(int species)
-{
-    u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
-    SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
-
-    NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, species);
-    return evolutions[0].method != EVO_NONE;
-}
-
 // Oxide: whether a Flower Gift that Mold Breaker cannot ignore, because its
 // holder has an Ability Shield, is on battler's side.
 static BOOL ShieldedFlowerGiftOnSide(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -8323,7 +8326,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (attackerParams.heldItemEffect == HOLD_EFFECT_PUNCHING_GLOVE && Move_IsPunching(move)) {
         movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
     }
-    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && Species_CanEvolve(defenderParams.species)) {
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && battleCtx->battleMons[defender].canEvolve) {
         defenseStat = defenseStat * 150 / 100;
         spDefenseStat = spDefenseStat * 150 / 100;
     }
