@@ -3453,20 +3453,22 @@ TestKit_ItemClearAmulet:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveItemPair
 
-/* The Ability Shield: Mew against a wild Chansey that knows Worry Seed and
-   Gastro Acid. Against the Mew holding it both fail ("But it failed!");
-   against the other, Worry Seed gives it Insomnia and Gastro Acid
-   suppresses its ability. */
+/* The Ability Shield: Bronzong given Levitate against a wild Chansey given
+   Mold Breaker that knows Worry Seed and Earthquake. Against the Bronzong
+   holding it Worry Seed fails ("But it failed!") and Earthquake does not
+   affect it, since Mold Breaker cannot reach past the shield to Levitate;
+   the other Bronzong takes Earthquake as a super-effective hit, and Worry
+   Seed gives it Insomnia. */
 TestKit_ItemAbilityShield:
     SetVar VAR_0x8000, SPECIES_CHANSEY
-    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8001, ABILITY_MOLD_BREAKER
     SetVar VAR_0x8002, MOVE_WORRY_SEED
-    SetVar VAR_0x8003, MOVE_GASTRO_ACID
-    SetVar VAR_0x800A, SPECIES_MEW
-    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8003, MOVE_EARTHQUAKE
+    SetVar VAR_0x800A, SPECIES_BRONZONG
+    SetVar VAR_0x800B, ABILITY_LEVITATE
     SetVar VAR_0x8004, ITEM_ABILITY_SHIELD
     SetVar VAR_0x8006, MOVE_SPLASH
-    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8007, MOVE_IRON_DEFENSE
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveItemPair
