@@ -11,6 +11,8 @@ Run `bash tools/oxide/integrate.sh --dry-run` to list the branches that would me
 
 ## 1. Merge and verify
 
+Until the replacement CPU is in, the guard refuses this step's local build, and `--rom` would check a ROM that is not the merged tree. Land each branch instead with `tools/oxide/merge-branch.sh <branch>`, which merges it, builds the merged tree on GitHub, runs the gate on that ROM and pushes only on a pass; then go on to step 2. Once the new CPU is in:
+
 Run `bash tools/oxide/integrate.sh $ARGUMENTS`. Read its summary. If it stopped at a precondition (a dirty worktree, a conflict it will not resolve, a diverged origin), report exactly what it said and stop; those are Ian's calls, not yours. The exception is a tracker conflict outside the encounter paragraph, which the script stops on by design and prints: merge that block by hand, keeping both tracks' lines, then rerun.
 
 If a verification check failed, do not push and do not "fix" data files. Report which check failed, its last lines of output, and which merged branch most likely caused it (`git log --oneline` since the previous integration, per file). Then stop.

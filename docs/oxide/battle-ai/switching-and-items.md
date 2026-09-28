@@ -2,9 +2,9 @@
 
 This part covers the plain C that sits beside the script interpreter: the damage figure the AI uses to compare moves, the decision to switch out, the choice of which Pokemon comes in, and the decision to use an item. It covers `src/battle/trainer_ai/trainer_ai.c` from line 2750 to the end (line 4199), the replacement routine in `src/battle/battle_lib.c`, and the callers in `src/battle/battle_display.c` and `src/battle/battle_controller_player.c`.
 
-Everything was read from this tree and compared with vanilla on `main`. In `trainer_ai.c` the only difference from vanilla is two variable types at lines 3645 and 3646, which do not move any line, so every `trainer_ai.c` line number below is also the vanilla line number. In `battle_lib.c` the replacement routine and the type helpers it uses sit 71 lines lower than on `main` (the Fairy rows added to the type chart and a few other edits push them down); the vanilla line is given wherever a bug is cited. The lines cited in `battle_display.c` are unchanged from vanilla.
+Everything was read before element 6's fixes and compared with vanilla on `main`. `trainer_ai.c` then differed from vanilla only in two variable types, so every `trainer_ai.c` line number below is the vanilla line number. `battle_lib.c` lines are given as they stood then, with the vanilla line wherever a bug is cited; they have moved since. The lines cited in `battle_display.c` are vanilla's. What the fixes and changes since do is in the README; find a function by its name, not its number.
 
-The short version, for a reader who wants the answer first. A trainer's turn is decided in the order switch, then item, then move. Oxide's trainers never use items, because nothing ever gives them any, so in practice the order is switch or move. The switch rules are seven checks with fixed chances, listed in the table under "Switching". The AI's damage figure is the game's own damage formula at the top of the damage range: the 85 to 100 roll drawn for each move in `TrainerAI_Init` is never used, because every script call asks for maximum damage.
+The short version, for a reader who wants the answer first. A trainer's turn is decided in the order switch, then item, then move. Oxide's trainers never use items, because the battle never loads the items their files list (see "Items"), so in practice the order is switch or move. The switch rules are seven checks with fixed chances, listed in the table under "Switching". The AI's damage figure is the game's own damage formula at the top of the damage range: the 85 to 100 roll drawn for each move in `TrainerAI_Init` is never used, because every script call asks for maximum damage.
 
 ## Where these routines run, and in what order
 
@@ -19,7 +19,7 @@ So the decision order is switch, item, move, and the move scoring never runs on 
 
 The execution order is separate from the decision order. Once every battler has chosen, the controller puts every Item and Party action ahead of every Fight action (`battle_controller_player.c` lines 753 to 770), sorting battlers who chose the same kind of action by speed. So an AI switch always happens before any move that turn, whatever the speeds.
 
-Two consequences follow for wild Pokemon, which matter because Oxide adds wild double battles. A wild Pokemon never switches and never uses an item (line 4000). And it never runs the scoring script either: `Task_TrainerShowMoveSelectMenu` only calls `TrainerAI_Main` for a trainer battle, a roamer, the game's scripted first battle, or a player-side battler (`battle_display.c` lines 3587 to 3590); any other wild Pokemon picks a random usable move (lines 3600 to 3612). The README's remark that Tag Strategy will run in Oxide's wild doubles is therefore wrong for the wild side; it runs only for an AI partner fighting alongside the player there.
+Two consequences follow for wild Pokemon, which matter because Oxide adds wild double battles. A wild Pokemon never switches and never uses an item (line 4000). And it never runs the scoring script either: `Task_TrainerShowMoveSelectMenu` only calls `TrainerAI_Main` for a trainer battle, a roamer, the game's scripted first battle, or a player-side battler (`battle_display.c` lines 3587 to 3590); any other wild Pokemon picks a random usable move (lines 3600 to 3612).
 
 When a Pokemon faints, or uses U-turn, the replacement is asked for separately, through `Task_TrainerShowPartyMenu` (`battle_display.c` lines 4528 to 4562), described under "Choosing the Pokemon that comes in".
 
@@ -118,9 +118,7 @@ What is left out: critical hits, and anything the real attack applies after this
 
 ### The damage roll is never used
 
-`TrainerAI_Init` draws a roll from 85 to 100 for each move slot (line 240), and `TrainerAI_CalcAllDamage` would use it when asked (lines 2829 to 2833). But the script decides whether to ask, and all 18 calls in `script.s` pass `USE_MAX_DAMAGE` (0), never `ROLL_FOR_DAMAGE` (1). Vanilla's script has the same 18 calls. So in practice every AI damage figure uses a roll of 100: the AI always assumes its move does the top of its damage range, and a "does this move kill" test succeeds whenever the maximum non-critical roll kills. The only randomness left in the figure is Psywave, which is re-drawn every time it is calculated, and the four rolls in `TrainerAI_Init` still consume four random numbers per decision.
-
-This contradicts step 2 of `README.md`, which says the script's damage comparisons use the per-move rolls; they could, but the script never asks for them. pokemow's page agrees with the code here: it lists random variance among the factors the AI leaves out.
+`TrainerAI_Init` draws a roll from 85 to 100 for each move slot (line 240), and `TrainerAI_CalcAllDamage` would use it when asked (lines 2829 to 2833). But the script decides whether to ask, and all 18 calls in `script.s` pass `USE_MAX_DAMAGE` (0), never `ROLL_FOR_DAMAGE` (1). Vanilla's script has the same 18 calls. So in practice every AI damage figure uses a roll of 100: the AI always assumes its move does the top of its damage range, and a "does this move kill" test succeeds whenever the maximum non-critical roll kills. The only randomness left in the figure is Psywave, which is re-drawn every time it is calculated, and the four rolls in `TrainerAI_Init` still consume four random numbers per decision. pokemow's page agrees with the code here: it lists random variance among the factors the AI leaves out.
 
 ### The type of a variable-type move
 
@@ -132,7 +130,7 @@ This contradicts step 2 of `README.md`, which says the script's damage compariso
 
 ### When it will not even look
 
-It returns "no switch" at once if the battler cannot legally switch as the AI understands it (lines 3906 to 3913): it is bound or under Mean Look (the trapped volatile status), it has used Ingrain, any opposing Pokemon has Shadow Tag or Arena Trap, or it is Steel-type and any other battler has Magnet Pull. This is stricter than the engine's own test (`Battler_IsTrapped`, `battle_lib.c` line 5538). The AI still thinks it is trapped when holding Shed Shell, when it has Shadow Tag itself, when it is Flying-type, Levitating or under Magnet Rise against Arena Trap, and when the Magnet Pull is its own ally's. Each of these makes the AI switch less often, never attempt an illegal switch.
+It returns "no switch" at once if the battler cannot legally switch as the AI understands it (lines 3906 to 3913): it is bound or under Mean Look (the trapped volatile status), it has used Ingrain, any opposing Pokemon has Shadow Tag or Arena Trap, or it is Steel-type and any other battler has Magnet Pull. This is stricter than the engine's own test (`Battler_IsTrapped`, `battle_lib.c` line 5538). The AI still thinks it is trapped when holding Shed Shell, when it has Shadow Tag itself, when it is Flying-type, Levitating or under Magnet Rise against Arena Trap, and when the Magnet Pull is its own ally's. Each of these makes the AI switch less often, never attempt an illegal switch. Since the catch-up, a Ghost-type battler skips the whole test, since Oxide's engine lets a Ghost switch out of any trap.
 
 It also returns "no switch" if there is no Pokemon to switch to (lines 3915 to 3940). A candidate is a party Pokemon with HP above 0 that is not an egg, not either active Pokemon on the AI's side, and not a Pokemon the AI's other battler has already chosen to switch in this turn. In a tag or multi battle, where each trainer has a separate party, only the battler's own active Pokemon is excluded.
 
@@ -170,7 +168,7 @@ Rule 3, nothing can hit (lines 3361 to 3546). First the active Pokemon's damagin
 | singles | 8 in 9 per move | n/a | 3 in 4 per move | n/a |
 | doubles | 2 in 3 per move | 8 in 9 per move | 1 in 2 per move | 3 in 4 per move |
 
-Rule 4, absorbing ability (lines 3640 to 3714). First, if the active Pokemon has any super-effective move on a foe (the gate function with its randomness turned off, line 3651), the rule is skipped with a 2 in 3 chance. Then it needs the last move that hit to be damaging and, by its listed type, Fire, Water or Electric, which picks Flash Fire, Water Absorb or Volt Absorb. If the active Pokemon has that ability already there is no switch. Otherwise each bench Pokemon with that ability is taken with a 1 in 2 chance. Motor Drive and Dry Skin, both in Platinum, are not considered, and the move's listed type is used rather than the type it actually had (Weather Ball, Hidden Power and Judgment are read as Normal).
+Rule 4, absorbing ability (lines 3640 to 3714). First, if the active Pokemon has any super-effective move on a foe (the gate function with its randomness turned off, line 3651), the rule is skipped with a 2 in 3 chance. Then it needs the last move that hit to be damaging and, by its listed type, Fire, Water or Electric, which picks Flash Fire, Water Absorb or Volt Absorb. If the active Pokemon has that ability already there is no switch. Otherwise each bench Pokemon with that ability is taken with a 1 in 2 chance. Motor Drive and Dry Skin, both in Platinum, are not considered, and the move's listed type is used rather than the type it actually had (Weather Ball, Hidden Power and Judgment are read as Normal). That is vanilla. Since 2026-09-22 a Weather Ball is read at its weather's type, and since 2026-09-27 the rule takes its abilities from `AI_AbilityAbsorbsType`, which adds Motor Drive and Dry Skin (a VANILLA FIX) and Oxide's Lightning Rod, Storm Drain and Sap Sipper, so a Grass hit can now send in a Sap Sipper Pokemon.
 
 Rule 5, Natural Cure (lines 3817 to 3859). It needs the battler asleep, with Natural Cure, and at or above half its maximum HP. Then:
 
@@ -219,7 +217,7 @@ If neither stage finds anyone the routine returns 6, and a plain fallback takes 
 
 ### What this means in Oxide today
 
-Oxide took items out of trainer battles on purpose. Vanilla's `BattleControllerPlayer_InitAI` copied each opposing trainer's items into `trainerItems` and counted them in `trainerItemCounts` (vanilla `battle_controller_player.c` lines 4801 to 4813). Oxide's version (lines 4823 to 4835) only clears the AI context and points it at the script, so both arrays stay at zero for the whole battle, and nothing else in the tree writes to them.
+Oxide took items out of trainer battles on purpose. Vanilla's `BattleControllerPlayer_InitAI` copied each opposing trainer's items into `trainerItems` and counted them in `trainerItemCounts` (vanilla `battle_controller_player.c` lines 4801 to 4813). Oxide's version only clears the AI context and points it at the script, so both arrays stay at zero for the whole battle, and nothing else in the tree writes to them.
 
 `TrainerAI_ShouldUseItem` still runs every turn the AI does not switch, and always returns "no item". Slot 0 is always examined and is empty, so it is skipped (line 4095). Slots 1 to 3 are only examined when the number of living party Pokemon is at most `trainerItemCounts` minus the slot number plus 1 (line 4092), which with a count of 0 is 0 or less, and in any case they are empty too. The one thing the call still does is reset `usedItemCondition` (line 4066), which only the unreachable item command reads. The AI branch of `BattleControllerPlayer_ItemCommand` (lines 1905 to 1945) is therefore unreachable in trainer battles. So in Oxide a trainer's turn is a switch or a move, and the item rules below, including bugs 19 and 20, have no effect unless trainer items are turned back on.
 
@@ -279,11 +277,13 @@ The pret file `docs/bugs_and_glitches.md` gives the stage 1 wrap as 65. The arit
 
 ## Apparent bugs
 
-Fixed on 2026-09-22: bug 1, Weather Ball's unset type (vanilla fix, approved by Ian), in all three helpers; the compiled code showed each returned its caller's register, a pointer. Also fixed, and missed by this write-up: `TrainerAI_CalcDamage` has no Weather Ball case, so the AI always estimated it as a 50-power Normal move (vanilla; Ian's pokemow reference names it). The ability byte (Oxide) is fixed in another part. Otherwise nothing in this file's code has been changed; status moves counting as super-effective and the bench damage check were put to Ian and kept as vanilla has them.
+Fixed on 2026-09-22: bug 1, Weather Ball's unset type (vanilla fix, approved by Ian), in all three helpers; the compiled code showed each returned its caller's register, a pointer. Also fixed, and missed by this write-up: `TrainerAI_CalcDamage` had no Weather Ball case, so the AI always estimated it as a 50-power Normal move (vanilla; Ian's pokemow reference names it). Weather Ball's weather type is also read by rule 4 (bug 17, for Weather Ball only) and costed in the post-faint pick. Bug 21, the ability byte (Oxide), is fixed. Status moves counting as super-effective and the bench damage check were put to Ian and kept as vanilla has them.
+
+Changed by the catch-up of 2026-09-26 (README, all Oxide fixes): the damage estimate works out computed powers (`TrainerAI_ComputedMovePower`, and Electro Ball and Hard Press reach the comparison), the kill checks cap a hit at what Sturdy lets through, a Wonder Guard under Neutralizing Gas guards nothing in rule 2, and a Ghost is never trapped in the trap test (bug 7, in part).
 
 Changed on 2026-09-27 (`cloud/element6-changes`; the README has the rule): the switch to an absorber, `AI_HasAbsorbAbilityInParty`, takes its abilities from `AI_AbilityAbsorbsType`: Flash Fire for Fire; Water Absorb, Storm Drain and Dry Skin for Water; Volt Absorb, Lightning Rod and Motor Drive for Electric; Sap Sipper for Grass. Motor Drive and Dry Skin are a VANILLA FIX; the rest is Oxide's.
 
-Each entry is labelled as present in vanilla Platinum or introduced by Oxide. A fix to a vanilla bug changes the game's original behaviour and is Ian's call; none has been made.
+Each entry is labelled as present in vanilla Platinum or introduced by Oxide, and describes the code as vanilla has it; which are fixed is stated above. A fix to a vanilla bug changes the game's original behaviour and is Ian's call.
 
 1. **Weather Ball's type is unset with no weather.** Present in vanilla (`trainer_ai.c` 3222 to 3240; `battle_lib.c` vanilla 8176, Oxide 8247). Both type helpers assign Weather Ball's type only inside the weather tests, and neither sets it first, so with clear skies or Cloud Nine or Air Lock out the function returns whatever the register held. Every other case in both functions sets a type, including a default of Normal. What the compiled code returns cannot be read from the source. It affects the switching checks and the replacement routine when a Pokemon knows Weather Ball.
 2. **Magnitude is always scored as 0 damage.** Present in vanilla (lines 3028 to 3049, the same in vanilla). The special case can never be reached, because Magnitude's effect is in neither table and its power is 1. Evidence that it was meant to run: the branch simulates the Magnitude roll in full.
@@ -301,7 +301,7 @@ Each entry is labelled as present in vanilla Platinum or introduced by Oxide. A 
 14. **The replacement damage score wraps at 256, twice.** Present in vanilla (`battle_lib.c` 8125 to 8144, vanilla 8054 to 8073). The engine's damage is cut to one byte before the type chart is applied and again after.
 15. **The replacement damage uses the fainted Pokemon as the attacker.** Present in vanilla (`battle_lib.c` 8125 to 8134, vanilla 8054 to 8063). The routine works out each candidate's move type from the candidate, which shows it meant to judge the candidate's damage, but passes the AI's battler slot as the attacker.
 16. **A skipped move keeps the last score.** Present in vanilla (`battle_lib.c` 8121 to 8154, vanilla 8050 to 8083). When a slot is empty or the move's power is 1, `score` is not reset, so the previous move's figure (or, for the very first move, a leftover stage 1 type score or an uninitialised value) is compared again for this candidate.
-17. **The absorbing-ability rule reads the listed type.** Present in vanilla (line 3665). The controller records the type the move actually had (`moveHitType`), but the rule reads the move's data, so a Fire-type Weather Ball, Hidden Power or Judgment does not count.
+17. **The absorbing-ability rule reads the listed type.** Present in vanilla (line 3665). The controller records the type the move actually had (`moveHitType`), but the rule reads the move's data, so a Fire-type Weather Ball, Hidden Power or Judgment does not count. Fixed for Weather Ball on 2026-09-22; Hidden Power and Judgment still read their listed type.
 18. **Several comments misstate the code.** Present in vanilla. Lines 3255 to 3257 (Perish Song "does nothing"; it works), 3412 ("more than 1 attacking move, do not switch"; it is fewer than 2), 3840 and 3846 (50%; certain), 3973 and 3979 (33% and 25%, both "immunity"; 50% and 33%, immunity and resistance), 4155 ("until after the first turn"; only on the first turn). These do not change behaviour, but they will mislead anyone editing the code.
 19. **Using one item empties every later open item slot.** Present in vanilla (lines 4091 to 4196). There is no `break` after an item is chosen, and `result` stays true, so every later open, non-empty slot is also cleared, and `usedItem` ends as the last of them. With two Full Restores and one Pokemon left, both go at once and the message names the second. No effect in Oxide, since trainers have no items.
 20. **A multi-status heal is only used for sleep.** Present in vanilla (lines 4118 to 4154). The tests are one `else if` chain, so an item that heals every status (Full Heal) matches the sleep test first and is used only when asleep. No effect in Oxide.
@@ -309,19 +309,13 @@ Each entry is labelled as present in vanilla Platinum or introduced by Oxide. A 
 
 ## The battle_edits fixes
 
-None of the eleven lives in `trainer_ai.c` from line 2750 to the end.
-
-Fire Fang vs Wonder Guard is in `battle_lib.c`, in `MoveIsOnDamagingTurn` (line 7671, vanilla 7600), where the effect for Fire Fang (273) sits in the list of two-turn moves instead of Shadow Force's (272), one number away. The switching logic here meets it through `ApplyTypeChart` and `CalcEffectiveness`, which both skip the Wonder Guard test for moves in that list when the "last turn of a two-turn move" flag is clear, and that flag is always clear when the AI decides (it is reset after every action). So today the AI's switching and damage checks never see Wonder Guard block Fire Fang, SolarBeam, Fly and the rest of that list, and do see it block Shadow Force and Oxide's Phantom Force. After the fix Fire Fang is judged like an ordinary move and Shadow Force and Phantom Force join the unblocked list. In practice the AI change is almost nil: Shedinja is the only Wonder Guard Pokemon and Fire is super-effective on it anyway, so Fire Fang only differs against a Pokemon that gained Wonder Guard through Skill Swap or Role Play.
-
-Rage Glitch is in `battle_controller_player.c` line 846 (the same in vanilla), where `&= VOLATILE_CONDITION_RAGE` should be `&= ~VOLATILE_CONDITION_RAGE`. Nothing in this file's lines reads the Rage bit.
-
-The other nine are script fixes, named for the flag routine they sit in (Basic: Water immunity vs Dry Skin, Sunny Day; Expert: Foresight and Odor Sleuth, Facade, Leaf Guard, Water Spout and Eruption, charge turns, Thunder; Tag Strategy: Discharge). They belong to the flag part files. Two touch this file's tables indirectly: Water Spout and Eruption, and the charge-turn moves, are in the "no damage calculation" table, which is why the script has to score them by hand. The Dry Skin fix is in the script's Basic flag; the C absorbing-ability rule (rule 4) also ignores Dry Skin and Motor Drive, but that is a separate gap and not part of the list.
+None of the eleven lives in `trainer_ai.c` from line 2750 to the end. Fire Fang against Wonder Guard (`MoveIsOnDamagingTurn` in `battle_lib.c`) reaches this part's switching and damage checks through `ApplyTypeChart` and `CalcEffectiveness`: since the fix, Fire Fang is judged as an ordinary move and Shadow Force and Phantom Force join the moves Wonder Guard is not seen to block while the AI decides. The README's battle_edits table has all eleven.
 
 ## What Oxide's new content does here
 
 ### Keyed on move effect ids
 
-Both effect tables are `u16` lists ended by `0xFFFF`, so ids up to 406 fit. New moves that share a vanilla effect behave like their vanilla sibling: Misty Explosion, Eternabeam, Meteor Assault, Prismatic Laser, Solar Blade, Dragon Energy, Thunderclap and Light of Ruin are all left out of the damage calculation, as the table shows. None of Oxide's new effects (277 to 406) is in either table, which means:
+Both effect tables are `u16` lists ended by `0xFFFF`, so every effect id fits (they run to 414 on 2026-09-27). New moves that share a vanilla effect behave like their vanilla sibling: Misty Explosion, Eternabeam, Meteor Assault, Prismatic Laser, Solar Blade, Dragon Energy, Thunderclap and Light of Ruin are all left out of the damage calculation, as the table shows. None of Oxide's new effects (277 and up) is in either table (checked 2026-09-27), which means:
 
 | Effect | Moves | What the AI does |
 |---|---|---|
@@ -329,12 +323,13 @@ Both effect tables are `u16` lists ended by `0xFFFF`, so ids up to 406 fit. New 
 | 272 (Shadow Force, vanilla too) | Phantom Force | calculates full damage |
 | 403 (recoil half max HP) | Chloroblast | calculates full damage, where Head Smash is left out |
 | 402 (Final Gambit), 292 (Heavy Slam) | Final Gambit, Heavy Slam, Heat Crash | 0 damage, power 1 |
-| 0 (plain hit) with power 1 or 0 | Electro Ball, Hard Press | 0 damage |
-| 121 (friendship) | Pika Papow, Veevee Volley | passes the gate but falls to the default path, where the listed power of 0 gives the formula's constant, about 2 damage |
-| 280, 287, 289, 321, 322, 382, 388 and plain hits whose power varies | Venoshock, Hex, Acrobatics, Infernal Parade, Barb Barrage, Bolt Beak, Fishious Rend, Fell Stinger, Stored Power, Power Trip, Last Respects, Rage Fist and the like | listed base power only, since the doubling or scaling is done in the battle script |
+| 0 (plain hit) with power 1 | Electro Ball, Hard Press | since the catch-up, their power as the battle works it out (`sComputedPowerHits` lets them past the power check) |
+| 121 (friendship) | Pika Papow, Veevee Volley | since the catch-up, costed as Return |
+| 280, 287, 289, 321, 322, 382, 388 | Venoshock, Hex, Acrobatics, Infernal Parade, Barb Barrage, Bolt Beak, Fishious Rend | listed base power only, since the doubling is done in the battle script; Expert's routines for them add +1 when the power doubles (README) |
+| plain hits whose power varies | Electro Ball, Stored Power, Power Trip, Retaliate, Echoed Voice, Stomping Tantrum, Temper Flare, Last Respects, Hard Press, Grav Apple, Rage Fist | since the catch-up, the power the battle will work out (`TrainerAI_ComputedMovePower`); Lash Out stays at its listed power |
 | multi-hit effects 297 to 299, 366 | Population Bomb, Triple Axel, Triple Dive, Surging Strikes | one hit's damage |
 
-Mind Blown and Steel Beam carry the plain-hit effect in the move data, so the AI and the engine both treat them as ordinary 150 and 140 power moves; that is a move-data question for element 4.
+Steel Beam carries the plain-hit effect in the move data, so the AI and the engine both treat it as an ordinary 140 power move. Mind Blown now has its own effect, which is in neither table, so its damage is estimated in full.
 
 ### Keyed on move ids
 
@@ -350,14 +345,14 @@ The switching logic names abilities directly: Klutz (2886, 2898), Wonder Guard (
 
 | Ability | Effect on these routines |
 |---|---|
-| Storm Drain, Lightning Rod, Sap Sipper, Earth Eater, Well-Baked Body (and vanilla's Motor Drive, Dry Skin) | not seen as immunities by any switching check, and not considered by rule 4 |
+| Storm Drain, Lightning Rod, Sap Sipper, Earth Eater, Well-Baked Body (and vanilla's Motor Drive, Dry Skin) | not seen as immunities by `CalcEffectiveness`, so rules 2, 6 and 7 and the post-faint pick ignore them; since 2026-09-27 rule 4 considers all but Earth Eater and Well-Baked Body |
 | Teravolt, Turboblaze | `CalcEffectiveness` tests for Mold Breaker by id, so these do not ignore Levitate or Wonder Guard in the bench checks |
 | Pixilate, Aerilate, Refrigerate, Galvanize, Liquid Voice | the type helpers know only Normalize, so the AI reads the move's listed type |
 | Regenerator | no switch rule for it |
 
 ### Fixed sizes
 
-`MAX_TRAINER_ITEMS` is 4. The replacement routine marks party slots in a 6-bit mask (`0x3F`) and uses 6 as "none", which still fits Oxide's party size. `AIContext.moveTable` is sized by `MAX_MOVES`, so it grows with the move count. The new trapping moves (Anchor Shot, Spirit Shackle, Thousand Waves, Jaw Lock, Octolock, Fairy Lock) are only seen by the AI's trap test if their engine code sets the bound or Mean Look status; that depends on how element 4 implemented them.
+`MAX_TRAINER_ITEMS` is 4. The replacement routine marks party slots in a 6-bit mask (`0x3F`) and uses 6 as "none", which still fits Oxide's party size. `AIContext.moveTable` is sized by `MAX_MOVES`, so it grows with the move count. The new trapping moves are seen by the AI's trap test: Anchor Shot, Spirit Shackle, Thousand Waves, Jaw Lock and Octolock all set the Mean Look status in their battle subscripts, which the test reads. Fairy Lock's effect is not written. A battler held by Sky Drop is not treated as trapped (tracker).
 
 ### Where the held items would plug in
 

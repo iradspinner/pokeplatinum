@@ -22,7 +22,8 @@ are the house style.
    section 3 maps each feature to hg-engine's files (`armips/asm/*.s` for the
    byte-level sites, `src/battle/*.c` and `src/individual/*.c` for behaviour,
    `CONFIG.md` for the toggle names). Read the hg-engine source for the feature,
-   not a summary of it.
+   not a summary of it. `~/hg-engine` is a sparse clone without `armips/asm`
+   on disk; `git -C ~/hg-engine show HEAD:armips/asm/<file>` reads it.
 3. Find every site in the decomp. The decomp has no assembly, so a struct field
    or a constant is the whole story: `grep -rn` for the constant (`MAX_SPECIES`,
    `NUM_POKEMON_TYPES`, the field name), and read `generated/` and
@@ -72,6 +73,9 @@ are the house style.
   Aurora Veil) and fields from `SideConditions`' padding (Aurora Veil's turns,
   Belch's per-party-slot berry record); a one-turn state goes in `TurnFlags`'
   padding, which clears every turn (the side guards, Beak Blast's heat).
+  The field conditions mask has bits 19 to 29 taken (Trick Room's and Wonder
+  Room's permanent bits, Neutralizing Gas, Echoed Voice's five, Wonder Room's
+  turns), so only 30 and 31 are free; check `condition.h` before claiming one.
   The move-effects mask is now full, so a later-games volatile state goes in
   `BattleMon.oxideFlags` (the old `padding007A`, `OXIDE_MON_FLAG_*` in
   `constants/battle/moves.h`, reached by scripts as `BATTLEMON_OXIDE_FLAGS`):
@@ -105,7 +109,9 @@ are the house style.
   `src/battle/trainer_ai/` for the ability, move or effect it touches and bring
   the copy along, or say so in the report for element 6 (its 2026-09-26
   catch-up is in `docs/oxide/battle-ai/README.md`). The AI is overlay 14, whose
-  slot must end below the battle overlay's start at 0x0223B520.
+  slot must end below the battle overlay's start (`SDK_OVERLAY.battle.START`
+  in the build's `main.nef.xMAP`; 0x0223B520 on 2026-09-26, and it moves when
+  the battle animation overlay grows).
 - A C change is checked with `tools/oxide/romdiff.py` against the previous
   commit's ROM: every difference must be the intended members or a relink that
   the tool explains, and it exits non-zero on anything else. It looks for
@@ -130,29 +136,56 @@ are the house style.
   both type chart walks read. A move that reads more than two chart
   entries needs its effectiveness flags set from the net result
   (`SetNetEffectiveness`), because Platinum's running toggle misreads four.
+- The audit has a second blind spot: it triages only effect ids 277 and
+  up, so a new move the importer gave a native effect is never looked at,
+  however much hg-engine adds to it in C keyed on the move (Shore Up sits on
+  Synthesis's effect and healed by Synthesis's weather rule). For a new move
+  on a native effect, grep hg-engine's C for the move's constant.
+- Before routing a move to an AI routine, read its effect script, not its
+  effect's name: Meteor Beam's and Electro Shot's "charge turn" effects are
+  plain hits today. Power doubled in a script (`BTLVAR_POWER_MULTI`: Hex,
+  Venoshock, Acrobatics) never reaches the AI's damage estimate, so those
+  follow vanilla's Facade and Brine with a +1 Expert bonus when it applies.
+- dataproc's range helpers (`dp_u16range` and its siblings) crash instead of
+  reporting when the value came from `dp_lookup`, because the node keeps the
+  pointer and the looked-up value in one union. Compare a looked-up enum
+  yourself, as `trainerproc.c` does for a nature, or fix the library first.
+- A new species' cry must be registered, not only generated: a bank and a
+  wave archive in `res/sound/pl_sound_data.json` at its species id, since
+  `Sound_PlayPokemonCry` indexes the bank table by species (element 3's first
+  pass was silent and crashed the Pokedex cry screen). A cry must fit
+  `PLAYER_PV`'s 24,200-byte heap at a byte a sample, so vanilla's longest,
+  Jynx's 23,524 samples, is the practical limit. `nitrosfx`'s `WriteSdat` has
+  a padding fix in `tools/nitrosfx/sdat.c` that matters once SYMB, INFO or FAT
+  grows enough to move the FILE block; keep it.
 
 ## Before calling it done
 
-1. `make rom` succeeds.
-2. Declare intended divergence so the integration gate keeps meaning something.
-   Species and move records that now differ from the base ROM go in `DIVERGED`
+1. The ROM builds: on GitHub with `tools/oxide/fetch-rom <commit>` until the
+   replacement CPU is in (CLAUDE.md, Build), or `make rom` in a cloud session.
+2. Declare intended divergence so the integration gate keeps meaning something
+   (the `oxide-session` skill lists every register). Species and move records
+   that now differ from the base ROM go in `DIVERGED`
    in `tools/oxide/verify_narcs.py` (member indices, allowed byte offsets, why);
    if the record layout itself changed, teach the verifier the new layout the way
    element 2 did, so it reports "0 disagreeing, N intended" rather than 506
-   mismatches. Run `python3 tools/oxide/verify_narcs.py --built
-   build/pokeplatinum.us.nds --ref ~/roms/base.nds` and read what it says.
+   mismatches. Run `python3 tools/oxide/verify_narcs.py --built <ROM>
+   --ref ~/roms/base.nds` and read what it says.
 3. If a save-file field moved: a row in `docs/oxide/save-layout.md` with was,
    is, why, and what an old save now reads as.
 4. `python3 tools/oxide/import_base_rom.py --base ~/roms/base.nds --vanilla
    ~/roms/vanilla.nds --dry-run` still reports every count 0; if it wants to
    re-import something you changed on purpose, it needs a skip entry
-   (`MOVES_DIVERGED` for a move field, as Poison Gas's range has).
+   (`MOVES_DIVERGED` for a move field, as Poison Gas's range has). The dry
+   run rewrites `tools/oxide/import_report.md`; restore it with
+   `git checkout tools/oxide/import_report.md` before committing.
 5. The three `bulk_*.py --dry-run` runs and the encounter tests still pass;
-   `tools/oxide/integrate.sh --no-push` runs the whole gate in one go.
+   `bash tools/oxide/integrate.sh --verify-only --rom <ROM>` runs the whole
+   gate in one go (a cloud session drops `--rom`).
 6. Tracker entry under Phase 4 in the established shape: what was done and
    where, the trap for whoever adds the next one, what is deliberately left
-   short, and the emulator test Ian should run, which also goes on the "Waiting
-   on Ian" list. A durable fact (a format detail, a wrong assumption corrected)
+   short, and the emulator test Ian should run, which goes in
+   `docs/oxide/ingame-checklist.md`. A durable fact (a format detail, a wrong assumption corrected)
    goes in the design doc's findings log as well. Once a step is finished its
    write-up moves to `docs/oxide/tracker-archive.md`, which agents read only
    when pointed there, so a trap still in force must also live in this skill or

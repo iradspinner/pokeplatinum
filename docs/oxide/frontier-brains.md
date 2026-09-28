@@ -37,10 +37,12 @@ Galarian Articuno replaces Sigilyph, which is not in the game (Ian,
 
 ## What each fight needs before it can be scripted
 
-- Dahlia: Wonder Room's effect and its permanent form (`cloud/element4-wonder-room`,
-  running).
+- Dahlia: her trainer added to `sPermanentWonderRoomTrainers` in
+  `battle_lib.c`. Wonder Room and its permanent form are merged
+  (`cloud/element4-wonder-room`), and the list is there, empty.
 - Thorton: his trainer added to `sPermanentTrickRoomTrainers` in `battle_lib.c`,
-  and the Ironworks Hall capture (on the main track's branch).
+  and the prize's scripted capture. Ironworks Hall, the location name that
+  makes it a capture of its own, is merged (1902bd197).
 - All five: trainer records in the free trainer slots, the gate scripts, and
   the standing rules that bind any trainer team: Choice items nearly gone,
   weather free to trainers, and no Brain's reward handing out a weather

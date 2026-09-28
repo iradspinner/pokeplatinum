@@ -2,6 +2,8 @@
 
 Written 2026-09-27 by a cloud session for Ian, as ideas for Oxide's move and learnset passes, not a plan to follow (Ian, 2026-09-27). Nothing in `res/`, `src/` or the tools was changed. The sources are Kaizo's move change list (`kaizo-move-changes.md`, 338 lines) and its level-up learnsets (`kaizo-learnsets.tsv`), set against Oxide's tree at `b775fc8c`, vanilla Platinum (the `main` branch), and the ruling lists the gate keeps in `tools/oxide/verify_narcs.py`.
 
+Ian answered its eight questions on 2026-09-27 (the section before the appendices), and the moves short list and answers 2 to 4 are in the tree: `cloud/element4-kaizo-move-data`, merged, whose last commit (cc7023bdc) names every field it set. So every "Oxide now" value in this file, Appendix A included, is the tree at `b775fc8c`, before that work; a move's current numbers are in its `res/moves/<move>/data.json`. The learnset findings still hold at `HEAD`: the same thirteen natives differ from vanilla, since nothing has rewritten a level-up list yet.
+
 Two limits first. The cloud has no base ROM, so where Oxide's value differs from vanilla and from every ruling list, this file calls it a base ROM edit by inference. And Kaizo's list describes some effects in a word or two ("Sharply lowers Spd", "0% chance to 100% chance" on a move whose effect has no chance), so a few lines are read as best they can be and say so.
 
 The short answer. Oxide already carries 66 of Kaizo's 338 move lines in full and part of 41 more, mostly through the base ROM: the 95-power punches, the 90-power fangs and most of the 1 to 3 PP setup moves came from Kaizo. It has something else by a ruling for 31 lines, and lacks 173 outright. What it lacks is dominated by very large buffs: trapping moves at 90 power, recoil in place of recharge turns, a dozen attacks at 120 or more, and priority up to +7. Kaizo's learnsets are the bigger source of ideas, because Oxide's native learnsets are still vanilla for 480 of 493 species. The recommended short lists and Ian's questions are at the end, before the two appendices.
@@ -149,7 +151,7 @@ Kaizo loads its evolved stages' level 1 with strong moves: Body Slam on 26 of th
 
 ### Kaizo-only moves in the learnsets
 
-Eleven of Kaizo's rebuilt moves appear 84 times in the lists of obtainable species (Heatran is counted, though Stark Mountain is to lose it). Each is an idea for a real Oxide move, not a move to copy:
+Eleven of Kaizo's rebuilt moves appear 84 times in the lists of obtainable species (Heatran is counted, though Stark Mountain's last room no longer gives it). Each is an idea for a real Oxide move, not a move to copy:
 
 | Kaizo move | What it is in Kaizo | Lines | Nearest real move in Oxide |
 |---|---|---|---|
@@ -169,11 +171,11 @@ Weather: none. Kaizo's level-up lists teach no weather move to any species. Cast
 
 The move pool's first cut: Kaizo gives Teleport to 47 species, 85 times, often two or three times in one list (Gastly at 1, 39 and 53; Mr. Mime four times). Its line gives Teleport only +1 priority, so in a trainer battle it presumably still fails, and it reads as filler. Oxide removes Teleport, so there is nothing to take.
 
-Setup PP: Kaizo teaches setup early to seven species (Iron Defense to Silcoon and Cascoon at 7, Barrier to Mr. Mime at 8, Glaceon at 21 and Mime Jr. at 22, Cosmic Power to Clefairy at 19, Curse to Spiritomb at 20). Oxide's 1 to 3 PP blunts these, with one exception: Cosmic Power is still at its vanilla 20 PP in Oxide (below).
+Setup PP: Kaizo teaches setup early to seven species (Iron Defense to Silcoon and Cascoon at 7, Barrier to Mr. Mime at 8, Glaceon at 21 and Mime Jr. at 22, Cosmic Power to Clefairy at 19, Curse to Spiritomb at 20). Oxide's 1 to 3 PP blunts these. Cosmic Power, the one exception at `b775fc8c` with its vanilla 20 PP, has been at 3 since answer 2 (d63b39aed).
 
 Level caps and splits: an early Kaizo move can put 85 power or more in Roark's or Gardenia's split. Ponyta's Stomp (Ground 90) at 6 and Gligar's Vise Grip (Water 90) at 5 land in Roark's split, as do Self-Destruct on Geodude, Seedot and Corsola at 13 to 15. In Gardenia's split Snover gets Ice Punch 5, Ice Beam 13, Focus Blast 21 and Blizzard 26; the punch users above get 95-power coverage; Nidoran M gets Earth Power at 21, Houndour and Togepi Double-Edge at 22 and 24, Barboach Future Sight at 26 and Bronzor Explosion at 26. Any of these taken into Oxide needs the balance track's rescore of those splits. Kaizo's moves past level 78 (51 species) are out of reach before the League and were left out.
 
-A finding outside the comparison: Kaizo's view that setup is expensive, which Oxide shares, is applied unevenly in Oxide today. Bulk Up, Cosmic Power and Stockpile are at 20 PP, Focus Energy at 30 and Defend Order at 10, all vanilla, while Swords Dance, Nasty Plot, Dragon Dance and the rest are at 1 to 3. The new moves' setup is at modern PP (Quiver Dance and Coil 20, Shell Smash and Hone Claws 15, Work Up 30, Shift Gear 10). Answer 1 ("no setup move's PP changes") protects the low values; it does not say whether these should join them.
+A finding outside the comparison: Kaizo's view that setup is expensive, which Oxide shares, was applied unevenly in Oxide at `b775fc8c`. Bulk Up, Cosmic Power and Stockpile are at 20 PP, Focus Energy at 30 and Defend Order at 10, all vanilla, while Swords Dance, Nasty Plot, Dragon Dance and the rest are at 1 to 3. The new moves' setup is at modern PP (Quiver Dance and Coil 20, Shell Smash and Hone Claws 15, Work Up 30, Shift Gear 10). Answer 1 ("no setup move's PP changes") protects the low values; it does not say whether these should join them. Ian's answer 2 said they should, and all of them are now at 1 to 3 PP (d63b39aed).
 
 ## Recommended short lists
 
@@ -197,7 +199,7 @@ For learnsets, the ideas worth the balance track's learnset pass, in order:
 5. Moves given much earlier where Oxide's level is past the line's split: Kadabra's Psycho Cut, Koffing's and Croagunk's Sludge Bomb, Shinx's Discharge, Gabite's Dragon Claw, the lake trio's Extrasensory and Relicanth's Hydro Pump.
 6. Kaizo's rebuilt moves turned into real ones: Ground coverage for Ponyta and Rhyhorn (High Horsepower at a later level than Kaizo's 6), a Water attack for Krabby and Corphish sooner than Crabhammer, Seed Bomb for Chansey.
 
-## Questions only Ian can answer
+## Questions for Ian (answered in the next section)
 
 1. Should any Kaizo number come into Oxide as a deliberate exception to the modern scale of answer 1, as the base ROM's own values did, or only the items in the moves short list?
 2. Should every setup move be at the low setup PP, including Bulk Up, Cosmic Power, Stockpile, Focus Energy and Defend Order (still at vanilla PP) and the new moves' setup such as Quiver Dance, Shell Smash and Coil (at modern PP)?

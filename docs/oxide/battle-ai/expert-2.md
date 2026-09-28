@@ -1,6 +1,6 @@
 # The Expert flag, second half
 
-This file covers the per-effect routines of the Expert flag from `Expert_BellyDrum` to `Expert_HealingWish`, lines 3803 to 6352 of `src/battle/trainer_ai/script.s`. None of these routines is called by anything except the dispatch table at the top of `Expert_Main` (lines 1627 to 1808, described in `expert-1.md`), which tests the move's effect id against a list and jumps to the first match; a routine then ends with `PopOrEnd`, which finishes the Expert flag for that move. The routines are grouped below by what the move does, not by line order. Each group has one table, where the chance is the chance that the change happens once the routine has reached that check, and a paragraph for anything the table cannot show. After the groups come the apparent bugs, the battle_edits fixes that land here, and what Oxide's additions do to this half. `script.s` is byte-identical to vanilla on `main` (commit `7a0637607`), so every script line number below is also the vanilla line number.
+This file covers the per-effect routines of the Expert flag from `Expert_BellyDrum` to `Expert_HealingWish`, lines 3803 to 6352 of `src/battle/trainer_ai/script.s`. None of these routines is called by anything except the dispatch table at the top of `Expert_Main` (lines 1627 to 1808, described in `expert-1.md`), which tests the move's effect id against a list and jumps to the first match; a routine then ends with `PopOrEnd`, which finishes the Expert flag for that move. The routines are grouped below by what the move does, not by line order. Each group has one table, where the chance is the chance that the change happens once the routine has reached that check, and a paragraph for anything the table cannot show. After the groups come the apparent bugs, the battle_edits fixes that land here, and what Oxide's additions do to this half. It was read before element 6's fixes, when `script.s` was byte-identical to vanilla on `main` (commit `7a0637607`), so every line number below is the vanilla line on `main`. What the fixes, the changes of play and the routing of the new moves have done since is in the README and in `expert-new-moves.md`; find a routine by its label, not its number.
 
 ## How to read the checks
 
@@ -147,7 +147,7 @@ Four routines jump out of this half to shared score labels near the top of the E
 | Opponent has used a Protect-effect move | -2 | always | 3964, 3970 |
 | AI HP 38% or less | -1 | always | 3965 to 3966 |
 
-`Expert_Thunder` (3975 to 3990) is never reached, because its dispatch line tests Solar Beam's effect a second time (bug 1). If it were reached, it would do this:
+`Expert_Thunder` (3975 to 3990) was never reached in vanilla, because its dispatch line tested Solar Beam's effect a second time (bug 1, fixed). It serves Thunder now, and since 2026-09-27 Hurricane, with a copy for the Hisuian storms (README). It does this:
 
 | Check | Change | Chance | Lines |
 |---|---|---|---|
@@ -168,7 +168,7 @@ Four routines jump out of this half to shared score labels near the top of the E
 | Hail and the AI is Ice | +1, end | 68.75% | 4033, 4043 to 4047 |
 | AI not slower, and the opponent's last move was not Lock-On or Mind Reader | +1 | 68.75% | 4050 to 4054 |
 
-The resisted and immune row gives a bonus where the rest of the family gives a penalty; that is bug 3 and the battle_edits charge-turn fix. In sandstorm or hail with a non-immune AI, the routine goes on to the speed row.
+The resisted and immune row gives a bonus where the rest of the family gives a penalty; that is bug 3, fixed by the battle_edits charge-turn fix, so the row now gives -1, not +1. The label it jumps to is still called `Expert_ChargeTurnWithInvuln_ScorePlus1`, and the comment block at the top of the routine still says +1 with a "(Bug?)"; the code under the label, and its own comment, give -1. Renaming the label is left to the element 6 track. In sandstorm or hail with a non-immune AI, the routine goes on to the speed row.
 
 ## Stat setup and stat swapping
 
@@ -536,20 +536,20 @@ Magic Coat's line 4508 sits after an unconditional jump and never runs. Refresh 
 
 ## Apparent bugs
 
-Fixed on 2026-09-22: bug 2, Punishment (vanilla fix, approved by Ian), bugs 3, 7 and 8 (charge-turn, Facade, Water Spout and Eruption; battle_edits, vanilla fixes approved by Ian on 2026-09-15), and bug 14, the ability byte (Oxide). Bug 10, the bench damage check, was put to Ian and kept as vanilla has it. The rest stand as vanilla has them.
+Fixed on 2026-09-22: bug 2, Punishment (vanilla fix, approved by Ian), bugs 1, 3, 7 and 8 (Thunder, charge-turn, Facade, Water Spout and Eruption; battle_edits, vanilla fixes approved by Ian on 2026-09-15), and bug 14, the ability byte (Oxide). Bug 10, the bench damage check, was put to Ian and kept as vanilla has it. The rest stand as vanilla has them.
 
 Changed on 2026-09-27 (`cloud/element6-changes`; the README has each rule): Parting Shot goes through U-turn's routine; V-create, Clanging Scales and Hyperspace Fury through Close Combat's; Spin Out through Hammer Arm's; First Impression through Fake Out's. Defog's routine gains +2 when the AI's own side has a hazard, and counts the target's Aurora Veil and Sticky Web. New routines sit beside the vanilla ones: `Expert_Hex`, `Expert_Venoshock`, `Expert_Acrobatics` and `Expert_BoltBeak` for power that doubles, `Expert_AuroraVeil`, `Expert_RainStorm`, `Expert_PartingShot` and `Expert_SpeedUpOnHit` (Rapid Spin, Flame Charge and its kin). A follow-up the same day (`cloud/element6-followups`, 895ff303) put `Expert_RapidSpin` in front of `Expert_SpeedUpOnHit` for Rapid Spin alone: +2 when its user is bound or seeded, or its side has a hazard and a benched Pokemon.
 
-Every entry is present in vanilla Platinum except bug 14, which Oxide introduced. For script bugs the vanilla line is the same line on `main`, since the file is unchanged; for C bugs the vanilla line is given.
+Every entry is present in vanilla Platinum except bug 14, which Oxide introduced. Every line given is the vanilla line on `main`; each entry describes the code as vanilla has it.
 
-1. **Thunder never reaches its routine.** Present in vanilla, `Expert_Main` line 1719. The line tests `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN` (151), which line 1716 has already sent to `Expert_ChargeTurnNoInvuln`, so `Expert_Thunder` (3975 to 3990) has no way in. Thunder's own effect, `BATTLE_EFFECT_THUNDER` (152), matches no dispatch line and gets nothing from the Expert flag. The decomp flags it at 1718.
+1. **Thunder never reaches its routine.** Present in vanilla, `Expert_Main` line 1719. The line tests `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN` (151), which line 1716 has already sent to `Expert_ChargeTurnNoInvuln`, so `Expert_Thunder` (3975 to 3990) has no way in. Thunder's own effect, `BATTLE_EFFECT_THUNDER` (152), matches no dispatch line and gets nothing from the Expert flag. The decomp flags it at 1718. Fixed (battle_edits, README): the line tests Thunder's effect.
 2. **Punishment's ladder adds every rung.** Present in vanilla, lines 5934 to 5948. Each `AddToMoveScore` falls into the next rung's roll instead of jumping to the end, unlike the identical-looking ladders in Power Swap (5738 to 5761) and Guard Swap. The decomp comment and the gist describe a stop-at-first ladder (50% +4, 25% +3 and so on). The code gives the sum of independent coins: up to +10, averaging +5, from the top rung. This is the largest single bonus in this half; it cannot on its own push a score past 127.
-3. **Semi-invulnerable moves get a bonus when resisted.** Present in vanilla, lines 4017 to 4019 (the decomp marks it "Bug?" at 3997). Fly, Dig, Dive and Bounce (when the opponent has not used Protect and the AI has no Power Herb), and Shadow Force always, score +1 and stop when the move is immune, quarter or half effective. The sibling routine does -2 in the same case (3943 to 3945), and the jump also skips every later check.
+3. **Semi-invulnerable moves get a bonus when resisted.** Present in vanilla, lines 4017 to 4019 (the decomp marks it "Bug?" at 3997). Fly, Dig, Dive and Bounce (when the opponent has not used Protect and the AI has no Power Herb), and Shadow Force always, score +1 and stop when the move is immune, quarter or half effective. The sibling routine does -2 in the same case (3943 to 3945), and the jump also skips every later check. Fixed (battle_edits, README): -1, and the later checks are still skipped; the label keeps its old name (see the note under the charge-turn table).
 4. **Assurance's berry check can never match.** Present in vanilla, lines 5202 to 5203 and the table at 5218 to 5221. The routine loads the AI's hold effect (`LoadHeldItemEffect`) and compares it with `ITEM_JABOCA_BERRY` and `ITEM_ROWAP_BERRY`, which are item ids 211 and 212; hold effects run only to about 145. An AI holding either berry gets the 25% case instead of 50%.
 5. **Power Swap and Guard Swap give nothing for a second difference of exactly 1.** Present in vanilla, lines 5714, 5721, 5728 and 5848, 5855, 5862. In the three rows where the first difference is positive, the second test is `IfLoadedEqualTo 0`; in the row where the first difference is 0 it is `IfLoadedGreaterThan 0`. So a second difference of +1 scores nothing while +0 scores up to +3, which puts a bigger advantage below a smaller one.
 6. **`IfBattlerDealsMoreDamage` measures the opponent hitting itself.** Present in vanilla, `trainer_ai.c` lines 2228 to 2236 (same lines on `main`). `TrainerAI_CalcDamage` always uses `AI_CONTEXT.defender` as the target, and this command passes the defender as the attacker too, with the AI's IVs. So Me First and Copycat compare "the opponent's last move used on itself" with "the AI's best move on the opponent". A Water-type opponent's Water move is resisted by itself, for example, so it rarely wins the comparison.
-7. **Facade checks the opponent's status.** Present in vanilla, line 4123 (flagged at 4122). See the battle_edits section.
-8. **Water Spout and Eruption check the opponent's HP.** Present in vanilla, lines 4622 and 4626 (flagged at 4617). See the battle_edits section.
+7. **Facade checks the opponent's status.** Present in vanilla, line 4123 (flagged at 4122). `IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST` gives +1 when the *opponent* is poisoned, badly poisoned, burned or paralysed, though Facade doubles when the *user* is. Fixed (battle_edits, README): the check reads the user.
+8. **Water Spout and Eruption check the opponent's HP.** Present in vanilla, lines 4622 and 4626 (flagged at 4617). The -1 fires on the *opponent's* HP (50% or less when the AI is not slower, 70% or less when it is), though the move's power falls with the *user's*. Fixed (battle_edits, README): both lines read the user.
 9. **Feint treats a Protect chain of 2 like a chain of 0.** Present in vanilla, line 4934. The label is `Expert_Feint_ProtectChain2OrMore` but the test is `IfLoadedGreaterThan 2`, so a chain of exactly 2 falls through into the chain-0 case (50% +1) instead of -2.
 10. **The bench damage comparison uses the active Pokemon's body.** Present in vanilla, `trainer_ai.c` lines 2156 to 2165 (same on `main`). `IfPartyMemberDealsMoreDamage` passes the bench member's moves, item, IVs and ability but the active battler's id, and `TrainerAI_CalcDamage` takes stats, level, types and STAB from that battler. It compares move sets, not Pokemon. Used by U-turn (5118) and Healing Wish (6333).
 11. **Trick with Black Sludge against Magic Guard jumps to the Toxic Orb checks.** Present in vanilla, line 4311. It goes to `Expert_Trick_CheckAttackerForPoison` rather than `Expert_Trick_CheckAttackerForSludge`. A non-Poison AI that is statused, under Safeguard, Steel, or has Immunity or Poison Heal then scores -3 instead of +5, although Black Sludge would still hurt it.
@@ -563,57 +563,37 @@ The decomp comments (and the gist, which copies them) disagree with the code in 
 
 ## The battle_edits fixes
 
-| Fix | In this half? | Where |
-|---|---|---|
-| Fire Fang vs Wonder Guard | No | battle engine, not the AI script |
-| Rage glitch | No | battle engine, not the AI script |
-| Water immunity vs Dry Skin check | No | Basic, line 78 (`basic.md`) |
-| Sunny Day check | No | before line 3803 (`basic.md` and `expert-1.md`) |
-| Foresight / Odor Sleuth Ghost check | No | `Expert_Foresight`, lines 3607 to 3620 (`expert-1.md`) |
-| Facade status check | Yes | line 4123 |
-| Leaf Guard Sunny Day logic | No | `Expert_SunnyDay`, line 3790 (`expert-1.md`) |
-| Water Spout / Eruption HP check | Yes | lines 4622 and 4626 |
-| Charge-turn scoring fix | Yes, as far as the code shows | lines 4017 to 4019 |
-| Thunder scoring fix | The routine is here, the fault is in `Expert_Main` | line 1719, routine 3975 to 3990 |
-| Discharge double-battle scoring fix | No | Tag Strategy, around line 7255 (`other-flags.md`) |
-
-The guide itself was not read for this file, so the charge-turn entry is matched from the code: lines 4017 to 4019 are the only charge-turn scoring the decomp marks as doubtful.
-
-**Facade** (4120 to 4127). `IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST` gives +1 when the *opponent* is poisoned, badly poisoned, burned or paralysed. Facade doubles when the *user* has one of those. The fix reads `AI_BATTLER_ATTACKER` on line 4123. Scores after it: +1 when the AI is statused, whatever the opponent has; nothing when only the opponent is. The status mask is already right (sleep and freeze are excluded, as the move excludes them).
-
-**Water Spout and Eruption** (4610 to 4632). The -1 fires when the *opponent's* HP is 50% or less (AI not slower) or 70% or less (AI slower). The move's power falls with the *user's* HP. The fix changes `AI_BATTLER_DEFENDER` to `AI_BATTLER_ATTACKER` on lines 4622 and 4626. Scores after it: -1 when the AI's own HP is 50% or less and it moves first, or 70% or less when it moves second (it will take a hit before attacking). The resisted and immune -1 is unchanged.
-
-**Charge-turn** (4017 to 4019). Fly, Dig, Dive and Bounce reach these lines when the opponent has not used Protect and the AI has no Power Herb; Shadow Force always reaches them. An immune, quarter or half effective move then gets +1 and the routine ends. The consistent fix is to send these three lines to a penalty, as `Expert_ChargeTurnNoInvuln` does with -2. Scores after it: resisted moves go from +1 to the penalty (a swing of 3 with -2), and they still skip the later bonuses. Basic already punishes immunity heavily, so the change matters most for resisted moves.
-
-**Thunder** (dispatch line 1719). The fix changes the effect on that line to `BATTLE_EFFECT_THUNDER`. Solar Beam's scoring does not change, because line 1716 already catches it. Thunder today gets no Expert adjustment at all; after the fix it gets -3 at 80.5% when resisted or immune, -3 at 80.5% in sun (where its accuracy drops to 50%), and +1 in rain.
+Four fall in this half, Facade (bug 7), Water Spout and Eruption (bug 8), the charge-turn scoring (bug 3) and Thunder, whose routine is here though its fault was in `Expert_Main` (bug 1); all four are applied. The README's battle_edits table says what each changes in play, and each is marked "Oxide, vanilla fix (battle_edits guide...)" in `script.s`.
 
 ## Oxide consequences
 
-**Effect ids.** Every routine in this half is reached only through `Expert_Main`'s list of vanilla effect ids (0 to 276). A move with one of Oxide's effects 277 to 406 matches nothing and gets no Expert adjustment, the same as a plain attack. A new move that reuses a vanilla effect gets that effect's routine, assumptions included. Examples from `res/moves`:
+**Effect ids.** At the write-up every routine in this half was reached only through `Expert_Main`'s list of vanilla effect ids (0 to 276), so a move on one of Oxide's new effects got no Expert adjustment. Since 2026-09-27 the changes of play (README) and the routing of the learnable new moves ([expert-new-moves.md](expert-new-moves.md), which names each move's routine) send the new effects to their nearest Platinum routines. A new move that reuses a vanilla effect gets that effect's routine, assumptions included. Examples from `res/moves`, as the tree stands:
 
 | Move | Effect | What this half does with it |
 |---|---|---|
 | Solar Blade | 151 | Solar Beam's charge-turn routine, sun bonus included |
-| Phantom Force | 272 | `Expert_ShadowForce`, including bug 3 |
+| Phantom Force | 272 | `Expert_ShadowForce`, with bug 3's fix (-1 when resisted) |
 | Volt Switch, Flip Turn | 228 | `Expert_UTurn` |
 | Armor Cannon | 229 | `Expert_CloseCombat` |
 | Draco Meteor, Leaf Storm, Fleur Cannon | 204 | `Expert_Overheat` |
 | Wild Charge, Head Charge, Brave Bird, Wood Hammer | 198 | `Expert_RecoilMove` |
-| King's Shield, Spiky Shield, Baneful Bunker | 111 Protect | seen by every "has used Protect" check, but Feint's chain (by move id) reads 0 |
+| King's Shield, Spiky Shield, Baneful Bunker | 111 Protect | seen by every "has used Protect" check, and by Feint's chain, which reads the engine's own Protect-run test since 2026-09-27 |
 | Shore Up | 132 (Synthesis group) | counted by Heal Block's list |
-| Meteor Beam, Electro Shot, Geomancy, Freeze Shock, Ice Burn | 324, 325, 318, 363, 364 | nothing: no Power Herb bonus, no resisted penalty |
-| Hurricane | 341 | nothing (Thunder's routine is unreachable anyway) |
-| Snowscape | 319 | nothing, where Hail would get `Expert_Hail` |
-| V-create, Clanging Scales | 291, 342 | nothing, where Close Combat gets its routine |
-| Hex, Venoshock, Infernal Parade | 287, 280, 321 | nothing, where Facade gets its routine |
-| Fishious Rend, Bolt Beak | 382 | nothing, where Payback gets its routine |
-| Parting Shot | 389 | nothing |
-| Power Split, Guard Split | 279, 278 | nothing |
+| Freeze Shock, Ice Burn | new | `Expert_ChargeTurnNoInvuln`, as Skull Bash (2026-09-27) |
+| Geomancy | new | Dragon Dance's routine (2026-09-27) |
+| Meteor Beam, Electro Shot | new | nothing (no species learns either) |
+| Hurricane | new | `Expert_Thunder` (2026-09-27) |
+| Snowscape | new | nothing, where Hail gets `Expert_Hail`; Basic refuses it, since its effect is not written |
+| V-create, Clanging Scales | new | `Expert_CloseCombat` (2026-09-27) |
+| Hex, Venoshock, Infernal Parade | new | `Expert_Hex` and `Expert_Venoshock`, in Wake-Up Slap's shape (2026-09-27) |
+| Fishious Rend, Bolt Beak | new | `Expert_BoltBeak` (2026-09-27) |
+| Parting Shot | new | `Expert_PartingShot`, U-turn's routine without the resist check (2026-09-27) |
+| Power Split, Guard Split | new | nothing (a judgment call, left with none by Ian's ruling) |
 
-The "opponent has used" lists inside routines also name vanilla effects only. Lucky Chant does not see the always-critical effects (282, 366) or 368; Heal Block does not see Strength Sap (378), Life Dew (383), Draining Kiss-style effects 315, 347 and 348, or Pollen Puff (380); Feint's Protect check does not see Wide Guard or Quick Guard (371).
+The "opponent has used" lists inside routines also name vanilla effects only. Lucky Chant does not see the always-critical effects (282, 366) or 368; Heal Block does not see Strength Sap (378), Life Dew (383), Draining Kiss-style effects 315, 347 and 348, or Pollen Puff (380); Feint's Protect check does not see Wide Guard or Quick Guard (371). These still stand (checked 2026-09-27).
 
-**Move ids.** Several checks name moves directly and so ignore Oxide's additions: Mirror Coat's Counter (3882), Hail's Blizzard (4105), Worry Seed's Rest (5979), Magnet Rise's Earthquake, Earth Power and Fissure (6100 to 6102, not High Horsepower, Drill Run, Bulldoze, Stomping Tantrum and the rest), Toxic Spikes' and Stealth Rock's Roar and Whirlwind (6020, 6276, not Dragon Tail or Circle Throw), the Copycat list, and Feint's Protect chain (Protect, Detect, Endure only, C line 2545).
+**Move ids.** Several checks name moves directly and so ignore Oxide's additions: Mirror Coat's Counter (3882), Hail's Blizzard (4105), Worry Seed's Rest (5979), Magnet Rise's Earthquake, Earth Power and Fissure (6100 to 6102, not High Horsepower, Drill Run, Bulldoze, Stomping Tantrum and the rest), Toxic Spikes' and Stealth Rock's Roar and Whirlwind (6020, 6276, not Dragon Tail or Circle Throw), and the Copycat list. These still stand (2026-09-27). Feint's Protect chain, which named Protect, Detect and Endure (C line 2545), now reads the engine's own test, so it counts every move on Protect's effect, Wide Guard and Quick Guard.
 
-**Abilities.** All ability comparisons here load the id into a 32-bit value and compare with `.long` constants, so a u16 id compares correctly. The problem is the stored copy of a revealed opponent ability, bug 14. The ability lists (Role Play's, Trick's, Recoil's Rock Head and Magic Guard) name vanilla abilities only, so, for example, Rock Head's Oxide relatives get no recoil bonus. The opponent-ability guess uses the species' two regular abilities, so a hidden ability is never guessed.
+**Abilities.** All ability comparisons here load the id into a 32-bit value and compare with `.long` constants, so a u16 id compares correctly. The stored copy of a revealed opponent ability, bug 14, was the one problem, and it is fixed. The ability lists (Role Play's, Trick's, Recoil's Rock Head and Magic Guard) name vanilla abilities only, so, for example, Rock Head's Oxide relatives get no recoil bonus. The opponent-ability guess uses the species' two regular abilities, so a hidden ability is never guessed.
 
 **Types.** The Fairy type is 18 and sits in the type chart ahead of the Foresight marker, so every "immune, quarter or half effective" check in this half sees Fairy's resistances and its Dragon immunity. The type lists do not mention Fairy and mostly do not need to (sand immunity, hail immunity, Trick's Poison, Steel and Fire, Mud Sport's Electric, Gravity's Flying, Miracle Eye's Dark, Magnet Rise's Ground). Mirror Coat's "special types" list (3922 to 3931) leaves Fairy out, so a Fairy opponent that has not attacked yet counts as a physical attacker, and a taunted or not-yet-attacking Fairy draws the 49% +4 for Mirror Coat. `LoadTypeFrom` reads only type 1 and type 2.

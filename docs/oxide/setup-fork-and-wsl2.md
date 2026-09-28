@@ -75,10 +75,11 @@ cd ~/pokeplatinum && git fetch && git reset --hard origin/oxide
 ## Part 3b: Python packages
 
 The helper scripts under `tools/oxide/` run on the system `python3` and need
-three packages that Ubuntu does not ship. They are installed for the user:
+four packages that Ubuntu does not ship (numpy for the balance track's
+`fightfit.py` only). They are installed for the user:
 
 ```
-python3 -m pip install --user --break-system-packages ndspy pillow openpyxl
+python3 -m pip install --user --break-system-packages ndspy pillow openpyxl numpy
 ```
 
 For a day in September 2026 the project pinned its own interpreter, blaming
@@ -90,7 +91,7 @@ more often.
 
 ## Part 4: What about DSPRE and the old base ROM?
 
-Both stay where they are. The built ROM from the decomp is a normal `.nds` and DSPRE can open it for inspection. The old base ROM is now a reference: its edits are being re-created in the source tree (see `phase3-base-rom-inventory.md`), and it will be compared against as that happens. Nothing you do in DSPRE on the old base will flow into the new ROM, so from here on, edits should go through me into the source tree, or, once you are comfortable, directly into the `res/` data files in the fork.
+Both stay where they are. The built ROM from the decomp is a normal `.nds` and DSPRE can open it for inspection. The base ROM (since 2026-09-26 your `Test.nds` of 2026-08-31) is a reference: Phase 3 re-created its edits in the source tree (see `phase3-base-rom-inventory.md`), and every verify tool compares the build against it. Nothing you do in DSPRE on the old base will flow into the new ROM, so from here on, edits should go through me into the source tree, or, once you are comfortable, directly into the `res/` data files in the fork.
 
 ## Part 5: Debugger in WSL2 (written 2026-09-20)
 
@@ -131,13 +132,10 @@ Result: `~/tools/gdb-nds/bin/arm-none-eabi-gdb` (GDB 16 with the fork's overlay 
 
 ### Part 5b: the Windows melonDS stub from WSL2 (2026-09-21)
 
-**This is the working method, and it is a two-person loop.** Ian owns the
-emulator; the agent never launches one. The agent starts `live_watch.py` with
-its breakpoints and waits for Ian's "go"; Ian plays; the log fills; the agent
-reads it and says what to do next. One stub client per emulator session, attach
-only at the startup break, never interrupt a running target from the client,
-and warn Ian before arming a breakpoint that a normal action (talking to any
-NPC, a menu) would trip.
-
-
-With `networkingMode=mirrored` in `C:\Users\Ian\.wslconfig` (and a `wsl --shutdown`), WSL2 shares localhost with Windows, so Ian's own melonDS 1.1 on Windows can serve the stub (Config, Emu settings, Devtools: GDB stub on, ARM9 port 3333, **Break on startup on**). Two limits measured against that build: the stub takes one client per emulator session and does not recover from a dropped one (restart melonDS between sessions), and it only services its socket while the CPU is stopped, so a running target cannot be interrupted. The working pattern is `PYTHONPATH=. python3 tools/oxide/live_watch.py SYMBOL ...` started while the emulator sits at the startup break: it connects, plants hardware breakpoints, continues, and logs every stop with registers; `--arm-on SYM` keeps holds and `--plant-on-arm` breakpoints inert until a chosen function fires, `--hold-at SYM:N` and `--hold-burst SYM:K` stop the game for `--auto` commands (`peek` with nested dereferences, `readptr`, `steps`, `trace`) or for a command file, and `touch ~/roms/live-watch.stop` detaches. About ten single-steps a second, so `trace` is for a few thousand instructions at most; heartbeat and stage breakpoints are the way to find a frame first.
+**This is the working method, and it is a two-person loop**: Ian owns the
+emulator and the agent never launches one. The setup it needs on Ian's side:
+`networkingMode=mirrored` in `C:\Users\Ian\.wslconfig` (and a `wsl --shutdown`),
+so WSL2 shares localhost with Windows and Ian's own melonDS 1.1 can serve the
+stub (Config, Emu settings, Devtools: GDB stub on, ARM9 port 3333, **Break on
+startup on**). The loop itself, the stub's limits and `live_watch.py`'s options
+are the `debug-live` skill.

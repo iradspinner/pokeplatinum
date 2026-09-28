@@ -1,6 +1,6 @@
 # The new moves' Expert routines
 
-Ian's ruling of 2026-09-27: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable move past Platinum's 467 takes the Expert routine of its nearest Platinum effect, judged by what its effect script does rather than by the effect's name, where that effect has a routine, and gets none where Platinum gives its equivalents none. Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). How Expert dispatches, and element 6's earlier routing, are in [README.md](README.md). This is a change of play; it acts once the trainer pass gives trainers these moves.
+Ian's ruling of 2026-09-27: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable move past Platinum's 467 takes the Expert routine of its nearest Platinum effect, judged by what its effect script does rather than by the effect's name, where that effect has a routine, and gets none where Platinum gives its equivalents none. Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). How Expert dispatches is in [expert-1.md](expert-1.md), and element 6's earlier routing in [README.md](README.md). This is a change of play; it acts once the trainer pass gives trainers these moves.
 
 A move is counted as learnable when any species' or form's level, TM, tutor or egg list has it (the move pool survey's reading of `res/pokemon`). Expert dispatches by effect, so a move no species learns is routed too when it shares an effect with one listed here: Circle Throw, on Dragon Tail's effect, is the only one. The counts:
 
@@ -9,13 +9,13 @@ A move is counted as learnable when any species' or form's level, TM, tutor or e
 | learnable moves past id 467 | 156 |
 | scored by an Expert routine | 65 |
 | with none | 91 |
-| of those, judgment calls for Ian (below) | 11 |
+| of those, judgment calls, left with none by Ian's ruling (below) | 11 |
 
 A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise.
 
-## Judgment calls for Ian
+## Judgment calls, settled
 
-Each of these is left with none, though a Platinum routine is near, because that routine would misjudge the move. Any of them can take a routine of its own instead.
+Each of these is left with none, though a Platinum routine is near, because that routine would misjudge the move. Ian ruled on 2026-09-27 that they stay that way ("None, as left"); a routine of its own for any of them would be a new change of play.
 
 - Core Enforcer: A hit that then suppresses an ability; Gastro Acid's routine takes points off against a weakened target, where a hit is worth the most.
 - Crafty Shield, Mat Block, Quick Guard and Wide Guard: Each shares Protect's subscript but stops only one kind of move (spread moves, priority moves, first-turn damage or status moves), which Protect's routine does not measure; worth a routine of its own for double battles.
