@@ -433,6 +433,13 @@ A sub-item of the tracker's Saturn 2 entry, finished on 2026-09-27:
 
   - [x] Trainer pass, two changes to Saturn 2's team (Ian, 2026-09-26): Uxie's Trick Room, which now always fails, is swapped for another move, and Rhyperior's Choice Scarf, which under the permanent room only makes it move later, is swapped for another item. The replacements are the trainer pass's to choose Done by Ian in the OxiDex's team builder (Uxie: Hypnosis, Future Sight, U-turn, Foul Play; Rhyperior: Expert Belt), landed with `barry-split` on 2026-09-27.
 
+Moved from the tracker on 2026-09-27, finished:
+
+- **Balance analysis** (sub-item). Outcome: the rebuilt simulator reached 9 of 15 held-out pairs against a bar of 13 and matched four of Ian's top ten, so the stored score stays the guide; `balance-fight-sim` lands as a record, not as the score.
+  - [ ] **The score is rebuilt** (Ian, 2026-09-27): today it is a damage race, blind to status and setup (it reads the HQ B2F grunt above Officer Somnu's sleep team). The rebuild plays fights out with status, setup, combos, AI flags and partners, weights the worst cases into the headline, and replaces the old score once it agrees with Ian's pairwise judgements. Ian (2026-09-27, after two worked examples): the player side takes no Life Orb or Choice item, realistic moves and guaranteed Pokemon, and plays with stalling, pivoting and safe setup; with those he accepts approximate accuracy, since some of his own pairs are misjudged. No healing in battle; bosses (named Galactic fights included) get a planned team, ordinary trainers a blind realistic box (Ian, 2026-09-27)
+- **Level-cap split design** (sub-item). Landed on `oxide` with the rescore (016746bac).
+  - [ ] **The Barry split** (Ian, 2026-09-27): after Volkner the engine caps levels at 71 for every fight up to the Elite Four, then 78 inside it; Ian's own rule inside the Elite Four is each fight's ace (Aaron 72, Bertha 73, Flint 74, Lucian 75, Cynthia 78), which the scores use. The engine table, the closing scripts, fights.json and the encounter tool's splits change together. The Fight Area tag battle keeps its Beacon Badge gate, so it sits in the Barry split and the trainer pass brings Flint's and Volkner's aces (74, 75) down to 71. The engine part is on `barry-split` (main track): split 10 at cap 71, raised by Volkner's gym, and the raise to 78 in Aaron's room as its door shuts behind the player; the split in fights.json must be named "Barry" for `test_level_caps.py` to pass
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
