@@ -1510,11 +1510,13 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
-                    // Oxide, element 7: a Binding Band on the battler that
-                    // bound it doubles the damage, to an eighth (the
-                    // Generation 5 rule, as Oxide keeps the sixteenth).
+                    // Oxide: a binding move takes an eighth of the bound
+                    // battler's max HP a turn, where Platinum took a
+                    // sixteenth, and a Binding Band on the battler that bound
+                    // it raises that to a sixth, as in Generation 6 on (Ian,
+                    // 2026-09-27). hg-engine takes the eighth and has no band.
                     int binder = battleCtx->battleMons[battler].moveEffectsData.bindTarget;
-                    int divisor = Battler_HeldItemEffect(battleCtx, binder) == HOLD_EFFECT_BINDING_BAND ? 8 : 16;
+                    int divisor = Battler_HeldItemEffect(battleCtx, binder) == HOLD_EFFECT_BINDING_BAND ? 6 : 8;
 
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, divisor);
                     LOAD_SUBSEQ(subscript_bind_effect);
