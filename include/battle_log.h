@@ -80,6 +80,7 @@ typedef struct OxideBeacon {
 } OxideBeacon;
 
 void BattleLog_Load(SaveData *saveData);
+void BattleLog_Clear(SaveData *saveData);
 void BattleLog_Write(SaveData *saveData);
 void BattleLog_Append(SaveData *saveData, const BattleLogRecord *record);
 void BattleLog_SetBattleContext(void *battleContext);

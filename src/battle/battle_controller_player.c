@@ -4851,6 +4851,24 @@ static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int next
         battleCtx->battleStatusMask &= (battlerBit ^ 0xFFFFFFFF);
         battleCtx->faintedMon = LowestBit(battlerBit >> SYSCTL_MON_FAINTED_SHIFT);
 
+        // Oxide: note the faint for the battle log. Only the in-move path
+        // (LoopWhileFainted, the one that checks Destiny Bond) credits the
+        // move's user; every other path is a faint nothing's move made.
+        if (battleCtx->oxideFaintCount < BATTLE_LOG_MAX_FAINTS) {
+            u8 *faint = battleCtx->oxideFaints[battleCtx->oxideFaintCount++];
+
+            faint[0] = battleCtx->faintedMon;
+            faint[1] = battleCtx->selectedPartySlot[battleCtx->faintedMon];
+
+            if (onlyFaint == FALSE && battleCtx->attacker != BATTLER_NONE) {
+                faint[2] = battleCtx->attacker;
+                faint[3] = battleCtx->selectedPartySlot[battleCtx->attacker];
+            } else {
+                faint[2] = BATTLER_NONE;
+                faint[3] = BATTLER_NONE;
+            }
+        }
+
         if (onlyFaint == TRUE) {
             LOAD_SUBSEQ(subscript_faint_mon);
         } else {
