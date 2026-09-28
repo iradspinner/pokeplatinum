@@ -644,6 +644,8 @@ def dex_detail(species):
             "label": rec_m["name"],
             "folder": rec_m["folder"],
             "appearances": len(caps.get(member) or []),
+            # Where this member is met, which the page shows under it.
+            "captures": caps.get(member) or [],
             "evolutions": rec_m["evolutions"],
             "bst": rec_m["bst"],
             "mega_of": rec_m["mega_of"],
