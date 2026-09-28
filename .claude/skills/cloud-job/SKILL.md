@@ -45,30 +45,28 @@ Setup: read CLAUDE.md, `docs/oxide/design-doc.md` and `docs/oxide/tracker.md`;
 run `git fetch --depth=1 origin main:main` before the encounter tests; the
 first `make rom` fetches the compiler. Build `origin/oxide` once before
 changing anything and note its SHA-1: it should match GitHub's build of the
-same commit, which shows the VM's toolchain is sound.
+same commit, which shows the VM's toolchain is sound. If it does not, move
+`build/` aside and build clean once more before looking for a cause: a VM's
+first build has differed from GitHub's in untouched library code and matched
+on the second (findings log, 2026-09-27).
 
 Rules that bite:
 
 - Work only on the named `cloud/` branch. Never push to `oxide`.
 - One commit per rule, move or fix. Build each and compare it with the
-  previous commit's ROM using `tools/oxide/romdiff.py`. romdiff looks for
-  relinked branches only when an overlay changes size, so when an overlay
-  keeps its size, run its explain step by hand.
+  previous commit's ROM using `tools/oxide/romdiff.py`; the `port-element`
+  skill says when its explain step has to be run by hand.
 - Give each change a test-kit entry where the kit can show it
   (`docs/oxide/test-kit.md`), and build `make testkit` to confirm the
   ordinary ROM did not change. A field menu holds 28 entries; page a menu
   before it grows past that.
-- Register every intended difference from the base ROM where the tools keep
-  them: `DIVERGED` in `verify_narcs.py` and `bulk_scripts.py`, the lists in
-  `import_base_rom.py` (`MOVES_DIVERGED`, `TRAINERS_DIVERGED`, the text-bank
-  skips), so the Overseer's base-ROM checks stay green. Say in the report the
-  counts those checks should now show.
-- New battle state goes in padding bits, never a new field. The field
-  condition mask's bits 19 to 25 are taken (Trick Room's permanent bit,
-  Neutralizing Gas, Echoed Voice's five); check `condition.h` before
-  claiming one.
-- A computed power keeps table power 1, never 0: the type chart reads 0 as a
-  status move and sets no effectiveness flags.
+- Register every intended difference from the base ROM in the tool that
+  checks it (the `oxide-session` skill lists the registers), so the
+  Overseer's base-ROM checks stay green. Say in the report the counts those
+  checks should now show.
+- Engine work follows the `port-element` skill's battle engine traps: new
+  battle state goes in spare bits or padding, never a new field (it lists
+  which bits are taken), and a computed power keeps table power 1, never 0.
 - A fix to a bug that is also in vanilla Platinum is its own commit with
   "VANILLA FIX" in the subject.
 - Before editing another track's files (see `.claude/rules/standing-rulings.md`),

@@ -167,6 +167,25 @@ A save made in the League split reads as the Barry split, capped at 71 until
 the player enters the Elite Four again. A save made after the Champion reads
 as the League split, capped at 78 until the Champion is beaten again.
 
+## The battle log, a new block in sector 44 (2026-09-28)
+
+The last 60 trainer battles, for the OxiDex, are kept in flash sector 44 of
+each half (0x2C000 and 0x6C000 in the .sav), which nothing had written
+before. `docs/oxide/battle-log.md` has the byte layout. Both copies are
+written after every save that writes the normal block; the main save's
+blocks, sizes, footers and offsets do not change at all.
+
+In RAM the log sits in the save image's free tail, after the boxes block
+(0x1F200 today, 0xDB8 of the 0xE00 bytes free), which the main save never
+writes. So a larger save table would have to move it; the game checks at
+boot that it still fits.
+
+An older save loads and plays as before: its two sectors are erased, which
+reads as an empty log, and the first save writes a real one. Ian's save of
+53b863005 was parsed with the new layout: both blocks valid at 0xD01C and
+0x121E4, both log sectors erased. With no main save, an old log on the card
+is ignored and the new game starts with an empty one.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

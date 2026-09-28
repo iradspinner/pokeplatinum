@@ -644,6 +644,8 @@ def dex_detail(species):
             "label": rec_m["name"],
             "folder": rec_m["folder"],
             "appearances": len(caps.get(member) or []),
+            # Where this member is met, which the page shows under it.
+            "captures": caps.get(member) or [],
             "evolutions": rec_m["evolutions"],
             "bst": rec_m["bst"],
             "mega_of": rec_m["mega_of"],
@@ -870,6 +872,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(body)
                 return
+            # The battle log in the same save (battlelog.py), named, and as
+            # the calculator's Battle Log stores a save file's log.
+            if len(parts) > 2 and parts[2] == "battlelog":
+                try:
+                    out = savewatch.WATCHER.battle_log()
+                except Exception as exc:
+                    return self._send({"error": f"{type(exc).__name__}: {exc}"}, 500)
+                if out is None:
+                    return self._send({"error": "no save read yet: set its path in the "
+                                                "OxiDex's Calc tab"}, 404)
+                return self._send(out)
             return self._send(savewatch.WATCHER.snapshot())
         try:
             st = State(ref)

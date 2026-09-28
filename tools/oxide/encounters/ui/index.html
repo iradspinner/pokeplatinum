@@ -196,15 +196,15 @@ button:disabled { color: var(--faint); cursor: default; }
 .arow .num { font-size: 14.5px; color: var(--dim); }
 .arow .enc span.lbl { font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .arow .enc.none { color: var(--faint); }
-/* progress is shown by fading the row, so a partly-worked area reads as
-   partly done rather than as a binary flag */
-.arow.p1 { opacity: .78; } .arow.p2 { opacity: .60; } .arow.p3 { opacity: .45; }
-.arow.done { opacity: .38; }
+/* A row fades for one thing only, its encounter being used (Ian,
+   2026-09-27): a pool the dupes clause has shrunk keeps its row at full
+   strength, so a glance finds every place whose encounter is still to come.
+   A pool emptied altogether says so in its count and its note instead. */
+.arow.done .count { color: var(--warn); font-weight: 600; }
 /* A location's other tables once its one encounter is used elsewhere: nothing
    there can be caught any more, so the row all but disappears. */
 .arow.spent { opacity: .22; }
 .arow.spent .chip { filter: grayscale(1); }
-.arow.done .l1 { text-decoration: line-through; }
 /* A one-spot group (the Old Chateau's rooms, the Lost Tower's floors) folds
    under one row; its tables sit indented beneath it while the pointer is over
    the group (Ian, 2026-09-26), and stay out while a search or the selected
@@ -470,6 +470,10 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
   border-radius: 999px; padding: 0 7px; font-size: 14px; font-weight: 600;
   line-height: 1.5; white-space: nowrap;
 }
+/* Dim's cyan panel is lighter, so a chip mixes in less of its type there,
+   which keeps ink at 5:1 or better on the palest types, Ice and Electric. */
+:root[data-theme="dim"] .chip, :root[data-theme="dim"] .typed {
+  background: color-mix(in srgb, var(--t) 25%, var(--panel)); }
 .chip.plain { background: var(--panel); border-color: var(--rule); font-weight: 400; }
 .chip.place { background: var(--place-bg); border-color: var(--place-ink); color: var(--place-ink); }
 .chip.mini { font-size: 13px; padding: 0 5px; margin-right: 2px; }
@@ -529,11 +533,25 @@ table.facts td { padding: 1px 0; }
 .dexsec { margin-top: 18px; }
 .dexsec > h4 { margin: 0 0 8px; font-size: 15px; font-weight: 600;
   color: var(--dim); letter-spacing: .03em; }
-/* The species page's centre is two columns: the creature on the left, what
-   it can learn on the right. They stack when the centre is too narrow for
-   both, so a learnset table is never squeezed. */
+/* The species page's centre is two columns: the creature and what hurts it
+   on the left, its line and where each member is met on the right (Ian,
+   2026-09-27). They stack when the centre is too narrow for both. What it
+   can learn lives in the right column of the page alone. */
 .dexcols { display: grid; gap: 0 32px; align-items: start;
   grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+/* The line: stages down the column, a branch's siblings side by side, and
+   where each member is met directly under it. */
+.lineflow { display: flex; flex-direction: column; gap: 4px; }
+.lineflow .stagerow { display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+.lineflow .down { color: var(--faint); text-align: center; font-size: 15px; line-height: 1; }
+.linecard { border: 1px solid var(--rule); border-radius: 4px; padding: 6px 8px;
+  background: var(--panel); }
+.linecard.here { border-color: var(--place-ink); }
+.linecard .head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.linecard .met { font-size: 14px; padding: 2px 4px; border-radius: 3px; line-height: 1.35; }
+.linecard .none { font-size: 14px; color: var(--faint); }
+#dexright .dexsec:first-child { margin-top: 0; }
 .evoline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .evoline .arrow { color: var(--faint); font-size: 16.5px; }
 /* One group per stage: a branch such as Eevee's is siblings in one group,
@@ -1030,6 +1048,25 @@ function drawDexDetail() {
     ? `<span class="delta${d.canon.bst < 0 ? " down" : ""}">${signed(d.canon.bst)}</span>
        from ${esc(d.canon_name)} as it really is`
     : `Matches ${esc(d.canon_name || "")} as it really is`;
+  // Every type, in the games' order, with what it does to this species. The
+  // server sends only the multipliers that are not 1, so the rest are 1.
+  const cellClass = { 4: "x4", 2: "x2", 1: "x1", 0.5: "x05", 0.25: "x025", 0: "x0" };
+  const multLabel = v => v === 0.5 ? "½" : v === 0.25 ? "¼" : String(v);
+  const mx = `<div class="mxgrid">${TYPES.map(t => {
+    const v = (d.matchups || {})[t] ?? 1;
+    return `<div class="mxcell ${cellClass[v] || "x1"}" title="${esc(tidy(t))} does ×${v}">
+      ${typeChip(t, "mini")}<span class="m">×${multLabel(v)}</span></div>`;
+  }).join("")}</div>`;
+  // Where one member of the line is met, under that member (Ian, 2026-09-27):
+  // each place opens its table.
+  const metList = caps => (caps || []).length ? caps.map(c => `<div class="met go"
+      data-area="${esc(c.area)}" data-kind="${esc(c.kind)}" title="Open this table">
+      <b>${esc(c.location || c.area)}</b> ${splitTag(c.split)}<span class="arrow">&rsaquo;</span><br>
+      <span class="sub">${esc(KINDS[c.kind] || c.kind)} &middot; ${c.share
+        ? `<span class="share">${pct(c.share)}</span>` : "one of five slots"} &middot;
+        level ${c.level_min}${c.level_max !== c.level_min ? "&ndash;" + c.level_max : ""}</span>
+    </div>`).join("") : `<div class="none">Not in any table.</div>`;
+
   $("#dexmid").innerHTML = `
     <div style="display:flex; gap:16px; align-items:flex-start">
       <div class="stage">${front ? `<span class="spr"><img src="${sprite(d.folder, front)}" alt=""></span>` : ""}</div>
@@ -1055,6 +1092,8 @@ function drawDexDetail() {
       <table class="stats">${statRows(d)}</table>
     </div>
 
+    <div class="dexsec"><h4>Damage taken</h4>${mx}</div>
+
     <div class="dexsec">
       <h4>Abilities</h4>
       ${d.abilities.map(a => `<span class="chip plain${(d.weather || []).includes(a) ? " warn" : ""}">${esc(tidy(a))}</span>`).join("")}
@@ -1068,13 +1107,20 @@ function drawDexDetail() {
     </div>
 
     <div class="dexsec">
-      <h4>The line</h4>
-      <div class="evoline">
-        ${stagesOf(d.line || []).map(group => `<span class="evostage">${group.map(m => `
-          <span class="member"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
-          <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a>
-          <span class="sub num">${m.appearances ? m.appearances + " tables" : "not in a table"}</span></span>
-        `).join("")}</span>`).join('<span class="arrow">&rsaquo;</span>')}
+      <h4>The rest of it</h4>
+      ${facts(d)}
+    </div>
+    </div><div>
+
+    <div class="dexsec">
+      <h4>The line, and where each is met</h4>
+      <div class="lineflow">
+        ${stagesOf(d.line || []).map(group => `<div class="stagerow">${group.map(m => `
+          <div class="linecard${m.species === d.species ? " here" : ""}">
+            <div class="head"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
+              <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a></div>
+            ${metList(m.captures)}
+          </div>`).join("")}</div>`).join('<div class="down">⌄</div>')}
       </div>
       ${d.evolutions.length ? `<div class="sub" style="margin-top:6px">
         ${d.evolutions.map(e => `${esc(d.name)} &rarr; ${esc(e.label || "")}
@@ -1083,13 +1129,23 @@ function drawDexDetail() {
         Formes: ${d.formes.map(e => `<a href="#" data-sp="${e.into}">${esc(e.label || "")}</a>
           <span class="sub">(${esc(evoText(e))}, day or night)</span>`).join("; ")}</div>` : ""}
     </div>
+    </div></div>`;
+  $("#dexmid").querySelectorAll("a[data-sp]").forEach(a =>
+    a.onclick = ev => { ev.preventDefault(); selectSpecies(a.dataset.sp); });
+  const toCalc = $("#tocalc");
+  if (toCalc) toCalc.onclick = ev => { ev.preventDefault(); openCalc(d.canon_name); };
+  // Where it is met is the one thing this dex knows that a general one cannot,
+  // so each place opens its table rather than just naming it.
+  $("#dexmid").querySelectorAll(".met.go").forEach(el =>
+    el.onclick = () => openTable(el.dataset.area, el.dataset.kind));
 
-    <div class="dexsec">
-      <h4>The rest of it</h4>
-      ${facts(d)}
-    </div>
-    </div><div>
+  drawDexMoves(d);
+}
 
+// What a species can learn, in the page's right column and nowhere else (Ian,
+// 2026-09-27): its four lists, or one move's details with a way back to them.
+function drawDexMoves(d) {
+  $("#dexright").innerHTML = `
     <div class="dexsec">
       <h4>Level-up moves</h4>
       <table class="learn">
@@ -1104,48 +1160,31 @@ function drawDexDetail() {
     </div>
     ${moveLinks("Machine moves", d.machine_moves, m => m.machine)}
     ${moveLinks("Tutor moves", d.tutor_moves)}
-    ${moveLinks("Egg moves", d.egg_moves)}
-    </div></div>`;
-  $("#dexmid").querySelectorAll("a[data-sp]").forEach(a =>
-    a.onclick = ev => { ev.preventDefault(); selectSpecies(a.dataset.sp); });
-  const toCalc = $("#tocalc");
-  if (toCalc) toCalc.onclick = ev => { ev.preventDefault(); openCalc(d.canon_name); };
-  $("#dexmid").querySelectorAll("a[data-mv]").forEach(a =>
-    a.onclick = ev => { ev.preventDefault(); openMove(a.dataset.mv); });
+    ${moveLinks("Egg moves", d.egg_moves)}`;
+  $("#dexright").querySelectorAll("a[data-mv]").forEach(a =>
+    a.onclick = ev => { ev.preventDefault(); showDexMove(a.dataset.mv); });
+}
 
-  const byKind = {};
-  (d.captures || []).forEach(c => (byKind[c.kind] = byKind[c.kind] || []).push(c));
-  const met = Object.keys(byKind).map(k => `
-    <div class="dexsec"><h4>${esc(KINDS[k] || k)}</h4>
-      ${byKind[k].map(c => `<div class="met go" data-area="${esc(c.area)}"
-           data-kind="${esc(c.kind)}" title="Open this table">
-        <b>${esc(c.location || c.area)}</b> ${splitTag(c.split)}<span class="arrow">&rsaquo;</span><br>
-        <span class="sub">${c.share ? `<span class="share">${pct(c.share)}</span>` : "one of five slots"} &middot;
-          level ${c.level_min}${c.level_max !== c.level_min ? "&ndash;" + c.level_max : ""}</span>
-      </div>`).join("")}
-    </div>`).join("");
-
-  // Every type, in the games' order, with what it does to this species. The
-  // server sends only the multipliers that are not 1, so the rest are 1.
-  const cellClass = { 4: "x4", 2: "x2", 1: "x1", 0.5: "x05", 0.25: "x025", 0: "x0" };
-  const multLabel = v => v === 0.5 ? "½" : v === 0.25 ? "¼" : String(v);
-  const mx = `<div class="mxgrid">${TYPES.map(t => {
-    const v = (d.matchups || {})[t] ?? 1;
-    return `<div class="mxcell ${cellClass[v] || "x1"}" title="${esc(tidy(t))} does ×${v}">
-      ${typeChip(t, "mini")}<span class="m">×${multLabel(v)}</span></div>`;
-  }).join("")}</div>`;
-
+async function showDexMove(move) {
+  let m;
+  try { m = await api("/api/move/" + move); } catch (e) { return toast(e.message, true); }
+  const ways = {};
+  (m.learners || []).forEach(l => { ways[l.how] = (ways[l.how] || 0) + 1; });
   $("#dexright").innerHTML = `
-    <h4 style="margin:0 0 8px; font-size:15px; color:var(--dim)">Where it is met</h4>
-    ${met || `<p class="sub">Not in any table. ${
-      (d.line || []).some(m => m.appearances)
-        ? "Another stage of its line is, above." : ""}</p>`}
-    <div class="dexsec"><h4>Damage taken</h4>${mx}</div>`;
-
-  // Where it is met is the one thing this dex knows that a general one cannot,
-  // so it opens the table rather than just naming it.
-  $("#dexright").querySelectorAll(".met.go").forEach(el =>
-    el.onclick = () => openTable(el.dataset.area, el.dataset.kind));
+    <button class="linkish" id="dexmoveback">Back to the moves</button>
+    <div class="species-name" style="margin-top:6px">${esc(m.name)}
+      ${m.delta && m.delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
+    <div>${typeChip(m.type)} <span class="sub">${tidy(m.class)}</span></div>
+    <div class="sub" style="margin-top:8px">${esc(m.description || "")}</div>
+    ${moveStub(m)}
+    <div class="dexsec"><h4>The numbers</h4>${moveNumbers(m)}</div>
+    <div class="dexsec"><h4>Flags</h4>${(m.flags || []).map(f =>
+      `<span class="chip plain">${esc(tidy(f))}</span>`).join("") || `<span class="sub">none</span>`}</div>
+    <div class="dexsec"><h4>Who learns it</h4>${Object.keys(HOW).filter(h => ways[h]).map(h =>
+      `<div>${HOW[h]}: <span class="num">${ways[h]}</span></div>`).join("")
+      || `<p class="sub">No species learns it.</p>`}</div>`;
+  $("#dexright").scrollTop = 0;
+  $("#dexmoveback").onclick = () => DEXDETAIL && drawDexMoves(DEXDETAIL);
 }
 
 // ---- the moves ----------------------------------------------------------
@@ -1204,12 +1243,32 @@ function moveValue(k, v) {
   return String(v);
 }
 
-function drawMoveDetail() {
-  const d = MOVEDETAIL;
-  if (!d) return;
+// A move's numbers and its placeholder note, as the Moves tab and a species
+// page's right column both show them.
+function moveNumbers(d) {
   const status = d.class === "STATUS";
   const row = (k, v) => v !== "" && v !== null && v !== undefined
     ? `<tr><th>${k}</th><td>${v}</td></tr>` : "";
+  return `<table class="facts">
+        ${row("Power", status ? "" : d.power || "varies")}
+        ${row("Accuracy", d.accuracy ? d.accuracy + "%" : "never misses")}
+        ${row("PP", d.pp)}
+        ${row("Priority", d.priority ? signed(d.priority) : "")}
+        ${row("Target", tidy(d.range))}
+        ${row("Effect", `${esc(tidy(d.effect))}${d.effect_chance ? ` <span class="sub">${d.effect_chance}%</span>` : ""}
+          <span class="sub num">#${d.effect_id}</span>`)}
+        ${row("Machine", d.machine || "")}
+      </table>`;
+}
+function moveStub(d) {
+  return d.stub ? `<div class="stubnote">Its effect, ${esc(tidy(d.effect))}, is still a
+      placeholder script. ${d.class === "STATUS" ? "Used in battle it says \u201cBut nothing happened!\u201d"
+        : "It does its damage and skips the rest"} until the script is written.</div>` : "";
+}
+
+function drawMoveDetail() {
+  const d = MOVEDETAIL;
+  if (!d) return;
   const delta = d.delta || {};
   const changed = Object.entries(delta).filter(([k]) => k !== "new" && k !== "flags");
   const flags = delta.flags;
@@ -1231,22 +1290,11 @@ function drawMoveDetail() {
       ${delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
     <div>${typeChip(d.type)} <span class="sub">${tidy(d.class)}</span></div>
     <div class="sub" style="margin-top:8px; max-width:46ch">${esc(d.description || "")}</div>
-    ${d.stub ? `<div class="stubnote">Its effect, ${esc(tidy(d.effect))}, is still a
-      placeholder script. ${status ? "Used in battle it says \u201cBut nothing happened!\u201d"
-        : "It does its damage and skips the rest"} until the script is written.</div>` : ""}
+    ${moveStub(d)}
 
     <div class="dexsec">
       <h4>The numbers</h4>
-      <table class="facts">
-        ${row("Power", status ? "" : d.power || "varies")}
-        ${row("Accuracy", d.accuracy ? d.accuracy + "%" : "never misses")}
-        ${row("PP", d.pp)}
-        ${row("Priority", d.priority ? signed(d.priority) : "")}
-        ${row("Target", tidy(d.range))}
-        ${row("Effect", `${esc(tidy(d.effect))}${d.effect_chance ? ` <span class="sub">${d.effect_chance}%</span>` : ""}
-          <span class="sub num">#${d.effect_id}</span>`)}
-        ${row("Machine", d.machine || "")}
-      </table>
+      ${moveNumbers(d)}
     </div>
 
     <div class="dexsec">
@@ -1415,6 +1463,7 @@ async function simulate(first) {
   try {
     $("#simgo").disabled = true;
     SIM = await api("/api/simulate?" + q);
+    if (!Array.isArray(SIM.log)) throw new Error("The OxiDex server sent no run: restart it");
     if (first) {
       $("#simsplit").innerHTML = SIM.splits.map(sp =>
         `<option ${sp === SIM.split ? "selected" : ""}>${esc(sp)}</option>`).join("");
@@ -1935,13 +1984,21 @@ function drawHeader() {
   // fix") already says pass or fail, so colour is never the only signal.
   $("#w-spread").title = `Passes at ${t.r8_spread_min}× or more between the most and least varied tables`;
   $("#w-sig").title = `Passes at ${t.r9_signatures_per_table_min} distinct shapes per table or more`;
-  $("#w-arc").title = "Passes when concentration falls from early to mid to late";
+  // Ian's rule since 2026-09-21, which replaced vanilla's falling arc: the
+  // early game is the most random, and no band's median top share is above
+  // the cap (lint's R11 and R11b).
+  $("#w-arc").title = `Median HHI early, mid and late. Passes when the early game is the most ` +
+    `random (its HHI no higher than a later band's) and no band's median top share is above ` +
+    `${Math.round(t.r11_top_share_max * 100)}%`;
   $("#w-lint").title = "Lint errors across every table; warnings are not counted";
   $("#h-spread").textContent = g.hhi_spread.toFixed(2) + "×";
   $("#w-spread").className = "metric " + (g.hhi_spread >= t.r8_spread_min ? "pass" : "fail");
   $("#h-sig").textContent = g.signatures_per_table.toFixed(2);
   $("#w-sig").className = "metric " + (g.signatures_per_table >= t.r9_signatures_per_table_min ? "pass" : "fail");
-  const arcOk = g.hhi_early > g.hhi_mid && g.hhi_mid > g.hhi_late;
+  const bandHhi = [g.hhi_mid, g.hhi_late].filter(x => x != null);
+  const capOk = ["early", "mid", "late"].every(b =>
+    g["top_share_" + b] == null || g["top_share_" + b] <= t.r11_top_share_max);
+  const arcOk = g.hhi_early != null && bandHhi.every(x => g.hhi_early <= x) && capOk;
   $("#h-arc").textContent = [g.hhi_early, g.hhi_mid, g.hhi_late]
     .map(x => x == null ? "—" : x.toFixed(2)).join(" → ");
   $("#w-arc").className = "metric " + (arcOk ? "pass" : "fail");
@@ -1989,10 +2046,7 @@ function drawList() {
   const rowHtml = (r, extra = "") => {
     const flag = r.errors ? "err" : (r.warns ? "wrn" : "");
     const by = r.location && !r.encounter ? taken.get(r.location) : null;
-    const gone = r.species_total - r.live_total;
-    const frac = r.species_total ? gone / r.species_total : 0;
-    const fade = by ? "spent" : r.live_total === 0 ? "done"
-      : frac >= .66 ? "p3" : frac >= .34 ? "p2" : frac > 0 ? "p1" : "";
+    const fade = by ? "spent" : r.live_total === 0 ? "done" : "";
     const lv = r.level_min === r.level_max ? r.level_min
       : r.level_min + "–" + r.level_max;
     // What else the row holds, as one short note: a scripted source's kind,
@@ -2003,6 +2057,7 @@ function drawList() {
     else if (r.kinds.length > 1) notes.push("water");
     if (r.honey) notes.push("honey");
     if (r.no_capture) notes.push("no capture");
+    if (!by && r.live_total === 0 && r.species_total) notes.unshift("nothing new here");
     const note = notes.length ? `<span class="sub note" title="${esc(notes.join(", "))}">${esc(notes.join(", "))}</span>` : "";
     return `<div class="arow ${extra} ${r.area === SEL ? "sel" : ""} ${fade}" data-a="${esc(r.area)}"
         title="${esc(by ? r.location + "'s encounter is used: " + by.encounter_label + " in " + by.label
@@ -2013,7 +2068,7 @@ function drawList() {
       <div class="enc ${r.encounter_label ? "" : "none"}" title="${esc(r.encounter_label ? "Caught here: " + r.encounter_label : "Nothing caught here yet")}">${
         r.encounter ? icon(r.encounter) : ""}<span class="lbl">${esc(r.encounter_label || "\u2014")}</span></div>
       <div class="num">${lv}</div>
-      <div class="num">${r.live_total}/${r.species_total}</div>
+      <div class="num count">${r.live_total}/${r.species_total}</div>
     </div>`;
   };
   // A group's row stands where its first table would, in whatever order the
@@ -2799,6 +2854,9 @@ $("#simconf").onclick = async () => {
   $("#simconfout").innerHTML = `<p class="sub">Replaying the run from here.</p>`;
   try {
     const c = await api("/api/simulate/confidence?" + simQuery(SIM ? SIM.seed || 0 : 0));
+    // A server older than the page answers without the table (it read the
+    // path as an ordinary run); say so rather than fail on the missing field.
+    if (!Array.isArray(c.areas)) throw new Error("The OxiDex server is older than this page: restart it");
     $("#simconfout").innerHTML = `<table class="grid"><thead><tr><th>Next places</th><th>Call</th>
         <th class="num" title="Share of ${c.runs} replays making this call">Sure</th>
         <th class="num" title="The call's lead over the next best option, as a share of its gain">Lead</th></tr></thead>

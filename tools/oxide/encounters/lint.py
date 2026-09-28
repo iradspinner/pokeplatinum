@@ -24,8 +24,10 @@ Measured on vanilla's 171 live land tables, for reference:
     R6   <=1 singleton rung     84%
     R8   spread >= 2.2          2.48          pass
     R9   signatures/table       0.42          pass
-    R11  arc decreasing         0.373 > 0.325 > 0.275, pass
-    R11b early>=.35 late<=.25   early passes, late is 0.275   <- aspirational
+    R11  band top share <= cap  replaced the decreasing arc (vanilla 0.373 > 0.325 > 0.275)
+                                on 2026-09-21 (Ian's cap)
+    R11b band HHI in range, and the early band the most random (lowest median
+         HHI), Ian's rule since 2026-09-21; vanilla's arc fails the second <- aspirational
     R13  share span >= 4x       37%, median 2.5x              <- aspirational
     R14  land_rate variety      37% on the most common value, pass
 """
@@ -390,6 +392,16 @@ def lint_game(areas, t, availability=None):
                 out.append(Finding(
                     "R11b", "warn", "game", "*",
                     f"{band} median HHI {hhi:.3f} outside {lo}-{hi}"))
+    # R11b (warn) -- the early game the most random of the three bands (Ian,
+    # 2026-09-21): its median HHI no higher than the mid or late band's. The
+    # header's "Early to late" shows the same test.
+    early = g.get("hhi_early")
+    later = [g.get(f"hhi_{b}") for b in ("mid", "late") if g.get(f"hhi_{b}") is not None]
+    if early is not None and later and early > min(later):
+        out.append(Finding(
+            "R11b", "warn", "game", "*",
+            f"the early band is not the most random: median HHI {early:.3f} against "
+            f"{min(later):.3f} later on"))
 
     # R13 (warn, aspirational) -- repetition has to vary
     where = collections.defaultdict(list)

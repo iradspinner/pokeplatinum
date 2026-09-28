@@ -1648,7 +1648,13 @@ function setBaseGame(title) {
         window.baseGame = "g7"
     }
 
-    if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
+    // Oxide patch (VENDORED.md 13): this second block showed the DeSmuME
+    // link again for every Platinum title, and upstream's img/ is not
+    // vendored, so the Calc tab drew a broken image. Oxide keeps Sync only.
+    if (TITLE == "Platinum Oxide") {
+        $('#sync-lua').show()
+        $('#desmume-icon').hide()
+    } else if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
         $('#sync-lua, #desmume-icon').show()
     } else if (window.baseGame == "BW") {
         $('#sync-lua').show()
@@ -2331,11 +2337,30 @@ function loadDataSource(data) {
             && typeof window.extendSavArraysToGen67 === "function") {
           window.extendSavArraysToGen67()
         }
+        // Oxide patch: met places by Oxide's own ids (calc_export.met_locations).
+        // The Platinum table runs on into HeartGold's places past Platinum's
+        // ids, so Rowan's Briefcase, which Oxide added, read as New Bark Town.
+        if (TITLE == "Platinum Oxide" && Array.isArray(data["met_locations"])
+            && typeof locations !== "undefined") {
+          locations["Pt"] = data["met_locations"].slice()
+        }
       } else {
         console.warn("Save include tables were requested but are unavailable.")
       }
     }
     $('#save-pok').show()
+
+    // Oxide patch: the Fragsheet's splits are Oxide's thirteen level-cap
+    // splits with their caps (calc_export.splits). Without this entry the
+    // Fragsheet matched the title to vanilla Platinum's by name.
+    if (TITLE == "Platinum Oxide" && Array.isArray(data["splits"])
+        && typeof splitData !== "undefined") {
+      splitData[TITLE] = {
+        lvls: data["splits"].map(function (s) { return s.cap }),
+        titles: data["splits"].map(function (s) { return s.name }),
+        types: []
+      }
+    }
 
     // imperium changes
     if (TITLE.includes("Emerald Imperium")) {

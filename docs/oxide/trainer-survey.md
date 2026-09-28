@@ -34,9 +34,10 @@ Lapras, Snorlax, Venusaur, Charizard, Blastoise), Gold (Typhlosion, Togekiss,
 Celebi, Suicune, Lugia, Ho-Oh), May (Swampert, Blaziken, Sceptile, Latias,
 Deoxys, Rayquaza) and Steven (Skarmory, Claydol, Aggron, Cradily, Armaldo,
 Metagross). The scripts start them by number at the Resort Area, Stark
-Mountain, Turnback Cave and Mt. Coronet, and the Pocket PC's reset lets them
-be fought again. Stark Mountain is to be emptied of its legendary, not of
-Steven.
+Mountain, Turnback Cave and Mt. Coronet. The base ROM's PC reset that let
+them be fought again is gone from every PC (Ian's Pocket PC rulings,
+4e6209dab). Stark Mountain's last room has lost its
+legendary; Steven, in its first room, stays.
 
 ## 149 rematch teams nobody can reach
 

@@ -92,8 +92,8 @@ class Watcher:
         self._wake = threading.Event()
         self._stop = threading.Event()
         self._thread = None
-        self._data = self._save = None
-        self._seen = None                   # (mtime, size) of the last read
+        self._data = self._save = self._log = None
+        self._seen = None                  # (mtime, size) of the last read
         self.state = {"path": None, "mode": None, "seq": 0, "mtime": None,
                       "read_at": None, "error": None}
 
@@ -116,7 +116,7 @@ class Watcher:
         settings["save_path"] = path
         save_settings(settings)
         with self._lock:
-            self._data = self._save = self._seen = None
+            self._data = self._save = self._seen = self._log = None
             self.state.update(path=path or None, mtime=None, read_at=None, error=None)
         self._wake.set()
         return path
@@ -131,12 +131,37 @@ class Watcher:
         with self._lock:
             out = dict(self.state)
             out["save"] = savefile.summary(self._save) if self._save else None
+            data = self._data
+        if out["save"]:
+            # How many battles the log holds, from its header alone, so the
+            # calculator knows whether to ask for the log itself.
+            from . import battlelog
+            copy = battlelog.current(data)
+            out["save"]["battle_log"] = {"count": copy["count"], "counter": copy["counter"]} if copy else None
         return out
 
     def packed(self):
         with self._lock:
             data = self._data
         return savefile.packed(data) if data else None
+
+    def battle_log(self):
+        """{seq, log, calc} for the last save read, or None: the battle log
+        named (battlelog.read) and as the calculator's Battle Log payload.
+        Worked out once per save read, since the calculator asks after every
+        new save and names cost a file read per trainer."""
+        from . import battlelog
+        with self._lock:
+            data, save, seq = self._data, self._save, self.state["seq"]
+            cached = self._log if self._log and self._log["seq"] == seq else None
+        if cached or not data:
+            return cached
+        log = battlelog.read(data, save)
+        out = {"seq": seq, "log": log, "calc": battlelog.calc_payload(log, save)}
+        with self._lock:
+            if self.state["seq"] == seq:
+                self._log = out
+        return out
 
     def check(self):
         """Reads the file now if it changed since the last read. The thread

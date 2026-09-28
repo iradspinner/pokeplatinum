@@ -993,6 +993,95 @@ that stay. None blocks anything.
    98/98, m4 51/51. Request 4 (the Fragsheet and the automatic battle log)
    waits on the main track's save-log layout.
 
+36. **The battle log reader (Ian's request 4, 2026-09-28, through the
+   Overseer).** The main track is putting a log of the last 60 trainer
+   battles in the save (`docs/oxide/battle-log.md`). The reader was written
+   against that layout before the engine side exists, and two changes to the
+   layout came from it: each opponent's level is recorded, and an egg is
+   recorded as a fixed value rather than the Egg's species id, which moves
+   whenever a species is added. `battlelog.py` reads the newer valid copy
+   of the log, names each battle's trainers, both sides' Pokemon and levels,
+   the split, and who knocked out whom. It also matches each of the
+   player's Pokemon to one in the save by its personality byte and its
+   evolution line, so a logged Chimchar counts for the Monferno it became.
+   The OxiDex serves the log at `/api/save/battlelog`, and `cli battlelog
+   PATH` prints it. The calculator's Battle Log takes it as a save-file log
+   after each new save (VENDORED.md patch 18), with Oxide's thirteen splits as
+   its tabs and battle counts for the Fragsheet. The save reader now sets
+   the log's footers aside. Tested on saves built byte by byte (test_battlelog
+   22/22, savefile 14/14, savewatch 8/8, each run twice); Ian's saves predate
+   the log and read as empty. The Fragsheet had used vanilla Platinum's
+   nine gym splits and caps for Oxide, because it matched the title
+   "Platinum Oxide" to "Platinum". Ian's answer (2026-09-28) was to widen it
+   to all thirteen splits, with Oxide's names and caps, matching the Battle
+   Log (VENDORED.md patch 19). The calculator's blob now carries the splits.
+   The Fragsheet has thirteen tabs and columns, and its stats view moved
+   past them. Checked in headless Chrome on a save with a synthetic log: the
+   Battle Log shows each battle under its split, and the Fragsheet counts
+   knock-outs by split. Like every save-file log in the calculator, the
+   Fragsheet counts only the last battle against each trainer, so a lost
+   first attempt at a leader drops out. Suites after the change:
+   test_battlelog 25/25, m8 98/98, savewatch 8/8, each run twice. The
+   engine side landed on oxide (e34a5ffc6), and its source matches the
+   reader field for field. It read a real game's log on 2026-09-28: Ian's
+   check on the 51fa6cdaa ROM, three Route 202 fights (Youngster Tristan,
+   Lass Natalie, Youngster Logan), all won in Roark's split, which Ian
+   confirmed. It landed on oxide the same day as encounter-battlelog-oxide.
+
+37. **The header's two failing measures (Ian, 2026-09-28, through the
+   Overseer).** "Early to late" still tested vanilla's falling arc, which
+   Ian reversed on 2026-09-21. It now shows the three bands' median HHI and
+   passes when the early band is the most random and no band's median top
+   share is over the cap. R11b warns on the first half, and R11 already
+   checked the cap. "Distinct shapes" was 26 over the header's 165 tables
+   (0.16) against 0.35, because every table of one archetype and cast size
+   laid out the same. A sidecar entry may now carry `shares`, its own
+   variant of its archetype (design doc 2.3). A search picked variants for
+   32 tables that keep everything else: the same species morning, day and
+   night, the same top rung on a top-form table, the face first and under
+   the cap, every line's role (tail, cameo, regular), and no early table
+   more concentrated. Post-game rooms went first, since no balance score or
+   Box sim run reads them, and R8's spread was held above its floor. Three
+   tables took the existing archetype their shape fits (Great Marsh 3 A12,
+   Great Marsh 5 A16, Turnback Cave 1-5 A15), and no archetype was added.
+   Eighteen of the 32 are post-game; the fourteen before the League are
+   Oreburgh Gate 1F, Eterna Forest, Lost Tower 2F, the Maniac Tunnel, Great
+   Marsh 1 to 6, Route 210 north, Route 211 east, Lake Acuity and Victory
+   Road B1F.
+
+   | Measure | Before | After |
+   |---|---|---|
+   | Distinct shapes, header's 165 | 26 (0.158) | 58 (0.352) |
+   | Distinct shapes, report's 177 | 22 (0.12) | 54 (0.31) |
+   | R8 spread, header | 1.866x | 1.810x |
+   | R8 spread, report | 1.866x | 1.866x |
+   | Early, mid, late median HHI | 0.155, 0.179, 0.202 | 0.155, 0.184, 0.202 |
+
+   Species by split and the balance track's obtainable pool are unchanged.
+   One first catch moved a level (Turtonator, Byron's split, 29 to 28). On
+   Ian's save, the Box sim makes the same call at nine of its next ten
+   places, and a seeded run's box is worth 5837 against 5828. Lint is clean
+   (R3's aspirational uplift fell short on two more tables: Great Marsh 3
+   and Lost Tower 2F). `evolve` moves nothing, the availability gate and
+   the leak audit pass, and every suite passed twice. test_step0's local
+   verify_narcs compares a build from 2026-09-22, so the gate's GitHub ROM
+   is the real check. Both margins are thin. The header's R9 sits one shape
+   over its threshold and R8 0.01 over its floor, so a later table edit
+   should check both.
+
+38. **Dim, and the Calc tab's broken image (Ian, 2026-09-28, through the
+   Overseer).** A third theme between Dark and Light: the dark scheme on a
+   cyan ground (first a soft teal-grey; Ian asked for more of a cyan the same
+   day), with its values in the visual design doc's section 2.
+   The theme button steps through the three looks and back to Windows,
+   skipping the one that looks like Windows already, so every press changes
+   the page. The calculator follows through the shared tokens. Its text and
+   meaning colours keep WCAG's 4.5:1, which test_m4 now checks. The broken
+   image in the calculator's Import / Export panel was the DeSmuME link's
+   icon, shown again by a second block patch 13 had missed; it stays hidden
+   under the Oxide title now. Both were checked in headless Chrome. This
+   comes ahead of the layout redesign the Overseer is mocking up.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule

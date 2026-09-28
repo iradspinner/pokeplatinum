@@ -49,6 +49,18 @@ All colors live in one new file, `tools/oxide/encounters/ui/theme.css`, as custo
 
 The ladder alternates teal and pink so that neighbouring species separate at a glance without either hue meaning anything new. The stat bands run warm to cool, which the type-matchup grid in section 7 reuses: warm is bad for the species, cool is good for it.
 
+**Dim, a third theme (Ian, 2026-09-28).** Between Dark and Light for brightness, on the same scheme: the dark theme on a cyan ground, not a new palette. The first version was a soft teal-grey; Ian asked for more of a cyan, so the surfaces are one clearer blue-green hue (189 degrees, the ground at saturation 0.40), a touch brighter. theme.css defines Dim as a `:root[data-theme="dim"]` block over the dark values, and theme.js sets the attribute when it is pinned. The theme button steps through the three looks and back to following Windows, skipping the pin that would look the same as Windows. Dim redefines only these tokens, each meaning a little lighter in its own hue so it keeps 4.5:1 on the cyan:
+
+| Token | Dim |
+|---|---|
+| `--ground` / `--panel` / `--sunken` / `--rule` | #22484F / #285057 / #315961 / #46747C |
+| `--ink` / `--dim` / `--faint` | #F2F7F6 / #C4D3D2 / #A0B5B4 |
+| `--mass` / `--on-mass` | #7FDFDC / #1B2627 |
+| `--place-bg` / `--place-ink` | #563E4B / #FAC0D5 |
+| `--act` / `--warn` / `--error` | #EFCB70 / #F9C197 / #FDBAC0 |
+
+A type chip mixes 25% of its type into the panel in Dim, against 34% in Dark, so ink stays at 5:1 on the palest types, Ice and Electric. The lowest text pairing is error on the panel at 5.5:1, and every meaning keeps 4.7:1 or better on a sunken well. test_m4 holds the Dim values to WCAG's ratios, reading the chip mix from the page.
+
 The light values are slightly darker than the ones in `palette-options.html`. The preview's light-mode secondary text, faint text, pink ink and gold missed WCAG AA by a few tenths, and were darkened in small steps until every pairing in section 10 passed.
 
 ```css

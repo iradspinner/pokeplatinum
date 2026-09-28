@@ -213,7 +213,8 @@ def cmd_report(args):
     print(f"                 rarest-species median "
           f"{g['uplift_median']:.2f}x, survives on "
           f"{g['uplift_working_frac']:.0%}")
-    print(f"  arc            early {g['hhi_early']:.3f} ({g['n_early']})   "
+    # Median HHI by band; Ian's rule wants early the lowest (the most random).
+    print(f"  bands (HHI)    early {g['hhi_early']:.3f} ({g['n_early']})   "
           f"mid {g['hhi_mid']:.3f} ({g['n_mid']})   "
           f"late {g['hhi_late']:.3f} ({g['n_late']})")
     print(f"  ladder         "
@@ -776,6 +777,38 @@ def cmd_save(args):
     return 0
 
 
+def cmd_battlelog(args):
+    """Reads the battle log in a save file, read-only (battlelog.py), and
+    prints its battles newest first. Exits 2 when the log is there but cannot
+    be read (both copies fail, or a version this reader does not know); a save
+    from before the log has an empty one, which is not an error."""
+    import os
+    from . import battlelog, savefile
+    path = os.path.expanduser(args.path)
+    try:
+        with open(path, "rb") as f:
+            data = f.read()
+        save = savefile.parse(data, path)
+    except (OSError, savefile.SaveError) as e:
+        print(e, file=sys.stderr)
+        return 1
+    log = battlelog.read(data, save)
+    if args.json or args.calc:
+        out = battlelog.calc_payload(log, save) if args.calc else log
+        print(json.dumps(out, indent=1, ensure_ascii=False))
+        return 0 if log["state"] in ("ok", "empty") else 2
+    if log["state"] != "ok":
+        print(f"{path}: {log['reason']}")
+        return 0 if log["state"] == "empty" else 2
+    c = log["copy"]
+    print(f"{path}: {c['count']} of {c['capacity']} battles, save {c['counter']}, "
+          f"the {'primary' if c['at'] == battlelog.SECTORS[0] else 'backup'} copy; newest first")
+    for rec in log["records"]:
+        for line in battlelog.describe(rec):
+            print("  " + line)
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -913,6 +946,13 @@ def main(argv=None):
     sv.add_argument("path", help="the .sav, which is only ever read")
     sv.add_argument("--json", action="store_true")
     sv.set_defaults(func=cmd_save)
+    bl = sub.add_parser("battlelog", help="read the battle log in a save file (read-only): "
+                                          "the last 60 trainer battles and their knock-outs")
+    bl.add_argument("path", help="the .sav, which is only ever read")
+    bl.add_argument("--json", action="store_true", help="the log as the OxiDex serves it")
+    bl.add_argument("--calc", action="store_true",
+                    help="the calculator's Battle Log payload instead")
+    bl.set_defaults(func=cmd_battlelog)
 
     args = p.parse_args(argv)
     return args.func(args)

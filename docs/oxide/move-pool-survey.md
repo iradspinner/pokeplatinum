@@ -2,6 +2,8 @@
 
 Written 2026-09-27 on `cloud/balance-move-survey`, for Ian's request of the same day: scope a cull of useless, outclassed and niche moves from learnsets, so the field of moves is easier to balance. It changes no game data. `tools/oxide/move_pool_survey.py` regenerates every count here from the tree, and `move-pool-survey.csv` beside this file is the per-move table for a spreadsheet. The same table closes this file as an appendix.
 
+Ian answered its eight questions on 2026-09-27; the ruling is the tracker's entry "The move pool, first cut" (its archive once done), and it differs from the recommended first cut below: terrain is not ported, so the four Terrain moves go; Magic Room, Teatime, Octolock, Sky Drop, Salt Cure and Steel Roller stay and get their effects; Splash and Teleport go too. The cut is not in the tree yet (Telekinesis is still in the Gothita line's lists); the balance track applies it in its learnset pass. The engine table below is `4297c5ad8`'s: since then `cloud/element4-partial-moves`, merged, has written every partly working move still learnable, Mind Blown's cost and Magic Room's effect among them, and left the status moves the cut removes as plain hits.
+
 ## What it found
 
 The recommended first cut is 13 moves off 14 lines, and it costs nothing on any measure the survey takes: no line loses an early attack or its last level-1 move, no trainer's default set changes, and no TM or tutor loses its move. Eleven of the 13 are status moves that never carry out their effect in Oxide, and the other two, Sky Drop and Salt Cure, are plain hits in Oxide that moves the same lines also learn beat outright. If terrain stays out of Oxide, the four Terrain moves and Steel Roller go too, again at no cost, for 18.
@@ -12,7 +14,7 @@ The pool is 619 moves, not the 716 the brief quotes. That is every move any spec
 
 The 159 new species have empty TM, tutor and egg lists until the Phase 5 TM pass (tracker, element 3), so they learn by level-up only. 84 of the 239 obtainable lines contain a new species. Of the 156 moves that only one or two obtainable lines learn, 113 are learned only by such lines, so most of the niche group will shrink once the TM pass runs.
 
-The survey found 30 learnable moves that Oxide's engine does not run in full. Eight are the terrain moves the tracker already holds back. The other 22 were not on the element 4 list (apart from Flower Shield and Teatime, which the 2026-09-22 QA noted), because the converter's audit works effect by effect, and these moves carry a plain-hit or Platinum effect in their record while hg-engine does their real work in C keyed on the move id, or not at all. One matters for balance at once: Mind Blown is a 150-power Fire special hit with no cost to its user. These are element 4 findings whatever the cull decides, and the tracker now lists them there.
+The survey found 30 learnable moves that Oxide's engine does not run in full. Eight are the terrain moves the tracker already holds back. The other 22 were not on the element 4 list (apart from Flower Shield and Teatime, which the 2026-09-22 QA noted), because the converter's audit works effect by effect, and these moves carry a plain-hit or Platinum effect in their record while hg-engine does their real work in C keyed on the move id, or not at all. One matters for balance at once: Mind Blown is a 150-power Fire special hit with no cost to its user. These are element 4 findings whatever the cull decides; the tracker archive's "Moves the effect audit missed" records how element 4 dealt with them.
 
 Nothing here has been seen in game. The engine claims come from reading Oxide's `src/battle/` and a shallow clone of hg-engine taken on 2026-09-27; the cloud session has neither the base ROM nor the donor ROM, so `convert_battle_scripts.py --audit` could not be run.
 
@@ -196,7 +198,7 @@ Ian's ruling (staples survey, answer 6) takes every weather move out of player l
 
 The one-line moves lost in the first cut are ten moves that only one line in the tree learns (Speed Swap is Pheromosa's, Salt Cure the Nacli line's, and so on), so each cut takes something from a species' character even where the move does nothing today. A cut applies to obtainable lines only in every row: a species the player cannot obtain keeps its learnset, so trainers using it keep their default sets.
 
-## Questions only Ian can answer
+## Questions for Ian (answered 2026-09-27; see the note at the top)
 
 1. Terrain: is it ported? If not, the four Terrain moves and Steel Roller leave learnsets (five more, at no cost), and Expanding Force, Grassy Glide and Terrain Pulse stay as plain hits.
 2. The partly run moves: fix or cut? Mind Blown needs one or the other before the balance scores trust it; Scale Shot, Spiky Shield, Baneful Bunker, Beak Blast and Shore Up are small C each from hg-engine; Core Enforcer and Salt Cure have no hg-engine code to port.

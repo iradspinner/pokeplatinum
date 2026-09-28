@@ -16,7 +16,7 @@ Go one commit at a time: read the message, then the code. Correctness first. The
 
 - **A claim that a change is inert because the output did not change.** Check that the changed thing was in the path at all. The 2026-09-22 Python pin was "proved inert" by a byte-identical rebuild that never ran the pinned interpreter. A control that passes on both arms proves nothing.
 - **`res/` data written by hand** instead of through a tool, or a whole file reformatted.
-- **A deliberate divergence from the base ROM that is not registered,** or registered too broadly. The registers are the `DIVERGED` entries in `verify_narcs.py`, `AUTHORED` in `import_base_rom.py`, and the bulk tools' skip lists.
+- **A deliberate divergence from the base ROM that is not registered,** or registered too broadly. The `oxide-session` skill lists the registers ("While working").
 - **A generated file that its generator no longer reproduces.** Rerun the generator and diff the result.
 - **A shared table that missed new entries,** such as the exclusion list Metronome, Assist, Sleep Talk and Copycat share. Also look for an enum value or range the engine has no branch for.
 - **Tool plumbing.** Summary text on stdout that another tool parses, and fail-open paths that hide a failure.
@@ -27,7 +27,7 @@ Commit messages carry numbers: counts, "0 disagree", "byte-identical", "N of N p
 
 ## 4. Run the gate
 
-Run `bash tools/oxide/integrate.sh --verify-only`. It builds with retries, checks the ROM's hash against GitHub's build of HEAD, and runs the full check-list without merging anything. A warning that GitHub has no run for HEAD means the range is not pushed yet.
+Until the replacement CPU is in, the guard refuses a local build: fetch GitHub's build of HEAD with `tools/oxide/fetch-rom HEAD` (HEAD must be pushed) and run `bash tools/oxide/integrate.sh --verify-only --rom <that ROM>`. A cloud session drops `--rom`, and the script builds with retries. It runs the full check-list without merging anything and checks the ROM's hash against GitHub's build of HEAD; a warning that GitHub has no run for HEAD means the range is not pushed yet, or, in a cloud session, that the VM has no `gh`.
 
 ## 5. Write it up
 
@@ -38,7 +38,7 @@ Write `docs/oxide/qa-review-<today>.md` and map it in `tools/oxide/sync-docs.sh`
 
 Then put a trace in the tracker, editing only the tracker:
 
-- One line under "Next steps" or "Waiting on Ian" points at the file.
+- One line under "Waiting on Ian", or under the element or backlog item the range belongs to, points at the file.
 - Each open finding goes under the element it belongs to.
 - A finding that corrects a durable fact also gets an entry in the design doc's findings log.
 

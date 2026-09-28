@@ -19,15 +19,11 @@
         },
         {
             "level": 7,
+            "species": "SPECIES_MAKUHITA"
+        },
+        {
+            "level": 7,
             "species": "SPECIES_NIDORAN_M"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_PURRLOIN"
-        },
-        {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 7,
@@ -35,7 +31,11 @@
         },
         {
             "level": 7,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_PURRLOIN"
+        },
+        {
+            "level": 7,
+            "species": "SPECIES_PURRLOIN"
         },
         {
             "level": 7,
@@ -43,7 +43,7 @@
         },
         {
             "level": 8,
-            "species": "SPECIES_MAKUHITA"
+            "species": "SPECIES_PURRLOIN"
         },
         {
             "level": 8,

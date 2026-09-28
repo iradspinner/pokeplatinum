@@ -24,10 +24,15 @@ and the reading.
    movement block in a generated script, found by breaking on the script
    commands.
 3. **Make sure the ROM Ian runs is the one your symbols come from.**
-   `live_watch.py` resolves names in `build/main.nef`, so a ROM from another
-   build puts every breakpoint in the wrong place. Build, check the ROM's
-   SHA-1 against GitHub's build of the same commit (CLAUDE.md, Build), and give
-   Ian the path and the hash. He loads that file.
+   `live_watch.py` resolves names in `build/main.nef` (or `--nef`), so a ROM
+   from another build puts every breakpoint in the wrong place. Build, check
+   the ROM's SHA-1 against GitHub's build of the same commit (CLAUDE.md,
+   Build), and give Ian the path and the hash. He loads that file. Until the
+   new CPU is in, `tools/oxide/fetch-rom` brings only the ROM, with no
+   `main.nef`, and the guard refuses a local build unless Ian has asked for
+   one (`OXIDE_LOCAL_BUILD_OK=1`). Without his say-so, bisect GitHub builds
+   with him instead, as the new-game hang was found (findings log,
+   2026-09-27).
 4. Pick the breakpoints and work out what each will cost Ian. Warn him before
    arming one that an ordinary action trips (talking to any NPC, opening a
    menu, every frame of a wait), and say how to get past it.
@@ -79,8 +84,8 @@ Struct offsets are quickest offline, with no emulator at all:
 
 ## When the cause is found
 
-- Fix it on `oxide` as its own commit. Say in the message what the cause was
-  and how the stub showed it.
+- Fix it as its own commit on your branch, for the Overseer to land. Say in
+  the message what the cause was and how the stub showed it.
 - Ask Ian to confirm the fix in melonDS, on a ROM whose hash you gave him.
   Until he confirms, the bug entry stays open with "fixed, awaiting Ian".
 - Record the cause in the design doc's findings log when it teaches something
