@@ -155,7 +155,10 @@ def main():
     results.append(("the save's progress: money and badges from the trainer, the level-cap "
                     "split from its variable (after the party and the bag), with the engine's cap",
                     pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
-                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC,
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC
+                    # the split names are the simulator's, so it can resume there
+                    and S._vars_layout()["splits"][7] == "HQ"
+                    and S._vars_layout()["splits"][12] == "Post",
                     f"{pr['badges']} badges, {pr['split']}"))
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
