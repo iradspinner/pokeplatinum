@@ -469,7 +469,8 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuAbilities, 14
     AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
-    AddListMenuEntry TestKit_Text_MenuItems, 17
+    AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
+    AddListMenuEntry TestKit_Text_MenuItems, 18
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -489,7 +490,8 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 14, TestKit_Abilities
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
-    GoToIfEq VAR_0x8004, 17, TestKit_Items
+    GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
+    GoToIfEq VAR_0x8004, 18, TestKit_Items
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -590,6 +592,25 @@ TestKit_WildGlameow:
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_GLAMEOW, 1
+    GoTo TestKit_AfterBattle
+
+/* Four new species in turn, to see them seated on the field: Wooloo,
+   Rookidee and Fletchling stand on their shadows, and Sinistea hovers just
+   above its own. Lv. 5, so any lead can run. */
+TestKit_SpriteHeights:
+    Message TestKit_Text_SpriteHeights
+    WaitButton
+    CloseMessage
+    StartWildBattle SPECIES_WOOLOO, 5
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
+    StartWildBattle SPECIES_SINISTEA, 5
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
+    StartWildBattle SPECIES_ROOKIDEE, 5
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, TestKit_LostBattle
+    StartWildBattle SPECIES_FLETCHLING, 5
     GoTo TestKit_AfterBattle
 
 TestKit_AfterBattle:
@@ -3744,6 +3765,7 @@ TestKit_LevelCaps:
     AddListMenuEntry TestKit_Text_MenuCapHQ, LEVEL_CAP_SPLIT_HQ
     AddListMenuEntry TestKit_Text_MenuCapGalactic, LEVEL_CAP_SPLIT_GALACTIC
     AddListMenuEntry TestKit_Text_MenuCapVolkner, LEVEL_CAP_SPLIT_VOLKNER
+    AddListMenuEntry TestKit_Text_MenuCapBarry, LEVEL_CAP_SPLIT_BARRY
     AddListMenuEntry TestKit_Text_MenuCapLeague, LEVEL_CAP_SPLIT_LEAGUE
     AddListMenuEntry TestKit_Text_MenuCapNone, LEVEL_CAP_SPLIT_NONE
     ShowListMenu

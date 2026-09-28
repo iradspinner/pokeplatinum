@@ -1,4 +1,4 @@
-"""Headless entry points for the encounter tool.
+"""Headless entry points for the OxiDex, the encounter tool.
 
     python3 -m tools.oxide.encounters.cli roundtrip
     python3 -m tools.oxide.encounters.cli areas   [--ref main] [--json]
@@ -213,7 +213,8 @@ def cmd_report(args):
     print(f"                 rarest-species median "
           f"{g['uplift_median']:.2f}x, survives on "
           f"{g['uplift_working_frac']:.0%}")
-    print(f"  arc            early {g['hhi_early']:.3f} ({g['n_early']})   "
+    # Median HHI by band; Ian's rule wants early the lowest (the most random).
+    print(f"  bands (HHI)    early {g['hhi_early']:.3f} ({g['n_early']})   "
           f"mid {g['hhi_mid']:.3f} ({g['n_mid']})   "
           f"late {g['hhi_late']:.3f} ({g['n_late']})")
     print(f"  ladder         "
@@ -734,6 +735,80 @@ def cmd_evolve(args):
     return 0
 
 
+def cmd_save(args):
+    """Reads a save file, read-only, and prints its trainer, party and boxes
+    and what it says about the build that wrote it (savefile.py). Exits 2 when
+    the save does not match this build, so a script can tell."""
+    import os
+    from . import savefile
+    try:
+        s = savefile.read(os.path.expanduser(args.path))
+    except (OSError, savefile.SaveError) as e:
+        print(e, file=sys.stderr)
+        return 1
+    if args.json:
+        s = dict(s, footers=[f for f in s["footers"]])
+        print(json.dumps(s, indent=1, default=str))
+        return 2 if s["era"]["mismatches"] else 0
+    print(f"{s['path']}: {s['size']} bytes")
+    for block, b in sorted(s["blocks"].items()):
+        label = "normal" if block == savefile.BLOCK_NORMAL else "boxes"
+        print(f"  {label} block: the {b['copy']} copy at {b['start']:#07x}, {b['size']:#x} bytes, "
+              f"save {b['save_counter']}, block counter {b['block_counter']}")
+    for sign in s["era"]["signs"]:
+        print(f"  build: {sign}")
+    print(f"  trainer id {s['trainer_id']}, secret id {s['secret_id']}")
+    pr = s["progress"]
+    split = pr["split"] or {}
+    print(f"  {pr['badges']} badge{'s' if pr['badges'] != 1 else ''}, {pr['money']} money"
+          + (f", in {split['name']}'s split (level cap {split['cap']})" if split.get("name") else ""))
+    print(f"party, {len(s['party'])}:")
+    for mon in s["party"]:
+        print("  " + savefile.describe(mon))
+    print(f"boxes, {len(s['boxes'])} Pokemon in {s['box_count']}:")
+    for mon in s["boxes"]:
+        print("  " + savefile.describe(mon))
+    if s["era"]["mismatches"]:
+        print("does not match this build:")
+        for m in s["era"]["mismatches"]:
+            print(f"  {m}")
+        return 2
+    print("nothing in it contradicts this build")
+    return 0
+
+
+def cmd_battlelog(args):
+    """Reads the battle log in a save file, read-only (battlelog.py), and
+    prints its battles newest first. Exits 2 when the log is there but cannot
+    be read (both copies fail, or a version this reader does not know); a save
+    from before the log has an empty one, which is not an error."""
+    import os
+    from . import battlelog, savefile
+    path = os.path.expanduser(args.path)
+    try:
+        with open(path, "rb") as f:
+            data = f.read()
+        save = savefile.parse(data, path)
+    except (OSError, savefile.SaveError) as e:
+        print(e, file=sys.stderr)
+        return 1
+    log = battlelog.read(data, save)
+    if args.json or args.calc:
+        out = battlelog.calc_payload(log, save) if args.calc else log
+        print(json.dumps(out, indent=1, ensure_ascii=False))
+        return 0 if log["state"] in ("ok", "empty") else 2
+    if log["state"] != "ok":
+        print(f"{path}: {log['reason']}")
+        return 0 if log["state"] == "empty" else 2
+    c = log["copy"]
+    print(f"{path}: {c['count']} of {c['capacity']} battles, save {c['counter']}, "
+          f"the {'primary' if c['at'] == battlelog.SECTORS[0] else 'backup'} copy; newest first")
+    for rec in log["records"]:
+        for line in battlelog.describe(rec):
+            print("  " + line)
+    return 0
+
+
 def cmd_later(args):
     print(f"'{args.command}' arrives with a later milestone; see "
           f"docs/oxide/encounter-tool-build-plan.md", file=sys.stderr)
@@ -865,6 +940,19 @@ def main(argv=None):
     ev.add_argument("--apply", action="store_true",
                     help="write the sidecar and the plan (then run `apply`)")
     ev.set_defaults(func=cmd_evolve)
+
+    sv = sub.add_parser("save", help="read a save file (read-only): trainer, party, "
+                                     "boxes, and the build it came from")
+    sv.add_argument("path", help="the .sav, which is only ever read")
+    sv.add_argument("--json", action="store_true")
+    sv.set_defaults(func=cmd_save)
+    bl = sub.add_parser("battlelog", help="read the battle log in a save file (read-only): "
+                                          "the last 60 trainer battles and their knock-outs")
+    bl.add_argument("path", help="the .sav, which is only ever read")
+    bl.add_argument("--json", action="store_true", help="the log as the OxiDex serves it")
+    bl.add_argument("--calc", action="store_true",
+                    help="the calculator's Battle Log payload instead")
+    bl.set_defaults(func=cmd_battlelog)
 
     args = p.parse_args(argv)
     return args.func(args)

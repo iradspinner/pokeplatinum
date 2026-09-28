@@ -23,15 +23,15 @@
         },
         {
             "level": 30,
+            "species": "SPECIES_STUNKY"
+        },
+        {
+            "level": 30,
             "species": "SPECIES_CARNIVINE"
         },
         {
             "level": 30,
-            "species": "SPECIES_SKORUPI"
-        },
-        {
-            "level": 30,
-            "species": "SPECIES_STUNKY"
+            "species": "SPECIES_CARNIVINE"
         },
         {
             "level": 31,

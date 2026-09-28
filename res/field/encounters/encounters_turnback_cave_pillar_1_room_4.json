@@ -11,6 +11,10 @@
         },
         {
             "level": 16,
+            "species": "SPECIES_GOTHITA"
+        },
+        {
+            "level": 16,
             "species": "SPECIES_CARBINK"
         },
         {
@@ -22,32 +26,28 @@
             "species": "SPECIES_ONIX"
         },
         {
-            "level": 16,
+            "level": 17,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_NOSEPASS"
+        },
+        {
+            "level": 17,
             "species": "SPECIES_DHELMISE"
         },
         {
             "level": 17,
-            "species": "SPECIES_GOTHITA"
+            "species": "SPECIES_DHELMISE"
         },
         {
             "level": 17,
-            "species": "SPECIES_KLEFKI"
+            "species": "SPECIES_DHELMISE"
         },
         {
             "level": 17,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_NOSEPASS"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_NOSEPASS"
+            "species": "SPECIES_DHELMISE"
         }
     ],
     "swarms": [

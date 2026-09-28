@@ -68,7 +68,7 @@ read, so they are written here too. Each is a standing instruction.
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
-  browser, never a bare path (Ian, 2026-09-27): the encounter tool's viewer at
+  browser, never a bare path (Ian, 2026-09-27): the OxiDex's viewer at
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
   branch), or the GitHub page of the pushed branch. The `doc-links` skill has
   the forms.
@@ -79,3 +79,19 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
+- Until the new CPU is in, a local session runs at most three heavy jobs at
+  once across all sessions, each pinned to its own virtual CPU, with
+  turbo boost off and every result checked by a second run (Ian,
+  2026-09-27). Local builds stay on GitHub. A cloud session's VM is healthy
+  and is not bound by this.
+- A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
+  attempts, at a boss or anywhere. Every fight is scored and designed as a
+  first and only attempt; a boss's planned team comes from knowing the fight
+  in advance, never from an earlier loss.
+- Every Pokemon in the game should have an important niche at the point the
+  player has it, while it stays fine for some lines to be stronger than
+  others (Ian, 2026-09-28). Garchomp outvalues Furret, but only one of them
+  can carry Gardenia's split; Mamoswine outvalues Aggron late, yet Aggron is
+  one of the best physical walls. Ian's super-wanted lines sit marginally
+  above average, a personal bias. The encounter tool's tiers are availability
+  labels only, not intended power.

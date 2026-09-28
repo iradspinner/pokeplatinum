@@ -1,8 +1,8 @@
 # The Expert flag, part one: dispatch and routines up to Sunny Day
 
-The Expert flag (bit 2, `AI_FLAG_EXPERT`) is the AI's move-by-move judgement. Basic has already thrown out moves that cannot work; Expert then nudges each remaining move up or down by a few points according to what that particular move is for. It looks up the move's battle effect, jumps to one routine written for that effect, and that routine reads the situation (HP, speed order, stat stages, statuses, the foe's last move) and adds or subtracts a small amount, often with a random roll. A move whose effect has no routine gets nothing from Expert. Expert now runs for 559 of Oxide's 747 trainers, so these routines are most of the game's AI personality.
+The Expert flag (bit 2, `AI_FLAG_EXPERT`) is the AI's move-by-move judgement. Basic has already thrown out moves that cannot work; Expert then nudges each remaining move up or down by a few points according to what that particular move is for. It looks up the move's battle effect, jumps to one routine written for that effect, and that routine reads the situation (HP, speed order, stat stages, statuses, the foe's last move) and adds or subtracts a small amount, often with a random roll. A move whose effect has no routine gets nothing from Expert. Expert now runs for 560 of Oxide's 747 trainers (2026-09-27), so these routines are most of the game's AI personality.
 
-This file covers `src/battle/trainer_ai/script.s` lines 1623 to 3802: the dispatcher `Expert_Main` and the 64 routines from `Expert_StatusSleep` to `Expert_SunnyDay`. `expert-2.md` covers lines 3803 to 6352. `script.s` is byte-identical to vanilla `main`, so every script line number here is also the vanilla line. The C line numbers are from `src/battle/trainer_ai/trainer_ai.c` in this tree, whose only change from vanilla is two lines in `AI_HasAbsorbAbilityInParty` (3645 to 3646), outside anything used here.
+This file covers `src/battle/trainer_ai/script.s` lines 1623 to 3802: the dispatcher `Expert_Main` and the 64 routines from `Expert_StatusSleep` to `Expert_SunnyDay`. `expert-2.md` covers lines 3803 to 6352. It was read before element 6's fixes, when `script.s` was byte-identical to vanilla `main` and `trainer_ai.c` differed only in two lines outside anything used here, so every line number, script or C, is the vanilla line on `main`. What the fixes, the changes of play and the routing of the new moves have done since is in the README and in `expert-new-moves.md`; find a routine by its label, not its number.
 
 ## Reading the tables
 
@@ -125,7 +125,7 @@ The mapping for routines in this half. The last column is moves Oxide added to a
 
 Dispatch entries whose routines are in `expert-2.md` (routine line in brackets): Belly Drum 1712 (3803); Psych Up 1713 (3814); Mirror Coat 1714 (3852); the non-invulnerable charge moves 1657, 1682, 1715, 1716 (ChargeTurnNoInvuln, 3933: Razor Wind, Sky Attack, Skull Bash, Solar Beam, plus Oxide's Solar Blade); the dead Thunder entry 1719 (3975); Fly, Dive, Dig, Bounce 1721, 1797, 1798, 1803 (3992); Shadow Force 1808 (4014, plus Oxide's Phantom Force); the recoil moves 1661, 1747, 1796, 1802, 1806 (RecoilMove, 6289); Healing Wish and Lunar Dance 1764, 1807 (6307); and one entry each at lines 1723, 1724, 1726, 1729 to 1746, 1749, 1750, 1755, 1757, 1759 to 1795, 1799 to 1801, 1804 and 1805, for Fake Out through Stealth Rock.
 
-Vanilla move effects with no Expert entry at all, so Expert leaves them alone: every plain damaging effect and every "chance of X on hit" effect (burn, freeze, paralysis, poison, flinch, confusion and stat-drop on hit), multi-hit and fixed-damage moves, priority moves, and these status or special moves: Mist, Focus Energy, Transform, Mimic, Metronome, Splash, Conversion 2, Sketch, Spite, Nightmare, Perish Song, Sandstorm, Rollout and Ice Ball, Fury Cutter, Attract, Safeguard, Rapid Spin, Hidden Power, Future Sight and Doom Desire, Teleport, Beat Up, Defense Curl, Uproar, Stockpile, Torment, Will-O-Wisp, Follow Me, Nature Power, Charge, Taunt, Helping Hand, Wish, Assist, Yawn, Grudge, Teeter Dance, Weather Ball, Camouflage, Natural Gift, Whirlpool, Chatter, Judgment, Seed Flare, Charge Beam, Thunder (see the bug) and the three elemental fangs.
+Which of Platinum's moves have no Expert entry, and what else scores them, is in [expert-gaps.md](expert-gaps.md), checked against the tree. Thunder (bug 1, fixed) and Rapid Spin (routed on 2026-09-27) have entries today.
 
 ## The routines
 
@@ -334,7 +334,7 @@ Speed stages are never looked at, on either side.
 
 ### Healing
 
-**Synthesis (2628 to 2638).** Synthesis, Morning Sun, Moonlight (and Oxide's Shore Up). Hail, rain or sandstorm: -2 (2631 to 2638). Then it runs the Recovery routine below. Fog is not checked.
+**Synthesis (2628 to 2638).** Synthesis, Morning Sun, Moonlight. Oxide's Shore Up shares the effect but is sent straight to Recovery (last section). Hail, rain or sandstorm: -2 (2631 to 2638). Then it runs the Recovery routine below. Fog is not checked.
 
 **Recovery (2640 to 2678).** Recover, Softboiled, Milk Drink, Slack Off, Heal Order, Roost, Swallow, and the Synthesis group.
 
@@ -684,13 +684,13 @@ Fixed on 2026-09-22 in other parts: the Oxide ability byte (see `basic.md` B11).
 
 Changed on 2026-09-27 (`cloud/element6-changes`; the README has each rule): `Expert_Main` now sends most of element 4's new effects to routines in this half. The setup moves go to the Attack, Defense, Sp. Def and Speed raises and to Dragon Dance's routine; Strength Sap and Life Dew to the recovery routine; the new draining attacks to Giga Drain's; Hurricane to Thunder's; the always-critical attacks to the high critical routine; Sticky Web to Spikes's; Freeze Shock and Ice Burn to the charge-turn routine; and the six new Speed-lowering attacks join Icy Wind's list. Rapid Spin goes to `Expert_RapidSpin` (in `expert-2.md`'s note), which values what it clears before the Speed raise. The Protect routine's run now counts the new Protect moves, through the engine's own test. None of these routines changed its own scoring, so the tables above still hold for what they describe.
 
-Every entry is present in vanilla Platinum: `script.s` is identical to `main`, so the vanilla line is the same number, and the C commands involved are unchanged from `main`. None is introduced by Oxide in this half (Oxide's own problems are in the last section). Fixing any of them changes vanilla behaviour and is Ian's call. Where an entry says a bug is inherited from Gen 3, that is from memory of pokeemerald's AI script and was not re-checked for this file.
+Every entry is present in vanilla Platinum, at the line given on `main`. None is introduced by Oxide in this half (Oxide's own problems are in the last section). Fixing any that still stands changes vanilla behaviour and is Ian's call. Where an entry says a bug is inherited from Gen 3, that is from memory of pokeemerald's AI script and was not re-checked for this file.
 
-1. **Thunder never reaches its routine.** Present in vanilla, line 1719. The test reads `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN`, the same effect as line 1716, which is tested first and sends Solar Beam to the charge-turn routine. So line 1719 can never fire, `Expert_Thunder` (3975) is unreachable, and Thunder (`BATTLE_EFFECT_THUNDER`, id 152, which has no other entry) gets nothing from Expert. The source comment at 1718 says the same. This is a battle_edits fix, below.
+1. **Thunder never reaches its routine.** Present in vanilla, line 1719. The test reads `BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN`, the same effect as line 1716, which is tested first and sends Solar Beam to the charge-turn routine. So line 1719 can never fire, `Expert_Thunder` (3975) is unreachable, and Thunder (`BATTLE_EFFECT_THUNDER`, id 152, which has no other entry) gets nothing from Expert. The source comment at 1718 says the same. Fixed (battle_edits, README): the line now tests Thunder's own effect.
 
-2. **Foresight checks the user's type instead of the foe's.** Present in vanilla, lines 3615 to 3618. `LoadTypeFrom LOAD_ATTACKER_TYPE_1` and `_2` read the AI's own Pokemon. Foresight is for hitting a Ghost-type foe with Normal and Fighting moves, and the rest of the routine is about the foe (its evasion). The source comment at 3610 agrees. A battle_edits fix, below.
+2. **Foresight checks the user's type instead of the foe's.** Present in vanilla, lines 3615 to 3618. `LoadTypeFrom LOAD_ATTACKER_TYPE_1` and `_2` read the AI's own Pokemon. Foresight is for hitting a Ghost-type foe with Normal and Fighting moves, and the rest of the routine is about the foe (its evasion). The source comment at 3610 agrees. Fixed (battle_edits, README).
 
-3. **Leaf Guard rewards Sunny Day when the user already has a status.** Present in vanilla, line 3790. Leaf Guard only prevents new statuses in sun; it does nothing for one the user already has. The check should be for no status. The source comment at 3780 agrees. A battle_edits fix, below.
+3. **Leaf Guard rewards Sunny Day when the user already has a status.** Present in vanilla, line 3790. Leaf Guard only prevents new statuses in sun; it does nothing for one the user already has. The check should be for no status. The source comment at 3780 agrees. Fixed (battle_edits, README).
 
 4. **A faster user never heals with Recover-type moves.** Present in vanilla, lines 2650 to 2657. When the user is not slower, line 2651 subtracts 8 and ends. The block right after it, `Expert_Recovery_Unused` (2654 to 2657), is referenced by nothing and so can never run, yet it is written exactly as a "faster user" branch: heal below 50% HP, refuse above 80%, and a 72.7% roll between. Rest (2758 to 2770) has such a branch and uses it. The shape strongly suggests the -8 was meant to be a jump into that block. The effect is large: with Expert set, a Recover, Roost, Slack Off, Softboiled, Milk Drink, Heal Order, Swallow or Synthesis user that outspeeds its foe loses 8 points on the healing move whatever its HP, so it almost never picks it over a usable attack. This is not on the battle_edits list, so a fix would be a behaviour change. The same shape is in Gen 3's script, so it is inherited.
 
@@ -710,55 +710,26 @@ No score in this half can pass 127 on its own: the largest gain any routine give
 
 ## The eleven battle_edits fixes
 
-Three fall in this half, and a fourth has its dispatch line here.
-
-**Thunder scoring fix.** Line 1719 should test `BATTLE_EFFECT_THUNDER`. The routine it would then reach (3975 to 3991, in `expert-2.md`) gives Thunder -3 with 80.5% chance when the foe resists it or the sun is out, and +1 in rain. Today Thunder gets 0 from Expert in every case. Solar Beam is unaffected, since line 1716 already catches it.
-
-**Foresight and Odor Sleuth Ghost check.** Lines 3615 and 3617 should load `LOAD_DEFENDER_TYPE_1` and `LOAD_DEFENDER_TYPE_2`. Score change: against a Ghost-type foe (evasion below +3), the move goes from a certain -2 to a 47.3% chance of +2. A Ghost-type AI Pokemon using Foresight against a non-Ghost foe goes from a 47.3% chance of +2 to a certain -2, unless the foe's evasion is +3 or higher. The double roll for the Ghost case (two 68.75% rolls against one for high evasion) stays as it is.
-
-**Leaf Guard Sunny Day logic.** Line 3790 should be `IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1`. A Leaf Guard user without a status then gets +1 for Sunny Day (it gets 0 today), and one with a status gets 0 (it gets +1 today). Basic's own Sunny Day check (lines 802 to 822) is separate.
-
-**Charge-turn scoring fix.** The dispatch lines 1657, 1682, 1715 and 1716 are correct; whatever the fix changes is in `Expert_ChargeTurnNoInvuln` (3933), in `expert-2.md`.
-
-Not in this half: Fire Fang against Wonder Guard, the Rage glitch, the Dry Skin water-immunity check (Basic, line 78), the Sunny Day check (most likely Basic's Hydration check at lines 812 to 814), the Facade status check (line 4122), the Water Spout and Eruption HP check (line 4617), and the Discharge double-battle scoring (Tag Strategy, lines 7221 and 7235).
+Three fall in this half, Thunder's dispatch line, Foresight and Odor Sleuth's Ghost check and Leaf Guard's Sunny Day logic (bugs 1 to 3), and all three are applied. The README's battle_edits table says what each changes in play, and each is marked "Oxide, vanilla fix (battle_edits guide...)" in `script.s`.
 
 ## Oxide consequences
 
-**New effects get nothing.** None of the effects 277 to 406 has a dispatch entry, so the 136 moves on them get no Expert scoring at all. Several are close relatives of routines in this half and would naturally share them:
+**New effects.** At the write-up none of the effects past 276 had a dispatch entry. Since 2026-09-27 the changes of play (README) and the routing of the learnable new moves ([expert-new-moves.md](expert-new-moves.md), which names each move's routine) send them to the routines of their nearest Platinum effects, most of them in this half. The effects of moves no species learns stay unrouted, apart from Circle Throw's, which it shares with Dragon Tail.
 
-| Oxide effect (id) | Moves | Natural routine here |
-|---|---|---|
-| ATK_ACC_UP (277), ATK_SP_ATK_UP (295) | Hone Claws, Work Up | StatusAttackUp |
-| ATK_DEF_ACC_UP (286), DEF_UP_3 (328) | Coil, Cotton Guard | StatusDefenseUp |
-| SP_ATK_SP_DEF_SPEED_UP (283) | Quiver Dance | StatusSpAttackUp or SpDefenseUp |
-| RECOVER_THREE_QUARTERS_DAMAGE_DEALT (347), RECOVER_FULL_DAMAGE_DEALT (315), RECOVER_HALF_DAMAGE_DEALT_BURN_HIT (348) | Draining Kiss, Oblivion Wing, Bouncy Bubble, Matcha Gotcha | DrainMove |
-| PREVENT_ESCAPE_HIT (351), PREVENT_ESCAPE_BOTH_HIT (352) | Anchor Shot, Spirit Shackle, Thousand Waves, Jaw Lock | BindingMove |
-| ALWAYS_CRITICAL (282), HIGH_CRITICAL_RAISE_SPEED_HIT (368), HIT_THREE_TIMES_ALWAYS_CRITICAL (366) | Flower Trick, Frost Breath, Storm Throw, Wicked Blow, Esper Wing, Surging Strikes | HighCritical |
-| FORCE_SWITCH_HIT (395) | Circle Throw, Dragon Tail | ForceSwitch |
-| RESET_STAT_CHANGES_HIT (313), CLEAR_SMOG (390) | Freezy Frost, Clear Smog | Haze |
-| CURE_PARTY_STATUS_HIT (314) | Sparkly Swirl | HealBell |
-| STRENGTH_SAP (378), LIFE_DEW (383) | Strength Sap, Life Dew | Recovery |
-| SET_AURORA_VEIL (377) | Aurora Veil | Reflect or LightScreen |
-| STICKY_WEB (326), SET_SPIKES_HIT (354), STEALTH_ROCK_HIT (353) | Sticky Web, Ceaseless Edge, Stone Axe | Spikes |
-| TEARFUL_LOOK (362), PARTING_SHOT (389) | Noble Roar, Tearful Look, Parting Shot | StatusAttackDown |
-| PROTECT_USER_SIDE (371) | Wide Guard, Quick Guard, Mat Block, Crafty Shield | Protect |
-| SHED_TAIL (304) | Shed Tail | Substitute or BatonPass |
-| FINAL_GAMBIT (402) | Final Gambit | Explosion |
+**New moves on old effects inherit the routine**, listed in the dispatch table. Most inherit sensibly. Three did not at the write-up:
 
-**New moves on old effects inherit the routine**, listed in the dispatch table. Most inherit sensibly. Three do not:
+1. The seven new Protect moves (King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark, Max Guard) reach `Expert_Protect`, whose `LoadProtectChain` recognised only Protect, Detect and Endure by move id. Fixed on 2026-09-27: the engine and `LoadProtectChain` now share one test, `Move_KeepsProtectRun`, so a repeated King's Shield is penalised as a repeated Protect is.
+2. The new Speed-lowering attacks reach `Expert_SpeedDownOnHit`, which scores only the moves it names. Since 2026-09-27 it names Bulldoze, Electroweb, Low Sweep, Glaciate, Drum Beating and Pounce beside Icy Wind, Rock Tomb and Mud Shot; Max Strike, Bubble, Bubble Beam and Constrict still get nothing.
+3. Confide and Eerie Impulse make `Expert_StatusSpAttackDown` live for the first time, including the "no move yet reads as physical" penalty (bug 6), which vanilla never exercised. This still stands.
 
-1. The seven new Protect moves (King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark, Max Guard) reach `Expert_Protect`, but `LoadProtectChain` (C lines 2545 to 2547) recognises only Protect, Detect and Endure by move id. After a King's Shield the chain reads 0, so lines 3546 and 3575 to 3579 never penalise using it again, and the AI will try to repeat it as if it had never protected.
-2. The seven new Speed-lowering attacks (Bulldoze, Electroweb, Low Sweep, Glaciate, Drum Beating, Pounce, Max Strike) reach `Expert_SpeedDownOnHit`, which only scores Icy Wind, Rock Tomb and Mud Shot by move id (2345 to 2347), so they get nothing. Bubble and Bubble Beam were already treated that way in vanilla.
-3. Confide and Eerie Impulse make `Expert_StatusSpAttackDown` live for the first time, including the "no move yet reads as physical" penalty (bug 6), which vanilla never exercised.
+Shore Up shares Synthesis's effect, and so at the write-up it was scored as Synthesis and penalised in a sandstorm. Since 2026-09-27 `Expert_Synthesis` sends it to `Expert_Recovery` by move id, since the engine heals it by its own rule, half or two thirds in a sandstorm.
 
-Shore Up reaches the Synthesis routine and is penalised in sandstorm. That matches what Oxide's engine does with it today (it uses the sun-boosted healing effect and has no sand code), so the AI and the engine agree; if Shore Up is later given its real sand bonus, line 2634 will be backwards for it.
+**Checks keyed on move ids.** These name vanilla moves and will not see Oxide's equivalents: the Mirror Move table (1928 to 1976), Psych Up in Swagger (2852), Focus Punch in Substitute (2994), Mirror Coat in Counter (3125), Gyro Ball and Trick Room in Curse (3472 to 3473), Feint and Shadow Force in Protect (3536 to 3537, so Phantom Force, Hyperspace Hole and Hyperspace Fury are not feared), Roar and Whirlwind in Spikes (3597 to 3598, so Dragon Tail and Circle Throw are not seen), and U-turn in Pursuit (3730, so Volt Switch, Flip Turn and Parting Shot are not seen). These still stand (2026-09-27); the Speed-lowering list at 2345 to 2347 is extended, as above. Vanilla move ids are unchanged in Oxide (the new moves are appended from 468), so every existing check still names the right move.
 
-**Checks keyed on move ids.** These name vanilla moves and will not see Oxide's equivalents: the Mirror Move table (1928 to 1976), Psych Up in Swagger (2852), Focus Punch in Substitute (2994), Mirror Coat in Counter (3125), Gyro Ball and Trick Room in Curse (3472 to 3473), Feint and Shadow Force in Protect (3536 to 3537, so Phantom Force, Hyperspace Hole and Hyperspace Fury are not feared), Roar and Whirlwind in Spikes (3597 to 3598, so Dragon Tail and Circle Throw are not seen), U-turn in Pursuit (3730, so Volt Switch, Flip Turn and Parting Shot are not seen), and Icy Wind, Rock Tomb, Mud Shot (2345 to 2347). Vanilla move ids are unchanged in Oxide (the new moves are appended from 468), so every existing check still names the right move.
-
-**Checks keyed on effect ids.** Besides the dispatch, the Encore list (3202 to 3285), the Substitute effect checks (3017 to 3023), the Snatch checks in Recovery and Rest (2670, 2782), the Toxic and Leech Seed checks for SP_DEF_UP and PROTECT (2699 to 2700), and the Protect checks for RESTORE_HALF_HP and Defense Curl (3553 to 3554). Oxide's new status effects are absent from all of them; in particular Encore scores -2 against a foe whose last move was any Oxide-only status move.
+**Checks keyed on effect ids.** Besides the dispatch, the Encore list (3202 to 3285), the Substitute effect checks (3017 to 3023), the Snatch checks in Recovery and Rest (2670, 2782), the Toxic and Leech Seed checks for SP_DEF_UP and PROTECT (2699 to 2700), and the Protect checks for RESTORE_HALF_HP and Defense Curl (3553 to 3554). Oxide's new status effects are absent from all of them (checked 2026-09-27); in particular Encore scores -2 against a foe whose last move was any Oxide-only status move.
 
 **Abilities.** This half reads only the user's own ability, through `LoadBattlerAbility` on the attacker, which returns `battleMons[].ability` directly. That field is u16 in Oxide and the script's values are 32-bit words, so the comparisons hold for any id. The abilities named are all vanilla and below 256: Truant (3056), Swift Swim (3749), Rain Dish (3758), Hydration (3759), Flower Gift (3788), Leaf Guard (3789). New abilities that bear on these moves are not considered: Sand Rush and Slush Rush would not change anything here, but for Sunny Day, Chlorophyll and Solar Power (vanilla omissions) and Harvest, Protosynthesis and Orichalcum Pulse (Oxide) are ignored, and for Rain Dance so are Dry Skin (a vanilla omission) and Steam Engine.
 
-One Oxide change outside this half affects every routine that reads the foe's ability: `battlerAbilities` in `include/battle/ai_context.h` line 28 is still `u8`, while `BattleAI_SetAbility` (`battle_script.c` line 12176) now takes a u16 and stores it there. Any revealed foe ability with an id above 255 is truncated to the wrong ability. This is introduced by Oxide (on `main` both are u8). Nothing in this half reads a foe's ability, so it does not change the tables above, but Basic and `expert-2.md` do.
+One Oxide fault outside this half, `battlerAbilities` in `include/battle/ai_context.h` left at `u8` when abilities went past 255, was fixed on 2026-09-22 (`basic.md` B11); nothing in this half reads a foe's ability in any case.
 
 **Types.** Type 18 (Fairy) appears in none of this half's type lists. Counter's physical-types list (3165 to 3175) therefore treats every Fairy foe as "not physical", so Counter can get its 49% +4 against one; Mirror Coat's special list (`expert-2.md`) does the same. The six unused pre-split tables do not matter. Type checks by name (Ghost in Curse and Foresight, Ghost and Psychic in Pursuit) are unaffected. `LoadTypeFrom` reads only the two type slots, so a third type added by Oxide's Forest's Curse or Trick-or-Treat (if the engine stores one) is invisible to Curse, Foresight and Pursuit. Oxide retyped Charm, Moonlight and Sweet Kiss to Fairy; none of their routines looks at the move's type, so their scoring is unchanged. Type effectiveness itself comes from the engine's chart, so Fairy matchups count wherever `IfMoveEffectivenessEquals` is used, provided the chart has them.

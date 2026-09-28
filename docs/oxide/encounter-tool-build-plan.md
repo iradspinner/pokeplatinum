@@ -786,6 +786,19 @@ that stay. None blocks anything.
    page loads the tool's theme. Done on `encounter-doc-viewer`
    (41c179ece, from `sinistea-split`); `test_docview` 16/16, and all 84
    documents render.
+30. **The Barry split (Ian, 2026-09-27, through the Overseer).** After
+   Volkner the engine caps levels at 71 for every fight up to the Elite
+   Four, and at 78 inside it. The split table gains Barry between Volkner
+   and the League, cap 71, and the six tables reached after Volkner move
+   into it: Sendoff Spring, Route 223, Victory Road's 1F, 2F and B1F, and
+   the Pokemon League's water. The League keeps its cap of 78 and holds no
+   table, since the Elite Four has none. Their levels keep vanilla's curve,
+   which tops out at 60 (Sendoff Spring's Super Rod), under the new cap, so
+   no level changes; `cli evolve` owes no move, the availability gate is as
+   it was (no line without a source, the same eleven cap candidates), and
+   `availability.md` only renames the split. It lands on `barry-split` after
+   the main production agent's engine change; the Balance Agent updates
+   `fights.json` and rescores last.
 20. **Weather abilities flagged (Ian, 2026-09-26, staples survey).** A
    standing rule: the player never sets, changes or ends weather, so no
    obtainable Pokemon may have Drizzle, Drought, Sand Stream, Snow Warning,
@@ -834,6 +847,240 @@ that stay. None blocks anything.
    `ian-saves` like a track branch, after the Balance Agent rescores what a
    trainer edit stales. `saves.py` holds it and `test_saves` checks it in a
    throwaway repository.
+32. **Honey trees in the gate, and ten cap candidates (2026-09-27).** The
+   availability gate counted no honey tree as a capture, so Munchlax, whose
+   trees read the one-badge table from Gardenia's split, showed as first
+   caught in Wake's and sat among eleven cap candidates. The gate now counts
+   each tree on the table its map stands on, reading the honey table for the
+   badges held then, and no earlier than Gardenia's split, when Honey is
+   first sold in Floaroma (the rule the box simulator already used, now
+   `scripted.HONEY_FROM` for both). Munchlax and Heracross now read as first
+   caught in Gardenia's split, and ten cap candidates remain. The authoring
+   pass ended with none, so these crept in with later table changes; each
+   needs a table change, which goes to Ian as a proposal first. Suites:
+   step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim 11/11.
+33. **The Trainers tab, second pass (through the Overseer, 2026-09-27).** The
+   trainer list sorts by score, hardest first, with play order a click away,
+   and each row shows its stored score. The score is the balance plan's
+   stored one, read without scoring anything: a story fight's from
+   `pressure.json` (Hesperid's two from `calibrate.json`), shared by every
+   variant of the fight, and an ordinary trainer's from `b6.json`, each put
+   on Ian's fight scale by the plan's line. `trainers.stored_scores` is the
+   one function to repoint when the Balance Agent's rebuilt score lands.
+   Rematches, dummies and facility trainers have no stored score and follow
+   in play order, and a team saved since the last rescore shows its old
+   score. Both side panels fold to a strip, remembered in the browser. The
+   right panel keeps one width and shows one of two panes under a sticky head
+   holding Save, the live estimate and the pane tabs: a member's three move
+   lists, or the score and settings. Clicking into a member's move box opens
+   its lists there, beside it, and marks the member being edited; a move
+   clicked in the lists goes into the box last chosen, as before. Moves are
+   coloured by type, in the member's four boxes and in the lists, blended as
+   the type chips are. Suites: m4 51/51, m8 98/98, trainers 26/26 (a new
+   check holds the scores to the balance files' own), docview 16/16, saves
+   5/5, and a headless Chrome pass over the tab.
+34. **Saves in the tool (Ian approved steps 1 to 5 of the plan, 2026-09-27,
+   through the Overseer).** The Calc tab's save features, planned from a
+   read-only survey of the vendored calculator: its Sync talks to a patched
+   DeSmuME, so for melonDS the OxiDex reads Ian's `.sav` itself. Steps 1 and 2
+   are done. `savefile.py` reads a save, read-only: it finds each block by
+   its footer and takes the copy saved last, then decrypts the party and the
+   boxes with Oxide's two changes to a record (the u16 ability in block B, the
+   hidden-ability bit in block A). `cli save PATH` prints what it read and
+   the build it came from, from the block sizes (vanilla's until 2026-09-21,
+   Oxide's since the Pokedex grew), a move past vanilla's 467 (element 4) and
+   the hidden bit. It reports a mismatch (exit 2) for a record whose checksum
+   fails or an id past this build's tables. The calculator's own Read Save
+   reads Oxide saves too: the blob carries `includes`, Oxide's species,
+   moves, items, growth rates and abilities by id (`calc_export.save_includes`),
+   and two patches (VENDORED.md 14 and 15) install them and find the layout
+   by footer. Ian's save of 2026-09-21 is the first test: its working copy
+   is `~/roms/oxide-save-2026-09-21.sav`, beside the ROM it came from as
+   `~/roms/oxide-2026-09-21.nds`, both read-only and outside the repository,
+   which is public. Both readers give a Chimchar at level 6 with Blaze,
+   Scratch and Leer, met on Route 201; the box block's only good copy is the
+   backup, which vanilla's fixed offsets would never have found. The id lists
+   of the build that wrote it (bb0c45993) are today's, less element 4's new
+   moves. `test_savefile` builds a save byte by byte and checks both readers,
+   plus Ian's copy where it exists. A second save, a new game on the local
+   build of 2026-09-22, reads on the same layout.
+
+   Step 3, the Sync bridge, is done (`savewatch.py`). The Calc tab has a save
+   bar: the path of the `.sav` melonDS writes, as Windows or WSL names it,
+   kept in `~/.config/oxidex/settings.json` outside the repository. The
+   server watches that file with inotify on the Linux filesystem and by its
+   modification time every three seconds under `/mnt`, reads it once it has
+   stopped changing, keeps the last good save if a read fails, and never
+   writes it. `/api/save` gives its state and `/api/save/packed` the party
+   and boxes in the calculator's own packed format, which its Sync decodes
+   with the same reader as Read Save. Patch 16 points Sync there under the
+   Oxide title, and `js/oxide/save_sync.js` presses it when the OxiDex has
+   read a newer save, so a save made in game reaches the calculator's box
+   within a few seconds. Checked end to end in headless Chrome on a copy of
+   Ian's save: the box synced by itself, then followed when the file was
+   replaced.
+
+   Step 4 is done, on Ian's first save from a current ROM (53b863005, in his
+   room after the intro; working copy `~/roms/oxide-save-2026-09-27-53b863005.sav`).
+   Its layout is the 2026-09-21 one, so nothing saved has moved since. The
+   reader now also gives the trainer's money and badges and the level-cap
+   split, with the engine's own cap: the variables and flags sit after the
+   party and the bag, at 0xDAC in the normal block, which both of Ian's
+   saves confirm (his older one holds `VAR_PLAYER_STARTER` 390, Chimchar,
+   and the Pokedex flag). The save bar shows the split, and the calculator's
+   level cap, which its Box uses, follows the save's split cap whenever that
+   cap changes. Import/Export needed nothing: a team of Oxide-only names
+   (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
+   Toxic Debris) imports and exports unchanged. A Sync replaces the box with
+   what the save holds, as upstream's does, so a team typed in by hand goes
+   at the next save. Open: step 5, mints and Hyper Training when element 7
+   records them and 30 boxes after element 8; step 6, the battle log, waits
+   on Ian's choice of source.
+
+   **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
+   one per line, each in a table the gate dates to the line's cap split or
+   earlier. Every swap takes a slot of the same rate, so no table's shape or
+   top share moves, and every line that gives way keeps an earlier or equal
+   first capture elsewhere. The Barry split did not change the list.
+
+   | Line (final stage by, cap split) | Table and slot | Gives way |
+   |---|---|---|
+   | Luvdisc (Alomomola 30, Fantina) | Route 219, Old Rod 5% (Roark) | Wingull, 9 other places |
+   | Mantyke (Mantine 30, Fantina) | Valley Windworks, Old Rod 5% (Gardenia) | Remoraid, 16 other places |
+   | Totodile (Feraligatr 30, Fantina) | Route 208, Old Rod 5% (Fantina) | Barboach, 46 other places |
+   | Drifloon (Drifblim 28, Fantina) | Amity Square, night slot (Fantina) | Glameow's night slot; it keeps its 10% there |
+   | Smoochum (Jynx 30, Fantina) | Amity Square, day slot (Fantina) | Emolga's day slot; its first capture stays Valley Windworks |
+   | Hippopotas (Hippowdon 34, Maylene) | Wayward Cave B1F, 10% (Fantina) | Meditite's base 10%; it keeps its day slot there |
+   | Slowpoke (Slowbro 37, Maylene) | Route 209, Good Rod 4% (Maylene) | Surskit, 24 other places |
+   | Tangela (Tangrowth 35, Maylene) | Route 209, a 5% land slot (Maylene) | Steenee's 5%; the Bounsweet line has many earlier places |
+   | Goomy (Goodra 50, Byron) | Route 212 south, 1% land slot (Wake) | Frillish, 32 other places |
+   | Spheal (Walrein 44, Wake) | Route 213, Good Rod 1% (Wake) | Chinchou, 51 other places |
+
+   Ian's two answers: a line final at a split's cap counts as under it, so
+   Spheal moves, and Smoochum takes Emolga's day slot. One swap differs from
+   the proposal. Tangela was to take one of Smoliv's two 4% slots on Route
+   209, but R16 wants a table's top rung to hold three lines with one of them
+   on both 4%s, so it takes Steenee's 5% instead and Smoliv keeps its 8%.
+   Koffing's 5% beside it was not used, since Koffing is on Route 209 for its
+   own cap. The casts, the day and night pairs and the plan changed in the
+   sidecar; `cli apply` wrote ten values in eight tables and no level moved.
+   Checked, one suite at a time: `cli evolve` 0 moves; the gate clean with no
+   cap candidates; lint 0 errors; `audit --fail-on-leak` exit 0; the
+   importer's dry run 0 changes; m1 13/13, m2 23/23, m3 18/18, m5 15/15, m6
+   19/19, m8 98/98, step1 23/23, step2 18/18, step3 36/36, step5 23/23, sim
+   11/11, and step0 34/35, whose one failure compares the tables with this
+   checkout's build of 2026-09-22; the GitHub build of the pushed commit is
+   the check that counts. The swaps change the player's pool, so the Balance
+   Agent rescores what they stale before they land.
+35. **The Box sim follows the save (Ian's requests 1 to 3, 2026-09-27,
+   through the Overseer).** Every place's row has a drop list of what it can
+   give, plus "leave unused"; a pick locks the place and the run replays for
+   the best box around it (`run`'s `locks`, kept in the browser). "Start from
+   my save" reads the save the Sync bridge watches (`start_from_save`): each
+   Pokemon spends the place it was met, or its egg's source, matched to the
+   sim's places by name and, for Mt. Coronet's captures, by its tables; the
+   graveyard is the last box and, while that is full, the one before it
+   (Ian's rule); the Caught list's ticks count too, for an encounter that
+   left nothing in the save; and the run resumes in the save's level-cap
+   split, with places left behind still open. "How sure is it?" replays the
+   run 40 times from there (`confidence`) and gives, for the next ten places,
+   the call most replays make, how often, and its lead over the next best;
+   to the League it takes about two seconds. The save reader's split names
+   are now the simulator's ("HQ", "Post"). Checked in headless Chrome on a
+   copy of Ian's save of 2026-09-27 (Scorbunny, Starly, Bidoof, Sentret,
+   Dottler, Nidoran): six places spent, the run resumed in Roark's split.
+   Suites: sim 15/15 (four new checks), savefile 13/13, savewatch 8/8, m8
+   98/98, m4 51/51. Request 4 (the Fragsheet and the automatic battle log)
+   waits on the main track's save-log layout.
+
+36. **The battle log reader (Ian's request 4, 2026-09-28, through the
+   Overseer).** The main track is putting a log of the last 60 trainer
+   battles in the save (`docs/oxide/battle-log.md`). The reader was written
+   against that layout before the engine side exists, and two changes to the
+   layout came from it: each opponent's level is recorded, and an egg is
+   recorded as a fixed value rather than the Egg's species id, which moves
+   whenever a species is added. `battlelog.py` reads the newer valid copy
+   of the log, names each battle's trainers, both sides' Pokemon and levels,
+   the split, and who knocked out whom. It also matches each of the
+   player's Pokemon to one in the save by its personality byte and its
+   evolution line, so a logged Chimchar counts for the Monferno it became.
+   The OxiDex serves the log at `/api/save/battlelog`, and `cli battlelog
+   PATH` prints it. The calculator's Battle Log takes it as a save-file log
+   after each new save (VENDORED.md patch 18), with Oxide's thirteen splits as
+   its tabs and battle counts for the Fragsheet. The save reader now sets
+   the log's footers aside. Tested on saves built byte by byte (test_battlelog
+   22/22, savefile 14/14, savewatch 8/8, each run twice); Ian's saves predate
+   the log and read as empty. The Fragsheet had used vanilla Platinum's
+   nine gym splits and caps for Oxide, because it matched the title
+   "Platinum Oxide" to "Platinum". Ian's answer (2026-09-28) was to widen it
+   to all thirteen splits, with Oxide's names and caps, matching the Battle
+   Log (VENDORED.md patch 19). The calculator's blob now carries the splits.
+   The Fragsheet has thirteen tabs and columns, and its stats view moved
+   past them. Checked in headless Chrome on a save with a synthetic log: the
+   Battle Log shows each battle under its split, and the Fragsheet counts
+   knock-outs by split. Like every save-file log in the calculator, the
+   Fragsheet counts only the last battle against each trainer, so a lost
+   first attempt at a leader drops out. Suites after the change:
+   test_battlelog 25/25, m8 98/98, savewatch 8/8, each run twice. The
+   engine side landed on oxide (e34a5ffc6), and its source matches the
+   reader field for field. It read a real game's log on 2026-09-28: Ian's
+   check on the 51fa6cdaa ROM, three Route 202 fights (Youngster Tristan,
+   Lass Natalie, Youngster Logan), all won in Roark's split, which Ian
+   confirmed. It landed on oxide the same day as encounter-battlelog-oxide.
+
+37. **The header's two failing measures (Ian, 2026-09-28, through the
+   Overseer).** "Early to late" still tested vanilla's falling arc, which
+   Ian reversed on 2026-09-21. It now shows the three bands' median HHI and
+   passes when the early band is the most random and no band's median top
+   share is over the cap. R11b warns on the first half, and R11 already
+   checked the cap. "Distinct shapes" was 26 over the header's 165 tables
+   (0.16) against 0.35, because every table of one archetype and cast size
+   laid out the same. A sidecar entry may now carry `shares`, its own
+   variant of its archetype (design doc 2.3). A search picked variants for
+   32 tables that keep everything else: the same species morning, day and
+   night, the same top rung on a top-form table, the face first and under
+   the cap, every line's role (tail, cameo, regular), and no early table
+   more concentrated. Post-game rooms went first, since no balance score or
+   Box sim run reads them, and R8's spread was held above its floor. Three
+   tables took the existing archetype their shape fits (Great Marsh 3 A12,
+   Great Marsh 5 A16, Turnback Cave 1-5 A15), and no archetype was added.
+   Eighteen of the 32 are post-game; the fourteen before the League are
+   Oreburgh Gate 1F, Eterna Forest, Lost Tower 2F, the Maniac Tunnel, Great
+   Marsh 1 to 6, Route 210 north, Route 211 east, Lake Acuity and Victory
+   Road B1F.
+
+   | Measure | Before | After |
+   |---|---|---|
+   | Distinct shapes, header's 165 | 26 (0.158) | 58 (0.352) |
+   | Distinct shapes, report's 177 | 22 (0.12) | 54 (0.31) |
+   | R8 spread, header | 1.866x | 1.810x |
+   | R8 spread, report | 1.866x | 1.866x |
+   | Early, mid, late median HHI | 0.155, 0.179, 0.202 | 0.155, 0.184, 0.202 |
+
+   Species by split and the balance track's obtainable pool are unchanged.
+   One first catch moved a level (Turtonator, Byron's split, 29 to 28). On
+   Ian's save, the Box sim makes the same call at nine of its next ten
+   places, and a seeded run's box is worth 5837 against 5828. Lint is clean
+   (R3's aspirational uplift fell short on two more tables: Great Marsh 3
+   and Lost Tower 2F). `evolve` moves nothing, the availability gate and
+   the leak audit pass, and every suite passed twice. test_step0's local
+   verify_narcs compares a build from 2026-09-22, so the gate's GitHub ROM
+   is the real check. Both margins are thin. The header's R9 sits one shape
+   over its threshold and R8 0.01 over its floor, so a later table edit
+   should check both.
+
+38. **Dim, and the Calc tab's broken image (Ian, 2026-09-28, through the
+   Overseer).** A third theme between Dark and Light: the dark scheme on a
+   cyan ground (first a soft teal-grey; Ian asked for more of a cyan the same
+   day), with its values in the visual design doc's section 2.
+   The theme button steps through the three looks and back to Windows,
+   skipping the one that looks like Windows already, so every press changes
+   the page. The calculator follows through the shared tokens. Its text and
+   meaning colours keep WCAG's 4.5:1, which test_m4 now checks. The broken
+   image in the calculator's Import / Export panel was the DeSmuME link's
+   icon, shown again by a second block patch 13 had missed; it stays hidden
+   under the Oxide title now. Both were checked in headless Chrome. This
+   comes ahead of the layout redesign the Overseer is mocking up.
 
 ## Standing rules
 

@@ -24,29 +24,36 @@ the facts they point at live in the docs, not here.
    - The encounter tool and the encounter authoring pass:
      `docs/oxide/encounter-tool-build-plan.md`, plus exactly one paragraph at
      the top of the tracker. Nothing else in the tracker.
+   - The balance track: `docs/oxide/balance-plan.md`, and nothing in the
+     tracker.
 4. On a worktree branch, run `git merge oxide` before anything else, resolve
    any conflict in your own files, and run your own suites. A branch cut before
    a change on `oxide` otherwise finds out only at the integration gate: the
    encounter branch's `test_m8` still expected 468 moves when `oxide` had 923.
 5. Say in one or two sentences what this session will do, then do it.
-6. If the work is more than a small fix, do it on a worktree branch
-   (`EnterWorktree` or `git worktree add`) and merge into `oxide` when its tests
-   are green. `tools/oxide/integrate.sh` does the merge and verification;
-   `/integrate` in the planning session runs it.
+6. Unless you are the Overseer, do the work on a worktree branch
+   (`EnterWorktree` or `git worktree add`) and push that branch when its tests
+   are green. The Oxide Overseer lands it on `oxide` with
+   `tools/oxide/merge-branch.sh`, which builds the merged tree on GitHub and
+   runs the gate on that ROM.
 
 ## While working
 
-- Never edit `res/` JSON by hand or reformat whole files; use
-  `tools/oxide/jsonstyle.py`, the encounter tool, or targeted edits in the file's
-  own style. Upstream merges depend on it.
-- Never delete, move or overwrite the base ROM (`~/roms/base.nds` and the G:
-  original) or the pinned vanilla build (`~/roms/vanilla.nds`). Every verify tool
-  compares against them.
+- Never reformat a whole `res/` JSON file. Edit it through
+  `tools/oxide/jsonstyle.py`, the tool that owns it (the OxiDex for encounter
+  tables), or by hand in the file's own style. Upstream merges depend on it.
+- Never delete, move or overwrite a base ROM (the pins in `~/roms/` and the
+  originals on G:) or the pinned vanilla build (`~/roms/vanilla.nds`). Every
+  verify tool compares against them.
 - A change to any table the base ROM also has must be declared as intended
-  divergence, or the integration gate fails: `DIVERGED` in
-  `tools/oxide/verify_narcs.py` for species and moves, `AUTHORED` in
-  `tools/oxide/import_base_rom.py` for encounters, `DIVERGED` in
-  `tools/oxide/bulk_scripts.py` for scripts.
+  divergence in the register of the tool that checks it, or the integration
+  gate fails. The registers: in `tools/oxide/verify_narcs.py`, `DIVERGED`
+  (species and move records) and its siblings `DIVERGED_MEMBERS`,
+  `PERSONAL_ABILITIES_DIVERGED`, `MAP_HEADERS_DIVERGED` and `CONTENT_ARCHIVES`;
+  in `tools/oxide/import_base_rom.py`, `AUTHORED` (encounters),
+  `MOVES_DIVERGED`, `TRAINERS_DIVERGED` (with `trainers_diverged.json`) and
+  `TEXT_BANKS_SKIPPED`; and `DIVERGED` in `tools/oxide/bulk_scripts.py` and
+  `tools/oxide/bulk_events.py`.
 - A change that moves anything in the save file gets a row in
   `docs/oxide/save-layout.md`. Saves made before it will not read correctly and
   Ian needs to know to start a new game. The trigger is not "did I edit a save
@@ -70,18 +77,21 @@ Run these in order; skipping one is how the next session starts confused.
    first, because the archive is read only when pointed at. Add what changes
    what happens next, keep the "Where things stand" block true for `HEAD`, and
    keep entries short, pointing at the file that holds the detail. If you are the encounter track, edit only your
-   one paragraph here.
+   one paragraph here; the balance track edits its plan instead.
 2. **Findings.** A durable fact learned this session (a correction, a defect, a
    measurement, a format detail) goes in the design doc's section 8 findings log,
    dated, and the design doc's version and date at the top are bumped. Status
    does not go there.
-3. **Waiting on Ian.** Anything only he can answer or test goes in the tracker's
-   "Waiting on Ian" list, and a commit message that says "blocked on Ian" without
-   a list entry is a gap.
+3. **Waiting on Ian.** Anything only he can answer goes in the tracker's
+   "Waiting on Ian" list, and anything only he can test in
+   `docs/oxide/ingame-checklist.md`. A commit message that says "blocked on
+   Ian" without an entry is a gap.
 4. **Mirror.** `bash tools/oxide/sync-docs.sh` if any file under `docs/oxide/`
    changed. It complains about a new file it has no mapping for; add the mapping.
-5. **Commit and push** `oxide` (or your worktree branch). Stage files by name,
-   never `git add -A` or `git add .`: sessions share this checkout, and a sweep
+   It runs only on `oxide` and refuses on any other branch, so a track branch
+   adds the mapping and leaves the run to `merge-branch.sh`.
+5. **Commit and push** your branch (only the Overseer pushes `oxide`). Stage
+   files by name, never `git add -A` or `git add .`: sessions share this checkout, and a sweep
    commits another session's half-written files under your message (it has
    happened). Commit messages explain why and record what was verified; the
    attribution trailer is in the session's system reminder.
@@ -91,12 +101,12 @@ Run these in order; skipping one is how the next session starts confused.
 ## Verification, the short list
 
 The full restart check-list is at the top of the tracker, and
-`bash tools/oxide/integrate.sh --verify-only` runs all of it without merging
-anything. The minimum before calling a data or engine change done is `make rom`
-plus the verify tool that covers what changed, and the emulator test written
-into the tracker entry for Ian. Until the replacement CPU is in, a local ROM is
-trusted when its SHA-1 matches the one GitHub's build prints for the same commit
-(CLAUDE.md, Build).
+`bash tools/oxide/integrate.sh --verify-only --rom <ROM>` runs all of it on a
+ROM from `tools/oxide/fetch-rom` without merging anything (a cloud session
+drops `--rom` and builds). The minimum before calling a data or engine change
+done is a built ROM plus the verify tool that covers what changed, and the
+emulator test written into `docs/oxide/ingame-checklist.md` for Ian. Until the
+replacement CPU is in, the ROM is built on GitHub (CLAUDE.md, Build).
 
 Emulator work is the `debug-live` skill: Ian runs melonDS on Windows and
 drives, and the agent attaches over the GDB stub and reads. Never launch your
@@ -121,9 +131,10 @@ Task: <what to produce and why, in a paragraph>.
 
 Already there: <tools, files and earlier results to build on, with paths>.
 
-Rules that bite: stage files by name; never edit res/ JSON by hand (use
-jsonstyle.py or the tool that owns the file); never launch an emulator; edit
-only <files or directories>; retry a build that crashes (degraded CPU).
+Rules that bite: stage files by name; never reformat a res/ JSON file (edit
+through jsonstyle.py, the tool that owns it, or by hand in its style); never
+launch an emulator; edit only <files or directories>; no local builds (push
+and use tools/oxide/fetch-rom), and rerun a failed test once (degraded CPU).
 
 Write to: <paths>. <Commit on the worktree branch / leave uncommitted>.
 

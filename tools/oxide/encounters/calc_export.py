@@ -270,6 +270,65 @@ def move_entry(rec, known):
     return out
 
 
+def save_includes(root=None):
+    """The save reader's id tables, by the ids a save stores: species, moves,
+    items, growth rates (the index of the species' curve in the game's order,
+    which is the calculator's `expTables` order) and abilities, named as the
+    rest of this blob names them, so a Pokemon read from Oxide's save is one
+    the calculator knows. Upstream installs a data source's own `includes`
+    when settings.readIncludes is set, which the Oxide profile does (a patch,
+    VENDORED.md); without them it reads Oxide's ids through vanilla's tables."""
+    root = root or model.repo_root()
+
+    def ids(name):
+        # The move and item lists end in a MAX_ count, which is not an id.
+        with open(os.path.join(root, "generated", f"{name}.txt"), encoding="utf-8") as f:
+            return [line.strip() for line in f if line.strip() and not line.startswith("MAX_")]
+
+    tidy = lambda c, p: c[len(p):].replace("_", " ").title()
+    rates = ids("exp_rates")
+    eggs = {"SPECIES_NONE": "", "SPECIES_EGG": "Egg", "SPECIES_BAD_EGG": "Bad Egg"}
+    poks, growths = [], []
+    for c in ids("species"):
+        rec = pokedex.load(root, c) or {} if c not in eggs else {}
+        poks.append(eggs[c] if c in eggs else canon.showdown_name(c) or tidy(c, "SPECIES_"))
+        # pokedex.load keeps the rate without its EXP_RATE_ prefix.
+        rate = "EXP_RATE_" + (rec.get("exp_rate") or "MEDIUM_FAST")
+        growths.append(rates.index(rate) if rate in rates else 0)
+    keys = move_keys(root)
+    records = pokedex.moves(root)
+    moves = ["-----"] + [keys.get(c) or (records.get(c) or {}).get("name") or tidy(c, "MOVE_")
+                         for c in ids("moves")[1:]]
+    items = ["None"] + [calc_names()["items"].get(clean(c[len("ITEM_"):])) or tidy(c, "ITEM_")
+                        for c in ids("items")[1:]]
+    abilities = ["None"] + [ability_name(c[len("ABILITY_"):]) or tidy(c, "ABILITY_")
+                            for c in ids("abilities")[1:]]
+    return {"poks": poks, "moves": moves, "items": items, "growths": growths,
+            "abilities": abilities}
+
+
+def met_locations(root=None):
+    """Every met-location name by the id a Pokemon record stores: the game's
+    location-names text bank, the table the OxiDex's save reader names places
+    from. The calculator's own table for Platinum runs on into HeartGold's
+    places past Platinum's ids, so an id Oxide added (Rowan's Briefcase, the
+    starter's) read as New Bark Town until the Oxide profile took this one."""
+    root = root or model.repo_root()
+    with open(os.path.join(root, "res", "text", "location_names.json"), encoding="utf-8") as f:
+        return [m.get("en_US") or "" for m in json.load(f)["messages"]]
+
+
+def splits(root=None):
+    """Oxide's level-cap splits in the game's order, each with its cap: the
+    Fragsheet's and the Battle Log's split tabs (Ian, 2026-09-28, all
+    thirteen). Read from the engine's own tables, as the save reader reads
+    the split a save is in; the split after the Champion has no cap, 100."""
+    from . import savefile
+    lay = savefile._vars_layout()
+    return [{"index": i, "name": name, "cap": lay["caps"].get(name) or 100}
+            for i, name in sorted(lay["splits"].items())]
+
+
 def build(root=None):
     """The whole blob, as the calculator's loader reads it."""
     root = root or model.repo_root()
@@ -309,6 +368,14 @@ def build(root=None):
         # What the species picker offers: Oxide's species and the forms above,
         # rather than every species the calculator knows (a patch reads it).
         "picker": sorted(poks),
+        # The save reader's tables, by the ids an Oxide save stores.
+        "includes": save_includes(root),
+        # The met-location names by id, which the Oxide profile puts over the
+        # calculator's Platinum table (a patch, VENDORED.md 17).
+        "met_locations": met_locations(root),
+        # The level-cap splits and caps, the Fragsheet's split tabs (a patch,
+        # VENDORED.md 19).
+        "splits": splits(root),
         "oxide_report": report(root),
     }
 

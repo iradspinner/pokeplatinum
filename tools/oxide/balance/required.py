@@ -47,7 +47,7 @@ from . import data
 from . import world
 
 SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
-          "HQ", "Galactic", "Volkner", "League"]
+          "HQ", "Galactic", "Volkner", "Barry", "League"]
 
 # The first split in which each field ability can open a path: the later of
 # the split its HM or item is found in (splits.gifts and splits.items, B1d)
@@ -60,7 +60,7 @@ SPLITS = ["Roark", "Gardenia", "Fantina", "Maylene", "Wake", "Byron", "Candice",
 # Sunyshore, Beacon Badge.
 ABILITY_SPLIT = {"rock_smash": "Gardenia", "cut": "Fantina", "bike": "Fantina",
                  "surf": "Byron", "strength": "Candice", "rock_climb": "HQ",
-                 "waterfall": "League"}
+                 "waterfall": "Barry"}
 
 WATER = {"WATER_SEA", "WATER_RIVER", "DEEP_WATER", "WATER_CAVE"}
 BIKE = {"BIKE_BRIDGE_N_S", "BIKE_BRIDGE_E_W", "BIKE_BRIDGE_E_W_OVER_WATER",
@@ -118,7 +118,7 @@ CROSSINGS = [
     ("Candice", "ROUTE_216", "MT_CORONET_1F_NORTH_ROOM_2", "ROUTE_217"),
     ("Candice", "ROUTE_217", "ROUTE_216", "ACUITY_LAKEFRONT"),
     ("Volkner", "ROUTE_222", "VALOR_LAKEFRONT", "SUNYSHORE_CITY|ROUTE_222_GATE_TO_SUNYSHORE_CITY"),
-    ("League", "ROUTE_223", "SUNYSHORE_CITY", "POKEMON_LEAGUE"),
+    ("Barry", "ROUTE_223", "SUNYSHORE_CITY", "POKEMON_LEAGUE"),
 ]
 
 # Objects a story flag hides that stand in the way until a split: the

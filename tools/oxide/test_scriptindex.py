@@ -144,8 +144,10 @@ Test_Done:
     picks = {v["name"]: v["when"] for v in partner.get("values", [])}
     check("Spear Pillar's tag battle picks Barry's team through a variable",
           partner.get("role") == "partnerTrainer" and partner.get("mode") == "variable", partner)
-    check("Barry's Chimchar team when the starter is Chimchar, Turtwig's for Turtwig, Piplup's otherwise",
-          "SPECIES_CHIMCHAR" in picks.get("TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR", "")
+    # The fire slot's team files keep Chimchar's name, but Scorbunny is the
+    # starter that picks them since 2026-09-21 (Ian).
+    check("Barry's fire-slot team when the starter is Scorbunny, Turtwig's for Turtwig, Piplup's otherwise",
+          "SPECIES_SCORBUNNY" in picks.get("TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR", "")
           and "SPECIES_TURTWIG" in picks.get("TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG", "")
           and picks.get("TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP") == ""
           and "GetPlayerStarterSpecies" in picks.get("TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR", ""), picks)

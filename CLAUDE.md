@@ -15,9 +15,10 @@ Then say in one or two sentences what this session will do, and do it.
 
 ## Working rules (short form; the design doc has the full list)
 
-- Work on branch `oxide`. Never commit to `main`; `main` tracks upstream pret.
-- Every data change is verified by rebuilding (`make rom`) and, where a
-  reference exists, comparing the rebuilt NARC to it with
+- Work on `oxide` or a branch cut from it. Never commit to `main`; `main`
+  tracks upstream pret.
+- Every data change is verified by rebuilding (on GitHub for now; see Build)
+  and, where a reference exists, comparing the rebuilt NARC to it with
   `tools/oxide/verify_narcs.py`.
 - Edit `res/` JSON files with `tools/oxide/jsonstyle.py` helpers or by hand in
   the same style; never reformat whole files (the repo's formatting is not
@@ -27,11 +28,12 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
-- Update `docs/oxide/tracker.md` at the end of every session and commit it;
-  a finished block moves verbatim to `docs/oxide/tracker-archive.md`.
+- Update your status home (below) at the end of every session and commit it;
+  a finished tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
   `tools/oxide/sync-docs.sh` to mirror it to the project folder on the G:
-  drive, which a separate chat surface works from.
+  drive, which a separate chat surface works from. It runs only on `oxide`,
+  so on a track's branch the Overseer's merge runs it.
 - Never delete, move, or overwrite a base ROM in the project folder. Since
   2026-09-26 the base ROM is Ian's `Test.nds` of 2026-08-31, copied there as
   `Platinum Oxide base ROM 2026-08-31 (from Example ROM Test.nds).nds`; the
@@ -67,17 +69,21 @@ design sheets on G:, with the synced `xlsx` skill for the mechanics),
 `debug-live` (any in-game bug, with Ian driving melonDS), `cloud-job` (writing,
 running or merging a cloud session's job), `ruling` (recording any decision of
 Ian's everywhere it must be read), `playtest-day` (a session of in-game
-checks from `docs/oxide/ingame-checklist.md`) and `doc-links` (a clickable,
-rendered link for any doc Ian is pointed at). In
+checks from `docs/oxide/ingame-checklist.md`), `doc-links` (a clickable,
+rendered link for any doc Ian is pointed at), `balance-rules` (Ian's
+rulebook for any learnset, trainer, item or fight-scoring work),
+`save-change` (anything that moves what the save stores) and `land-branch`
+(the Overseer's landings and CPU slots). In
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
 this file against the tree.
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
-emulator, and committing a file that carries the scratch marker
-(`.claude/hooks/oxide_guard.py`); a refusal from it means the rule above it in
-this file applies. `.githooks/pre-commit` runs the encounter linter on any
+emulator, committing a file that carries the scratch marker, a full local
+build (see Build), and `ps` or its kin while a process is wedged in the kernel
+(`.claude/hooks/oxide_guard.py`); each refusal says which rule applies and
+what to do instead. `.githooks/pre-commit` runs the encounter linter on any
 commit that touches the encounter tables or tool; a clone enables it once with
 `git config core.hooksPath .githooks`.
 
@@ -107,8 +113,13 @@ push your branch, run `tools/oxide/fetch-rom <commit>` (or `--testkit`), and
 check the downloaded ROM, with `bash tools/oxide/integrate.sh --verify-only
 --rom <path>` for the whole gate. The guard hook refuses `make rom`, `make
 testkit`, a full `ninja` and `integrate.sh` without `--rom`; `ninja -C build
--j2 <targets>` for a few helper files is allowed. Run one test suite at a
-time across all sessions, since several at once is all-core load again.
+-j2 <targets>` for a few helper files is allowed. With turbo boost off
+(Windows' maximum processor state at 99%, as Ian keeps it), up to three
+heavy jobs may run at once across all sessions, each pinned to its own
+virtual CPU with `taskset -c` (WSL cannot tell which are performance
+cores), and every result is checked by a second run (Ian,
+2026-09-27; the design doc's findings log has the test). Three is the
+ceiling: six crashed Node. If turbo is back on, run one at a time.
 Rerun a failed test before believing it. The `Makefile` puts the 3.13
 venv first on PATH because this chip crashes it far less than the system
 Python; that block goes when the new CPU is in.
@@ -158,7 +169,7 @@ rebuild reproduces a reference ROM's tables. `scriptdis.py` disassembles and
 round-trips field scripts; `bulk_scripts.py`, `bulk_events.py` and
 `bulk_text.py` regenerate whatever the build still gets wrong against the base
 ROM (their `--dry-run` doubles as the check); `mapdiff.py` and `checkmap.py`
-work one map at a time. `tools/oxide/encounters/` is the encounter tool, with
+work one map at a time. `tools/oxide/encounters/` is the encounter tool, the Platinum OxiDex (OxiDex for short), with
 its own tests and CLI (see its build plan). `tools/oxide/live_watch.py` attaches
 to Ian's melonDS on Windows over its GDB stub while Ian drives the game; never
 launch your own emulator (`docs/oxide/setup-fork-and-wsl2.md` part 5b, and the

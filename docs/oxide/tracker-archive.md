@@ -136,6 +136,10 @@ Done 2026-09-15. Write-up: `docs/oxide/phase2-approach-breakdown.md`.
 
 ## Phase 4: Port, one element at a time
 
+Moved from the tracker's element 6 on 2026-09-27, finished and merged (170b5473a):
+
+  - [ ] Expert routines (Ian, 2026-09-27): the moves added since Platinum follow Platinum's own pattern, taking the Expert routine of their nearest Platinum effect where that effect has one and none where it has none; Platinum's 200 moves without a routine (`docs/oxide/battle-ai/expert-gaps.md`) stay as they are. Done on `main-expert-new-moves` (65 of the 156 learnable new moves scored by a routine, 91 not; `docs/oxide/battle-ai/expert-new-moves.md`). Its eleven judgment calls, where a near routine would misjudge the move, get no routine (Ian, 2026-09-27: "None, as left")
+
 Started 2026-09-20 with the Fairy type. The order was approved by Ian on 2026-09-15 (from `docs/oxide/phase2-approach-breakdown.md` section 6), chosen so each step is testable on its own and the structural changes come first while the tree is still close to vanilla. hg-engine's source is the reference implementation for each feature; Hardlove's tables are the content source. Each element gets its own checklist here when it starts, with the emulator test that proves it.
 
 Prerequisites, none of which touch a Phase 3 file:
@@ -310,6 +314,10 @@ Element 4's partly working moves, finished on 2026-09-27 on `cloud/element4-part
   - [ ] **Left open by the 2026-09-22 QA** (`docs/oxide/qa-review-2026-09-22.md` has the detail). `RANGE_ALL` has no branch in `BattleSystem_Defender`, so Rototiller, Flower Shield and Teatime fall through until their effects are written. The `.shared` scripts under `res/moves/` are dead but still assembled; remove them with the moves build file once two builds agree. The TV segment's random move can still name a placeholder record, which is cosmetic
 
 
+Moved from the tracker on 2026-09-27, finished (`carry-over-abra`, `carry-over-hue` and `pool-base` are merged):
+
+- [ ] **The base ROM's last arm9 changes** (all identified 2026-09-27; the findings are in the inventory's corrections). The Vs. Seeker as the Pocket PC was ruled and merged on 2026-09-27; the teleporting Abra's removal is on `carry-over-abra`, inside `pool-base` (`docs/oxide/pocket-pc.md`). The two bytes at arm9 `0x0EC478` are a slip that gave every Lass the children's encounter music; **not carried over** (Ian, 2026-09-27). **The palette hue shift is ported** on `carry-over-hue` (Ian, 2026-09-27), cut from `pool-base` and merging after it: every Pokemon's sprite palette rotated in hue by up to about 20 degrees, keyed on its personality, the Pokedex kept standard. Oxide passes the personality to the sprite code where the base ROM used 19 hooks and a "last Pokemon read" global, one commit per path. It goes past the base ROM in two places, each its own commit that can be dropped: the trade's wormhole and the GTS listing. Displays that show a species rather than a Pokemon, and the Substitute doll, keep standard colours. Its checks are in `ingame-checklist.md`, sections 3 to 5. The Battle Arcade custom commands are closed: only `Dummy088` is called (hard stop 3), the rest is dropped.
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
@@ -433,6 +441,21 @@ Ian's answers on the Kaizo pattern study's first generator (2026-09-27), moved o
 The tracker's "Friendship evolutions replaced", finished across the main, encounter and balance tracks on 2026-09-27:
 
 - [x] **Friendship evolutions replaced** (Ian, 2026-09-27): Happiness Up is gone, and every friendship evolution moves to a method that cannot be ground as easily. **Ruled 2026-09-27:** the encounter track's proposal (`docs/oxide/encounters/friendship-evolutions.md`) is accepted with one change, Crobat at level 40 (Wake's split) instead of 36; Roselia at the Moss Rock, and Espeon and Umbreon by Sun and Moon Stone, with one fixed find of each. The main track edits the evolution data; the encounter track then re-runs `cli evolve` and fixes its tool's reading of friendship methods. Ian also wants a census of every evolution stone the player can get, as a scarcity lever, for the balance track's item pass. Competition for a scarce stone is intended (Ian, 2026-09-27; standing rulings). The main track's data edit is done on `main-friendship` (96065e8fa): all sixteen evolutions replaced and registered against the base ROM. The encounter track's evolve re-run followed on `encounter-item3`, and the balance track's stone census is done.
+
+A sub-item of the tracker's Saturn 2 entry, finished on 2026-09-27:
+
+  - [x] Trainer pass, two changes to Saturn 2's team (Ian, 2026-09-26): Uxie's Trick Room, which now always fails, is swapped for another move, and Rhyperior's Choice Scarf, which under the permanent room only makes it move later, is swapped for another item. The replacements are the trainer pass's to choose Done by Ian in the OxiDex's team builder (Uxie: Hypnosis, Future Sight, U-turn, Foul Play; Rhyperior: Expert Belt), landed with `barry-split` on 2026-09-27.
+
+Moved from the tracker on 2026-09-27, finished:
+
+- **Balance analysis** (sub-item). Outcome: the rebuilt simulator reached 9 of 15 held-out pairs against a bar of 13 and matched four of Ian's top ten, so the stored score stays the guide; `balance-fight-sim` lands as a record, not as the score.
+  - [ ] **The score is rebuilt** (Ian, 2026-09-27): today it is a damage race, blind to status and setup (it reads the HQ B2F grunt above Officer Somnu's sleep team). The rebuild plays fights out with status, setup, combos, AI flags and partners, weights the worst cases into the headline, and replaces the old score once it agrees with Ian's pairwise judgements. Ian (2026-09-27, after two worked examples): the player side takes no Life Orb or Choice item, realistic moves and guaranteed Pokemon, and plays with stalling, pivoting and safe setup; with those he accepts approximate accuracy, since some of his own pairs are misjudged. No healing in battle; bosses (named Galactic fights included) get a planned team, ordinary trainers a blind realistic box (Ian, 2026-09-27)
+- **Level-cap split design** (sub-item). Landed on `oxide` with the rescore (016746bac).
+  - [ ] **The Barry split** (Ian, 2026-09-27): after Volkner the engine caps levels at 71 for every fight up to the Elite Four, then 78 inside it; Ian's own rule inside the Elite Four is each fight's ace (Aaron 72, Bertha 73, Flint 74, Lucian 75, Cynthia 78), which the scores use. The engine table, the closing scripts, fights.json and the encounter tool's splits change together. The Fight Area tag battle keeps its Beacon Badge gate, so it sits in the Barry split and the trainer pass brings Flint's and Volkner's aces (74, 75) down to 71. The engine part is on `barry-split` (main track): split 10 at cap 71, raised by Volkner's gym, and the raise to 78 in Aaron's room as its door shuts behind the player; the split in fights.json must be named "Barry" for `test_level_caps.py` to pass
+
+The tracker's pointer to these, removed on 2026-09-27 for room:
+
+- Done, with the entries in the archive: the clown towns' grass and the Underground's closing (`main-grass`, `main-underground`); the fossil balls and four fossils deleted (`main-daily-balls`); Snowpoint's rods, the Pastoria gift, the starter's met location and Fomantis to Lurantis (`main-scripts`).
 
 ## Phase 5: Verify
 

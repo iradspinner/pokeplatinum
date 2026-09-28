@@ -130,6 +130,80 @@ calculator checks fail if the offline ones are lost.
     upstream's `img/` was not vendored. `js/initialize.js` leaves the DeSmuME
     Lua sync button and its emulator link hidden under the "Platinum Oxide"
     title: both serve hzla's DeSmuME build, and Oxide is played on melonDS.
+    A second block further down showed the link again for every Platinum
+    title, and with no `img/` its icon drew as a broken image in the Import /
+    Export panel; since 2026-09-28 that block also leaves it hidden under the
+    title (checked in headless Chrome: no image on the page fails to load).
+
+14. **`js/initialize.js`, Oxide's save tables** (2026-09-27, Ian's save
+    plan, step 1). The "Platinum Oxide" branch sets `settings.readIncludes`,
+    so upstream's own loader installs the blob's `includes` (species, moves,
+    items, growth rates and abilities by the ids an Oxide save stores,
+    `calc_export.save_includes`) as the save reader's tables. The includes
+    loader then skips `extendSavArraysToGen67` under that title, since it
+    writes Generation 6 and 7 names over species past 650, moves past 559
+    and every ability.
+
+15. **`js/savereaders/savereader.js`, Oxide's save layout and ability**
+    (2026-09-27, step 2). `applyOxideSaveLayout` finds the normal and box
+    blocks by their footers (the signature 0x20060623 with the size before
+    it) and sets the offsets the vanilla Platinum branch hard-codes, which
+    an Oxide save no longer matches: its larger Pokedex moved the box block.
+    `parsePKM` reads the ability as the u16 at block B 0x1A and shows the
+    hidden-ability bit (block A 0x0D bit 0) as slot 3. Both apply only under
+    the "Platinum Oxide" title. `tools/oxide/encounters/savefile.py` reads
+    saves the same way for the OxiDex, and `test_savefile` checks both.
+
+16. **Sync reads the OxiDex's save bridge** (2026-09-27, step 3). Upstream's
+    DS Sync fetches `/box/packed` from a patched DeSmuME; under the "Platinum
+    Oxide" title it fetches `/api/save/packed` from the OxiDex, which serves
+    the save file melonDS writes in the same packed format
+    (`savewatch.py`). `js/moveset_import.js` makes that fetch, with no
+    clipboard fallback; `js/calc_ui/menu_settings.js` and `js/initialize.js`
+    show Sync under the title whatever the menu's Lua toggle says, and keep
+    the DeSmuME link hidden (patch 13); `index.html` loads
+    `js/oxide/save_sync.js`, which asks `/api/save` every three seconds and
+    presses Sync when the OxiDex has read a newer save, and sets the level
+    cap (`#lvl-cap`, which the Box uses) to the save's split cap whenever
+    that cap changes (step 4). `test_savewatch` checks all four.
+
+17. **`js/initialize.js`, Oxide's met places** (2026-09-27). The blob's
+    `met_locations` (the game's location-names text bank, by the ids a
+    Pokemon record stores) replace `locations["Pt"]` under the "Platinum
+    Oxide" title, after the `includes` are installed. Upstream's Platinum
+    table runs on into HeartGold's places past Platinum's own ids, so the
+    starter's Rowan's Briefcase, an id Oxide added, read as New Bark Town in
+    the Box after a Sync. `test_savefile` checks the patch and the table.
+
+18. **`js/fragsheet/battle_log.js`, the game's own battle log** (2026-09-28,
+    request 4). Oxide's save keeps its last 60 trainer battles
+    (`docs/oxide/battle-log.md`), and the OxiDex serves them at
+    `/api/save/battlelog` already built as the Battle Log's save-file
+    payload, every name filled in, under the version `oxide-save-v1`
+    (`battlelog.py`). Three changes let that through. `updateSaveFileBattleLog`
+    stores a payload it is given instead of building one from Gen 5 records;
+    `decodeBattleLogRecordIds` passes an `oxide-save-v1` record through
+    undecoded, since its ids are names already; and a session takes its split
+    from the `saveFileSplitIndex` its `session_start` carries, while
+    `getBattleLogSplitTabsConfig` takes Oxide's thirteen level-cap split
+    names from `window.oxideBattleLogSplitTitles` under the "Platinum Oxide"
+    title. `js/oxide/save_sync.js` fetches the log after each new save and
+    sets those names.
+
+19. **The Fragsheet's thirteen splits** (2026-09-28, Ian's answer on build
+    plan item 36). Upstream's Fragsheet has nine split slots, and matched
+    "Platinum Oxide" to vanilla Platinum's nine gyms by name. The blob's
+    `splits` (`calc_export.splits`: Oxide's level-cap splits and caps, in
+    the game's order) now fill `splitData["Platinum Oxide"]` in
+    `js/initialize.js`. `js/fragsheet/aggrid_options.js` has thirteen slots
+    (`FRAGSHEET_SPLIT_SLOTS`), four more split columns, and headings from
+    each split's name under the Oxide title, with the full name as a
+    tooltip. Its stats view moved from split 9 to 13
+    (`FRAGSHEET_STATS_VIEW`). The last split now takes every level above
+    the one before it by its own index, not a fixed 8. `index.html` has the
+    four more tabs, and the stats tab at 13. A title with nine splits hides
+    the rest, as before. `test_battlelog` checks the patch, and it was
+    checked in headless Chrome on a save with a synthetic log.
 
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.

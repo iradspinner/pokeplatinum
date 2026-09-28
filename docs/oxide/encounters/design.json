@@ -118,6 +118,16 @@
         "SPECIES_COMBEE",
         "SPECIES_STEENEE"
       ],
+      "shares": [
+        23,
+        20,
+        15,
+        20,
+        10,
+        10,
+        1,
+        1
+      ],
       "day": [
         "SPECIES_ROWLET",
         "SPECIES_BUDEW"
@@ -297,6 +307,13 @@
         "SPECIES_AZUMARILL",
         "SPECIES_BARBOACH"
       ],
+      "shares": [
+        33,
+        20,
+        20,
+        16,
+        11
+      ],
       "day": [
         "SPECIES_LOTAD",
         "SPECIES_SURSKIT"
@@ -445,6 +462,13 @@
         "SPECIES_STUNKY",
         "SPECIES_CARNIVINE"
       ],
+      "shares": [
+        28,
+        20,
+        20,
+        21,
+        11
+      ],
       "day": [
         "SPECIES_BUDEW",
         "SPECIES_SALANDIT"
@@ -579,7 +603,7 @@
       }
     },
     "encounters_great_marsh_3": {
-      "archetype": "A13",
+      "archetype": "A12",
       "band": "mid",
       "intent": "The Great Marsh's frogs and fungus, Croagunk's home: Shroomish in the damp, Fomantis and Sewaddle in the leaves.",
       "locked": [],
@@ -592,6 +616,13 @@
         "SPECIES_FOMANTIS",
         "SPECIES_LOTAD",
         "SPECIES_SWADLOON"
+      ],
+      "shares": [
+        33,
+        20,
+        15,
+        11,
+        21
       ],
       "day": [
         "SPECIES_BRELOOM",
@@ -741,6 +772,13 @@
         "SPECIES_MIGHTYENA",
         "SPECIES_TANGELA"
       ],
+      "shares": [
+        28,
+        20,
+        20,
+        16,
+        16
+      ],
       "day": [
         "SPECIES_TROPIUS",
         "SPECIES_GLIGAR"
@@ -875,7 +913,7 @@
       }
     },
     "encounters_great_marsh_5": {
-      "archetype": "A13",
+      "archetype": "A16",
       "band": "mid",
       "intent": "The Great Marsh's bog, Yanma's home: the bugs over the water, Dewpider, Joltik and Combee.",
       "locked": [],
@@ -888,6 +926,13 @@
         "SPECIES_JOLTIK",
         "SPECIES_VESPIQUEN",
         "SPECIES_SURSKIT"
+      ],
+      "shares": [
+        28,
+        25,
+        25,
+        11,
+        11
       ],
       "day": [
         "SPECIES_VESPIQUEN",
@@ -1036,6 +1081,13 @@
         "SPECIES_DOLLIV",
         "SPECIES_BUDEW",
         "SPECIES_WOOPER"
+      ],
+      "shares": [
+        33,
+        25,
+        20,
+        11,
+        11
       ],
       "day": [
         "SPECIES_STEENEE",
@@ -1347,6 +1399,14 @@
         "SPECIES_GALARIAN_MR_MIME",
         "SPECIES_ABOMASNOW",
         "SPECIES_WEAVILE"
+      ],
+      "shares": [
+        28,
+        25,
+        20,
+        10,
+        11,
+        6
       ],
       "day": [
         "SPECIES_JYNX",
@@ -1913,6 +1973,14 @@
         "SPECIES_NACLI",
         "SPECIES_FERROSEED",
         "SPECIES_ONIX"
+      ],
+      "shares": [
+        33,
+        20,
+        20,
+        10,
+        11,
+        6
       ],
       "day": [
         "SPECIES_GEODUDE",
@@ -2782,6 +2850,16 @@
         "SPECIES_PURRLOIN",
         "SPECIES_ONIX",
         "SPECIES_GLIGAR"
+      ],
+      "shares": [
+        20,
+        20,
+        15,
+        20,
+        10,
+        10,
+        4,
+        1
       ],
       "day": [
         "SPECIES_MAKUHITA",
@@ -3918,7 +3996,7 @@
     "encounters_route_208": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s.",
+      "intent": "The flower road to Hearthome, twelve lines: Fomantis and Flabebe at home, Ralts passing through, the grass starters as 1%s. The Old Rod's 5% is Totodile, under Fantina's cap (2026-09-27).",
       "locked": [],
       "base_level": 17,
       "order": 38,
@@ -3948,7 +4026,7 @@
         "cast": [
           "SPECIES_WAILMER",
           "SPECIES_POLIWAG",
-          "SPECIES_BARBOACH",
+          "SPECIES_TOTODILE",
           "SPECIES_FEEBAS",
           "SPECIES_FROAKIE"
         ],
@@ -4072,7 +4150,7 @@
     "encounters_route_209": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night.",
+      "intent": "The road past the Lost Tower: Gothita's home, Glameow (fully evolved by 38) and Koffing (35) arriving by the cap rule, Duskull and Torchic the 1%s, Yamask by night. The Good Rod's 4% is Slowpoke, under Maylene's cap (2026-09-27). Tangela takes Steenee's 5%, under Maylene's cap (2026-09-27).",
       "locked": [],
       "base_level": 17,
       "order": 41,
@@ -4085,7 +4163,7 @@
         "SPECIES_MINCCINO",
         "SPECIES_GLAMEOW",
         "SPECIES_KOFFING",
-        "SPECIES_STEENEE",
+        "SPECIES_TANGELA",
         "SPECIES_SMOLIV",
         "SPECIES_DUSKULL",
         "SPECIES_MEDITITE"
@@ -4134,7 +4212,7 @@
           "SPECIES_BUIZEL",
           "SPECIES_WOOPER",
           "SPECIES_LOMBRE",
-          "SPECIES_SURSKIT",
+          "SPECIES_SLOWPOKE",
           "SPECIES_FROGADIER"
         ],
         "levels": [
@@ -4262,6 +4340,13 @@
         "SPECIES_ZUBAT",
         "SPECIES_SINISTEA"
       ],
+      "shares": [
+        28,
+        25,
+        10,
+        26,
+        11
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_SINISTEA"
@@ -4358,6 +4443,14 @@
         "SPECIES_MIENFOO",
         "SPECIES_TURTONATOR",
         "SPECIES_BRONZOR"
+      ],
+      "shares": [
+        28,
+        20,
+        20,
+        10,
+        16,
+        6
       ],
       "day": [
         "SPECIES_BRAIXEN",
@@ -4537,6 +4630,14 @@
         "SPECIES_TURTONATOR",
         "SPECIES_JANGMO_O",
         "SPECIES_GLIGAR"
+      ],
+      "shares": [
+        28,
+        20,
+        10,
+        15,
+        21,
+        6
       ],
       "day": [
         "SPECIES_MIENFOO",
@@ -4734,7 +4835,7 @@
     "encounters_route_212_south": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s.",
+      "intent": "Route 212's swamp half, Koffing's home: Froakie at 10 in the rain, the marsh cast around it, the water starters as 1%s. Goomy is a 1% in the rain, in Frillish's old slot, under Byron's cap (2026-09-27).",
       "locked": [],
       "base_level": 21,
       "order": 82,
@@ -4750,7 +4851,7 @@
         "SPECIES_YANMA",
         "SPECIES_BRELOOM",
         "SPECIES_SANDYGAST",
-        "SPECIES_FRILLISH"
+        "SPECIES_GOOMY"
       ],
       "day": [
         "SPECIES_LOMBRE",
@@ -4888,7 +4989,7 @@
     "encounters_route_213": {
       "archetype": "A19",
       "band": "mid",
-      "intent": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s.",
+      "intent": "The beach: Sandygast and Clobbopus at home on the sand, Dewpider in the pools, Shellos and Buizel out of the water, the water starters as 1%s. The Good Rod's 1% is Spheal, under Wake's cap, which Walrein reaches at 44 (2026-09-27).",
       "locked": [],
       "base_level": 23,
       "order": 73,
@@ -4951,7 +5052,7 @@
           "SPECIES_TENTACOOL",
           "SPECIES_REMORAID",
           "SPECIES_MAREANIE",
-          "SPECIES_CHINCHOU"
+          "SPECIES_SPHEAL"
         ],
         "levels": [
           [
@@ -6852,7 +6953,7 @@
       "locked": [],
       "base_level": 50,
       "order": 127,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_DONPHAN",
         "SPECIES_GLIMMORA",
@@ -7015,6 +7116,14 @@
         "SPECIES_BRONZONG",
         "SPECIES_KLEFKI"
       ],
+      "shares": [
+        20,
+        20,
+        20,
+        20,
+        10,
+        10
+      ],
       "day": [
         "SPECIES_FROSMOTH",
         "SPECIES_GLALIE"
@@ -7039,6 +7148,14 @@
         "SPECIES_ABOMASNOW",
         "SPECIES_CARBINK",
         "SPECIES_FROSMOTH"
+      ],
+      "shares": [
+        30,
+        20,
+        25,
+        10,
+        10,
+        5
       ],
       "day": [
         "SPECIES_FROSMOTH",
@@ -7091,6 +7208,13 @@
         "SPECIES_GLALIE",
         "SPECIES_CARBINK"
       ],
+      "shares": [
+        30,
+        30,
+        20,
+        10,
+        10
+      ],
       "day": [
         "SPECIES_FROSMOTH",
         "SPECIES_ABOMASNOW"
@@ -7118,6 +7242,16 @@
         "SPECIES_ABSOL",
         "SPECIES_GLIMMORA"
       ],
+      "shares": [
+        20,
+        20,
+        15,
+        15,
+        10,
+        15,
+        4,
+        1
+      ],
       "day": [
         "SPECIES_ABOMASNOW",
         "SPECIES_GLALIE"
@@ -7144,6 +7278,16 @@
         "SPECIES_KLEFKI",
         "SPECIES_ABSOL",
         "SPECIES_GLIMMORA"
+      ],
+      "shares": [
+        30,
+        25,
+        15,
+        10,
+        10,
+        5,
+        4,
+        1
       ],
       "day": [
         "SPECIES_FROSMOTH",
@@ -7820,6 +7964,13 @@
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL"
       ],
+      "shares": [
+        25,
+        25,
+        25,
+        15,
+        10
+      ],
       "day": [
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT"
@@ -7845,6 +7996,14 @@
         "SPECIES_GOTHORITA",
         "SPECIES_DHELMISE"
       ],
+      "shares": [
+        20,
+        20,
+        20,
+        15,
+        10,
+        15
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_GOLBAT"
@@ -7869,6 +8028,14 @@
         "SPECIES_GOTHITA",
         "SPECIES_KLEFKI",
         "SPECIES_CARBINK"
+      ],
+      "shares": [
+        25,
+        20,
+        25,
+        10,
+        15,
+        5
       ],
       "day": [
         "SPECIES_BRONZOR",
@@ -7921,6 +8088,13 @@
         "SPECIES_CARBINK",
         "SPECIES_NOSEPASS"
       ],
+      "shares": [
+        35,
+        25,
+        25,
+        10,
+        5
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_ZUBAT"
@@ -7946,6 +8120,14 @@
         "SPECIES_ONIX",
         "SPECIES_DHELMISE"
       ],
+      "shares": [
+        30,
+        20,
+        15,
+        15,
+        10,
+        10
+      ],
       "day": [
         "SPECIES_BRONZOR",
         "SPECIES_ZUBAT"
@@ -7956,7 +8138,7 @@
       ]
     },
     "encounters_turnback_cave_pillar_1_room_5": {
-      "archetype": "A8",
+      "archetype": "A15",
       "band": "mid",
       "intent": "Turnback Cave, room 8 of 46 at level 15: the ghost pool rotating so no two rooms read alike, Dhelmise from the deeper pillars on; shape A8.",
       "locked": [],
@@ -7972,6 +8154,16 @@
         "SPECIES_YAMASK",
         "SPECIES_LITWICK",
         "SPECIES_ZUBAT"
+      ],
+      "shares": [
+        30,
+        20,
+        10,
+        10,
+        10,
+        10,
+        5,
+        5
       ],
       "day": [
         "SPECIES_CARBINK",
@@ -8000,6 +8192,16 @@
         "SPECIES_ZUBAT",
         "SPECIES_BRONZOR"
       ],
+      "shares": [
+        30,
+        20,
+        15,
+        10,
+        10,
+        10,
+        4,
+        1
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_ZUBAT"
@@ -8026,6 +8228,16 @@
         "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL"
+      ],
+      "shares": [
+        30,
+        20,
+        20,
+        10,
+        10,
+        5,
+        4,
+        1
       ],
       "day": [
         "SPECIES_BRONZOR",
@@ -8082,6 +8294,13 @@
         "SPECIES_GOLBAT",
         "SPECIES_BRONZOR"
       ],
+      "shares": [
+        35,
+        20,
+        20,
+        15,
+        10
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_GOLBAT"
@@ -8105,6 +8324,13 @@
         "SPECIES_GOLBAT",
         "SPECIES_BRONZOR",
         "SPECIES_DUSKULL"
+      ],
+      "shares": [
+        30,
+        30,
+        15,
+        10,
+        15
       ],
       "day": [
         "SPECIES_BRONZOR",
@@ -8259,6 +8485,16 @@
         "SPECIES_COFAGRIGUS",
         "SPECIES_LITWICK"
       ],
+      "shares": [
+        25,
+        20,
+        10,
+        15,
+        10,
+        10,
+        5,
+        5
+      ],
       "day": [
         "SPECIES_BRONZONG",
         "SPECIES_GOLBAT"
@@ -8313,6 +8549,16 @@
         "SPECIES_GOLBAT",
         "SPECIES_BRONZONG"
       ],
+      "shares": [
+        30,
+        20,
+        15,
+        10,
+        15,
+        5,
+        4,
+        1
+      ],
       "day": [
         "SPECIES_KLEFKI",
         "SPECIES_GOLBAT"
@@ -8336,6 +8582,13 @@
         "SPECIES_BRONZONG",
         "SPECIES_DUSKULL",
         "SPECIES_DHELMISE"
+      ],
+      "shares": [
+        35,
+        25,
+        20,
+        10,
+        10
       ],
       "day": [
         "SPECIES_CARBINK",
@@ -9000,7 +9253,7 @@
     "encounters_valley_windworks_outside": {
       "archetype": "A15",
       "band": "early",
-      "intent": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%.",
+      "intent": "Electric at the windworks: Pawmi's home with Shinx and Pachirisu, the birds around it, Emolga a 4% and Pichu the 1%. The Old Rod's 5% is Mantyke, under Fantina's cap (2026-09-27).",
       "locked": [],
       "base_level": 9,
       "order": 20,
@@ -9027,7 +9280,7 @@
         "cast": [
           "SPECIES_CHINCHOU",
           "SPECIES_CARVANHA",
-          "SPECIES_REMORAID",
+          "SPECIES_MANTYKE",
           "SPECIES_BUIZEL",
           "SPECIES_MUDKIP"
         ],
@@ -9167,7 +9420,7 @@
       "locked": [],
       "base_level": 40,
       "order": 152,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_RHYPERIOR",
         "SPECIES_CRUSTLE",
@@ -9393,7 +9646,7 @@
       "locked": [],
       "base_level": 41,
       "order": 153,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_SKARMORY",
         "SPECIES_GARGANACL",
@@ -9418,7 +9671,7 @@
       "locked": [],
       "base_level": 41,
       "order": 154,
-      "split": "League",
+      "split": "Barry",
       "cast": [
         "SPECIES_STEELIX",
         "SPECIES_GARGANACL",
@@ -9426,6 +9679,14 @@
         "SPECIES_CARBINK",
         "SPECIES_PROBOPASS",
         "SPECIES_KLEFKI"
+      ],
+      "shares": [
+        33,
+        20,
+        25,
+        10,
+        11,
+        1
       ],
       "day": [
         "SPECIES_CARBINK",
@@ -9590,7 +9851,7 @@
     "encounters_wayward_cave_b1f": {
       "archetype": "A15",
       "band": "mid",
-      "intent": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung.",
+      "intent": "Wayward Cave B1F, the sand floor under Cycling Road: Phanpy leads, Gible has its home here at 10% in the morning among Sandygast, Glimmet and Stunky, Larvitar on the top rung. Hippopotas takes Meditite's 10%, under Maylene's cap; Meditite keeps its day slot (2026-09-27).",
       "locked": [],
       "base_level": 17,
       "order": 37,
@@ -9601,7 +9862,7 @@
         "SPECIES_GLIMMET",
         "SPECIES_GIBLE",
         "SPECIES_STUNKY",
-        "SPECIES_MEDITITE",
+        "SPECIES_HIPPOPOTAS",
         "SPECIES_LARVITAR",
         "SPECIES_NACLI"
       ],
@@ -10286,7 +10547,7 @@
       "locked": [],
       "base_level": null,
       "order": 159,
-      "split": "League",
+      "split": "Barry",
       "old_rod": {
         "cast": [
           "SPECIES_CHINCHOU",
@@ -10557,7 +10818,7 @@
         "cast": [
           "SPECIES_TENTACOOL",
           "SPECIES_FINNEON",
-          "SPECIES_WINGULL",
+          "SPECIES_LUVDISC",
           "SPECIES_FROAKIE",
           "SPECIES_REMORAID"
         ],
@@ -10800,7 +11061,7 @@
       "locked": [],
       "base_level": null,
       "order": 151,
-      "split": "League",
+      "split": "Barry",
       "old_rod": {
         "cast": [
           "SPECIES_MANTYKE",
@@ -11204,7 +11465,7 @@
     "encounters_amity_square": {
       "archetype": "A15",
       "band": "early",
-      "intent": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Emolga by day, Glameow and Purrloin by night. A draft for Ian.",
+      "intent": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Smoochum by day, Drifloon and Purrloin by night; Smoochum and Drifloon are here under Fantina's cap (2026-09-27). A draft for Ian.",
       "locked": [],
       "base_level": 8,
       "order": 39,
@@ -11221,10 +11482,10 @@
       ],
       "day": [
         "SPECIES_MINCCINO",
-        "SPECIES_EMOLGA"
+        "SPECIES_SMOOCHUM"
       ],
       "night": [
-        "SPECIES_GLAMEOW",
+        "SPECIES_DRIFLOON",
         "SPECIES_PURRLOIN"
       ]
     },
@@ -11485,6 +11746,7 @@
       "HQ",
       "Galactic",
       "Volkner",
+      "Barry",
       "League",
       "Post"
     ],
@@ -11499,6 +11761,7 @@
       "HQ": 60,
       "Galactic": 65,
       "Volkner": 68,
+      "Barry": 71,
       "League": 78,
       "Post": null
     },

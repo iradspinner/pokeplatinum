@@ -250,6 +250,20 @@ that table; `duplicates` means the tail repeats head species at the top rung (va
 usual move, and the thing that drives re-weighting); `none` means there is no meaningful
 tail because the ladder has fewer rungs.
 
+**A table's own variant (Ian, 2026-09-28).** Laid out to the archetypes alone, the
+authored game had 26 distinct shapes over the header's 165 tables (0.16, against vanilla's
+0.42 and R9's 0.35), because every table of an archetype and cast size came out the same.
+So a sidecar entry may carry `shares`, one whole percentage per cast line in cast order,
+in place of its archetype's. The archetype stays the table's intent, and R4 keeps the
+variant within 8 points of the archetype's own shape. A variant changes how a table's
+percentages fall across its slots and nothing else. It keeps the same species by morning,
+day and night, and the same top rung on a top-form table, so the repel manip is the same.
+The face stays first and under the cap. Every line keeps its role: a tail (1 to 4%), a
+cameo (5 to 9%) or a regular (10% and up, a home's floor). An early table never grows more
+concentrated, and R8's spread stays above its floor. The first pass on 2026-09-28 gave 32
+tables their own shares, 18 of them post-game, and relabelled three tables to the existing
+archetype their new shape fits. No new archetype was needed.
+
 **Archetype budget.** A game's worth of tables must hit the spread target (2.2x), so the
 mix is constrained, not free. Vanilla Platinum's distribution, as a starting budget:
 
@@ -320,7 +334,10 @@ it. His rules:
 | Late (30+) | 5-8 | 25-35% | 0.15-0.28 | A6, A7, A8, A12, A5 |
 
 The cast still grows as the game opens up; the cap is flat. R11 checks the cap per
-band instead of the old decreasing arc, and R5's band targets are these.
+band instead of the old decreasing arc, and R5's band targets are these. R11b also
+warns when the early band is not the most random, its median HHI higher than a later
+band's. The OxiDex header's "Early to late" shows the three medians and passes on both
+(2026-09-28; until then it still tested the old arc).
 
 **Capture areas and splits.** Two more facts from the same review shape every table.
 A nuzlocke capture is per location *name*: the two Lake Verity tables, both floors of

@@ -83,13 +83,13 @@ CANDIDATES = {
         "maps": ["STARK_MOUNTAIN_OUTSIDE", "STARK_MOUNTAIN_ROOM_1", "STARK_MOUNTAIN_ROOM_2"],
         "bosses": []},
     "victory_road": {
-        "label": "Victory Road", "split": "League",
+        "label": "Victory Road", "split": "Barry",
         "maps": ["VICTORY_ROAD_1F", "VICTORY_ROAD_2F", "VICTORY_ROAD_B1F"], "bosses": []},
     # Ian designed the level 71 Lucas and Dawn fight (one slot per starter,
     # 779 to 784) for the start of Victory Road; its script is the
     # Battleground's until the trainer pass moves it. Read with the first slot.
     "victory_road_rival": {
-        "label": "Victory Road, opened by the level 71 Lucas and Dawn fight", "split": "League",
+        "label": "Victory Road, opened by the level 71 Lucas and Dawn fight", "split": "Barry",
         "first": [779],
         "maps": ["VICTORY_ROAD_1F", "VICTORY_ROAD_2F", "VICTORY_ROAD_B1F"], "bosses": []},
 }

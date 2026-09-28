@@ -118,7 +118,8 @@ VictoryRoad1F_Dawn:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, VictoryRoad1F_BattleDawnEmpoleon
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, VictoryRoad1F_BattleDawnTorterra
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, VictoryRoad1F_BattleDawnTorterra
     GoTo VictoryRoad1F_BattleDawnInfernape
     End
 
@@ -149,7 +150,8 @@ VictoryRoad1F_Lucas:
     CloseMessage
     GetPlayerStarterSpecies VAR_RESULT
     GoToIfEq VAR_RESULT, SPECIES_TURTWIG, VictoryRoad1F_BattleLucasEmpoleon
-    GoToIfEq VAR_RESULT, SPECIES_CHIMCHAR, VictoryRoad1F_BattleLucasTorterra
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    GoToIfEq VAR_RESULT, SPECIES_SCORBUNNY, VictoryRoad1F_BattleLucasTorterra
     GoTo VictoryRoad1F_BattleLucasInfernape
     End
 

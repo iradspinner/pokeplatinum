@@ -29,7 +29,8 @@ JubilifeTV2F_GymGuide:
     GoToIfSet FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK, JubilifeTV2F_IHopeYouCollectAccessories
     GetPlayerStarterSpecies VAR_RESULT
     CallIfEq VAR_RESULT, SPECIES_TURTWIG, JubilifeTV2F_SetAccessoryTurtwigMask
-    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, JubilifeTV2F_SetAccessoryChimcharMask
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CallIfEq VAR_RESULT, SPECIES_SCORBUNNY, JubilifeTV2F_SetAccessoryChimcharMask
     CallIfEq VAR_RESULT, SPECIES_PIPLUP, JubilifeTV2F_SetAccessoryPiplupMask
     SetVar VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK, VAR_0x8004
     BufferAccessoryNameWithArticle 0, VAR_0x8004

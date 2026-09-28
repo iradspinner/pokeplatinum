@@ -283,7 +283,8 @@ Battleground_0397:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, Battleground_0625
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, Battleground_0645
     GoTo Battleground_0665
 Battleground_03D1:
@@ -362,7 +363,8 @@ Battleground_04BD:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, Battleground_078F
-    CompareVarToValue VAR_0x800C, 390
+    @ Oxide: Scorbunny holds the fire starter's place (Ian, 2026-09-21).
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, Battleground_07AC
     CompareVarToValue VAR_0x800C, 393
     GoToIf 1, Battleground_07C9
@@ -374,7 +376,7 @@ Battleground_04F3:
     GetPlayerStarterSpecies VAR_0x800C
     CompareVarToValue VAR_0x800C, 387
     GoToIf 1, Battleground_07E6
-    CompareVarToValue VAR_0x800C, 390
+    CompareVarToValue VAR_0x800C, SPECIES_SCORBUNNY
     GoToIf 1, Battleground_0803
     CompareVarToValue VAR_0x800C, 393
     GoToIf 1, Battleground_0820

@@ -20,22 +20,11 @@ So "Hardlove's engine expansion elements" = hg-engine's patch kit + hg-engine's 
 
 ## 2. Confirmed: Hardlove is a stock hg-engine build
 
-Checked against the Hardlove DSPRE extraction:
-
-| Evidence | hg-engine source says | Hardlove has |
-|---|---|---|
-| Injected overlays | 129 (main), 130 (battle), 131 (field), 132 (pokedex), 133..151 (one per hooked vanilla function) | `ov129.bin` .. `ov151.bin` present; vanilla HG stops at 128 |
-| Load addresses | ov129 at `0x023D8000`, ov130 at `0x023C4000`, ov131 at `0x023C8000`, ov132 at `0x021FBE60`, ov142 at `0x021E5900` | identical, per `overlays.yaml` |
-| Species count | `MAX_SPECIES_INCLUDING_FORMS` = 1476, Egg = 494, Bad Egg = 495, spares to 543, Victini = 544 (dex 494 + 50), megas start at 1076 | 1476 personal files; project doc already recorded "+50 for Gen 5+" and "1076+ = megas/forms" |
-| Move count | `NUM_OF_MOVES` reaches ~920 (Supercell Slam = 919, then custom slots) | 924 move files |
-| Personal struct | `SpeciesData`: abilities are `u16[2]` at 0x16 and 0x1A; base exp is `baseExpRewardPadding` (moved out to a separate table); TM/HM bits are `tmHmLearnsetPadding` (moved to its own learnset file) | u16 abilities at 0x16/0x1A; base exp zeroed; TM compat zeroed |
-| Base exp, hidden abilities, form tables, icon palettes | Stored in NARC `a/0/2/8` as "code addon" members 9_07 .. 9_13 | (not yet opened, but the struct evidence above is conclusive) |
-
-Correction to earlier project notes: the zeroed base exp and TM compat fields in Hardlove's personal records are **hg-engine's layout**, not a Hardlove design choice. Base exp lives in `a/0/2/8` member 9_08; TM compatibility lives in the learnset data. The zeroed EV yields are a Hardlove choice (hg-engine keeps EVs in the struct).
-
-Hardlove's snapshot of hg-engine is somewhat older than current main (main's species count now includes more forms), so when reading Hardlove data, prefer Hardlove's own tables over hg-engine head for exact indices.
+Cut to this pointer in the docs pass of 2026-09-27. The donor's layouts were read out of the ROM itself afterwards and are in `docs/oxide/donor-tables.md` and `donor-move-tables.md` (the `read-donor` skill), which supersede this section's reading of the extraction.
 
 ## 3. What each scoped element actually is, in hg-engine terms
+
+The live part of this file: the `port-element` skill uses it to find hg-engine's files for a feature. Its "Platinum side" notes describe vanilla Platinum as of 2026-09-15; elements 1 to 5 have changed those sites since (tracker archive, Phase 4).
 
 ### Type expansion (Fairy)
 - Not a table edit. hg-engine **replaces HG's damage calculation and type-effectiveness lookup with its own C code** (`src/battle/other_battle_calculators.c`, `battle_calc_damage.c`, `battle_pokemon.c` which defines `TypeEffectivenessTable[][3]`) and hooks the vanilla battle overlay (ov12 in HG) to call it.
@@ -82,19 +71,8 @@ Every item marked (cfg) is a compile-time toggle in hg-engine; the rest are alwa
 - Anti-piracy patch for flashcarts (cfg), BDHCam (cfg)
 - Level-up learnset format change to (u16 level, u16 move) with a configurable max
 - Overworld follower/sprite system changes
-Which of these Hardlove actually has switched on is not visible from the extraction alone (the config is compile-time); it would take checking specific byte patterns or just asking the Hardlove author's notes. Ian can pick from this list without that.
+Which of these Hardlove actually has switched on is not visible from the extraction alone (the config is compile-time). Ian picked from this list on 2026-09-20: `phase4-engine-change-answers.md`.
 
-## 4. plat-engine: what it is and where it stopped
+## 4 and 5. plat-engine and pokeplatinum
 
-- **Same architecture as hg-engine, deliberately.** Credits hg-engine and the same Mikelan98/Nomura arm9-expansion technique. Loads overlay 122 at boot from a patch at `0x02000CB4` in Platinum's `Main()`, links new code at `0x023C9000` (main) and `0x023D0000` (battle, field). Uses the same `hooks` / `repoints` / `routinepointers` / `bytereplacement` file scheme (`buildsys/`).
-- **Requires vanilla Platinum US Rev 1** by SHA-256 in its instructions. The Makefile itself does not appear to enforce it, but every address in it assumes vanilla code layout. The Platinum base in this folder is Rev 1 and its arm9/overlays are probably still vanilla in layout (DSPRE edits data NARCs, not code), but this has to be verified before any address from plat-engine is trusted.
-- **Dormant.** Single visible commit dated 2023-08-19; nothing since.
-- **What it has:** the loader; `rom.ld` with 107 Platinum function addresses (malloc, NARC readers, overlay loader, a set of battle functions); 16 hooks, all into arm9 or ov16 (damage calc, crit, type effectiveness, several ability checks, stat-boost script command, switch-in effects); 8 byte replacements (crit table); Fairy plate patch translated to Platinum (`0x02077988`); ~5,600 lines of C, mostly `src/battle/calc.c` (2,718) and `server.c` (1,706), i.e. a partial port of hg-engine's damage calculator and ability-check functions; species data as 700 JSON files (through Gen 6, same +50 numbering as hg-engine: Volcanion = 0x303 = 721 + 50); 501 move scripts, 277 effect scripts, 304 sub-scripts carried over; Platinum NARC path map in `narcs.mk`; Fairy-type graphics from Renegade Platinum.
-- **What it does not have:** the u16 ability widening (`abilities.s` equivalent), the move-table repoints (`moves.s` equivalent), pokedex/save expansion, cries, learnset format change, overworlds, item expansion, mega evolution runtime (config flag exists, code does not), move animations, sprites beyond icons, trainer expansion. Its `repoints` and `routinepointers` files are literally empty with a "will be filled in" comment.
-- Rough estimate by counting: plat-engine has re-targeted on the order of 10% of hg-engine's hook surface and 0% of its armips patch surface.
-
-## 5. pokeplatinum: better than the earlier project note said
-
-- Builds **matching** ROMs for both US Rev 0 and Rev 1 (SHA-1s in its README). Last commit 2026-09-12, so it is actively maintained.
-- This is the address oracle for the port. Every function hg-engine calls by HG address, and every hook site, has a named C function in pokeplatinum whose Platinum address can be read from the build's symbol map. Finding "where does Platinum store the ability byte" is a `grep`, not a disassembly session.
-- The type chart is `sTypeMatchupMultipliers` in `src/battle/battle_lib.c`; the mon struct's ability is `u8` at 0x0D of the relevant substruct (`include/struct_defs/pokemon.h`); species caps appear at 59 sites.
+Cut to this pointer in the docs pass of 2026-09-27. What they showed (plat-engine dormant and about a tenth of the way, pokeplatinum matching, active and the address oracle) decided approach C and is kept in the design doc, section 4. The full text is this file in git history before that pass.

@@ -1264,6 +1264,9 @@ function setGameSettings(title) {
     save_expansion = false
     showDex = false;
     showAI = false;
+    // Oxide patch: the save reader takes Oxide's species, moves, items,
+    // growth rates and abilities from the blob's `includes` (calc_export.py).
+    settings.readIncludes = true
     $('label[for="snow"]').hide()
   } else if (title == "Platinum Kaizo" || title == "Platinum") {
     gameGen = 4
@@ -1586,9 +1589,11 @@ function setBaseGame(title) {
         } else if (TITLE.includes("Platinum") ) {
           baseGame = "Pt"
           save_expansion = false
-          // Oxide patch: the DeSmuME Lua sync and its emulator link serve
-          // hzla's DeSmuME build; Oxide is played on melonDS.
+          // Oxide patch: the DeSmuME emulator link serves hzla's DeSmuME
+          // build, and Oxide is played on melonDS, so under the Oxide title
+          // only Sync shows, and it reads the OxiDex's save bridge.
           if (TITLE !== "Platinum Oxide") $('#sync-lua, #desmume-icon').show()
+          else $('#sync-lua').show()
         } else if (TITLE.includes("Black") || TITLE.includes("White")) {
           baseGame = "BW"
           if (TITLE.includes("Black 2") || TITLE.includes("White 2")) {
@@ -1643,7 +1648,13 @@ function setBaseGame(title) {
         window.baseGame = "g7"
     }
 
-    if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
+    // Oxide patch (VENDORED.md 13): this second block showed the DeSmuME
+    // link again for every Platinum title, and upstream's img/ is not
+    // vendored, so the Calc tab drew a broken image. Oxide keeps Sync only.
+    if (TITLE == "Platinum Oxide") {
+        $('#sync-lua').show()
+        $('#desmume-icon').hide()
+    } else if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
         $('#sync-lua, #desmume-icon').show()
     } else if (window.baseGame == "BW") {
         $('#sync-lua').show()
@@ -2320,14 +2331,36 @@ function loadDataSource(data) {
         sav_abilities = includes["abilities"]
         window.HGE_SAVE_INCLUDES_READY = mechanics == "hge"
         window.HGE_SAVE_INCLUDE_SOURCE = hasCompleteEmbeddedIncludes ? "backup" : "shared-fallback"
-        if (mechanics != "hge" && typeof window.extendSavArraysToGen67 === "function") {
+        // Oxide patch: Oxide's tables are the ROM's own ids; the Generation 6
+        // and 7 extender would overwrite them.
+        if (mechanics != "hge" && TITLE != "Platinum Oxide"
+            && typeof window.extendSavArraysToGen67 === "function") {
           window.extendSavArraysToGen67()
+        }
+        // Oxide patch: met places by Oxide's own ids (calc_export.met_locations).
+        // The Platinum table runs on into HeartGold's places past Platinum's
+        // ids, so Rowan's Briefcase, which Oxide added, read as New Bark Town.
+        if (TITLE == "Platinum Oxide" && Array.isArray(data["met_locations"])
+            && typeof locations !== "undefined") {
+          locations["Pt"] = data["met_locations"].slice()
         }
       } else {
         console.warn("Save include tables were requested but are unavailable.")
       }
     }
     $('#save-pok').show()
+
+    // Oxide patch: the Fragsheet's splits are Oxide's thirteen level-cap
+    // splits with their caps (calc_export.splits). Without this entry the
+    // Fragsheet matched the title to vanilla Platinum's by name.
+    if (TITLE == "Platinum Oxide" && Array.isArray(data["splits"])
+        && typeof splitData !== "undefined") {
+      splitData[TITLE] = {
+        lvls: data["splits"].map(function (s) { return s.cap }),
+        titles: data["splits"].map(function (s) { return s.name }),
+        types: []
+      }
+    }
 
     // imperium changes
     if (TITLE.includes("Emerald Imperium")) {

@@ -10,6 +10,21 @@
             "en_US": "99 Rare Candies"
         },
         {
+            "id": "TestKit_Text_MenuSpriteHeights",
+            "en_US": "Sprite heights"
+        },
+        {
+            "id": "TestKit_Text_SpriteHeights",
+            "en_US": [
+                "Four wild Pokémon come in turn:\n",
+                "Wooloo, Sinistea, Rookidee and\r",
+                "Fletchling. Run from each one.\r",
+                "Wooloo, Rookidee and Fletchling\n",
+                "should stand on their shadows,\r",
+                "and Sinistea hover just above it."
+            ]
+        },
+        {
             "id": "TestKit_Text_MenuForms",
             "en_US": "Rotom and Giratina"
         },
@@ -372,6 +387,10 @@
         {
             "id": "TestKit_Text_MenuCapVolkner",
             "en_US": "Volkner, Lv. 68"
+        },
+        {
+            "id": "TestKit_Text_MenuCapBarry",
+            "en_US": "Barry, Lv. 71"
         },
         {
             "id": "TestKit_Text_MenuCapLeague",

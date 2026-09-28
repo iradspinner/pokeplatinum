@@ -1,4 +1,4 @@
-"""Oxide's documents, rendered in the encounter tool's own style.
+"""Oxide's documents, rendered in the OxiDex's own style.
 
     http://localhost:8765/doc                              every document
     http://localhost:8765/doc/docs/oxide/tracker.md        one, as on disk
@@ -464,7 +464,7 @@ def page(title, body, where):
 </head>
 <body>
 <header>
-  <a class="title" href="/doc">Platinum <span class="ox">Oxide</span></a>
+  <a class="title" href="/doc">Platinum <span class="ox">OxiDex</span></a>
   <span class="where">{where}</span>
   <button data-theme-toggle>Dark</button>
 </header>
