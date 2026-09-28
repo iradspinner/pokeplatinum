@@ -77,7 +77,26 @@ typedef struct OxideBeacon {
     void *pcBoxes;
     void *battleLog;
     void *battleContext;
+    // Version 2 (2026-09-28): what the live export needs without per-build
+    // addresses. Each layout entry is one of BEACON_LAYOUT_.
+    void *trainerInfo;
+    u16 boxCount;
+    u16 layoutCount;
+    const u16 *layout;
 } OxideBeacon;
+
+enum OxideBeaconLayout {
+    BEACON_LAYOUT_TRAINER_ID = 0, // the u32 id in the TrainerInfo: trainer id low, secret id high
+    BEACON_LAYOUT_BATTLE_MONS, // BattleContext's four BattleMons
+    BEACON_LAYOUT_BATTLE_MON_SIZE,
+    BEACON_LAYOUT_BATTLE_MON_SPECIES, // u16
+    BEACON_LAYOUT_BATTLE_MON_LEVEL, // u8
+    BEACON_LAYOUT_BATTLE_MON_CUR_HP, // s32
+    BEACON_LAYOUT_BATTLE_MON_MAX_HP, // u32
+    BEACON_LAYOUT_PARTY_RECORD_SIZE,
+    BEACON_LAYOUT_BOX_RECORD_SIZE,
+    BEACON_LAYOUT_COUNT
+};
 
 void BattleLog_Load(SaveData *saveData);
 void BattleLog_Clear(SaveData *saveData);
