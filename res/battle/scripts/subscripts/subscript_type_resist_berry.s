@@ -36,6 +36,7 @@ _033:
     CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, 32, _226
     CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, 33, _233
     CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, 34, _240
+    CompareVarToValue OPCODE_EQU, BTLVAR_SCRIPT_TEMP, HOLD_EFFECT_WEAKEN_SE_FAIRY, _fairy // Oxide, element 7: the Roseli Berry
     GoTo _262
 
 _128:
@@ -100,6 +101,10 @@ _226:
 
 _233:
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, 0x00000011, _245
+    GoTo _262
+
+_fairy:
+    CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, TYPE_FAIRY, _245
     GoTo _262
 
 _240:

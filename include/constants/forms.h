@@ -116,7 +116,11 @@
 #define SHAYMIN_FORM_SKY   1
 #define SHAYMIN_FORM_COUNT 2
 
-#define ARCEUS_FORM_COUNT 18
+// Arceus's form is its type. Platinum Oxide, element 7: the Pixie Plate adds
+// form 18, TYPE_FAIRY, whose sprites sit after pl_otherpoke's last member
+// rather than after the other seventeen.
+#define ARCEUS_FORM_FAIRY 18
+#define ARCEUS_FORM_COUNT 19
 
 #define EGG_FORM_BASE    0
 #define EGG_FORM_MANAPHY 1

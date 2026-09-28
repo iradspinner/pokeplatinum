@@ -811,6 +811,54 @@ void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entr
     application->contextMenu = Menu_NewAndCopyToVRAM(&template, 8, 0, 0, HEAP_ID_PARTY_MENU, PAD_BUTTON_B);
 }
 
+// Platinum Oxide: the Bottle Cap's list of the six stats, drawn where the
+// context menu goes and closed with PartyMenu_ClearContextWindow. Each entry
+// returns its enum PokemonStat; B cancels.
+void PartyMenu_DrawStatChoiceMenu(PartyMenuApplication *application)
+{
+    static const u8 order[STAT_MAX] = {
+        STAT_HP,
+        STAT_ATTACK,
+        STAT_DEFENSE,
+        STAT_SPECIAL_ATTACK,
+        STAT_SPECIAL_DEFENSE,
+        STAT_SPEED,
+    };
+
+    Window_Add(
+        application->bgConfig,
+        &application->menuWindows[0],
+        BG_LAYER_MAIN_0,
+        19,
+        23 - STAT_MAX * MAX_LETTER_HEIGHT_TILES,
+        12,
+        STAT_MAX * MAX_LETTER_HEIGHT_TILES,
+        0,
+        WIN_CONTEXT_WINDOW_BASE_TILE);
+
+    MessageLoader *loader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STAT_NAMES, HEAP_ID_PARTY_MENU);
+    application->contextMenuChoices = StringList_New(STAT_MAX, HEAP_ID_PARTY_MENU);
+
+    for (u8 i = 0; i < STAT_MAX; i++) {
+        StringList_AddFromMessageBank(application->contextMenuChoices, loader, order[i], order[i]);
+    }
+
+    MessageLoader_Free(loader);
+
+    MenuTemplate template;
+    template.choices = application->contextMenuChoices;
+    template.window = &application->menuWindows[0];
+    template.fontID = FONT_SYSTEM;
+    template.xSize = 1;
+    template.ySize = STAT_MAX;
+    template.lineSpacing = 0;
+    template.suppressCursor = FALSE;
+    template.loopAround = TRUE;
+
+    Window_DrawStandardFrame(&application->menuWindows[0], TRUE, 1, 14);
+    application->contextMenu = Menu_NewAndCopyToVRAM(&template, 8, 0, 0, HEAP_ID_PARTY_MENU, PAD_BUTTON_B);
+}
+
 void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application)
 {
     if (application->partyMenu->mode == PARTY_MENU_MODE_BALL_SEAL) {

@@ -124,7 +124,7 @@ LANGUAGES = {
     6: "LANGUAGE_UNUSED_6", 7: "LANGUAGE_SPANISH", 8: "LANGUAGE_KOREAN",
 }
 
-NUM_TMS = 92  # include/constants/items.h: TM01..TM92, HM01..HM08
+NUM_TMS = 92  # the base ROM's TMs, TM01..TM92 then HM01..HM08; Oxide's own count is NUM_TMS in include/constants/items.h
 
 # Alternate forms that have their own personal/learnset/evolution records,
 # in NARC order after SPECIES_BAD_EGG (495). Mirrors alt_forms_with_data[] in
@@ -1251,6 +1251,8 @@ def import_map_headers(base_arm9, van_arm9, dry_run, log):
 TEXT_BANK_TRAINER_NAMES = 618
 TEXT_BANK_ITEM_DESCRIPTIONS = 391
 TEXT_BANK_ITEM_NAMES = 392
+TEXT_BANK_ITEM_NAMES_WITH_ARTICLES = 393
+TEXT_BANK_ITEM_NAMES_PLURAL = 394
 TEXT_BANK_MOVE_DESCRIPTIONS = 646
 
 # Single entries that deliberately differ from the base ROM inside a bank that
@@ -1265,6 +1267,15 @@ TEXT_ENTRIES_DIVERGED = {
         for entry in (65, 224, 337, 404, 438)  # Drill Peck, Megahorn, Dragon Claw, X-Scissor, Power Whip
     },
 }
+# Element 7 put 22 of its new items (Eviolite to Ability Patch) in vanilla's
+# unused item slots 113 to 134, whose name, article, plural and description
+# were "???" or empty in the base ROM.
+TEXT_ENTRIES_DIVERGED.update({
+    bank: {entry: "one of element 7's new items, in a slot the base ROM left unused"
+           for entry in range(113, 135)}
+    for bank in (TEXT_BANK_ITEM_DESCRIPTIONS, TEXT_BANK_ITEM_NAMES,
+                 TEXT_BANK_ITEM_NAMES_WITH_ARTICLES, TEXT_BANK_ITEM_NAMES_PLURAL)
+})
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.

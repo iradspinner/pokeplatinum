@@ -54,6 +54,7 @@
 #include "unk_02017038.h"
 #include "unk_02092494.h"
 
+#include "res/pokemon/pl_otherpoke.naix"
 #include "res/pokemon/regional_pokedex_size.h"
 #include "res/trainers/classes/trbgra.naix"
 
@@ -278,7 +279,7 @@ static BOOL IsBoxPokemonInfectedWithPokerus(BoxPokemon *boxMon);
 static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon);
 static void InitializeBoxPokemonAfterCapture(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, enum HeapID heapID);
 static void PostCaptureBoxPokemonProcessing(BoxPokemon *boxMon, TrainerInfo *trainer, int monPokeball, int metLocation, int metTerrain, int heapID);
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID);
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u16 tmID);
 static void BoxPokemon_CalcAbility(BoxPokemon *boxMon);
 static void SpeciesData_LoadSpecies(int monSpecies, SpeciesData *speciesData);
 static void SpeciesData_LoadForm(int monSpecies, int monForm, SpeciesData *speciesData);
@@ -576,18 +577,22 @@ void Pokemon_CalcStats(Pokemon *mon)
     monMaxHp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL);
     monCurrentHp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
 
-    monHpIV = Pokemon_GetValue(mon, MON_DATA_HP_IV, NULL);
+    // Platinum Oxide: a Hyper Trained stat counts its IV as 31, and a Mint's
+    // nature, when there is one, decides which stats the nature raises and
+    // lowers.
+    monHpIV = Pokemon_GetStatIV(mon, STAT_HP);
     monHpEV = Pokemon_GetValue(mon, MON_DATA_HP_EV, NULL);
-    monAtkIV = Pokemon_GetValue(mon, MON_DATA_ATK_IV, NULL);
+    monAtkIV = Pokemon_GetStatIV(mon, STAT_ATTACK);
     monAtkEV = Pokemon_GetValue(mon, MON_DATA_ATK_EV, NULL);
-    monDefIV = Pokemon_GetValue(mon, MON_DATA_DEF_IV, NULL);
+    monDefIV = Pokemon_GetStatIV(mon, STAT_DEFENSE);
     monDefEV = Pokemon_GetValue(mon, MON_DATA_DEF_EV, NULL);
-    monSpeedIV = Pokemon_GetValue(mon, MON_DATA_SPEED_IV, NULL);
+    monSpeedIV = Pokemon_GetStatIV(mon, STAT_SPEED);
     monSpeedEV = Pokemon_GetValue(mon, MON_DATA_SPEED_EV, NULL);
-    monSpAtkIV = Pokemon_GetValue(mon, MON_DATA_SPATK_IV, NULL);
+    monSpAtkIV = Pokemon_GetStatIV(mon, STAT_SPECIAL_ATTACK);
     monSpAtkEV = Pokemon_GetValue(mon, MON_DATA_SPATK_EV, NULL);
-    monSpDefIV = Pokemon_GetValue(mon, MON_DATA_SPDEF_IV, NULL);
+    monSpDefIV = Pokemon_GetStatIV(mon, STAT_SPECIAL_DEFENSE);
     monSpDefEV = Pokemon_GetValue(mon, MON_DATA_SPDEF_EV, NULL);
+    u8 monStatNature = Pokemon_GetStatNature(mon);
 
     int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
     int monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -606,27 +611,27 @@ void Pokemon_CalcStats(Pokemon *mon)
 
     // TODO inline func maybe
     int newAtk = ((2 * speciesData->baseStats.attack + monAtkIV + monAtkEV / 4) * monLevel / 100 + 5);
-    newAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newAtk, STAT_ATTACK);
+    newAtk = Pokemon_GetNatureStatValue(monStatNature, newAtk, STAT_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_ATK, &newAtk);
 
     int newDef = ((2 * speciesData->baseStats.defense + monDefIV + monDefEV / 4) * monLevel / 100 + 5);
-    newDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newDef, STAT_DEFENSE);
+    newDef = Pokemon_GetNatureStatValue(monStatNature, newDef, STAT_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_DEF, &newDef);
 
     int newSpeed = ((2 * speciesData->baseStats.speed + monSpeedIV + monSpeedEV / 4) * monLevel / 100 + 5);
-    newSpeed = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpeed, STAT_SPEED);
+    newSpeed = Pokemon_GetNatureStatValue(monStatNature, newSpeed, STAT_SPEED);
 
     Pokemon_SetValue(mon, MON_DATA_SPEED, &newSpeed);
 
     int newSpAtk = ((2 * speciesData->baseStats.spAttack + monSpAtkIV + monSpAtkEV / 4) * monLevel / 100 + 5);
-    newSpAtk = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpAtk, STAT_SPECIAL_ATTACK);
+    newSpAtk = Pokemon_GetNatureStatValue(monStatNature, newSpAtk, STAT_SPECIAL_ATTACK);
 
     Pokemon_SetValue(mon, MON_DATA_SP_ATK, &newSpAtk);
 
     int newSpDef = ((2 * speciesData->baseStats.spDefense + monSpDefIV + monSpDefEV / 4) * monLevel / 100 + 5);
-    newSpDef = Pokemon_GetNatureStatValue(Pokemon_GetNature(mon), newSpDef, STAT_SPECIAL_DEFENSE);
+    newSpDef = Pokemon_GetNatureStatValue(monStatNature, newSpDef, STAT_SPECIAL_DEFENSE);
 
     Pokemon_SetValue(mon, MON_DATA_SP_DEF, &newSpDef);
     Heap_Free(speciesData);
@@ -854,6 +859,18 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockA->hasHiddenAbility;
         break;
 
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        result = monDataBlockA->abilitySlotSwapped;
+        break;
+
+    case MON_DATA_HYPER_TRAINED:
+        result = monDataBlockA->hyperTrained;
+        break;
+
+    case MON_DATA_STAT_NATURE:
+        result = monDataBlockB->statNature;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1055,9 +1072,6 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->form;
         break;
 
-    case MON_DATA_UNUSED_113:
-        result = monDataBlockB->unused1;
-        break;
 
     case MON_DATA_NICKNAME:
         if (boxMon->checksumFailed) {
@@ -1404,6 +1418,18 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockA->hasHiddenAbility = *u8Value;
         break;
 
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        monDataBlockA->abilitySlotSwapped = *u8Value;
+        break;
+
+    case MON_DATA_HYPER_TRAINED:
+        monDataBlockA->hyperTrained = *u8Value;
+        break;
+
+    case MON_DATA_STAT_NATURE:
+        monDataBlockB->statNature = *u8Value;
+        break;
+
     case MON_DATA_MARKINGS:
         monDataBlockA->markings = *u8Value;
         break;
@@ -1614,9 +1640,6 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->form = *u8Value;
         break;
 
-    case MON_DATA_UNUSED_113:
-        monDataBlockB->unused1 = *u8Value;
-        break;
 
     case MON_DATA_NICKNAME_AND_FLAG: {
         charcode_t baseName[MON_NAME_LEN + 1];
@@ -2131,6 +2154,9 @@ static void BoxPokemon_IncreaseDataInternal(BoxPokemon *boxMon, enum PokemonData
     case MON_DATA_TYPE_2:
     case MON_DATA_SPECIES_NAME:
     case MON_DATA_HAS_HIDDEN_ABILITY:
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+    case MON_DATA_HYPER_TRAINED:
+    case MON_DATA_STAT_NATURE:
     default:
         GF_ASSERT(FALSE);
         break;
@@ -2410,6 +2436,41 @@ u8 BoxPokemon_GetNature(BoxPokemon *boxMon)
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 
     return Pokemon_GetNatureOf(monPersonality);
+}
+
+// Platinum Oxide: the nature a Pokemon's stats grow by, which a Mint can
+// set apart from the nature its personality gives it. Everything else that
+// reads a nature (its name, flavours, Synchronize, breeding) keeps the real one.
+u8 Pokemon_GetStatNature(Pokemon *mon)
+{
+    return BoxPokemon_GetStatNature(&mon->box);
+}
+
+u8 BoxPokemon_GetStatNature(BoxPokemon *boxMon)
+{
+    BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
+    u32 statNature = BoxPokemon_GetValue(boxMon, MON_DATA_STAT_NATURE, NULL);
+    u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+
+    BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+
+    if (statNature != 0 && statNature <= NATURE_COUNT) {
+        return statNature - 1;
+    }
+
+    return Pokemon_GetNatureOf(monPersonality);
+}
+
+// Platinum Oxide: the IV a stat is computed from, which is 31 once a Bottle
+// Cap has Hyper Trained it. The stored IV is left alone, so Hidden Power and
+// breeding still see the real one, as in the later games.
+u32 Pokemon_GetStatIV(Pokemon *mon, enum PokemonStat stat)
+{
+    if (Pokemon_GetValue(mon, MON_DATA_HYPER_TRAINED, NULL) & (1 << stat)) {
+        return MAX_IVS_SINGLE_STAT;
+    }
+
+    return Pokemon_GetValue(mon, MON_DATA_HP_IV + stat, NULL);
 }
 
 u8 Pokemon_GetNatureOf(u32 monPersonality)
@@ -2884,6 +2945,15 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
 
     case SPECIES_ARCEUS:
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+
+        // Oxide, element 7: the Fairy form's back and front sprites, then
+        // its normal and shiny palettes, follow the archive's last member.
+        if (form == ARCEUS_FORM_FAIRY) {
+            spriteTemplate->character = pokemon_z_00_arceus_fairy_back_NCGR + (face / 2);
+            spriteTemplate->palette = pokemon_z_02_arceus_fairy_normal_NCLR + shiny;
+            break;
+        }
+
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 190 + shiny + form * 2;
         break;
@@ -3082,6 +3152,12 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
         break;
 
     case SPECIES_ARCEUS:
+        // Oxide, element 7: the Diamond and Pearl archive has no Fairy form,
+        // so it shows the Normal one.
+        if (form == ARCEUS_FORM_FAIRY) {
+            form = 0;
+        }
+
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE;
         spriteTemplate->character = 96 + (face / 2) + form * 2;
         spriteTemplate->palette = 170 + shiny + form * 2;
@@ -3235,6 +3311,12 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
         break;
 
     case SPECIES_ARCEUS:
+        // Oxide, element 7: every form of Arceus is the same shape, so the
+        // Fairy form, which has no height entry, takes the Normal form's.
+        if (form == ARCEUS_FORM_FAIRY) {
+            form = 0;
+        }
+
         narcID = NARC_INDEX_POKETOOL__POKEGRA__HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
@@ -3324,6 +3406,10 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
         break;
 
     case SPECIES_ARCEUS:
+        if (form == ARCEUS_FORM_FAIRY) { // Oxide, element 7, as above
+            form = 0;
+        }
+
         narcID = NARC_INDEX_POKETOOL__POKEGRA__DP_HEIGHT_O;
         memberIndex = 96 + (face / 2) + form * 2;
         break;
@@ -4448,6 +4534,9 @@ u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
     case HOLD_EFFECT_ARCEUS_STEEL:
         type = TYPE_STEEL;
         break;
+    case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+        type = TYPE_FAIRY;
+        break;
     default:
         type = TYPE_NORMAL;
         break;
@@ -4805,12 +4894,12 @@ void Pokemon_GiveHeldItem(Pokemon *mon, u32 battleType, int itemRates)
     }
 }
 
-BOOL Pokemon_CanLearnTM(Pokemon *mon, u8 tmID)
+BOOL Pokemon_CanLearnTM(Pokemon *mon, u16 tmID)
 {
     return CanBoxPokemonLearnTM(&mon->box, tmID);
 }
 
-static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
+static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u16 tmID)
 {
     u16 monSpeciesEgg = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
@@ -4818,29 +4907,19 @@ static BOOL CanBoxPokemonLearnTM(BoxPokemon *boxMon, u8 tmID)
     return CanPokemonFormLearnTM(monSpeciesEgg, monForm, tmID);
 }
 
-BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID)
+// Platinum Oxide: reads the mask word the bit is in, however many words
+// NUM_TMHMS makes, where vanilla stopped at four.
+BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u16 tmID)
 {
-    if (monSpecies == SPECIES_EGG) {
+    if (monSpecies == SPECIES_EGG || tmID >= NUM_TMHMS) {
         return FALSE;
     }
 
-    u32 tmFlag;
-    u8 speciesDataAttribute;
-    if (tmID < 32) {
-        tmFlag = (1 << tmID);
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_1;
-    } else if (tmID < 64) {
-        tmFlag = (1 << (tmID - 32));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_2;
-    } else if (tmID < 96) {
-        tmFlag = (1 << (tmID - 64));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_3;
-    } else {
-        tmFlag = (1 << (tmID - 96));
-        speciesDataAttribute = SPECIES_DATA_TM_LEARNSET_MASK_4;
-    }
+    SpeciesData *speciesData = SpeciesData_FromMonSpecies(Pokemon_GetFormNarcIndex(monSpecies, monForm), HEAP_ID_SYSTEM);
+    BOOL result = (speciesData->tmLearnsetMasks[tmID / 32] & (1 << (tmID % 32))) != 0;
 
-    return (SpeciesData_GetFormValue(monSpecies, monForm, speciesDataAttribute) & tmFlag) != 0;
+    SpeciesData_Free(speciesData);
+    return result;
 }
 
 void Pokemon_CalcAbility(Pokemon *mon)
@@ -4895,7 +4974,8 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monAbilityHidden != ABILITY_NONE) {
         BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbilityHidden);
     } else if (monAbility2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
+        // An Ability Capsule flips which ordinary slot the personality picks.
+        if ((monPersonality & 1) ^ BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL)) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility1);

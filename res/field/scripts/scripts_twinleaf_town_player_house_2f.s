@@ -471,6 +471,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuTwoTMs, 18
     AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
+    AddListMenuEntry TestKit_Text_MenuItems, 18
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -492,6 +493,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoToIfEq VAR_0x8004, 18, TestKit_TwoTMs
     GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
+    GoToIfEq VAR_0x8004, 18, TestKit_Items
     GoTo TestKit_Close
 
 TestKit_RareCandies:
@@ -3179,6 +3181,625 @@ TestKit_StapleKaizoMoves:
     SetVar VAR_0x8002, MOVE_FAKE_OUT
     SetVar VAR_0x800A, SPECIES_MEW
     GoTo TestKit_GivePokemonWithMoves
+
+/* Element 7's items (docs/oxide/test-kit.md, "The item entries"). "All new
+   items" puts one of each of the 46, and the Ice Stone, in the bag, for their names, icons,
+   pockets and descriptions; the entries after it set up a battle for one
+   item or a group. */
+TestKit_Items:
+    Message TestKit_Text_WhichItems
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuItemsAll, 0
+    AddListMenuEntry TestKit_Text_MenuItemEviolite, 1
+    AddListMenuEntry TestKit_Text_MenuItemAssaultVest, 2
+    AddListMenuEntry TestKit_Text_MenuItemPunchingGlove, 3
+    AddListMenuEntry TestKit_Text_MenuItemFairyFeather, 4
+    AddListMenuEntry TestKit_Text_MenuItemRingTarget, 5
+    AddListMenuEntry TestKit_Text_MenuItemSafetyGoggles, 6
+    AddListMenuEntry TestKit_Text_MenuItemCovertCloak, 7
+    AddListMenuEntry TestKit_Text_MenuItemClearAmulet, 8
+    AddListMenuEntry TestKit_Text_MenuItemAbilityShield, 9
+    AddListMenuEntry TestKit_Text_MenuItemRockyHelmet, 10
+    AddListMenuEntry TestKit_Text_MenuItemAbsorbBulb, 11
+    AddListMenuEntry TestKit_Text_MenuItemCellBattery, 12
+    AddListMenuEntry TestKit_Text_MenuItemWeaknessPolicy, 13
+    AddListMenuEntry TestKit_Text_MenuItemAirBalloon, 14
+    AddListMenuEntry TestKit_Text_MenuItemBindingBand, 15
+    AddListMenuEntry TestKit_Text_MenuItemLoadedDice, 16
+    AddListMenuEntry TestKit_Text_MenuItemMirrorHerb, 17
+    AddListMenuEntry TestKit_Text_MenuItemEjectButton, 18
+    AddListMenuEntry TestKit_Text_MenuItemRedCard, 19
+    AddListMenuEntry TestKit_Text_MenuItemPixiePlate, 20
+    AddListMenuEntry TestKit_Text_MenuItemRoseliBerry, 21
+    AddListMenuEntry TestKit_Text_MenuItemAbilities, 22
+    AddListMenuEntry TestKit_Text_MenuItemMintsCaps, 23
+    AddListMenuEntry TestKit_Text_MenuItemTMs, 24
+    AddListMenuEntry TestKit_Text_MenuItemContrary, 25
+    AddListMenuEntry TestKit_Text_MenuItemIceStone, 26
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
+    GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
+    GoToIfEq VAR_0x8004, 2, TestKit_ItemAssaultVest
+    GoToIfEq VAR_0x8004, 3, TestKit_ItemPunchingGlove
+    GoToIfEq VAR_0x8004, 4, TestKit_ItemFairyFeather
+    GoToIfEq VAR_0x8004, 5, TestKit_ItemRingTarget
+    GoToIfEq VAR_0x8004, 6, TestKit_ItemSafetyGoggles
+    GoToIfEq VAR_0x8004, 7, TestKit_ItemCovertCloak
+    GoToIfEq VAR_0x8004, 8, TestKit_ItemClearAmulet
+    GoToIfEq VAR_0x8004, 9, TestKit_ItemAbilityShield
+    GoToIfEq VAR_0x8004, 10, TestKit_ItemRockyHelmet
+    GoToIfEq VAR_0x8004, 11, TestKit_ItemAbsorbBulb
+    GoToIfEq VAR_0x8004, 12, TestKit_ItemCellBattery
+    GoToIfEq VAR_0x8004, 13, TestKit_ItemWeaknessPolicy
+    GoToIfEq VAR_0x8004, 14, TestKit_ItemAirBalloon
+    GoToIfEq VAR_0x8004, 15, TestKit_ItemBindingBand
+    GoToIfEq VAR_0x8004, 16, TestKit_ItemLoadedDice
+    GoToIfEq VAR_0x8004, 17, TestKit_ItemMirrorHerb
+    GoToIfEq VAR_0x8004, 18, TestKit_ItemEjectButton
+    GoToIfEq VAR_0x8004, 19, TestKit_ItemRedCard
+    GoToIfEq VAR_0x8004, 20, TestKit_ItemPixiePlate
+    GoToIfEq VAR_0x8004, 21, TestKit_ItemRoseliBerry
+    GoToIfEq VAR_0x8004, 22, TestKit_ItemAbilities
+    GoToIfEq VAR_0x8004, 23, TestKit_ItemMintsCaps
+    GoToIfEq VAR_0x8004, 24, TestKit_ItemTMs
+    GoToIfEq VAR_0x8004, 25, TestKit_ItemContrary
+    GoToIfEq VAR_0x8004, 26, TestKit_ItemIceStone
+    GoTo TestKit_Close
+
+TestKit_ItemsAll:
+    AddItem ITEM_EVIOLITE, 1, VAR_RESULT
+    AddItem ITEM_AIR_BALLOON, 1, VAR_RESULT
+    AddItem ITEM_ROCKY_HELMET, 1, VAR_RESULT
+    AddItem ITEM_ASSAULT_VEST, 1, VAR_RESULT
+    AddItem ITEM_WEAKNESS_POLICY, 1, VAR_RESULT
+    AddItem ITEM_SAFETY_GOGGLES, 1, VAR_RESULT
+    AddItem ITEM_RED_CARD, 1, VAR_RESULT
+    AddItem ITEM_EJECT_BUTTON, 1, VAR_RESULT
+    AddItem ITEM_RING_TARGET, 1, VAR_RESULT
+    AddItem ITEM_BINDING_BAND, 1, VAR_RESULT
+    AddItem ITEM_ABSORB_BULB, 1, VAR_RESULT
+    AddItem ITEM_CELL_BATTERY, 1, VAR_RESULT
+    AddItem ITEM_COVERT_CLOAK, 1, VAR_RESULT
+    AddItem ITEM_CLEAR_AMULET, 1, VAR_RESULT
+    AddItem ITEM_MIRROR_HERB, 1, VAR_RESULT
+    AddItem ITEM_LOADED_DICE, 1, VAR_RESULT
+    AddItem ITEM_PUNCHING_GLOVE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_SHIELD, 1, VAR_RESULT
+    AddItem ITEM_FAIRY_FEATHER, 1, VAR_RESULT
+    AddItem ITEM_PIXIE_PLATE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_CAPSULE, 1, VAR_RESULT
+    AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
+    AddItem ITEM_ROSELI_BERRY, 1, VAR_RESULT
+    AddItem ITEM_BOTTLE_CAP, 1, VAR_RESULT
+    AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
+    AddItem ITEM_LONELY_MINT, 1, VAR_RESULT
+    AddItem ITEM_ADAMANT_MINT, 1, VAR_RESULT
+    AddItem ITEM_NAUGHTY_MINT, 1, VAR_RESULT
+    AddItem ITEM_BRAVE_MINT, 1, VAR_RESULT
+    AddItem ITEM_BOLD_MINT, 1, VAR_RESULT
+    AddItem ITEM_IMPISH_MINT, 1, VAR_RESULT
+    AddItem ITEM_LAX_MINT, 1, VAR_RESULT
+    AddItem ITEM_RELAXED_MINT, 1, VAR_RESULT
+    AddItem ITEM_MODEST_MINT, 1, VAR_RESULT
+    AddItem ITEM_MILD_MINT, 1, VAR_RESULT
+    AddItem ITEM_RASH_MINT, 1, VAR_RESULT
+    AddItem ITEM_QUIET_MINT, 1, VAR_RESULT
+    AddItem ITEM_CALM_MINT, 1, VAR_RESULT
+    AddItem ITEM_GENTLE_MINT, 1, VAR_RESULT
+    AddItem ITEM_CAREFUL_MINT, 1, VAR_RESULT
+    AddItem ITEM_SASSY_MINT, 1, VAR_RESULT
+    AddItem ITEM_TIMID_MINT, 1, VAR_RESULT
+    AddItem ITEM_HASTY_MINT, 1, VAR_RESULT
+    AddItem ITEM_JOLLY_MINT, 1, VAR_RESULT
+    AddItem ITEM_NAIVE_MINT, 1, VAR_RESULT
+    AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
+    AddItem ITEM_ICE_STONE, 1, VAR_RESULT
+    Message TestKit_Text_ItemsAll
+    GoTo TestKit_WaitAndClose
+
+/* Element 7's held-item entries: two Lv. 50 VAR_0x800A with the four moves in
+   VAR_0x8006 to VAR_0x8009 (and the ability VAR_0x800B, unless ABILITY_NONE),
+   the first holding the item VAR_0x8004 and the second nothing, so each item
+   is seen beside a baseline. Then, when VAR_0x8000 names one, the foe is
+   fought as in TestKit_AbilityFoe. Needs two free party slots. */
+TestKit_GiveItemPair:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
+    Call TestKit_SetPairMoves
+    AddVar VAR_0x8005, 1
+    GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+    CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
+    Call TestKit_SetPairMoves
+    BufferItemName 0, VAR_0x8004
+    Message TestKit_Text_ItemPair
+    GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
+    GoTo TestKit_WaitAndClose
+
+TestKit_SetPairMoves:
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, VAR_0x8006
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 1, VAR_0x8007
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 2, VAR_0x8008
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 3, VAR_0x8009
+    Return
+
+/* The Eviolite: Chansey, which can still evolve, against a wild Machamp
+   that knows only Karate Chop. Each chop takes about two thirds as much
+   from the Chansey holding it as from the other. */
+TestKit_ItemEviolite:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_EVIOLITE
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_SOFTBOILED
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Assault Vest: Mew against a wild Magmortar that knows only
+   Flamethrower. The Mew wearing it cannot choose Swords Dance or Recover
+   ("The effects of the Assault Vest prevent the use of status moves!"),
+   and each Flamethrower takes about two thirds as much from it as from
+   the other Mew. */
+TestKit_ItemAssaultVest:
+    SetVar VAR_0x8000, SPECIES_MAGMORTAR
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_FLAMETHROWER
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ASSAULT_VEST
+    SetVar VAR_0x8006, MOVE_PSYCHIC
+    SetVar VAR_0x8007, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveItemPair
+
+/* The Punching Glove: Hitmonchan against a wild Ferrothorn given Iron
+   Barbs that knows only Iron Defense. The gloved Hitmonchan's Ice Punch
+   does about a tenth more than the other's and brings no Iron Barbs
+   damage; its Close Combat, a kick, still does. */
+TestKit_ItemPunchingGlove:
+    SetVar VAR_0x8000, SPECIES_FERROTHORN
+    SetVar VAR_0x8001, ABILITY_IRON_BARBS
+    SetVar VAR_0x8002, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_HITMONCHAN
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_PUNCHING_GLOVE
+    SetVar VAR_0x8006, MOVE_ICE_PUNCH
+    SetVar VAR_0x8007, MOVE_MACH_PUNCH
+    SetVar VAR_0x8008, MOVE_CLOSE_COMBAT
+    SetVar VAR_0x8009, MOVE_BULK_UP
+    GoTo TestKit_GiveItemPair
+
+/* The Fairy Feather: Clefable against a wild Chansey that knows only
+   Splash. Moonblast from the Clefable holding it does about a fifth more
+   than from the other. */
+TestKit_ItemFairyFeather:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CLEFABLE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_FAIRY_FEATHER
+    SetVar VAR_0x8006, MOVE_MOONBLAST
+    SetVar VAR_0x8007, MOVE_DAZZLING_GLEAM
+    SetVar VAR_0x8008, MOVE_CALM_MIND
+    SetVar VAR_0x8009, MOVE_MOONLIGHT
+    GoTo TestKit_GiveItemPair
+
+/* The Ring Target: Skarmory against a wild Dugtrio that knows only
+   Earthquake. The Skarmory holding it takes Earthquake, super effective
+   through its Steel type; the other is not affected. */
+TestKit_ItemRingTarget:
+    SetVar VAR_0x8000, SPECIES_DUGTRIO
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EARTHQUAKE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SKARMORY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_RING_TARGET
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_SPIKES
+    SetVar VAR_0x8008, MOVE_BRAVE_BIRD
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* Safety Goggles: Snorlax against a wild Parasect given Effect Spore that
+   knows Spore and Stun Spore. The Snorlax wearing them is not affected
+   by either move, is never touched by Effect Spore when it uses Body Slam,
+   and takes no damage from its own Sandstorm; the other Snorlax is. */
+TestKit_ItemSafetyGoggles:
+    SetVar VAR_0x8000, SPECIES_PARASECT
+    SetVar VAR_0x8001, ABILITY_EFFECT_SPORE
+    SetVar VAR_0x8002, MOVE_SPORE
+    SetVar VAR_0x8003, MOVE_STUN_SPORE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_SAFETY_GOGGLES
+    SetVar VAR_0x8006, MOVE_SANDSTORM
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_REST
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Covert Cloak: Snorlax against a wild Jolteon that knows only Nuzzle,
+   whose paralysis is an added effect. The cloaked Snorlax takes the damage
+   and is never paralysed; the other always is. */
+TestKit_ItemCovertCloak:
+    SetVar VAR_0x8000, SPECIES_JOLTEON
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_NUZZLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_COVERT_CLOAK
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Clear Amulet: Mew against a wild Chansey that knows Growl and Sticky
+   Web. Each Growl at the Mew wearing it brings "MEW's Clear Amulet prevents
+   stat loss!"; the other Mew's Attack falls. Its own Swords Dance works.
+   Once Chansey has laid the web, the Mew wearing it switched in is "caught
+   in a sticky web!" and then the amulet prevents the loss; the other Mew's
+   Speed falls. */
+TestKit_ItemClearAmulet:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_GROWL
+    SetVar VAR_0x8003, MOVE_STICKY_WEB
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_CLEAR_AMULET
+    SetVar VAR_0x8006, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8007, MOVE_TACKLE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Ability Shield: Bronzong given Levitate against a wild Chansey given
+   Mold Breaker that knows Worry Seed and Earthquake. Against the Bronzong
+   holding it Worry Seed fails ("But it failed!") and Earthquake does not
+   affect it, since Mold Breaker cannot reach past the shield to Levitate;
+   the other Bronzong takes Earthquake as a super-effective hit, and Worry
+   Seed gives it Insomnia. */
+TestKit_ItemAbilityShield:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_MOLD_BREAKER
+    SetVar VAR_0x8002, MOVE_WORRY_SEED
+    SetVar VAR_0x8003, MOVE_EARTHQUAKE
+    SetVar VAR_0x800A, SPECIES_BRONZONG
+    SetVar VAR_0x800B, ABILITY_LEVITATE
+    SetVar VAR_0x8004, ITEM_ABILITY_SHIELD
+    SetVar VAR_0x8006, MOVE_SPLASH
+    SetVar VAR_0x8007, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Rocky Helmet: Skarmory against a wild Rattata that knows Tackle and
+   Swift. Each Tackle into the helmeted Skarmory hurts Rattata by a sixth
+   of its HP; Swift, which makes no contact, does not, and nor does a
+   Tackle into the other Skarmory. */
+TestKit_ItemRockyHelmet:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x800A, SPECIES_SKARMORY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ROCKY_HELMET
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_IRON_DEFENSE
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Absorb Bulb: Chansey against a wild Psyduck that knows only Water
+   Gun. The first Water Gun into the Chansey holding it brings "The Absorb
+   Bulb raised CHANSEY's Sp. Atk!", and the bulb is gone. */
+TestKit_ItemAbsorbBulb:
+    SetVar VAR_0x8000, SPECIES_PSYDUCK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_WATER_GUN
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ABSORB_BULB
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Cell Battery: as the Absorb Bulb, for Attack, against a wild Pikachu
+   that knows only Thunder Shock. */
+TestKit_ItemCellBattery:
+    SetVar VAR_0x8000, SPECIES_PIKACHU
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THUNDER_SHOCK
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_CELL_BATTERY
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Weakness Policy: Snorlax against a wild Machamp that knows only
+   Karate Chop, super effective on it. The first chop into the Snorlax
+   holding it sharply raises its Attack and then its Sp. Atk, and the
+   policy is gone. */
+TestKit_ItemWeaknessPolicy:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_WEAKNESS_POLICY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Air Balloon: Snorlax against a wild Dugtrio that knows Earthquake and
+   Scratch. Switched in, the Snorlax holding it "floats in the air with its
+   Air Balloon!", Earthquake does not affect it, and the first Scratch
+   pops the balloon; after that Earthquake hits it. */
+TestKit_ItemAirBalloon:
+    SetVar VAR_0x8000, SPECIES_DUGTRIO
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_EARTHQUAKE
+    SetVar VAR_0x8003, MOVE_SCRATCH
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_AIR_BALLOON
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Binding Band: Mew against a wild Chansey that knows only Splash. After
+   the banded Mew's Wrap, Chansey loses a sixth of its HP at the end of
+   each turn; after the other Mew's, an eighth. */
+TestKit_ItemBindingBand:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_BINDING_BAND
+    SetVar VAR_0x8006, MOVE_WRAP
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Loaded Dice: Mew against a wild Chansey that knows only Splash. From
+   the Mew holding them, Bullet Seed always hits four or five times,
+   Population Bomb four to ten times, and Triple Axel never misses a later
+   kick; from the other, Bullet Seed mostly hits two or three times. */
+TestKit_ItemLoadedDice:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_LOADED_DICE
+    SetVar VAR_0x8006, MOVE_BULLET_SEED
+    SetVar VAR_0x8007, MOVE_TRIPLE_AXEL
+    SetVar VAR_0x8008, MOVE_POPULATION_BOMB
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveItemPair
+
+/* The Mirror Herb: Mew against a wild Chansey that knows only Swords Dance.
+   After Chansey's first Swords Dance, the Mew holding the herb copies it
+   ("MEW's Mirror Herb copied its foe's stat changes!"), its Tackle does
+   about twice as much, and the herb is gone; the other Mew gets nothing. */
+TestKit_ItemMirrorHerb:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_MEW
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_MIRROR_HERB
+    SetVar VAR_0x8006, MOVE_TACKLE
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveItemPair
+
+/* The Eject Button: Chansey against a wild Rattata that knows only Tackle.
+   When a Tackle hits the Chansey holding it, "CHANSEY is switched out
+   with the Eject Button!" and the party list opens for a replacement. */
+TestKit_ItemEjectButton:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_EJECT_BUTTON
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Red Card: Chansey against a wild Rattata that knows only Tackle.
+   In a wild battle the card does nothing, as in hg-engine: a Tackle into
+   the Chansey holding it brings no message, the battle goes on, and the
+   card is still in its summary afterwards. Sending a trainer's Pokemon
+   away needs a trainer battle, which the kit does not have. */
+TestKit_ItemRedCard:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_CHANSEY
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_RED_CARD
+    SetVar VAR_0x8006, MOVE_SOFTBOILED
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SEISMIC_TOSS
+    GoTo TestKit_GiveItemPair
+
+/* The Pixie Plate: two Arceus with Judgment, Moonblast, Recover and Splash,
+   the first holding the plate and set to its Fairy form (as giving it the
+   plate from the Bag would), the second holding nothing, against a wild
+   Dragonite that knows only Dragon Claw. The first is pink in its summary
+   and in battle, its types read Fairy, its Judgment is a Fairy move that is
+   super effective on Dragonite, and Dragon Claw does not affect it; the
+   second is a Normal Arceus whose Judgment is Normal. */
+TestKit_ItemPixiePlate:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    SetVar VAR_0x8000, SPECIES_DRAGONITE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_DRAGON_CLAW
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_ARCEUS
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_PIXIE_PLATE
+    SetVar VAR_0x8006, MOVE_JUDGMENT
+    SetVar VAR_0x8007, MOVE_MOONBLAST
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GivePokemon VAR_0x800A, 50, VAR_0x8004, VAR_RESULT
+    Call TestKit_SetPairMoves
+    TestKitSetPartyMonForm VAR_0x8005, 18    /* ARCEUS_FORM_FAIRY */
+    AddVar VAR_0x8005, 1
+    GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
+    Call TestKit_SetPairMoves
+    BufferItemName 0, VAR_0x8004
+    Message TestKit_Text_ItemPair
+    GoTo TestKit_AbilityFoe
+
+/* The Roseli Berry: Dragonite against a wild Clefable that knows only
+   Moonblast, super effective on it. The first Moonblast into the Dragonite
+   holding it brings "The Roseli Berry weakened Moonblast's power!" and
+   does about half as much as into the other; the berry is gone. */
+TestKit_ItemRoseliBerry:
+    SetVar VAR_0x8000, SPECIES_CLEFABLE
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_MOONBLAST
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_DRAGONITE
+    SetVar VAR_0x800B, ABILITY_NONE
+    SetVar VAR_0x8004, ITEM_ROSELI_BERRY
+    SetVar VAR_0x8006, MOVE_ROOST
+    SetVar VAR_0x8007, MOVE_SPLASH
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_DRAGON_CLAW
+    GoTo TestKit_GiveItemPair
+
+/* Contrary on an item's stat raise: Snorlax given Contrary, against a wild
+   Machamp that knows only Karate Chop. The first chop into the Snorlax
+   holding a Weakness Policy (super effective) brings "SNORLAX's Attack
+   harshly fell!" and the same for its Sp. Atk, and the policy is gone; the
+   other Snorlax's stats stay. The Absorb Bulb, Cell Battery, the stat
+   Berries and the Mirror Herb follow the same rule (element 7 follow-up). */
+TestKit_ItemContrary:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_CONTRARY
+    SetVar VAR_0x8004, ITEM_WEAKNESS_POLICY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveItemPair
+
+/* The Ice Stone and Vulpix's two evolutions: two Lv. 20 Vulpix, with an Ice
+   Stone and a Fire Stone in the Bag. Both stones show ABLE beside a Vulpix.
+   The Ice Stone evolves one into Alolan Ninetales (Ice and Fairy), and the
+   Fire Stone the other into Ninetales, as Eevee's stones pick its branch. */
+TestKit_ItemIceStone:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ICE_STONE, 1, VAR_RESULT
+    AddItem ITEM_FIRE_STONE, 1, VAR_RESULT
+    Message TestKit_Text_ItemIceStone
+    GoTo TestKit_WaitAndClose
+
+/* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
+   Capsules and the Ability Patch in the Bag. A Capsule used on the Machamp
+   swaps it between Guts and No Guard ("Machamp's Ability changed to ...!")
+   and the second swaps it back; the Patch then makes it Steadfast, after
+   which a Capsule has no effect. Both have no effect on the Ditto, whose
+   species has one ordinary ability; the Patch would make it Imposter, so
+   try the Capsule first. The summary shows the ability after each. Each
+   asks first ("Change MACHAMP's Ability to ...?"); No leaves the item in
+   the Bag and goes back to choosing a Pokemon. */
+TestKit_ItemAbilities:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GivePokemon SPECIES_MACHAMP, 50, ITEM_NONE, VAR_RESULT
+    GivePokemon SPECIES_DITTO, 50, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
+    AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
+    Message TestKit_Text_ItemAbilities
+    GoTo TestKit_WaitAndClose
+
+/* The Mints and Bottle Caps: a Machamp, with two Adamant Mints, a Modest
+   and a Serious Mint, two Bottle Caps and a Gold Bottle Cap in the Bag. Note its
+   nature and its stats, then its IVs (R on the stat page). An Adamant Mint
+   ("The Adamant Mint changed how MACHAMP's stats grow!") raises Attack and
+   lowers Sp. Atk by a tenth against its base nature, and its summary still
+   shows its own nature; a second Adamant Mint has no effect. A Bottle Cap
+   asks for a stat and puts that IV at 31 in the viewer, raising the stat;
+   on a stat already at 31 it has no effect and stays in the Bag. The Gold
+   Bottle Cap does all six at once. The Machamp is Lv. 20, below the later
+   games' level 50, since the caps work at any level (Ian, 2026-09-27). */
+TestKit_ItemMintsCaps:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    GivePokemon SPECIES_MACHAMP, 20, ITEM_NONE, VAR_RESULT
+    AddItem ITEM_ADAMANT_MINT, 2, VAR_RESULT
+    AddItem ITEM_MODEST_MINT, 1, VAR_RESULT
+    AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
+    AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
+    AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
+    Message TestKit_Text_ItemMintsCaps
+    GoTo TestKit_WaitAndClose
+
+/* The TM mechanism, which now allows more than 92 TMs but has none past
+   TM92 yet, so this checks that nothing moved: TM92, HM08, TM01 and HM01
+   are added in that order. In the TM Case they sort as No. 01, No. 92,
+   HM 01, HM 08, each with its own move (Focus Punch, Trick Room, Cut, Rock
+   Climb), and using one shows ABLE and NOT ABLE beside the party as
+   before. A move taught by an HM still cannot be forgotten. */
+TestKit_ItemTMs:
+    AddItem ITEM_TM92, 1, VAR_RESULT
+    AddItem ITEM_HM08, 1, VAR_RESULT
+    AddItem ITEM_TM01, 1, VAR_RESULT
+    AddItem ITEM_HM01, 1, VAR_RESULT
+    Message TestKit_Text_ItemTMs
+    GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:
     Message TestKit_Text_PartyFull

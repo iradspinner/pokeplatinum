@@ -1510,7 +1510,14 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
-                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
+                    // Oxide: a binding move takes an eighth of the bound
+                    // battler's max HP each turn, and a sixth when the battler
+                    // that bound it holds a Binding Band, as in the later
+                    // games (Ian, 2026-09-28); Platinum took a sixteenth.
+                    int binder = battleCtx->battleMons[battler].moveEffectsData.bindTarget;
+                    int divisor = Battler_HeldItemEffect(battleCtx, binder) == HOLD_EFFECT_BINDING_BAND ? 6 : 8;
+
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, divisor);
                     LOAD_SUBSEQ(subscript_bind_effect);
                 } else {
                     LOAD_SUBSEQ(subscript_bind_end);
@@ -2987,6 +2994,15 @@ static int BattleControllerPlayer_PriorityBlock(BattleSystem *battleSys, BattleC
         return subscript_prankster_dark_immunity;
     }
 
+    // Oxide, element 7: Safety Goggles keep powder and spore moves off their
+    // holder (hg-engine's BattleController_CheckSafetyGoggles).
+    if (defender != BATTLER_NONE
+        && attacker != defender
+        && Move_IsPowder(battleCtx->moveCur)
+        && Battler_HeldItemEffect(battleCtx, defender) == HOLD_EFFECT_SAFETY_GOGGLES) {
+        return subscript_safety_goggles;
+    }
+
     // Oxide: Mean Look, Block and Spider Web do not affect a Ghost type, which
     // no trap holds (Generation 6; the same hg-engine check).
     if (defender != BATTLER_NONE
@@ -4031,6 +4047,8 @@ enum AfterMoveEffectState {
     AFTER_MOVE_EFFECT_DEFENDER_ITEM,
     AFTER_MOVE_EFFECT_TRIGGER_ITEMS_ON_HIT,
     AFTER_MOVE_EFFECT_THAW_DEFENDER,
+    AFTER_MOVE_EFFECT_SWITCH_ITEMS, // Oxide, element 7
+    AFTER_MOVE_EFFECT_MIRROR_HERB, // Oxide, element 7
     AFTER_MOVE_EFFECT_HELD_ITEM_STATUS,
 
     AFTER_MOVE_EFFECT_END
@@ -4127,6 +4145,45 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
 
             return;
         }
+
+    // Oxide, element 7: a Red Card or an Eject Button on the defender.
+    case AFTER_MOVE_EFFECT_SWITCH_ITEMS:
+        battleCtx->afterMoveEffectState++;
+
+        int switchSeq;
+        if (BattleSystem_TriggerSwitchItem(battleSys, battleCtx, &switchSeq) == TRUE) {
+            LOAD_SUBSEQ(switchSeq);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+            return;
+        }
+
+    // Oxide, element 7: a Mirror Herb copies the stat rises a foe's move
+    // just made. Every holder gets its turn, fastest first, as every battler
+    // does below for AFTER_MOVE_EFFECT_HELD_ITEM_STATUS; afterMoveEffectTemp
+    // keeps the place across the subscripts, and a battler about to switch
+    // out is passed over there too.
+    case AFTER_MOVE_EFFECT_MIRROR_HERB:
+        int mirrorSeq;
+
+        while (battleCtx->afterMoveEffectTemp < BattleSystem_GetMaxBattlers(battleSys)) {
+            int holder = battleCtx->monSpeedOrder[battleCtx->afterMoveEffectTemp];
+
+            battleCtx->afterMoveEffectTemp++;
+
+            if ((battleCtx->battlersSwitchingMask & FlagIndex(holder)) == FALSE
+                && BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, holder, &mirrorSeq) == TRUE) {
+                LOAD_SUBSEQ(mirrorSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+        }
+
+        battleCtx->afterMoveEffectState++;
+        battleCtx->afterMoveEffectTemp = 0;
 
     case AFTER_MOVE_EFFECT_HELD_ITEM_STATUS:
         int battler;

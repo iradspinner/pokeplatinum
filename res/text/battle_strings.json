@@ -9463,6 +9463,190 @@
         "The foe’s {STRVAR_1 1, 0, 0} took the\n",
         "foe’s {STRVAR_1 1, 1, 0} into the sky!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_TheEffectsOfTheItemPreventStatusMovesFromBeingUsed",
+      "en_US": [
+        "The effects of the {STRVAR_1 8, 0, 0}\n",
+        "prevent the use of status moves!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is protected\n",
+        "by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "protected by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsProtectedByItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "protected by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPreventsStatLoss_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} floats in the air\n",
+        "with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} floats in\n",
+        "the air with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonFloatsInTheAirWithItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} floats in\n",
+        "the air with its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemPopped_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0} copied\n",
+        "its foe’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "copied its foe’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonsItemCopiedItsFoesStatChanges_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "copied its foe’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against\f",
+        "the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonHeldUpItsRedCardAgainstPokemon_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against\f",
+        "the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is switched out\n",
+        "with the {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is switched\n",
+        "out with the {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonIsSwitchedOutWithTheItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is switched\n",
+        "out with the {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

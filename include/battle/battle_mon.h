@@ -80,7 +80,8 @@ typedef struct BattleMon {
     u8 type2;
     u8 formNum : 5;
     u8 isShiny : 1;
-    u8 padding0026_06 : 2;
+    u8 canEvolve : 1; // Oxide, element 7: its species can still evolve, for the Eviolite; from the padding
+    u8 padding0026_07 : 1;
     u16 ability; // Platinum Oxide: u16, ability ids run past 255
 
     u32 weatherAbilityAnnounced : 1;
@@ -100,6 +101,7 @@ typedef struct BattleMon {
     u32 friskFoesFound : 2; // Oxide: which of the two foes Frisk has named in a double battle, from the padding
     u32 moveFailedThisTurn : 1; // Oxide: its move this turn missed or failed, for Stomping Tantrum, from the padding
     u32 moveFailedLastTurn : 1; // Oxide: the same for the turn before, which is what Stomping Tantrum reads
+    u32 airBalloonAnnounced : 1; // Oxide, element 7: its Air Balloon has been announced this switch-in, from the padding
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

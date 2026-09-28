@@ -258,12 +258,21 @@ u8 Item_IsHMMove(u16 move);
 /**
  * @brief Get the TM number for a given item, if it is a TM or HM.
  *
- * HMs are considered to be TMs 93 - 100.
+ * HMs come after the last TM, so with 92 TMs they are TMs 93 - 100.
  *
  * @param item
  * @return TM number for the given item, or ITEM_NONE if it is not a TM or HM.
  */
-u8 Item_TMHMNumber(u16 item);
+u16 Item_TMHMNumber(u16 item);
+
+/**
+ * @brief Platinum Oxide: the TM or HM item with a given TM number, the
+ * reverse of Item_TMHMNumber.
+ *
+ * @param tmhm
+ * @return The item, or ITEM_NONE if the number is past the last HM.
+ */
+u16 Item_ForTMHMNumber(u16 tmhm);
 
 /**
  * @brief Check if a given item is mail.
