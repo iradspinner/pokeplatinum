@@ -165,6 +165,9 @@ poke_icon_files += [
     rotom_frost_icon,
     rotom_fan_icon,
     rotom_mow_icon,
+    # Platinum Oxide: new species' form icons go last, so vanilla's keep
+    # their indices; ICON_* in species_icon_palettes.h.template follows.
+    meloetta_pirouette_icon,
 ]
 
 otherpoke_files = []
@@ -324,6 +327,8 @@ pl_otherpoke_narc = custom_target('pl_otherpoke.narc',
         '--narc', nitroarc_exe,
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
+        # Platinum Oxide: otherpoke_index keys past these 248 are forms of the
+        # new species; the script packs them after the shared files.
         '--sprite-entries', '154',
         '--palette-entries', '94',
         otherpoke_files,

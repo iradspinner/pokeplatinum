@@ -2936,6 +2936,20 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
         spriteTemplate->palette = 244 + shiny + form * 2;
         break;
 
+    // Platinum Oxide: Aria is Meloetta's ordinary sprite. Pirouette's two
+    // sprites and two palettes sit after the shadows in pl_otherpoke.
+    case SPECIES_MELOETTA:
+        if (form > 0) {
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_OTHERPOKE;
+            spriteTemplate->character = 253 + (face / 2);
+            spriteTemplate->palette = 255 + shiny;
+        } else {
+            spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+            spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0);
+            spriteTemplate->palette = species * 6 + 4 + shiny;
+        }
+        break;
+
     default:
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
         spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
@@ -3014,6 +3028,11 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm)
         break;
     case SPECIES_GIRATINA:
         if (monForm > GIRATINA_FORM_COUNT - 1) {
+            monForm = 0;
+        }
+        break;
+    case SPECIES_MELOETTA:
+        if (monForm > MELOETTA_FORM_COUNT - 1) {
             monForm = 0;
         }
         break;
@@ -5029,6 +5048,11 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     case SPECIES_ROTOM:
         if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
             monSpecies = (FORM_DATA_ROTOM_HEAT - 1) + monForm;
+        }
+        break;
+    case SPECIES_MELOETTA:
+        if (monForm && monForm <= MELOETTA_FORM_COUNT - 1) {
+            monSpecies = (FORM_DATA_MELOETTA_PIROUETTE - 1) + monForm;
         }
         break;
     default:

@@ -40,13 +40,17 @@ right place makes the rest follow:
 | `MAX_SPECIES` (= `SPECIES_BAD_EGG`) | 495 | 654 | 655 |
 | `NATIONAL_DEX_COUNT` (= `MAX_SPECIES - 2`) | 493 | 652 | 653 |
 | `NATIONAL_DEX_MAX` (= `SPECIES_EGG`, speciesproc) | 494 | 653 | 654 |
-| `MOVESET_FORM_*` (= `NATIONAL_DEX_COUNT + 1..12`) | 494..505 | 653..664 | 654..665 |
-| `pl_personal`, `evo`, `wotbl` members | 508 | 667 | 668 |
+| `MOVESET_FORM_*` (= `NATIONAL_DEX_COUNT + 1..`) | 494..505 | 653..664 | 654..666 |
+| `pl_personal`, `evo`, `wotbl` members | 508 | 667 | 669 |
 | sprite offsets (`4 * NATIONAL_DEX_MAX`) | 1976 | 2612 | 2616 |
 
 The registry that those archives are built from is
-`[NONE, species..., EGG, BAD_EGG, the twelve alt-form records]`, in that order,
-so the alt-form records stay last and their indices shift up by 159 together.
+`[NONE, species..., EGG, BAD_EGG, the twelve alt-form records, the new
+species' form records]`, in that order, so vanilla's alt-form records shift up
+together (by 159 with element 3, by one more with Meloetta), and a new
+species' form goes last. Meloetta's Pirouette is the only one so far: the
+13th form record (669 members, and the 13th `MOVESET_FORM_` and `FORM_DATA_`
+constant).
 
 ## Regional forms get their own species ids
 
@@ -65,5 +69,7 @@ evolutions and get ids for the same reason.
 
 - Which slot in the dex a species occupies is `dex_pos`, a separate number.
   Nothing in the engine should use `dex_pos` as an id or the reverse.
-- Form records for the *new* species, if any need them, append to
-  `alt_forms_with_data` in `speciesproc.c` after the existing twelve.
+- Form records for the *new* species append to `alt_forms_with_data` in
+  `speciesproc.c` after vanilla's twelve, as Pirouette does. Their icons go
+  last in the icon archive, and their sprites last in `pl_otherpoke`, after
+  the shadows, so no vanilla member moves.

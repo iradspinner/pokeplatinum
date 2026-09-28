@@ -107,6 +107,31 @@ subprocess.run([
     '-comp', '10'
 ])
 
+# Platinum Oxide: anything listed between the palettes and those five files is
+# a form of a species vanilla does not have. Each becomes a member after the
+# shadows, so every vanilla member keeps its index. The archive is packed in
+# file-name order, hence names that sort after "pokemon_shadows_pal".
+first_extra = args.sprite_entries + args.palette_entries
+for n, infile in enumerate(args.files[first_extra:-5]):
+    member = first_extra + 5 + n
+    if infile.endswith('.png'):
+        subprocess.run([
+            args.nitrogfx,
+            infile,
+            private_dir / f'species_form_{member:04}.NCGR',
+            '-encodefronttoback',
+            '-scan',
+        ])
+    else:
+        subprocess.run([
+            args.nitrogfx,
+            infile,
+            private_dir / f'species_form_{member:04}.NCLR',
+            '-bitdepth', '8',
+            '-nopad',
+            '-comp', '10'
+        ])
+
 subprocess.run([
     args.narc,
     '--create',

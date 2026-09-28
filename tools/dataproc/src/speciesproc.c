@@ -237,6 +237,9 @@ static const char *alt_forms_with_data[] = { // NOTE: also implicitly defines th
     "rotom/forms/frost",
     "rotom/forms/fan",
     "rotom/forms/mow",
+    // Platinum Oxide: forms of the new species append here, which keeps
+    // vanilla's twelve at their indices (constants/forms.h follows this order).
+    "meloetta/forms/pirouette",
 };
 
 #define NATIONAL_DEX_MAX SPECIES_EGG // NOTE: This is distinct from NATIONAL_DEX_COUNT

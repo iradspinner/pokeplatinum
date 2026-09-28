@@ -82,6 +82,10 @@ u32 PokeIconSpriteIndex(u32 species, u32 isEgg, u32 form)
         if (species == SPECIES_ROTOM) {
             return IconTilesIndex(ICON_ROTOM_HEAT) + form - 1;
         }
+
+        if (species == SPECIES_MELOETTA) {
+            return IconTilesIndex(ICON_MELOETTA_PIROUETTE) + form - 1;
+        }
     }
 
     if (species > NATIONAL_DEX_COUNT) {
@@ -106,6 +110,7 @@ u16 BoxPokemon_IconFormOffset(const BoxPokemon *boxMon)
     case SPECIES_GIRATINA:
     case SPECIES_SHAYMIN:
     case SPECIES_ROTOM:
+    case SPECIES_MELOETTA:
         return BoxPokemon_GetValue((BoxPokemon *)boxMon, MON_DATA_FORM, NULL);
     }
 
@@ -141,6 +146,8 @@ const u8 PokeIconPaletteIndex(u32 species, u32 form, u32 isEgg)
             species = ICON_SHAYMIN_SKY + form - 1;
         } else if (species == SPECIES_ROTOM) {
             species = ICON_ROTOM_HEAT + form - 1;
+        } else if (species == SPECIES_MELOETTA) {
+            species = ICON_MELOETTA_PIROUETTE + form - 1;
         }
     }
 
