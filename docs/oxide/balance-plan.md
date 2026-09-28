@@ -1292,6 +1292,13 @@ and many times, and scores it by what the player loses. It replaces the
 headline only when it agrees with his judgements
 (`docs/oxide/pairwise-candidates.md`).
 
+Every fight is scored as a first and only attempt (Ian, 2026-09-28: "a
+loss of any kind is a reset for the entire run"). A lost battle ends the
+run on top of the nuzlocke's deaths, so the player never learns a fight by
+losing it: a boss's planned team comes from knowing the fight in advance,
+and an ordinary trainer is met blind. The stored score and the simulator
+already play each fight once; nothing in them assumes a retry.
+
 The simulator is `fightsim.py`, with the trainer's AI in `fightai.py`.
 Damage comes from the calculator the scores already use, run once per fight
 for every attacker, target and move, in each weather the fight can have.
