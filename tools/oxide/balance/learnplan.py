@@ -216,15 +216,55 @@ def catch_level(species):
 
 
 def reach(species):
-    """The level the player can first have the stage at in Oxide: an evolved
-    stage's evolution level (or a lower catch), a first stage's lowest
-    catch, gift or hatch level, 1 for a first stage nothing gives. A
-    placement below it is learnt by nobody, so it means unavailable in play
-    (Ian, 2026-09-27), not early: Kaizo's legendaries' low entries and a
-    level 2 Iron Head for a Togedemaru first met at 20 both stay out."""
-    evo = max(1, g.reached("oxide", species)) if species in g.oxide_reached() else None
-    found = [x for x in (evo, catch_level(species)) if x is not None]
+    """The level the player can first have the stage at in Oxide: the level
+    it can first be evolved into (evolved_at), or a lower catch; a first
+    stage's lowest catch, gift or hatch level; 1 for a first stage nothing
+    gives. A placement below it is learnt by nobody, so it means unavailable
+    in play (Ian, 2026-09-27), not early: Kaizo's legendaries' low entries
+    and a level 2 Iron Head for a Togedemaru first met at 20 both stay out."""
+    found = [x for x in (evolved_at(species), catch_level(species)) if x is not None]
     return min(found) if found else 1
+
+
+def _split_start(split):
+    """A split's first level: one past the cap of the split before it."""
+    i = SPLITS.index(split)
+    return 1 if i == 0 else pool.caps()[SPLITS[i - 1]] + 1
+
+
+@functools.lru_cache(maxsize=None)
+def evolved_at(species):
+    """The level the player can first evolve into the stage, None for a first
+    stage, and never below the pre-evolution's own reach. A level evolution
+    is at its level. A stone or a held item is at the first level of the
+    split where the item is first in reach (pool.evolution_items_first, the
+    stone plan and the item census), where the encounter tool's stand-in
+    levels (30 or 32) took Rhydon's Protector, first had in Byron's split,
+    as level 32. Oxide has no friendship or trade evolutions: the base ROM
+    made them levels or held items (Munchlax at 36, Togepi at 10, Rhydon
+    with the Protector). The location, known-move, partner and Beauty
+    evolutions keep the stand-in levels (Magnezone, Lickilicky, Mantine,
+    Milotic)."""
+    if species not in g.oxide_reached():
+        return None
+    parent = g.oxide_reached()[species][0]
+    options = []
+    for need, item, target in pool.evolutions(parent):
+        if target != species:
+            continue
+        if item:
+            first = pool.evolution_items_first().get(item)
+            if first in SPLITS:
+                options.append(_split_start(first))
+        else:
+            options.append(need)
+    at = min(options) if options else max(1, g.reached("oxide", species))
+    return max(at, reach(parent))
+
+
+def next_stages(species):
+    """The stages the species evolves into directly."""
+    return [s for s, (p, _lv) in g.oxide_reached().items() if p == species]
 
 
 def kaizo_evidence(species):
@@ -507,6 +547,23 @@ def passes_bar_proposed(species):
         if r and r[0] > BAR_SPEED and r[1] > BAR_ONE_HIT:
             return split, r
     return None
+
+
+def strong_later_stages(species):
+    """[(a strong later stage, the last level at which what this stage learns
+    comes along into it without a real wait)]. The wait is measured from the
+    stage's own next evolution on the branch, at the level that evolution
+    first becomes possible: a stage kept back past it is a delay the player
+    chose, whatever comes after (Togepi's Moonblast at 43 is a wait of 33
+    levels past Togetic at 10, though Togekiss comes only with the Shiny
+    Stone at 40)."""
+    out = {}
+    for nxt in next_stages(species):
+        until = (evolved_at(nxt) or reach(nxt)) + WAIT - 1
+        for e in [nxt] + later_stages(nxt):
+            if strong_stage(e):
+                out[e] = max(out.get(e, 0), until)
+    return list(out.items())
 
 
 def later_stages(species):
@@ -814,7 +871,7 @@ def propose(species):
     # since that comes along into the strong stage; a longer wait is the
     # price of a delay, and stays free.
     strong_line = strong_stage(species)
-    strong_later = [(e, reach(e) + WAIT - 1) for e in later_stages(species) if strong_stage(e)]
+    strong_later = strong_later_stages(species)
     held_until = max((h for _e, h in strong_later), default=0)
     held = lambda level: strong_line or level <= held_until
     notes = []
@@ -825,7 +882,7 @@ def propose(species):
     for lv, c in now:
         if c not in M():
             continue
-        why = g._dropped(c, species, first_level[c], types)
+        why = g._dropped(c, species, first_level[c], types, now)
         if why:
             if first_level[c] == lv:
                 notes.append((c, f"leaves: {why}"))
@@ -924,7 +981,7 @@ def propose(species):
                         and M()[cc]["type"] == M()[c]["type"]), default=0)
             if strength(c)[1] < 0.9 * best:
                 continue
-        drop = g._dropped(c, species, t, types)
+        drop = g._dropped(c, species, t, types, now)
         if drop:
             continue
         # No earlier than Kaizo's own level within its split (Ian, 2026-09-27).
@@ -1086,7 +1143,7 @@ def delays(pre, evo, lists):
     stage gets it, or a same-type attack at least as strong, a split or more
     later, or never; (4) nothing the evolved stage learns in between is a
     same-type attack within a tenth of it."""
-    at = g.reached("oxide", evo)
+    at = evolved_at(evo) or 0
     if at <= 1 or at > 100:
         return []
     caps = pool.caps()
@@ -1179,9 +1236,13 @@ def nowait_routes(species, lists):
     here = reach(species) if species in g.oxide_reached() else 1
     types = _types(species)
     out = {}
-    for stage in g._chain(species):
+    chain = g._chain(species)
+    for i, stage in enumerate(chain):
         own = stage == species
         start = reach(stage) if stage in g.oxide_reached() else 1
+        # A pre-evolution's move comes along only when learnt under WAIT
+        # levels past the level it can first evolve at (strong_later_stages).
+        until = None if own else (evolved_at(chain[i + 1]) or here) + WAIT - 1
         for lv, c in lists.get(stage, []):
             if c not in M() or lv < start or (lv <= 1 and stage in g.oxide_reached()):
                 continue
@@ -1189,7 +1250,7 @@ def nowait_routes(species, lists):
                 continue
             if own and lv < here:
                 continue
-            if not own and lv > here + WAIT - 1:
+            if not own and lv > until:
                 continue
             at = max(lv, here)
             if c not in out or at < out[c][0]:

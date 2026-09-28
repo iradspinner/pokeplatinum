@@ -2102,15 +2102,36 @@ lands, and each change is re-scored as it lands.
    effective power, counting what it brings from a pre-evolution evolved
    on time. Where the proposal would break that, or lengthen a gap Oxide
    already has, the nearest such move stays at its current level:
-   Hippopotas's Earthquake (37) and Polteageist's Shadow Ball (48). Ten
-   such moves would reach a stage the flags or the bar hold, Grovyle's
-   Leaf Blade at 29 for Sceptile among them; the proposal lists them for
-   Ian. Sixty-seven stages already go more than one split without one on
-   Oxide's lists; the proposal names them, and the later-moves job below
-   fills what it can. These counts include Ian's exemption (2026-09-27):
-   a stage the player can evolve by the end of Gardenia's split, by level
-   or by a stone reachable by then, is not held to the rule, since only a
-   player who keeps it back meets the gap.
+   Hippopotas's Earthquake (37). Eleven such moves would reach a stage the
+   flags or the bar hold, Grovyle's Leaf Blade at 29 for Sceptile and
+   Nidoking's and Nidoqueen's Earth Power among them; the proposal lists
+   them for Ian, and those stages go without an attack of their own type
+   until he rules. Sixty-two stages already go more than one split
+   without one on Oxide's lists; the proposal names them, and the
+   later-moves job below fills what it can. These counts include Ian's
+   exemption (2026-09-27): a stage the player can evolve by the end of
+   Gardenia's split, by level or by a stone reachable by then, is not held
+   to the rule, since only a player who keeps it back meets the gap.
+
+   Two fixes after the Overseer read the later moves as a player
+   (2026-09-28). A stone or held-item evolution was taken at the encounter
+   tool's stand-in level of 30 or 32; it is now at the first level of the
+   split where the item is first in reach, never below the pre-evolution's
+   own reach. Rhyperior was "had from 32" by that stand-in, below Rhydon's
+   42; with the Protector first in Byron's split it is had from 45 by
+   evolution (40 by a wild catch that comes only in Barry's split), and
+   since Ian's flags and bar look only at splits before Byron's, it is not
+   flagged. The Moon Stone in Gardenia's split brings Nidoking, Nidoqueen
+   and Delcatty to 17, which lets the exclusive-delay rule take Earth Power
+   and Hyper Voice to their relearner lists, as Kaizo does, and the
+   own-type rule then lists those moves for Ian. Second, a pre-evolution's
+   move comes along into a strong later stage only when learnt within
+   four levels of the level the pre-evolution can first evolve at, on the
+   branch that leads there: a stage kept back past its own next evolution
+   is a delay the player chose (Togepi's Moonblast at 43, 33 levels past
+   Togetic at 10). Oxide has no friendship or trade evolutions; the base
+   ROM made them levels (Munchlax at 36) or held items. Together the two
+   fixes change 24 rows of the learnset proposal over 19 species.
 
    The later games' level-up moves (Ian, 2026-09-27) are proposed by
    `laterlearn.py` in `docs/oxide/later-moves-proposal.md`. For each of the
@@ -2127,18 +2148,29 @@ lands, and each change is re-scored as it lands.
    any move. Moves the later games give only by TM, tutor or egg are in
    `docs/oxide/later-moves-tm.tsv` for the TM pass.
 
+   The job applies the generator's carry rule: a good attack a
+   pre-evolution learns without a real wait goes to Ian when it would
+   reach a strong later stage before that stage's first good one of its
+   type (Rhyhorn's High Horsepower and Drill Run at 39, three levels
+   before Rhydon). A multi-hit move is not replaced on a stage with Skill
+   Link in a regular slot (Cloyster keeps Icicle Spear beside Icicle
+   Crash). Stored Power is judged at what it computes after one use of the
+   best setup move the stage has by then, 20 more a raised stage (60 for
+   Gardevoir with Calm Mind). A partner move such as Wide Guard is never
+   counted as notable.
+
    | Later level-up moves | Rows |
    |---|---|
    | Added | 349 |
-   | Replaces a weaker Generation 4 move | 11 |
-   | For Ian | 125 |
-   | Relearner only | 242 |
+   | Replaces a weaker Generation 4 move | 10 |
+   | For Ian | 134 |
+   | Relearner only | 239 |
    | Once element 4 fixes them | 2 |
-   | Left out (engine 53, dead weight 16, past 78 one) | 70 |
+   | Left out (engine 53, dead weight 11, past 78 one) | 65 |
 
-   Of the stages with an own-type gap, 33 are filled from a later game,
-   16 go to Ian because the rules would place the move too late or on a
-   stage the flags or the bar hold, and 26 have nothing to take.
+   Of the stages with an own-type gap, 31 are filled from a later game,
+   15 go to Ian because the rules would place the move too late or on a
+   stage the flags or the bar hold, and 25 have nothing to take.
 
    Open for Ian: the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;

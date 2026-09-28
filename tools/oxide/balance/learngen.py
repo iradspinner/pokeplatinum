@@ -484,8 +484,38 @@ def _obtainable():
     return frozenset(b6.obtainable())
 
 
-def _dropped(const, species, level, types):
-    """Why a move stays out of a species' list at a level, or None."""
+# Moves whose power is 20 more for each stat stage the user has raised. The
+# dead-weight rule reads them at what they compute after one use of the best
+# setup move the species has by that level (setup costs 1 to 3 PP in Oxide,
+# so one use is the fair reading), and at 20 with none.
+BOOST_SCALED = {"MOVE_STORED_POWER", "MOVE_POWER_TRIP"}
+# The stat stages one use of each setup move raises, counted as Stored Power
+# counts them (every raised stage, accuracy and evasion included).
+SETUP_STAGES = {
+    "MOVE_SWORDS_DANCE": 2, "MOVE_DRAGON_DANCE": 2, "MOVE_NASTY_PLOT": 2, "MOVE_CALM_MIND": 2,
+    "MOVE_BULK_UP": 2, "MOVE_QUIVER_DANCE": 3, "MOVE_SHELL_SMASH": 6, "MOVE_AGILITY": 2,
+    "MOVE_ROCK_POLISH": 2, "MOVE_CURSE": 2, "MOVE_GROWTH": 2, "MOVE_WORK_UP": 2,
+    "MOVE_HONE_CLAWS": 2, "MOVE_COIL": 3, "MOVE_SHIFT_GEAR": 3, "MOVE_COTTON_GUARD": 3,
+    "MOVE_IRON_DEFENSE": 2, "MOVE_AMNESIA": 2, "MOVE_TAIL_GLOW": 3, "MOVE_BELLY_DRUM": 6,
+    "MOVE_COSMIC_POWER": 2, "MOVE_ACID_ARMOR": 2, "MOVE_BARRIER": 2, "MOVE_HOWL": 1,
+    "MOVE_MEDITATE": 1, "MOVE_SHARPEN": 1, "MOVE_HARDEN": 1, "MOVE_WITHDRAW": 1,
+    "MOVE_DEFENSE_CURL": 1, "MOVE_MINIMIZE": 2, "MOVE_DOUBLE_TEAM": 1, "MOVE_VICTORY_DANCE": 3,
+    "MOVE_TIDY_UP": 2, "MOVE_TAKE_HEART": 2, "MOVE_NO_RETREAT": 5, "MOVE_CLANGOROUS_SOUL": 5,
+    "MOVE_GEOMANCY": 6, "MOVE_AUTOTOMIZE": 2, "MOVE_STOCKPILE": 2, "MOVE_ACUPRESSURE": 2,
+}
+
+
+def boosted_power(species, level, lst=None):
+    """Stored Power's power for the species at a level: 20, and 20 more for
+    each stage its best setup move by then raises."""
+    lst = lst if lst is not None else oxide_list("oxide", species)
+    stages = max((SETUP_STAGES.get(c, 0) for lv, c in lst if lv <= level), default=0)
+    return 20 + 20 * stages
+
+
+def _dropped(const, species, level, types, lst=None):
+    """Why a move stays out of a species' list at a level, or None. `lst` is
+    the list a boost-scaled move reads its setup from (Oxide's by default)."""
     from . import b6
     m = _oxide_moves()[const]
     if const in b6.DEAD_MOVES:
@@ -494,7 +524,10 @@ def _dropped(const, species, level, types):
         return "weather, for a species the player can own"
     split = ls.OXIDE_TO_KAIZO.get(ls.oxide_split(level), ls.oxide_split(level))
     split = "League" if split == "Post" else split
-    return ls.dead_weight(ls.oxide_move(m), split, m["type"].title() in types, first=level <= 1)
+    rec = ls.oxide_move(m)
+    if const in BOOST_SCALED:
+        rec = dict(rec, power=boosted_power(species, level, lst))
+    return ls.dead_weight(rec, split, m["type"].title() in types, first=level <= 1)
 
 
 # {species: {MOVE_X: why it left}} for the last proposal, filled by propose().

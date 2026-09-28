@@ -1569,7 +1569,7 @@ SPECIES_DELCATTY	Fake Out	1	1	same
 SPECIES_DELCATTY	Attract	1	1	same	
 SPECIES_DELCATTY	Sing	1	1	same	
 SPECIES_DELCATTY	DoubleSlap	1	1	same	
-SPECIES_DELCATTY	Hyper Voice	35	35	same	
+SPECIES_DELCATTY	Hyper Voice	35	1	moved	35 to 1: an exclusive delay, Kaizo gives it only to Skitty
 SPECIES_DELIBIRD	Present	1	1	same	
 SPECIES_DELPHOX	Burn Up	1	1	same	
 SPECIES_DELPHOX	Shadow Ball	1	1	same	
@@ -1965,11 +1965,9 @@ SPECIES_DUSKNOIR	Shadow Sneak	22	22	same
 SPECIES_DUSKNOIR	Pursuit	25	25	same	
 SPECIES_DUSKNOIR	Curse	30	30	same	
 SPECIES_DUSKNOIR	Will-O-Wisp	33	33	same	
-SPECIES_DUSKNOIR	Shadow Punch	37	39	moved	37 to 39: Kaizo's Dusknoir at 43, translated to 36, and no earlier than Kaizo's level of 43 within its split
+SPECIES_DUSKNOIR	Shadow Punch	37	37	same	
 SPECIES_DUSKNOIR	Mean Look	43	43	same	
-SPECIES_DUSKNOIR	Hammer Arm		44	added	new at 44: Kaizo's Dusknoir at 51, no earlier than that within its split (translated to 42)
 SPECIES_DUSKNOIR	Payback	51	51	same	
-SPECIES_DUSKNOIR	Earthquake		53	added	new at 53: Kaizo's Dusknoir at 61, no earlier than that within its split (translated to 50)
 SPECIES_DUSKNOIR	Future Sight	61	61	same	
 SPECIES_DUSKNOIR	Bind	1		dropped	leaves: strength 13, under 40
 SPECIES_DUSKNOIR	Astonish	14		dropped	leaves: strength 30, under 40
@@ -2045,7 +2043,7 @@ SPECIES_ELECTABUZZ	Low Kick	10	10	same
 SPECIES_ELECTABUZZ	Swift	16	16	same	
 SPECIES_ELECTABUZZ	Shock Wave	19	19	same	
 SPECIES_ELECTABUZZ	Light Screen	25	25	same	
-SPECIES_ELECTABUZZ	ThunderPunch	28	28	same	
+SPECIES_ELECTABUZZ	ThunderPunch	28	28	same	an exclusive delay: Kaizo gives it to no later stage
 SPECIES_ELECTABUZZ	Discharge	37	37	same	
 SPECIES_ELECTABUZZ	Screech	52	52	same	
 SPECIES_ELECTABUZZ	Thunderbolt	43	53	moved	43 to 53: Kaizo's Electabuzz at 58, translated to 47, and no earlier than Kaizo's level of 58 within its split; an exclusive delay: Kaizo gives it to no later stage
@@ -2055,13 +2053,13 @@ SPECIES_ELECTIVIRE	Quick Attack	1	1	same
 SPECIES_ELECTIVIRE	Leer	1	1	same	
 SPECIES_ELECTIVIRE	ThunderShock	1	1	same	
 SPECIES_ELECTIVIRE	Low Kick	1	1	same	
+SPECIES_ELECTIVIRE	ThunderPunch	28	1	moved	28 to 1: an exclusive delay, Kaizo gives it only to Electabuzz
 SPECIES_ELECTIVIRE	Thunderbolt	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Electabuzz
 SPECIES_ELECTIVIRE	ThunderShock	7	7	same	
 SPECIES_ELECTIVIRE	Low Kick	10	10	same	
 SPECIES_ELECTIVIRE	Swift	16	16	same	
 SPECIES_ELECTIVIRE	Shock Wave	19	19	same	
 SPECIES_ELECTIVIRE	Light Screen	25	25	same	
-SPECIES_ELECTIVIRE	ThunderPunch	28	28	same	
 SPECIES_ELECTIVIRE	Discharge	37	37	same	
 SPECIES_ELECTIVIRE	Screech	52	52	same	
 SPECIES_ELECTIVIRE	Thunder	58	58	same	
@@ -2421,7 +2419,7 @@ SPECIES_FLOETTE	Dazzling Gleam	36	36	same
 SPECIES_FLOETTE	Helping Hand	40	40	same	
 SPECIES_FLOETTE	Synthesis	45	45	same	
 SPECIES_FLOETTE	SolarBeam	49	49	same	
-SPECIES_FLOETTE	Moonblast	52	52	same	52 to 36: its nearest Kaizo lines, translated to 36; 36 to 52: Ian's ruling on five early moves, none of its nearest Kaizo lines learns it, so no Kaizo split gives it; Oxide's level stays
+SPECIES_FLOETTE	Moonblast	52	52	same	
 SPECIES_FLOETTE	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_FLORAGATO	Leafage	1	1	same	
 SPECIES_FLORAGATO	Scratch	1	1	same	
@@ -2793,8 +2791,8 @@ SPECIES_GARGANACL	Salt Cure	24	24	same
 SPECIES_GARGANACL	Recover	30	30	same	
 SPECIES_GARGANACL	Rock Slide	34	34	same	
 SPECIES_GARGANACL	Stealth Rock	40	40	same	
-SPECIES_GARGANACL	Earthquake	49	43	moved	49 to 44: its nearest Kaizo lines, translated to 42, and no earlier than Kaizo's level of 51 within its split; 44 to 43: the same-level rule (another move is at 44); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_GARGANACL	Heavy Slam	44	44	same	
+SPECIES_GARGANACL	Earthquake	49	49	same	
 SPECIES_GARGANACL	Stone Edge	54	54	same	
 SPECIES_GARGANACL	Explosion	60	60	same	
 SPECIES_GASTLY	Hypnosis	1	1	same	
@@ -3551,8 +3549,8 @@ SPECIES_HISUIAN_SLIGGOO	Water Gun	1	1	same
 SPECIES_HISUIAN_SLIGGOO	Protect	15	15	same	
 SPECIES_HISUIAN_SLIGGOO	Flail	20	20	same	
 SPECIES_HISUIAN_SLIGGOO	Water Pulse	25	25	same	
+SPECIES_HISUIAN_SLIGGOO	Dragon Pulse	35	31	moved	35 to 31: its nearest Kaizo lines, translated to 28, and no earlier than Kaizo's level of 31 within its split
 SPECIES_HISUIAN_SLIGGOO	Iron Head	49	33	moved	49 to 33: its nearest Kaizo lines, translated to 32, and no earlier than Kaizo's level of 36 within its split
-SPECIES_HISUIAN_SLIGGOO	Dragon Pulse	35	35	same	
 SPECIES_HISUIAN_SLIGGOO	Muddy Water	56	39	moved	56 to 39: its nearest Kaizo lines, translated to 38, and no earlier than Kaizo's level of 46 within its split
 SPECIES_HISUIAN_SLIGGOO	Curse	43	43	same	
 SPECIES_HISUIAN_SLIGGOO	Absorb	1		dropped	leaves: strength 20, under 40
@@ -3639,6 +3637,7 @@ SPECIES_HOPPIP	Bullet Seed	19	23	moved	19 to 22: Kaizo's Hoppip at 22, translate
 SPECIES_HOPPIP	Mega Drain	25	25	same	
 SPECIES_HOPPIP	Cotton Spore	28	28	same	
 SPECIES_HOPPIP	U-turn	31	31	same	
+SPECIES_HOPPIP	Seed Bomb		32	added	new at 31: Kaizo's Hoppip at 31, no earlier than that within its split (translated to 28); 31 to 32: the same-level rule (another move is at 31)
 SPECIES_HOPPIP	Worry Seed	34	34	same	
 SPECIES_HOPPIP	Giga Drain	37	37	same	
 SPECIES_HOPPIP	Bounce	40	40	same	
@@ -3706,8 +3705,8 @@ SPECIES_HUNTAIL	Bite	6	6	same
 SPECIES_HUNTAIL	Screech	10	10	same	
 SPECIES_HUNTAIL	Water Pulse	15	15	same	
 SPECIES_HUNTAIL	Scary Face	19	19	same	
-SPECIES_HUNTAIL	Ice Fang	24	24	same	
 SPECIES_HUNTAIL	Brine	28	28	same	
+SPECIES_HUNTAIL	Ice Fang	24	32	moved	24 to 33: Kaizo's Huntail at 37, translated to 32, and no earlier than Kaizo's level of 37 within its split; 33 to 32: the same-level rule (another move is at 33); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_HUNTAIL	Baton Pass	33	33	same	
 SPECIES_HUNTAIL	Dive	37	37	same	
 SPECIES_HUNTAIL	Crunch	42	42	same	
@@ -3836,7 +3835,7 @@ SPECIES_JIGGLYPUFF	Pound	9	9	same
 SPECIES_JIGGLYPUFF	Disable	13	13	same	
 SPECIES_JIGGLYPUFF	DoubleSlap	21	21	same	
 SPECIES_JIGGLYPUFF	Rest	25	25	same	
-SPECIES_JIGGLYPUFF	Body Slam	29	29	same	
+SPECIES_JIGGLYPUFF	Body Slam	29	29	same	an exclusive delay: Kaizo gives it to no later stage
 SPECIES_JIGGLYPUFF	Gyro Ball	33	33	same	
 SPECIES_JIGGLYPUFF	Wake-Up Slap	37	37	same	
 SPECIES_JIGGLYPUFF	Mimic	41	41	same	
@@ -5361,7 +5360,7 @@ SPECIES_MINCCINO	Wake-Up Slap	31	31	same
 SPECIES_MINCCINO	After You	37	37	same	
 SPECIES_MINCCINO	Slam	38	38	same	
 SPECIES_MINCCINO	Captivate	39	39	same	
-SPECIES_MINCCINO	Hyper Voice	43	40	moved	43 to 39: its nearest Kaizo lines, translated to 38, and no earlier than Kaizo's level of 45 within its split; 39 to 40: the same-level rule (another move is at 39)
+SPECIES_MINCCINO	Hyper Voice	43	43	same	
 SPECIES_MINCCINO	Last Resort	46	46	same	
 SPECIES_MINUN	Growl	1	1	same	
 SPECIES_MINUN	Thunder Wave	3	3	same	
@@ -5540,7 +5539,7 @@ SPECIES_MURKROW	Haze	11	11	same
 SPECIES_MURKROW	Wing Attack	15	15	same	
 SPECIES_MURKROW	Night Shade	21	21	same	
 SPECIES_MURKROW	Taunt	31	31	same	
-SPECIES_MURKROW	Assurance	25	32	moved	25 to 31: Kaizo's Murkrow at 31, translated to 28, and no earlier than Kaizo's level of 31 within its split; 31 to 32: the same-level rule (another move is at 31)
+SPECIES_MURKROW	Assurance	25	32	moved	25 to 31: Kaizo's Murkrow at 31, translated to 28, and no earlier than Kaizo's level of 31 within its split; an exclusive delay: Kaizo gives it to no later stage; 31 to 32: the same-level rule (another move is at 31)
 SPECIES_MURKROW	Faint Attack	35	35	same	
 SPECIES_MURKROW	Mean Look	41	41	same	
 SPECIES_MURKROW	Dark Pulse		44	added	new at 44: Kaizo's Murkrow at 50, no earlier than that within its split (translated to 41); an exclusive delay: Kaizo gives it to no later stage
@@ -5612,16 +5611,16 @@ SPECIES_NIDOKING	Peck	1	1	same
 SPECIES_NIDOKING	Focus Energy	1	1	same	
 SPECIES_NIDOKING	Double Kick	1	1	same	
 SPECIES_NIDOKING	Poison Sting	1	1	same	
+SPECIES_NIDOKING	Earth Power	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Nidorino
 SPECIES_NIDOKING	Thrash	23	23	same	
-SPECIES_NIDOKING	Earth Power	43	43	same	
 SPECIES_NIDOKING	Earthquake		53	added	new at 53: Kaizo's Nidoking at 58, no earlier than that within its split (translated to 47)
 SPECIES_NIDOKING	Megahorn	58	58	same	
 SPECIES_NIDOQUEEN	Scratch	1	1	same	
 SPECIES_NIDOQUEEN	Tail Whip	1	1	same	
 SPECIES_NIDOQUEEN	Double Kick	1	1	same	
 SPECIES_NIDOQUEEN	Poison Sting	1	1	same	
+SPECIES_NIDOQUEEN	Body Slam	23	1	moved	23 to 1: an exclusive delay, Kaizo gives it only to Nidorina
 SPECIES_NIDOQUEEN	Earth Power	43	1	moved	43 to 1: an exclusive delay, Kaizo gives it only to Nidorina
-SPECIES_NIDOQUEEN	Body Slam	23	23	same	
 SPECIES_NIDOQUEEN	Earthquake		53	added	new at 53: Kaizo's Nidoqueen at 58, no earlier than that within its split (translated to 47)
 SPECIES_NIDOQUEEN	Superpower	58	58	same	
 SPECIES_NIDORAN_F	Growl	1	1	same	
@@ -5633,6 +5632,7 @@ SPECIES_NIDORAN_F	Fury Swipes	19	19	same
 SPECIES_NIDORAN_F	Bite	21	21	same	
 SPECIES_NIDORAN_F	Helping Hand	25	25	same	
 SPECIES_NIDORAN_F	Toxic Spikes	31	31	same	
+SPECIES_NIDORAN_F	Toxic		32	added	new at 33: Kaizo's Nidoran_F at 33, no earlier than that within its split (translated to 30); an exclusive delay: Kaizo gives it to no later stage; 33 to 32: the same-level rule (another move is at 33); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_NIDORAN_F	Flatter	33	33	same	
 SPECIES_NIDORAN_F	Crunch	37	37	same	
 SPECIES_NIDORAN_F	Captivate	43	43	same	
@@ -6270,9 +6270,9 @@ SPECIES_POLTEAGEIST	Sucker Punch	24	24	same
 SPECIES_POLTEAGEIST	Aromatherapy	30	30	same	
 SPECIES_POLTEAGEIST	Giga Drain	36	36	same	
 SPECIES_POLTEAGEIST	Nasty Plot	42	42	same	
-SPECIES_POLTEAGEIST	Shadow Ball	48	48	same	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split; at 65 to 48: Ian's rule that no stage goes more than one split without an attack of its own type, for Polteageist
 SPECIES_POLTEAGEIST	Memento	54	54	same	
 SPECIES_POLTEAGEIST	Shell Smash	60	60	same	
+SPECIES_POLTEAGEIST	Shadow Ball	48	65	moved	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split
 SPECIES_POLTEAGEIST	Curse	66	66	same	
 SPECIES_POLTEAGEIST	Astonish	1		dropped	leaves: strength 30, under 40
 SPECIES_POLTEAGEIST	Aromatic Mist	1		dropped	leaves: the move pool's first cut
@@ -6573,7 +6573,10 @@ SPECIES_RALTS	Double Team	10	10	same
 SPECIES_RALTS	Lucky Chant	17	17	same	
 SPECIES_RALTS	Magical Leaf	21	21	same	
 SPECIES_RALTS	Calm Mind	23	23	same	
+SPECIES_RALTS	Fire Punch		26	added	new at 26: Kaizo's Ralts at 28; an exclusive delay: Kaizo gives it to no later stage
+SPECIES_RALTS	Zen Headbutt		31	added	new at 32: Kaizo's Ralts at 32, no earlier than that within its split (translated to 29); 32 to 31: the same-level rule (another move is at 32); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_RALTS	Imprison	32	32	same	
+SPECIES_RALTS	Thunderbolt		33	added	new at 33: Kaizo's Ralts at 34, no earlier than that within its split (translated to 30)
 SPECIES_RALTS	Future Sight	34	34	same	
 SPECIES_RALTS	Psychic	28	38	moved	28 to 39: Kaizo's Ralts at 39, translated to 34, and no earlier than Kaizo's level of 39 within its split; 39 to 38: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_RALTS	Charm	39	39	same	
@@ -6768,7 +6771,7 @@ SPECIES_RHYPERIOR	Scary Face	21	21	same
 SPECIES_RHYPERIOR	Rock Blast	25	25	same	
 SPECIES_RHYPERIOR	Take Down	33	33	same	
 SPECIES_RHYPERIOR	Horn Drill	37	37	same	
-SPECIES_RHYPERIOR	Hammer Arm	42	39	moved	42 to 39: Kaizo's Rhyperior at 47, translated to 39
+SPECIES_RHYPERIOR	Hammer Arm	42	42	same	
 SPECIES_RHYPERIOR	Stone Edge	45	45	same	
 SPECIES_RHYPERIOR	Megahorn	57	56	moved	57 to 56: Kaizo's Rhyperior at 69, translated to 54, and no earlier than Kaizo's level of 69 within its split
 SPECIES_RHYPERIOR	Earthquake	49	60	moved	49 to 60: Kaizo's Rhyperior at 77, translated to 60
@@ -6855,10 +6858,10 @@ SPECIES_RUNERIGUS	Brutal Swing	16	16	same
 SPECIES_RUNERIGUS	Crafty Shield	20	20	same	
 SPECIES_RUNERIGUS	Hex	24	24	same	
 SPECIES_RUNERIGUS	Mean Look	28	28	same	
+SPECIES_RUNERIGUS	Slam	32	32	same	
 SPECIES_RUNERIGUS	Curse	38	38	same	
 SPECIES_RUNERIGUS	Shadow Ball	44	44	same	
-SPECIES_RUNERIGUS	Earthquake	50	45	moved	50 to 44: its nearest Kaizo lines, translated to 44; 44 to 45: the same-level rule (another move is at 44)
-SPECIES_RUNERIGUS	Slam	32	53	moved	32 to 53: its nearest Kaizo lines, translated to 46, and no earlier than Kaizo's level of 56 within its split
+SPECIES_RUNERIGUS	Earthquake	50	50	same	
 SPECIES_RUNERIGUS	Power Split	56	56	same	
 SPECIES_RUNERIGUS	Guard Split	56	56	same	
 SPECIES_RUNERIGUS	Destiny Bond	62	62	same	
@@ -7320,11 +7323,11 @@ SPECIES_SINISTCHA	Matcha Gotcha	1	1	same
 SPECIES_SINISTCHA	Stun Spore	1	1	same	
 SPECIES_SINISTCHA	Withdraw	1	1	same	
 SPECIES_SINISTCHA	Life Dew	12	12	same	
-SPECIES_SINISTCHA	Foul Play	18	18	same	
 SPECIES_SINISTCHA	Mega Drain	24	24	same	
 SPECIES_SINISTCHA	Hex	30	30	same	
 SPECIES_SINISTCHA	Rage Powder	36	36	same	
 SPECIES_SINISTCHA	Strength Sap	42	42	same	
+SPECIES_SINISTCHA	Foul Play	18	53	moved	18 to 53: its nearest Kaizo lines, translated to 52, and no earlier than Kaizo's level of 64 within its split
 SPECIES_SINISTCHA	Memento	54	54	same	
 SPECIES_SINISTCHA	Leaf Storm	60	60	same	
 SPECIES_SINISTCHA	Shadow Ball	48	65	moved	48 to 65: its nearest Kaizo lines, translated to 61, and no earlier than Kaizo's level of 78 within its split
@@ -7335,9 +7338,9 @@ SPECIES_SINISTEA	Mega Drain	12	12	same
 SPECIES_SINISTEA	Protect	18	18	same	
 SPECIES_SINISTEA	Sucker Punch	24	24	same	
 SPECIES_SINISTEA	Aromatherapy	30	30	same	
+SPECIES_SINISTEA	Shadow Ball	48	33	moved	48 to 33: its nearest Kaizo lines, translated to 33
 SPECIES_SINISTEA	Giga Drain	36	36	same	
 SPECIES_SINISTEA	Nasty Plot	42	42	same	
-SPECIES_SINISTEA	Shadow Ball	48	48	same	
 SPECIES_SINISTEA	Memento	54	54	same	
 SPECIES_SINISTEA	Shell Smash	60	60	same	
 SPECIES_SINISTEA	Astonish	1		dropped	leaves: strength 30, under 40
@@ -7946,7 +7949,7 @@ SPECIES_SUNKERN	Worry Seed	25	25	same
 SPECIES_SUNKERN	Razor Leaf	29	29	same	
 SPECIES_SUNKERN	Synthesis	33	33	same	
 SPECIES_SUNKERN	Sunny Day	37	37	same	
-SPECIES_SUNKERN	Giga Drain	41	41	same	an exclusive delay: Kaizo gives it to no later stage
+SPECIES_SUNKERN	Giga Drain	41	41	same	
 SPECIES_SUNKERN	Seed Bomb	45	45	same	
 SPECIES_SUNKERN	Absorb	1		dropped	leaves: strength 20, under 40
 SPECIES_SURSKIT	Bubble	1	1	same	
@@ -8364,6 +8367,7 @@ SPECIES_TOTODILE	Water Gun	6	6	same
 SPECIES_TOTODILE	Bite	13	13	same	
 SPECIES_TOTODILE	Scary Face	15	15	same	
 SPECIES_TOTODILE	Flail	22	22	same	
+SPECIES_TOTODILE	Dive		26	added	new at 26: Kaizo's Totodile at 27, no earlier than that within its split (translated to 25); an exclusive delay: Kaizo gives it to no later stage
 SPECIES_TOTODILE	Crunch	27	27	same	
 SPECIES_TOTODILE	Slash	29	29	same	
 SPECIES_TOTODILE	Ice Fang	20	33	moved	20 to 33: Kaizo's Totodile at 34, translated to 30, and no earlier than Kaizo's level of 34 within its split
@@ -8567,6 +8571,7 @@ SPECIES_UMBREON	Sand-Attack	8	8	same
 SPECIES_UMBREON	Pursuit	15	15	same	
 SPECIES_UMBREON	Quick Attack	22	22	same	
 SPECIES_UMBREON	Confuse Ray	29	29	same	
+SPECIES_UMBREON	Body Slam		30	added	new at 29: Kaizo's Umbreon at 29, no earlier than that within its split (translated to 27); 29 to 30: the same-level rule (another move is at 29)
 SPECIES_UMBREON	Faint Attack	36	36	same	
 SPECIES_UMBREON	Assurance	43	39	moved	43 to 39: Kaizo's Umbreon at 43, translated to 36, and no earlier than Kaizo's level of 43 within its split
 SPECIES_UMBREON	Last Resort	50	50	same	

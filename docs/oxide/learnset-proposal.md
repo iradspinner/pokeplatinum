@@ -28,23 +28,23 @@ It changes the lists of 467 of the 652 species. The 185 that no source gives the
 
 | Entries | Count |
 |---|---|
-| Kept where they are | 8349 |
-| Moved | 265 |
-| Added | 112 |
+| Kept where they are | 8346 |
+| Moved | 268 |
+| Added | 117 |
 | Dropped | 524 |
 
 The reasons given for the moves and additions (an entry moved twice, by Kaizo and then by the one-level rule, counts under both):
 
 | Change | Reason | Count |
 |---|---|---|
-| Moved | Kaizo's own list for the species, translated by split | 129 |
+| Moved | Kaizo's own list for the species, translated by split | 128 |
 | Moved | Kaizo's nearest lines, translated by split | 117 |
-| Added | Kaizo's own list for the species, translated by split | 78 |
-| Moved | the one-level rule | 58 |
+| Added | Kaizo's own list for the species, translated by split | 83 |
+| Moved | the one-level rule | 56 |
+| Moved | an exclusive delay from Kaizo | 32 |
 | Added | a first stage keeps its first attack | 30 |
-| Moved | an exclusive delay from Kaizo | 27 |
-| Added | the one-level rule | 21 |
-| Added | an exclusive delay from Kaizo | 5 |
+| Added | the one-level rule | 25 |
+| Added | an exclusive delay from Kaizo | 8 |
 | Added | the move-pool survey's first move | 4 |
 | Moved | the move-pool survey's first move | 3 |
 
@@ -84,7 +84,7 @@ Why entries left:
 | Stage | Split | Look | Why | Strong moves, now and proposed |
 |---|---|---|---|---|
 | Kadabra | Roark | brought to Ian by name | base Speed 105 | Recover 30 to 39 |
-| Delcatty | Gardenia | brought to Ian by name | base Speed 112 | as now |
+| Delcatty | Gardenia | brought to Ian by name | base Speed 112 | Hyper Voice 35 to never |
 | Donphan | Gardenia | brought to Ian by name | base Attack 120 with Slam (100) | as now |
 | Emolga | Gardenia | brought to Ian by name | base Speed 103 | Volt Switch 40 to 53 |
 | Floatzel | Gardenia | brought to Ian by name | base Speed 115 | as now |
@@ -95,17 +95,17 @@ Why entries left:
 | Octillery | Gardenia | brought to Ian by name | base Special Attack 108 with Fire Blast (110) | as now |
 | Steelix | Gardenia | brought to Ian by name | base Attack 115 with Slam (100) | as now |
 | Ambipom | Fantina | brought to Ian by name | base Speed 115 | as now |
-| Feraligatr | Fantina | brought to Ian by name | base Attack 125 with Earthquake (100) | Ice Fang 30 to 33; Superpower 43 to 39 |
+| Feraligatr | Fantina | brought to Ian by name | base Attack 125 with Earthquake (100) | Dive never to 30; Ice Fang 30 to 33; Superpower 43 to 39 |
 | Froslass | Fantina | brought to Ian by name | base Speed 110 | Ice Beam never to 60 |
-| Gallade | Fantina | brought to Ian by name | base Attack 125 with Earthquake (100) | Psychic 30 to 38 |
+| Gallade | Fantina | brought to Ian by name | base Attack 125 with Earthquake (100) | Fire Punch never to 27; Psychic 28 to 38; Thunderbolt never to 33; Zen Headbutt never to 31 |
 | Galvantula | Fantina | brought to Ian by name | base Speed 108 | Bug Buzz 48 to 39; Discharge 30 to 38; Energy Ball 37 to 44; Signal Beam 34 to 35; Thunderbolt 45 to 41 |
 | Granbull | Fantina | brought to Ian by name | base Attack 120 with Earthquake (100) | as now |
 | Hariyama | Fantina | brought to Ian by name | base Attack 120 with Earthquake (100) | Close Combat 40 to 44; Shadow Punch never to 53 |
 | Heracross | Fantina | brought to Ian by name | base Attack 125 with Earthquake (100) | Brick Break 19 to 26 |
-| Jumpluff | Fantina | brought to Ian by name | base Speed 110 | as now |
+| Jumpluff | Fantina | brought to Ian by name | base Speed 110 | Seed Bomb never to 32 |
 | Magmortar | Fantina | brought to Ian by name | base Special Attack 125 with Fire Blast (110) | as now |
 | Mismagius | Fantina | brought to Ian by name | base Speed 105 | as now |
-| Nidoking | Fantina | brought to Ian by name | base Attack 102 with Earthquake (100) | Earthquake never to 53 |
+| Nidoking | Fantina | brought to Ian by name | base Attack 102 with Earthquake (100) | Earth Power 43 to never; Earthquake never to 53 |
 | Piloswine | Fantina | brought to Ian by name | base Attack 110 with Earthquake (100) | as now |
 | Salazzle | Fantina | brought to Ian by name | base Speed 117 | Flamethrower 34 to 38; Sludge Bomb 40 to 39 |
 | Sharpedo | Fantina | brought to Ian by name | base Attack 120 with Earthquake (100) | Ice Fang 30 to 53 |
@@ -122,7 +122,7 @@ Why entries left:
 | Electabuzz | Maylene | very close look | base Speed 105 | Thunderbolt 37 to 39 |
 | Electivire | Maylene | very close look | base Speed 105 | Thunderbolt 37 to 39 |
 | Empoleon | Maylene | very close look | base Attack 111 with Earthquake (100) | as now |
-| Gardevoir | Maylene | very close look | base Special Attack 135 with Focus Blast (120) | Psychic 30 to 38 |
+| Gardevoir | Maylene | very close look | base Special Attack 135 with Focus Blast (120) | Fire Punch never to 30; Psychic 30 to 38; Thunderbolt never to 33; Zen Headbutt never to 31 |
 | Girafarig | Maylene | very close look | base Special Attack 110 with Thunder (110) | as now |
 | Glaceon | Maylene | very close look | base Special Attack 130 with Blizzard (110) | as now |
 | Gorebyss | Maylene | very close look | base Special Attack 114 with Blizzard (110) | as now |
@@ -146,7 +146,7 @@ Why entries left:
 | Sneasel | Maylene | very close look | base Speed 115 | as now |
 | Snorlax | Maylene | very close look | base Attack 110 with Earthquake (100) | as now |
 | Staraptor | Maylene | very close look | base Speed 105 | Brave Bird 37 to 44; Close Combat 34 to 53 |
-| Starmie | Maylene | very close look | base Speed 115 | Recover 30 to 44 |
+| Starmie | Maylene | very close look | base Speed 115 | Recover 34 to 44 |
 | Swampert | Maylene | very close look | base Attack 110 with Earthquake (100) | as now |
 | Talonflame | Maylene | very close look | base Speed 126 | Brave Bird 55 to 65; Flare Blitz 51 to 64 |
 | Tangrowth | Maylene | very close look | base Special Attack 110 with Focus Blast (120) | as now |
@@ -154,7 +154,7 @@ Why entries left:
 | Vaporeon | Maylene | very close look | base Special Attack 110 with Blizzard (110) | as now |
 | Absol | Wake | close look | base Special Attack 115 with Thunder (110) | Night Slash 52 to 56 |
 | Alakazam | Wake | close look | base Speed 120 | as now |
-| Cinccino | Wake | close look | base Speed 115 | Hyper Voice 43 to 40 |
+| Cinccino | Wake | close look | base Speed 115 | as now |
 | Crobat | Wake | close look | base Speed 130 | Brave Bird never to 53 |
 | Espeon | Wake | close look | base Speed 110 | as now |
 | Frosmoth | Wake | close look | base Special Attack 125 with Blizzard (110) | as now |
@@ -387,11 +387,11 @@ Why entries left:
 | Seadra | Wake | 72% | 37% |
 | Walrein | Wake | 50% | 43% |
 
-A further 4 stages would trip a flag or pass the bar only with the moves a first proposal gave them, so they are proposed again as held: Dhelmise, Grapploct, Klefki, Primarina.
+A further 5 stages would trip a flag or pass the bar only with the moves a first proposal gave them, so they are proposed again as held: Dhelmise, Grapploct, Klefki, Polteageist, Primarina.
 
 ## Strong moves that come sooner
 
-Every good attack or S or SSS status move that the proposal gives a stage a split or more sooner than now, or new before Byron's split: 99 in all. These are the entries to read as a player would. A stage marked held is flagged or over the bar, so its entry here is a new move no earlier than its first good one of that type.
+Every good attack or S or SSS status move that the proposal gives a stage a split or more sooner than now, or new before Byron's split: 105 in all. These are the entries to read as a player would. A stage marked held is flagged or over the bar, so its entry here is a new move no earlier than its first good one of that type.
 
 | Stage | Move | Now | Proposed | Held |
 |---|---|---|---|---|
@@ -410,12 +410,10 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Cresselia | Psychic | 93 | 74 |  |
 | Croconaw | Superpower | 51 | 44 |  |
 | Dewpider | Hydro Pump | 45 | 32 |  |
-| Dusknoir | Hammer Arm | not learnt | 44 |  |
 | Duskull | Future Sight | 46 | 26 |  |
 | Ferroseed | Seed Bomb | 47 | 32 |  |
 | Ferroseed | Iron Head | 52 | 33 |  |
 | Flaaffy | Thunderbolt | not learnt | 44 | yes |
-| Garganacl | Earthquake | 49 | 43 |  |
 | Gastrodon | Muddy Water | 41 | 39 |  |
 | Gastrodon | Earthquake | not learnt | 44 |  |
 | Giratina | Shadow Claw | 80 | 63 |  |
@@ -423,9 +421,11 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Hakamo O | Close Combat | 60 | 56 |  |
 | Hisuian Goodra | Power Whip | 61 | 56 |  |
 | Hisuian Goodra | Outrage | 66 | 60 |  |
+| Hisuian Sliggoo | Dragon Pulse | 35 | 31 |  |
 | Hisuian Sliggoo | Iron Head | 49 | 33 |  |
 | Hisuian Sliggoo | Muddy Water | 56 | 39 |  |
 | Hoothoot | Hyper Voice | not learnt | 39 | yes |
+| Hoppip | Seed Bomb | not learnt | 32 | yes |
 | Incineroar | Flare Blitz | 55 | 53 |  |
 | Joltik | Bug Buzz | 48 | 39 |  |
 | Joltik | Thunderbolt | 45 | 41 |  |
@@ -449,6 +449,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Minun | Thunderbolt | not learnt | 43 | yes |
 | Murkrow | Dark Pulse | not learnt | 44 | yes |
 | Nacli | Stone Edge | 45 | 32 |  |
+| Nidoran F | Toxic | not learnt | 32 | yes |
 | Noctowl | Hyper Voice | not learnt | 44 | yes |
 | Omanyte | Earth Power | not learnt | 44 |  |
 | Pachirisu | Thunder Fang | not learnt | 32 | yes |
@@ -456,11 +457,13 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Pheromosa | Bug Buzz | 60 | 44 |  |
 | Plusle | Thunderbolt | not learnt | 43 | yes |
 | Pupitar | Earthquake | 47 | 39 |  |
+| Ralts | Fire Punch | not learnt | 26 |  |
+| Ralts | Zen Headbutt | not learnt | 31 |  |
+| Ralts | Thunderbolt | not learnt | 33 |  |
 | Regirock | Rock Blast | not learnt | 32 |  |
 | Registeel | Iron Head | 73 | 39 |  |
 | Registeel | Hammer Arm | 81 | 53 |  |
 | Relicanth | Dive | 57 | 39 |  |
-| Rhyperior | Hammer Arm | 42 | 39 |  |
 | Rhyperior | Megahorn | 57 | 56 |  |
 | Riolu | ThunderPunch | not learnt | 7 |  |
 | Riolu | Ice Punch | not learnt | 30 |  |
@@ -471,6 +474,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Sentret | Hyper Voice | 47 | 33 |  |
 | Shieldon | Earthquake | not learnt | 34 |  |
 | Shieldon | Iron Head | 43 | 39 |  |
+| Sinistea | Shadow Ball | 48 | 33 |  |
 | Slowbro | Psychic | 54 | 44 |  |
 | Slowking | Psychic | 48 | 44 |  |
 | Slowpoke | Body Slam | not learnt | 26 |  |
@@ -486,8 +490,10 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Swablu | Air Slash | not learnt | 44 |  |
 | Tentacool | Toxic | not learnt | 39 | yes |
 | Tentacruel | Toxic | not learnt | 44 | yes |
+| Totodile | Dive | not learnt | 26 |  |
 | Totodile | Superpower | 43 | 39 |  |
 | Trapinch | Earthquake | 73 | 53 |  |
+| Umbreon | Body Slam | not learnt | 30 |  |
 | Umbreon | Assurance | 43 | 39 |  |
 | Vikavolt | Signal Beam | 36 | 33 |  |
 | Vikavolt | Discharge | 48 | 34 |  |
@@ -497,7 +503,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 
 ## Delays
 
-279 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
+282 delays pass Ian's tests on the proposed lists (a strong move past the evolution level, the evolved stage a split and five levels later or never, nothing like it between). The wait is given in splits past the one the stage can evolve in.
 
 | Pre-evolution | Evolves to | Move | Learnt at | Wait in splits | Evolved stage |
 |---|---|---|---|---|---|
@@ -547,26 +553,24 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Drowzee | Hypno | Future Sight | 53 | 4 | 69 |
 | Eevee | Leafeon | Baton Pass | 36 | 1 | never |
 | Eevee | Glaceon | Baton Pass | 36 | 1 | never |
-| Eevee | Jolteon | Baton Pass | 36 | 1 | never |
-| Eevee | Vaporeon | Baton Pass | 36 | 1 | never |
-| Eevee | Flareon | Baton Pass | 36 | 1 | never |
-| Eevee | Espeon | Baton Pass | 36 | 1 | never |
-| Eevee | Umbreon | Baton Pass | 36 | 1 | never |
+| Eevee | Jolteon | Baton Pass | 36 | 0 | never |
+| Eevee | Vaporeon | Baton Pass | 36 | 0 | never |
+| Eevee | Flareon | Baton Pass | 36 | 0 | never |
+| Eevee | Umbreon | Baton Pass | 36 | 2 | never |
 | Eevee | Sylveon | Baton Pass | 36 | 1 | never |
 | Eevee | Leafeon | Take Down | 43 | 2 | never |
 | Eevee | Glaceon | Take Down | 43 | 2 | never |
-| Eevee | Jolteon | Take Down | 43 | 2 | never |
-| Eevee | Vaporeon | Take Down | 43 | 2 | never |
-| Eevee | Flareon | Take Down | 43 | 2 | never |
-| Eevee | Espeon | Take Down | 43 | 2 | never |
-| Eevee | Umbreon | Take Down | 43 | 2 | never |
+| Eevee | Jolteon | Take Down | 43 | 1 | never |
+| Eevee | Vaporeon | Take Down | 43 | 1 | never |
+| Eevee | Flareon | Take Down | 43 | 1 | never |
+| Eevee | Espeon | Take Down | 43 | 0 | never |
 | Eevee | Sylveon | Take Down | 43 | 2 | never |
 | Ekans | Arbok | Gunk Shot | 41 | 3 | 56 |
 | Electabuzz | Electivire | Thunderbolt | 53 | 3 | never |
 | Elekid | Electabuzz | Thunderbolt | 39 | 1 | 53 |
-| Exeggcute | Exeggutor | Psychic | 47 | 3 | never |
+| Exeggcute | Exeggutor | Psychic | 47 | 4 | never |
 | Fletchling | Fletchinder | Defog | 33 | 2 | never |
-| Floette | Florges | Moonblast | 52 | 3 | 57 |
+| Floette | Florges | Moonblast | 52 | 1 | 57 |
 | Floragato | Meowscarada | Play Rough | 42 | 1 | 47 |
 | Fomantis | Lurantis | Leaf Blade | 39 | 0 | 44 |
 | Gabite | Garchomp | Dragon Rush | 70 | 5 | never |
@@ -574,7 +578,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Gible | Gabite | Dragon Rush | 60 | 6 | 70 |
 | Golbat | Crobat | Brave Bird | 53 | 1 | 63 |
 | Goldeen | Seaking | Megahorn | 51 | 3 | 63 |
-| Goomy | Hisuian Sliggoo | Body Slam | 41 | 2 | never |
+| Goomy | Hisuian Sliggoo | Body Slam | 41 | 3 | never |
 | Goomy | Sliggoo | Dragon Pulse | 44 | 0 | 55 |
 | Goomy | Sliggoo | Muddy Water | 46 | 1 | 60 |
 | Gothita | Gothorita | Future Sight | 37 | 1 | 42 |
@@ -582,9 +586,8 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Grotle | Torterra | Leaf Storm | 52 | 3 | 57 |
 | Grovyle | Sceptile | Leaf Blade | 52 | 2 | 67 |
 | Grovyle | Sceptile | Leaf Storm | 59 | 4 | 67 |
-| Growlithe | Arcanine | Flamethrower | 34 | 1 | never |
-| Growlithe | Arcanine | Heat Wave | 45 | 3 | never |
-| Growlithe | Arcanine | Flare Blitz | 48 | 3 | never |
+| Growlithe | Arcanine | Heat Wave | 45 | 2 | never |
+| Growlithe | Arcanine | Flare Blitz | 48 | 2 | never |
 | Grubbin | Charjabug | X-Scissor | 39 | 2 | 53 |
 | Gulpin | Swalot | Sludge Bomb | 39 | 2 | 45 |
 | Hippopotas | Hippowdon | Earthquake | 37 | 0 | 53 |
@@ -597,8 +600,9 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Horsea | Seadra | Dragon Pulse | 42 | 2 | 57 |
 | Houndour | Houndoom | Crunch | 48 | 4 | 54 |
 | Houndour | Houndoom | Nasty Plot | 53 | 4 | 60 |
-| Jigglypuff | Wigglytuff | Hyper Voice | 45 | 3 | never |
-| Jigglypuff | Wigglytuff | Double-Edge | 49 | 3 | never |
+| Jigglypuff | Wigglytuff | Body Slam | 29 | 1 | never |
+| Jigglypuff | Wigglytuff | Hyper Voice | 45 | 4 | never |
+| Jigglypuff | Wigglytuff | Double-Edge | 49 | 4 | never |
 | Joltik | Galvantula | Discharge | 38 | 1 | 48 |
 | Joltik | Galvantula | Bug Buzz | 39 | 1 | 51 |
 | Joltik | Galvantula | Thunderbolt | 41 | 2 | 48 |
@@ -610,15 +614,15 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Krabby | Kingler | Slam | 35 | 1 | 44 |
 | Krabby | Kingler | Crabhammer | 41 | 2 | 56 |
 | Lairon | Aggron | Double-Edge | 51 | 1 | 57 |
-| Lampent | Chandelure | Shadow Ball | 55 | 4 | 65 |
-| Lampent | Chandelure | Heat Wave | 65 | 6 | 72 |
+| Lampent | Chandelure | Shadow Ball | 55 | 2 | 65 |
+| Lampent | Chandelure | Heat Wave | 65 | 4 | 72 |
 | Larvesta | Volcarona | Double-Edge | 72 | 4 | never |
 | Larvitar | Pupitar | Stone Edge | 46 | 3 | 54 |
 | Ledyba | Ledian | Double-Edge | 38 | 2 | 48 |
 | Ledyba | Ledian | Bug Buzz | 41 | 3 | 53 |
 | Lileep | Cradily | Energy Ball | 50 | 1 | 56 |
 | Litten | Torracat | Fire Fang | 33 | 2 | 38 |
-| Lombre | Ludicolo | Hydro Pump | 45 | 3 | never |
+| Lombre | Ludicolo | Hydro Pump | 45 | 2 | never |
 | Lotad | Lombre | Energy Ball | 45 | 5 | never |
 | Loudred | Exploud | Hyper Voice | 57 | 3 | 63 |
 | Luxio | Luxray | Thunder Fang | 33 | 0 | 53 |
@@ -633,8 +637,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Meditite | Medicham | Recover | 46 | 2 | 55 |
 | Meowth | Persian | Nasty Plot | 38 | 1 | 44 |
 | Mienfoo | Mienshao | Hi Jump Kick | 58 | 4 | 64 |
-| Minccino | Cinccino | Slam | 38 | 1 | never |
-| Minccino | Cinccino | Hyper Voice | 40 | 2 | never |
+| Minccino | Cinccino | Hyper Voice | 43 | 0 | never |
 | Misdreavus | Mismagius | Shadow Ball | 37 | 1 | never |
 | Monferno | Infernape | Slack Off | 46 | 2 | never |
 | Monferno | Infernape | Flare Blitz | 49 | 2 | 57 |
@@ -644,12 +647,13 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Nacli | Naclstack | Stone Edge | 32 | 1 | 51 |
 | Nacli | Naclstack | Earthquake | 40 | 3 | 53 |
 | Natu | Xatu | Future Sight | 36 | 2 | 42 |
+| Nidoran F | Nidorina | Toxic | 32 | 2 | never |
 | Nidoran F | Nidorina | Poison Fang | 45 | 5 | 58 |
 | Nidoran M | Nidorino | Poison Jab | 37 | 3 | 43 |
-| Nidorina | Nidoqueen | Toxic Spikes | 35 | 1 | never |
-| Nidorina | Nidoqueen | Poison Fang | 58 | 5 | never |
-| Nidorino | Nidoking | Toxic Spikes | 35 | 1 | never |
-| Nidorino | Nidoking | Poison Jab | 43 | 2 | never |
+| Nidorina | Nidoqueen | Toxic Spikes | 35 | 2 | never |
+| Nidorina | Nidoqueen | Poison Fang | 58 | 6 | never |
+| Nidorino | Nidoking | Toxic Spikes | 35 | 2 | never |
+| Nidorino | Nidoking | Poison Jab | 43 | 3 | never |
 | Nincada | Ninjask | Dig | 45 | 4 | never |
 | Nincada | Shedinja | Dig | 45 | 4 | never |
 | Nosepass | Probopass | Earth Power | 79 |  | never |
@@ -661,7 +665,7 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Omanyte | Omastar | Hydro Pump | 52 | 1 | 67 |
 | Omanyte | Omastar | Ice Beam | 53 | 1 | 60 |
 | Paras | Parasect | Giga Drain | 33 | 1 | 39 |
-| Pawmo | Pawmot | Wild Charge | 40 | 2 | 57 |
+| Pawmo | Pawmot | Wild Charge | 40 | 1 | 57 |
 | Phanpy | Donphan | Double-Edge | 42 | 3 | never |
 | Pichu | Pikachu | Nasty Plot | 18 | 1 | never |
 | Pidgeotto | Pidgeot | Air Slash | 57 | 4 | 62 |
@@ -673,10 +677,9 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Piplup | Prinplup | Hydro Pump | 43 | 4 | 51 |
 | Poliwag | Poliwhirl | Belly Drum | 31 | 1 | 37 |
 | Poliwag | Poliwhirl | Hydro Pump | 38 | 2 | 48 |
-| Poliwhirl | Poliwrath | Belly Drum | 37 | 1 | never |
-| Poliwhirl | Politoed | Belly Drum | 37 | 1 | never |
-| Poliwhirl | Poliwrath | Hydro Pump | 48 | 3 | never |
-| Poliwhirl | Politoed | Hydro Pump | 48 | 3 | never |
+| Poliwhirl | Poliwrath | Belly Drum | 37 | 0 | never |
+| Poliwhirl | Poliwrath | Hydro Pump | 48 | 2 | never |
+| Poliwhirl | Politoed | Hydro Pump | 48 | 1 | never |
 | Ponyta | Rapidash | Bounce | 42 | 0 | 47 |
 | Ponyta | Rapidash | Flare Blitz | 46 | 1 | 56 |
 | Poochyena | Mightyena | Taunt | 37 | 2 | 42 |
@@ -686,21 +689,22 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Purrloin | Liepard | Nasty Plot | 36 | 2 | 44 |
 | Purrloin | Liepard | Play Rough | 44 | 3 | 54 |
 | Raboot | Cinderace | Double-Edge | 44 | 1 | never |
+| Ralts | Kirlia | Fire Punch | 26 | 0 | never |
+| Ralts | Kirlia | Zen Headbutt | 31 | 1 | 38 |
+| Ralts | Kirlia | Thunderbolt | 33 | 1 | never |
 | Rattata | Raticate | Double-Edge | 31 | 1 | 39 |
 | Remoraid | Octillery | Ice Beam | 40 | 3 | 48 |
 | Rhyhorn | Rhydon | Earthquake | 53 | 1 | 60 |
 | Riolu | Lucario | Ice Punch | 30 | 0 | never |
 | Rookidee | Corvisquire | Roost | 50 | 5 | 55 |
-| Roselia | Roserade | Toxic | 37 | 1 | never |
 | Rowlet | Dartrix | Roost | 40 | 4 | 47 |
 | Rowlet | Dartrix | Leaf Blade | 44 | 4 | 52 |
 | Rowlet | Dartrix | Brave Bird | 48 | 5 | 55 |
 | Salandit | Salazzle | Flamethrower | 38 | 1 | 54 |
 | Salandit | Salazzle | Sludge Bomb | 39 | 1 | 56 |
 | Scorbunny | Raboot | Flare Blitz | 45 | 5 | 56 |
-| Scyther | Scizor | Air Slash | 53 | 3 | never |
-| Scyther | Kleavor | Air Slash | 53 | 3 | never |
-| Scyther | Kleavor | Swords Dance | 57 | 5 | never |
+| Scyther | Scizor | Air Slash | 53 | 4 | never |
+| Scyther | Kleavor | Swords Dance | 57 | 6 | never |
 | Seel | Dewgong | Ice Beam | 44 | 1 | 53 |
 | Sentret | Furret | Baton Pass | 39 | 3 | 46 |
 | Servine | Serperior | Leaf Blade | 43 | 1 | 55 |
@@ -708,21 +712,23 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Sewaddle | Swadloon | Bug Buzz | 44 | 3 | never |
 | Shelgon | Salamence | Dragon Claw | 55 | 1 | 61 |
 | Shelgon | Salamence | Double-Edge | 61 | 3 | 70 |
-| Shellder | Cloyster | Ice Beam | 49 | 3 | never |
+| Shellder | Cloyster | Ice Beam | 49 | 2 | never |
 | Shellos | Gastrodon | Recover | 46 | 3 | 54 |
 | Shieldon | Bastiodon | Earthquake | 34 | 1 | 53 |
 | Shieldon | Bastiodon | Iron Head | 39 | 1 | 44 |
 | Shroomish | Breloom | Giga Drain | 37 | 2 | 56 |
 | Shroomish | Breloom | Spore | 78 | 10 | never |
-| Sinistea | Sinistcha | Nasty Plot | 42 | 2 | never |
-| Sinistea | Sinistcha | Shadow Ball | 48 | 3 | 65 |
-| Sinistea | Sinistcha | Shell Smash | 60 | 5 | never |
-| Slowpoke | Slowking | Dive | 33 | 0 | never |
+| Sinistea | Polteageist | Shadow Ball | 33 | 0 | 65 |
+| Sinistea | Sinistcha | Shadow Ball | 33 | 1 | 65 |
+| Sinistea | Sinistcha | Nasty Plot | 42 | 3 | never |
+| Sinistea | Sinistcha | Shell Smash | 60 | 6 | never |
+| Skitty | Delcatty | Double-Edge | 42 | 3 | never |
 | Slowpoke | Slowbro | Slack Off | 53 | 2 | 76 |
 | Slugma | Magcargo | Flamethrower | 53 | 2 | 61 |
 | Slugma | Magcargo | Earth Power | 56 | 3 | 66 |
 | Smoochum | Jynx | Psychic | 35 | 1 | never |
 | Smoochum | Jynx | Blizzard | 45 | 3 | 55 |
+| Snorunt | Froslass | Ice Fang | 28 | 0 | 60 |
 | Snover | Abomasnow | Blizzard | 41 | 0 | 47 |
 | Spearow | Fearow | Roost | 33 | 1 | 41 |
 | Spearow | Fearow | Drill Peck | 37 | 2 | 47 |
@@ -732,8 +738,8 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Spoink | Grumpig | Bounce | 48 | 3 | 60 |
 | Sprigatito | Floragato | Seed Bomb | 18 | 1 | 36 |
 | Starly | Staravia | Brave Bird | 44 | 4 | 53 |
-| Staryu | Starmie | Recover | 44 | 2 | never |
-| Staryu | Starmie | Hydro Pump | 55 | 4 | never |
+| Staryu | Starmie | Recover | 44 | 1 | never |
+| Staryu | Starmie | Hydro Pump | 55 | 3 | never |
 | Surskit | Masquerain | Baton Pass | 43 | 3 | never |
 | Swablu | Altaria | Air Slash | 44 | 1 | never |
 | Swablu | Altaria | Dragon Pulse | 45 | 2 | 54 |
@@ -742,11 +748,12 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Taillow | Swellow | Air Slash | 53 | 4 | 61 |
 | Tentacool | Tentacruel | Toxic | 39 | 1 | 44 |
 | Tentacool | Tentacruel | Hydro Pump | 40 | 2 | 49 |
-| Togetic | Togekiss | Baton Pass | 42 | 2 | never |
-| Togetic | Togekiss | Double-Edge | 46 | 3 | never |
+| Togetic | Togekiss | Baton Pass | 42 | 0 | never |
+| Togetic | Togekiss | Double-Edge | 46 | 1 | never |
 | Torchic | Combusken | Flamethrower | 43 | 4 | 54 |
 | Torracat | Incineroar | Flamethrower | 38 | 0 | 53 |
 | Torracat | Incineroar | Fire Fang | 39 | 0 | 53 |
+| Totodile | Croconaw | Dive | 26 | 0 | 48 |
 | Totodile | Croconaw | Ice Fang | 33 | 1 | 38 |
 | Totodile | Croconaw | Superpower | 39 | 2 | 44 |
 | Totodile | Croconaw | Aqua Tail | 41 | 3 | 48 |
@@ -766,16 +773,18 @@ Every good attack or S or SSS status move that the proposal gives a stage a spli
 | Wailmer | Wailord | Bounce | 44 | 0 | 54 |
 | Wailmer | Wailord | Water Spout | 78 | 7 | never |
 | Wartortle | Blastoise | Hydro Pump | 48 | 2 | 60 |
-| Weepinbell | Victreebel | Slam | 41 | 2 | never |
+| Weepinbell | Victreebel | Slam | 41 | 3 | never |
 | Whismur | Loudred | Hyper Voice | 45 | 4 | 57 |
 | Wingull | Pelipper | Roost | 29 | 1 | 53 |
 | Wingull | Pelipper | Air Slash | 47 | 4 | never |
 | Wooloo | Dubwool | Double-Edge | 40 | 3 | 50 |
+| Wooper | Clodsire | Slam | 15 | 0 | 37 |
 | Wooper | Quagsire | Muddy Water | 30 | 1 | 53 |
+| Wooper | Clodsire | Muddy Water | 30 | 2 | never |
 | Wooper | Quagsire | Sludge Bomb | 33 | 1 | never |
-| Wooper | Clodsire | Sludge Bomb | 33 | 0 | never |
+| Wooper | Clodsire | Sludge Bomb | 33 | 2 | never |
 | Wooper | Quagsire | Earthquake | 39 | 2 | 44 |
-| Wooper | Clodsire | Earthquake | 39 | 1 | 44 |
+| Wooper | Clodsire | Earthquake | 39 | 3 | 44 |
 | Yanma | Yanmega | Air Slash | 54 | 3 | never |
 | Zigzagoon | Linoone | Belly Drum | 41 | 3 | 53 |
 | Zubat | Golbat | Poison Fang | 33 | 1 | 39 |
@@ -788,12 +797,12 @@ On Oxide's lists now and on the proposal, the same readings as the first generat
 | Reading | Kaizo | Oxide now | The proposal |
 |---|---|---|---|
 | Pre-evolutions that reward a wait of a split or less | 124 | 63 | 70 |
-| Moves only a Pokemon kept from evolving gets | 334 | 259 | 275 |
-| Of those, strong | 148 | 41 | 56 |
+| Moves only a Pokemon kept from evolving gets | 334 | 259 | 282 |
+| Of those, strong | 148 | 41 | 59 |
 | Wild slots that can end the encounter | | 153 | 138 |
-| Wild slots that can knock themselves out | | 261 | 203 |
+| Wild slots that can knock themselves out | | 261 | 235 |
 | Wild slots with a better version later | | 9 | 6 |
-| Evolved catches with no good move by the split's cap | | 70 | 75 |
+| Evolved catches with no good move by the split's cap | | 70 | 76 |
 
 The share of catches with a good move known at capture or learnt by level-up before the split's cap:
 
@@ -801,8 +810,8 @@ The share of catches with a good move known at capture or learnt by level-up bef
 |---|---|---|
 | Roark | 0.08 | 0.06 |
 | Gardenia | 0.26 | 0.22 |
-| Fantina | 0.54 | 0.58 |
-| Maylene | 0.74 | 0.62 |
+| Fantina | 0.54 | 0.70 |
+| Maylene | 0.74 | 0.67 |
 | Wake | 0.88 | 0.86 |
 | Byron | 0.88 | 0.90 |
 | Candice | 0.90 | 0.90 |
@@ -827,29 +836,29 @@ Every family's check list, totalled over all of them:
 | No stage more than one split without an attack of its own type of 50 or more | 0 |
 | No move that ends a wild encounter moved into the wild levels | 0 |
 
-The own-type rule keeps 2 moves at their current level, where the proposal would have left a stage more than one split without an attack of its own type of 50 or more:
+The own-type rule keeps 1 moves at their current level, where the proposal would have left a stage more than one split without an attack of its own type of 50 or more:
 
 | Stage | Move | In the list of | Kept at |
 |---|---|---|---|
 | Hippopotas | Earthquake | Hippopotas | 37 |
-| Polteageist | Shadow Ball | Polteageist | 48 |
 
-For Ian: 10 such moves would reach a stage the power flags or the bar hold, so they are not kept until he rules; the stages they are for go without an attack of their own type meanwhile:
+For Ian: 11 such moves would reach a stage the power flags or the bar hold, so they are not kept until he rules; the stages they are for go without an attack of their own type meanwhile:
 
 | Move | In the list of | Its level now | For | Would reach |
 |---|---|---|---|---|
-| Lava Plume | Armarouge | 32 | Armarouge | Armarouge |
 | Air Slash | Beautifly | 26 | Beautifly | Beautifly |
 | Scald | Brionne | 34 | Brionne | Brionne, Primarina |
+| Hyper Voice | Delcatty | 35 | Delcatty | Delcatty |
 | Leaf Blade | Grovyle | 29 | Grovyle, Sceptile | Grovyle, Sceptile |
 | Earthquake | Hippowdon | 40 | Hippowdon | Hippowdon |
 | Fire Fang | Litten | 14 | Torracat | Litten, Torracat |
+| Earth Power | Nidoking | 43 | Nidoking | Nidoking |
 | Earth Power | Nidoqueen | 43 | Nidoqueen | Nidoqueen |
 | Thunderbolt | Pikachu | 26 | Pikachu | Pikachu, Raichu |
-| X-Scissor | Scizor | 41 | Scizor | Scizor |
+| Shadow Ball | Polteageist | 48 | Polteageist | Polteageist |
 | Bullet Seed | Skiploom | 20 | Jumpluff, Skiploom | Skiploom, Jumpluff |
 
-67 stages go more than one split without an attack of their own type on Oxide's lists now, and the proposal does not make it longer (stages the player can evolve by the end of Gardenia's split are exempt); the later-moves proposal fills them where a later game offers one: Alolan Ninetales, Alomomola, Braixen, Budew, Carnivine, Charcadet, Charmeleon, Clefable, Cradily, Croconaw, Delibird, Dhelmise, Donphan, Drifloon, Duskull, Dustox, Feebas, Feraligatr, Flaaffy, Flareon, Floatzel, Glaceon, Gligar, Gliscor, Granbull, Gyarados, Happiny, Hippopotas, Jolteon, Kabuto, Kabutops, Lileep, Lopunny, Lunatone, Luvdisc, Magby, Masquerain, Mawile, Misdreavus, Mismagius, Munchlax, Nidoking, Polteageist, Qwilfish, Raboot, Rhyperior, Roselia, Roserade, Seel, Shellder, Shiftry, Slugma, Solrock, Staryu, Steelix, Swablu, Sylveon, Tangela, Tangrowth, Togekiss, Togetic, Trapinch, Unown, Vaporeon, Wartortle, Yanma, Yanmega.
+62 stages go more than one split without an attack of their own type on Oxide's lists now, and the proposal does not make it longer (stages the player can evolve by the end of Gardenia's split are exempt); the later-moves proposal fills them where a later game offers one: Alolan Ninetales, Alomomola, Braixen, Budew, Carnivine, Charcadet, Charmeleon, Clefable, Cradily, Croconaw, Delibird, Dhelmise, Donphan, Drifloon, Duskull, Dustox, Feebas, Feraligatr, Flaaffy, Floatzel, Glaceon, Gligar, Gliscor, Granbull, Gyarados, Happiny, Hippopotas, Kabuto, Kabutops, Lileep, Lopunny, Lunatone, Luvdisc, Magby, Masquerain, Mawile, Misdreavus, Mismagius, Munchlax, Qwilfish, Raboot, Roselia, Seel, Shellder, Shiftry, Slugma, Solrock, Staryu, Steelix, Swablu, Sylveon, Tangela, Tangrowth, Togekiss, Togetic, Trapinch, Umbreon, Unown, Vaporeon, Wartortle, Yanma, Yanmega.
 
 Where Kaizo's own level is past Oxide's 78, the rule would take the move out of play, against the rule that nothing goes past 78, so these 18 keep their translated place for Ian to decide:
 

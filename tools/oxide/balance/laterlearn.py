@@ -116,6 +116,31 @@ def engine():
 ONCE_FIXED = {"MOVE_LUNAR_BLESSING", "MOVE_THROAT_CHOP"}
 
 
+@functools.lru_cache(maxsize=None)
+def _doubles_only():
+    from tools.oxide import move_pool_survey as mps
+    return frozenset(mps.DOUBLES_ONLY)
+
+
+def _skill_link(species):
+    """Whether Skill Link is in one of the stage's regular ability slots (the
+    hidden slot takes the game's one Ability Patch)."""
+    from tools.oxide.encounters import pokedex
+    rec = pokedex.load(data.ROOT, species) or {}
+    return "SKILL_LINK" in (rec.get("abilities") or [])     # the loader's two regular slots
+
+
+def first_split(species, level):
+    """The split in which the player first has a move the stage learns at a
+    level: the later of the split the level falls in and the first split the
+    player can own the stage in (a level 1 Regigigas comes only after the
+    League, a wild level 40 Rhyperior only in Barry's split)."""
+    order = lp.SPLITS + ["Post"]
+    own = lp._owned_from(species) or "Post"
+    by_level = lp._split_of(max(level, lp.reach(species)))
+    return max(own, by_level, key=lambda s: order.index(s) if s in order else len(order))
+
+
 def placeable(c):
     """True when the move may be placed now: the engine runs it in full, or
     what is missing matters only with a partner on the field (Ian,
@@ -235,8 +260,10 @@ def propose(species):
         r = lp.rank(c)
         good = lp.good_attack(c, types)
         strong_move = good or (r or 0) >= lp.STRONG_RANK
-        row["notable"] = good or (r or 0) >= 4
-        drop = g._dropped(c, species, lv, types)
+        # A partner move does next to nothing in a single battle, whatever
+        # the tier list rates it (Wide Guard, Rage Powder).
+        row["notable"] = (good or (r or 0) >= 4) and c not in _doubles_only()
+        drop = g._dropped(c, species, lv, types, base)
         if drop:
             row["action"], row["why"] = "left out", [f"dead weight: {drop}"]
             continue
@@ -259,6 +286,23 @@ def propose(species):
                 row["action"] = "for Ian"
                 row["why"].append("a stage the power flags or the bar hold takes a new attack only "
                                   "no earlier than its first good one of that type")
+                continue
+        # The generator's carry rule: learnt under WAIT levels past the level
+        # this stage can first evolve at, the move comes along into each strong
+        # stage after it, and there too a good attack goes no earlier than that
+        # stage's first good one of its type (Rhyhorn's High Horsepower at 39,
+        # three levels before Rhydon).
+        if good:
+            lists = proposal_lists()
+            held = []
+            for e, until in lp.strong_later_stages(species):
+                first_e = lp.first_good_of_type(e, lp.M()[c]["type"], lists.get(e) or lp._now(e))
+                if lv <= until and (first_e is None or lv < first_e):
+                    held.append(e)
+            if held:
+                row["action"] = "for Ian"
+                row["why"].append(f"comes along without a real wait into {', '.join(lp._sp(e) for e in held)}, "
+                                  f"which the power flags or the bar hold, before its first good one of that type")
                 continue
         if lv < here:
             # Below where the stage is had: the relearner's, unless a first
@@ -286,6 +330,8 @@ def propose(species):
                 continue
             bk, bp = lp.strength(bc)
             m, bm = lp.M()[c], lp.M()[bc]
+            if bm.get("effect") == "MULTI_HIT" and _skill_link(species):
+                continue                 # with Skill Link it hits five times: Cloyster's Icicle Spear
             if kind == "damage" and bk == "damage" and m["type"] == bm["type"] and m["class"] == bm["class"] \
                     and bp < lp.strength(c)[1]:
                 cands.append((abs(blv - lv), blv, bc))
@@ -492,11 +538,12 @@ def _write_md(out, sp, rows, tm, gap_rows=()):
     notable = [r for r in rows if r["notable"] and r["action"] in ("added", "replaces")]
     p(f"\n## The notable adds and replaces, by split\n")
     p(f"{len(notable)} of the adds and replaces are notable: a good attack for the species, or a "
-      f"status move Ian's tier list rates A or better. By the split in which the player first has "
-      f"the move: its level, or where the stage is first had when it knows the move at capture:\n")
+      f"status move Ian's tier list rates A or better, a partner move aside. By the split in which "
+      f"the player first has the move: the later of the split its level falls in and the first "
+      f"split the player can own the stage in:\n")
     by_split = collections.defaultdict(list)
     for r in notable:
-        by_split[lp._split_of(max(r["level"], lp.reach(r["species"])))].append(r)
+        by_split[first_split(r["species"], r["level"])].append(r)
     for split in lp.SPLITS + ["Post"]:
         rs = by_split.get(split)
         if not rs:
@@ -517,7 +564,7 @@ def _write_md(out, sp, rows, tm, gap_rows=()):
     for r in notable:
         by_species[r["species"]].append(r)
     for s, rs in sorted(by_species.items(), key=lambda kv: min(r["level"] for r in kv[1])):
-        cap = max(lp.pool.caps().get(lp._split_of(max(r["level"], lp.reach(s))), 78) for r in rs)
+        cap = max(lp.pool.caps().get(first_split(s, r["level"]), 78) for r in rs)
         base = dict(lists)
         base[s] = lists.get(s) or lp._now(s)
         new = list(base[s])
@@ -528,7 +575,7 @@ def _write_md(out, sp, rows, tm, gap_rows=()):
         withl = dict(base, **{s: sorted(new)})
         before, after = _good_by(s, base, cap), _good_by(s, withl, cap)
         gained = [m for m in after if m not in before]
-        p(f"- {lp._sp(s)}, had from {lp.reach(s)} ({lp._split_of(lp.reach(s))}), by {cap}: "
+        p(f"- {lp._sp(s)}, had from {lp.reach(s)} ({lp._owned_from(s) or 'after the League'}), by {cap}: "
           f"{', '.join(f'{n} {lv}' for lv, n in before) or 'nothing strong'}; gains "
           f"{', '.join(f'{n} {lv}' for lv, n in gained) or 'nothing strong by then'}.")
     p("\n## The own-type gaps\n")
