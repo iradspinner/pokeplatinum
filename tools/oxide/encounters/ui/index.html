@@ -387,6 +387,17 @@ tr.got .spname { font-weight: 600; }
 .trrow .party { grid-column: 1 / -1; display: flex; }
 .trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
   min-width: 2.4em; text-align: right; }
+/* A pair (two trainers fought as one double): its row, a gap between the two
+   parties, and its trainers folded under it, indented. */
+.trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
+.trrow .pairgap { display: inline-block; width: 14px; }
+.trrow.sub { padding-left: 34px; font-size: 15px; }
+/* A pair's two teams side by side; the one being worked on is marked. */
+.pairsides { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 8px; }
+.pairsides .side { min-width: 0; padding-left: 12px; border-left: 3px solid transparent; }
+.pairsides .side.on { border-left-color: var(--place-ink); }
+.pairsides .side h3 { margin: 6px 0 2px; }
+.pairsides .member.on { margin-left: 0; padding-left: 6px; }
 .member { display: grid; grid-template-columns: 40px 1fr; gap: 2px 12px;
   padding: 10px 0; border-bottom: 1px solid var(--rule); }
 .member .l1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
@@ -1401,7 +1412,9 @@ let VIEW = "tables", RESTORING = false;
 const here = () => VIEW === "tables" ? { view: VIEW, area: SEL, kind: SEL ? KIND : undefined }
   : VIEW === "dex" ? { view: VIEW, species: DEXSEL }
   : VIEW === "moves" ? { view: VIEW, move: MOVESEL }
-  : VIEW === "trainers" ? { view: VIEW, trainer: TRSEL } : { view: VIEW };
+  // A pair's key ("stem+stem") goes where a trainer's stem does; a stem never
+  // holds a "+", so openTrainer can tell the two apart.
+  : VIEW === "trainers" ? { view: VIEW, trainer: TRPAIR ? TRPAIR.key : TRSEL } : { view: VIEW };
 const samePlace = (a, b) => !!a && !!b && ["view", "area", "kind", "species", "move", "trainer"]
   .every(k => (a[k] || null) === (b[k] || null));
 const hashOf = p => "#" + [p.view, p.area || p.species || p.move || p.trainer,
@@ -1573,9 +1586,29 @@ const nameOf = (kind, c) => TRNAMES[kind].get(c) || "";
 const constOf = (kind, label) => TRBY[kind].get(String(label).trim().toLowerCase());
 const clone = o => JSON.parse(JSON.stringify(o));
 
+// Two trainers who fight the player together (Ian, 2026-09-28) are one row,
+// a pair, from the balance track's finder (trainers.pair_rows): the list
+// holds pairs and the trainers in no pair, and a pair's own trainers fold
+// under it. A trainer in two pairs (Ranger Ashlee) is under both.
+let TROPEN = new Set();
+function trainerItems() {
+  const paired = new Set(TRAINERS.pairs.flatMap(p => p.stems));
+  const byStem = new Map(TRAINERS.rows.map(r => [r.stem, r]));
+  const pairs = TRAINERS.pairs.map(p => Object.assign({}, p, {
+    kind: "pair", members: p.stems.map(s => byStem.get(s)).filter(Boolean),
+    // The list sorts a pair by the harder of its two stored scores until
+    // the balance track scores pairs as one fight.
+    score: p.scores.filter(Boolean).sort((a, b) => b.scale - a.scale)[0] || null,
+    party: p.parties.flat(),
+  }));
+  return pairs.concat(TRAINERS.rows.filter(r => !paired.has(r.stem))
+                                  .map(r => Object.assign({ kind: "one" }, r)));
+}
+
 async function loadTrainers() {
   if (TRAINERS) return;
   TRAINERS = await api("/api/trainers");
+  TRAINERS.items = trainerItems();
   sortTrainers();
   const keep = $("#trainsplit").value;
   $("#trainsplit").innerHTML = `<option value="">Every split</option>` + TRAINERS.splits.map(s =>
@@ -1604,7 +1637,7 @@ function sortTrainers() {
     - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
     || a.label.localeCompare(b.label);
   const scale = r => r.score ? r.score.scale : -Infinity;
-  TRAINERS.rows.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
+  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
 }
 
 function trainerMatch(r) {
@@ -1613,30 +1646,131 @@ function trainerMatch(r) {
   if (split === "-" ? r.split : split && r.split !== split) return false;
   if (!q) return true;
   const word = q.replace(/ /g, "_");
-  return r.label.toLowerCase().includes(q) || r.stem.includes(word)
+  return r.label.toLowerCase().includes(q)
+    || (r.kind === "pair" ? r.stems.some(s => s.includes(word)) : r.stem.includes(word))
     || r.party.some(m => folderOf(m.species).includes(word));
 }
 
-function drawTrainerList() {
-  const rows = TRAINERS.rows.filter(trainerMatch);
-  $("#trainrows").innerHTML = rows.map(r => `
-    <div class="trrow${r.stem === TRSEL ? " on" : ""}" data-tr="${r.stem}">
-      <span class="nm">${esc(r.label || r.stem)}${r.double ? ' <span class="tag">double</span>' : ""}</span>
-      <span>${splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
+// A map header as a place name: "LAKE_VERITY" reads "Lake Verity".
+const mapName = m => String(m).toLowerCase().split("_")
+  .map(w => w.replace(/^\w/, c => c.toUpperCase())).join(" ");
+
+// How a pair is fought, in a few words, for its row and its header.
+function pairHow(p) {
+  if (p.how === "tag") return `tag battle${p.partners.length ? ", beside " +
+    [...new Set(p.partners.map(n => n.split(" ")[n.split(" ").length - 1]))].join(" or ") : ""}`;
+  if (p.how === "scripted") return "one battle, started by a script";
+  return "both see you at once" + (p.each_alone ? ", or one at a time" : "");
+}
+
+const scoreTitle = s => `Stored score on Ian's fight scale (${s.band})${s.fight
+  ? ", the story fight " + s.fight : ""}; a team saved since the last rescore still shows the old one`;
+
+function trainerRow(r, sub) {
+  return `
+    <div class="trrow${sub ? " sub" : ""}${r.stem === TRSEL && !TRPAIR ? " on" : ""}" data-tr="${r.stem}">
+      <span class="nm">${esc(r.label || r.stem)}${r.double
+        ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}</span>
+      <span>${sub ? "" : splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
         r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
-        `Stored score on Ian's fight scale (${r.score.band})${r.score.fight ? ", the story fight " + r.score.fight : ""}; a team saved since the last rescore still shows the old one`)}">${
-        r.score.scale.toFixed(1)}</b>` : ""}</span>
+        scoreTitle(r.score))}">${r.score.scale.toFixed(1)}</b>` : ""}</span>
       <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
-    </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
-  $("#trainrows").querySelectorAll(".trrow").forEach(el =>
-    el.onclick = () => selectTrainer(el.dataset.tr));
+    </div>`;
+}
+
+function pairRow(p) {
+  const open = TROPEN.has(p.key);
+  const scores = p.scores.map(s => s ? s.scale.toFixed(1) : "none").join(" and ");
+  return `
+    <div class="trrow pair${TRPAIR && TRPAIR.key === p.key ? " on" : ""}" data-pair="${esc(p.key)}">
+      <span class="nm"><button class="linkish fold-pair" data-open="${esc(p.key)}"
+          title="${open ? "Fold" : "Show"} its two trainers">${open ? "▾" : "▸"}</button>
+        ${esc(p.label)}</span>
+      <span><span class="tag" title="${esc(pairHow(p))}">double</span> ${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
+        p.top}${p.cap ? " / " + p.cap : ""}</span>${p.score ? ` <b class="num trscore" title="${esc(
+        `Each trainer's own stored score, ${scores}, until the balance track scores the pair as one fight`)}">${
+        p.score.scale.toFixed(1)}</b>` : ""}</span>
+      <span class="party">${p.parties.map(party => party.map(m => icon(m.species)).join("")).join(
+        '<span class="pairgap" title="and"></span>')}</span>
+    </div>${open ? p.members.map(m => trainerRow(m, true)).join("") : ""}`;
+}
+
+function drawTrainerList() {
+  const rows = TRAINERS.items.filter(trainerMatch);
+  $("#trainrows").innerHTML = rows.map(r => r.kind === "pair" ? pairRow(r) : trainerRow(r)).join("")
+    || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
+  $("#trainrows").querySelectorAll(".trrow").forEach(el => el.onclick = ev => {
+    const fold = ev.target.closest("[data-open]");
+    if (fold) {
+      ev.stopPropagation();
+      const k = fold.dataset.open;
+      TROPEN.has(k) ? TROPEN.delete(k) : TROPEN.add(k);
+      return drawTrainerList();
+    }
+    return el.dataset.pair ? selectPair(el.dataset.pair) : selectTrainer(el.dataset.tr);
+  });
   const on = $("#trainrows .trrow.on");
   if (on) on.scrollIntoView({ block: "nearest" });
 }
 
+// A pair open in the editor: {key, info, sides, active}. Each side keeps its
+// own edit, rebuilt team, findings, estimate, unsaved flag and full score;
+// the one being worked on is loaded into TREDIT and the rest, so the single
+// trainer's editor code serves either side unchanged. Clicking into a
+// column makes its side the active one.
+let TRPAIR = null;
+function stashSide() {
+  if (!TRPAIR) return;
+  Object.assign(TRPAIR.sides[TRPAIR.active], { edit: TREDIT, detail: TRDETAIL,
+    findings: TRFINDINGS, estimate: TRESTIMATE, dirty: TRDIRTY, score: TRSCORE });
+}
+function loadSide(k) {
+  const s = TRPAIR.sides[k];
+  if (k !== TRPAIR.active) TRMEMBER = TRLISTS = TRFOCUS = null;
+  TRPAIR.active = k;
+  TREDIT = s.edit; TRDETAIL = s.detail; TRFINDINGS = s.findings;
+  TRESTIMATE = s.estimate; TRDIRTY = s.dirty; TRSCORE = s.score;
+}
+function useSide(k) {
+  if (!TRPAIR || k === TRPAIR.active) return;
+  stashSide();
+  loadSide(k);
+}
+const activeStem = () => TRPAIR ? TRPAIR.sides[TRPAIR.active].stem : TRSEL;
+function anyDirty() {
+  stashSide();
+  return TRPAIR ? TRPAIR.sides.some(s => s.dirty) : TRDIRTY;
+}
+const openLabel = () => TRPAIR ? TRPAIR.info.label : TRDETAIL && TRDETAIL.label;
+
+async function selectPair(key) {
+  // Clicking the open pair's own row keeps its unsaved edits (Revert clears
+  // them first when a reload is wanted).
+  if (TRPAIR && TRPAIR.key === key && anyDirty()) return drawTrainerList();
+  if (anyDirty() && !confirm(`Leave ${openLabel()} without saving?`)) return drawTrainerList();
+  let d;
+  try {
+    d = await api("/api/pair/" + encodeURIComponent(key));
+  } catch (e) { return toast(e.message, true); }
+  const row = TRAINERS.pairs.find(p => p.key === key) || {};
+  // `estimate` and `score` are the pair's as one fight; each side keeps its own.
+  TRPAIR = { key, info: Object.assign({ label: d.sides.map(s => s.label).join(" & ") }, d, { sides: undefined }),
+             estimate: d.estimate || null, score: null,
+             active: 0, sides: d.sides.map(s => ({ stem: s.stem, edit: clone(s.data), detail: s,
+               findings: [], estimate: s.estimate || null, dirty: false, score: null })) };
+  TRPAIR.info.label = row.label || TRPAIR.info.label;
+  TRSEL = null;
+  TRMEMBER = TRLISTS = TRFOCUS = null;
+  loadSide(0);
+  drawTrainerList();
+  drawTrainer();
+  remember();
+}
+
 async function selectTrainer(stem) {
-  if (TRDIRTY && stem !== TRSEL && !confirm(`Leave ${TRDETAIL.label} without saving?`))
+  if (anyDirty() && (TRPAIR || stem !== TRSEL) && !confirm(`Leave ${openLabel()} without saving?`))
     return drawTrainerList();
+  TRPAIR = null;
   TRSEL = stem;
   drawTrainerList();
   try {
@@ -1651,34 +1785,79 @@ async function selectTrainer(stem) {
   remember();
 }
 
+// An answer that comes back after Ian has moved to the pair's other side is
+// written to the side it was asked for. `k` is that side, null for a single.
+function onSide(k, fields) {
+  if (k === null || !TRPAIR || k === TRPAIR.active) {
+    if ("edit" in fields) TREDIT = fields.edit;
+    if ("detail" in fields) TRDETAIL = fields.detail;
+    if ("findings" in fields) TRFINDINGS = fields.findings;
+    if ("estimate" in fields) TRESTIMATE = fields.estimate;
+    if ("dirty" in fields) TRDIRTY = fields.dirty;
+    if ("score" in fields) TRSCORE = fields.score;
+  } else {
+    Object.assign(TRPAIR.sides[k], fields);
+  }
+}
+const sideNow = () => TRPAIR ? TRPAIR.active : null;
+// The team members of the trainer being worked on: in a pair, its column only.
+const memberEls = () => document.querySelectorAll(TRPAIR
+  ? `#trainmid .side[data-side="${TRPAIR.active}"] .member` : "#trainmid .member");
+// An event inside a pair's column makes that side the active one; the
+// columns' highlight and the right panel follow. True when the side changed.
+function sideOf(ev) {
+  const col = TRPAIR && ev.target.closest("[data-side]");
+  if (!col || +col.dataset.side === TRPAIR.active) return false;
+  useSide(+col.dataset.side);
+  document.querySelectorAll("#trainmid .side").forEach(el =>
+    el.classList.toggle("on", +el.dataset.side === TRPAIR.active));
+  drawMoveLists();
+  drawTrainerRight();
+  return true;
+}
+
+// Both teams of the open pair as they are being edited, {stem: JSON}: what
+// its preview, its score and the staleness of that score all read.
+function pairEdits() {
+  stashSide();
+  return Object.fromEntries(TRPAIR.sides.map(s => [s.stem, s.edit]));
+}
+
+// Score it: one trainer's team, or a pair as one fight with every edit in place.
 async function scoreTrainer() {
   if (TRSCORING) return;
   TRSCORING = true;
   drawTrainerRight();
-  const team = JSON.stringify(TREDIT);
+  const pair = TRPAIR && TRPAIR.key, k = sideNow();
+  const data = pair ? pairEdits() : TREDIT, team = JSON.stringify(data);
   try {
-    const r = await fetch(`/api/trainer/${TRSEL}/score`, { method: "POST",
-      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    const url = pair ? `/api/pair/${encodeURIComponent(pair)}/score` : `/api/trainer/${activeStem()}/score`;
+    const r = await fetch(url, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data }) });
     const j = await r.json();
     if (!r.ok || j.error) toast(j.error || "Not scored", true);
-    else TRSCORE = { result: j, team };
+    else if (pair && TRPAIR && TRPAIR.key === pair) TRPAIR.score = { result: j, team };
+    else if (!pair) onSide(k, { score: { result: j, team } });
   } catch (e) { toast(e.message, true); }
   TRSCORING = false;
   drawTrainerRight();
 }
 
-function scoreBlock() {
-  const e = TRESTIMATE;
-  if (!e) return `<p class="sub">${TRFINDINGS.some(f => f.severity === "error")
-    ? "Fix the errors to see the score." : "Working out the score."}</p>`;
+// The score panel for one trainer, or for a pair as one fight: `e` is the
+// estimate, `scored` the last full score ({result, team}), and `team` what
+// is being edited now, which says whether that full score is stale.
+function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
+  const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
+    : TRFINDINGS.some(f => f.severity === "error");
+  if (!e) return `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
   if (e.error) return `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
   const pc = v => Math.round(v * 100) + "%";
   const fit = e.fit || {};
   const mons = (e.mons || []).map(m => `<tr><td>${esc(m.species)}</td><td class="num">${m.level}</td>
       <td class="num">${pc(m.threat)}</td><td class="num">${pc(m.answers)}</td></tr>`).join("");
   let full = "";
-  if (TRSCORE) {
-    const s = TRSCORE.result, stale = TRSCORE.team !== JSON.stringify(TREDIT);
+  if (scored) {
+    const s = scored.result, stale = scored.team !== team;
     const refs = Object.entries(s.references || {}).map(([h, v]) =>
       `<tr><td>${esc(tidy(h))}</td><td class="num">${v.scale}</td></tr>`).join("");
     const unseen = Object.entries(s.unseen || {}).map(([k, v]) =>
@@ -1708,7 +1887,7 @@ function scoreBlock() {
 
 async function openTrainer(stem) {
   await setView("trainers");
-  await selectTrainer(stem);
+  await (stem.includes("+") ? selectPair(stem) : selectTrainer(stem));
 }
 
 // Every edit lands in TREDIT at once; the rebuilt team and its lint follow a
@@ -1720,15 +1899,36 @@ function edited() {
   TRTIMER = setTimeout(runPreview, 250);
 }
 
+// The newest preview wins. A pair's preview carries both teams, so the
+// newest one answers for both sides.
+const TRSEQS = {};
 async function runPreview() {
-  const seq = ++TRSEQ;
+  const seq = ++TRSEQ, k = sideNow(), slot = k === null ? "one" : "pair";
+  const pair = TRPAIR && TRPAIR.key, stem = activeStem();
+  TRSEQS[slot] = seq;
   try {
-    const r = await api(`/api/trainer/${TRSEL}/preview`, { method: "POST",
-      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
-    if (seq !== TRSEQ) return;
-    if (r.detail) TRDETAIL = r.detail;
-    TRFINDINGS = r.findings;
-    TRESTIMATE = r.estimate;
+    let r;
+    if (pair) {
+      // Both teams go, so the pair's estimate has every unsaved edit in it;
+      // each side's rebuilt team and findings go back to its own column.
+      const out = await api(`/api/pair/${encodeURIComponent(pair)}/preview`, { method: "POST",
+        headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: pairEdits() }) });
+      if (TRSEQS[slot] !== seq || !TRPAIR || TRPAIR.key !== pair) return;
+      TRPAIR.sides.forEach((s, i) => {
+        const p = out.sides[s.stem];
+        if (p) onSide(i, Object.assign(p.detail ? { detail: p.detail } : {},
+                                      { findings: p.findings, estimate: p.estimate }));
+      });
+      TRPAIR.estimate = out.estimate;
+      drawTrainer();
+      return;
+    } else {
+      r = await api(`/api/trainer/${stem}/preview`, { method: "POST",
+        headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: TREDIT }) });
+    }
+    if (TRSEQS[slot] !== seq || (TRPAIR ? TRPAIR.key : null) !== pair) return;
+    onSide(k, Object.assign(r.detail ? { detail: r.detail } : {},
+                            { findings: r.findings, estimate: r.estimate }));
     drawTrainer();
     const f = TRMEMBER !== null && TREDIT.party[TRMEMBER];
     if (f && TRLISTS && (TRLISTS.species !== f.species || TRLISTS.level !== f.level
@@ -1736,7 +1936,44 @@ async function runPreview() {
   } catch (e) { toast(e.message, true); }
 }
 
+// A pair saves as one (trainers.pair_save): every side with unsaved changes
+// goes in one request, and the server writes both or neither. Its answer is
+// the pair rebuilt from the files.
+async function savePair() {
+  $("#trsave").disabled = true;
+  stashSide();
+  const edits = {};
+  TRPAIR.sides.forEach(s => { if (s.dirty) edits[s.stem] = s.edit; });
+  try {
+    const r = await fetch(`/api/pair/${encodeURIComponent(TRPAIR.key)}`, { method: "POST",
+      headers: { "Content-Type": "application/json" }, body: JSON.stringify({ data: edits }) });
+    const j = await r.json();
+    if (!r.ok) {
+      // The findings name their side; each goes back to its own column.
+      TRPAIR.sides.forEach(s => {
+        const mine = (j.findings || []).filter(f => f.stem === s.stem);
+        if (mine.length) s.findings = mine;
+      });
+      loadSide(TRPAIR.active);
+      drawTrainer();
+      return toast(j.error || "Not saved", true);
+    }
+    const n = Object.values(j.changed).reduce((t, c) => t + c.changed.length, 0);
+    j.detail.sides.forEach((d, i) => Object.assign(TRPAIR.sides[i], { edit: clone(d.data), detail: d,
+      findings: [], estimate: d.estimate || null, dirty: false }));
+    TRPAIR.estimate = j.detail.estimate || null;
+    loadSide(TRPAIR.active);
+    drawTrainer();
+    toast(n ? `Saved ${n} change${n > 1 ? "s" : ""} across the pair` : "Nothing had changed");
+    TRAINERS = null;
+    await loadTrainers();
+    drawTrainerList();
+    refreshSaves();
+  } catch (e) { toast(e.message, true); }
+}
+
 async function saveTrainer() {
+  if (TRPAIR) return savePair();
   $("#trsave").disabled = true;
   try {
     const r = await fetch(`/api/trainer/${TRSEL}`, { method: "POST",
@@ -1776,7 +2013,7 @@ async function showMoveLists(i, quiet) {
   if (!quiet && TRFOLD.includes("r")) foldTrainers("r");
   drawTrainerRight();
   drawMoveLists();
-  document.querySelectorAll("#trainmid .member").forEach((el, k) => el.classList.toggle("on", k === i));
+  memberEls().forEach((el, k) => el.classList.toggle("on", k === i));
   if (!quiet) $("#trainright").scrollTop = 0;
 }
 
@@ -1889,7 +2126,56 @@ function memberEditor(f, i) {
   </div>`;
 }
 
+// Runs `fn` with side k's state loaded, then puts the active side back, so
+// both columns of a pair draw with the single editor's own code.
+function asSide(k, fn) {
+  const keep = [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER];
+  const s = TRPAIR.sides[k];
+  TREDIT = s.edit; TRDETAIL = s.detail; TRFINDINGS = s.findings; TRESTIMATE = s.estimate;
+  TRDIRTY = s.dirty; TRSCORE = s.score;
+  if (k !== TRPAIR.active) TRMEMBER = null;
+  try { return fn(); }
+  finally { [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER] = keep; }
+}
+
+// A pair: one header for the fight, then both teams side by side, each in
+// the single editor, with its own findings and estimate. Its element ids
+// carry the side's number, so the two columns never share one.
+function drawPair() {
+  stashSide();
+  const info = TRPAIR.info, pe = TRPAIR.estimate, focus = document.activeElement && document.activeElement.id;
+  const tops = TRPAIR.sides.map(s => Math.max(0, ...(s.edit.party || []).map(f => f.level || 0)));
+  const cols = TRPAIR.sides.map((s, k) => asSide(k, () => {
+    const party = TREDIT.party || [], e = TRESTIMATE;
+    const html = `<div class="side${k === TRPAIR.active ? " on" : ""}" data-side="${k}">
+      <h3>${esc(TRDETAIL.label)}</h3>
+      <p class="sub"><code>${esc(s.stem)}.json</code>${e && !e.error ? `, its own estimate
+        <b class="num">${e.scale}</b>` : ""}${TRDIRTY ? ", unsaved" : ""}</p>
+      ${findingsFor(null)}
+      ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
+      <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p></div>`;
+    return html.replace(/id="tr-/g, `id="tr${k}-`);
+  }));
+  $("#trainmid").innerHTML = `<h2 style="margin:0">${esc(info.label)}
+      <span class="tag">double</span></h2>
+    <p class="sub">${splitTag(info.split, " split")} ${info.cap
+      ? `Level cap ${info.cap}; the teams' highest levels are ${tops.join(" and ")}.`
+      : "Not placed in a split, so it has no level cap."}
+      One battle against both: ${esc(pairHow(info))}${info.maps.length
+        ? ", " + esc(info.maps.map(mapName).join(", ")) : ""}.</p>
+    ${pe && !pe.error ? `<p><b class="scorenum">${pe.scale}</b> the pair as one fight, an estimate
+      (${esc(pe.band)})</p>` : pe && pe.error ? `<p class="sub">The pair is not scored: ${esc(pe.error)}.</p>` : ""}
+    <p class="sub">Each team's own estimate is beside its name. Save writes both teams, or neither
+      if either has an error.</p>
+    <div class="pairsides">${cols.join("")}</div>`;
+  drawMoveLists();
+  drawTrainerRight();
+  if (focus && /^tr\d-/.test(focus) && document.getElementById(focus))
+    document.getElementById(focus).focus();
+}
+
 function drawTrainer() {
+  if (TRPAIR) return drawPair();
   const d = TRDETAIL, party = TREDIT.party || [];
   const top = Math.max(0, ...party.map(f => f.level || 0));
   const focus = document.activeElement && document.activeElement.id;
@@ -1908,18 +2194,28 @@ function drawTrainer() {
 
 function drawTrainerRight() {
   const d = TRDETAIL, t = TREDIT, party = t.party || [];
-  const errors = TRFINDINGS.filter(f => f.severity === "error").length;
-  const state = !TRDIRTY ? "No unsaved changes." : errors
+  // A pair saves as one, so its state counts both sides.
+  let dirty = TRDIRTY, errors = TRFINDINGS.filter(f => f.severity === "error").length;
+  if (TRPAIR) {
+    stashSide();
+    dirty = TRPAIR.sides.some(s => s.dirty);
+    errors = TRPAIR.sides.reduce((n, s) => n + s.findings.filter(f => f.severity === "error").length, 0);
+  }
+  const state = !dirty ? "No unsaved changes." : errors
     ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving.` : "Unsaved changes.";
-  const e = TRESTIMATE;
-  const est = e && !e.error ? `<b class="scorenum">${e.scale}</b> the estimate (${esc(e.band)})` : "";
+  // A pair's headline is the pair as one fight; the team being worked on
+  // shows its own estimate in its column.
+  const e = TRPAIR ? TRPAIR.estimate : TRESTIMATE;
+  const est = e && !e.error ? `<b class="scorenum">${e.scale}</b> the estimate (${esc(e.band)})${
+    TRPAIR ? " of the pair as one fight" : ""}` : "";
   const head = $("#trhead");
   head.hidden = false;
   head.innerHTML = `<div class="savebar">
-      <button id="trsave"${!TRDIRTY || errors ? " disabled" : ""}>Save</button>
-      <button id="trrevert"${TRDIRTY ? "" : " disabled"}>Revert</button>
+      <button id="trsave"${!dirty || errors ? " disabled" : ""}>Save${TRPAIR ? " both" : ""}</button>
+      <button id="trrevert"${dirty ? "" : " disabled"}>Revert</button>
       <span class="sub">${state}</span>
       <button class="fold" data-fold="r" title="Fold this panel away to give the team room">Hide</button></div>
+    ${TRPAIR ? `<p class="sub">Working on ${esc(d.label)}; click into the other team to switch.</p>` : ""}
     ${est ? `<p class="est">${est}</p>` : ""}
     <div class="sortbar"><button data-pane="moves"${TRPANE === "moves" ? ' class="on"' : ""}>Move lists</button>
       <button data-pane="trainer"${TRPANE === "trainer" ? ' class="on"' : ""}>Score and settings</button></div>`;
@@ -1927,8 +2223,9 @@ function drawTrainerRight() {
   const pane = $("#trpane");
   pane.hidden = TRPANE !== "trainer";
   $("#trmoves").hidden = TRPANE !== "moves";
-  pane.innerHTML = `<h3>Score</h3>
-    ${scoreBlock()}
+  pane.innerHTML = `<h3>Score${TRPAIR ? ", the pair as one fight" : ""}</h3>
+    ${TRPAIR ? scoreBlock(TRPAIR.estimate, TRPAIR.score, JSON.stringify(pairEdits())) : scoreBlock()}
+    ${TRPAIR ? `<h3>Settings of ${esc(d.label)}</h3>` : ""}
     <h3>Battle</h3>
     <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
     <h3>AI flags</h3>
@@ -2724,6 +3021,7 @@ document.querySelectorAll("#trainlist .sortbar button").forEach(b => b.onclick =
 // Add change the party.
 $("#trainmid").addEventListener("click", ev => {
   if (!TREDIT) return;
+  sideOf(ev);
   const lists = ev.target.closest("[data-lists]");
   if (lists) return showMoveLists(+lists.dataset.lists);
   const rm = ev.target.closest("[data-remove]");
@@ -2744,6 +3042,7 @@ $("#trainmid").addEventListener("click", ev => {
   openSpecies(hit.dataset.sp);
 });
 $("#trainmid").addEventListener("focusin", ev => {
+  if (TREDIT) sideOf(ev);
   const box = ev.target.closest(".mv");
   if (!box) return;
   TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
@@ -2760,6 +3059,7 @@ layoutTrainers();
 $("#trainmid").addEventListener("change", ev => {
   const el = ev.target.closest(".ed");
   if (!el || !TREDIT) return;
+  sideOf(ev);
   const f = TREDIT.party[+el.dataset.i], k = el.dataset.k, v = el.value.trim();
   const named = (kind, empty) => {
     if (!v) return empty;
@@ -2801,7 +3101,7 @@ $("#trainright").addEventListener("click", ev => {
   const tab = ev.target.closest("[data-pane]");
   if (tab) {
     TRPANE = tab.dataset.pane;
-    document.querySelectorAll("#trainmid .member").forEach((el, k) =>
+    memberEls().forEach((el, k) =>
       el.classList.toggle("on", TRPANE === "moves" && k === TRMEMBER));
     drawTrainerRight();
     return drawMoveLists();
@@ -2821,6 +3121,10 @@ $("#trainright").addEventListener("click", ev => {
   if (id === "trscore") return scoreTrainer();
   if (id === "trrevert") {
     TRDIRTY = false;
+    if (TRPAIR) {
+      TRPAIR.sides.forEach(s => { s.dirty = false; });
+      return selectPair(TRPAIR.key);
+    }
     return selectTrainer(TRSEL);
   }
   if (id === "trgivemoves") {
@@ -2833,7 +3137,7 @@ $("#trainright").addEventListener("click", ev => {
 });
 // Leaving the page with an unsaved team asks first.
 window.addEventListener("beforeunload", ev => {
-  if (TRDIRTY) { ev.preventDefault(); ev.returnValue = ""; }
+  if (anyDirty()) { ev.preventDefault(); ev.returnValue = ""; }
 });
 $("#simgo").onclick = () => simulate(false);
 $("#simsave").onchange = () => { $("#simconfout").innerHTML = ""; simulate(false); };

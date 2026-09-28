@@ -1082,6 +1082,33 @@ that stay. None blocks anything.
    under the Oxide title now. Both were checked in headless Chrome. This
    comes ahead of the layout redesign the Overseer is mocking up.
 
+39. **Paired trainers in the Trainers tab (Ian, 2026-09-28, through the
+   Overseer).** Some trainers fight the player together as one double
+   battle: Grunts Tyche and Hermes at Spear Pillar, Officers Somnu and Moira
+   at Lake Verity, Ace Trainers Maya and Dennis on Route 215. The balance
+   track's finder (`balance/pairs.py`) is the one list of them, so this tab
+   and the scores agree. It names two trainers who can both see the player,
+   a script that starts one battle against both, and a tag battle with a
+   partner beside the player. The list shows each pair as one row with a
+   "double" mark and both parties, and its two trainers fold under it. A
+   trainer in two pairs, Ranger Ashlee on Route 225, is under both. One
+   trainer whose own team fights as a double is marked "one-team double" so
+   the two do not read the same. Opening a pair shows both teams side by
+   side in the single editor, under one header with the split, the cap and
+   how the pair is fought. Clicking into a team makes it the one the right
+   panel's move lists, score and settings belong to. Save writes both
+   teams, or neither if either has a lint error. If the packer refuses the
+   second team after the first was written, the first is put back, file and
+   registry. The balance track's scorer takes a pair's key and both teams'
+   edits, so the view's headline is the pair as one fight: its estimate
+   follows every unsaved edit on either side, and "Score it" runs the full
+   scorer on the pair. Each team's own estimate stays beside its name. The
+   list still shows each trainer's stored score, since no joint score is
+   stored yet. The finder at first
+   named Ace Trainers without the class's own "trainer" (ace_maya for
+   ace_trainer_maya), so nine pairs had no files; that went back to the
+   balance track to fix.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
