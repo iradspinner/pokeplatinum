@@ -1276,6 +1276,12 @@ TEXT_ENTRIES_DIVERGED.update({
     for bank in (TEXT_BANK_ITEM_DESCRIPTIONS, TEXT_BANK_ITEM_NAMES,
                  TEXT_BANK_ITEM_NAMES_WITH_ARTICLES, TEXT_BANK_ITEM_NAMES_PLURAL)
 })
+# The Pocket PC took the Vs. Seeker's slot, 443. The base ROM renamed it in the
+# item names but left "a Vs. Seeker" in the names with articles; the build
+# writes both from the one name. It surfaced once element 7 grew the bank,
+# which put its shared entries under comparison.
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_NAMES_WITH_ARTICLES][443] = (
+    "the Pocket PC, which the base ROM named in the item names only")
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
