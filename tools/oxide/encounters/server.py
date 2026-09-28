@@ -944,10 +944,12 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                    "pairs": trainers.pair_rows(),
                                    "choices": trainers.choices(model.repo_root())})
             if parts[1] == "pair" and len(parts) > 2:
+                # The page sends the key encoded ("+" as %2B).
+                key = urllib.parse.unquote(parts[2])
                 try:
-                    return self._send(trainers.pair_detail(model.repo_root(), parts[2]))
+                    return self._send(trainers.pair_detail(model.repo_root(), key))
                 except (KeyError, FileNotFoundError):
-                    return self._send({"error": f"no such pair: {parts[2]}"}, 404)
+                    return self._send({"error": f"no such pair: {key}"}, 404)
             if parts[1] == "saves":
                 # Ian's uncommitted edits, for the header's badge (saves.py).
                 return self._send(saves.pending(model.repo_root()))
@@ -1090,7 +1092,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # as one fight, /score runs the full scorer on it, and a plain
             # POST saves both or neither.
             if len(parts) >= 3 and parts[0] == "api" and parts[1] == "pair":
-                root, key, edits = model.repo_root(), parts[2], body.get("data")
+                root, key, edits = model.repo_root(), urllib.parse.unquote(parts[2]), body.get("data")
                 try:
                     if len(parts) > 3 and parts[3] == "preview":
                         return self._send(trainers.pair_preview(root, key, edits))

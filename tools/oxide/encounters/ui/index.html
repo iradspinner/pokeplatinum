@@ -1651,6 +1651,10 @@ function trainerMatch(r) {
     || r.party.some(m => folderOf(m.species).includes(word));
 }
 
+// A map header as a place name: "LAKE_VERITY" reads "Lake Verity".
+const mapName = m => String(m).toLowerCase().split("_")
+  .map(w => w.replace(/^\w/, c => c.toUpperCase())).join(" ");
+
 // How a pair is fought, in a few words, for its row and its header.
 function pairHow(p) {
   if (p.how === "tag") return `tag battle${p.partners.length ? ", beside " +
@@ -1681,8 +1685,8 @@ function pairRow(p) {
     <div class="trrow pair${TRPAIR && TRPAIR.key === p.key ? " on" : ""}" data-pair="${esc(p.key)}">
       <span class="nm"><button class="linkish fold-pair" data-open="${esc(p.key)}"
           title="${open ? "Fold" : "Show"} its two trainers">${open ? "▾" : "▸"}</button>
-        ${esc(p.label)} <span class="tag" title="${esc(pairHow(p))}">double</span></span>
-      <span>${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
+        ${esc(p.label)}</span>
+      <span><span class="tag" title="${esc(pairHow(p))}">double</span> ${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
         p.top}${p.cap ? " / " + p.cap : ""}</span>${p.score ? ` <b class="num trscore" title="${esc(
         `Each trainer's own stored score, ${scores}, until the balance track scores the pair as one fight`)}">${
         p.score.scale.toFixed(1)}</b>` : ""}</span>
@@ -2158,7 +2162,7 @@ function drawPair() {
       ? `Level cap ${info.cap}; the teams' highest levels are ${tops.join(" and ")}.`
       : "Not placed in a split, so it has no level cap."}
       One battle against both: ${esc(pairHow(info))}${info.maps.length
-        ? ", " + esc(info.maps.map(m => tidy(m)).join(", ")) : ""}.</p>
+        ? ", " + esc(info.maps.map(mapName).join(", ")) : ""}.</p>
     ${pe && !pe.error ? `<p><b class="scorenum">${pe.scale}</b> the pair as one fight, an estimate
       (${esc(pe.band)})</p>` : pe && pe.error ? `<p class="sub">The pair is not scored: ${esc(pe.error)}.</p>` : ""}
     <p class="sub">Each team's own estimate is beside its name. Save writes both teams, or neither

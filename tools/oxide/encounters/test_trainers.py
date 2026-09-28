@@ -458,6 +458,8 @@ def check_pairs(results, root):
         try:
             listing = get(port, "/api/trainers")
             one = get(port, "/api/pair/" + LAKE_PAIR)
+            # The page encodes the key, so "+" arrives as %2B.
+            encoded = get(port, "/api/pair/" + LAKE_PAIR.replace("+", "%2B"))
             missing = get(port, "/api/pair/no_such+pair")
             moira = trainers.load(root, MOIRA)
             moira["party"][0]["level"] += 1
@@ -480,6 +482,7 @@ def check_pairs(results, root):
                     "error (409) and writes a good one",
                     listing[0] == 200 and len(listing[1].get("pairs") or []) == len(rows)
                     and one[0] == 200 and len(one[1]["sides"]) == 2 and missing[0] == 404
+                    and encoded[0] == 200
                     and preview[0] == 200 and list(preview[1]["sides"]) == [MOIRA]
                     and refused[0] == 409 and saved[0] == 200
                     and list(saved[1]["changed"]) == [MOIRA],
