@@ -69,7 +69,8 @@ readers already exist; use them rather than reopening the ROM by hand.
   (u16), 9 icon palettes (u8), 10 unidentified (u16, 26 non-zero; see the doc),
   11 form data (32 u16 per species, the personal indices of its forms), 12 and
   13 form-to-species and reversion. Hardlove's item table has 2,687 records;
-  Oxide takes a curated subset into Platinum's free slots (element 7).
+  element 7 brings a curated subset into Platinum's free slots, done on
+  `cloud/element7-items` and not yet merged.
 - Encounter and trainer records encode forms as `(form << 11) | species`.
 - The form and alt-evolution slots on the pick-list (Alolan Ninetales 1132,
   Galarian Rapidash 1158, Gyarados M 1087, and the rest of that table) were

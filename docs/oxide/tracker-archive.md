@@ -136,6 +136,10 @@ Done 2026-09-15. Write-up: `docs/oxide/phase2-approach-breakdown.md`.
 
 ## Phase 4: Port, one element at a time
 
+Moved from the tracker's element 6 on 2026-09-27, finished and merged (170b5473a):
+
+  - [ ] Expert routines (Ian, 2026-09-27): the moves added since Platinum follow Platinum's own pattern, taking the Expert routine of their nearest Platinum effect where that effect has one and none where it has none; Platinum's 200 moves without a routine (`docs/oxide/battle-ai/expert-gaps.md`) stay as they are. Done on `main-expert-new-moves` (65 of the 156 learnable new moves scored by a routine, 91 not; `docs/oxide/battle-ai/expert-new-moves.md`). Its eleven judgment calls, where a near routine would misjudge the move, get no routine (Ian, 2026-09-27: "None, as left")
+
 Started 2026-09-20 with the Fairy type. The order was approved by Ian on 2026-09-15 (from `docs/oxide/phase2-approach-breakdown.md` section 6), chosen so each step is testable on its own and the structural changes come first while the tree is still close to vanilla. hg-engine's source is the reference implementation for each feature; Hardlove's tables are the content source. Each element gets its own checklist here when it starts, with the emulator test that proves it.
 
 Prerequisites, none of which touch a Phase 3 file:
@@ -304,6 +308,10 @@ Element 4's partly working moves, finished on 2026-09-27 on `cloud/element4-part
   - Done on that branch: all of these but Topsy-Turvy, Ally Switch and Aromatic Mist, which leave every learnset by Ian's first cut of the move pool, together with the rest of the survey's partly working moves still learnable and the six Ian kept (Magic Room, Teatime, Octolock, Sky Drop, Salt Cure, Steel Roller), one commit each.
   - [ ] **Left open by the 2026-09-22 QA** (`docs/oxide/qa-review-2026-09-22.md` has the detail). `RANGE_ALL` has no branch in `BattleSystem_Defender`, so Rototiller, Flower Shield and Teatime fall through until their effects are written. The `.shared` scripts under `res/moves/` are dead but still assembled; remove them with the moves build file once two builds agree. The TV segment's random move can still name a placeholder record, which is cosmetic
 
+
+Moved from the tracker on 2026-09-27, finished (`carry-over-abra`, `carry-over-hue` and `pool-base` are merged):
+
+- [ ] **The base ROM's last arm9 changes** (all identified 2026-09-27; the findings are in the inventory's corrections). The Vs. Seeker as the Pocket PC was ruled and merged on 2026-09-27; the teleporting Abra's removal is on `carry-over-abra`, inside `pool-base` (`docs/oxide/pocket-pc.md`). The two bytes at arm9 `0x0EC478` are a slip that gave every Lass the children's encounter music; **not carried over** (Ian, 2026-09-27). **The palette hue shift is ported** on `carry-over-hue` (Ian, 2026-09-27), cut from `pool-base` and merging after it: every Pokemon's sprite palette rotated in hue by up to about 20 degrees, keyed on its personality, the Pokedex kept standard. Oxide passes the personality to the sprite code where the base ROM used 19 hooks and a "last Pokemon read" global, one commit per path. It goes past the base ROM in two places, each its own commit that can be dropped: the trade's wormhole and the GTS listing. Displays that show a species rather than a Pokemon, and the Substitute doll, keep standard colours. Its checks are in `ingame-checklist.md`, sections 3 to 5. The Battle Arcade custom commands are closed: only `Dummy088` is called (hard stop 3), the rest is dropped.
 
 ## Phase 5: design passes raised while answering Phase 4
 

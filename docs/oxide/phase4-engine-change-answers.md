@@ -3,7 +3,7 @@
 Written 2026-09-20. Ian answered the ten Phase 4 engine-change questions one at
 a time, with follow-ups where an answer opened a second decision. Each answer
 restates what it was asked; the questions file was removed in the 2026-09-21 docs
-pass. Format follows `phase3-answers-and-trainer-format.md`.
+pass.
 
 ## 1. The answers
 
@@ -19,8 +19,8 @@ In:
   Weakness Policy, Safety Goggles, Red Card, Eject Button, Ring Target, Binding
   Band, Absorb Bulb, Cell Battery.
 - Terrain and seed items: Terrain Extender, Electric/Grassy/Misty/Psychic Seed.
-  (Terrain-setting moves and abilities are coming with the move and ability
-  ports, so these have something to react to.)
+  (Ian ruled on 2026-09-27 that terrain is not ported, so these have nothing
+  to react to; the tracker's Phase 5 has the ruling.)
 - Gen 9 held items: Booster Energy, Covert Cloak, Clear Amulet, Mirror Herb,
   Loaded Dice, Punching Glove, Ability Shield, Fairy Feather. Booster Energy only
   does anything if a Paradox species with Protosynthesis/Quark Drive is in the
@@ -59,7 +59,8 @@ deciding case is Eevee: Platinum's seven slots are full (Vaporeon, Jolteon,
 Flareon, Espeon, Umbreon, Leafeon, Glaceon) and Sylveon makes eight. The record
 widens to Hardlove's 56-byte / 9-slot layout and `evo.narc` is rebuilt. The
 seventeen unreachable trade evolutions (methods 5 and 6) the base ROM left
-beside its non-trade routes are removed in the same pass.
+beside its non-trade routes are removed too. Both are done: the nine slots
+landed with element 3, the strip with element 8 (tracker archive).
 
 **4. Mega Evolution: no.** Gyarados M and Lopunny M are ordinary permanent
 evolutions and that is the whole of it. No Mega Stones, no battle UI, no
@@ -67,9 +68,9 @@ transformation code. Any future Mega follows the same alt-evolution pattern.
 
 Follow-up, the triggers the pick-list left TBD: **level-up holding a stone-like
 item, entered twice as methods 18 (day) and 19 (night)**, matching the base
-ROM's convention. Ian left the item choice open; proposed defaults are Dragon
-Scale for Gyarados M and Fist Plate for Lopunny M (both already in Platinum).
-Change them if a better thematic fit turns up during the species port.
+ROM's convention. Ian left the item choice open; the proposed defaults, Dragon
+Scale for Gyarados M and Fist Plate for Lopunny M (both already in Platinum),
+are what the species port put in `res/pokemon/gyarados` and `lopunny`.
 
 **5. Hidden abilities: yes, the full mechanic.** Third ability slot per species
 from Hardlove's `a/0/2/8`-style table, the script flag that lets chosen
@@ -124,6 +125,8 @@ In:
 - Lowered friendship evolution threshold (hg-engine's option; use its default
   lowered value unless a specific number is wanted). Affects Alomomola,
   Frosmoth, Espeon/Umbreon, Riolu, Golbat, Chansey and the other friendship lines.
+  Superseded: the friendship evolutions are being replaced in Phase 5 (tracker,
+  element 8).
 - Fast text by default (already true in the base ROM; keep it).
 
 Out: transparent textboxes; capture experience; critical capture; static HP bar.
@@ -131,13 +134,10 @@ Out: transparent textboxes; capture experience; critical capture; static HP bar.
 **HP bar speed, replacing the static-bar toggle.** Ian does not want the HP bar
 frozen; he wants it faster. He believes Platinum Unlocked was hex-edited to a
 roughly 2x HP-bar drain speed, the well-known community edit for Platinum's
-famously slow bars, and wants that carried into Oxide. Claude Code should locate
-it in the base ROM before assuming the value: the Phase 3 inventory recorded
-unexplained small edits in ov16 (`+0xEA3C`, `+0x10D58`, `+0x2D046`, and a
-4-entry table at `+0x1309C..+0x130BE` changed from 10/30/50/70 to 255), and one
-of those is a candidate. If it is found, port the same constant; if it is not,
-implement a 2x drain in C directly. Either way this is a base-ROM carry-over
-item, not a new feature.
+famously slow bars, and wants that carried into Oxide. Found in the base ROM on
+2026-09-20, as he expected: ov16 `+0x2D046` in `UpdateGauge` doubles the drain.
+Ported as a base-ROM carry-over at the HP call site, since the patched
+instruction is shared with the EXP gauge (tracker archive, Phase 4).
 
 **9. Learnset format: confirmed, widen it** to (u16 level, u16 move). Required
 for any level-up learnset containing a move above ID 511.
@@ -147,37 +147,21 @@ import during the species port should be complete enough (all species, not just
 the ones Platinum shows in the overworld) that a follower system could be added
 later without redoing the sprite work.
 
-## 2. What this changes in the scope table
+## 2. What this changed in the scope table
 
-Phase 4 order stays: Fairy type, ability widening (now including the hidden
-slot), move expansion (with the widened learnset format), species slots (9-slot
-evo records, 30 boxes, expanded dex flags), battle AI. Items slot in after the
-move expansion, since several held items reference new moves and abilities.
-
-Cut from the menu for good: whole item table, Gen 8 evolution methods, Megas,
-Gen 5/7 exp formula, transparent textboxes, capture exp, critical capture,
-static HP bar, extra Poke Balls, new evolution items, Exp. Candies, Gems, Gen 7-8
-held items. Followers deferred.
+The scope table is the design doc's section 3, and the element order is the
+tracker's Phase 4: 1 Fairy, 2 the ability widening, 3 species slots, 4 moves,
+5 ability effects, 6 the battle AI, 7 items, 8 the rest of this list.
 
 ## 3. New Phase 5 / backlog items Ian raised while answering
 
-- TM pass: how many TMs (likely more than 92) and which moves, done with the
-  overall balance pass.
-- Ability balance pass across all species, including the 228 duplicated slots.
-- Level-cap split design: per split, the areas, trainers, items, and
-  learnsets/evolutions available. Prerequisite for trainer balance.
-- Optional: a ROM-specific PKHeX/PKHaX build. Depends on the save layout being
-  documented as it changes.
-- Hidden-ability encounter flagging and wild-double areas, both part of
-  encounter design.
+All five (the TM pass, the ability balance pass, the level-cap split design,
+an optional ROM-specific PKHeX build, and the hidden-ability and wild-double
+encounter decisions) are entries in the tracker's Phase 5.
 
 ## 4. Battle AI
 
-The approach Ian set for element 6 stands: read
-`src/battle/trainer_ai/` first, write it up to the point where a change can be
-predicted, keep fixes separate from behaviour changes, and apply the eleven
-`battle_edits` fixes last. Two things from today's answers feed into that
-write-up: the AI must understand the new held items that change decisions
-(Eviolite, Assault Vest, Air Balloon, Rocky Helmet, Weakness Policy, the seeds),
-and wild double battles mean the doubles-specific scoring gets exercised far
-more than in vanilla, so it needs the same scrutiny as singles.
+The approach Ian set for element 6, and what these answers added to it (the
+held items that change a decision, and doubles scoring getting the same
+scrutiny as singles), are in the tracker's element 6 entry and
+`docs/oxide/battle-ai/README.md`.

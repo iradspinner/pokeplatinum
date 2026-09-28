@@ -1,8 +1,8 @@
 # How Platinum's trainer AI chooses a move
 
-Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes and changes since have shifted lines in the branch by hundreds in `script.s` and dozens in `trainer_ai.c`; find a routine by its label, not its number, and read the README's later sections for what each routine now does. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
+Phase 4 element 6, first step: understand the AI well enough to predict a change before it is made (tracker, element 6). This file is the engine and the map; the flag routines and the switching logic each have their own file, listed at the end. Everything here was read from the code before element 6's fixes, when `script.s` and the AI's C were still vanilla, so **every line number in these files is vanilla's, on `main`**. The fixes and changes since have shifted lines by about a thousand in `script.s` and by hundreds in `trainer_ai.c`; find a routine by its label, not its number, and read the README's later sections for what each routine now does. The code is the ground truth; where Ian's two references (pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist) disagree with it, the part files say so.
 
-The AI lives in two files. `src/battle/trainer_ai/trainer_ai.c` is the interpreter: it sets up the scores, runs the script, picks the move, and holds the switching and item logic, which are plain C. `src/battle/trainer_ai/script.s` is the script itself, about 8,100 lines of commands such as "if the target is asleep, add minus 10", one routine per AI flag. The commands are the `AICmd_*` functions in the C file. The game asks for a move from `src/battle/battle_display.c` line 3590, through `TrainerAI_Main`, but only for a trainer's Pokemon, a roaming legendary, the tutorial battle, or a partner on the player's side (lines 3586 to 3589). **Every other wild Pokemon picks a usable move at random** (lines 3600 to 3612) and never reaches anything described here. That includes both Pokemon in a wild double battle, so Oxide's wild doubles do not run the AI unless element 8 changes that line; whether they should is a decision for then.
+The AI lives in two files. `src/battle/trainer_ai/trainer_ai.c` is the interpreter: it sets up the scores, runs the script, picks the move, and holds the switching and item logic, which are plain C. `src/battle/trainer_ai/script.s` is the script itself, about 9,100 lines (8,100 in vanilla) of commands such as "if the target is asleep, add minus 10", one routine per AI flag. The commands are the `AICmd_*` functions in the C file. The game asks for a move from `src/battle/battle_display.c` line 3590, through `TrainerAI_Main`, but only for a trainer's Pokemon, a roaming legendary, the tutorial battle, or a partner on the player's side (lines 3586 to 3589). **Every other wild Pokemon picks a usable move at random** (lines 3600 to 3612) and never reaches anything described here. That includes both Pokemon in a wild double battle, so Oxide's wild doubles do not run the AI unless element 8 changes that line; whether they should is a decision for then.
 
 A trainer's turn is decided in the order switch, then item, then move (`TrainerAI_PickCommand`, `trainer_ai.c` lines 3989 to 4040, in `switching-and-items.md`), and the move scoring below never runs on a turn the AI switches. Oxide's trainers never use items: 40 trainer files still list some, but Phase 3 made `BattleControllerPlayer_InitAI` stop loading them (`battle_controller_player.c`), so in practice it is switch or move.
 
@@ -44,22 +44,23 @@ The order the routines run in, which is the order of the flag table at the top o
 
 ## What Oxide's trainers actually use
 
-The flags matter only as far as trainers carry them. Counted over the 747 trainers with a party, leaving out the dummies:
+The flags matter only as far as trainers carry them. Counted over the 747 trainers with a party, leaving out the dummies (the trainer files at HEAD on 2026-09-27; the balance track's trainer pass moves these):
 
 | Flag | Oxide | Vanilla |
 |---|---|---|
 | Basic | 747 | 747 |
-| Expert | 559 | 289 |
-| Evaluate Attack | 517 | 239 |
-| Prioritize Extremes | 75 | 53 |
-| Setup First Turn | 35 | 6 |
-| Weather | 17 | 0 |
-| Check HP | 10 | 0 |
-| Risky | 8 | 4 |
-| Baton Pass | 2 | 0 |
-| Harassment | 1 | 0 |
+| Expert | 560 | 289 |
+| Evaluate Attack | 519 | 239 |
+| Prioritize Extremes | 78 | 53 |
+| Setup First Turn | 37 | 6 |
+| Check HP | 19 | 0 |
+| Weather | 16 | 0 |
+| Risky | 13 | 4 |
+| Tag Strategy | 9 | 0 |
+| Harassment | 6 | 0 |
+| Baton Pass | 5 | 0 |
 
-The base ROM changed the flags of 362 trainers, nearly all towards more: the commonest set is now Basic, Evaluate Attack and Expert together (430 trainers, against 226 in vanilla), and only 171 trainers are left on Basic alone (400 in vanilla). Two consequences follow. The Expert routine, the largest part of the script, now drives most battles, so its behaviour is the game's behaviour. And four routines that no vanilla trainer uses (Weather, Check HP, Baton Pass, Harassment) now run for 30 trainers, so any fault in them, which vanilla never exercised, will be seen. Tag Strategy runs in the 18 double battles against trainers, and for a partner on the player's side; not for wild Pokemon, as the first section says.
+Oxide's flags differ from vanilla's for 346 trainers, 343 of which only gained flags: the commonest set is now Basic, Evaluate Attack and Expert together (414 trainers, against 226 in vanilla), and only 170 trainers are left on Basic alone (400 in vanilla). Two consequences follow. The Expert routine, the largest part of the script, now drives most battles, so its behaviour is the game's behaviour. And four routines that no vanilla trainer uses (Weather, Check HP, Baton Pass, Harassment) now run for 42 trainers, so any fault in them, which vanilla never exercised, will be seen. Tag Strategy is forced on in every trainer double battle and for a partner on the player's side, not for wild Pokemon, as the first section says. The doubles review of 2026-09-22 counted 37 such battles: 17 trainers who fight a double battle alone, 11 pairs of trainers a script sets against the player, 4 tag battles and 5 AI partners, plus any two trainers who spot the player at once. Five of the nine trainer files that list Tag Strategy fight in one of those (Twins Emma and Lil, the two Spear Pillar grunts, Mars and Jupiter at Spear Pillar). The other four (Beauty Devon, Collector Douglas and the third and fourth Lake Verity grunts) fight single battles, where the routine still runs its checks for a move aimed at the foe.
 
 ## What the write-up found
 
@@ -68,21 +69,23 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 | Finding | Origin | Where | What it does in play |
 |---|---|---|---|
 | Revealed abilities above 255 are remembered as another ability | Oxide | `ai_context.h` line 28 | Quark Drive reads as Levitate and Protosynthesis as Wonder Guard, Hospitality as Soundproof. Element 2 widened abilities to u16 and missed this one byte |
-| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch, so on the first turn every move gets the same +5 (or, with the sun already up, nothing). 17 Oxide trainers carry the flag, gym leaders and Elite Four among them |
-| A faster Pokemon almost never heals | vanilla | `expert-1.md` bug 4 | Under Expert (559 trainers), Recover, Roost, Synthesis and the rest get -8 whenever the user is not slower |
+| The Weather flag does nothing | vanilla | `other-flags.md` O1 | Every move falls into the Sunny Day branch, so on the first turn every move gets the same +5 (or, with the sun already up, nothing). 16 Oxide trainers carry the flag, gym leaders and Elite Four among them |
+| A faster Pokemon almost never heals | vanilla | `expert-1.md` bug 4 | Under Expert (560 trainers), Recover, Roost, Synthesis and the rest get -8 whenever the user is not slower |
 | Some moves skip every immunity check | vanilla | `basic.md` B6 | Moves whose power is worked out elsewhere (Solar Beam, Eruption, Sucker Punch and others) keep a full score into an immune target; Oxide's Dragon Energy into a Fairy is one |
 | Punishment adds every rung of its ladder | vanilla | `expert-2.md` bug 2 | Up to +10 where one rung was meant |
 | The AI will Trick or Gastro Acid its own partner | vanilla | `other-flags.md` O11 | Several partner cases leave the move at 100, which passes the doubles filter |
 | The bench damage check uses the active Pokemon's stats and types | vanilla | `expert-2.md` bug 10, `switching-and-items.md` | Skews U-turn, Healing Wish and switching |
 | Status moves count as super-effective in the bench checks | vanilla | `switching-and-items.md` | Skews when and to what the AI switches |
 
+The table describes the code as the write-up found it. Five of the eight are fixed (next section); the faster heal, the bench damage check and the status moves in the bench checks were put to Ian and kept as vanilla has them.
+
 The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
 
-What Oxide's new content meets, beyond the bug above: none of the new effects 277 to 406 has an Expert routine, so the 452 new moves are scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects get no Basic check at all; the seven new Protect-type moves never take the repeat penalty and the seven new Speed-lowering attacks get nothing, because those checks key on move ids; and Fairy makes the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. Teaching the AI these is element 6's later step; the Phase 4 catch-up below took the part of it that is a fix, and the changes of play of 2026-09-27 most of the rest.
+What Oxide's new content met at the write-up, beyond the bug above: none of the new effects (277 and up) had an Expert routine, so the 452 new moves were scored only by Basic's generic checks and the damage comparison; the 51 new status moves on new effects got no Basic check at all; the seven new Protect-type moves never took the repeat penalty and the seven new Speed-lowering attacks got nothing, because those checks keyed on move ids; and Fairy made the switching checks see Poison as super-effective on a Poison-immune Steel/Fairy. The Phase 4 catch-up below took the part of this that is a fix, the changes of play of 2026-09-27 most of the rest (the Protect run and the Speed-lowering attacks among them), and the routing of the same day gave every learnable new move its nearest Platinum routine or none. The Poison reading on Steel and Fairy Pokemon is still open (`switching-and-items.md` bug 10).
 
 ## Fixes applied, 2026-09-22
 
-One Oxide fix, twenty-four vanilla fixes and one change Ian asked for, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked in `script.s` with an "Oxide, vanilla fix" comment.
+One Oxide fix, twenty-four vanilla fixes and one change Ian asked for, each its own commit so any can be reverted alone. **Every vanilla fix changes how the game plays and was approved by Ian**; each is marked with an "Oxide, vanilla fix" comment where it lives: in `script.s` for the script fixes, and in `trainer_ai.c`, `battle_lib.c` or `trainer_data.c` for the C ones. The Oxide fix is marked "Oxide:" in `ai_context.h`.
 
 | Fix | Kind | What changes in play |
 |---|---|---|
@@ -96,13 +99,13 @@ One Oxide fix, twenty-four vanilla fixes and one change Ian asked for, each its 
 | Weather Ball's weather type where the AI read the listed type (QA pass before the integration) | vanilla | Basic's absorb and Levitate checks, Tag Strategy's type dispatch and the absorb-ability switch now see a rain Weather Ball as Water and a sun one as Fire. Hidden Power, Natural Gift and Judgment still read their listed type |
 | Weather Ball in the post-knockout pick (same QA pass) | vanilla | A bench Weather Ball in weather is costed at double power and the weather's type, not as a 50-power Normal move |
 | Trainer form Pokemon use their form's stats (pret's `docs/bugs_and_glitches.md`; a party-building fix in `trainer_data.c`, not an AI one) | vanilla | The party builder set the form after the stats were worked out, so a trainer's form Pokemon had its base form's stats. Six in Oxide change: Volkner's Rotom-Mow in both battles, Fantina's rematch Rotom-Wash, Beauty Devon's two Wormadam and Worker Jackson's |
-| A lone Pokemon's spread moves read its fainted partner (`doubles.md` 1) | vanilla | Earthquake, Magnitude, Surf, Discharge and Lava Plume make no partner check once the partner's slot is empty for the rest of the battle, instead of -3, or -10 after a partner weak to them |
-| Steel missing from Earthquake's partner check, Rock from Surf's (`doubles.md` 2, O7) | vanilla | -10 beside a partner weak to the move, except where a second type cancels the weakness (Bug or Grass for Earthquake, Water, Grass or Dragon for Surf) |
-| Mold Breaker ignored beside an ability that protects the partner (`doubles.md` 3) | vanilla | With Mold Breaker, a partner's Levitate, Volt Absorb, Motor Drive, Water Absorb, Dry Skin or Flash Fire no longer earns the spread move a bonus |
-| Follow Me with no partner (`doubles.md` 6, O9) | vanilla | -10 once the partner's slot is empty, instead of up to +3 |
-| Explosion and Self-Destruct beside a partner (`doubles.md` 4) | change | -10 beside a partner, -3 beside a Rock or Steel one, nothing beside a Ghost or an empty slot |
+| A lone Pokemon's spread moves read its fainted partner (doubles review 1) | vanilla | Earthquake, Magnitude, Surf, Discharge and Lava Plume make no partner check once the partner's slot is empty for the rest of the battle, instead of -3, or -10 after a partner weak to them |
+| Steel missing from Earthquake's partner check, Rock from Surf's (doubles review 2, O7) | vanilla | -10 beside a partner weak to the move, except where a second type cancels the weakness (Bug or Grass for Earthquake, Water, Grass or Dragon for Surf) |
+| Mold Breaker ignored beside an ability that protects the partner (doubles review 3) | vanilla | With Mold Breaker, a partner's Levitate, Volt Absorb, Motor Drive, Water Absorb, Dry Skin or Flash Fire no longer earns the spread move a bonus |
+| Follow Me with no partner (doubles review 6, O9) | vanilla | -10 once the partner's slot is empty, instead of up to +3 |
+| Explosion and Self-Destruct beside a partner (doubles review 4) | change | -10 beside a partner, -3 beside a Rock or Steel one, nothing beside a Ghost or an empty slot |
 
-Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes (approved by Ian on 2026-09-15) are applied as eleven more commits, each titled "VANILLA FIX (battle_edits)":
+The doubles review (2026-09-22) weighed each double-battle fault against the parties Oxide's double battles field; its applied findings are the five rows above, and it also made Poison Gas hit only the foes (a data change, which `verify_narcs.py` records as a deliberate difference from the base ROM). What it left as vanilla has them is in `other-flags.md`'s bug list. Put to Ian and kept as vanilla has them: the faster Pokemon that almost never heals (expert-1 bug 4), the bench damage check that uses the active Pokemon's stats (expert-2 bug 10), and status moves counting as super-effective in the switching checks. The eleven battle_edits fixes (approved by Ian on 2026-09-15) are applied as eleven more commits, each titled "VANILLA FIX (battle_edits)":
 
 | battle_edits fix | Where | In Ian's base ROM | What changes in play |
 |---|---|---|---|
@@ -122,7 +125,7 @@ The first seven are the ones Ian played with: the base ROM's overlay 14 carries 
 
 ## The Phase 4 catch-up, 2026-09-26
 
-Phase 4 changed rules the AI had its own copies of, so the AI went stale: it estimated computed powers at table power, ignored Neutralizing Gas, and still believed Platinum's Simple, trapping, Magic Guard and Lightning Rod. The catch-up (`cloud/element6-catch-up`) taught it what elements 4 and 5 and the staples rulings changed, one commit per rule. Every one of these is an Oxide fix: each makes an existing check agree with the engine as Oxide now has it, and none is a vanilla fix. No trainer yet carries a move from past Platinum's 467, so the move fixes change nothing in play until the trainer pass hands those moves out; the ability fixes act now, mostly against the player's Pokemon.
+Phase 4 changed rules the AI had its own copies of, so the AI went stale: it estimated computed powers at table power, ignored Neutralizing Gas, and still believed Platinum's Simple, trapping, Magic Guard and Lightning Rod. The catch-up (`cloud/element6-catch-up`) taught it what elements 4 and 5 and the staples rulings changed, one commit per rule. Every one of these is an Oxide fix: each makes an existing check agree with the engine as Oxide now has it, and none is a vanilla fix. Only one trainer carries a move from past Platinum's 467 (Saturn 2's Foul Play, 2026-09-27), so the move fixes change almost nothing in play until the trainer pass hands those moves out; the ability fixes act now, mostly against the player's Pokemon.
 
 | Commit | What the AI now knows | Where |
 |---|---|---|
@@ -241,15 +244,11 @@ Three new AI commands came with them, each making the engine's own test so the A
 
 **The Protect run** (the engine and the AI). The engine now keeps the run of Protect successes going after any move on Protect's effect, Endure, Wide Guard or Quick Guard (`Move_KeepsProtectRun`), where it named Protect, Detect and Endure (and Oxide's two guards). So King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark and Max Guard fall to one in two, one in four and one in eight when used in a row, as Protect does. `AICmd_LoadProtectChain` calls the same test, so Expert's Protect routine sees the run too.
 
-### Still open after the changes
-
-This list is superseded by the routing of 2026-09-27 below: every learnable new move now takes the routine of its nearest Platinum effect, or none, and [expert-new-moves.md](expert-new-moves.md) has each one. Of the effects this paragraph named, the trapping attacks, Dragon Tail, Incinerate, Entrainment, Noble Roar and Tearful Look, Venom Drench, Burn Up and Double Shock, Clear Smog, Mortal Spin, and Smack Down and Thousand Arrows now have one, and so does Circle Throw, which no species learns but which shares Dragon Tail's effect. Jaw Lock, Throat Chop and the other moves no species learns are not routed, since the ruling covers learnable moves. The status moves whose effects are unwritten keep Basic's -10 from the catch-up.
-
-Two gaps found on the way were put to Ian, and both are closed by the follow-ups above: the partner check for the new spread moves, and the own-partner draw-in check firing for spread moves (the VANILLA FIX). No trainer in a double battle today carries a new spread move, or a spread Water or Electric move beside a Storm Drain or Lightning Rod partner, so neither acts until the trainer pass gives them out.
+What stays open for element 6 is in the tracker's element 6 entry; the routing below took what the changes left. No trainer yet fields a new spread move (2026-09-27), and the follow-up job found no double battle with a spread Water or Electric move beside a Storm Drain or Lightning Rod partner, so neither follow-up for spread moves acts until the trainer pass changes the parties.
 
 ## The new moves' routines, 2026-09-27
 
-Ian's ruling: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable new move takes the Expert routine of its nearest Platinum effect, judged by what its effect script does, where that effect has one, and none where Platinum gives its equivalents none; Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). It is a change of play, marked in the code "Oxide, change (Ian, 2026-09-27)". Of 156 learnable new moves, 65 are now scored by a routine and 91 are not; [expert-new-moves.md](expert-new-moves.md) has every move, the reasons, and eleven judgment calls for Ian where a near routine would misjudge the move. Two routines are trimmed copies, `Expert_ClearSmog` (Haze's, the target's half) and `Expert_MortalSpin` (Rapid Spin's clearing, without the Speed raise), and Shore Up is scored as Recover, since the engine heals it by its own rule rather than Synthesis's.
+Ian's ruling: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable new move takes the Expert routine of its nearest Platinum effect, judged by what its effect script does, where that effect has one, and none where Platinum gives its equivalents none; Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). It is a change of play, marked in the code "Oxide, change (Ian, 2026-09-27)". Of 156 learnable new moves, 65 are now scored by a routine and 91 are not; [expert-new-moves.md](expert-new-moves.md) has every move and the reasons. Eleven of the 91 were judgment calls, where a near routine would misjudge the move; Ian ruled on 2026-09-27 that they get no routine ("None, as left"). Two routines are trimmed copies, `Expert_ClearSmog` (Haze's, the target's half) and `Expert_MortalSpin` (Rapid Spin's clearing, without the Speed raise), and Shore Up is scored as Recover, since the engine heals it by its own rule rather than Synthesis's.
 
 ## The parts
 
@@ -258,10 +257,9 @@ Ian's ruling: the moves added since Platinum follow Platinum's own Expert patter
 | `basic.md` | the Basic flag: refusing moves that cannot work |
 | `expert-1.md` | the Expert flag, its dispatch and its first half |
 | `expert-2.md` | the Expert flag, second half |
-| `other-flags.md` | every other flag, and the double-battle driver |
+| `other-flags.md` | every other flag, the double-battle driver, and which double-battle faults Oxide's own battles reach |
 | `switching-and-items.md` | the damage the AI calculates, switching, replacements and item use |
-| `doubles.md` | the doubles review: which of the double-battle faults Oxide's own double battles reach, and the fixes proposed for them |
 | `expert-gaps.md` | Platinum's own moves with no Expert routine, grouped by effect, with what else scores them |
 | `expert-new-moves.md` | every learnable new move and the Expert routine it takes, or why none |
 
-Each part ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide, then the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.
+Each of the first five parts ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide and headed by a line saying which are fixed, then a pointer to the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.

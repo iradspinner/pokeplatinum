@@ -1,10 +1,10 @@
 # Platinum's moves with no Expert routine
 
-A report for Ian (2026-09-27), read from the tree on `main-metronome`, which is `sinistea-split` plus a Metronome table change. It changes no AI code. Ian's ruling on routines is that every new move the trainer pass gives a trainer gets an Expert routine in that pass, and the rest wait; this list is the Platinum half, ids 1 to 467, for him to decide on.
+Platinum's own moves, ids 1 to 467, that no Expert routine scores, and what else scores them. Ian ruled on 2026-09-27 that they stay as they are; the moves added since Platinum follow Platinum's pattern instead ([expert-new-moves.md](expert-new-moves.md)). The counts and the trainer figures below were checked against the tree at HEAD on 2026-09-27.
 
 ## How a move reaches Expert
 
-`Expert_Main` in `src/battle/trainer_ai/script.s` is a single jump table on the move's effect, one `IfCurrentMoveEffectEqualTo` line per effect, ending in `PopOrEnd`. A move whose effect is not in the table gets no Expert score at all, whatever its id; Expert never dispatches on a move id. The table now names 221 effects, Platinum's own and the ones element 6 added for the new moves on 2026-09-27.
+`Expert_Main` in `src/battle/trainer_ai/script.s` is a single jump table on the move's effect, one `IfCurrentMoveEffectEqualTo` line per effect, ending in `PopOrEnd`. A move whose effect is not in the table gets no Expert score at all, whatever its id; Expert never dispatches on a move id. The table now names 236 effects, Platinum's own and the ones element 6 added for the new moves on 2026-09-27.
 
 A move outside the table is not left unscored. Basic scores every damaging move with a fixed power on its damage and on immunities, including the absorbing abilities and Wonder Guard, and Evaluate Attack takes a point off a move that is not the strongest the Pokemon has, adds four (six for a +1 priority effect) when it would knock out, and may add two when it is four times effective. So a damaging move with no Expert routine is still chosen on its damage; what goes unvalued is whatever it does besides, such as a flinch or a status chance, a stat change, or a condition that raises its power. A status move has no damage to fall back on, so it gets only the check Basic keeps for its effect, if there is one (mostly "this would fail, score -10"), and the effect lists some other flags keep.
 
@@ -128,4 +128,4 @@ No damage to fall back on; the column is everything that scores them.
 
 ## Reproducing it
 
-The table was read by a short parser over `script.s` (the routine regions by their `_Main` labels, Expert's table by its run of effect tests) and the move records in `res/moves/`, and the trainer counts from `tools/oxide/move_pool_survey.py`'s `collect()`. A move changing effect, or a new line in Expert's table, changes the list; rerun rather than edit it by hand.
+The table was read by a short parser over `script.s` (the routine regions by their `_Main` labels, Expert's table by its run of effect tests) and the move records in `res/moves/`, and the trainer counts from `tools/oxide/move_pool_survey.py`'s `collect()`. The parser was not kept in the tree, so a move changing effect, or a new line in Expert's table, has to be reflected here by hand.

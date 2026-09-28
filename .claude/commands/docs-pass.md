@@ -3,17 +3,17 @@ description: Review, cull and realign the Platinum Oxide docs, skills and CLAUDE
 allowed-tools: Bash(git *), Bash(bash tools/oxide/sync-docs.sh), Bash(python3 tools/oxide/*), Read, Edit, Write, Grep, Glob
 ---
 
-Audit every file under `docs/oxide/`, the skills in `.claude/skills/`, the commands in `.claude/commands/` and `CLAUDE.md` against the tree at `HEAD` on `oxide`. The point is that a fresh agent reads only what changes what it does, and reads nothing false.
+Audit every file under `docs/oxide/`, the skills in `.claude/skills/`, the commands in `.claude/commands/`, the rules in `.claude/rules/` and `CLAUDE.md` against the tree at `HEAD` on `oxide`. The point is that a fresh agent reads only what changes what it does, and reads nothing false.
 
 ## 1. Find out who else is working
 
-Run `git worktree list`. For each worktree, check `git -C <path> status --porcelain` and `git rev-list --count oxide..<branch>`. A worktree with uncommitted changes or recent commits belongs to a live track. Its files are off limits for this pass: for the encounter track, that means `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/`, the `encounter-*.md` docs, `pokemon-sources.*`, and its one paragraph at the top of the tracker. Run `git diff oxide...<branch> --stat` to see which shared files the live branch touches, and keep your edits out of those hunks.
+Run `git worktree list`. For each worktree, check `git -C <path> status --porcelain` and `git rev-list --count oxide..<branch>`. A worktree with uncommitted changes or recent commits belongs to a live track. Its files are off limits for this pass: for the encounter track, that means `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/`, the `encounter-*.md` docs, `pokemon-sources.*`, and its one paragraph at the top of the tracker; for the balance track, `tools/oxide/balance/` and `docs/oxide/balance-plan.md`. Run `git diff oxide...<branch> --stat` to see which shared files the live branch touches, and keep your edits out of those hunks.
 
 ## 2. Classify each file
 
 Each file is one of four kinds:
 
-- **A status home:** the tracker, or the encounter build plan.
+- **A status home:** the tracker, the encounter build plan, or the balance plan.
 - **A live plan:** still being executed.
 - **A reference:** something an agent or a tool reads.
 - **History:** its lesson already lives in a rule, a skill, a tool or a status home.
@@ -41,7 +41,7 @@ Before committing, run `git merge-tree --write-tree oxide <branch>` against ever
 
 ## 5. Commit and report
 
-Run `bash tools/oxide/sync-docs.sh`, and map any new file it complains about. The commit message lists, per file:
+Run `bash tools/oxide/sync-docs.sh`, and map any new file it complains about. It runs only on `oxide`; on a branch, add the mapping and leave the run to the merge. The commit message lists, per file:
 
 - What went, and where its lesson now lives.
 - What was corrected, and the evidence.

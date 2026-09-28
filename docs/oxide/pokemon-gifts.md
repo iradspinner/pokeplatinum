@@ -1,17 +1,20 @@
 # Pokemon given to the player by a script
 
-Generated 2026-09-20 from the base ROM with `tools/oxide/scriptdis.py`, for the
-encounter tracker tool. Every `GivePokemon`, `GiveEgg` and `GivePokemonWithMoves`
-the base ROM's field scripts reach, with the same list from vanilla alongside so
-Ian's additions are separable from what Platinum already did.
+Generated 2026-09-20 from the base ROM of 2026-08-11 with `tools/oxide/scriptdis.py`.
+Every `GivePokemon`, `GiveEgg` and `GivePokemonWithMoves` that base ROM's field
+scripts reach, with the same list from vanilla alongside so Ian's additions are
+separable from what Platinum already did.
 
-58 distinct gifts across 19 maps. **52 are new in the base ROM**;
-the rest are vanilla's own (the Togepi, Riolu and Manaphy eggs, Eevee, Porygon,
-the Day Care Ditto and the starter).
+58 distinct gifts across 19 maps. **52 are new in the base ROM**; five are
+vanilla's own (the Togepi and Riolu eggs, Eevee, Porygon and the Mining Museum's
+fossil) and the starter is changed.
 
-The machine-readable version is `pokemon-gifts.csv`, same columns as the table
-below. Regenerate both by re-running the survey in the session notes rather than
-editing by hand.
+This is a record of that ROM, not of the tree, and nothing regenerates it: the
+survey was a one-off. The machine-readable version is `pokemon-gifts.csv`, the table
+below plus each gift's held item, which `tools/oxide/pokemon_sources.py` still reads for
+its vanilla-or-new flag. The tree's own gifts, Oxide's included and without the
+gift clowns Ian retired, are read from the scripts by the OxiDex's
+`tools/oxide/encounters/audit.py` and listed in `pokemon-sources.md`.
 
 Two rows do not name a species because the script picks one at runtime and passes
 it in a variable: `route_201` (the starter) and `mining_museum`. Those need the
