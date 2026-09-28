@@ -44,7 +44,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Entry | What it gives | The check it serves |
 |---|---|---|
 | 99 Rare Candies | the item | Rare Candy chaining: after one, the party menu reopens |
-| Rotom and Giratina | Rotom in Wash form (Lv. 30), Giratina in Origin form holding the Griseous Orb (Lv. 50) | the element 3 form fix: each summary shows its form's stats and types |
+| Form changers | Rotom in Wash form (Lv. 30), Giratina in Origin form holding the Griseous Orb (Lv. 50), and Meloetta (Lv. 50) with Relic Song in its first slot | the element 3 form fix: each summary shows its form's stats and types; and Meloetta's Relic Song, which turns it into Pirouette and back in battle, with Aria again after a switch-out or the battle's end |
 | Eevee with Charm | Eevee, Lv. 15, Charm in its first slot (Lv. 20 until element 8, and lowered so a new game's cap of 16 takes the candy) | Sylveon: one Rare Candy should evolve it |
 | Klefki, Lv. 5 | Klefki, which learns Fairy Wind (move 587) at Lv. 6 | the widened learnset: one Rare Candy teaches a move the old format could not hold; then the Move Relearner |
 | Gible vs. Clefairy | Gible, Lv. 20, with Dragon Claw, then a wild Clefairy, Lv. 10 | Fairy: the Dragon move does nothing |
