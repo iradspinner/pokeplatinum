@@ -98,6 +98,11 @@
             "EVO_LEVEL",
             40,
             "SPECIES_RAPIDASH"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_MOON_STONE",
+            "SPECIES_GALARIAN_RAPIDASH"
         ]
     ],
     "offspring": "SPECIES_PONYTA",
