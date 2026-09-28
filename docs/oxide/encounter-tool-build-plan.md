@@ -1109,6 +1109,17 @@ that stay. None blocks anything.
    ace_trainer_maya), so nine pairs had no files; that went back to the
    balance track to fix.
 
+40. **Level-0 evolution moves (the main track, 2026-09-28).** A learnset
+   entry at level 0 is taught the moment a Pokemon evolves into the species,
+   at any level. The game never gives one to a wild, gift or trainer
+   Pokemon's default moves, and the Move Relearner offers it. The OxiDex
+   follows. The default moves (the trainer builder's, and the calculator's
+   trainer sets) skip level 0. The builder's "In Oxide" list keeps an
+   evolution move as a legal pick, reading "On evolving" and sorting first;
+   a move also learned by level says both in one entry. The dex page's
+   level-up table and a move's learner list show "Evo". No species had one
+   yet, so the test patches a stand-in into Politoed's learnset.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
