@@ -6516,62 +6516,57 @@ BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
-BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int *subscript)
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    BOOL copied = FALSE;
 
-    for (int i = 0; i < maxBattlers; i++) {
-        int holder = battleCtx->monSpeedOrder[i];
+    if (battleCtx->battleMons[holder].curHP == 0
+        || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+        return FALSE;
+    }
 
-        if (battleCtx->battleMons[holder].curHP == 0
-            || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+    // The copied rises are the holder's own stat changes, so its Contrary
+    // turns them into falls, as it does in the later games; the herb is
+    // then used while a stat can still fall.
+    BOOL contrary = Battler_Ability(battleCtx, holder) == ABILITY_CONTRARY;
+
+    // Every foe's rises are copied at once, since the herb is used up. The
+    // records stay for any other holder; the controller clears them once
+    // every battler has been checked.
+    for (int foe = 0; foe < maxBattlers; foe++) {
+        u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
+
+        if (raises == 0
+            || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
             continue;
         }
 
-        // The copied rises are the holder's own stat changes, so its Contrary
-        // turns them into falls, as it does in the later games; the herb is
-        // then used while a stat can still fall.
-        BOOL contrary = Battler_Ability(battleCtx, holder) == ABILITY_CONTRARY;
+        for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
+            int stages = (raises >> (stat * 3)) & 7;
+            s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
 
-        for (int foe = 0; foe < maxBattlers; foe++) {
-            u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
-            BOOL copied = FALSE;
-
-            if (raises == 0
-                || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
+            if (stages == 0) {
                 continue;
             }
 
-            for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
-                int stages = (raises >> (stat * 3)) & 7;
-                s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
-
-                if (stages == 0) {
-                    continue;
-                }
-
-                if (contrary && *boost > MIN_STAT_STAGE) {
-                    *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
-                    copied = TRUE;
-                } else if (contrary == FALSE && *boost < MAX_STAT_STAGE) {
-                    *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
-                    copied = TRUE;
-                }
-            }
-
-            // A holder that copied nothing (its stats already at the limit)
-            // leaves the record for the next holder.
-            if (copied) {
-                battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
-                battleCtx->msgBattlerTemp = holder;
-                battleCtx->calcTemp = contrary;
-                *subscript = subscript_mirror_herb;
-                return TRUE;
+            if (contrary && *boost > MIN_STAT_STAGE) {
+                *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
+                copied = TRUE;
+            } else if (contrary == FALSE && *boost < MAX_STAT_STAGE) {
+                *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
+                copied = TRUE;
             }
         }
     }
 
-    return FALSE;
+    if (copied) {
+        battleCtx->msgBattlerTemp = holder;
+        battleCtx->calcTemp = contrary;
+        *subscript = subscript_mirror_herb;
+    }
+
+    return copied;
 }
 
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)

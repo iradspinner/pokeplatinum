@@ -4161,18 +4161,32 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
         }
 
     // Oxide, element 7: a Mirror Herb copies the stat rises a foe's move
-    // just made.
+    // just made. Every holder is asked in speed order, one a pass as for
+    // AFTER_MOVE_EFFECT_HELD_ITEM_STATUS below, and the rises are cleared
+    // once all have been.
     case AFTER_MOVE_EFFECT_MIRROR_HERB:
-        battleCtx->afterMoveEffectState++;
+        while (battleCtx->afterMoveEffectTemp < BattleSystem_GetMaxBattlers(battleSys)) {
+            int holder = battleCtx->monSpeedOrder[battleCtx->afterMoveEffectTemp];
+            int mirrorSeq;
 
-        int mirrorSeq;
-        if (BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, &mirrorSeq) == TRUE) {
-            LOAD_SUBSEQ(mirrorSeq);
-            battleCtx->commandNext = battleCtx->command;
-            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->afterMoveEffectTemp++;
 
-            return;
+            if ((battleCtx->battlersSwitchingMask & FlagIndex(holder)) == FALSE
+                && BattleSystem_TriggerMirrorHerb(battleSys, battleCtx, holder, &mirrorSeq) == TRUE) {
+                LOAD_SUBSEQ(mirrorSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
         }
+
+        for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+            battleCtx->selfTurnFlags[i].mirrorHerbRaises = 0;
+        }
+
+        battleCtx->afterMoveEffectState++;
+        battleCtx->afterMoveEffectTemp = 0;
 
     case AFTER_MOVE_EFFECT_HELD_ITEM_STATUS:
         int battler;

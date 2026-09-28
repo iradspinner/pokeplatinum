@@ -1594,18 +1594,21 @@ BOOL BattleSystem_ShouldShowStatusEffect(BattleContext *battleCtx, int battler, 
 BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
 
 /**
- * @brief Oxide, element 7: the Mirror Herb. When a foe's move has just raised
- * its own stats, a battler holding the herb raises the same stats by the same
- * stages (up to +6) and uses the herb up. The rises are kept in each
- * battler's SelfTurnFlags by ChangeStatStage, from moves only, and a herb
- * that copies them clears them.
+ * @brief Oxide, element 7: the Mirror Herb, for one battler. When a foe's move
+ * has just raised its own stats, a battler holding the herb raises the same
+ * stats by the same stages (up to +6; with Contrary it lowers them, down to
+ * -6) and uses the herb up. The rises are kept in each battler's
+ * SelfTurnFlags by ChangeStatStage, from moves only; this leaves them for
+ * the next holder, and the after-move controller clears them once it has
+ * asked every battler.
  *
  * @param battleSys
  * @param battleCtx
+ * @param holder            The battler to check
  * @param[out] subscript    The subscript to run, when it returns TRUE
- * @return TRUE if a herb copied something
+ * @return TRUE if the herb copied something
  */
-BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int *subscript);
 
 /**
  * @brief Oxide, element 7: the Red Card and the Eject Button, after
