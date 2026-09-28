@@ -171,6 +171,22 @@ calculator checks fail if the offline ones are lost.
     starter's Rowan's Briefcase, an id Oxide added, read as New Bark Town in
     the Box after a Sync. `test_savefile` checks the patch and the table.
 
+18. **`js/fragsheet/battle_log.js`, the game's own battle log** (2026-09-28,
+    request 4). Oxide's save keeps its last 60 trainer battles
+    (`docs/oxide/battle-log.md`), and the OxiDex serves them at
+    `/api/save/battlelog` already built as the Battle Log's save-file
+    payload, every name filled in, under the version `oxide-save-v1`
+    (`battlelog.py`). Three changes let that through. `updateSaveFileBattleLog`
+    stores a payload it is given instead of building one from Gen 5 records;
+    `decodeBattleLogRecordIds` passes an `oxide-save-v1` record through
+    undecoded, since its ids are names already; and a session takes its split
+    from the `saveFileSplitIndex` its `session_start` carries, while
+    `getBattleLogSplitTabsConfig` takes Oxide's thirteen level-cap split
+    names from `window.oxideBattleLogSplitTitles` under the "Platinum Oxide"
+    title. `js/oxide/save_sync.js` fetches the log after each new save and
+    sets those names. Upstream's `splitData` is left alone: the Fragsheet
+    reads it too, and has room for nine splits.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 

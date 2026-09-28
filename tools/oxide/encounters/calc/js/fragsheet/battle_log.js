@@ -1314,7 +1314,8 @@
                     localStorage.setItem(BATTLE_LOG_ACTIVE_SOURCE_KEY, activeBattleLogSource);
                 }
             } else {
-                const payload = buildSaveFileBattleLogPayload(parsedLog, saveMons);
+                // Oxide: the OxiDex sends the payload already built (patch 18).
+                const payload = parsedLog.payload || buildSaveFileBattleLogPayload(parsedLog, saveMons);
                 localStorage.setItem(SAVE_FILE_BATTLE_LOG_STORAGE_KEY, JSON.stringify(payload));
                 localStorage.setItem(SAVE_FILE_BATTLE_LOG_SOURCE_META_KEY, JSON.stringify({
                     type: "save_file",
@@ -1691,6 +1692,11 @@
         const type = cloned.type;
         const adapter = getActiveBattleLogRomAdapter();
         const payloadVersion = context && typeof context.payloadVersion === "string" ? context.payloadVersion : "";
+        // Oxide: the OxiDex names everything in its log before sending it
+        // (battlelog.py), so there are no ids to decode (VENDORED.md patch 18).
+        if (payloadVersion === "oxide-save-v1") {
+            return cloned;
+        }
 
         if (type === "session_start" && Array.isArray(cloned.pParty)) {
             cloned.pParty = cloned.pParty.map((mon) => {
@@ -2283,7 +2289,12 @@
     }
 
     function getBattleLogSessionSplitIndex(session) {
-        const saveFileSplitIndex = Number(session && session.saveFileSplitIndex);
+        // Oxide: each logged battle records the level-cap split it was fought
+        // in, which the OxiDex passes on its session_start (patch 18).
+        const recordedSplit = session && session.start ? session.start.saveFileSplitIndex : undefined;
+        const saveFileSplitIndex = Number(session && session.saveFileSplitIndex != null
+            ? session.saveFileSplitIndex
+            : recordedSplit);
         if (Number.isInteger(saveFileSplitIndex) && saveFileSplitIndex >= 0) {
             return saveFileSplitIndex;
         }
@@ -2315,7 +2326,13 @@
         const progression = normalizeActiveBattleLogSource() === "save-file"
             ? getBattleLogProgressionConfig()
             : null;
-        const titlesRaw = splitCfg && splitCfg.titles
+        // Oxide: its thirteen level-cap splits, from the OxiDex (patch 18).
+        const oxideTitles = window.TITLE === "Platinum Oxide" && Array.isArray(window.oxideBattleLogSplitTitles)
+            ? window.oxideBattleLogSplitTitles
+            : null;
+        const titlesRaw = oxideTitles
+            ? oxideTitles
+            : splitCfg && splitCfg.titles
             ? splitCfg.titles
             : progression && progression.splitTitles;
         if (!titlesRaw) return null;
