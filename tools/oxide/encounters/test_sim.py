@@ -12,6 +12,7 @@ import os
 import sys
 
 from . import dex
+from . import evolve
 from . import model
 from . import progression
 from . import simulate
@@ -169,13 +170,56 @@ def check_requests(results):
                     "; ".join(f"{r['area']} {r['share']:.0%}" for r in conf["areas"][:3])))
 
 
+def check_stones(results):
+    """Stone branches (Ian, 2026-09-28): a caught Koffing or Ponyta reaches
+    its Galarian form by the Moon Stone from the stone's split in the
+    balance track's census, and the branch is rated on its own."""
+    from . import dex, model
+    root, sidecar = model.repo_root(), model.load_sidecar()
+    roark = simulate.Values(root, "Roark", sidecar)
+    gardenia = simulate.Values(root, "Gardenia", sidecar)
+    maylene = simulate.Values(root, "Maylene", sidecar)
+    stone = gardenia.stone_first.get("ITEM_MOON_STONE")
+    results.append(("a Koffing or Ponyta caught early reaches its Galarian form by the Moon "
+                    "Stone from the stone's split, before its level evolution",
+                    stone == "Gardenia"
+                    and roark.stage("SPECIES_KOFFING") == "SPECIES_KOFFING"
+                    and gardenia.stage("SPECIES_KOFFING") == "SPECIES_GALARIAN_WEEZING"
+                    and gardenia.stage("SPECIES_PONYTA") == "SPECIES_GALARIAN_RAPIDASH"
+                    and gardenia.of("SPECIES_KOFFING") > roark.of("SPECIES_KOFFING"),
+                    f"Moon Stone from {stone}; Koffing {gardenia.of('SPECIES_KOFFING')} "
+                    f"against {roark.of('SPECIES_KOFFING')}"))
+    results.append(("one family: Koffing and Galarian Weezing share a line for the dupes "
+                    "clause, and the branch is rated by its own form",
+                    dex.line_of(root, "SPECIES_KOFFING") == dex.line_of(root, "SPECIES_GALARIAN_WEEZING")
+                    and dex.branch_of(root, "SPECIES_GALARIAN_WEEZING") == "SPECIES_GALARIAN_WEEZING"
+                    and dex.branch_of(root, "SPECIES_WEEZING") is None, ""))
+    results.append(("a stone for one sex still yields to a level evolution (Snorunt does not "
+                    "become Froslass by the Dawn Stone)",
+                    maylene.stage("SPECIES_SNORUNT") != "SPECIES_FROSLASS",
+                    dex.display_name(maylene.stage("SPECIES_SNORUNT"))))
+    # A branch the Pokemon decides (Wurmple by personality, Burmy and Combee
+    # by sex) is not the player's pick: the sim takes the worse outcome.
+    wurmple = maylene.stage("SPECIES_WURMPLE")
+    worse = min(("SPECIES_BEAUTIFLY", "SPECIES_DUSTOX"), key=lambda s: (maylene.worth(s), s))
+    results.append(("a branch the Pokemon decides takes the worse outcome (Wurmple, Burmy); "
+                    "a male Combee stays one under 50; Nincada becomes Ninjask, not Shedinja",
+                    wurmple == worse
+                    and maylene.stage("SPECIES_BURMY") == min(("SPECIES_WORMADAM", "SPECIES_MOTHIM"),
+                                                               key=lambda s: (maylene.worth(s), s))
+                    and maylene.stage("SPECIES_COMBEE") == "SPECIES_COMBEE"
+                    # Ninjask is off the pick-list, so the route list is the check.
+                    and [r[0] for r in evolve.routes(root, "SPECIES_NINCADA")] == ["SPECIES_NINJASK"],
+                    f"Wurmple to {dex.display_name(wurmple)}"))
+
+
 def rank_of(split):
     return progression.split_index(model.load_sidecar()).get(split, 99)
 
 
 def main():
     results = []
-    for check in (check_runs, check_scarcity, check_areas, check_requests):
+    for check in (check_runs, check_scarcity, check_areas, check_requests, check_stones):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0

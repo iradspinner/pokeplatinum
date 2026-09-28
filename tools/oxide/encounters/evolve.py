@@ -77,6 +77,60 @@ WATER_KINDS = ("surf", "old_rod", "good_rod", "super_rod")
 PLAN = os.path.join("docs", "oxide", "encounters", "availability-plan.json")
 
 
+# Evolutions the Pokemon decides, not the player: by its personality
+# (Wurmple), its sex (Burmy, Combee) or its Attack against its Defense
+# (Tyrogue). A nuzlocke meets one of each per place, so the Box sim takes the
+# worse outcome of these (the Overseer's correction, 2026-09-28).
+FIXED_BY_THE_POKEMON = ("EVO_LEVEL_PID_LOW", "EVO_LEVEL_PID_HIGH", "EVO_LEVEL_FEMALE",
+                        "EVO_LEVEL_MALE", "EVO_LEVEL_ATK_LT_DEF", "EVO_LEVEL_ATK_GT_DEF",
+                        "EVO_LEVEL_ATK_EQ_DEF")
+# Not a stage of the caught Pokemon: Shedinja is a second Pokemon that
+# appears beside the Ninjask a Nincada becomes.
+NOT_A_STAGE = ("EVO_LEVEL_SHEDINJA",)
+
+
+def routes(root, species):
+    """[(target, level or None, item or None, fixed)] out of one stage, for
+    the Box sim (Ian, 2026-09-28): a level evolution with its level, and an
+    evolution by a stone either sex can use with its item, whose first split
+    the balance track's census gives. A stone is kept beside a level
+    evolution (Koffing's Moon Stone beside Weezing at 35), where
+    `evolutions`, which the tables use, drops it. Any other method keeps its
+    judged level, as `evolutions` gives it, and a stone for one sex
+    (Froslass's Dawn Stone) is judged so too, since the sim cannot know a
+    Pokemon's sex. `fixed` marks an evolution the Pokemon decides
+    (FIXED_BY_THE_POKEMON) rather than the player."""
+    folder = species.replace("SPECIES_", "").lower()
+    path = os.path.join(root, "res", "pokemon", folder, "data.json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            evos = json.load(f).get("evolutions") or []
+    except (FileNotFoundError, ValueError):
+        return []
+    by_level, stones, judged = [], [], []
+    for evo in evos:
+        if not isinstance(evo, list) or not evo:
+            continue
+        method = evo[0] if isinstance(evo[0], str) else ""
+        ints = [x for x in evo if isinstance(x, int) and not isinstance(x, bool)]
+        target = next((x for x in reversed(evo)
+                       if isinstance(x, str) and x.startswith("SPECIES_")), None)
+        if target is None or target.startswith(species + "_") or method in NOT_A_STAGE:
+            continue
+        items = [x for x in evo if isinstance(x, str) and x.startswith("ITEM_")]
+        level = dex.evo_level(method, ints)
+        fixed = method in FIXED_BY_THE_POKEMON
+        if level is not None:
+            by_level.append((target, level, None, fixed))
+        elif method == "EVO_USE_ITEM" and items:
+            stones.append((target, None, items[0], False))
+        else:
+            judged.append((target, PSEUDO.get(method, DEFAULT_PSEUDO), None, fixed))
+    # As in `evolutions`, a judged route yields to a level route out of the
+    # same stage (Snorunt grows into Glalie; its Dawn Stone is for females).
+    return by_level + stones + ([] if by_level else judged)
+
+
 def evolutions(root, species):
     """[(level it is reachable at, target)] out of one stage."""
     folder = species.replace("SPECIES_", "").lower()

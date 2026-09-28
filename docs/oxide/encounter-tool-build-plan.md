@@ -1137,8 +1137,22 @@ that stay. None blocks anything.
    opens in Gardenia's split that way, and Galarian Weezing in Maylene's,
    against the Galactic split wild. Stones count as reachable, not
    budgeted, until Ian asks. availability.md lists each branch's routes.
-   The Box sim's side, evolving a caught Pokemon by the stone from its split,
-   comes next on this branch's successor. In the same batch, the twelve form
+   The Box sim follows the same rule (encounter-sim-stones). A caught
+   Pokemon reaches the best stage it can by the split: by level under the
+   cap, or by a stone either sex can use from the stone's census split,
+   kept beside a level route (Koffing to Galarian Weezing by Moon Stone from
+   Gardenia's split, before Weezing at 35). Where two of the player's
+   routes are ready (two stones, Clamperl's two held items) it takes the
+   stage worth more, and a regional branch is rated by its own form. A
+   branch the Pokemon decides, by personality (Wurmple), sex (Burmy,
+   Combee) or its stats (Tyrogue), takes the worse outcome, since a
+   nuzlocke meets one per place (the Overseer's correction); a male Combee
+   stays one until 50. Shedinja is not a stage of a Nincada. A stone for
+   one sex (Froslass's Dawn Stone) and the other judged methods still yield
+   to a level evolution. The census timing moves other
+   lines too: Moon and Leaf Stone lines evolve from Gardenia's split, and
+   Shiny Stone lines only once it is placed. The encounter tables' own
+   evolution rule is unchanged. In the same batch, the twelve form
    species gained short in-game names (A-NINETALS); the OxiDex keeps the
    folder's name for them (Alolan Ninetales), from form_names.py's table.
 
