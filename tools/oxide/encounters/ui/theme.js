@@ -1,14 +1,16 @@
-// Which colour scheme the encounter tool draws in, light or dark.
+// Which colour scheme the encounter tool draws in: light, dark, or dim, the
+// dark scheme lifted to a soft grey (Ian, 2026-09-28).
 //
 // Loaded as an ordinary blocking script in <head>, straight after theme.css,
 // so it runs before the first paint and a pinned scheme never flashes the
 // other one first. It is not a module and not deferred, for the same reason.
 //
-// The page follows Windows by default. One button in the header offers the
-// opposite of whatever the system is showing right now, and pressing it pins
-// that exact scheme, so if Windows later switches to match, the page stays
-// where Ian put it. Once something is pinned the same button offers "System",
-// which releases the pin. The label always names what pressing it will do.
+// The page follows Windows by default. One button in the header steps
+// through the three looks and back to following Windows, skipping the pin
+// that would look the same as what Windows shows, so every press changes
+// something: from a dark desktop it goes Dim, Light, System; from a light
+// one Dark, Dim, System. A pin stays where Ian put it if Windows later
+// switches. The label always names what pressing it will do.
 //
 // The preference is per browser, so it lives in localStorage rather than going
 // through the server the way the caught list does. Every storage access is
@@ -27,7 +29,7 @@
   function pinned() {
     try {
       var value = window.localStorage.getItem(KEY);
-      return value === "light" || value === "dark" ? value : null;
+      return value === "light" || value === "dark" || value === "dim" ? value : null;
     } catch (e) {
       return null;
     }
@@ -47,22 +49,39 @@
   // element's own color-scheme is `normal`, and theme.css sets it to
   // `light dark` so the page follows the system even with scripts off. An
   // inline style on <html> outranks the stylesheet, so that is what actually
-  // pins it. The meta is kept in step so the two never disagree.
+  // pins it. The meta is kept in step so the two never disagree. Dim is the
+  // dark scheme with theme.css's data-theme="dim" overrides on top.
   function apply(value) {
+    var scheme = value === "dim" ? "dark" : value;
     var meta = document.querySelector('meta[name="color-scheme"]');
-    if (meta) meta.setAttribute("content", value || "light dark");
-    document.documentElement.style.colorScheme = value || "";
+    if (meta) meta.setAttribute("content", scheme || "light dark");
+    document.documentElement.style.colorScheme = scheme || "";
+    if (value === "dim") document.documentElement.setAttribute("data-theme", "dim");
+    else document.documentElement.removeAttribute("data-theme");
   }
 
   function system() {
     return media.matches ? "dark" : "light";
   }
 
-  // What pressing the button will do: release a pin, or pin the opposite of
-  // what the system is showing.
+  // The next look in the cycle, null for following Windows: from the
+  // system's look, the dimmer-or-brighter neighbours in order, then back.
+  function next() {
+    var order = system() === "dark" ? ["dim", "light", null] : ["dark", "dim", null];
+    var now = pinned();
+    if (!now) return order[0];
+    var i = order.indexOf(now);
+    // A pin the order does not hold (Dark on a dark desktop, Light on a
+    // light one, left from before Windows switched) releases on the next press.
+    return i < 0 ? null : order[i + 1];
+  }
+
+  var NAMES = { dark: "Dark", dim: "Dim", light: "Light" };
+
+  // What pressing the button will do.
   function label() {
-    if (pinned()) return "System";
-    return system() === "dark" ? "Light" : "Dark";
+    var n = next();
+    return n ? NAMES[n] : "System";
   }
 
   function notify() {
@@ -72,9 +91,9 @@
   }
 
   function toggle() {
-    var next = pinned() ? null : (system() === "dark" ? "light" : "dark");
-    remember(next);
-    apply(next);
+    var value = next();
+    remember(value);
+    apply(value);
     notify();
     return label();
   }
@@ -89,7 +108,7 @@
 
   function wire(button) {
     button.textContent = label();
-    button.title = "Colour scheme: follow Windows, or pin the other one";
+    button.title = "Colour scheme: Dark, Dim (a soft grey) or Light, or follow Windows";
     button.addEventListener("click", function () { toggle(); });
   }
 

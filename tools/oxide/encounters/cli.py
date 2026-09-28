@@ -213,7 +213,8 @@ def cmd_report(args):
     print(f"                 rarest-species median "
           f"{g['uplift_median']:.2f}x, survives on "
           f"{g['uplift_working_frac']:.0%}")
-    print(f"  arc            early {g['hhi_early']:.3f} ({g['n_early']})   "
+    # Median HHI by band; Ian's rule wants early the lowest (the most random).
+    print(f"  bands (HHI)    early {g['hhi_early']:.3f} ({g['n_early']})   "
           f"mid {g['hhi_mid']:.3f} ({g['n_mid']})   "
           f"late {g['hhi_late']:.3f} ({g['n_late']})")
     print(f"  ladder         "

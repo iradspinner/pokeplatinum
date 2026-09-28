@@ -201,6 +201,19 @@ def layout(entry, rates=LAND_RATES):
             raise LayoutError(f"{archetype} has {len(signature)} shares "
                               f"{list(signature)} but the cast lists {len(cast)} species")
         ladder = ladder_for(archetype, entry.get("ladder"))
+    # A table's own variant of its archetype (Ian, 2026-09-28: more shapes,
+    # the same species): `shares` gives each cast line its percentage, in
+    # cast order, in place of the archetype's. The archetype stays the
+    # table's intent, and lint's R4 keeps the variant within its tolerance.
+    if entry.get("shares") is not None:
+        shares = entry["shares"]
+        if (not isinstance(shares, list) or len(shares) != len(cast)
+                or not all(isinstance(s, int) and s > 0 for s in shares)):
+            raise LayoutError(f"shares must list a positive whole percentage for each of the "
+                              f"{len(cast)} cast lines, got {shares!r}")
+        if sum(shares) != sum(rates):
+            raise LayoutError(f"shares sum to {sum(shares)}, not {sum(rates)}")
+        signature = shares
     rungs = rung_index(ladder)
     pins = {k: rung for k, (_, rung) in enumerate(cast) if rung is not None}
     taken = assign_slots(signature, rates, pins, rungs)

@@ -130,6 +130,10 @@ calculator checks fail if the offline ones are lost.
     upstream's `img/` was not vendored. `js/initialize.js` leaves the DeSmuME
     Lua sync button and its emulator link hidden under the "Platinum Oxide"
     title: both serve hzla's DeSmuME build, and Oxide is played on melonDS.
+    A second block further down showed the link again for every Platinum
+    title, and with no `img/` its icon drew as a broken image in the Import /
+    Export panel; since 2026-09-28 that block also leaves it hidden under the
+    title (checked in headless Chrome: no image on the page fails to load).
 
 14. **`js/initialize.js`, Oxide's save tables** (2026-09-27, Ian's save
     plan, step 1). The "Platinum Oxide" branch sets `settings.readIncludes`,

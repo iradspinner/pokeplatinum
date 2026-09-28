@@ -15,10 +15,6 @@
         },
         {
             "level": 36,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 37,
             "species": "SPECIES_PROBOPASS"
         },
         {
@@ -31,7 +27,11 @@
         },
         {
             "level": 37,
-            "species": "SPECIES_DHELMISE"
+            "species": "SPECIES_GOTHORITA"
+        },
+        {
+            "level": 37,
+            "species": "SPECIES_PROBOPASS"
         },
         {
             "level": 37,
