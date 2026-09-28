@@ -3067,6 +3067,15 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
     // personality's colour variation (HueShiftPokemonPalette).
     spriteTemplate->personality = personality;
 
+    // Platinum Oxide: Diamond and Pearl's sprite archives stop at the Egg's
+    // vanilla index, so the species added after Arceus would read past their
+    // end (contests draw with these). They use Platinum's sprites, as the
+    // Platinum-only forms below do.
+    if (species > SPECIES_ARCEUS && species < SPECIES_EGG) {
+        BuildPokemonSpriteTemplate(spriteTemplate, species, gender, face, shiny, form, personality);
+        return;
+    }
+
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {
@@ -3311,6 +3320,12 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
 
 static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
+    // Platinum Oxide: as in BuildPokemonSpriteTemplateDP, the species added
+    // after Arceus have no Diamond and Pearl height entry.
+    if (species > SPECIES_ARCEUS && species < SPECIES_EGG) {
+        return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
+    }
+
     // TODO enum values?
     form = Pokemon_SanitizeFormId(species, form);
 
