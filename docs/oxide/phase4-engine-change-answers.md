@@ -29,6 +29,8 @@ In:
 - Mints (nature setting).
 - Bottle Cap and Gold Bottle Cap (Hyper Training). Needs the summary-screen
   EV/IV viewer to reflect hyper-trained IVs, or the two features will disagree.
+  They work at any level, with no Hyper Training level requirement (Ian,
+  2026-09-27); where they are placed is the balance track's item pass.
 - Fairy-type support: Pixie Plate (Arceus/Judgment), Roseli Berry.
 - New TMs for the new moves. **Ian's note: 92 TMs might not be enough, and TMs
   need a larger pass when balance is done as a whole.** Treat "how many TMs and
