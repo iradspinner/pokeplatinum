@@ -3869,6 +3869,12 @@ static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon)
     Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
 
     for (int i = 0; monLevelUpMoves[i].level != LEARNSET_SENTINEL_ENTRY; i++) {
+        // Platinum Oxide: level 0 is an evolution move, learned only by
+        // evolving into this species, never part of a default moveset.
+        if (monLevelUpMoves[i].level == LEARNSET_EVOLUTION_MOVE_LEVEL) {
+            continue;
+        }
+
         if (monLevelUpMoves[i].level <= monLevel) {
             u16 monLevelUpMoveID = monLevelUpMoves[i].move;
             if (BoxPokemon_AddMove(boxMon, monLevelUpMoveID) == LEARNSET_ALL_SLOTS_FILLED) {
@@ -3999,6 +4005,39 @@ u16 Pokemon_LevelUpMove(Pokemon *mon, int *index, u16 *moveID)
         *moveID = monLevelUpMoves[*index].move;
         (*index)++;
         result = Pokemon_AddMove(mon, *moveID);
+    }
+
+    Heap_Free(monLevelUpMoves);
+    return result;
+}
+
+/**
+ * Platinum Oxide: Pokemon_LevelUpMove for the evolution scene. It also
+ * teaches the new form's evolution moves (learnset level 0, as in the later
+ * games), in the order the learnset lists them, alongside the moves of the
+ * current level. The index and the results are Pokemon_LevelUpMove's.
+ */
+u16 Pokemon_EvolutionLevelUpMove(Pokemon *mon, int *index, u16 *moveID)
+{
+    u16 result = MOVE_NONE;
+    SpeciesLearnsetEntry *monLevelUpMoves = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesLearnset));
+    u16 monSpecies = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    u8 monLevel = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+
+    Pokemon_LoadLevelUpMovesOf(monSpecies, monForm, monLevelUpMoves);
+
+    while (monLevelUpMoves[*index].level != LEARNSET_SENTINEL_ENTRY) {
+        u16 level = monLevelUpMoves[*index].level;
+
+        if (level == LEARNSET_EVOLUTION_MOVE_LEVEL || level == monLevel) {
+            *moveID = monLevelUpMoves[*index].move;
+            (*index)++;
+            result = Pokemon_AddMove(mon, *moveID);
+            break;
+        }
+
+        (*index)++;
     }
 
     Heap_Free(monLevelUpMoves);
@@ -4624,8 +4663,34 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot)
 
 void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, SpeciesLearnsetEntry *monLevelUpMoves)
 {
+#ifdef OXIDE_TESTKIT
+    int species = monSpecies;
+#endif
+
     monSpecies = Pokemon_GetFormNarcIndex(monSpecies, monForm);
     NARC_ReadWholeMemberByIndexPair(monLevelUpMoves, NARC_INDEX_POKETOOL__PERSONAL__WOTBL, monSpecies);
+
+#ifdef OXIDE_TESTKIT
+    // Test kit only: a stand-in evolution move, so the mechanism can be seen
+    // before the balance track gives any species a real one. The kit's Eevee
+    // becomes a Sylveon that learns Moonblast on evolving.
+    if (species == SPECIES_SYLVEON) {
+        int count = 0;
+
+        while (monLevelUpMoves[count].level != LEARNSET_SENTINEL_ENTRY) {
+            count++;
+        }
+
+        if (count < MAX_LEARNSET_ENTRIES) {
+            for (int i = count; i >= 0; i--) {
+                monLevelUpMoves[i + 1] = monLevelUpMoves[i];
+            }
+
+            monLevelUpMoves[0].level = LEARNSET_EVOLUTION_MOVE_LEVEL;
+            monLevelUpMoves[0].move = MOVE_MOONBLAST;
+        }
+    }
+#endif
 }
 
 void PlayCryWithParams(ChatotCry *chatotCry, enum PokemonCryMod cryMod, u16 species, int form, int pan, int volume, int forceDefaultChatot, enum HeapID heapID)
