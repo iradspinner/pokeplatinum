@@ -307,6 +307,17 @@ def save_includes(root=None):
             "abilities": abilities}
 
 
+def met_locations(root=None):
+    """Every met-location name by the id a Pokemon record stores: the game's
+    location-names text bank, the table the OxiDex's save reader names places
+    from. The calculator's own table for Platinum runs on into HeartGold's
+    places past Platinum's ids, so an id Oxide added (Rowan's Briefcase, the
+    starter's) read as New Bark Town until the Oxide profile took this one."""
+    root = root or model.repo_root()
+    with open(os.path.join(root, "res", "text", "location_names.json"), encoding="utf-8") as f:
+        return [m.get("en_US") or "" for m in json.load(f)["messages"]]
+
+
 def build(root=None):
     """The whole blob, as the calculator's loader reads it."""
     root = root or model.repo_root()
@@ -348,6 +359,9 @@ def build(root=None):
         "picker": sorted(poks),
         # The save reader's tables, by the ids an Oxide save stores.
         "includes": save_includes(root),
+        # The met-location names by id, which the Oxide profile puts over the
+        # calculator's Platinum table (a patch, VENDORED.md 17).
+        "met_locations": met_locations(root),
         "oxide_report": report(root),
     }
 
