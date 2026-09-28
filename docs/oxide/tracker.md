@@ -176,6 +176,8 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 
 - **A true 60 fps overworld** (Ian's question, 2026-09-27, on the back burner): the UNLOCK FPS option only skips the wait for the screen refresh, so the game runs faster than real time and battle audio falls behind. Research what hg-engine's "60 fps outside battle" does and whether the overworld can update every frame at half the step, or draw in-between frames, at normal speed; then drop or rename the uncap.
 
+- **Longer Pokemon names, low priority (Ian, 2026-09-28).** Names and nicknames stop at 10 letters, the size of the nickname field in each stored Pokemon's 136-byte record, and a new Pokemon copies its species name into that field, so species names share the cap (the form names had to be shortened to A-NINETALS and the like). The record has no spare room, but the Super Contest ribbons sit beside the name in a 64-bit field and use 20 bits; halving that field gives room for 12 letters, the later games' limit. The cost: 49 uses of `MON_NAME_LEN` in 29 files (the Hall of Fame's stored names among them), the naming keyboard's limit, every window that shows a name at 10 letters' width (summary, party, battle boxes, PC), and a save made before the change reads its Pokemon wrongly, so it lands with a save converter or before a fresh playthrough. Then lengthen the names that were cut to fit (`tools/oxide/form_names.py` for the twelve forms).
+
 ## Decisions made
 
 Each decision lives with the fact it changed: the design doc's sections 3, 4 and 5 and the files they point at.
