@@ -498,12 +498,17 @@ TestKit_RareCandies:
 /* The party count before a gift is the slot the gift lands in. */
 TestKit_Forms:
     GetPartyCount VAR_0x8005
-    GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
+    GoToIfGe VAR_0x8005, 4, TestKit_PartyFull
     GivePokemon SPECIES_ROTOM, 30, ITEM_NONE, VAR_RESULT
     TestKitSetPartyMonForm VAR_0x8005, 2    /* ROTOM_FORM_WASH */
     AddVar VAR_0x8005, 1
     GivePokemon SPECIES_GIRATINA, 50, ITEM_GRISEOUS_ORB, VAR_RESULT
     TestKitSetPartyMonForm VAR_0x8005, 1    /* GIRATINA_FORM_ORIGIN */
+    /* Meloetta changes form only in battle, with Relic Song in its first
+       slot; any of the wild battles on this menu will do. */
+    AddVar VAR_0x8005, 1
+    GivePokemon SPECIES_MELOETTA, 50, ITEM_NONE, VAR_RESULT
+    ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_RELIC_SONG
     Message TestKit_Text_Forms
     GoTo TestKit_WaitAndClose
 

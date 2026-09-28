@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/forms.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -9602,6 +9603,18 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
 
             battleCtx->battleMons[battler].curHP = hp;
             Pokemon_SetValue(mon, MON_DATA_HP, &hp);
+        }
+
+        // Oxide: Meloetta leaves the field as Aria, as in hg-engine, so it
+        // comes back in as Aria. The party record is what the next switch-in
+        // reads, so that is where the form goes back and the stats follow.
+        if (battleCtx->battleMons[battler].species == SPECIES_MELOETTA
+            && Pokemon_GetValue(mon, MON_DATA_FORM, NULL) != MELOETTA_FORM_ARIA) {
+            int form = MELOETTA_FORM_ARIA;
+
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_CalcLevelAndStats(mon);
+            battleCtx->battleMons[battler].formNum = form;
         }
     } else {
         BattleScript_Iter(battleCtx, jumpNoStatusRestore);

@@ -211,6 +211,7 @@ int BattleSystem_GetBattleStyle(BattleSystem *battleSys);
 PokemonAnimManager *BattleSystem_GetPokemonAnimManager(BattleSystem *battleSys);
 ChatotCry *BattleSystem_GetChatotCry(BattleSystem *battleSys, int battler);
 void BattleSystem_SetBurmyForm(BattleSystem *battleSys);
+void BattleSystem_RevertMeloettaForms(BattleSystem *battleSys);
 void BattleSystem_GetBattleParticipantMask(BattleSystem *battleSys, int battler, int partySlot);
 void BattleSystem_EnqueuePokemonHistory(BattleSystem *battleSys, Pokemon *mon);
 void BattleSystem_InitCaptureAttempt(BattleSystem *battleSys, Pokemon *mon);
