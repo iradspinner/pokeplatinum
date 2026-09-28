@@ -62,8 +62,16 @@ KNOWN_LAYOUTS = {
     # Oxide's builds kept these until the Pokedex grew: a save from 2026-09-20
     # has them with its abilities already in Oxide's place.
     (0xCF2C, 0x121E4): "vanilla Platinum's, which Oxide kept until 2026-09-21",
-    (0xD01C, 0x121E4): "Oxide's since the Pokedex grew to 655 species (2026-09-21)",
+    (0xD01C, 0x121E4): "Oxide's from the Pokedex's growth (2026-09-21) until element 7",
+    # Element 7 widened three Bag pockets (2026-09-28), 184 bytes, and the
+    # Bag comes before the variables and flags, so they moved too.
+    (0xD0D4, 0x121E4): "Oxide's since element 7 widened the Bag (2026-09-28)",
 }
+# The layout this build writes. A save on an older one still gives its party
+# (before the Bag) and its boxes (found by their footers), but its variables
+# and flags sit where an older build put them, and a layout change costs a
+# new game, not a converter (Ian, 2026-09-28).
+CURRENT_LAYOUT = (0xD0D4, 0x121E4)
 # BoxPokemon_GetDataBlock: for each shuffle case, the position of blocks
 # A, B, C and D. Cases 24 to 31 repeat 0 to 7.
 BLOCK_POSITIONS = [
@@ -184,6 +192,27 @@ def _entry_body(size):
     return size + 4
 
 
+def _c_value(name, defines, consts, depth=0):
+    """A #define's value as the compiler would work it out: another define,
+    an item constant, or arithmetic over them. Element 7 (2026-09-28) made
+    TMHM_POCKET_SIZE the expression NUM_TMHMS, which a reader taking only
+    numbers dropped, and that put the variables 400 bytes early."""
+    import re
+    if depth > 20:
+        raise SaveError(f"{name}: the defines loop")
+    if name in consts:
+        return consts[name]
+    expr = defines.get(name)
+    if expr is None:
+        if re.fullmatch(r"\d+|0x[0-9a-fA-F]+", name):
+            return int(name, 0)
+        raise SaveError(f"{name}: not a define this reader can resolve")
+    expr = re.sub(r"[A-Za-z_]\w*", lambda m: str(_c_value(m.group(0), defines, consts, depth + 1)), expr)
+    if not re.fullmatch(r"[\d\s()+\-*]+", expr):
+        raise SaveError(f"{name}: '{defines[name]}' is not arithmetic this reader can work out")
+    return eval(expr, {"__builtins__": {}})
+
+
 @functools.lru_cache(maxsize=1)
 def _vars_layout():
     """Where VarsFlags sits in the normal block, and what the level-cap split
@@ -194,7 +223,22 @@ def _vars_layout():
     import re
     root = model.repo_root()
     read = lambda *p: open(os.path.join(root, *p), encoding="utf-8").read()
-    pockets = sum(int(n) for n in re.findall(r"#define \w+_POCKET_SIZE\s+(\d+)", read("include", "bag.h")))
+    # Every pocket's size, the TM pocket's included (NUM_TMHMS since element
+    # 7): the defines of the bag and item headers, item constants by their ids.
+    defines = {}
+    for text in (read("include", "bag.h"), read("include", "constants", "items.h")):
+        for n, v in re.findall(r"^#define[ \t]+(\w+)[ \t]+([^\n]+?)[ \t]*(?://[^\n]*)?$", text, re.M):
+            defines[n] = v
+    items = [line.strip() for line in read("generated", "items.txt").splitlines() if line.strip()]
+    consts = {c: i for i, c in enumerate(c for c in items if not c.startswith("MAX_"))}
+    consts["MAX_ITEMS"] = len(consts)
+    # The pockets are the Bag struct's own arrays (BagItem items[ITEM_POCKET_SIZE];
+    # and so on), not every *_POCKET_SIZE define: items.h has a
+    # BATTLE_POCKET_SIZE of its own, for the battle bag's menu.
+    sizes = re.findall(r"BagItem\s+\w+\[(\w+)\];", read("include", "bag.h"))
+    if len(sizes) < 8:
+        raise SaveError(f"include/bag.h lists {len(sizes)} pockets; this reader expects 8")
+    pockets = sum(_c_value(n, defines, consts) for n in sizes)
     party = 4 + 4 + 6 * PARTY_RECORD
     bag = pockets * 4 + 4
     values, last = {}, -1
@@ -226,12 +270,20 @@ def _vars_layout():
             "num_flags": flags, "values": values, "splits": splits, "caps": caps}
 
 
-def _progress(data, n0):
+OLDER_LAYOUT = ("made on an older layout than this build's, so its variables and flags "
+                "are not where this build keeps them; a new game on this ROM reads in full "
+                "(a layout change costs a new game, Ian, 2026-09-28)")
+
+
+def _progress(data, n0, current=True):
     """The trainer's money and badges, and the level-cap split: what the
-    save says about how far the player is."""
+    save says about how far the player is. The split is left out of a save
+    on an older layout (`current` False), whose variables have moved."""
     money, = struct.unpack_from("<I", data, n0 + 0x7C)
     mask = data[n0 + 0x82]
     out = {"money": money, "badge_mask": mask, "badges": bin(mask).count("1"), "split": None}
+    if not current:
+        return out
     lay = _vars_layout()
     var = lay["values"].get("VAR_LEVEL_CAP_SPLIT")
     if var is not None:
@@ -242,9 +294,13 @@ def _progress(data, n0):
 
 
 def flag(data, name):
-    """Whether a named flag is set in a save's newest normal block."""
+    """Whether a named flag is set in a save's newest normal block. A save on
+    an older layout is refused rather than read at the wrong place."""
     lay = _vars_layout()
-    n0 = blocks(data)[BLOCK_NORMAL]["start"]
+    found = blocks(data)
+    if found[BLOCK_NORMAL]["size"] != CURRENT_LAYOUT[0]:
+        raise SaveError("this save was " + OLDER_LAYOUT)
+    n0 = found[BLOCK_NORMAL]["start"]
     i = lay["values"][name]
     at = n0 + lay["at"] + 2 * lay["num_vars"] + i // 8
     return bool(data[at] >> (i % 8) & 1)
@@ -371,7 +427,8 @@ def parse(data, path="(memory)"):
         "blocks": {k: {x: v[x] for x in ("copy", "start", "size", "save_counter", "block_counter")}
                    for k, v in found.items()},
         "footers": footers(data),
-        "trainer_id": tid, "secret_id": sid, "progress": _progress(data, n0),
+        "trainer_id": tid, "secret_id": sid,
+        "progress": _progress(data, n0, normal["size"] == CURRENT_LAYOUT[0]),
         "party": party, "boxes": boxes, "box_count": box_count, "current_box": current_box,
     }
     save["era"] = build_era(save)
@@ -424,7 +481,10 @@ def build_era(save):
     layout = KNOWN_LAYOUTS.get(sizes)
     signs, mismatches = [], []
     mons = save["party"] + save["boxes"]
-    if layout:
+    if layout and sizes[0] != CURRENT_LAYOUT[0]:
+        mismatches.append(f"block sizes {sizes[0]:#x} and {sizes[1]:#x} are {layout}: "
+                          f"{OLDER_LAYOUT}")
+    elif layout:
         signs.append(f"block sizes {sizes[0]:#x} and {sizes[1]:#x} are {layout}")
     else:
         mismatches.append(f"block sizes {sizes[0]:#x} and {sizes[1] or 0:#x} match no known "
