@@ -3556,8 +3556,8 @@ TestKit_ItemAirBalloon:
     GoTo TestKit_GiveItemPair
 
 /* The Binding Band: Mew against a wild Chansey that knows only Splash. After
-   the banded Mew's Wrap, Chansey loses an eighth of its HP at the end of
-   each turn; after the other Mew's, a sixteenth. */
+   the banded Mew's Wrap, Chansey loses a sixth of its HP at the end of
+   each turn; after the other Mew's, an eighth. */
 TestKit_ItemBindingBand:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
