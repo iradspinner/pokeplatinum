@@ -106,3 +106,8 @@ read, so they are written here too. Each is a standing instruction.
   single-use TMs too, and Fly, Strength, Defog and Rock Climb need buffs to
   earn a place. Egg move lists serve only as trainer teams' palette: a
   nuzlocke has no breeding.
+- A change that moves what the save stores costs Ian a fresh start, not a
+  save converter (Ian, 2026-09-28, on element 7's bigger Bag): he starts a
+  new game on the first ROM with the change, and again after each later
+  one (the TM pass's Bag growth, 30 boxes). Tell him before the landing
+  which ROM starts the new game, and keep the OxiDex's save reader in step.

@@ -36,10 +36,12 @@ These have moved a save before, each found the hard way:
 
 ## 2. Decide whether Ian's save survives
 
-While Ian is mid-run, a change keeps his save loading and playing. If it
-cannot, stop and ask him before building, since a fresh start costs him his
-run. The "start a new game" notes in `save-layout.md` date from before he
-began playing.
+Ian ruled (2026-09-28, on element 7's bigger Bag) that a change which
+stops his save loading costs him a fresh start, not a save converter. So
+no converter is written; before the landing, tell him the change breaks
+his save and which ROM starts the new game, and note it in the landing's
+report. A change that can keep his save loading at no real cost still
+should (Meloetta kept the Pokedex arrays at their size).
 
 ## 3. Prove it
 
