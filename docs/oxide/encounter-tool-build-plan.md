@@ -1010,12 +1010,22 @@ that stay. None blocks anything.
    its tabs and battle counts for the Fragsheet. The save reader now sets
    the log's footers aside. Tested on saves built byte by byte (test_battlelog
    22/22, savefile 14/14, savewatch 8/8, each run twice); Ian's saves predate
-   the log and read as empty. Two things wait. The reader must read a log
-   that a real ROM wrote before the branch lands. The Fragsheet still uses
-   vanilla Platinum's nine gym splits and caps for Oxide, because it matches
-   the title "Platinum Oxide" to "Platinum". Its tab strip has nine split
-   slots against Oxide's thirteen splits, so Ian must say which way to fit
-   them.
+   the log and read as empty. The Fragsheet had used vanilla Platinum's
+   nine gym splits and caps for Oxide, because it matched the title
+   "Platinum Oxide" to "Platinum". Ian's answer (2026-09-28) was to widen it
+   to all thirteen splits, with Oxide's names and caps, matching the Battle
+   Log (VENDORED.md patch 19). The calculator's blob now carries the splits.
+   The Fragsheet has thirteen tabs and columns, and its stats view moved
+   past them. Checked in headless Chrome on a save with a synthetic log: the
+   Battle Log shows each battle under its split, and the Fragsheet counts
+   knock-outs by split. Like every save-file log in the calculator, the
+   Fragsheet counts only the last battle against each trainer, so a lost
+   first attempt at a leader drops out. Suites after the change:
+   test_battlelog 25/25, m8 98/98, savewatch 8/8, each run twice. The
+   engine side landed on oxide (e34a5ffc6), and its source matches the
+   reader field for field. One thing waits before the branch lands: the
+   reader must read a log from a real game, a save from Ian's in-game check
+   (two trainers, then save).
 
 ## Standing rules
 
