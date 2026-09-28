@@ -80,7 +80,7 @@ read, so they are written here too. Each is a standing instruction.
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
 - Until the new CPU is in, a local session runs at most three heavy jobs at
-  once across all sessions, each pinned to its own performance core, with
+  once across all sessions, each pinned to its own virtual CPU, with
   turbo boost off and every result checked by a second run (Ian,
   2026-09-27). Local builds stay on GitHub. A cloud session's VM is healthy
   and is not bound by this.
