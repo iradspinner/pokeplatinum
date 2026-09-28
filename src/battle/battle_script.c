@@ -10147,9 +10147,9 @@ static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCt
  * side, it fainted to an earlier hazard, or it is not on the ground.
  *
  * Otherwise it is caught, and calcTemp says what followed, with the message in
- * the buffer: 0 when its Speed fell, 1 when Clear Body or White Smoke kept it,
- * 2 when its Speed was already at the lowest stage, or with Contrary already
- * at the highest, and 3 when Contrary raised it instead (element 5). The drop is made here
+ * the buffer: 0 when its Speed fell, 1 when Clear Body, White Smoke or a
+ * Clear Amulet kept it, 2 when its Speed was already at the lowest stage, or
+ * with Contrary already at the highest, and 3 when Contrary raised it instead (element 5). The drop is made here
  * rather than through ChangeStatStage, whose checks turn on who attacked, and
  * nothing attacked. As in hg-engine, Magic Guard and Mist do not stop it.
  *
@@ -10193,6 +10193,16 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
             mon->statBoosts[BATTLE_STAT_SPEED]++;
             battleCtx->calcTemp = 3;
         }
+    } else if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_CLEAR_AMULET) {
+        // Oxide: a Clear Amulet keeps the web from lowering its holder's
+        // Speed, as Clear Body does, since another battler laid it (Ian,
+        // 2026-09-28, the later games' rule). It is checked after Contrary,
+        // which turns the drop into a rise the amulet does not stop.
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM;
+        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        battleCtx->msgBuffer.params[1] = mon->heldItem;
+        battleCtx->calcTemp = 1;
     } else if (mon->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE) {
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} won't go lower!"
         battleCtx->calcTemp = 2;

@@ -3433,14 +3433,17 @@ TestKit_ItemCovertCloak:
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveItemPair
 
-/* The Clear Amulet: Mew against a wild Chansey that knows only Growl.
-   Each Growl at the Mew wearing it brings "MEW's Clear Amulet prevents
-   stat loss!"; the other Mew's Attack falls. Its own Swords Dance works. */
+/* The Clear Amulet: Mew against a wild Chansey that knows Growl and Sticky
+   Web. Each Growl at the Mew wearing it brings "MEW's Clear Amulet prevents
+   stat loss!"; the other Mew's Attack falls. Its own Swords Dance works.
+   Once Chansey has laid the web, the Mew wearing it switched in is "caught
+   in a sticky web!" and then the amulet prevents the loss; the other Mew's
+   Speed falls. */
 TestKit_ItemClearAmulet:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
-    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x8003, MOVE_STICKY_WEB
     SetVar VAR_0x800A, SPECIES_MEW
     SetVar VAR_0x800B, ABILITY_NONE
     SetVar VAR_0x8004, ITEM_CLEAR_AMULET
