@@ -115,6 +115,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
     battleCtx->battleMons[battler].airBalloonAnnounced = FALSE; // Oxide, element 7
+    battleCtx->battleMons[battler].evolutionRead = FALSE; // Oxide, element 7: read again for the new species
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].friskFoesFound = 0;
@@ -7939,16 +7940,26 @@ static BOOL Move_IsPunching(int move)
     return FALSE;
 }
 
-// Oxide, element 7: whether a species can still evolve, for the Eviolite.
-// A species can when its evolution record's first slot is in use, which is
-// hg-engine's test.
-static BOOL Species_CanEvolve(int species)
+// Oxide, element 7: whether a battler's species can still evolve, for the
+// Eviolite. A species can when its evolution record's first slot is in use,
+// which is hg-engine's test. The record is read from the archive once per
+// battler, the first time a damage calculation asks, and kept in two bits of
+// the battler until it switches in again; the AI's scoring asks this for
+// every move it weighs, so a read on every ask would be many file reads.
+static BOOL Battler_CanEvolve(BattleContext *battleCtx, int battler)
 {
-    u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
-    SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
+    BattleMon *mon = &battleCtx->battleMons[battler];
 
-    NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, species);
-    return evolutions[0].method != EVO_NONE;
+    if (mon->evolutionRead == FALSE) {
+        u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
+        SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
+
+        NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, mon->species);
+        mon->canEvolve = evolutions[0].method != EVO_NONE;
+        mon->evolutionRead = TRUE;
+    }
+
+    return mon->canEvolve;
 }
 
 typedef struct DamageCalcParams {
@@ -8281,7 +8292,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (attackerParams.heldItemEffect == HOLD_EFFECT_PUNCHING_GLOVE && Move_IsPunching(move)) {
         movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
     }
-    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && Species_CanEvolve(defenderParams.species)) {
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && Battler_CanEvolve(battleCtx, defender)) {
         defenseStat = defenseStat * 150 / 100;
         spDefenseStat = spDefenseStat * 150 / 100;
     }

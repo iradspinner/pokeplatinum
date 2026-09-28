@@ -80,7 +80,8 @@ typedef struct BattleMon {
     u8 type2;
     u8 formNum : 5;
     u8 isShiny : 1;
-    u8 padding0026_06 : 2;
+    u8 evolutionRead : 1; // Oxide, element 7: canEvolve holds the species' answer, for the Eviolite, from the padding
+    u8 canEvolve : 1; // Oxide, element 7: the species can still evolve; Transform copies both bits with the species
     u16 ability; // Platinum Oxide: u16, ability ids run past 255
 
     u32 weatherAbilityAnnounced : 1;
