@@ -1116,7 +1116,7 @@ function drawDexDetail() {
             <div class="head"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
               <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a></div>
             ${metList(m.captures)}
-          </div>`).join("")}</div>`).join('<div class="down">&#8964;</div>')}
+          </div>`).join("")}</div>`).join('<div class="down">⌄</div>')}
       </div>
       ${d.evolutions.length ? `<div class="sub" style="margin-top:6px">
         ${d.evolutions.map(e => `${esc(d.name)} &rarr; ${esc(e.label || "")}
