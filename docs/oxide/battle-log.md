@@ -98,12 +98,34 @@ every read.
 |---|---|---|
 | 0x00 | 4 | magic, the bytes `OXBN` |
 | 0x04 | 4 | the same four bytes, inverted |
-| 0x08 | 2 | version, 1 |
-| 0x0A | 2 | size of this struct, 0x20 |
+| 0x08 | 2 | version, 2 |
+| 0x0A | 2 | size of this struct, 0x2C |
 | 0x0C | 4 | the SaveData |
 | 0x10 | 4 | the party |
 | 0x14 | 4 | the PC boxes |
 | 0x18 | 4 | the battle log's RAM copy (the table above) |
 | 0x1C | 4 | during a battle, the BattleContext; otherwise 0 |
+| 0x20 | 4 | the TrainerInfo |
+| 0x24 | 2 | the number of PC boxes, 18 |
+| 0x26 | 2 | entries in the layout table, 9 |
+| 0x28 | 4 | the layout table: u16 values the compiler worked out, so a reader needs no per-build offsets |
 
-Pointers are main-RAM addresses (0x02xxxxxx).
+Pointers are main-RAM addresses (0x02xxxxxx). Version 1 (2026-09-28, the
+battle log's first build) stopped at 0x20. The layout table, in order, with
+today's values:
+
+| Entry | Value | Meaning |
+|---|---|---|
+| 0 | 0x10 | the u32 id in the TrainerInfo: trainer id in the low half, secret id in the high |
+| 1 | 0x49B4 | the four battlers' BattleMon records in the BattleContext |
+| 2 | 0xC4 | the size of one BattleMon |
+| 3 | 0x00 | a BattleMon's species, u16 |
+| 4 | 0x38 | its level, u8 |
+| 5 | 0x50 | its current HP, s32 |
+| 6 | 0x54 | its maximum HP, u32 |
+| 7 | 0xEC | the size of a party Pokemon, 236 |
+| 8 | 0x88 | the size of a boxed Pokemon, 136 |
+
+The party is a Party: s32 capacity, s32 count, then six 236-byte records.
+The boxes are a PCBoxes: u32 current box, then each box's 30 records of 136
+bytes, box after box.

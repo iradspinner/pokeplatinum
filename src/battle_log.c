@@ -1,6 +1,7 @@
 #include "battle_log.h"
 
 #include <nitro.h>
+#include <stddef.h>
 #include <string.h>
 
 #include "constants/heap.h"
@@ -8,10 +9,17 @@
 
 #include "savedata/save_table.h"
 
+#include "battle/battle_context.h"
+#include "battle/battle_mon.h"
+
 #include "heap.h"
 #include "math_util.h"
 #include "party.h"
+#include "pc_boxes.h"
+#include "pokemon.h"
+#include "save_player.h"
 #include "savedata.h"
+#include "trainer_info.h"
 
 // Platinum Oxide: the last 60 trainer battles, for the OxiDex (Ian,
 // 2026-09-27; docs/oxide/battle-log.md has the byte layout).
@@ -44,19 +52,36 @@
 typedef char BattleLogRecordIs58Bytes[(sizeof(BattleLogRecord) == 58) ? 1 : -1];
 typedef char BattleLogIs0xDB8Bytes[(sizeof(BattleLog) == 0xDB8) ? 1 : -1];
 typedef char BattleLogFitsASector[(sizeof(BattleLog) <= SAVE_SECTOR_SIZE) ? 1 : -1];
+typedef char OxideBeaconIs0x2CBytes[(sizeof(OxideBeacon) == 0x2C) ? 1 : -1];
 
 // Found by the live export by its two magic words, so it needs no per-build
 // addresses (docs/oxide/battle-log.md, "The RAM beacon").
+static const u16 sBeaconLayout[BEACON_LAYOUT_COUNT] = {
+    [BEACON_LAYOUT_TRAINER_ID] = offsetof(TrainerInfo, id),
+    [BEACON_LAYOUT_BATTLE_MONS] = offsetof(BattleContext, battleMons),
+    [BEACON_LAYOUT_BATTLE_MON_SIZE] = sizeof(BattleMon),
+    [BEACON_LAYOUT_BATTLE_MON_SPECIES] = offsetof(BattleMon, species),
+    [BEACON_LAYOUT_BATTLE_MON_LEVEL] = offsetof(BattleMon, level),
+    [BEACON_LAYOUT_BATTLE_MON_CUR_HP] = offsetof(BattleMon, curHP),
+    [BEACON_LAYOUT_BATTLE_MON_MAX_HP] = offsetof(BattleMon, maxHP),
+    [BEACON_LAYOUT_PARTY_RECORD_SIZE] = sizeof(Pokemon),
+    [BEACON_LAYOUT_BOX_RECORD_SIZE] = sizeof(BoxPokemon),
+};
+
 OxideBeacon gOxideBeacon = {
     OXIDE_BEACON_MAGIC,
     ~OXIDE_BEACON_MAGIC,
-    1,
+    2,
     sizeof(OxideBeacon),
     NULL,
     NULL,
     NULL,
     NULL,
     NULL,
+    NULL,
+    MAX_PC_BOXES,
+    BEACON_LAYOUT_COUNT,
+    sBeaconLayout,
 };
 
 static BattleLog *BattleLog_Ptr(SaveData *saveData)
@@ -124,6 +149,7 @@ static void BattleLog_PointBeacon(SaveData *saveData)
     gOxideBeacon.party = SaveData_GetParty(saveData);
     gOxideBeacon.pcBoxes = SaveData_GetPCBoxes(saveData);
     gOxideBeacon.battleLog = BattleLog_Ptr(saveData);
+    gOxideBeacon.trainerInfo = SaveData_GetTrainerInfo(saveData);
 }
 
 void BattleLog_Load(SaveData *saveData)
