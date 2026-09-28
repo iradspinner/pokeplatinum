@@ -1120,6 +1120,28 @@ that stay. None blocks anything.
    level-up table and a move's learner list show "Evo". No species had one
    yet, so the test patches a stand-in into Politoed's learnset.
 
+41. **Regional forms reached by a stone (Ian, 2026-09-28, relayed by the
+   Overseer).** The main track gave Koffing and Ponyta a Moon Stone branch
+   into Galarian Weezing and Galarian Rapidash; Vulpix's Ice Stone into
+   Alolan Ninetales follows with element 7's cloud follow-up. Ian ruled
+   each pair one family for the dupes clause (design doc 2.6), so the
+   OxiDex's lines join them: 239 lines became 237, Koffing's with Galarian
+   Weezing and Ponyta's with Galarian Rapidash, and Vulpix's will make it
+   236. Within a family a regional form is a branch (`dex.branch_of`: the
+   form and its later stages) with its own home: Galarian Weezing stays at
+   home at Stark Mountain and Galarian Rapidash on Route 230, beside
+   Koffing's and Ponyta's homes, and a table may hold two branches of one
+   family. A branch is also reached caught as its base and evolved, from
+   the later of the base's first split and the stone's first split in the
+   balance track's census (`pool.evolution_items_first`). Galarian Rapidash
+   opens in Gardenia's split that way, and Galarian Weezing in Maylene's,
+   against the Galactic split wild. Stones count as reachable, not
+   budgeted, until Ian asks. availability.md lists each branch's routes.
+   The Box sim's side, evolving a caught Pokemon by the stone from its split,
+   comes next on this branch's successor. In the same batch, the twelve form
+   species gained short in-game names (A-NINETALS); the OxiDex keeps the
+   folder's name for them (Alolan Ninetales), from form_names.py's table.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule

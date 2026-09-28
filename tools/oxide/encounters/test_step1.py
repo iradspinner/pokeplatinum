@@ -122,9 +122,11 @@ def check_r12(results):
     # pick-list (2026-09-26), and 238 since Fomantis evolves into Lurantis
     # (main-scripts, 2026-09-27), one line. 239 since Remoraid and Mantyke
     # are two lines again (2026-09-27): the tool read the Remoraid that
-    # Mantyke's party method names as its evolution and joined them.
+    # Mantyke's party method names as its evolution and joined them. 237 since
+    # the Moon Stone takes Koffing to Galarian Weezing and Ponyta to Galarian
+    # Rapidash (main-galar-stones, 2026-09-28): one family each, Ian's ruling.
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 239
+                    avail is not None and len(avail) == 237
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",
