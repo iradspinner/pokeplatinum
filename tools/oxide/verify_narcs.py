@@ -613,7 +613,8 @@ DIVERGED_MEMBERS = {
     },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
-                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447}
+                    42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447,
+                    37}
                    | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
@@ -623,7 +624,8 @@ DIVERGED_MEMBERS = {
                "Buneary, Chingling, Munchlax, Riolu and Luvdisc evolve by level, "
                "Budew at the Moss Rock, Eevee's Espeon and Umbreon by Sun and "
                "Moon Stone; and sixteen lose the trade entries the base ROM left "
-               "beside its level-up routes (element 8)",
+               "beside its level-up routes (element 8); Vulpix gains the "
+               "Ice Stone's Alolan Ninetales (Ian, 2026-09-28)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
