@@ -206,12 +206,17 @@ def _vars_layout():
             name, last = line, last + 1
         values[name] = last
     flags = int(re.search(r"#define NUM_FLAGS\s+(\d+)", read("include", "vars_flags.h")).group(1))
-    splits = dict((int(v), n.title()) for n, v in
+    # The splits by the names the rest of the tool uses (progression.SPLITS:
+    # "HQ", not "Hq"); the one after the Champion, which has no cap, is Post.
+    from . import progression
+    canonical = {sp.upper(): sp for sp in progression.SPLITS}
+    canonical["NONE"] = "Post"
+    splits = dict((int(v), canonical.get(n, n.title())) for n, v in
                   re.findall(r"#define LEVEL_CAP_SPLIT_(\w+)\s+(\d+)", read("include", "constants", "level_caps.h"))
                   if n != "COUNT")
     caps = {}
     for n, v in re.findall(r"\[LEVEL_CAP_SPLIT_(\w+)\] = (\w+)", read("src", "system_vars.c")):
-        caps[n.title()] = int(v) if v.isdigit() else 100
+        caps[canonical.get(n, n.title())] = int(v) if v.isdigit() else 100
     return {"at": PARTY_AT + _entry_body(party) + _entry_body(bag),
             "vars_start": values["VARS_START"], "num_vars": values["VARS_END"] - values["VARS_START"],
             "num_flags": flags, "values": values, "splits": splits, "caps": caps}
@@ -277,7 +282,7 @@ def read_mon(raw, where):
     ivs = struct.unpack_from("<I", b, 0x10)[0]
     form = b[0x18] >> 3
     ability_id = struct.unpack_from("<H", b, 0x1A)[0]
-    met = struct.unpack_from("<H", b, 0x1E)[0]
+    egg, met = struct.unpack_from("<HH", b, 0x1C)
 
     def name(kind, i, prefix):
         seq = t[kind]
@@ -302,6 +307,9 @@ def read_mon(raw, where):
         "ivs": [ivs >> (5 * i) & 31 for i in range(6)],
         "evs": list(a[0x10:0x16]),
         "met_location": t["places"][met] if met < len(t["places"]) else f"#{met}",
+        # Where an egg came from (a gift or the Day Care), kept once it hatches;
+        # 0 for a Pokemon that was never an egg.
+        "egg_location": (t["places"][egg] if egg < len(t["places"]) else f"#{egg}") if egg else None,
         "met_level": d[0x1C] & 0x7F, "ball": d[0x1B],
     }
     if len(raw) >= PARTY_RECORD:

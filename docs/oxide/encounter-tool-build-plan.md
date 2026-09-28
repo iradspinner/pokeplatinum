@@ -972,6 +972,26 @@ that stay. None blocks anything.
    checkout's build of 2026-09-22; the GitHub build of the pushed commit is
    the check that counts. The swaps change the player's pool, so the Balance
    Agent rescores what they stale before they land.
+35. **The Box sim follows the save (Ian's requests 1 to 3, 2026-09-27,
+   through the Overseer).** Every place's row has a drop list of what it can
+   give, plus "leave unused"; a pick locks the place and the run replays for
+   the best box around it (`run`'s `locks`, kept in the browser). "Start from
+   my save" reads the save the Sync bridge watches (`start_from_save`): each
+   Pokemon spends the place it was met, or its egg's source, matched to the
+   sim's places by name and, for Mt. Coronet's captures, by its tables; the
+   graveyard is the last box and, while that is full, the one before it
+   (Ian's rule); the Caught list's ticks count too, for an encounter that
+   left nothing in the save; and the run resumes in the save's level-cap
+   split, with places left behind still open. "How sure is it?" replays the
+   run 40 times from there (`confidence`) and gives, for the next ten places,
+   the call most replays make, how often, and its lead over the next best;
+   to the League it takes about two seconds. The save reader's split names
+   are now the simulator's ("HQ", "Post"). Checked in headless Chrome on a
+   copy of Ian's save of 2026-09-27 (Scorbunny, Starly, Bidoof, Sentret,
+   Dottler, Nidoran): six places spent, the run resumed in Roark's split.
+   Suites: sim 15/15 (four new checks), savefile 13/13, savewatch 8/8, m8
+   98/98, m4 51/51. Request 4 (the Fragsheet and the automatic battle log)
+   waits on the main track's save-log layout.
 
 ## Standing rules
 
