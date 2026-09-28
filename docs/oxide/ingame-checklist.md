@@ -157,6 +157,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   failed!") comes before Mew's Extreme Speed every turn, though Mew is far
   faster. Minimize says "sharply rose!". Mew's summary shows Minimize at 3 PP.
 
+- [ ] **The new species on the field** (the "Sprite heights" entry, with
+  `main-sprite-heights` merged). Four wild Pokemon come in turn: Wooloo,
+  Rookidee and Fletchling stand on their shadows, and Sinistea hovers a
+  little above its own. Run from each. In ordinary play, any new species
+  that still floats clear of its shadow, or sinks into it, is worth a note
+  with its name.
+
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's

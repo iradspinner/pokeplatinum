@@ -57,6 +57,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Wild Glameow | a wild Glameow, Lv. 1, which knows only Fake Out | a priority move on the first turn, for Quick Guard (set 30) |
 | Abilities | a Lv. 50 Pokemon that carries one of the new abilities, set on it whatever its personality rolls, with four moves, over three pages, the third for the natives' hidden abilities (entries below) | element 5's ability effects |
 | Modern rules | a Lv. 50 Pokemon with four moves, and a wild foe, for each of the staples survey's engine rulings (entries below) | the later games' native abilities, type immunities, critical hits, Defog and Rapid Spin |
+| Sprite heights | four wild Pokemon at Lv. 5 in turn: Wooloo, Sinistea, Rookidee, Fletchling | the new species' placement: the first, third and fourth stand on their shadows, Sinistea hovers just above |
 | Level caps | puts the player in any of the thirteen level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop |
 
