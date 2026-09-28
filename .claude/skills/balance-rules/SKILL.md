@@ -101,6 +101,13 @@ is listed for Ian.
   element 4 follow-up; Synchronoise and the other broken ones stay out.
 - Move numbers, setup PP and the no-weather rule for the player are in the
   standing rulings; they bind every learnset too.
+- **Every line learns something late** (2026-09-28): each final stage the
+  player can own gets at least one real level-up move at 61 or later.
+- **Stone and item evolutions** (2026-09-28) get their own sparser list after
+  evolving, never a copy of the pre-evolution's later moves, so evolving early
+  still costs something. Evolution moves (a level-0 entry, learned on
+  evolving) are used sparingly, each listed for Ian; Alolan Ninetales, reached
+  from Vulpix with an Ice Stone, learns Aurora Beam that way.
 
 ## Fights and trainers
 
@@ -137,6 +144,14 @@ is listed for Ian.
 - Bottle Caps work at any level and should be more common late but usable
   throughout. Exactly one Ability Patch exists. Argenta's Frontier reward is
   items, which the item pass picks. Prices are set when shops are stocked.
+
+## TMs, tutors and egg lists
+
+The standing rulings hold the TM rules of 2026-09-28: single-use with copies
+per placement, weak TMs as rewards from one optional trainer each, about 100
+TMs, Ian's removals, strong TMs no earlier than each flagged line's first good
+move of that type, the HMs turned into TMs with buffs, and egg lists as the
+trainers' palette only.
 
 ## Running a pass on this machine
 
