@@ -1075,6 +1075,10 @@
                 "TM01, TM92, HM01 and HM08\n",
                 "are in the TM Case."
             ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemContrary",
+            "en_US": "Contrary on items"
         }
     ]
 }

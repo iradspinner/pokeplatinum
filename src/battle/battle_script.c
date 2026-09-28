@@ -3094,8 +3094,12 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
+            // Oxide: an item's change that cannot be made passes in silence,
+            // as an added effect's does; the item's own message has said
+            // enough (Weakness Policy with one stat already at the limit).
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
-                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
                 SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher_Ally, statOffset); // "{0}'s {1} won't go higher!"
@@ -3105,7 +3109,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally, statOffset); // "{0}'s {1} raised its {2}!"
             } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
-                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
+                // Oxide: two stages or more (the Weakness Policy, the Starf
+                // Berry, Simple) say "sharply".
+                battleCtx->msgBuffer.id = stageChange >= 2
+                    ? BattleStrings_Text_TheItemSharplyRaisedPokemonsStat_Ally // "The {0} sharply raised {1}'s {2}!"
+                    : BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
                 battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
                 battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                 battleCtx->msgBuffer.params[1] = battleCtx->msgItemTemp;
@@ -3140,6 +3148,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         // no Mirror Armor, and the games name the ability in a message first,
         // which this leaves out. Mold Breaker ignores it.
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE
+            && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM
             && battleCtx->attacker != battleCtx->sideEffectMon
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
             && battleCtx->battleMons[battleCtx->attacker].curHP
@@ -3149,7 +3158,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
-            if (battleCtx->attacker != battleCtx->sideEffectMon) {
+            // Oxide: a held item lowering its own holder's stat (a raise
+            // Contrary turned round) is not another battler's doing, so
+            // Mist, the Clear Amulet and the rest do not stop it.
+            if (battleCtx->attacker != battleCtx->sideEffectMon
+                && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM) {
                 if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns
                     && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INFILTRATOR) { // Oxide: Infiltrator passes Mist
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
@@ -3240,7 +3253,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
                 if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
-                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
+                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) { // Oxide, as for a rise
                     BattleScript_Iter(battleCtx, jumpBlocked);
 
                     return FALSE;
@@ -3293,6 +3307,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         // Defiant or Competitive, once per stat, after the drop's message
         // (TryDefiant in the stat-stage subscript).
         if (battleCtx->attacker != battleCtx->sideEffectMon
+            && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)) {
             battleCtx->selfTurnFlags[battleCtx->sideEffectMon].defiantPending = TRUE;
         }

@@ -3205,6 +3205,7 @@ TestKit_Items:
     AddListMenuEntry TestKit_Text_MenuItemAbilities, 22
     AddListMenuEntry TestKit_Text_MenuItemMintsCaps, 23
     AddListMenuEntry TestKit_Text_MenuItemTMs, 24
+    AddListMenuEntry TestKit_Text_MenuItemContrary, 25
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_ItemsAll
     GoToIfEq VAR_0x8004, 1, TestKit_ItemEviolite
@@ -3231,6 +3232,7 @@ TestKit_Items:
     GoToIfEq VAR_0x8004, 22, TestKit_ItemAbilities
     GoToIfEq VAR_0x8004, 23, TestKit_ItemMintsCaps
     GoToIfEq VAR_0x8004, 24, TestKit_ItemTMs
+    GoToIfEq VAR_0x8004, 25, TestKit_ItemContrary
     GoTo TestKit_Close
 
 TestKit_ItemsAll:
@@ -3696,6 +3698,26 @@ TestKit_ItemRoseliBerry:
     SetVar VAR_0x8007, MOVE_SPLASH
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_DRAGON_CLAW
+    GoTo TestKit_GiveItemPair
+
+/* Contrary on an item's stat raise: Snorlax given Contrary, against a wild
+   Machamp that knows only Karate Chop. The first chop into the Snorlax
+   holding a Weakness Policy (super effective) brings "SNORLAX's Attack
+   harshly fell!" and the same for its Sp. Atk, and the policy is gone; the
+   other Snorlax's stats stay. The Absorb Bulb, Cell Battery, the stat
+   Berries and the Mirror Herb follow the same rule (element 7 follow-up). */
+TestKit_ItemContrary:
+    SetVar VAR_0x8000, SPECIES_MACHAMP
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_KARATE_CHOP
+    SetVar VAR_0x8003, MOVE_NONE
+    SetVar VAR_0x800A, SPECIES_SNORLAX
+    SetVar VAR_0x800B, ABILITY_CONTRARY
+    SetVar VAR_0x8004, ITEM_WEAKNESS_POLICY
+    SetVar VAR_0x8006, MOVE_REST
+    SetVar VAR_0x8007, MOVE_BODY_SLAM
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveItemPair
 
 /* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
