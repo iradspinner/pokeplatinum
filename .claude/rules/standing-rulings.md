@@ -84,3 +84,7 @@ read, so they are written here too. Each is a standing instruction.
   turbo boost off and every result checked by a second run (Ian,
   2026-09-27). Local builds stay on GitHub. A cloud session's VM is healthy
   and is not bound by this.
+- A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
+  attempts, at a boss or anywhere. Every fight is scored and designed as a
+  first and only attempt; a boss's planned team comes from knowing the fight
+  in advance, never from an earlier loss.
