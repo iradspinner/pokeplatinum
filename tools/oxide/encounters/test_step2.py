@@ -41,9 +41,10 @@ def main():
     # and 239 with the 34 lines of the Platinum-size pick-list (all 2026-09-26)
     # 238 since Fomantis evolves into Lurantis (main-scripts, 2026-09-27), one line,
     # and 239 since Remoraid and Mantyke are two lines again (the same day: the
-    # tool read the Remoraid in Mantyke's party method as its evolution).
-    results.append(("every one of the 239 lines has a row",
-                    len(rows) == 239, f"{len(rows)} rows"))
+    # tool read the Remoraid in Mantyke's party method as its evolution), and
+    # 240 with Meloetta's line (2026-09-27).
+    results.append(("every one of the 240 lines has a row",
+                    len(rows) == 240, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))

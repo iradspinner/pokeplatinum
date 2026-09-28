@@ -23,7 +23,7 @@ def check_species(results):
     # 493 natives plus the 159 Phase 4 added; SPECIES_NONE, EGG and BAD_EGG are
     # not species and are left out.
     results.append(("every species in the tree has a folder and a record",
-                    len(names) == 652 and "SPECIES_NONE" not in names
+                    len(names) == 653 and "SPECIES_NONE" not in names
                     and all(pokedex.load(root, n) for n in names[:40]),
                     f"{len(names)} species"))
 
@@ -170,7 +170,7 @@ def check_captures(results):
 
     # D3 draws a party icon beside every slot, and the page finds it by
     # lowercasing the species constant rather than asking. That holds for all
-    # 652 species today; this is what notices if a table ever names one it does
+    # 653 species today (Meloetta, 2026-09-27); this is what notices if a table ever names one it does
     # not hold for, which would be a broken image in the middle of a table.
     root = model.repo_root()
     iconless = [s for s in caught
@@ -183,7 +183,7 @@ def check_endpoints(results):
     out = server.dex_list()
     results.append(("the list endpoint returns one row per species, with the "
                     "vanilla comparison folded in",
-                    out["count"] == 652
+                    out["count"] == 653
                     and any(r["new"] for r in out["rows"])
                     and any(r["changed"] for r in out["rows"]), f"{out['count']} rows"))
     detail = server.dex_detail("SPECIES_LITTEN")

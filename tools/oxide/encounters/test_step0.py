@@ -112,9 +112,10 @@ def check_dex(results):
     # Phase 4 element 3 landed the 159 new species (2026-09-20), so every
     # `new` row must now resolve too; before that this asserted the opposite.
     unported = [r["name"] for r in new if not r["constant"]]
-    # 158 on the list since Gyarados M left it with the Magikarp line (2026-09-26).
-    results.append(("every `new` row resolves (element 3 ported all 159; 158 are listed)",
-                    len(new) == 158 and not unported, f"{len(new)} new, unresolved {unported[:5]}"))
+    # 158 on the list since Gyarados M left it with the Magikarp line (2026-09-26);
+    # 159 with Meloetta, species 653 (2026-09-27).
+    results.append(("every `new` row resolves (element 3 ported all 159; with Meloetta 159 are listed)",
+                    len(new) == 159 and not unported, f"{len(new)} new, unresolved {unported[:5]}"))
     results.append(("awkward names map: Nidoran F, Mr. Mime, Farfetch'd, Porygon-Z",
                     dex.constant_of(root, "Nidoran F") == "SPECIES_NIDORAN_F"
                     and dex.constant_of(root, "Mr. Mime") == "SPECIES_MR_MIME"
@@ -220,9 +221,10 @@ def check_audit(results):
     # three cave lines; the files are every JSON in res/field/encounters.
     n_files = len(model.area_names())
     # 386 until Ian's seventeen water lines (37 species), 493 once the list
-    # reached Platinum's size, less the Magikarp line (all 2026-09-26).
-    results.append(("audit sees all 493 pick-list species and every encounter file",
-                    s["natives"] == 493 and s["files"] == n_files,
+    # reached Platinum's size, less the Magikarp line (all 2026-09-26); 494
+    # with Meloetta (2026-09-27).
+    results.append(("audit sees all 494 pick-list species and every encounter file",
+                    s["natives"] == 494 and s["files"] == n_files,
                     f"{s['natives']} natives, {s['files']} files"))
     water = sum(s["by_key"][k]["off"] for k in
                 ("surf_encounters", "old_rod_encounters", "good_rod_encounters",
@@ -248,8 +250,8 @@ def check_coverage(results):
     out = audit.coverage()
     lines = out["lines"]
     covered = sum(len(r["members"]) for r in lines)
-    results.append(("coverage groups all 493 pick-list species into lines, each on one row",
-                    covered == 493 and len({m for r in lines for m in r["members"]}) == 493,
+    results.append(("coverage groups all 494 pick-list species into lines, each on one row",
+                    covered == 494 and len({m for r in lines for m in r["members"]}) == 494,
                     f"{covered} members over {len(lines)} lines"))
     by = {r["name"]: r for r in lines}
     results.append(("gift, trade, static battle and starter sources are found",
@@ -270,7 +272,7 @@ def check_coverage(results):
     s = out["summary"]
     results.append(("summary counts add up and the new species are listed separately",
                     sum(s["by_status"].values()) == s["native_lines"]
-                    and s["new_species"] == 158 == len(out["new"]), str(s["by_status"])))
+                    and s["new_species"] == 159 == len(out["new"]), str(s["by_status"])))
 
 
 # -- layout and apply ---------------------------------------------------------

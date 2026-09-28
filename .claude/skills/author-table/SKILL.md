@@ -66,7 +66,7 @@ the pass replaces them. Calibrate against `main`, never the working tree.
 7. Day and night overrides live in slots 2 and 3 only (`set_time_slot` refuses
    anything else). Use them for two species that make the time of day matter.
 8. Every pick-list line is placeable: Phase 4 element 3 put all 159 new species
-   in the tree (ids 494 to 652), so the plan's Stage B reservations are moot.
+   in the tree (ids 494 to 653, Meloetta last), so the plan's Stage B reservations are moot.
    Use the species constant from `docs/oxide/species-id-map.csv` when in doubt.
 
 ## Rules that bite while writing

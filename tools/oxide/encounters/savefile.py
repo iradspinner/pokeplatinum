@@ -62,7 +62,9 @@ KNOWN_LAYOUTS = {
     # Oxide's builds kept these until the Pokedex grew: a save from 2026-09-20
     # has them with its abilities already in Oxide's place.
     (0xCF2C, 0x121E4): "vanilla Platinum's, which Oxide kept until 2026-09-21",
-    (0xD01C, 0x121E4): "Oxide's since the Pokedex grew to 655 species (2026-09-21)",
+    # Meloetta (2026-09-27) left it as it was: the arrays sized by the
+    # species count are held at their size.
+    (0xD01C, 0x121E4): "Oxide's since the Pokedex grew (2026-09-21)",
 }
 # BoxPokemon_GetDataBlock: for each shuffle case, the position of blocks
 # A, B, C and D. Cases 24 to 31 repeat 0 to 7.

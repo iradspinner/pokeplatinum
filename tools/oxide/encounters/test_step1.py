@@ -87,9 +87,10 @@ def check_tiers(results):
     # and the five ghost rows (Gastly and Misdreavus lines) Ian added for the
     # Old Chateau on 2026-09-21, and the 37 rows of the seventeen water lines
     # he added on 2026-09-26 (Clamperl to Wingull), and the 73 rows of the
-    # 34 lines that took the list to Platinum's size the same day.
+    # 34 lines that took the list to Platinum's size the same day, and
+    # Meloetta's row (2026-09-27).
     results.append(("every pick-list row has one of the four tiers",
-                    len(rows) == 498 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
+                    len(rows) == 499 and not bad, f"{len(rows)} rows, bad {bad[:4]}"))
     by = {r["name"]: r["tier"] for r in rows}
     # The classic starters left the gate tier on 2026-09-27 (Ian); the
     # briefcase's three are still gate.
@@ -122,9 +123,10 @@ def check_r12(results):
     # pick-list (2026-09-26), and 238 since Fomantis evolves into Lurantis
     # (main-scripts, 2026-09-27), one line. 239 since Remoraid and Mantyke
     # are two lines again (2026-09-27): the tool read the Remoraid that
-    # Mantyke's party method names as its evolution and joined them.
+    # Mantyke's party method names as its evolution and joined them. 240 with
+    # Meloetta's line (2026-09-27).
     results.append(("availability rows exist once the tiers are written",
-                    avail is not None and len(avail) == 239
+                    avail is not None and len(avail) == 240
                     and all(r["tier"] for r in avail), f"{len(avail or [])} rows"))
     by = {r["name"]: r for r in avail}
     results.append(("a scripted line is non_wild; a wild face has a cost near 1/share",
