@@ -57,9 +57,10 @@ and the records run back from there for `count` records.
 | 0x06 | 1 | flags (below) |
 | 0x07 | 1 | the level-cap split (`VAR_LEVEL_CAP_SPLIT`) as the battle ended |
 | 0x08 | 6 x 2 | the player's six, species with the form in the top five bits: `(form << 11) \| species` |
-| 0x14 | 6 x 2 | the low 16 bits of each one's personality, to tell two of a species apart |
-| 0x20 | 6 x 1 | each one's level as the battle ended |
-| 0x26 | 6 x 2 | the opponents, `(form << 11) \| species`: trainer A's party in order, then B's |
+| 0x14 | 6 x 1 | the low 8 bits of each one's personality, to tell two of a species apart |
+| 0x1A | 6 x 1 | each one's level as the battle ended |
+| 0x20 | 6 x 2 | the opponents, `(form << 11) \| species`: trainer A's party in order, then B's |
+| 0x2C | 6 x 1 | each opponent's level as the battle ended |
 | 0x32 | 3 | who knocked out each opponent: six 4-bit values, slot 0 in the low half of the first byte |
 | 0x35 | 3 | who knocked out each of the player's six, packed the same way |
 | 0x38 | 1 | how many Pokemon the player had |
@@ -68,7 +69,7 @@ and the records run back from there for `count` records.
 Slots beyond a count hold species 0 and the value 0xF in the knock-out
 fields. The player's six are the player's own party, in party order, which a
 switch in battle does not change; an AI partner's Pokemon are not among them.
-An egg in the party is recorded with the Egg's species id.
+An egg in the party is recorded as 0x7FF (form 0), not as the Egg's species id, which moves whenever a species is added.
 
 Flags: bit 0 the player won, bit 1 the player lost (both set is a draw), bit 2
 a double battle, bit 3 an AI partner fought beside the player, bit 4 two
