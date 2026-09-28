@@ -443,6 +443,55 @@ def check_no_colour_literals(results):
                     not found, str(found)))
 
 
+def check_dim_theme(results):
+    """The Dim theme (Ian, 2026-09-28) keeps its text readable: read its
+    values from theme.css and hold them to WCAG's 4.5:1 for text and the
+    meaning colours on the panel and ground, 3:1 for faint, and 4.5:1 for ink
+    on every type chip as Dim mixes it (the share of the type index.html's
+    Dim chip rule blends into the panel, read from the page)."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    css = open(os.path.join(ui, "theme.css"), encoding="utf-8").read()
+    block = re.search(r':root\[data-theme="dim"\]\s*\{(.*?)\}', css, re.S)
+    dim = dict(re.findall(r"--([\w-]+):\s*(#[0-9A-Fa-f]{6})", block.group(1))) if block else {}
+    types = dict(re.findall(r"--type-(\w+):\s*(#[0-9A-Fa-f]{6})", css))
+
+    def lum(h):
+        r, g, b = (int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
+        f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+    def ratio(a, b):
+        hi, lo = sorted((lum(a), lum(b)), reverse=True)
+        return (hi + 0.05) / (lo + 0.05)
+
+    def mix(a, b, p):
+        return "#" + "".join(f"{round(int(a[i:i + 2], 16) * p + int(b[i:i + 2], 16) * (1 - p)):02X}"
+                             for i in (1, 3, 5))
+
+    page = open(os.path.join(ui, "index.html"), encoding="utf-8").read()
+    rule = re.search(r':root\[data-theme="dim"\] \.chip[^{]*\{\s*background: color-mix\(in srgb, '
+                     r'var\(--t\) (\d+)%', page)
+    chip_mix = int(rule.group(1)) / 100 if rule else 0.34
+    short = [] if rule else ["no Dim chip rule in index.html"]
+    if dim:
+        for surface in ("panel", "ground"):
+            for token, need in (("ink", 4.5), ("dim", 4.5), ("mass", 4.5), ("place-ink", 4.5),
+                                ("act", 4.5), ("warn", 4.5), ("error", 4.5), ("faint", 3.0)):
+                r = ratio(dim[token], dim[surface])
+                if r < need:
+                    short.append(f"{token} on {surface} {r:.1f}")
+        for name, colour in types.items():
+            r = ratio(dim["ink"], mix(colour, dim["panel"], chip_mix))
+            if r < 4.5:
+                short.append(f"ink on {name} {r:.1f}")
+    js = open(os.path.join(ui, "theme.js"), encoding="utf-8").read()
+    results.append(("the Dim theme is defined, pinnable, and keeps text at WCAG's ratios",
+                    bool(dim) and not short and 'value === "dim"' in js
+                    and 'setAttribute("data-theme", "dim")' in js, "; ".join(short) or
+                    f"{len(dim)} tokens"))
+
+
 def main():
     httpd = srv.Server(("127.0.0.1", PORT), srv.Handler)
     t = threading.Thread(target=httpd.serve_forever, daemon=True)
@@ -452,7 +501,7 @@ def main():
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_rejections,
-                      check_edit_is_local, check_no_colour_literals):
+                      check_edit_is_local, check_no_colour_literals, check_dim_theme):
             check(results)
     finally:
         httpd.shutdown()

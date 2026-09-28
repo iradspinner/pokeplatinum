@@ -1648,7 +1648,13 @@ function setBaseGame(title) {
         window.baseGame = "g7"
     }
 
-    if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
+    // Oxide patch (VENDORED.md 13): this second block showed the DeSmuME
+    // link again for every Platinum title, and upstream's img/ is not
+    // vendored, so the Calc tab drew a broken image. Oxide keeps Sync only.
+    if (TITLE == "Platinum Oxide") {
+        $('#sync-lua').show()
+        $('#desmume-icon').hide()
+    } else if (window.baseGame == "Pt" || window.baseGame == "HGSS") {
         $('#sync-lua, #desmume-icon').show()
     } else if (window.baseGame == "BW") {
         $('#sync-lua').show()

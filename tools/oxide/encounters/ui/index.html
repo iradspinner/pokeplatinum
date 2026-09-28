@@ -470,6 +470,10 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
   border-radius: 999px; padding: 0 7px; font-size: 14px; font-weight: 600;
   line-height: 1.5; white-space: nowrap;
 }
+/* Dim's cyan panel is lighter, so a chip mixes in less of its type there,
+   which keeps ink at 5:1 or better on the palest types, Ice and Electric. */
+:root[data-theme="dim"] .chip, :root[data-theme="dim"] .typed {
+  background: color-mix(in srgb, var(--t) 25%, var(--panel)); }
 .chip.plain { background: var(--panel); border-color: var(--rule); font-weight: 400; }
 .chip.place { background: var(--place-bg); border-color: var(--place-ink); color: var(--place-ink); }
 .chip.mini { font-size: 13px; padding: 0 5px; margin-right: 2px; }
