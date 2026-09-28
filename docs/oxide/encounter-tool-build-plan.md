@@ -993,6 +993,40 @@ that stay. None blocks anything.
    98/98, m4 51/51. Request 4 (the Fragsheet and the automatic battle log)
    waits on the main track's save-log layout.
 
+36. **The battle log reader (Ian's request 4, 2026-09-28, through the
+   Overseer).** The main track is putting a log of the last 60 trainer
+   battles in the save (`docs/oxide/battle-log.md`). The reader was written
+   against that layout before the engine side exists, and two changes to the
+   layout came from it: each opponent's level is recorded, and an egg is
+   recorded as a fixed value rather than the Egg's species id, which moves
+   whenever a species is added. `battlelog.py` reads the newer valid copy
+   of the log, names each battle's trainers, both sides' Pokemon and levels,
+   the split, and who knocked out whom. It also matches each of the
+   player's Pokemon to one in the save by its personality byte and its
+   evolution line, so a logged Chimchar counts for the Monferno it became.
+   The OxiDex serves the log at `/api/save/battlelog`, and `cli battlelog
+   PATH` prints it. The calculator's Battle Log takes it as a save-file log
+   after each new save (VENDORED.md patch 18), with Oxide's thirteen splits as
+   its tabs and battle counts for the Fragsheet. The save reader now sets
+   the log's footers aside. Tested on saves built byte by byte (test_battlelog
+   22/22, savefile 14/14, savewatch 8/8, each run twice); Ian's saves predate
+   the log and read as empty. The Fragsheet had used vanilla Platinum's
+   nine gym splits and caps for Oxide, because it matched the title
+   "Platinum Oxide" to "Platinum". Ian's answer (2026-09-28) was to widen it
+   to all thirteen splits, with Oxide's names and caps, matching the Battle
+   Log (VENDORED.md patch 19). The calculator's blob now carries the splits.
+   The Fragsheet has thirteen tabs and columns, and its stats view moved
+   past them. Checked in headless Chrome on a save with a synthetic log: the
+   Battle Log shows each battle under its split, and the Fragsheet counts
+   knock-outs by split. Like every save-file log in the calculator, the
+   Fragsheet counts only the last battle against each trainer, so a lost
+   first attempt at a leader drops out. Suites after the change:
+   test_battlelog 25/25, m8 98/98, savewatch 8/8, each run twice. The
+   engine side landed on oxide (e34a5ffc6), and its source matches the
+   reader field for field. One thing waits before the branch lands: the
+   reader must read a log from a real game, a save from Ian's in-game check
+   (two trainers, then save).
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule

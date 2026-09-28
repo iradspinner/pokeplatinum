@@ -101,6 +101,8 @@ is listed for Ian.
   player uses no items during a battle (healing between fights is fine),
   never has a Life Orb or a Choice item, uses realistic movesets with their
   downsides, and plays with stalling, PP stalling, pivoting and safe setup.
+- **A loss of any kind ends the run** (2026-09-28), so every fight is a
+  first and only attempt; nothing may assume a retry.
 - **The stored score is the guide.** The rebuilt simulator reached 9 of 15
   held-out pairs against a bar of 13 and matched four of Ian's top ten
   (2026-09-27), so it is a record, not the score. Ian's own list of the

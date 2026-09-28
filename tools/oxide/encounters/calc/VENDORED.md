@@ -171,6 +171,36 @@ calculator checks fail if the offline ones are lost.
     starter's Rowan's Briefcase, an id Oxide added, read as New Bark Town in
     the Box after a Sync. `test_savefile` checks the patch and the table.
 
+18. **`js/fragsheet/battle_log.js`, the game's own battle log** (2026-09-28,
+    request 4). Oxide's save keeps its last 60 trainer battles
+    (`docs/oxide/battle-log.md`), and the OxiDex serves them at
+    `/api/save/battlelog` already built as the Battle Log's save-file
+    payload, every name filled in, under the version `oxide-save-v1`
+    (`battlelog.py`). Three changes let that through. `updateSaveFileBattleLog`
+    stores a payload it is given instead of building one from Gen 5 records;
+    `decodeBattleLogRecordIds` passes an `oxide-save-v1` record through
+    undecoded, since its ids are names already; and a session takes its split
+    from the `saveFileSplitIndex` its `session_start` carries, while
+    `getBattleLogSplitTabsConfig` takes Oxide's thirteen level-cap split
+    names from `window.oxideBattleLogSplitTitles` under the "Platinum Oxide"
+    title. `js/oxide/save_sync.js` fetches the log after each new save and
+    sets those names.
+
+19. **The Fragsheet's thirteen splits** (2026-09-28, Ian's answer on build
+    plan item 36). Upstream's Fragsheet has nine split slots, and matched
+    "Platinum Oxide" to vanilla Platinum's nine gyms by name. The blob's
+    `splits` (`calc_export.splits`: Oxide's level-cap splits and caps, in
+    the game's order) now fill `splitData["Platinum Oxide"]` in
+    `js/initialize.js`. `js/fragsheet/aggrid_options.js` has thirteen slots
+    (`FRAGSHEET_SPLIT_SLOTS`), four more split columns, and headings from
+    each split's name under the Oxide title, with the full name as a
+    tooltip. Its stats view moved from split 9 to 13
+    (`FRAGSHEET_STATS_VIEW`). The last split now takes every level above
+    the one before it by its own index, not a fixed 8. `index.html` has the
+    four more tabs, and the stats tab at 13. A title with nine splits hides
+    the rest, as before. `test_battlelog` checks the patch, and it was
+    checked in headless Chrome on a save with a synthetic log.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 
