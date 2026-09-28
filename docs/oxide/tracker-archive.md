@@ -452,6 +452,10 @@ The tracker's pointer to these, removed on 2026-09-27 for room:
 
 - Done, with the entries in the archive: the clown towns' grass and the Underground's closing (`main-grass`, `main-underground`); the fossil balls and four fossils deleted (`main-daily-balls`); Snowpoint's rods, the Pastoria gift, the starter's met location and Fomantis to Lurantis (`main-scripts`).
 
+Moved from the tracker on 2026-09-28, finished:
+
+- [x] **The OxiDex's battle log and live feed** (Ian, 2026-09-27). Main track: the last 60 trainer battles kept in a new save block, written at each in-game save (knockouts, faints, the player's six), with a RAM beacon; then `iradspinner/melonDS-oxide` (private), melonDS 1.1 serving the calculator's bridge on 127.0.0.1:31124 between frames, built on GitHub. The encounter track writes the readers; the in-game check goes in the checklist. Working on Ian's game (2026-09-28): the battle log read back his three Route 202 fights from the save, and melonDS-oxide, built on GitHub against MSYS2's prebuilt Qt and installed at `C:\Users\Ian\melonDS-oxide` with his settings, serves all four paths. Its box export at first caught a party Pokemon half re-encrypted in 3 of 9 reads; since the fork's ecfc1ac it copies again, a frame later, until every record's flags and checksum pass, and 20 of 20 reads came back whole. Ian checked the OxiDex's Sync and battle log panels on the live feed the same day: everything works
+
 ## Phase 5: Verify
 
 - [x] Boots in emulator (Ian's 2026-09-15 run reached Route 202 trainers on this build; re-confirmed 2026-09-20 in melonDS with Fairy and the ability widening in, no crash on boot)
