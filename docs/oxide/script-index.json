@@ -16532,12 +16532,12 @@
     "flags": [
      {"at": ["scripts_route_226_house:19"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_226_house:20"], "daily": false, "flag": 246, "name": "FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_226_house:51"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_226_house:54"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_226_house:23"], "daily": false, "flag": 246, "name": "FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_226_house:12"], "daily": false, "flag": 2545, "name": "FLAG_FIRST_ARRIVAL_THE_MEISTERS_HOUSE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "trades": [
-     {"command": "InitNPCTrade", "file": "scripts_route_226_house", "item": "ITEM_LUM_BERRY", "line": 44, "offers": "SPECIES_MAGIKARP", "origin": "vanilla", "reached": true, "trade": "NPC_TRADE_FOPPA_MAGIKARP", "wants": "SPECIES_FINNEON"}
+     {"command": "InitNPCTrade", "file": "scripts_route_226_house", "item": "ITEM_LUM_BERRY", "line": 44, "offers": "SPECIES_MELOETTA", "origin": "vanilla", "reached": true, "trade": "NPC_TRADE_FOPPA_MAGIKARP", "wants": "SPECIES_FINNEON"}
     ]
    },
    "events": "events_route_226_house",

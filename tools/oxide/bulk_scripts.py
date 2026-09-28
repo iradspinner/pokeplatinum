@@ -174,6 +174,11 @@ DIVERGED["scripts_mining_museum"] = (
 DIVERGED["scripts_route_207"] = (
     "the woman who asks the player to find Mira no longer gives all nine evolution stones")
 
+# The Meister on Route 226 trades a Meloetta for a Finneon (2026-09-27), which
+# arrives knowing Relic Song. Regenerating would drop the move.
+DIVERGED["scripts_route_226_house"] = (
+    "the traded Meloetta is given Relic Song in its first slot")
+
 # Scorbunny took Chimchar's place in Rowan's briefcase (Ian, 2026-09-21), but
 # these scripts still asked whether the player's starter was Chimchar, so a
 # Scorbunny player fell through to the Piplup branch everywhere: Barry led with

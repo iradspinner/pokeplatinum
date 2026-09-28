@@ -4689,7 +4689,7 @@ Flags:
 
 Trades:
 
-- NPC_TRADE_FOPPA_MAGIKARP: gives SPECIES_MAGIKARP holding ITEM_LUM_BERRY for SPECIES_FINNEON. Vanilla. `scripts_route_226_house.s:44`
+- NPC_TRADE_FOPPA_MAGIKARP: gives SPECIES_MELOETTA holding ITEM_LUM_BERRY for SPECIES_FINNEON. Vanilla. `scripts_route_226_house.s:44`
 
 Flags:
 
