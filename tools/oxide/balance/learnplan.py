@@ -571,9 +571,19 @@ def had_from(species, lists):
     return out
 
 
+def evolves_early(species):
+    """Whether the player can evolve the stage by the end of Gardenia's split,
+    by level or by a stone in reach by then (Ian, 2026-09-27): its gap bites
+    only a player who chooses to keep it back, who is already trading the
+    power away."""
+    return any(pool.reachable(need, item, "Gardenia") for need, item, _t in pool.evolutions(species))
+
+
 def gap_applies(species):
-    """Whether the rule reads the stage: one the player can have by the League."""
-    return species in g._obtainable() and _split_of(reach(species)) in SPLITS
+    """Whether the rule reads the stage: one the player can have by the
+    League, and not one it can evolve by the end of Gardenia's split."""
+    return (species in g._obtainable() and _split_of(reach(species)) in SPLITS
+            and not evolves_early(species))
 
 
 def stab_gap(species, lists):
@@ -1569,9 +1579,10 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
             "78 the translated place stays, listed below for Ian.",
             "No stage the player can have goes more than one split without an attack of its own "
             "type of 50 or more by effective power (Ian, 2026-09-27), counting what it brings "
-            "from a pre-evolution evolved on time; where the proposal would break that, the "
-            "nearest such move stays at its current level, or goes to Ian when it would reach a "
-            "stage the flags or the bar hold.",
+            "from a pre-evolution evolved on time; a stage the player can evolve by the end of "
+            "Gardenia's split is exempt, since only a player who keeps it back meets the gap. "
+            "Where the proposal would break the rule, the nearest such move stays at its current "
+            "level, or goes to Ian when it would reach a stage the flags or the bar hold.",
             "Fletchling keeps Will-O-Wisp at 25."):
         p(f"- {rule}")
     p("\n## What it changes\n")
@@ -1687,8 +1698,9 @@ def _write_md(out, run, counts, changed, dropped, moved_by, sooner, analyses):
                      and not widens_gap(s, run["now"], lists))
     if already:
         p(f"\n{len(already)} stages go more than one split without an attack of their own type on "
-          f"Oxide's lists now, and the proposal does not make it longer; they are Oxide's own, for "
-          f"the learnset pass: " + ", ".join(_sp(s) for s in already) + ".")
+          f"Oxide's lists now, and the proposal does not make it longer (stages the player can "
+          f"evolve by the end of Gardenia's split are exempt); the later-moves proposal fills "
+          f"them where a later game offers one: " + ", ".join(_sp(s) for s in already) + ".")
     past = sorted(set(PAST_CAP))
     if past:
         p(f"\nWhere Kaizo's own level is past Oxide's 78, the rule would take the move out of "

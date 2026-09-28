@@ -801,13 +801,13 @@ SPECIES_BUZZWOLE	Power-Up Punch	1	1	same
 SPECIES_BUZZWOLE	Harden	1	1	same	
 SPECIES_BUZZWOLE	Taunt	5	5	same	
 SPECIES_BUZZWOLE	Fell Stinger	10	10	same	
+SPECIES_BUZZWOLE	Vital Throw	15	15	same	
 SPECIES_BUZZWOLE	Bulk Up	20	20	same	
 SPECIES_BUZZWOLE	Endure	25	25	same	
 SPECIES_BUZZWOLE	Reversal	30	30	same	
+SPECIES_BUZZWOLE	Lunge	40	40	same	
 SPECIES_BUZZWOLE	Focus Energy	45	45	same	
 SPECIES_BUZZWOLE	DynamicPunch	50	50	same	
-SPECIES_BUZZWOLE	Vital Throw	15	52	moved	15 to 53: its nearest Kaizo lines, translated to 51, and no earlier than Kaizo's level of 62 within its split; 53 to 52: the same-level rule (another move is at 53); its split has no free level at or above its floor, so it stays in the split a level under it
-SPECIES_BUZZWOLE	Lunge	40	53	moved	40 to 53: its nearest Kaizo lines, translated to 51, and no earlier than Kaizo's level of 62 within its split
 SPECIES_BUZZWOLE	Counter	55	55	same	
 SPECIES_BUZZWOLE	Hammer Arm	60	60	same	
 SPECIES_BUZZWOLE	Superpower	65	65	same	
@@ -3093,8 +3093,8 @@ SPECIES_GOOMY	Flail	16	16	same
 SPECIES_GOOMY	Water Pulse	23	23	same	
 SPECIES_GOOMY	Dragon Tail	28	28	same	
 SPECIES_GOOMY	Body Slam	41	41	same	
+SPECIES_GOOMY	Dragon Pulse	54	44	moved	54 to 44: its nearest Kaizo lines, translated to 42, and no earlier than Kaizo's level of 51 within its split
 SPECIES_GOOMY	Muddy Water	46	46	same	
-SPECIES_GOOMY	Dragon Pulse	54	54	same	
 SPECIES_GOOMY	Infestation	34		dropped	leaves: strength 20, under 40
 SPECIES_GOREBYSS	Confusion	6	6	same	
 SPECIES_GOREBYSS	Agility	10	10	same	
@@ -4644,7 +4644,6 @@ SPECIES_LUVDISC	Attract	22	22	same
 SPECIES_LUVDISC	Sweet Kiss	27	27	same	
 SPECIES_LUVDISC	Water Pulse	31	31	same	
 SPECIES_LUVDISC	Aqua Ring	37	37	same	
-SPECIES_LUVDISC	Muddy Water		39	added	new at 39: Kaizo's Luvdisc at 46, no earlier than that within its split (translated to 38)
 SPECIES_LUVDISC	Captivate	40	40	same	
 SPECIES_LUVDISC	Flail	46	46	same	
 SPECIES_LUVDISC	Safeguard	51	51	same	
@@ -4977,8 +4976,6 @@ SPECIES_MANTINE	Wing Attack	22	22	same
 SPECIES_MANTINE	Water Pulse	28	28	same	
 SPECIES_MANTINE	Take Down	31	31	same	
 SPECIES_MANTINE	Confuse Ray	37	37	same	
-SPECIES_MANTINE	Air Slash		38	added	new at 39: Kaizo's Mantine at 40, no earlier than that within its split (translated to 34); 39 to 38: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
-SPECIES_MANTINE	Ice Beam		39	added	new at 39: Kaizo's Mantine at 46, no earlier than that within its split (translated to 38)
 SPECIES_MANTINE	Bounce	40	40	same	
 SPECIES_MANTINE	Aqua Ring	46	46	same	
 SPECIES_MANTINE	Hydro Pump	49	49	same	
@@ -4989,16 +4986,12 @@ SPECIES_MANTYKE	BubbleBeam	10	10	same
 SPECIES_MANTYKE	Headbutt	13	13	same	
 SPECIES_MANTYKE	Agility	19	19	same	
 SPECIES_MANTYKE	Wing Attack	22	22	same	
-SPECIES_MANTYKE	Ice Beam		26	added	new at 26: Kaizo's Mantyke at 28
 SPECIES_MANTYKE	Water Pulse	28	28	same	
 SPECIES_MANTYKE	Take Down	31	31	same	
-SPECIES_MANTYKE	Roost		32	added	new at 31: Kaizo's Mantyke at 31, no earlier than that within its split (translated to 28); 31 to 32: the same-level rule (another move is at 31)
 SPECIES_MANTYKE	Confuse Ray	37	37	same	
-SPECIES_MANTYKE	Air Slash		39	added	new at 39: Kaizo's Mantyke at 46, no earlier than that within its split (translated to 38)
 SPECIES_MANTYKE	Bounce	40	40	same	
 SPECIES_MANTYKE	Aqua Ring	46	46	same	
 SPECIES_MANTYKE	Hydro Pump	49	49	same	
-SPECIES_MANTYKE	Scald		53	added	new at 53: Kaizo's Mantyke at 55, no earlier than that within its split (translated to 45); an exclusive delay: Kaizo gives it to no later stage
 SPECIES_MAREANIE	Poison Sting	1	1	same	
 SPECIES_MAREANIE	Peck	1	1	same	
 SPECIES_MAREANIE	Peck	5	5	same	
@@ -5595,11 +5588,11 @@ SPECIES_NAGANADEL	Fell Stinger	14	14	same
 SPECIES_NAGANADEL	Charm	21	21	same	
 SPECIES_NAGANADEL	Venoshock	28	28	same	
 SPECIES_NAGANADEL	Venom Drench	35	35	same	
-SPECIES_NAGANADEL	Poison Jab	49	38	moved	49 to 39: its nearest Kaizo lines, translated to 37, and no earlier than Kaizo's level of 44 within its split; 39 to 38: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
-SPECIES_NAGANADEL	Dragon Rush	70	39	moved	70 to 39: its nearest Kaizo lines, translated to 34, and no earlier than Kaizo's level of 40 within its split
 SPECIES_NAGANADEL	Nasty Plot	42	42	same	
+SPECIES_NAGANADEL	Poison Jab	49	49	same	
 SPECIES_NAGANADEL	Gastro Acid	56	56	same	
 SPECIES_NAGANADEL	Toxic	63	63	same	
+SPECIES_NAGANADEL	Dragon Rush	70	70	same	
 SPECIES_NATU	Peck	1	1	same	
 SPECIES_NATU	Leer	1	1	same	
 SPECIES_NATU	Night Shade	6	6	same	
@@ -6040,14 +6033,14 @@ SPECIES_PHEROMOSA	Quick Guard	10	10	same
 SPECIES_PHEROMOSA	Bug Bite	15	15	same	
 SPECIES_PHEROMOSA	Low Kick	20	20	same	
 SPECIES_PHEROMOSA	Double Kick	25	25	same	
+SPECIES_PHEROMOSA	Hi Jump Kick	70	26	moved	70 to 26: its nearest Kaizo lines, translated to 26
 SPECIES_PHEROMOSA	Triple Kick	30	30	same	
 SPECIES_PHEROMOSA	Stomp	35	35	same	
 SPECIES_PHEROMOSA	Agility	40	40	same	
+SPECIES_PHEROMOSA	Bug Buzz	60	44	moved	60 to 44: its nearest Kaizo lines, translated to 42, and no earlier than Kaizo's level of 51 within its split
 SPECIES_PHEROMOSA	Bounce	50	50	same	
 SPECIES_PHEROMOSA	Lunge	45	53	moved	45 to 53: its nearest Kaizo lines, translated to 53
-SPECIES_PHEROMOSA	Bug Buzz	60	60	same	
 SPECIES_PHEROMOSA	Quiver Dance	65	65	same	
-SPECIES_PHEROMOSA	Hi Jump Kick	70	70	same	
 SPECIES_PHEROMOSA	Speed Swap	55		dropped	leaves: the move pool's first cut
 SPECIES_PHIONE	Bubble	1	1	same	
 SPECIES_PHIONE	Water Sport	1	1	same	
@@ -7079,7 +7072,6 @@ SPECIES_SEALEO	Encore	7	7	same
 SPECIES_SEALEO	Body Slam	19	19	same	
 SPECIES_SEALEO	Aurora Beam	25	25	same	
 SPECIES_SEALEO	Swagger	32	32	same	
-SPECIES_SEALEO	Dive		38	added	new at 39: Kaizo's Sealeo at 39, no earlier than that within its split (translated to 34); 39 to 38: the same-level rule (another move is at 39); its split has no free level at or above its floor, so it stays in the split a level under it
 SPECIES_SEALEO	Rest	39	39	same	
 SPECIES_SEALEO	Blizzard	47	47	same	
 SPECIES_SEALEO	Sheer Cold	55	55	same	
@@ -7678,10 +7670,8 @@ SPECIES_SPHEAL	Powder Snow	1	1	same
 SPECIES_SPHEAL	Growl	1	1	same	
 SPECIES_SPHEAL	Water Gun	1	1	same	
 SPECIES_SPHEAL	Body Slam	19	19	same	
-SPECIES_SPHEAL	Bounce		20	added	new at 19: Kaizo's Spheal at 19, no earlier than that within its split (translated to 18); 19 to 20: the same-level rule (another move is at 19)
 SPECIES_SPHEAL	Aurora Beam	25	25	same	
 SPECIES_SPHEAL	Encore	7	31	moved	7 to 31: Kaizo's Spheal at 31, translated to 28, and no earlier than Kaizo's level of 31 within its split
-SPECIES_SPHEAL	Dive		33	added	new at 33: Kaizo's Spheal at 37, no earlier than that within its split (translated to 32)
 SPECIES_SPHEAL	Rest	37	37	same	
 SPECIES_SPHEAL	Blizzard	43	43	same	
 SPECIES_SPHEAL	Sheer Cold	49	49	same	
@@ -8181,7 +8171,7 @@ SPECIES_TAPU_KOKO	Shock Wave	25	25	same
 SPECIES_TAPU_KOKO	Charge	30	30	same	
 SPECIES_TAPU_KOKO	Agility	35	35	same	
 SPECIES_TAPU_KOKO	Screech	40	40	same	
-SPECIES_TAPU_KOKO	Discharge	45	45	same	45 to 69: its nearest Kaizo lines, translated to 69; at 69 to 45: Ian's rule that no stage goes more than one split without an attack of its own type, for Tapu Koko
+SPECIES_TAPU_KOKO	Discharge	45	45	same	
 SPECIES_TAPU_KOKO	Mean Look	50	50	same	
 SPECIES_TAPU_KOKO	Nature’sMadness	55	55	same	
 SPECIES_TAPU_KOKO	Wild Charge	60	60	same	
@@ -9084,7 +9074,7 @@ SPECIES_XURKITREE	Eerie Impulse	35	35	same
 SPECIES_XURKITREE	ThunderPunch	40	40	same	
 SPECIES_XURKITREE	Discharge	45	45	same	
 SPECIES_XURKITREE	Magnet Rise	50	50	same	
-SPECIES_XURKITREE	Thunderbolt	55	60	moved	55 to 60: its nearest Kaizo lines, translated to 57, and no earlier than Kaizo's level of 75 within its split
+SPECIES_XURKITREE	Thunderbolt	55	55	same	
 SPECIES_XURKITREE	Power Whip	65	65	same	
 SPECIES_XURKITREE	Zap Cannon	70	70	same	
 SPECIES_XURKITREE	Wrap	1		dropped	leaves: strength 14, under 40
