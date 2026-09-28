@@ -148,7 +148,17 @@ to read it.
 - Swarms, the Poke Radar, the dual-slot lists and the Trophy Garden dailies are
   not used in Oxide. They are filled with on-list species only so that nothing
   off-list can be rolled, and no capture is counted from them.
-- Anything post-champion (Turnback Cave) is out of scope. Scripted gifts are
+- Variety of shape is a rule too (Ian, 2026-09-28; R9 wants 0.35 distinct
+  shapes per table). A sidecar entry may carry `shares`, one percentage per
+  cast line in cast order, as its own variant of its archetype. Keep the
+  variant within R4's 8 points, keep every line's role (tail 1 to 4, cameo 5 to
+  9, regular 10 and up), keep a top-form table's top rung, and never make an
+  early table more concentrated. Check R8's spread stays above 1.8 in the
+  header before landing. Reach for `shares` before inventing an archetype.
+- Anything post-champion (Turnback Cave) is out of scope for design, but its
+  shapes count in R9 and R8. A pure reshaping (same species, same levels by
+  slot) changes no balance score and no Box sim run, so it is the first
+  place to add variety. Scripted gifts are
   even-odds pools per source, one flag each, recorded in
   `docs/oxide/encounters/scripted-sources.md`.
 - After any table change, regenerate the sources catalogue:

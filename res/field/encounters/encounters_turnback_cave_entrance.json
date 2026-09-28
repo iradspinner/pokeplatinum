@@ -11,7 +11,7 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_YAMASK"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 16,
@@ -19,11 +19,15 @@
         },
         {
             "level": 17,
-            "species": "SPECIES_ZUBAT"
+            "species": "SPECIES_BRONZOR"
         },
         {
             "level": 17,
-            "species": "SPECIES_BRONZOR"
+            "species": "SPECIES_DUSKULL"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_YAMASK"
         },
         {
             "level": 17,
@@ -31,23 +35,19 @@
         },
         {
             "level": 17,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 17,
             "species": "SPECIES_BRONZOR"
         },
         {
-            "level": 17,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_DUSKULL"
+            "level": 18,
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 18,
-            "species": "SPECIES_DUSKULL"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_DUSKULL"
+            "species": "SPECIES_BRONZOR"
         }
     ],
     "swarms": [

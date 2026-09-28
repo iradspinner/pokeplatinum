@@ -11,10 +11,14 @@
         },
         {
             "level": 16,
-            "species": "SPECIES_ONIX"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 16,
+            "species": "SPECIES_ONIX"
+        },
+        {
+            "level": 17,
             "species": "SPECIES_DHELMISE"
         },
         {
@@ -23,19 +27,15 @@
         },
         {
             "level": 17,
-            "species": "SPECIES_LITWICK"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 17,
             "species": "SPECIES_ONIX"
         },
         {
             "level": 17,
-            "species": "SPECIES_DHELMISE"
+            "species": "SPECIES_LITWICK"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 17,
@@ -43,7 +43,7 @@
         },
         {
             "level": 18,
-            "species": "SPECIES_DHELMISE"
+            "species": "SPECIES_LITWICK"
         },
         {
             "level": 18,

@@ -1980,13 +1980,21 @@ function drawHeader() {
   // fix") already says pass or fail, so colour is never the only signal.
   $("#w-spread").title = `Passes at ${t.r8_spread_min}× or more between the most and least varied tables`;
   $("#w-sig").title = `Passes at ${t.r9_signatures_per_table_min} distinct shapes per table or more`;
-  $("#w-arc").title = "Passes when concentration falls from early to mid to late";
+  // Ian's rule since 2026-09-21, which replaced vanilla's falling arc: the
+  // early game is the most random, and no band's median top share is above
+  // the cap (lint's R11 and R11b).
+  $("#w-arc").title = `Median HHI early, mid and late. Passes when the early game is the most ` +
+    `random (its HHI no higher than a later band's) and no band's median top share is above ` +
+    `${Math.round(t.r11_top_share_max * 100)}%`;
   $("#w-lint").title = "Lint errors across every table; warnings are not counted";
   $("#h-spread").textContent = g.hhi_spread.toFixed(2) + "×";
   $("#w-spread").className = "metric " + (g.hhi_spread >= t.r8_spread_min ? "pass" : "fail");
   $("#h-sig").textContent = g.signatures_per_table.toFixed(2);
   $("#w-sig").className = "metric " + (g.signatures_per_table >= t.r9_signatures_per_table_min ? "pass" : "fail");
-  const arcOk = g.hhi_early > g.hhi_mid && g.hhi_mid > g.hhi_late;
+  const bandHhi = [g.hhi_mid, g.hhi_late].filter(x => x != null);
+  const capOk = ["early", "mid", "late"].every(b =>
+    g["top_share_" + b] == null || g["top_share_" + b] <= t.r11_top_share_max);
+  const arcOk = g.hhi_early != null && bandHhi.every(x => g.hhi_early <= x) && capOk;
   $("#h-arc").textContent = [g.hhi_early, g.hhi_mid, g.hhi_late]
     .map(x => x == null ? "—" : x.toFixed(2)).join(" → ");
   $("#w-arc").className = "metric " + (arcOk ? "pass" : "fail");

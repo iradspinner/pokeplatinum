@@ -15,27 +15,27 @@
         },
         {
             "level": 16,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_KLEFKI"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_CARBINK"
+        },
+        {
+            "level": 17,
+            "species": "SPECIES_SINISTEA"
+        },
+        {
+            "level": 17,
             "species": "SPECIES_GOTHITA"
         },
         {
-            "level": 16,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_KLEFKI"
-        },
-        {
             "level": 17,
             "species": "SPECIES_KLEFKI"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_CARBINK"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_CARBINK"
         },
         {
             "level": 17,
@@ -43,7 +43,7 @@
         },
         {
             "level": 17,
-            "species": "SPECIES_CARBINK"
+            "species": "SPECIES_KLEFKI"
         },
         {
             "level": 17,

@@ -1023,9 +1023,51 @@ that stay. None blocks anything.
    first attempt at a leader drops out. Suites after the change:
    test_battlelog 25/25, m8 98/98, savewatch 8/8, each run twice. The
    engine side landed on oxide (e34a5ffc6), and its source matches the
-   reader field for field. One thing waits before the branch lands: the
-   reader must read a log from a real game, a save from Ian's in-game check
-   (two trainers, then save).
+   reader field for field. It read a real game's log on 2026-09-28: Ian's
+   check on the 51fa6cdaa ROM, three Route 202 fights (Youngster Tristan,
+   Lass Natalie, Youngster Logan), all won in Roark's split, which Ian
+   confirmed. It landed on oxide the same day as encounter-battlelog-oxide.
+
+37. **The header's two failing measures (Ian, 2026-09-28, through the
+   Overseer).** "Early to late" still tested vanilla's falling arc, which
+   Ian reversed on 2026-09-21. It now shows the three bands' median HHI and
+   passes when the early band is the most random and no band's median top
+   share is over the cap. R11b warns on the first half, and R11 already
+   checked the cap. "Distinct shapes" was 26 over the header's 165 tables
+   (0.16) against 0.35, because every table of one archetype and cast size
+   laid out the same. A sidecar entry may now carry `shares`, its own
+   variant of its archetype (design doc 2.3). A search picked variants for
+   32 tables that keep everything else: the same species morning, day and
+   night, the same top rung on a top-form table, the face first and under
+   the cap, every line's role (tail, cameo, regular), and no early table
+   more concentrated. Post-game rooms went first, since no balance score or
+   Box sim run reads them, and R8's spread was held above its floor. Three
+   tables took the existing archetype their shape fits (Great Marsh 3 A12,
+   Great Marsh 5 A16, Turnback Cave 1-5 A15), and no archetype was added.
+   Eighteen of the 32 are post-game; the fourteen before the League are
+   Oreburgh Gate 1F, Eterna Forest, Lost Tower 2F, the Maniac Tunnel, Great
+   Marsh 1 to 6, Route 210 north, Route 211 east, Lake Acuity and Victory
+   Road B1F.
+
+   | Measure | Before | After |
+   |---|---|---|
+   | Distinct shapes, header's 165 | 26 (0.158) | 58 (0.352) |
+   | Distinct shapes, report's 177 | 22 (0.12) | 54 (0.31) |
+   | R8 spread, header | 1.866x | 1.810x |
+   | R8 spread, report | 1.866x | 1.866x |
+   | Early, mid, late median HHI | 0.155, 0.179, 0.202 | 0.155, 0.184, 0.202 |
+
+   Species by split and the balance track's obtainable pool are unchanged.
+   One first catch moved a level (Turtonator, Byron's split, 29 to 28). On
+   Ian's save, the Box sim makes the same call at nine of its next ten
+   places, and a seeded run's box is worth 5837 against 5828. Lint is clean
+   (R3's aspirational uplift fell short on two more tables: Great Marsh 3
+   and Lost Tower 2F). `evolve` moves nothing, the availability gate and
+   the leak audit pass, and every suite passed twice. test_step0's local
+   verify_narcs compares a build from 2026-09-22, so the gate's GitHub ROM
+   is the real check. Both margins are thin. The header's R9 sits one shape
+   over its threshold and R8 0.01 over its floor, so a later table edit
+   should check both.
 
 ## Standing rules
 
