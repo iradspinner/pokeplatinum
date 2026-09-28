@@ -89,6 +89,35 @@
   --pixel: "Pixelify Sans", var(--mono);
 }
 
+/* Dim (Ian, 2026-09-28): the dark theme's scheme, lifted to a soft grey,
+   between Dark and Light for brightness. theme.js sets data-theme="dim" on
+   <html> with the dark color-scheme, so every light-dark() token above
+   resolves to its dark value except the ones redefined here: the surfaces,
+   the text, and the five meanings, each a little lighter than its dark
+   value in the same hue so it keeps 4.5:1 against the grey. Measured
+   (WCAG), the lowest are faint on the panel 4.7, mass on a sunken well 4.9,
+   error on a sunken well 4.8, and ink on the Electric chip 5.0 (chips mix
+   28% of their type in Dim, against 34% in Dark; index.html). The repel
+   segments, stat bands and type colours keep their dark values. */
+:root[data-theme="dim"] {
+  color-scheme: dark;
+  --ground: #2E3C3D;
+  --panel: #364546;
+  --sunken: #3F5051;
+  --rule: #566C6D;
+  --ink: #F2F7F6;
+  --dim: #C4D3D2;
+  --faint: #A0B5B4;
+  --mass: #6AD6D3;
+  --on-mass: #1B2627;
+  --place-bg: #563E4B;
+  --place-ink: #FAC0D5;
+  --act: #EFCB70;
+  --warn: #F7B886;
+  --error: #FCAEB5;
+  --shadow: rgba(0, 0, 0, .4);
+}
+
 /* Pixelify Sans, weight 600, latin subset; provenance in fonts/README.md.
    Blocking rather than swapping: the file is local and 8 KB, and a swap would
    make the title jump on every load. The url resolves against this file, so
