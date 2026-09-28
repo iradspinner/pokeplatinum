@@ -6559,9 +6559,10 @@ BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *batt
                 }
             }
 
-            battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
-
+            // A holder that copied nothing (its stats already at the limit)
+            // leaves the record for the next holder.
             if (copied) {
+                battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
                 battleCtx->msgBattlerTemp = holder;
                 battleCtx->calcTemp = contrary;
                 *subscript = subscript_mirror_herb;
