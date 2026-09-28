@@ -3,19 +3,19 @@
     "land_encounters": [
         {
             "level": 10,
-            "species": "SPECIES_SHROOMISH"
-        },
-        {
-            "level": 11,
             "species": "SPECIES_BUNEARY"
         },
         {
             "level": 11,
-            "species": "SPECIES_SEWADDLE"
+            "species": "SPECIES_SEEDOT"
         },
         {
             "level": 11,
-            "species": "SPECIES_SEEDOT"
+            "species": "SPECIES_SHROOMISH"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 12,
@@ -27,11 +27,11 @@
         },
         {
             "level": 12,
-            "species": "SPECIES_SEWADDLE"
+            "species": "SPECIES_SHROOMISH"
         },
         {
             "level": 12,
-            "species": "SPECIES_SEEDOT"
+            "species": "SPECIES_SEWADDLE"
         },
         {
             "level": 13,

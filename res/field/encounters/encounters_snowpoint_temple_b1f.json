@@ -11,10 +11,14 @@
         },
         {
             "level": 48,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_WEAVILE"
         },
         {
             "level": 48,
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 49,
             "species": "SPECIES_CROBAT"
         },
         {
@@ -23,19 +27,15 @@
         },
         {
             "level": 49,
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 49,
             "species": "SPECIES_CARBINK"
         },
         {
             "level": 49,
-            "species": "SPECIES_WEAVILE"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_GLALIE"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 49,
@@ -43,7 +43,7 @@
         },
         {
             "level": 50,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_CARBINK"
         },
         {
             "level": 50,

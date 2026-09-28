@@ -27,10 +27,6 @@
         },
         {
             "level": 49,
-            "species": "SPECIES_WEAVILE"
-        },
-        {
-            "level": 49,
             "species": "SPECIES_CROBAT"
         },
         {
@@ -39,11 +35,15 @@
         },
         {
             "level": 49,
+            "species": "SPECIES_FROSMOTH"
+        },
+        {
+            "level": 49,
             "species": "SPECIES_ABSOL"
         },
         {
             "level": 50,
-            "species": "SPECIES_GLALIE"
+            "species": "SPECIES_FROSMOTH"
         },
         {
             "level": 50,

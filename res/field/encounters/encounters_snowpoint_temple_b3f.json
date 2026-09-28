@@ -23,15 +23,15 @@
         },
         {
             "level": 49,
+            "species": "SPECIES_CROBAT"
+        },
+        {
+            "level": 49,
             "species": "SPECIES_GLALIE"
         },
         {
             "level": 49,
-            "species": "SPECIES_MR_RIME"
-        },
-        {
-            "level": 49,
-            "species": "SPECIES_CROBAT"
+            "species": "SPECIES_GLALIE"
         },
         {
             "level": 49,
