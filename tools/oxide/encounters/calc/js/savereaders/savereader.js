@@ -1500,6 +1500,25 @@ function parsePKM(chunk, is_party=false, offset=0, parseContext=null) {
         if ((decryptedData[mon_data_offset + 6] >> 8) & 0x1) {
             abilitySlotId = 3
         }
+        // Oxide patch: element 7's Ability Capsule, Mint and Bottle Cap. In
+        // block A 0x0D, bit 1 swaps which ordinary slot the personality picks,
+        // and bits 2 to 7 mark Hyper Trained stats (HP, Atk, Def, Spe, SpA,
+        // SpD), which grow as if their IV were 31. Block B 0x19 holds a
+        // Mint's nature, one more than its index, and that is the nature the
+        // stats grow by, so the set takes it. The IVs are read here from the
+        // stored word in that order, not through getIVs, whose order depends
+        // on which save reader loaded last.
+        var oxideByte = (decryptedData[mon_data_offset + 6] >> 8) & 0xFF
+        if (abilitySlotId !== 3 && (oxideByte & 0x2)) {
+            abilitySlotId = ((pv & 0x1) ^ 0x1) + 1
+        }
+        var mint = (decryptedData[move_data_offset + 12] >> 8) & 0xFF
+        if (mint >= 1 && mint <= 25) {
+            nature = natures[mint - 1]
+        }
+        ivs = [0, 1, 2, 3, 4, 5].map(function(i) {
+            return ((oxideByte >> (2 + i)) & 1) ? 31 : (iv_value >>> (5 * i)) & 0x1F
+        })
     }
     var parsedMoveNames = []
     for (let i = 0; i < 4; i++) {
