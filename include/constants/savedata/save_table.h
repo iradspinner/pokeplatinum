@@ -62,7 +62,13 @@ enum ExtraSaveTableEntryID {
     EXTRA_SAVE_TABLE_ENTRY_MAX
 };
 
-#define SAVE_PAGE_MAX    32
+// Platinum Oxide: the main save's RAM image, in 4 KB pages. Vanilla's 32
+// held 18 boxes; 30 boxes take the two blocks to 177,124 bytes, which the
+// card stores packed in sectors 0 to 43, and the battle log's RAM copy sits
+// in the image's tail after them. So the image is 45 pages. The extra save
+// entries below start at this number, now sector 45, and the battle log's
+// own sector, 44, sits between (docs/oxide/save-layout.md, "30 PC boxes").
+#define SAVE_PAGE_MAX    45
 #define SAVE_SECTOR_SIZE (0x1000)
 
 #define EXTRA_SAVE_TABLE_ENTRY_NONE 0xFFFFFFFF

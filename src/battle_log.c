@@ -53,6 +53,9 @@ typedef char BattleLogRecordIs58Bytes[(sizeof(BattleLogRecord) == 58) ? 1 : -1];
 typedef char BattleLogIs0xDB8Bytes[(sizeof(BattleLog) == 0xDB8) ? 1 : -1];
 typedef char BattleLogFitsASector[(sizeof(BattleLog) <= SAVE_SECTOR_SIZE) ? 1 : -1];
 typedef char OxideBeaconIs0x2CBytes[(sizeof(OxideBeacon) == 0x2C) ? 1 : -1];
+// The extra save entries (Hall of Fame, Frontier, recordings) start at sector
+// SAVE_PAGE_MAX, so the log's sector has to come before them.
+typedef char BattleLogSectorBeforeExtraSaves[(BATTLE_LOG_SECTOR < SAVE_PAGE_MAX) ? 1 : -1];
 
 // Found by the live export by its two magic words, so it needs no per-build
 // addresses (docs/oxide/battle-log.md, "The RAM beacon").
@@ -89,10 +92,22 @@ static BattleLog *BattleLog_Ptr(SaveData *saveData)
     const SaveBlockInfo *last = &saveData->blockInfo[SAVE_BLOCK_ID_MAX - 1];
     u32 offset = (last->offset + last->size + 3) & ~3;
 
-    // The check at boot that the log fits in the free tail. It holds with
-    // 0xE00 bytes free; a larger save table would have to move the log.
+    // The check at boot that the log fits in the free tail. With 30 PC boxes
+    // the two blocks end at 177,124 bytes of the 184,320-byte image, leaving
+    // 7,196 for the log's 3,512; a larger save table would have to move it.
     GF_ASSERT(offset + sizeof(BattleLog) <= sizeof(saveData->body.data));
     return (BattleLog *)&saveData->body.data[offset];
+}
+
+// The card packs the main save's blocks by bytes from the start of each half,
+// so the log's sector is free only while the blocks end before it. They end
+// 3,100 bytes short of it with 30 PC boxes. Should the normal block grow past
+// that, the log stops writing rather than overwrite the end of the boxes.
+static BOOL BattleLog_SectorFree(SaveData *saveData)
+{
+    const SaveBlockInfo *last = &saveData->blockInfo[SAVE_BLOCK_ID_MAX - 1];
+
+    return last->offset + last->size <= BATTLE_LOG_SECTOR * SAVE_SECTOR_SIZE;
 }
 
 static BOOL BattleLog_HeaderValid(const BattleLog *log)
@@ -186,6 +201,12 @@ void BattleLog_Clear(SaveData *saveData)
 void BattleLog_Write(SaveData *saveData)
 {
     BattleLog *log = BattleLog_Get(saveData);
+
+    GF_ASSERT(BattleLog_SectorFree(saveData));
+
+    if (BattleLog_SectorFree(saveData) == FALSE) {
+        return;
+    }
 
     log->footer.signature = SECTOR_SIGNATURE;
     log->footer.saveCounter++;
