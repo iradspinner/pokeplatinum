@@ -1664,6 +1664,7 @@ TestKit_Warp:
     AddListMenuEntry TestKit_Text_MenuJubilife, 3
     AddListMenuEntry TestKit_Text_MenuPastoria, 4
     AddListMenuEntry TestKit_Text_MenuVeilstone, 5
+    AddListMenuEntry TestKit_Text_MenuRoute208, 6
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_WarpTwinleaf
     GoToIfEq VAR_0x8004, 1, TestKit_WarpSandgem
@@ -1671,6 +1672,7 @@ TestKit_Warp:
     GoToIfEq VAR_0x8004, 3, TestKit_WarpJubilife
     GoToIfEq VAR_0x8004, 4, TestKit_WarpPastoria
     GoToIfEq VAR_0x8004, 5, TestKit_WarpVeilstone
+    GoToIfEq VAR_0x8004, 6, TestKit_WarpRoute208
     GoTo TestKit_Close
 
 TestKit_WarpTwinleaf:
@@ -1706,6 +1708,24 @@ TestKit_WarpPastoria:
 TestKit_WarpVeilstone:
     CloseMessage
     Warp MAP_HEADER_VEILSTONE_CITY, 0x2CD, 0x264, DIR_SOUTH
+    ReleaseAll
+    End
+
+@ Field moves by badge (main-field-moves): all eight badges, then Route 208
+@ facing west at its rocky wall (Rock Climb across x 393 to 397), two tiles
+@ from the pond that runs east to the waterfall at x 411 to 413 (Surf, then
+@ Waterfall up, and down again from the water above it).
+TestKit_WarpRoute208:
+    GiveBadge BADGE_ID_COAL
+    GiveBadge BADGE_ID_FOREST
+    GiveBadge BADGE_ID_COBBLE
+    GiveBadge BADGE_ID_FEN
+    GiveBadge BADGE_ID_RELIC
+    GiveBadge BADGE_ID_MINE
+    GiveBadge BADGE_ID_ICICLE
+    GiveBadge BADGE_ID_BEACON
+    CloseMessage
+    Warp MAP_HEADER_ROUTE_208, 398, 719, DIR_WEST
     ReleaseAll
     End
 

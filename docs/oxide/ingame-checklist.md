@@ -353,7 +353,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   under the field moves it knows; FLY opens the map, and SURF and DEFOG work
   where they apply. After Rock Climb or Waterfall, walk about for a minute:
   nothing in the field should misbehave (the base ROM's scripts corrupted the
-  field code there before this).
+  field code there before this). The test kit's Warp menu, "Route 208, all
+  badges", gives all eight badges and lands at a rocky wall two tiles from
+  water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
+  menu's FLY, SURF and DEFOG can be checked there first.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.

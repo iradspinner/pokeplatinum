@@ -948,6 +948,10 @@
             "en_US": "Veilstone City"
         },
         {
+            "id": "TestKit_Text_MenuRoute208",
+            "en_US": "Route 208, all badges"
+        },
+        {
             "id": "TestKit_Text_PartyFull",
             "en_US": [
                 "Your party has no room.\n",
