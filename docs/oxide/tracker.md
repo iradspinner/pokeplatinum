@@ -153,7 +153,7 @@ None is Phase 4 work; all of them shape the finished game.
 - [ ] **TM pass** (balance track): how many TMs (likely more than 92) and which moves
 - [ ] **Ability balance pass** (balance track), including the base ROM's 228 duplicated second slots
 - [ ] **Encounter design decisions** Phase 4 leaves open: which encounters set the hidden-ability flag (`FLAG_NEXT_MON_HIDDEN_ABILITY` before a static, gift or egg; `GiveHiddenAbility` on a party slot), and which areas have wild double battles. The Trophy Garden dailies and the Twinleaf legendary menu are never used (Ian, 2026-09-21); swarms, the Poke Radar and the GBA lists have their own entry below
-- [ ] **Route 211 east as a delay** (encounter track, Byron's split): the plan homes Ralts there with Rowlet and Litten at real shares as the prizes; author it with that split
+- [x] **Route 211 east as a delay** (encounter track, Byron's split): the plan homes Ralts there with Rowlet and Litten at real shares as the prizes; author it with that split. Done in the authoring pass: Kirlia and Dartrix (Rowlet's line) as the prizes at 27 to 30, with Jangmo-o, Ferroseed, Turtonator and Gligar; Litten's line left on purpose for its planned home, Route 204 north by day, in the 2026-09-25 trim Ian asked for (f605eae1e)
 - [ ] **Floette's white flower** (encounter track, 2026-09-21): the Day Care's shiny Floette should be the white-flowered one, which is new art and a form record; Flabébé, Floette and Florges all lack their forms. The shiny Floette stands until then
 - [ ] Optional, not scheduled: a ROM-specific PKHeX/PKHaX build. Depends on the save layout being documented as it changes, so keep a `docs/oxide/save-layout.md` listing every block that moved and why
 
