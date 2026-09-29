@@ -409,6 +409,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Wayward Cave B1F's Rare Candy, Grip Claw, Max Ether and hidden Stardust;
   Victory Road's TM59, Max Elixir and Full Restore on the upper levels; and
   Amity Square's Spooky Plate in the fenced pen. Tell the balance track.
+  Wayward Cave answered by Ian the same day: bike ramps carry the player
+  three tiles ahead, over the two between even when a rock sits on them, and
+  the basement's items are reached that way; the census models it.
 
 ## 5. The ordinary ROM, after the League
 
