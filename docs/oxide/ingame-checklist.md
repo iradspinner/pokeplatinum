@@ -403,7 +403,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
-- [ ] **Eight items the balance census cannot reach** (2026-09-29): its map
+- [x] **Eight items the balance census cannot reach** (2026-09-29): its map
   flood finds no way to them, so no score counts them. For each, say whether
   the player can pick it up and what it takes (which field move or path):
   Wayward Cave B1F's Rare Candy, Grip Claw, Max Ether and hidden Stardust;
@@ -422,6 +422,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Ian: Victory Road 2F's Max Elixir (tile 4,5), in a pocket whose only ways
   in are ledges out and the tile the bike ramp at (10,10) jumps over. Does a
   slow ride onto that ramp stop on it, or is there another way in?
+  Ian, the same day: yes, the bike's slow gear jumps shorter, which reaches
+  it; the balance track models the short jump. All eight answered.
 
 ## 5. The ordinary ROM, after the League
 
