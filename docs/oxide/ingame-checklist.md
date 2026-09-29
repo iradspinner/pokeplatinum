@@ -340,6 +340,23 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 4. The ordinary ROM, mid-game
 
+- [ ] **Field moves by badge** (`main-field-moves`), with no HM in the bag and
+  no Pokemon that knows the move, as each badge comes. After Roark, a
+  breakable rock offers Rock Smash; after Gardenia, a small tree offers Cut;
+  after Byron, a boulder offers Strength and moves; after Wake, facing water
+  offers Surf; after Candice, a rocky wall offers Rock Climb and the climb
+  finishes; after Volkner, a waterfall offers Waterfall up, and surfing into
+  one from above goes down. Each shows the first Pokemon in the party that is
+  not an Egg using the move. Before its badge, each obstacle gives its usual
+  "a Pokemon may be able to" line and nothing else. In the party menu, every
+  Pokemon lists FLY after Maylene, SURF after Wake and DEFOG after Fantina,
+  under the field moves it knows; FLY opens the map, and SURF and DEFOG work
+  where they apply. After Rock Climb or Waterfall, walk about for a minute:
+  nothing in the field should misbehave (the base ROM's scripts corrupted the
+  field code there before this). The test kit's Warp menu, "Route 208, all
+  badges", gives all eight badges and lands at a rocky wall two tiles from
+  water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
+  menu's FLY, SURF and DEFOG can be checked there first.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
