@@ -21,7 +21,9 @@
                 "MOVE_FIRE_FANG"
             ],
             "iv_scale": 251,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_QUAGSIRE",

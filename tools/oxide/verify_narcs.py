@@ -712,6 +712,16 @@ PERSONAL_BASE_EXP_AT = 0x09
 PERSONAL_ABILITIES_DIVERGED = {
     499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
     500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    # The player never sets or ends weather (Ian, 2026-09-29): each weather
+    # ability moves to the hidden slot, for trainers, and the regular slots
+    # keep the line's others.
+    54: ((6, 33), "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
+    55: ((6, 33), "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
+    248: ((61, 0), "Tyranitar: Shed Skin, Pupitar's; Sand Stream is hidden (Ian, 2026-09-29)"),
+    449: ((47, 0), "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
+    450: ((47, 0), "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
+    459: ((91, 43), "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
+    460: ((91, 43), "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
 }
 
 
