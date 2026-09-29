@@ -933,8 +933,8 @@ that stay. None blocks anything.
    (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
    Toxic Debris) imports and exports unchanged. A Sync replaces the box with
    what the save holds, as upstream's does, so a team typed in by hand goes
-   at the next save. Step 5's Mints and Hyper Training are done (item 43);
-   its 30 boxes wait on element 8. Step 6, the battle log, is done (item 36).
+   at the next save. Step 5 is done: the Mints and Hyper Training (item 43)
+   and the 30 boxes (item 44). Step 6, the battle log, is done (item 36).
 
    **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
    one per line, each in a table the gate dates to the line's cap split or
@@ -1198,10 +1198,22 @@ that stay. None blocks anything.
    Pokemon, so its payload carries the Mint's nature too. Checked by
    `test_savefile` and `test_battlelog` on synthetic records, and once in
    headless Chrome through the calculator's Read Save. No save of Ian's
-   holds these yet. The 30 boxes wait on element 8. The reader finds the box
-   block by its footer and counts boxes from its size, which covers a
-   longer block; if element 8 splits the boxes across blocks (save-layout.md
-   weighs the budget), both readers need the new block.
+   holds these yet. The 30 boxes are item 44.
+
+44. **The 30 PC boxes in both save readers (save step 5, 2026-09-29, on
+   `encounter-save-30-boxes`, from the main track's layout).** The main
+   track's `main-30-boxes` grows the box block from 0x121E4 to 0x1E310 and
+   keeps its shape (every box's records, then names, then wallpapers), and
+   leaves the normal block and the battle log where they were; Ian approved
+   it to land after the batch with element 7's fresh start. The OxiDex's
+   reader already counted the boxes from the block's size, so it needed
+   only the layout's name and the current layout set to it. An 18-box save
+   from element 7's builds still reads in full. The calculator's Read Save
+   read a fixed 18 boxes with box 18 as the graveyard; it now reads as many
+   as the block holds with the last one the graveyard, as the Box sim does
+   (VENDORED.md patch 21). Sync takes the count from the bridge's header
+   and needed nothing. Checked by `test_savefile` on a synthetic 30-box
+   save, and once in headless Chrome through Read Save.
 
 ## Standing rules
 

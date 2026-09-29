@@ -12,6 +12,9 @@
 
 #include "res/text/bank/pokemon_storage_system.h"
 
+// How many default box names vanilla's text bank holds in a row.
+#define VANILLA_PC_BOXES 18
+
 static void PCBoxes_InitInternal(PCBoxes *pcBoxes);
 
 void PCBoxes_Init(PCBoxes *pcBoxes)
@@ -46,8 +49,15 @@ static void PCBoxes_InitInternal(PCBoxes *pcBoxes)
 
     MessageLoader *messageLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_POKEMON_STORAGE_SYSTEM, HEAP_ID_SYSTEM);
     if (messageLoader) {
+        // Platinum Oxide: vanilla's eighteen names run on from Box1, with the
+        // bank's other messages straight after; the names of boxes 19 to 30
+        // were added at the end of the bank so that nothing else moved.
         for (boxID = 0; boxID < MAX_PC_BOXES; boxID++) {
-            MessageLoader_Get(messageLoader, PokemonStorageSystem_Text_Box1 + boxID, pcBoxes->names[boxID]);
+            u32 entry = boxID < VANILLA_PC_BOXES
+                ? PokemonStorageSystem_Text_Box1 + boxID
+                : PokemonStorageSystem_Text_Box19 + (boxID - VANILLA_PC_BOXES);
+
+            MessageLoader_Get(messageLoader, entry, pcBoxes->names[boxID]);
         }
 
         MessageLoader_Free(messageLoader);

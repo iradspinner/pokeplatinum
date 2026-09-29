@@ -39,6 +39,14 @@ output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
 
+# Platinum Oxide: the archive is packed from everything in this folder, so a
+# file an earlier build wrote and this one no longer does would be packed as
+# a member too (Meloetta's species_form_NNNN files did, once the form sprites
+# moved to the appended list). Start from an empty folder.
+for stale in private_dir.iterdir():
+    if stale.is_file():
+        stale.unlink()
+
 # The first batch of files should all be sprites
 for i in range(args.sprite_entries):
     infile = args.files[i]
