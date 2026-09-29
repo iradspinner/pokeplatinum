@@ -9,6 +9,7 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
+#include "generated/badges.h"
 #include "generated/items.h"
 #include "generated/moves.h"
 #include "generated/pokemon_contest_types.h"
@@ -48,6 +49,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "save_player.h"
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -60,6 +62,7 @@
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
+#include "trainer_info.h"
 #include "tv_segment.h"
 #include "unk_0206B9D8.h"
 #include "unk_0208C098.h"
@@ -260,6 +263,18 @@ static const u16 sFieldMoves[FIELD_MOVE_MAX] = {
     [FIELD_MOVE_CHATTER] = MOVE_CHATTER,
     [FIELD_MOVE_MILK_DRINK] = MOVE_MILK_DRINK,
     [FIELD_MOVE_SOFTBOILED] = MOVE_SOFTBOILED,
+};
+
+// Platinum Oxide: the field moves every Pokemon's menu offers once the badge
+// is earned, known or not (Ian, 2026-09-29). The other badge moves are used by
+// facing their obstacle, which needs only the badge too (scripts_field_moves.s).
+static const struct {
+    u8 fieldMove;
+    u8 badge;
+} sBadgeFieldMoves[] = {
+    { FIELD_MOVE_FLY, BADGE_ID_COBBLE },
+    { FIELD_MOVE_SURF, BADGE_ID_FEN },
+    { FIELD_MOVE_DEFOG, BADGE_ID_RELIC },
 };
 
 static BOOL PartyMenu_Init(ApplicationManager *appMan, int *state)
@@ -682,7 +697,7 @@ static BOOL PartyMenu_Exit(ApplicationManager *appMan, int *state)
     String_Free(v0->tmpString);
     String_Free(v0->tmpFormat);
 
-    for (v1 = 0; v1 < 20; v1++) {
+    for (v1 = 0; v1 < NUM_PARTY_MENU_STRS; v1++) {
         String_Free(v0->menuStrings[v1]);
     }
 
@@ -1752,7 +1767,10 @@ static void sub_0207FFC8(PartyMenuApplication *application)
     u8 v1;
 
     Window_EraseMessageBox(&application->windows[32], 1);
-    v0 = Heap_Alloc(HEAP_ID_PARTY_MENU, 8);
+    // Platinum Oxide: up to 11 entries, since Fly, Surf and Defog join the
+    // four known field moves (GetContextMenuEntriesForPartyMon); vanilla's
+    // eight bytes held at most eight.
+    v0 = Heap_Alloc(HEAP_ID_PARTY_MENU, 12);
 
     switch (application->partyMenu->mode) {
     case PARTY_MENU_MODE_FIELD:
@@ -1793,6 +1811,7 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
     u16 move;
     u8 fieldMoveIndex = 0, i, count = 0, fieldEffect;
+    u32 listed = 0; // Platinum Oxide: the field moves already on the menu, by FieldMoveList bit
 
     menuEntriesBuffer[count] = 1;
     count++;
@@ -1813,7 +1832,29 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
                     count++;
                     PartyMenu_SetKnownFieldMove(application, move, fieldMoveIndex);
                     fieldMoveIndex++;
+                    listed |= 1 << (fieldEffect - PARTY_MENU_STR_MOVE0);
                 }
+            }
+
+            // Platinum Oxide: a field move needs only its badge (Ian,
+            // 2026-09-26, the staples survey's answer 10), so every Pokemon
+            // offers Fly, Surf and Defog once their badges are earned, after
+            // the moves it knows, unless it knows the move already (Ian,
+            // 2026-09-29). The move's own checks still decide where it works.
+            TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(application->partyMenu->fieldSystem->saveData);
+
+            for (i = 0; i < NELEMS(sBadgeFieldMoves); i++) {
+                fieldEffect = GetFieldMoveIndex(sFieldMoves[sBadgeFieldMoves[i].fieldMove]);
+
+                if (TrainerInfo_HasBadge(trainerInfo, sBadgeFieldMoves[i].badge) == FALSE
+                    || (listed & (1 << (fieldEffect - PARTY_MENU_STR_MOVE0)))) {
+                    continue;
+                }
+
+                menuEntriesBuffer[count] = fieldEffect;
+                count++;
+                PartyMenu_SetKnownFieldMove(application, sFieldMoves[sBadgeFieldMoves[i].fieldMove], fieldMoveIndex);
+                fieldMoveIndex++;
             }
 
             menuEntriesBuffer[count] = 0;

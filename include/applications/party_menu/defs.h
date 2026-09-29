@@ -173,6 +173,11 @@ enum PartyMenuString {
     PARTY_MENU_STR_MOVE1,
     PARTY_MENU_STR_MOVE2,
     PARTY_MENU_STR_MOVE3,
+    // Platinum Oxide: room for Fly, Surf and Defog, which every Pokemon's
+    // menu offers once their badges are earned, beside four known moves.
+    PARTY_MENU_STR_MOVE4,
+    PARTY_MENU_STR_MOVE5,
+    PARTY_MENU_STR_MOVE6,
 
     NUM_PARTY_MENU_STRS,
 };
