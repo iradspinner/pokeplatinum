@@ -813,7 +813,10 @@ NOT_PICKED = EVASION | {"MOVE_PROTECT", "MOVE_DETECT"}
 # A charging turn, a turn out of reach, or a recharge: Ian's downsides
 # (ruling 11), so such a move is a late pick only when nothing else is.
 TWO_TURN = {"FLY", "DIVE", "DIG", "BOUNCE", "SHADOW_FORCE", "SKY_DROP", "SKIP_CHARGE_TURN_IN_SUN",
-            "RECHARGE_AFTER"}
+            "RECHARGE_AFTER",
+            # Future Sight and Doom Desire land two turns later, on whatever
+            # is in by then.
+            "HIT_IN_3_TURNS"}
 # A stage whose better attacking stat leads the other by this much never
 # takes an attack of the other category as a late pick.
 STAT_GAP = 20
@@ -1182,9 +1185,12 @@ def adds(species, c, known):
 
 def dominated(species, c, others):
     """Whether an attack is no better than a same-type, same-category attack
-    among `others`: at least as strong and at least as accurate."""
+    among `others`: at least as strong and at least as accurate. A charging,
+    recharging or delayed attack never outclasses one that hits this turn
+    (Espeon's Future Sight does not make its Psychic dead weight)."""
     e, acc = _hit(species, c)
     return any(k in M() and M()[k]["type"] == M()[c]["type"] and M()[k]["class"] == M()[c]["class"]
+               and (_two_turn(c) or not _two_turn(k))
                and _hit(species, k)[0] >= e and _hit(species, k)[1] >= acc for k in others if k != c)
 
 
