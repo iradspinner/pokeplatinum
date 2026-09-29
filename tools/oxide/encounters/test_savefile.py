@@ -41,12 +41,15 @@ def ability_id(constant):
 
 
 def record(pv, species, moves, ability, exp=0, hidden=False, met=0, party_level=None,
-           corrupt=False):
-    """One Pokemon record as the game stores it."""
+           corrupt=False, swapped=False, trained=0, mint=0, ivs=31 | 31 << 5):
+    """One Pokemon record as the game stores it. `trained` is the six Hyper
+    Training bits (bit 0 HP ... bit 5 Sp. Def) and `mint` the byte a Mint
+    writes, one more than the nature's index."""
     a = (struct.pack("<HHII", species, 0, 25097 | 32454 << 16, exp)
-         + bytes([70, 1 if hidden else 0, 0, 2]) + bytes(12) + bytes(4))
+         + bytes([70, (1 if hidden else 0) | (2 if swapped else 0) | trained << 2, 0, 2])
+         + bytes(12) + bytes(4))
     b = (struct.pack("<4H", *(moves + [0] * (4 - len(moves)))) + bytes(8)
-         + struct.pack("<I", 31 | 31 << 5) + bytes(4) + bytes(2)
+         + struct.pack("<I", ivs) + bytes(4) + bytes([0, mint])
          + struct.pack("<H", ability) + struct.pack("<HH", 0, met))
     c, d = bytes(32), bytes(28) + bytes([5, 0, 0, 0])
     arranged = [None] * 4
@@ -185,6 +188,33 @@ def main():
                     and o["progress"]["split"] is None and o["progress"]["money"] == 12345
                     and any("older layout" in m and "new game" in m for m in o["era"]["mismatches"])
                     and flag_refused, "; ".join(o["era"]["mismatches"])[:120]))
+    # Element 7 (save-layout.md): a Mint's nature at block B 0x19, and block A
+    # 0x0D's Ability Capsule bit and Hyper Training bits beside the hidden bit.
+    # IVs 1 to 6 by stat, so every stat reads apart; Speed and Sp. Atk trained.
+    six = sum((i + 1) << (5 * i) for i in range(6))
+    adamant = S.NATURES.index("Adamant")
+    changed = make_save([record(0x12345678, chimchar, [move_id("MOVE_SCRATCH")],
+                                ability_id("ABILITY_IRON_FIST"), met=3, party_level=6,
+                                swapped=True, trained=0b011000, mint=adamant + 1, ivs=six),
+                         record(0x0000BEEF, chimchar, [move_id("MOVE_SCRATCH")],
+                                ability_id("ABILITY_BLAZE"), party_level=6, mint=26)], {})
+    c = S.parse(changed, "element 7")
+    m, bad = c["party"][0], c["party"][1]
+    results.append(("element 7's changes read apart from what they leave alone: the Mint's "
+                    "nature for the stats beside the personality's, the Capsule's swap, and "
+                    "the Hyper Trained stats at 31 with the stored IVs kept",
+                    m["nature"] == S.NATURES[0x12345678 % 25] and m["mint"] == "Adamant"
+                    and m["stat_nature"] == "Adamant" and m["ability_swapped"]
+                    and not m["hidden_ability"] and m["hyper_trained"] == ["Spe", "SpA"]
+                    and m["ivs"] == [1, 2, 3, 4, 5, 6] and m["stat_ivs"] == [1, 2, 3, 31, 31, 6]
+                    and "by a Mint" in S.describe(m) and "Hyper Trained Spe, SpA" in S.describe(m)
+                    and any("element 7" in x for x in c["era"]["signs"]), S.describe(m)))
+    results.append(("a Mint byte past the 25 natures counts as none, as the engine reads it, "
+                    "and is reported",
+                    bad["mint"] is None and bad["stat_nature"] == bad["nature"]
+                    and any("Mint byte reads 26" in x for x in c["era"]["mismatches"])
+                    and p.get("mint") is None and p.get("hyper_trained") == []
+                    and p.get("stat_ivs") == p.get("ivs"), "; ".join(c["era"]["mismatches"])))
 
     # Read-only: reading the file leaves it byte for byte as it was.
     with tempfile.TemporaryDirectory() as tmp:
@@ -220,10 +250,16 @@ def main():
     reader = open(os.path.join(calc, "savereaders", "savereader.js"), encoding="utf-8").read()
     init = open(os.path.join(calc, "initialize.js"), encoding="utf-8").read()
     oxide_branch = init[init.index('title == "Platinum Oxide"'):init.index('title == "Platinum Kaizo"')]
+    # Element 7's part (VENDORED.md patch 20) was checked end to end once in
+    # headless Chrome on the save the element 7 check above builds: Adamant,
+    # Ability Slot 2 and "IVs: 1 HP / 2 Atk / 3 Def / 31 SpA / 6 SpD / 31 Spe".
     results.append(("the calculator's reader carries Oxide's patches: the layout by footer, the "
-                    "u16 ability and hidden bit, the blob's tables kept from the Gen 6-7 extender",
+                    "u16 ability and hidden bit, element 7's Mint, Capsule and Hyper Training, "
+                    "the blob's tables kept from the Gen 6-7 extender",
                     "applyOxideSaveLayout(view)" in reader and "0x20060623" in reader
                     and "decryptedData[move_data_offset + 13]" in reader
+                    and "nature = natures[mint - 1]" in reader
+                    and "((pv & 0x1) ^ 0x1) + 1" in reader and "(oxideByte >> (2 + i)) & 1" in reader
                     and "settings.readIncludes = true" in oxide_branch
                     and 'TITLE != "Platinum Oxide"' in init, ""))
     # Met places by Oxide's ids (VENDORED.md 17): the calculator's own Platinum
