@@ -241,8 +241,8 @@ def read(data, save=None):
                 "species_id": value & 0x7FF, "form": value >> 11, "is_egg": value == EGG,
                 "level": rec["player_levels"][i], "pid8": rec["player_pid8"][i],
                 "ko_by": _credit(rec["ko_of_player"][i], opp_count, "opponent"),
-                "now": {k: mon.get(k) for k in ("slot", "name", "level", "nature", "ability",
-                                                  "personality", "species", "species_id")}
+                "now": {k: mon.get(k) for k in ("slot", "name", "level", "nature", "stat_nature",
+                                                  "ability", "personality", "species", "species_id")}
                 if mon else None,
             })
         opponents = []
@@ -313,7 +313,11 @@ def calc_payload(log, save=None):
             party.append({
                 "species": name, "loggedSpecies": name, "level": p["level"],
                 "nickname": "", "heldItem": "None", "moves": [],
-                "ability": now.get("ability") or "Unknown", "nature": now.get("nature") or "Unknown",
+                # The Battle Log rebuilds a set from this, so it takes the
+                # nature the stats grow by (a Mint's, element 7), as the
+                # calculator's Read Save and Sync do.
+                "ability": now.get("ability") or "Unknown",
+                "nature": now.get("stat_nature") or now.get("nature") or "Unknown",
                 "currentSpecies": species_name(now["species_id"], True) if now.get("species_id") else name,
             })
             if p["now"]:

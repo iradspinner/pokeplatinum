@@ -933,9 +933,8 @@ that stay. None blocks anything.
    (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
    Toxic Debris) imports and exports unchanged. A Sync replaces the box with
    what the save holds, as upstream's does, so a team typed in by hand goes
-   at the next save. Open: step 5, mints and Hyper Training when element 7
-   records them and 30 boxes after element 8; step 6, the battle log, waits
-   on Ian's choice of source.
+   at the next save. Step 5's Mints and Hyper Training are done (item 43);
+   its 30 boxes wait on element 8. Step 6, the battle log, is done (item 36).
 
    **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
    one per line, each in a table the gate dates to the line's cap split or
@@ -1177,6 +1176,28 @@ that stay. None blocks anything.
    boxes, which sit where they did. Its split is not read, its flags are
    refused, and `cli save` reports it as needing a new game (exit 2). Ian's
    saves up to now are all on the older layout.
+
+43. **Mints, Hyper Training and the Ability Capsule in both save readers
+   (save step 5, 2026-09-29, on `encounter-save-mints`).** Element 7 stores
+   them in the Pokemon record (save-layout.md): a Mint's nature in block B
+   0x19, and beside the hidden-ability bit in block A 0x0D, the Capsule's
+   swap (bit 1) and one Hyper Training bit per stat (bits 2 to 7). The
+   OxiDex's reader gives the nature the game names and, apart from it, the
+   Mint's nature the stats grow by. It reports the Capsule's swap, and it
+   gives the stored IVs beside the ones the stats use, 31 where a stat is
+   trained. `cli save` and the save bar say "stats as Adamant by a Mint" and
+   "Hyper Trained Spe, SpA". A Mint byte past the 25 natures counts as none,
+   as the engine reads it, and is reported. The calculator's own reader
+   (VENDORED.md patch 20) gives Read Save and Sync the Mint's nature, the
+   swapped ability slot and the trained IVs, so the Box's stats match the
+   game's. The calculator's Battle Log rebuilds a set from each logged party
+   Pokemon, so its payload carries the Mint's nature too. Checked by
+   `test_savefile` and `test_battlelog` on synthetic records, and once in
+   headless Chrome through the calculator's Read Save. No save of Ian's
+   holds these yet. The 30 boxes wait on element 8. The reader finds the box
+   block by its footer and counts boxes from its size, which covers a
+   longer block; if element 8 splits the boxes across blocks (save-layout.md
+   weighs the budget), both readers need the new block.
 
 ## Standing rules
 

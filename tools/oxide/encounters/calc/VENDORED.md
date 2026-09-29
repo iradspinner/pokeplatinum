@@ -205,6 +205,21 @@ calculator checks fail if the offline ones are lost.
     the rest, as before. `test_battlelog` checks the patch, and it was
     checked in headless Chrome on a save with a synthetic log.
 
+20. **`js/savereaders/savereader.js`, element 7's Mint, Capsule and Bottle
+    Cap** (2026-09-29, save step 5; `docs/oxide/save-layout.md`). Under the
+    "Platinum Oxide" title `parsePKM` reads three more fields. A Mint's
+    nature (block B 0x19, one more than its index) becomes the set's nature,
+    since it is the one the stats grow by; the personality's stays what the
+    game names. The Ability Capsule's bit (block A 0x0D bit 1) swaps the
+    ordinary slot the set records. A Hyper Trained stat (bits 2 to 7, in
+    HP, Atk, Def, Spe, SpA, SpD order) reads its IV as 31. The IVs are read
+    from the stored word in that order rather than through `getIVs`, which
+    three readers each declare globally in different orders, so the one
+    that loads last wins. Read Save and Sync both go through `parsePKM`.
+    `test_savefile` checks the patch, and it was checked in headless Chrome
+    on a synthetic save: a Gentle Chimchar with an Adamant Mint imported as
+    Adamant, with Ability Slot 2 and 31 in Speed and Sp. Atk only.
+
 Sprites are not a patch: the server answers `img/<set>/<name>` itself from
 `res/pokemon/`, so `img/` stays absent.
 
