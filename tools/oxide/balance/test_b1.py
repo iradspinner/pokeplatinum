@@ -81,6 +81,7 @@ def check_fights_resolve(results):
                                                   and "Barry" in n)
                                 or (f["key"] == "mars_jupiter" and ("Mars" in n or "Jupiter" in n))
                                 or (f["key"] == "flint_volkner" and ("Flint" in n or "Volkner" in n))
+                                or (f["key"] == "somnu_moira" and ("Somnu" in n or "Moira" in n))
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight

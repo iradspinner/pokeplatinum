@@ -8,30 +8,35 @@
     },
     "overrides": {
         "vanilla": {
-            "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them.",
-            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": []
+            "_note": "Oxide's Lucas and Dawn fights live in slots vanilla leaves unused, so vanilla has no seat for them. Somnu and Moira are Oxide's officers in vanilla's Lake Verity grunt slots, compared with nothing.",
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
+            "somnu_moira": []
         },
         "renegade": {
             "_note": "As vanilla: no Lucas and Dawn fights.",
-            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": []
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
+            "somnu_moira": []
         },
         "_comment": "Where a Platinum-based hack keeps a fight under a different trainer id than Platinum's, fight key to the ids it really uses. Found by comparing names and levels across the hacks' data (2026-09-22), not from their scripts.",
         "redux": {
             "_note": "Redux swapped the two Galactic HQ slots. Its League is at level 100 in several sets (787 to 791, 866 to 870, 874 to 883); 787 to 791 are taken as the first run and the rest as rematches. Unverified until Redux's scripts or docs confirm it.",
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
-            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": []
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
+            "somnu_moira": []
         },
         "redux_hc": {
             "_note": "Same data layout as redux.",
             "cyrus_2": [409], "saturn_2": [403],
             "aaron": [791], "bertha": [787], "flint": [788], "lucian": [789], "cynthia": [790],
-            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": []
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
+            "somnu_moira": []
         },
         "kaizo": {
             "_note": "Kaizo's League is at level 100 in Platinum's rematch slots, after an 84 Volkner; the first-fight slots hold vanilla's unchanged sets.",
             "aaron": [866], "bertha": [867], "flint": [868], "lucian": [869], "cynthia": [870],
-            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": []
+            "lucas_dawn_1": [], "lucas_dawn_2": [], "lucas_dawn_3": [], "flint_volkner": [],
+            "somnu_moira": []
         }
     },
     "milestones": {
@@ -104,6 +109,9 @@
          "trainers": ["TRAINER_LEADER_BYRON"]},
         {"key": "saturn_1", "label": "Saturn 1", "split": "Candice", "sheet_ace": 53,
          "trainers": ["TRAINER_COMMANDER_SATURN_VALOR_CAVERN"]},
+        {"key": "somnu_moira", "label": "Somnu and Moira", "split": "Candice", "sheet_ace": null, "tag": true,
+         "note": "Officers Somnu and Moira at Lake Verity, a double against both at once before Mars 2: a named Galactic fight is a boss, and a double against two trainers is one fight (Ian, 2026-09-28). They are Oxide's officers in vanilla's grunt slots, so no reference hack has a seat.",
+         "trainers": ["TRAINER_GALACTIC_GRUNT_LAKE_VERITY_3", "TRAINER_GALACTIC_GRUNT_LAKE_VERITY_4"]},
         {"key": "mars_2", "label": "Mars 2", "split": "Candice", "sheet_ace": 53,
          "note": "The tree's ace is 54: Ian's updated team (Test.nds, or his Boss Documentation sheet for Cyrus 3) replaced the one the Level Caps sheet was written for.",
          "trainers": ["TRAINER_COMMANDER_MARS_LAKE_VERITY"]},

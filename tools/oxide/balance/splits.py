@@ -104,6 +104,7 @@ LOCATION_SPLITS = {
 # fight just happens on a return visit.
 STORY_REVISITS = {
     "mars_2": "Lake Verity, first reached in Roark's split, fought in Candice's",
+    "somnu_moira": "Lake Verity, as Mars 2",
     "lucas_dawn_2": "Route 207, first reached in Roark's split, fought in Fantina's "
                     "on the way from Eterna to Hearthome (its aces are 30)",
     "flint_volkner": "the Fight Area, first reached in the Galactic split, fought in the "

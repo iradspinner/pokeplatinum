@@ -250,10 +250,17 @@ def pairs():
     # How each is scored today: inside a story fight (fights.json, whose
     # tag battles already count both opponents as one party), or as B6's
     # placed trainers, one at a time.
-    fights = [(f["key"], {_stem(c) for c in f.get("trainers") or []}) for f in data.fights()["fights"]]
+    fights = [(f["key"], {_stem(c) for c in f.get("trainers") or []}, f["split"])
+              for f in data.fights()["fights"]]
     for p in out:
-        p["story"] = next((k for k, stems in fights if set(p["stems"]) <= stems), None)
+        story = next(((k, split) for k, stems, split in fights if set(p["stems"]) <= stems), None)
+        p["story"] = story and story[0]
         p["placed"] = [st for st in p["stems"] if ids.get(st) in placed]
+        # A story fight's trainers are not B6's placed trainers, so their
+        # own split falls back to their map's (Lake Verity's is Roark's);
+        # the pair takes the fight's split.
+        if story:
+            p["split"] = story[1]
     order = order + [None]
     return sorted(out, key=lambda p: (order.index(p["split"]) if p["split"] in order else len(order), p["key"]))
 
