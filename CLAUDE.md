@@ -17,8 +17,8 @@ Then say in one or two sentences what this session will do, and do it.
 
 - Work on `oxide` or a branch cut from it. Never commit to `main`; `main`
   tracks upstream pret.
-- Every data change is verified by rebuilding (on GitHub for now; see Build)
-  and, where a reference exists, comparing the rebuilt NARC to it with
+- Every data change is verified by rebuilding (`make rom`; see Build) and,
+  where a reference exists, comparing the rebuilt NARC to it with
   `tools/oxide/verify_narcs.py`.
 - Edit `res/` JSON files with `tools/oxide/jsonstyle.py` helpers or by hand in
   the same style; never reformat whole files (the repo's formatting is not
@@ -73,7 +73,7 @@ checks from `docs/oxide/ingame-checklist.md`), `doc-links` (a clickable,
 rendered link for any doc Ian is pointed at), `balance-rules` (Ian's
 rulebook for any learnset, trainer, item or fight-scoring work),
 `save-change` (anything that moves what the save stores) and `land-branch`
-(the Overseer's landings and CPU slots). In
+(the Overseer's landings). In
 `.claude/commands/`, `/integrate` merges every track into `oxide` and runs the
 full verification gate, `/qa-pass <base>` reviews and re-checks a range of
 commits and writes up the findings, and `/docs-pass` audits the docs, skills and
@@ -92,22 +92,23 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-**The replacement CPU is in (2026-09-29).** The old i9-14900K was degraded:
-under all-core load, compilers and Python crashed or returned wrong answers
-(design doc findings log, 2026-09-22). The new chip runs microcode 0x12F and
-passed a gentle check on its first day. Local builds are allowed again, and
-the workarounds for the old chip are gone. Two limits stay until the in-game
-checklist's section 0 clears them:
+**The replacement CPU is in and passed its checks (2026-09-29).** The old
+i9-14900K was degraded: under all-core load, compilers and Python crashed or
+returned wrong answers (design doc findings log, 2026-09-22), and for a week
+every build ran on GitHub. The new chip ran the stress check that caught the
+old one with no failures, and built `oxide` from scratch twice on every core,
+matching GitHub's SHA-1 both times. Local builds and parallel jobs are back
+to normal, with no job limit.
 
-- Until the parallel stress check passes, at most three heavy jobs run at once
-  across all sessions, each pinned to its own virtual CPU with `taskset -c`,
-  and a failed test is rerun before anyone believes it.
-  `tools/oxide/python_flake_repro.py` is the check.
-- Until a local build of `oxide` matches GitHub's SHA-1 for the same commit,
-  **Ian's playtest ROMs come from `tools/oxide/fetch-rom`**. It builds a pushed
-  commit in the private repo `iradspinner/oxide-rom-builder`, keeps the ROM
-  there as a private artifact for a day, and downloads it to `~/oxide-playtest`
-  after checking its SHA-1.
+Hand Ian a ROM built here from a pushed commit whose ROM matches GitHub's
+SHA-1 for it, copied into `~/oxide-playtest` as
+`pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
+same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
+follow.
+`tools/oxide/fetch-rom` still builds a pushed commit in the private repo
+`iradspinner/oxide-rom-builder` and downloads it there after checking its
+SHA-1, which suits a commit that is not checked out; it spends Actions
+minutes, so a local build comes first.
 
 GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's

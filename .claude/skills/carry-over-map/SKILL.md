@@ -29,7 +29,7 @@ name; at least two Mt Coronet maps do not line up by name.
 ```
 python3 tools/oxide/mapdiff.py <map>      # all three sides of the diff, from the base ROM
 # write the three files in the repo's idiom
-# build the ROM (on GitHub with tools/oxide/fetch-rom until the new CPU is in)
+make rom                                  # build the ROM
 python3 tools/oxide/checkmap.py <map>     # the rebuilt map against the base ROM
 ```
 
@@ -48,8 +48,8 @@ the enum headers (copy `build/generated/` from the main checkout), `msgenc`
 (copy `build/tools/msgenc/msgenc`) and the library it loads (copy
 `build/subprojects/yyjson-0.12.0/libyyjson.so*`). Copy them rather than
 symlinking `build/`, so nothing run in the worktree writes into the shared
-build. With those, one script can be assembled without a full build, which the
-degraded CPU forbids: regenerate `build/generated/vars_flags.h` with the main
+build. With those, one script can be assembled without a full build:
+regenerate `build/generated/vars_flags.h` with the main
 checkout's `subprojects/metang/metang.py` (a fresh worktree has no
 subprojects) if you renamed a var or flag, generate the map's
 text and events headers with `msgenc -H` and `build/tools/datagen/datagen-events`,

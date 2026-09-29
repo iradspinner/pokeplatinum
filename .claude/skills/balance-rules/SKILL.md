@@ -155,10 +155,9 @@ trainers' palette only.
 
 ## Running a pass on this machine
 
-- The replacement CPU is in (2026-09-29). Until its stress check passes (the
-  in-game checklist, section 0): at most three heavy jobs at once across all
-  sessions, each pinned to its own virtual CPU (`taskset -c`), every result
-  checked by a second run. Ask the Overseer for a slot.
+- The replacement CPU is in and passed its checks (2026-09-29), so there is
+  no job limit. A rescore still runs its agreeing second pass, which is the
+  rescore's own design rather than a guard against the CPU.
 - The rescore's engine hash covers `calc_headless.js`, the calculator page's
   `./calc/` scripts and the two functions lifted from `initialize.js`
   (`applyExportedMoveData`, `toImportedBaseStats`). An edit to any of them

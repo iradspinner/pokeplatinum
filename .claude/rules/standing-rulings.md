@@ -79,13 +79,10 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
-- The replacement CPU is in (2026-09-29). Until its parallel stress check
-  passes (the in-game checklist, section 0), a local session still runs at
-  most three heavy jobs at once across all sessions, each pinned to its own
-  virtual CPU, and reruns a failed test before believing it (Ian's rule of
-  2026-09-27, kept until then). Local builds are allowed again; Ian's
-  playtest ROMs come from GitHub until a local build matches GitHub's hash.
-  A cloud session's VM is not bound by this.
+- The replacement CPU is in and passed its stress and build checks
+  (2026-09-29), so the three-job limit of 2026-09-27 is lifted and local
+  builds are trusted: a ROM counts when its SHA-1 matches GitHub's build of
+  the same commit.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
