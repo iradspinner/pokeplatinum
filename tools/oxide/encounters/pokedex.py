@@ -118,11 +118,11 @@ def _load(root, species, ref, stamp):
     return {
         "species": species,
         "folder": folder_of(species),
-        # The twelve alternate-form records carry "-----" for a name, because a
-        # form is named after its base in game. Derive one from the folder
-        # rather than show dashes: Alolan Ninetales is a species Ian put in
-        # tables on purpose, not a placeholder.
-        "name": _name_of(en.get("name"), folder_of(species)),
+        # The twelve alternate-form records carried "-----" for a name, and
+        # since 2026-09-28 a short in-game one (A-NINETALS). Derive the
+        # OxiDex's from the folder either way: Alolan Ninetales is a species
+        # Ian put in tables on purpose, not a placeholder.
+        "name": _name_of(en.get("name"), folder_of(species), species),
         "mega_of": _mega_of(root, species),
         "stats": {k: stats.get(k, 0) for k in STAT_KEYS},
         "bst": sum(stats.get(k, 0) for k in STAT_KEYS),
@@ -154,9 +154,31 @@ def _load(root, species, ref, stamp):
     }
 
 
-def _name_of(name, folder):
+@functools.lru_cache(maxsize=1)
+def _form_species():
+    """The twelve form species tools/oxide/form_names.py names in game
+    ("A-NINETALS", fitted to the 10-character slot). Read from its FORM_NAMES
+    literal, since that script imports jsonstyle as a top-level module and
+    cannot be imported from this package."""
+    import ast
+    path = os.path.join(model.repo_root(), "tools", "oxide", "form_names.py")
+    try:
+        with open(path, encoding="utf-8") as f:
+            tree = ast.parse(f.read())
+    except FileNotFoundError:
+        return frozenset()
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(getattr(t, "id", None) == "FORM_NAMES" for t in node.targets):
+            return frozenset(ast.literal_eval(node.value))
+    return frozenset()
+
+
+def _name_of(name, folder, species=None):
+    """The OxiDex's name for a species. A form species keeps the name its
+    folder gives (Alolan Ninetales), not its short in-game one (A-NINETALS),
+    and so does any record still carrying the dashes Hardlove left there."""
     name = (name or "").strip()
-    if not name or set(name) <= {"-"}:
+    if species in _form_species() or not name or set(name) <= {"-"}:
         return folder.replace("_", " ").title()
     return name.title()
 

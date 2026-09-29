@@ -352,7 +352,11 @@ later, and has to be worth delaying for: a starter or a value line.
 ### 2.6 The dupes clause and the dupe-out cascade
 
 Confirmed as a house rule for Oxide: an encounter of an already-owned species does not
-count.
+count. "Owned" is by family, the evolution graph's line. A regional form its base reaches
+by a stone is one family with the base (Ian, 2026-09-28): owning a Koffing makes a wild
+Galarian Weezing a dupe and the reverse, and the same for Ponyta with Galarian Rapidash and
+Vulpix with Alolan Ninetales once the Ice Stone record lands. Within the family the regional
+form is a branch with its own home (availability.py, the build plan's item 41).
 
 Two distinct numbers, and the tool shows both:
 

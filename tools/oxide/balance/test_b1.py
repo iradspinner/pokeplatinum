@@ -81,6 +81,7 @@ def check_fights_resolve(results):
                                                   and "Barry" in n)
                                 or (f["key"] == "mars_jupiter" and ("Mars" in n or "Jupiter" in n))
                                 or (f["key"] == "flint_volkner" and ("Flint" in n or "Volkner" in n))
+                                or (f["key"] == "somnu_moira" and ("Somnu" in n or "Moira" in n))
                                 or (f["key"].startswith("lucas_dawn")
                                     and ("Lucas" in n or "Dawn" in n)))
         # A hack whose override lists no trainers has no seat for that fight
@@ -244,8 +245,9 @@ def check_items_and_marts(results):
     every mart table has its city's split. Two anchors: Poke Balls are on
     sale from the start, and the Eterna herb shop opens in Gardenia's split."""
     from . import splits
-    items = splits.items()
-    loose = [(h, i) for sp, h, i, _how in items if not sp or not i or not i.startswith("ITEM_")]
+    items = splits.item_reach()
+    loose = [(h, i) for sp, h, i, _how, needs in items
+             if (not sp and needs != "unreached") or not i or not i.startswith("ITEM_")]
     results.append(("every item ball and hidden item resolves", not loose,
                     f"{len(items)} items" + (f"; loose: {loose[:3]}" if loose else "")))
     marts = splits.marts()
@@ -291,6 +293,105 @@ def check_weather(results):
     results.append(("boss fights start in the weather their maps set", got == want, str(got)))
 
 
+# When each way opens (Ian's split definition for the bike; HM and badge for
+# the rest), and one item behind each, as the census had them wrong: Lake
+# Verity's TM38 in Roark's split, Oreburgh Gate B1F's TM01 in Byron's,
+# Valor Lakefront's Sun Stone in Wake's, and so on.
+FIELD_MOVE_SPLITS = {"Bicycle": "Fantina", "Rock Smash": "Gardenia", "Cut": "Fantina", "Surf": "Byron",
+                     "Strength": "Candice", "Rock Climb": "HQ", "Waterfall": "Barry"}
+REACH_ANCHORS = [("LAKE_VERITY", "ITEM_TM38", "Byron", "Surf"),
+                 ("RAVAGED_PATH", "ITEM_TM39", "Gardenia", "Rock Smash"),
+                 ("ETERNA_CITY", "ITEM_TM46", "Fantina", "Cut"),
+                 ("OREBURGH_GATE_B1F", "ITEM_TM01", "Candice", "Strength"),
+                 ("VALOR_LAKEFRONT", "ITEM_SUN_STONE", "HQ", "Rock Climb"),
+                 ("ROUTE_208", "ITEM_CARBOS", "Barry", "Waterfall"),
+                 ("SOLACEON_TOWN", "ITEM_PP_UP", "Maylene", "foot"),
+                 ("WAYWARD_CAVE_B1F", "ITEM_RARE_CANDY", "Fantina", "Bicycle"),
+                 ("VICTORY_ROAD_B1F", "ITEM_TM59", "Barry", "Waterfall"),
+                 ("AMITY_SQUARE", "ITEM_SPOOKY_PLATE", "Fantina", "foot"),
+                 ("VICTORY_ROAD_2F", "ITEM_MAX_ELIXIR", "Barry", "Strength")]
+# The items the flood cannot reach with every way open, named so a new one
+# is noticed and goes on Ian's in-game checklist; the census gives them no
+# split. None since Ian's answers of 2026-09-29: Wayward Cave's basement by
+# ramp jumps, Amity Square's plate through the ruins' teleporters, Victory
+# Road 2F's Max Elixir by a slow-gear ramp jump, and B1F's TM59 once
+# waterfalls were read before the collision bit.
+UNREACHED = set()
+
+
+def check_item_reach(results):
+    """An item behind water, a waterfall, a Rock Climb wall, a bike path or
+    a Rock Smash rock, Cut tree or Strength boulder counts from the split
+    the way to it first opens; one on foot keeps its map's; an item on
+    several maps under one pickup flag counts once; and the items nothing
+    reaches are the named ones. Each way opens when the game's own check
+    allows it: the HM in hand and its badge won, with Surf where the
+    encounter tool has it."""
+    from . import splits
+    moves = splits.field_move_splits()
+    ok = moves == FIELD_MOVE_SPLITS and moves["Surf"] == splits.surf_split()
+    results.append(("each field move opens where its HM and badge are both had", ok, str(moves)))
+    rows = splits.item_reach()
+    got = {(r[1], r[2]): (r[0], r[4]) for r in rows}
+    wrong = [(m, i, got.get((m, i))) for m, i, s, n in REACH_ANCHORS if got.get((m, i)) != (s, n)]
+    results.append(("an item counts from the split the way to it opens", not wrong,
+                    str(wrong) if wrong else f"{len(REACH_ANCHORS)} anchors"))
+    unreached = {(r[1], r[2]) for r in rows if r[4] == "unreached"}
+    ok = unreached == UNREACHED and all(r[0] is None for r in rows if r[4] == "unreached")
+    results.append(("the items nothing reaches are the named ones, with no split", ok,
+                    f"new {sorted(unreached - UNREACHED)}, gone {sorted(UNREACHED - unreached)}"
+                    if not ok else f"{len(unreached)} named"))
+    keys = splits.pickups()
+    water = splits._surfable()
+    ok = len(rows) == len(keys) and {"TILE_BEHAVIOR_WATER_SEA", "TILE_BEHAVIOR_WATER_RIVER"} <= water \
+        and not [n for n in water if "BRIDGE" in n]
+    results.append(("each pickup counts once, and only water is surfable", ok,
+                    f"{len(rows)} items from {sum(len(m) for _r, m in keys.values())} map copies"))
+
+
+def check_testkit(results):
+    """The test kit adds nothing to the census, since only `make testkit`
+    builds it. The filter keeps what a normal build keeps, #else branches
+    and other conditionals included; no field script holds a conditional
+    other than the kit's, so a new one gets a decision about which branch
+    the census reads; and no item or trainer that only a kit block names
+    reaches the gifts, the trainer maps or the battled set. The kit block
+    does name items (its Rare Candies), so the last part has teeth."""
+    from . import splits
+    sample = ["a", "#ifdef OXIDE_TESTKIT", "kit", "#ifdef OTHER", "kit2", "#endif", "#else",
+              "plain", "#endif", "#ifndef OXIDE_TESTKIT", "b", "#else", "kit3", "#endif",
+              "#ifdef OTHER", "c", "#else", "d", "#endif", "e"]
+    want = ["a", "plain", "b", "#ifdef OTHER", "c", "#else", "d", "#endif", "e"]
+    got = data.without_testkit("\n".join(sample)).split("\n")
+    results.append(("the test-kit filter keeps what a normal build keeps", got == want,
+                    "sample of nested and #else blocks" if got == want else f"got {got}"))
+    kit_files, other = {}, []
+    for path in sorted(glob.glob(os.path.join(data.ROOT, "res", "field", "scripts", "*.s"))):
+        with open(path, encoding="utf-8") as f:
+            raw = f.read()
+        heads = [line.split()[:2] for line in raw.split("\n") if line.split()[:1] in (["#if"], ["#ifdef"], ["#ifndef"])]
+        if any(h[1:] == [data.TESTKIT] for h in heads):
+            kit_files[os.path.basename(path)[:-2]] = (raw, data.without_testkit(raw))
+        other += [(os.path.basename(path), " ".join(h)) for h in heads if h[1:] != [data.TESTKIT] or h[0] == "#if"]
+    results.append(("no field script has a conditional but the test kit's", not other,
+                    f"{len(kit_files)} script(s) with kit blocks" + (f"; others: {other[:3]}" if other else "")))
+    maps = {h for h, f in splits.headers().items() if f.get("scriptsArchiveID") in kit_files}
+    items, trainers = set(), set()
+    for raw, built in kit_files.values():
+        items |= set(re.findall(r"\bITEM_\w+", raw)) - set(re.findall(r"\bITEM_\w+", built))
+        trainers |= set(re.findall(r"\bTRAINER_\w+", raw)) - set(re.findall(r"\bTRAINER_\w+", built))
+    leaked = sorted({i for _s, h, i in splits.gifts() if h in maps and i in items})
+    ids = {data.oxide_trainers()[t]["constant"] for t in data.oxide_trainers()} & trainers
+    tr_ids = {t for t in data.oxide_trainers() if data.oxide_trainers()[t]["constant"] in ids}
+    leaked += sorted(str(t) for t in tr_ids if maps & (splits.trainer_maps().get(t, set())
+                                                       | splits.trainer_mentions().get(t, set())))
+    leaked += sorted(trainers & data.battled())
+    results.append(("nothing only the test kit names reaches the census",
+                    "ITEM_RARE_CANDY" in items and not leaked,
+                    f"{len(items)} kit-only items, {len(trainers)} kit-only trainers"
+                    + (f"; leaked: {leaked[:5]}" if leaked else "")))
+
+
 def main():
     results = []
     for check in (check_pinned_files, check_set_counts, check_oxide_members,
@@ -298,7 +399,7 @@ def main():
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_hardlove_rom, check_run_and_bun, check_milestones_resolve,
                   check_split_map, check_items_and_marts, check_tm_sources,
-                  check_weather):
+                  check_weather, check_item_reach, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

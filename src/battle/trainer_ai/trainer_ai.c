@@ -3683,6 +3683,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
                             Battler_HeldItemEffect(battleCtx, BATTLER_OPP(battler)),
                             BattleMon_Get(battleCtx, BATTLER_OPP(battler), BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, BATTLER_OPP(battler), BATTLEMON_TYPE_2, NULL),
+                            BATTLER_OPP(battler),
                             &effectiveness);
 
                         // If this party member has a super-effective move, switch 2/3 of the time
@@ -3803,6 +3804,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Battler_HeldItemEffect(battleCtx, defender1),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_2, NULL),
+                            defender1,
                             &effectiveness);
                     }
 
@@ -3821,6 +3823,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Battler_HeldItemEffect(battleCtx, defender2),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_2, NULL),
+                            defender2,
                             &effectiveness);
                     }
 
@@ -3862,6 +3865,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Battler_HeldItemEffect(battleCtx, defender1),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender1, BATTLEMON_TYPE_2, NULL),
+                            defender1,
                             &effectiveness);
                     }
 
@@ -3880,6 +3884,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Battler_HeldItemEffect(battleCtx, defender2),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, defender2, BATTLEMON_TYPE_2, NULL),
+                            defender2,
                             &effectiveness);
                     }
 
@@ -4156,6 +4161,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                 BattleSystem_GetItemData(battleCtx, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_HOLD_EFFECT),
                 Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL),
                 Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL),
+                BATTLER_NONE,
                 &effectiveness);
 
             if (effectiveness & checkEffectiveness) {
@@ -4173,6 +4179,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                             Battler_HeldItemEffect(battleCtx, battleCtx->moveHitBattler[battler]),
                             BattleMon_Get(battleCtx, battleCtx->moveHitBattler[battler], BATTLEMON_TYPE_1, NULL),
                             BattleMon_Get(battleCtx, battleCtx->moveHitBattler[battler], BATTLEMON_TYPE_2, NULL),
+                            battleCtx->moveHitBattler[battler],
                             &effectiveness);
 
                         if ((effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) && BattleSystem_RandNext(battleSys) % rand == 0) {

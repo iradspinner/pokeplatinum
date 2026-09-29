@@ -21,6 +21,7 @@ import subprocess
 import openpyxl
 
 import donor
+from form_names import FORM_NAMES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SHEET = "/mnt/g/PokeROMs/Rokemon RomHack Creation Hub/New Pokedex.xlsx"
@@ -260,7 +261,9 @@ class Converter:
         feet, inches = re.search(r"(\d+)\D+(\d+)", self.heights[measure]).groups()
         weight = float(re.search(r"([\d.]+)", self.weights[measure]).group(1))
         category = str(self.categories[dp])
-        name = str(self.upper[dp])
+        # Hardlove's name bank has "-----" for the form slots; their names are
+        # Oxide's own and live in form_names.py.
+        name = FORM_NAMES.get(row["constant"], str(self.upper[dp]))
         dex_lang = {
             "name": name,
             "category": category,

@@ -1,0 +1,30 @@
+{
+  "name": "Serious Mint",
+  "plural": "sprigs of Serious Mint",
+  "article": "a",
+  "description": [
+    "Having a Pokémon smell this mint will\n",
+    "cause all of its stats to grow at an\n",
+    "equal rate."
+  ],
+  "icon": {
+    "sprite": "serious_mint_NCGR",
+    "palette": "serious_mint_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

@@ -111,6 +111,11 @@
             "EVO_LEVEL",
             35,
             "SPECIES_WEEZING"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_MOON_STONE",
+            "SPECIES_GALARIAN_WEEZING"
         ]
     ],
     "offspring": "SPECIES_KOFFING",

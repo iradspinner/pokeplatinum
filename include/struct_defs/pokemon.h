@@ -22,7 +22,8 @@ typedef struct PokemonDataBlockA {
 
     /* 0x0C */ u8 friendship;
     /* 0x0D */ u8 hasHiddenAbility : 1; //!< Platinum Oxide: the Pokemon takes its species' hidden ability, the third slot, whenever that species has one. Kept apart from the ability itself so an evolution or a form change recomputes the right slot.
-               u8 unusedAbility : 7; //!< Platinum Oxide: this byte held the ability until it moved to block B as a u16. Block A is full, block B had three spare bytes, and ability ids now run past 255. See docs/oxide/save-layout.md.
+               u8 abilitySlotSwapped : 1; //!< Platinum Oxide: an Ability Capsule has swapped which of the two ordinary slots the personality picks.
+               u8 hyperTrained : 6; //!< Platinum Oxide: one bit per stat in enum PokemonStat order, set by a Bottle Cap; the stat is computed as if its IV were 31. This byte held the ability until it moved to block B as a u16; see docs/oxide/save-layout.md.
     /* 0x0E */ u8 markings;
     /* 0x0F */ u8 originLanguage;
 
@@ -64,7 +65,7 @@ typedef struct PokemonDataBlockB {
     /* 0x18 */ u8 fatefulEncounter : 1;
                u8 gender : 2;
                u8 form : 5;
-    /* 0x19 */ u8 unused1; //!< First 6 bits track Shiny Leaves from HGSS.
+    /* 0x19 */ u8 statNature; //!< Platinum Oxide: 0, or one more than the nature a Mint gave the Pokemon's stats. HGSS kept Shiny Leaves here; Platinum never used it.
     /* 0x1A */ u16 ability; //!< Platinum Oxide: was unused2. See the note on block A's unusedAbility.
 
     /* 0x1C */ u16 EggLocation_PtHGSS;

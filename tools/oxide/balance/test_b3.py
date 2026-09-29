@@ -168,6 +168,15 @@ def check_pool(results, blob):
              for sp, s, want in cases if (sp in have[s]) != want]
     results.append(("stone evolutions join the side where their stone is first in reach",
                     not wrong, ", ".join(wrong)))
+    # The encounter tool's scripted sources the sources file places nowhere:
+    # the fossils in Fantina's split, and Acuity Cavern's draw in Volkner's.
+    cases = [("SPECIES_CRANIDOS", "Gardenia", False), ("SPECIES_CRANIDOS", "Fantina", True),
+             ("SPECIES_LILEEP", "Fantina", True), ("SPECIES_CRESSELIA", "Galactic", False),
+             ("SPECIES_CRESSELIA", "Volkner", True), ("SPECIES_PHEROMOSA", "Volkner", True)]
+    wrong = [f"{sp} {'missing from' if want else 'already in'} {s}"
+             for sp, s, want in cases if (sp in have[s]) != want]
+    results.append(("the fossils and the Acuity Cavern draw join where the encounter tool has them",
+                    not wrong, ", ".join(wrong)))
 
 
 def check_rules(results):

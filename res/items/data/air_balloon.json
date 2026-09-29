@@ -1,0 +1,30 @@
+{
+  "name": "Air Balloon",
+  "plural": "Air Balloons",
+  "article": "an",
+  "description": [
+    "An item to be held by a Pokémon. The\n",
+    "holder floats in the air until it is hit.\n",
+    "Once hit, the balloon bursts."
+  ],
+  "icon": {
+    "sprite": "air_balloon_NCGR",
+    "palette": "air_balloon_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_AIR_BALLOON",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

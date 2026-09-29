@@ -70,7 +70,16 @@ def showdown_id(root, species, form=0):
     return to_id(name or canon.showdown_name(species))
 
 
+# A level-0 learnset entry is an evolution move (2026-09-28): taught the moment
+# a Pokemon evolves into the species, at any level, and offered by the Move
+# Relearner, so it is on a trainer's legal palette. It reads as this, and
+# sorts first.
+ON_EVOLVING = "On evolving"
+
+
 def _how(code):
+    if code == "L0":
+        return ON_EVOLVING
     return "Level " + code[1:] if code.startswith("L") else HOW.get(code, code)
 
 
@@ -82,6 +91,8 @@ def _entry(root, const, name, how, source=None):
 
 
 def _level_key(e):
+    if e["how"].startswith(ON_EVOLVING):
+        return (0, -1, e["name"])
     m = re.match(r"Level (\d+)", e["how"])
     return (0, int(m.group(1)), e["name"]) if m else (1, 0, e["name"])
 
@@ -141,12 +152,18 @@ def oxide_list(root, species, form, level):
         if lv <= level:
             own.setdefault(move, []).append(lv)
     for move, lvs in own.items():
-        add(move, "Level " + ", ".join(str(x) for x in sorted(set(lvs))))
+        # A move learned on evolving and at a level too reads as both in its
+        # one entry ("On evolving, level 20"), and sorts with the evolution moves.
+        rest = ", ".join(str(x) for x in sorted(set(x for x in lvs if x)))
+        if 0 in lvs:
+            add(move, ON_EVOLVING + (", level " + rest if rest else ""))
+        else:
+            add(move, "Level " + rest)
     for stage in earlier_stages(root, species):
         stage_ls = (calc_trainers._raw_species(root, stage).get("learnset") or {})
         for lv, move in stage_ls.get("by_level") or []:
             if lv <= level and move not in own:
-                add(move, f"Level {lv}", dex.display_name(stage))
+                add(move, ON_EVOLVING if lv == 0 else f"Level {lv}", dex.display_name(stage))
     for tm in learnset.get("by_tm") or []:
         add(machines.get(tm), tm.replace("TM", "TM ").replace("HM", "HM "))
     for move in learnset.get("by_tutor") or []:

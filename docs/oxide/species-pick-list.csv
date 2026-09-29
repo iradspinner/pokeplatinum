@@ -497,3 +497,4 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 500,Hoppip,native,187,platinum,,yes,Grass,Flying,,filler
 501,Skiploom,native,188,platinum,,yes,Grass,Flying,,filler
 502,Jumpluff,native,189,platinum,,yes,Grass,Flying,,filler
+503,Meloetta,new,648,species,698,yes,Normal,Psychic,,gate

@@ -41,9 +41,13 @@ def main():
     # and 239 with the 34 lines of the Platinum-size pick-list (all 2026-09-26)
     # 238 since Fomantis evolves into Lurantis (main-scripts, 2026-09-27), one line,
     # and 239 since Remoraid and Mantyke are two lines again (the same day: the
-    # tool read the Remoraid in Mantyke's party method as its evolution).
-    results.append(("every one of the 239 lines has a row",
-                    len(rows) == 239, f"{len(rows)} rows"))
+    # tool read the Remoraid in Mantyke's party method as its evolution), and
+    # 237 since the Moon Stone joins Galarian Weezing to Koffing's family and
+    # Galarian Rapidash to Ponyta's (2026-09-28, Ian: one family each). Still
+    # 237 with Meloetta's line in and Alolan Ninetales joined to Vulpix's family
+    # by the Ice Stone (element 7, the same day).
+    results.append(("every one of the 237 lines has a row",
+                    len(rows) == 237, f"{len(rows)} rows"))
     results.append(("no line is without a source: every wild line has a home, "
                     "every gate line a script or a proposal",
                     not g["no_source"], ", ".join(g["no_source"][:5])))
@@ -52,15 +56,25 @@ def main():
     # pick-list (2026-09-26) a line may also live only as cameos or tails,
     # below the 10% a home needs (Larvitar beside Gible, Kricketot, Abra...).
     sourced = ("water", "honey", "cameo-only", "tail-only")
+    # A regional branch (Galarian Weezing in Koffing's family) keeps a home of
+    # its own beside the family's: one home per branch (2026-09-28).
+    one_each = lambda r: all(len(a) <= 1 for a in (r.get("branch_homes") or {}).values())
+    placed = lambda r: (r["home"] or r["non_wild"] or r["status"] in sourced) and one_each(r)
     results.append(("every non-gate line has one planned home, a non-wild, water or honey "
-                    "source, or a place as a cameo or tail; none has two homes",
-                    all((len(r["home"]) == 1 or r["non_wild"] or r["status"] in sourced)
-                        and len(r["home"]) <= 1
-                        for r in rows if r["tier"] != "gate"),
-                    ", ".join(r["name"] for r in rows
-                              if r["tier"] != "gate" and not ((len(r["home"]) == 1 or r["non_wild"]
-                                                               or r["status"] in sourced)
-                                                              and len(r["home"]) <= 1))[:120]))
+                    "source, or a place as a cameo or tail; none has two homes for one branch",
+                    all(placed(r) for r in rows if r["tier"] != "gate"),
+                    ", ".join(r["name"] for r in rows if r["tier"] != "gate" and not placed(r))[:120]))
+    koffing, ponyta = by["Koffing"], by["Ponyta"]
+    results.append(("a regional branch keeps its own home in its base's family, and is reached "
+                    "by the stone from the later of the base's first split and the stone's "
+                    "(Galarian Weezing from Koffing, Galarian Rapidash from Ponyta)",
+                    [b["name"] for b in koffing["branches"]] == ["Galarian Weezing"]
+                    and koffing["branches"][0]["home"] == ["encounters_stark_mountain_outside"]
+                    and [b["name"] for b in ponyta["branches"]] == ["Galarian Rapidash"]
+                    and all(b["via_split"] and b["stone"] == "ITEM_MOON_STONE"
+                            for b in koffing["branches"] + ponyta["branches"]),
+                    "; ".join(f"{b['name']} via {b['via_split']}, wild {b['wild_split']}"
+                              for b in koffing["branches"] + ponyta["branches"])))
     # A gate-tier starter may be a cameo or a tail (Ian: starters are the reason
     # to take a delay), never a home; a legendary is neither.
     results.append(("no gate line is planned as a wild home, and no legendary is planned wild at all",

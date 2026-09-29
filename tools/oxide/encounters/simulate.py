@@ -102,31 +102,77 @@ class Values:
         for row in dex.pick_list(root):
             if row.get("constant"):
                 self.pick_tier[dex.line_of(root, row["constant"])] = row.get("tier") or ""
+        # A stone evolution is reachable from the split the stone is first in
+        # reach, by the balance track's census (read only), counted as
+        # reachable rather than budgeted (Ian, 2026-09-28).
+        self.split = split
+        self.split_idx = progression.split_index(sidecar)
+        try:
+            from ..balance import pool as bpool
+            self.stone_first = bpool.evolution_items_first()
+        except Exception:
+            self.stone_first = {}
+
+    def _ready(self, level, item):
+        if item is None:
+            return level <= self.cap
+        first = self.stone_first.get(item)
+        return first is not None and self.split_idx.get(first, 99) <= self.split_idx.get(self.split, 99)
 
     @functools.lru_cache(maxsize=None)
     def stage(self, species):
-        return evolve.stage_at(self.root, species, self.cap, self.on_list)
+        """The best stage a Pokemon caught as `species` reaches by this split:
+        by level under the cap, by a stone once the stone is in reach (both
+        Koffing's routes, Weezing at 35 and Galarian Weezing by Moon Stone),
+        taking the one worth more where two are ready."""
+        return self._stage(species, frozenset([species]))
+
+    def _stage(self, species, seen):
+        routes = [r for r in evolve.routes(self.root, species)
+                  if r[0] not in seen and r[0] in self.on_list]
+        worth = lambda st: (self.worth(st), st)
+        # The player's routes (a stone, a held item, a level): the best stage
+        # any ready one leads to.
+        chosen = sorted({t for t, level, item, fixed in routes if not fixed and self._ready(level, item)})
+        options = [self._stage(t, seen | {t}) for t in chosen]
+        # The Pokemon's own (personality, sex, stats): it takes one of them,
+        # and the sim assumes the worse, counting one not yet reachable as
+        # staying put (a male Combee is a Combee until 50).
+        fixed = [(t, level, item) for t, level, item, f in routes if f]
+        if fixed:
+            outcomes = [self._stage(t, seen | {t}) if self._ready(level, item) else species
+                        for t, level, item in fixed]
+            options.append(min(outcomes, key=worth))
+        return max(options, key=worth) if options else species
 
     @functools.lru_cache(maxsize=None)
-    def of(self, species):
-        stage = self.stage(species)
+    def worth(self, stage):
+        """What a Pokemon at this stage is worth, 0 to 100."""
         try:
             bst = pokedex.load(self.root, stage)["bst"]
         except Exception:
             bst = BST_FLOOR
-        line = dex.line_of(self.root, species)
+        line = dex.line_of(self.root, stage)
+        # A family's regional branch (Galarian Weezing in Koffing's) carries its
+        # own rating, and is measured against its own final form; a family
+        # with none is one branch, rated by its line id as before.
+        branch = dex.branch_of(self.root, stage)
+        members = [m for m in dex.members_of_line(self.root, line)
+                   if dex.branch_of(self.root, m) == branch
+                   and os.path.isdir(os.path.join(self.root, "res", "pokemon", pokedex.folder_of(m)))]
+        key = min(members) if members else line
         bst_score = 100 * min(1.0, max(0.0, (bst - BST_FLOOR) / (BST_CEIL - BST_FLOOR)))
-        tier = TIER_SCORE.get(self.rating.get(line), 40)
+        tier = TIER_SCORE.get(self.rating.get(key, self.rating.get(line)), 40)
         # A line's rating is for its final form; a stage short of it by the
         # cap is worth that share of it, measured by BST.
-        final = max((pokedex.load(self.root, m)["bst"]
-                     for m in dex.members_of_line(self.root, line)
-                     if os.path.isdir(os.path.join(self.root, "res", "pokemon",
-                                                   pokedex.folder_of(m)))),
-                    default=bst)
+        final = max((pokedex.load(self.root, m)["bst"] for m in members), default=bst)
         tier *= min(1.0, bst / final) if final else 1.0
         pick = PICK_SCORE.get(self.pick_tier.get(line), 40)
         return round(W_BST * bst_score + W_TIER * tier + W_PICK * pick, 1)
+
+    @functools.lru_cache(maxsize=None)
+    def of(self, species):
+        return self.worth(self.stage(species))
 
     def pref(self, species):
         """What the player chases: the value, plus Ian's bonus for a

@@ -118,6 +118,36 @@ def check_move_lists(results, root):
     results.append(("Oxide's own list stops at the member's level",
                     level_up and max(int(e["how"].split()[1].split(",")[0]) for e in level_up) <= 40
                     and max(own) > 40, f"learns up to {max(own)}"))
+    # Level-0 evolution moves (2026-09-28). No species has one yet, so a
+    # stand-in: Politoed's learnset with Bounce taught on evolving, and a move
+    # it already learns by level also taught on evolving.
+    defaults = calc_trainers.default_moves([(0, "MOVE_BOUNCE"), (1, "MOVE_WATER_GUN"),
+                                            (5, "MOVE_HYPNOSIS")], 10)
+    real_record = learnsets._record
+    stand_in = json.loads(json.dumps(calc_trainers._raw_species(root, "SPECIES_POLITOED")))
+    by_level = stand_in["learnset"]["by_level"]
+    both = next(mv for lv, mv in by_level if 1 < lv <= 40)
+    # The pure evolution move must be one Politoed learns at no level (it
+    # learns Bounce at 37, which made the first stand-in read as both).
+    pure = next(mv for mv in ("MOVE_SPLASH", "MOVE_TELEPORT", "MOVE_METRONOME")
+                if mv not in {m for _, m in by_level})
+    pure_name = calc_trainers.pokedex.moves(root)[pure]["name"]
+    by_level[:0] = [[0, pure], [0, both]]
+    learnsets._record = lambda r, sp, form: stand_in if sp == "SPECIES_POLITOED" else real_record(r, sp, form)
+    try:
+        evo = learnsets.lists(root, "SPECIES_POLITOED", 0, 40)["oxide"]
+    finally:
+        learnsets._record = real_record
+    bounce = by_name(evo, pure_name)
+    both_name = (calc_trainers.pokedex.moves(root).get(both) or {}).get("name")
+    both_entry = by_name(evo, both_name)
+    results.append(("an evolution move (level 0) is never a default move, reads \"On evolving\" in "
+                    "the builder's list and sorts first; one also learned by level says both",
+                    defaults == ["MOVE_WATER_GUN", "MOVE_HYPNOSIS"]
+                    and bounce and bounce["how"] == "On evolving"
+                    and evo.index(bounce) < min(i for i, e in enumerate(evo) if e["how"].startswith("Level"))
+                    and both_entry and both_entry["how"].startswith("On evolving, level"),
+                    f"{bounce and bounce['how']}; {both_entry and both_entry['how']}"))
     ids = learnsets.move_ids(root)
     results.append(("canon moves map to Oxide's, the Generation IV spellings included "
                     "(Faint Attack, Hi Jump Kick)",

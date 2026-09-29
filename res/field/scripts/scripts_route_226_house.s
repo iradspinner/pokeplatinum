@@ -48,6 +48,9 @@ Route226House_TryTrade:
     GoToIfNe VAR_0x8005, VAR_RESULT, Route226House_ThatIsNoFinneon
     StartNPCTrade VAR_0x8004
     FinishNPCTrade
+    // Platinum Oxide: the Meister trades a Meloetta, which arrives knowing
+    // Relic Song, its signature move and what changes its form in battle.
+    ResetPartyMonMoveSlot_Unused VAR_0x8004, 0, MOVE_RELIC_SONG
     SetFlag FLAG_TRADED_FOR_FOPPA_MAGIKARP
     Message Route226House_Text_DankeSchon
     WaitButton

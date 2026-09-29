@@ -25,8 +25,21 @@
             ]
         },
         {
+            "id": "TestKit_Text_MenuTwoTMs",
+            "en_US": "Two TMs"
+        },
+        {
+            "id": "TestKit_Text_TwoTMs",
+            "en_US": [
+                "Two copies of TM01. Teach it to\n",
+                "any Pokémon once: the TM Case\r",
+                "should then show one TM01 left.\r",
+                "HMs are never used up."
+            ]
+        },
+        {
             "id": "TestKit_Text_MenuForms",
-            "en_US": "Rotom and Giratina"
+            "en_US": "Form changers"
         },
         {
             "id": "TestKit_Text_MenuEevee",
@@ -341,6 +354,10 @@
             "en_US": "Level caps"
         },
         {
+            "id": "TestKit_Text_MenuItems",
+            "en_US": "Element 7 items"
+        },
+        {
             "id": "TestKit_Text_WhichCap",
             "en_US": "Which split?"
         },
@@ -526,7 +543,11 @@
                 "Rotom is in its Wash form, and\n",
                 "Giratina in its Origin form.\r",
                 "Each summary should show its\n",
-                "form’s own stats and types."
+                "form’s own stats and types.\r",
+                "Meloetta knows Relic Song. Each\n",
+                "hit turns it Pirouette or back\r",
+                "to Aria. It is Aria again when it\n",
+                "switches out or the battle ends."
             ]
         },
         {
@@ -931,6 +952,160 @@
             "en_US": [
                 "Your party has no room.\n",
                 "Put some Pokémon in a box first."
+            ]
+        },
+        {
+            "id": "TestKit_Text_WhichItems",
+            "en_US": "Which items?"
+        },
+        {
+            "id": "TestKit_Text_MenuItemsAll",
+            "en_US": "All new items"
+        },
+        {
+            "id": "TestKit_Text_ItemsAll",
+            "en_US": [
+                "One of each of the 47 new items\n",
+                "is in the Bag."
+            ]
+        },
+        {
+            "id": "TestKit_Text_ItemPair",
+            "en_US": [
+                "Two new Pokémon: the first holds\n",
+                "{STRVAR_1 8, 0, 0}, the second nothing."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemEviolite",
+            "en_US": "Eviolite"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAssaultVest",
+            "en_US": "Assault Vest"
+        },
+        {
+            "id": "TestKit_Text_MenuItemPunchingGlove",
+            "en_US": "Punching Glove"
+        },
+        {
+            "id": "TestKit_Text_MenuItemFairyFeather",
+            "en_US": "Fairy Feather"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRingTarget",
+            "en_US": "Ring Target"
+        },
+        {
+            "id": "TestKit_Text_MenuItemSafetyGoggles",
+            "en_US": "Safety Goggles"
+        },
+        {
+            "id": "TestKit_Text_MenuItemCovertCloak",
+            "en_US": "Covert Cloak"
+        },
+        {
+            "id": "TestKit_Text_MenuItemClearAmulet",
+            "en_US": "Clear Amulet"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbilityShield",
+            "en_US": "Ability Shield"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRockyHelmet",
+            "en_US": "Rocky Helmet"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbsorbBulb",
+            "en_US": "Absorb Bulb"
+        },
+        {
+            "id": "TestKit_Text_MenuItemCellBattery",
+            "en_US": "Cell Battery"
+        },
+        {
+            "id": "TestKit_Text_MenuItemWeaknessPolicy",
+            "en_US": "Weakness Policy"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAirBalloon",
+            "en_US": "Air Balloon"
+        },
+        {
+            "id": "TestKit_Text_MenuItemBindingBand",
+            "en_US": "Binding Band"
+        },
+        {
+            "id": "TestKit_Text_MenuItemLoadedDice",
+            "en_US": "Loaded Dice"
+        },
+        {
+            "id": "TestKit_Text_MenuItemMirrorHerb",
+            "en_US": "Mirror Herb"
+        },
+        {
+            "id": "TestKit_Text_MenuItemEjectButton",
+            "en_US": "Eject Button"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRedCard",
+            "en_US": "Red Card"
+        },
+        {
+            "id": "TestKit_Text_MenuItemPixiePlate",
+            "en_US": "Pixie Plate"
+        },
+        {
+            "id": "TestKit_Text_MenuItemRoseliBerry",
+            "en_US": "Roseli Berry"
+        },
+        {
+            "id": "TestKit_Text_MenuItemAbilities",
+            "en_US": "Ability Capsule, Patch"
+        },
+        {
+            "id": "TestKit_Text_ItemAbilities",
+            "en_US": [
+                "A Machamp and a Ditto, two Ability\n",
+                "Capsules and the Ability Patch."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemMintsCaps",
+            "en_US": "Mints, Bottle Caps"
+        },
+        {
+            "id": "TestKit_Text_ItemMintsCaps",
+            "en_US": [
+                "A Lv. 20 Machamp, three kinds of\n",
+                "Mint, two Bottle Caps and a Gold one."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemTMs",
+            "en_US": "TM Case check"
+        },
+        {
+            "id": "TestKit_Text_ItemTMs",
+            "en_US": [
+                "TM01, TM92, HM01 and HM08\n",
+                "are in the TM Case."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuItemContrary",
+            "en_US": "Contrary on items"
+        },
+        {
+            "id": "TestKit_Text_MenuItemIceStone",
+            "en_US": "Vulpix, Ice Stone"
+        },
+        {
+            "id": "TestKit_Text_ItemIceStone",
+            "en_US": [
+                "Two Vulpix, an Ice Stone\n",
+                "and a Fire Stone."
             ]
         }
     ]

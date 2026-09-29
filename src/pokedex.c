@@ -12,6 +12,14 @@
 #include "pokemon.h"
 #include "savedata.h"
 
+// Platinum Oxide: these fail to compile (the array size goes negative) when
+// the species count outgrows what the saved Pokedex can hold. The first is a
+// language byte for every species the dex records; the second keeps the seen
+// and caught flags below the Deoxys forms packed into bits 24 to 31 of the
+// last word. Moving either limit moves the Pokedex on every existing save.
+typedef char DexLanguageSlotsCoverEverySpecies[(SPECIES_EGG <= DEX_LANGUAGE_SLOTS) ? 1 : -1];
+typedef char DexFlagsStayBelowDeoxysForms[(NATIONAL_DEX_COUNT <= (DEX_SIZE_U32 - 1) * 32 + 24) ? 1 : -1];
+
 static const u16 sExcludedMonsNational[] = {
     SPECIES_MEW,
     SPECIES_LUGIA,

@@ -1946,7 +1946,9 @@ static void MakeItemActionsMenu(BagController *controller)
     currentPocketType = controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType;
 
     if (controller->bagCtx->mode == BAG_MODE_NORMAL) {
-        if (currentPocketType == POCKET_BERRIES) {
+        // Oxide, element 7: only a numbered Berry has a tag.
+        if (currentPocketType == POCKET_BERRIES
+            && Item_BerryNumber(controller->bagCtx->selectedItem) != BERRY_ID_NONE) {
             itemActions[itemActionsIdx] = ITEM_ACTION_CHECK_TAG;
             itemActionsIdx++;
         }
@@ -1992,8 +1994,11 @@ static void MakeItemActionsMenu(BagController *controller)
 
             itemActionsIdx++;
         }
-    } else if (controller->bagCtx->mode == BAG_MODE_POFFIN_SINGLEPLAYER
-        || controller->bagCtx->mode == BAG_MODE_POFFIN_MULTIPLAYER) {
+    } else if ((controller->bagCtx->mode == BAG_MODE_POFFIN_SINGLEPLAYER
+                   || controller->bagCtx->mode == BAG_MODE_POFFIN_MULTIPLAYER)
+        && Item_BerryNumber(controller->bagCtx->selectedItem) != BERRY_ID_NONE) {
+        // Oxide, element 7: a Berry with no number (the Roseli Berry) has no
+        // Poffin data or tag, so it can only be backed out of here.
         itemActions[itemActionsIdx] = ITEM_ACTION_CONFIRM;
         itemActionsIdx++;
         itemActions[itemActionsIdx] = ITEM_ACTION_CHECK_TAG;
@@ -2859,8 +2864,12 @@ static int ProcessItemListInput_Gardening(BagController *controller)
         u8 input = ProcessItemListMenuInput(controller);
 
         if (input == ITEM_LIST_INPUT_SELECT_ITEM) {
-            if (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_ITEMS
-                && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG) != ITEM_USE_FUNC_MULCH) {
+            // Oxide, element 7: a Berry with no number (the Roseli Berry)
+            // has no tree to grow, so it cannot be planted.
+            if ((controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_ITEMS
+                    && Item_LoadParam(controller->bagCtx->selectedItem, ITEM_PARAM_FIELD_USE_FUNC, HEAP_ID_BAG) != ITEM_USE_FUNC_MULCH)
+                || (controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].pocketType == POCKET_BERRIES
+                    && Item_BerryNumber(controller->bagCtx->selectedItem) == BERRY_ID_NONE)) {
 
                 BagContext_FormatErrorMessage(controller->trainerInfo, controller->stringBuffer, controller->bagCtx->selectedItem, ITEM_USE_CANNOT_USE_GENERIC, HEAP_ID_BAG);
                 Window_FillTilemap(&controller->windows[BAG_UI_WINDOW_MSG_BOX_WIDE], 15);

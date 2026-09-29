@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_script.h"
+#include "constants/forms.h"
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -966,6 +967,31 @@ void BattleSystem_SetBurmyForm(BattleSystem *battleSys)
             }
 
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        }
+    }
+}
+
+/**
+ * @brief Platinum Oxide: put every Meloetta back to Aria as the battle ends,
+ * as hg-engine does (BattleEndRevertFormChange), so Pirouette never leaves a
+ * battle. It covers the one that fainted as Pirouette, which the switch-out
+ * revert in BtlCmd_TryRestoreStatusOnSwitch does not reach.
+ *
+ * @param battleSys
+ */
+void BattleSystem_RevertMeloettaForms(BattleSystem *battleSys)
+{
+    for (int battler = 0; battler < battleSys->maxBattlers; battler++) {
+        for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) == SPECIES_MELOETTA
+                && Pokemon_GetValue(mon, MON_DATA_FORM, NULL) != MELOETTA_FORM_ARIA) {
+                int form = MELOETTA_FORM_ARIA;
+
+                Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+                Pokemon_CalcLevelAndStats(mon);
+            }
         }
     }
 }
