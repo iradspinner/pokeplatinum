@@ -43,7 +43,11 @@ read, so they are written here too. Each is a standing instruction.
   and no weather-setting or weather-cancelling ability in an obtainable
   Pokemon's regular slots. The exceptions are the game's single Ability Patch
   (exactly one exists), which may give a weather ability as a hidden ability,
-  and Defog, which still clears fog. Trainers keep their weather.
+  and Defog, which still clears fog. Trainers keep their weather. A weather
+  ability found in an obtainable line's regular slot moves to its hidden slot
+  (Ian, 2026-09-29: Psyduck, Snover, Hippopotas and Larvitar's lines), so
+  trainers keep weather teams through hidden abilities, as Pelipper and
+  Torkoal already do.
 - Ian's super-wanted lines (the `wanted` list in
   `docs/oxide/encounters/values.json`) are never trimmed from the encounter
   tables, and a majority of them should be obtainable in a best-play run.
