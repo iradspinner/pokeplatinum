@@ -66,7 +66,7 @@ the pass replaces them. Calibrate against `main`, never the working tree.
 7. Day and night overrides live in slots 2 and 3 only (`set_time_slot` refuses
    anything else). Use them for two species that make the time of day matter.
 8. Every pick-list line is placeable: Phase 4 element 3 put all 159 new species
-   in the tree (ids 494 to 652), so the plan's Stage B reservations are moot.
+   in the tree (ids 494 to 653, Meloetta last), so the plan's Stage B reservations are moot.
    Use the species constant from `docs/oxide/species-id-map.csv` when in doubt.
 
 ## Rules that bite while writing
@@ -174,8 +174,7 @@ candidates; `lint --fail-on error` is clean, R12 included (since 2026-09-27
 the legendaries Ian holds back, in the pool's reserve, an empty cavern's third
 or a post-League proposal, are warnings that give his reason, and the
 pre-commit hook and the gate both lint R12); `audit --fail-on-leak`
-exits 0; the ROM is built (on GitHub with `tools/oxide/fetch-rom` until the
-replacement CPU is in, otherwise `make rom`) and `python3
+exits 0; the ROM is built (`make rom`) and `python3
 tools/oxide/verify_narcs.py --built <rom> --encounters --source` reports all 190
 tables matching their JSON (the gate's count on oxide, 2026-09-27). The numbers from `report` go into the build plan's
 "Authoring pass" section against the targets in design doc 2.1; the tracker's

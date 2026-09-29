@@ -933,9 +933,8 @@ that stay. None blocks anything.
    (Glimmora, Alolan Ninetales, Galarian Weezing, Mortal Spin, Freeze-Dry,
    Toxic Debris) imports and exports unchanged. A Sync replaces the box with
    what the save holds, as upstream's does, so a team typed in by hand goes
-   at the next save. Open: step 5, mints and Hyper Training when element 7
-   records them and 30 boxes after element 8; step 6, the battle log, waits
-   on Ian's choice of source.
+   at the next save. Step 5's Mints and Hyper Training are done (item 43);
+   its 30 boxes wait on element 8. Step 6, the battle log, is done (item 36).
 
    **The swaps, approved by Ian and applied (2026-09-27).** Ten slot swaps,
    one per line, each in a table the gate dates to the line's cap split or
@@ -1108,6 +1107,101 @@ that stay. None blocks anything.
    named Ace Trainers without the class's own "trainer" (ace_maya for
    ace_trainer_maya), so nine pairs had no files; that went back to the
    balance track to fix.
+
+40. **Level-0 evolution moves (the main track, 2026-09-28).** A learnset
+   entry at level 0 is taught the moment a Pokemon evolves into the species,
+   at any level. The game never gives one to a wild, gift or trainer
+   Pokemon's default moves, and the Move Relearner offers it. The OxiDex
+   follows. The default moves (the trainer builder's, and the calculator's
+   trainer sets) skip level 0. The builder's "In Oxide" list keeps an
+   evolution move as a legal pick, reading "On evolving" and sorting first;
+   a move also learned by level says both in one entry. The dex page's
+   level-up table and a move's learner list show "Evo". No species had one
+   yet, so the test patches a stand-in into Politoed's learnset.
+
+41. **Regional forms reached by a stone (Ian, 2026-09-28, relayed by the
+   Overseer).** The main track gave Koffing and Ponyta a Moon Stone branch
+   into Galarian Weezing and Galarian Rapidash; Vulpix's Ice Stone into
+   Alolan Ninetales came with element 7's cloud follow-up. Ian ruled
+   each pair one family for the dupes clause (design doc 2.6), so the
+   OxiDex's lines join them: 239 lines became 237, Koffing's with Galarian
+   Weezing and Ponyta's with Galarian Rapidash, and they stay 237 with
+   Meloetta's line in and Alolan Ninetales in Vulpix's family
+   (encounter-combined-fixes). Within a family a regional form is a branch (`dex.branch_of`: the
+   form and its later stages) with its own home: Galarian Weezing stays at
+   home at Stark Mountain and Galarian Rapidash on Route 230, beside
+   Koffing's and Ponyta's homes, and a table may hold two branches of one
+   family. A branch is also reached caught as its base and evolved, from
+   the later of the base's first split and the stone's first split in the
+   balance track's census (`pool.evolution_items_first`). Galarian Rapidash
+   opens in Gardenia's split that way, and Galarian Weezing in Maylene's,
+   against the Galactic split wild. Alolan Ninetales read Roark's split by
+   the Ice Stone for a day, because the census counted the Test Kit's Ice
+   Stone in the player's house as a gift. The balance track's census now
+   leaves the Test Kit out, and counts an item from the split in which the
+   field moves and the Bicycle first reach it (balance-combined-rescore,
+   2026-09-29). The game places no Ice Stone yet, so availability.md gives
+   Alolan Ninetales wild only, from Gardenia's split; the Moon Stone still
+   comes by Gardenia's. The Sun Stone moved from Wake's split to HQ's,
+   which no regional branch uses but the Box sim does. Stones count
+   as reachable, not budgeted, until Ian asks. availability.md lists each
+   branch's routes, and its tables name a branch's entries as the form
+   (Galarian Weezing at Stark Mountain, not Koffing twice).
+   The Box sim follows the same rule (encounter-sim-stones). A caught
+   Pokemon reaches the best stage it can by the split: by level under the
+   cap, or by a stone either sex can use from the stone's census split,
+   kept beside a level route (Koffing to Galarian Weezing by Moon Stone from
+   Gardenia's split, before Weezing at 35). Where two of the player's
+   routes are ready (two stones, Clamperl's two held items) it takes the
+   stage worth more, and a regional branch is rated by its own form. A
+   branch the Pokemon decides, by personality (Wurmple), sex (Burmy,
+   Combee) or its stats (Tyrogue), takes the worse outcome, since a
+   nuzlocke meets one per place (the Overseer's correction); a male Combee
+   stays one until 50. Shedinja is not a stage of a Nincada. A stone for
+   one sex (Froslass's Dawn Stone) and the other judged methods still yield
+   to a level evolution. The census timing moves other
+   lines too: Moon and Leaf Stone lines evolve from Gardenia's split, and
+   Shiny Stone lines only once it is placed. The encounter tables' own
+   evolution rule is unchanged. In the same batch, the twelve form
+   species gained short in-game names (A-NINETALS); the OxiDex keeps the
+   folder's name for them (Alolan Ninetales), from form_names.py's table.
+
+42. **The save reader follows element 7's Bag (2026-09-28, through the
+   Overseer).** Element 7 widened three Bag pockets (Items 165 to 187,
+   Medicine 40 to 63, Berries 64 to 65), so the normal block grew by 184
+   bytes to 0xD0D4 and the variables and flags after the Bag moved
+   (save-layout.md, "The Bag grew"). The reader summed the pocket defines
+   that were plain numbers, and the TM pocket's is now the expression
+   NUM_TMHMS, so the variables read at 0xCD4. It now takes the Bag struct's
+   own pockets and works each size out from the bag and item headers, item
+   constants by their ids: the variables are at 0xE64. A layout change
+   costs a new game, not a converter (Ian, 2026-09-28), so the reader marks
+   the new layout current. A save on an older one still gives its party and
+   boxes, which sit where they did. Its split is not read, its flags are
+   refused, and `cli save` reports it as needing a new game (exit 2). Ian's
+   saves up to now are all on the older layout.
+
+43. **Mints, Hyper Training and the Ability Capsule in both save readers
+   (save step 5, 2026-09-29, on `encounter-save-mints`).** Element 7 stores
+   them in the Pokemon record (save-layout.md): a Mint's nature in block B
+   0x19, and beside the hidden-ability bit in block A 0x0D, the Capsule's
+   swap (bit 1) and one Hyper Training bit per stat (bits 2 to 7). The
+   OxiDex's reader gives the nature the game names and, apart from it, the
+   Mint's nature the stats grow by. It reports the Capsule's swap, and it
+   gives the stored IVs beside the ones the stats use, 31 where a stat is
+   trained. `cli save` and the save bar say "stats as Adamant by a Mint" and
+   "Hyper Trained Spe, SpA". A Mint byte past the 25 natures counts as none,
+   as the engine reads it, and is reported. The calculator's own reader
+   (VENDORED.md patch 20) gives Read Save and Sync the Mint's nature, the
+   swapped ability slot and the trained IVs, so the Box's stats match the
+   game's. The calculator's Battle Log rebuilds a set from each logged party
+   Pokemon, so its payload carries the Mint's nature too. Checked by
+   `test_savefile` and `test_battlelog` on synthetic records, and once in
+   headless Chrome through the calculator's Read Save. No save of Ian's
+   holds these yet. The 30 boxes wait on element 8. The reader finds the box
+   block by its footer and counts boxes from its size, which covers a
+   longer block; if element 8 splits the boxes across blocks (save-layout.md
+   weighs the budget), both readers need the new block.
 
 ## Standing rules
 

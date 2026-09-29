@@ -112,6 +112,11 @@
             "EVO_USE_ITEM",
             "ITEM_FIRE_STONE",
             "SPECIES_NINETALES"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_ICE_STONE",
+            "SPECIES_ALOLAN_NINETALES"
         ]
     ],
     "offspring": "SPECIES_VULPIX",

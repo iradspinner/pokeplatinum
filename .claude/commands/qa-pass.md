@@ -23,11 +23,11 @@ Go one commit at a time: read the message, then the code. Correctness first. The
 
 ## 3. Re-check every claim
 
-Commit messages carry numbers: counts, "0 disagree", "byte-identical", "N of N passed". Rerun the command behind each one. If a claim cannot be rerun, say so in the findings rather than repeating it. Until the replacement CPU is in, a failed run gets one rerun before it counts (CLAUDE.md, Build).
+Commit messages carry numbers: counts, "0 disagree", "byte-identical", "N of N passed". Rerun the command behind each one. If a claim cannot be rerun, say so in the findings rather than repeating it.
 
 ## 4. Run the gate
 
-Until the replacement CPU is in, the guard refuses a local build: fetch GitHub's build of HEAD with `tools/oxide/fetch-rom HEAD` (HEAD must be pushed) and run `bash tools/oxide/integrate.sh --verify-only --rom <that ROM>`. A cloud session drops `--rom`, and the script builds with retries. It runs the full check-list without merging anything and checks the ROM's hash against GitHub's build of HEAD; a warning that GitHub has no run for HEAD means the range is not pushed yet, or, in a cloud session, that the VM has no `gh`.
+Run `bash tools/oxide/integrate.sh --verify-only`, which builds the ROM. It runs the full check-list without merging anything and checks the ROM's hash against GitHub's build of HEAD; a warning that GitHub has no run for HEAD means the range is not pushed yet, or, in a cloud session, that the VM has no `gh`.
 
 ## 5. Write it up
 

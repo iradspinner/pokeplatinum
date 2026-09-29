@@ -67,6 +67,13 @@
 #include "res/text/bank/underground_goods.h"
 #include "res/text/bank/unk_0543.h"
 
+// Platinum Oxide: whether a shop lists this item as a TM, by its move name and
+// number. Vanilla's test was TM01 to HM01; the TMs past TM92 join it.
+static BOOL Shop_IsTM(u16 item)
+{
+    return (item >= ITEM_TM01 && item <= ITEM_HM01) || (item >= FIRST_EXTRA_TM_IDX && item <= LAST_EXTRA_TM_IDX);
+}
+
 #define UNDERGROUND_GOOD_DESCRIPTIONS_START UndergroundGoods_Text_CloseDescription
 
 static u8 Shop_GetCameraPosDest(FieldSystem *fieldSystem);
@@ -654,7 +661,7 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     for (i = 0; i < shopMenu->itemsCount; i++) {
         itemId = Shop_GetItemId(shopMenu, shopMenu->itemsPtr[i]);
 
-        if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
+        if (Shop_IsTM(itemId)) {
             string = MessageLoader_GetNewString(moveNames, Item_MoveForTMHM(itemId));
             StringList_AddFromString(shopMenu->itemsList, string, shopMenu->itemsPtr[i]);
             String_Free(string);
@@ -681,7 +688,7 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
 
     listTemplate = sShop_ItemListMenuTemplate;
 
-    if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
+    if (Shop_IsTM(itemId)) {
         listTemplate.textXOffset = 35;
     } else {
         listTemplate.textXOffset = 0;
@@ -768,10 +775,10 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
         u32 price, strWidth;
         u16 itemId = index;
 
-        if ((itemId <= ITEM_HM01) && (itemId >= ITEM_TM01)) {
-            itemId = itemId - ITEM_TM01 + 1;
+        if (Shop_IsTM(itemId)) {
+            itemId = Item_TMHMNumber(itemId) + 1;
 
-            FontSpecialChars_DrawPartyScreenText(shopMenu->unk_2B4, 2, itemId, 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
+            FontSpecialChars_DrawPartyScreenText(shopMenu->unk_2B4, 2, itemId, itemId >= 100 ? 3 : 2, 2, &shopMenu->windows[SHOP_WINDOW_ITEM_LIST], 0, yOffset + 4);
         }
 
         price = Shop_GetItemPrice(shopMenu, index);
@@ -1078,7 +1085,7 @@ static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu)
     StringTemplate_SetNumber(shopMenu->strTemplate, 1, shopMenu->itemAmount, 2, PADDING_MODE_NONE, CHARSET_MODE_EN);
     StringTemplate_SetNumber(shopMenu->strTemplate, 2, shopMenu->itemPrice * shopMenu->itemAmount, 6, PADDING_MODE_NONE, CHARSET_MODE_EN);
 
-    if ((shopMenu->itemId <= ITEM_HM01) && (shopMenu->itemId >= ITEM_TM01)) {
+    if (Shop_IsTM(shopMenu->itemId)) {
         u16 move = Item_MoveForTMHM(shopMenu->itemId);
 
         StringTemplate_SetMoveName(shopMenu->strTemplate, 3, move);

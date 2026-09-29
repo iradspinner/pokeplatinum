@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# Land one finished branch on `oxide` while this CPU cannot build: merge it,
-# have GitHub build the merged tree, run the full gate on that ROM, and push
-# only if the gate passes. Platinum Oxide project. The Overseer runs it for each
+# Land one finished branch on `oxide`: merge it, build the merged tree here,
+# run the full gate on that ROM, and push only if the gate passes. Platinum Oxide project. The Overseer runs it for each
 # track or cloud branch it merges, after reading the branch's report (the
 # `cloud-job` skill has the review that comes first).
 #
@@ -11,11 +10,15 @@
 #   2. Merge the branch. A conflict stops here: resolve it, commit the merge,
 #      and rerun with --merged. The tracker and the design doc conflict most;
 #      keep both sides' current entries (the `cloud-job` skill says how).
-#   3. Push the merged tree to `integration-check` and build it with
-#      tools/oxide/fetch-rom, which reuses a build when only docs changed.
-#   4. integrate.sh --verify-only --rom <that ROM>: the base-ROM checks, the
+#   3. integrate.sh --verify-only: `make rom`, then the base-ROM checks, the
 #      encounter and balance suites, the word limits. Any failure stops here.
-#   5. Push `oxide`, delete `integration-check`, run sync-docs.sh.
+#      The ROM is copied to ~/oxide-playtest/pokeplatinum-oxide-<commit>.nds,
+#      the name fetch-rom gives, for Ian.
+#   4. Push `oxide` and run sync-docs.sh. GitHub's free build of the public
+#      repo then prints the ROM's SHA-1, which should match the copy.
+# Until 2026-09-29 the build ran on GitHub (fetch-rom), because the old CPU
+# could not build; Ian ruled out Actions in the private repos until
+# 2026-10-01, and the new CPU builds the same ROM byte for byte.
 #
 # Usage:
 #   tools/oxide/merge-branch.sh <branch>             # origin/<branch>, or any commit
@@ -73,25 +76,20 @@ if [ $MERGED -eq 0 ]; then
 fi
 
 HEAD_SHORT="$(git rev-parse --short=9 HEAD)"
-say "building $HEAD_SHORT on GitHub"
-git push -q -f origin HEAD:refs/heads/integration-check || die "could not push integration-check"
-FETCH_OUT="$(sh tools/oxide/fetch-rom HEAD 2>&1)"; FETCH_RC=$?
-echo "$FETCH_OUT" | tail -3
-[ $FETCH_RC -eq 0 ] || die "fetch-rom failed; oxide is merged locally but not pushed"
-ROM="$(echo "$FETCH_OUT" | sed -n 's/^ROM: *//p' | tail -1)"
-[ -f "$ROM" ] || die "fetch-rom printed no ROM path"
-
 LOG="$(mktemp "${TMPDIR:-/tmp}/merge-branch-$HEAD_SHORT.XXXX.log")"
-say "gate on $ROM (log: $LOG)"
-bash tools/oxide/integrate.sh --verify-only --rom "$ROM" >"$LOG" 2>&1; GATE_RC=$?
+say "building $HEAD_SHORT here and running the gate (log: $LOG)"
+bash tools/oxide/integrate.sh --verify-only >"$LOG" 2>&1; GATE_RC=$?
 grep -E '^(FAIL|WARN)|every count|^passed:|^failed:' "$LOG"
 [ $GATE_RC -eq 0 ] || die "the gate failed (log above); oxide is merged locally but not pushed"
+ROM="$HOME/oxide-playtest/pokeplatinum-oxide-$HEAD_SHORT.nds"
+mkdir -p "$(dirname "$ROM")" && cp build/pokeplatinum.us.nds "$ROM" \
+    && sha1sum "$ROM" | cut -d' ' -f1 > "${ROM%.nds}.sha1" \
+    && say "ROM for Ian: $ROM (SHA-1 $(cat "${ROM%.nds}.sha1"))"
 
 if [ $PUSH -eq 0 ]; then
     say "gate passed; --no-push given, so oxide is not pushed"
     exit 0
 fi
 git push -q origin oxide || die "could not push oxide"
-git push -q origin --delete integration-check 2>/dev/null
 bash tools/oxide/sync-docs.sh >/dev/null || say "sync-docs reported a problem; run it by hand to see"
 say "pushed oxide at $(git rev-parse --short=9 HEAD) and mirrored the docs"

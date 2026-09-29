@@ -699,6 +699,7 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
     SetScreenColorBrightness(DS_SCREEN_MAIN, COLOR_BLACK);
     SetScreenColorBrightness(DS_SCREEN_SUB, COLOR_BLACK);
     BattleSystem_SetBurmyForm(battleSys);
+    BattleSystem_RevertMeloettaForms(battleSys);
 
     if (battleSys->resultMask != BATTLE_RESULT_CAPTURED_MON) {
         BattleSystem_InitCaptureAttempt(battleSys, Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_1], 0));

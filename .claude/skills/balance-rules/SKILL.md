@@ -101,6 +101,13 @@ is listed for Ian.
   element 4 follow-up; Synchronoise and the other broken ones stay out.
 - Move numbers, setup PP and the no-weather rule for the player are in the
   standing rulings; they bind every learnset too.
+- **Every line learns something late** (2026-09-28): each final stage the
+  player can own gets at least one real level-up move at 61 or later.
+- **Stone and item evolutions** (2026-09-28) get their own sparser list after
+  evolving, never a copy of the pre-evolution's later moves, so evolving early
+  still costs something. Evolution moves (a level-0 entry, learned on
+  evolving) are used sparingly, each listed for Ian; Alolan Ninetales, reached
+  from Vulpix with an Ice Stone, learns Aurora Beam that way.
 
 ## Fights and trainers
 
@@ -138,12 +145,19 @@ is listed for Ian.
   throughout. Exactly one Ability Patch exists. Argenta's Frontier reward is
   items, which the item pass picks. Prices are set when shops are stocked.
 
+## TMs, tutors and egg lists
+
+The standing rulings hold the TM rules of 2026-09-28: single-use with copies
+per placement, weak TMs as rewards from one optional trainer each, about 100
+TMs, Ian's removals, strong TMs no earlier than each flagged line's first good
+move of that type, the HMs turned into TMs with buffs, and egg lists as the
+trainers' palette only.
+
 ## Running a pass on this machine
 
-- Until the new CPU is in: at most three heavy jobs at once across all
-  sessions, each pinned to its own virtual CPU (`taskset -c`), turbo off, every result
-  checked by a second run. Ask the Overseer for a slot. A Node exit of 139 is
-  the CPU; rerun it.
+- The replacement CPU is in and passed its checks (2026-09-29), so there is
+  no job limit. A rescore still runs its agreeing second pass, which is the
+  rescore's own design rather than a guard against the CPU.
 - The rescore's engine hash covers `calc_headless.js`, the calculator page's
   `./calc/` scripts and the two functions lifted from `initialize.js`
   (`applyExportedMoveData`, `toImportedBaseStats`). An edit to any of them

@@ -20,11 +20,13 @@ NOT_IN_ORDER = {"mean_iv", "nature_fit", "priority", "speed_control", "recovery"
 # Moves no table knows: an Unbound custom move.
 UNKNOWN_MOVES = {"unbound": {"Leech Fang"}}
 # Filler that B1d's map split puts in a split whose cap it is above.
-# Filler above its split's cap: 18 early-split revisits. Volkner and Flint's
+# Filler above its split's cap: 16 early-split revisits. Volkner and Flint's
 # tag at the Fight Area counted here too (20 in all) until it became a story
-# fight in the Barry split (Ian, 2026-09-27), and the rest of the Battle Zone
-# (73 in all) until it came down 18 levels on 2026-09-25.
-LATE_VISITS = 18
+# fight in the Barry split (Ian, 2026-09-27), the rest of the Battle Zone
+# (73 in all) until it came down 18 levels on 2026-09-25, and Officers Somnu
+# and Moira at Lake Verity (18) until they became a story fight on
+# 2026-09-29.
+LATE_VISITS = 16
 
 
 def check_coverage(results):

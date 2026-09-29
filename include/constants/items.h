@@ -72,14 +72,32 @@
 #define LAST_TMHM_IDX   ITEM_HM08
 #define TMHM_ID(__tmhm) (ITEM_##__tmhm - FIRST_TMHM_IDX)
 
-#define FIRST_TM_IDX FIRST_TMHM_IDX
-#define FIRST_HM_IDX ITEM_HM01
-#define LAST_TM_IDX  ITEM_TM92
-#define LAST_HM_IDX  LAST_TMHM_IDX
+#define FIRST_TM_IDX      FIRST_TMHM_IDX
+#define FIRST_HM_IDX      ITEM_HM01
+#define LAST_BASE_TM_IDX  ITEM_TM92
+#define LAST_HM_IDX       LAST_TMHM_IDX
 
-#define NUM_TMS   (LAST_TM_IDX - FIRST_TM_IDX + 1)
-#define NUM_HMS   (LAST_HM_IDX - FIRST_HM_IDX + 1)
-#define NUM_TMHMS (NUM_TMS + NUM_HMS)
+// Platinum Oxide: room for more than 92 TMs. Vanilla's TM01 to HM08 are one
+// run of item ids with other items straight after, so TMs past TM92 are a
+// second run: ITEM_TM93, ITEM_TM94 and so on, consecutive in
+// generated/items.txt. Adding them takes their ids there, their item records
+// (ITEM_USE_FUNC_TM_HM, POCKET_TMHMS, teachesMove), and these two lines, with
+// FIRST_EXTRA_TM_IDX set to ITEM_TM93. Every TM keeps its number and the HMs'
+// learnset bits move up past the last TM. Everything that depends on the count
+// is sized from NUM_TMHMS: the species learnset masks, the Bag's TM pocket and
+// the move table. While there are none, the run is empty.
+#define NUM_EXTRA_TMS      0
+#define FIRST_EXTRA_TM_IDX MAX_ITEMS
+#define LAST_EXTRA_TM_IDX  (FIRST_EXTRA_TM_IDX + NUM_EXTRA_TMS - 1)
+
+#define NUM_BASE_TMS (LAST_BASE_TM_IDX - FIRST_TM_IDX + 1)
+#define NUM_TMS      (NUM_BASE_TMS + NUM_EXTRA_TMS)
+#define NUM_HMS      (LAST_HM_IDX - FIRST_HM_IDX + 1)
+#define NUM_TMHMS    (NUM_TMS + NUM_HMS)
+
+// The u32 words of a species' TM learnset, one bit per TM and HM: four, as in
+// vanilla, until there are more than 120 TMs.
+#define TM_LEARNSET_MASKS ((NUM_TMHMS + 31) / 32)
 
 #define NUM_ITEMS MAX_ITEMS - 1
 

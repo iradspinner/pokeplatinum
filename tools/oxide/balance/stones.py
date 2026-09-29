@@ -75,29 +75,10 @@ def hidden_items():
     """[(split, maps, item)], one per hidden item. A hidden item on the
     border of two maps is listed in both maps' events under one script,
     and so one flag: it is one item, found from whichever map the player
-    reaches first (Route 211 west's Moon Stone is Eterna City's)."""
-    flags = splits.flag_values()
-    start = flags["HIDDEN_ITEM_FLAGS_START"]
-    hidden = {flags[flag] - start: item for item, flag in
-              splits._HIDDEN.findall(splits._read("include", "data", "field", "hidden_items.h"))}
-    by_script = {}
-    for header, fields in splits.headers().items():
-        events = fields.get("eventsArchiveID")
-        path = os.path.join(data.ROOT, "res", "field", "events", f"{events}.json") if events else None
-        if not path or not os.path.exists(path):
-            continue
-        with open(path, encoding="utf-8") as f:
-            ev = json.load(f)
-        split = splits.map_split(header)[0]
-        for bg in ev.get("bg_events", []):
-            script = bg.get("script")
-            if bg.get("type") == splits.BG_HIDDEN_ITEM and isinstance(script, int):
-                row = by_script.setdefault(script, [None, [], hidden.get(script - splits.HIDDEN_ITEM_SCRIPT)])
-                row[1].append(header)
-                if split in pool.SPLITS and (row[0] is None
-                                             or pool.split_index(split) < pool.split_index(row[0])):
-                    row[0] = split
-    return [(s, sorted(set(maps)), item) for s, maps, item in by_script.values()]
+    reaches first (Route 211 west's Moon Stone is Eterna City's). The split
+    is the census's (splits.item_reach), which waits for the field moves
+    that reach it; an item the census cannot reach has none."""
+    return [(row[0], maps, row[2]) for row, maps in splits.pickups().values() if row[3] == "hidden"]
 
 
 def sources():

@@ -1,0 +1,30 @@
+{
+  "name": "Eject Button",
+  "plural": "Eject Buttons",
+  "article": "an",
+  "description": [
+    "An item to be held by a Pokémon.\n",
+    "If the holder is hit by an attack,\n",
+    "it will be switched out of battle."
+  ],
+  "icon": {
+    "sprite": "eject_button_NCGR",
+    "palette": "eject_button_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_EJECT_BUTTON",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

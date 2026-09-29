@@ -84,7 +84,10 @@ are the house style.
   goes in `SelfTurnFlags.statusFlags` (bit 4, Mind Blown's cost). Field-wide
   state with a counter has `BattleContext`'s old padding: `magicRoomTurns`
   (was `padding0060`, script variable `BTLVAR_MAGIC_ROOM_TURNS`) and
-  `teatimeNext` (three bits of the old `padding3154_01`, 28 left).
+  `teatimeNext` (three bits of the old `padding3154_01`, 28 left). A fact
+  about the battler's species, worked out once as it comes in, goes beside
+  `isShiny`: `BattleMon.canEvolve` took one of the two padding bits there
+  (the Eviolite), one is left.
 - A new battle script command is appended after `End`, so no opcode moves. New
   subscripts and side-effect pointers are appended only once implemented, and a
   stat-stage pointer only once `ChangeStatStage` names its range.
@@ -161,8 +164,8 @@ are the house style.
 
 ## Before calling it done
 
-1. The ROM builds: on GitHub with `tools/oxide/fetch-rom <commit>` until the
-   replacement CPU is in (CLAUDE.md, Build), or `make rom` in a cloud session.
+1. The ROM builds with `make rom`, and once pushed its SHA-1 matches GitHub's
+   build of the same commit (`integrate.sh` compares them).
 2. Declare intended divergence so the integration gate keeps meaning something
    (the `oxide-session` skill lists every register). Species and move records
    that now differ from the base ROM go in `DIVERGED`

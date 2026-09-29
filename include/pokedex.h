@@ -11,6 +11,13 @@
 
 #define DEX_SIZE_U32 ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
 
+// Platinum Oxide: one language byte per species, held at 655, the size the 159
+// new species gave it. Sized by MAX_SPECIES it grew a byte with Meloetta, which
+// moves the four flag bytes after it (pokedexObtained among them) on every save
+// made before. Every species the dex records is below SPECIES_EGG and fits;
+// src/pokedex.c refuses to compile if that stops being true.
+#define DEX_LANGUAGE_SLOTS 655
+
 #define MAGIC_NUMBER          0xBEEFCAFE
 #define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
@@ -28,7 +35,7 @@ typedef struct Pokedex {
     u8 burmyFormsSeen;
     u8 wormadamFormsSeen;
     u8 unownFormsSeen[UNOWN_FORM_COUNT];
-    u8 recordedLanguages[MAX_SPECIES + 1];
+    u8 recordedLanguages[DEX_LANGUAGE_SLOTS];
     u8 canDetectForms;
     u8 canDetectLanguages;
     u8 pokedexObtained;

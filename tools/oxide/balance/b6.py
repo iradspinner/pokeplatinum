@@ -1,7 +1,7 @@
 """B6: the audit, aimed at Ian's four goals of 2026-09-26.
 
-    PYTHONPATH=. python3 -m tools.oxide.balance.rescore --kind b6 --kind b6lever
-    PYTHONPATH=. python3 -m tools.oxide.balance.rescore --kind b6 --kind b6lever --verify
+    PYTHONPATH=. python3 -m tools.oxide.balance.rescore --kind b6 --kind b6lever --kind b6pair
+    PYTHONPATH=. python3 -m tools.oxide.balance.rescore --kind b6 --kind b6lever --kind b6pair --verify
     PYTHONPATH=. python3 -m tools.oxide.balance.b6 --report
 
 Ian's goals (the plan, "The target"): curb the hyper-offense; more fights in
@@ -20,6 +20,9 @@ recomputed only when their inputs change, and verified by a second run.
   (placements). The line cannot read below about 2: a party whose Pokemon
   never double up on a knockout leaves every switch-in safe, and a party of
   one always does. So the bottom band is ordered by threat instead.
+- Each double against two trainers at once (the "b6pair" units), scored as
+  one fight against both teams (Ian, 2026-09-28). The roll-up counts a pair
+  the player cannot split once, in place of its two trainers.
 - Each story fight's levers (the "b6lever" units). The fight is scored as
   it stands, then again under each change, rerunning only the matchups a
   change touches. On the boss side: one Pokemon out, one Pokemon's item
@@ -176,6 +179,53 @@ def trainer_record(r, tr):
             "unseen": r["unseen"], "errors": r["errors"],
             "mons": [{k: m[k] for k in ("species", "level", "item", "threat_chance",
                                        "answers_bait")} for m in r["mons"]]}
+
+
+# ---- doubles against two trainers at once ------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def scored_pairs():
+    """{key: pair} for every double against two trainers at once scored as a
+    fight of its own (Ian, 2026-09-28: one fight against both teams, both
+    parties counted as one, as teamscore.resolve_pair builds it): the pair
+    finder's two-trainer doubles outside the story fights, in a split with a
+    cap. A story pair (Mars and Jupiter) is scored as its story fight. Each
+    trainer keeps its own score too, which the team builder shows."""
+    from . import pairs
+    return {p["key"]: p for p in pairs.pairs()
+            if len(p["stems"]) == 2 and not p["story"] and p["split"] in SPLITS}
+
+
+def pair_record(r, pair):
+    """What b6.json keeps of a pair's score. `how` is B1e's verdict as for
+    a trainer, required when either trainer is; `kind` is how the pair
+    finder found the double, and `each_alone` whether the player can meet
+    the two one at a time."""
+    ox = data.oxide_trainers()
+    by_constant = {t["constant"]: tr for tr, t in ox.items()}
+    constants = ["TRAINER_" + st.upper() for st in pair["stems"]]
+    verdicts = [(placements().get(by_constant.get(c)) or {}).get("how") for c in constants]
+    return {**{k: r[k] for k in KEEP}, "split": pair["split"],
+            "how": "required" if "required" in verdicts else next((v for v in verdicts if v), None),
+            "kind": pair["how"], "each_alone": bool(pair.get("each_alone")),
+            "partner": pair["partner"], "constants": constants,
+            "name": " and ".join(ox[by_constant[c]]["name"] for c in constants),
+            "size": len(r["mons"]), "ace": max(m["level"] for m in r["mons"]),
+            "unseen": r["unseen"], "errors": r["errors"],
+            "mons": [{k: m[k] for k in ("species", "level", "item", "threat_chance",
+                                       "answers_bait")} for m in r["mons"]]}
+
+
+def ordinary_fights(results):
+    """The ordinary fights the report rolls up: each double against two
+    trainers the player cannot split counted once, as its pair, in place of
+    its two trainers; every other trainer on its own. A pair whose trainers
+    can each be met alone counts as its two singles, the way a player who
+    sees it coming would take it."""
+    pairs_ = results.get("pairs", {})
+    joined = {c for p in pairs_.values() if not p["each_alone"] for c in p["constants"]}
+    return [r for r in results.get("trainers", {}).values() if r["constant"] not in joined] \
+        + [p for p in pairs_.values() if not p["each_alone"]]
 
 
 # ---- one boss fight's matchups, kept for its levers --------------------------
@@ -670,6 +720,11 @@ def _changes(rec, key, n=3, sign=1):
     return sorted(rows, key=lambda c: -sign * c[1][key])[:n]
 
 
+def _tr_ids(constants):
+    by_constant = {t["constant"]: tr for tr, t in data.oxide_trainers().items()}
+    return [by_constant[c] for c in constants if c in by_constant]
+
+
 def report(results, content=None, out=sys.stdout):
     line = scale_line()
     say = functools.partial(print, file=out)
@@ -691,10 +746,16 @@ def report(results, content=None, out=sys.stdout):
 
     trainers = results.get("trainers", {})
     if trainers:
-        say("\nGoal 2, ordinary trainers by band (all placed / required on the story path):")
+        rolled = ordinary_fights(results)
+        pairs_ = results.get("pairs", {})
+        together = [p for p in pairs_.values() if not p["each_alone"]]
+        say(f"\nGoal 2, ordinary fights by band (all placed / required on the story path); "
+            f"{len(together)} doubles against two trainers count once each, in place of their "
+            f"{2 * len(together)} trainers, and {len(pairs_) - len(together)} that can be split "
+            f"count as singles:")
         say(f"{'split':10}" + "".join(f"{n:>14}" for n, _t in BANDS) + f"{'mean threat':>14}")
         for split in SPLITS:
-            rs = [r for r in trainers.values() if r["split"] == split]
+            rs = [r for r in rolled if r["split"] == split]
             cells = []
             for name, _top in BANDS:
                 a = sum(band(on_scale(r["safe"], line)) == name for r in rs)
@@ -702,15 +763,22 @@ def report(results, content=None, out=sys.stdout):
                 cells.append(f"{a:>8} / {q:<3}")
             mean = sum(r["threat_chance"] for r in rs) / len(rs) if rs else None
             say(f"{split:10}" + "".join(f"{c:>14}" for c in cells) + _fmt(mean, 14))
-        req = [r for r in trainers.values() if r["how"] == "required"]
-        say(f"Required ordinary trainers in the middle band or above: "
+        req = [r for r in rolled if r["how"] == "required"]
+        say(f"Required ordinary fights in the middle band or above: "
             f"{sum(band(on_scale(r['safe'], line)) != BANDS[0][0] for r in req)} of {len(req)}")
         by_size = collections.defaultdict(list)
-        for r in trainers.values():
+        for r in rolled:
             by_size[min(r["size"], 4)].append(r)
-        say("By party size (4 means four or more): " + "; ".join(
-            f"{s}: {len(rs)} trainers, {sum(band(on_scale(r['safe'], line)) == BANDS[0][0] for r in rs)}"
+        say("By party size (4 means four or more, a pair's two parties together): " + "; ".join(
+            f"{s}: {len(rs)} fights, {sum(band(on_scale(r['safe'], line)) == BANDS[0][0] for r in rs)}"
             f" at the bottom" for s, rs in sorted(by_size.items())))
+        if pairs_:
+            say("Doubles against two trainers, each as one fight (scale; each trainer alone):")
+            for key, p in sorted(pairs_.items(), key=lambda kv: (pool.split_index(kv[1]["split"]), kv[0])):
+                alone = [trainers.get(str(t)) for t in _tr_ids(p["constants"])]
+                singles = ", ".join(f"{on_scale(a['safe'], line):.1f}" for a in alone if a)
+                say(f"  {p['split']:9}{on_scale(p['safe'], line):5.1f}  ({singles})  {p['name']}"
+                    + ("  (can be split)" if p["each_alone"] else ""))
 
     if fights:
         say("\nGoal 1, hyper-offense: the fights whose difficulty is damage, and the boss-side "

@@ -69,6 +69,20 @@ static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battle
 
 static const Fraction sStatStageBoosts[];
 
+// Oxide, element 7: whether a species can still evolve, for the Eviolite.
+// A species can when its evolution record's first slot is in use, which is
+// hg-engine's test. It reads the evolution archive, so it is asked once, when
+// a battler comes in, and kept in BattleMon.canEvolve for the damage
+// calculation, which runs many times a turn in the AI's scoring.
+static BOOL Species_CanEvolve(int species)
+{
+    u8 buffer[SPECIES_EVOLUTIONS_MEMBER_SIZE];
+    SpeciesEvolution *evolutions = (SpeciesEvolution *)buffer;
+
+    NARC_ReadWholeMemberByIndexPair(evolutions, NARC_INDEX_POKETOOL__PERSONAL__EVO, species);
+    return evolutions[0].method != EVO_NONE;
+}
+
 void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int partySlot)
 {
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, partySlot);
@@ -114,6 +128,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].oxideAbilityAnnounced = FALSE;
+    battleCtx->battleMons[battler].airBalloonAnnounced = FALSE; // Oxide, element 7
     battleCtx->battleMons[battler].proteanUsed = FALSE;
     battleCtx->battleMons[battler].neutralizingGasAnnounced = FALSE;
     battleCtx->battleMons[battler].friskFoesFound = 0;
@@ -123,6 +138,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
     battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
+    battleCtx->battleMons[battler].canEvolve = Species_CanEvolve(battleCtx->battleMons[battler].species);
 
     if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_ABILITIES) {
         battleCtx->battleMons[battler].ability = ABILITY_NONE;
@@ -1745,13 +1761,27 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
     return defender;
 }
 
+// Oxide: whether battler's Lightning Rod or Storm Drain (ability) draws in
+// the attacker's move. Mold Breaker ignores it unless it is behind an Ability
+// Shield (Ian, 2026-09-28).
+static BOOL Battler_DrawsMoveIn(BattleContext *battleCtx, int attacker, int battler, int ability)
+{
+    return Battler_Ability(battleCtx, battler) == ability
+        && battleCtx->battleMons[battler].curHP
+        && attacker != battler
+        && (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+            || Battler_HasAbilityShield(battleCtx, battler));
+}
+
 void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 move)
 {
     int battler, moveType; // must declare these first to match
 
+    // Oxide: Mold Breaker no longer returns here, since a redirecting
+    // ability behind an Ability Shield still draws its move in; see
+    // Battler_DrawsMoveIn.
     if (battleCtx->defender == BATTLER_NONE
-        || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE
-        || Battler_Ability(battleCtx, attacker) == ABILITY_MOLD_BREAKER) {
+        || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
         return;
     }
 
@@ -1775,17 +1805,16 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
         && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET || MOVE_DATA(move).range == RANGE_RANDOM_OPPONENT)
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, attacker, ABILITY_LIGHTNING_ROD)) {
-        for (int i = 0; i < maxBattlers; i++) {
+        int i;
+        for (i = 0; i < maxBattlers; i++) {
             battler = battleCtx->monSpeedOrder[i];
 
-            if (Battler_Ability(battleCtx, battler) == ABILITY_LIGHTNING_ROD
-                && battleCtx->battleMons[battler].curHP
-                && attacker != battler) {
+            if (Battler_DrawsMoveIn(battleCtx, attacker, battler, ABILITY_LIGHTNING_ROD)) {
                 break;
             }
         }
 
-        if (battler != battleCtx->defender) {
+        if (i < maxBattlers && battler != battleCtx->defender) {
             battleCtx->selfTurnFlags[battler].lightningRodActivated = TRUE;
             battleCtx->defender = battler;
         }
@@ -1793,17 +1822,16 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
         && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET || MOVE_DATA(move).range == RANGE_RANDOM_OPPONENT)
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_EXCEPT_ME, attacker, ABILITY_STORM_DRAIN)) {
-        for (int i = 0; i < maxBattlers; i++) {
+        int i;
+        for (i = 0; i < maxBattlers; i++) {
             battler = battleCtx->monSpeedOrder[i];
 
-            if (Battler_Ability(battleCtx, battler) == ABILITY_STORM_DRAIN
-                && battleCtx->battleMons[battler].curHP
-                && attacker != battler) {
+            if (Battler_DrawsMoveIn(battleCtx, attacker, battler, ABILITY_STORM_DRAIN)) {
                 break;
             }
         }
 
-        if (battler != battleCtx->defender) {
+        if (i < maxBattlers && battler != battleCtx->defender) {
             battleCtx->selfTurnFlags[battler].stormDrainActivated = TRUE;
             battleCtx->defender = battler;
         }
@@ -2419,6 +2447,15 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Oxide, element 7: an Assault Vest's holder cannot choose a status
+        // move, Me First aside (hg-engine's STRUGGLE_CHECK_ASSAULT_VEST).
+        if (itemEffect == HOLD_EFFECT_ASSAULT_VEST
+            && (opMask & CHECK_INVALID_ASSAULT_VEST)
+            && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).class == CLASS_STATUS
+            && battleCtx->battleMons[battler].moves[i] != MOVE_ME_FIRST) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if (battleCtx->battleMons[battler].moveEffectsData.encoredMove
             && battleCtx->battleMons[battler].moveEffectsData.encoredMove != battleCtx->battleMons[battler].moves[i]) {
             invalidMoves |= FlagIndex(i);
@@ -2482,6 +2519,11 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->tags = TAG_NICKNAME;
         msgOut->id = BattleStrings_Text_PokemonHasntEatenABerrySoItCantPossiblyBelch; // "{0} hasn't eaten a Berry, so it can't possibly belch!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ASSAULT_VEST) & FlagIndex(moveSlot)) { // Oxide
+        msgOut->tags = TAG_ITEM;
+        msgOut->id = BattleStrings_Text_TheEffectsOfTheItemPreventStatusMovesFromBeingUsed; // "The effects of the {0} prevent status moves from being used!"
+        msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_ITEM_MOVE;
@@ -2690,6 +2732,14 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
         result = FALSE;
     }
 
+    // Oxide, element 7: a Ring Target loses its holder every immunity its
+    // types give it, so the move meets the other type alone (hg-engine's
+    // TYPE_RING_TARGET marker in its chart).
+    if (itemEffect == HOLD_EFFECT_RING_TARGET
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
+    }
+
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
         && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
@@ -2841,6 +2891,14 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED
         && move != MOVE_THOUSAND_ARROWS) {
         *moveStatusMask |= MOVE_STATUS_MAGNET_RISE;
+    } else if (defenderItemEffect == HOLD_EFFECT_AIR_BALLOON
+        && moveType == TYPE_GROUND
+        && (battleCtx->battleMons[defender].moveEffectsMask & (MOVE_EFFECT_INGRAIN | MOVE_EFFECT_SMACKED_DOWN)) == FALSE
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+        && move != MOVE_THOUSAND_ARROWS) {
+        // Oxide, element 7: a Ground move misses an Air Balloon's holder
+        // with "It doesn't affect...", as in hg-engine.
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
 
@@ -2921,7 +2979,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     return damage;
 }
 
-void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask)
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, int defender, u32 *moveStatusMask)
 {
     int chartEntry;
     u8 moveType;
@@ -2939,11 +2997,23 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         moveType = MOVE_DATA(move).type;
     }
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    // Oxide: an Ability Shield keeps Mold Breaker from reaching the
+    // defender's ability, here and for Wonder Guard below.
+    if ((attackerAbility != ABILITY_MOLD_BREAKER || defenderItemEffect == HOLD_EFFECT_ABILITY_SHIELD)
         && defenderAbility == ABILITY_LEVITATE
         && moveType == TYPE_GROUND
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
+    } else if (defenderItemEffect == HOLD_EFFECT_AIR_BALLOON // Oxide, element 7
+        && moveType == TYPE_GROUND
+        && (defender == BATTLER_NONE
+            || (battleCtx->battleMons[defender].moveEffectsMask & (MOVE_EFFECT_INGRAIN | MOVE_EFFECT_SMACKED_DOWN)) == FALSE)
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+        && move != MOVE_THOUSAND_ARROWS) {
+        // As in BattleSystem_ApplyTypeChart, Ingrain and Smack Down hold the
+        // holder on the ground; defender is BATTLER_NONE for a party
+        // Pokemon, which has neither.
         *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
@@ -2979,7 +3049,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         SetNetEffectiveness(move, netSteps, moveStatusMask);
     }
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    if ((attackerAbility != ABILITY_MOLD_BREAKER || defenderItemEffect == HOLD_EFFECT_ABILITY_SHIELD)
         && defenderAbility == ABILITY_WONDER_GUARD
         && MoveIsOnDamagingTurn(battleCtx, move)
         && ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) == FALSE
@@ -3013,6 +3083,11 @@ static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int ch
 
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
         && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
+    }
+
+    if (itemEffect == HOLD_EFFECT_RING_TARGET // Oxide, element 7
         && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
         result = FALSE;
     }
@@ -3347,8 +3422,10 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
         return ABILITY_NONE;
     }
 
-    // Oxide: while Neutralizing Gas is on the field every other ability is off.
-    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)) {
+    // Oxide: while Neutralizing Gas is on the field every other ability is off,
+    // save that of an Ability Shield's holder (element 7).
+    if (BattleSystem_NeutralizingGasSuppresses(battleCtx, battleCtx->battleMons[battler].ability)
+        && Battler_HasAbilityShield(battleCtx, battler) == FALSE) {
         return ABILITY_NONE;
     }
 
@@ -3371,11 +3448,22 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
     return battleCtx->battleMons[battler].ability;
 }
 
+BOOL Battler_HasAbilityShield(BattleContext *battleCtx, int battler)
+{
+    // The item is read directly rather than through Battler_HeldItemEffect,
+    // which asks Battler_Ability about Klutz and would come back here.
+    return battleCtx->battleMons[battler].heldItem != ITEM_NONE
+        && BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT) == HOLD_EFFECT_ABILITY_SHIELD;
+}
+
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
 {
     BOOL result = FALSE;
 
-    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER) {
+    // Oxide: Mold Breaker does not reach past an Ability Shield, as in the
+    // later games (Ian, 2026-09-28).
+    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+        || Battler_HasAbilityShield(battleCtx, defender)) {
         if (Battler_Ability(battleCtx, defender) == ability) {
             result = TRUE;
         }
@@ -3483,6 +3571,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE && itemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
             // Oxide: a Flying Pokemon brought down by Smack Down is trapped.
             if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+                && itemEffect != HOLD_EFFECT_AIR_BALLOON // Oxide, element 7
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                 && (MON_IS_NOT_TYPE(battler, TYPE_FLYING)
                     || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_SMACKED_DOWN))) {
@@ -4144,6 +4233,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_MOLD_BREAKER,
     SWITCH_IN_CHECK_STATE_PRESSURE,
     SWITCH_IN_CHECK_STATE_OXIDE_ABILITIES,
+    SWITCH_IN_CHECK_STATE_AIR_BALLOON, // Oxide, element 7
     SWITCH_IN_CHECK_STATE_FORM_CHANGE,
     SWITCH_IN_CHECK_STATE_AMULET_COIN,
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
@@ -4814,6 +4904,28 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
             break;
 
+        // Oxide, element 7: an Air Balloon's holder says so once per
+        // switch-in (hg-engine's SwitchInAbilityCheck).
+        case SWITCH_IN_CHECK_STATE_AIR_BALLOON:
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].airBalloonAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_AIR_BALLOON) {
+                    battleCtx->battleMons[battler].airBalloonAnnounced = TRUE;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_air_balloon_float;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
         case SWITCH_IN_CHECK_STATE_FORM_CHANGE:
             if (BattleSystem_TriggerFormChange(battleSys, battleCtx, &subscript) == TRUE) {
                 result = SWITCH_IN_CHECK_RESULT_BREAK;
@@ -5020,6 +5132,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             // Overcoat (Generation 6).
             && MON_IS_NOT_TYPE(battleCtx->attacker, TYPE_GRASS)
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_OVERCOAT
+            && Battler_HeldItemEffect(battleCtx, battleCtx->attacker) != HOLD_EFFECT_SAFETY_GOGGLES // Oxide, element 7
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -5274,6 +5387,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.ability != ABILITY_MUMMY
             && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SUPPRESS) == FALSE
+            && Battler_HasAbilityShield(battleCtx, battleCtx->attacker) == FALSE // Oxide, element 7
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
@@ -5288,6 +5402,8 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.ability != ABILITY_WANDERING_SPIRIT
             && Ability_ChangeFails(ATTACKING_MON.ability, ABILITY_FAILS_SWAP) == FALSE
+            && Battler_HasAbilityShield(battleCtx, battleCtx->attacker) == FALSE // Oxide, element 7
+            && Battler_HasAbilityShield(battleCtx, battleCtx->defender) == FALSE
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
@@ -5575,6 +5691,20 @@ static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battle
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_UNNERVE);
 }
 
+// Oxide: whether an item's stat raise would change battler's stat: one below
+// +6, or, since Contrary turns the raise into a drop (Ian, 2026-09-28, the
+// later games' rule), one above -6 for a Contrary holder. The raise itself is
+// made by ChangeStatStage, which applies Contrary the same way, Mold Breaker
+// on the attacker included.
+static BOOL Battler_ItemCanRaiseStat(BattleContext *battleCtx, int battler, int stat)
+{
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_CONTRARY) == TRUE) {
+        return battleCtx->battleMons[battler].statBoosts[stat] > MIN_STAT_STAGE;
+    }
+
+    return battleCtx->battleMons[battler].statBoosts[stat] < MAX_STAT_STAGE;
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
@@ -5782,7 +5912,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK)) {
                 battleCtx->msgTemp = BATTLE_STAT_ATTACK;
                 subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -5795,7 +5925,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_DEFENSE)) {
                 battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
                 subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -5808,7 +5938,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SPEED)) {
                 battleCtx->msgTemp = BATTLE_STAT_SPEED;
                 subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -5821,7 +5951,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SP_ATTACK)) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
                 subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -5834,7 +5964,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_DEFENSE] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SP_DEFENSE)) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
                 subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -5861,7 +5991,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             if (battleCtx->battleMons[battler].curHP <= (battleCtx->battleMons[battler].maxHP / itemPower)) {
                 int i;
                 for (i = 0; i < 5; i++) {
-                    if (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] < MAX_STAT_STAGE) {
+                    if (Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK + i)) {
                         break;
                     }
                 }
@@ -5869,7 +5999,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
                 if (i != 5) {
                     do {
                         i = BattleSystem_RandNext(battleSys) % 5;
-                    } while (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] == MAX_STAT_STAGE);
+                    } while (Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK + i) == FALSE);
 
                     battleCtx->msgTemp = BATTLE_STAT_ATTACK + i;
                     subscript = subscript_held_item_sharply_raise_stat;
@@ -6209,7 +6339,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK)) {
                 battleCtx->msgTemp = BATTLE_STAT_ATTACK;
                 *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -6222,7 +6352,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_DEFENSE)) {
                 battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
                 *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -6235,7 +6365,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SPEED)) {
                 battleCtx->msgTemp = BATTLE_STAT_SPEED;
                 *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -6248,7 +6378,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SP_ATTACK)) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
                 *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -6261,7 +6391,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / itemPower
-                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_DEFENSE] < MAX_STAT_STAGE) {
+                && Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_SP_DEFENSE)) {
                 battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
                 *subscript = subscript_held_item_raise_stat;
                 result = TRUE;
@@ -6288,7 +6418,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             if (battleCtx->battleMons[battler].curHP <= (battleCtx->battleMons[battler].maxHP / itemPower)) {
                 int i;
                 for (i = 0; i < 5; i++) {
-                    if (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] < MAX_STAT_STAGE) {
+                    if (Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK + i)) {
                         break;
                     }
                 }
@@ -6296,7 +6426,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
                 if (i != 5) {
                     do {
                         i = BattleSystem_RandNext(battleSys) % 5;
-                    } while (battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i] == MAX_STAT_STAGE);
+                    } while (Battler_ItemCanRaiseStat(battleCtx, battler, BATTLE_STAT_ATTACK + i) == FALSE);
 
                     battleCtx->msgTemp = BATTLE_STAT_ATTACK + i;
                     *subscript = subscript_held_item_sharply_raise_stat;
@@ -6383,6 +6513,117 @@ BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler)
     return battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END;
 }
 
+BOOL BattleSystem_TriggerSwitchItem(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
+{
+    int holder = battleCtx->defender;
+
+    if (holder == BATTLER_NONE
+        || battleCtx->battleMons[holder].curHP == 0
+        || Battler_SubstituteWasHit(battleCtx, holder) == TRUE
+        || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE)
+        || (battleCtx->multiHitNumHits && battleCtx->multiHitCounter > 1)
+        || (battleCtx->selfTurnFlags[holder].physicalDamageTaken == 0 && battleCtx->selfTurnFlags[holder].specialDamageTaken == 0)
+        || BattleSystem_GetBattlerSide(battleSys, holder) == BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+        || Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        return FALSE;
+    }
+
+    switch (Battler_HeldItemEffect(battleCtx, holder)) {
+    case HOLD_EFFECT_EJECT_BUTTON:
+        battleCtx->msgBattlerTemp = holder;
+        *subscript = subscript_eject_button;
+        return TRUE;
+
+    case HOLD_EFFECT_RED_CARD:
+        if (battleCtx->battleMons[battleCtx->attacker].curHP == 0) {
+            return FALSE;
+        }
+
+        // Only a trainer battle, as in hg-engine, whose subscript 491 ends
+        // at once in a wild battle and keeps the card, whichever side holds
+        // it. The battler dragged out is on either side only in a trainer
+        // battle, where each trainer has a party to replace it from; in a
+        // wild battle a player's card would make the wild Pokemon flee and a
+        // wild Pokemon's card would send the player's attacker away, and
+        // Dragon Tail's wild-battle rule, which the subscript borrows, ended
+        // the battle as if the player had fled in both.
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE) {
+            return FALSE;
+        }
+
+        // The subscript runs Dragon Tail's switch on the attacker, so the two
+        // trade places until it ends: it puts them back.
+        battleCtx->sideEffectMon = holder;
+        battleCtx->defender = battleCtx->attacker;
+        battleCtx->attacker = holder;
+        *subscript = subscript_red_card;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int *subscript)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    BOOL copied = FALSE;
+
+    if (battleCtx->battleMons[holder].curHP == 0
+        || Battler_HeldItemEffect(battleCtx, holder) != HOLD_EFFECT_MIRROR_HERB) {
+        return FALSE;
+    }
+
+    // The holder copies what every foe's record holds, and the herb is used
+    // once for all of it, as in the later games.
+    for (int foe = 0; foe < maxBattlers; foe++) {
+        u32 raises = battleCtx->selfTurnFlags[foe].mirrorHerbRaises;
+        BOOL copiedFromFoe = FALSE;
+
+        if (raises == 0
+            || BattleSystem_GetBattlerSide(battleSys, foe) == BattleSystem_GetBattlerSide(battleSys, holder)) {
+            continue;
+        }
+
+        for (int stat = 0; stat < BATTLE_STAT_MAX - BATTLE_STAT_ATTACK; stat++) {
+            int stages = (raises >> (stat * 3)) & 7;
+            s8 *boost = &battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + stat];
+
+            if (stages == 0) {
+                continue;
+            }
+
+            // Oxide: Contrary turns the copied rises into drops, as it
+            // does every item's (Ian, 2026-09-28).
+            if (Battler_ItemCanRaiseStat(battleCtx, holder, BATTLE_STAT_ATTACK + stat) == FALSE) {
+                continue;
+            }
+
+            if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, holder, ABILITY_CONTRARY) == TRUE) {
+                *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
+            } else {
+                *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
+            }
+
+            copiedFromFoe = TRUE;
+        }
+
+        // The record is spent only once a holder has copied from it: a
+        // holder with every such stat at the limit leaves it for the next
+        // holder (the records clear with the action).
+        if (copiedFromFoe) {
+            battleCtx->selfTurnFlags[foe].mirrorHerbRaises = 0;
+            copied = TRUE;
+        }
+    }
+
+    if (copied) {
+        battleCtx->msgBattlerTemp = holder;
+        *subscript = subscript_mirror_herb;
+    }
+
+    return copied;
+}
+
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -6434,6 +6675,66 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
             && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
             *subscript = subscript_held_item_recoil_when_hit;
+            result = TRUE;
+        }
+        break;
+
+    // Oxide, element 7, after hg-engine's CheckDefenderItemEffectOnHit. The
+    // Rocky Helmet stays and hurts a contact attacker by a sixth of its HP
+    // (the item's effect parameter); U-turn is left out, as for the Jaboca
+    // Berry above, since its user has already switched out here.
+    case HOLD_EFFECT_ROCKY_HELMET:
+        if (ATTACKING_MON.curHP
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_MoveMakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
+            *subscript = subscript_rocky_helmet;
+            result = TRUE;
+        }
+        break;
+
+    // The Absorb Bulb and the Cell Battery are used up to raise Sp. Atk or
+    // Attack one stage when a Water or an Electric move hits the holder.
+    case HOLD_EFFECT_ABSORB_BULB:
+    case HOLD_EFFECT_CELL_BATTERY: {
+        int stat = itemEffect == HOLD_EFFECT_ABSORB_BULB ? BATTLE_STAT_SP_ATTACK : BATTLE_STAT_ATTACK;
+        int type = itemEffect == HOLD_EFFECT_ABSORB_BULB ? TYPE_WATER : TYPE_ELECTRIC;
+
+        if (DEFENDING_MON.curHP
+            && CurrentMoveType(battleCtx) == type
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, stat)) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->msgItemTemp = DEFENDING_MON.heldItem;
+            battleCtx->msgTemp = stat;
+            *subscript = subscript_item_raise_stat_on_hit;
+            result = TRUE;
+        }
+        break;
+    }
+
+    // The Weakness Policy is used up to raise Attack and Sp. Atk two stages
+    // each when a supereffective move hits the holder.
+    case HOLD_EFFECT_WEAKNESS_POLICY:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_ATTACK)
+                || Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_SP_ATTACK))) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->msgItemTemp = DEFENDING_MON.heldItem;
+            *subscript = subscript_weakness_policy;
+            result = TRUE;
+        }
+        break;
+
+    // The Air Balloon bursts when a damaging move hits its holder.
+    case HOLD_EFFECT_AIR_BALLOON:
+        if (DEFENDING_MON.curHP
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            *subscript = subscript_air_balloon_pop;
             result = TRUE;
         }
         break;
@@ -6519,7 +6820,9 @@ s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler)
 
 static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
 {
+    // Oxide, element 7: an Air Balloon holds its holder up as Levitate does.
     return (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+               && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_AIR_BALLOON
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
@@ -6781,7 +7084,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         break;
 
     case PLUCK_EFFECT_ATK_UP:
-        if (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_ATTACK)) {
             battleCtx->msgTemp = BATTLE_STAT_ATTACK;
             nextSeq = subscript_held_item_raise_stat;
         }
@@ -6790,7 +7093,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         break;
 
     case PLUCK_EFFECT_DEF_UP:
-        if (ATTACKING_MON.statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_DEFENSE)) {
             battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
             nextSeq = subscript_held_item_raise_stat;
         }
@@ -6799,7 +7102,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         break;
 
     case PLUCK_EFFECT_SPEED_UP:
-        if (ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_SPEED)) {
             battleCtx->msgTemp = BATTLE_STAT_SPEED;
             nextSeq = subscript_held_item_raise_stat;
         }
@@ -6808,7 +7111,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         break;
 
     case PLUCK_EFFECT_SPATK_UP:
-        if (ATTACKING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_SP_ATTACK)) {
             battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
             nextSeq = subscript_held_item_raise_stat;
         }
@@ -6817,7 +7120,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         break;
 
     case PLUCK_EFFECT_SPDEF_UP:
-        if (ATTACKING_MON.statBoosts[BATTLE_STAT_SP_DEFENSE] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_SP_DEFENSE)) {
             battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
             nextSeq = subscript_held_item_raise_stat;
         }
@@ -6828,7 +7131,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     case PLUCK_EFFECT_RANDOM_UP2: {
         int stat;
         for (stat = 0; stat < 5; stat++) {
-            if (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] < MAX_STAT_STAGE) {
+            if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_ATTACK + stat)) {
                 break;
             }
         }
@@ -6836,7 +7139,7 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
         if (stat != 5) {
             do {
                 stat = BattleSystem_RandNext(battleSys) % 5;
-            } while (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] == MAX_STAT_STAGE);
+            } while (Battler_ItemCanRaiseStat(battleCtx, battleCtx->attacker, BATTLE_STAT_ATTACK + stat) == FALSE);
 
             battleCtx->msgTemp = BATTLE_STAT_ATTACK + stat;
             nextSeq = subscript_held_item_sharply_raise_stat;
@@ -7103,35 +7406,35 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         break;
 
     case FLING_EFFECT_ATK_UP:
-        if (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_ATTACK)) {
             battleCtx->msgTemp = BATTLE_STAT_ATTACK;
             battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_DEF_UP:
-        if (DEFENDING_MON.statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_DEFENSE)) {
             battleCtx->msgTemp = BATTLE_STAT_DEFENSE;
             battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPEED_UP:
-        if (DEFENDING_MON.statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_SPEED)) {
             battleCtx->msgTemp = BATTLE_STAT_SPEED;
             battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPATK_UP:
-        if (DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_SP_ATTACK)) {
             battleCtx->msgTemp = BATTLE_STAT_SP_ATTACK;
             battleCtx->flingScript = subscript_held_item_raise_stat;
         }
         break;
 
     case FLING_EFFECT_SPDEF_UP:
-        if (DEFENDING_MON.statBoosts[BATTLE_STAT_SP_DEFENSE] < MAX_STAT_STAGE) {
+        if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_SP_DEFENSE)) {
             battleCtx->msgTemp = BATTLE_STAT_SP_DEFENSE;
             battleCtx->flingScript = subscript_held_item_raise_stat;
         }
@@ -7141,7 +7444,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         int stat;
 
         for (stat = 0; stat < 5; stat++) {
-            if (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] < MAX_STAT_STAGE) {
+            if (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_ATTACK + stat)) {
                 break;
             }
         }
@@ -7149,7 +7452,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         if (stat != 5) {
             do {
                 stat = BattleSystem_RandNext(battleSys) % 5;
-            } while (DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK + stat] == MAX_STAT_STAGE);
+            } while (Battler_ItemCanRaiseStat(battleCtx, battleCtx->defender, BATTLE_STAT_ATTACK + stat) == FALSE);
 
             battleCtx->msgTemp = BATTLE_STAT_ATTACK + stat;
             battleCtx->flingScript = subscript_held_item_sharply_raise_stat;
@@ -7559,6 +7862,7 @@ static const ItemEffectTypePair sTypeBoostingItems[] = {
     { HOLD_EFFECT_STRENGTHEN_FIRE, TYPE_FIRE },
     { HOLD_EFFECT_STRENGTHEN_DRAGON, TYPE_DRAGON },
     { HOLD_EFFECT_STRENGTHEN_NORMAL, TYPE_NORMAL },
+    { HOLD_EFFECT_STRENGTHEN_FAIRY, TYPE_FAIRY }, // Oxide, element 7: the Fairy Feather
     { HOLD_EFFECT_ARCEUS_FIRE, TYPE_FIRE },
     { HOLD_EFFECT_ARCEUS_WATER, TYPE_WATER },
     { HOLD_EFFECT_ARCEUS_ELECTRIC, TYPE_ELECTRIC },
@@ -7574,7 +7878,8 @@ static const ItemEffectTypePair sTypeBoostingItems[] = {
     { HOLD_EFFECT_ARCEUS_GHOST, TYPE_GHOST },
     { HOLD_EFFECT_ARCEUS_DRAGON, TYPE_DRAGON },
     { HOLD_EFFECT_ARCEUS_DARK, TYPE_DARK },
-    { HOLD_EFFECT_ARCEUS_STEEL, TYPE_STEEL }
+    { HOLD_EFFECT_ARCEUS_STEEL, TYPE_STEEL },
+    { HOLD_EFFECT_ARCEUS_FAIRY, TYPE_FAIRY } // Oxide, element 7: the Pixie Plate
 };
 
 static const Fraction sStatStageBoosts[] = {
@@ -7630,6 +7935,10 @@ static const u16 sSlicingMoves[] = {
     MOVE_X_SCISSOR,
 };
 
+// The punching moves, which Iron Fist and the Punching Glove raise. Oxide,
+// element 7: the later games' punches are added after Platinum's fifteen, from
+// hg-engine's PunchingMoveTable, less its Double Shock, which no main-series
+// game counts as a punch.
 static const u16 sPunchingMoves[] = {
     MOVE_ICE_PUNCH,
     MOVE_FIRE_PUNCH,
@@ -7645,8 +7954,47 @@ static const u16 sPunchingMoves[] = {
     MOVE_SHADOW_PUNCH,
     MOVE_DRAIN_PUNCH,
     MOVE_BULLET_PUNCH,
-    MOVE_SKY_UPPERCUT
+    MOVE_SKY_UPPERCUT,
+    MOVE_DOUBLE_IRON_BASH,
+    MOVE_HEADLONG_RUSH,
+    MOVE_ICE_HAMMER,
+    MOVE_JET_PUNCH,
+    MOVE_PLASMA_FISTS,
+    MOVE_POWER_UP_PUNCH,
+    MOVE_RAGE_FIST,
+    MOVE_SURGING_STRIKES,
+    MOVE_WICKED_BLOW,
 };
+
+// Oxide, element 7: whether a move is one of the punches above.
+static BOOL Move_IsPunching(int move)
+{
+    for (int i = 0; i < NELEMS(sPunchingMoves); i++) {
+        if (sPunchingMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Oxide: whether a Flower Gift that Mold Breaker cannot ignore, because its
+// holder has an Ability Shield, is on battler's side.
+static BOOL ShieldedFlowerGiftOnSide(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = 0; i < maxBattlers; i++) {
+        if (BattleSystem_GetBattlerSide(battleSys, i) == BattleSystem_GetBattlerSide(battleSys, battler)
+            && battleCtx->battleMons[i].curHP
+            && Battler_Ability(battleCtx, i) == ABILITY_FLOWER_GIFT
+            && Battler_HasAbilityShield(battleCtx, i)) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 typedef struct DamageCalcParams {
     u16 species;
@@ -7969,6 +8317,23 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
     }
 
+    // Oxide, element 7, after hg-engine's CalcBaseDamage. The Punching
+    // Glove raises punches by a tenth (its effect parameter). The Eviolite
+    // raises its holder's Defense and Sp. Def by half while it can still
+    // evolve, and the Assault Vest its Sp. Def by half; both apply to the
+    // stat the move meets, so under Wonder Room they follow the swap, as the
+    // other defensive modifiers here do.
+    if (attackerParams.heldItemEffect == HOLD_EFFECT_PUNCHING_GLOVE && Move_IsPunching(move)) {
+        movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_EVIOLITE && battleCtx->battleMons[defender].canEvolve) {
+        defenseStat = defenseStat * 150 / 100;
+        spDefenseStat = spDefenseStat * 150 / 100;
+    }
+    if (defenderParams.heldItemEffect == HOLD_EFFECT_ASSAULT_VEST) {
+        spDefenseStat = spDefenseStat * (100 + defenderParams.heldItemPower) / 100;
+    }
+
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_THICK_FAT) == TRUE
         && (moveType == TYPE_FIRE || moveType == TYPE_ICE)) {
         movePower /= 2;
@@ -8101,11 +8466,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 75 / 100;
     }
 
-    for (i = 0; i < NELEMS(sPunchingMoves); i++) {
-        if (sPunchingMoves[i] == move && attackerParams.ability == ABILITY_IRON_FIST) {
-            movePower = movePower * 12 / 10;
-            break;
-        }
+    if (attackerParams.ability == ABILITY_IRON_FIST && Move_IsPunching(move)) {
+        movePower = movePower * 12 / 10;
     }
 
     if (NO_CLOUD_NINE) {
@@ -8124,8 +8486,9 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
 
         if ((fieldConditions & FIELD_CONDITION_SUNNY)
-            && Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
-            && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, defender, ABILITY_FLOWER_GIFT)) {
+            && (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+                    ? BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, defender, ABILITY_FLOWER_GIFT)
+                    : ShieldedFlowerGiftOnSide(battleSys, battleCtx, defender))) {
             spDefenseStat = spDefenseStat * 15 / 10;
         }
     }
@@ -9084,6 +9447,9 @@ static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonP
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
             break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
+            break;
 
         default:
             type = TYPE_NORMAL;
@@ -9232,6 +9598,9 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
             break;
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
+            break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
             break;
         case HOLD_EFFECT_ARCEUS_FIRE:
             type = TYPE_FIRE;
@@ -9395,6 +9764,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                         Battler_HeldItemEffect(battleCtx, defender),
                         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL),
                         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL),
+                        defender,
                         &moveStatusFlags);
 
                     if (moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE) {
@@ -9532,6 +9902,9 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
             break;
         case HOLD_EFFECT_ARCEUS_STEEL:
             type = TYPE_STEEL;
+            break;
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            type = TYPE_FAIRY;
             break;
         case HOLD_EFFECT_ARCEUS_FIRE:
             type = TYPE_FIRE;
@@ -9713,8 +10086,11 @@ BOOL BattleSystem_NeutralizingGasSuppresses(BattleContext *battleCtx, int abilit
 
 BOOL Battler_MoveMakesContact(BattleContext *battleCtx, int attacker, int move)
 {
+    // Oxide, element 7: a punch thrown with a Punching Glove makes no
+    // contact (hg-engine's IsContactBeingMade).
     return (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)
-        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH;
+        && Battler_Ability(battleCtx, attacker) != ABILITY_LONG_REACH
+        && (Battler_HeldItemEffect(battleCtx, attacker) != HOLD_EFFECT_PUNCHING_GLOVE || Move_IsPunching(move) == FALSE);
 }
 
 // Oxide: the Normal moves Pixilate leaves alone, after hg-engine's

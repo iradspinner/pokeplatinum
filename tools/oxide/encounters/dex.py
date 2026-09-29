@@ -117,6 +117,7 @@ def _build_lines(root):
     parent = {s: s for s in known}
     evolves_into = {s: set() for s in known}
     evo_levels = {}
+    evo_items = {}
 
     def find(x):
         while parent[x] != x:
@@ -164,8 +165,13 @@ def _build_lines(root):
                 union(species, field)
                 evolves_into[species].add(field)
                 evo_levels.setdefault(species, []).append((field, level))
+                # The item an item evolution uses (a stone), for the branches.
+                items = [f for f in evo if isinstance(f, str) and f.startswith("ITEM_")]
+                if method.startswith("EVO_USE_ITEM") and items:
+                    evo_items[(species, field)] = items[0]
     _CACHE["evolves_into"] = evolves_into
     _CACHE["evo_levels"] = evo_levels
+    _CACHE["evo_items"] = evo_items
     return {s: find(s) for s in known}
 
 
@@ -222,6 +228,43 @@ def lines(root):
     if "lines" not in _CACHE:
         _CACHE["lines"] = _build_lines(root)
     return _CACHE["lines"]
+
+
+# -- branches (Ian, 2026-09-28) ------------------------------------------------------
+# A regional form its base reaches by a stone (Koffing and Ponyta by Moon Stone
+# into the Galarian forms, Vulpix by Ice Stone into Alolan Ninetales) joins the
+# base's family: one family for the dupes clause, Ian's ruling. Within the
+# family it is a branch of its own, with its own home and its own route in:
+# caught as the base, then the stone.
+REGIONAL = ("SPECIES_ALOLAN_", "SPECIES_GALARIAN_", "SPECIES_HISUIAN_")
+
+
+def branch_roots(root):
+    """{regional form: (its base, the stone)} for every regional form its
+    base reaches by an item."""
+    lines(root)
+    return {child: (parent, item) for (parent, child), item in _CACHE["evo_items"].items()
+            if child.startswith(REGIONAL)}
+
+
+def branch_of(root, species):
+    """The regional form whose branch `species` is on (the form itself or a
+    later stage of it), or None for a family's main branch."""
+    roots = branch_roots(root)
+    if species in roots:
+        return species
+    into = _CACHE.get("evolves_into") or {}
+    parents = [p for p, kids in into.items() if species in kids]
+    seen = {species}
+    while parents:
+        p = parents[0]
+        if p in roots:
+            return p
+        if p in seen:
+            break
+        seen.add(p)
+        parents = [q for q, kids in into.items() if p in kids]
+    return None
 
 
 def line_base(root, line_id):

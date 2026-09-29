@@ -15,6 +15,7 @@ void PartyMenu_SetItemUseCallback(PartyMenuApplication *application);
 BOOL CheckItemSacredAsh(u16 itemID);
 
 enum PartyMenuState PartyMenuCB_PrintThenWaitABPress(PartyMenuApplication *application);
+int PartyMenu_TryUseOxideItem(PartyMenuApplication *application);
 enum PartyMenuState PartyMenuCB_HandleSacredAsh(PartyMenuApplication *application);
 enum PartyMenuState PartyMenuCB_LevelMove_Exit(PartyMenuApplication *application);
 

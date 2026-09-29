@@ -80,4 +80,13 @@ otherpoke_index += {
     '225': files('forms/dark/shiny.pal'),
 }
 
+# Platinum Oxide, element 7: the Fairy form, for the Pixie Plate, after the
+# archive's last member (hg-engine's sprites and palettes).
+otherpoke_appended += files(
+    'forms/fairy/back.png',
+    'forms/fairy/front.png',
+    'forms/fairy/normal.pal',
+    'forms/fairy/shiny.pal',
+)
+
 pokefoot_files += files('footprint.png')

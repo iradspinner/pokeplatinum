@@ -12,6 +12,7 @@ void PartyMenu_RemoveWindows(PartyMenuApplication *application);
 void PartyMenu_LoadContextMenuStrings(PartyMenuApplication *application);
 void PartyMenu_SetKnownFieldMove(PartyMenuApplication *application, u16 move, u8 menuEntry);
 void PartyMenu_DrawContextMenu(PartyMenuApplication *application, const u8 *entries, u8 numEntries);
+void PartyMenu_DrawStatChoiceMenu(PartyMenuApplication *application);
 void PartyMenu_LoadContextMenuPrompt(PartyMenuApplication *application);
 void PartyMenu_SetMemberName(PartyMenuApplication *application, Pokemon *mon, u32 slot);
 void PartyMenu_PrintMemberName(PartyMenuApplication *application, u8 slot);

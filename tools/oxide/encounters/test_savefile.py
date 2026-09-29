@@ -19,7 +19,10 @@ import tempfile
 
 from . import savefile as S
 
-NORMAL_SIZE, BOX_SIZE = 0xD01C, 0x121E4
+# The layout this build writes: 0xD01C until element 7 widened the Bag by 184
+# bytes (2026-09-28).
+NORMAL_SIZE, BOX_SIZE = 0xD0D4, 0x121E4
+OLD_NORMAL_SIZE = 0xD01C
 IAN_COPY = os.path.expanduser("~/roms/oxide-save-2026-09-21.sav")
 # His first save on a current ROM (53b863005), in his room after the intro.
 IAN_CURRENT = os.path.expanduser("~/roms/oxide-save-2026-09-27-53b863005.sav")
@@ -38,12 +41,15 @@ def ability_id(constant):
 
 
 def record(pv, species, moves, ability, exp=0, hidden=False, met=0, party_level=None,
-           corrupt=False):
-    """One Pokemon record as the game stores it."""
+           corrupt=False, swapped=False, trained=0, mint=0, ivs=31 | 31 << 5):
+    """One Pokemon record as the game stores it. `trained` is the six Hyper
+    Training bits (bit 0 HP ... bit 5 Sp. Def) and `mint` the byte a Mint
+    writes, one more than the nature's index."""
     a = (struct.pack("<HHII", species, 0, 25097 | 32454 << 16, exp)
-         + bytes([70, 1 if hidden else 0, 0, 2]) + bytes(12) + bytes(4))
+         + bytes([70, (1 if hidden else 0) | (2 if swapped else 0) | trained << 2, 0, 2])
+         + bytes(12) + bytes(4))
     b = (struct.pack("<4H", *(moves + [0] * (4 - len(moves)))) + bytes(8)
-         + struct.pack("<I", 31 | 31 << 5) + bytes(4) + bytes(2)
+         + struct.pack("<I", ivs) + bytes(4) + bytes([0, mint])
          + struct.pack("<H", ability) + struct.pack("<HH", 0, met))
     c, d = bytes(32), bytes(28) + bytes([5, 0, 0, 0])
     arranged = [None] * 4
@@ -70,9 +76,11 @@ def footer(body, block, save_counter, block_counter, size):
 
 
 def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
-              money=12345):
+              money=12345, normal_size=NORMAL_SIZE):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
-    copy of each block is newer (0 leaves that copy's block unwritten)."""
+    copy of each block is newer (0 leaves that copy's block unwritten).
+    `normal_size` other than this build's makes a save on an older layout."""
+    NORMAL_SIZE = normal_size
     data = bytearray(b"\xff" * 0x80000)
     normal = bytearray(NORMAL_SIZE - S.FOOTER_SIZE)
     struct.pack_into("<HH", normal, S.TRAINER_ID_AT, 25097, 32454)
@@ -154,8 +162,10 @@ def main():
     pr = s["progress"]
     results.append(("the save's progress: money and badges from the trainer, the level-cap "
                     "split from its variable (after the party and the bag), with the engine's cap",
+                    # 0xDAC until element 7's Bag (2026-09-28): the TM pocket's
+                    # size is NUM_TMHMS now, which the reader resolves.
                     pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
-                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xDAC
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xE64
                     # the split names are the simulator's, so it can resume there
                     and S._vars_layout()["splits"][7] == "HQ"
                     and S._vars_layout()["splits"][12] == "Post",
@@ -163,6 +173,48 @@ def main():
     vanilla_sized = S.KNOWN_LAYOUTS.get((0xCF2C, 0x121E4), "")
     results.append(("a save with no valid normal block is refused, not guessed at",
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))
+    # A save on the layout before element 7's Bag (Ian: a layout change costs a
+    # new game, 2026-09-28): its party still reads, its variables do not.
+    older = make_save(party, {}, normal_size=OLD_NORMAL_SIZE)
+    o = S.parse(older, "older")
+    try:
+        S.flag(older, "FLAG_HAS_POKEDEX")
+        flag_refused = False
+    except S.SaveError:
+        flag_refused = True
+    results.append(("a save on the layout before element 7 still gives its party, but not its "
+                    "split, and says it needs a new game; its flags are refused",
+                    o["party"] and o["party"][0]["species"] == "SPECIES_CHIMCHAR"
+                    and o["progress"]["split"] is None and o["progress"]["money"] == 12345
+                    and any("older layout" in m and "new game" in m for m in o["era"]["mismatches"])
+                    and flag_refused, "; ".join(o["era"]["mismatches"])[:120]))
+    # Element 7 (save-layout.md): a Mint's nature at block B 0x19, and block A
+    # 0x0D's Ability Capsule bit and Hyper Training bits beside the hidden bit.
+    # IVs 1 to 6 by stat, so every stat reads apart; Speed and Sp. Atk trained.
+    six = sum((i + 1) << (5 * i) for i in range(6))
+    adamant = S.NATURES.index("Adamant")
+    changed = make_save([record(0x12345678, chimchar, [move_id("MOVE_SCRATCH")],
+                                ability_id("ABILITY_IRON_FIST"), met=3, party_level=6,
+                                swapped=True, trained=0b011000, mint=adamant + 1, ivs=six),
+                         record(0x0000BEEF, chimchar, [move_id("MOVE_SCRATCH")],
+                                ability_id("ABILITY_BLAZE"), party_level=6, mint=26)], {})
+    c = S.parse(changed, "element 7")
+    m, bad = c["party"][0], c["party"][1]
+    results.append(("element 7's changes read apart from what they leave alone: the Mint's "
+                    "nature for the stats beside the personality's, the Capsule's swap, and "
+                    "the Hyper Trained stats at 31 with the stored IVs kept",
+                    m["nature"] == S.NATURES[0x12345678 % 25] and m["mint"] == "Adamant"
+                    and m["stat_nature"] == "Adamant" and m["ability_swapped"]
+                    and not m["hidden_ability"] and m["hyper_trained"] == ["Spe", "SpA"]
+                    and m["ivs"] == [1, 2, 3, 4, 5, 6] and m["stat_ivs"] == [1, 2, 3, 31, 31, 6]
+                    and "by a Mint" in S.describe(m) and "Hyper Trained Spe, SpA" in S.describe(m)
+                    and any("element 7" in x for x in c["era"]["signs"]), S.describe(m)))
+    results.append(("a Mint byte past the 25 natures counts as none, as the engine reads it, "
+                    "and is reported",
+                    bad["mint"] is None and bad["stat_nature"] == bad["nature"]
+                    and any("Mint byte reads 26" in x for x in c["era"]["mismatches"])
+                    and p.get("mint") is None and p.get("hyper_trained") == []
+                    and p.get("stat_ivs") == p.get("ivs"), "; ".join(c["era"]["mismatches"])))
 
     # Read-only: reading the file leaves it byte for byte as it was.
     with tempfile.TemporaryDirectory() as tmp:
@@ -198,10 +250,16 @@ def main():
     reader = open(os.path.join(calc, "savereaders", "savereader.js"), encoding="utf-8").read()
     init = open(os.path.join(calc, "initialize.js"), encoding="utf-8").read()
     oxide_branch = init[init.index('title == "Platinum Oxide"'):init.index('title == "Platinum Kaizo"')]
+    # Element 7's part (VENDORED.md patch 20) was checked end to end once in
+    # headless Chrome on the save the element 7 check above builds: Adamant,
+    # Ability Slot 2 and "IVs: 1 HP / 2 Atk / 3 Def / 31 SpA / 6 SpD / 31 Spe".
     results.append(("the calculator's reader carries Oxide's patches: the layout by footer, the "
-                    "u16 ability and hidden bit, the blob's tables kept from the Gen 6-7 extender",
+                    "u16 ability and hidden bit, element 7's Mint, Capsule and Hyper Training, "
+                    "the blob's tables kept from the Gen 6-7 extender",
                     "applyOxideSaveLayout(view)" in reader and "0x20060623" in reader
                     and "decryptedData[move_data_offset + 13]" in reader
+                    and "nature = natures[mint - 1]" in reader
+                    and "((pv & 0x1) ^ 0x1) + 1" in reader and "(oxideByte >> (2 + i)) & 1" in reader
                     and "settings.readIncludes = true" in oxide_branch
                     and 'TITLE != "Platinum Oxide"' in init, ""))
     # Met places by Oxide's ids (VENDORED.md 17): the calculator's own Platinum
@@ -217,11 +275,14 @@ def main():
     if os.path.exists(IAN_COPY):
         ian = S.read(IAN_COPY)
         first = ian["party"][0] if ian["party"] else {}
+        # His saves predate element 7's Bag: the party reads, and the save is
+        # reported as made on an older layout.
         results.append(("Ian's save of 2026-09-21 (its working copy): Chimchar at level 6 with "
-                        "Blaze, on Oxide's layout, nothing contradicting this build",
+                        "Blaze, reported as an older layout than this build's",
                         first.get("species") == "SPECIES_CHIMCHAR" and first.get("level") == 6
                         and S._level("SPECIES_CHIMCHAR", first.get("exp", 0)) == 6
-                        and first.get("ability") == "Blaze" and not ian["era"]["mismatches"]
+                        and first.get("ability") == "Blaze"
+                        and any("older layout" in m for m in ian["era"]["mismatches"])
                         and ian["blocks"][1]["copy"] == "backup",
                         S.describe(first) if first else "no party"))
     else:
@@ -229,14 +290,17 @@ def main():
     if os.path.exists(IAN_CURRENT) and os.path.exists(IAN_COPY):
         now = S.read(IAN_CURRENT)
         old = open(IAN_COPY, "rb").read()
-        results.append(("Ian's first save on a current ROM: the same layout, an empty party, "
-                        "3000 money, Roark's split at cap 16; his older save has the Pokedex "
-                        "flag set, read from the same place",
-                        now["blocks"][0]["size"] == 0xD01C and not now["party"]
-                        and now["progress"]["money"] == 3000
-                        and now["progress"]["split"] == {"index": 0, "name": "Roark", "cap": 16}
-                        and not now["era"]["mismatches"] and S.flag(old, "FLAG_HAS_POKEDEX")
-                        and not S.flag(open(IAN_CURRENT, "rb").read(), "FLAG_HAS_POKEDEX"),
+        try:
+            S.flag(old, "FLAG_HAS_POKEDEX")
+            refused = False
+        except S.SaveError:
+            refused = True
+        results.append(("Ian's save of 2026-09-27 on a pre-element-7 ROM: the old layout, an "
+                        "empty party and 3000 money read; its split and flags are not read, "
+                        "and it is reported as needing a new game",
+                        now["blocks"][0]["size"] == OLD_NORMAL_SIZE and not now["party"]
+                        and now["progress"]["money"] == 3000 and now["progress"]["split"] is None
+                        and any("new game" in m for m in now["era"]["mismatches"]) and refused,
                         str(now["progress"])))
     else:
         print(f"  skip  Ian's current save: no working copy at {IAN_CURRENT}")

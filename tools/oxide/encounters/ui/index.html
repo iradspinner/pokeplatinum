@@ -1038,6 +1038,12 @@ function weatherTag(x) {
   return `<span class="wx" title="Has ${esc(names)} in a regular slot, which Oxide rules out; the ability pass removes it">${esc(names)}</span>`;
 }
 
+// A learnset level as the page shows it. Level 0 is an evolution move
+// (2026-09-28), taught when a Pokemon evolves into the species.
+const lvText = lv => lv === 0
+  ? `<span title="An evolution move: taught on evolving into this species, and by the Move Relearner">Evo</span>`
+  : lv;
+
 function evoText(e) {
   if (e.level) return `level ${e.level}`;
   if (e.item) return tidy(e.item);
@@ -1163,7 +1169,7 @@ function drawDexMoves(d) {
         <thead><tr><th>Lv</th><th>Move</th><th>Type</th><th>Cat</th>
           <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
         <tbody>${d.learnset.map(m => `<tr>
-          <td class="num">${m.level}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
+          <td class="num">${lvText(m.level)}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
           <td>${m.type ? typeChip(m.type, "mini") : ""}</td><td class="sub">${tidy(m.class)}</td>
           <td class="num">${m.power || ""}</td><td class="num">${m.accuracy || ""}</td>
         </tr>`).join("")}</tbody>
@@ -1327,7 +1333,7 @@ function drawMoveDetail() {
     <div class="dexsec"><h4>${HOW[h]} &middot; ${groups[h].length}</h4>
       ${groups[h].map(l => `<div class="learner" data-sp="${l.species}" title="Open ${esc(l.label)}">
         ${icon(l.species)}
-        ${h === "level" ? `<span class="num lv">Lv ${l.level}</span>` : ""}
+        ${h === "level" ? `<span class="num lv">${l.level === 0 ? lvText(0) : "Lv " + l.level}</span>` : ""}
         <span class="nm">${esc(l.label)}</span>
         ${l.first_split ? splitTag(l.first_split)
           : `<span class="sub">not wild</span>`}

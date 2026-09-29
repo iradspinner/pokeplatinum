@@ -147,10 +147,11 @@ def check_pairs(results):
 
 
 def check_fingerprints(results):
-    """Every B6 score (the ordinary trainers and each fight's levers)
-    matches its inputs as they are now, and a second run has verified it."""
+    """Every B6 score (the ordinary trainers, each double against two
+    trainers and each fight's levers) matches its inputs as they are now,
+    and a second run has verified it."""
     from . import rescore
-    problems = rescore.check(kinds=("b6", "b6lever"))
+    problems = rescore.check(kinds=("b6", "b6lever", "b6pair"))
     kinds = {p: sum(q == p for _n, q in problems) for _n, p in problems}
     results.append(("every B6 score matches its inputs and is verified", not problems,
                     f"{kinds}; first {problems[:4]}" if problems else ""))

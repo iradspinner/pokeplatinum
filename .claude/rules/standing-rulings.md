@@ -79,11 +79,10 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
-- Until the new CPU is in, a local session runs at most three heavy jobs at
-  once across all sessions, each pinned to its own virtual CPU, with
-  turbo boost off and every result checked by a second run (Ian,
-  2026-09-27). Local builds stay on GitHub. A cloud session's VM is healthy
-  and is not bound by this.
+- The replacement CPU is in and passed its stress and build checks
+  (2026-09-29), so the three-job limit of 2026-09-27 is lifted and local
+  builds are trusted: a ROM counts when its SHA-1 matches GitHub's build of
+  the same commit.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
@@ -95,3 +94,31 @@ read, so they are written here too. Each is a standing instruction.
   one of the best physical walls. Ian's super-wanted lines sit marginally
   above average, a personal bias. The encounter tool's tiers are availability
   labels only, not intended power.
+- TMs are single-use again, as in vanilla (Ian, 2026-09-28): each placement
+  gives a set number of copies (strong TMs one, utility ones two or three).
+  Weak TMs are not sold; each is the reward for beating one optional trainer
+  of weak-to-medium strength near its split. About 100 TMs. Ian's removals:
+  Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
+  Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
+  Will-O-Wisp and status of Thunder Wave's reliability may be TMs only as
+  single copies. Once field moves work on the badge alone, the HMs become
+  single-use TMs too, and Fly, Strength, Defog and Rock Climb need buffs to
+  earn a place. Egg move lists serve only as trainer teams' palette: a
+  nuzlocke has no breeding.
+- A change that moves what the save stores costs Ian a fresh start, not a
+  save converter (Ian, 2026-09-28, on element 7's bigger Bag): he starts a
+  new game on the first ROM with the change, and again after each later
+  one (the TM pass's Bag growth, 30 boxes). Tell him before the landing
+  which ROM starts the new game, and keep the OxiDex's save reader in step.
+- No GitHub Actions in the private repos (`oxide-rom-builder`, `melonDS-oxide`)
+  until 2026-10-01 (Ian, 2026-09-29): the account's Actions storage is used
+  up and he will not pay for more. Their workflows are switched off and their
+  artifacts deleted; build locally, and land with `merge-branch.sh`, which
+  now builds here. The public repo's build on a push to `oxide` is free.
+- New held items go behind optional challenges, not in shops (Ian,
+  2026-09-29): element 7's held items (Eviolite, Assault Vest, Rocky Helmet
+  and the rest) are each placed as the reward for an optional trainer, a
+  spinner the player can choose to walk into, or another optional fight,
+  rather than sold, even though a shop with a set price would be simpler.
+  The item pass places them; the balance census counts each from its
+  fight's split.
