@@ -416,6 +416,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   pen, and Victory Road's three are probably behind the way that opens only
   after the Champion; the census follows both. Tick this once the balance
   track reports all eight placed.
+  The balance track placed seven the same day: Wayward Cave's four and the
+  Spooky Plate in Fantina's split, Victory Road B1F's TM59 in Barry's (its
+  waterfall) and 2F's Full Restore in Barry's (Strength). One is left for
+  Ian: Victory Road 2F's Max Elixir (tile 4,5), in a pocket whose only ways
+  in are ledges out and the tile the bike ramp at (10,10) jumps over. Does a
+  slow ride onto that ramp stop on it, or is there another way in?
 
 ## 5. The ordinary ROM, after the League
 
