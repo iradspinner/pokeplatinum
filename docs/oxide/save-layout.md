@@ -341,10 +341,12 @@ box, which vanilla sized and wrapped at a bare 18; they follow the constant,
 and the box graphics heap grew by 16 KB for the extra 12,348 bytes.
 
 For the OxiDex: `savefile.py` counts boxes from the boxes block's size, so a
-30-box save needs only its layout, (0xD0D4, 0x1E310), in `KNOWN_LAYOUTS`; the
+30-box save needed only its layout, (0xD0D4, 0x1E310), in `KNOWN_LAYOUTS`; the
 DPB1 payload and melonDS-oxide's live export take the count from the save and
 the beacon, and read 30 with no change; and the Box sim's graveyard, the last
-box, is box 30.
+box, is box 30. The calculator's own Read Save did assume 18, with box 18 as
+the graveyard; the encounter track's `encounter-save-30-boxes` reads as many
+boxes as the block holds.
 
 ## Not yet moved, but expected to
 
