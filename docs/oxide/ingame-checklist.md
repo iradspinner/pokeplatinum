@@ -403,6 +403,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 
+- [ ] **Eight items the balance census cannot reach** (2026-09-29): its map
+  flood finds no way to them, so no score counts them. For each, say whether
+  the player can pick it up and what it takes (which field move or path):
+  Wayward Cave B1F's Rare Candy, Grip Claw, Max Ether and hidden Stardust;
+  Victory Road's TM59, Max Elixir and Full Restore on the upper levels; and
+  Amity Square's Spooky Plate in the fenced pen. Tell the balance track.
+
 ## 5. The ordinary ROM, after the League
 
 On a save with the National Dex and the game beaten:
