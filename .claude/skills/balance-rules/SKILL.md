@@ -155,10 +155,10 @@ trainers' palette only.
 
 ## Running a pass on this machine
 
-- Until the new CPU is in: at most three heavy jobs at once across all
-  sessions, each pinned to its own virtual CPU (`taskset -c`), turbo off, every result
-  checked by a second run. Ask the Overseer for a slot. A Node exit of 139 is
-  the CPU; rerun it.
+- The replacement CPU is in (2026-09-29). Until its stress check passes (the
+  in-game checklist, section 0): at most three heavy jobs at once across all
+  sessions, each pinned to its own virtual CPU (`taskset -c`), every result
+  checked by a second run. Ask the Overseer for a slot.
 - The rescore's engine hash covers `calc_headless.js`, the calculator page's
   `./calc/` scripts and the two functions lifted from `initialize.js`
   (`applyExportedMoveData`, `toImportedBaseStats`). An edit to any of them

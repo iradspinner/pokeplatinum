@@ -80,8 +80,7 @@ commits and writes up the findings, and `/docs-pass` audits the docs, skills and
 this file against the tree.
 
 A hook in `.claude/settings.json` refuses `git add -A` or `.`, launching an
-emulator, committing a file that carries the scratch marker, a full local
-build (see Build), and `ps` or its kin while a process is wedged in the kernel
+emulator, and committing a file that carries the scratch marker
 (`.claude/hooks/oxide_guard.py`); each refusal says which rule applies and
 what to do instead. `.githooks/pre-commit` runs the encounter linter on any
 commit that touches the encounter tables or tool; a clone enables it once with
@@ -93,45 +92,35 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-**This box's CPU is faulty until its warranty replacement arrives.** The
-i9-14900K is degraded: capped, single-threaded work is clean, but under
-all-core load compilers and Python crash or return wrong answers (design doc
-findings log, 2026-09-22). So a result here is trusted only after a second run
-agrees with it. GitHub builds every push to `oxide` on its own machines
-(`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
-summary; a local ROM is trusted when its hash matches that one. This public
-repo never uploads the ROM. **Ian's playtest ROMs come from
-`tools/oxide/fetch-rom`**, which builds a pushed commit in the private repo
-`iradspinner/oxide-rom-builder`, keeps the ROM there as a private artifact for
-three days, and downloads it to `~/oxide-playtest` after checking its SHA-1.
-Hand Ian that ROM, not one built on this CPU.
+**The replacement CPU is in (2026-09-29).** The old i9-14900K was degraded:
+under all-core load, compilers and Python crashed or returned wrong answers
+(design doc findings log, 2026-09-22). The new chip runs microcode 0x12F and
+passed a gentle check on its first day. Local builds are allowed again, and
+the workarounds for the old chip are gone. Two limits stay until the in-game
+checklist's section 0 clears them:
 
-**No local builds until the new CPU is in (Ian, 2026-09-23).** Fresh paste
-and a verified cooler did not help: builds still crash or wedge within
-seconds at 60 to 73 °C, so the fault is the chip. Build on GitHub instead:
-push your branch, run `tools/oxide/fetch-rom <commit>` (or `--testkit`), and
-check the downloaded ROM, with `bash tools/oxide/integrate.sh --verify-only
---rom <path>` for the whole gate. The guard hook refuses `make rom`, `make
-testkit`, a full `ninja` and `integrate.sh` without `--rom`; `ninja -C build
--j2 <targets>` for a few helper files is allowed. With turbo boost off
-(Windows' maximum processor state at 99%, as Ian keeps it), up to three
-heavy jobs may run at once across all sessions, each pinned to its own
-virtual CPU with `taskset -c` (WSL cannot tell which are performance
-cores), and every result is checked by a second run (Ian,
-2026-09-27; the design doc's findings log has the test). Three is the
-ceiling: six crashed Node. If turbo is back on, run one at a time.
-Rerun a failed test before believing it. The `Makefile` puts the 3.13
-venv first on PATH because this chip crashes it far less than the system
-Python; that block goes when the new CPU is in.
-`tools/oxide/python_flake_repro.py` is the check.
+- Until the parallel stress check passes, at most three heavy jobs run at once
+  across all sessions, each pinned to its own virtual CPU with `taskset -c`,
+  and a failed test is rerun before anyone believes it.
+  `tools/oxide/python_flake_repro.py` is the check.
+- Until a local build of `oxide` matches GitHub's SHA-1 for the same commit,
+  **Ian's playtest ROMs come from `tools/oxide/fetch-rom`**. It builds a pushed
+  commit in the private repo `iradspinner/oxide-rom-builder`, keeps the ROM
+  there as a private artifact for a day, and downloads it to `~/oxide-playtest`
+  after checking its SHA-1.
+
+GitHub builds every push to `oxide` on its own machines
+(`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
+summary, and `integrate.sh` compares a local ROM with it. This public repo
+never uploads the ROM.
 
 ## Cloud sessions
 
 A Claude Code cloud session (claude.ai/code, set up on 2026-09-25) works on a
 fresh Ubuntu VM with four healthy cores, so it can build and run heavy
-analysis that this box cannot. Its environment runs
-`tools/oxide/cloud-setup.sh` and sets `OXIDE_CLOUD=1`; with that set, the guard
-hook allows builds, and `make rom` fetches the compiler itself on first use.
+analysis without tying up this box. Its environment runs
+`tools/oxide/cloud-setup.sh` and sets `OXIDE_CLOUD=1`, and `make rom` fetches
+the compiler itself on first use.
 
 Its checkout carries only its own branch, and the encounter tools read vanilla
 data from `main`, so run `git fetch --depth=1 origin main:main` before their

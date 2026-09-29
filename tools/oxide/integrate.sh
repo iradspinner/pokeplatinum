@@ -307,16 +307,6 @@ fi
 
 # ---------------------------------------------------------------- 4. verify
 say "verify"
-# Until the replacement CPU is in, a build can crash and pass on a rerun, so
-# `make rom` gets a few tries (delete the retry with the Makefile's venv block).
-make_rom() {
-    local i
-    for i in 1 2 3 4; do
-        make rom && return 0
-        echo "make rom failed, try $i of 4 (degraded CPU, see CLAUDE.md)"
-    done
-    return 1
-}
 # The ROM of record is GitHub's build (oxide-rom.yml): the local ROM passes
 # when its SHA-1 matches the one a successful run printed. That workflow skips
 # a push that changes only Markdown, so the run to compare against is the
@@ -355,7 +345,7 @@ if [ $BUILD -eq 1 ]; then
     if [ -n "$ROM_GIVEN" ]; then
         check "build helpers on two jobs (the ROM is $ROM_GIVEN, not built here)" make_helpers
     else
-        check "make rom" make_rom
+        check "make rom" make rom
     fi
     if [ -f "$ROM" ]; then
         local_sha="$(sha1sum "$ROM" | cut -d' ' -f1)"

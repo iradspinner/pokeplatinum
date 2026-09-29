@@ -16,13 +16,17 @@ an agent to launch an emulator.
 The i9-14900K is degraded (design doc findings log, 2026-09-22) and its
 replacement is on the way. When the new chip is in, and before any playtest:
 
-- [ ] Delete the venv block in the `Makefile`, the build retry in
+- [x] Delete the venv block in the `Makefile`, the build retry in
   `integrate.sh`, the wedge guard (its rule in `.claude/hooks/oxide_guard.py`,
   `wedge_status.sh` and its test beside it, and the `statusLine` entry in
   `~/.claude/settings.json`, which Ian edits himself), the local-build rule in
   `.claude/hooks/oxide_guard.py` that refuses full builds, its paragraph in
   CLAUDE.md's Build section, and the memory file
   `no-local-builds-until-new-cpu.md`. `integrate.sh --rom` can stay.
+  Done 2026-09-29, after a gentle check of the new chip (microcode 0x12F; single-core
+  and four-copy runs all clean and repeatable). The `statusLine` entry is Ian's
+  to remove; CLAUDE.md and the standing rulings keep the three-job limit until
+  the stress check below passes, and GitHub ROMs until the build check does.
 - [ ] Rerun the parallel check (`C:\Users\Ian\oxide-flake-check\parallel.py`,
   and the same file from WSL). WSL failed about ten times as often as Windows
   under the same load, and the wedge may be a second, WSL-kernel problem that
