@@ -21,8 +21,11 @@ finds no boxes in an Oxide save.
 
 A Pokemon is Platinum's 136-byte record (236 in the party): four 32-byte
 blocks shuffled by personality and encrypted, laid out as
-include/struct_defs/pokemon.h has them, with Oxide's two changes: the ability
-is a u16 at block B 0x1A, and block A 0x0D bit 0 marks the hidden ability.
+include/struct_defs/pokemon.h has them, with Oxide's changes: the ability is a
+u16 at block B 0x1A, and block A 0x0D holds the hidden-ability bit (bit 0),
+and since element 7 the Ability Capsule's swap (bit 1) and a Bottle Cap's
+Hyper Training, one bit per stat (bits 2 to 7). Block B 0x19 holds a Mint's
+nature, one more than its index, or 0.
 
 Which build a save came from is not recorded in it, so `build_era` reads the
 signs it leaves: the block sizes (vanilla's, or Oxide's since the Pokedex
@@ -85,6 +88,10 @@ BLOCK_POSITIONS = [
 NATURES = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed",
            "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild",
            "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy", "Careful", "Quirky"]
+# enum PokemonStat's order, which the IVs are stored in and the Hyper
+# Training bits follow.
+STATS = ["HP", "Atk", "Def", "Spe", "SpA", "SpD"]
+MAX_IV = 31
 
 
 class SaveError(ValueError):
@@ -345,6 +352,16 @@ def read_mon(raw, where):
     form = b[0x18] >> 3
     ability_id = struct.unpack_from("<H", b, 0x1A)[0]
     egg, met = struct.unpack_from("<HH", b, 0x1C)
+    stored_ivs = [ivs >> (5 * i) & 31 for i in range(6)]
+    # Element 7: a Bottle Cap trains a stat, which then grows as if its IV
+    # were 31, and a Mint sets the nature the stats grow by. The stored IVs
+    # and the personality's nature stay as they were, as Pokemon_GetStatIV
+    # and BoxPokemon_GetStatNature read them; a Mint byte past the 25 natures
+    # counts as none there too.
+    trained = [bool(a[0x0D] >> (2 + i) & 1) for i in range(6)]
+    mint = b[0x19]
+    if mint > len(NATURES):
+        problems.append(f"its Mint byte reads {mint}, past the {len(NATURES)} natures")
 
     def name(kind, i, prefix):
         seq = t[kind]
@@ -360,13 +377,22 @@ def read_mon(raw, where):
         "form": form, "is_egg": bool(ivs >> 30 & 1),
         "item": t["tidy"](name("items", item_id, "ITEM_"), "ITEM_") if item_id else None,
         "ot_id": ot_id & 0xFFFF, "ot_secret": ot_id >> 16, "exp": exp,
+        # The nature the game names; `stat_nature` is the one the stats
+        # grow by, a Mint's when there is one.
         "nature": NATURES[pv % 25],
+        "mint": NATURES[mint - 1] if 0 < mint <= len(NATURES) else None,
+        "stat_nature": NATURES[mint - 1] if 0 < mint <= len(NATURES) else NATURES[pv % 25],
         "ability": t["tidy"](name("abilities", ability_id, "ABILITY_"), "ABILITY_"),
         "ability_id": ability_id, "hidden_ability": bool(a[0x0D] & 1),
-        "old_ability_byte": a[0x0D] >> 1,
+        # The stored ability already reflects the swap; this says why it is
+        # the other ordinary slot.
+        "ability_swapped": bool(a[0x0D] >> 1 & 1),
         "move_ids": moves,
         "moves": [t["move_names"].get(name("moves", m, "MOVE_"), f"#{m}") for m in moves],
-        "ivs": [ivs >> (5 * i) & 31 for i in range(6)],
+        # Stored IVs, and the ones the stats grow from, in STATS order.
+        "ivs": stored_ivs,
+        "hyper_trained": [s for s, on in zip(STATS, trained) if on],
+        "stat_ivs": [MAX_IV if on else iv for iv, on in zip(stored_ivs, trained)],
         "evs": list(a[0x10:0x16]),
         "met_location": t["places"][met] if met < len(t["places"]) else f"#{met}",
         # Where an egg came from (a gift or the Day Care), kept once it hatches;
@@ -500,6 +526,9 @@ def build_era(save):
                           "(2026-09-20), whose abilities this build cannot read")
     if any(mon["hidden_ability"] for mon in mons):
         signs.append("a Pokemon with its hidden ability (element 8)")
+    if any(mon["mint"] or mon["hyper_trained"] or mon["ability_swapped"] for mon in mons):
+        signs.append("a Pokemon changed by a Mint, a Bottle Cap or an Ability Capsule "
+                     "(element 7, 2026-09-28)")
     split = (save.get("progress") or {}).get("split")
     if split and "name" not in split:
         mismatches.append(f"the level-cap split reads {split['index']}, which this build has no "
@@ -519,8 +548,12 @@ def describe(mon):
     if mon["is_egg"]:
         return f"{mon['slot']}: an egg"
     bits = [f"{mon['name']}" + (f" (form {mon['form']})" if mon["form"] else ""),
-            f"Lv {mon.get('level', '?')}", mon["nature"],
-            mon["ability"] + (" (hidden)" if mon["hidden_ability"] else "")]
+            f"Lv {mon.get('level', '?')}",
+            mon["nature"] + (f" (stats as {mon['mint']} by a Mint)" if mon.get("mint") else ""),
+            mon["ability"] + (" (hidden)" if mon["hidden_ability"] else "")
+            + (" (by an Ability Capsule)" if mon.get("ability_swapped") else "")]
+    if mon.get("hyper_trained"):
+        bits.append("Hyper Trained " + ", ".join(mon["hyper_trained"]))
     if mon["item"]:
         bits.append(f"holding {mon['item']}")
     bits.append(", ".join(mon["moves"]) or "no moves")
