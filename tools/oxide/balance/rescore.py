@@ -9,7 +9,8 @@ Ian's ruling of 2026-09-27: a full rescore costs about 45 minutes a run on
 this CPU, and two runs must agree, even when a change touches a few fights.
 So every stored score (a story fight in pressure.json, Hesperid's in
 calibrate.json, a reference seat in pressure_refs/, a cell of shape.json's
-grid, and B6's ordinary trainers and per-fight levers in b6.json) carries a
+grid, and B6's ordinary trainers, doubles against two trainers and
+per-fight levers in b6.json) carries a
 fingerprint of everything that decides it, and a verified mark.
 
 The fingerprint is a hash of: the exact job file the calculator runs (the
@@ -65,13 +66,13 @@ import tempfile
 import time
 
 from ..encounters import calc_export
-from . import b6, calibrate, data, metrics, pool, pressure, refpressure, shape
+from . import b6, calibrate, data, metrics, pool, pressure, refpressure, shape, teamscore
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CALC_DIR = os.path.normpath(os.path.join(HERE, "..", "encounters", "calc"))
 TIMING = {"node_seconds", "wall_seconds", "seconds"}
 MARKS = {"fingerprint", "verified"}
-KINDS = ("pressure", "calibrate", "ref", "shape", "b6", "b6lever")
+KINDS = ("pressure", "calibrate", "ref", "shape", "b6", "b6lever", "b6pair")
 
 
 # ---- what decides a score ----------------------------------------------------
@@ -109,7 +110,8 @@ B6_REPORT_ONLY = frozenset({
     "DEAD_ABILITIES", "DRAFT_IV", "story_scores", "scale_line", "on_scale", "band",
     "_main_list", "new_content", "obtainable", "dead_weight", "_fmt", "lever_table",
     "species_table", "hyper_offense", "fully_evolved", "_changes", "report",
-    "_constants_by_name", "_fill", "_draft_party", "score_draft", "main"})
+    "_constants_by_name", "_fill", "_draft_party", "score_draft", "main", "_tr_ids",
+    "ordinary_fights"})
 
 
 _SCRIPT = re.compile(r'<script[^>]*src="\./(calc/[^"?]+)')
@@ -195,7 +197,8 @@ def scorer_hash(kind):
     less its report (B6_REPORT_ONLY)."""
     mods = {"pressure": ["pressure.py"], "calibrate": ["pressure.py"],
             "ref": ["pressure.py", "refpressure.py"], "shape": ["pressure.py", "shape.py"],
-            "b6": ["pressure.py", "b6.py"], "b6lever": ["pressure.py", "b6.py"]}[kind]
+            "b6": ["pressure.py", "b6.py"], "b6lever": ["pressure.py", "b6.py"],
+            "b6pair": ["pressure.py", "b6.py"]}[kind]
     return hashlib.sha256("".join(
         _code_hash(os.path.join(HERE, m), B6_REPORT_ONLY if m == "b6.py" else frozenset())
         for m in mods).encode()).hexdigest()
@@ -389,14 +392,16 @@ def units(blob, files, sides, kinds=KINDS):
                                     files.refs[hack]["fights"].get(key), put))
     if "shape" in kinds:
         out += shape_units(blob, files, sides)
-    if "b6" in kinds or "b6lever" in kinds:
+    if {"b6", "b6lever", "b6pair"} & set(kinds):
         out += b6_units(blob, files, sides, kinds)
     return out
 
 
 def b6_units(blob, files, sides, kinds):
-    """B6's ordinary trainers ("b6") and each story fight's levers
-    ("b6lever"), stored in b6.json."""
+    """B6's ordinary trainers ("b6"), each story fight's levers
+    ("b6lever") and each double against two trainers at once ("b6pair"),
+    stored in b6.json. A pair is scored as teamscore.resolve_pair builds
+    it, both parties as one."""
     out = []
     res = files.b6
     if "b6" in kinds:
@@ -437,6 +442,21 @@ def b6_units(blob, files, sides, kinds):
             out.append(Unit("b6lever", f"levers {fight['key']}", build, None,
                             lambda key=fight["key"]: res.get("fights", {}).get(key), put,
                             compute=compute))
+    if "b6pair" in kinds:
+        for key in sorted(b6.scored_pairs()):
+            def build(key=key):
+                fx = teamscore.resolve_pair(key)
+                jobs, ctx = pressure.fight_jobs(fx["fight"], blob, side=sides.at(fx["split"]),
+                                                parties=fx["parties"], weather=fx["weather"])
+                return jobs, ctx, dict(_fight_ctx(ctx), pair=key)
+
+            def put(r, key=key):
+                res.setdefault("pairs", {})[key] = r
+                files.dirty.add("b6")
+            out.append(Unit("b6pair", f"pair {key}", build,
+                            lambda o, c, s, key=key: b6.pair_record(
+                                pressure.score_jobs(o, c, blob, s), b6.scored_pairs()[key]),
+                            lambda key=key: res.get("pairs", {}).get(key), put))
     return out
 
 
