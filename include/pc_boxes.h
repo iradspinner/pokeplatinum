@@ -4,7 +4,10 @@
 #include "pokemon.h"
 #include "string_gf.h"
 
-#define MAX_PC_BOXES              18
+// Platinum Oxide, element 8: 30 boxes, as hg-engine has, where vanilla had
+// 18. The save's layout and the PC screen's buffers follow this constant
+// (docs/oxide/save-layout.md, "30 PC boxes").
+#define MAX_PC_BOXES              30
 #define MAX_PC_ROWS               5
 #define MAX_PC_COLS               6
 #define MAX_MONS_PER_BOX          (MAX_PC_ROWS * MAX_PC_COLS)

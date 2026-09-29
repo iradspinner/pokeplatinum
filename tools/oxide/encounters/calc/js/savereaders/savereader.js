@@ -40,11 +40,14 @@ function configureHgssSaveReaderOffsets() {
 
 // Oxide patch: an Oxide save's blocks are found by their footers, not by
 // vanilla Platinum's fixed offsets. Oxide's larger Pokedex grew the normal
-// block, which moved the box block, and 30 boxes will grow that too. Each
-// block ends in a 20-byte footer whose signature 0x20060623 follows the
-// block's size and precedes its id (src/savedata.c), so the sizes set the
-// same offsets the vanilla branch hard-codes. The Python reader the Sync
-// bridge uses (tools/oxide/encounters/savefile.py) finds them the same way.
+// block, which moved the box block, and the 30 PC boxes (2026-09-29) grew
+// that. Each block ends in a 20-byte footer whose signature 0x20060623
+// follows the block's size and precedes its id (src/savedata.c), so the
+// sizes set the same offsets the vanilla branch hard-codes. The box block
+// holds a u32, every box's 30 records, names and wallpapers, and one more
+// byte, so its size also gives the number of boxes. The Python reader the
+// Sync bridge uses (tools/oxide/encounters/savefile.py) finds them the same way.
+var oxideBoxCount = 0
 function applyOxideSaveLayout(view) {
     var sizes = {}
     for (var pos = 12; pos + 8 <= view.length; pos += 4) {
@@ -62,8 +65,10 @@ function applyOxideSaveLayout(view) {
     smallBlockSize = sizes[0]
     bigBlockStart = smallBlockSize
     boxDataOffset = smallBlockSize + 4
+    oxideBoxCount = 0
     if (1 in sizes) {
         bigBlockSize = sizes[1]
+        oxideBoxCount = Math.floor((bigBlockSize - 20 - 5) / (DS_SAVE_SLOTS_PER_BOX * 136 + 41))
     }
     return true
 }
@@ -371,6 +376,14 @@ $(document).ready(function() {
                         totalBoxSlotCount = GEN5_TOTAL_BOX_SLOT_COUNT
                     } else if (baseGame == "DP" || baseGame == "Pt" || baseGame == "HGSS") {
                         totalBoxSlotCount = 540
+                    }
+                    // Oxide patch: as many boxes as the save's box block
+                    // holds (30 since 2026-09-29), with the last one the
+                    // graveyard, as upstream takes Platinum's box 18 and the
+                    // OxiDex's Box sim takes the last box.
+                    if (TITLE == "Platinum Oxide" && oxideBoxCount > 0) {
+                        totalBoxSlotCount = oxideBoxCount * DS_SAVE_SLOTS_PER_BOX
+                        liveBoxSlotCount = totalBoxSlotCount - DS_SAVE_SLOTS_PER_BOX
                     }
 
                     boxPokOffsets = {}
@@ -1500,6 +1513,25 @@ function parsePKM(chunk, is_party=false, offset=0, parseContext=null) {
         if ((decryptedData[mon_data_offset + 6] >> 8) & 0x1) {
             abilitySlotId = 3
         }
+        // Oxide patch: element 7's Ability Capsule, Mint and Bottle Cap. In
+        // block A 0x0D, bit 1 swaps which ordinary slot the personality picks,
+        // and bits 2 to 7 mark Hyper Trained stats (HP, Atk, Def, Spe, SpA,
+        // SpD), which grow as if their IV were 31. Block B 0x19 holds a
+        // Mint's nature, one more than its index, and that is the nature the
+        // stats grow by, so the set takes it. The IVs are read here from the
+        // stored word in that order, not through getIVs, whose order depends
+        // on which save reader loaded last.
+        var oxideByte = (decryptedData[mon_data_offset + 6] >> 8) & 0xFF
+        if (abilitySlotId !== 3 && (oxideByte & 0x2)) {
+            abilitySlotId = ((pv & 0x1) ^ 0x1) + 1
+        }
+        var mint = (decryptedData[move_data_offset + 12] >> 8) & 0xFF
+        if (mint >= 1 && mint <= 25) {
+            nature = natures[mint - 1]
+        }
+        ivs = [0, 1, 2, 3, 4, 5].map(function(i) {
+            return ((oxideByte >> (2 + i)) & 1) ? 31 : (iv_value >>> (5 * i)) & 0x1F
+        })
     }
     var parsedMoveNames = []
     for (let i = 0; i < 4; i++) {

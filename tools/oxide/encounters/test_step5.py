@@ -368,6 +368,26 @@ Egg_Unknown:
     SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
     GiveEgg VAR_0x8005, 3
     End
+
+Gift_Psyduck:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_PSYDUCK, 15, ITEM_NONE, VAR_RESULT
+    End
+
+Egg_Snover:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GiveEgg SPECIES_SNOVER, 3
+    End
+
+Static_Hippopotas:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    StartWildBattle SPECIES_HIPPOPOTAS, 30
+    End
+
+Gift_Larvitar:
+    SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
+    GivePokemon SPECIES_LARVITAR, 20, ITEM_NONE, VAR_RESULT
+    End
 #ifdef OXIDE_TESTKIT
 Kit_Vulpix:
     SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
@@ -402,9 +422,16 @@ def check_hidden(results):
     results.append(("R18 follows a gift up its line: a hidden-ability Poliwag fails through "
                     "Politoed's Drizzle, a Swablu set by SetVar through Cloud Nine",
                     {"Gift_Poliwag", "Static_Swablu"} <= flagged, str(sorted(flagged))))
+    # The five lines whose weather ability left the regular slots (Ian,
+    # 2026-09-29): a hidden-ability Psyduck, Snover egg or Hippopotas battle
+    # fails at its own stage, and a Larvitar through Tyranitar's Sand Stream.
+    weather_lines = {"Gift_Psyduck", "Egg_Snover", "Static_Hippopotas", "Gift_Larvitar"}
+    results.append(("R18 fails the five lines whose weather ability is hidden (Psyduck, Snover, "
+                    "Hippopotas, and Larvitar through Tyranitar)",
+                    weather_lines <= flagged, str(sorted(weather_lines - flagged))))
     results.append(("R18 fails a flag no gift takes and a species it cannot read, and passes "
                     "Litten, a pool draw of Articuno and the test kit's Vulpix",
-                    flagged == {"Gift_Poliwag", "Static_Swablu", "Flag_Left_Set", "Egg_Unknown"}
+                    flagged == {"Gift_Poliwag", "Static_Swablu", "Flag_Left_Set", "Egg_Unknown"} | weather_lines
                     and not any(r["species"] == ["SPECIES_VULPIX"] for r in rows),
                     str(sorted(flagged))))
     # The CLI runs R18 over the tree's scripts; a planted grant makes it fail.

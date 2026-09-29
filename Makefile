@@ -28,16 +28,6 @@ MESON_VER := 1.12.0
 MESON_DIR := $(SUBPROJ_DIR)/meson-$(MESON_VER)
 MESON_PY  := $(MESON_DIR)/meson.py
 
-# Platinum Oxide, until the replacement CPU is in: the degraded chip crashes
-# the system Python 3.14 far more often than the 3.13 venv (46 against 6 of
-# 160 crash-test runs, 2026-09-22), so the venv goes first on PATH when it
-# exists; the build's generators run through `#!/usr/bin/env python3`. Delete
-# this block once the new CPU is in. CI has no venv and skips it.
-OXIDE_VENV := $(HOME)/.venvs/oxide/bin
-ifneq ($(wildcard $(OXIDE_VENV)/python3),)
-  export PATH := $(OXIDE_VENV):$(PATH)
-endif
-
 MESON ?= $(MESON_PY)
 NINJA ?= ninja
 GIT ?= git

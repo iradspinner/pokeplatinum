@@ -7,7 +7,7 @@
         "special_attack": 45,
         "special_defense": 45
     },
-    "types": [ "TYPE_GROUND", "TYPE_GROUND" ],
+    "types": [ "TYPE_BUG", "TYPE_GROUND" ],
     "catch_rate": 255,
     "base_exp_reward": 73,
     "ev_yields": {

@@ -463,9 +463,10 @@ BICYCLE_FROM = "Fantina"
 # The objects on a map that a field move clears (a boulder, pushed aside).
 OBSTACLES = {"OBJ_EVENT_GFX_ROCK_SMASH": "Rock Smash", "OBJ_EVENT_GFX_CUT_TREE": "Cut",
              "OBJ_EVENT_GFX_STRENGTH_BOULDER": "Strength"}
-# The field moves that open a way: the HM that teaches each, and the name of
-# its check in field_move_tasks.c, which names the badge it asks for. The
-# Bicycle is a key item with no badge.
+# The field moves that open a way: the HM that taught each (no longer needed
+# since the badge alone opens it), and the name of its check in
+# field_move_tasks.c, which names the badge it asks for. The Bicycle is a key
+# item with no badge.
 FIELD_MOVES = {"Bicycle": ("ITEM_BICYCLE", None), "Rock Smash": ("ITEM_HM06", "RockSmash"), "Cut": ("ITEM_HM01", "Cut"),
                "Surf": ("ITEM_HM03", "Surf"), "Strength": ("ITEM_HM04", "Strength"),
                "Rock Climb": ("ITEM_HM08", "RockClimb"), "Waterfall": ("ITEM_HM07", "Waterfall")}
@@ -511,9 +512,11 @@ def field_move_badges():
 
 @functools.lru_cache(maxsize=None)
 def field_move_splits():
-    """{move: the first split it can be used in}: the later of the split its
-    HM is first in hand (a script's gift, a mart, or a ball or hidden item
-    reached on foot) and the split after its badge's gym."""
+    """{move: the first split it can be used in}: the split after its
+    badge's gym. A field move needs its badge alone since main-field-moves
+    (2026-09-29), no HM; the Bicycle, a key item with no badge, counts from
+    the later of the split it is first in hand (a script's gift, a mart, or
+    a ball or hidden item reached on foot) and BICYCLE_FROM."""
     first = {}
 
     def seen(split, item):
@@ -529,10 +532,11 @@ def field_move_splits():
     out = {}
     for move, (hm, check) in FIELD_MOVES.items():
         gym = BADGE_GYM.get(field_move_badges().get(move))
-        if hm in first and check is None:
-            out[move] = max(first[hm], BICYCLE_FROM, key=SPLITS.index)
-        elif hm in first and gym in SPLITS[:-1]:
-            out[move] = max(first[hm], SPLITS[SPLITS.index(gym) + 1], key=SPLITS.index)
+        if check is None:
+            if hm in first:
+                out[move] = max(first[hm], BICYCLE_FROM, key=SPLITS.index)
+        elif gym in SPLITS[:-1]:
+            out[move] = SPLITS[SPLITS.index(gym) + 1]
     return out
 
 
@@ -581,11 +585,13 @@ def _grid(header):
 _STEPS = {"EAST": (1, 0), "WEST": (-1, 0), "NORTH": (0, -1), "SOUTH": (0, 1)}
 _LEDGES = {f"TILE_BEHAVIOR_JUMP_{d}{twice}": (step, 2 if twice else 1)
            for d, step in _STEPS.items() for twice in ("", "_TWICE")}
-# A bike ramp (Ian, from play, 2026-09-29): ridden onto in its direction, it
-# throws the player three tiles past it, over the two between whatever is
-# on them (Wayward Cave's basement among its boulders).
+# A bike ramp (Ian, from play, 2026-09-29): ridden onto in its direction at
+# speed, it throws the player three tiles past it, over the two between
+# whatever is on them (Wayward Cave's basement among its boulders); in the
+# bike's slow gear the jump is short and lands on the first tile past it
+# (Victory Road 2F's Max Elixir).
 _RAMPS = {f"TILE_BEHAVIOR_BIKE_RAMP_{d}WARD": step for d, step in _STEPS.items()}
-RAMP_JUMP = 3
+RAMP_JUMPS = (1, 3)
 
 
 def _flood(grid, starts, ok):
@@ -602,23 +608,23 @@ def _flood(grid, starts, ok):
             if t not in grid:
                 continue
             ramp = _RAMPS.get(grid[t][1])
-            if ramp:
-                if ramp != (dx, dz) or not ok(t, grid[t]):
-                    continue
-                t = (t[0] + dx * RAMP_JUMP, t[1] + dz * RAMP_JUMP)
+            if ramp and (ramp != (dx, dz) or not ok(t, grid[t])):
+                continue
+            landings = [(t[0] + dx * n, t[1] + dz * n) for n in RAMP_JUMPS] if ramp else [t]
+            for t in landings:
                 if t not in grid:
                     continue
-            ledge = _LEDGES.get(grid[t][1])
-            if ledge:
-                (lx, lz), n = ledge
-                if (lx, lz) != (dx, dz):
-                    continue
-                t = (t[0] + lx * n, t[1] + lz * n)
-                if t not in grid or grid[t][1] in _LEDGES:
-                    continue
-            if t not in seen and ok(t, grid[t]):
-                seen.add(t)
-                todo.append(t)
+                ledge = _LEDGES.get(grid[t][1])
+                if ledge:
+                    (lx, lz), n = ledge
+                    if (lx, lz) != (dx, dz):
+                        continue
+                    t = (t[0] + lx * n, t[1] + lz * n)
+                    if t not in grid or grid[t][1] in _LEDGES:
+                        continue
+                if t not in seen and ok(t, grid[t]):
+                    seen.add(t)
+                    todo.append(t)
     return seen
 
 

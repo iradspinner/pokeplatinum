@@ -101,12 +101,10 @@ Run these in order; skipping one is how the next session starts confused.
 ## Verification, the short list
 
 The full restart check-list is at the top of the tracker, and
-`bash tools/oxide/integrate.sh --verify-only --rom <ROM>` runs all of it on a
-ROM from `tools/oxide/fetch-rom` without merging anything (a cloud session
-drops `--rom` and builds). The minimum before calling a data or engine change
+`bash tools/oxide/integrate.sh --verify-only` builds the ROM and runs all of
+it without merging anything (`--rom <ROM>` checks a ROM built already). The minimum before calling a data or engine change
 done is a built ROM plus the verify tool that covers what changed, and the
-emulator test written into `docs/oxide/ingame-checklist.md` for Ian. Until the
-replacement CPU is in, the ROM is built on GitHub (CLAUDE.md, Build).
+emulator test written into `docs/oxide/ingame-checklist.md` for Ian.
 
 Emulator work is the `debug-live` skill: Ian runs melonDS on Windows and
 drives, and the agent attaches over the GDB stub and reads. Never launch your
@@ -133,8 +131,7 @@ Already there: <tools, files and earlier results to build on, with paths>.
 
 Rules that bite: stage files by name; never reformat a res/ JSON file (edit
 through jsonstyle.py, the tool that owns it, or by hand in its style); never
-launch an emulator; edit only <files or directories>; no local builds (push
-and use tools/oxide/fetch-rom), and rerun a failed test once (degraded CPU).
+launch an emulator; edit only <files or directories>.
 
 Write to: <paths>. <Commit on the worktree branch / leave uncommitted>.
 

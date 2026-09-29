@@ -14,7 +14,9 @@
 #define BATTLE_LOG_FOOTER_ID   0x4C42
 #define BATTLE_LOG_MAX_FAINTS  16
 
-// Flash sector 44 of each half, which nothing had written before.
+// Flash sector 44 of each half, which nothing had written before. Since the
+// 30 PC boxes the main save ends inside sector 43 and the extra save entries
+// start at 45 (SAVE_PAGE_MAX), so this sector sits between the two.
 #define BATTLE_LOG_SECTOR 44
 
 // Who knocked a Pokemon out, as the 4-bit values the records store. 0 to 5 is

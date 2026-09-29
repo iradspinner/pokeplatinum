@@ -13,12 +13,13 @@ Never launch an emulator yourself.
 
 ## Before Ian starts
 
-1. Read `docs/oxide/ingame-checklist.md` from the top. If section 0 (the
-   new CPU) is not done and the chip is in, do it first: it changes how ROMs
-   are built.
-2. Fetch both ROMs of the current `oxide`:
-   `tools/oxide/fetch-rom <commit>` and `tools/oxide/fetch-rom --testkit <commit>`.
-   Give Ian the Windows paths the tool prints.
+1. Read `docs/oxide/ingame-checklist.md` from the top.
+2. Build both ROMs of the current, pushed `oxide` (`make rom` and `make
+   testkit`), check the ordinary one's SHA-1 against GitHub's build of the
+   commit, and copy them into `~/oxide-playtest` as
+   `pokeplatinum-oxide-<commit>.nds` and `pokeplatinum-oxide-testkit-<commit>.nds`.
+   `tools/oxide/fetch-rom <commit>` and `--testkit` do the same on GitHub.
+   Give Ian the Windows paths (`\\wsl$\Ubuntu\home\ian\oxide-playtest\...`).
 3. Pick the sections he can reach today. A new game covers sections 2 and 3;
    sections 4 and 5 need a mid-game or post-game save. Ask him which saves he
    has, and skip what none of them reach.

@@ -42,6 +42,11 @@ DIVERGED = {
     "scripts_init_battleground": "the base ROM's member is the terminator byte followed "
                                  "by 53 bytes of unreachable leftovers; this builds the "
                                  "4-byte equivalent, which the engine reads identically",
+    "scripts_field_moves": "field moves need only their badge (Ian, 2026-09-26, the "
+                           "staples survey's answer 10), rebuilt from vanilla's script; "
+                           "the base ROM's checked for the HM item instead and poked bytes "
+                           "of the field overlay at vanilla's addresses, which are other "
+                           "code in Oxide's build",
 }
 
 # The scripted gifts. Each of these hands out a pool of species, and the

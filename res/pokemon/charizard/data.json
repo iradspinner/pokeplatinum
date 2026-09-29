@@ -7,7 +7,7 @@
         "special_attack": 110,
         "special_defense": 85
     },
-    "types": [ "TYPE_FIRE", "TYPE_FLYING" ],
+    "types": [ "TYPE_FIRE", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 209,
     "ev_yields": {

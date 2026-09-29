@@ -1560,6 +1560,15 @@ def main():
         500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
     }
 
+    # Base stats the base ROM set by a slip, which Oxide has corrected to Ian's
+    # change sheet ("My Version RomHack Docs", Pokemon Changes; Kaizo agrees for
+    # the two cocoons). The rest of each record is still carried over.
+    BASE_STATS_DIVERGED = {
+        11: "Metapod's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
+        14: "Kakuna's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
+        292: "Shedinja's Sp. Def is 10, not 5 (Ian, 2026-09-29)",
+    }
+
     # species: personal + learnset + evolutions live in one data.json
     bp, vp = base.narc("poketool/personal/pl_personal.narc"), van.narc("poketool/personal/pl_personal.narc")
     bl, vl = base.narc("poketool/personal/wotbl.narc"), van.narc("poketool/personal/wotbl.narc")
@@ -1591,6 +1600,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in BASE_STATS_DIVERGED:
+            new.pop("base_stats")
+            old.pop("base_stats")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"base_stats: diverged, left alone ({BASE_STATS_DIVERGED[i]})"]))
         if i in ABILITIES_DIVERGED:
             new.pop("abilities")
             old.pop("abilities")

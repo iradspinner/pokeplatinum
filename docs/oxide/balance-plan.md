@@ -6,7 +6,19 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
+**Where it stands (2026-09-29).** Every score is rescored on the combined
+landing branch (`balance-combined-rescore`), and two passes agreed on all
+1,030. The census leaves out the test kit, the pool takes the encounter
+tool's scripted sources it lacked (the fossils in Fantina's split, Acuity
+Cavern's draw in Volkner's), and an item counts from the split the way to
+it opens: Surf, the other field moves, the bike, its ramp jumps and
+scripted arrivals (the stone correction under the item pass). Doubles
+against two trainers at once are rescore units of their own (56 pairs),
+and Somnu and Moira at Lake Verity are a story fight (6.2 on Ian's
+scale). No story fight moved by 0.3 or more. Next: learnset v3 on Ian's
+pick-list retypes once they land, then the TM pass.
+
+**Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
 The tool knows Ian's two Galactic splits (HQ 60, Galactic 65), the Battle
 Zone has come down 18 levels to fit them, and Saturn 2 is scored under his
@@ -1777,6 +1789,39 @@ lands, and each change is re-scored as it lands.
      with their balls there too. The Pixie Plate is not in the game yet
      (element 7); when it is, it takes one fixed find like the others.
    - Money: 21 Star Pieces and 14 Nuggets stay as fixed finds.
+
+   **Corrected** (2026-09-29, the combined rescore's census): the census
+   now reaches each item as the player does, waiting for Surf, Rock Smash,
+   Cut, Strength, Rock Climb, Waterfall and the bike (with ledges and bike
+   ramp jumps) where its map needs them (`splits.item_reach`). Four of the
+   stones the plan keeps come later than the table above says, since the
+   plan read each find at its map's split:
+
+   | Stone | Find | The plan's split | Reached in | Needs |
+   |---|---|---|---|---|
+   | Moon | Eterna City (hidden) | Gardenia | Byron | Surf |
+   | Dawn | Mt. Coronet 1F south | Fantina | Byron | Surf |
+   | Water | Route 213 | Wake | Byron | Surf |
+   | Sun | Valor Lakefront (hidden) | Wake | HQ | Rock Climb |
+
+   Solaceon's Water Stone stays Maylene's. For Ian: keep these timings,
+   which make the Moon, Dawn and Sun Stones later decisions, or move each
+   find to a spot reached on foot in the split he approved (the main
+   track's change). No stone is added either way.
+
+   **Element 7's new held items** (Ian, 2026-09-29): Eviolite, Assault
+   Vest, Rocky Helmet, Air Balloon and the rest are each the reward for an
+   optional trainer, a spinner or another optional fight, never sold, even
+   though a shop would be simpler. None is placed outside the test kit
+   today, so the census has none of them and no score assumes them. When
+   they are placed, the census must count a reward from its fight's split:
+   `splits.gifts` gives a script's gift its map's split, so a gift given
+   after a battle in the same script is to take the trainer's split (B6's
+   placement) instead.
+
+   **No Life Orb for the player** (Ian, 2026-09-27): Stark Mountain's
+   outside map still has a Life Orb ball (Galactic's split). The item pass
+   replaces it; the main track makes the change.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or

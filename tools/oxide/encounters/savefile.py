@@ -14,15 +14,19 @@ counter, the block's own counter, its size, the signature 0x20060623, its id
 and a CRC16 of the block. So the reader scans for the signature, keeps each
 footer whose CRC is right, and takes per block the valid copy the game would
 load, the one saved last. Oxide's larger Pokedex grew the normal block by 240
-bytes (docs/oxide/save-layout.md), which moved the box block, and element 8's
-30 boxes will grow the box block; the footers carry both, so neither needs a
-change here. That is also why a calculator reader with vanilla's fixed offsets
-finds no boxes in an Oxide save.
+bytes (docs/oxide/save-layout.md), which moved the box block, and the 30 PC
+boxes (2026-09-29) grew the box block from 18 boxes to 30; the footers carry
+both, so the reader counts the boxes from the block's size. That is also why
+a calculator reader with vanilla's fixed offsets finds no boxes in an Oxide
+save.
 
 A Pokemon is Platinum's 136-byte record (236 in the party): four 32-byte
 blocks shuffled by personality and encrypted, laid out as
-include/struct_defs/pokemon.h has them, with Oxide's two changes: the ability
-is a u16 at block B 0x1A, and block A 0x0D bit 0 marks the hidden ability.
+include/struct_defs/pokemon.h has them, with Oxide's changes: the ability is a
+u16 at block B 0x1A, and block A 0x0D holds the hidden-ability bit (bit 0),
+and since element 7 the Ability Capsule's swap (bit 1) and a Bottle Cap's
+Hyper Training, one bit per stat (bits 2 to 7). Block B 0x19 holds a Mint's
+nature, one more than its index, or 0.
 
 Which build a save came from is not recorded in it, so `build_era` reads the
 signs it leaves: the block sizes (vanilla's, or Oxide's since the Pokedex
@@ -47,8 +51,10 @@ BACKUP_START = 0x40000      # BACKUP_SECTOR_START * SAVE_SECTOR_SIZE
 BLOCK_NORMAL, BLOCK_BOXES = 0, 1
 BOX_RECORD, PARTY_RECORD = 136, 236
 MONS_PER_BOX = 30
-# PCBoxes is a u32, then per box 30 records, a 20-character name and a
-# wallpaper byte, then one byte of unlocked wallpapers.
+# PCBoxes is a u32 (the current box), then every box's 30 records, then
+# every box's 20-character name, then every box's wallpaper byte, then one
+# byte of unlocked wallpapers; so each box adds this many bytes, and the
+# block's size gives the count (18 in vanilla, 30 in Oxide since 2026-09-29).
 BOX_STRIDE = MONS_PER_BOX * BOX_RECORD + 20 * 2 + 1
 # In the normal block: the trainer's id and secret id, and the Party struct
 # (capacity, count, six records), where vanilla Platinum has them. The reader
@@ -67,13 +73,17 @@ KNOWN_LAYOUTS = {
     (0xD01C, 0x121E4): "Oxide's from the Pokedex's growth (2026-09-21) until element 7",
     # Element 7 widened three Bag pockets (2026-09-28), 184 bytes, and the
     # Bag comes before the variables and flags, so they moved too.
-    (0xD0D4, 0x121E4): "Oxide's since element 7 widened the Bag (2026-09-28)",
+    (0xD0D4, 0x121E4): "Oxide's from element 7's Bag (2026-09-28) until the 30 boxes",
+    # The 30 PC boxes (2026-09-29), with the same fresh start as element 7:
+    # the normal block is unchanged, and the box block keeps its shape.
+    (0xD0D4, 0x1E310): "Oxide's since the 30 PC boxes (2026-09-29)",
 }
 # The layout this build writes. A save on an older one still gives its party
 # (before the Bag) and its boxes (found by their footers), but its variables
 # and flags sit where an older build put them, and a layout change costs a
-# new game, not a converter (Ian, 2026-09-28).
-CURRENT_LAYOUT = (0xD0D4, 0x121E4)
+# new game, not a converter (Ian, 2026-09-28). Only the normal block's size
+# decides that: an 18-box save from element 7's builds reads in full.
+CURRENT_LAYOUT = (0xD0D4, 0x1E310)
 # BoxPokemon_GetDataBlock: for each shuffle case, the position of blocks
 # A, B, C and D. Cases 24 to 31 repeat 0 to 7.
 BLOCK_POSITIONS = [
@@ -85,6 +95,10 @@ BLOCK_POSITIONS = [
 NATURES = ["Hardy", "Lonely", "Brave", "Adamant", "Naughty", "Bold", "Docile", "Relaxed",
            "Impish", "Lax", "Timid", "Hasty", "Serious", "Jolly", "Naive", "Modest", "Mild",
            "Quiet", "Bashful", "Rash", "Calm", "Gentle", "Sassy", "Careful", "Quirky"]
+# enum PokemonStat's order, which the IVs are stored in and the Hyper
+# Training bits follow.
+STATS = ["HP", "Atk", "Def", "Spe", "SpA", "SpD"]
+MAX_IV = 31
 
 
 class SaveError(ValueError):
@@ -345,6 +359,16 @@ def read_mon(raw, where):
     form = b[0x18] >> 3
     ability_id = struct.unpack_from("<H", b, 0x1A)[0]
     egg, met = struct.unpack_from("<HH", b, 0x1C)
+    stored_ivs = [ivs >> (5 * i) & 31 for i in range(6)]
+    # Element 7: a Bottle Cap trains a stat, which then grows as if its IV
+    # were 31, and a Mint sets the nature the stats grow by. The stored IVs
+    # and the personality's nature stay as they were, as Pokemon_GetStatIV
+    # and BoxPokemon_GetStatNature read them; a Mint byte past the 25 natures
+    # counts as none there too.
+    trained = [bool(a[0x0D] >> (2 + i) & 1) for i in range(6)]
+    mint = b[0x19]
+    if mint > len(NATURES):
+        problems.append(f"its Mint byte reads {mint}, past the {len(NATURES)} natures")
 
     def name(kind, i, prefix):
         seq = t[kind]
@@ -360,13 +384,22 @@ def read_mon(raw, where):
         "form": form, "is_egg": bool(ivs >> 30 & 1),
         "item": t["tidy"](name("items", item_id, "ITEM_"), "ITEM_") if item_id else None,
         "ot_id": ot_id & 0xFFFF, "ot_secret": ot_id >> 16, "exp": exp,
+        # The nature the game names; `stat_nature` is the one the stats
+        # grow by, a Mint's when there is one.
         "nature": NATURES[pv % 25],
+        "mint": NATURES[mint - 1] if 0 < mint <= len(NATURES) else None,
+        "stat_nature": NATURES[mint - 1] if 0 < mint <= len(NATURES) else NATURES[pv % 25],
         "ability": t["tidy"](name("abilities", ability_id, "ABILITY_"), "ABILITY_"),
         "ability_id": ability_id, "hidden_ability": bool(a[0x0D] & 1),
-        "old_ability_byte": a[0x0D] >> 1,
+        # The stored ability already reflects the swap; this says why it is
+        # the other ordinary slot.
+        "ability_swapped": bool(a[0x0D] >> 1 & 1),
         "move_ids": moves,
         "moves": [t["move_names"].get(name("moves", m, "MOVE_"), f"#{m}") for m in moves],
-        "ivs": [ivs >> (5 * i) & 31 for i in range(6)],
+        # Stored IVs, and the ones the stats grow from, in STATS order.
+        "ivs": stored_ivs,
+        "hyper_trained": [s for s, on in zip(STATS, trained) if on],
+        "stat_ivs": [MAX_IV if on else iv for iv, on in zip(stored_ivs, trained)],
         "evs": list(a[0x10:0x16]),
         "met_location": t["places"][met] if met < len(t["places"]) else f"#{met}",
         # Where an egg came from (a gift or the Day Care), kept once it hatches;
@@ -500,6 +533,9 @@ def build_era(save):
                           "(2026-09-20), whose abilities this build cannot read")
     if any(mon["hidden_ability"] for mon in mons):
         signs.append("a Pokemon with its hidden ability (element 8)")
+    if any(mon["mint"] or mon["hyper_trained"] or mon["ability_swapped"] for mon in mons):
+        signs.append("a Pokemon changed by a Mint, a Bottle Cap or an Ability Capsule "
+                     "(element 7, 2026-09-28)")
     split = (save.get("progress") or {}).get("split")
     if split and "name" not in split:
         mismatches.append(f"the level-cap split reads {split['index']}, which this build has no "
@@ -519,8 +555,12 @@ def describe(mon):
     if mon["is_egg"]:
         return f"{mon['slot']}: an egg"
     bits = [f"{mon['name']}" + (f" (form {mon['form']})" if mon["form"] else ""),
-            f"Lv {mon.get('level', '?')}", mon["nature"],
-            mon["ability"] + (" (hidden)" if mon["hidden_ability"] else "")]
+            f"Lv {mon.get('level', '?')}",
+            mon["nature"] + (f" (stats as {mon['mint']} by a Mint)" if mon.get("mint") else ""),
+            mon["ability"] + (" (hidden)" if mon["hidden_ability"] else "")
+            + (" (by an Ability Capsule)" if mon.get("ability_swapped") else "")]
+    if mon.get("hyper_trained"):
+        bits.append("Hyper Trained " + ", ".join(mon["hyper_trained"]))
     if mon["item"]:
         bits.append(f"holding {mon['item']}")
     bits.append(", ".join(mon["moves"]) or "no moves")

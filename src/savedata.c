@@ -134,7 +134,10 @@ BOOL SaveData_Erase(SaveData *saveData)
 
     MI_CpuFillFast(saveBuffer, 0xffffffff, SAVE_SECTOR_SIZE);
 
-    for (int i = 0; i < SAVE_PAGE_MAX * SECTOR_ID_MAX; i++) {
+    // Every sector of both halves. Vanilla wrote SAVE_PAGE_MAX * SECTOR_ID_MAX,
+    // which was 64, the sectors in a half, only while SAVE_PAGE_MAX was 32;
+    // Platinum Oxide's larger page count would run past the end of the chip.
+    for (int i = 0; i < BACKUP_SECTOR_START - PRIMARY_SECTOR_START; i++) {
         SaveData_CardSave(SAVE_SECTOR_SIZE * (i + PRIMARY_SECTOR_START), saveBuffer, SAVE_SECTOR_SIZE);
         SaveData_CardSave(SAVE_SECTOR_SIZE * (i + BACKUP_SECTOR_START), saveBuffer, SAVE_SECTOR_SIZE);
     }

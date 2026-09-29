@@ -46,9 +46,11 @@ def main():
     starly, geodude, onix = sid("SPECIES_STARLY"), sid("SPECIES_GEODUDE"), sid("SPECIES_ONIX")
     cranidos = sid("SPECIES_CRANIDOS")
     # The party now holds a Monferno that was a Chimchar in the older battles
-    # (personality 0x...78, so its logged byte is 0x78) and a Starly.
+    # (personality 0x...78, so its logged byte is 0x78) and a Starly. The
+    # Monferno is Gentle by personality with an Adamant Mint (element 7).
     party = [T.record(0x12345678, monferno, [T.move_id("MOVE_SCRATCH")],
-                      T.ability_id("ABILITY_BLAZE"), party_level=16),
+                      T.ability_id("ABILITY_BLAZE"), party_level=16,
+                      mint=T.S.NATURES.index("Adamant") + 1),
              T.record(0x0000AB42, starly, [T.move_id("MOVE_TACKLE")],
                       T.ability_id("ABILITY_KEEN_EYE"), party_level=12)]
     base = T.make_save(party, {})
@@ -188,6 +190,15 @@ def main():
                     [s["saveFileSplitIndex"] for s in starts] == [0, 0, 1]
                     and len(calc["splits"]) == 13 and calc["splits"][0] == {"index": 0, "name": "Roark", "cap": 16}
                     and calc["splits"][-1]["name"] == "Post", str(calc["splits"][:2])))
+    # The Battle Log rebuilds a set from each party entry, so it takes the
+    # nature the stats grow by, as Read Save and Sync do; the log's own
+    # record keeps the nature the game names.
+    first = starts[0]["pParty"][0]
+    results.append(("a party entry carries the Mint's nature for its set, and the log keeps "
+                    "the personality's",
+                    first["nature"] == "Adamant"
+                    and log["records"][-1]["player"][0]["now"]["nature"] == T.S.NATURES[0x12345678 % 25],
+                    f"{first['nature']}, now {log['records'][-1]['player'][0]['now']['nature']}"))
     counters = {c["species"]: c for c in calc["pokemonBattleCounters"]}
     results.append(("battle counters follow each Pokemon into its evolution: Monferno was brought "
                     "to 3 battles with 3 knock-outs, Starly to 2 with none",
