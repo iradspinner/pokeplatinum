@@ -168,6 +168,7 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 
 ## Backlog / follow-ups
 
+- **Ten hidden-item copies sit off their map's tiles** (found by the balance track's item census, 2026-09-29, on `balance-combined-rescore` 91de17676): items on map seams and map variants share pickup flags, which is fine, but ten hidden copies are placed outside the map they belong to. Main track; the balance track's census commit names them
 - **Live inspection of the running game (Ian, 2026-09-20).** The stub connection is done (`live.py`, `live_watch.py`, `docs/oxide/setup-fork-and-wsl2.md` part 5b). Left: decoders on `live.py` for the party, boxes, flags, vars, map and running script, with writes for a debug console; and an offline reader for the melonDS `.sav`, so the encounter tool can read the real dex flags
 - **Re-humanise the 86 generated scripts**, a map at a time, as each map gets attention: named labels, `NPCMessage`, text-bank constants, real names for `LOCALID_OBJECT_<n>` and `<Bank>_Text_<n>`. `checkmap.py` is the check. Never during a faithful carry-over; the point of the bulk pass was to be done
 - Two raw regions the disassembler emits as `.byte` rather than decoding (`scripts_spear_pillar` 0x04b5 and `scripts_common` 0x1268 are the two to start from; they are vanilla's, and the base ROM's versions decode fully). They round-trip exactly; they are just not understood
