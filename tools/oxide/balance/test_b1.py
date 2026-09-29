@@ -244,8 +244,9 @@ def check_items_and_marts(results):
     every mart table has its city's split. Two anchors: Poke Balls are on
     sale from the start, and the Eterna herb shop opens in Gardenia's split."""
     from . import splits
-    items = splits.items()
-    loose = [(h, i) for sp, h, i, _how in items if not sp or not i or not i.startswith("ITEM_")]
+    items = splits.item_reach()
+    loose = [(h, i) for sp, h, i, _how, needs in items
+             if (not sp and needs != "unreached") or not i or not i.startswith("ITEM_")]
     results.append(("every item ball and hidden item resolves", not loose,
                     f"{len(items)} items" + (f"; loose: {loose[:3]}" if loose else "")))
     marts = splits.marts()
@@ -291,25 +292,57 @@ def check_weather(results):
     results.append(("boss fights start in the weather their maps set", got == want, str(got)))
 
 
+# When each way opens (Ian's split definition for the bike; HM and badge for
+# the rest), and one item behind each, as the census had them wrong: Lake
+# Verity's TM38 in Roark's split, Oreburgh Gate B1F's TM01 in Byron's,
+# Valor Lakefront's Sun Stone in Wake's, and so on.
+FIELD_MOVE_SPLITS = {"Bicycle": "Fantina", "Rock Smash": "Gardenia", "Cut": "Fantina", "Surf": "Byron",
+                     "Strength": "Candice", "Rock Climb": "HQ", "Waterfall": "Barry"}
+REACH_ANCHORS = [("LAKE_VERITY", "ITEM_TM38", "Byron", "Surf"),
+                 ("RAVAGED_PATH", "ITEM_TM39", "Gardenia", "Rock Smash"),
+                 ("ETERNA_CITY", "ITEM_TM46", "Fantina", "Cut"),
+                 ("OREBURGH_GATE_B1F", "ITEM_TM01", "Candice", "Strength"),
+                 ("VALOR_LAKEFRONT", "ITEM_SUN_STONE", "HQ", "Rock Climb"),
+                 ("ROUTE_208", "ITEM_CARBOS", "Barry", "Waterfall"),
+                 ("SOLACEON_TOWN", "ITEM_PP_UP", "Maylene", "foot")]
+# The items the flood cannot reach with every way open, named so a new one
+# is noticed. Wayward Cave B1F's upper level and Victory Road's are joined
+# to the rest by a way the tile map does not show; Amity Square's plate is
+# in a fenced pen. The census gives them no split.
+UNREACHED = {("WAYWARD_CAVE_B1F", "ITEM_GRIP_CLAW"), ("WAYWARD_CAVE_B1F", "ITEM_MAX_ETHER"),
+             ("WAYWARD_CAVE_B1F", "ITEM_RARE_CANDY"), ("WAYWARD_CAVE_B1F", "ITEM_STARDUST"),
+             ("VICTORY_ROAD_2F", "ITEM_MAX_ELIXIR"), ("VICTORY_ROAD_2F", "ITEM_FULL_RESTORE"),
+             ("VICTORY_ROAD_B1F", "ITEM_TM59"), ("AMITY_SQUARE", "ITEM_SPOOKY_PLATE")}
+
+
 def check_item_reach(results):
-    """An item reached only across water counts from Surf's split, one on
-    foot keeps its map's, and an item on several maps under one pickup flag
-    counts once. The anchors: Lake Verity's TM38 (the census had it in
-    Roark's split, twice), Eterna City's TM46 on foot, and the game's own
-    surfable tiles, bridges left walkable."""
+    """An item behind water, a waterfall, a Rock Climb wall, a bike path or
+    a Rock Smash rock, Cut tree or Strength boulder counts from the split
+    the way to it first opens; one on foot keeps its map's; an item on
+    several maps under one pickup flag counts once; and the items nothing
+    reaches are the named ones. Each way opens when the game's own check
+    allows it: the HM in hand and its badge won, with Surf where the
+    encounter tool has it."""
     from . import splits
+    moves = splits.field_move_splits()
+    ok = moves == FIELD_MOVE_SPLITS and moves["Surf"] == splits.surf_split()
+    results.append(("each field move opens where its HM and badge are both had", ok, str(moves)))
     rows = splits.item_reach()
-    tm38 = [(r[0], r[4]) for r in rows if r[2] == "ITEM_TM38"]
-    tm46 = [(r[0], r[1], r[4]) for r in rows if r[2] == "ITEM_TM46"]
-    ok = tm38 == [(splits.surf_split(), "Surf")] and ("Gardenia", "ETERNA_CITY", "foot") in tm46
-    results.append(("an item behind water counts from Surf's split, one on foot keeps its map's", ok,
-                    f"TM38 {tm38}, TM46 {tm46}"))
-    keys = {k for k, _r in splits._item_copies()}
+    got = {(r[1], r[2]): (r[0], r[4]) for r in rows}
+    wrong = [(m, i, got.get((m, i))) for m, i, s, n in REACH_ANCHORS if got.get((m, i)) != (s, n)]
+    results.append(("an item counts from the split the way to it opens", not wrong,
+                    str(wrong) if wrong else f"{len(REACH_ANCHORS)} anchors"))
+    unreached = {(r[1], r[2]) for r in rows if r[4] == "unreached"}
+    ok = unreached == UNREACHED and all(r[0] is None for r in rows if r[4] == "unreached")
+    results.append(("the items nothing reaches are the named ones, with no split", ok,
+                    f"new {sorted(unreached - UNREACHED)}, gone {sorted(UNREACHED - unreached)}"
+                    if not ok else f"{len(unreached)} named"))
+    keys = splits.pickups()
     water = splits._surfable()
     ok = len(rows) == len(keys) and {"TILE_BEHAVIOR_WATER_SEA", "TILE_BEHAVIOR_WATER_RIVER"} <= water \
         and not [n for n in water if "BRIDGE" in n]
     results.append(("each pickup counts once, and only water is surfable", ok,
-                    f"{len(rows)} items from {len(splits._item_copies())} copies"))
+                    f"{len(rows)} items from {sum(len(m) for _r, m in keys.values())} map copies"))
 
 
 def check_testkit(results):

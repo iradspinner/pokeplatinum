@@ -447,23 +447,104 @@ def items():
 # Tiles the player crosses only by Surf: the ones the game flags surfable
 # (map_tile_behavior.c's flag table), less the bridges over water, which it
 # flags so the player can surf beneath them but which are walked (or, the
-# bike bridges, ridden) across. A waterfall needs Waterfall as well.
+# bike bridges, ridden) across. A waterfall needs Waterfall as well, and a
+# Rock Climb wall, which carries the collision bit, needs Rock Climb.
 _TILE_FLAG = re.compile(r"\[(TILE_BEHAVIOR_\w+)\]\s*=\s*(TILE_BEHAVIOR_FLAG_\w+)")
 WATERFALL = "TILE_BEHAVIOR_WATERFALL"
+ROCK_CLIMB = ("TILE_BEHAVIOR_ROCK_CLIMB_N_S", "TILE_BEHAVIOR_ROCK_CLIMB_E_W")
+# The Bicycle's tiles: ramps (which carry the collision bit), slopes and
+# narrow bridges, ridden only. A bike bridge over water is surfed beneath.
+BIKE_PARKING = "TILE_BEHAVIOR_BIKE_PARKING"
+# Ian's split definition (progression.py, 2026-09-21): Gardenia's split has
+# no bike. The Cycle Shop's gift waits on the Galactic building in Eterna,
+# which the story clears in Fantina's split.
+BICYCLE_FROM = "Fantina"
+# The objects on a map that a field move clears (a boulder, pushed aside).
+OBSTACLES = {"OBJ_EVENT_GFX_ROCK_SMASH": "Rock Smash", "OBJ_EVENT_GFX_CUT_TREE": "Cut",
+             "OBJ_EVENT_GFX_STRENGTH_BOULDER": "Strength"}
+# The field moves that open a way: the HM that teaches each, and the name of
+# its check in field_move_tasks.c, which names the badge it asks for. The
+# Bicycle is a key item with no badge.
+FIELD_MOVES = {"Bicycle": ("ITEM_BICYCLE", None), "Rock Smash": ("ITEM_HM06", "RockSmash"), "Cut": ("ITEM_HM01", "Cut"),
+               "Surf": ("ITEM_HM03", "Surf"), "Strength": ("ITEM_HM04", "Strength"),
+               "Rock Climb": ("ITEM_HM08", "RockClimb"), "Waterfall": ("ITEM_HM07", "Waterfall")}
+# Each badge's gym; the badge is won as the gym's split closes.
+BADGE_GYM = {"BADGE_ID_COAL": "Roark", "BADGE_ID_FOREST": "Gardenia", "BADGE_ID_RELIC": "Fantina",
+             "BADGE_ID_COBBLE": "Maylene", "BADGE_ID_FEN": "Wake", "BADGE_ID_MINE": "Byron",
+             "BADGE_ID_ICICLE": "Candice", "BADGE_ID_BEACON": "Volkner"}
+_CHECK = re.compile(r"FieldMoves_Check(\w+)\(const FieldMoveContext \*fieldMoveContext\)\n\{(.*?)\n\}",
+                    re.S)
 
 
 @functools.lru_cache(maxsize=None)
-def _surfable():
+def _surf_flagged():
     return {name for name, flag in _TILE_FLAG.findall(_read("src", "map_tile_behavior.c"))
-            if "SURFABLE" in flag and "BRIDGE" not in name}
+            if "SURFABLE" in flag}
+
+
+def _surfable():
+    return {name for name in _surf_flagged() if "BRIDGE" not in name}
+
+
+def _bike_tile(behaviour):
+    return behaviour.startswith("TILE_BEHAVIOR_BIKE_") and behaviour != BIKE_PARKING
 
 
 @functools.lru_cache(maxsize=None)
 def surf_split():
     """The split Surf is usable in, as the encounter tool has it (the HM is
-    Celestic Town's, so Byron's)."""
+    Celestic Town's, so Byron's). field_move_splits works it out again from
+    the game, and test_b1 checks that the two agree."""
     from ..encounters import model, progression
     return progression.rod_split(model.load_sidecar() or {}, "surf")
+
+
+@functools.lru_cache(maxsize=None)
+def field_move_badges():
+    """{move: the badge its field check asks for}, read from the game."""
+    checks = {name: re.search(r"BADGE_ID_\w+", body)
+              for name, body in _CHECK.findall(_read("src", "field_move_tasks.c"))}
+    return {move: checks[check].group(0) for move, (_hm, check) in FIELD_MOVES.items()
+            if checks.get(check)}
+
+
+@functools.lru_cache(maxsize=None)
+def field_move_splits():
+    """{move: the first split it can be used in}: the later of the split its
+    HM is first in hand (a script's gift, a mart, or a ball or hidden item
+    reached on foot) and the split after its badge's gym."""
+    first = {}
+
+    def seen(split, item):
+        if split in SPLITS and (item not in first or SPLITS.index(split) < SPLITS.index(first[item])):
+            first[item] = split
+    for split, _h, item in gifts():
+        seen(split, item)
+    for split, _t, item in marts():
+        seen(split, item)
+    for _key, (split, _h, item, _how, needs) in _item_copies(((None, frozenset()),)):
+        if needs == "foot":
+            seen(split, item)
+    out = {}
+    for move, (hm, check) in FIELD_MOVES.items():
+        gym = BADGE_GYM.get(field_move_badges().get(move))
+        if hm in first and check is None:
+            out[move] = max(first[hm], BICYCLE_FROM, key=SPLITS.index)
+        elif hm in first and gym in SPLITS[:-1]:
+            out[move] = max(first[hm], SPLITS[SPLITS.index(gym) + 1], key=SPLITS.index)
+    return out
+
+
+def _stages():
+    """((split, the moves usable by then), ...) in split order, from walking
+    with none."""
+    usable = field_move_splits()
+    out = [(None, frozenset())]
+    for split in SPLITS:
+        have = frozenset(m for m, s in usable.items() if SPLITS.index(s) <= SPLITS.index(split))
+        if have != out[-1][1]:
+            out.append((split, have))
+    return tuple(out)
 
 
 def _grid(header):
@@ -493,46 +574,110 @@ def _grid(header):
     return out, edge
 
 
+# A ledge: stepping onto it in its direction jumps the player past it, one
+# way only, to the tile beyond (two beyond for a double ledge). Ledges carry
+# the collision bit, so without this the flood takes them for walls.
+_STEPS = {"EAST": (1, 0), "WEST": (-1, 0), "NORTH": (0, -1), "SOUTH": (0, 1)}
+_LEDGES = {f"TILE_BEHAVIOR_JUMP_{d}{twice}": (step, 2 if twice else 1)
+           for d, step in _STEPS.items() for twice in ("", "_TWICE")}
+
+
 def _flood(grid, starts, ok):
-    """The tiles reachable from the start tiles through tiles `ok` passes."""
-    seen = {t for t in starts if t in grid and ok(grid[t])}
+    """The tiles reachable from the start tiles through tiles `ok` passes,
+    jumping down ledges; `ok` takes a tile's position and its (collision,
+    behaviour)."""
+    seen = {t for t in starts if t in grid and ok(t, grid[t])}
     todo = list(seen)
     while todo:
         x, z = todo.pop()
-        for t in ((x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)):
-            if t in grid and t not in seen and ok(grid[t]):
+        for dx, dz in _STEPS.values():
+            t = (x + dx, z + dz)
+            if t not in grid:
+                continue
+            ledge = _LEDGES.get(grid[t][1])
+            if ledge:
+                (lx, lz), n = ledge
+                if (lx, lz) != (dx, dz):
+                    continue
+                t = (t[0] + lx * n, t[1] + lz * n)
+                if t not in grid or grid[t][1] in _LEDGES:
+                    continue
+            if t not in seen and ok(t, grid[t]):
                 seen.add(t)
                 todo.append(t)
     return seen
 
 
-def _reach(header, warps, spots):
-    """{(x, z): "foot", "Surf" or "more"} for spots on a map: whether a tile
-    at or beside each is reached on foot from the map's warps and edges,
-    only by crossing water, or neither (a waterfall, or a way the flood does
-    not model, such as a Rock Climb wall). A map the readers cannot lay out
+def _passable(moves, blocked):
+    """Whether a tile can be crossed with `moves` in hand: not a wall, not an
+    obstacle whose move is missing, and not water, a waterfall, a Rock Climb
+    wall or a bike ramp, slope or narrow bridge without the move for it."""
+    surf = _surfable()
+
+    def ok(pos, tile):
+        collision, behaviour = tile
+        if blocked.get(pos, "") and blocked[pos] not in moves:
+            return False
+        if behaviour in ROCK_CLIMB:
+            return "Rock Climb" in moves
+        if _bike_tile(behaviour):
+            return "Bicycle" in moves or ("Surf" in moves and behaviour in _surf_flagged())
+        if collision:
+            return False
+        if behaviour == WATERFALL:
+            return {"Surf", "Waterfall"} <= moves
+        return behaviour not in surf or "Surf" in moves
+    return ok
+
+
+def _reach(header, warps, blocked, spots, stages):
+    """{(x, z): (the index in `stages` of the first stage whose moves reach
+    a tile at or beside it from the map's warps and edges, and the moves
+    that stage opened that it needs), or (None, None)}. A move is needed
+    when the stage without it does not reach the spot; where no single one
+    is, all the stage opened are named. A map the readers cannot lay out
     counts as walked."""
     try:
         grid, edge = _grid(header)
     except (SystemExit, OSError, KeyError, ValueError):
-        return {s: "foot" for s in spots}
-    surf = _surfable()
-    foot = _flood(grid, warps | edge, lambda t: not t[0] and t[1] not in surf)
-    swim = _flood(grid, warps | edge, lambda t: not t[0] and t[1] != WATERFALL)
-    out = {}
-    for x, z in spots:
-        around = {(x, z), (x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)}
-        out[(x, z)] = "foot" if around & foot else "Surf" if around & swim else "more"
+        return {s: (0, frozenset()) for s in spots}
+
+    def near(spot, reached):
+        x, z = spot
+        return bool({(x, z), (x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)} & reached)
+    out = {s: (None, None) for s in spots}
+    for i, (_split, moves) in enumerate(stages):
+        reached = _flood(grid, warps | edge, _passable(moves, blocked))
+        new = [s for s in spots if out[s][0] is None and near(s, reached)]
+        opened = moves - stages[i - 1][1] if i else frozenset()
+        needed = {s: set() for s in new}
+        if len(opened) > 1:
+            for m in opened:
+                without = _flood(grid, warps | edge, _passable(moves - {m}, blocked))
+                for s in new:
+                    if not near(s, without):
+                        needed[s].add(m)
+        for s in new:
+            out[s] = (i, frozenset(needed[s] or opened))
+        if all(v[0] is not None for v in out.values()):
+            break
     return out
 
 
 @functools.lru_cache(maxsize=None)
 def item_reach():
     """Every item ball and hidden item: (split, map, item constant, how,
-    needs). An item the player reaches only by Surf counts from the later of
-    its map's split and Surf's (the census had Lake Verity's TM38 in Roark's
-    split); `needs` says which, "more" where the flood cannot reach it, and
-    such an item keeps its map's split.
+    needs). An item behind water, a waterfall, a Rock Climb wall, or a Rock
+    Smash rock, Cut tree or Strength boulder, or on a bike path, counts
+    from the later of its
+    map's split and the split the field moves that reach it are first usable
+    in (field_move_splits); `needs` names the move that last opened the way,
+    "foot" for none. The census had Lake Verity's TM38 in Roark's split.
+    The flood follows ledges down, and the Bicycle's ramps, slopes and
+    narrow bridges from the split the bike is had in. "unreached" is an item
+    the flood reaches with nothing in hand (a fenced pen, a cave's upper
+    level it cannot see the way to); it has no split, so no count takes it,
+    and test_b1 names each one.
 
     An item on several maps under one pickup flag is one item: a lake and
     its drained or low-water variant, two Old Chateau rooms, a hidden item on
@@ -540,19 +685,26 @@ def item_reach():
     counts once, from the copy reached in the earliest split, a copy the
     flood reaches before one it does not. Before this, 17 copies counted
     twice, and Lake Verity's sealed low-water copy kept TM38 in Roark's."""
+    return [row for row, _maps in pickups().values()]
+
+
+@functools.lru_cache(maxsize=None)
+def pickups():
+    """{pickup key: (the item_reach row, every map a copy is on)}."""
     copies = collections.defaultdict(list)
-    for key, row in _item_copies():
+    for key, row in _item_copies(_stages()):
         copies[key].append(row)
 
     def rank(row):
-        return (row[4] == "more", SPLITS.index(row[0]) if row[0] in SPLITS else len(SPLITS))
-    return [min(rows, key=rank) for rows in copies.values()]
+        return (row[4] == "unreached", SPLITS.index(row[0]) if row[0] in SPLITS else len(SPLITS))
+    return {key: (min(rows, key=rank), sorted({r[1] for r in rows})) for key, rows in copies.items()}
 
 
-def _item_copies():
+def _item_copies(stages):
     """[(pickup key, (split, map, item, how, needs))] for every copy of every
-    item ball and hidden item. A ball's key is its hidden flag, a hidden
-    item's its script (the flag follows from it)."""
+    item ball and hidden item, reached through `stages` (_stages). A ball's
+    key is its hidden flag, a hidden item's its script (the flag follows
+    from it)."""
     visible = {int(n): _item(tok) for n, tok in
                _VISIBLE.findall(_script("scripts_visible_items"))}
     # A hidden item's bg event script is 8000 plus its obtained-flag's offset
@@ -583,13 +735,18 @@ def _item_copies():
                 found.append((script, hidden.get(script - HIDDEN_ITEM_SCRIPT), "hidden", bg["x"], bg["z"]))
         if not found:
             continue
-        reach = _reach(header, {(w["x"], w["z"]) for w in ev.get("warp_events", [])},
-                       {(x, z) for _k, _i, _h, x, z in found})
+        blocked = {(o["x"], o["z"]): OBSTACLES[o.get("graphics_id")] for o in ev.get("object_events", [])
+                   if o.get("graphics_id") in OBSTACLES}
+        reach = _reach(header, {(w["x"], w["z"]) for w in ev.get("warp_events", [])}, blocked,
+                       {(x, z) for _k, _i, _h, x, z in found}, stages)
         for key, item, how, x, z in found:
-            needs = reach[(x, z)]
-            at = split
-            if needs == "Surf" and split in SPLITS and surf_split() in SPLITS:
-                at = max(split, surf_split(), key=SPLITS.index)
+            i, moves = reach[(x, z)]
+            at, needs = None, "unreached"
+            if i == 0:
+                at, needs = split, "foot"
+            elif i is not None:
+                needs = " and ".join(sorted(moves))
+                at = max(split, stages[i][0], key=SPLITS.index) if split in SPLITS else split
             out.append((key, (at, header, item, how, needs)))
     return out
 
