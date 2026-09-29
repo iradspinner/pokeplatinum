@@ -24,11 +24,16 @@ These have moved a save before, each found the hard way:
 - **A boxed Pokemon's blocks.** Block A is full. `docs/oxide/save-layout.md`
   says what is still free.
 - **The bag.** Element 7 widened three pockets.
-- **New saved state.** Prefer space that is already free. In each flash half,
-  sectors 0 to 31 hold the main save, 32 to 43 the Hall of Fame, Frontier and
-  recordings, and 44 to 63 have never been written. `SaveDataExtra_Get` and
-  `SaveDataExtra_Save` also change the main save's own state, so a new block
-  there wants its own reader and writer.
+- **New saved state.** Prefer space that is already free. Since the 30 PC
+  boxes, in each flash half sectors 0 to 43 hold the main save, 44 the battle
+  log, 45 to 56 the Hall of Fame, Frontier and recordings, and 57 to 63 have
+  never been written. `SaveDataExtra_Get` and `SaveDataExtra_Save` also change
+  the main save's own state, so a new block there wants its own reader and
+  writer.
+- **The budget.** After `make rom`, `python3 tools/oxide/save_budget.py`
+  measures every block from the build's own size functions and checks the
+  page count, the battle log's RAM tail and sector, the extra entries and the
+  heaps against main memory. Anything that grows the save runs it.
 - **Moved constants.** When `SPECIES_EGG` or `SPECIES_BAD_EGG` moves, check
   that a stored egg keeps its real species with the egg bit, and that the
   daycare, hatching and trades use the constant. A bare number near a

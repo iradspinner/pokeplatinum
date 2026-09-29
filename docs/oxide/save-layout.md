@@ -291,6 +291,61 @@ assert checks. It matters only to a build with `PM_KEEP_ASSERTS`, and to
 whoever raises `SAVE_PAGE_MAX` for the 30 PC boxes, who should fix or drop
 that assert at the same time.
 
+## 30 PC boxes (element 8, 2026-09-29)
+
+`MAX_PC_BOXES` went from 18 to 30, as hg-engine has it, landing with element
+7's Bag so that Ian starts one new game for both (his ruling, 2026-09-29).
+`PCBoxes` keeps its shape, all the boxes' Pokemon first, then their names,
+then their wallpapers, so it grows from 74,184 bytes to 123,636, and the boxes
+block from 74,212 (0x121E4) to 123,664 (0x1E310). The normal block does not
+change: 53,460 (0xD0D4), element 7's.
+
+The main save no longer fits vanilla's 32 pages, so `SAVE_PAGE_MAX` is 45.
+That sizes the RAM image the save loads into (131,072 bytes to 184,320), and
+`HEAP_SIZE_SAVE` grew by the same 0xD000 (0x20E00 to 0x2DE00). The memory
+came from main memory no heap had claimed: after the four boot heaps, the
+task managers and the file table, about 164 KB of the arena was unused, and
+112 KB still is. The boot-time load check borrows two image-sized buffers
+from the application heap, 2 x 180 KB instead of 2 x 128 KB, at a point where
+only the fonts are loaded. hg-engine did the same in HeartGold but shrank the
+application heap to pay for it; Platinum had the room without that.
+
+On the card, each half now reads:
+
+| Sectors | What | Before |
+|---|---|---|
+| 0 to 43 | the main save, both blocks packed by bytes (177,124) | 0 to 31 |
+| 44 | the battle log | 44 |
+| 45 to 47 | Hall of Fame | 32 to 34 |
+| 48 | Battle Hall win records | 35 |
+| 49 to 56 | the four battle recordings | 36 to 43 |
+| 57 to 63 | unused | 45 to 63 |
+
+The extra save entries sit at `SAVE_PAGE_MAX + n`, so they moved on their
+own; the battle log's sector is a constant and stayed. Its RAM copy still
+lives in the image's tail, now at 0x2B3E4, with 7,196 bytes free for its
+3,512. `tools/oxide/save_budget.py` measures all of this from a build and
+checks it.
+
+An older save does not load: its boxes block is not where the new layout
+looks for it, and its Hall of Fame, Battle Hall records and recordings are
+in sectors the game no longer reads. Element 7's Bag had already broken it.
+
+Three smaller things moved with it. `SaveData_Erase` wiped the card with a
+loop of `SAVE_PAGE_MAX * 2` sectors, which was every sector of both halves
+only while the constant was 32; it now counts the 64 sectors of a half. The
+names BOX 19 to BOX 30 were added at the end of the storage system's text
+bank, not after BOX 18, so none of that bank's other messages moved. And the
+PC screen's touch dial keeps a count, a 1 KB thumbnail and a flag for every
+box, which vanilla sized and wrapped at a bare 18; they follow the constant,
+and the box graphics heap grew by 16 KB for the extra 12,348 bytes.
+
+For the OxiDex: `savefile.py` counts boxes from the boxes block's size, so a
+30-box save needs only its layout, (0xD0D4, 0x1E310), in `KNOWN_LAYOUTS`; the
+DPB1 payload and melonDS-oxide's live export take the count from the save and
+the beacon, and read 30 with no change; and the Box sim's graveyard, the last
+box, is box 30.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
@@ -301,10 +356,11 @@ Listed so the next change can be planned rather than discovered:
   record grows by 4 bytes for each 32 more (`TM_LEARNSET_MASKS`), which is
   not save data but moves `pl_personal.narc`'s record size, and
   `verify_narcs.py`'s `PERSONAL_NEW_SIZE` would have to follow it
-- 30 PC boxes (Phase 4 element 8). The budget to check first: `SavePageInfo_Init`
-  asserts the running total of **both** blocks against `SAVE_SECTOR_SIZE *
-  SAVE_PAGE_MAX`, 131,072 bytes, and eighteen more boxes is on the order of
-  70KB. There is room to raise `SAVE_PAGE_MAX`, because the primary copy starts
-  at sector 0 and the backup at 64, but not to 64: the extra save table is laid
-  out at `SAVE_PAGE_MAX + 0` through `+ 11`, so anything above **52** puts the
-  battle recordings on top of the backup copy
+- The normal block, from the 30 PC boxes on (below). It may grow by at most
+  3,100 bytes before the main save reaches the battle log's sector 44, and by
+  3,684 before the log's RAM copy no longer fits the image's tail; the TM
+  pass's 4 bytes a TM are far inside both. `tools/oxide/save_budget.py`
+  measures both after any change. Past that, raise `SAVE_PAGE_MAX` and move
+  the log up with it; `SAVE_PAGE_MAX` cannot pass 52, because the extra save
+  table runs from `SAVE_PAGE_MAX + 0` to `+ 11` and would reach the backup
+  copy at sector 64

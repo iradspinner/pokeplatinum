@@ -32,12 +32,16 @@ typedef struct {
     FontSpecialCharsContext *unk_44;
     Sprite *unk_48[18];
     Sprite *unk_90;
-    u32 unk_94[18];
+    // Platinum Oxide: each box's Pokemon count, thumbnail and thumbnail-ready
+    // flag, one per box (vanilla wrote 18). The field names keep vanilla's
+    // offsets; the fields after unk_94 sit later now. The two padding bytes
+    // still round the flags up to a word, 30 flags as 18 did.
+    u32 unk_94[MAX_PC_BOXES];
     SysTask *unk_DC;
     s32 unk_E0;
     u16 unk_E4[8][48];
-    u8 unk_3E4[18][1024];
-    u8 unk_4BE4[18];
+    u8 unk_3E4[MAX_PC_BOXES][1024];
+    u8 unk_4BE4[MAX_PC_BOXES];
     u8 padding_4BF6[2];
     MessageLoader *unk_4BF8;
     String *unk_4BFC;

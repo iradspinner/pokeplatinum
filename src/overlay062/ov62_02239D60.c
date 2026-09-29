@@ -251,7 +251,7 @@ static void ov62_02239E0C(u32 param0, enum TouchScreenButtonState param1, void *
         if (v1->unk_1A0 > 0) {
             v1->unk_1A0--;
         } else {
-            v1->unk_1A0 = 18 - 1;
+            v1->unk_1A0 = MAX_PC_BOXES - 1;
         }
 
         ov62_0222FB60(v0, 4);
@@ -263,7 +263,7 @@ static void ov62_02239E0C(u32 param0, enum TouchScreenButtonState param1, void *
 
         ov62_02234520(v0);
         v1->unk_1A0++;
-        v1->unk_1A0 %= 18;
+        v1->unk_1A0 %= MAX_PC_BOXES;
         ov62_0222FB60(v0, 4);
         break;
     case 2:

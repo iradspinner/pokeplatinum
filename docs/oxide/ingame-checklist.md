@@ -211,6 +211,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
+- [ ] **30 PC boxes** (`main-30-boxes`, a new game; an older save does not
+  load). In Storage, L from BOX 1 goes to BOX 30, and R from BOX 30 back to
+  BOX 1; the names run BOX 1 to BOX 30. The bottom screen's box dial scrolls
+  through all thirty and wraps between 30 and 1, and the count under each box
+  is right, box 30's included. Deposit a Pokemon in BOX 30, open its summary
+  from there and back out, then save, turn the game off and load: it is still
+  in BOX 30. After a trainer battle and a save, the OxiDex's Sync shows box 30
+  and the battle log still lists the battle, and melonDS-oxide's
+  `http://127.0.0.1:31124/status` reports 30 boxes.
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
   rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
   button, outdoors, in a building and in a cave, it opens a PC with Pokemon
@@ -466,6 +475,9 @@ On a save with the National Dex and the game beaten:
 
 - [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
   and takes Rare Candies again.
+- [ ] The Hall of Fame keeps its entry through a reload (`main-30-boxes`
+  moved it from flash sectors 32 to 34 to 45 to 47): after the League, save,
+  turn off, load, and the PC's Hall of Fame viewer shows the team.
 - [ ] The colour variation in the Hall of Fame: it shows each Pokemon in the
   same colours as its summary, and so does the PC's Hall of Fame viewer.
 

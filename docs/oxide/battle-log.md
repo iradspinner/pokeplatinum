@@ -16,8 +16,14 @@ not change. A save made before this change has both sectors erased (0xFF),
 which reads as an empty log.
 
 In RAM the log sits in the save image's free tail, straight after the boxes
-block: `SaveData.body.data` plus the end of the last block, which is 0x1F200
-today. The game checks at boot that the log fits there. A battle is added to
+block: `SaveData.body.data` plus the end of the last block, which is 0x2B3E4
+since the 30 PC boxes (0x1F200 before). The game checks at boot that the log
+fits there. The 30 boxes left the sector where it was: the main save now ends
+inside sector 43, and the Hall of Fame, Frontier and recordings moved up to
+sectors 45 to 56, so sector 44 sits between them. Should the main save ever
+grow into sector 44, the game stops writing the log rather than overwrite the
+save (`BattleLog_SectorFree`); `tools/oxide/save_budget.py` reports the
+margin, 3,100 bytes today. A battle is added to
 the RAM copy when it ends, so a reset without saving loses the log's newest
 battles along with the rest of the unsaved game, and the two never disagree.
 
