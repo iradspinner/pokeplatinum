@@ -217,9 +217,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   through all thirty and wraps between 30 and 1, and the count under each box
   is right, box 30's included. Deposit a Pokemon in BOX 30, open its summary
   from there and back out, then save, turn the game off and load: it is still
-  in BOX 30. After a trainer battle and a save, the OxiDex's Sync shows box 30
-  and the battle log still lists the battle, and melonDS-oxide's
-  `http://127.0.0.1:31124/status` reports 30 boxes.
+  in BOX 30. The PC screen rebuilds its graphics memory, 16 KB larger now, on
+  three more paths, and each should come back to Storage cleanly: rename a box
+  between 19 and 30, give an item from the Bag to a Pokemon in a box, and
+  change BOX 30's wallpaper. After a trainer battle and a save, the OxiDex's
+  Sync shows box 30 and the battle log still lists the battle, and
+  melonDS-oxide's `http://127.0.0.1:31124/status` reports 30 boxes.
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
   rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
   button, outdoors, in a building and in a cave, it opens a PC with Pokemon
