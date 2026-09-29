@@ -6,6 +6,7 @@
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
+#include "generated/badges.h"
 #include "generated/game_records.h"
 #include "generated/trainer_score_events.h"
 
@@ -211,7 +212,10 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
+        // Platinum Oxide: going down a waterfall while surfing needs only the
+        // Beacon Badge, the badge that allows Waterfall, not a Pokemon that
+        // knows it (Ian, 2026-09-26, the staples survey's answer 10).
+        if (TrainerInfo_HasBadge(SaveData_GetTrainerInfo(fieldSystem->saveData), BADGE_ID_BEACON)) {
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -695,10 +699,10 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         TrainerInfo *info = SaveData_GetTrainerInfo(fieldSystem->saveData);
         u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
-        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
-                return SCRIPT_ID(FIELD_MOVES, 4);
-            }
+        // Platinum Oxide: Surf needs only the Fen Badge, not a Pokemon that
+        // knows it (Ian, 2026-09-26, the staples survey's answer 10).
+        if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, BADGE_ID_FEN)) {
+            return SCRIPT_ID(FIELD_MOVES, 4);
         }
     }
 
