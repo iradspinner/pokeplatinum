@@ -227,6 +227,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
+- [ ] **30 PC boxes** (`main-30-boxes`, a new game; an older save does not
+  load). In Storage, L from BOX 1 goes to BOX 30, and R from BOX 30 back to
+  BOX 1; the names run BOX 1 to BOX 30. The bottom screen's box dial scrolls
+  through all thirty and wraps between 30 and 1, and the count under each box
+  is right, box 30's included. Deposit a Pokemon in BOX 30, open its summary
+  from there and back out, then save, turn the game off and load: it is still
+  in BOX 30. The PC screen rebuilds its graphics memory, 16 KB larger now, on
+  three more paths, and each should come back to Storage cleanly: rename a box
+  between 19 and 30, give an item from the Bag to a Pokemon in a box, and
+  change BOX 30's wallpaper. After a trainer battle and a save, the OxiDex's
+  Sync shows box 30 and the battle log still lists the battle, and
+  melonDS-oxide's `http://127.0.0.1:31124/status` reports 30 boxes.
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
   rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
   button, outdoors, in a building and in a cave, it opens a PC with Pokemon
@@ -337,6 +349,23 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 4. The ordinary ROM, mid-game
 
+- [ ] **Field moves by badge** (`main-field-moves`), with no HM in the bag and
+  no Pokemon that knows the move, as each badge comes. After Roark, a
+  breakable rock offers Rock Smash; after Gardenia, a small tree offers Cut;
+  after Byron, a boulder offers Strength and moves; after Wake, facing water
+  offers Surf; after Candice, a rocky wall offers Rock Climb and the climb
+  finishes; after Volkner, a waterfall offers Waterfall up, and surfing into
+  one from above goes down. Each shows the first Pokemon in the party that is
+  not an Egg using the move. Before its badge, each obstacle gives its usual
+  "a Pokemon may be able to" line and nothing else. In the party menu, every
+  Pokemon lists FLY after Maylene, SURF after Wake and DEFOG after Fantina,
+  under the field moves it knows; FLY opens the map, and SURF and DEFOG work
+  where they apply. After Rock Climb or Waterfall, walk about for a minute:
+  nothing in the field should misbehave (the base ROM's scripts corrupted the
+  field code there before this). The test kit's Warp menu, "Route 208, all
+  badges", gives all eight badges and lands at a rocky wall two tiles from
+  water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
+  menu's FLY, SURF and DEFOG can be checked there first.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
@@ -513,6 +542,9 @@ On a save with the National Dex and the game beaten:
 
 - [ ] No level cap is left after beating Cynthia: a Pokemon at 78 gains Exp.
   and takes Rare Candies again.
+- [ ] The Hall of Fame keeps its entry through a reload (`main-30-boxes`
+  moved it from flash sectors 32 to 34 to 45 to 47): after the League, save,
+  turn off, load, and the PC's Hall of Fame viewer shows the team.
 - [ ] The colour variation in the Hall of Fame: it shows each Pokemon in the
   same colours as its summary, and so does the PC's Hall of Fame viewer.
 

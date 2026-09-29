@@ -320,6 +320,54 @@
     {
       "id": "pl_msg_00000018_00079",
       "en_US": "No"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box19",
+      "en_US": "BOX 19"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box20",
+      "en_US": "BOX 20"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box21",
+      "en_US": "BOX 21"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box22",
+      "en_US": "BOX 22"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box23",
+      "en_US": "BOX 23"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box24",
+      "en_US": "BOX 24"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box25",
+      "en_US": "BOX 25"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box26",
+      "en_US": "BOX 26"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box27",
+      "en_US": "BOX 27"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box28",
+      "en_US": "BOX 28"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box29",
+      "en_US": "BOX 29"
+    },
+    {
+      "id": "PokemonStorageSystem_Text_Box30",
+      "en_US": "BOX 30"
     }
   ]
 }

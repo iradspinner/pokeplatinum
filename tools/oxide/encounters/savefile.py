@@ -14,10 +14,11 @@ counter, the block's own counter, its size, the signature 0x20060623, its id
 and a CRC16 of the block. So the reader scans for the signature, keeps each
 footer whose CRC is right, and takes per block the valid copy the game would
 load, the one saved last. Oxide's larger Pokedex grew the normal block by 240
-bytes (docs/oxide/save-layout.md), which moved the box block, and element 8's
-30 boxes will grow the box block; the footers carry both, so neither needs a
-change here. That is also why a calculator reader with vanilla's fixed offsets
-finds no boxes in an Oxide save.
+bytes (docs/oxide/save-layout.md), which moved the box block, and the 30 PC
+boxes (2026-09-29) grew the box block from 18 boxes to 30; the footers carry
+both, so the reader counts the boxes from the block's size. That is also why
+a calculator reader with vanilla's fixed offsets finds no boxes in an Oxide
+save.
 
 A Pokemon is Platinum's 136-byte record (236 in the party): four 32-byte
 blocks shuffled by personality and encrypted, laid out as
@@ -50,8 +51,10 @@ BACKUP_START = 0x40000      # BACKUP_SECTOR_START * SAVE_SECTOR_SIZE
 BLOCK_NORMAL, BLOCK_BOXES = 0, 1
 BOX_RECORD, PARTY_RECORD = 136, 236
 MONS_PER_BOX = 30
-# PCBoxes is a u32, then per box 30 records, a 20-character name and a
-# wallpaper byte, then one byte of unlocked wallpapers.
+# PCBoxes is a u32 (the current box), then every box's 30 records, then
+# every box's 20-character name, then every box's wallpaper byte, then one
+# byte of unlocked wallpapers; so each box adds this many bytes, and the
+# block's size gives the count (18 in vanilla, 30 in Oxide since 2026-09-29).
 BOX_STRIDE = MONS_PER_BOX * BOX_RECORD + 20 * 2 + 1
 # In the normal block: the trainer's id and secret id, and the Party struct
 # (capacity, count, six records), where vanilla Platinum has them. The reader
@@ -70,13 +73,17 @@ KNOWN_LAYOUTS = {
     (0xD01C, 0x121E4): "Oxide's from the Pokedex's growth (2026-09-21) until element 7",
     # Element 7 widened three Bag pockets (2026-09-28), 184 bytes, and the
     # Bag comes before the variables and flags, so they moved too.
-    (0xD0D4, 0x121E4): "Oxide's since element 7 widened the Bag (2026-09-28)",
+    (0xD0D4, 0x121E4): "Oxide's from element 7's Bag (2026-09-28) until the 30 boxes",
+    # The 30 PC boxes (2026-09-29), with the same fresh start as element 7:
+    # the normal block is unchanged, and the box block keeps its shape.
+    (0xD0D4, 0x1E310): "Oxide's since the 30 PC boxes (2026-09-29)",
 }
 # The layout this build writes. A save on an older one still gives its party
 # (before the Bag) and its boxes (found by their footers), but its variables
 # and flags sit where an older build put them, and a layout change costs a
-# new game, not a converter (Ian, 2026-09-28).
-CURRENT_LAYOUT = (0xD0D4, 0x121E4)
+# new game, not a converter (Ian, 2026-09-28). Only the normal block's size
+# decides that: an 18-box save from element 7's builds reads in full.
+CURRENT_LAYOUT = (0xD0D4, 0x1E310)
 # BoxPokemon_GetDataBlock: for each shuffle case, the position of blocks
 # A, B, C and D. Cases 24 to 31 repeat 0 to 7.
 BLOCK_POSITIONS = [

@@ -130,7 +130,10 @@ enum HeapID {
 
 enum HeapSize {
     HEAP_SIZE_SYSTEM = 0xD200,
-    HEAP_SIZE_SAVE = 0x20E00,
+    // Platinum Oxide: grown with SAVE_PAGE_MAX, 13 pages more for the 30 PC
+    // boxes, out of main memory the four heaps never claimed (about 160 KB of
+    // the arena was unused; docs/oxide/save-layout.md, "30 PC boxes").
+    HEAP_SIZE_SAVE = 0x2DE00,
     HEAP_SIZE_DEBUG = 0x10,
     HEAP_SIZE_APPLICATION = 0x10D800,
 
@@ -144,7 +147,9 @@ enum HeapSize {
     HEAP_SIZE_POKETCH_MAIN = 0xC000,
     HEAP_SIZE_POKETCH_APP = 0xC000,
     HEAP_SIZE_BOX_DATA = 0x4000,
-    HEAP_SIZE_BOX_GRAPHICS = 0x3C000,
+    // Platinum Oxide: 16 KB more for the touch dial's per-box thumbnails and
+    // counts, which 30 PC boxes grow by 12,348 bytes.
+    HEAP_SIZE_BOX_GRAPHICS = 0x40000,
 
     HEAP_SIZE_FIELD1 = 0x20000,
     HEAP_SIZE_FIELD2 = 0x1C000,
