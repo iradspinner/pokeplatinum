@@ -1,6 +1,8 @@
 #ifndef POKEPLATINUM_SPECIES_H
 #define POKEPLATINUM_SPECIES_H
 
+#include "constants/items.h"
+
 // Platinum Oxide: three, not two. Slots 0 and 1 are the ordinary pair a
 // Pokemon picks between on its personality; slot 2 is the hidden ability, and
 // ABILITY_NONE there means the species has none.
@@ -26,6 +28,9 @@
 // slots and some new species fill more than twenty of them. The wotbl records
 // are variable length, so this only sizes the buffer a lookup reads into.
 #define MAX_LEARNSET_ENTRIES        34
+// Platinum Oxide: a learnset entry at this level is an evolution move,
+// learned when the Pokemon evolves into the species (Pokemon_EvolutionLevelUpMove).
+#define LEARNSET_EVOLUTION_MOVE_LEVEL 0
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
@@ -83,7 +88,7 @@ typedef struct SpeciesData {
     u8 flipSprite : 1;
     u16 baseExpReward; // Platinum Oxide: sits in what used to be implicit padding
 
-    u32 tmLearnsetMasks[4]; // Bitflags for whether this pokemon can learn a TM
+    u32 tmLearnsetMasks[TM_LEARNSET_MASKS]; // Bitflags for whether this pokemon can learn a TM
 } SpeciesData;
 
 typedef struct SpeciesEvolution {

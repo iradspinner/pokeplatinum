@@ -43,6 +43,11 @@ Toxel and Toxtricity were dropped because Toxtricity's Amped/Low Key split needs
 nature-conditional evolution, which Gen 4 has no method for, and Toxel is useless
 without it.
 
+**Added later, 2026-09-27:** Meloetta, one of Ian's super-wanted lines, is a
+160th new species (id 653, `dex_pos` 503, gate tier), with Pirouette as a form
+record rather than a species of its own. It is not in the curated 360 and not
+in the in-game Sinnoh dex. The finished ROM has 653 species.
+
 ## Donor slots for the forms and alt-evolutions
 
 Base stats are not randomized in Hardlove, so each of these was identified by a

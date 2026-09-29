@@ -95,3 +95,14 @@ read, so they are written here too. Each is a standing instruction.
   one of the best physical walls. Ian's super-wanted lines sit marginally
   above average, a personal bias. The encounter tool's tiers are availability
   labels only, not intended power.
+- TMs are single-use again, as in vanilla (Ian, 2026-09-28): each placement
+  gives a set number of copies (strong TMs one, utility ones two or three).
+  Weak TMs are not sold; each is the reward for beating one optional trainer
+  of weak-to-medium strength near its split. About 100 TMs. Ian's removals:
+  Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
+  Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
+  Will-O-Wisp and status of Thunder Wave's reliability may be TMs only as
+  single copies. Once field moves work on the badge alone, the HMs become
+  single-use TMs too, and Fly, Strength, Defog and Rock Climb need buffs to
+  earn a place. Egg move lists serve only as trainer teams' palette: a
+  nuzlocke has no breeding.

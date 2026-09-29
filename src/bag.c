@@ -12,6 +12,7 @@
 #include "heap.h"
 #include "item.h"
 #include "savedata.h"
+#include "unk_0205DFC4.h"
 
 #define BAG_SLOT_INVALID ((u32)(-1))
 
@@ -308,11 +309,22 @@ void Pocket_SortEmpty(BagItem *pocket, const u32 size)
     }
 }
 
+// Platinum Oxide: TMs sort by TM number, which puts the TMs past TM92 before
+// the HMs although their item ids come after. Anything else sorts by item id.
+static u16 Pocket_SortKey(u16 item)
+{
+    if (Item_IsTMHM(item)) {
+        return FIRST_TMHM_IDX + Item_TMHMNumber(item);
+    }
+
+    return item;
+}
+
 void Pocket_Sort(BagItem *pocket, const u32 size)
 {
     for (u32 i = 0; i < size - 1; i++) {
         for (u32 j = i + 1; j < size; j++) {
-            if (pocket[i].quantity == 0 || (pocket[j].quantity != 0 && pocket[i].item > pocket[j].item)) {
+            if (pocket[i].quantity == 0 || (pocket[j].quantity != 0 && Pocket_SortKey(pocket[i].item) > Pocket_SortKey(pocket[j].item))) {
                 BagItem_Swap(&pocket[i], &pocket[j]);
             }
         }

@@ -166,6 +166,43 @@ def _read_calc(hack):
     return _ordered(out)
 
 
+# The test kit (docs/oxide/test-kit.md) is built only by `make testkit`, inside
+# `#ifdef OXIDE_TESTKIT` blocks of a field script; a normal ROM has none of it.
+TESTKIT = "OXIDE_TESTKIT"
+
+
+def without_testkit(text):
+    """A field script as a normal ROM builds it: the lines of an `#ifdef
+    OXIDE_TESTKIT` block are dropped and its `#else` branch kept (the other
+    way round for `#ifndef`). Every other conditional keeps both branches,
+    as the readers always did. Before this, the census counted the kit
+    helper's 55 items, a Rare Candy and two stones among them, as gifts."""
+    out, live = [], []   # one entry per open #if: is its current branch built
+    for line in text.split("\n"):
+        words = line.split()
+        head = words[0] if words else ""
+        if head in ("#if", "#ifdef", "#ifndef"):
+            kit = len(words) > 1 and words[1] == TESTKIT and head != "#if"
+            live.append(head == "#ifndef" if kit else None)
+            if kit:
+                continue
+        elif head in ("#else", "#endif") and live:
+            state = live[-1] if head == "#else" else live.pop()
+            if head == "#else" and state is not None:
+                live[-1] = not state
+            if state is not None:
+                continue
+        if all(state is not False for state in live):
+            out.append(line)
+    return "\n".join(out)
+
+
+def read_script(path):
+    """A field script's text, without the test kit."""
+    with open(path, encoding="utf-8") as f:
+        return without_testkit(f.read())
+
+
 _BATTLE_COMMAND = re.compile(
     r"^\s*(?:StartTrainerBattle|StartFirstBattle|StartTagBattle)\s+([\w ,]+)$", re.M)
 
@@ -177,9 +214,8 @@ def battled(root=ROOT):
     Dawn by number), and a trainer on the map by its script."""
     found = set()
     for path in glob.glob(os.path.join(root, "res", "field", "scripts", "*.s")):
-        with open(path, encoding="utf-8") as f:
-            for operands in _BATTLE_COMMAND.findall(f.read()):
-                found.update(t.strip() for t in operands.split(","))
+        for operands in _BATTLE_COMMAND.findall(read_script(path)):
+            found.update(t.strip() for t in operands.split(","))
     for path in glob.glob(os.path.join(root, "res", "field", "events", "*.json")):
         with open(path, encoding="utf-8") as f:
             found.update(str(o.get("script", "")) for o in json.load(f).get("object_events", []))

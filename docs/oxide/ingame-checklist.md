@@ -48,6 +48,11 @@ replacement is on the way. When the new chip is in, and before any playtest:
   post-game, May, Steven, Red and Gold showing their own battle sprites.
   Shadow Force's animation carries one changed byte nobody has explained;
   note anything odd about it.
+- [ ] Once `main-meloetta` merges, **your current save still loads**: the
+  Pokedex keeps its seen and caught counts, and mail and greetings read as
+  before. On mail written before it, an egg or a Deoxys, Unown, Burmy,
+  Wormadam, Shellos or Gastrodon form shows the icon one place along; that is
+  known and harmless (`save-layout.md`, the Meloetta section).
 
 - [ ] Once `main-battlelog` merges, **the battle log**: your current save
   loads and plays as before. Fight two trainers, save, and the OxiDex's
@@ -163,6 +168,46 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   little above its own. Run from each. In ordinary play, any new species
   that still floats clear of its shadow, or sinks into it, is worth a note
   with its name.
+- [ ] **Element 7, the items** (the "Element 7 items" menu, 27 entries;
+  `docs/oxide/test-kit.md`, "The item entries", says what each should show).
+  "All new items" first: all 46 and the Ice Stone arrive, each with its name,
+  icon, pocket and a description that fits the Bag's box, and the long names
+  (Weakness Policy, Gold Bottle Cap, Ability Capsule) fit the summary and the
+  give-item messages. Then each held item beside a Pokemon holding nothing;
+  the Pixie Plate's Arceus pink in its summary and in battle; the Roseli Berry
+  with no number, Check Tag, planting or Poffin in the Bag. From the Bag on a
+  party member: the Ability Capsule and Patch (each asks yes or no first), the
+  Mints and the Bottle Caps, with the Bottle Cap's stat list and the IV viewer
+  showing 31 afterwards. The TM Case check: No. 01, No. 92, HM 01, HM 08 in
+  that order, each with its move. Then save, turn the game off and reload: the
+  Bag (it grew), a swapped ability, a Mint's stats and a trained IV all come
+  back as they were. "Vulpix, Ice Stone": the Ice Stone evolves one Vulpix
+  into Alolan Ninetales, the Fire Stone the other into Ninetales; note the
+  name the Alolan one takes, since its species name is still the form
+  placeholder "-----".
+- [ ] **Element 7, for normal play** once the balance track has placed items
+  and given trainers theirs (the kit cannot give a foe an item or run a
+  double battle): a foe's Red Card dragging out a teammate in a trainer
+  battle, a foe's Air Balloon, Eject Button, Rocky Helmet and Weakness Policy,
+  and Ability Shield and Covert Cloak in a double battle.
+
+- [ ] **Evolution moves** (the "Eevee with Charm" entry, with `main-evo-moves`
+  merged). In the kit ROM only, Sylveon has a stand-in evolution move. One
+  Rare Candy evolves the kit's Eevee, and on evolving it learns Moonblast,
+  with the forget-a-move prompt if it knows four. The Move Relearner then
+  lists Moonblast for it. No species outside the kit has an evolution move
+  until the balance track sets them.
+- [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
+  merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
+  second use empties it. An HM taught from the case stays.
+- [ ] **Meloetta's forms** (the "Form changers" entry, with `main-meloetta`
+  merged). The kit gives a Lv. 50 Meloetta with Relic Song in its first slot.
+  In one of the menu's wild battles, switch it in: a Relic Song that hits turns
+  it into Pirouette (orange hair, Normal and Fighting, "transformed!"), and the
+  next one that hits turns it back to Aria. A Relic Song that misses changes
+  nothing. Switched out as Pirouette, it comes back in as Aria. After a battle
+  ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
+  Aria's stats.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -260,6 +305,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   in the Hearthome contest. The Pokedex, the party and box icons, the starter
   choice, Rowan's introduction and the Great Marsh binoculars keep standard
   colours, and so does a Substitute doll (the base ROM tinted the doll).
+- [ ] A species added by Oxide (any of the 159, or Meloetta) entered in the
+  Hearthome Super Contest draws its own sprite. Contests draw from Diamond and
+  Pearl's sprite archive, which stops at Arceus; before the fix of 2026-09-27
+  these species read past its end.
 
 ## 4. The ordinary ROM, mid-game
 
@@ -355,6 +404,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   30, Munchlax at 36, Golbat and Chansey at 40; Budew only on a level-up in
   Eterna Forest (the Moss Rock) and Snom only on Route 217 (the Ice Rock); a
   Sun Stone makes Eevee an Espeon and a Moon Stone an Umbreon.
+- [ ] The form species have names (`main-form-names`), not "-----". A wild
+  Alolan Ninetales on Route 216 or 217 appears as "A wild A-NINETALS
+  appeared!", and its name reads A-NINETALS whole, not cut short, in the
+  battle HP box and, once caught, in the party, the summary and the PC. The
+  National Dex lists it by that name, and the alphabetical sort puts it with
+  the A to C group. The other eleven are G-WEEZING, G-RAPIDASH, G-MR. MIME,
+  G-ARTICUNO, G-ZAPDOS, G-MOLTRES, M-GYARADOS, M-LOPUNNY, H-SLIGGOO, H-GOODRA
+  and ZYGARDE-10. A Pokemon already caught as "-----" in an older save keeps
+  that nickname until the Name Rater in Eterna City renames it.
 - [ ] Snowpoint City: fishing gives the species of
   `res/field/encounters/encounters_snowpoint_city.json` for each rod.
 - [ ] Snowpoint ferry, before Galactic HQ: the sailor refuses with the line
@@ -386,6 +444,21 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Winning fades her out for good; losing leaves her there for another try.
 - [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
   shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
+- [ ] Koffing and Ponyta take a Moon Stone (`main-galar-stones`). With either
+  in the party, choose Use on a Moon Stone from the Bag. Koffing and Ponyta
+  are marked ABLE, and the rest of the party NOT ABLE unless it has a Moon
+  Stone evolution of its own. Using it plays the evolution scene into
+  Galarian Weezing or Galarian Rapidash, with the Galarian sprite and name.
+  An untouched Koffing still becomes ordinary Weezing at level 35, and a
+  Ponyta ordinary Rapidash at 40.
+
+- [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
+  to him twice; the first time powers up the Pokedex): he asks for a Finneon
+  for his precious MELOETTA. The trade gives a Meloetta named MELOETTA, OT
+  Meister, holding a Lum Berry, at the Finneon's level and knowing Relic
+  Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
+  "Its melodies sway the hearts of all who hear them..." with the Melody
+  Pokemon category.
 
 ## 5. The ordinary ROM, after the League
 

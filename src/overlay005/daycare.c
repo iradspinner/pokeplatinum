@@ -524,7 +524,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (builder->fatherMoves[i] != MOVE_NONE) {
             for (j = 0; j < NUM_TMHMS; j++) {
-                if (builder->fatherMoves[i] == Item_MoveForTMHM(ITEM_TM01 + j)) {
+                if (builder->fatherMoves[i] == Item_MoveForTMHM(Item_ForTMHMNumber(j))) {
                     if (CanPokemonFormLearnTM(species, form, j)) {
                         if (Pokemon_AddMove(egg, builder->fatherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
                             Pokemon_ReplaceMove(egg, builder->fatherMoves[i]);

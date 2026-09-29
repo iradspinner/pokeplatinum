@@ -199,6 +199,152 @@ def _summary(root, stamp):
     return rows
 
 
+# -- pairs: two trainers fought as one double (Ian, 2026-09-28) ---------------------
+# The balance track's finder (balance/pairs.py) is the one list of them, so
+# this tab and the scores always agree on which trainers fight together. It
+# names three kinds with two opponents: two trainers who can see the player
+# at once ("eye contact"), a script that starts one battle against both
+# ("scripted"), and a tag battle with a partner beside the player ("tag").
+# Its fourth kind, one trainer's own double, is a single team already, and
+# the list marks it from the trainer's file as before. A pair is shown and
+# saved as one fight, but its score is still each trainer's own until the
+# balance track scores pairs (the joint score comes after its niche check).
+
+def pair_entries():
+    """The finder's entries with two opponents, in its order."""
+    from ..balance import pairs
+    return [p for p in pairs.pairs() if len(p["stems"]) > 1]
+
+
+def pair_entry(key):
+    for p in pair_entries():
+        if p["key"] == key:
+            return p
+    raise KeyError(key)
+
+
+def pair_rows(root=None):
+    """One row per pair for the list: both trainers' names, parties and
+    stored scores, the higher level, the split and its cap, and how the
+    pair is fought. A trainer in two pairs (Ranger Ashlee on Route 225) is
+    in both rows."""
+    root = root or model.repo_root()
+    by_stem = {r["stem"]: r for r in summary(root)}
+    label = lambda st: by_stem[st]["label"] if st in by_stem else st
+    out = []
+    for p in pair_entries():
+        sides = [by_stem.get(st) for st in p["stems"]]
+        if not all(sides):
+            continue
+        split = p["split"] or sides[0]["split"]
+        out.append({
+            "key": p["key"], "stems": p["stems"], "how": p["how"], "story": p.get("story"),
+            "labels": [s["label"] for s in sides], "label": " & ".join(s["label"] for s in sides),
+            "parties": [s["party"] for s in sides], "scores": [s["score"] for s in sides],
+            "top": max(s["top"] for s in sides), "split": split, "cap": caps().get(split),
+            "maps": p["maps"], "partners": [label(st) for st in p["partners"]],
+            # For two trainers who see the player at once: how many tiles both
+            # see, and whether the player can meet each alone instead.
+            "shared_tiles": p.get("shared_tiles"), "each_alone": p.get("each_alone"),
+        })
+    return out
+
+
+def pair_detail(root, key):
+    """Both trainers of a pair as the Trainers tab edits them, each with its
+    own estimate, and the pair's facts."""
+    p = pair_entry(key)
+    sides = []
+    for stem in p["stems"]:
+        d = detail(root, stem)
+        d["estimate"] = estimate(stem)
+        sides.append(d)
+    split = p["split"] or sides[0]["split"]
+    return {"key": key, "how": p["how"], "story": p.get("story"), "maps": p["maps"],
+            "split": split, "cap": caps().get(split),
+            "partners": [calc_trainers.trainer_name(root, load(root, st), st) for st in p["partners"]],
+            "shared_tiles": p.get("shared_tiles"), "each_alone": p.get("each_alone"),
+            # The pair as one fight against both teams (teamscore takes a
+            # pair key and {stem: JSON} edits), beside each team's own.
+            "estimate": estimate(key),
+            "sides": sides}
+
+
+def _pair_edits(key, edits):
+    """The pair's entry and the edits that belong to it, refusing a stem
+    that is not one of its two trainers."""
+    p = pair_entry(key)
+    if not isinstance(edits, dict) or not edits:
+        raise SaveRefused("send the edited trainers as data, keyed by file name")
+    stray = sorted(set(edits) - set(p["stems"]))
+    if stray:
+        raise SaveRefused(f"not in the pair {key}: {', '.join(stray)}")
+    return p
+
+
+def pair_preview(root, key, edits):
+    """Each edited side rebuilt and linted as `preview` does, and the pair's
+    estimate as one fight with every edit in place (none while either side
+    has a lint error, as for one trainer). Nothing is written."""
+    _pair_edits(key, edits)
+    sides = {stem: preview(root, stem, data) for stem, data in edits.items()}
+    errors = any(f["severity"] == "error" for s in sides.values() for f in s["findings"])
+    return {"sides": sides, "estimate": None if errors else estimate(key, edits)}
+
+
+def pair_score(key, edits):
+    """The balance track's full score of the pair as one fight, with the
+    unsaved edits in place: one at a time, pinned to one core, as for one
+    trainer."""
+    if edits:
+        _pair_edits(key, edits)          # refuses a stem outside the pair
+    else:
+        pair_entry(key)                  # a KeyError for an unknown pair
+    return full_score(key, edits or None)
+
+
+def pair_save(root, key, edits, folder=None, registry=None):
+    """Write a pair's edits as one: both sides are linted first and nothing is
+    written unless both pass, and if the packer refuses the second side
+    after the first was written, the first is put back, file and registry
+    both, so a pair is never half-saved. Returns {stem: what changed}."""
+    p = _pair_edits(key, edits)
+    stems = [st for st in p["stems"] if st in edits]
+    findings = {st: lint(root, edits[st]) for st in stems}
+    if any(f["severity"] == "error" for fs in findings.values() for f in fs):
+        err = SaveRefused("the trainer lint found errors in the pair; neither team was written",
+                          [dict(f, stem=st) for st, fs in findings.items() for f in fs])
+        raise err
+    folder = folder or data_dir(root)
+    reg_path = registry or registry_path(root)
+
+    def read(path):
+        try:
+            with open(path, encoding="utf-8") as f:
+                return f.read()
+        except FileNotFoundError:
+            return None
+
+    before = {st: read(os.path.join(folder, st + ".json")) for st in stems}
+    reg_before = read(reg_path)
+    done, out = [], {}
+    try:
+        for st in stems:
+            out[st] = save(root, st, edits[st], folder, registry)
+            done.append(st)
+    except SaveRefused as exc:
+        for st in done:
+            with open(os.path.join(folder, st + ".json"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(before[st])
+        if reg_before is not None:
+            with open(reg_path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(reg_before)
+        elif done and os.path.exists(reg_path):
+            os.remove(reg_path)        # the first side's save had created it
+        raise SaveRefused(f"{exc}; the pair's other team was put back too", exc.findings)
+    return out
+
+
 def _ability_options(root, species, form):
     """The names a party member's ability value can give, from the record the
     game reads: the form's own where it has one (f801cc160)."""
@@ -291,6 +437,10 @@ def warm():
     """The estimate's first call builds the calculator data and every split's
     side, about 4 to 9 seconds; the server does it at start, off to one side."""
     from ..balance import pool, teamscore
+    try:
+        pair_entries()          # the pair finder reads every map's events, about 2.5 s
+    except Exception:
+        pass
     for split in pool.SPLITS:
         try:
             teamscore.side(split)

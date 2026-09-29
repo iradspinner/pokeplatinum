@@ -12,6 +12,11 @@
 #include "heap.h"
 #include "savedata.h"
 
+// Platinum Oxide: fails to compile when a species that can enter the Battle
+// Hall would have no streak slot (the array size goes negative). Raising
+// BATTLE_HALL_SPECIES_SLOTS moves the streaks on every existing save.
+typedef char BattleHallSlotsCoverEverySpecies[(SPECIES_EGG <= BATTLE_HALL_SPECIES_SLOTS) ? 1 : -1];
+
 static u16 WriteWinRecord(BattleHallWinRecords *records, int challengeType, int species, u16 streak);
 
 int BattleHallWinRecords_SaveSize(void)

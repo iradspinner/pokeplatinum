@@ -18,7 +18,9 @@ Where each piece comes from:
   where the first Honey is, for the first). The scripted sources are
   docs/oxide/pokemon-sources.csv (starters, gifts, trades, statics, fossils,
   roamers), each at its location's split, and left out when its level is
-  above that split's cap. Swarms, the Poke Radar, the GBA slots and the
+  above that split's cap; then the encounter tool's scripted sources for
+  species that file places nowhere, at the tool's split (the fossils, and
+  Acuity Cavern's legendary draw). Swarms, the Poke Radar, the GBA slots and the
   Trophy Garden dailies are never used (Ian, 2026-09-21), so they are not
   sources. Then every evolution reachable at the cap: one that needs an
   item (a stone, or an item held on level-up) from the split that item is
@@ -48,7 +50,7 @@ import json
 import os
 import sys
 
-from ..encounters import calc_export, calc_trainers, canon, evolve, model, pokedex, progression
+from ..encounters import audit, calc_export, calc_trainers, canon, evolve, model, pokedex, progression, scripted
 from . import data, splits
 
 SPLITS = [s for s in splits.SPLITS if s != "Post"]   # post-game has no cap
@@ -174,13 +176,42 @@ def catches():
                 offer(sp, table.get("split") or HONEY_SPLIT, table.get("level_min") or 1, "honey")
     locs = _location_splits()
     cap = caps()
+    from_file = set()
     with open(SOURCES, encoding="utf-8") as f:
         for row in csv.DictReader(f):
             split = locs.get(row["location"])
             level = _source_level(row["level"])
             if split and cap.get(split) and level <= cap[split]:
                 offer(row["species"], split, level, row["method"])
+                from_file.add(row["species"])
+    for species, split, level, how in _tool_sources():
+        if species not in from_file:
+            offer(species, split, level, how)
     return dict(out)
+
+
+def _tool_sources():
+    """[(species, split, level, kind)] for the encounter tool's scripted
+    sources (scripted.json), which carry the split the encounter design
+    gives each. The sources file places some of them nowhere: the Mining
+    Museum's fossils sit in Roark's split, under their level, and Fullmoon
+    Island is post-game. The tool has the three fossils left in the game in
+    Fantina's split, and Acuity Cavern's legendary, one of Articuno,
+    Cresselia or Pheromosa drawn at a new game, at level 50 in Volkner's.
+    Every species a run can draw counts, as every catch does here. A draw
+    held back (the roamer's since 2026-09-27), a source only planned and
+    not yet scripted (Thorton's starter gift), and eggs, which the sources
+    file already gives, do not."""
+    live = {d["species"] for d in audit.pool_draws(data.ROOT)}
+    out = []
+    for src in scripted.load(data.ROOT):
+        if src["kind"] == "egg" or src.get("planned") or src.get("split") not in SPLITS \
+                or not isinstance(src.get("level"), int):
+            continue
+        for species in src.get("pool") or []:
+            if src["pick"] != "legendary_pool" or species in live:
+                out.append((species, src["split"], src["level"], src["kind"]))
+    return out
 
 
 @functools.lru_cache(maxsize=None)

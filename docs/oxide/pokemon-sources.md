@@ -364,7 +364,7 @@ table, so they compete with it rather than adding to it
 
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
-| Magikarp | in-game trade | (traded mon's level) | trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY | vanilla | no | `res/npc_trades/foppa_magikarp.json` |
+| Meloetta | in-game trade | (traded mon's level) | trade away SPECIES_FINNEON to get it; once only; OT Meister, holds ITEM_LUM_BERRY; vanilla gave SPECIES_MAGIKARP holding ITEM_LUM_BERRY | **base-ROM** | yes | `res/npc_trades/foppa_magikarp.json` |
 
 ### Snowpoint City
 

@@ -26,6 +26,9 @@ argparser.add_argument('-se', '--sprite-entries',
 argparser.add_argument('-pe', '--palette-entries',
                        required=True, type=int,
                        help='Number of entries to interpret from the list as NCLR-sources')
+argparser.add_argument('-a', '--appended',
+                       action='append', default=[],
+                       help='A sprite (.png) or palette (.pal) added after the last member (Platinum Oxide)')
 argparser.add_argument('files',
                        nargs='+',
                        help='List of files to process in-order')
@@ -106,6 +109,31 @@ subprocess.run([
     '-nopad',
     '-comp', '10'
 ])
+
+# Platinum Oxide: members added after the in-battle shadows. The archive is
+# packed in name order, so each takes a name that sorts after
+# pokemon_shadows_pal and keeps them in the order given; the naix names them
+# from their species, form and file, as pokemon_z_00_arceus_fairy_back_NCGR.
+for k, infile in enumerate(args.appended):
+    path = pathlib.Path(infile)
+    stem = f'pokemon_z_{k:02}_{path.parts[-4]}_{path.parts[-2]}_{path.stem}'
+    if path.suffix == '.png':
+        subprocess.run([
+            args.nitrogfx,
+            infile,
+            private_dir / f'{stem}.NCGR',
+            '-encodefronttoback',
+            '-scan',
+        ])
+    else:
+        subprocess.run([
+            args.nitrogfx,
+            infile,
+            private_dir / f'{stem}.NCLR',
+            '-bitdepth', '8',
+            '-nopad',
+            '-comp', '10'
+        ])
 
 subprocess.run([
     args.narc,

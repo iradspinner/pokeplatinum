@@ -1,0 +1,30 @@
+{
+  "name": "Covert Cloak",
+  "plural": "Covert Cloaks",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon. This\n",
+    "cloak conceals the holder, shielding it\n",
+    "from moves’ added effects."
+  ],
+  "icon": {
+    "sprite": "covert_cloak_NCGR",
+    "palette": "covert_cloak_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_COVERT_CLOAK",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseFunc": 0,
+  "itemUseParams": null
+}

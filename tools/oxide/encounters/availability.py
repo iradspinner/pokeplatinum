@@ -113,7 +113,16 @@ def build(ref=None):
     cameos = collections.defaultdict(list)
     tails = collections.defaultdict(list)
     water = collections.defaultdict(list)
+    # A family's regional branch (dex.branch_of: a regional form its base
+    # reaches by a stone, and its later stages) has its own home beside the
+    # family's, and may share a table with it (Ian's one-family ruling,
+    # 2026-09-28): {line: [(area, branch)]}, None for the main branch.
+    home_branch = collections.defaultdict(list)
+    branch_caps = collections.defaultdict(set)
     per_area = {}
+    # The branch of each planned entry, in per_area's order, so the doc's
+    # tables can name a regional branch's home as the form it is.
+    area_branches = {}
     no_capture = set()
     for area, spec in plan["areas"].items():
         if area not in all_names:
@@ -123,18 +132,26 @@ def build(ref=None):
             no_capture.add(area)
         if area not in live and not spec.get("no_capture"):
             problems.append(f"{area}: not a live land table")
-        planned = []
+        planned, keys, branches = [], [], []
         for kind, bucket in (("home", homes), ("cameo", cameos), ("tail", tails)):
             for sp in spec.get(kind) or []:
                 lid = resolve(sp, area)
                 if lid:
+                    branch = dex.branch_of(root, sp)
                     bucket[lid].append(area)
                     planned.append((lid, kind))
-        seen = [lid for lid, _ in planned]
-        dupes = {lid for lid in seen if seen.count(lid) > 1}
-        for lid in dupes:
+                    keys.append((lid, branch))
+                    branches.append(branch)
+                    if kind == "home":
+                        home_branch[lid].append((area, branch))
+                    if not spec.get("no_capture"):
+                        branch_caps[(lid, branch)].add(area)
+        # Two branches of one family may share a table (Galarian Weezing
+        # beside Weezing at Stark Mountain); one branch twice may not.
+        for lid, branch in {k for k in keys if keys.count(k) > 1}:
             problems.append(f"{area}: {by_line[lid]['name']} listed twice")
         per_area[area] = planned
+        area_branches[area] = branches
     for sp, areas in (plan.get("water") or {}).items():
         lid = resolve(sp, "water")
         for area in areas:
@@ -237,6 +254,40 @@ def build(ref=None):
                 best = (i, s)
         return best[1] if best else None
 
+    # A regional branch is reached two ways: caught wild, or caught as its
+    # base and evolved with the stone, which opens at the later of the base's
+    # first split and the stone's first split in the balance track's census
+    # (pool.evolution_items_first, read only). Stones count as reachable from
+    # that split, not budgeted (Ian, 2026-09-28).
+    roots = dex.branch_roots(root)
+    try:
+        from ..balance import pool as bpool
+        stone_first = bpool.evolution_items_first() if roots else {}
+    except Exception:
+        stone_first = {}
+
+    def earliest(splits):
+        found = [s for s in splits if s]
+        return min(found, key=lambda s: split_idx.get(s, 99)) if found else None
+
+    def latest(splits):
+        found = [s for s in splits if s]
+        return max(found, key=lambda s: split_idx.get(s, 99)) if len(found) == len(splits) and found else None
+
+    def branch_rows(lid, members, per_branch):
+        out = []
+        for br in (m for m in members if m in roots):
+            base, stone = roots[br]
+            base_split = earliest(effective_split(a) for a in branch_caps.get((lid, dex.branch_of(root, base)), ()))
+            wild = earliest(effective_split(a) for a in branch_caps.get((lid, br), ()))
+            via = latest([base_split, stone_first.get(stone)])
+            out.append({"root": br, "name": display(br), "base": base, "stone": stone,
+                        "home": per_branch.get(br, []), "wild_split": wild,
+                        "stone_split": stone_first.get(stone), "via_split": via,
+                        "first_split": earliest([wild, via])})
+        return out
+
+    display = dex.display_name
     sources = load_sources()
     rows = []
     for l in cov["lines"]:
@@ -259,7 +310,9 @@ def build(ref=None):
                     catalogued.append(item)
         if not non_wild:
             non_wild = [c for c in catalogued if c.split(" at ")[0] in NON_WILD_METHODS]
-        h = homes.get(lid, [])
+        # The main branch's home first, then each regional branch's.
+        h = [a for a, b in home_branch.get(lid, []) if b is None] \
+            + [a for a, b in home_branch.get(lid, []) if b is not None]
         if h:
             status = "home"
         elif non_wild:
@@ -278,8 +331,15 @@ def build(ref=None):
             status = "proposed"
         else:
             status = "none"
-        if len(h) > 1:
-            problems.append(f"{l['name']}: {len(h)} homes planned ({', '.join(h)}); a line has one")
+        per_branch = collections.defaultdict(list)
+        for a, b in home_branch.get(lid, []):
+            per_branch[b].append(a)
+        for b, areas in per_branch.items():
+            if len(areas) > 1:
+                what = dex.display_name(b) if b else "a line"
+                problems.append(f"{l['name']}: {len(areas)} homes planned for "
+                                f"{what + ' (its branch)' if b else what} ({', '.join(areas)}); "
+                                f"a line, or a regional branch of one, has one")
         # A gate line is scripted, not wild, so it has no wild home. It may
         # appear (Ian, 2026-09-21: starters are the reason to take a delay,
         # at 10-20%, and belong in the Old Rod tails) but never as a home.
@@ -302,6 +362,10 @@ def build(ref=None):
             "first_split": first_split(lid),
             "final_by_level": final,
             "stages": len(l["members"]),
+            # Homes by branch (None the main one) and each regional branch's
+            # routes in (Ian's one-family ruling, 2026-09-28).
+            "branch_homes": {b: a for b, a in per_branch.items()},
+            "branches": branch_rows(lid, l["members"], per_branch),
         })
 
     # the gate
@@ -353,8 +417,8 @@ def build(ref=None):
                     f"{first or 'never'})")
             break
     return {
-        "rows": rows, "per_area": per_area, "corridor": corridor,
-        "order_of": order_of, "entries": entries, "problems": problems,
+        "rows": rows, "per_area": per_area, "area_branches": area_branches,
+        "corridor": corridor, "order_of": order_of, "entries": entries, "problems": problems,
         "gate": gate, "plan": plan, "no_capture": no_capture,
         "split_of": split_of, "split_idx": split_idx, "loc_of": loc_of,
         "caps": caps, "live": set(live),
@@ -474,6 +538,22 @@ def render(out):
                  "are proposed in the build plan; and Fomantis and Lurantis are two lines "
                  "in the tree because the evolution is missing from Fomantis's data.")
     lines.append("")
+    branched = [(r, b) for r in rows for b in r.get("branches") or []]
+    if branched:
+        lines.append("**Regional branches** (Ian, 2026-09-28): a regional form its base reaches "
+                     "by a stone is one family with the base for the dupes clause, and a branch "
+                     "of its own, with its own home. It is reached caught as the base and "
+                     "evolved, from the later of the base's first split and the stone's in the "
+                     "balance track's census, as well as wild. " + "; ".join(
+                         f"{b['name']} in {r['name']}'s family: "
+                         f"{b['stone'][len('ITEM_'):].replace('_', ' ').title()} from "
+                         f"{dex.display_name(b['base'])}, "
+                         + (f"from {b['via_split']}'s split" if b["via_split"] else "the stone not yet placed")
+                         + (f", at home on {', '.join(n.replace('encounters_', '') for n in b['home'])}"
+                            if b["home"] else "")
+                         + (f", wild from {b['wild_split']}'s" if b["wild_split"] else "")
+                         for r, b in branched) + ".")
+        lines.append("")
     lines.append("## Lines")
     lines.append("")
     lines.append("| Line | Tier | Status | Home (order) | Cameos | Tails | Water / honey / pool | Non-wild | Catalogued sources | First split | Captures |")
@@ -505,6 +585,17 @@ def render(out):
                  "a location whose tables fall in different splits is a delay.")
     lines.append("")
     names = {r["line"]: r["name"] for r in rows}
+
+    def labelled(n):
+        # Each planned entry of table n with its mark; a regional branch's
+        # entry is named as the form, so Route 211 reads "Alolan Ninetales*"
+        # beside "Vulpix" and not Vulpix twice.
+        branches = (out.get("area_branches") or {}).get(n) or []
+        for i, (lid, kind) in enumerate(out["per_area"].get(n, [])):
+            b = branches[i] if i < len(branches) else None
+            mark = "*" if kind == "home" else ("†" if kind == "tail" else "")
+            yield (dex.display_name(b) if b else names[lid]) + mark
+
     by_loc = collections.OrderedDict()
     corridor_sorted = sorted(out["corridor"], key=lambda n: o.get(n) or 0)
     for n in corridor_sorted:
@@ -515,9 +606,8 @@ def render(out):
         splits = sorted({split_of.get(n) or "?" for n in areas}, key=lambda s: idx.get(s, 99))
         planned = collections.OrderedDict()
         for n in areas:
-            for lid, kind in out["per_area"].get(n, []):
-                mark = "*" if kind == "home" else ("†" if kind == "tail" else "")
-                planned.setdefault(names[lid] + mark, None)
+            for label in labelled(n):
+                planned.setdefault(label, None)
             e = out["entries"].get(n) or {}
             for kind in WATER_KINDS:
                 spec = e.get(kind)
@@ -541,8 +631,7 @@ def render(out):
     live = [n for n in out["per_area"]]
     for n in sorted(live, key=lambda n: o.get(n) or 0):
         e = out["entries"].get(n) or {}
-        planned = ", ".join(f"{names[lid]}{'*' if kind == 'home' else ('†' if kind == 'tail' else '')}"
-                            for lid, kind in out["per_area"][n])
+        planned = ", ".join(labelled(n))
         if n in out["no_capture"]:
             planned = (planned + "; " if planned else "") + "no capture"
         lines.append(f"| {o.get(n)} | {short(n)} | {loc_of.get(n) or ''} | {split_of.get(n) or ''} | "

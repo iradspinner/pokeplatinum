@@ -2674,6 +2674,12 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
 
 static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 {
+    int oxideState = PartyMenu_TryUseOxideItem(app);
+
+    if (oxideState >= 0) {
+        return oxideState;
+    }
+
     ItemData *itemData = Item_Load(app->partyMenu->usedItemID, 0, HEAP_ID_PARTY_MENU);
 
     if (app->partyMenu->usedItemID == ITEM_GRACIDEA

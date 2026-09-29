@@ -50,6 +50,9 @@ enum FormIconIndex {
     ICON_ROTOM_FROST,
     ICON_ROTOM_FAN,
     ICON_ROTOM_MOW,
+    // Platinum Oxide: new species' form icons follow vanilla's, in the order
+    // res/pokemon/meson.build lists them.
+    ICON_MELOETTA_PIROUETTE,
 };
 
 static const u8 sPokemonIconPaletteIndex[] = {

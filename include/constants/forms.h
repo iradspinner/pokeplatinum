@@ -15,8 +15,11 @@
 #define MOVESET_FORM_ROTOM_FROST     NATIONAL_DEX_COUNT + 10
 #define MOVESET_FORM_ROTOM_FAN       NATIONAL_DEX_COUNT + 11
 #define MOVESET_FORM_ROTOM_MOW       NATIONAL_DEX_COUNT + 12
+// Platinum Oxide: forms of the new species follow vanilla's twelve, in the
+// order of alt_forms_with_data in tools/dataproc/src/speciesproc.c.
+#define MOVESET_FORM_MELOETTA_PIROUETTE NATIONAL_DEX_COUNT + 13
 
-#define MOVESET_MAX MOVESET_FORM_ROTOM_MOW
+#define MOVESET_MAX MOVESET_FORM_MELOETTA_PIROUETTE
 
 // Where the same twelve forms sit in pl_personal and wotbl, which is not where
 // they sit in the tutor table above. Those two archives hold one member per
@@ -35,6 +38,7 @@
 #define FORM_DATA_ROTOM_FROST     MAX_SPECIES + 10
 #define FORM_DATA_ROTOM_FAN       MAX_SPECIES + 11
 #define FORM_DATA_ROTOM_MOW       MAX_SPECIES + 12
+#define FORM_DATA_MELOETTA_PIROUETTE MAX_SPECIES + 13
 
 #define UNOWN_FORM_A     0
 #define UNOWN_FORM_B     1
@@ -116,7 +120,15 @@
 #define SHAYMIN_FORM_SKY   1
 #define SHAYMIN_FORM_COUNT 2
 
-#define ARCEUS_FORM_COUNT 18
+#define MELOETTA_FORM_ARIA      0
+#define MELOETTA_FORM_PIROUETTE 1
+#define MELOETTA_FORM_COUNT     2
+
+// Arceus's form is its type. Platinum Oxide, element 7: the Pixie Plate adds
+// form 18, TYPE_FAIRY, whose sprites sit after pl_otherpoke's last member
+// rather than after the other seventeen.
+#define ARCEUS_FORM_FAIRY 18
+#define ARCEUS_FORM_COUNT 19
 
 #define EGG_FORM_BASE    0
 #define EGG_FORM_MANAPHY 1

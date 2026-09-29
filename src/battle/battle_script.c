@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_anim.h"
+#include "constants/forms.h"
 #include "constants/heap.h"
 #include "constants/items.h"
 #include "constants/narc.h"
@@ -2816,6 +2817,8 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
     int flags = BattleScript_Read(battleCtx);
 
     if (battleCtx->multiHitNumHits == 0) {
+        BOOL rolled = hits == 0; // Oxide, element 7, for the Loaded Dice
+
         if (hits == 0) {
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
@@ -2827,6 +2830,20 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
                     hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
                 }
             }
+        }
+
+        // Oxide, element 7: Loaded Dice (hg-engine's SetMultiHit). A two to
+        // five hit move that rolled two or three hits four or five instead,
+        // Population Bomb hits four to ten times, and every hit after the
+        // first skips its accuracy check, which Triple Kick's kind makes.
+        if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_LOADED_DICE) {
+            if (hits == 10) {
+                hits = 10 - BattleSystem_RandNext(battleSys) % 7;
+            } else if (rolled && hits < 4) {
+                hits = 5 - BattleSystem_RandNext(battleSys) % 2;
+            }
+
+            flags |= SYSCTL_SKIP_ACCURACY_CHECK;
         }
 
         battleCtx->multiHitCounter = hits;
@@ -2991,6 +3008,23 @@ static inline void SetupNicknameAbilityNicknameAbilityMsg(BattleContext *battleC
  * @param battleCtx
  * @return FALSE
  */
+// Oxide, element 7: add a stat's rise to the battler's record for the Mirror
+// Herb, three bits a stat, capped at 7.
+static void RecordMirrorHerbRaise(BattleContext *battleCtx, int battler, int statOffset, int stages)
+{
+    u32 record = battleCtx->selfTurnFlags[battler].mirrorHerbRaises;
+    int kept = (record >> (statOffset * 3)) & 7;
+
+    kept += stages;
+    if (kept > 7) {
+        kept = 7;
+    }
+
+    record &= ~(7 << (statOffset * 3));
+    record |= kept << (statOffset * 3);
+    battleCtx->selfTurnFlags[battler].mirrorHerbRaises = record;
+}
+
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jumpNoChange;
@@ -3061,8 +3095,12 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
+            // Oxide: an item's change that cannot be made passes in silence,
+            // as an added effect's does; the item's own message has said
+            // enough (Weakness Policy with one stat already at the limit).
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
-                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
                 BattleScript_Iter(battleCtx, jumpBlocked);
             } else {
                 SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoHigher_Ally, statOffset); // "{0}'s {1} won't go higher!"
@@ -3072,7 +3110,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                 SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilityRaisedItsStat_Ally, statOffset); // "{0}'s {1} raised its {2}!"
             } else if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) {
-                battleCtx->msgBuffer.id = BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
+                // Oxide: two stages or more (the Weakness Policy, the Starf
+                // Berry, Simple) say "sharply".
+                battleCtx->msgBuffer.id = stageChange >= 2
+                    ? BattleStrings_Text_TheItemSharplyRaisedPokemonsStat_Ally // "The {0} sharply raised {1}'s {2}!"
+                    : BattleStrings_Text_TheItemRaisedPokemonsStat_Ally; // "The {0} raised {1}'s {2}!"
                 battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM_STAT;
                 battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
                 battleCtx->msgBuffer.params[1] = battleCtx->msgItemTemp;
@@ -3085,10 +3127,20 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     statOffset);
             }
 
+            int stageBefore = mon->statBoosts[BATTLE_STAT_ATTACK + statOffset]; // Oxide, element 7
+
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
 
             if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > MAX_STAT_STAGE) {
                 mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MAX_STAT_STAGE;
+            }
+
+            // Oxide, element 7: a rise a move made is kept for a foe's Mirror
+            // Herb, which copies it once the move is over.
+            if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT
+                || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
+                RecordMirrorHerbRaise(battleCtx, battleCtx->sideEffectMon, statOffset,
+                    mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] - stageBefore);
             }
         }
     } else {
@@ -3097,6 +3149,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         // no Mirror Armor, and the games name the ability in a message first,
         // which this leaves out. Mold Breaker ignores it.
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE
+            && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM
             && battleCtx->attacker != battleCtx->sideEffectMon
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
             && battleCtx->battleMons[battleCtx->attacker].curHP
@@ -3106,7 +3159,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
-            if (battleCtx->attacker != battleCtx->sideEffectMon) {
+            // Oxide: a held item lowering its own holder's stat (a raise
+            // Contrary turned round) is not another battler's doing, so
+            // Mist, the Clear Amulet and the rest do not stop it.
+            if (battleCtx->attacker != battleCtx->sideEffectMon
+                && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM) {
                 if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns
                     && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INFILTRATOR) { // Oxide: Infiltrator passes Mist
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
@@ -3122,6 +3179,21 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonSurroundedItselfWithAVeilOfPetals_Ally; // "{0} surrounded itself with a veil of petals!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+
+                    result = 1;
+                } else if (Battler_HeldItemEffect(battleCtx, battleCtx->sideEffectMon) == HOLD_EFFECT_COVERT_CLOAK
+                    && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
+                    // Oxide, element 7: a Covert Cloak blocks a move's added
+                    // effect as Shield Dust does, with no message; it is
+                    // checked first so the Clear Amulet does not speak for it.
+                    result = 1;
+                } else if (Battler_HeldItemEffect(battleCtx, battleCtx->sideEffectMon) == HOLD_EFFECT_CLEAR_AMULET) {
+                    // Oxide, element 7: a Clear Amulet keeps another battler
+                    // from lowering its holder's stats, as Clear Body does.
+                    battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+                    battleCtx->msgBuffer.params[1] = battleCtx->battleMons[battleCtx->sideEffectMon].heldItem;
 
                     result = 1;
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
@@ -3182,7 +3254,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
 
                 if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
-                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
+                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+                    || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM) { // Oxide, as for a rise
                     BattleScript_Iter(battleCtx, jumpBlocked);
 
                     return FALSE;
@@ -3235,6 +3308,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         // Defiant or Competitive, once per stat, after the drop's message
         // (TryDefiant in the stat-stage subscript).
         if (battleCtx->attacker != battleCtx->sideEffectMon
+            && battleCtx->sideEffectType != SIDE_EFFECT_TYPE_HELD_ITEM
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)) {
             battleCtx->selfTurnFlags[battleCtx->sideEffectMon].defiantPending = TRUE;
         }
@@ -5945,6 +6019,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Oxide
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH // Oxide
+            && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_SAFETY_GOGGLES // Oxide, element 7
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -5973,7 +6048,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             } else if (type1 != TYPE_ICE
                 && type2 != TYPE_ICE
                 && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK
-                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT) { // Oxide
+                && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT // Oxide
+                && Battler_HeldItemEffect(battleCtx, battler) != HOLD_EFFECT_SAFETY_GOGGLES) { // Oxide, element 7
                 battleCtx->msgMoveTemp = MOVE_HAIL;
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }
@@ -9603,6 +9679,18 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
             battleCtx->battleMons[battler].curHP = hp;
             Pokemon_SetValue(mon, MON_DATA_HP, &hp);
         }
+
+        // Oxide: Meloetta leaves the field as Aria, as in hg-engine, so it
+        // comes back in as Aria. The party record is what the next switch-in
+        // reads, so that is where the form goes back and the stats follow.
+        if (battleCtx->battleMons[battler].species == SPECIES_MELOETTA
+            && Pokemon_GetValue(mon, MON_DATA_FORM, NULL) != MELOETTA_FORM_ARIA) {
+            int form = MELOETTA_FORM_ARIA;
+
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_CalcLevelAndStats(mon);
+            battleCtx->battleMons[battler].formNum = form;
+        }
     } else {
         BattleScript_Iter(battleCtx, jumpNoStatusRestore);
     }
@@ -10087,9 +10175,9 @@ static BOOL BtlCmd_TryStickyWeb(BattleSystem *battleSys, BattleContext *battleCt
  * side, it fainted to an earlier hazard, or it is not on the ground.
  *
  * Otherwise it is caught, and calcTemp says what followed, with the message in
- * the buffer: 0 when its Speed fell, 1 when Clear Body or White Smoke kept it,
- * 2 when its Speed was already at the lowest stage, or with Contrary already
- * at the highest, and 3 when Contrary raised it instead (element 5). The drop is made here
+ * the buffer: 0 when its Speed fell, 1 when Clear Body, White Smoke or a
+ * Clear Amulet kept it, 2 when its Speed was already at the lowest stage, or
+ * with Contrary already at the highest, and 3 when Contrary raised it instead (element 5). The drop is made here
  * rather than through ChangeStatStage, whose checks turn on who attacked, and
  * nothing attacked. As in hg-engine, Magic Guard and Mist do not stop it.
  *
@@ -10133,6 +10221,16 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
             mon->statBoosts[BATTLE_STAT_SPEED]++;
             battleCtx->calcTemp = 3;
         }
+    } else if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_CLEAR_AMULET) {
+        // Oxide: a Clear Amulet keeps the web from lowering its holder's
+        // Speed, as Clear Body does, since another battler laid it (Ian,
+        // 2026-09-28, the later games' rule). It is checked after Contrary,
+        // which turns the drop into a rise the amulet does not stop.
+        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsItemPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM;
+        battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        battleCtx->msgBuffer.params[1] = mon->heldItem;
+        battleCtx->calcTemp = 1;
     } else if (mon->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE) {
         SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatWontGoLower_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} won't go lower!"
         battleCtx->calcTemp = 2;
@@ -10585,7 +10683,8 @@ static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx,
         || (stages < 0
             && target != holder
             && (Battler_Ability(battleCtx, target) == ABILITY_CLEAR_BODY
-                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE))) {
+                || Battler_Ability(battleCtx, target) == ABILITY_WHITE_SMOKE
+                || Battler_HeldItemEffect(battleCtx, target) == HOLD_EFFECT_CLEAR_AMULET))) { // Oxide, element 7
         return FALSE;
     }
 
@@ -10678,6 +10777,18 @@ static BOOL BtlCmd_CheckAbilityChange(BattleSystem *battleSys, BattleContext *ba
             || defending == ABILITY_TRUANT
             || defending == attacking;
         break;
+    }
+
+    // Oxide, element 7: an Ability Shield keeps its holder's ability as it
+    // is, so a move fails whenever it would change or suppress a holder's:
+    // the defender's for every kind, and the attacker's as well for a swap
+    // and for Role Play, which rewrites the user's own.
+    if (Battler_HasAbilityShield(battleCtx, battleCtx->defender) && kind != ABILITY_CHANGE_COPY) {
+        fails = TRUE;
+    }
+    if (Battler_HasAbilityShield(battleCtx, battleCtx->attacker)
+        && (kind == ABILITY_CHANGE_SWAP || kind == ABILITY_CHANGE_COPY)) {
+        fails = TRUE;
     }
 
     if (fails) {
