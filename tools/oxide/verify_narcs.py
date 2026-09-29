@@ -486,12 +486,23 @@ KAIZO_POWER_NATIVES = {190, 302, 306, 342, 429, 443}
 # Octazooka, Sky Uppercut, Dragon Rush, Rock Climb, Double Hit.
 KAIZO_ACCURACY_NATIVES = {158, 190, 327, 407, 431, 458}
 
+# Ian's retypes from the original pick-list (2026-09-29), by dex number:
+# Charizard, Ninetales, Larvitar, Pupitar, Tyranitar (Dark first), Sceptile,
+# Masquerain, Trapinch, Vibrava, Flygon, Milotic, Glalie, Luxray, Electivire,
+# Uxie, Mesprit and Azelf.
+PICK_LIST_RETYPES = {
+    6, 38, 246, 247, 248, 254, 284, 328, 329, 330, 350, 362, 405, 466,
+    480, 481, 482,
+}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": {
         "offsets": (6, 7),  # type1, type2
         "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
-                    209, 210, 280, 281, 282, 298, 303, 439, 468},
-        "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c)",
+                    209, 210, 280, 281, 282, 298, 303, 439, 468}
+                   | PICK_LIST_RETYPES,
+        "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c), "
+               "and seventeen retyped from the original pick-list (Ian, 2026-09-29)",
     },
     # A list when more than one change touches the archive; a member passes if
     # every byte it differs at is allowed by some entry that lists it.

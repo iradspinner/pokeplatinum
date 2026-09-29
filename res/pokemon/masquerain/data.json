@@ -7,7 +7,7 @@
         "special_attack": 100,
         "special_defense": 82
     },
-    "types": [ "TYPE_BUG", "TYPE_FLYING" ],
+    "types": [ "TYPE_BUG", "TYPE_WATER" ],
     "catch_rate": 75,
     "base_exp_reward": 128,
     "ev_yields": {

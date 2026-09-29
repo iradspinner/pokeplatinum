@@ -309,6 +309,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Hearthome Super Contest draws its own sprite. Contests draw from Diamond and
   Pearl's sprite archive, which stops at Arceus; before the fix of 2026-09-27
   these species read past its end.
+- [ ] The pick-list retypes (`main-retypes`), whenever one of them turns up,
+  wild, a trainer's or the player's: its summary and the battle's type
+  effectiveness follow the new types. Charizard Fire/Dragon, Ninetales
+  Fire/Fairy, Electivire Electric/Fighting, Larvitar and Pupitar Dark/Ground,
+  Tyranitar Dark/Rock, Sceptile Grass/Dragon, Masquerain Bug/Water, Trapinch
+  Bug/Ground, Vibrava Bug/Flying, Flygon Bug/Dragon, Milotic Water/Dragon,
+  Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf
+  Psychic/Fairy. The Pokedex's info page shows the NORMAL plate for Fairy, the
+  known gap in Phase 4's Fairy entry.
 
 ## 4. The ordinary ROM, mid-game
 
