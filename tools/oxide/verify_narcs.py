@@ -496,14 +496,23 @@ PICK_LIST_RETYPES = {
 }
 
 DIVERGED = {
-    "poketool/personal/pl_personal.narc": {
-        "offsets": (6, 7),  # type1, type2
-        "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
-                    209, 210, 280, 281, 282, 298, 303, 439, 468}
-                   | PICK_LIST_RETYPES,
-        "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c), "
-               "and seventeen retyped from the original pick-list (Ian, 2026-09-29)",
-    },
+    "poketool/personal/pl_personal.narc": [
+        {
+            "offsets": (6, 7),  # type1, type2
+            "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
+                        209, 210, 280, 281, 282, 298, 303, 439, 468}
+                       | PICK_LIST_RETYPES,
+            "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c), "
+                   "and seventeen retyped from the original pick-list (Ian, 2026-09-29)",
+        },
+        {
+            "offsets": (4, 5),  # Sp. Atk, Sp. Def
+            "members": {11, 14, 292},
+            "why": "the base ROM's slips in Metapod's, Kakuna's and Shedinja's special "
+                   "stats, corrected to Ian's change sheet (2026-09-29; import_base_rom.py's "
+                   "BASE_STATS_DIVERGED)",
+        },
+    ],
     # A list when more than one change touches the archive; a member passes if
     # every byte it differs at is allowed by some entry that lists it.
     "poketool/waza/pl_waza_tbl.narc": [
@@ -731,9 +740,9 @@ def check_personal(b, r, path):
     """Compare pl_personal field by field. The built archive holds more species
     than the reference and the ones after the natives have moved, so each
     reference member is looked up where it now lives; the shared ones have to
-    agree, allowing the Fairy retypes and a hidden-ability slot the reference
-    has no room for."""
-    rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
+    agree, allowing the bytes DIVERGED's entries allow (the retypes, the
+    corrected stats) and a hidden-ability slot the reference has no room for."""
+    rules = diverged_rules(path)
     bad, intended, extra = [], [], max(0, len(b) - len(r))
     hidden = 0
     for i in range(len(r)):
@@ -757,8 +766,10 @@ def check_personal(b, r, path):
             continue
         if bh == rh:
             continue
-        if i in rule["members"] and all(bh[o] == rh[o] or o in rule["offsets"]
-                                        for o in range(len(bh))):
+        # Pooled over every entry that lists the member, as intended_divergence
+        # does for the move table.
+        allowed = {o for rule in rules if i in rule["members"] for o in rule["offsets"]}
+        if allowed and all(bh[o] == rh[o] or o in allowed for o in range(len(bh))):
             intended.append(i)
         else:
             bad.append(i)
