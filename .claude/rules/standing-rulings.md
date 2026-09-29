@@ -115,3 +115,10 @@ read, so they are written here too. Each is a standing instruction.
   up and he will not pay for more. Their workflows are switched off and their
   artifacts deleted; build locally, and land with `merge-branch.sh`, which
   now builds here. The public repo's build on a push to `oxide` is free.
+- New held items go behind optional challenges, not in shops (Ian,
+  2026-09-29): element 7's held items (Eviolite, Assault Vest, Rocky Helmet
+  and the rest) are each placed as the reward for an optional trainer, a
+  spinner the player can choose to walk into, or another optional fight,
+  rather than sold, even though a shop with a set price would be simpler.
+  The item pass places them; the balance census counts each from its
+  fight's split.
