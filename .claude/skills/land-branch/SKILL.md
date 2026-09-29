@@ -6,9 +6,9 @@ description: The Oxide Overseer's routine for landing a finished branch on `oxid
 # Landing a branch
 
 Tracks never push `oxide`; the Overseer lands every branch. Each landing
-merges, has GitHub build the merged tree (about nine minutes), runs the full
-gate on that ROM on this machine (about two minutes), and pushes only on a
-pass.
+merges, builds the merged tree here (under a minute), runs the full gate on
+that ROM (about two minutes), copies the ROM to `~/oxide-playtest` for Ian,
+and pushes only on a pass.
 
 ## Before
 

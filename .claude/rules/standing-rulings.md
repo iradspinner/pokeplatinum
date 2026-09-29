@@ -110,3 +110,8 @@ read, so they are written here too. Each is a standing instruction.
   new game on the first ROM with the change, and again after each later
   one (the TM pass's Bag growth, 30 boxes). Tell him before the landing
   which ROM starts the new game, and keep the OxiDex's save reader in step.
+- No GitHub Actions in the private repos (`oxide-rom-builder`, `melonDS-oxide`)
+  until 2026-10-01 (Ian, 2026-09-29): the account's Actions storage is used
+  up and he will not pay for more. Their workflows are switched off and their
+  artifacts deleted; build locally, and land with `merge-branch.sh`, which
+  now builds here. The public repo's build on a push to `oxide` is free.

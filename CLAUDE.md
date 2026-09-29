@@ -105,10 +105,13 @@ SHA-1 for it, copied into `~/oxide-playtest` as
 `pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
 same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
-`tools/oxide/fetch-rom` still builds a pushed commit in the private repo
-`iradspinner/oxide-rom-builder` and downloads it there after checking its
-SHA-1, which suits a commit that is not checked out; it spends Actions
-minutes, so a local build comes first.
+`tools/oxide/fetch-rom` builds a pushed commit in the private repo
+`iradspinner/oxide-rom-builder` instead, and it spends Actions minutes and
+storage. **No GitHub Actions in the private repos until 2026-10-01** (Ian,
+2026-09-29): the account's Actions storage is used up, and he will not be
+billed for more. Their workflows are switched off, so `fetch-rom` and a
+melonDS-oxide build fail until then. The public repo's build on each push to
+`oxide` is free and stays on.
 
 GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's

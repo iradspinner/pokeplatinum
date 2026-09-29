@@ -49,6 +49,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
+**On 2026-10-01** (Ian, 2026-09-29): switch the private repos' workflows back on (`gh workflow enable build -R iradspinner/oxide-rom-builder`, `gh workflow enable Windows -R iradspinner/melonDS-oxide`). Until then no GitHub Actions in the private repos; the account's Actions storage is used up, and the artifacts and cache were deleted.
+
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); its section 0, the new-CPU cleanup, was done on 2026-09-29. Add new in-game checks there, not here.
