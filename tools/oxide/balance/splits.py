@@ -439,9 +439,120 @@ def _item(token):
     return _item_names()[int(token)] if token.isdigit() else token
 
 
-@functools.lru_cache(maxsize=None)
 def items():
     """Every item ball and hidden item: (split, map, item constant, how)."""
+    return [(split, header, item, how) for split, header, item, how, _needs in item_reach()]
+
+
+# Tiles the player crosses only by Surf: the ones the game flags surfable
+# (map_tile_behavior.c's flag table), less the bridges over water, which it
+# flags so the player can surf beneath them but which are walked (or, the
+# bike bridges, ridden) across. A waterfall needs Waterfall as well.
+_TILE_FLAG = re.compile(r"\[(TILE_BEHAVIOR_\w+)\]\s*=\s*(TILE_BEHAVIOR_FLAG_\w+)")
+WATERFALL = "TILE_BEHAVIOR_WATERFALL"
+
+
+@functools.lru_cache(maxsize=None)
+def _surfable():
+    return {name for name, flag in _TILE_FLAG.findall(_read("src", "map_tile_behavior.c"))
+            if "SURFABLE" in flag and "BRIDGE" not in name}
+
+
+@functools.lru_cache(maxsize=None)
+def surf_split():
+    """The split Surf is usable in, as the encounter tool has it (the HM is
+    Celestic Town's, so Byron's)."""
+    from ..encounters import model, progression
+    return progression.rod_split(model.load_sidecar() or {}, "surf")
+
+
+def _grid(header):
+    """{(x, z): (collision, behaviour name)} for every tile of a map, in the
+    event files' coordinates, and the set of its edge tiles. The map
+    renderer's readers do the work, so the two cannot disagree."""
+    sys.path.insert(0, os.path.join(data.ROOT, "tools", "oxide"))
+    import maprender as mr  # noqa: E402
+    import mapperm as mp  # noqa: E402
+    _by_name, names = mp.behaviours()
+    header = "MAP_HEADER_" + header
+    chunks, global_coords = mr.chunks_of(header, mr.header_fields(header))
+    r0 = min(r for r, _c, _n in chunks)
+    c0 = min(c for _r, c, _n in chunks)
+    gx0, gz0 = (c0 * mr.CHUNK, r0 * mr.CHUNK) if global_coords else (0, 0)
+    out = {}
+    for r, c, n in chunks:
+        with open(mp.path_of(n), "rb") as f:
+            raw = f.read()
+        for lz in range(mr.CHUNK):
+            for lx in range(mr.CHUNK):
+                v = mp.read_tile(raw, lx, lz)
+                out[(gx0 + (c - c0) * mr.CHUNK + lx, gz0 + (r - r0) * mr.CHUNK + lz)] = \
+                    (v >> 15, names.get(v & 0xFF, ""))
+    edge = {t for t in out if any((t[0] + dx, t[1] + dz) not in out
+                                  for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1)))}
+    return out, edge
+
+
+def _flood(grid, starts, ok):
+    """The tiles reachable from the start tiles through tiles `ok` passes."""
+    seen = {t for t in starts if t in grid and ok(grid[t])}
+    todo = list(seen)
+    while todo:
+        x, z = todo.pop()
+        for t in ((x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)):
+            if t in grid and t not in seen and ok(grid[t]):
+                seen.add(t)
+                todo.append(t)
+    return seen
+
+
+def _reach(header, warps, spots):
+    """{(x, z): "foot", "Surf" or "more"} for spots on a map: whether a tile
+    at or beside each is reached on foot from the map's warps and edges,
+    only by crossing water, or neither (a waterfall, or a way the flood does
+    not model, such as a Rock Climb wall). A map the readers cannot lay out
+    counts as walked."""
+    try:
+        grid, edge = _grid(header)
+    except (SystemExit, OSError, KeyError, ValueError):
+        return {s: "foot" for s in spots}
+    surf = _surfable()
+    foot = _flood(grid, warps | edge, lambda t: not t[0] and t[1] not in surf)
+    swim = _flood(grid, warps | edge, lambda t: not t[0] and t[1] != WATERFALL)
+    out = {}
+    for x, z in spots:
+        around = {(x, z), (x + 1, z), (x - 1, z), (x, z + 1), (x, z - 1)}
+        out[(x, z)] = "foot" if around & foot else "Surf" if around & swim else "more"
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def item_reach():
+    """Every item ball and hidden item: (split, map, item constant, how,
+    needs). An item the player reaches only by Surf counts from the later of
+    its map's split and Surf's (the census had Lake Verity's TM38 in Roark's
+    split); `needs` says which, "more" where the flood cannot reach it, and
+    such an item keeps its map's split.
+
+    An item on several maps under one pickup flag is one item: a lake and
+    its drained or low-water variant, two Old Chateau rooms, a hidden item on
+    the seam of two maps (where one copy lies off its map's tiles). It
+    counts once, from the copy reached in the earliest split, a copy the
+    flood reaches before one it does not. Before this, 17 copies counted
+    twice, and Lake Verity's sealed low-water copy kept TM38 in Roark's."""
+    copies = collections.defaultdict(list)
+    for key, row in _item_copies():
+        copies[key].append(row)
+
+    def rank(row):
+        return (row[4] == "more", SPLITS.index(row[0]) if row[0] in SPLITS else len(SPLITS))
+    return [min(rows, key=rank) for rows in copies.values()]
+
+
+def _item_copies():
+    """[(pickup key, (split, map, item, how, needs))] for every copy of every
+    item ball and hidden item. A ball's key is its hidden flag, a hidden
+    item's its script (the flag follows from it)."""
     visible = {int(n): _item(tok) for n, tok in
                _VISIBLE.findall(_script("scripts_visible_items"))}
     # A hidden item's bg event script is 8000 plus its obtained-flag's offset
@@ -460,14 +571,26 @@ def items():
         with open(path, encoding="utf-8") as f:
             ev = json.load(f)
         split = map_split(header)[0]
+        found = []
         for obj in ev.get("object_events", []):
             script = obj.get("script")
             if isinstance(script, int) and VISIBLE_ITEM_SCRIPT <= script < HIDDEN_ITEM_SCRIPT:
-                out.append((split, header, visible.get(script - VISIBLE_ITEM_SCRIPT), "ball"))
+                key = obj.get("hidden_flag") or (header, script, obj["x"], obj["z"])
+                found.append((key, visible.get(script - VISIBLE_ITEM_SCRIPT), "ball", obj["x"], obj["z"]))
         for bg in ev.get("bg_events", []):
             script = bg.get("script")
             if bg.get("type") == BG_HIDDEN_ITEM and isinstance(script, int):
-                out.append((split, header, hidden.get(script - HIDDEN_ITEM_SCRIPT), "hidden"))
+                found.append((script, hidden.get(script - HIDDEN_ITEM_SCRIPT), "hidden", bg["x"], bg["z"]))
+        if not found:
+            continue
+        reach = _reach(header, {(w["x"], w["z"]) for w in ev.get("warp_events", [])},
+                       {(x, z) for _k, _i, _h, x, z in found})
+        for key, item, how, x, z in found:
+            needs = reach[(x, z)]
+            at = split
+            if needs == "Surf" and split in SPLITS and surf_split() in SPLITS:
+                at = max(split, surf_split(), key=SPLITS.index)
+            out.append((key, (at, header, item, how, needs)))
     return out
 
 

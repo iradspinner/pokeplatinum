@@ -291,6 +291,27 @@ def check_weather(results):
     results.append(("boss fights start in the weather their maps set", got == want, str(got)))
 
 
+def check_item_reach(results):
+    """An item reached only across water counts from Surf's split, one on
+    foot keeps its map's, and an item on several maps under one pickup flag
+    counts once. The anchors: Lake Verity's TM38 (the census had it in
+    Roark's split, twice), Eterna City's TM46 on foot, and the game's own
+    surfable tiles, bridges left walkable."""
+    from . import splits
+    rows = splits.item_reach()
+    tm38 = [(r[0], r[4]) for r in rows if r[2] == "ITEM_TM38"]
+    tm46 = [(r[0], r[1], r[4]) for r in rows if r[2] == "ITEM_TM46"]
+    ok = tm38 == [(splits.surf_split(), "Surf")] and ("Gardenia", "ETERNA_CITY", "foot") in tm46
+    results.append(("an item behind water counts from Surf's split, one on foot keeps its map's", ok,
+                    f"TM38 {tm38}, TM46 {tm46}"))
+    keys = {k for k, _r in splits._item_copies()}
+    water = splits._surfable()
+    ok = len(rows) == len(keys) and {"TILE_BEHAVIOR_WATER_SEA", "TILE_BEHAVIOR_WATER_RIVER"} <= water \
+        and not [n for n in water if "BRIDGE" in n]
+    results.append(("each pickup counts once, and only water is surfable", ok,
+                    f"{len(rows)} items from {len(splits._item_copies())} copies"))
+
+
 def check_testkit(results):
     """The test kit adds nothing to the census, since only `make testkit`
     builds it. The filter keeps what a normal build keeps, #else branches
@@ -341,7 +362,7 @@ def main():
                   check_league_after_volkner, check_roark, check_megas_folded,
                   check_hardlove_rom, check_run_and_bun, check_milestones_resolve,
                   check_split_map, check_items_and_marts, check_tm_sources,
-                  check_weather, check_testkit):
+                  check_weather, check_item_reach, check_testkit):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
