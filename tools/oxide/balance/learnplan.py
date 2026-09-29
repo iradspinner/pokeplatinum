@@ -804,6 +804,26 @@ RULED = set()
 EVOLUTION_MOVES = []          # (stage, move, why), each for Ian
 # Moves that fail without weather the player can never set (Ian, 2026-09-26).
 NEEDS_WEATHER = {"MOVE_AURORA_VEIL"}
+# Evasion, which Ian took off the TMs (Double Team): never a key or late pick.
+EVASION = {"MOVE_MINIMIZE", "MOVE_DOUBLE_TEAM"}
+# Moves the generator never picks as a key or late move: evasion, and the
+# generic protection Ian took off the TMs as too generic (Protect, and Detect
+# with it). A wall whose own or Kaizo's list gives it Protect keeps it.
+NOT_PICKED = EVASION | {"MOVE_PROTECT", "MOVE_DETECT"}
+# A charging turn, a turn out of reach, or a recharge: Ian's downsides
+# (ruling 11), so such a move is a late pick only when nothing else is.
+TWO_TURN = {"FLY", "DIVE", "DIG", "BOUNCE", "SHADOW_FORCE", "SKY_DROP", "SKIP_CHARGE_TURN_IN_SUN",
+            "RECHARGE_AFTER"}
+# A stage whose better attacking stat leads the other by this much never
+# takes an attack of the other category as a late pick.
+STAT_GAP = 20
+# Lists Ian has asked for by name, placed past the flags' first-of-type test
+# and listed for him: Alolan Ninetales, a proper list for the wild catch and
+# the Ice Stone route (ruling 19; the Overseer's read of 2026-09-28): a Fairy
+# attack in Fantina's split and a stronger Ice move in Byron's.
+RULED_LISTS = {"SPECIES_ALOLAN_NINETALES": [(30, "MOVE_DRAINING_KISS"), (45, "MOVE_ICE_BEAM")]}
+RULED_PLACED = []             # (stage, move, level), for Ian by name
+DEAD_MOVED = []               # (stage, move, moved to, action), moved entries undone
 
 
 def not_by_level(species):
@@ -869,7 +889,7 @@ def at_capture(lst, level):
     return calc_trainers.default_moves([list(e) for e in lst if e[0] != 0], level)
 
 
-def _place(species, lst, c, lv, carried=False):
+def _place(species, lst, c, lv, carried=False, ruled=False):
     """(level, why, meta) for adding a move to the stage's list at `lv` or
     later by the generator's rules, or (None, why not, {}): the engine runs
     it, it is not dead weight, a strong move no earlier than Kaizo's level
@@ -900,13 +920,15 @@ def _place(species, lst, c, lv, carried=False):
         if kl and kl <= 78 and floor_level(kl) > lv:
             why.append(f"{lv} to {floor_level(kl)}: no earlier than Kaizo's level for like moves ({kl})")
             lv = floor_level(kl)
-    ruled = False
-    if strong_stage(species) and good and lv < LATE:
+    # A list Ian asked for by name (`ruled`) passes the flags' first-of-type
+    # test; so does a stage's first attack of its own type.
+    exempt = ruled
+    if strong_stage(species) and good and lv < LATE and not ruled:
         own = _own_type_attack(c, types)
         has_own = any(1 < l <= lv and _own_type_attack(cc, types) for l, cc in lst)
         first = first_good_of_type(species, M()[c]["type"], lst)
         if own and not has_own:
-            ruled = True
+            exempt = True
         elif first is None or lv < first:
             return None, ("a stage the power flags or the bar hold takes a new attack only no earlier "
                           "than its first good one of that type"), {}
@@ -926,7 +948,7 @@ def _place(species, lst, c, lv, carried=False):
             lv = new
         else:
             crowded = True
-    return lv, "; ".join(why), {"ruled": ruled or lv >= LATE, "crowded": crowded}
+    return lv, "; ".join(why), {"ruled": exempt or lv >= LATE, "crowded": crowded}
 
 
 def _commit(species, c, lv, meta, lst=()):
@@ -960,7 +982,8 @@ def _slot_worthy(c, types):
     attack of the stage's own type, or a status move rated B or better, and
     never one that needs weather the player cannot set."""
     from . import laterlearn as ll
-    return c in M() and c not in NEEDS_WEATHER and c not in SELF_KO and c not in ll._doubles_only() and (
+    return c in M() and c not in NEEDS_WEATHER and c not in SELF_KO and c not in ll._doubles_only() \
+        and c not in NOT_PICKED and (
         good_attack(c, types) or _own_type_attack(c, types) or (rank(c) or 0) >= 3)
 
 
@@ -1108,22 +1131,108 @@ def evolution_moves(fam, res):
     return res
 
 
+def _two_turn(c):
+    e = M()[c].get("effect") or ""
+    return e in TWO_TURN or e.startswith("CHARGE_TURN")
+
+
+def _stats(species):
+    st = (pokedex.load(data.ROOT, species) or {}).get("stats") or {}
+    return st.get("attack", 0) or 0, st.get("special_attack", 0) or 0
+
+
+def _hit(species, c):
+    """(strength, accuracy) of an attack for the stage: its effective power,
+    with Skill Link's five hits for a multi-hit move, and a never-miss move
+    at 101."""
+    e = effective_power(c)
+    if M()[c].get("effect") == "MULTI_HIT" and "SKILL_LINK" in ((pokedex.load(data.ROOT, species) or {}).get("abilities") or []):
+        e = e * 5 / 3
+    acc = M()[c].get("accuracy") or 101
+    return e, acc
+
+
+def adds(species, c, known):
+    """Whether a move gives the stage something it lacks, given the moves it
+    has by then (the Overseer's rule, 2026-09-28): a status move rated A or
+    better it does not know; or an attack in its better category (either,
+    when its attacking stats are within STAT_GAP) that is of a new type for
+    it, or stronger or more reliable than every same-type, same-category
+    attack it knows (Thunder beside Thunderbolt counts; Flamethrower after
+    Fire Blast does not)."""
+    if c in known or c in NOT_PICKED:
+        return False
+    if M()[c]["class"] == "STATUS":
+        return (rank(c) or 0) >= 4
+    atk, spa = _stats(species)
+    cat = M()[c]["class"]
+    if abs(atk - spa) >= STAT_GAP and cat != ("PHYSICAL" if atk > spa else "SPECIAL"):
+        return False
+    mine = [k for k in known if k in M() and M()[k]["class"] == cat and M()[k]["type"] == M()[c]["type"]]
+    e, acc = _hit(species, c)
+    for k in mine:
+        ek, acck = _hit(species, k)
+        # Stronger, or 20 points more accurate while keeping three quarters of
+        # the power (Thunderbolt beside Thunder; not Flamethrower after Fire
+        # Blast, nor BubbleBeam after Hydro Pump).
+        if not (e > ek or (acc - acck >= 20 and e >= 0.75 * ek)):
+            return False
+    return True
+
+
+def dominated(species, c, others):
+    """Whether an attack is no better than a same-type, same-category attack
+    among `others`: at least as strong and at least as accurate."""
+    e, acc = _hit(species, c)
+    return any(k in M() and M()[k]["type"] == M()[c]["type"] and M()[k]["class"] == M()[c]["class"]
+               and _hit(species, k)[0] >= e and _hit(species, k)[1] >= acc for k in others if k != c)
+
+
+@functools.lru_cache(maxsize=None)
+def _power_rank():
+    """{final stage the player can own: its base stat total's place among
+    them, 0 the weakest to 1 the strongest}."""
+    totals = {}
+    for s in g._obtainable():
+        if later_stages(s):
+            continue
+        st = (pokedex.load(data.ROOT, s) or {}).get("stats") or {}
+        totals[s] = sum(st.values()) if st else 0
+    order = sorted(totals.values())
+    n = max(1, len(order) - 1)
+    return {s: order.index(t) / n for s, t in totals.items()}
+
+
+def late_level(species):
+    """Where a stage's late move goes by its power: the weakest at 61, the
+    strongest at 78, the rest between."""
+    return LATE + round((78 - LATE) * _power_rank().get(species, 0))
+
+
 def late_moves(fam, res):
     """Ian (2026-09-28): every final stage the player can own learns at least
-    one real move by level-up in the Galactic split or later (61 to 78).
-    Where its list has none, the most worthwhile candidate it does not
-    already learn by 60 goes to the later of its source's level and 61, by
-    the generator's rules: from Kaizo's list for it, the later games'
-    level-up lists, its own level-1 moves, then its TM and tutor moves.
-    A stage with nothing that qualifies is listed for Ian."""
+    one real move by level-up in the Galactic split or later (61 to 78). Where
+    its list has none, the candidate that adds most goes in: it must give the
+    stage something it lacks by then (adds: a better or more reliable attack
+    of its type in its better category, a new type, or a status move rated A
+    or better), never a self-knockout, partner or evasion move, and a
+    charging or out-of-reach move only when nothing else adds. Candidates come
+    from Kaizo's list for it, the later games' level-up lists, its own level-1
+    moves, then its TM and tutor moves; the one of most substance, then from
+    the earliest of those sources, then of most worth. It goes to the later of
+    its source's level and a level spread across 61 to 78 by the stage's
+    power. A stage with nothing that adds is listed for Ian."""
     from . import laterlearn as ll
+    lists = dict(PROPOSED)
+    lists.update({x: res[x][0] for x in fam})
     for s in fam:
         if s not in g._obtainable() or later_stages(s) or reach(s) > 78:
             continue
         lst, notes = list(res[s][0]), list(res[s][1])
         if any(lv >= LATE and _real(s, c, lv, lst) for lv, c in lst):
             continue
-        known = {c for lv, c in lst if 1 < lv < LATE}
+        at = late_level(s)
+        known = {c for c, l in had_from(s, dict(lists, **{s: lst})).items() if l <= at}
         cands = []
         for c, (kl, t, why) in (kaizo_evidence(s) or {}).items():
             if why is None:
@@ -1138,13 +1247,14 @@ def late_moves(fam, res):
         cands += [(machines[m], LATE, "a TM it learns", 3) for m in rec.get("by_tm") or [] if m in machines]
         cands += [(c, LATE, "a tutor move it learns", 3) for c in rec.get("by_tutor") or []]
         best = None
+        above_one = {c for l, c in lst if l > 1}
         for c, lv, src, prio in cands:
-            if c in known or c not in M():
+            if c not in M() or c in above_one or not adds(s, c, known):
                 continue
-            placed, why, meta = _place(s, lst, c, max(lv or LATE, LATE))
+            placed, why, meta = _place(s, lst, c, max(lv or LATE, at))
             if placed is None or not _real(s, c, placed, lst):
                 continue
-            key = (_substance(c), -prio, _worth(s, c))
+            key = (not _two_turn(c), _substance(c), -prio, _worth(s, c))
             if best is None or key > best[0]:
                 best = (key, c, placed, src, why, meta)
         if best is None:
@@ -1156,6 +1266,102 @@ def late_moves(fam, res):
         notes.append((c, f"new at {placed}: a move in the last splits, from {src}" + (f"; {why}" if why else "")))
         LATE_ADDED.append((s, c, placed, src))
         res[s] = (lst, notes)
+    return res
+
+
+def ruled_lists(fam, res):
+    """The lists Ian has asked for by name (RULED_LISTS), placed by the
+    generator's rules but past the flags' first-of-type test, and listed for
+    him by name."""
+    for s in fam:
+        if s not in RULED_LISTS or s not in g._obtainable():
+            continue
+        lst, notes = list(res[s][0]), list(res[s][1])
+        for lv, c in RULED_LISTS[s]:
+            if any(l > 1 and cc == c for l, cc in lst):
+                continue
+            placed, why, meta = _place(s, lst, c, lv, ruled=True)
+            if placed is None:
+                continue
+            _commit(s, c, placed, dict(meta, ruled=True), lst)
+            lst = sorted(lst + [(placed, c)], key=lambda e: e[0])
+            notes.append((c, f"new at {placed}: Ian's list for it by name" + (f"; {why}" if why else "")))
+            RULED_PLACED.append((s, c, placed))
+        res[s] = (lst, notes)
+    return res
+
+
+def undo_dead_moves(fam, res):
+    """The Overseer's check (2026-09-28): a moved entry must not land after a
+    stronger same-type, same-category attack the stage has by then, where it
+    is dead weight (Decidueye's Seed Bomb, moved from 32 to 60 after Leaf
+    Blade at 55). Such a move goes back to its current level where it is not
+    dead there and no Kaizo floor lies past that level; else it leaves (Ian's
+    floor ruling wins over keeping it early). A delay counts only if waiting
+    is a real choice. Repeated until nothing changes, since a move put back
+    can make another dead."""
+    lists = dict(PROPOSED)
+    lists.update({x: res[x][0] for x in fam})
+    for s in fam:
+        now = {}
+        for lv, c in _now(s):
+            now.setdefault(c, lv)
+        lst, notes = list(res[s][0]), list(res[s][1])
+        evolved = s in g.oxide_reached()
+        changed = False
+        for _round in range(6):
+            again = False
+            for lv, c in list(lst):
+                if lv <= 1 or c not in now or now[c] <= 1 or now[c] == lv or c not in M() \
+                        or M()[c]["class"] == "STATUS":
+                    continue
+                others = [k for l, k in lst if k != c and ((1 < l <= lv) or (l == 0 and evolved))]
+                others += [k for k, l in had_from(s, dict(lists, **{s: lst})).items() if l <= lv and k != c]
+                if not dominated(s, c, set(others)):
+                    continue
+                lst = [e for e in lst if e != (lv, c)]
+                back = now[c]
+                others_back = [k for l, k in lst if k != c and ((1 < l <= back) or (l == 0 and evolved))]
+                floor = FLOORS.get((s, c))
+                if (back <= 1 or not dominated(s, c, set(others_back))) and not (floor and back < floor):
+                    lst = sorted(lst + [(back, c)], key=lambda e: e[0])
+                    notes.append((c, f"back at {back}: moved to {lv} it would come after a stronger move of its "
+                                     f"type the stage has by then"))
+                    DEAD_MOVED.append((s, c, lv, f"kept at {back}"))
+                else:
+                    why = (f"its Kaizo floor ({floor}) is past its old level ({back})" if floor and back < floor
+                           else f"at {back} too it comes after a stronger move of its type")
+                    notes.append((c, f"leaves: moved to {lv} it comes after a stronger move of its type the "
+                                     f"stage has, and {why}"))
+                    DEAD_MOVED.append((s, c, lv, "dropped"))
+                    FLOORS.pop((s, c), None)
+                changed = again = True
+                break
+            if not again:
+                break
+        if changed:
+            res[s] = (lst, notes)
+    return res
+
+
+def dedupe(fam, res):
+    """Drop repeated entries: the same move twice at one level, and a level-1
+    entry of a move the stage also learns at level 0 or by level-up, except
+    where it is one of the four a first stage knows when first had."""
+    for s in fam:
+        lst, notes = list(res[s][0]), list(res[s][1])
+        keep_first = set(at_capture(lst, reach(s))) if s not in g.oxide_reached() else set()
+        later = {c for l, c in lst if l == 0 or l > 1}
+        out, seen = [], set()
+        for l, c in lst:
+            if (l, c) in seen:
+                continue
+            if l == 1 and c in later and c not in keep_first:
+                continue
+            seen.add((l, c))
+            out.append((l, c))
+        if len(out) != len(lst):
+            res[s] = (out, notes)
     return res
 
 
@@ -1175,10 +1381,13 @@ def propose_family(fam):
         res = {s: propose(s) for s in fam}
         PROPOSED.update({s: res[s][0] for s in fam})
     res = carry_evolved(fam, res)
+    res = ruled_lists(fam, res)
     res = late_moves(fam, res)
     res = evolution_moves(fam, res)
     PROPOSED.update({s: res[s][0] for s in fam})
     res = close_gaps(fam, res)
+    res = undo_dead_moves(fam, res)
+    res = dedupe(fam, res)
     PROPOSED.update({s: res[s][0] for s in fam})
     return res, forced
 
@@ -1857,6 +2066,19 @@ def check_results(fam, now, new):
             and not any((lv > reach(s) or lv == 0) and _real(s, c, max(lv, reach(s)), new[s])
                         for lv, c in new[s])]
     res.append(("every stage reached without a level learns a real move after it is first had", bare))
+    dead = []
+    for s in fam:
+        first_now = {}
+        for lv, c in now[s]:
+            first_now.setdefault(c, lv)
+        for lv, c in new[s]:
+            if lv <= 1 or c not in first_now or first_now[c] <= 1 or first_now[c] == lv or c not in M() \
+                    or M()[c]["class"] == "STATUS":
+                continue
+            others = {k for l, k in new[s] if k != c and ((1 < l <= lv) or (l == 0 and s in g.oxide_reached()))}
+            if dominated(s, c, others):
+                dead.append((s, c))
+    res.append(("no moved entry lands after a stronger move of its type and category", dead))
     return res
 
 
@@ -1902,7 +2124,7 @@ def full_run(log=None):
     UNDER_FLOOR.clear()
     STAB_KEPT.clear()
     STAB_FOR_IAN.clear()
-    for held in (CARRIED, LATE_ADDED, LATE_FOR_IAN, EVOLUTION_MOVES):
+    for held in (CARRIED, LATE_ADDED, LATE_FOR_IAN, EVOLUTION_MOVES, RULED_PLACED, DEAD_MOVED):
         held.clear()
     RULED.clear()
     TRANSLATED.clear()
@@ -2272,6 +2494,25 @@ def _write_rulings(p):
             p(f"| {_sp(s)} | {name(c)} | {lv} | {src} |")
     if LATE_FOR_IAN:
         p(f"\nFor Ian, with nothing that qualifies: " + ", ".join(_sp(s) for s in sorted(LATE_FOR_IAN)) + ".")
+    if RULED_PLACED:
+        p("\n## By name, for Ian\n")
+        p("Lists Ian asked for by name, placed past the flags' first-of-type test (ruling 19: a proper "
+          "list for Alolan Ninetales, for the wild catch and the Ice Stone route alike): "
+          + "; ".join(f"{_sp(s)}'s {name(c)} at {lv}" for s, c, lv in RULED_PLACED) + ".")
+    p("\n## What the Overseer's read changed\n")
+    kept = [x for x in DEAD_MOVED if x[3] != "dropped"]
+    dropped = [x for x in DEAD_MOVED if x[3] == "dropped"]
+    p("The Overseer read the first version of these rulings as a player (2026-09-28). A late move now "
+      "has to give the stage something it lacks by then: a stronger attack of its type in its better "
+      "category, one twenty points more accurate that keeps three quarters of the power, a new type, "
+      "or a status move rated A or better. An attack in the weaker category across a gap of 20 in the "
+      "attacking stats, a charging or out-of-reach move (unless nothing else adds), a self-knockout, "
+      "partner, evasion or Protect move never counts. The late levels spread from 61 to 78 by the "
+      "stage's base stat total, the weakest earliest. A moved entry that would come after a stronger "
+      f"move of its type and category goes back to its current level ({len(kept)}) or leaves "
+      f"({len(dropped)}): " + "; ".join(f"{_sp(s)}'s {name(c)} ({act}, not {lv})" for s, c, lv, act in DEAD_MOVED[:30])
+      + ". Repeated entries leave every list, except what a first stage knows when first had. Evasion "
+      "and Protect are never a key or late pick, so Clefable's Minimize at 19 is gone.")
 
 
 def main(argv=None):
