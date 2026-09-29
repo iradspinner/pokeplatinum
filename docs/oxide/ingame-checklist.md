@@ -412,6 +412,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Wayward Cave answered by Ian the same day: bike ramps carry the player
   three tiles ahead, over the two between even when a rock sits on them, and
   the basement's items are reached that way; the census models it.
+  Ian on the rest: Amity Square's ruins hold scripted teleporters into the
+  pen, and Victory Road's three are probably behind the way that opens only
+  after the Champion; the census follows both. Tick this once the balance
+  track reports all eight placed.
 
 ## 5. The ordinary ROM, after the League
 
