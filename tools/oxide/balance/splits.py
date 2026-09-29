@@ -581,12 +581,18 @@ def _grid(header):
 _STEPS = {"EAST": (1, 0), "WEST": (-1, 0), "NORTH": (0, -1), "SOUTH": (0, 1)}
 _LEDGES = {f"TILE_BEHAVIOR_JUMP_{d}{twice}": (step, 2 if twice else 1)
            for d, step in _STEPS.items() for twice in ("", "_TWICE")}
+# A bike ramp (Ian, from play, 2026-09-29): ridden onto in its direction, it
+# throws the player three tiles past it, over the two between whatever is
+# on them (Wayward Cave's basement among its boulders).
+_RAMPS = {f"TILE_BEHAVIOR_BIKE_RAMP_{d}WARD": step for d, step in _STEPS.items()}
+RAMP_JUMP = 3
 
 
 def _flood(grid, starts, ok):
     """The tiles reachable from the start tiles through tiles `ok` passes,
-    jumping down ledges; `ok` takes a tile's position and its (collision,
-    behaviour)."""
+    jumping down ledges and off bike ramps; `ok` takes a tile's position and
+    its (collision, behaviour), and says whether the Bicycle is had through
+    the ramps it lets pass."""
     seen = {t for t in starts if t in grid and ok(t, grid[t])}
     todo = list(seen)
     while todo:
@@ -595,6 +601,13 @@ def _flood(grid, starts, ok):
             t = (x + dx, z + dz)
             if t not in grid:
                 continue
+            ramp = _RAMPS.get(grid[t][1])
+            if ramp:
+                if ramp != (dx, dz) or not ok(t, grid[t]):
+                    continue
+                t = (t[0] + dx * RAMP_JUMP, t[1] + dz * RAMP_JUMP)
+                if t not in grid:
+                    continue
             ledge = _LEDGES.get(grid[t][1])
             if ledge:
                 (lx, lz), n = ledge
@@ -609,6 +622,34 @@ def _flood(grid, starts, ok):
     return seen
 
 
+# Where a script puts the player, which the flood starts from as it does
+# from a map's warps: a scripted warp's target, and a set position of the
+# player or the follower that walks beside it (Amity Square's ruins carry
+# the player into its fenced pens this way; Ian, 2026-09-29).
+_WARP_CMD = re.compile(r"^\s*Warp MAP_HEADER_(\w+), (\d+), (\d+),", re.M)
+_SET_POSITION = re.compile(r"^\s*SetPosition LOCALID_(?:PLAYER|FOLLOWER_MON), (\d+), -?\d+, (\d+),", re.M)
+
+
+@functools.lru_cache(maxsize=None)
+def script_arrivals():
+    """{map: {(x, z)}}: the tiles scripts put the player on."""
+    maps_of = collections.defaultdict(list)
+    for header, fields in headers().items():
+        maps_of[fields.get("scriptsArchiveID")].append(header)
+    out = collections.defaultdict(set)
+    folder = os.path.join(data.ROOT, "res", "field", "scripts")
+    for name in sorted(os.listdir(folder)):
+        if not name.endswith(".s"):
+            continue
+        text = data.read_script(os.path.join(folder, name))
+        for header, x, z in _WARP_CMD.findall(text):
+            out[header].add((int(x), int(z)))
+        for x, z in _SET_POSITION.findall(text):
+            for header in maps_of.get(name[:-2], ()):
+                out[header].add((int(x), int(z)))
+    return dict(out)
+
+
 def _passable(moves, blocked):
     """Whether a tile can be crossed with `moves` in hand: not a wall, not an
     obstacle whose move is missing, and not water, a waterfall, a Rock Climb
@@ -619,14 +660,16 @@ def _passable(moves, blocked):
         collision, behaviour = tile
         if blocked.get(pos, "") and blocked[pos] not in moves:
             return False
+        # A Rock Climb wall and a waterfall can carry the collision bit
+        # (Victory Road B1F's does), so they are read before it.
         if behaviour in ROCK_CLIMB:
             return "Rock Climb" in moves
+        if behaviour == WATERFALL:
+            return {"Surf", "Waterfall"} <= moves
         if _bike_tile(behaviour):
             return "Bicycle" in moves or ("Surf" in moves and behaviour in _surf_flagged())
         if collision:
             return False
-        if behaviour == WATERFALL:
-            return {"Surf", "Waterfall"} <= moves
         return behaviour not in surf or "Surf" in moves
     return ok
 
@@ -738,8 +781,12 @@ def _item_copies(stages):
             continue
         blocked = {(o["x"], o["z"]): OBSTACLES[o.get("graphics_id")] for o in ev.get("object_events", [])
                    if o.get("graphics_id") in OBSTACLES}
-        reach = _reach(header, {(w["x"], w["z"]) for w in ev.get("warp_events", [])}, blocked,
-                       {(x, z) for _k, _i, _h, x, z in found}, stages)
+        # The flood starts at the map's warps, and beside where a script puts
+        # the player, which may be a door or ruin it walks out of.
+        starts = {(w["x"], w["z"]) for w in ev.get("warp_events", [])}
+        starts |= {(x + dx, z + dz) for x, z in script_arrivals().get(header, ())
+                   for dx, dz in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1))}
+        reach = _reach(header, starts, blocked, {(x, z) for _k, _i, _h, x, z in found}, stages)
         for key, item, how, x, z in found:
             i, moves = reach[(x, z)]
             at, needs = None, "unreached"

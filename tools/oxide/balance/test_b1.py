@@ -305,15 +305,18 @@ REACH_ANCHORS = [("LAKE_VERITY", "ITEM_TM38", "Byron", "Surf"),
                  ("OREBURGH_GATE_B1F", "ITEM_TM01", "Candice", "Strength"),
                  ("VALOR_LAKEFRONT", "ITEM_SUN_STONE", "HQ", "Rock Climb"),
                  ("ROUTE_208", "ITEM_CARBOS", "Barry", "Waterfall"),
-                 ("SOLACEON_TOWN", "ITEM_PP_UP", "Maylene", "foot")]
+                 ("SOLACEON_TOWN", "ITEM_PP_UP", "Maylene", "foot"),
+                 ("WAYWARD_CAVE_B1F", "ITEM_RARE_CANDY", "Fantina", "Bicycle"),
+                 ("VICTORY_ROAD_B1F", "ITEM_TM59", "Barry", "Waterfall"),
+                 ("AMITY_SQUARE", "ITEM_SPOOKY_PLATE", "Fantina", "foot")]
 # The items the flood cannot reach with every way open, named so a new one
-# is noticed. Wayward Cave B1F's upper level and Victory Road's are joined
-# to the rest by a way the tile map does not show; Amity Square's plate is
-# in a fenced pen. The census gives them no split.
-UNREACHED = {("WAYWARD_CAVE_B1F", "ITEM_GRIP_CLAW"), ("WAYWARD_CAVE_B1F", "ITEM_MAX_ETHER"),
-             ("WAYWARD_CAVE_B1F", "ITEM_RARE_CANDY"), ("WAYWARD_CAVE_B1F", "ITEM_STARDUST"),
-             ("VICTORY_ROAD_2F", "ITEM_MAX_ELIXIR"), ("VICTORY_ROAD_2F", "ITEM_FULL_RESTORE"),
-             ("VICTORY_ROAD_B1F", "ITEM_TM59"), ("AMITY_SQUARE", "ITEM_SPOOKY_PLATE")}
+# is noticed and on Ian's in-game checklist. The census gives them no
+# split. Victory Road 2F's Max Elixir sits in a pocket whose only ways are
+# ledges out and the tile its bike ramp jumps over; the post-game gate (the
+# Collector on 1F) leads elsewhere. Wayward Cave's basement, Amity Square's
+# plate and Victory Road's TM59 were here until Ian's answers of 2026-09-29
+# (ramp jumps, the ruins' teleporters) and the waterfall fix.
+UNREACHED = {("VICTORY_ROAD_2F", "ITEM_MAX_ELIXIR")}
 
 
 def check_item_reach(results):
