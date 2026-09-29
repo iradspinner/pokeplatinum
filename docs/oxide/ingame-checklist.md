@@ -27,6 +27,11 @@ replacement is on the way. When the new chip is in, and before any playtest:
   and four-copy runs all clean and repeatable). The `statusLine` entry is Ian's
   to remove; CLAUDE.md and the standing rulings keep the three-job limit until
   the stress check below passes, and GitHub ROMs until the build check does.
+- [ ] Undo the BIOS change made for the old chip, before the stress check:
+  the P-cores' all-core ratio cap of 55 (2026-09-22, design doc findings
+  log) goes back to Auto, with MSI's Intel Default Settings profile on, so
+  the check runs the new chip as it will be used. The only other change,
+  Windows' maximum processor state at 99%, Ian undid on 2026-09-29.
 - [ ] Rerun the parallel check (`C:\Users\Ian\oxide-flake-check\parallel.py`,
   and the same file from WSL). WSL failed about ten times as often as Windows
   under the same load, and the wedge may be a second, WSL-kernel problem that
