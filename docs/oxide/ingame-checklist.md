@@ -13,22 +13,38 @@ an agent to launch an emulator.
 
 ## 0. Before anything: the new CPU
 
-The i9-14900K is degraded (design doc findings log, 2026-09-22) and its
-replacement is on the way. When the new chip is in, and before any playtest:
+The old i9-14900K was degraded (design doc findings log, 2026-09-22). Its
+replacement went in on 2026-09-29, and all of this was done that day:
 
-- [ ] Delete the venv block in the `Makefile`, the build retry in
+- [x] Delete the venv block in the `Makefile`, the build retry in
   `integrate.sh`, the wedge guard (its rule in `.claude/hooks/oxide_guard.py`,
   `wedge_status.sh` and its test beside it, and the `statusLine` entry in
   `~/.claude/settings.json`, which Ian edits himself), the local-build rule in
   `.claude/hooks/oxide_guard.py` that refuses full builds, its paragraph in
   CLAUDE.md's Build section, and the memory file
   `no-local-builds-until-new-cpu.md`. `integrate.sh --rom` can stay.
-- [ ] Rerun the parallel check (`C:\Users\Ian\oxide-flake-check\parallel.py`,
+  Done 2026-09-29, after a gentle check of the new chip (microcode 0x12F; single-core
+  and four-copy runs all clean and repeatable). The `statusLine` entry is Ian's
+  to remove; CLAUDE.md and the standing rulings keep the three-job limit until
+  the stress check below passes, and GitHub ROMs until the build check does.
+- [x] Undo the BIOS change made for the old chip, before the stress check:
+  the P-cores' all-core ratio cap of 55 (2026-09-22, design doc findings
+  log) goes back to Auto, with MSI's Intel Default Settings profile on, so
+  the check runs the new chip as it will be used. The only other change,
+  Windows' maximum processor state at 99%, Ian undid on 2026-09-29.
+  Done by Ian the same day: P-core ratio 55 to Auto, CPU Cooler Tuning on
+  Intel Default Settings, P-Core Beyond 6GHz+ off.
+- [x] Rerun the parallel check (`C:\Users\Ian\oxide-flake-check\parallel.py`,
   and the same file from WSL). WSL failed about ten times as often as Windows
   under the same load, and the wedge may be a second, WSL-kernel problem that
-  the CPU has been hiding.
-- [ ] Build `oxide` locally once and compare its SHA-1 with GitHub's build of
+  the CPU has been hiding. Passed 2026-09-29, 32 copies at a time: 0 of 960
+  failed on Windows and 0 of 1,760 in WSL (the old chip: 1 and 16 of 160), no
+  wedge, and no WHEA error or crash in Windows' logs.
+- [x] Build `oxide` locally once and compare its SHA-1 with GitHub's build of
   the same commit. Until they match, keep using `tools/oxide/fetch-rom`.
+  Passed 2026-09-29: two builds from an empty folder on every core, 17,816
+  steps in 47 and 48 seconds, both `917eb9a5` like GitHub's build of
+  252111fe3.
 
 ## 1. The ROMs and the save
 
@@ -468,6 +484,28 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
   "Its melodies sway the hearts of all who hear them..." with the Melody
   Pokemon category.
+
+- [x] **Eight items the balance census cannot reach** (2026-09-29): its map
+  flood finds no way to them, so no score counts them. For each, say whether
+  the player can pick it up and what it takes (which field move or path):
+  Wayward Cave B1F's Rare Candy, Grip Claw, Max Ether and hidden Stardust;
+  Victory Road's TM59, Max Elixir and Full Restore on the upper levels; and
+  Amity Square's Spooky Plate in the fenced pen. Tell the balance track.
+  Wayward Cave answered by Ian the same day: bike ramps carry the player
+  three tiles ahead, over the two between even when a rock sits on them, and
+  the basement's items are reached that way; the census models it.
+  Ian on the rest: Amity Square's ruins hold scripted teleporters into the
+  pen, and Victory Road's three are probably behind the way that opens only
+  after the Champion; the census follows both. Tick this once the balance
+  track reports all eight placed.
+  The balance track placed seven the same day: Wayward Cave's four and the
+  Spooky Plate in Fantina's split, Victory Road B1F's TM59 in Barry's (its
+  waterfall) and 2F's Full Restore in Barry's (Strength). One is left for
+  Ian: Victory Road 2F's Max Elixir (tile 4,5), in a pocket whose only ways
+  in are ledges out and the tile the bike ramp at (10,10) jumps over. Does a
+  slow ride onto that ramp stop on it, or is there another way in?
+  Ian, the same day: yes, the bike's slow gear jumps shorter, which reaches
+  it; the balance track models the short jump. All eight answered.
 
 ## 5. The ordinary ROM, after the League
 

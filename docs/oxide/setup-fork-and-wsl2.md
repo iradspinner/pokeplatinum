@@ -61,7 +61,7 @@ cd ~/pokeplatinum && git pull && make rom
 ```
 `make rom` skips the checksum test (which is expected to fail once we change things) and rebuilds only what changed, usually well under a minute. Copy the ROM out as in step 8 and play-test. Report what you see; screenshots help.
 
-**While this box's CPU is degraded (2026-09-23 onward), take playtest ROMs from GitHub instead.** A local build can come out wrong on this chip, so a copy for the emulator is built on GitHub's machines by the private repo `iradspinner/oxide-rom-builder`, which holds one workflow and nothing else. After `git pull`, run:
+**A ROM built on GitHub instead.** From 2026-09-23 to 2026-09-29, while this box's CPU was degraded, playtest ROMs came from GitHub's machines, built by the private repo `iradspinner/oxide-rom-builder`, which holds one workflow and nothing else. The replacement CPU builds the same ROM byte for byte, so this is now for a commit you have not checked out. After `git pull`, run:
 ```
 cd ~/pokeplatinum && tools/oxide/fetch-rom
 ```
@@ -85,9 +85,8 @@ python3 -m pip install --user --break-system-packages ndspy pillow openpyxl nump
 For a day in September 2026 the project pinned its own interpreter, blaming
 the system Python for wrong answers that turned out to be a degraded CPU; the
 pin was removed once that was found (design doc findings log, 2026-09-22).
-Until the replacement CPU is in, the `Makefile` still puts `~/.venvs/oxide`
-first on PATH when it exists, because this chip crashes the system Python far
-more often.
+The `Makefile` put `~/.venvs/oxide` first on PATH until the replacement CPU
+was in (2026-09-29); the build now uses the system Python.
 
 ## Part 4: What about DSPRE and the old base ROM?
 

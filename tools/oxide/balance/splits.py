@@ -581,11 +581,13 @@ def _grid(header):
 _STEPS = {"EAST": (1, 0), "WEST": (-1, 0), "NORTH": (0, -1), "SOUTH": (0, 1)}
 _LEDGES = {f"TILE_BEHAVIOR_JUMP_{d}{twice}": (step, 2 if twice else 1)
            for d, step in _STEPS.items() for twice in ("", "_TWICE")}
-# A bike ramp (Ian, from play, 2026-09-29): ridden onto in its direction, it
-# throws the player three tiles past it, over the two between whatever is
-# on them (Wayward Cave's basement among its boulders).
+# A bike ramp (Ian, from play, 2026-09-29): ridden onto in its direction at
+# speed, it throws the player three tiles past it, over the two between
+# whatever is on them (Wayward Cave's basement among its boulders); in the
+# bike's slow gear the jump is short and lands on the first tile past it
+# (Victory Road 2F's Max Elixir).
 _RAMPS = {f"TILE_BEHAVIOR_BIKE_RAMP_{d}WARD": step for d, step in _STEPS.items()}
-RAMP_JUMP = 3
+RAMP_JUMPS = (1, 3)
 
 
 def _flood(grid, starts, ok):
@@ -602,23 +604,23 @@ def _flood(grid, starts, ok):
             if t not in grid:
                 continue
             ramp = _RAMPS.get(grid[t][1])
-            if ramp:
-                if ramp != (dx, dz) or not ok(t, grid[t]):
-                    continue
-                t = (t[0] + dx * RAMP_JUMP, t[1] + dz * RAMP_JUMP)
+            if ramp and (ramp != (dx, dz) or not ok(t, grid[t])):
+                continue
+            landings = [(t[0] + dx * n, t[1] + dz * n) for n in RAMP_JUMPS] if ramp else [t]
+            for t in landings:
                 if t not in grid:
                     continue
-            ledge = _LEDGES.get(grid[t][1])
-            if ledge:
-                (lx, lz), n = ledge
-                if (lx, lz) != (dx, dz):
-                    continue
-                t = (t[0] + lx * n, t[1] + lz * n)
-                if t not in grid or grid[t][1] in _LEDGES:
-                    continue
-            if t not in seen and ok(t, grid[t]):
-                seen.add(t)
-                todo.append(t)
+                ledge = _LEDGES.get(grid[t][1])
+                if ledge:
+                    (lx, lz), n = ledge
+                    if (lx, lz) != (dx, dz):
+                        continue
+                    t = (t[0] + lx * n, t[1] + lz * n)
+                    if t not in grid or grid[t][1] in _LEDGES:
+                        continue
+                if t not in seen and ok(t, grid[t]):
+                    seen.add(t)
+                    todo.append(t)
     return seen
 
 

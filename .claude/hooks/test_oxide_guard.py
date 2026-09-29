@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Checks oxide_guard.py's wedge rule and wedge_status.sh against fake /proc trees.
+"""Checks oxide_guard.py's three rules: sweeping `git add`, launching an
+emulator, and committing the scratch marker.
 
 Run from anywhere: python3 .claude/hooks/test_oxide_guard.py
-Builds one tree with a process stuck on __vma_start_write and one without,
-then asks the guard and the status line about each. Prints "N passed" or the
-first failure, and exits non-zero on a failure.
+Prints "N passed" or the first failure, and exits non-zero on a failure.
 """
 import os
 import subprocess
@@ -14,18 +13,6 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import oxide_guard  # noqa: E402
-
-
-def fake_proc(root, procs):
-    """Write a /proc lookalike: one directory per pid holding comm and wchan."""
-    for pid, comm, wchan in procs:
-        d = os.path.join(root, str(pid))
-        os.makedirs(d)
-        with open(os.path.join(d, "comm"), "w") as f:
-            f.write(comm + "\n")
-        with open(os.path.join(d, "wchan"), "w") as f:
-            f.write(wchan)  # the kernel writes wchan with no newline
-    os.makedirs(os.path.join(root, "sys"))  # a non-pid entry the scan must skip
 
 
 def main():
@@ -38,54 +25,32 @@ def main():
             sys.exit(1)
         passed += 1
 
-    with tempfile.TemporaryDirectory() as tmp:
-        stuck = os.path.join(tmp, "stuck")
-        clean = os.path.join(tmp, "clean")
-        fake_proc(stuck, [(1, "init", "do_epoll_wait"), (4242, "cc1", "__vma_start_write")])
-        fake_proc(clean, [(1, "init", "do_epoll_wait"), (4242, "cc1", "do_wait")])
+    # True means refused. Builds are allowed again since the new CPU
+    # (2026-09-29), and text inside a heredoc is never read as a command.
+    cases = {
+        "git add -A": True, "git add .": True, "git add --all": True,
+        "cd x && git add -A": True, "git add docs/oxide/tracker.md": False,
+        "melonDS.exe": True, "nohup ./melonDS": True, "./AppRun": True,
+        "cat melonDS.toml": False,
+        "make rom": False, "ninja -C build": False,
+        "git commit -F - <<'EOF'\nSubject\n\ngit add -A was not used\nEOF": False,
+    }
+    for cmd, refused in cases.items():
+        got = oxide_guard.check(cmd, "/") is not None
+        expect("%r %s" % (cmd, "refused" if refused else "allowed"), got == refused)
 
-        expect("scan finds the wedged pid", oxide_guard.wedged(stuck) == [("4242", "cc1")])
-        expect("scan finds nothing on a clean tree", oxide_guard.wedged(clean) == [])
-
-        refusal = oxide_guard.check("ps aux", "/", proc_root=stuck)
-        expect("ps aux refused while wedged", refusal is not None)
-        expect("refusal names the pid and command", "pid 4242 (cc1)" in (refusal or ""))
-        expect("ps aux allowed on a clean tree", oxide_guard.check("ps aux", "/", proc_root=clean) is None)
-        for cmd in ("ls", "ls -la /proc"):
-            expect("%s allowed while wedged" % cmd, oxide_guard.check(cmd, "/", proc_root=stuck) is None)
-            expect("%s allowed on a clean tree" % cmd, oxide_guard.check(cmd, "/", proc_root=clean) is None)
-        for cmd in ("pgrep -f make", "sudo pkill cc1", "timeout 5 top -b -n1", "/usr/bin/pidof make",
-                    "htop", "echo hi && ps -ef | grep x"):
-            expect("%s refused while wedged" % cmd, oxide_guard.check(cmd, "/", proc_root=stuck) is not None)
-
-        # The local-build rule (until the new CPU is in): full builds refused,
-        # small ninja jobs, non-build make targets, --rom checks and heredoc
-        # text (a commit message saying "make rom") let through.
-        builds = {
-            "make rom": True, "make": True, "make testkit": True, "cd x && make rom": True,
-            "ninja -C build": True, "ninja -C build -j8 x": True,
-            "bash tools/oxide/integrate.sh --verify-only": True,
-            "make clean": False, "ninja -C build -j2 generated/moves.h": False,
-            "ninja -C build -t targets all": False, "OXIDE_LOCAL_BUILD_OK=1 make rom": False,
-            "bash tools/oxide/integrate.sh --verify-only --rom x.nds": False,
-            "git commit -F - <<'EOF'\nSubject\n\nmake rom on this branch\nEOF": False,
-        }
-        for cmd, refused in builds.items():
-            got = oxide_guard.check(cmd, "/", proc_root=clean) is not None
-            expect("%r %s" % (cmd, "refused" if refused else "allowed"), got == refused)
-        # In a cloud session the build rule stands down entirely.
-        os.environ["OXIDE_CLOUD"] = "1"
-        try:
-            expect("make rom allowed in a cloud session",
-                   oxide_guard.check("make rom", "/", proc_root=clean) is None)
-        finally:
-            del os.environ["OXIDE_CLOUD"]
-
-        status = os.path.join(HERE, "wedge_status.sh")
-        out = subprocess.run(["sh", status, stuck], input="{}", capture_output=True, text=True).stdout
-        expect("status line names the wedged pid", "4242" in out and "cc1" in out)
-        out = subprocess.run(["sh", status, clean], input="{}", capture_output=True, text=True).stdout
-        expect("status line is empty on a clean tree", out == "")
+    # The marker rule reads what is staged, so it needs a real repository.
+    with tempfile.TemporaryDirectory() as repo:
+        run = lambda *a: subprocess.run(["git", "-C", repo] + list(a), capture_output=True)
+        run("init", "-q")
+        with open(os.path.join(repo, "clean.txt"), "w") as f:
+            f.write("nothing to see\n")
+        run("add", "clean.txt")
+        expect("a clean staged file commits", oxide_guard.check("git commit -m x", repo) is None)
+        with open(os.path.join(repo, "scratch.txt"), "w") as f:
+            f.write("temporary, %s\n" % oxide_guard.MARKER)
+        run("add", "scratch.txt")
+        expect("a staged marker is refused", oxide_guard.check("git commit -m x", repo) is not None)
 
     print("%d passed" % passed)
 

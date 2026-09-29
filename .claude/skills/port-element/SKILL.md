@@ -164,8 +164,8 @@ are the house style.
 
 ## Before calling it done
 
-1. The ROM builds: on GitHub with `tools/oxide/fetch-rom <commit>` until the
-   replacement CPU is in (CLAUDE.md, Build), or `make rom` in a cloud session.
+1. The ROM builds with `make rom`, and once pushed its SHA-1 matches GitHub's
+   build of the same commit (`integrate.sh` compares them).
 2. Declare intended divergence so the integration gate keeps meaning something
    (the `oxide-session` skill lists every register). Species and move records
    that now differ from the base ROM go in `DIVERGED`

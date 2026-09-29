@@ -174,8 +174,7 @@ candidates; `lint --fail-on error` is clean, R12 included (since 2026-09-27
 the legendaries Ian holds back, in the pool's reserve, an empty cavern's third
 or a post-League proposal, are warnings that give his reason, and the
 pre-commit hook and the gate both lint R12); `audit --fail-on-leak`
-exits 0; the ROM is built (on GitHub with `tools/oxide/fetch-rom` until the
-replacement CPU is in, otherwise `make rom`) and `python3
+exits 0; the ROM is built (`make rom`) and `python3
 tools/oxide/verify_narcs.py --built <rom> --encounters --source` reports all 190
 tables matching their JSON (the gate's count on oxide, 2026-09-27). The numbers from `report` go into the build plan's
 "Authoring pass" section against the targets in design doc 2.1; the tracker's
