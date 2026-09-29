@@ -1135,11 +1135,15 @@ that stay. None blocks anything.
    the later of the base's first split and the stone's first split in the
    balance track's census (`pool.evolution_items_first`). Galarian Rapidash
    opens in Gardenia's split that way, and Galarian Weezing in Maylene's,
-   against the Galactic split wild. Alolan Ninetales reads Roark's split
-   by the Ice Stone, but only because the census counts the Test Kit's
-   Ice Stone in the player's house as a gift; the game places none yet.
-   That is the balance track's to fix (it likely counts the Test Kit's
-   mints too), and availability.md is regenerated once it is. Stones count
+   against the Galactic split wild. Alolan Ninetales read Roark's split by
+   the Ice Stone for a day, because the census counted the Test Kit's Ice
+   Stone in the player's house as a gift. The balance track's census now
+   leaves the Test Kit out, and counts an item from the split in which the
+   field moves and the Bicycle first reach it (balance-combined-rescore,
+   2026-09-29). The game places no Ice Stone yet, so availability.md gives
+   Alolan Ninetales wild only, from Gardenia's split; the Moon Stone still
+   comes by Gardenia's. The Sun Stone moved from Wake's split to HQ's,
+   which no regional branch uses but the Box sim does. Stones count
    as reachable, not budgeted, until Ian asks. availability.md lists each
    branch's routes, and its tables name a branch's entries as the form
    (Galarian Weezing at Stark Mountain, not Koffing twice).
