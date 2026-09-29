@@ -40,11 +40,14 @@ function configureHgssSaveReaderOffsets() {
 
 // Oxide patch: an Oxide save's blocks are found by their footers, not by
 // vanilla Platinum's fixed offsets. Oxide's larger Pokedex grew the normal
-// block, which moved the box block, and 30 boxes will grow that too. Each
-// block ends in a 20-byte footer whose signature 0x20060623 follows the
-// block's size and precedes its id (src/savedata.c), so the sizes set the
-// same offsets the vanilla branch hard-codes. The Python reader the Sync
-// bridge uses (tools/oxide/encounters/savefile.py) finds them the same way.
+// block, which moved the box block, and the 30 PC boxes (2026-09-29) grew
+// that. Each block ends in a 20-byte footer whose signature 0x20060623
+// follows the block's size and precedes its id (src/savedata.c), so the
+// sizes set the same offsets the vanilla branch hard-codes. The box block
+// holds a u32, every box's 30 records, names and wallpapers, and one more
+// byte, so its size also gives the number of boxes. The Python reader the
+// Sync bridge uses (tools/oxide/encounters/savefile.py) finds them the same way.
+var oxideBoxCount = 0
 function applyOxideSaveLayout(view) {
     var sizes = {}
     for (var pos = 12; pos + 8 <= view.length; pos += 4) {
@@ -62,8 +65,10 @@ function applyOxideSaveLayout(view) {
     smallBlockSize = sizes[0]
     bigBlockStart = smallBlockSize
     boxDataOffset = smallBlockSize + 4
+    oxideBoxCount = 0
     if (1 in sizes) {
         bigBlockSize = sizes[1]
+        oxideBoxCount = Math.floor((bigBlockSize - 20 - 5) / (DS_SAVE_SLOTS_PER_BOX * 136 + 41))
     }
     return true
 }
@@ -371,6 +376,14 @@ $(document).ready(function() {
                         totalBoxSlotCount = GEN5_TOTAL_BOX_SLOT_COUNT
                     } else if (baseGame == "DP" || baseGame == "Pt" || baseGame == "HGSS") {
                         totalBoxSlotCount = 540
+                    }
+                    // Oxide patch: as many boxes as the save's box block
+                    // holds (30 since 2026-09-29), with the last one the
+                    // graveyard, as upstream takes Platinum's box 18 and the
+                    // OxiDex's Box sim takes the last box.
+                    if (TITLE == "Platinum Oxide" && oxideBoxCount > 0) {
+                        totalBoxSlotCount = oxideBoxCount * DS_SAVE_SLOTS_PER_BOX
+                        liveBoxSlotCount = totalBoxSlotCount - DS_SAVE_SLOTS_PER_BOX
                     }
 
                     boxPokOffsets = {}
