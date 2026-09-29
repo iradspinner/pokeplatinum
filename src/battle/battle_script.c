@@ -3523,6 +3523,12 @@ static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCt
                 BattleScript_Iter(battleCtx, jump);
                 battleCtx->abilityMon = partner;
             }
+        } else if (op == CHECK_HAVE_ON_OPPOSING_SIDE) {
+            // Oxide: counted as BerryBlockedByUnnerve counts it, over the
+            // living battlers on the other side.
+            if (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ability)) {
+                BattleScript_Iter(battleCtx, jump);
+            }
         } else if (op == CHECK_HAVE) {
             if (Battler_Ability(battleCtx, battler) == ability) {
                 BattleScript_Iter(battleCtx, jump);
