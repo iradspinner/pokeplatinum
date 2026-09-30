@@ -282,7 +282,12 @@ def summarise(rows):
             "blind_deaths": mean([r.get("deaths", 0.0) for r in blind]),
             "blind_wipe": mean([r.get("wipe", 0.0) for r in blind]),
             "convergence": curve,
-            "runs": sum(r.get("runs", 0) for r in rows)}
+            "runs": sum(r.get("runs", 0) for r in rows),
+            # The budget the fight was read at, so two readings compare: the
+            # most candidates any six took, and the share of sixes whose search
+            # stopped climbing within its budget.
+            "search_budget": max((r.get("candidates", 0) for r in rows), default=0),
+            "converged_share": mean([1.0 if r.get("converged", True) else 0.0 for r in rows])}
 
 
 def summarise_strict(rows):

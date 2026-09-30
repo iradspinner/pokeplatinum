@@ -20,6 +20,9 @@ from . import fightsim as fs
 from . import perfectline as pl
 
 RUN_TURN_CAP = 80
+# A search still climbing when its candidates run out may take up to this many
+# times its base budget (convergence per six).
+EXTEND_TIMES = 3
 SWITCH_RULES = ("losing", "losing", "hp", "never")
 
 
@@ -274,19 +277,32 @@ def search(st, team, boss_keys, flags, candidates=50, screen_runs=20, keep=3, co
     (the best screening rate after 10, 20, ... candidates), "line",
     "candidates", "runs"}."""
     rng = random.Random(seed)
-    lines = [greedy_line(st, team, boss_keys, flags, rng, 0.0)]
-    while len(lines) < candidates:
-        lines.append(greedy_line(st, team, boss_keys, flags, rng, rng.choice([0.15, 0.3, 0.5, 0.8])))
     scored = []
     curve = {}
-    for i, line in enumerate(lines):
+    budget, stopped = candidates, False
+    # Candidates are drawn and screened one at a time. When the budget is
+    # spent and the best rate was last raised in its final quarter, the
+    # search is still climbing: it takes half as many again, up to
+    # EXTEND_TIMES the base, and records the budget it ended at.
+    while not stopped:
+        i = len(scored)
+        if i >= budget:
+            best_at = max(scored, key=lambda x: (x[0], -x[1]))[1] + 1
+            if best_at > 0.75 * budget and budget < candidates * EXTEND_TIMES:
+                budget = min(candidates * EXTEND_TIMES, budget + max(1, candidates // 2))
+                continue
+            break
+        line = greedy_line(st, team, boss_keys, flags, rng,
+                           0.0 if i == 0 else rng.choice([0.15, 0.3, 0.5, 0.8]))
         r = clean_rate(st, team, boss_keys, flags, line, screen_runs, random.Random(seed * 7919 + i), one_crit)
         scored.append((r, i, line))
-        if (i + 1) % 10 == 0 or i + 1 == len(lines):
+        if (i + 1) % 10 == 0:
             curve[i + 1] = max(x[0] for x in scored)
         if r >= 1.0 and i >= 4:
-            break                                  # a line that never failed screening
+            stopped = True                         # a line that never failed screening
     curve[len(scored)] = max(x[0] for x in scored)
+    converged = stopped or budget < candidates * EXTEND_TIMES or \
+        max(scored, key=lambda x: (x[0], -x[1]))[1] + 1 <= 0.75 * budget
     scored.sort(key=lambda x: (-x[0], x[1]))
     best = None
     for r, i, line in scored[:keep]:
@@ -297,5 +313,5 @@ def search(st, team, boss_keys, flags, candidates=50, screen_runs=20, keep=3, co
     rate, screened, line, deaths, wipe = best
     return {"rate": round(rate, 3), "deaths": round(deaths, 3), "wipe": round(wipe, 3),
             "screened": round(screened, 3), "screen": curve,
-            "line": line.describe(st, team), "candidates": len(scored),
+            "line": line.describe(st, team), "candidates": len(scored), "converged": converged,
             "runs": len(scored) * screen_runs + min(keep, len(scored)) * confirm_runs}
