@@ -560,6 +560,13 @@ static void SetBackgroundAndTerrain(FieldBattleDTO *dto, const FieldSystem *fiel
     }
 
     dto->terrain = CalcTerrain(fieldSystem, dto->background);
+
+    // Oxide: a town's backdrop is the paved arena, which vanilla never shows over tall grass,
+    // since no vanilla town has any. The grass patches in Sandgem, Jubilife, Floaroma and
+    // Solaceon take a route's backdrop instead.
+    if (dto->background == BACKGROUND_CITY && dto->terrain == TERRAIN_GRASS) {
+        dto->background = BACKGROUND_PLAIN;
+    }
 }
 
 void FieldBattleDTO_SetWaterTerrain(FieldBattleDTO *dto)
