@@ -319,6 +319,90 @@ def kaizo_catches(ksplit):
     return sorted(out)
 
 
+BOX_RUNS = 300
+BOX_SEED = 20260930
+
+
+def _area_ok(ksplit, split, area, galactic_maps):
+    """Whether a wild area placed in Kaizo split `split` is reached by the
+    end of `ksplit`, by kaizo_catches' rule."""
+    order = [s.title() for s in KAIZO_ORDER[:-2]] + ["League"]
+    if ksplit == "galactic":
+        return order.index(split) <= order.index("Volkner") or \
+            (split == "League" and area.strip().lower() in galactic_maps)
+    if ksplit == "elite-four":
+        return True
+    return order.index(split) <= order.index(TITLE[ksplit])
+
+
+def _family(sp):
+    parent = {child: p for child, (p, _lv) in learngen.kaizo_reached().items()}
+    while sp in parent:
+        sp = parent[sp]
+    return sp
+
+
+def _stage_at(sp, level, cap):
+    """The last stage a Pokemon caught at `level` reaches by the cap along
+    its first level evolution at each step."""
+    now = level
+    while True:
+        nxt = sorted((max(need, now + 1), child) for need, child in _children().get(sp, [])
+                     if max(need, now + 1) <= cap)
+        if not nxt:
+            return sp
+        now, sp = nxt[0]
+
+
+@functools.lru_cache(maxsize=None)
+def kaizo_box_shares(ksplit, cap, runs=BOX_RUNS):
+    """{stage: share}: a realistic Kaizo box at the end of `ksplit`, the
+    counterpart of pool.box_shares for Oxide (2026-09-30). Each area
+    reached gives its first encounter, drawn by its land table's slot rates
+    (its Surf table's when it has no land table), under the dupes clause
+    over families; the starters take turns. Each catch counts as the last
+    stage it reaches by the cap."""
+    import random
+    from . import kaizo_docs
+    docs = kaizo_docs.load()
+    galactic_maps = set()
+    with open(os.path.join(TEAMS_DIR, "galactic-split.json"), encoding="utf-8") as f:
+        for t in json.load(f):
+            galactic_maps.add(re.split(r"\s*\(", t.get("location") or "")[0].strip().lower())
+    tables = {}
+    for t in docs["field"].values():
+        slots = [(r, learngen.kaizo_constant(sp), lv) for r, sp, lv in t["slots"] if sp]
+        if t["rate"] and slots:
+            split = ls.split_of("kaizo", sorted(lv for _r, _s, lv in slots)[len(slots) // 2])
+            if _area_ok(ksplit, split, t["area"], galactic_maps):
+                tables.setdefault(t["area"], slots)
+    for t in docs["water"].values():
+        slots = [(r, learngen.kaizo_constant(sp), lo) for r, sp, lo, _hi in t["surf"] if sp]
+        if t["area"] in tables or not slots or not t["rates"].get("surf"):
+            continue
+        split = ls.split_of("kaizo", sorted(lv for _r, _s, lv in slots)[len(slots) // 2])
+        if _area_ok(ksplit, split, t["area"], galactic_maps):
+            tables[t["area"]] = slots
+    rng = random.Random(BOX_SEED)
+    counts = collections.Counter()
+    for run_i in range(runs):
+        box = [(STARTERS[run_i % len(STARTERS)], STARTER_LEVEL)]
+        owned = {_family(box[0][0])}
+        for area in sorted(tables):
+            open_slots = [s for s in tables[area] if _family(s[1]) not in owned and s[2] <= cap]
+            if not open_slots:
+                continue
+            r = rng.random() * sum(x[0] for x in open_slots)
+            for rate, sp, lv in open_slots:
+                r -= rate
+                if r <= 0:
+                    break
+            box.append((sp, lv))
+            owned.add(_family(sp))
+        counts.update({_stage_at(sp, lv, cap) for sp, lv in box})
+    return {sp: c / runs for sp, c in counts.items()}
+
+
 def kaizo_side(ksplit, cap):
     """The player's side from Kaizo's own game: [{species, level, ability,
     item, nature, ivs, evs, moves}] like pool.pool's, and what was left out."""
@@ -340,8 +424,11 @@ def kaizo_side(ksplit, cap):
                 todo.append((child, at, known | {mv for lv, mv in _klist(child)
                                                  if max(at, 2) <= lv <= cap}))
     side, missing, dropped = [], set(), collections.Counter()
+    shares = kaizo_box_shares(ksplit, cap)
     for sp in sorted(moves_of):
         name = canon.showdown_name(sp)
+        if not shares.get(sp):
+            continue
         if not name or name not in blob["poks"]:
             missing.add(sp)
             continue
@@ -356,7 +443,10 @@ def kaizo_side(ksplit, cap):
         side.append({"species": name, "constant": sp, "how": "kaizo", "level": cap,
                      "ability": abilities.get("0"), "item": None, "nature": "Hardy",
                      "ivs": {k: pool.AVERAGE_IV for k in STATS}, "evs": {k: 0 for k in STATS},
-                     "moves": pool.damaging_moves(sorted(set(names)), blob)})
+                     # Four level-up moves: Kaizo's TM placements are not in
+                     # this data, so nothing is taught.
+                     "moves": pool.choose_four(name, set(names), set(), blob),
+                     "box_share": round(shares[sp], 4)})
     return side, sorted(missing), dict(dropped)
 
 
@@ -388,7 +478,8 @@ def fight_jobs(fight, side, level_of):
                 jobs["pairs"].append([f"p{i}", key, p["moves"], w])
             pressure.add_branches(jobs, key, dict(job, moves=every), job["moves"], side, w)
         shown.append(team)
-    ctx = {"bosses": bosses, "side": len(side), "trick_room": fight["trick_room"],
+    ctx = {"bosses": bosses, "side": len(side), "weights": pool.side_weights(side),
+           "trick_room": fight["trick_room"],
            "parties": shown, "notes": {k: sorted(v) for k, v in notes.items()},
            "weather_kept": sorted(weather_kept)}
     return jobs, ctx
@@ -398,7 +489,7 @@ def score(jobs, ctx, out):
     """A fight's readings from the calculator's answer to its jobs."""
     rows = {(r["a"], r["d"]): r for r in out["results"]}
     per_mon = pressure.score_mons(ctx["bosses"], [f"p{i}" for i in range(ctx["side"])], rows,
-                                  out["pokemon"], ctx["trick_room"])
+                                  out["pokemon"], ctx["trick_room"], ctx.get("weights"))
     r = pressure.roll_up([dict(m) for m in per_mon])
     line = b6.scale_line()
     tactics = pressure.unseen(ctx["parties"])

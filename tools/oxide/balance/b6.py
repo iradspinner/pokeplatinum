@@ -248,14 +248,16 @@ def run_state(jobs, ctx, side, blob_path):
     out = pressure.run_node(blob_path, jobs)
     return {"bosses": ctx["bosses"], "side": side, "side_keys": [f"p{i}" for i in range(len(side))],
             "rows": {(r["a"], r["d"]): r for r in out["results"]}, "info": out["pokemon"],
-            "trick_room": ctx["trick_room"], "pokemon": jobs["pokemon"]}
+            "trick_room": ctx["trick_room"], "pokemon": jobs["pokemon"],
+            "weights": pool.side_weights(side)}
 
 
 def score_all(st, rows=None, info=None, bosses=None):
     """score_mons over the fight, with the matchups given or the fight's own."""
     return pressure.score_mons(st["bosses"] if bosses is None else bosses, st["side_keys"],
                                st["rows"] if rows is None else rows,
-                               st["info"] if info is None else info, st["trick_room"])
+                               st["info"] if info is None else info, st["trick_room"],
+                               st.get("weights"))
 
 
 def roll(per_mon):
@@ -357,14 +359,16 @@ def item_levers():
 
 def tm_learners(side, machine, name, blob):
     """{pk: (record, [name])} for the player Pokemon that would know the
-    machine's move, as pool.damaging_moves would keep it, and {pk: moves it
+    machine's move, as pool.choose_four would pick it, and {pk: moves it
     would drop to make room}."""
     changed, dropped = {}, {}
     for i, p in enumerate(side):
         rec = pokedex.load(data.ROOT, p["constant"])
         if not rec or machine not in rec["by_tm"] or name in p["moves"]:
             continue
-        moves = pool.damaging_moves(sorted(set(p["moves"]) | {name}), blob)
+        # The side's four stay candidates beside the machine's move, which
+        # goes in only if it earns a slot.
+        moves = pool.choose_four(p["species"], set(p["moves"]), {name}, blob)
         if name not in moves:
             continue
         changed[f"p{i}"] = (dict(p, moves=moves), [name])

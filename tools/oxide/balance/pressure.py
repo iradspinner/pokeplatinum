@@ -511,14 +511,17 @@ def predictability(parties, category):
     return round(sum(means) / len(means), 3) if means else None
 
 
-def score_mons(bosses, side_keys, rows, info, trick_room=False):
+def score_mons(bosses, side_keys, rows, info, trick_room=False, weights=None):
     """Per boss Pokemon: threat, answers, and for a Choice holder the answers
     counting the lock (answers_lock; equal to answers for anyone else); and
     B5's threat by chance, one-on-one answers, and sure answers, whose set
     (_sure) roll_up takes for the fight's cover; the answers that hold in
     every setup branch (from rows for "key+Move", when there are any); and
     the set of player Pokemon it knocks out in one hit (_hits), for the
-    fight's "safe"."""
+    fight's "safe". Every share is weighted by the side's box shares
+    (`weights`, {side key: share}; each 1 when left out), so it reads a
+    realistic box rather than one of every species (2026-09-30)."""
+    wt = {pk: (weights or {}).get(pk, 1.0) for pk in side_keys}
     per_mon = []
     for v, key, mon, w in bosses:
         ghost = "Ghost" in (info[key].get("types") or [])
@@ -535,34 +538,36 @@ def score_mons(bosses, side_keys, rows, info, trick_room=False):
         forced = sorted({ai_pick(rows[(key, pk)]) for pk in side_keys} - {None}) if choice else []
         for pk in side_keys:
             down, up = rows[(key, pk)], rows[(pk, key)]
-            chance += threat_chance(down, info[pk], info[key], w, trick_room)
+            x = wt[pk]
+            chance += x * threat_chance(down, info[pk], info[key], w, trick_room)
             d = duel(up, down, info[pk], info[key], w, sash, trick_room)
-            duels += d
+            duels += x * d
             b = max([d] + [bait(up, down, m, info[pk], info[key], w, sash, trick_room)
                            for m in forced])
-            baits += b
-            held += min([b] + [duel(rows[(pk, bk)], rows[(bk, pk)], info[pk], info[bk], w, sash,
-                                    trick_room) for bk in branches])
+            baits += x * b
+            held += x * min([b] + [duel(rows[(pk, bk)], rows[(bk, pk)], info[pk], info[bk], w,
+                                        sash, trick_room) for bk in branches])
             if any(t <= 1 for t in turns_to_ko(down, info[pk], w).values()):
                 hits.add(pk)
             if d >= SURE:
                 sure.add(pk)
             if wins(down, info[pk], down["speeds"], w, trick_room=trick_room):
-                threat += 1
+                threat += x
             if wins(up, info[key], up["speeds"], w, sash=sash, trick_room=trick_room):
-                answer += 1
-                lock += 1
+                answer += x
+                lock += x
             elif choice and locked and lock_answer(up, down, locked, info[pk], info[key], w, sash,
                                                    trick_room):
-                lock += 1
-        n = len(side_keys)
+                lock += x
+        n = sum(wt.values()) or 1
         per_mon.append({"variant": v, "species": mon["species"], "level": mon["level"],
                         "item": mon.get("item"), "weather": w, "choice": choice,
                         "locked_move": locked,
                         "threat": round(threat / n, 3), "answers": round(answer / n, 3),
                         "answers_lock": round(lock / n, 3),
                         "threat_chance": round(chance / n, 3), "answers_duel": round(duels / n, 3),
-                        "answers_sure": round(len(sure) / n, 3), "_sure": sure, "_side": n,
+                        "answers_sure": round(sum(wt[pk] for pk in sure) / n, 3), "_sure": sure,
+                        "_side": n, "_w": wt,
                         "answers_bait": round(baits / n, 3), "forced": forced,
                         "answers_branch": round(held / n, 3),
                         "branches": [k.split("+", 1)[1] for k in branches], "_hits": hits})
@@ -585,18 +590,19 @@ def roll_up(per_mon):
     for ms in by_variant.values():
         sets = [m.pop("_sure", set()) for m in ms]
         side = max(m.pop("_side", 1) for m in ms)
+        wt = next((x for x in [m.pop("_w", None) for m in ms] if x), None) or {}
         hit_by = {}
         for m in ms:
             for pk in m.pop("_hits", set()):
                 hit_by[pk] = hit_by.get(pk, 0) + 1
-        safe.append(1 - sum(c > 1 for c in hit_by.values()) / side)
+        safe.append(1 - sum(wt.get(pk, 1.0) for pk, c in hit_by.items() if c > 1) / side)
         covers.append(cover(sets))
         counts = {}
         for s in sets:
             for pk in s:
                 counts[pk] = counts.get(pk, 0) + 1
         best_one.append(max(counts.values(), default=0) / len(ms))
-        broad.append(sum(c * 2 >= len(ms) for c in counts.values()) / side)
+        broad.append(sum(wt.get(pk, 1.0) for pk, c in counts.items() if c * 2 >= len(ms)) / side)
     unanswered = sorted({m["species"] for m in per_mon if m["answers_sure"] == 0})
 
     def mean(k):
@@ -689,6 +695,7 @@ def fight_jobs(fight, blob, side=None, parties=None, cap=None, weather="map"):
             add_branches(jobs, key, mon, boss_moves(mon, blob), side, w)
     ctx = {"key": fight["key"], "label": fight["label"], "split": split,
            "cap": cap if cap is not None else pool.caps()[split], "pool": len(side),
+           "weights": pool.side_weights(side),
            "weather": weather, "trick_room": bool(fight.get("trick_room")),
            "parties": parties, "bosses": bosses}
     return jobs, ctx
@@ -700,7 +707,7 @@ def score_jobs(out, ctx, blob, seconds):
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
     per_mon = score_mons(ctx["bosses"], [f"p{i}" for i in range(ctx["pool"])], rows,
-                         out["pokemon"], ctx["trick_room"])
+                         out["pokemon"], ctx["trick_room"], ctx.get("weights"))
     return {
         "key": ctx["key"], "label": ctx["label"], "split": ctx["split"],
         "cap": ctx["cap"], "pool": ctx["pool"], "weather": ctx["weather"],

@@ -449,6 +449,16 @@ def _pick(st, rate, alive, hp, bk, boss_share):
     return (best_win or best_lose)[1]
 
 
+def draw(rng, keys, weights, k):
+    """k of `keys` without replacement, each as likely as its box share
+    (weights; all equal when there are none): a party a realistic box would
+    field, not one of every species (2026-09-30)."""
+    w = weights or {}
+    ranked = sorted(keys, key=lambda pk: rng.random() ** (1.0 / max(w.get(pk, 1.0), 1e-9)),
+                    reverse=True)
+    return ranked[:min(k, len(ranked))]
+
+
 def run_section(st, team_sizes, pool_keys, n=PARTIES, seed=SEED):
     """Parties of six through a section's trainers in order: {"clean" (the
     share with no death), "deaths" (the mean), "wiped"}."""
@@ -462,7 +472,7 @@ def run_section(st, team_sizes, pool_keys, n=PARTIES, seed=SEED):
     clean = wiped = 0
     deaths_all = []
     for _ in range(n):
-        party = rng.sample(pool_keys, min(SIZE, len(pool_keys)))
+        party = draw(rng, pool_keys, st.get("weights"), SIZE)
         full = {pk: st["info"][pk]["hp"] for pk in party}
         hp = dict(full)
         deaths = 0

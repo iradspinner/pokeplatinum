@@ -2,11 +2,28 @@
 
     PYTHONPATH=. python3 -m tools.oxide.balance.pool [split]
 
-For each split, every species the player can own by its end, each at the
-split's cap with average IVs (15), no EVs (Oxide gives none from battling)
-and a neutral nature, holding the best attacking item the player can have by
-then and knowing every damaging move it can know by then. That is the plan's
-"player's side": what a nuzlocke could bring, not what one run does bring.
+For each split, the species a realistic nuzlocke box holds by its end, each
+at the split's cap with average IVs (15), no EVs (Oxide gives none from
+battling) and a neutral nature, holding the best attacking item the player
+can have by then and knowing four damaging moves chosen from what it can
+know by then (Ian, 2026-09-30).
+
+Each member carries its box share: the share of simulated runs whose box
+holds it at the split's end. The runs are the encounter tool's box
+simulator (one encounter per capture area, the dupes clause over families,
+the best of each area's options taken, no deaths), played BOX_RUNS times
+and stored in boxshares.json by `--box-shares`. A species no simulated box
+holds is left out, and every share the scorers read is weighted by the box
+share, so a fight's reading is what a realistic box meets, not what one of
+every catchable species would. Until 2026-09-30 the side was one of every
+species, each with every damaging move it could know, which overstated the
+player.
+
+The four moves are picked greedily for coverage (choose_four): the set
+whose best hit, weighted by the attacking stat, accuracy and STAB, is
+largest summed over every single defending type. At most one of the four
+is taught (a TM, an HM or a tutor), since TMs are single-use again (Ian,
+2026-09-28) and a box cannot give every member every machine.
 
 Where each piece comes from:
 
@@ -400,11 +417,18 @@ def moves_at(species, split):
     """Every move constant the species can know by the end of the split: its
     level-up moves by the capture rule, the TMs and HMs the player has by
     then, and the tutors reachable by then."""
+    return level_up_moves(species, split) | taught_moves(species, split)
+
+
+def taught_moves(species, split):
+    """The move constants the species can be taught by the end of the split:
+    the TMs and HMs the player has by then and the tutors reachable by
+    then."""
     tms = {m: s for m, s in ((it.replace("ITEM_", ""), s) for it, s in _items_first().items())
            if m.startswith(("TM", "HM"))}
     machines = pokedex.machines(data.ROOT)
     tutors = _tutor_splits()
-    out = level_up_moves(species, split)
+    out = set()
     rec = pokedex.load(data.ROOT, species)
     if rec:
         for machine in rec["by_tm"]:
@@ -478,18 +502,127 @@ def damaging_moves(names, blob, keep=2):
     return sorted(out) + sorted(variable)
 
 
+# A move whose power the calculator works out (Low Kick, Gyro Ball and the
+# like) is weighed at this power when the four moves are chosen.
+VARIABLE_POWER = 60
+PLAYER_BANNED_ITEMS = {"Choice Band", "Choice Specs", "Choice Scarf", "Life Orb"}
+FOUR = 4
+MAX_TAUGHT = 1
+
+
+def _eff_power(name, move, stats, types):
+    """A move's weight in the choice: power, STAB, accuracy and the stat
+    that powers it."""
+    bp = move.get("basePower", move.get("bp")) or 0
+    bp = VARIABLE_POWER if bp <= 1 else bp
+    acc = move.get("accuracy")
+    acc = 100 if acc in (None, True) else acc
+    stat = stats.get("at" if move.get("category") == "Physical" else "sa", 100)
+    return bp * (1.5 if move["type"] in types else 1) * acc / 100 * stat / 100
+
+
+def choose_four(species_name, free, taught, blob):
+    """Four damaging moves a player would carry, from `free` (level-up
+    moves) and `taught` (TMs, HMs, tutors; at most MAX_TAUGHT of them):
+    greedily, the move that most raises the coverage score, the best hit
+    summed over every single defending type."""
+    from .fightsim import effectiveness
+    rec = blob["poks"][species_name]
+    stats, types = rec["bs"], rec["types"]
+    defenders = sorted(blob["type_chart"])
+    cands = {}
+    for n in set(free) | set(taught):
+        mv = blob["moves"].get(n)
+        if not mv or mv.get("category") == "Status" or n in CONDITIONAL:
+            continue
+        power = _eff_power(n, mv, stats, types)
+        cands[n] = ([power * effectiveness(blob, mv["type"], [t]) for t in defenders],
+                    n in taught and n not in free)
+    chosen, best, used_taught = [], [0.0] * len(defenders), 0
+    while len(chosen) < FOUR:
+        pick, gain = None, 0.0
+        for n, (row, is_taught) in sorted(cands.items()):
+            if n in chosen or (is_taught and used_taught >= MAX_TAUGHT):
+                continue
+            g = sum(max(a, b) for a, b in zip(row, best)) - sum(best)
+            if g > gain:
+                pick, gain = n, g
+        if pick is None:
+            break
+        chosen.append(pick)
+        used_taught += cands[pick][1]
+        best = [max(a, b) for a, b in zip(cands[pick][0], best)]
+    # A player still fills every slot: once nothing adds coverage, the
+    # strongest remaining moves go in.
+    for _power, n in sorted((-sum(row), n) for n, (row, _t) in cands.items() if n not in chosen):
+        if len(chosen) >= FOUR:
+            break
+        if cands[n][1] and used_taught >= MAX_TAUGHT:
+            continue
+        chosen.append(n)
+        used_taught += cands[n][1]
+    return sorted(chosen)
+
+
+BOX_SHARES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "boxshares.json")
+BOX_RUNS = 300
+
+
+def simulate_box_shares(runs=BOX_RUNS):
+    """{split: {species: share}}: how often a simulated box holds each
+    species (as the stage it reaches by the cap) at the split's end. The
+    starters take turns, since the simulator alone would always pick the
+    one it values most, and a player picks any of the three."""
+    from ..encounters import simulate
+    out = {}
+    for split in SPLITS:
+        ctx = simulate.context(split)
+        starters = ctx["starter_src"]["pool"]
+        counts = collections.Counter()
+        for seed in range(runs):
+            r = simulate.run(split, seed=seed, ctx=ctx, starter=starters[seed % len(starters)])
+            counts.update({m["stage"] for m in r["box"] if m.get("alive", True)})
+        out[split] = {sp: round(c / runs, 4) for sp, c in sorted(counts.items())}
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def _stored_box_shares():
+    with open(BOX_SHARES, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def box_shares(split):
+    """{pool species: share} at the split: each simulated stage's share,
+    moved down its line to the latest stage this side holds when the side
+    is built at another cap (shape.py's what-ifs)."""
+    have = species_by_split()[split]
+    out = collections.Counter()
+    for stage, share in _stored_box_shares()["splits"].get(split, {}).items():
+        target = next((s for s in [stage] + pre_evolutions().get(stage, []) if s in have), None)
+        if target:
+            out[target] += share
+    return dict(out)
+
+
 def pool(split, blob):
-    """[{species, name, level, ability, item, nature, ivs, evs, moves, how}]."""
+    """[{species, name, level, ability, item, nature, ivs, evs, moves, how,
+    box_share}]: the members a realistic box holds, each with its share."""
     cap = caps()[split]
-    items = items_by_split()[split]
+    # The player never has a Choice item or a Life Orb (Ian, 2026-09-27),
+    # even while the item pass has yet to take the last ones out of the world.
+    items = set(items_by_split()[split]) - PLAYER_BANNED_ITEMS
     names = _move_names()
+    shares = box_shares(split)
     out = []
     for sp, how in sorted(species_by_split()[split].items()):
         name = canon.showdown_name(sp)
-        if not name or name not in blob["poks"]:
+        if not name or name not in blob["poks"] or not shares.get(sp):
             continue
         rec = pokedex.load(data.ROOT, sp)
-        moves = damaging_moves(sorted({names[m] for m in moves_at(sp, split) if m in names}), blob)
+        free = {names[m] for m in level_up_moves(sp, split) if m in names}
+        taught = {names[m] for m in taught_moves(sp, split) if m in names}
+        moves = choose_four(name, free, taught, blob)
         stats = blob["poks"][name]["bs"]
         kinds = sorted(((blob["moves"][m]["type"], blob["moves"][m]["category"],
                          blob["moves"][m].get("basePower") or 0) for m in moves),
@@ -500,12 +633,29 @@ def pool(split, blob):
             "species": name, "constant": sp, "how": how, "level": cap,
             "ability": abilities.get("0"), "item": best_item(stats, kinds, items),
             "nature": "Hardy", "ivs": iv, "evs": {k: 0 for k in iv}, "moves": moves,
+            "box_share": round(shares[sp], 4),
         })
     return out
 
 
+def side_weights(side):
+    """{side key: box share} as the scorers key the side ("p0", "p1", ...);
+    a member without a share (a what-if's own side) weighs 1."""
+    return {f"p{i}": p.get("box_share", 1.0) for i, p in enumerate(side)}
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
+    if argv[:1] == ["--box-shares"]:
+        # Replay the box simulator and store each split's shares; rerun
+        # whenever the encounter tables or their sources change.
+        with open(BOX_SHARES, "w", encoding="utf-8") as f:
+            json.dump({"_comment": "Box shares by split: how often a simulated nuzlocke box "
+                                   "holds each species at the split's end (pool.py).",
+                       "runs": BOX_RUNS, "splits": simulate_box_shares()}, f, indent=1)
+            f.write("\n")
+        print(f"wrote {BOX_SHARES}")
+        return 0
     blob = calc_export.build()
     for split in (argv or SPLITS):
         p = pool(split, blob)

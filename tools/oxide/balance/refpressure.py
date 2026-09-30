@@ -184,7 +184,7 @@ def ref_jobs(hack, fight, blob, side=None):
     if not bosses:
         return None
     ctx = {"hack": hack, "key": fight["key"], "label": fight["label"], "split": split,
-           "cap": pool.caps()[split], "pool": len(side),
+           "cap": pool.caps()[split], "pool": len(side), "weights": pool.side_weights(side),
            "trainers": [t["name"] for t in data.fight_trainers(hack, fight)],
            "ace": max(m["level"] for p in ps for m in p), "ps": ps, "bosses": bosses,
            "sources": sources, "left_out": {k: sorted(v) for k, v in notes.items() if v},
@@ -202,7 +202,7 @@ def score_ref_jobs(out, ctx, seconds):
     errors = sorted({f"{r['a']} {m}: {v['error']}" for r in out["results"]
                      for m, v in r["moves"].items() if "error" in v})
     per_mon = pressure.score_mons(ctx["bosses"], [f"p{i}" for i in range(ctx["pool"])], rows,
-                                  out["pokemon"])
+                                  out["pokemon"], weights=ctx.get("weights"))
     return {
         "key": ctx["key"], "label": ctx["label"], "split": ctx["split"], "hack": ctx["hack"],
         "cap": ctx["cap"], "pool": ctx["pool"], "trainers": ctx["trainers"], "ace": ctx["ace"],
