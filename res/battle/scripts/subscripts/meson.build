@@ -397,4 +397,7 @@ subscript_files = files(
     'subscript_eject_button.s',
     'subscript_relic_song_form.s',
     'subscript_pastel_veil.s',
+    'subscript_throat_chop.s',
+    'subscript_move_is_throat_chopped.s',
+    'subscript_lunar_blessing.s',
 )

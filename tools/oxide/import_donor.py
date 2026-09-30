@@ -10,6 +10,8 @@ Reading is all in donor.py; this file only decides what the repo should say.
 
     python3 tools/oxide/import_donor.py abilities [--dry-run]
     python3 tools/oxide/import_donor.py hidden-abilities [--dry-run]
+    python3 tools/oxide/import_donor.py species [--dry-run]
+    python3 tools/oxide/import_donor.py seat-sprites [--dry-run]
 """
 
 import argparse
@@ -162,6 +164,7 @@ def import_species(d, dry_run, log):
             json.dump(data, f, indent=4, ensure_ascii=False)
             f.write("\n")
 
+    species_import.seat_sprites(conv, dry_run, log)
     species_import.insert_species_constants(
         [r["constant"] for r in conv.map], dry_run, log)
     species_import.register_cries(conv.map, dry_run, log)
@@ -220,7 +223,7 @@ def import_hidden_abilities(d, dry_run, log):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["abilities", "species", "hidden-abilities"])
+    ap.add_argument("what", choices=["abilities", "species", "hidden-abilities", "seat-sprites"])
     ap.add_argument("--rom", default=donor.DEFAULT_ROM)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -233,6 +236,11 @@ def main():
         import_species(d, args.dry_run, log)
     elif args.what == "hidden-abilities":
         import_hidden_abilities(d, args.dry_run, log)
+    elif args.what == "seat-sprites":
+        # the imported species' battle heights alone; --dry-run is the check
+        # that the committed values follow the rule
+        import species_import
+        species_import.seat_sprites(species_import.Converter(d), args.dry_run, log)
     print("\n".join(log) if log else "nothing to do")
 
 
