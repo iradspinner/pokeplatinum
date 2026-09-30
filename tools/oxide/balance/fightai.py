@@ -623,6 +623,10 @@ def choose(b, u, t):
         locked = next((m for m in u.moves if m.name == u.choice), None)
         if locked is not None and u.pp.get(locked.name, 1) > 0:
             return "move", locked
+    # With no PP left in any move the engine substitutes Struggle
+    # (battle_lib.c, the MOVE_STRUGGLE fallback in the turn order code).
+    if all(u.pp.get(m.name, 1) <= 0 for m in u.moves):
+        return "move", fs.move("Struggle")
     side = b.p if u.side == "p" else b.b
     sw = should_switch(b, side, u, t)
     if sw is not None:

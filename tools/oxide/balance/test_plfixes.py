@@ -255,6 +255,17 @@ def main():
         results.append(("Basic still zeroes Thunder Wave against a Ground type",
                         fightai.basic(b, bronzor, geo, tw, 0) == -10, f"{fightai.basic(b, bronzor, geo, tw, 0)}"))
 
+    # Struggle: with no PP left the AI's Pokemon struggles, hits for typeless
+    # damage (it touches a Dark type) and loses a quarter of its HP.
+    for m in bronzor.moves:
+        bronzor.pp[m.name] = 0
+    pick = fightai.choose(b, bronzor, vull)
+    hp_v, hp_b = vull.hp, bronzor.hp
+    pl._turn(b, ("move", mv(vull, "Leer")), pick)
+    results.append(("with no PP left the AI struggles, hits and takes a quarter of its HP in recoil",
+                    pick[1].name == "Struggle" and vull.hp < hp_v and hp_b - bronzor.hp == bronzor.maxhp // 4,
+                    f"{pick[1].name}; Vullaby {hp_v} to {vull.hp}; Bronzor {hp_b} to {bronzor.hp} of {bronzor.maxhp}"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

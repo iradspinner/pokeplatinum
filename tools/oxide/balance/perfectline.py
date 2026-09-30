@@ -339,6 +339,14 @@ def use_move(b, att, mv, dfn, first):
     attack(b, att, mv, dfn, first)
 
 
+def struggle_damage(att, dfn, roll):
+    """Struggle: 50 power, physical, typeless, no modifiers, at the roll."""
+    a = att.stats.get("atk", 50) * fs.stage_mult(att.stages["atk"])
+    d = dfn.stats.get("def", 50) * fs.stage_mult(dfn.stages["def"])
+    base = ((2 * att.level // 5 + 2) * 50 * a / d) // 50 + 2
+    return int(base * roll / 100)
+
+
 def confusion_damage(mon, roll):
     """A self-hit: a 40-power typeless physical hit at the given roll."""
     a = mon.stats.get("atk", 50) * fs.stage_mult(mon.stages["atk"])
@@ -393,6 +401,12 @@ def attack(b, att, mv, dfn, first):
         if not hit or (want and hit[0] != want):
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
+    elif mv.effect == "STRUGGLE":
+        # Struggle skips the type chart and every modifier (battle_lib.c
+        # returns early for MOVE_STRUGGLE): a 50-power physical hit on stats
+        # and stages, at the roll.
+        roll = 85 + (b.dice.roll(trainer) if b.dice.mode == "run" else (15 if trainer else 0))
+        dmg = struggle_damage(att, dfn, roll)
     if dmg is None:
         crit = False
         if dfn.ability not in ("Battle Armor", "Shell Armor"):
@@ -458,6 +472,9 @@ def attack(b, att, mv, dfn, first):
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     e = mv.effect
+    if e == "STRUGGLE" and att.ability != "Magic Guard":
+        # subscript_struggle: the user loses a quarter of its maximum HP.
+        fs.hurt(b, att, max(1, att.maxhp // 4))
     if e in fs.RECOIL and att.ability != "Rock Head":
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
     if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
