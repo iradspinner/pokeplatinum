@@ -2211,9 +2211,9 @@
    "left_out": {},
    "calcs": 31472,
    "errors": [],
-   "node_seconds": 6.29,
-   "wall_seconds": 6.46,
-   "fingerprint": "40745ae551091730155c",
+   "node_seconds": 6.41,
+   "wall_seconds": 6.72,
+   "fingerprint": "e1f2b8d8dca788e6e80b",
    "verified": true
   },
   "mars_2": {
@@ -2327,9 +2327,9 @@
    "left_out": {},
    "calcs": 29704,
    "errors": [],
-   "node_seconds": 5.79,
-   "wall_seconds": 5.95,
-   "fingerprint": "1f8124c2085dc4ad25f0",
+   "node_seconds": 6.28,
+   "wall_seconds": 6.51,
+   "fingerprint": "192ae27e7c70beedb03e",
    "verified": true
   },
   "candice": {
@@ -2455,9 +2455,9 @@
    "left_out": {},
    "calcs": 32356,
    "errors": [],
-   "node_seconds": 6.57,
-   "wall_seconds": 6.71,
-   "fingerprint": "b96e76533d9ed523fe8f",
+   "node_seconds": 6.47,
+   "wall_seconds": 6.65,
+   "fingerprint": "bbf5434665f519cbc835",
    "verified": true
   },
   "cyrus_2": {
@@ -2560,9 +2560,9 @@
    "left_out": {},
    "calcs": 24296,
    "errors": [],
-   "node_seconds": 5.14,
-   "wall_seconds": 5.29,
-   "fingerprint": "eae8a3f296eb2d2dfd36",
+   "node_seconds": 4.24,
+   "wall_seconds": 4.4,
+   "fingerprint": "5345e06ad840812e24fb",
    "verified": true
   },
   "saturn_2": {
@@ -2666,9 +2666,9 @@
    "left_out": {},
    "calcs": 24296,
    "errors": [],
-   "node_seconds": 5.33,
-   "wall_seconds": 5.49,
-   "fingerprint": "e954d77ae2540bef465b",
+   "node_seconds": 3.93,
+   "wall_seconds": 4.06,
+   "fingerprint": "26b1415b458201fdb8cb",
    "verified": true
   },
   "mars_jupiter": {
@@ -2835,9 +2835,9 @@
    "left_out": {},
    "calcs": 52133,
    "errors": [],
-   "node_seconds": 8.42,
-   "wall_seconds": 8.67,
-   "fingerprint": "c1b219e751f0cc99b7f6",
+   "node_seconds": 7.03,
+   "wall_seconds": 7.23,
+   "fingerprint": "c6254c2a06c88c4030d2",
    "verified": true
   },
   "cyrus_3": {
@@ -2983,9 +2983,9 @@
    "left_out": {},
    "calcs": 44260,
    "errors": [],
-   "node_seconds": 7.6,
-   "wall_seconds": 7.82,
-   "fingerprint": "a6f17c538ff93063796c",
+   "node_seconds": 6.38,
+   "wall_seconds": 6.55,
+   "fingerprint": "67a1f78760af333fc4cc",
    "verified": true
   },
   "volkner": {
@@ -3107,9 +3107,9 @@
    "left_out": {},
    "calcs": 36792,
    "errors": [],
-   "node_seconds": 6.71,
-   "wall_seconds": 6.88,
-   "fingerprint": "4c9f42894406cefc3619",
+   "node_seconds": 9.39,
+   "wall_seconds": 9.6,
+   "fingerprint": "09d3891fac2b59c251b0",
    "verified": true
   },
   "barry_6": {
@@ -3510,9 +3510,9 @@
    "left_out": {},
    "calcs": 164144,
    "errors": [],
-   "node_seconds": 21.17,
-   "wall_seconds": 21.57,
-   "fingerprint": "382267cf626b1f8a0d28",
+   "node_seconds": 25.47,
+   "wall_seconds": 25.87,
+   "fingerprint": "c3fc65b124666645fb47",
    "verified": true
   },
   "aaron": {
@@ -3664,9 +3664,9 @@
    "left_out": {},
    "calcs": 53998,
    "errors": [],
-   "node_seconds": 6.36,
-   "wall_seconds": 6.53,
-   "fingerprint": "32ecd47f7d27923f4963",
+   "node_seconds": 13.36,
+   "wall_seconds": 13.59,
+   "fingerprint": "b89cd11769315c1482b1",
    "verified": true
   },
   "bertha": {
@@ -3811,9 +3811,9 @@
    "left_out": {},
    "calcs": 45521,
    "errors": [],
-   "node_seconds": 5.33,
-   "wall_seconds": 5.48,
-   "fingerprint": "19bb3ed7a4671950bf01",
+   "node_seconds": 11.18,
+   "wall_seconds": 11.39,
+   "fingerprint": "5875bcdfcfd310e2b83f",
    "verified": true
   },
   "flint": {
@@ -3958,9 +3958,9 @@
    "left_out": {},
    "calcs": 45521,
    "errors": [],
-   "node_seconds": 5.89,
-   "wall_seconds": 6.06,
-   "fingerprint": "11b37faea06b65538dfd",
+   "node_seconds": 11.66,
+   "wall_seconds": 11.89,
+   "fingerprint": "4c87fd0962a5f8068df1",
    "verified": true
   },
   "lucian": {
@@ -4110,9 +4110,9 @@
    "left_out": {},
    "calcs": 53998,
    "errors": [],
-   "node_seconds": 6.97,
-   "wall_seconds": 7.14,
-   "fingerprint": "c9eff745e66ad779aa2c",
+   "node_seconds": 13.08,
+   "wall_seconds": 13.3,
+   "fingerprint": "43a1c6e49de930338d67",
    "verified": true
   },
   "cynthia": {
@@ -4275,9 +4275,9 @@
    "left_out": {},
    "calcs": 55342,
    "errors": [],
-   "node_seconds": 7.23,
-   "wall_seconds": 7.4,
-   "fingerprint": "2267cd2716999eabc5f0",
+   "node_seconds": 13.22,
+   "wall_seconds": 13.57,
+   "fingerprint": "d1f53c163fc80648c9f9",
    "verified": true
   }
  }
