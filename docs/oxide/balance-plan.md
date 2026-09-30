@@ -62,7 +62,13 @@ session designs and prototypes it blind in `~/oxide-trials/scoring-review/`.
 Until its results are in, the scale is not refitted and the average-fight
 calibration, the gauntlet list and the Kaizo study's scores are held.
 `balance-boxmodel` stays as it is: the four-move limit and the item ban
-carry into the new scorer. Next: learnset v3, which needs no fight score,
+carry into the new scorer. A known fault of the simulator, found by the
+Overseer's audit (2026-09-30), to fix when the scorer is rebuilt:
+`fightsim.py` rolls Platinum's critical hits (1 in 16 at neutral, double
+damage), where Oxide's engine uses the Generation 7 odds (1 in 24 at
+neutral, 1 in 8 at +1, 1 in 2 at +2, certain from +3,
+`sCriticalStageRates` in `src/battle/battle_lib.c`) and 1.5 times damage
+(`ApplyCriticalMul` in `battle_script.c`). Next: learnset v3, which needs no fight score,
 then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
