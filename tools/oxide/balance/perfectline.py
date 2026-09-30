@@ -233,7 +233,14 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None):
 
 # ---- the turn, with the dice replaced ---------------------------------------------------------
 
+_FS_GIVE_STATUS = fs.give_status
+
+
 def give_status(b, target, status):
+    # A battle fightsim plays with its own dice (pdoubles' double battles)
+    # keeps fightsim's sleep roll.
+    if not hasattr(b, "dice"):
+        return _FS_GIVE_STATUS(b, target, status)
     if not fs.can_status(b, target, status):
         return False
     target.status = status

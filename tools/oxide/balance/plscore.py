@@ -98,7 +98,12 @@ def prepare(f):
     if kind == "story":
         fight = next(x for x in data.fights()["fights"] if x["key"] == key)
         if fight.get("tag"):
-            return None
+            from . import pdoubles
+            split = fight["split"]
+            st = pdoubles.prepare_story(fight, fs.fight_cap(split, key))
+            flat = [k for g in st["bosses"] for k in g]
+            return {"st": st, "variants": [(flat, st["group_flags"][0], None)], "split": split,
+                    "label": fight["label"], "key": key, "doubles": "tag"}
         trainers = data.fight_trainers("oxide", fight)
         parties = [t["party"] for t in trainers]
         weather = pressure.fight_weather([t["tr_id"] for t in trainers])
@@ -111,10 +116,13 @@ def prepare(f):
             variants.append((st["bosses"][v], t["ai"], starter))
         return {"st": st, "variants": variants, "split": split, "label": fight["label"], "key": key}
     t = data.oxide_trainers()[key]
-    if t.get("battle_type") == "Doubles" and len(t["party"]) > 1:
-        return None
     split = SPLIT_OVERRIDE.get(key) or (b6.placements()[key]["split"] if key in b6.placements()
                                         else splits.trainer_split(key))
+    if t.get("battle_type") == "Doubles" and len(t["party"]) > 1:
+        from . import pdoubles
+        st = pdoubles.prepare_trainer(t, split, fs.fight_cap(split))
+        return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
+                "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
     st = fs.prepare(split, [t["party"]], pressure.fight_weather([key]), cap=fs.fight_cap(split))
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}
@@ -201,6 +209,13 @@ def _job(args):
                 "seconds": r["seconds"], "disc": r["disc"]}
     from . import plines as lines
     t0 = time.time()
+    if _PREP.get("doubles"):
+        # A double or tag battle: fightsim's four-actor battle, the six's
+        # send-out order searched (pdoubles; game-odds dice).
+        from . import pdoubles
+        r = pdoubles.search(st, team, seed=seed)
+        r.update({"kind": kind, "team": species, "seconds": round(time.time() - t0, 1)})
+        return r
     r = lines.search(st, team, boss_keys, flags, seed=seed,
                      **(BLIND_SEARCH if kind.startswith("blind") else PLANNED_SEARCH))
     r.update({"kind": kind, "team": species, "seconds": round(time.time() - t0, 1)})
