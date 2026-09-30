@@ -65,6 +65,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - **The ten questions from the 2026-09-30 audit**, each found open in a session cut off or compacted, were all answered on 2026-09-30 and are recorded where they apply. The Day Care stays in the game, unused: a play rule for Ian's runs, not a removal.
 
+- **Element 6's changes of play** (2026-09-30): four ways the AI could play Oxide's new rules better, listed in Phase 4's element 6 entry under "For Ian"; each is his yes or no.
+
 - **The learnset decisions**, to come with learnset v3's report: the eleven held gap-fillers beside what later games offer, the bar's thresholds, the five-level wait, the 138 wild slots that can end an encounter, the good-move share, and the later-moves report's rows marked for Ian.
 
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
