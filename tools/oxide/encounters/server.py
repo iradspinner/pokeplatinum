@@ -410,6 +410,13 @@ def area_detail(a, st, kind="land"):
         "day_labels": [dex.display_name(s) for s in (a.data.get("day") or [])],
         "night_labels": [dex.display_name(s)
                          for s in (a.data.get("night") or [])],
+        # The caught state of each day and night species, so a slot row on
+        # those tabs ticks, and shows as caught or duped, the species it
+        # holds then rather than the morning table's (Ian, 2026-09-30).
+        "day_views": [_species_view(s, st, a.name)
+                      for s in (a.data.get("day") or [])],
+        "night_views": [_species_view(s, st, a.name)
+                        for s in (a.data.get("night") or [])],
         "merged": merged_view(slots),
         "merged_layers": merged_layers,
         "water": water,

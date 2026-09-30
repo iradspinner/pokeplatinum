@@ -6,7 +6,6 @@
 #include "generated/map_headers.h"
 
 #include "field/field_system.h"
-#include "overlay006/great_marsh_daily_encounters.h"
 #include "overlay006/wild_encounters.h"
 
 #include "field_system.h"
@@ -18,8 +17,6 @@
 #include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
-#include "pokedex.h"
-#include "special_encounter.h"
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 {
@@ -31,9 +28,8 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
         encounterTable[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    BOOL natDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
-
-    ReplaceGreatMarshDailyEncounters(SpecialEncounter_GetDailyMon(SaveData_GetSpecialEncounters(fieldSystem->saveData), DAILY_MARSH), natDexObtained, fieldSystem->location->mapHeaderID, &encounterTable[6], &encounterTable[7]);
+    // Platinum Oxide (Ian, 2026-09-30): the daily Pokemon are cut, as in
+    // wild_encounters.c, so the binoculars show the area's own slots 6 and 7.
     // Platinum Oxide (Ian, 2026-09-26): no GBA dual-slot list replaces slots
     // 8 and 9, the same as in wild_encounters.c, so the binoculars show only
     // what the marsh can really give.

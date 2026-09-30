@@ -181,9 +181,20 @@ Tsareena and the two megas) are taken as wanted.
 
 ## Files
 
-- `docs/oxide/species-pick-list.csv` - all 360 rows: dex position, name, status, national
+- `docs/oxide/species-pick-list.csv` - 499 rows: dex position, name, status, national
   dex number, kind, donor index, verification result, types, evolution note, and the
-  `tier` column the encounter tool's `cli tier-init` added (2026-09-20)
+  `tier` column the encounter tool's `cli tier-init` added (2026-09-20). Rows 1 to 360
+  are the curated dex above; rows 361 to 392 (Charcadet's two evolutions and fourteen
+  native lines) were in the file when it landed on 2026-09-20; the encounter track
+  appended rows 393 to 502 on 2026-09-26 (the seventeen water lines and scarcity step
+  2's 34 lines, whose regional order is proposed in
+  `docs/oxide/encounters/regional-dex-proposal.md`); and Meloetta is 503. Five
+  rows are `cut` (the Magikarp line, Toxel, Toxtricity). `dex_pos` is also the row of
+  `New Pokedex.xlsx` that `species_import.py` reads, so a new regional order goes in a
+  column of its own rather than renumbering it. The type columns are the sheet's and
+  are read by nothing; the game's types are in `res/pokemon/`. The national dex
+  column is blank for 21 natives, and three wrong values were corrected on
+  2026-09-30 (Rotom 479, Manaphy 490, Shaymin 492)
 
 Three scripts produced this and live on the chat surface, in the working folder's
 `tools\`, not in this repo: `build_pick_list.py` (regenerates both files from

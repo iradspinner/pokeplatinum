@@ -197,7 +197,7 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 200,Lumineon,native,457,platinum,,yes,Water,Water,,preferred
 201,Snover,native,459,platinum,,yes,Grass,Ice,,preferred
 202,Abomasnow,native,460,platinum,,yes,Grass,Ice,,preferred
-203,Rotom,native,503,platinum,,yes,Electric,Ghost,,gate
+203,Rotom,native,479,platinum,,yes,Electric,Ghost,,gate
 204,Uxie,native,480,platinum,,yes,Psychic,Fairy,,gate
 205,Mesprit,native,481,platinum,,yes,Psychic,Fairy,,gate
 206,Azelf,native,482,platinum,,yes,Psychic,Fairy,,gate
@@ -208,9 +208,9 @@ dex_pos,name,status,natdex,kind,donor_index,verified,t1,t2,evo,tier
 211,Giratina,native,487,platinum,,yes,Ghost,Dragon,,gate
 212,Cresselia,native,,platinum,,UNMATCHED,Psychic,Psychic,,gate
 213,Phione,native,489,platinum,,yes,Water,Water,,gate
-214,Manaphy,native,151,platinum,,yes,Water,Water,,gate
+214,Manaphy,native,490,platinum,,yes,Water,Water,,gate
 215,Darkrai,native,491,platinum,,yes,Dark,Dark,,gate
-216,Shaymin,native,151,platinum,,yes,Grass,Grass,,gate
+216,Shaymin,native,492,platinum,,yes,Grass,Grass,,gate
 217,Arceus,native,493,platinum,,yes,Normal,Normal,,gate
 218,Snivy,new,495,species,545,yes,Grass,Grass,,preferred
 219,Servine,new,496,species,546,yes,Grass,Grass,,preferred
