@@ -1,16 +1,18 @@
 // Which colour scheme the encounter tool draws in: light, dark, or dim, the
-// dark scheme lifted to a soft grey (Ian, 2026-09-28).
+// dark scheme on a cyan ground (Ian, 2026-09-28).
 //
 // Loaded as an ordinary blocking script in <head>, straight after theme.css,
 // so it runs before the first paint and a pinned scheme never flashes the
 // other one first. It is not a module and not deferred, for the same reason.
 //
-// The page follows Windows by default. One button in the header steps
-// through the three looks and back to following Windows, skipping the pin
-// that would look the same as what Windows shows, so every press changes
-// something: from a dark desktop it goes Dim, Light, System; from a light
-// one Dark, Dim, System. A pin stays where Ian put it if Windows later
-// switches. The label always names what pressing it will do.
+// The page follows Windows by default. The header has four buttons (Ian,
+// 2026-09-29, the redesign): Dark, Dim and Light pin that look, and Auto
+// follows Windows again; the one in force is marked. A pin stays where Ian
+// put it if Windows later switches. Any button marked data-theme-set="dark",
+// "dim", "light" or "auto" is wired. The older single button that steps
+// through the looks (data-theme-toggle) still works on any page that has it,
+// skipping the pin that would look the same as what Windows shows, so every
+// press changes something; its label names what pressing it will do.
 //
 // The preference is per browser, so it lives in localStorage rather than going
 // through the server the way the caught list does. Every storage access is
@@ -98,6 +100,25 @@
     return label();
   }
 
+  // Pin one look, or follow Windows with "auto" (or null).
+  function set(value) {
+    value = value === "dark" || value === "dim" || value === "light" ? value : null;
+    remember(value);
+    apply(value);
+    notify();
+  }
+
+  // Mark the button of the look in force: the pinned one, or Auto.
+  function mark() {
+    var now = pinned() || "auto";
+    var buttons = document.querySelectorAll("[data-theme-set]");
+    for (var i = 0; i < buttons.length; i++) {
+      var on = buttons[i].getAttribute("data-theme-set") === now;
+      buttons[i].classList.toggle("on", on);
+      buttons[i].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+  }
+
   apply(pinned());
 
   // Windows switching scheme changes what the button should offer, and the
@@ -127,9 +148,16 @@
     for (var i = 0; i < buttons.length; i++) buttons[i].textContent = label();
   });
 
+  listeners.push(mark);
+
   document.addEventListener("DOMContentLoaded", function () {
     var buttons = document.querySelectorAll("[data-theme-toggle]");
     for (var i = 0; i < buttons.length; i++) wire(buttons[i]);
+    var sets = document.querySelectorAll("[data-theme-set]");
+    for (var j = 0; j < sets.length; j++) {
+      sets[j].addEventListener("click", function () { set(this.getAttribute("data-theme-set")); });
+    }
+    mark();
   });
 
   // The favicon: a 16 by 16 pixel mark, a teal diamond with a pink core. It is
@@ -180,6 +208,7 @@
   window.oxideTheme = {
     label: label,
     toggle: toggle,
+    set: set,
     pinned: pinned,
     onChange: function (fn) { listeners.push(fn); }
   };

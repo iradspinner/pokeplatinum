@@ -1249,12 +1249,17 @@ that stay. None blocks anything.
      no "where it is met" line on the cards, "No Wild Encounters" for a
      member met nowhere, and "+N from vanilla" beside the base stat total.
      The machine, tutor and egg lists now carry class, power and accuracy.
-   - Themes, Moves, Trainers and Box sim follow. Ian's answers for Themes
-     (2026-09-29, through the Overseer): the dull teal a very little
-     brighter in both Dark and Dim, contrast still checked; the mockup's
-     three fonts (Atkinson Hyperlegible, JetBrains Mono, Silkscreen)
-     shipped in the tool with their OFL notices, nothing from the network;
-     and Dark, Dim, Light and Auto buttons for the theme.
+   - **Themes** (`encounter-redesign-themes`, stacked on the Dex), with
+     Ian's answers (2026-09-29, through the Overseer). The dark surfaces
+     are a step brighter and more teal in Dark and Dim, the sunken wells
+     more teal only, so text in them keeps its contrast; `test_m4` now
+     measures Dark as it did Dim. The mockup's three faces ship in
+     `ui/fonts` with their OFL licences (`fonts/README.md`), replacing
+     Pixelify Sans: Atkinson Hyperlegible, JetBrains Mono and Silkscreen,
+     nothing from the network. The header's one cycling button, and the
+     doc viewer's, became four: Dark, Dim, Light and Auto, the one in force
+     marked. The calculator keeps its own type.
+   - Moves, Trainers and Box sim follow.
    - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
      wild, each with one home and at most one neighbour, and Froakie's 1%
      is cut to a few water areas that fit it (R21 flags it); the late
