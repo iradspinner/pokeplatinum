@@ -2415,6 +2415,18 @@ lands, and each change is re-scored as it lands.
    lines at levels 1 to 17. They deal the user's level, which is milder; the
    revision lists the ones learned before Gardenia's split for Ian rather
    than moving them.
+
+   **Tsareena's Trop Kick is relearner-only** (the Overseer's finding,
+   2026-09-30; no ruling yet). Steenee evolves once it knows Stomp, which
+   it learns at 25, so Tsareena exists from 26 at the earliest; its list
+   has Trop Kick at 1 and 25, on oxide and in learnset v3 alike, and its
+   next move is Low Sweep at 32. The later games teach Trop Kick on
+   evolving, so the revision's proposal is level 0, v3's evolution-move
+   rule, for Ian with the next learnset questions. A scan of every line
+   that evolves by knowing a move (Aipom, Bonsly, Clobbopus, Lickitung,
+   Mime Jr., Piloswine, Poipole, Steenee, Tangela, Yanma) finds no other
+   evolved-form move lost this way beyond Tsareena's Swagger at 5, which
+   costs nothing.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
