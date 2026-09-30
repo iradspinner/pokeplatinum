@@ -178,6 +178,16 @@ None is Phase 4 work; all of them shape the finished game.
 
 Done and archived: boot, the save-format break, new game to first battle (re-check it after each further Phase 4 element), and the nurse and whiteout hangs. Fixed on 2026-09-27: the new-game hang after the intro (Ian confirmed) and Barry's team for a Scorbunny player (in-game check in the checklist).
 
+- [ ] **The first full run (Ian, 2026-09-30).** How it runs:
+  1. Before it starts, every save-breaking change is in (the TM pass's Bag growth, the 30 boxes), and so is any script fix that could not later be made without breaking the save.
+  2. Also before it starts, every planned balance pass is done. For the trainer pass, not every trainer needs its change applied, but Ian wants to see the tables, examples of recommended fights, and how the rules extend to Generation 5 and later Pokemon.
+  3. The run's ROM is fixed until the run is lost. Balance and design feedback waits for one large patch, and run two starts fresh on the ROM from that patch.
+  4. A crash, softlock or corrupted save is hotfixed during the run on a ROM that keeps his save loading, and the save is checked to load before he gets the ROM. Several hotfixes are expected in the first runs.
+  5. Anything outside the game (the OxiDex, the tools, the docs) changes as he goes.
+  6. Feedback goes into one notes log in the OxiDex. Each note is stamped from the save and the live bridge with the ROM, location, badges and party. Each death gets a note: which fight, what killed it, and whether he saw it coming.
+  7. Each boss and gauntlet gets a rating out of 10 right after the fight. These refit the fight scorer's scale, which his fifteen boss ratings set, alongside the battle log in the save and the live bridge's `/battle_log` and `/battle_state`. The point is data on how he approaches fights, not help during them.
+  8. A save backup is taken at each badge, outside the repo, so a bug report comes with a save that reproduces it.
+  9. While he plays, tracks work on the OxiDex, hotfixes and passes for after the run.
 - [ ] **Open bug (Ian, 2026-09-21): backing out of the box deposit screen hangs**, on a new save, and still on the realigned build, so it is not the `scripts_common` alignment bug; it is the bug track's first open item. Not traced yet. The PC is a map object, and the base ROM added a PC entry, `Common_Entry58`, behind the shortened region, so the first read is which script runs on leaving the deposit screen and whether it applies a movement from a generated script other than `scripts_common` (the `carry-over-map` skill's gotcha 6 says how to check). If not, trace with `live_watch.py` from the deposit screen: heartbeat first, then `ScriptContext_WaitForMovement`, `MapObject_HasAnimationEnded` and the PC overlay's exit
 - [ ] **A ported element visibly works in-game**: Fairy and the rest, in `docs/oxide/ingame-checklist.md`
 - [ ] **The Poketch move tester and the Pokedex info page on a Fairy Pokemon** (the NORMAL plate is the known gap, not a crash): in `docs/oxide/ingame-checklist.md`
