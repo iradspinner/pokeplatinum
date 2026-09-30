@@ -3080,8 +3080,14 @@ function drawMid() {
   wireHoney(d.area);
 
   const tb = $("#slotrows");
-  d.slots.forEach(s => {
-    const substituted = layerVals && (s.slot === 2 || s.slot === 3);
+  const layerViews = LAYER === "day" ? d.day_views : LAYER === "night" ? d.night_views : null;
+  d.slots.forEach(base => {
+    const substituted = layerVals && (base.slot === 2 || base.slot === 3);
+    // On the Day or Night tab, slots 2 and 3 hold that time's species, so the
+    // row's caught box, dupe strike and tick all follow it, not the morning
+    // table's species in the same slot (Ian, 2026-09-30).
+    const lv = substituted && layerViews && layerViews[base.slot - 2];
+    const s = lv ? Object.assign({}, base, lv) : base;
     const shown = substituted ? layerVals[s.slot - 2] : s.label;
     const locked = LAYER !== "base" && !substituted;
     const tr = document.createElement("tr");
@@ -3098,8 +3104,8 @@ function drawMid() {
     const cell = tr.querySelector(".spname > .cell");
     // The icon follows what the slot holds now, including a day or night
     // substitution, which is the species the combobox is showing.
-    const held = substituted ? (BY_LABEL.get(String(shown).toLowerCase()) || s.species)
-                             : s.species;
+    const held = lv ? s.species
+      : substituted ? (BY_LABEL.get(String(shown).toLowerCase()) || s.species) : s.species;
     cell.innerHTML = icon(held, true);
     if (locked) cell.insertAdjacentHTML("beforeend", `<span class="sub">${esc(shown)}</span>`);
     else cell.appendChild(combobox(shown, val => {
@@ -3112,7 +3118,7 @@ function drawMid() {
       body[inp.dataset.f] = +inp.value;
       write("slot", body);
     });
-    tr.querySelector("input.ck").onchange = ev => setCaught(SEL, s.species, ev.target.checked);
+    tr.querySelector("input.ck").onchange = ev => setCaught(SEL, held, ev.target.checked);
     tb.appendChild(tr);
   });
 
@@ -3307,12 +3313,17 @@ async function setCaught(area, species, caught) {
       body: JSON.stringify({ area, species, caught }) });
     CAUGHT = new Set(r.caught);
     toast(caught ? "Caught here" : "Cleared this area's encounter");
-    await Promise.all([reloadDetail(), refreshList()]);
-    // The middle pane dims by takenAt(), which reads the area list; the two
-    // reloads race, so draw it again once the list is current. Unticking a
-    // gift left the pane grey when the detail came back first.
-    if (DETAIL) { drawMid(); drawRight(); }
+    await reloadAfterCatch();
   } catch (e) { toast(e.message, true); }
+}
+
+// After the caught list changes: the middle pane dims by takenAt(), which
+// reads the area list, and the two reloads race, so draw it again once the
+// list is current. When the detail came back first, unticking a gift left
+// the pane grey, and Reset caught left the open zone's tables dimmed.
+async function reloadAfterCatch() {
+  await Promise.all([reloadDetail(), refreshList()]);
+  if (DETAIL) { drawMid(); drawRight(); }
 }
 
 async function clearCaught() {
@@ -3322,7 +3333,7 @@ async function clearCaught() {
       body: JSON.stringify({ clear: true }) });
     CAUGHT = new Set(r.caught);
     toast("Caught list reset");
-    await Promise.all([reloadDetail(), refreshList()]);
+    await reloadAfterCatch();
   } catch (e) { toast(e.message, true); }
 }
 
