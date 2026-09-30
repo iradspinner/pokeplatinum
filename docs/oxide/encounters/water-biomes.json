@@ -1,0 +1,55 @@
+{
+  "_comment": "Water biomes for lint R19 and R19b (the blind encounter review's principles 11 and 12, adopted as principles by Ian on 2026-09-29). Each water table's sidecar entry names its biome as water_biome, with water_biome_why, and may name place-earned exceptions as water_earned {line: reason}. A palette names lines by any member, so every stage of a named line belongs; sea_only names stages, so Carvanha may live in a pond while Sharpedo stays at sea. The palettes are the review's, with the lines its own proposals put in each biome; a DRAFT for Ian until he approves it.",
+  "inland": ["village_pond", "lowland_river", "mountain_stream", "cave_pool", "lake", "marsh", "industrial", "hot_spring"],
+  "biomes": {
+    "village_pond": {
+      "name": "village pond",
+      "palette": ["Goldeen", "Barboach", "Corphish", "Poliwag", "Wooper", "Lotad", "Surskit", "Psyduck", "Buizel", "Marill", "Slowpoke", "Carvanha", "Shellos", "Bidoof"]
+    },
+    "lowland_river": {
+      "name": "lowland river",
+      "palette": ["Goldeen", "Barboach", "Corphish", "Poliwag", "Wooper", "Lotad", "Surskit", "Psyduck", "Buizel", "Marill", "Slowpoke", "Carvanha", "Shellos", "Bidoof"]
+    },
+    "mountain_stream": {
+      "name": "mountain stream",
+      "palette": ["Barboach", "Goldeen", "Poliwag", "Corphish", "Goomy", "Zubat", "Psyduck", "Wooper", "Marill", "Slowpoke", "Buizel"]
+    },
+    "cave_pool": {
+      "name": "cave pool",
+      "palette": ["Barboach", "Goldeen", "Poliwag", "Corphish", "Goomy", "Zubat", "Psyduck", "Wooper", "Buizel"]
+    },
+    "lake": {
+      "name": "lake",
+      "palette": ["Psyduck", "Goldeen", "Surskit", "Lotad", "Marill", "Slowpoke", "Poliwag"]
+    },
+    "marsh": {
+      "name": "marsh",
+      "palette": ["Wooper", "Lotad", "Surskit", "Dewpider", "Carvanha", "Slowpoke", "Barboach", "Krabby", "Froakie", "Yanma", "Croagunk", "Goomy", "Poliwag", "Psyduck"]
+    },
+    "industrial": {
+      "name": "industrial water",
+      "palette": ["Chinchou", "Qwilfish", "Shellos", "Drifloon", "Goldeen", "Psyduck"]
+    },
+    "hot_spring": {
+      "name": "hot spring or oasis",
+      "palette": ["Poliwag", "Barboach", "Corphish", "Psyduck", "Wooper", "Goldeen"]
+    },
+    "beach": {
+      "name": "beach and shallows",
+      "palette": ["Tentacool", "Wingull", "Shellos", "Corsola", "Staryu", "Krabby", "Finneon", "Remoraid", "Luvdisc", "Mareanie", "Chinchou", "Mantyke", "Horsea", "Qwilfish", "Clamperl", "Dhelmise"]
+    },
+    "harbour": {
+      "name": "harbour",
+      "palette": ["Tentacool", "Mantyke", "Wailmer", "Carvanha", "Chinchou", "Horsea", "Finneon", "Remoraid", "Relicanth", "Clamperl", "Frillish", "Lapras", "Wingull", "Shellder", "Dhelmise", "Staryu", "Corsola"]
+    },
+    "open_sea": {
+      "name": "open sea",
+      "palette": ["Tentacool", "Mantyke", "Wailmer", "Carvanha", "Chinchou", "Horsea", "Finneon", "Remoraid", "Relicanth", "Clamperl", "Frillish", "Lapras", "Wingull", "Shellder", "Dhelmise", "Staryu", "Corsola"]
+    },
+    "cold_sea": {
+      "name": "cold sea",
+      "palette": ["Seel", "Spheal", "Lapras", "Shellder", "Relicanth", "Snorunt"]
+    }
+  },
+  "sea_only": ["Chinchou", "Lanturn", "Sharpedo", "Wailmer", "Wailord", "Mantyke", "Mantine", "Tentacool", "Tentacruel", "Corsola", "Clamperl", "Huntail", "Gorebyss", "Luvdisc", "Remoraid", "Octillery", "Finneon", "Lumineon", "Horsea", "Seadra", "Kingdra", "Qwilfish", "Staryu", "Starmie", "Shellder", "Cloyster", "Relicanth"]
+}
