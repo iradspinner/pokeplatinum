@@ -480,6 +480,10 @@ Moved from the tracker on 2026-09-28, finished:
 
 ## Backlog / follow-ups
 
+Closed on 2026-09-29 with no change, on `main-hidden-seams`: the copies are vanilla's own, byte for byte, and deliberate.
+
+- **Ten hidden-item copies sit off their map's tiles** (found by the balance track's item census, 2026-09-29, on `balance-combined-rescore` 91de17676): items on map seams and map variants share pickup flags, which is fine, but ten hidden copies are placed outside the map they belong to. Main track; the balance track's census commit names them. Resolution: eight hidden copies sit off their own map's tiles (Eterna City's Super Potion and Great Ball, Route 202's Stardust, Route 220's Zinc, Route 222's PP Up, Route 227's Rare Candy, Valor Lakefront's Max Revive, and Mt. Coronet's north-ledge Star Piece), each a copy of an item on the neighbouring map under the same script and flag, as in vanilla. The Poketch's dowsing app lists only the current map's hidden items within 7 tiles, so the copy makes an item across a seam show from either side; the shared flag means it is picked up once. The census's other unreached copies are five item balls on map variants (Old Chateau's two rooms, the three lakes' low-water or drained maps), also sharing flags. Nothing to fix; the census already counts each pickup once.
+
 Superseded on 2026-09-27, when Ian ruled that the gift clowns go (the encounter track's `clown-replacements.md`, carried out on `main-grass`):
 
 - **Unify the clown-gift events** (Ian, 2026-09-20): one common script parameterised by the map, which **names the possible Pokemon** rather than rolling blind (species per map in `docs/oxide/pokemon-gifts.md`), after the faithful carry-over and as its own commit. Orphaned pick-event names still to remove: canalave_library_2f 7, pastoria_city_north_house 6, floaroma_town_middle_house 4, eterna_city_condominiums_1f 3, floaroma_meadow_house 3, jubilife_city_south_house_1f 3, solaceon_town_northeast_house 3

@@ -12,7 +12,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 1. **Balance Agent**: the learnset proposal (`balance-learngen-v2`), now the Gen 5 to 9 moves job; the stored score stays, and `balance-fight-sim` lands as a record.
 2. **Encounter Tool Builder**: Ian's Box sim requests on `encounter-boxsim` (locks, start from the save, how sure it is), then the Fragsheet and Battle Log readers.
-3. **Main Production Agent**: the battle log kept in the save, then the melonDS fork with a live export (both below, under Phase 5).
+3. **Main Production Agent**: the gauntlets on `main-gauntlets`, built and held for landing until Ian's case-by-case trainer list (below).
 4. **Overseer**: the Barry starter fix (`fix-rival-starter`), element 7's review and landing, and the simulator record.
 5. **Cloud**: nothing running. The learnset copy (`cloud/balance-learnset-pass`) stays unmerged as reference.
 6. **Ian**: mid-run on 53b863005, on Route 202; the in-game checks (`docs/oxide/ingame-checklist.md`) in one bug sweep; the Frontier Brain teams; the gauntlet trainers case by case.
@@ -188,7 +188,6 @@ Done and archived: boot, the save-format break, new game to first battle (re-che
 ## Backlog / follow-ups
 
 - **Money as a scarce resource, low priority and experimental** (Ian, 2026-09-29, an idea, not a ruling): Twinleaf's clown gives unlimited Rare Candies, which serves the nuzlocke and testing, but selling them makes money meaningless from the first minute. A possible balance lever for later, with Ian unsure it will play well. The smallest first step, if tried: Rare Candy sells for nothing, which cuts the loop without touching the clown; then prize money, prices and what shops stock would need tuning together, a balance-track job
-- **Ten hidden-item copies sit off their map's tiles** (found by the balance track's item census, 2026-09-29, on `balance-combined-rescore` 91de17676): items on map seams and map variants share pickup flags, which is fine, but ten hidden copies are placed outside the map they belong to. Main track; the balance track's census commit names them
 - **Live inspection of the running game (Ian, 2026-09-20).** The stub connection is done (`live.py`, `live_watch.py`, `docs/oxide/setup-fork-and-wsl2.md` part 5b). Left: decoders on `live.py` for the party, boxes, flags, vars, map and running script, with writes for a debug console; and an offline reader for the melonDS `.sav`, so the encounter tool can read the real dex flags
 - **Re-humanise the 86 generated scripts**, a map at a time, as each map gets attention: named labels, `NPCMessage`, text-bank constants, real names for `LOCALID_OBJECT_<n>` and `<Bank>_Text_<n>`. `checkmap.py` is the check. Never during a faithful carry-over; the point of the bulk pass was to be done
 - Two raw regions the disassembler emits as `.byte` rather than decoding (`scripts_spear_pillar` 0x04b5 and `scripts_common` 0x1268 are the two to start from; they are vanilla's, and the base ROM's versions decode fully). They round-trip exactly; they are just not understood
