@@ -49,7 +49,6 @@
             [ 43, "MOVE_GIGA_DRAIN" ],
             [ 50, "MOVE_LAST_RESORT" ],
             [ 57, "MOVE_GRASS_WHISTLE" ],
-            [ 64, "MOVE_SUNNY_DAY" ],
             [ 71, "MOVE_LEAF_BLADE" ],
             [ 78, "MOVE_SWORDS_DANCE" ]
         ],
@@ -58,10 +57,8 @@
             "TM06",
             "TM09",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
-            "TM18",
             "TM19",
             "TM21",
             "TM22",

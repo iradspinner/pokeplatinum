@@ -49,14 +49,12 @@
             [ 28, "MOVE_FIRE_PUNCH" ],
             [ 36, "MOVE_LAVA_PLUME" ],
             [ 41, "MOVE_FLAMETHROWER" ],
-            [ 49, "MOVE_SUNNY_DAY" ],
             [ 54, "MOVE_FIRE_BLAST" ]
         ],
         "by_tm": [
             "TM01",
             "TM06",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
             "TM21",

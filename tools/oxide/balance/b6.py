@@ -840,6 +840,14 @@ def report(results, content=None, out=sys.stdout):
     for sp, owned, things in dead["species"]:
         say(f"  {canon.showdown_name(sp):18}{'obtainable' if owned else 'not obtainable':16}"
             f"{', '.join(things)}")
+    from . import weather_moves   # it reads obtainable() from here
+    rows = weather_moves.census()
+    owned = [r for r in rows if r[2]]
+    say(f"\nThe player never sets weather (Ian, 2026-09-26 and 2026-09-30): {len(owned)} species "
+        f"or forms the player can own learn a weather move by level-up, TM or tutor; "
+        f"{len(rows) - len(owned)} trainer-only ones keep theirs.")
+    for rel, _sp, _o, lv, tm, tu in owned:
+        say(f"  {rel:18}level-up {[m for _l, m in lv]} TMs {tm} tutor {tu}")
     if content:
         say("\nGoal 3, what vanilla Platinum lacks, per split: on the player's side, new species "
             "and species with a new move; on the trainers there, new species, moves, abilities:")

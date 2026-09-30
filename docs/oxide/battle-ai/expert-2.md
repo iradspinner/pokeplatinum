@@ -168,7 +168,7 @@ Four routines jump out of this half to shared score labels near the top of the E
 | Hail and the AI is Ice | +1, end | 68.75% | 4033, 4043 to 4047 |
 | AI not slower, and the opponent's last move was not Lock-On or Mind Reader | +1 | 68.75% | 4050 to 4054 |
 
-The resisted and immune row gives a bonus where the rest of the family gives a penalty; that is bug 3, fixed by the battle_edits charge-turn fix, so the row now gives -1, not +1. The label it jumps to is still called `Expert_ChargeTurnWithInvuln_ScorePlus1`, and the comment block at the top of the routine still says +1 with a "(Bug?)"; the code under the label, and its own comment, give -1. Renaming the label is left to the element 6 track. In sandstorm or hail with a non-immune AI, the routine goes on to the speed row.
+The resisted and immune row gives a bonus where the rest of the family gives a penalty; that is bug 3, fixed by the battle_edits charge-turn fix, so the row now gives -1, not +1. The label it jumps to was called `Expert_ChargeTurnWithInvuln_ScorePlus1`; it is `Expert_ChargeTurnWithInvuln_Resisted` since 2026-09-30, and the routine's comment block says -1. In sandstorm or hail with a non-immune AI, the routine goes on to the speed row.
 
 ## Stat setup and stat swapping
 

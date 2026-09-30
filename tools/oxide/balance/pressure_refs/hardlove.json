@@ -707,11 +707,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 34175,
+   "calcs": 34182,
    "errors": [],
-   "node_seconds": 5.0,
-   "wall_seconds": 5.2,
-   "fingerprint": "c33e0b40f555a7720c81",
+   "node_seconds": 6.13,
+   "wall_seconds": 6.37,
+   "fingerprint": "d44fbf9cd6f4b46c3a97",
    "verified": true
   },
   "wake": {
@@ -882,11 +882,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 45781,
+   "calcs": 45788,
    "errors": [],
-   "node_seconds": 7.45,
-   "wall_seconds": 7.66,
-   "fingerprint": "10bec8e86fd5419997cf",
+   "node_seconds": 7.5,
+   "wall_seconds": 7.72,
+   "fingerprint": "5ac74c55c307c3827dde",
    "verified": true
   },
   "byron": {
@@ -1062,11 +1062,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 58615,
+   "calcs": 58623,
    "errors": [],
-   "node_seconds": 12.27,
-   "wall_seconds": 12.54,
-   "fingerprint": "350770f67da93a9d8467",
+   "node_seconds": 9.14,
+   "wall_seconds": 9.33,
+   "fingerprint": "00c4d7d6555821c8353a",
    "verified": true
   },
   "candice": {
@@ -1238,11 +1238,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 47208,
+   "calcs": 47214,
    "errors": [],
-   "node_seconds": 9.8,
-   "wall_seconds": 10.0,
-   "fingerprint": "625b24c6a89b9de680a9",
+   "node_seconds": 7.67,
+   "wall_seconds": 7.9,
+   "fingerprint": "e05f69ec173cb9b57322",
    "verified": true
   },
   "volkner": {
@@ -1413,11 +1413,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 62482,
+   "calcs": 62489,
    "errors": [],
-   "node_seconds": 12.84,
-   "wall_seconds": 13.08,
-   "fingerprint": "af16e64421451d8c7dab",
+   "node_seconds": 9.23,
+   "wall_seconds": 9.46,
+   "fingerprint": "2ab4e555c5504c2e94bf",
    "verified": true
   },
   "aaron": {
@@ -1592,11 +1592,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 61131,
+   "calcs": 61138,
    "errors": [],
-   "node_seconds": 12.62,
-   "wall_seconds": 12.92,
-   "fingerprint": "86a6f64b9feaa5ecbce0",
+   "node_seconds": 7.67,
+   "wall_seconds": 8.0,
+   "fingerprint": "f9448329ae5efc18630e",
    "verified": true
   },
   "bertha": {
@@ -1767,11 +1767,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 54446,
+   "calcs": 54452,
    "errors": [],
-   "node_seconds": 11.43,
-   "wall_seconds": 11.7,
-   "fingerprint": "1bb32917302f98fe276b",
+   "node_seconds": 6.75,
+   "wall_seconds": 7.04,
+   "fingerprint": "d6f3d47a7f11f4f8548b",
    "verified": true
   },
   "flint": {
@@ -1962,11 +1962,11 @@
      "Floette-Eternal-Mega"
     ]
    },
-   "calcs": 77637,
+   "calcs": 77646,
    "errors": [],
-   "node_seconds": 14.84,
-   "wall_seconds": 15.3,
-   "fingerprint": "7a84e777b58fb2fde2d2",
+   "node_seconds": 8.25,
+   "wall_seconds": 8.57,
+   "fingerprint": "b8468b0ad8e51b48401e",
    "verified": true
   },
   "lucian": {
@@ -2134,11 +2134,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 53998,
+   "calcs": 54004,
    "errors": [],
-   "node_seconds": 11.62,
-   "wall_seconds": 11.86,
-   "fingerprint": "635fc87cc51c1b2600bf",
+   "node_seconds": 5.89,
+   "wall_seconds": 6.06,
+   "fingerprint": "00bb90d711eb14eeaef8",
    "verified": true
   },
   "cynthia": {
@@ -2309,11 +2309,11 @@
     "canon": 1
    },
    "left_out": {},
-   "calcs": 71400,
+   "calcs": 71408,
    "errors": [],
-   "node_seconds": 14.05,
-   "wall_seconds": 14.3,
-   "fingerprint": "eeef1b4debeadca82196",
+   "node_seconds": 7.66,
+   "wall_seconds": 7.89,
+   "fingerprint": "4a502ac5a0f5926d64ca",
    "verified": true
   }
  }

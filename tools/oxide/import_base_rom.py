@@ -1590,6 +1590,20 @@ def main():
         228: "Houndour loses Beat Up, which leaves the game (Ian, 2026-09-26)",
         229: "Houndoom loses Beat Up, which leaves the game (Ian, 2026-09-26)",
     }
+    # The natives that lose their weather moves by level-up, because the
+    # player never sets weather (Ian, 2026-09-26; the moves half, 2026-09-30).
+    # verify_narcs.WEATHER_LEVEL_UP_REMOVED is the same set.
+    for i in (7, 8, 9, 60, 61, 79, 80, 95, 126, 131, 144, 145, 146, 183, 184, 194, 195,
+              208, 240, 245, 246, 247, 248, 270, 273, 299, 328, 329, 330, 350, 351, 361,
+              362, 363, 364, 365, 420, 421, 422, 423, 437, 443, 444, 445, 456, 457, 467,
+              470, 471, 473, 476, 478, 490):
+        LEARNSETS_DIVERGED[i] = "loses its weather moves: the player never sets weather (Ian, 2026-09-30)"
+
+    # The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm): a record whose
+    # TM list carries none of them keeps none on a re-import, since no species
+    # the player can own learns them (Ian, 2026-09-30); one the player cannot
+    # own still carries them, for trainers, and is imported as it stands.
+    WEATHER_TMS = {"TM07", "TM11", "TM18", "TM37"}
 
     # Records whose abilities Oxide has changed on purpose since the base ROM.
     # 499 and 500 are Wormadam's Sandy and Trash forms, which the base ROM gave
@@ -1735,6 +1749,11 @@ def main():
         for k in ("learnset.by_tm", "learnset.by_level"):
             for dd in (new, old):
                 dd.setdefault("learnset", {})[k.split(".")[1]] = dd.pop(k)
+        with open(os.path.join(d, "data.json"), encoding="utf-8") as f:
+            current_tms = set(json.load(f).get("learnset", {}).get("by_tm", []))
+        if not current_tms & WEATHER_TMS:
+            for dd in (new, old):
+                dd["learnset"]["by_tm"] = [m for m in dd["learnset"]["by_tm"] if m not in WEATHER_TMS]
         if i in LEARNSETS_DIVERGED:
             new["learnset"].pop("by_level")
             old["learnset"].pop("by_level")

@@ -153,11 +153,11 @@
      "branches": []
     }
    ],
-   "calcs": 46766,
+   "calcs": 46772,
    "errors": [],
-   "node_seconds": 9.05,
-   "wall_seconds": 9.26,
-   "fingerprint": "4ecab3ee554623a860b3",
+   "node_seconds": 8.2,
+   "wall_seconds": 8.4,
+   "fingerprint": "36ad5c16386fb83b34e2",
    "verified": true
   },
   "hesperid_coronet": {
@@ -331,11 +331,11 @@
      "branches": []
     }
    ],
-   "calcs": 77532,
+   "calcs": 77541,
    "errors": [],
-   "node_seconds": 12.84,
-   "wall_seconds": 13.1,
-   "fingerprint": "9bdff3e3b9bc24fb31cd",
+   "node_seconds": 11.29,
+   "wall_seconds": 11.52,
+   "fingerprint": "b42c2b0fa57e1281d706",
    "verified": true
   }
  }

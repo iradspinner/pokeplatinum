@@ -107,10 +107,6 @@
             [
                 57,
                 "MOVE_SHORE_UP"
-            ],
-            [
-                64,
-                "MOVE_SANDSTORM"
             ]
         ],
         "by_tm": [],

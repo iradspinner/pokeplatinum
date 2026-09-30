@@ -1666,7 +1666,14 @@ lands, and each change is re-scored as it lands.
    offers, and how many TMs there are. Ian's standing rule (2026-09-26,
    staples survey): the player can never set, change or end weather, so
    TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
-   become other moves. The one Ability Patch in the game (for a hidden
+   become other moves. Until then no species the player can own learns
+   them, and none learns a weather move by level-up either
+   (`balance-weather-moves`, 2026-09-30, after Ian found 77 species and
+   forms still learning one): 53 natives and 8 new species lose their
+   level-up weather moves, 335 records lose the four TMs, and the 155
+   records the player cannot own keep theirs for trainers. No tutor teaches
+   a weather move. `weather_moves.py` keeps the census, and its test fails
+   when a species the player can newly own carries one. The one Ability Patch in the game (for a hidden
    ability) is the only exception, and Defog still clears fog. Choice
    items are to be nearly entirely gone from the game (Ian, 2026-09-25,
    after Volkner), up from "quite rare". When a confusion cure is first in

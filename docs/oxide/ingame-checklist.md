@@ -368,6 +368,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf
   Psychic/Fairy. The Pokedex's info page shows the NORMAL plate for Fairy, the
   known gap in Phase 4's Fairy entry.
+- [ ] The box deposit hang is gone (`main-box-hang`, 2026-09-30): at a
+  Pokemon Center PC and with the Pocket PC, open Deposit, back out with B and
+  again with the on-screen exit; each returns to the PC menu. Then Withdraw
+  and Move Pokemon the same way, and a Pokemon's ability shows in the storage
+  screen's preview as before.
 - [ ] Fossils wait for Cycling Road (`main-production`, Ian, 2026-09-30).
   With a Root, Armor or Skull Fossil from Oreburgh Mine B2F, talk to the
   researcher in the Mining Museum before riding Cycling Road: he greets you,
@@ -404,6 +409,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] Element 6's fixes of 2026-09-30 (`main-element6`), whenever one comes up; none needs a
+  set-up of its own. A trainer never aims a status move Magic Coat would bounce at a Pokemon
+  of Ian's with Magic Bounce (Natu, Xatu or Espeon with its hidden ability) once it has shown
+  it; a trainer's Infiltrator Pokemon still uses sleep, poison or paralysis moves through
+  Ian's Safeguard; a trainer's Mold Breaker Pokemon treats one of Ian's holding an Ability
+  Shield as keeping its ability (an Earthquake is not aimed at a shielded Levitate holder).
 - [ ] Double battles, once a trainer uses these moves (none does yet;
   `cloud/element4-partial-moves`): Flame Burst hits its target's partner for
   a sixteenth of its HP with "The bursting flame hit ...!"; Teatime's target

@@ -77,6 +77,8 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 | The bench damage check uses the active Pokemon's stats and types | vanilla | `expert-2.md` bug 10, `switching-and-items.md` | Skews U-turn, Healing Wish and switching |
 | Status moves count as super-effective in the bench checks | vanilla | `switching-and-items.md` | Skews when and to what the AI switches |
 
+A vanilla oddity with no effect in play, noted here and at both sites in `script.s` (found 2026-09-27): Basic and Expert pair battle effects 63 and 64, Evasion down 2 and Accuracy down 2, with the opposite stat's checks, as vanilla does. No move in Platinum or in Oxide uses either effect, so nothing is scored wrongly; left as it is.
+
 The table describes the code as the write-up found it. Five of the eight are fixed (next section); the faster heal, the bench damage check and the status moves in the bench checks were put to Ian and kept as vanilla has them.
 
 The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
@@ -249,6 +251,23 @@ What stays open for element 6 is in the tracker's element 6 entry; the routing b
 ## The new moves' routines, 2026-09-27
 
 Ian's ruling: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable new move takes the Expert routine of its nearest Platinum effect, judged by what its effect script does, where that effect has one, and none where Platinum gives its equivalents none; Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). It is a change of play, marked in the code "Oxide, change (Ian, 2026-09-27)". Of 156 learnable new moves, 65 are now scored by a routine and 91 are not; [expert-new-moves.md](expert-new-moves.md) has every move and the reasons. Eleven of the 91 were judgment calls, where a near routine would misjudge the move; Ian ruled on 2026-09-27 that they get no routine ("None, as left"). Two routines are trimmed copies, `Expert_ClearSmog` (Haze's, the target's half) and `Expert_MortalSpin` (Rapid Spin's clearing, without the Speed raise), and Shore Up is scored as Recover, since the engine heals it by its own rule rather than Synthesis's.
+
+## Oxide fixes, 2026-09-30
+
+`main-element6` made the AI agree with the engine where elements 4, 5, 7 and 8 had moved it on, one commit per rule. Every one is an Oxide fix (none is a vanilla fix and none a change of play), except the routing of Lunar Blessing and Jungle Healing, which follows Ian's ruling of 2026-09-27 on the new moves and is marked as a change. Each is marked "Oxide" where it lives.
+
+| Commit | What the AI now knows | Where |
+|---|---|---|
+| 443023c845 | Wonder Room fails under a permanent Wonder Room, so -10, as Trick Room under its own | `Basic_CheckWonderRoom` |
+| b794944f34 | An Infiltrator attacker's move passes Safeguard, so the five Safeguard refusals (sleep, poison, confusion, paralysis, burn) hold only without it | the `Basic_Safeguard*` helpers |
+| aa1a7d402f | Magic Bounce turns back any move Magic Coat would, so -10 into a known or guessed holder, unless Mold Breaker; a new command, `IfMoveCanBeReflected` | `Basic_CheckMagicBounce` |
+| c30774fcad | The Pixie Plate makes Judgment Fairy; the Roseli Berry is a Natural Gift Berry and a resist Berry worth stealing | both Judgment switches in `trainer_ai.c`, `Basic_NaturalGiftBerries`, `Expert_Thief_EncouragedItemEffects` |
+| 46fbcb66ee | Lunar Blessing and Jungle Healing (effect 415) go to Recover's routine; Basic gives -8 at full HP with no status, where they fail (change, Ian's routing ruling) | Basic's and Expert's dispatch |
+| c4b1f6bdae | An Ability Shield holds against Mold Breaker: a new command, `IfMoldBreakerIgnores BATTLER`, replaces the "attacker has Mold Breaker" shortcut at all 28 sites, naming the battler each check reads; the draw-in command counts a shielded holder | Basic and Tag Strategy, `AICmd_IfMoveCanBeDrawnIn` |
+| b5bf52aa93 | A battler held by Sky Drop cannot switch | `TrainerAI_ShouldSwitch` |
+| 9d8b5a6f1b | Damp stops Mind Blown as it stops Explosion, so -10 | `Basic_CheckMindBlown` |
+
+Left for want of a command: Octolock into an already octolocked target, whose state is in `BattleMon.oxideFlags`, which no command reads, and Teatime with no Berry held on the field. Left because it would change how the AI plays, and so is Ian's: the items in the tracker's element 6 entry under "for Ian".
 
 ## The parts
 
