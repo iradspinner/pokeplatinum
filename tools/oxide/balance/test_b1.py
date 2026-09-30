@@ -293,8 +293,9 @@ def check_weather(results):
     results.append(("boss fights start in the weather their maps set", got == want, str(got)))
 
 
-# When each way opens (Ian's split definition for the bike; HM and badge for
-# the rest), and one item behind each, as the census had them wrong: Lake
+# When each way opens (Ian's split definition for the bike; the badge alone
+# for the rest, since main-field-moves), and one item behind each, as the
+# census had them wrong: Lake
 # Verity's TM38 in Roark's split, Oreburgh Gate B1F's TM01 in Byron's,
 # Valor Lakefront's Sun Stone in Wake's, and so on.
 FIELD_MOVE_SPLITS = {"Bicycle": "Fantina", "Rock Smash": "Gardenia", "Cut": "Fantina", "Surf": "Byron",
@@ -325,12 +326,12 @@ def check_item_reach(results):
     the way to it first opens; one on foot keeps its map's; an item on
     several maps under one pickup flag counts once; and the items nothing
     reaches are the named ones. Each way opens when the game's own check
-    allows it: the HM in hand and its badge won, with Surf where the
-    encounter tool has it."""
+    allows it, the badge it names won (no HM since main-field-moves), with
+    Surf where the encounter tool has it."""
     from . import splits
     moves = splits.field_move_splits()
     ok = moves == FIELD_MOVE_SPLITS and moves["Surf"] == splits.surf_split()
-    results.append(("each field move opens where its HM and badge are both had", ok, str(moves)))
+    results.append(("each field move opens in the split after its badge is won", ok, str(moves)))
     rows = splits.item_reach()
     got = {(r[1], r[2]): (r[0], r[4]) for r in rows}
     wrong = [(m, i, got.get((m, i))) for m, i, s, n in REACH_ANCHORS if got.get((m, i)) != (s, n)]

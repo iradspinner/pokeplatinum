@@ -21,7 +21,9 @@
                 "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 239,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [
