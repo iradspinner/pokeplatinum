@@ -5,7 +5,7 @@ Two questions the authoring pass keeps asking, answered from the tree:
   * **audit**: where does every species reference live, and is it on the
     pick-list? A reference to an off-list species anywhere the game can
     roll one -- a land slot, a rod, a swarm, the radar, a dual-slot list, a
-    honey tree, the marsh binoculars, the garden's daily visitor -- is a
+    honey tree, the garden's daily visitor -- is a
     leak: a species the list calls unobtainable, obtainable. Scripts that
     hand over or battle a species are listed too, but reported rather than
     counted, since they are outside the encounter track (decision 8).
@@ -534,8 +534,9 @@ def coverage(ref=None):
                 continue
             for sp in set(vals):
                 other[sp].append((a.name, key))
-    for name, reader in ((model.HONEY_TREE, lambda r: model.honey_tree_species(r, badges=None)),
-                         (model.GREAT_MARSH_LOOKOUT, model.great_marsh_lookout_species)):
+    # The Great Marsh lookout's pools are not read: Ian cut the marsh's daily
+    # Pokemon (2026-09-30), and the engine no longer draws from them.
+    for name, reader in ((model.HONEY_TREE, lambda r: model.honey_tree_species(r, badges=None)),):
         for key, vals in reader(ref).items():
             for sp in set(vals):
                 other[sp].append((name, key))

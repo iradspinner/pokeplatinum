@@ -10386,7 +10386,7 @@
     "encounters_great_marsh_lookout": {
       "archetype": null,
       "band": null,
-      "intent": "",
+      "intent": "Unused: Ian cut the marsh's daily Pokemon (2026-09-30), so the engine no longer puts these pools in slots 6 and 7 or shows them in the binoculars. The file stays so the archive keeps its members.",
       "locked": [],
       "base_level": null,
       "order": 167,

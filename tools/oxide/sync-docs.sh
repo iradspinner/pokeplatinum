@@ -117,6 +117,7 @@ copy "encounters/water-lint-draft.md" "Claude outputs/encounters/water-lint-draf
 copy "encounters/values.json" "Claude outputs/encounters/values.json"
 copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship-evolutions.md"
 copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
+copy "encounters/regional-dex-proposal.md" "Claude outputs/encounters/regional-dex-proposal.md"
 copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replacements.md"
 copy "encounters/classic-starters.md" "Claude outputs/encounters/classic-starters.md"
 copy "encounters/ability-audit.md" "Claude outputs/encounters/ability-audit.md"

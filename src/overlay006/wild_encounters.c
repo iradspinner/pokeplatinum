@@ -101,7 +101,6 @@ static BOOL CreateWildMon_FromRadarNoChain(FieldSystem *fieldSystem, Pokemon *pa
 static BOOL CreateWildMon_FromRadarKeepChain(const int species, const int level, const int partyDest, const BOOL isShiny, const u32 trainerId, const WildEncounters_FieldParams *fieldParams, Pokemon *mon, FieldBattleDTO *battleParams);
 static u8 ModifyEncounterRateWithFieldParams(const BOOL isFishingEncounter, const u8 encounterRate, const WildEncounters_FieldParams *fieldParams, const u32 weatherEffect, Pokemon *unused);
 static void CreateWildSingleBattle(FieldSystem *fieldSystem, const BOOL param1, FieldBattleDTO **param2);
-static void WildEncounters_ReplaceGreatMarshDailyEncounters(FieldSystem *fieldSystem, const BOOL safariGameActive, const BOOL param2, EncounterSlot *encTable);
 static BOOL RepelPreventsEncounter(const u8 param0, const WildEncounters_FieldParams *param1);
 static void AddRoamerToEnemyParty(const u32 param0, Roamer *param1, FieldBattleDTO *param2);
 static BOOL TryEncounterRoamer(FieldSystem *fieldSystem, Roamer **param1);
@@ -322,7 +321,8 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
 
         if (!withPartner) {
-            WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
+            // Platinum Oxide (Ian, 2026-09-30): the Great Marsh's daily Pokemon
+            // are cut, so a Safari Game keeps the area's own grass slots 6 and 7.
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
@@ -510,7 +510,8 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
 
         if (!withPartner) {
-            WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
+            // Platinum Oxide (Ian, 2026-09-30): the Great Marsh's daily Pokemon
+            // are cut, so a Safari Game keeps the area's own grass slots 6 and 7.
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
@@ -641,7 +642,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
 
         if (!withPartner) {
-            WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
+            // Platinum Oxide (Ian, 2026-09-30): the Great Marsh's daily Pokemon
+            // are cut, so a Safari Game keeps the area's own grass slots 6 and 7.
 
             encounterSuccess = TryGenerateGrassEncounter_WithRadar(fieldSystem, firstPartyMon, *battleParams, encounterData, encounterTable, &encounterFieldParams, &radarData);
         } else {
@@ -1378,13 +1380,6 @@ static void CreateWildSingleBattle(FieldSystem *fieldSystem, const BOOL safariGa
     } else {
         u16 *safariBallsCount = FieldOverworldState_GetSafariBallCount(SaveData_GetFieldOverworldState(fieldSystem->saveData));
         *battleParams = FieldBattleDTO_NewSafari(HEAP_ID_FIELD2, *safariBallsCount);
-    }
-}
-
-static void WildEncounters_ReplaceGreatMarshDailyEncounters(FieldSystem *fieldSystem, const BOOL safariGameActive, const BOOL nationalDexObtained, EncounterSlot *encTable)
-{
-    if (safariGameActive) {
-        ReplaceGreatMarshDailyEncounters(SpecialEncounter_GetDailyMon(SaveData_GetSpecialEncounters(fieldSystem->saveData), DAILY_MARSH), nationalDexObtained, fieldSystem->location->mapHeaderID, &encTable[6].species, &encTable[7].species);
     }
 }
 
