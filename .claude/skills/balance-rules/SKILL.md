@@ -126,12 +126,32 @@ is listed for Ian.
   replacement is a perfect-line measure: how easily a line is found that wins
   with no deaths within his luck budget (every secondary status chance
   against the player happens, one crit may, never two in a row; the trainer
-  uses Oxide's AI, taking the worst pick where it could choose). A blind
-  session designs and prototypes it in `~/oxide-trials/scoring-review/`;
-  until it reports, the scale is not refitted. Ian's own list of the hardest
-  fights is the check any new scoring must keep. The simulator's critical
-  hits are Platinum's (1/16, doubled), not Oxide's (1/24, 1.5x); fix that
-  when the scorer is rebuilt.
+  uses Oxide's AI, taking the worst pick where it could choose). Ian's step
+  2 (2026-09-30): search candidate lines (policies with responses), take the
+  best, and read its clean-win rate over fresh runs, with its mean deaths
+  and wipe chance beside it so the hardest fights, where no line wins
+  cleanly, still separate (Wake, Barry 6). The blind prototype
+  (`~/oxide-trials/scoring-review/out/`) is adopted as the direction and
+  moves into this track's tools; Ian approved its six assumptions (the
+  player's own luck, sleep and confusion lengths, flinches and stat drops at
+  their chance, Oxide's Generation 7 crits, trainer item procs at their
+  odds, freeze thawing 1 in 5 on both sides). Ian's sixteen ratings were
+  made with a planned team but on an older dex and older movesets (Roark
+  was always answered with Geodude), so they give direction only; his 40
+  pairs are the better check, and the bar of 13 of 14 held out is too
+  high (Ian, 2026-09-30). On today's data the new scorer agreed with 7
+  of 15 held-out pairs and the refitted old headline with 10, so **the
+  1-to-10 scale is dropped for now** (Ian, 2026-09-30): difficulty is
+  judged in the scorer's own numbers (the best line's clean-win rate, mean
+  deaths and wipe chance, blind or planned), Ian sets the targets for an
+  average ordinary trainer, a gauntlet and a boss from example fights, and
+  his first run's ratings check the scorer against real play. His targets
+  (2026-09-30): an ordinary trainer, read blind, is won cleanly 70 to 80
+  percent of the time with no wipe; a gauntlet section is won cleanly 60
+  percent or more as a whole; too hard starts below 60 percent for an
+  ordinary trainer and below 50 for a gauntlet section. The boss target
+  waits until the scorer reads Roark sensibly (it reads him far too hard,
+  0.30 clean with a planned team, where Ian rated him 2).
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.

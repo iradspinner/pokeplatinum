@@ -377,6 +377,33 @@ def check_time_layers(results):
                     ok, ", ".join(detail)))
 
 
+def check_time_layer_catch(results):
+    """A catch ticked on the Day tab is the day species, not the morning
+    table's species in the same slot (Ian, 2026-09-30: Rookidee ticked on
+    Route 201's Day table was recorded as Starly). The server gives each day
+    and night species its own caught view, and the page ticks what the row
+    holds."""
+    area = "encounters_route_201"
+    a = model.load_area(area)
+    day = a.data.get("day") or []
+    post("/api/caught", {"clear": True})
+    post("/api/caught", {"area": area, "species": day[0]})
+    d = get(f"/api/area/{area}")
+    views = d.get("day_views") or []
+    morning = d["slots"][2]
+    ok = (len(views) == 2 and views[0]["species"] == day[0] and views[0]["caught"]
+          and morning["species"] != day[0] and not morning["caught"]
+          and get("/api/caught")["encounters"] == {area: day[0]})
+    results.append(("a day species' catch reads as itself on the Day tab",
+                    ok, f"day {day}, slot 2 {morning['species']}"))
+    post("/api/caught", {"clear": True})
+    page = open(os.path.join(os.path.dirname(__file__), "ui", "index.html"),
+                encoding="utf-8").read()
+    results.append(("the slot row ticks the species it holds, and Reset caught redraws",
+                    "setCaught(SEL, held," in page and "d.day_views" in page
+                    and page.count("await reloadAfterCatch()") == 2, ""))
+
+
 def check_water_tables(results):
     """Surf and the three rods, with the fractional repel their level ranges
     require."""
@@ -596,7 +623,7 @@ def main():
     try:
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
-                      check_water_tables, check_time_layers, check_rejections,
+                      check_water_tables, check_time_layers, check_time_layer_catch, check_rejections,
                       check_edit_is_local, check_no_colour_literals, check_dim_theme,
                       check_faces_and_switch, check_team_sheet):
             check(results)
