@@ -534,7 +534,8 @@ Basic_CheckSapSipper:
 Basic_CheckCannotSleep:
     // If the target cannot be put to sleep for any reason, score -10.
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardSleep
+Basic_SafeguardSleep_Passed:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
@@ -806,7 +807,8 @@ Basic_CheckCannotPoison_Hydration:
 
 Basic_CheckCannotPoison_StatusOrSafeguard:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardPoison
+Basic_SafeguardPoison_Passed:
     // Oxide: Purifying Salt, as for sleep.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotPoison_End
@@ -878,8 +880,37 @@ Basic_CheckCannotConfuse:
     // If the target otherwise cannot be confused, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OWN_TEMPO, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardConfuse
+Basic_SafeguardConfuse_Passed:
     PopOrEnd 
+
+// Oxide: an Infiltrator attacker's move passes Safeguard, as it does in the engine
+// (BattleSystem_InfiltratorPassesEffect), so each of Basic's Safeguard refusals below
+// holds only for an attacker without it and otherwise carries on with its checks.
+Basic_SafeguardSleep:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardSleep_Passed
+
+Basic_SafeguardPoison:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardPoison_Passed
+
+Basic_SafeguardConfuse:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardConfuse_Passed
+
+Basic_SafeguardParalyze:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardParalyze_Passed
+
+Basic_SafeguardBurn:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardBurn_Passed
 
 Basic_CheckAlreadyUnderReflect:
     // If already under the effect of Reflect, score -8.
@@ -915,7 +946,8 @@ Basic_CheckCannotParalyze_ThunderWave:
 
 Basic_CheckCannotParalyze_ImmuneToStatus:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardParalyze
+Basic_SafeguardParalyze_Passed:
     PopOrEnd 
 
 Basic_CheckCannotSubstitute:
@@ -1173,7 +1205,8 @@ Basic_CheckCannotBurn:
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardBurn
+Basic_SafeguardBurn_Passed:
     // Oxide: Purifying Salt, as for sleep.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotBurn_End
