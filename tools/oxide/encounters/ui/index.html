@@ -704,38 +704,90 @@ table.facts td { padding: 1px 0; }
 #savebar input { flex: 1 1 360px; min-width: 0; font-family: var(--mono); font-size: 14px; }
 #save-state { color: var(--dim); }
 #save-state.bad { color: var(--error); }
-#simmain { grid-template-columns: 320px minmax(520px, 1fr) 420px; }
-#simin { padding: 14px 16px; border-right: 1px solid var(--rule); background: var(--panel);
-         display: flex; flex-direction: column; gap: 10px; }
-#simin h3 { margin: 0; }
-#simin label { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-#simin input, #simin select { width: 150px; }
-#simin #simgo { align-self: flex-start; }
-#simin input[type=checkbox] { width: auto; }
+/* The Box sim as Ian approved it (2026-09-29, the redesign's Box sim board,
+   with his note): the settings in a rail, then the run: the box's numbers in
+   one slim strip, the next zone to catch in and the zones saved for later
+   given the room, and the run split by split; the box by worth on the right. */
+#simmain { grid-template-columns: 290px minmax(640px, 1fr) 330px; }
+#simin { padding: 18px; border-right: 1px solid var(--rule); background: var(--panel);
+  display: flex; flex-direction: column; gap: 14px; }
+#simin h1 { margin: 0; font-size: 22px; }
+#simin > p { margin: 0; }
+#simin label { display: flex; flex-direction: column; gap: 6px; }
+#simin label.check { flex-direction: row; align-items: center; gap: 10px; }
+#simin input, #simin select { width: 100%; box-sizing: border-box; font-size: 16px; padding: 7px 8px; }
+#simin input[type=checkbox] { width: 20px; height: 20px; }
+#simin #simgo { background: var(--place-bg); border-color: var(--place-ink); color: var(--place-ink);
+  font-weight: 700; padding: 9px 14px; }
+#simin #simconf { padding: 9px 14px; }
 /* Ian's own picks (request 1): a drop list on each place's row; a locked row
    is marked as place is everywhere, a row from the save is quieter. */
-.simlock { margin-left: 6px; max-width: 150px; font-size: 13.5px; padding: 1px 4px; }
+.simlock { max-width: 150px; font-size: 13.5px; padding: 2px 4px; }
+#simmid { padding: 18px 22px 40px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; }
+#simmid > * { flex-shrink: 0; }
+#simmid .card, #simbox .card { background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px;
+  overflow: visible; }
+#simmid h2, #simbox h2 { margin: 0; font-size: 18px; }
+#simmid .cardhead, #simbox .cardhead { display: flex; justify-content: space-between;
+  align-items: baseline; gap: 8px; }
+#simsum { display: flex; flex-wrap: wrap; gap: 6px 22px; padding: 8px 14px; border: 1px solid var(--rule);
+  border-radius: 10px; background: var(--panel); color: var(--dim); font-size: 14.5px; }
+#simsum b { color: var(--ink); margin-left: 4px; }
+.simtop { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 14px;
+  align-items: start; }
+.nextzone { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; }
+.nextzone .ico { width: 64px; height: 64px; }
+.nextzone .ico img { width: 64px; height: 128px; }
+.nextzone .who { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.nextzone .area { font-size: 20px; font-weight: 700; }
+.nextzone .spname { font-size: 17px; font-weight: 700; }
+.nextzone .how, .delay .how { color: var(--dim); font-size: 14.5px; }
+.delays { display: flex; flex-direction: column; max-height: 260px; overflow-y: auto; }
+.delay { display: grid; grid-template-columns: 150px 1fr 150px; gap: 10px; align-items: center;
+  padding: 4px 0; border-top: 1px solid var(--rule); }
+.delay:first-child { border-top: 0; }
+.delay .area { font-weight: 700; }
+.delay > span:last-child { display: flex; align-items: center; gap: 6px; }
+.delay .ico { width: 32px; height: 32px; }
+.simsplit { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  overflow: hidden; }
+.simhead { display: flex; align-items: center; gap: 10px; padding: 10px 16px;
+  border-bottom: 1px solid var(--rule); }
+.simhead .chip { font-size: 15px; padding: 1px 10px; }
+.simrow { display: grid; grid-template-columns: 170px minmax(0, 1fr) 150px 70px 130px;
+  column-gap: 14px; align-items: center; min-height: 40px; padding: 4px 16px;
+  border-top: 1px solid var(--rule); }
+.simrow.cols { min-height: 0; border-top: 0; padding-top: 8px; font-size: 13px; color: var(--dim); }
+.simrow.cols .num { font-family: inherit; font-size: 13px; }
+.simrow .where { font-weight: 700; line-height: 1.2; }
+.simrow .pick { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.simrow .pick .spname { font-weight: 700; white-space: nowrap; }
+.simrow .how { font-size: 14px; color: var(--dim); white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; }
+.simrow .ico { width: 32px; height: 32px; }
+.simrow.wait, .simrow.none { color: var(--dim); }
+.simrow.wait .where, .simrow.none .where { font-weight: 400; }
+.simrow.death { color: var(--error); min-height: 30px; }
 .simrow.locked { box-shadow: inset 3px 0 0 var(--place-ink); }
 .simrow.saved { color: var(--dim); }
-#simconfout table.grid { font-size: 14.5px; margin-top: 6px; }
-#simconfout td.num { white-space: nowrap; }
-#simlog { padding: 14px 20px 40px; }
-#simbox { padding: 14px 16px; border-left: 1px solid var(--rule); background: var(--panel); }
-.simrow { display: grid; grid-template-columns: 170px 48px 1fr 52px; column-gap: 8px;
-          align-items: center; min-height: 44px; border-bottom: 1px solid var(--rule); }
-.simrow .where { line-height: 1.2; }
-.simrow .how { font-size: 14px; color: var(--dim); }
-.simrow .ico { width: 48px; height: 48px; }
-.simrow .ico img { width: 48px; height: 96px; }
-.simrow.wait, .simrow.none { color: var(--dim); }
-.simrow.death { color: var(--error); min-height: 30px; }
-.simrow.split { display: block; border-bottom: 0; min-height: 0; padding: 12px 0 4px; }
-.simmon { display: grid; grid-template-columns: 48px 1fr 52px; column-gap: 8px;
-          align-items: center; min-height: 44px; }
-.simmon .ico { width: 48px; height: 48px; }
-.simmon .ico img { width: 48px; height: 96px; }
-.simmon.dead { opacity: .4; }
-.simmon.dead .nm { text-decoration: line-through; }
+.simrow .num { text-align: right; font-size: 14px; }
+.worth { display: flex; align-items: center; gap: 8px; }
+.worth .track { flex: 1; height: 8px; border-radius: 999px; background: var(--sunken); }
+.worth .track i { display: block; height: 8px; border-radius: 999px; background: var(--place-ink); }
+.worth .num { width: 2.6em; }
+#simbox { padding: 18px; border-left: 1px solid var(--rule); background: var(--panel);
+  display: flex; flex-direction: column; gap: 6px; }
+#simbox h3 { margin: 10px 0 0; font-size: 16px; }
+.simmon { display: grid; grid-template-columns: 40px 1fr auto; column-gap: 10px; align-items: center;
+  padding: 6px 10px; border-radius: 10px; background: var(--sunken); }
+.simmon .ico { width: 40px; height: 40px; }
+.simmon .ico img { width: 40px; height: 80px; }
+.simmon .nm { display: flex; flex-direction: column; min-width: 0; }
+.simmon .nm .sub { font-size: 13px; }
+.simmon .num { font-weight: 600; }
+.simmon.dead { opacity: .45; }
+.simmon.dead .nm b { text-decoration: line-through; }
 #calcframe { width: 100%; height: 100%; border: 0; display: block;
   background: var(--ground); }
 .tocalc { font-size: 15px; margin-left: 10px; }
@@ -943,25 +995,31 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
      the box worth as much as it can (tools/oxide/encounters/simulate.py). -->
 <main id="simmain" hidden>
   <section id="simin">
-    <h3>Box simulator</h3>
+    <h1>Box simulator</h1>
     <p class="sub">One run to the end of a split, caught area by area to make the box
       worth the most: everything alive, plus a little for the best six. It adapts as
       luck and deaths push it off course.</p>
     <label>Up to the end of <select id="simsplit"></select></label>
     <label>Deaths <input id="simdeaths" type="number" min="0" max="60" value="0" class="num"></label>
     <label>Starter <select id="simstarter"><option value="">at random</option></select></label>
-    <label title="Start from the save the Calc tab's save bar watches: its Pokemon in the box, their places spent">
-      Start from my save <input type="checkbox" id="simsave"></label>
+    <label class="check" title="Start from the save the Calc tab's save bar watches: its Pokemon in the box, their places spent">
+      <input type="checkbox" id="simsave"> Start from my save</label>
     <p class="sub" id="simsavestate"></p>
-    <p class="sub"><span id="simlocks">No picks locked.</span>
-      <button class="linkish" id="simclear" title="Let the sim choose every place again">Clear picks</button></p>
     <button id="simgo">Regenerate</button>
     <button id="simconf" title="Replay the run many times from here and say how often each of the next calls comes out the same">How sure is it?</button>
     <div id="simconfout"></div>
+    <p class="sub"><span id="simlocks">No picks locked.</span>
+      <button class="linkish" id="simclear" title="Let the sim choose every place again">Clear picks</button></p>
     <p class="sub" id="simseed"></p>
-    <div id="simsum"></div>
   </section>
-  <section id="simlog"><p class="sub">Loading a run.</p></section>
+  <section id="simmid">
+    <div id="simsum"></div>
+    <div class="simtop">
+      <section class="card" id="simnext"></section>
+      <section class="card" id="simdelays"></section>
+    </div>
+    <div id="simlog"><p class="sub">Loading a run.</p></div>
+  </section>
   <section id="simbox"></section>
 </main>
 <div id="toast"></div>
@@ -1693,6 +1751,9 @@ async function restore(p) {
 // ---- the box simulator -------------------------------------------------
 
 let SIM = null;
+// The last "How sure is it?" answer, kept with the seed of the run it was
+// asked for, so the table's How sure column shows it only for that run.
+let SIMCONF = null;
 // Ian's picks, place to species ("" to leave the place unused), kept in this
 // browser so a reload keeps them (request 1).
 let SIMLOCKS = {};
@@ -1708,6 +1769,8 @@ async function simulate(first) {
     $("#simgo").disabled = true;
     SIM = await api("/api/simulate?" + q);
     if (!Array.isArray(SIM.log)) throw new Error("The OxiDex server sent no run: restart it");
+    // A new run's How sure column starts empty, and so does its note.
+    if (!SIMCONF || SIMCONF.seed !== SIM.seed) $("#simconfout").innerHTML = "";
     if (first) {
       $("#simsplit").innerHTML = SIM.splits.map(sp =>
         `<option ${sp === SIM.split ? "selected" : ""}>${esc(sp)}</option>`).join("");
@@ -1729,54 +1792,105 @@ function drawSim() {
     + `${fs.split || "Roark"}'s split; graveyard box${fs.graveyard.length === 1 ? "" : "es"} `
     + `${fs.graveyard.join(", ") || "none"}.` + (fs.unmatched.length ? ` Not placed: ${fs.unmatched.join("; ")}.` : "")
     : "";
-  $("#simsum").innerHTML = `<p><b class="num">${d.worth}</b> box worth</p>
-    <p class="sub">${d.alive} alive, ${d.dead} dead. The living sum to ${d.sum_alive};
-      the best six to ${d.top_six}, which count a quarter again.</p>`;
-  let split = null;
-  const rows = [];
+  // The box's numbers in one slim strip, which gives their room to the next
+  // zone and the delays (Ian's note on the redesign, 2026-09-29).
+  $("#simsum").innerHTML = `
+    <span>Box worth <b class="num">${d.worth}</b></span>
+    <span>Alive, dead <b class="num">${d.alive}, ${d.dead}</b></span>
+    <span>Living sum <b class="num">${d.sum_alive}</b></span>
+    <span title="The best six count a quarter again">Best six <b class="num">${d.top_six}</b></span>`;
+
+  // How sure the run is of each place, when "How sure is it?" has been asked
+  // for this run: the share of replays making the same call.
+  const sure = new Map(((SIMCONF && SIMCONF.seed === d.seed && SIMCONF.areas) || [])
+    .map(r => [r.area, r]));
+  const sureCell = e => {
+    const r = sure.get(e.area);
+    return r ? `<span class="num" title="${esc(`${r.decision}: ${pct(r.share)} of the replays, `
+      + `a lead of ${pct(r.margin)}`)}">${pct(r.share)}</span>` : `<span class="num sub">&middot;</span>`;
+  };
   // A drop list of what the place can give: the sim's choice, a Pokemon to
   // lock in, or the place left unused. Only a place's final row has one.
-  const lockSel = e => !(e.can_give && e.can_give.length) ? "" :
-    `<select class="simlock" data-area="${esc(e.area)}" title="Lock this place and replay the rest around it">
+  const lockSel = e => !(e.can_give && e.can_give.length) ? "<span></span>" :
+    `<select class="simlock" data-area="${esc(e.area)}" title="Lock this place and replay the rest around it"
+      aria-label="Lock a pick at ${esc(e.area)}">
       <option value="">sim's choice</option>${e.can_give.map(o => `<option value="${o.value}"${
         SIMLOCKS[e.area] === o.value ? " selected" : ""}>${esc(o.label)}</option>`).join("")}
       <option value="-"${SIMLOCKS[e.area] === "" ? " selected" : ""}>leave unused</option></select>`;
+  const worth = v => `<span class="worth"><span class="track"><i style="width:${Math.max(0, Math.min(100, v))}%"></i></span>
+    <span class="num">${v}</span></span>`;
+
+  // The next zone the run catches in rather than saves for later, and the
+  // zones it saves (the delays), each with what it waits for and what it
+  // takes there in the end.
+  const log = d.log.filter(e => !e.death);
+  const next = log.find(e => e.species && !e.from_save && e.choice !== "the starter");
+  const delays = log.filter(e => e.wait).map(w => Object.assign({}, w, {
+    then: log.find(e => e.area === w.area && e.species && e !== w) || null }));
+  $("#simnext").innerHTML = `<h2>Next Non-Delay Zone</h2>${next ? `
+    <div class="nextzone">
+      ${icon(next.species, true)}
+      <div class="who"><span class="area">${esc(next.area)}</span>
+        <span><a href="#" class="spname" data-sp="${next.species}">${esc(next.label)}</a>
+          <span class="how">${esc(next.choice)}</span></span>
+        <span class="sub">${splitTag(next.split, " split")} worth <b class="num">${next.value}</b>${
+          sure.get(next.area) ? `, ${pct(sure.get(next.area).share)} sure` : ""}</span></div>
+      ${lockSel(next)}
+    </div>` : `<p class="sub">Nothing left to catch before the run ends.</p>`}`;
+  $("#simdelays").innerHTML = `<div class="cardhead"><h2>Delay Zones</h2>
+      <span class="sub">${delays.length} saved for later</span></div>
+    ${delays.length ? `<div class="delays">${delays.map(w => `<div class="delay">
+      <span class="area">${esc(w.area)}</span>
+      <span class="how">waits for the ${esc(w.wait)} (${esc(w.until)})</span>
+      <span>${w.then ? `${icon(w.then.species, true)}<span>${esc(w.then.label)}</span>` : `<span class="sub">nothing then</span>`}</span>
+    </div>`).join("")}</div>` : `<p class="sub">The run saves no zone for later.</p>`}`;
+
+  // The run, split by split: a header with the split's cap and how many of
+  // its areas catch now and how many wait, then a row per area.
+  const bySplit = [];
   d.log.forEach(e => {
-    if (e.death) {
-      rows.push(`<div class="simrow death"><span></span><span></span>
-        <span>${esc(e.label)} (from ${esc(e.caught_at)}) dies ${esc(e.when)}</span><span></span></div>`);
-      return;
-    }
-    if (e.split !== split) {
-      split = e.split;
-      rows.push(`<div class="simrow split">${splitTag(split, " split")}</div>`);
-    }
-    if (e.wait) {
-      rows.push(`<div class="simrow wait"><span class="where">${esc(e.area)}</span><span></span>
-        <span class="how">waits for the ${esc(e.wait)} (${esc(e.until)})</span><span></span></div>`);
-      return;
-    }
-    if (!e.species) {
-      rows.push(`<div class="simrow none${e.locked ? " locked" : ""}"><span class="where">${esc(e.area)}</span><span></span>
-        <span class="how">${esc(e.note || "nothing new")}${lockSel(e)}</span><span></span></div>`);
-      return;
-    }
-    const alt = (e.options || []).slice(1, 3).map(o => `${o.label} ${o.gain}`).join("; ");
-    rows.push(`<div class="simrow${e.locked ? " locked" : ""}${e.from_save ? " saved" : ""}"
-        title="${esc(alt ? "Next best: " + alt : "")}">
-      <span class="where">${esc(e.area)}</span>${icon(e.species, true)}
-      <span><a href="#" class="spname" data-sp="${e.species}">${esc(e.label)}</a>
-        <span class="how"> ${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span>${lockSel(e)}</span>
-      <span class="num">${e.value}</span></div>`);
+    if (e.death) { if (bySplit.length) bySplit[bySplit.length - 1].rows.push(e); return; }
+    if (!bySplit.length || bySplit[bySplit.length - 1].split !== e.split)
+      bySplit.push({ split: e.split, rows: [] });
+    bySplit[bySplit.length - 1].rows.push(e);
   });
-  $("#simlog").innerHTML = rows.join("");
+  const caps = d.caps || {};
+  const row = e => {
+    if (e.death) return `<div class="simrow death"><span></span>
+      <span>${esc(e.label)} (from ${esc(e.caught_at)}) dies ${esc(e.when)}</span><span></span><span></span><span></span></div>`;
+    if (e.wait) return `<div class="simrow wait"><span class="where">${esc(e.area)}</span>
+      <span class="how">waits for the ${esc(e.wait)} (${esc(e.until)})</span><span></span>${sureCell(e)}<span></span></div>`;
+    if (!e.species) return `<div class="simrow none${e.locked ? " locked" : ""}"><span class="where">${esc(e.area)}</span>
+      <span class="how">${esc(e.note || "nothing new")}</span>${lockSel(e)}${sureCell(e)}<span></span></div>`;
+    const alt = (e.options || []).slice(1, 3).map(o => `${o.label} ${o.gain}`).join("; ");
+    return `<div class="simrow${e.locked ? " locked" : ""}${e.from_save ? " saved" : ""}"
+        title="${esc(alt ? "Next best: " + alt : "")}">
+      <span class="where">${esc(e.area)}</span>
+      <span class="pick">${icon(e.species, true)}<a href="#" class="spname" data-sp="${e.species}">${esc(e.label)}</a>
+        <span class="how">${esc(e.choice)}${e.traded_away ? ", for the " + esc(e.traded_away) : ""}</span></span>
+      ${lockSel(e)}${sureCell(e)}${worth(e.value)}</div>`;
+  };
+  $("#simlog").innerHTML = bySplit.map(g => {
+    const areas = g.rows.filter(e => !e.death);
+    const caught = areas.filter(e => e.species).length, wait = areas.filter(e => e.wait).length;
+    return `<section class="simsplit">
+      <div class="simhead">${splitTag(g.split, " split")}<span class="sub">${
+        caps[g.split] ? `cap ${caps[g.split]} &middot; ` : ""}${areas.length} areas &middot; ${caught} caught here, ${wait} wait</span></div>
+      <div class="simrow cols"><span>Area</span><span>The pick, and how</span><span>Lock</span>
+        <span class="num">How sure</span><span>Worth</span></div>
+      ${g.rows.map(row).join("")}</section>`;
+  }).join("");
+
+  // The box, by worth.
   const mon = m => `<div class="simmon ${m.alive ? "" : "dead"}" title="${esc(m.label + " from " + m.area
       + (m.stage !== m.species ? ", a " + m.stage_label + " by the cap" : ""))}">
-    ${icon(m.stage, true)}<span class="nm">${esc(m.stage_label)}<span class="sub"> ${esc(m.area)}</span></span>
+    ${icon(m.stage, true)}<span class="nm"><b>${esc(m.stage_label)}</b><span class="sub">${esc(m.area)}</span></span>
     <span class="num">${m.value}</span></div>`;
-  const alive = d.box.filter(m => m.alive), dead = d.box.filter(m => !m.alive && !m.traded);
+  const byWorth = list => list.slice().sort((a, b) => b.value - a.value);
+  const alive = byWorth(d.box.filter(m => m.alive)), dead = byWorth(d.box.filter(m => !m.alive && !m.traded));
   const traded = d.box.filter(m => m.traded);
-  $("#simbox").innerHTML = `<h3>The box</h3>${alive.map(mon).join("")}
+  $("#simbox").innerHTML = `<div class="cardhead"><h2>The box</h2><span class="sub">${alive.length}, by worth</span></div>
+    ${alive.map(mon).join("")}
     ${dead.length ? `<h3>Dead</h3>${dead.map(mon).join("")}` : ""}
     ${traded.length ? `<h3>Traded away</h3>${traded.map(mon).join("")}` : ""}`;
 }
@@ -3466,7 +3580,7 @@ window.addEventListener("beforeunload", ev => {
 $("#simgo").onclick = () => simulate(false);
 $("#simsave").onchange = () => { $("#simconfout").innerHTML = ""; simulate(false); };
 $("#simclear").onclick = () => { SIMLOCKS = {}; saveLocks(); simulate(false); };
-$("#simlog").addEventListener("change", ev => {
+$("#simmid").addEventListener("change", ev => {
   const sel = ev.target.closest(".simlock");
   if (!sel) return;
   if (sel.value === "") delete SIMLOCKS[sel.dataset.area];
@@ -3485,18 +3599,15 @@ $("#simconf").onclick = async () => {
     // A server older than the page answers without the table (it read the
     // path as an ordinary run); say so rather than fail on the missing field.
     if (!Array.isArray(c.areas)) throw new Error("The OxiDex server is older than this page: restart it");
-    $("#simconfout").innerHTML = `<table class="grid"><thead><tr><th>Next places</th><th>Call</th>
-        <th class="num" title="Share of ${c.runs} replays making this call">Sure</th>
-        <th class="num" title="The call's lead over the next best option, as a share of its gain">Lead</th></tr></thead>
-      <tbody>${c.areas.map(r => `<tr title="${esc(r.others.map(o => `${o.decision} ${pct(o.share)}`).join("; "))}">
-        <td>${esc(r.area)}</td><td>${esc(r.decision)}</td><td class="num">${pct(r.share)}</td>
-        <td class="num">${pct(r.margin)}</td></tr>`).join("")}</tbody></table>
-      <p class="sub">${c.runs} replays with different luck. The first place's lead is exact; further on,
-        the share says how often earlier luck leads to the same call.</p>`;
+    SIMCONF = Object.assign({}, c, { seed: SIM ? SIM.seed : null });
+    $("#simconfout").innerHTML = `<p class="sub">${c.runs} replays with different luck, in the How
+      sure column. The first place's lead is exact; further on, the share says how often earlier luck
+      leads to the same call.</p>`;
+    drawSim();
   } catch (e) { $("#simconfout").innerHTML = ""; toast(e.message, true); }
   finally { b.disabled = false; }
 };
-$("#simlog").addEventListener("click", ev => {
+$("#simmid").addEventListener("click", ev => {
   const hit = ev.target.closest("[data-sp]");
   if (!hit) return;
   ev.preventDefault();
