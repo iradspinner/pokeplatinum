@@ -4367,6 +4367,12 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
     // This definition is naive: the AI does not consider itself immune to Magnet Pull from an ally,
     // Shadow Tag if it also has Shadow Tag, Arena Trap if it is a Flying-type, or always able to switch
     // if it is holding a Shed Shell.
+    // Oxide: a battler held in the air by Sky Drop cannot switch, whatever its type, as
+    // Battler_IsTrapped has it.
+    if (Battler_SkyDropHeld(battleCtx, battler)) {
+        return FALSE;
+    }
+
     // Oxide: nothing traps a Ghost type (Generation 6), as Battler_IsTrapped has it.
     if (MON_IS_NOT_TYPE(battler, TYPE_GHOST)
         && ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
