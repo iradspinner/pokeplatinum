@@ -1215,6 +1215,99 @@ that stay. None blocks anything.
    and needed nothing. Checked by `test_savefile` on a synthetic 30-box
    save, and once in headless Chrome through Read Save.
 
+45. **The water principles as lint (2026-09-29, the Overseer's approval of
+   this track's proposal, on `encounter-water-lint`).** Ian adopted the
+   blind encounter review's water principles as principles only; the water
+   tables are re-authored later, and nothing here changes a table. Each
+   water table's sidecar entry names a biome (`water_biome`, with
+   `water_biome_why` and the place's earned lines in `water_earned`), and
+   `water-biomes.json` gives each of the twelve biomes its palette and the
+   sea lines by stage. Seven aspirational warnings follow: R19 a line off its
+   biome's palette, R19b a sea line inland, R20 a line in two of a capture
+   area's water methods (the Super Rod 1% adult of a Good Rod line allowed),
+   R21 a line as the 1% in more than three areas, R22 two areas opening in
+   one split with the same top pair (R15's "same" groups exempt), R23
+   non-Water over 30% outside a cave, and R24 a water table under five
+   lines. The biome of every area is a draft for Ian, with today's counts
+   beside it in `water-lint-draft.md` (854 warnings, 395 of them R19); he
+   decides it as one question. `test_m3` checks each rule on made-up tables.
+
+46. **The layout redesign, one tab at a time (Ian approved it on
+   2026-09-29, with notes, through the Overseer).** The mockups are the
+   Overseer's design canvas (claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u):
+   Dex, Moves, Trainers, Box sim and three themes. Each tab is built on its
+   own branch, checked in headless Chrome in all three themes, and merged
+   into `ian-saves` before the next. Built from the theme's tokens, so every
+   colour follows the theme and `test_m4` still finds no literal.
+   - **Dex** (`encounter-redesign-dex`): a 300px list, the species in
+     cards down the centre (the hero with its sprite, base stats beside
+     abilities and the rest, damage taken with its weaknesses, resistances
+     and immunities in words over a nine-wide grid, and the line across the
+     page with how each stage is reached over the arrow, or on each card of
+     a branch), and its moves in a 400px rail behind Level-up, Machines,
+     Tutor and Egg tabs, the tab kept from species to species. Ian's notes:
+     no "where it is met" line on the cards, "No Wild Encounters" for a
+     member met nowhere, and "+N from vanilla" beside the base stat total.
+     The machine, tutor and egg lists now carry class, power and accuracy.
+   - **Themes** (`encounter-redesign-themes`, stacked on the Dex), with
+     Ian's answers (2026-09-29, through the Overseer). The dark surfaces
+     are a step brighter and more teal in Dark and Dim, the sunken wells
+     more teal only, so text in them keeps its contrast; `test_m4` now
+     measures Dark as it did Dim. The mockup's three faces ship in
+     `ui/fonts` with their OFL licences (`fonts/README.md`), replacing
+     Pixelify Sans: Atkinson Hyperlegible, JetBrains Mono and Silkscreen,
+     nothing from the network. The header's one cycling button, and the
+     doc viewer's, became four: Dark, Dim, Light and Auto, the one in force
+     marked. The calculator keeps its own type.
+   - **Moves** (`encounter-redesign-moves`, stacked on Themes): the list at
+     420px with Type, Move, Class, Pow, Acc and Who, and the move in cards
+     two wide, the right column gone: the hero with Power, Accuracy, PP and
+     Target tiles; what it does in Oxide (effect, chance, flags) beside
+     against vanilla; who learns it over the whole width, four across and
+     grouped by how (Ian's note: a larger box); and its type's moves of its
+     class by power, sixteen around it, this one marked, each opening its
+     move. Every card is a section, and sections scroll on their own, so
+     the cards are kept from scrolling (that had clipped the Dex's too).
+   - **Trainers** (`encounter-redesign-trainers`, stacked on Moves): the
+     list at 280px and the right panel gone. The trainer is a header line
+     with its split and cap, its file and the save bar; the team is a sheet,
+     paper in every theme with a slate header and legend, one column a
+     Pokemon: its sprite, level and species, types, nature and ability
+     (faint and italic when the game rolls them), item, and four moves
+     tinted by type and bold when they share a type with their user, every
+     cell edited in place. The form, IV scale, gender, move lists and
+     removal sit in each Pokemon's menu, the dots on its sprite. The three
+     move lists open in a card under the sheet while a move is edited.
+     Under that, the score, threat and answers as bars, and battle and AI.
+     A pair is two sheets, the one being worked on outlined. Ian's notes:
+     the trainer sprites work (`/api/trainer-sprite/<class>`, each class's
+     `front.png` from `res/trainers/classes` with its clear colour made
+     clear and the first frame shown), and the AI flags are a fixed grid
+     three wide, headed "AI Flags:", one icon per flag in its own cell, lit
+     when the trainer has it, Double battle the last cell. `test_m4` holds
+     the sheet's type tints and paper to WCAG's 4.5:1.
+   - **Box sim** (`encounter-redesign-boxsim`, stacked on Trainers): the
+     settings in a 290px rail (Regenerate, How sure is it?, the locks and
+     the seed), the box by worth in a 330px rail, and the run between.
+     Ian's note took room from box worth, living sum and best six, now one
+     slim strip, and gave it to two cards: **Next Non-Delay Zone**, the
+     next place the run catches in rather than saves (its pick, how, worth,
+     how sure and its lock; the starter is not a zone), and **Delay Zones**,
+     every place the run saves for later, what it waits for and until
+     when, and what it takes there in the end. Both are read from the run
+     itself, in this track's reading of the two names, which Ian
+     confirmed as built (2026-09-29, through the Overseer). Then the run split by split, each with its cap and how many areas
+     catch now or wait, a row per area: the pick and how, the lock, how
+     sure (from "How sure is it?", for the run it was asked for), and its
+     worth as a bar. The server now sends each split's cap with a run.
+   - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
+     wild, each with one home and at most one neighbour, and Froakie's 1%
+     is cut to a few water areas that fit it (R21 flags it); the late
+     game's few new lines, Fairy's absence from Wake's and Byron's land and
+     Starly's line never evolving in the wild come to Ian as proposals
+     there. The water tables are re-authored after that pass, so each
+     zone's land and water are judged together.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule

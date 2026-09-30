@@ -163,7 +163,7 @@ A duplicate cull simplifies the list more than it simplifies balance. Within eac
 | Coaching | 1 | fails without a partner |
 | Ally Switch, Aromatic Mist, Flower Shield, Magnetic Flux | 2, 3, 1, 1 | already in the first cut as dead in Oxide |
 
-Oxide fields 16 double battles (Maylene's split 6, the post-game 6, the League 2, Byron's and Gardenia's 1 each), and element 8 brings wild double battles. Cutting all eleven touches 69 lines, empties the Helping Hand tutor and changes those three Clefairy's moves; the question below is whether any should stay.
+Oxide fields 16 double battles (Maylene's split 6, the post-game 6, the League 2, Byron's and Gardenia's 1 each), and element 8 was to bring wild double battles (dropped, Ian, 2026-09-29). Cutting all eleven touches 69 lines, empties the Helping Hand tutor and changes those three Clefairy's moves; the question below is whether any should stay.
 
 ### Moves that do nothing useful
 

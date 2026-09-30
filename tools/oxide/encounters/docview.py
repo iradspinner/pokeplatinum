@@ -446,6 +446,11 @@ table.front { background: var(--panel); border: 1px solid var(--rule); font-size
 .index ul { list-style: none; padding-left: 0; columns: 2 320px; }
 .index li { break-inside: avoid; }
 .error { color: var(--error); }
+.themeseg { display: flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.themeseg button { border: 0; border-radius: 0; padding: 4px 10px; font-size: 14.5px;
+                   background: transparent; color: var(--dim); }
+.themeseg button + button { border-left: 1px solid var(--rule); }
+.themeseg button.on { background: var(--place-bg); color: var(--place-ink); font-weight: 700; }
 """
 
 
@@ -466,7 +471,10 @@ def page(title, body, where):
 <header>
   <a class="title" href="/doc">Platinum <span class="ox">OxiDex</span></a>
   <span class="where">{where}</span>
-  <button data-theme-toggle>Dark</button>
+  <div class="themeseg" role="group" aria-label="Colour scheme">
+    <button data-theme-set="dark">Dark</button><button data-theme-set="dim">Dim</button><button
+      data-theme-set="light">Light</button><button data-theme-set="auto" title="Follow Windows">Auto</button>
+  </div>
 </header>
 <main>
 {body}

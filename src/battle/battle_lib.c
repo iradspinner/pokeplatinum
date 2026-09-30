@@ -4888,6 +4888,22 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     }
                     break;
                 }
+
+                case ABILITY_PASTEL_VEIL: {
+                    // In a double battle a poisoned partner is cured as the
+                    // holder comes in (the later games' rule; hg-engine only
+                    // cures the holder, as Immunity does).
+                    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+                    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+                        && partner != battler
+                        && battleCtx->battleMons[partner].curHP
+                        && (battleCtx->battleMons[partner].status & MON_CONDITION_ANY_POISON)) {
+                        battleCtx->sideEffectMon = partner;
+                        subscript = subscript_pastel_veil;
+                    }
+                    break;
+                }
                 }
 
                 battleCtx->battleMons[battler].oxideAbilityAnnounced = TRUE;
@@ -5463,6 +5479,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
 
     switch (Battler_Ability(battleCtx, battler)) {
     case ABILITY_IMMUNITY:
+    case ABILITY_PASTEL_VEIL: // Oxide: cures its own poison, as hg-engine has it
         if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
             battleCtx->msgTemp = MSGCOND_POISON;
             result = TRUE;
@@ -5560,6 +5577,7 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 
     switch (ability) {
     case ABILITY_IMMUNITY:
+    case ABILITY_PASTEL_VEIL: // Oxide
         if (status & MON_CONDITION_ANY_POISON) {
             result = TRUE;
         }
@@ -5689,6 +5707,32 @@ static BOOL BerryBlockedByUnnerve(BattleSystem *battleSys, BattleContext *battle
 {
     return Item_IsBerry(Battler_HeldItem(battleCtx, battler))
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_UNNERVE);
+}
+
+// Oxide: Infiltrator. The attacker's move passes the target's Substitute and
+// Safeguard, as it passes screens and Mist, as the later games have it (hg-engine's
+// ServerHPCalc and CheckSubstitute). Transform and Sky Drop still meet the
+// Substitute, as in hg-engine, and a battler's own Substitute is never passed,
+// since scripts check the user's too.
+BOOL BattleSystem_InfiltratorPasses(BattleContext *battleCtx, int battler)
+{
+    return battler != battleCtx->attacker
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INFILTRATOR
+        && battleCtx->moveCur != MOVE_TRANSFORM
+        && battleCtx->moveCur != MOVE_SKY_DROP;
+}
+
+// Oxide: the same for an effect a script is about to apply, when it comes from
+// the attacker's move: a status move's own effect, a hit's secondary effect or
+// a move effect, not an ability's, an item's or Toxic Spikes'. hg-engine counts
+// the first and last; the secondary effect is here too, so that a hit which
+// passed the Substitute brings its burn or flinch chance with it.
+BOOL BattleSystem_InfiltratorPassesEffect(BattleContext *battleCtx, int battler)
+{
+    return (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT
+               || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+               || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_MOVE_EFFECT)
+        && BattleSystem_InfiltratorPasses(battleCtx, battler);
 }
 
 // Oxide: whether an item's stat raise would change battler's stat: one below

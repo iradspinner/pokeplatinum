@@ -28,7 +28,7 @@
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
     "abilities": [
-        "ABILITY_PRESSURE",
+        "ABILITY_MAGIC_GUARD",
         "ABILITY_NONE",
         "ABILITY_REGENERATOR"
     ],

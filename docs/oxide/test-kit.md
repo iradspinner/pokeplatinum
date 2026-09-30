@@ -60,7 +60,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Sprite heights | four wild Pokemon at Lv. 5 in turn: Wooloo, Sinistea, Rookidee, Fletchling | the new species' placement: the first, third and fourth stand on their shadows, Sinistea hovers just above |
 | Level caps | puts the player in any of the thirteen level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Element 7 items | one of each of the 46 new items and the Ice Stone, and a battle for each held item (entries below) | element 7's items and its follow-up |
-| Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone, and "Route 208, all badges", which gives all eight badges and lands facing west at Route 208's rocky wall, two tiles from the pond below its waterfall | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop, and field moves by badge (Rock Climb, Surf, Waterfall up and down, and FLY, SURF and DEFOG in every Pokemon's menu) |
+| Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone, and "Route 208, all badges", which gives all eight badges and lands facing west at Route 208's rocky wall, two tiles from the pond below its waterfall | the nurse, Route 202's trainers, the Move Relearner, the TM shop, and field moves by badge (Rock Climb, Surf, Waterfall up and down, and FLY, SURF and DEFOG in every Pokemon's menu) |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
 a whiteout does. A warp ahead of the story can meet story scripts in the
@@ -317,6 +317,8 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Hidden ability wild | a wild Litten, Lv. 15, fought with the flag set | "The wild LITTEN's Intimidate cuts ...'s Attack!" as the battle starts. The flag clears itself, so the next scripted wild Pokemon rolls as usual | element 8, hidden abilities |
 | Items restored | Mew holding a Sitrus Berry: Belly Drum, Tackle, Recover, Splash; foe a wild Chansey that knows only Splash | Belly Drum halves Mew's HP and it eats the Sitrus Berry. After the battle, won or run from, Mew's summary shows the Sitrus Berry again | element 8, held items restored |
 | Kaizo move data | Mew: Extreme Speed, Minimize, Protect, Recover; foe a wild Shuckle that knows only Fake Out | Switch Mew in on the first turn. From then Shuckle's Fake Out ("But it failed!") comes before Mew's Extreme Speed every turn, though Mew is far faster: Fake Out is +3 and Extreme Speed +2 (Ian, 2026-09-27), where both were +1 and Mew went first. Minimize: "MEW's evasiveness sharply rose!", two stages where it was one | cloud/element4-kaizo-move-data |
+| Infiltrator, Substitute | Crobat with Infiltrator: Cross Poison, Screech, Confuse Ray, Toxic; foe a wild Snorlax that knows only Substitute | Once Snorlax's doll is up, Cross Poison takes Snorlax's own HP and may poison it, Screech lowers its Defense, and Confuse Ray and Toxic land, all with the doll still standing | element 5's gaps |
+| Infiltrator, Safeguard | the same Crobat: Toxic, Confuse Ray, Cross Poison, Screech; foe a wild Chansey that knows only Safeguard | With Safeguard up, Toxic still badly poisons Chansey and Confuse Ray still confuses it | element 5's gaps |
 
 ## The item entries
 

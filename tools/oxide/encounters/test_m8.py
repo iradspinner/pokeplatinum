@@ -270,14 +270,19 @@ def check_weather_flag(results):
     flagged = sorted(s for s, r in rows.items() if r["weather"])
     page = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui", "index.html"),
                 encoding="utf-8").read()
+    # Since Ian's ruling of 2026-09-29 moved the last obtainable lines' weather
+    # to their hidden slots (Hippopotas, Snover, Psyduck, Larvitar's), only
+    # legendaries the player never gets carry it in a regular slot.
     results.append(("a weather ability in a regular slot is flagged, a hidden one is not",
-                    rows["SPECIES_HIPPOPOTAS"]["weather"] == ["SAND_STREAM"]
+                    rows["SPECIES_GROUDON"]["weather"] == ["DROUGHT"]
+                    and server.dex_detail("SPECIES_KYOGRE")["weather"] == ["DRIZZLE"]
+                    and rows["SPECIES_HIPPOPOTAS"]["weather"] == []
+                    and pokedex.load(root, "SPECIES_HIPPOPOTAS")["hidden_ability"] == "SAND_STREAM"
                     and rows["SPECIES_ALOLAN_NINETALES"]["weather"] == []
                     and pokedex.load(root, "SPECIES_ALOLAN_NINETALES")["hidden_ability"]
                     == "SNOW_WARNING"
-                    and server.dex_detail("SPECIES_SNOVER")["weather"] == ["SNOW_WARNING"]
                     and not rows["SPECIES_BULBASAUR"]["weather"],
-                    f"{len(flagged)} species"))
+                    f"{len(flagged)} species: {', '.join(flagged)}"))
     results.append(("the page shows the flag in the dex and on every source's species",
                     page.count("${weatherTag(") == 4 and 'data-f="weather"' in page,
                     ""))
@@ -536,14 +541,19 @@ def check_moves_view(results):
 
     gible = server.dex_detail("SPECIES_GIBLE")
     garchomp = server.dex_detail("SPECIES_GARCHOMP")
+    # Each carries its numbers too, for the moves rail's tabs (the redesign,
+    # 2026-09-29).
+    claw = garchomp["machine_moves"][0]
     results.append(("the species page lists its machine, tutor and egg moves, "
-                    "each naming the move it opens",
-                    garchomp["machine_moves"][0] == {
+                    "each naming the move it opens, with its power and accuracy",
+                    {k: claw.get(k) for k in ("machine", "move", "type", "label")} == {
                         "machine": "TM02", "move": "MOVE_DRAGON_CLAW",
                         "type": "DRAGON", "label": "Dragon Claw"}
+                    and claw.get("power") and claw.get("accuracy")
                     and garchomp["tutor_moves"]
+                    and all("power" in m for m in garchomp["tutor_moves"])
                     and any(m["move"] == "MOVE_OUTRAGE" for m in gible["egg_moves"]),
-                    ""))
+                    str(claw)))
 
 
 def check_calculator(results):
@@ -561,9 +571,10 @@ def check_calculator(results):
                                                "sa": 85, "sd": 85, "sp": 102}
                     and poks["Clefairy"]["types"] == ["Fairy"]
                     and poks["Ninetales-Alola"]["types"] == ["Ice", "Fairy"]
-                    # the two regular slots; Gible has a hidden one too since element 8
-                    and poks["Gible"]["abilities"].get("0") == "Sand Veil"
-                    and poks["Gible"]["abilities"].get("1") == "Rough Skin",
+                    # Gible's one regular ability and its hidden one: Rough Skin,
+                    # with Sand Veil hidden since the buff review (Ian, 2026-09-29)
+                    and poks["Gible"]["abilities"].get("0") == "Rough Skin"
+                    and poks["Gible"]["abilities"].get("H") == "Sand Veil",
                     f"{len(poks)} species"))
     moves = blob["moves"]
     results.append(("moves carry Oxide's type, category and power, and a coded "

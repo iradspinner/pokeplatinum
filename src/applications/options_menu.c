@@ -162,6 +162,11 @@ BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
     menuData->options.soundMode = Options_SoundMode(options);
     menuData->options.buttonMode = Options_ButtonMode(options);
     menuData->options.messageBoxStyle = Options_Frame(options);
+
+    // Platinum Oxide: a save made with the dropped ALWAYS shows, and saves, BATTLE.
+    if (menuData->options.buttonMode == OPTIONS_BUTTON_MODE_L_IS_A) {
+        menuData->options.buttonMode = OPTIONS_BUTTON_MODE_START_IS_X;
+    }
     menuData->heapID = HEAP_ID_OPTIONS_MENU;
     menuData->saveOptions = options;
 
@@ -731,7 +736,7 @@ static const int sNumChoicesPerEntry[MAX_ENTRIES] = {
     2,
     2,
     2,
-    3,
+    2, // Platinum Oxide: UNLOCK FPS offers OFF and BATTLE; ALWAYS is dropped (main.c)
     20,
     0,
 };

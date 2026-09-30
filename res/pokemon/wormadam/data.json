@@ -29,8 +29,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
     "abilities": [
         "ABILITY_ANTICIPATION",
-        "ABILITY_NONE",
-        "ABILITY_OVERCOAT"
+        "ABILITY_OVERCOAT",
+        "ABILITY_NONE"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",

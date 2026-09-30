@@ -495,6 +495,23 @@ PICK_LIST_RETYPES = {
     480, 481, 482,
 }
 
+# The blind buff review's stat changes (Ian, 2026-09-29), by dex number: the
+# sheet's slips (Fearow, Kadabra's bulk, Tentacruel, Graveler, Weezing,
+# Noctowl, Skarmory, Cascoon, Banette) and section B (Delibird, Kricketune,
+# Mawile, Quagsire).
+BUFF_REVIEW_STATS = {22, 64, 73, 75, 110, 164, 195, 225, 227, 268, 303, 354, 402}
+
+# The review's second answers (Ian, 2026-09-29): Tangela, Politoed, Donphan and
+# Rotom (Kaizo's appliance numbers, since its forms come after Fantina's split),
+# halfway to Kaizo for Articuno and Suicune,
+# and Kaizo's numbers for the species the player cannot catch, so trainer teams
+# carried over from Kaizo fight as they did there.
+BUFF_REVIEW_SECOND_STATS = {114, 144, 186, 232, 245, 479}
+KAIZO_TRAINER_STATS = {39, 51, 83, 88, 165, 167, 174, 243, 244}
+# The variants Ian took from the scores (2026-09-29): sections C and D and
+# Houndoom's line.
+BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 337, 338, 400, 414, 444}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -512,6 +529,35 @@ DIVERGED = {
                    "stats, corrected to Ian's change sheet (2026-09-29; import_base_rom.py's "
                    "BASE_STATS_DIVERGED)",
         },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),  # HP, Atk, Def, Speed, Sp. Atk, Sp. Def
+            "members": BUFF_REVIEW_STATS,
+            "why": "the blind buff review (Ian, 2026-09-29): the sheet's slips, and the "
+                   "high-confidence stat changes (import_base_rom.py's BASE_STATS_DIVERGED)",
+        },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),
+            "members": BUFF_REVIEW_SECOND_STATS | KAIZO_TRAINER_STATS,
+            "why": "the buff review's second answers, and Kaizo's numbers for the species "
+                   "the player cannot catch (Ian, 2026-09-29)",
+        },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),
+            "members": BUFF_REVIEW_VARIANT_STATS,
+            "why": "the buff review's variants Ian took from their scores (2026-09-29; "
+                   "docs/oxide/reviews/buff-review/scores.md)",
+        },
+        {
+            "offsets": (6, 7),  # type1, type2
+            "members": {181},
+            "why": "Ampharos to Electric/Dragon, a buff review variant (Ian, 2026-09-29)",
+        },
+        {
+            "offsets": (6, 7),  # type1, type2
+            "members": {333, 334, 370},
+            "why": "the buff review's Fairy retypes: Swablu Fairy/Flying, Altaria "
+                   "Dragon/Fairy, Luvdisc Water/Fairy (Ian, 2026-09-29)",
+        },
     ],
     # A list when more than one change touches the archive; a member passes if
     # every byte it differs at is allowed by some entry that lists it.
@@ -525,6 +571,12 @@ DIVERGED = {
             "offsets": (11,),  # flags
             "members": KINGS_ROCK_NATIVES,
             "why": "native damaging moves given the King's Rock flag (Ian, 2026-09-22)",
+        },
+        {
+            "offsets": (11,),  # flags
+            "members": {424},
+            "why": "Fire Fang loses the Snatch flag the base ROM gave it, which only a "
+                   "status move can use (element 4's QA leftovers, 2026-09-30)",
         },
         {
             "offsets": (8, 9),  # range
@@ -635,7 +687,7 @@ DIVERGED_MEMBERS = {
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
                     42, 113, 172, 173, 174, 175, 298, 406, 427, 433, 446, 447,
-                    77, 109, 37}
+                    77, 109, 37, 228}
                    | TRADE_EVOLUTIONS_STRIPPED,
         "why": "seven natives gain an evolution into a new species "
                "(Primeape, Scyther, Gyarados, Eevee, Wooper, Luvdisc, Lopunny; "
@@ -648,7 +700,8 @@ DIVERGED_MEMBERS = {
                "beside its level-up routes (element 8); Ponyta and Koffing "
                "gain a Moon Stone branch to their Galarian forms beside their "
                "level evolutions, and Vulpix the Ice Stone's Alolan Ninetales "
-               "(Ian, 2026-09-28)",
+               "(Ian, 2026-09-28); Houndour evolves at 27, after Gardenia's split "
+               "(Ian, 2026-09-29)",
     },
 }
 REF_NATIVE_COUNT = 494  # 0 plus the 493 species the reference ROM has
@@ -710,8 +763,10 @@ PERSONAL_BASE_EXP_AT = 0x09
 # Species records whose two regular abilities differ from the reference on
 # purpose, by reference member, with the ability ids they must now hold.
 PERSONAL_ABILITIES_DIVERGED = {
-    499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
-    500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    499: ((107, 142), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, "
+                      "2026-09-27), and Overcoat (2026-09-29)"),
+    500: ((107, 142), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, "
+                      "2026-09-27), and Overcoat (2026-09-29)"),
     # The player never sets or ends weather (Ian, 2026-09-29): each weather
     # ability moves to the hidden slot, for trainers, and the regular slots
     # keep the line's others.
@@ -722,6 +777,40 @@ PERSONAL_ABILITIES_DIVERGED = {
     450: ((47, 0), "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
     459: ((91, 43), "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
     460: ((91, 43), "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
+    # The blind buff review (Ian, 2026-09-29): the sheet's ability slips and
+    # the junk-ability fixes.
+    25: ((120, 0), "Pikachu: Reckless, the sheet's (Ian, 2026-09-29)"),
+    26: ((31, 0), "Raichu: Lightning Rod, the sheet's (Ian, 2026-09-29)"),
+    80: ((144, 20), "Slowbro: Regenerator and Own Tempo; Oblivious is junk (Ian, 2026-09-29)"),
+    97: ((15, 0), "Hypno: Insomnia only, the sheet's (Ian, 2026-09-29)"),
+    163: ((15, 110), "Hoothoot: Insomnia and Tinted Lens, as Noctowl (Ian, 2026-09-29)"),
+    170: ((10, 11), "Chinchou: Volt Absorb and Water Absorb; Illuminate is junk (Ian, 2026-09-29)"),
+    171: ((10, 11), "Lanturn: Volt Absorb and Water Absorb; Illuminate is junk (Ian, 2026-09-29)"),
+    194: ((11, 109), "Wooper: Water Absorb and Unaware; Damp is junk (Ian, 2026-09-29)"),
+    195: ((11, 109), "Quagsire: Water Absorb and Unaware; Damp is junk (Ian, 2026-09-29)"),
+    199: ((144, 20), "Slowking: Regenerator and Own Tempo; Oblivious is junk (Ian, 2026-09-29)"),
+    220: ((81, 47), "Swinub: Snow Cloak and Thick Fat, as Mamoswine (Ian, 2026-09-29)"),
+    221: ((81, 47), "Piloswine: Snow Cloak and Thick Fat, as Mamoswine (Ian, 2026-09-29)"),
+    225: ((72, 91), "Delibird: Vital Spirit and Adaptability (Ian, 2026-09-29)"),
+    300: ((56, 0), "Skitty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
+    301: ((56, 0), "Delcatty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
+    402: ((52, 101), "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)"),
+    413: ((107, 142), "Wormadam: Anticipation and Overcoat, moved up from hidden (Ian, 2026-09-29)"),
+    348: ((33, 4), "Armaldo: Swift Swim and Battle Armor, the sheet's (Ian, 2026-09-29)"),
+    250: ((98, 0), "Ho-Oh: Magic Guard, Kaizo's, for the trainer that has it (Ian, 2026-09-29)"),
+    # Lines whose hidden ability repeated a regular one, and Kaizo's Gallade
+    # (Ian, 2026-09-29); the hidden-only fixes need no entry here.
+    6: ((66, 0), "Charizard: Blaze only; Solar Power stays hidden (Ian, 2026-09-29)"),
+    443: ((24, 0), "Gible: Rough Skin; Sand Veil is hidden (Ian, 2026-09-29)"),
+    444: ((24, 61), "Gabite: Rough Skin and Shed Skin; Sand Veil is hidden (Ian, 2026-09-29)"),
+    445: ((24, 0), "Garchomp: Rough Skin; Sand Veil is hidden (Ian, 2026-09-29)"),
+    60: ((33, 11), "Poliwag: Swift Swim and Water Absorb (Ian, 2026-09-29)"),
+    61: ((33, 11), "Poliwhirl: Swift Swim and Water Absorb (Ian, 2026-09-29)"),
+    62: ((33, 11), "Poliwrath: Swift Swim and Water Absorb (Ian, 2026-09-29)"),
+    320: ((46, 41), "Wailmer: Pressure and Water Veil (Ian, 2026-09-29)"),
+    321: ((46, 41), "Wailord: Pressure and Water Veil (Ian, 2026-09-29)"),
+    475: ((52, 80), "Gallade: Hyper Cutter and Steadfast, as Kaizo's ROM has (Ian, 2026-09-29)"),
+    99: ((52, 125), "Kingler: Hyper Cutter and Sheer Force; Shell Armor is hidden (Ian, 2026-09-29)"),
 }
 
 

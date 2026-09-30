@@ -30,10 +30,10 @@ All colors live in one new file, `tools/oxide/encounters/ui/theme.css`, as custo
 
 | Token | Used for | Light | Dark |
 |---|---|---|---|
-| `--ground` | Page and centre-column background | #EEF4F3 | #0E1819 |
-| `--panel` | Side columns, header, menus, inputs | #FAFCFC | #142122 |
-| `--sunken` | Hover, tracks, tags, hatching | #E1EBEA | #1D2E30 |
-| `--rule` | Borders and dividers | #C9D8D6 | #2A3E40 |
+| `--ground` | Page and centre-column background | #EEF4F3 | #0F1C1E |
+| `--panel` | Side columns, header, menus, inputs | #FAFCFC | #142627 |
+| `--sunken` | Hover, tracks, tags, hatching | #E1EBEA | #1B3032 |
+| `--rule` | Borders and dividers | #C9D8D6 | #294446 |
 | `--ink` | Body text | #172524 | #E3EEED |
 | `--dim` | Secondary text and labels | #536667 | #93AAA9 |
 | `--faint` | Caught rows, disabled text, placeholders | #7A9191 | #5A7272 |
@@ -53,7 +53,7 @@ The ladder alternates teal and pink so that neighbouring species separate at a g
 
 | Token | Dim |
 |---|---|
-| `--ground` / `--panel` / `--sunken` / `--rule` | #22484F / #285057 / #315961 / #46747C |
+| `--ground` / `--panel` / `--sunken` / `--rule` | #204E56 / #26565E / #2D5C65 / #427B85 |
 | `--ink` / `--dim` / `--faint` | #F2F7F6 / #C4D3D2 / #A0B5B4 |
 | `--mass` / `--on-mass` | #7FDFDC / #1B2627 |
 | `--place-bg` / `--place-ink` | #563E4B / #FAC0D5 |
@@ -66,10 +66,10 @@ The light values are slightly darker than the ones in `palette-options.html`. Th
 ```css
 :root {
   color-scheme: light dark;
-  --ground: light-dark(#EEF4F3, #0E1819);
-  --panel: light-dark(#FAFCFC, #142122);
-  --sunken: light-dark(#E1EBEA, #1D2E30);
-  --rule: light-dark(#C9D8D6, #2A3E40);
+  --ground: light-dark(#EEF4F3, #0F1C1E);
+  --panel: light-dark(#FAFCFC, #142627);
+  --sunken: light-dark(#E1EBEA, #1B3032);
+  --rule: light-dark(#C9D8D6, #294446);
   --ink: light-dark(#172524, #E3EEED);
   --dim: light-dark(#536667, #93AAA9);
   --faint: light-dark(#7A9191, #5A7272);
@@ -142,17 +142,17 @@ The page follows Windows by default and offers a toggle for the moments it shoul
 1. `index.html` gets `<meta name="color-scheme" content="light dark">` in its head, before any stylesheet.
 2. `theme.css` sets `color-scheme: light dark` on `:root` and never pins it there. With JavaScript off, the page still follows the system.
 3. A small `ui/theme.js`, loaded as an ordinary blocking script in the head (not a module, not `defer`), reads `localStorage["oxide-color-scheme"]` and, if it holds `light` or `dark`, writes that into the meta tag before first paint. Wrap every storage read and write in try/catch; an empty or throwing store means "follow the system".
-4. The toggle is one button at the right end of the header with two states, following current guidance: "System" and the opposite of whatever the system currently is. Pressing it pins that exact scheme, so if Windows later switches to match, the page stays where Ian put it. The button's label names what pressing it will do ("Dark", "Light", or "System"), and it updates from a `matchMedia("(prefers-color-scheme: dark)")` change listener.
+4. The switch is four buttons at the right end of the header (Ian, 2026-09-29, the redesign): Dark, Dim and Light pin that look, so if Windows later switches the page stays where Ian put it, and Auto follows Windows again. The one in force is marked, and the marks update from a `matchMedia("(prefers-color-scheme: dark)")` change listener. Until then it was one button that stepped through the looks, which theme.js still wires on any page marked `data-theme-toggle`.
 5. The theme preference is per browser and belongs in `localStorage`. It is the one piece of state that should not go through the server the way the caught list does.
 
 ## 4. Typography
 
 | Role | Face | Size | Weight |
 |---|---|---|---|
-| Title "Platinum Oxide" | Pixelify Sans | 16px | 600 |
-| View tabs, time-of-day tabs | Pixelify Sans | 13px | 600 |
-| Uplift headline | Pixelify Sans | 28px | 600 |
-| Dex number | Pixelify Sans | 16px | 600 |
+| Title "Platinum Oxide" | Silkscreen | 16px | 400 |
+| View tabs, time-of-day tabs | Silkscreen | 13px | 400 |
+| Uplift headline | Silkscreen | 28px | 400 |
+| Dex number | Silkscreen | 16px | 400 |
 | Area or species name | sans | 18px (22px on the species page) | 650 |
 | Centre column body | sans | 15.5px | 400 |
 | Base body | sans | 13.5px | 400 |
@@ -168,11 +168,11 @@ the slot table's party icons are 64px in 68px rows. "What a player meets" sits
 beside the slot table without a heading, and the slot table no longer has a real
 odds column. The build plan's entry for that date has the details.
 
-Stacks: sans is `system-ui, "Segoe UI Variable", "Segoe UI", sans-serif`; mono is `ui-monospace, "Cascadia Mono", Consolas, monospace` with `font-variant-numeric: tabular-nums`.
+Stacks, since the redesign (Ian, 2026-09-29): sans is `"Atkinson Hyperlegible", system-ui, "Segoe UI Variable", "Segoe UI", sans-serif`; mono is `"JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace` with `font-variant-numeric: tabular-nums`; the pixel face is Silkscreen.
 
 ### The pixel face
 
-Pixelify Sans, SIL Open Font License 1.1, weight 600, latin subset, from the fontsource 5.3.0 package. Commit it as `ui/fonts/PixelifySans-600-latin.woff2` with the licence beside it as `ui/fonts/OFL.txt`, and add a line to the track's vendoring notes saying where it came from. Declare it with `font-display: block`: the file is local and tiny, and a swap would make the title jump. Python's `mimetypes` already maps `.woff2` to `font/woff2`, so `server.py` needs no change.
+Silkscreen since the redesign (Ian, 2026-09-29), in place of Pixelify Sans: SIL Open Font License 1.1, one weight, latin subset, from the fontsource 5.3.0 package, shipped as `ui/fonts/Silkscreen-400-latin.woff2` with its licence beside it, like the sans and the mono (`ui/fonts/README.md`). It is declared for weights 400 to 700, so the browser draws it as it is where the page asks for 600, and with `font-display: block`: the files are local and small, and a swap would make the page jump. Python's `mimetypes` already maps `.woff2` to `font/woff2`, so `server.py` needs no change.
 
 The latin subset covers digits, `%`, `×` and A to Z, which is everything the pixel roles print. A species name with a symbol (Nidoran♀) never appears in the pixel face; if one ever does, the browser falls back per glyph, which is acceptable. Pixel faces smear at some sizes: check the four pixel sizes above at Ian's Windows display scaling and move any that look soft by one pixel.
 
@@ -191,7 +191,7 @@ Spacing uses 4, 8, 12, 16 and 24px and nothing between. Radii are 3px for contro
 | Ladder bar | 22px |
 | Stat bar | 9px |
 
-The header runs left to right: title, view tabs, the game-metric strip (wraps if it must), a flexible gap, the checkout name in faint mono, the theme toggle.
+The header runs left to right: title, view tabs, the game-metric strip (wraps if it must), a flexible gap, the checkout name in faint mono, the theme switch.
 
 ## 6. Tables view
 

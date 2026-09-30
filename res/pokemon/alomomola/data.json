@@ -7,10 +7,7 @@
         "special_attack": 40,
         "special_defense": 45
     },
-    "types": [
-        "TYPE_WATER",
-        "TYPE_WATER"
-    ],
+    "types": [ "TYPE_WATER", "TYPE_FAIRY" ],
     "catch_rate": 75,
     "base_exp_reward": 165,
     "ev_yields": {
@@ -34,9 +31,9 @@
         "EGG_GROUP_WATER_2"
     ],
     "abilities": [
-        "ABILITY_HEALER",
+        "ABILITY_REGENERATOR",
         "ABILITY_HYDRATION",
-        "ABILITY_REGENERATOR"
+        "ABILITY_HEALER"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",

@@ -28,6 +28,7 @@ and Step 2 the availability plan, read from availability-plan.json:
 """
 import argparse
 import json
+import os
 import sys
 
 from . import analysis
@@ -225,6 +226,71 @@ def cmd_report(args):
     return 0
 
 
+WATER_BIOMES = os.path.join("docs", "oxide", "encounters", "water-biomes.json")
+
+
+def water_payload(sidecar, root=None):
+    """(tables, info) for lint.lint_water: every live water table with its
+    capture area, draft biome, earned lines, the split each method opens in
+    and its species by slot, and the lookups the rules need. None when the
+    biomes file is missing."""
+    from . import dex, locations, pokedex, progression
+    root = root or model.repo_root()
+    path = os.path.join(root, WATER_BIOMES)
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        spec = json.load(f)
+    line = lambda sp: dex.line_of(root, sp)
+    const = lambda n: dex.constant_of(root, n)
+    entries = (sidecar or {}).get("areas") or {}
+    idx = progression.split_index(sidecar)
+    places = locations.location_of(root)
+    tables, seen = [], set()
+    for a in model.load_all():
+        kinds = [k for k in lint.WATER_KINDS if k in a.kinds_present()]
+        if not kinds:
+            continue
+        e = entries.get(a.name) or {}
+        start = e.get("water_split") or e.get("split")
+        opens = {}
+        for k in kinds:
+            s, rod = start, progression.rod_split(sidecar, k)
+            if rod and (s not in idx or idx.get(rod, 99) > idx[s]):
+                s = rod
+            opens[k] = s
+        slots = {k: [sp for sp, _, _ in a.kind_slots(k)] for k in kinds}
+        seen.update(sp for sps in slots.values() for sp in sps)
+        tables.append({
+            "name": a.name, "area": e.get("capture_area") or places.get(a.name) or a.name,
+            "biome": e.get("water_biome"),
+            "earned": {line(const(n) or n) for n in (e.get("water_earned") or {})},
+            "opens": opens, "slots": slots})
+    lines_of = {sp: line(sp) for sp in seen}
+    names = {sp: dex.display_name(sp) for sp in seen}
+    # A line is named by its first stage, apart from the species names since a
+    # line's id can be one of its species; a species off the pick-list is its
+    # own line and keeps its own name.
+    known = set(dex.lines(root).values())
+    line_names = {}
+    for ln in set(lines_of.values()):
+        base = (dex.line_base(root, ln) or [None])[0] if ln in known else None
+        line_names[ln] = dex.display_name(base) if base else names.get(ln, str(ln))
+    water_type = {sp: "WATER" in ((pokedex.load(root, sp) or {}).get("types") or ["WATER"])
+                  for sp in seen}
+    info = {
+        "line": lines_of, "name": names, "line_name": line_names, "water_type": water_type,
+        "palettes": {b: {line(const(n)) for n in v["palette"] if const(n)}
+                     for b, v in spec["biomes"].items()},
+        "inland": set(spec.get("inland") or []),
+        "sea_only": {const(n) for n in spec.get("sea_only") or [] if const(n)},
+        "split_idx": idx,
+        "same_groups": [set(g.get("areas") or []) for k, g in ((sidecar or {}).get("groups") or {}).items()
+                        if not k.startswith("_") and g.get("design") == "same"],
+    }
+    return tables, info
+
+
 def cmd_lint(args):
     """Section 7's rules. `--fail-on error` is what runs before a commit."""
     areas = [a for a in model.load_all(args.ref) if a.land_active]
@@ -253,7 +319,9 @@ def cmd_lint(args):
     from . import audit
     # R18 reads the working tree's scripts, so a reference tree goes without.
     hidden = None if args.ref else audit.hidden_ability_grants(model.repo_root())
-    findings = lint.lint_all(payload, sidecar, audit.availability(args.ref), hidden)
+    # The water rules read the draft biomes, which only the working tree has.
+    water = None if args.ref else water_payload(sidecar)
+    findings = lint.lint_all(payload, sidecar, audit.availability(args.ref), hidden, water)
     if args.rule:
         wanted = {r.upper() for r in args.rule.split(",")}
         findings = [f for f in findings if f.rule.upper() in wanted]

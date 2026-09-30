@@ -117,8 +117,11 @@ def check_aspirational_fail(results):
         results.append((f"{rule} is aspirational, so vanilla trips it",
                         bool(hits),
                         f"{len(hits)} finding(s)"))
+    # The water rules are aspirational too (2026-09-29); vanilla is linted
+    # without biomes, so check_water_rules tests them.
     results.append(("aspirational set matches lint.py's tag",
-                    lint.ASPIRATIONAL == {"R3", "R5", "R11b", "R13"},
+                    lint.ASPIRATIONAL == {"R3", "R5", "R11b", "R13", "R19", "R19b", "R20",
+                                          "R21", "R22", "R23", "R24"},
                     f"{sorted(lint.ASPIRATIONAL)}"))
 
 
@@ -153,12 +156,75 @@ def check_authored_only_r1(results):
                     bool([f for f in authored if f.rule == "R1"]), ""))
 
 
+def check_water_rules(results):
+    """The water rules (the blind review's principles, 2026-09-29) on small
+    made-up tables, each rule once firing and once held: R19 and R19b the
+    biome and the sea, R20 one line per area with the Super Rod 1% allowance,
+    R21 the 1% gag, R22 the per-split top pair with R15's same-group
+    exemption, R23 non-Water off the caves, R24 five lines a table."""
+    t = lint.thresholds_from(None)
+    G, SK, B, P, W, PS, Z, C, F = ("GOLDEEN", "SEAKING", "BARBOACH", "POLIWAG", "WOOPER",
+                                   "PSYDUCK", "ZUBAT", "CHINCHOU", "FROAKIE")
+    line = {s: "L_" + s for s in (G, B, P, W, PS, Z, C, F)}
+    line[SK] = "L_GOLDEEN"
+    info = {"line": line, "name": {}, "line_name": {},
+            "water_type": {s: s != Z for s in line},
+            "palettes": {"pond": {"L_" + s for s in (G, B, P, W, PS, Z)},
+                         "cave_pool": {"L_" + s for s in (G, B, P, W, PS, Z)}},
+            "inland": {"pond", "cave_pool"}, "sea_only": {C},
+            "split_idx": {"Roark": 0, "Gardenia": 1}, "same_groups": [{"g1", "g2"}]}
+
+    def tb(name, area, biome="pond", split="Roark", earned=(), **slots):
+        return {"name": name, "area": area, "biome": biome, "earned": set(earned),
+                "opens": {k: split for k in slots}, "slots": slots}
+
+    def rules(*tables, rule):
+        return [f for f in lint.lint_water(list(tables), info, t) if f.rule == rule]
+
+    sea = tb("a", "A", old_rod=[G, B, P, W, C])
+    results.append(("R19 and R19b: a sea line in a pond is off its palette and at sea, "
+                    "unless the place earns it; a table with no biome is reported",
+                    rules(sea, rule="R19") and rules(sea, rule="R19b")
+                    and not rules(tb("a", "A", earned={"L_" + C}, old_rod=[G, B, P, W, C]),
+                                  rule="R19b")
+                    and rules(tb("a", "A", biome=None, old_rod=[G, B, P, W, PS]), rule="R19"), ""))
+    allowed = tb("a", "A", good_rod=[G, B, P, W, PS], super_rod=[B, P, W, PS, SK])
+    grown = tb("a", "A", good_rod=[G, B, P, W, PS], super_rod=[SK, B, P, W, PS])
+    two_tables = [tb("a", "A", old_rod=[W, B, P, G, PS]), tb("b", "A", surf=[W, B, P, G, PS])]
+    results.append(("R20: the Super Rod's 1% may be a Good Rod line's adult; anywhere else, or "
+                    "in two tables of one capture area, a line in two methods is reported",
+                    not [f for f in rules(allowed, rule="R20") if "Goldeen" in f.message.title()]
+                    and any("Goldeen" in f.message.title() for f in rules(grown, rule="R20"))
+                    and any("Wooper" in f.message.title() for f in rules(*two_tables, rule="R20")), ""))
+    gag = [tb(f"t{i}", f"Area {i}", old_rod=[G, B, P, W, F]) for i in range(4)]
+    results.append(("R21: one line as the 1% in four capture areas is a gag; in three it is not",
+                    rules(*gag, rule="R21") and not rules(*gag[:3], rule="R21"), ""))
+    pair = [tb("x", "X", old_rod=[G, B, P, W, PS]), tb("y", "Y", old_rod=[B, G, P, W, PS])]
+    results.append(("R22: two areas opening in one split with the same top pair are reported; "
+                    "different splits, or one R15 'same' group, are not",
+                    rules(*pair, rule="R22")
+                    and not rules(pair[0], tb("y", "Y", split="Gardenia", old_rod=[B, G, P, W, PS]),
+                                  rule="R22")
+                    and not rules(tb("g1", "X", old_rod=[G, B, P, W, PS]),
+                                  tb("g2", "Y", old_rod=[G, B, P, W, PS]), rule="R22"), ""))
+    results.append(("R23: a bat at 60% of a pond's Surf is too much non-Water; in a cave it leads",
+                    rules(tb("a", "A", surf=[Z, G, B, P, W]), rule="R23")
+                    and not rules(tb("a", "A", biome="cave_pool", surf=[Z, G, B, P, W]), rule="R23"), ""))
+    results.append(("R24: a water table of four lines is under five; five distinct lines pass",
+                    rules(tb("a", "A", old_rod=[G, SK, B, P, W]), rule="R24")
+                    and not rules(tb("a", "A", old_rod=[G, B, P, W, PS]), rule="R24"), ""))
+    results.append(("the water rules are aspirational warnings",
+                    {"R19", "R19b", "R20", "R21", "R22", "R23", "R24"} <= lint.ASPIRATIONAL
+                    and all(f.severity == "warn" for f in lint.lint_water(gag + [sea], info, t)), ""))
+
+
 def main():
     results = []
     for check in (check_no_errors, check_descriptive_game_rules,
                   check_r11_actually_ran, check_r1b_corpus,
                   check_descriptive_table_rules, check_aspirational_fail,
-                  check_thresholds_come_from_sidecar, check_authored_only_r1):
+                  check_thresholds_come_from_sidecar, check_authored_only_r1,
+                  check_water_rules):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

@@ -15,8 +15,25 @@ it opens: Surf, the other field moves, the bike, its ramp jumps and
 scripted arrivals (the stone correction under the item pass). Doubles
 against two trainers at once are rescore units of their own (56 pairs),
 and Somnu and Moira at Lake Verity are a story fight (6.2 on Ian's
-scale). No story fight moved by 0.3 or more. Next: learnset v3 on Ian's
-pick-list retypes once they land, then the TM pass.
+scale). No story fight moved by 0.3 or more. Then (`balance-retypes-rescore`)
+Ian's 17 retypes and three stat slips, field moves on their badge alone,
+and the last weather abilities moved to the hidden slot, all rescored and
+verified: Volkner's fight reads harder with the Electric/Fighting
+Electivire and Electric/Dark Luxray, and the rank correlation with Ian's
+ratings is -0.57. Then (`balance-buffs`) the buff review's decisions:
+the sheet's slips, section A's junk-ability fixes, section B, and Ian's
+second answers (Wormadam's Overcoat, Armaldo's abilities, Donphan,
+Tangela, Politoed and Rotom's stats, and Kaizo's numbers for the species
+the player cannot catch). The variants were scored in
+[the review's scores](reviews/buff-review/scores.md) (no single change
+moved a story fight by more than 0.1), and Ian took sections C and D,
+Houndoom's line (Houndour evolving at 27) and Talonflame's Gale Wings,
+with Haunter and Emolga approved by name as flagged stages; Glaceon's Ice
+Scales waits for testing in play. His last answers: one fix each for the
+lines whose hidden ability repeated a regular one, Kaizo's Gallade,
+Drought hidden for the Slugma line, and halfway buffs for Articuno and
+Suicune. All of it is rescored and verified. Next: learnset v3 on these
+stats, then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
@@ -1247,7 +1264,7 @@ names and type chart, so B1 reads it straight from the ROM. Its move table is
 not among the named anchors and has to be located. Because Odyssey is all
 double battles, it needs the doubles version of the pressure score (spread
 moves, two attackers at once). Oxide needs that anyway for its 34 double
-trainer battles and its wild doubles. Until the doubles score is checked,
+trainer battles (wild doubles are dropped, Ian, 2026-09-29). Until the doubles score is checked,
 Odyssey's weight in the fit is kept low. Insurgence is an RPG Maker game with
 no data here, and Ian last played it long ago, so it is left out unless a
 trainer list turns up.
@@ -1804,10 +1821,12 @@ lands, and each change is re-scored as it lands.
    | Water | Route 213 | Wake | Byron | Surf |
    | Sun | Valor Lakefront (hidden) | Wake | HQ | Rock Climb |
 
-   Solaceon's Water Stone stays Maylene's. For Ian: keep these timings,
-   which make the Moon, Dawn and Sun Stones later decisions, or move each
-   find to a spot reached on foot in the split he approved (the main
-   track's change). No stone is added either way.
+   Solaceon's Water Stone stays Maylene's. **Ian's answer** (2026-09-29):
+   case by case, at the item pass. Each of the four comes to him with a
+   recommendation, to keep its timing or to move it to a nearby spot
+   reached on foot (the main track's change), and what each choice does to
+   the stone contests and the lines waiting on it. No stone is added
+   either way.
 
    **Element 7's new held items** (Ian, 2026-09-29): Eviolite, Assault
    Vest, Rocky Helmet, Air Balloon and the rest are each the reward for an
@@ -1827,7 +1846,12 @@ lands, and each change is re-scored as it lands.
    in any player learnset, tutor or egg list, and no ability that sets or
    cancels weather (Sand Stream, Snow Warning, Cloud Nine and the rest) in
    an obtainable Pokemon's regular slots; Drizzle Pelipper and Drought
-   Torkoal are weighed for trainers only. Alakazam, Ampharos, Dugtrio,
+   Torkoal are weighed for trainers only. Done for the last five lines
+   (Ian, 2026-09-29): Cloud Nine (Psyduck, Golduck), Snow Warning (Snover,
+   Abomasnow) and Sand Stream (Hippopotas, Hippowdon, Tyranitar) are hidden
+   abilities now, Tyranitar's regular one Shed Skin, and the 20 trainer
+   Pokemon that bring the weather take the hidden slot; no weather ability
+   is left in a regular slot. Alakazam, Ampharos, Dugtrio,
    Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
    modern stat buffs, Chimecho and Staraptor go to their modern totals, and
    Cresselia keeps hers. The pass weighs Magic Guard for the Abra line.

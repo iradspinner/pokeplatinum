@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 77,
-        "attack": 85,
-        "defense": 51,
-        "speed": 65,
+        "hp": 87,
+        "attack": 105,
+        "defense": 61,
+        "speed": 75,
         "special_attack": 55,
-        "special_defense": 51
+        "special_defense": 61
     },
     "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 45,
@@ -29,8 +29,8 @@
     "egg_groups": [ "EGG_GROUP_BUG", "EGG_GROUP_BUG" ],
     "abilities": [
         "ABILITY_HYPER_CUTTER",
-        "ABILITY_NONE",
-        "ABILITY_TECHNICIAN"
+        "ABILITY_TECHNICIAN",
+        "ABILITY_SWARM"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",
