@@ -960,6 +960,26 @@
             "en_US": "Route 208, all badges"
         },
         {
+            "id": "TestKit_Text_MenuGauntletEterna",
+            "en_US": "Gauntlet: Eterna"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletHQ",
+            "en_US": "Gauntlet: Galactic HQ"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletTunnel",
+            "en_US": "Gauntlet: Coronet 1F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletClimb",
+            "en_US": "Gauntlet: Coronet 3F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletVictoryRoad",
+            "en_US": "Gauntlet: Victory Road"
+        },
+        {
             "id": "TestKit_Text_PartyFull",
             "en_US": [
                 "Your party has no room.\n",
