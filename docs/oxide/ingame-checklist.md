@@ -411,7 +411,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Honey trees at five badges: check against table 5.
 - [ ] Element 6's fixes of 2026-09-30 (`main-element6`), whenever one comes up; none needs a
   set-up of its own. A trainer never aims a status move Magic Coat would bounce at a Pokemon
-  of Ian's with Magic Bounce (Espeon, Xatu, Absol with their hidden ability) once it has shown
+  of Ian's with Magic Bounce (Natu, Xatu or Espeon with its hidden ability) once it has shown
   it; a trainer's Infiltrator Pokemon still uses sleep, poison or paralysis moves through
   Ian's Safeguard; a trainer's Mold Breaker Pokemon treats one of Ian's holding an Ability
   Shield as keeping its ability (an Earthquake is not aimed at a shielded Levitate holder).
