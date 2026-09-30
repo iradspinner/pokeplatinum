@@ -52,7 +52,6 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **On 2026-10-01** (Ian, 2026-09-29): switch the private repos' workflows back on (`gh workflow enable build -R iradspinner/oxide-rom-builder`, `gh workflow enable Windows -R iradspinner/melonDS-oxide`). Until then no GitHub Actions in the private repos; the account's Actions storage is used up, and the artifacts and cache were deleted.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
-- The OxiDex layout redesign (2026-09-29): the Overseer's mockups are in the design canvas (https://claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u: Dex, Moves, Trainers as a sheet, Box Sim, the three themes); only the Dim theme was built. Ian re-reads them and says which parts to keep, then the builder implements one tab at a time.
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); its section 0, the new-CPU cleanup, was done on 2026-09-29. Add new in-game checks there, not here.
 
@@ -124,6 +123,8 @@ Each element gets a checklist here when it starts, with the emulator test that p
   - [ ] **Known limit of restored items**: a Pickup holder that eats its Berry and then picks something up keeps the pickup, not the Berry
 
 ## Phase 5: design passes raised while answering Phase 4
+
+- [ ] **The OxiDex layout redesign** (Ian's go, 2026-09-29; mockups in https://claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u, the encounter track builds it a tab at a time through ian-saves). Ian's notes: Dex, drop the "where it is met" line, "No Wild Encounters" for "not in any table", and the "+10 from vanilla" beside the BST total; Moves, a larger "who learns it" box; Trainers, working trainer sprites and a fixed grid of AI-flag icons that keeps its layout whatever is highlighted; Box Sim, room for "Next Non-Delay Zone" and "Delay Zones" taken from box worth, living sum and best six; Themes, the dull teal very slightly brighter
 
 - [ ] **The blind encounter review's findings** (2026-09-29; `~/oxide-trials/encounter-review/out/`: zones, water and principles). Ian's answers: the water principles are adopted as principles only (a water biome per zone, a line in one of a zone's four tables, sea species at sea, non-Water on the Surf where the habitat is documented, deferred Super Rods offering different adults, the 1% slot not a running gag), for the encounter track to fold into its authoring and lint later, with nothing applied yet; the land swaps come to Ian zone by zone; of the unplaced lines it flagged, only Grimer and Muk on Fuego Ironworks' water and Bibarel on Routes 205 south and 218 are to be considered
 
