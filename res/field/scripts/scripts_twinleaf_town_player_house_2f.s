@@ -2838,6 +2838,8 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleHiddenWild, 21
     AddListMenuEntry TestKit_Text_MenuStapleItemsRestored, 22
     AddListMenuEntry TestKit_Text_MenuStapleKaizoMoves, 23
+    AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSubstitute, 24
+    AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSafeguard, 25
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2863,6 +2865,8 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 21, TestKit_StapleHiddenWild
     GoToIfEq VAR_0x8004, 22, TestKit_StapleItemsRestored
     GoToIfEq VAR_0x8004, 23, TestKit_StapleKaizoMoves
+    GoToIfEq VAR_0x8004, 24, TestKit_StapleInfiltratorSubstitute
+    GoToIfEq VAR_0x8004, 25, TestKit_StapleInfiltratorSafeguard
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2878,6 +2882,37 @@ TestKit_StapleSturdy:
     SetVar VAR_0x8000, SPECIES_VAPOREON
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SURF
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator (element 5): a Crobat given Infiltrator, against a wild
+   Snorlax that knows only Substitute. Once the doll is up, Cross Poison hits
+   Snorlax itself and may poison it, Screech lowers its Defense, and Confuse
+   Ray confuses it, all through the Substitute. */
+TestKit_StapleInfiltratorSubstitute:
+    SetVar VAR_0x800A, SPECIES_CROBAT
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8006, MOVE_CROSS_POISON
+    SetVar VAR_0x8007, MOVE_SCREECH
+    SetVar VAR_0x8008, MOVE_CONFUSE_RAY
+    SetVar VAR_0x8009, MOVE_TOXIC
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SUBSTITUTE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator (element 5): the same Crobat against a wild Chansey that knows
+   only Safeguard. With Safeguard up, Toxic still badly poisons it and Confuse
+   Ray still confuses it. */
+TestKit_StapleInfiltratorSafeguard:
+    SetVar VAR_0x800A, SPECIES_CROBAT
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8006, MOVE_TOXIC
+    SetVar VAR_0x8007, MOVE_CONFUSE_RAY
+    SetVar VAR_0x8008, MOVE_CROSS_POISON
+    SetVar VAR_0x8009, MOVE_SCREECH
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SAFEGUARD
     GoTo TestKit_GivePokemonWithMoves
 
 /* Lightning Rod: a Raichu given Lightning Rod, against a wild Jolteon that

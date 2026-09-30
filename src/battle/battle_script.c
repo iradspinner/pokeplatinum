@@ -329,6 +329,7 @@ static BOOL BtlCmd_TryPickpocket(BattleSystem *battleSys, BattleContext *battleC
 static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target, int stat, int stages);
 static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -3247,7 +3248,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
                     && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                     result = 1;
-                } else if (battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
+                } else if ((battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+                    && BattleSystem_InfiltratorPassesEffect(battleCtx, battleCtx->sideEffectMon) == FALSE) { // Oxide: Infiltrator
                     result = 2;
                 }
             } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MIN_STAT_STAGE) {
@@ -3522,6 +3524,12 @@ static BOOL BtlCmd_CheckAbility(BattleSystem *battleSys, BattleContext *battleCt
                 && Battler_Ability(battleCtx, partner) == ability) {
                 BattleScript_Iter(battleCtx, jump);
                 battleCtx->abilityMon = partner;
+            }
+        } else if (op == CHECK_HAVE_ON_OPPOSING_SIDE) {
+            // Oxide: counted as BerryBlockedByUnnerve counts it, over the
+            // living battlers on the other side.
+            if (BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ability)) {
+                BattleScript_Iter(battleCtx, jump);
             }
         } else if (op == CHECK_HAVE) {
             if (Battler_Ability(battleCtx, battler) == ability) {
@@ -9716,6 +9724,12 @@ static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battl
     int jumpSubActive = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    // Oxide: an Infiltrator attacker's move passes it.
+    if (BattleSystem_InfiltratorPassesEffect(battleCtx, battler)) {
+        return FALSE;
+    }
+
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
         || (battleCtx->selfTurnFlags[battler].statusFlags & SELF_TURN_FLAG_SUBSTITUTE_HIT)) {
         BattleScript_Iter(battleCtx, jumpSubActive);
@@ -10924,6 +10938,32 @@ static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx)
     }
 
     BattleScript_Iter(battleCtx, jumpOnFail);
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: GoTo ahead when Safeguard protects the battler's side from the
+ * effect about to be applied. An Infiltrator attacker's move passes it, as it
+ * passes the Substitute (BattleSystem_InfiltratorPassesEffect). The status
+ * subscripts used to read the side's Safeguard bit directly.
+ *
+ * Inputs:
+ * 1. The battler whose side is checked
+ * 2. GoTo distance if Safeguard stops the effect
+ */
+static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpSafeguardUp = BattleScript_Read(battleCtx);
+
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    if ((battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battler)] & SIDE_CONDITION_SAFEGUARD)
+        && BattleSystem_InfiltratorPassesEffect(battleCtx, battler) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpSafeguardUp);
+    }
+
     return FALSE;
 }
 
