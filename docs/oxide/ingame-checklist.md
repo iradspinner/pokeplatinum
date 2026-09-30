@@ -107,7 +107,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   turns (62), Teatime eating a Liechi Berry at full HP (63), Core Enforcer
   against a faster Volt Absorb Jolteon (64), Beak Blast burning a Tackle
   (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
-  affecting a Skarmory (67). A stub
+  affecting a Skarmory (67). Set 68 (2026-09-30, `main-production`): against
+  a wild Shedinja, Freeze Shock and Ice Burn each charge on the first turn,
+  and only the second turn says "It doesn't affect". A stub
   effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.

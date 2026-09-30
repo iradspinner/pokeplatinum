@@ -784,6 +784,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet65, 10
     AddListMenuEntry TestKit_Text_MenuSet66, 11
     AddListMenuEntry TestKit_Text_MenuSet67, 12
+    AddListMenuEntry TestKit_Text_MenuSet68, 13
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -798,6 +799,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet65
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet66
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet67
+    GoToIfEq VAR_0x8004, 13, TestKit_MoveSet68
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1613,6 +1615,23 @@ TestKit_MoveSet67:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveMew
+
+/* Set 68: Wonder Guard lets Freeze Shock and Ice Burn charge (2026-09-30).
+   Against a wild Shedinja that knows only Splash, whose Wonder Guard stops
+   anything not super effective: each move's first turn charges ("MEW became
+   cloaked in a freezing light!" or "MEW became cloaked in freezing air!")
+   with no "It doesn't affect" line, and the second turn says "It doesn't
+   affect the wild SHEDINJA...". Before the fix Wonder Guard stopped each
+   move on its first turn, so it never charged. */
+TestKit_MoveSet68:
+    SetVar VAR_0x8000, SPECIES_SHEDINJA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FREEZE_SHOCK
+    SetVar VAR_0x8007, MOVE_ICE_BURN
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
