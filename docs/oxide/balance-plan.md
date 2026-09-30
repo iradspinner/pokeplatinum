@@ -59,8 +59,10 @@ box has a perfect line; step 2 counts the perfect lines of the box's best
 team. Movesets fill in order: best STAB, coverage or a second STAB,
 coverage, then the best status move by the status tiers. A separate
 session designs and prototypes it blind in `~/oxide-trials/scoring-review/`.
-Until its results are in, the scale is not refitted and the average-fight
-calibration, the gauntlet list and the Kaizo study's scores are held.
+Until its results are in, the scale is not refitted, and the average-fight
+calibration, the gauntlet list, the Kaizo study's scores and the recheck
+of the buff variants against Ian's decisions under the fixed scorer are
+held.
 `balance-boxmodel` stays as it is: the four-move limit and the item ban
 carry into the new scorer. A known fault of the simulator, found by the
 Overseer's audit (2026-09-30), to fix when the scorer is rebuilt:
