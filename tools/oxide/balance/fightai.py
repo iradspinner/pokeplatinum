@@ -26,7 +26,9 @@ NO_CALC = {"HALVE_DEFENSE", "EXPLOSION", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HI
            "ONE_HIT_KO", "COUNTER", "MIRROR_COAT", "METAL_BURST", "INCREASE_POWER_WITH_LESS_HP"}
 ATK_UP = {"ATK_UP", "ATK_UP_2", "HONE_CLAWS", "WORK_UP", "GROWTH"}
 SPA_UP = {"SP_ATK_UP", "SP_ATK_UP_2"}
-DEF_UP = {"DEF_UP", "DEF_UP_2", "ATK_DEF_UP", "DEF_UP_DOUBLE_ROLLOUT_POWER", "COIL"}
+# Defense Curl (DEF_UP_DOUBLE_ROLLOUT_POWER) has no Expert routine in the game:
+# StatusDefenseUp takes DEF_UP, DEF_UP_2 and ATK_DEF_UP (expert-1.md, dispatch).
+DEF_UP = {"DEF_UP", "DEF_UP_2", "ATK_DEF_UP", "COIL"}
 SPD_UP = {"SP_ATK_SP_DEF_UP", "SP_DEF_UP_2", "DEF_SPD_UP", "STOCKPILE"}
 DANCE = {"ATK_SPD_UP", "QUIVER_DANCE", "SHIFT_GEAR", "SHELL_SMASH"}
 SLEEP = {"STATUS_SLEEP"}
@@ -66,6 +68,11 @@ def figure(b, u, t, mv):
         return u.level if fs.effectiveness(b.st["chart"], mv.type, t.types) else 0
     d = b.damage(u, t, mv, ai_view=True)
     return 0 if d is None else d
+
+
+# The Speed-lowering attacks SpeedDownOnHit names by move id (expert-1.md).
+SPEED_DOWN_NAMED = {"Icy Wind", "Rock Tomb", "Mud Shot", "Bulldoze", "Electroweb", "Low Sweep",
+                    "Glaciate", "Drum Beating", "Pounce"}
 
 
 def slower(b, u, t):
@@ -284,6 +291,30 @@ def expert(b, u, t, mv, f):
             s += 3
         elif not slow and hu <= 70:
             s -= 1
+    elif e in ("LOWER_SPEED_HIT", "SPEED_DOWN", "SPEED_DOWN_2"):
+        # SpeedDownOnHit (2338 to 2351) and StatusSpeedDown (2353 to 2366),
+        # expert-1.md: an attack the foe resists or is immune to scores
+        # nothing; only the attacks named by move id (Icy Wind, Rock Tomb,
+        # Mud Shot, and Oxide's six since 2026-09-27) and the Speed-lowering
+        # status moves go on to Speed Down, where a user that is not slower
+        # (a tie counts as not slower) takes -3 and a slower one +2 at 72.7%.
+        if e == "LOWER_SPEED_HIT" and (res or eff(b, mv, t) == 0 or mv.name not in SPEED_DOWN_NAMED):
+            return s
+        if not slow:
+            s -= 3
+        elif chance(b, 72.7):
+            s += 2
+    elif e == "HIT_BEFORE_SWITCH":
+        # Pursuit (3706 to 3735): +1 at 50% on the user's first turn in,
+        # otherwise +1 at 50% against a Ghost or Psychic foe; then +1 at 50%
+        # if the foe has shown U-turn.
+        if u.turns_in == 0:
+            if chance(b, 50):
+                s += 1
+        elif ("Ghost" in t.types or "Psychic" in t.types) and chance(b, 50):
+            s += 1
+        if any(m.name == "U-turn" for m in getattr(t, "shown", ())) and chance(b, 50):
+            s += 1
     elif e in CONFUSE or e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if e != "STATUS_CONFUSE" and chance(b, 50):
             s += 1

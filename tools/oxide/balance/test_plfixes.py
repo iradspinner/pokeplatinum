@@ -3,6 +3,7 @@ simulator, each checked on that fight (the Overseer, 2026-09-30).
 
     PYTHONPATH=. python3 -m tools.oxide.balance.test_plfixes
 """
+import collections
 import random
 
 from . import fightai, plscore, perfectline as pl, fightsim as fs
@@ -169,6 +170,29 @@ def main():
     results.append(("Magnitude rolls its power and deals damage by it",
                     len(seen) >= 4 and max(damages) > 40 and min(damages) > 0,
                     f"powers seen {sorted(seen)}, damage {min(damages)} to {max(damages)}"))
+
+    # Expert's Speed-down routine: Lileep at a Speed tie with Turtwig is not
+    # slower, so Rock Tomb takes -3 and Ingrain (100) wins; once rooted,
+    # Basic scores Ingrain -10 and Constrict (99) leads.
+    recs = [{"constant": "SPECIES_TURTWIG", "species": "Turtwig", "how": "test", "level": 16, "nature": "Lonely",
+             "ivs": IV, "evs": EV, "ability": "Shell Armor", "moves": ["Razor Leaf", "Absorb"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0"], boss_keys, flags, 0)
+    lil = boss(b, "Lileep")
+    lil.turns_in = 1
+    picks = collections.Counter()
+    for i in range(400):
+        b.rng = random.Random(i)
+        picks[fightai.choose(b, lil, b.p.cur())[1].name] += 1
+    lil.ingrained = True
+    rooted = collections.Counter()
+    for i in range(400):
+        b.rng = random.Random(i)
+        rooted[fightai.choose(b, lil, b.p.cur())[1].name] += 1
+    results.append(("Lileep against Turtwig: Ingrain first, then mostly Constrict, never Rock Tomb",
+                    picks == {"Ingrain": 400} and rooted["Constrict"] > 300 and not rooted["Rock Tomb"],
+                    f"first {dict(picks)}, rooted {dict(rooted)}"))
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
