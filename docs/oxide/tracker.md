@@ -15,7 +15,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 3. **Main Production Agent**: not running. `main-gauntlets` (e5bf0f2cf) is held for Ian's trainer list. Next candidates: element 6, which falls back to it, the Wonder Guard list, the species importer's sprite heights, and Lunar Blessing and Throat Chop.
 4. **Overseer**: landings, this tracker, the audit of 2026-09-30 (sessions cut off by the usage limit, read for lost to-dos).
 5. **Blind studies** (`~/oxide-trials/`): the scoring review runs; the Kaizo team study is paused until `scores.md` is rewritten from the new scorer.
-6. **Ian**: a new game on 29356507c (2026-09-29); the first full run is planned (Phase 5: Verify). What waits on him is below.
+6. **Ian**: his last save is on 51fa6cdaa (2026-09-28), from before element 7's Bag and the 30 boxes, so it does not load on today's ROMs. On 2026-09-30 he starts a test game on 25cdd2096 and plays to Roark, where the fight is recorded from melonDS-oxide's bridge (`~/oxide-playtest/battle-recordings/`) to check the new scorer. The first full run is planned (Phase 5: Verify). What waits on him is below.
 7. **No owner**: the bug track (the box deposit hang), which needs Ian live.
 
 **To confirm the state after a restart**, from the repo root, `bash tools/oxide/integrate.sh --verify-only` runs all of this plus the encounter suites, and checks the ROM's hash against GitHub's build of `HEAD`. One by one:
