@@ -1,11 +1,11 @@
 {
  "_comment": "The estimate's safe switch-ins against the full scorer's; the errors are in points of Ian's fight scale, and the story ones are the figure to trust for a boss. teamscore.py --fit writes it.",
- "alpha": -0.0367,
- "beta": 1.0349,
- "mean_error": 0.12,
+ "alpha": -0.0007,
+ "beta": 0.9977,
+ "mean_error": 0.08,
  "n": 459,
- "r2": 0.943,
+ "r2": 0.831,
  "story_max_error": 1.0,
- "story_mean_error": 0.25,
+ "story_mean_error": 0.22,
  "story_n": 33
 }
