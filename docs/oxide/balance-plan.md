@@ -38,7 +38,13 @@ fitted to his pairs any more. The trainer pass judges difficulty in the
 scorer's own numbers: the best line's clean-win rate, its mean deaths and
 its wipe chance, read blind for an ordinary trainer and planned for a
 boss. Ian sets the targets from example fights, and his first run checks
-them.
+them. His first targets (2026-09-30), harder than proposed: an ordinary
+trainer, read blind, wins cleanly 70 to 80% of the time with no wipe and
+at most 0.5 mean deaths (the cap the readings in that band show:
+Gregory 0.80 and 0.32, Brendon 0.76 and 0.35, Sterling 0.70 and 0.49); a
+gauntlet section wins cleanly 60% or more as a whole. Too hard is below
+60% for an ordinary trainer and below 50% for a section. The boss target
+waits until the scorer reads Roark sensibly.
 
 **Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
