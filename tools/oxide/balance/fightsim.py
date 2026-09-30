@@ -58,7 +58,13 @@ from . import b6, data, pool, pressure, teamscore
 
 RUNS = 200
 MAX_TURNS = 80
-CRIT_RATE = {0: 1 / 16, 1: 1 / 8, 2: 1 / 4, 3: 1 / 3, 4: 1 / 2}
+# Oxide's critical hits, the Generation 7 odds and multiplier
+# (src/battle/battle_lib.c sCriticalStageRates, battle_script.c
+# ApplyCriticalMul), not Platinum's 1 in 16 and double damage.
+CRIT_RATE = {0: 1 / 24, 1: 1 / 8, 2: 1 / 2, 3: 1.0, 4: 1.0}
+CRIT_MUL = 1.5
+# The rock that stretches each weather a move sets from five turns to eight.
+WEATHER_ROCK = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
 STAGE_KEYS = ("atk", "def", "spa", "spd", "spe", "acc", "eva")
 TIERS = {"SSS": 6, "S": 5, "A": 4, "B": 3, "C": 2, "D": 1, "F": 0}
 
@@ -350,7 +356,7 @@ class Battle:
         if getattr(self, "spread", False):
             mult *= 0.75
         if crit:
-            mult *= 2
+            mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
         return max(1, int(base * mult))
 
     def accuracy_hits(self, att, dfn, mv):
@@ -517,6 +523,12 @@ def attack(b, att, mv, dfn, first):
             return
     if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
         return
+    # Natural Gift and Fling spend the held item, and fail without one (a
+    # Natural Gift needs a berry).
+    if mv.name in ("Natural Gift", "Fling"):
+        if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
+            return
+        att.item = None
     if not b.accuracy_hits(att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             hurt(b, att, att.maxhp // 2)
@@ -633,6 +645,10 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if dfn.protecting:
             return
+        # A status move of a type the target is immune to fails, as Glare
+        # does on a Ghost or Thunder Wave on a Ground type.
+        if e in STATUS_OF and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+            return
         if not b.accuracy_hits(att, dfn, mv):
             return
     if e in STATUS_OF:
@@ -688,7 +704,8 @@ def status_move(b, att, mv, dfn, first):
             own_side.screens["Reflect"] = 8 if att.item == "Light Clay" else 5
     elif e in WEATHER_OF:
         if b.weather != WEATHER_OF[e]:
-            b.weather, b.weather_turns = WEATHER_OF[e], 5
+            b.weather = WEATHER_OF[e]
+            b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
     elif e == "TRICK_ROOM":
         b.trick_room = 0 if b.trick_room else 5
     elif e == "DOUBLE_SPEED_3_TURNS":
