@@ -322,6 +322,15 @@ Moved from the tracker on 2026-09-27, finished (`carry-over-abra`, `carry-over-h
 
 - [ ] **The base ROM's last arm9 changes** (all identified 2026-09-27; the findings are in the inventory's corrections). The Vs. Seeker as the Pocket PC was ruled and merged on 2026-09-27; the teleporting Abra's removal is on `carry-over-abra`, inside `pool-base` (`docs/oxide/pocket-pc.md`). The two bytes at arm9 `0x0EC478` are a slip that gave every Lass the children's encounter music; **not carried over** (Ian, 2026-09-27). **The palette hue shift is ported** on `carry-over-hue` (Ian, 2026-09-27), cut from `pool-base` and merging after it: every Pokemon's sprite palette rotated in hue by up to about 20 degrees, keyed on its personality, the Pokedex kept standard. Oxide passes the personality to the sprite code where the base ROM used 19 hooks and a "last Pokemon read" global, one commit per path. It goes past the base ROM in two places, each its own commit that can be dropped: the trade's wormhole and the GTS listing. Displays that show a species rather than a Pokemon, and the Substitute doll, keep standard colours. Its checks are in `ingame-checklist.md`, sections 3 to 5. The Battle Arcade custom commands are closed: only `Dummy088` is called (hard stop 3), the rest is dropped.
 
+Finished on `main-production` on 2026-09-30:
+
+  - [x] **The species importer still writes the donor's zero sprite heights** (`species_import.py`, `sprite_data()`), which made the new species float until bb2e14ed5 set them by vanilla's rule (79 minus the lowest opaque row; a lift of 1 standing, 9 hovering). The importer should apply that rule before any further species is imported (main track; the design doc's findings log has the rule). Ian approved the fix's judgment calls as set (2026-09-30): the fourteen hovering species, Emolga and Yamask at 9, Ferrothorn at 1
+    Done: `seat_sprites()` in `species_import.py` applies the rule after every species is written, and `import_donor.py seat-sprites --dry-run` checks the committed values (0 of 160 would change); level-0 evolution moves are kept.
+  - [x] **Wonder Guard's list of charging moves** (`MoveIsOnDamagingTurn`, `battle_lib.c`) lacks Freeze Shock, Ice Burn and Geomancy, handed over on 2026-09-26 and never done; a cloud job added Meteor Beam and Electro Shot. Only Metronome reaches the first two, and Geomancy is Xerneas's
+    Done: the three effects join Meteor Beam's in `MoveIsOnDamagingTurn`; test kit set 68.
+  - [x] **Lunar Blessing and Throat Chop made to work** (Ian, 2026-09-28; Throat Chop's script is still a placeholder): the later-moves report then places them. No job has been opened
+    Done: Throat Chop holds its target off sound moves for the rest of the turn and all of the next (menu, before-move and end-of-turn count in `oxideFlags` bits 5 and 6); Lunar Blessing and Jungle Healing share a new effect, 415, healing a quarter and curing status for the user and its ally; test kit sets 69 and 70. The commit message has the detail.
+
 ## Phase 5: design passes raised while answering Phase 4
 
 All four came out of Ian's 2026-09-20 answers. None is Phase 4 work; all of them
@@ -492,6 +501,11 @@ Moved from the tracker on 2026-09-28, finished:
 - [x] **Open bug (2026-09-26): Transform copies only the ability's low byte** since element 2 widened it, so a target ability id of 256 or more comes out wrong. Fixed 2026-09-26 on `cloud/element4-stat-choice` (the copy's bound is now the field's size; an Oxide bug, not vanilla); test kit set 49
 - [x] **Open bug (2026-09-26, found by element 6): the new Protect moves never lose reliability.** `BtlCmd_TryProtection` resets the run of successes for any move but Protect, Detect, Endure, Wide Guard and Quick Guard, so King's Shield, Spiky Shield, Baneful Bunker, Obstruct, Silk Trap, Burning Bulwark and Max Guard succeed every time in a row. An Oxide bug (element 4). The fix should key on the effect; `AICmd_LoadProtectChain` in the AI must then take the same list. **Fixed on `cloud/element6-changes` (a11da24d1, the engine, keyed on the effect through `Move_KeepsProtectRun`; 1be560b12, the AI).** The test kit's Modern rules menu has a "Protect in a row" entry for it
 - [ ] Check the Poketch move tester agrees with the battle engine on Fairy, and that the Pokedex info page on a Fairy Pokemon shows the NORMAL plate rather than garbage (the known gap, not a crash)
+
+Fixed on `main-production` on 2026-09-30:
+
+- [x] **Open bug (Ian, 2026-09-30): wild battles in Sandgem's grass patch use an indoor arena background**, not grass, on 25cdd2096 (a Kricketot, and a Pikipek). The patch is the clown-town grass of 2026-09-27 (`main-grass`); the battle background probably comes from the map header or the patch's tile, which vanilla never gave a wild battle in town. Check the other five patches (Jubilife, Floaroma, Solaceon, Amity Square, Verity Lakefront). Main track. A hang at the Pikipek's send-out the same day is not counted: the battle recorder had just fetched the bridge's full party export, and the hang did not repeat with it off
+  Fixed: all four towns' headers use the town backdrop, which vanilla never shows over tall grass; a battle in tall grass under it now takes the plain route backdrop. Amity Square and Verity Lakefront already used the plain one. Not a vanilla bug.
 
 ## Backlog / follow-ups
 
