@@ -44,7 +44,8 @@ header .title .ox { color: var(--place-ink); }
    rather than being stranded on a second one. */
 header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap;
                 flex: 1 1 auto; min-width: 0; padding: 4px 0; }
-header > nav, header > .title, header > .checkout, header > button { flex: none; }
+header > nav, header > .title, header > .checkout, header > button,
+header > .themeseg { flex: none; }
 header .checkout { font: 14.5px/1 var(--mono); color: var(--faint); white-space: nowrap; }
 .metric { color: var(--dim); font-size: 15px; white-space: nowrap; }
 .metric b { font-family: var(--mono); font-variant-numeric: tabular-nums;
@@ -341,6 +342,13 @@ tr.got .spname { font-weight: 600; }
   cursor: pointer; }
 #views button:first-child { border-radius: 3px 0 0 3px; }
 #views button:last-child { border-radius: 0 3px 3px 0; border-left: 0; }
+/* The colour scheme (Ian, 2026-09-29, the redesign): Dark, Dim and Light
+   pin a look and Auto follows Windows; theme.js marks the one in force. */
+.themeseg { display: flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.themeseg button { border: 0; border-radius: 0; padding: 4px 10px; font-size: 14.5px;
+  background: transparent; color: var(--dim); cursor: pointer; }
+.themeseg button + button { border-left: 1px solid var(--rule); }
+.themeseg button.on { background: var(--place-bg); color: var(--place-ink); font-weight: 700; }
 
 
 #dexlist, #movelist { border-right: 1px solid var(--rule); background: var(--panel); }
@@ -548,6 +556,7 @@ table.facts td { padding: 1px 0; }
    narrow list, the species in cards down the centre, and its moves in a
    rail of their own on the right. */
 #dexmain { grid-template-columns: 300px minmax(560px, 1fr) 400px; }
+#dexfilter { width: 100%; box-sizing: border-box; }
 #dexmid { display: flex; flex-direction: column; gap: 16px; padding: 20px 24px 40px;
   font-size: 16px; }
 /* The column scrolls, so a card keeps its height rather than shrinking to
@@ -745,7 +754,10 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   <button id="commit-edits" hidden disabled><span id="edits-label">Commit my edits</span>
     <b id="edits-n" class="num">0</b></button>
   <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
-  <button id="theme-toggle" data-theme-toggle>Dark</button>
+  <div class="themeseg" role="group" aria-label="Colour scheme">
+    <button data-theme-set="dark">Dark</button><button data-theme-set="dim">Dim</button><button
+      data-theme-set="light">Light</button><button data-theme-set="auto" title="Follow Windows">Auto</button>
+  </div>
 </header>
 
 <main>
