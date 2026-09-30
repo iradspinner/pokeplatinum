@@ -541,14 +541,19 @@ def check_moves_view(results):
 
     gible = server.dex_detail("SPECIES_GIBLE")
     garchomp = server.dex_detail("SPECIES_GARCHOMP")
+    # Each carries its numbers too, for the moves rail's tabs (the redesign,
+    # 2026-09-29).
+    claw = garchomp["machine_moves"][0]
     results.append(("the species page lists its machine, tutor and egg moves, "
-                    "each naming the move it opens",
-                    garchomp["machine_moves"][0] == {
+                    "each naming the move it opens, with its power and accuracy",
+                    {k: claw.get(k) for k in ("machine", "move", "type", "label")} == {
                         "machine": "TM02", "move": "MOVE_DRAGON_CLAW",
                         "type": "DRAGON", "label": "Dragon Claw"}
+                    and claw.get("power") and claw.get("accuracy")
                     and garchomp["tutor_moves"]
+                    and all("power" in m for m in garchomp["tutor_moves"])
                     and any(m["move"] == "MOVE_OUTRAGE" for m in gible["egg_moves"]),
-                    ""))
+                    str(claw)))
 
 
 def check_calculator(results):

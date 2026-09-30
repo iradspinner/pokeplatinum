@@ -600,12 +600,15 @@ def dex_detail(species):
             "power": m.get("power"), "accuracy": m.get("accuracy"),
             "pp": m.get("pp"),
         })
-    # The other three ways a species learns a move, as names and types only:
-    # the page lists them compactly and each opens its move.
+    # The other three ways a species learns a move, with the numbers the
+    # moves column's tabs show beside the level-up list's (the redesign,
+    # 2026-09-29); each opens its move.
     by_machine = pokedex.machines(root)
     brief = lambda mv, **kw: dict(kw, move=mv, type=(moves.get(mv) or {}).get("type"),
                                   label=(moves.get(mv) or {}).get("name")
-                                  or dex.display_name(mv))
+                                  or dex.display_name(mv),
+                                  **{k: (moves.get(mv) or {}).get(k)
+                                     for k in ("class", "power", "accuracy")})
     out["machine_moves"] = [brief(by_machine[t], machine=t) for t in rec["by_tm"]
                             if t in by_machine]
     out["tutor_moves"] = [brief(mv) for mv in rec["by_tutor"]]

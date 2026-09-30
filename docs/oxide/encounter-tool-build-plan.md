@@ -1232,6 +1232,37 @@ that stay. None blocks anything.
    beside it in `water-lint-draft.md` (854 warnings, 395 of them R19); he
    decides it as one question. `test_m3` checks each rule on made-up tables.
 
+46. **The layout redesign, one tab at a time (Ian approved it on
+   2026-09-29, with notes, through the Overseer).** The mockups are the
+   Overseer's design canvas (claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u):
+   Dex, Moves, Trainers, Box sim and three themes. Each tab is built on its
+   own branch, checked in headless Chrome in all three themes, and merged
+   into `ian-saves` before the next. Built from the theme's tokens, so every
+   colour follows the theme and `test_m4` still finds no literal.
+   - **Dex** (`encounter-redesign-dex`): a 300px list, the species in
+     cards down the centre (the hero with its sprite, base stats beside
+     abilities and the rest, damage taken with its weaknesses, resistances
+     and immunities in words over a nine-wide grid, and the line across the
+     page with how each stage is reached over the arrow, or on each card of
+     a branch), and its moves in a 400px rail behind Level-up, Machines,
+     Tutor and Egg tabs, the tab kept from species to species. Ian's notes:
+     no "where it is met" line on the cards, "No Wild Encounters" for a
+     member met nowhere, and "+N from vanilla" beside the base stat total.
+     The machine, tutor and egg lists now carry class, power and accuracy.
+   - Themes, Moves, Trainers and Box sim follow. Ian's answers for Themes
+     (2026-09-29, through the Overseer): the dull teal a very little
+     brighter in both Dark and Dim, contrast still checked; the mockup's
+     three fonts (Atkinson Hyperlegible, JetBrains Mono, Silkscreen)
+     shipped in the tool with their OFL notices, nothing from the network;
+     and Dark, Dim, Light and Auto buttons for the theme.
+   - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
+     wild, each with one home and at most one neighbour, and Froakie's 1%
+     is cut to a few water areas that fit it (R21 flags it); the late
+     game's few new lines, Fairy's absence from Wake's and Byron's land and
+     Starly's line never evolving in the wild come to Ian as proposals
+     there. The water tables are re-authored after that pass, so each
+     zone's land and water are judged together.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
