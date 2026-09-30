@@ -44,13 +44,51 @@ def save_box(path, split):
     return [ctx["values"].stage(m["species"]) for m in start["members"] if m.get("alive", True)]
 
 
+IV_ORDER = ("hp", "at", "df", "sp", "sa", "sd")     # Platinum's order in the save
+_SAVE_BOX = {}    # {split: [constant]}: the save box the fight was rebuilt around
+
+
+def save_records(path, split, lift=False):
+    """The living Pokemon of a real save as the fight setup takes them
+    (fightsim.prepare's given_side): the graveyard boxes left out, as the
+    simulator's start_from_save reads them. As saved (lift False), each keeps
+    its level, nature, IVs, ability and real moves. Lifted to the split's cap
+    (lift True), each is the stage it reaches by then, keeps its real moves,
+    and has its empty slots filled by the moveset rule."""
+    import collections
+    from ..encounters import canon, model, savefile
+    from . import pool
+    ctx = context(split)
+    save = savefile.read(path)
+    start = sim.start_from_save(save, model.load_encounters(), split)
+    dead = collections.Counter(m["species"] for m in start["members"] if not m.get("alive", True))
+    cap = pool.caps()[split]
+    out = []
+    for m in save["party"] + save["boxes"]:
+        if m.get("is_egg"):
+            continue
+        sp = m["species"]
+        if dead[sp] > 0:
+            dead[sp] -= 1
+            continue
+        const = ctx["values"].stage(sp) if lift else sp
+        out.append({"constant": const, "species": canon.showdown_name(const), "how": "save",
+                    "level": cap if lift else m["level"],
+                    "nature": m.get("stat_nature") or m["nature"],
+                    "ivs": dict(zip(IV_ORDER, m.get("stat_ivs") or m["ivs"])),
+                    "evs": dict(zip(IV_ORDER, m["evs"])),
+                    "ability": None if lift else m["ability"],
+                    "moves": list(m["moves"]), "fill": lift})
+    return out
+
+
 def box_from(source, split, rng):
     """One box by its source: "random" (a random run), "planned" (the
     simulator's best-play run) or "save:<path>" (a real save)."""
     if source == "planned":
         return planned_box(split)
-    if source.startswith("save:"):
-        return save_box(source[len("save:"):], split)
+    if source.startswith(("save:", "savecap:")):
+        return _SAVE_BOX.get(split) or save_box(source.split(":", 1)[1], split)
     return random_box(split, rng)
 
 

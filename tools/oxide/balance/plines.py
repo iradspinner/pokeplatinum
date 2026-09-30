@@ -28,11 +28,12 @@ SWITCH_RULES = ("losing", "losing", "hp", "never")
 
 class Line:
     __slots__ = ("lead", "answers", "switch_rule", "hp_floor", "setup_turns", "setup_full",
-                 "use_status", "seed", "bait_lock", "free_pivot", "stall", "reserved")
+                 "use_status", "seed", "bait_lock", "free_pivot", "stall", "reserved",
+                 "screens", "hazards", "pairs")
 
     def __init__(self, lead, answers, switch_rule="losing", hp_floor=0.4, setup_turns=3,
                  setup_full=True, use_status=True, seed=0, bait_lock=False, free_pivot=False,
-                 stall=0, reserved=None):
+                 stall=0, reserved=None, screens=False, hazards=False, pairs=None):
         self.lead = lead
         self.answers = answers            # {foe key: team index or None}
         self.switch_rule = switch_rule    # losing: leave a losing exchange for a winning one
@@ -46,6 +47,9 @@ class Line:
         self.free_pivot = free_pivot      # leave a losing exchange through a Pokemon immune to the foe's hit
         self.stall = stall                # stall a foe's timed effect with this many turns or fewer left
         self.reserved = reserved or {}    # {team index: foe key} saved for that later foe
+        self.screens = screens            # Reflect or Light Screen against the foe's kind of hit
+        self.hazards = hazards            # rocks, spikes or toxic spikes with foes still to come
+        self.pairs = pairs or {}          # {foe key: (chipper, finisher)}: two on one foe
 
     def describe(self, st, team):
         ans = ", ".join(f"{st['pokemon'][k]['species']}->{st['pokemon'][team[i]]['species']}"
@@ -57,7 +61,10 @@ class Line:
                 f"{'; bait locks' if self.bait_lock else ''}{'; free pivots' if self.free_pivot else ''}"
                 f"{f'; stall timed effects at {self.stall} turns' if self.stall else ''}"
                 + "".join(f"; save {st['pokemon'][team[i]]['species']} for {st['pokemon'][k]['species']}"
-                          for i, k in self.reserved.items()))
+                          for i, k in self.reserved.items())
+                + f"{'; screens' if self.screens else ''}{'; hazards' if self.hazards else ''}"
+                + "".join(f"; {st['pokemon'][team[a]]['species']} then {st['pokemon'][team[c]]['species']} "
+                          f"on {st['pokemon'][k]['species']}" for k, (a, c) in self.pairs.items()))
 
 
 # ---- applying a line ---------------------------------------------------------------------------------
@@ -196,11 +203,40 @@ def decide(b, line):
             free = [i for i in _free_against(b, foe, [locked.type]) if not _held(line, i, foe)]
             if free:
                 return "switch", free[0]
-    # The answer to this foe comes in when it appears.
+    # The answer to this foe comes in when it appears; with no single
+    # answer, the first of a pair (the chipper).
     if can_switch and foe.turns_in == 0:
         ans = line.answers.get(foe.key)
+        if ans is None and foe.key in line.pairs:
+            ans = line.pairs[foe.key][0]
         if ans is not None and ans != b.p.active and b.p.mons[ans].alive():
             return "switch", ans
+    # A pair: the chipper leaves for the finisher while it can still take
+    # the foe's hardest hit, crit included.
+    pair = line.pairs.get(foe.key)
+    if pair and can_switch and b.p.active == pair[0] and b.p.mons[pair[1]].alive():
+        _w, _tm, _tf, _plain, crit_hit = exchange(b)
+        if me.hp <= crit_hit * 2:
+            return "switch", pair[1]
+    # Screens: Reflect against a foe whose hits are physical, Light Screen
+    # against special, while ours is down and this Pokemon lives the turn.
+    if line.screens and t_foe >= 2:
+        cats = [mv.cat for mv in foe.moves if mv.damaging()]
+        if cats:
+            want = "Reflect" if cats.count("Physical") >= cats.count("Special") else "Light Screen"
+            eff = "SET_REFLECT" if want == "Reflect" else "SET_LIGHT_SCREEN"
+            if not b.p.screens[want]:
+                mv = next((m for m in moves if m.effect == eff), None)
+                if mv is not None:
+                    return "move", mv
+    # Hazards, with two or more of the foe's Pokemon still to come.
+    if line.hazards and t_foe >= 2 and sum(1 for m in b.b.mons if m.alive()) >= 3:
+        hz = b.b.hazards
+        for mv in moves:
+            if (mv.effect == "STEALTH_ROCK" and not hz["rocks"]) or \
+                    (mv.effect == "SET_SPIKES" and hz["spikes"] < 3) or \
+                    (mv.effect == "TOXIC_SPIKES" and hz["tspikes"] < 2):
+                return "move", mv
     # Stalling a timed effect: with none of our hits a knockout, wait out the
     # foe's screens, tailwind or Trick Room behind Protect when it is nearly
     # over, or through a free switch.
@@ -301,6 +337,27 @@ def line_stats(st, team, boss_keys, flags, line, runs, rng, one_crit=True):
 
 # ---- candidate lines ------------------------------------------------------------------------------------
 
+def best_pair(b, foe):
+    """(chipper, finisher) for a foe no single member beats: the chipper
+    hits until the foe's next hit could knock it out, the finisher comes
+    in taking one hit, and together their damage must cover the foe's HP.
+    None when no pair does."""
+    best = None
+    for i, a in enumerate(b.p.mons):
+        _w, _tm, tf_a, _p, _c = exchange(b, a, foe)
+        dmg_a = max((pl.dmg_low(b, a, foe, mv) for mv in a.moves if mv.damaging()), default=0)
+        chip = dmg_a * max(0, tf_a - 1)
+        for j, c in enumerate(b.p.mons):
+            if j == i:
+                continue
+            _w2, _tm2, tf_c, _p2, _c2 = exchange(b, c, foe)
+            dmg_c = max((pl.dmg_low(b, c, foe, mv) for mv in c.moves if mv.damaging()), default=0)
+            total = chip + dmg_c * max(0, tf_c - 1)
+            if total >= foe.hp and (best is None or total > best[0]):
+                best = (total, (i, j))
+    return best[1] if best else None
+
+
 def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
     """The default line: the lead and the answers by the exchange reading,
     switching out of losing exchanges, setup at three safe turns. With
@@ -323,7 +380,14 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
         if rng.random() < jitter:
             best = rng.choice([None] + list(range(len(team))))
         answers[k] = best
-    line = Line(lead, answers)
+    pairs = {}
+    for k in boss_keys:
+        if answers[k] is not None:
+            continue
+        pair = best_pair(b, bm[k])
+        if pair is not None:
+            pairs[k] = pair
+    line = Line(lead, answers, screens=True, hazards=True, pairs=pairs)
     if rng.random() < jitter:
         line.switch_rule = rng.choice(SWITCH_RULES)
     if rng.random() < jitter:
@@ -334,6 +398,12 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
         line.setup_full = rng.random() < 0.5
     if rng.random() < jitter:
         line.use_status = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.screens = rng.random() < 0.8
+    if rng.random() < jitter:
+        line.hazards = rng.random() < 0.7
+    if rng.random() < jitter and line.pairs:
+        line.pairs.pop(rng.choice(sorted(line.pairs)))
     if rng.random() < jitter:
         line.bait_lock = rng.random() < 0.7
     if rng.random() < jitter:

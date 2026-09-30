@@ -90,7 +90,7 @@ def fight_label(f):
     return data.oxide_trainers()[key]["name"]
 
 
-def prepare(f):
+def prepare(f, given_side=None):
     """The fight's state for the search: {"st", "flags", "variants": [(boss
     keys, flags, starter or None)], "split", "label"}, or None when the
     fight is a double battle."""
@@ -109,7 +109,8 @@ def prepare(f):
         weather = pressure.fight_weather([t["tr_id"] for t in trainers])
         split = fight["split"]
         cap = fs.fight_cap(split, key)
-        st = fs.prepare(split, parties, weather, bool(fight.get("trick_room")), cap=cap)
+        st = fs.prepare(split, parties, weather, bool(fight.get("trick_room")), cap=cap,
+                        given_side=given_side)
         variants = []
         for v, t in enumerate(trainers):
             starter = next((sp for sp, tag in STARTER_VARIANT.items() if t["constant"].endswith("_" + tag)), None)
@@ -123,7 +124,8 @@ def prepare(f):
         st = pdoubles.prepare_trainer(t, split, fs.fight_cap(split))
         return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
                 "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
-    st = fs.prepare(split, [t["party"]], pressure.fight_weather([key]), cap=fs.fight_cap(split))
+    st = fs.prepare(split, [t["party"]], pressure.fight_weather([key]), cap=fs.fight_cap(split),
+                    given_side=given_side)
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}
 
@@ -234,7 +236,7 @@ def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, se
     if box_source != "random":
         n_boxes = 1
     for bi in range(n_boxes):
-        box = boxes.box_from(box_source, prep["split"], random.Random(seed * 100 + bi))
+        box = prep.get("save_box") or boxes.box_from(box_source, prep["split"], random.Random(seed * 100 + bi))
         keys = box_keys(st, box, rng)
         boss_keys, flags, _starter = variant_for(prep, box)
         for j, team in enumerate(sixes(keys, blind, rng)):
@@ -375,6 +377,16 @@ def main(argv=None):
     os.makedirs(RESULTS, exist_ok=True)
     for name in args.fights:
         prep = prepare(parse_fight(name))
+        save_note = None
+        if prep is not None and args.box.startswith(("save:", "savecap:")):
+            # A real save's box: its Pokemon as saved (save:) or lifted to the
+            # cap (savecap:), the fight rebuilt around them.
+            kind, path = args.box.split(":", 1)
+            records = boxes.save_records(path, prep["split"], lift=kind == "savecap")
+            prep = prepare(parse_fight(name), given_side=records)
+            prep["save_box"] = [r["constant"] for r in records]
+            save_note = ("lifted to the cap, real moves kept and empty slots filled by the moveset rule"
+                         if kind == "savecap" else "as saved: real levels, moves, abilities, natures and IVs")
         if prep is None:
             print(f"{name}: a double battle, not read", flush=True)
             continue
@@ -398,7 +410,9 @@ def main(argv=None):
         out = read_fight(prep, args.boxes, args.blind, args.planned, args.procs, budget=args.budget,
                          strict=args.strict, box_source=args.box)
         out["key"] = prep["key"]
-        tag = "" if args.box == "random" else "-" + ("planned" if args.box == "planned" else "save")
+        if save_note:
+            out["save_moves"] = save_note
+        tag = "" if args.box == "random" else "-" + args.box.split(":")[0]
         name = f"{prep['key']}{tag}{'-strict' if args.strict else ''}.json"
         with open(os.path.join(RESULTS, name), "w", encoding="utf-8") as f:
             json.dump(out, f, indent=1)

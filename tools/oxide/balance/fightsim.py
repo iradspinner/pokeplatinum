@@ -1448,7 +1448,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 DOWNSIDE = {"UPROAR": 0.5, "CONTINUE_AND_CONFUSE_SELF": 0.6, "USER_SP_ATK_DOWN_2": 0.8,
             "LOWER_OWN_ATK_AND_DEF": 0.85, "DEF_SPD_DOWN_HIT": 0.9, "SPEED_DOWN_HIT": 0.95}
 # The status and setup moves the player's policy knows how to use.
-POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF | {"MAX_ATK_LOSE_HALF_MAX_HP", "CURSE"}
+POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF | {"MAX_ATK_LOSE_HALF_MAX_HP", "CURSE"} \
+    | {"SET_REFLECT", "SET_LIGHT_SCREEN", "STEALTH_ROCK", "SET_SPIKES", "TOXIC_SPIKES"}   # screens and hazards, which the lines use
 
 
 def play_strength(name, types):
@@ -1482,12 +1483,18 @@ def player_moves(rec, can_names, tiers, types):
         if len(attacks) == 3:
             break
     status = [n for n in can_names if move(n).cat == "Status" and move(n).effect in POLICY_STATUS
-              and tiers.get(n, 0) >= TIERS["A"]]
+              and tiers.get(n, 0) >= TIERS["B"]]
     status.sort(key=lambda n: -tiers.get(n, 0))
-    if status:
-        return attacks + status[:1]
+    moves = attacks + [n for n in status[:1] if tiers.get(n, 0) >= TIERS["A"]]
+    # Every slot is filled, as a player fills them (the Roark read,
+    # 2026-09-30): a Pokemon with fewer than three attack types takes its
+    # next best status moves (B or better), then attacks of a type it has.
     rest = [n for n in ranked if n not in attacks]
-    return attacks + rest[:1]
+    for n in [s for s in status if s not in moves] + rest:
+        if len(moves) >= 4:
+            break
+        moves.append(n)
+    return moves
 
 
 # The player's items (Ian, 2026-09-27): never a Life Orb or a Choice item.
@@ -1661,7 +1668,8 @@ def family(species):
     return (pool.pre_evolutions().get(species) or [species])[-1]
 
 
-def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False):
+def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
+            given_side=None):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
@@ -1687,14 +1695,23 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             third.append(p)
     if BOX_MODE:
         third = side          # a box can hold anything the split's side has
+    if given_side is not None:
+        # A real save's Pokemon (pboxes.save_records): each keeps its level,
+        # nature, IVs, ability and, where the record carries them, its moves.
+        third = list(given_side)
     tiers = status_tiers()
     names = pool._move_names()
     pokemon, moves, variants = {}, {}, {}
     for i, p in enumerate(third):
         poks = blob["poks"].get(p["species"], {})
         types = poks.get("types") or []
-        can_names = sorted({names[c] for c in can[p["constant"]] if c in names})
+        can_names = sorted({names[c] for c in can.get(p["constant"], ()) if c in names})
         mv = player_moves(p, can_names, tiers, types)
+        if p.get("moves") and given_side is not None:
+            # The save's own moves, and with "fill" (a Pokemon lifted to the
+            # cap) its empty slots from the moveset rule.
+            real = [m for m in p["moves"] if m]
+            mv = real + ([m for m in mv if m not in real][:4 - len(real)] if p.get("fill") else [])
         # A caught Pokemon has either regular ability, never the hidden one,
         # and never one that sets or cancels weather (Ian, 2026-09-26: the
         # player never controls weather). A species whose regular slots hold
@@ -1703,6 +1720,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         abilities = poks.get("abilities") or {}
         regular = [a for a in dict.fromkeys((abilities.get("0"), abilities.get("1")))
                    if a and a not in NO_WEATHER_ABILITY]
+        if given_side is not None and p.get("ability") and p["ability"] not in NO_WEATHER_ABILITY:
+            regular = [p["ability"]]
         # Rows without the player's item: items are handed out per team and
         # applied here (assign_items, Battle.damage).
         pokemon[f"p{i}"] = dict(p, moves=mv, item=None, ability=regular[0] if regular else WEATHER_STAND_IN)
