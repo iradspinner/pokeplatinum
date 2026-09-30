@@ -1,0 +1,550 @@
+species	egg_moves
+SPECIES_ABOMASNOW	Stomp, Double-Edge, Leech Seed, Growth, Weather Ball
+SPECIES_ABRA	Fire Punch, Ice Punch, ThunderPunch, Confusion, Encore, Magic Coat, Knock Off, Psycho Shift, Power Trick, Guard Swap, Guard Split
+SPECIES_ABSOL	Double-Edge, Bite, Curse, Perish Song, Mean Look, Megahorn, Baton Pass, Magic Coat, Feint, Assurance, Sucker Punch, Zen Headbutt, Hex, Play Rough
+SPECIES_AERODACTYL	Whirlwind, Curse, DragonBreath, Tailwind, Assurance, Wide Guard
+SPECIES_AGGRON	Stomp, Body Slam, Screech, Curse, Reversal, Mud-Slap, Superpower, Endeavor, Dragon Rush, Iron Head, Head Smash
+SPECIES_AIPOM	Slam, Counter, Iron Tail, Beat Up, Fake Out, Bounce, Covet, Switcheroo, Quick Guard
+SPECIES_ALAKAZAM	Fire Punch, Ice Punch, ThunderPunch, Confusion, Encore, Magic Coat, Knock Off, Psycho Shift, Power Trick, Guard Swap, Guard Split
+SPECIES_ALOLAN_NINETALES	Roar, Hypnosis, Flail, Howl, Moonblast, Baby-Doll Eyes
+SPECIES_ALOMOMOLA	Mist, Endure, Pain Split, Mirror Coat, Tickle, Bounce
+SPECIES_ALTARIA	Haze, FeatherDance, Astonish, Roost, Tailwind, Dragon Rush, Defog
+SPECIES_AMBIPOM	Slam, Counter, Iron Tail, Beat Up, Fake Out, Bounce, Covet, Switcheroo, Quick Guard
+SPECIES_AMPHAROS	Agility, Flatter, After You, Electroweb, Eerie Impulse
+SPECIES_ANNIHILAPE	Counter, Curse, Spite, Encore, Beat Up, Night Slash
+SPECIES_ANORITH	Sand-Attack, Curse, Rapid Spin, Knock Off, Water Pulse, Aqua Jet
+SPECIES_ARAQUANID	Stockpile, Spit Up, Power Split, Sticky Web
+SPECIES_ARBOK	Spite, Scary Face, Poison Fang, Poison Tail, Sucker Punch, Switcheroo
+SPECIES_ARBOLIVA	Synthesis, Memento, Weather Ball, Strength Sap
+SPECIES_ARCANINE	Double Kick, Thrash, Double-Edge, Morning Sun, Covet, Raging Fury
+SPECIES_ARIADOS	Disable, Megahorn, Night Slash, Rage Powder, Lunge
+SPECIES_ARMALDO	Sand-Attack, Screech, Curse, Rapid Spin, Knock Off, Iron Defense, Cross Poison, Aqua Jet
+SPECIES_ARMAROUGE	Disable, Spite, Destiny Bond
+SPECIES_ARON	Stomp, Body Slam, Screech, Curse, Reversal, Mud-Slap, Superpower, Endeavor, Dragon Rush, Iron Head, Head Smash
+SPECIES_AZUMARILL	Sing, Supersonic, Belly Drum, Perish Song, Present, Tickle, Copycat, Aqua Jet, Soak
+SPECIES_AZURILL	Sing, Supersonic, Belly Drum, Perish Song, Present, Tickle, Copycat, Aqua Jet, Soak
+SPECIES_BAGON	Thrash, Defense Curl, Twister, Dragon Rush
+SPECIES_BANETTE	Disable, Confuse Ray, Destiny Bond, Imprison, Gunk Shot
+SPECIES_BARBOACH	Take Down, Thrash, Flail, Spark
+SPECIES_BASTIODON	Headbutt, Counter, Fissure, Screech, Focus Energy, Wide Guard, Guard Split
+SPECIES_BAYLEEF	Vine Whip, Counter, Flail, AncientPower, Ingrain, Heal Pulse
+SPECIES_BELLOSSOM	Leech Seed, Razor Leaf, Flail, Synthesis, Ingrain, Teeter Dance, Tickle, After You, Strength Sap
+SPECIES_BELLSPROUT	Synthesis, Ingrain, Tickle, Worry Seed, Sucker Punch, Clear Smog, Strength Sap
+SPECIES_BIBAREL	Double-Edge, Quick Attack, Defense Curl, Skull Bash, Fury Swipes, Rollout, Aqua Tail
+SPECIES_BIDOOF	Double-Edge, Quick Attack, Defense Curl, Skull Bash, Fury Swipes, Rollout, Aqua Tail
+SPECIES_BLASTOISE	Mist, Flail, Mirror Coat, Fake Out, Yawn, Water Spout, Aqua Ring, Aqua Jet, Life Dew
+SPECIES_BLAZIKEN	Fire Punch, Ember, Flamethrower, Peck, Counter, FeatherDance, Crush Claw, Feint, Last Resort, Night Slash
+SPECIES_BLIPBUG	Supersonic, Recover, Sticky Web, Infestation
+SPECIES_BLISSEY	Seismic Toss, Heal Bell, Present, Gravity
+SPECIES_BONSLY	Headbutt, Harden, Defense Curl, Curse, Rollout, Rock Polish
+SPECIES_BOUNSWEET	Synthesis, Endeavor, Acupressure
+SPECIES_BRAIXEN	Hypnosis, Heat Wave, Wish, Copycat
+SPECIES_BRELOOM	Charm, Helping Hand, Fake Tears, Worry Seed
+SPECIES_BRIONNE	Perish Song, Aqua Ring, Life Dew
+SPECIES_BRONZONG	Recycle, Gravity
+SPECIES_BRONZOR	Recycle, Gravity
+SPECIES_BUDEW	Pin Missile, Razor Leaf, Sleep Powder, Mind Reader, Cotton Spore, Spikes, Synthesis, Extrasensory, Seed Bomb, Leaf Storm, Life Dew
+SPECIES_BUIZEL	Headbutt, Fury Swipes, Slash, Mud-Slap, Fury Cutter, Baton Pass, Helping Hand, Aqua Ring
+SPECIES_BULBASAUR	Petal Dance, Toxic, Curse, Ingrain
+SPECIES_BUNEARY	Fire Punch, Ice Punch, ThunderPunch, Low Kick, Flail, Sweet Kiss, Encore, Fake Out, Teeter Dance, Fake Tears, Cosmic Power, Copycat, Switcheroo, Double Hit, Circle Throw, Power-Up Punch
+SPECIES_CACNEA	Disable, Acid, Counter, Teeter Dance, Block, Switcheroo, Belch, Fell Stinger
+SPECIES_CACTURNE	Disable, Acid, Counter, Teeter Dance, Block, Switcheroo, Belch, Fell Stinger
+SPECIES_CAMERUPT	Stomp, Body Slam, Growth, Defense Curl, Scary Face, Rollout, AncientPower, Stockpile, Spit Up, Swallow, Heat Wave, Yawn, Howl, Iron Head, Heavy Slam
+SPECIES_CARNIVINE	Slam, Leech Seed, Razor Leaf, Stun Spore, Sleep Powder, Synthesis, Magical Leaf, Worry Seed, Rage Powder, Acid Spray
+SPECIES_CARVANHA	Thrash, Double-Edge, Hydro Pump, Swift, Destiny Bond, AncientPower
+SPECIES_CASTFORM	Disable, Amnesia, Future Sight, Cosmic Power, Guard Swap, Clear Smog, Hex
+SPECIES_CERULEDGE	Night Slash, Shadow Sneak, Quick Guard, Solar Blade, Disable, Spite, Destiny Bond
+SPECIES_CHANDELURE	Haze, Acid Armor, Power Split, Clear Smog
+SPECIES_CHANSEY	Seismic Toss, Heal Bell, Present, Gravity
+SPECIES_CHARCADET	Disable, Spite, Destiny Bond
+SPECIES_CHARIZARD	Bite, Counter, Belly Drum, Iron Tail, Metal Claw, AncientPower, Dragon Rush, Dragon Tail
+SPECIES_CHARJABUG	Harden, Discharge
+SPECIES_CHARMANDER	Bite, Counter, Belly Drum, Iron Tail, Metal Claw, AncientPower, Dragon Rush, Dragon Tail
+SPECIES_CHARMELEON	Bite, Counter, Belly Drum, Iron Tail, Metal Claw, AncientPower, Dragon Rush, Dragon Tail
+SPECIES_CHATOT	Supersonic, Agility, Night Shade, Encore, Air Cutter, Boomburst
+SPECIES_CHERRIM	Razor Leaf, Defense Curl, Rollout, Sweet Scent, Nature Power, Weather Ball, Aromatherapy, Tickle, Healing Wish, Seed Bomb, Heal Pulse
+SPECIES_CHERUBI	Razor Leaf, Defense Curl, Rollout, Sweet Scent, Nature Power, Aromatherapy, Tickle, Healing Wish, Heal Pulse
+SPECIES_CHIKORITA	Vine Whip, Counter, Flail, AncientPower, Ingrain, Heal Pulse
+SPECIES_CHIMCHAR	Fire Punch, ThunderPunch, Double Kick, Counter, Focus Energy, Encore, Fake Out, Heat Wave, Helping Hand, Switcheroo
+SPECIES_CHIMECHO	Disable, Hypnosis, Recover, Curse, Wish, Recycle, Cosmic Power
+SPECIES_CHINCHOU	Mist, Psybeam, Water Pulse, Soak
+SPECIES_CHINGLING	Disable, Hypnosis, Recover, Curse, Wish, Recycle, Cosmic Power
+SPECIES_CINCCINO	Slam, Tail Whip, Swift, Flail, Encore, Helping Hand, Knock Off, Hyper Voice, Tickle, Rock Blast, Last Resort, Aqua Tail, After You, Echoed Voice, Baby-Doll Eyes
+SPECIES_CINDERACE	Sand-Attack, Hi Jump Kick, Super Fang, Sucker Punch
+SPECIES_CLAMPERL	Body Slam, Supersonic, Confuse Ray, Muddy Water, Aqua Ring
+SPECIES_CLEFABLE	Pound, Growl, Sing, Defense Curl, Splash, Sweet Kiss, Charm, Present, Encore, Moonlight, Follow Me, Wish, Tickle, Cosmic Power, Gravity, Healing Wish, Copycat, After You, Stored Power, Heal Pulse, Disarming Voice
+SPECIES_CLEFAIRY	Present, Wish, Tickle, Heal Pulse
+SPECIES_CLEFFA	Present, Wish, Tickle, Heal Pulse
+SPECIES_CLOBBOPUS	Seismic Toss, Pain Split, Sucker Punch, Soak, Circle Throw, Power-Up Punch
+SPECIES_CLODSIRE	Double Kick, Counter, Recover, Curse, AncientPower, Stockpile, Spit Up, Swallow, Acid Spray, After You
+SPECIES_CLOYSTER	BubbleBeam, Water Pulse, Aqua Ring, Life Dew
+SPECIES_COFAGRIGUS	Memento
+SPECIES_COMBUSKEN	Flamethrower, Peck, Counter, FeatherDance, Crush Claw, Feint, Last Resort, Night Slash
+SPECIES_CORPHISH	Double-Edge, Slash, Metal Claw, AncientPower, Switcheroo, Aqua Jet
+SPECIES_CORSOLA	Mist, Confuse Ray, Curse, Nature Power, Water Pulse, Head Smash
+SPECIES_CORVIKNIGHT	Sand-Attack, Sky Attack, Spite, Rock Smash, Roost, Tailwind, Defog
+SPECIES_CORVISQUIRE	Sand-Attack, Sky Attack, Spite, Rock Smash, Roost, Tailwind, Defog
+SPECIES_CRADILY	Bind, Mega Drain, Recover, Curse, Mirror Coat, Tickle
+SPECIES_CRANIDOS	Whirlwind, Stomp, Thrash, Hammer Arm
+SPECIES_CRAWDAUNT	Double-Edge, Slash, Metal Claw, AncientPower, Switcheroo, Aqua Jet
+SPECIES_CROAGUNK	Headbutt, Counter, DynamicPunch, Cross Chop, Fake Out, Feint, Vacuum Wave, Bullet Punch, Quick Guard
+SPECIES_CROBAT	Gust, Wing Attack, Whirlwind, Hypnosis, Quick Attack, Curse, Brave Bird, Zen Headbutt, Venom Drench
+SPECIES_CROCONAW	Counter, AncientPower, Flatter, Block, Aqua Jet
+SPECIES_CRUSTLE	Counter, Curse, Knock Off, Block, Night Slash, Wide Guard
+SPECIES_CUBONE	Double Kick, Leer, Screech, Skull Bash, Curse, Belly Drum, Perish Song, Detect, AncientPower, Iron Head
+SPECIES_CYNDAQUIL	Double Kick, Curse, Reversal, Extrasensory, Howl, Covet
+SPECIES_DARTRIX	Double Team, Confuse Ray, Knock Off, Roost, Defog
+SPECIES_DECIDUEYE	Double Team, Confuse Ray, Knock Off, Roost, Defog
+SPECIES_DELCATTY	Baton Pass, Fake Out, Uproar, Helping Hand, Wish, Fake Tears, Tickle, Cosmic Power, Last Resort, Sucker Punch, Zen Headbutt
+SPECIES_DELIBIRD	Aurora Beam, Counter, Quick Attack, Splash, Destiny Bond, Rapid Spin, Fake Out, Memento, Ice Shard, Freeze-Dry, Aurora Veil
+SPECIES_DELPHOX	Hypnosis, Heat Wave, Wish, Copycat
+SPECIES_DEWGONG	Horn Drill, Disable, Lick, Perish Song, Fake Out, Stockpile, Spit Up, Swallow, Entrainment, Belch
+SPECIES_DEWPIDER	Stockpile, Spit Up, Power Split, Sticky Web
+SPECIES_DIGLETT	Headbutt, AncientPower, Memento, Hone Claws, Final Gambit
+SPECIES_DODRIO	Whirlwind, Sky Attack, Flail, Assurance
+SPECIES_DODUO	Whirlwind, Sky Attack, Flail, Assurance
+SPECIES_DOLLIV	Synthesis, Memento, Weather Ball, Strength Sap
+SPECIES_DONPHAN	Body Slam, Counter, Fissure, Focus Energy, Snore, AncientPower, Endeavor, Ice Shard, Head Smash, Heavy Slam, Play Rough, High Horsepower
+SPECIES_DOTTLER	Supersonic, Recover, Sticky Web, Infestation
+SPECIES_DRAGONAIR	Supersonic, Mist, DragonBreath, ExtremeSpeed, Water Pulse, Aqua Jet
+SPECIES_DRAGONITE	Supersonic, Mist, DragonBreath, ExtremeSpeed, Water Pulse, Aqua Jet
+SPECIES_DRAPION	Whirlwind, Sand-Attack, Agility, Screech, Confuse Ray, Slash, Poison Tail, Night Slash
+SPECIES_DRATINI	Supersonic, Mist, DragonBreath, ExtremeSpeed, Water Pulse, Aqua Jet
+SPECIES_DRIFBLIM	Disable, Hypnosis, Haze, Memento, Defog, Clear Smog
+SPECIES_DRIFLOON	Disable, Hypnosis, Haze, Memento, Defog, Clear Smog
+SPECIES_DROWZEE	Fire Punch, Ice Punch, ThunderPunch, Flatter, Role Play, Guard Swap, Psycho Cut, Power Split
+SPECIES_DUBWOOL	Stomp, Counter, Swagger
+SPECIES_DUGTRIO	Headbutt, AncientPower, Memento, Hone Claws, Final Gambit
+SPECIES_DUNSPARCE	Headbutt, Bite, Curse, Astonish, Last Resort, Aqua Tail
+SPECIES_DUSCLOPS	Haze, Pain Split, Memento
+SPECIES_DUSKNOIR	Haze, Pain Split, Memento
+SPECIES_DUSKULL	Haze, Pain Split, Memento, Grudge
+SPECIES_DWEBBLE	Counter, Curse, Knock Off, Block, Night Slash, Wide Guard
+SPECIES_EEVEE	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_EKANS	Spite, Scary Face, Poison Fang, Poison Tail, Sucker Punch, Switcheroo
+SPECIES_ELECTABUZZ	DynamicPunch, Cross Chop, Focus Punch, Follow Me, Hammer Arm, Feint
+SPECIES_ELECTIVIRE	DynamicPunch, Cross Chop, Focus Punch, Follow Me, Hammer Arm, Feint
+SPECIES_ELECTRIKE	Headbutt, Swift, Curse, Spark, Crunch, Uproar, Switcheroo, Thunder Fang, Ice Fang, Fire Fang, Discharge, Electro Ball, Eerie Impulse
+SPECIES_ELECTRODE	Recycle, Metal Sound
+SPECIES_ELEKID	DynamicPunch, Cross Chop, Focus Punch, Hammer Arm, Feint
+SPECIES_EMOLGA	Astonish, Tickle, Covet, Shock Wave, Roost, Defog
+SPECIES_EMPOLEON	Supersonic, Snore, Yawn, FeatherDance, Roost, Aqua Ring, Power Trip
+SPECIES_ENTEI	Sacred Fire, ExtremeSpeed
+SPECIES_ESPEON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_EXEGGCUTE	PoisonPowder, Stun Spore, Sleep Powder, Curse, Moonlight, AncientPower, Ingrain, Block
+SPECIES_EXEGGUTOR	PoisonPowder, Stun Spore, Sleep Powder, Curse, Moonlight, AncientPower, Ingrain, Block
+SPECIES_EXPLOUD	Whirlwind, Take Down, SmokeScreen, Snore, Endeavor, Fake Tears, Extrasensory, Hammer Arm, Circle Throw, Disarming Voice
+SPECIES_FARFETCHD	Gust, Quick Attack, Sky Attack, Curse, Flail, Mud-Slap, Revenge, FeatherDance, Covet, Leaf Blade, Feint, Night Slash, Final Gambit
+SPECIES_FEAROW	Whirlwind, Quick Attack, Sky Attack, Tri Attack, Scary Face, Uproar, FeatherDance, Astonish
+SPECIES_FEEBAS	Mist, Hypnosis, Confuse Ray, Haze, DragonBreath, Mirror Coat, Tickle
+SPECIES_FENNEKIN	Hypnosis, Heat Wave, Wish, Copycat
+SPECIES_FERALIGATR	Counter, AncientPower, Flatter, Block, Aqua Jet
+SPECIES_FERROSEED	Leech Seed, Toxic, Knock Off, Gravity, Acid Spray
+SPECIES_FERROTHORN	Leech Seed, Toxic, Knock Off, Gravity, Acid Spray
+SPECIES_FINNEON	Psybeam, Aurora Beam, Agility, Confuse Ray, Flail, Sweet Kiss, Charm, Tickle, Aqua Tail
+SPECIES_FLAAFFY	Agility, Flatter, After You, Electroweb, Eerie Impulse
+SPECIES_FLABEBE	Endeavor, Copycat, Tearful Look
+SPECIES_FLAREON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_FLETCHINDER	Defog, Flame Charge, Quick Guard
+SPECIES_FLETCHLING	Defog, Flame Charge, Quick Guard
+SPECIES_FLOATZEL	Headbutt, Fury Swipes, Slash, Mud-Slap, Fury Cutter, Baton Pass, Helping Hand, Aqua Ring
+SPECIES_FLOETTE	Endeavor, Copycat, Tearful Look
+SPECIES_FLORAGATO	Leech Seed, Copycat, Sucker Punch, Petal Blizzard
+SPECIES_FLORGES	Endeavor, Copycat, Tearful Look
+SPECIES_FLYGON	Gust, Bite, Fissure, Dig, Quick Attack, Flail, Fury Cutter, Crunch, Superpower, Astonish, Dragon Dance, Feint, Bug Bite, FirstImpression
+SPECIES_FOMANTIS	Worry Seed, Defog
+SPECIES_FORRETRESS	Pin Missile, Counter, Swift, Flail, Sand Tomb, Power Trick, Toxic Spikes
+SPECIES_FRILLISH	Mist, BubbleBeam, Confuse Ray, Acid Armor, Pain Split, Strength Sap
+SPECIES_FROAKIE	Counter, Spikes, Toxic Spikes, Switcheroo, Retaliate
+SPECIES_FROGADIER	Counter, Spikes, Toxic Spikes, Switcheroo, Retaliate
+SPECIES_FROSLASS	Disable, Rollout, Block, Switcheroo, Icicle Crash
+SPECIES_FROSMOTH	Mirror Coat, Bug Bite, Fairy Wind
+SPECIES_FURRET	Focus Energy, Slash, Reversal, Last Resort, Baby-Doll Eyes
+SPECIES_GABITE	Thrash, Double-Edge, Metal Claw, Twister
+SPECIES_GALARIAN_MR_MIME	Confuse Ray, Fake Out, Tickle, Power Split
+SPECIES_GALLADE	Disable, Confuse Ray, Destiny Bond, Mean Look, Memento, Knock Off, Shadow Sneak, Mystical Fire
+SPECIES_GALVANTULA	Poison Sting, Double Team, Struggle Bug, Infestation, Lunge
+SPECIES_GARCHOMP	Thrash, Double-Edge, Metal Claw, Twister
+SPECIES_GARDEVOIR	Disable, Confuse Ray, Destiny Bond, Mean Look, Memento, Knock Off, Shadow Sneak, Mystical Fire
+SPECIES_GARGANACL	Fissure, Curse, AncientPower, Power Gem
+SPECIES_GASTLY	Disable, Toxic, Haze, Smog, Perish Song, Astonish, Clear Smog
+SPECIES_GASTRODON	Mist, Counter, Sludge, Acid Armor, Curse, Mirror Coat, Stockpile, Spit Up, Swallow, Yawn, Clear Smog
+SPECIES_GENGAR	Disable, Toxic, Haze, Smog, Perish Song, Astonish, Clear Smog
+SPECIES_GEODUDE	Mega Punch, Curse, Flail, DynamicPunch, Block, Hammer Arm, Wide Guard
+SPECIES_GIBLE	Thrash, Double-Edge, Metal Claw, Twister
+SPECIES_GIRAFARIG	Double Kick, Take Down, Mean Look, Mirror Coat, Future Sight, Beat Up, Uproar, Wish
+SPECIES_GLACEON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_GLALIE	Disable, Rollout, Block, Switcheroo, Icicle Crash
+SPECIES_GLAMEOW	Sand-Attack, Tail Whip, Bite, Quick Attack, Flail, Fake Tears, Assurance, Last Resort
+SPECIES_GLIGAR	Wing Attack, Double-Edge, Counter, Feint, Night Slash, Cross Poison
+SPECIES_GLIMMET	Toxic, Explosion, Memento
+SPECIES_GLIMMORA	Toxic, Explosion, Memento
+SPECIES_GLISCOR	Wing Attack, Double-Edge, Counter, Feint, Night Slash, Cross Poison
+SPECIES_GLOOM	Leech Seed, Razor Leaf, Flail, Synthesis, Ingrain, Teeter Dance, Tickle, After You, Strength Sap
+SPECIES_GOLBAT	Gust, Wing Attack, Whirlwind, Hypnosis, Quick Attack, Curse, Brave Bird, Zen Headbutt, Venom Drench
+SPECIES_GOLDEEN	Psybeam, Haze, Mud-Slap, Acupressure, Aqua Tail
+SPECIES_GOLDUCK	Psybeam, Hypnosis, Confuse Ray, Cross Chop, Yawn, Clear Smog
+SPECIES_GOLEM	Mega Punch, Curse, Flail, DynamicPunch, Block, Hammer Arm, Wide Guard
+SPECIES_GOODRA	Counter, Life Dew
+SPECIES_GOOMY	Counter, Life Dew
+SPECIES_GOREBYSS	Body Slam, Supersonic, Confuse Ray, Muddy Water, Aqua Ring
+SPECIES_GOTHITA	Mean Look, Mirror Coat, Fake Out, Torment, Heal Pulse
+SPECIES_GOTHITELLE	Mean Look, Mirror Coat, Fake Out, Torment, Heal Pulse
+SPECIES_GOTHORITA	Mean Look, Mirror Coat, Fake Out, Torment, Heal Pulse
+SPECIES_GRANBULL	Counter, Mimic, Snore, Present, Retaliate
+SPECIES_GRAPPLOCT	Seismic Toss, Pain Split, Sucker Punch, Soak, Circle Throw, Power-Up Punch
+SPECIES_GRAVELER	Mega Punch, Curse, Flail, DynamicPunch, Block, Hammer Arm, Wide Guard
+SPECIES_GRENINJA	Counter, Spikes, Toxic Spikes, Switcheroo, Retaliate
+SPECIES_GRIMER	Haze, Curse, Mean Look, Stockpile, Spit Up, Swallow, Shadow Punch, Shadow Sneak, Acid Spray
+SPECIES_GROTLE	Thrash, Double-Edge, Growth, Stockpile, Spit Up, Swallow, Superpower, Tickle, Worry Seed, Wide Guard, Shell Smash
+SPECIES_GROVYLE	Double Kick, Absorb, Leech Seed, Slash, False Swipe, Fury Cutter, DragonBreath, Synthesis, Worry Seed, Night Slash, X-Scissor, Energy Ball
+SPECIES_GROWLITHE	Double Kick, Thrash, Double-Edge, Morning Sun, Covet, Raging Fury
+SPECIES_GRUBBIN	Harden, Discharge
+SPECIES_GRUMPIG	Whirlwind, Amnesia, Mirror Coat, Future Sight, Trick, Extrasensory, Zen Headbutt
+SPECIES_GULPIN	Smog, Acid Armor, Curse, Mud-Slap, Destiny Bond, Clear Smog
+SPECIES_HAKAMO_O	Counter, DragonBreath, Focus Punch
+SPECIES_HAPPINY	Seismic Toss, Heal Bell, Present, Gravity
+SPECIES_HARIYAMA	Counter, DynamicPunch, Cross Chop, Helping Hand, Feint, Bullet Punch, Wide Guard
+SPECIES_HAUNTER	Disable, Toxic, Haze, Smog, Perish Song, Astonish, Clear Smog
+SPECIES_HAWLUCHA	Mean Look, Cross Chop, Feint, Defog, Entrainment, Quick Guard
+SPECIES_HERACROSS	Double-Edge, Seismic Toss, Harden, Flail, Feint, Night Slash
+SPECIES_HIPPOPOTAS	Whirlwind, Curse, Stockpile, Spit Up, Swallow
+SPECIES_HIPPOWDON	Whirlwind, Curse, Stockpile, Spit Up, Swallow
+SPECIES_HITMONCHAN	Counter, Hi Jump Kick, Mach Punch, Rapid Spin, Feint, Vacuum Wave, Bullet Punch
+SPECIES_HITMONLEE	Counter, Hi Jump Kick, Mach Punch, Rapid Spin, Feint, Vacuum Wave, Bullet Punch
+SPECIES_HITMONTOP	Counter, Hi Jump Kick, Mach Punch, Rapid Spin, Feint, Vacuum Wave, Bullet Punch
+SPECIES_HONCHKROW	Whirlwind, Drill Peck, Screech, Confuse Ray, Sky Attack, Perish Song, Flatter, FeatherDance, Brave Bird
+SPECIES_HOOTHOOT	Wing Attack, Whirlwind, Supersonic, Night Shade, FeatherDance, Defog
+SPECIES_HOPPIP	Encore, Worry Seed, Seed Bomb, Switcheroo, Rage Powder, Cotton Guard, Strength Sap
+SPECIES_HORSEA	Disable, Aurora Beam, Splash, Flail, Octazooka, Water Pulse, Clear Smog
+SPECIES_HOUNDOOM	Counter, Fire Spin, Reversal, Spite, Destiny Bond, Feint, Sucker Punch, Thunder Fang
+SPECIES_HOUNDOUR	Counter, Fire Spin, Reversal, Spite, Destiny Bond, Feint, Sucker Punch, Thunder Fang
+SPECIES_HUNTAIL	Body Slam, Supersonic, Confuse Ray, Muddy Water, Aqua Ring
+SPECIES_HYPNO	Fire Punch, Ice Punch, ThunderPunch, Flatter, Role Play, Guard Swap, Psycho Cut, Power Split
+SPECIES_IGGLYBUFF	Perish Song, Rollout, Present, Wish, Covet, Gravity, Last Resort, Heal Pulse
+SPECIES_ILLUMISE	Growth, Attract, Roost
+SPECIES_INCINEROAR	Scratch, Growl, Fake Out, Parting Shot, Power Trip
+SPECIES_INFERNAPE	Fire Punch, ThunderPunch, Double Kick, Counter, Focus Energy, Encore, Fake Out, Heat Wave, Taunt, Helping Hand, Slack Off, Switcheroo
+SPECIES_IVYSAUR	Petal Dance, Toxic, Curse, Ingrain
+SPECIES_JANGMO_O	Counter, DragonBreath, Focus Punch
+SPECIES_JELLICENT	Mist, BubbleBeam, Confuse Ray, Acid Armor, Pain Split, Strength Sap
+SPECIES_JIGGLYPUFF	Perish Song, Rollout, Present, Wish, Covet, Gravity, Last Resort, Heal Pulse
+SPECIES_JOLTEON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_JOLTIK	Poison Sting, Double Team, Struggle Bug, Infestation, Lunge
+SPECIES_JUMPLUFF	Encore, Worry Seed, Seed Bomb, Switcheroo, Rage Powder, Cotton Guard, Strength Sap
+SPECIES_JYNX	Ice Punch, Fake Out, Role Play, Wish
+SPECIES_KABUTO	Take Down, BubbleBeam, Aurora Beam, Mega Drain, Confuse Ray, Flail, Rapid Spin, Knock Off
+SPECIES_KABUTOPS	Take Down, BubbleBeam, Aurora Beam, Mega Drain, Screech, Confuse Ray, Flail, Icy Wind, Rapid Spin, Knock Off, Mud Shot
+SPECIES_KADABRA	Fire Punch, Ice Punch, ThunderPunch, Confusion, Encore, Magic Coat, Knock Off, Psycho Shift, Power Trick, Guard Swap, Guard Split
+SPECIES_KANGASKHAN	Stomp, Double-Edge, Disable, Counter, Focus Energy, Uproar, Endeavor, Crush Claw, Hammer Arm, Circle Throw
+SPECIES_KECLEON	Disable, Recover, Fake Out, Trick, Magic Coat, Foul Play, Power-Up Punch
+SPECIES_KINGDRA	Disable, Aurora Beam, Splash, Flail, Clear Smog
+SPECIES_KINGLER	Slam, Agility, Haze, Amnesia, Slash, Flail, AncientPower, Knock Off, Tickle, Hammer Arm, Night Slash
+SPECIES_KIRLIA	Disable, Confuse Ray, Destiny Bond, Mean Look, Memento, Knock Off, Shadow Sneak, Mystical Fire
+SPECIES_KLEAVOR	Counter, Feint, Night Slash, Defog, Quick Guard
+SPECIES_KLEFKI	Magnet Rise, Switcheroo
+SPECIES_KOFFING	Psybeam, Curse, Spite, Pain Split, Stockpile, Spit Up, Swallow, Grudge
+SPECIES_KOMMO_O	Counter, Belly Drum, DragonBreath, Focus Punch
+SPECIES_KRABBY	Slash, AncientPower, Knock Off, Hammer Arm, Night Slash
+SPECIES_LAIRON	Stomp, Body Slam, Screech, Curse, Reversal, Mud-Slap, Superpower, Endeavor, Dragon Rush, Iron Head, Head Smash
+SPECIES_LAMPENT	Haze, Acid Armor, Power Split, Clear Smog
+SPECIES_LANTURN	Mist, Psybeam, Water Pulse, Sucker Punch, Soak
+SPECIES_LAPRAS	Horn Drill, Fissure, Curse, AncientPower, Tickle, Freeze-Dry, Sparkling Aria
+SPECIES_LARVESTA	Thrash, Absorb, Harden, Morning Sun
+SPECIES_LARVITAR	Stomp, Focus Energy, Curse, Outrage, AncientPower, Iron Defense, Dragon Dance, Assurance, Iron Head
+SPECIES_LEAFEON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_LEAVANNY	Screech, Snore, Synthesis, Worry Seed, Switcheroo, Bug Bite
+SPECIES_LEDIAN	Psybeam, Counter, Screech, Encore, Knock Off, Tailwind, Bug Bite
+SPECIES_LEDYBA	Psybeam, Counter, Screech, Encore, Knock Off, Tailwind, Bug Bite
+SPECIES_LICKILICKY	Body Slam, Thrash, Amnesia, Snore, Curse, Belly Drum, Muddy Water, Hammer Arm, Zen Headbutt, Belch
+SPECIES_LICKITUNG	Thrash, Curse, Hammer Arm, Belch
+SPECIES_LIEPARD	Quick Attack, Double Team, Slash, Yawn, Covet, Copycat
+SPECIES_LILEEP	Bind, Recover, Curse, Mirror Coat, Tickle
+SPECIES_LINOONE	Mud-Slap, Charm, ExtremeSpeed, Helping Hand, Trick, Tickle
+SPECIES_LITTEN	Fake Out, Parting Shot, Power Trip
+SPECIES_LITWICK	Haze, Acid Armor, Power Split, Clear Smog
+SPECIES_LOMBRE	Counter, Razor Leaf, Sweet Scent, Synthesis, Teeter Dance, Tickle
+SPECIES_LOPUNNY	Fire Punch, Ice Punch, ThunderPunch, Low Kick, Flail, Sweet Kiss, Encore, Fake Out, Teeter Dance, Fake Tears, Cosmic Power, Copycat, Switcheroo, Double Hit, Circle Throw, Power-Up Punch
+SPECIES_LOTAD	Counter, Leech Seed, Razor Leaf, Sweet Scent, Synthesis, Teeter Dance, Tickle
+SPECIES_LOUDRED	Whirlwind, Take Down, SmokeScreen, Snore, Endeavor, Fake Tears, Extrasensory, Hammer Arm, Circle Throw, Disarming Voice
+SPECIES_LUCARIO	Bite, Hi Jump Kick, Detect, Cross Chop, Howl, Bullet Punch, Circle Throw
+SPECIES_LUDICOLO	Growl, Mist, Water Gun, Hydro Pump, Counter, Absorb, Mega Drain, Razor Leaf, Fury Swipes, Flail, Sweet Scent, Synthesis, Knock Off, Teeter Dance, Astonish, Tickle, Energy Ball, Zen Headbutt
+SPECIES_LUGIA	Dragon Rush
+SPECIES_LUMINEON	Psybeam, Aurora Beam, Agility, Confuse Ray, Flail, Sweet Kiss, Charm, Tickle, Aqua Tail
+SPECIES_LURANTIS	Worry Seed, Defog
+SPECIES_LUVDISC	Supersonic, Splash, Aqua Jet, Entrainment
+SPECIES_LUXIO	Double Kick, Take Down, Quick Attack, Howl, Shock Wave, Night Slash, Baby-Doll Eyes
+SPECIES_LUXRAY	Double Kick, Take Down, Quick Attack, Howl, Shock Wave, Night Slash, Baby-Doll Eyes
+SPECIES_MACHAMP	Fire Punch, Ice Punch, ThunderPunch, Submission, Counter, Encore, Knock Off, Tickle, Close Combat, Power Trick, Bullet Punch, Heavy Slam, Quick Guard
+SPECIES_MACHOKE	Fire Punch, Ice Punch, ThunderPunch, Submission, Counter, Encore, Knock Off, Tickle, Close Combat, Power Trick, Bullet Punch, Heavy Slam, Quick Guard
+SPECIES_MACHOP	Fire Punch, Ice Punch, ThunderPunch, Submission, Counter, Encore, Knock Off, Tickle, Close Combat, Power Trick, Bullet Punch, Heavy Slam, Quick Guard
+SPECIES_MAGBY	Mach Punch, DynamicPunch, Cross Chop, Focus Punch, Belch
+SPECIES_MAGCARGO	SmokeScreen, Acid Armor, Curse, Rollout, Stockpile, Memento, Guard Swap, Inferno
+SPECIES_MAGMAR	Mach Punch, Belly Drum, DynamicPunch, Cross Chop, Focus Punch, Follow Me, Belch
+SPECIES_MAGMORTAR	Mach Punch, Belly Drum, DynamicPunch, Cross Chop, Focus Punch, Follow Me, Belch
+SPECIES_MAGNEMITE	Explosion, Electroweb
+SPECIES_MAGNETON	Explosion, Electroweb
+SPECIES_MAGNEZONE	Explosion, Electroweb
+SPECIES_MAKUHITA	Counter, DynamicPunch, Cross Chop, Helping Hand, Feint, Bullet Punch, Wide Guard
+SPECIES_MAMOSWINE	Double-Edge, Bite, Fissure, Curse, AncientPower, Icicle Crash, Freeze-Dry
+SPECIES_MANDIBUZZ	Toxic, Mean Look, Roost
+SPECIES_MANECTRIC	Headbutt, Swift, Curse, Spark, Crunch, Uproar, Switcheroo, Thunder Fang, Ice Fang, Fire Fang, Discharge, Electro Ball, Eerie Impulse
+SPECIES_MANKEY	Counter, Curse, Spite, Encore, Beat Up, Night Slash
+SPECIES_MANTINE	Slam, Confuse Ray, Haze, Splash, Twister, Mirror Coat, Tailwind
+SPECIES_MANTYKE	Slam, Confuse Ray, Haze, Splash, Twister, Mirror Coat, Tailwind
+SPECIES_MAREANIE	Haze, Stockpile, Spit Up, Swallow, Infestation
+SPECIES_MAREEP	Agility, Flatter, After You, Electroweb, Eerie Impulse
+SPECIES_MARILL	Sing, Supersonic, Belly Drum, Perish Song, Present, Tickle, Copycat, Aqua Jet, Soak
+SPECIES_MAROWAK	Double Kick, Leer, Screech, Skull Bash, Curse, Belly Drum, Perish Song, Detect, AncientPower, Iron Head
+SPECIES_MARSHTOMP	Stomp, Double-Edge, Bite, Counter, Sludge, Curse, Mud-Slap, Mirror Coat, AncientPower, Rock Smash, Yawn, Wide Guard
+SPECIES_MASQUERAIN	Hydro Pump, Psybeam, Mud Shot, Bug Bite, Aqua Jet, Power Split, Fell Stinger, Lunge
+SPECIES_MAWILE	Slam, Seismic Toss, AncientPower, Poison Fang, Tickle, Metal Burst, Guard Swap, Sucker Punch, Thunder Fang, Ice Fang, Fire Fang, Power-Up Punch
+SPECIES_MEDICHAM	Fire Punch, Ice Punch, ThunderPunch, DynamicPunch, Baton Pass, Fake Out, Power Swap, Guard Swap, Bullet Punch, Psycho Cut, Quick Guard
+SPECIES_MEDITITE	Fire Punch, Ice Punch, ThunderPunch, DynamicPunch, Baton Pass, Fake Out, Power Swap, Guard Swap, Bullet Punch, Psycho Cut, Quick Guard
+SPECIES_MEGANIUM	Vine Whip, Counter, Flail, AncientPower, Ingrain, Heal Pulse
+SPECIES_MEOWSCARADA	Double Team, Trick, Leech Seed, Copycat, Sucker Punch, Petal Blizzard
+SPECIES_MEOWTH	Tail Whip, Hypnosis, Flail, Spite, Covet, Last Resort
+SPECIES_METAGROSS	Explosion, Hone Claws
+SPECIES_MIENFOO	Vital Throw, Focus Punch, Knock Off, Feint
+SPECIES_MIENSHAO	Focus Punch, Knock Off, Feint
+SPECIES_MIGHTYENA	Poison Fang, Astonish, Covet
+SPECIES_MILOTIC	Mist, Hypnosis, Confuse Ray, Haze, DragonBreath, Mirror Coat, Tickle
+SPECIES_MILTANK	Double-Edge, Seismic Toss, Curse, Present, Focus Punch, Hammer Arm, Belch
+SPECIES_MIME_JR	Hypnosis, Mimic, Confuse Ray, Icy Wind, Charm, Future Sight, Fake Out, Trick, Teeter Dance, Tickle, Healing Wish, Power Split
+SPECIES_MINCCINO	Tail Whip, Flail, Knock Off, Aqua Tail
+SPECIES_MINUN	Sing, Sweet Kiss, Charm, Wish, Fake Tears, Nuzzle
+SPECIES_MISDREAVUS	Screech, Curse, Spite, Destiny Bond, Memento, Imprison, Sucker Punch, Shadow Sneak, Wonder Room
+SPECIES_MISMAGIUS	Screech, Curse, Spite, Destiny Bond, Memento, Imprison, Sucker Punch, Shadow Sneak, Wonder Room
+SPECIES_MONFERNO	Fire Punch, ThunderPunch, Double Kick, Counter, Focus Energy, Encore, Fake Out, Heat Wave, Helping Hand, Switcheroo
+SPECIES_MR_MIME	Hypnosis, Mimic, Confuse Ray, Icy Wind, Future Sight, Fake Out, Trick, Teeter Dance, Tickle, Power Split, Charm, Healing Wish
+SPECIES_MR_RIME	Hypnosis, Confuse Ray, Fake Out, Tickle, Power Split
+SPECIES_MUDKIP	Stomp, Double-Edge, Bite, Counter, Sludge, Curse, Mud-Slap, Mirror Coat, AncientPower, Yawn, Wide Guard
+SPECIES_MUK	Haze, Curse, Mean Look, Stockpile, Spit Up, Swallow, Shadow Punch, Shadow Sneak, Acid Spray
+SPECIES_MUNCHLAX	Double-Edge, Counter, Fissure, Curse, Belch
+SPECIES_MURKROW	Whirlwind, Drill Peck, Screech, Confuse Ray, Sky Attack, Perish Song, Flatter, FeatherDance, Brave Bird
+SPECIES_NACLI	Fissure, Curse, AncientPower, Power Gem
+SPECIES_NACLSTACK	Fissure, Curse, AncientPower, Power Gem
+SPECIES_NATU	Drill Peck, Quick Attack, FeatherDance, Roost, Sucker Punch
+SPECIES_NIDOKING	Horn Drill, Take Down, Thrash, Supersonic, Disable, Counter, Confusion, Amnesia, Beat Up, Poison Tail, Sucker Punch, Head Smash, Venom Drench
+SPECIES_NIDOQUEEN	Take Down, Supersonic, Disable, Counter, Focus Energy, Skull Bash, Charm, Beat Up, Poison Fang, Poison Tail, Venom Drench
+SPECIES_NIDORAN_F	Take Down, Supersonic, Disable, Counter, Skull Bash, Poison Fang, Poison Tail
+SPECIES_NIDORAN_M	Horn Drill, Take Down, Thrash, Supersonic, Disable, Counter, Confusion, Poison Tail, Sucker Punch, Head Smash
+SPECIES_NIDORINA	Take Down, Supersonic, Disable, Counter, Focus Energy, Skull Bash, Charm, Beat Up, Poison Fang, Poison Tail, Venom Drench
+SPECIES_NIDORINO	Horn Drill, Take Down, Thrash, Supersonic, Disable, Counter, Confusion, Amnesia, Beat Up, Poison Tail, Sucker Punch, Head Smash, Venom Drench
+SPECIES_NINCADA	Gust, Flail, Night Slash, Bug Bite, Final Gambit
+SPECIES_NINETALES	Roar, Hypnosis, Flail, Memento, Howl, Healing Wish, Flame Charge, Baby-Doll Eyes
+SPECIES_NINJASK	Gust, Flail, Night Slash, Bug Bite, Final Gambit
+SPECIES_NOCTOWL	Wing Attack, Whirlwind, Supersonic, Night Shade, FeatherDance
+SPECIES_NOSEPASS	Double-Edge, Rollout, Head Smash, Wide Guard
+SPECIES_NUMEL	Stomp, Body Slam, Growth, Defense Curl, Scary Face, Rollout, AncientPower, Stockpile, Spit Up, Swallow, Heat Wave, Yawn, Howl, Iron Head, Heavy Slam
+SPECIES_NUZLEAF	Take Down, Leech Seed, Quick Attack, Worry Seed, Night Slash, Defog
+SPECIES_OCTILLERY	Supersonic, Aurora Beam, Screech, Haze, Swift, Snore, Flail, Octazooka, Water Spout, Mud Shot, Rock Blast, Acid Spray, Entrainment
+SPECIES_ODDISH	Leech Seed, Razor Leaf, Flail, Synthesis, Nature Power, Ingrain, Teeter Dance, Tickle, After You, Strength Sap
+SPECIES_OMANYTE	Slam, Bite, Supersonic, BubbleBeam, Aurora Beam, Haze, Knock Off, Tickle, Water Pulse
+SPECIES_OMASTAR	Slam, Bite, Supersonic, BubbleBeam, Aurora Beam, Haze, Spikes, Whirlpool, Knock Off, Tickle, Muddy Water, Toxic Spikes
+SPECIES_ONIX	Defense Curl, Flail, Rollout, Block, Rock Blast, Head Smash, Wide Guard, Heavy Slam, Dragon Tail
+SPECIES_ORBEETLE	Supersonic, Recover, Sticky Web, Infestation
+SPECIES_PACHIRISU	Tail Whip, Bite, Defense Curl, Flail, Rollout, Flatter, Follow Me, Charge, Fake Tears, Covet, Baby-Doll Eyes
+SPECIES_PALOSSAND	Curse, Destiny Bond, AncientPower, Stockpile, Spit Up, Swallow
+SPECIES_PARAS	Psybeam, Counter, Leech Seed, Agility, Screech, Flail, Sweet Scent, Metal Claw, Cross Poison, Bug Bite, Wide Guard, Fell Stinger
+SPECIES_PARASECT	Psybeam, Counter, Leech Seed, Agility, Screech, Flail, Sweet Scent, Metal Claw, Cross Poison, Bug Bite, Wide Guard, Fell Stinger
+SPECIES_PAWMI	Mach Punch, Sweet Kiss, Fake Out, Wish
+SPECIES_PAWMO	Mach Punch, Sweet Kiss, Fake Out, Wish
+SPECIES_PAWMOT	Mach Punch, Sweet Kiss, Fake Out, Wish
+SPECIES_PELIPPER	Wide Guard, Gust, Twister, Knock Off, Air Cutter, Aerial Ace, Aqua Ring, Soak
+SPECIES_PERSIAN	Tail Whip, Hypnosis, Flail, Spite, Covet, Last Resort
+SPECIES_PHANPY	Body Slam, Counter, Fissure, Focus Energy, Snore, AncientPower, Endeavor, Ice Shard, Head Smash, Heavy Slam, Play Rough, High Horsepower
+SPECIES_PICHU	Flail, Present, Fake Out, Charge, Wish, Tickle, Disarming Voice
+SPECIES_PIDGEOT	Uproar, Air Cutter, Air Slash, Brave Bird
+SPECIES_PIDGEOTTO	Uproar, Air Cutter, Air Slash, Brave Bird
+SPECIES_PIDGEY	Uproar, Air Cutter, Air Slash, Brave Bird
+SPECIES_PIKACHU	Flail, Present, Fake Out, Charge, Wish, Tickle, Disarming Voice
+SPECIES_PIKIPEK	Sky Attack, Gunk Shot, Boomburst
+SPECIES_PILOSWINE	Double-Edge, Bite, Fissure, Curse, AncientPower, Icicle Crash, Freeze-Dry
+SPECIES_PINECO	Pin Missile, Counter, Swift, Flail, Sand Tomb, Power Trick, Toxic Spikes
+SPECIES_PINSIR	Fury Attack, Thrash, Quick Attack, Flail, Superpower, Feint, Close Combat, Bug Bite
+SPECIES_PIPLUP	Supersonic, Snore, Yawn, FeatherDance, Roost, Aqua Ring, Power Trip
+SPECIES_PLUSLE	Sing, Sweet Kiss, Charm, Wish, Nuzzle
+SPECIES_POLITOED	Body Slam, Double-Edge, Mist, Water Gun, BubbleBeam, Hypnosis, Splash, Perish Song, Swagger, Endeavor, Hyper Voice, Muddy Water, Mud Shot, Water Pulse, Earth Power
+SPECIES_POLIWAG	Mist, Haze, Splash, Mind Reader, Endeavor, Water Pulse
+SPECIES_POLIWHIRL	Mist, Splash, Endeavor, Muddy Water, Water Pulse
+SPECIES_POLIWRATH	Pound, Double-Edge, Mist, Water Gun, Hydro Pump, Splash, Belly Drum, Endeavor, Muddy Water, Mud Shot, Water Pulse, Earth Power, Circle Throw
+SPECIES_POLTEAGEIST	
+SPECIES_PONYTA	Double Kick, Horn Drill, Thrash, Double-Edge, Hypnosis, Morning Sun
+SPECIES_POOCHYENA	Poison Fang, Astonish, Covet
+SPECIES_POPPLIO	Perish Song, Aqua Ring, Life Dew
+SPECIES_PRIMARINA	Perish Song, Aqua Ring, Life Dew
+SPECIES_PRIMEAPE	Counter, Curse, Spite, Encore, Beat Up, Night Slash
+SPECIES_PRINPLUP	Supersonic, Snore, Yawn, FeatherDance, Roost, Aqua Ring, Power Trip
+SPECIES_PROBOPASS	Double-Edge, Rollout, Head Smash, Wide Guard
+SPECIES_PSYDUCK	Psybeam, Hypnosis, Confuse Ray, Cross Chop, Yawn, Clear Smog
+SPECIES_PUPITAR	Stomp, Focus Energy, Curse, Outrage, AncientPower, Iron Defense, Dragon Dance, Assurance, Iron Head
+SPECIES_PURRLOIN	Quick Attack, Double Team, Slash, Yawn, Covet, Copycat
+SPECIES_PURUGLY	Sand-Attack, Tail Whip, Bite, Quick Attack, Flail, Fake Tears, Assurance, Last Resort
+SPECIES_QUAGSIRE	Double Kick, Counter, Recover, Curse, AncientPower, Stockpile, Spit Up, Swallow, Acid Spray, After You
+SPECIES_QUILAVA	Double Kick, Curse, Reversal, Extrasensory, Howl, Covet
+SPECIES_QWILFISH	Supersonic, BubbleBeam, Haze, Selfdestruct, Flail, Astonish, Water Pulse, Aqua Jet, Acid Spray, Barb Barrage
+SPECIES_RABOOT	Sand-Attack, Hi Jump Kick, Super Fang, Sucker Punch
+SPECIES_RAICHU	Flail, Present, Fake Out, Charge, Wish, Tickle, Disarming Voice
+SPECIES_RALTS	Disable, Confuse Ray, Destiny Bond, Mean Look, Memento, Knock Off, Shadow Sneak, Mystical Fire
+SPECIES_RAMPARDOS	Whirlwind, Stomp, Thrash, Hammer Arm
+SPECIES_RAPIDASH	Double Kick, Horn Drill, Thrash, Double-Edge, Low Kick, Hypnosis, Flame Wheel, Charm, Morning Sun, High Horsepower
+SPECIES_RATICATE	Bite, Counter, Screech, Fury Swipes, Flame Wheel, Reversal, Uproar, Revenge, Last Resort, Final Gambit
+SPECIES_RATTATA	Bite, Counter, Screech, Fury Swipes, Flame Wheel, Reversal, Uproar, Revenge, Last Resort, Final Gambit
+SPECIES_RELICANTH	Skull Bash, Mud-Slap
+SPECIES_REMORAID	Supersonic, Haze, Flail, Octazooka, Water Spout, Acid Spray
+SPECIES_RHYDON	Counter, Curse, Metal Burst, Rock Polish, Dragon Rush, Guard Split
+SPECIES_RHYHORN	Counter, Skull Bash, Curse, Metal Burst, Rock Polish, Dragon Rush, Guard Split
+SPECIES_RHYPERIOR	Counter, Curse, Metal Burst, Rock Polish, Dragon Rush, Guard Split
+SPECIES_RIOLU	Bite, Hi Jump Kick, Detect, Cross Chop, Howl, Bullet Punch, Circle Throw
+SPECIES_ROOKIDEE	Sand-Attack, Sky Attack, Spite, Rock Smash, Roost, Tailwind, Defog
+SPECIES_ROSELIA	Pin Missile, Razor Leaf, Sleep Powder, Mind Reader, Cotton Spore, Spikes, Synthesis, Extrasensory, Seed Bomb, Leaf Storm, Power Whip, Life Dew
+SPECIES_ROSERADE	Pin Missile, Razor Leaf, Sleep Powder, Mind Reader, Cotton Spore, Spikes, Synthesis, Extrasensory, Seed Bomb, Leaf Storm, Life Dew
+SPECIES_ROWLET	Double Team, Confuse Ray, Knock Off, Roost, Defog
+SPECIES_SABLEYE	Recover, Torment, Flatter, Feint, Metal Burst, Sucker Punch
+SPECIES_SALAMENCE	Thrash, Defense Curl, Twister, Dragon Rush
+SPECIES_SALANDIT	Sand-Attack, Mud-Slap, Fake Out, Belch
+SPECIES_SALAZZLE	Sand-Attack, Mud-Slap, Fake Out, Belch
+SPECIES_SANDSHREW	Counter, Flail, Mud-Slap, Metal Claw, Night Slash, Hone Claws
+SPECIES_SANDSLASH	Counter, Flail, Mud-Slap, Metal Claw, Night Slash, Hone Claws
+SPECIES_SANDYGAST	Curse, Destiny Bond, AncientPower, Stockpile, Spit Up, Swallow
+SPECIES_SCEPTILE	Double Kick, Absorb, Leech Seed, Slash, False Swipe, Fury Cutter, DragonBreath, Synthesis, Worry Seed, Night Slash, X-Scissor, Energy Ball
+SPECIES_SCIZOR	Counter, Feint, Night Slash, Defog, Quick Guard
+SPECIES_SCORBUNNY	Sand-Attack, Hi Jump Kick, Super Fang, Sucker Punch
+SPECIES_SCYTHER	Counter, Feint, Night Slash, Defog, Quick Guard
+SPECIES_SEADRA	Disable, Aurora Beam, Splash, Flail, Clear Smog
+SPECIES_SEAKING	Body Slam, Hydro Pump, Psybeam, Haze, Skull Bash, Mud-Slap, Mud Shot, Acupressure, Aqua Tail
+SPECIES_SEALEO	Fissure, Curse, Belly Drum, Rollout, Stockpile, Spit Up, Swallow, Yawn, Aqua Ring
+SPECIES_SEEDOT	Take Down, Leech Seed, Quick Attack, Worry Seed, Night Slash, Defog
+SPECIES_SEEL	Horn Drill, Disable, Lick, Perish Song, Fake Out, Stockpile, Spit Up, Swallow, Entrainment, Belch
+SPECIES_SENTRET	Focus Energy, Slash, Reversal, Last Resort, Baby-Doll Eyes
+SPECIES_SERPERIOR	Glare, Mean Look, Sweet Scent, Iron Tail, Synthesis, Twister, Mirror Coat
+SPECIES_SERVINE	Glare, Mean Look, Sweet Scent, Iron Tail, Synthesis, Twister, Mirror Coat
+SPECIES_SEVIPER	Body Slam, Scary Face, Stockpile, Spit Up, Swallow, Assurance, Night Slash, Switcheroo, Final Gambit
+SPECIES_SEWADDLE	Screech, Snore, Synthesis, Worry Seed, Switcheroo
+SPECIES_SHARPEDO	Thrash, Double-Edge, Hydro Pump, Swift, Destiny Bond, AncientPower
+SPECIES_SHEDINJA	Gust, Flail, Night Slash, Bug Bite, Final Gambit
+SPECIES_SHELGON	Thrash, Defense Curl, Twister, Dragon Rush
+SPECIES_SHELLDER	BubbleBeam, Water Pulse, Aqua Ring, Life Dew
+SPECIES_SHELLOS	Mist, Counter, Sludge, Acid Armor, Curse, Mirror Coat, Stockpile, Spit Up, Swallow, Yawn, Clear Smog
+SPECIES_SHIELDON	Headbutt, Counter, Fissure, Screech, Focus Energy, Guard Split
+SPECIES_SHIFTRY	Whirlwind, Tackle, Take Down, Absorb, Mega Drain, Leech Seed, Growth, Razor Leaf, Quick Attack, Harden, Explosion, Rollout, Swagger, Synthesis, Beat Up, Fake Out, Torment, Astonish, Extrasensory, Worry Seed, Sucker Punch, Night Slash, Defog
+SPECIES_SHINX	Double Kick, Take Down, Quick Attack, Howl, Shock Wave, Night Slash, Baby-Doll Eyes
+SPECIES_SHROOMISH	Charm, Helping Hand, Fake Tears, Worry Seed
+SPECIES_SHUCKLE	Acid, Toxic, Defense Curl, Sweet Scent, Knock Off, Covet, Acupressure, Final Gambit, Infestation
+SPECIES_SHUPPET	Disable, Confuse Ray, Destiny Bond, Imprison, Gunk Shot
+SPECIES_SINISTEA	
+SPECIES_SKARMORY	Whirlwind, Sky Attack, Curse, Air Cutter, Roost, Feint, Night Slash
+SPECIES_SKIPLOOM	Encore, Worry Seed, Seed Bomb, Switcheroo, Rage Powder, Cotton Guard, Strength Sap
+SPECIES_SKITTY	Baton Pass, Fake Out, Uproar, Helping Hand, Wish, Fake Tears, Tickle, Cosmic Power, Last Resort, Sucker Punch, Zen Headbutt
+SPECIES_SKORUPI	Whirlwind, Sand-Attack, Confuse Ray, Slash
+SPECIES_SKUNTANK	Double-Edge, Leer, Haze, Smog, Slash, Astonish
+SPECIES_SLAKING	Body Slam, Slash, Snore, Curse, Crush Claw, Tickle, Hammer Arm, Night Slash, After You
+SPECIES_SLAKOTH	Body Slam, Slash, Snore, Curse, Crush Claw, Tickle, Hammer Arm, Night Slash, After You
+SPECIES_SLIGGOO	Counter, Life Dew
+SPECIES_SLOWBRO	Future Sight, Stomp, Belly Drum, Block, Belch
+SPECIES_SLOWKING	Future Sight, Stomp, Belly Drum, Block, Belch
+SPECIES_SLOWPOKE	Stomp, Belly Drum, Block, Belch
+SPECIES_SLUGMA	SmokeScreen, Acid Armor, Curse, Rollout, Stockpile, Memento, Guard Swap, Inferno
+SPECIES_SMOLIV	Synthesis, Memento, Weather Ball, Strength Sap
+SPECIES_SMOOCHUM	Fake Out, Role Play, Wish
+SPECIES_SNEASEL	Bite, Counter, Spite, Fake Out, Feint, Ice Shard, Double Hit, Icicle Crash
+SPECIES_SNIVY	Glare, Mean Look, Sweet Scent, Iron Tail, Synthesis, Twister, Mirror Coat
+SPECIES_SNOM	Mirror Coat, Bug Bite, Fairy Wind
+SPECIES_SNORLAX	Double-Edge, Counter, Fissure, Curse, Gastro Acid
+SPECIES_SNORUNT	Disable, Rollout, Block, Switcheroo, Icicle Crash
+SPECIES_SNOVER	Stomp, Double-Edge, Leech Seed, Growth, Weather Ball
+SPECIES_SNUBBULL	Counter, Mimic, Snore, Present, Retaliate
+SPECIES_SPEAROW	Whirlwind, Quick Attack, Sky Attack, Tri Attack, Scary Face, Uproar, FeatherDance, Astonish
+SPECIES_SPHEAL	Fissure, Curse, Belly Drum, Stockpile, Spit Up, Swallow, Yawn, Water Pulse, Aqua Ring
+SPECIES_SPINARAK	Disable, Megahorn, Night Slash, Rage Powder, Lunge
+SPECIES_SPINDA	Disable, Icy Wind, Baton Pass, Encore, Rapid Spin, Fake Out, Trick, Role Play, Wish, Fake Tears, Psycho Shift, Psycho Cut, Guard Split
+SPECIES_SPIRITOMB	Disable, SmokeScreen, Destiny Bond, Pain Split
+SPECIES_SPOINK	Whirlwind, Amnesia, Mirror Coat, Future Sight, Trick, Extrasensory, Zen Headbutt
+SPECIES_SPRIGATITO	Leech Seed, Copycat, Sucker Punch, Petal Blizzard
+SPECIES_SQUIRTLE	Mist, Flail, Mirror Coat, Fake Out, Yawn, Water Spout, Aqua Ring, Aqua Jet, Life Dew
+SPECIES_STANTLER	Double Kick, Thrash, Bite, Disable, Spite, Megahorn, Extrasensory, Psyshield Bash
+SPECIES_STARAPTOR	Sand-Attack, Fury Attack, Double-Edge, Uproar, FeatherDance, Astonish
+SPECIES_STARAVIA	Sand-Attack, Fury Attack, Double-Edge, Uproar, FeatherDance, Astonish
+SPECIES_STARLY	Sand-Attack, Fury Attack, Double-Edge, Uproar, FeatherDance, Astonish
+SPECIES_STEELIX	Defense Curl, Flail, Rollout, Block, Rock Blast, Head Smash, Wide Guard, Heavy Slam, Dragon Tail
+SPECIES_STEENEE	Synthesis, Endeavor, Acupressure
+SPECIES_STUNKY	Double-Edge, Leer, Haze, Smog, Slash, Astonish
+SPECIES_SUDOWOODO	Headbutt, Harden, Defense Curl, Curse, Rollout, Rock Polish
+SPECIES_SUICUNE	ExtremeSpeed, Sheer Cold
+SPECIES_SUNFLORA	Leech Seed, Curse, Encore, Morning Sun, Ingrain
+SPECIES_SUNKERN	Leech Seed, Curse, Encore, Morning Sun, Ingrain
+SPECIES_SURSKIT	Hydro Pump, Psybeam, Mud Shot, Bug Bite, Aqua Jet, Power Split, Fell Stinger, Lunge
+SPECIES_SWABLU	Haze, FeatherDance, Astonish, Roost, Tailwind, Dragon Rush, Defog
+SPECIES_SWADLOON	Screech, Snore, Synthesis, Worry Seed, Switcheroo
+SPECIES_SWALOT	Smog, Acid Armor, Curse, Mud-Slap, Destiny Bond, Clear Smog
+SPECIES_SWAMPERT	Stomp, Double-Edge, Bite, Surf, Counter, Earthquake, Sludge, Curse, Mud-Slap, Mirror Coat, AncientPower, Rock Smash, Yawn, Hammer Arm, Wide Guard
+SPECIES_SWELLOW	Whirlwind, Supersonic, Sky Attack, Brave Bird, Hurricane, Boomburst
+SPECIES_SWINUB	Double-Edge, Bite, Fissure, Curse, AncientPower, Icicle Crash, Freeze-Dry
+SPECIES_SYLVEON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_TAILLOW	Whirlwind, Supersonic, Sky Attack, Brave Bird, Hurricane, Boomburst
+SPECIES_TALONFLAME	Defog, Flame Charge, Quick Guard
+SPECIES_TANGELA	Leech Seed, Confusion, Flail, Nature Power, Endeavor, Rage Powder
+SPECIES_TANGROWTH	Mega Drain, Leech Seed, Confusion, Amnesia, Flail, Nature Power, Endeavor, Power Swap, Leaf Storm, Rage Powder
+SPECIES_TAUROS	Curse, Endeavor
+SPECIES_TEDDIURSA	Double-Edge, Counter, Seismic Toss, Belly Drum, Fury Cutter, Metal Claw, Cross Chop, Crunch, Yawn, Fake Tears, Close Combat, Night Slash
+SPECIES_TENTACOOL	Aurora Beam, Confuse Ray, Haze, Rapid Spin, Mirror Coat, Knock Off, Tickle, Acupressure, Aqua Ring
+SPECIES_TENTACRUEL	Aurora Beam, Confuse Ray, Haze, Rapid Spin, Mirror Coat, Knock Off, Tickle, Acupressure, Aqua Ring
+SPECIES_TOGEDEMARU	Flail, Present, Fake Out, Wish, Tickle, Disarming Voice
+SPECIES_TOGEKISS	Peck, Present, Morning Sun, Future Sight, Extrasensory, Psycho Shift, Stored Power
+SPECIES_TOGEPI	Peck, Present, Morning Sun, Extrasensory, Aerial Ace, Psycho Shift
+SPECIES_TOGETIC	Peck, Present, Morning Sun, Future Sight, Extrasensory, Psycho Shift, Stored Power
+SPECIES_TORCHIC	Peck, Counter, Crush Claw, Feint, Last Resort, Night Slash
+SPECIES_TORKOAL	Fissure, Flail, AncientPower, Yawn
+SPECIES_TORRACAT	Fake Out, Parting Shot, Power Trip
+SPECIES_TORTERRA	Thrash, Double-Edge, Growth, Stockpile, Spit Up, Swallow, Superpower, Tickle, Worry Seed, Wide Guard, Shell Smash
+SPECIES_TOTODILE	Counter, AncientPower, Flatter, Block, Aqua Jet
+SPECIES_TOUCANNON	Sky Attack, Gunk Shot, Boomburst
+SPECIES_TOXAPEX	Haze, Stockpile, Spit Up, Swallow, Infestation
+SPECIES_TOXICROAK	Headbutt, Counter, DynamicPunch, Cross Chop, Fake Out, Feint, Vacuum Wave, Bullet Punch, Quick Guard
+SPECIES_TRAPINCH	Gust, Quick Attack, Flail, Fury Cutter, Feint, Bug Bite, FirstImpression
+SPECIES_TREECKO	Double Kick, Absorb, Leech Seed, Slash, DragonBreath, Synthesis, Worry Seed, Night Slash
+SPECIES_TROPIUS	Slam, Headbutt, Leech Seed, Curse, Leaf Blade, Dragon Dance
+SPECIES_TRUMBEAK	Sky Attack, Gunk Shot, Echoed Voice, Boomburst
+SPECIES_TSAREENA	Synthesis, Endeavor, Acupressure
+SPECIES_TURTONATOR	Curse, Rapid Spin, Head Smash, Wide Guard
+SPECIES_TURTWIG	Thrash, Double-Edge, Growth, Stockpile, Spit Up, Swallow, Superpower, Tickle, Worry Seed, Wide Guard, Shell Smash
+SPECIES_TYPHLOSION	Double Kick, Curse, Reversal, Extrasensory, Howl, Covet
+SPECIES_TYRANITAR	Stomp, Focus Energy, Curse, Outrage, AncientPower, Iron Defense, Dragon Dance, Assurance, Iron Head
+SPECIES_TYROGUE	Counter, Hi Jump Kick, Mind Reader, Mach Punch, Rapid Spin, Feint, Vacuum Wave, Bullet Punch
+SPECIES_UMBREON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_URSARING	Double-Edge, Counter, Seismic Toss, Belly Drum, Fury Cutter, Metal Claw, Cross Chop, Crunch, Yawn, Fake Tears, Close Combat, Night Slash
+SPECIES_VAPOREON	Double Kick, Curse, Flail, Mud-Slap, Detect, Wish, Yawn, Tickle
+SPECIES_VENOMOTH	Agility, Screech, Baton Pass, Morning Sun, Toxic Spikes, Bug Bite, Venoshock, Rage Powder
+SPECIES_VENONAT	Agility, Screech, Baton Pass, Morning Sun, Toxic Spikes, Bug Bite, Venoshock, Rage Powder
+SPECIES_VENUSAUR	Petal Dance, Toxic, Curse, Ingrain
+SPECIES_VIBRAVA	Gust, Supersonic, Fissure, Quick Attack, Flail, Fury Cutter, Crunch, Superpower, Astonish, Feint, Bug Bite, Bulldoze, FirstImpression
+SPECIES_VICTREEBEL	Synthesis, Stockpile, Spit Up, Swallow, Ingrain, Tickle, Gastro Acid, Worry Seed, Sucker Punch, Power Whip, Clear Smog, Strength Sap
+SPECIES_VIGOROTH	Body Slam, Slash, Snore, Curse, Crush Claw, Tickle, Hammer Arm, Night Slash, After You
+SPECIES_VIKAVOLT	ViceGrip, Dig, Harden, Mud-Slap, Iron Defense, X-Scissor, Discharge, Bug Bite
+SPECIES_VILEPLUME	Leech Seed, Razor Leaf, Flail, Synthesis, Ingrain, Teeter Dance, Tickle, After You, Strength Sap
+SPECIES_VOLBEAT	Counter, Seismic Toss, Swagger, Roost
+SPECIES_VOLCARONA	Thrash, Absorb, Harden, Morning Sun
+SPECIES_VOLTORB	Recycle, Metal Sound
+SPECIES_VULLABY	Toxic, Mean Look, Roost
+SPECIES_VULPIX	Roar, Hypnosis, Flail, Memento, Howl, Flame Charge, Baby-Doll Eyes
+SPECIES_WAILMER	Thrash, Double-Edge, Fissure, Defense Curl, Curse, Rollout, Tickle, Aqua Ring, Soak
+SPECIES_WAILORD	Body Slam, Thrash, Double-Edge, Fissure, Defense Curl, Snore, Curse, Rollout, Tickle, Aqua Ring, Zen Headbutt, Soak, Clear Smog
+SPECIES_WALREIN	Fissure, Curse, Belly Drum, Rollout, Stockpile, Spit Up, Swallow, Yawn, Aqua Ring
+SPECIES_WARTORTLE	Mist, Flail, Mirror Coat, Fake Out, Yawn, Water Spout, Aqua Ring, Aqua Jet, Life Dew
+SPECIES_WEAVILE	Bite, Counter, Spite, Fake Out, Feint, Ice Shard, Double Hit, Icicle Crash
+SPECIES_WEEPINBELL	Synthesis, Ingrain, Tickle, Worry Seed, Sucker Punch, Clear Smog, Strength Sap
+SPECIES_WEEZING	Curse, Spite, Pain Split, Stockpile, Spit Up, Swallow
+SPECIES_WHISCASH	Take Down, Thrash, Flail, Spark
+SPECIES_WHISMUR	Whirlwind, Take Down, SmokeScreen, Endeavor, Extrasensory, Hammer Arm, Circle Throw, Disarming Voice
+SPECIES_WIGGLYTUFF	Perish Song, Rollout, Present, Wish, Covet, Gravity, Last Resort, Heal Pulse
+SPECIES_WINGULL	Gust, Twister, Knock Off, Air Cutter, Aerial Ace, Aqua Ring, Wide Guard, Soak
+SPECIES_WOOLOO	Stomp, Counter, Swagger
+SPECIES_WOOPER	Double Kick, Counter, Recover, Curse, AncientPower, Stockpile, Spit Up, Swallow, Acid Spray, After You
+SPECIES_XATU	Drill Peck, Quick Attack, Haze, FeatherDance, Sucker Punch, Zen Headbutt
+SPECIES_YAMASK	Memento
+SPECIES_YANMA	Whirlwind, Double-Edge, Feint
+SPECIES_YANMEGA	Whirlwind, Double-Edge, Feint
+SPECIES_ZANGOOSE	Double Kick, Disable, Counter, Fury Swipes, Curse, Flail, Belly Drum, Feint, Night Slash, Double Hit, Quick Guard, Final Gambit
+SPECIES_ZIGZAGOON	ExtremeSpeed, Tickle
+SPECIES_ZUBAT	Gust, Wing Attack, Whirlwind, Hypnosis, Quick Attack, Curse, Brave Bird, Zen Headbutt, Venom Drench
