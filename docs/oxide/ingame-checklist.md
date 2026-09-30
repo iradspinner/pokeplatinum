@@ -239,6 +239,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   change BOX 30's wallpaper. After a trainer battle and a save, the OxiDex's
   Sync shows box 30 and the battle log still lists the battle, and
   melonDS-oxide's `http://127.0.0.1:31124/status` reports 30 boxes.
+- [ ] **The national listing from the start** (`main-national-dex`). As soon
+  as the Pokedex is received, it opens on the regional dex, and its switch
+  goes to the national listing, all 652 and the forms, and back. After
+  switching, it opens on the listing used last. A species' area map shows the
+  same places as before; nothing else changes until the story gives the
+  National Dex.
 - [ ] Once `carry-over` merges, **the Pocket PC** (received in Sandgem; Ian's
   rulings are in `docs/oxide/pocket-pc.md`). From the bag and from the Y
   button, outdoors, in a building and in a cave, it opens a PC with Pokemon

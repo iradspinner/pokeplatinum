@@ -1167,7 +1167,7 @@ static void PokedexSort_PopulateDexStatus(EncounterCollection *encounterCollecti
     PokedexEncData_PopulateEncounterLocations(&encounterCollection->dungeonsEncounteredOn, species, dungeonCategory, heapID);
     PokedexEncData_PopulateEncounterLocations(&encounterCollection->fieldsEncounteredOn, species, fieldCategory, heapID);
 
-    if (PokedexSort_IsNationalUnlocked(param1->unk_00) == 0) {
+    if (PokedexSort_HasNationalDexFromStory(param1->unk_00) == 0) {
         PokedexEncData_PopulateEncounterLocations(&encounterCollection->dungeonSpecialEncounters, species, PEFC_DUNGEONSPECIAL, heapID);
         PokedexEncData_PopulateEncounterLocations(&encounterCollection->fieldSpecialEncounters, species, PEFC_FIELDSPECIAL, heapID);
     } else {
