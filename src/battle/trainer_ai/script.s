@@ -292,6 +292,7 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, Basic_CheckLowStatStage_Speed
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, Basic_CheckLowStatStage_SpAttack
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, Basic_CheckLowStatStage_SpDefense
+    // Vanilla pairs these two with the opposite stat, here and in Expert; no move uses either effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, Basic_CheckLowStatStage_Accuracy
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, Basic_CheckLowStatStage_Evasion
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, Basic_CheckAlreadyUnderReflect
@@ -2091,6 +2092,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, Expert_StatusSpeedDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, Expert_StatusSpAttackDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, Expert_StatusSpDefenseDown
+    // Vanilla pairs these two with the opposite stat, as Basic does; no move uses either effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, Expert_StatusAccuracyDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, Expert_StatusEvasionDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, Expert_Reflect
@@ -4612,7 +4614,8 @@ Expert_ChargeTurnWithInvuln:
     //
     // If the opponent knows a Protect move, score -1.
     //
-    // If the opponent is immune to or would resist the move, score +1. (Bug?)
+    // If the opponent is immune to or would resist the move, score -1 (vanilla gave +1; the
+    // battle_edits fix, below at Expert_ChargeTurnWithInvuln_Resisted).
     //
     // If the opponent is under any of the following conditions, score +1:
     // - Toxic
@@ -4632,9 +4635,9 @@ Expert_ChargeTurnWithInvuln:
 Expert_ShadowForce:
     // Shadow Force is handled identically to ChargeTurnWithInvuln, but only gets score +1 for Power Herb
     // and does not consider if the opponent knows a Protect move (which it would bypass).
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ChargeTurnWithInvuln_ScorePlus1
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ChargeTurnWithInvuln_ScorePlus1
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ChargeTurnWithInvuln_ScorePlus1
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ChargeTurnWithInvuln_Resisted
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ChargeTurnWithInvuln_Resisted
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ChargeTurnWithInvuln_Resisted
     IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, Expert_ChargeTurnWithInvuln_ScorePlus1AndEnd
     GoTo Expert_ChargeTurnWithInvuln_CheckConditions
 
@@ -4679,7 +4682,7 @@ Expert_ChargeTurnWithInvuln_TryScorePlus1:
 Expert_ChargeTurnWithInvuln_End:
     PopOrEnd 
 
-Expert_ChargeTurnWithInvuln_ScorePlus1:
+Expert_ChargeTurnWithInvuln_Resisted:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): reached only when the target is immune
     // or resists, which is a reason not to use the move, so -1 rather than +1
     AddToMoveScore -1

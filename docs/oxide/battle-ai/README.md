@@ -77,6 +77,8 @@ About 70 distinct bugs, all but one present in vanilla Platinum. Each part lists
 | The bench damage check uses the active Pokemon's stats and types | vanilla | `expert-2.md` bug 10, `switching-and-items.md` | Skews U-turn, Healing Wish and switching |
 | Status moves count as super-effective in the bench checks | vanilla | `switching-and-items.md` | Skews when and to what the AI switches |
 
+A vanilla oddity with no effect in play, noted here and at both sites in `script.s` (found 2026-09-27): Basic and Expert pair battle effects 63 and 64, Evasion down 2 and Accuracy down 2, with the opposite stat's checks, as vanilla does. No move in Platinum or in Oxide uses either effect, so nothing is scored wrongly; left as it is.
+
 The table describes the code as the write-up found it. Five of the eight are fixed (next section); the faster heal, the bench damage check and the status moves in the bench checks were put to Ian and kept as vanilla has them.
 
 The eleven battle_edits fixes Ian approved on 2026-09-15 are all vanilla bugs. Nine are in the script (Basic, both Expert halves and Tag Strategy); Fire Fang against Wonder Guard lives in `battle_lib.c` and Rage in `battle_controller_player.c` line 846. All eleven are now applied (below). Each was checked against the guide's own byte edits for Platinum: every offset holds the vanilla byte the guide expects, and the source edits, assembled, give exactly the guide's bytes. The guide's "Sunny Day check" is `basic.md` B2 (Hydration becomes Leaf Guard, and the status test is inverted) and its "charge-turn scoring fix" is `expert-2.md` bug 3.
