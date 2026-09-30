@@ -27,7 +27,18 @@ the item, weather moves with the rocks), mean deaths and wipe chance are
 added, then doubles, Ian's line vocabulary (baiting a lock, free pivots,
 stalling a timed effect, saving a Pokemon for a later foe), convergence
 per fight, and boxes from Ian's save and the planned box; then a rerun on
-the v3 learnsets.
+the v3 learnsets. Done on `balance-perfectline` the same day. On Ian's 40
+pairs, on the same data, the new scorer agreed with 7 of the 15 held-out
+pairs and the old fightfit headline with 10, neither near the bar of 13;
+v3's learnsets moved only Fantina (easier) and Maylene (harder) by 0.10
+or more.
+
+**The 1-to-10 scale is dropped for now** (Ian, 2026-09-30). Nothing is
+fitted to his pairs any more. The trainer pass judges difficulty in the
+scorer's own numbers: the best line's clean-win rate, its mean deaths and
+its wipe chance, read blind for an ordinary trainer and planned for a
+boss. Ian sets the targets from example fights, and his first run checks
+them.
 
 **Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
