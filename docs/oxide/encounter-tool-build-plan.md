@@ -42,29 +42,37 @@ design doc needs its provenance.
 cd ~/pokeplatinum
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2     # expect 23/23, ~1 min
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 25/25
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # errors: R12's 27 scripted lines only
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint --ignore R12   # 0 errors (R12 prices Oxide's sources, so vanilla fails it)
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 0 errors; warnings are aspirational or rulings
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 60/60
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 94/94, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 98/98, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 23/23
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 25/25
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_sim    # expect 19/19, the Box sim
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers   # expect 38/38
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_saves      # expect 5/5
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_savefile   # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_savewatch  # expect 8/8
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_battlelog  # expect 26/26
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_docview    # expect 16/16
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
-python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
 ```
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
-reference ROM, and it must read "all 184 tables match their source JSON". It is the
+reference ROM, and it must read "all 190 tables match their source JSON" (the
+counts above are as of 2026-09-30). It is the
 only check here that looks at what the game actually runs.
 
 The `plan` line is the whole design in one command: it should take Growlithe from
@@ -229,9 +237,12 @@ that stay. None blocks anything.
    tables were authored in Step 4 as post-game content, and in their new split
    they pass every lint rule and the availability gate unchanged; what they
    offer before Volkner (Metagross at 10% on Route 228, the fully evolved
-   starters as 1% tails) is put to Ian rather than changed. Waiting on the
-   balance track, whose tool must learn the new split before this merges. The
+   starters as 1% tails) is put to Ian rather than changed. The
    whole plan, across the three tracks, is `docs/oxide/battle-zone-plan.md`.
+   **Closed 2026-09-30.** The balance tool learned the split on 2026-09-26,
+   and the question to Ian is moot: no HQ or Galactic table holds Metagross
+   (the scarcity pass moved it) or any member of the three starter lines.
+   The battle zone plan's line about it is the Overseer's to retire.
 9. **One-spot groups (Ian, 2026-09-26).** A place whose tables sit in one spot
    is now identical throughout or very different part to part, as the sidecar's
    `groups` table says and lint's R15 enforces; the `author-table` skill has the
@@ -1307,6 +1318,52 @@ that stay. None blocks anything.
      Starly's line never evolving in the wild come to Ian as proposals
      there. The water tables are re-authored after that pass, so each
      zone's land and water are judged together.
+47. **Two caught-list bugs Ian found while playing (2026-09-30), fixed on
+   `oxidex-bugs-0930`; Ian confirmed both in his browser the same day.** A
+   catch ticked on a Day or Night tab was stored as the Morning table's
+   species in that slot, because the row posted its morning species though
+   its icon showed the day or night one; the detail now carries a caught
+   view for each day and night species (`day_views`, `night_views`) and
+   the row ticks, strikes and highlights by the species it holds. The same
+   fault struck Sandgem's day Pikipek, whose row read Starly's state. Reset
+   caught left the open zone dimmed: the detail and the area list reload
+   in parallel and the pane dims by the list, so it now redraws once both
+   are back, as ticking already did. The Box sim reads only which places
+   are spent, never the species, so it was never affected. `test_m4` ticks
+   a day and a night species on Route 201 and checks the stored catch, the
+   list's label and the dupes on Sandgem's three tables. Verity Lakefront's
+   and Amity Square's "needs grass" notes were stale since `main-grass` and
+   are gone.
+48. **The Great Marsh lookout's daily Pokemon are cut (Ian, 2026-09-30).**
+   The engine no longer puts the daily species in grass slots 6 and 7
+   during a Safari Game (walking, Sweet Scent and the mud), and the
+   binoculars show a random slot of the area's own table. The lookout file
+   stays so the encdata_ex archive keeps its members; its sidecar intent
+   says it is unused. The sources catalogue excludes the rotation
+   (`EXCLUDED_METHODS`, 21 rows gone), the coverage audit no longer reads
+   the pools, and `availability.md` dropped the source from twelve lines,
+   none of which lost its last source (the gate's counts all stay 0). The
+   balance pool and the Box sim already skipped it. In-game check: a
+   Safari Game in any marsh area meets only that area's table.
+49. **The retype rerun (promised 2026-09-29, run 2026-09-30).** Lint,
+   coverage and the table report were run on the tree as it is and again
+   with Ian's seventeen retyped species given their types from before
+   ae486ec12a. Coverage and the report are identical. Lint lost five R23
+   warnings (Celestic Town's, Lake Acuity's, Lake Valor's and the Pokemon
+   League's Super Rods, Pastoria's Surf), all because Masquerain is now
+   Bug/Water. Nothing else in the tool reads types but the calculator and
+   the dex, which read `data.json` live. The pick-list's type columns are
+   the sheet's and read by nothing; they match the retypes but for
+   Charizard (Fire/Flying in the list, Fire/Dragon in the game).
+50. **The regional dex order for the 51 lines appended on 2026-09-26,
+   proposed to Ian (2026-09-30):**
+   `docs/oxide/encounters/regional-dex-proposal.md`. It places each line by
+   the rule the curated 360 already follow (lines together, in national dex
+   order of their earliest member), and names a Sinnoh-style order as the
+   alternative. Waiting on Ian; the choice goes in a new column, since
+   `dex_pos` is also the spreadsheet row `species_import.py` reads. On the
+   way, three wrong national dex numbers in the pick-list were corrected
+   (Rotom, Manaphy, Shaymin) and its doc's row count brought up to 499.
 
 ## Standing rules
 
