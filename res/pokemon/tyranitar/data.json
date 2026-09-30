@@ -28,7 +28,7 @@
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_MONSTER" ],
     "abilities": [
-        "ABILITY_SHED_SKIN",
+        "ABILITY_UNNERVE",
         "ABILITY_NONE",
         "ABILITY_SAND_STREAM"
     ],
