@@ -719,6 +719,24 @@ def replacement(b, side, target, owner=None):
         if _se_moves(b, side.mons[i], target) or any(
                 m.cat == "Status" and eff(b, m, target) >= 2 for m in side.mons[i].moves):
             return i
-    best = max(cands, key=lambda i: (max((figure(b, side.mons[i], target, m) or 0
-                                          for m in side.mons[i].moves), default=0), -i))
+    # Stage 2 (BattleAI_PostKOSwitchIn, battle_lib.c): each candidate's
+    # moves are costed as if the Pokemon that just fainted used them, at
+    # its stats, types and ability, by the top roll without a critical hit;
+    # a move listed at power 1 (variable power: Low Kick, Magnitude) is
+    # skipped, an immune target scores 0, and the score is a u8, so a figure
+    # past 255 wraps. The highest wins, ties by party order.
+    fainted = side.mons[side.active]
+    row = b.row(fainted, target)
+    best, best_score = cands[0], 0
+    for i in sorted(cands):
+        for m in side.mons[i].moves:
+            if not m.damaging() or m.power == 1:
+                continue
+            got = (row or {}).get("moves", {}).get(m.name) if row else None
+            score = (got["rolls"][-1] if got and got.get("rolls") else 0)
+            if eff(b, m, target) == 0:
+                score = 0
+            score %= 256
+            if score > best_score:
+                best, best_score = i, score
     return best

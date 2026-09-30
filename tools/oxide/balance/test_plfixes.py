@@ -137,6 +137,18 @@ def main():
     results.append(("Bug Bite eats Cranidos's Sitrus Berry", cran.item is None and grub.hp == 10 + grub.maxhp // 4,
                     f"Grubbin 10 -> {grub.hp}, Cranidos item {cran.item}"))
 
+    # The post-knockout pick follows BattleAI_PostKOSwitchIn: stage 1 by type
+    # match-up with a super-effective move, stage 2 by the damage the fainted
+    # Pokemon would do with each candidate's moves.
+    picks = {}
+    for lead in range(3):
+        b = battle()
+        fs.switch_in(b, b.p, lead)
+        b.b.cur().hp = 0
+        picks[b.p.cur().species] = b.b.mons[fightai.replacement(b, b.b, b.p.cur())].species
+    results.append(("After Nosepass: Barboach draws Lileep (stage 1), Grubbin draws Cranidos (stage 1)",
+                    picks.get("Barboach") == "Lileep" and picks.get("Grubbin") == "Cranidos", str(picks)))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

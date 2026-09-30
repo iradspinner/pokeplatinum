@@ -1841,13 +1841,26 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     def hits(k):
         return [m for m in moves[k] if move(m).damaging()]
 
+    # A trainer's rows carry every damaging move of its own party, not only
+    # its own: the post-knockout pick (fightai.replacement, stage 2) costs a
+    # candidate's moves as if the Pokemon that just fainted used them, as
+    # BattleAI_PostKOSwitchIn does. Extra moves in a row change nothing
+    # else, since every lookup is by the move's name.
+    def party_hits(k):
+        prefix = k.split(".")[0] + "."
+        out = []
+        for other in moves:
+            if other.startswith(prefix):
+                out += [m for m in hits(other) if m not in out]
+        return out
+
     def spread(k):
         return [m for m in moves[k] if move(m).damaging() and move(m).range == "ALL_ADJACENT"]
     for w in weathers:
         for a in pkeys + qkeys:
             for d in bkeys:
                 pairs.append([a, d, hits(a), w])
-                pairs.append([d, a, hits(d), w])
+                pairs.append([d, a, party_hits(d), w])
         if doubles or partners:
             # An ally's spread move on its ally: the player's and a
             # partner's Pokemon on each other, the trainers' on each other.
