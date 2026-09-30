@@ -52,6 +52,7 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 **On 2026-10-01** (Ian, 2026-09-29): switch the private repos' workflows back on (`gh workflow enable build -R iradspinner/oxide-rom-builder`, `gh workflow enable Windows -R iradspinner/melonDS-oxide`). Until then no GitHub Actions in the private repos; the account's Actions storage is used up, and the artifacts and cache were deleted.
 
 **Waiting on Ian** (the full wording of every entry shortened here is in the archive):
+- The OxiDex layout redesign (2026-09-29): the Overseer's mockups are in the design canvas (https://claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u: Dex, Moves, Trainers as a sheet, Box Sim, the three themes); only the Dim theme was built. Ian re-reads them and says which parts to keep, then the builder implements one tab at a time.
 
 - **Every in-game check** is in `docs/oxide/ingame-checklist.md`, in the order a playtest day meets them, for the day the new CPU is in (Ian, 2026-09-26); its section 0, the new-CPU cleanup, was done on 2026-09-29. Add new in-game checks there, not here.
 
