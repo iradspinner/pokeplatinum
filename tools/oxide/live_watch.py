@@ -115,12 +115,15 @@ def main():
         say("breakpoint %s at 0x%08x -> %s" % (name, addr, stub.breakpoint(addr)))
     hits = {addr: 0 for addr in targets}
     hold_addr, hold_n = None, 0
+    deferred = {x for x in a.plant_on_arm.split(",") if x} if a.arm_on else set()
     if a.hold_at:
         s, n = a.hold_at.rsplit(":", 1)
         hold_addr = int(s, 16) if s.lower().startswith("0x") else syms.addr(s)
         hold_n = int(n)
         targets.setdefault(hold_addr, s)
-        if hold_addr not in hits:
+        # a hold named in --plant-on-arm is planted when the session arms, so an
+        # address that fires constantly costs nothing before then
+        if hold_addr not in hits and s not in deferred:
             say("breakpoint %s at 0x%08x -> %s" % (s, hold_addr, stub.breakpoint(hold_addr)))
             hits[hold_addr] = 0
 
@@ -129,7 +132,7 @@ def main():
         s, k = a.hold_burst.rsplit(":", 1)
         burst_addr = int(s, 16) if s.lower().startswith("0x") else syms.addr(s)
         burst_k = int(k)
-        if burst_addr not in hits:
+        if burst_addr not in hits and s not in deferred:
             targets[burst_addr] = s
             say("breakpoint %s at 0x%08x -> %s" % (s, burst_addr, stub.breakpoint(burst_addr)))
             hits[burst_addr] = 0
@@ -255,10 +258,32 @@ def main():
     stub.cont()
     say("continued; play. stop file: %s" % a.stop_file)
 
+    # melonDS keeps a client's breakpoints after it leaves, even through a
+    # reset or a reloaded ROM, so the next session would meet them (2026-09-30:
+    # a per-frame breakpoint from the session before slowed the game to a
+    # crawl). They can only be removed while the target is stopped, so the stop
+    # file asks for a detach at the next stop, which first removes every
+    # breakpoint this session planted; with no stop in ten seconds it leaves
+    # them and goes, and melonDS must then be quit, not reset.
+    def remove_all():
+        removed = 0
+        for addr in list(targets):
+            try:
+                stub.remove_breakpoint(addr)
+                removed += 1
+            except Exception as e:  # one refusal must not keep the rest in place
+                say("could not remove 0x%08x: %s" % (addr, e))
+        say("removed %d breakpoints; detaching (the emulator keeps running)" % removed)
+
+    detach_after = None
     while True:
-        if os.path.exists(a.stop_file):
+        if detach_after is None and os.path.exists(a.stop_file):
             os.remove(a.stop_file)
-            say("stop file seen, detaching (the emulator keeps running)")
+            detach_after = time.time() + 10
+            say("stop file seen, detaching at the next stop")
+        if detach_after is not None and time.time() > detach_after:
+            say("no stop in ten seconds: detaching with the breakpoints left in "
+                "place, so quit melonDS before the next session")
             break
         try:
             reason = stub.wait_stop(timeout=1.0)
@@ -266,6 +291,10 @@ def main():
             continue
         except (ConnectionError, RuntimeError) as e:
             say("connection lost: %s" % e)
+            break
+        if detach_after is not None:
+            remove_all()
+            stub.cont()
             break
         regs = stub.regs()
         pc = regs.get("pc", regs.get("r15", 0))
@@ -297,13 +326,13 @@ def main():
                 burst_addr = None
                 verdict = serve_commands()
                 if verdict == "detach":
-                    say("detaching (the emulator keeps running)"); stub.cont(); break
+                    remove_all(); stub.cont(); break
                 if verdict == "c":
                     hold_addr, hold_n = pc, 0  # keep holding on every later hit
         if hold_addr is not None and pc == hold_addr and n >= hold_n:
             verdict = serve_commands()
             if verdict == "detach":
-                say("detaching (the emulator keeps running)"); stub.cont(); break
+                remove_all(); stub.cont(); break
             if verdict == "go":
                 hold_addr = None
         stub.cont()
