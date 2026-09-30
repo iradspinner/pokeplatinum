@@ -1242,7 +1242,16 @@ that stay. None blocks anything.
      nothing from the network. The header's one cycling button, and the
      doc viewer's, became four: Dark, Dim, Light and Auto, the one in force
      marked. The calculator keeps its own type.
-   - Moves, Trainers and Box sim follow.
+   - **Moves** (`encounter-redesign-moves`, stacked on Themes): the list at
+     420px with Type, Move, Class, Pow, Acc and Who, and the move in cards
+     two wide, the right column gone: the hero with Power, Accuracy, PP and
+     Target tiles; what it does in Oxide (effect, chance, flags) beside
+     against vanilla; who learns it over the whole width, four across and
+     grouped by how (Ian's note: a larger box); and its type's moves of its
+     class by power, sixteen around it, this one marked, each opening its
+     move. Every card is a section, and sections scroll on their own, so
+     the cards are kept from scrolling (that had clipped the Dex's too).
+   - Trainers and Box sim follow.
    - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
      wild, each with one home and at most one neighbour, and Froakie's 1%
      is cut to a few water areas that fit it (R21 flags it); the late
