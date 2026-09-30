@@ -52,8 +52,6 @@ replacement went in on 2026-09-29, and all of this was done that day:
   `tools/oxide/fetch-rom <commit>` and `tools/oxide/fetch-rom --testkit <commit>`.
 - [ ] **Start a new game.** An old save reads every ability as NONE by design
   (element 2 moved the field) and is no valid test bed.
-- [ ] Known crash to avoid until the bug track fixes it: UNLOCK FPS set to
-  ALWAYS hard-crashes on entering Sandgem Town (tracker, Phase 5).
 - [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared
   with Ian's own base ROM where anything looks off: the title screen's logo;
   the new Pokemon sprites front and back in battle, sitting at the right
@@ -279,8 +277,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.
-- [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
-  known crash above before choosing ALWAYS).
+- [ ] The options menu reads UNLOCK FPS, with OFF and BATTLE only
+  (`main-60fps`), and its description says "Unlock the frame rate in battle,
+  so / battles run at twice the speed." A save made with ALWAYS shows BATTLE,
+  and the overworld runs at normal speed.
 - [ ] Held items come back after battle (element 8): give a Pokemon an Oran or
   Sitrus Berry, let a trainer's Pokemon bring it below half so it eats the
   Berry, and after the battle its summary shows the Berry again. The same for

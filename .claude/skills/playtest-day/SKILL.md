@@ -23,7 +23,6 @@ Never launch an emulator yourself.
 3. Pick the sections he can reach today. A new game covers sections 2 and 3;
    sections 4 and 5 need a mid-game or post-game save. Ask him which saves he
    has, and skip what none of them reach.
-4. Tell him the known crash to avoid: UNLOCK FPS on ALWAYS entering Sandgem.
 
 ## During the session
 
