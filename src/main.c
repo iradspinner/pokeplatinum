@@ -71,7 +71,7 @@ extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
  * Platinum Oxide: hg-engine's BATTLES_UNCAPPED_FRAME_RATE, ported from a
  * frame-timing patch found in the base ROM's own synthetic-overlay
  * expansion (docs/oxide/phase3-base-rom-inventory.md section 2A), which
- * repurposes the whole three-value BUTTON MODE option as an uncap selector
+ * repurposes the BUTTON MODE option as an uncap selector
  * instead of its normal input-remapping meaning. Ian's choice (2026-09-15):
  * keep that repurposing rather than add new option values (the field is a
  * 2-bit save value, no room for new ones anyway) or a separate menu entry.
@@ -81,19 +81,22 @@ extern const ApplicationManagerTemplate gOpeningCutsceneAppTemplate;
  *
  * Note this reads the saved option, so the values to compare against are
  * OPTIONS_BUTTON_MODE_*, not the enum ButtonMode values the option is
- * translated into. The two enums happen to agree on 0 and 1 but not on 2:
- * the third menu entry is OPTIONS_BUTTON_MODE_L_IS_A, which
- * Options_ApplyButtonMode turns into BUTTON_MODE_L_IS_A (3), not
- * BUTTON_MODE_SWAP_XY (2). BUTTON_MODE_SWAP_XY is not reachable from the
- * menu at all.
+ * translated into.
+ *
+ * The third value, "ALWAYS", uncapped the overworld too: element 8's "60 fps
+ * outside battle", dropped on 2026-09-29 under Ian's standing permission to
+ * drop it if it misbehaved. It doubled the overworld's speed rather than
+ * smoothing it, crashed entering Sandgem Town and hung at its lab scene, and
+ * hg-engine's own ALWAYS_UNCAPPED_FRAME_RATE is the same hack, which its notes
+ * call buggy and for testing only. The menu offers OFF and BATTLE alone, and a
+ * save made with ALWAYS set reads as BATTLE.
  */
 static BOOL ShouldWaitForVBlank(void)
 {
     switch (Options_ButtonMode(SaveData_GetOptions(sApplication.args.saveData))) {
     case OPTIONS_BUTTON_MODE_START_IS_X: // "BATTLE": uncapped only during battle
+    case OPTIONS_BUTTON_MODE_L_IS_A: // the dropped "ALWAYS", read as BATTLE
         return sApplication.currOverlayID != FS_OVERLAY_ID(battle);
-    case OPTIONS_BUTTON_MODE_L_IS_A: // "ALWAYS": uncapped everywhere
-        return FALSE;
     default: // "OFF"
         return TRUE;
     }

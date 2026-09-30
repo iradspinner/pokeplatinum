@@ -490,6 +490,102 @@ def check_dim_theme(results):
                     bool(dim) and not short and 'value === "dim"' in js
                     and 'setAttribute("data-theme", "dim")' in js, "; ".join(short) or
                     f"{len(dim)} tokens"))
+    # The Dark theme too, since the redesign brightened its surfaces (Ian,
+    # 2026-09-29): each light-dark() token's dark value, and the chip's dark
+    # mix from the page's own rule.
+    dark = {k: b for k, _, b in re.findall(
+        r"--([\w-]+):\s*light-dark\((#[0-9A-Fa-f]{6}),\s*(#[0-9A-Fa-f]{6})\)", css)}
+    dmix = re.search(r"\.chip \{[^}]*light-dark\(color-mix\(in srgb, var\(--t\) \d+%, var\(--panel\)\),\s*"
+                     r"color-mix\(in srgb, var\(--t\) (\d+)%", page)
+    dark_mix = int(dmix.group(1)) / 100 if dmix else 0.34
+    dshort = []
+    for surface in ("panel", "ground"):
+        for token, need in (("ink", 4.5), ("dim", 4.5), ("mass", 4.5), ("place-ink", 4.5),
+                            ("act", 4.5), ("warn", 4.5), ("error", 4.5), ("faint", 3.0)):
+            r = ratio(dark[token], dark[surface])
+            if r < need:
+                dshort.append(f"{token} on {surface} {r:.1f}")
+    for name, colour in types.items():
+        r = ratio(dark["ink"], mix(colour, dark["panel"], dark_mix))
+        if r < 4.5:
+            dshort.append(f"ink on {name} {r:.1f}")
+    results.append(("the Dark theme keeps text at WCAG's ratios on its surfaces and chips",
+                    bool(dark) and bool(dmix) and not dshort,
+                    "; ".join(dshort) or f"chips mix {dark_mix:.0%}"))
+
+
+def check_team_sheet(results):
+    """The Trainers tab's team sheet (the redesign, 2026-09-29) is paper in
+    every theme, and a cell tinted by a type keeps its ink at WCAG's 4.5:1:
+    the mix is read from the page's own rule and the colours from theme.css.
+    The trainer sprites come from res/trainers/classes, one folder per class,
+    and the AI flags sit in a fixed grid."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    css = open(os.path.join(ui, "theme.css"), encoding="utf-8").read()
+    page = open(os.path.join(ui, "index.html"), encoding="utf-8").read()
+    tok = dict(re.findall(r"--(sheet[\w-]*):\s*(#[0-9A-Fa-f]{6})", css))
+    types = dict(re.findall(r"--type-(\w+):\s*(#[0-9A-Fa-f]{6})", css))
+    m = re.search(r"\.sheet \.t \{[^}]*color-mix\(in srgb, var\(--t\) (\d+)%, var\(--sheet\)\)", page)
+
+    def lum(h):
+        r, g, b = (int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
+        f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+    def ratio(a, b):
+        hi, lo = sorted((lum(a), lum(b)), reverse=True)
+        return (hi + 0.05) / (lo + 0.05)
+
+    def mix(a, b, p):
+        return "#" + "".join(f"{round(int(a[i:i + 2], 16) * p + int(b[i:i + 2], 16) * (1 - p)):02X}"
+                             for i in (1, 3, 5))
+
+    short = []
+    if m and tok:
+        p = int(m.group(1)) / 100
+        for name, colour in types.items():
+            r = ratio(tok["sheet-ink"], mix(colour, tok["sheet"], p))
+            if r < 4.5:
+                short.append(f"ink on {name} {r:.1f}")
+        for fg, bg in (("sheet-ink", "sheet"), ("sheet-faint", "sheet"), ("sheet-ink", "sheet-item"),
+                       ("sheet-ink", "sheet-sub"), ("sheet-head-ink", "sheet-head")):
+            if ratio(tok[fg], tok[bg]) < 4.5:
+                short.append(f"{fg} on {bg} {ratio(tok[fg], tok[bg]):.1f}")
+    results.append(("the team sheet's type tints and its paper keep text at WCAG's 4.5:1",
+                    bool(m) and bool(tok) and not short, "; ".join(short) or f"{len(tok)} tokens"))
+    classes = os.path.join(model.repo_root(), "res", "trainers", "classes")
+    results.append(("trainer sprites come from res/trainers/classes, and the AI flags are a fixed grid",
+                    os.path.isfile(os.path.join(classes, "leader_roark", "front.png"))
+                    and "/api/trainer-sprite/" in page and "const AI_GRID = [" in page
+                    and 'class="aigrid"' in page, ""))
+
+
+def check_faces_and_switch(results):
+    """The redesign (Ian, 2026-09-29): the three faces ship in ui/fonts with
+    their OFL licences and nothing loads from the network, and the header's
+    theme switch is four buttons, Dark, Dim, Light and Auto, that theme.js
+    wires and marks."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    css = open(os.path.join(ui, "theme.css"), encoding="utf-8").read()
+    page = open(os.path.join(ui, "index.html"), encoding="utf-8").read()
+    js = open(os.path.join(ui, "theme.js"), encoding="utf-8").read()
+    urls = re.findall(r"url\((fonts/[^)]+)\)", css)
+    missing = [u for u in urls if not os.path.exists(os.path.join(ui, u))]
+    families = set(re.findall(r'font-family: "([^"]+)"', css))
+    licences = [f for f in os.listdir(os.path.join(ui, "fonts")) if f.startswith("OFL-")]
+    remote = re.findall(r"(?:href|src)=\"https?://|url\(https?://|@import", css + page)
+    results.append(("the three faces ship in ui/fonts with their licences, and the page "
+                    "loads no font or stylesheet from the network",
+                    families == {"Atkinson Hyperlegible", "JetBrains Mono", "Silkscreen"}
+                    and len(urls) == 7 and not missing and len(licences) == 3 and not remote,
+                    f"{sorted(families)}, missing {missing}, remote {remote[:2]}"))
+    results.append(("the header's theme switch is Dark, Dim, Light and Auto, wired and marked "
+                    "by theme.js",
+                    all(f'data-theme-set="{k}"' in page for k in ("dark", "dim", "light", "auto"))
+                    and "function set(value)" in js and "function mark()" in js
+                    and "[data-theme-set]" in js, ""))
 
 
 def main():
@@ -501,7 +597,8 @@ def main():
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_rejections,
-                      check_edit_is_local, check_no_colour_literals, check_dim_theme):
+                      check_edit_is_local, check_no_colour_literals, check_dim_theme,
+                      check_faces_and_switch, check_team_sheet):
             check(results)
     finally:
         httpd.shutdown()

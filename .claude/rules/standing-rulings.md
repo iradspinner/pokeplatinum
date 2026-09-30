@@ -59,6 +59,10 @@ read, so they are written here too. Each is a standing instruction.
   ones; bag items may heal between its fights (the danger is deaths
   snowballing); bosses stay outside it, with gauntlets leading up to them; and
   a majority of the game's trainers should be mandatory (Ian, 2026-09-27).
+  How a gauntlet holds the player (Ian, 2026-09-29): only the way back is
+  blocked, a one-way ledge at the entrance where the map allows, so the
+  player cannot retreat to heal but may push on past a trainer; while a
+  section is open the Pocket PC, the Escape Rope and Dig refuse.
 - Evolution stones are deliberately scarce (Ian, 2026-09-27): two lines
   competing for one stone is intended, because it weakens the box and makes
   the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
@@ -126,3 +130,15 @@ read, so they are written here too. Each is a standing instruction.
   rather than sold, even though a shop with a set price would be simpler.
   The item pass places them; the balance census counts each from its
   fight's split.
+- Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
+  team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
+  lethality; an ordinary trainer carries one idea. One-hit KO moves never go
+  on a trainer, and evasion setups are rare. Trapping (the abilities, Mean
+  Look or Block with Perish Song, the binding moves) is allowed but rare. A
+  boss carries at most one forced trade (Explosion, Self-Destruct, Destiny
+  Bond), none before Fantina, never made certain by Custap or priority, and
+  an ordinary trainer carries none. No level-1 Focus Sash and Endeavor sets.
+  No overlevelled optional trainers. Oxide adds some double battles. Teams
+  are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
+  matchups in the order he wants, so the main tax on him is moveset overlap
+  and coverage, then switching or staying in by fight.

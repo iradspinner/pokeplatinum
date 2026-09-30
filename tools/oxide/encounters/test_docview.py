@@ -159,7 +159,8 @@ def main():
     results.append(("/doc lists the documents and a document renders in the tool's theme",
                     index[0] == 200 and "/doc/docs/oxide/tracker.md" in index[1]
                     and page[0] == 200 and 'href="/theme.css"' in page[1]
-                    and "data-theme-toggle" in page[1], f"{index[0]} {page[0]}"))
+                    and all(f'data-theme-set="{k}"' in page[1] for k in ("dark", "dim", "light", "auto")),
+                    f"{index[0]} {page[0]}"))
     results.append(("a climb out of docs/ and a missing document are 404 pages, and the tool "
                     "itself still loads", climb[0] == 404 and missing[0] == 404 and tool[0] == 200,
                     f"{climb[0]} {missing[0]} {tool[0]}"))
