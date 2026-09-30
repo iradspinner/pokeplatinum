@@ -578,6 +578,7 @@ On a save with the National Dex and the game beaten:
   to twice.
 - [ ] Sinnoh Now, watched a few times, shows no swarm news flash.
 - [ ] The Great Marsh binoculars show only what the marsh can give.
+- [ ] With the lookout's daily Pokemon cut (2026-09-30, `oxidex-bugs-0930`): a Safari Game in any Great Marsh area meets only that area's own table, and the lookout's binoculars show a species from it.
 - [ ] If a GBA game can be put in melonDS's second slot, no route gains its
   species.
 
