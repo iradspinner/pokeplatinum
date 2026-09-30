@@ -142,3 +142,6 @@ read, so they are written here too. Each is a standing instruction.
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
+- Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
+  no trainer keeps default moves, so default movesets carry no weight in any
+  argument, about learnsets, level-1 order or anything else.
