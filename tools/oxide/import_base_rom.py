@@ -500,6 +500,10 @@ for _move in ("octazooka", "mirror_shot", "magnet_bomb", "needle_arm", "poison_t
 for _move in ("hyper_fang", "octazooka", "rock_climb", "sky_uppercut", "double_hit", "dragon_rush"):
     MOVES_DIVERGED.setdefault(_move, {})["accuracy"] = (
         "100, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+# The base ROM gave Fire Fang the Snatch flag, which only a status move can
+# use; the 2026-09-22 review found it, and it goes (element 4's QA leftovers).
+MOVES_DIVERGED.setdefault("fire_fang", {})["flags"] = (
+    "the base ROM's stray Snatch flag removed (2026-09-30)")
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")

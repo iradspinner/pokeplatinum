@@ -527,6 +527,12 @@ DIVERGED = {
             "why": "native damaging moves given the King's Rock flag (Ian, 2026-09-22)",
         },
         {
+            "offsets": (11,),  # flags
+            "members": {424},
+            "why": "Fire Fang loses the Snatch flag the base ROM gave it, which only a "
+                   "status move can use (element 4's QA leftovers, 2026-09-30)",
+        },
+        {
             "offsets": (8, 9),  # range
             "members": {139},
             "why": "Poison Gas hits both foes, not the partner too (Ian, 2026-09-22)",
