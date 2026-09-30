@@ -167,24 +167,52 @@ def _method(e):
     if e.get("level"):
         return f"level {e['level']}"
     if item:
-        return f"holding a {item}" if "HELD" in method else f"a {item}"
+        article = "an" if item[0] in "AEIOU" else "a"
+        return f"holding {article} {item}" if "HELD" in method else f"{article} {item}"
     if e.get("partner"):
         return f"with {dex.display_name(e['partner'])} in the party"
     return PLACE_METHODS.get(method, method.replace("_", " ").lower())
+
+
+_ITEMS = {}
+
+
+def _item_first():
+    """(split index, {item: its first split}) from the balance track's census
+    (pool.evolution_items_first, read only), or None when it cannot be read,
+    in which case an item evolution counts as open from its base's split."""
+    if "census" not in _ITEMS:
+        try:
+            from ..balance import pool as bpool
+            _ITEMS["census"] = (progression.split_index(model.load_sidecar()),
+                                bpool.evolution_items_first())
+        except Exception:
+            _ITEMS["census"] = None
+    return _ITEMS["census"]
 
 
 def first_obtainable(root, species, direct, seen=None):
     """(split index, split, place, how) for the earliest way to get `species`:
     as itself, or by evolving the stage the earliest source gives, the chain
     named in `how` ("grass, as Larvitar; Pupitar at level 30, then Tyranitar
-    at level 55"). None when it is out of reach."""
+    at level 55"). An evolution by an item opens at the later of the stage's
+    split and the item's first split in the balance census, and not at all
+    while the game places none. None when it is out of reach."""
     seen = seen or set()
     own = min(direct.get(species) or [], default=None)
     best = (own[0], own[1], own[2], own[3], []) if own else None
+    census = _item_first()
     for prev, e in _earlier(root, species).items():
         if prev in seen:
             continue
         got = first_obtainable(root, prev, direct, seen | {species})
+        if got and e and e.get("item") and census:
+            idx, first = census
+            split = first.get("ITEM_" + e["item"])
+            if split is None or split not in idx:
+                continue
+            if idx[split] > got[0]:
+                got = (idx[split], split) + tuple(got[2:])
         if got and (best is None or got[0] < best[0]):
             chain = got[4] or [(dex.display_name(prev), None)]
             best = (got[0], got[1], got[2], got[3],

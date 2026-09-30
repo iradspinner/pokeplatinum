@@ -422,11 +422,11 @@ def check_hidden(results):
     results.append(("R18 follows a gift up its line: a hidden-ability Poliwag fails through "
                     "Politoed's Drizzle, a Swablu set by SetVar through Cloud Nine",
                     {"Gift_Poliwag", "Static_Swablu"} <= flagged, str(sorted(flagged))))
-    # The five lines whose weather ability left the regular slots (Ian,
+    # The four lines whose weather ability left the regular slots (Ian,
     # 2026-09-29): a hidden-ability Psyduck, Snover egg or Hippopotas battle
     # fails at its own stage, and a Larvitar through Tyranitar's Sand Stream.
     weather_lines = {"Gift_Psyduck", "Egg_Snover", "Static_Hippopotas", "Gift_Larvitar"}
-    results.append(("R18 fails the five lines whose weather ability is hidden (Psyduck, Snover, "
+    results.append(("R18 fails the four lines whose weather ability is hidden (Psyduck, Snover, "
                     "Hippopotas, and Larvitar through Tyranitar)",
                     weather_lines <= flagged, str(sorted(weather_lines - flagged))))
     results.append(("R18 fails a flag no gift takes and a species it cannot read, and passes "
@@ -445,10 +445,30 @@ def check_hidden(results):
                     rc == 1 and "POLITOED DRIZZLE" in out, f"rc {rc}"))
 
 
+def check_ability_audit(results):
+    """The ability audit counts an evolution by an item from the item's first
+    split in the balance census, and not at all while the game places none
+    (the Ice Stone for Alolan Ninetales on 2026-09-29), and names the item
+    with the right article."""
+    from . import ability_audit as A
+    root = model.repo_root()
+    census = A._item_first()
+    got = A.first_obtainable(root, "SPECIES_ALOLAN_NINETALES", A.direct_sources(root))
+    how = A._how(got) if got else ""
+    ice = census and census[1].get("ITEM_ICE_STONE")
+    results.append(("the ability audit reaches a stone evolution only once the census places "
+                    "the stone, and writes \"an Ice Stone\"",
+                    census is not None and got is not None
+                    and (ice or "Ice Stone" not in how)
+                    and A._method({"item": "ICE_STONE"}) == "an Ice Stone"
+                    and A._method({"item": "FIRE_STONE"}) == "a Fire Stone",
+                    f"{got[1] if got else None}: {how}"))
+
+
 def main():
     results = []
     for check in (check_writers, check_audit, check_per_area, check_inactive,
-                  check_species_only, check_scripted, check_hidden):
+                  check_species_only, check_scripted, check_hidden, check_ability_audit):
         check(results)
     width = max(len(l) for l, _, _ in results)
     failed = 0
