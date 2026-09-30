@@ -51,7 +51,6 @@
             [ 28, "MOVE_FIRE_PUNCH" ],
             [ 37, "MOVE_LAVA_PLUME" ],
             [ 43, "MOVE_FLAMETHROWER" ],
-            [ 52, "MOVE_SUNNY_DAY" ],
             [ 58, "MOVE_FIRE_BLAST" ],
             [ 67, "MOVE_HYPER_BEAM" ]
         ],
@@ -59,7 +58,6 @@
             "TM01",
             "TM06",
             "TM10",
-            "TM11",
             "TM12",
             "TM15",
             "TM17",

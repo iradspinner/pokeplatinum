@@ -678,11 +678,24 @@ TRADE_EVOLUTIONS_STRIPPED = {
 # Whole members of a species archive that no longer match the reference on
 # purpose, where the difference is not confined to a few byte offsets the way
 # DIVERGED's entries are. Keyed by the reference's member index.
+# The natives that lose a weather move from their level-up list, because the
+# player never sets weather (Ian, 2026-09-26; the moves half, 2026-09-30).
+# Species the player cannot own keep theirs for trainers.
+# tools/oxide/balance/weather_moves.py made the change and keeps the census.
+WEATHER_LEVEL_UP_REMOVED = {
+    7, 8, 9, 60, 61, 79, 80, 95, 126, 131, 144, 145, 146, 183, 184, 194, 195,
+    208, 240, 245, 246, 247, 248, 270, 273, 299, 328, 329, 330, 350, 351, 361,
+    362, 363, 364, 365, 420, 421, 422, 423, 437, 443, 444, 445, 456, 457, 467,
+    470, 471, 473, 476, 478, 490,
+}
+
 DIVERGED_MEMBERS = {
     "poketool/personal/wotbl.narc": {
-        "members": {215, 228, 229},
+        "members": {215, 228, 229} | WEATHER_LEVEL_UP_REMOVED,
         "why": "Beat Up leaves the game, so Sneasel, Houndour and Houndoom no "
-               "longer learn it by level (Ian, 2026-09-26)",
+               "longer learn it by level (Ian, 2026-09-26); and 53 species the "
+               "player can own lose their weather moves (Ian, 2026-09-26 and "
+               "2026-09-30)",
     },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
@@ -835,6 +848,25 @@ def personal_fields(member):
     return bytes(head), abilities, base_exp, tail
 
 
+# The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm). No species the
+# player can own learns them (Ian, 2026-09-26; the moves half, 2026-09-30),
+# so a record may lack these bits where the reference sets them; species the
+# player cannot own keep them for trainers. The TM bitfield starts two bytes
+# into personal_fields' tail in both layouts (after the Safari flee rate and
+# body colour), bit n - 1 for TM n.
+WEATHER_TMS = (7, 11, 18, 37)
+PERSONAL_TM_BITS_IN_TAIL = 2
+
+
+def without_weather_tms(tail):
+    """The tail with the weather TMs' bits cleared."""
+    out = bytearray(tail)
+    for tm in WEATHER_TMS:
+        at = PERSONAL_TM_BITS_IN_TAIL + (tm - 1) // 8
+        out[at] &= ~(1 << ((tm - 1) % 8)) & 0xFF
+    return bytes(out)
+
+
 def check_personal(b, r, path):
     """Compare pl_personal field by field. The built archive holds more species
     than the reference and the ones after the natives have moved, so each
@@ -843,7 +875,7 @@ def check_personal(b, r, path):
     corrected stats) and a hidden-ability slot the reference has no room for."""
     rules = diverged_rules(path)
     bad, intended, extra = [], [], max(0, len(b) - len(r))
-    hidden = 0
+    hidden = weather_tm_records = 0
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
@@ -855,15 +887,22 @@ def check_personal(b, r, path):
         # for one. The natives' came from the donor (2026-09-27, element 8).
         hidden += bool(ba[2])
         abilities_ok = tuple(ba[:2]) == tuple(ra[:2])
-        if not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED:
-            abilities_ok = tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0]
-            if abilities_ok and bh == rh:
-                intended.append(i)
-                continue
-        if bt.rstrip(b"\0") != rt.rstrip(b"\0") or not abilities_ok or bx != rx:
+        # An intended ability change excuses the abilities only; the rest of
+        # the record is still compared (until 2026-09-30 such a record was
+        # accepted before its TMs and base experience were looked at).
+        abilities_diverged = (not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED
+                              and tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0])
+        abilities_ok = abilities_ok or abilities_diverged
+        tail_ok = bt.rstrip(b"\0") == rt.rstrip(b"\0")
+        weather_tms = not tail_ok and bt.rstrip(b"\0") == without_weather_tms(rt).rstrip(b"\0")
+        if not (tail_ok or weather_tms) or not abilities_ok or bx != rx:
             bad.append(i)
             continue
+        if weather_tms:
+            weather_tm_records += 1
         if bh == rh:
+            if weather_tms or abilities_diverged:
+                intended.append(i)
             continue
         # Pooled over every entry that lists the member, as intended_divergence
         # does for the move table.
@@ -876,7 +915,9 @@ def check_personal(b, r, path):
           f"{len(bad)} disagree, {len(intended)} differ only at the intended bytes"
           + (f", {extra} are new species and their forms" if extra else "")
           + (f"; {hidden} of the shared records carry a hidden ability, which the "
-             f"reference has no slot for" if hidden else ""))
+             f"reference has no slot for" if hidden else "")
+          + (f"; {weather_tm_records} no longer learn the weather TMs, since the player "
+             f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))

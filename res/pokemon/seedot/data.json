@@ -43,14 +43,12 @@
             [ 7, "MOVE_GROWTH" ],
             [ 13, "MOVE_NATURE_POWER" ],
             [ 21, "MOVE_SYNTHESIS" ],
-            [ 31, "MOVE_SUNNY_DAY" ],
             [ 43, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM06",
             "TM09",
             "TM10",
-            "TM11",
             "TM17",
             "TM19",
             "TM21",
