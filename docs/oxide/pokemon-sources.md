@@ -25,14 +25,19 @@ already reach, except the Feebas tiles, which are listed.
 
 **Left out on Ian's decision (2026-09-21):** swarms, the Poke Radar, the
 dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf
-Town legendary menu. Oxide will never use any of them, so they are not sources
-and the authoring pass does not have to de-leak them; the generator still reads
-them and `EXCLUDED_METHODS` in `tools/oxide/pokemon_sources.py` is the switch.
+Town legendary menu, and on 2026-09-30 the Great Marsh daily rotation. Oxide
+will never use any of them, so they are not sources and the authoring pass
+does not have to de-leak them; the generator still reads them and
+`EXCLUDED_METHODS` in `tools/oxide/pokemon_sources.py` is the switch. Oxide's
+engine no longer applies swarms, the radar's species, the GBA lists or the
+marsh rotation at all (2026-09-26 and 2026-09-30).
 
 **How a land table gets overwritten.** Several of the methods below are not
 separate tables at all; they replace numbered slots of the map's own land
 table, so they compete with it rather than adding to it
-(`src/overlay006/wild_encounters.c`):
+(`src/overlay006/wild_encounters.c`). This is vanilla's engine; in Oxide only
+the day and night pair and the Trophy Garden's pair (never used) still
+replace a slot:
 
 | Slots | Replaced by | When |
 |---|---|---|
@@ -42,7 +47,7 @@ table, so they compete with it rather than adding to it
 | 6, 7 | `daily_encounters` (Trophy Garden) or the Great Marsh daily | National Dex, or a running Safari Game |
 | 8, 9 | `ruby`..`leafgreen` | National Dex and that GBA cartridge in the slot |
 
-186 rows across 32 locations, generated 2026-09-28.
+165 rows across 31 locations, generated 2026-09-30.
 
 ## Rows by method
 
@@ -50,9 +55,7 @@ table, so they compete with it rather than adding to it
 |---|---|
 | unown room | 18 |
 | static battle | 13 |
-| great marsh daily (post-natdex) | 12 |
 | egg gift | 10 |
-| great marsh daily (pre-natdex) | 9 |
 | fossil | 7 |
 | gift | 6 |
 | honey tree (common, 1 badge) | 6 |
@@ -113,32 +116,6 @@ table, so they compete with it rather than adding to it
 | Species | Method | Level | Conditions | Origin | On pick-list | Source |
 |---|---|---|---|---|---|---|
 | Cresselia | roamer | 50 | released on Fullmoon Island (reached with the Lunar Wing errand); then roams | vanilla | yes | `scripts_fullmoon_island_forest.s` |
-
-### Great Marsh
-
-| Species | Method | Level | Conditions | Origin | On pick-list | Source |
-|---|---|---|---|---|---|---|
-| Barboach | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Breloom | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Carvanha | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Croagunk | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Dewpider | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Frillish | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Koffing | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Lotad | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Skorupi | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Surskit | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Wooper | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Yanma | great marsh daily (post-natdex) | 22-30 | the same rotation once the National Dex is in hand; the binoculars on the lookout show a random slot of the same table | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Breloom | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Croagunk | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Dewpider | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Koffing | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Lotad | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Skorupi | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Surskit | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
-| Wooper | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | vanilla | yes | `encounters_great_marsh_lookout.json` |
-| Yanma | great marsh daily (pre-natdex) | 22-30 | one of these 32 is in each of the six marsh areas per day, index = 5 bits of the daily seed per area; only while a Safari Game is running; overwrites land slots 6 and 7 | **base-ROM** | yes | `encounters_great_marsh_lookout.json` |
 
 ### Hall of Origin
 

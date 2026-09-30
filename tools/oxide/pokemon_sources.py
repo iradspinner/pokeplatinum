@@ -369,7 +369,10 @@ def origin_of(cur, van, key, index):
 # Twinleaf Town legendary menu, so none of them count as a source and they are
 # left out of the catalogue. The reading code for them stays so the exclusion
 # is one line to lift.
-EXCLUDED_METHODS = ("swarm", "poke radar", "dual-slot ", "trophy garden daily")
+# The Great Marsh daily rotation joined them on 2026-09-30 (Ian): the
+# engine no longer puts it in slots 6 and 7 or shows it in the binoculars.
+EXCLUDED_METHODS = ("swarm", "poke radar", "dual-slot ", "trophy garden daily",
+                    "great marsh daily")
 EXCLUDED_SCRIPTS = ("scripts_twinleaf_town.s",)
 
 
@@ -751,14 +754,19 @@ already reach, except the Feebas tiles, which are listed.
 
 **Left out on Ian's decision (2026-09-21):** swarms, the Poke Radar, the
 dual-slot GBA lists, the Trophy Garden dailies and the base ROM's Twinleaf
-Town legendary menu. Oxide will never use any of them, so they are not sources
-and the authoring pass does not have to de-leak them; the generator still reads
-them and `EXCLUDED_METHODS` in `tools/oxide/pokemon_sources.py` is the switch.
+Town legendary menu, and on 2026-09-30 the Great Marsh daily rotation. Oxide
+will never use any of them, so they are not sources and the authoring pass
+does not have to de-leak them; the generator still reads them and
+`EXCLUDED_METHODS` in `tools/oxide/pokemon_sources.py` is the switch. Oxide's
+engine no longer applies swarms, the radar's species, the GBA lists or the
+marsh rotation at all (2026-09-26 and 2026-09-30).
 
 **How a land table gets overwritten.** Several of the methods below are not
 separate tables at all; they replace numbered slots of the map's own land
 table, so they compete with it rather than adding to it
-(`src/overlay006/wild_encounters.c`):
+(`src/overlay006/wild_encounters.c`). This is vanilla's engine; in Oxide only
+the day and night pair and the Trophy Garden's pair (never used) still
+replace a slot:
 
 | Slots | Replaced by | When |
 |---|---|---|
