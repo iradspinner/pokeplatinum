@@ -1725,6 +1725,11 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].moveEffectsMask -= (1 << MOVE_EFFECT_LASER_FOCUS_SHIFT);
             }
 
+            // Oxide: and so does Throat Chop's hold on sound moves, silently.
+            if (battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_THROAT_CHOP) {
+                battleCtx->battleMons[battler].oxideFlags -= (1 << OXIDE_MON_THROAT_CHOP_SHIFT);
+            }
+
             battleCtx->monConditionCheckState++;
             break;
 
@@ -2551,6 +2556,7 @@ enum CheckStatusState {
     CHECK_STATUS_STATE_IMPRISON,
     CHECK_STATUS_STATE_GRAVITY,
     CHECK_STATUS_STATE_HEAL_BLOCK,
+    CHECK_STATUS_STATE_THROAT_CHOP, // Oxide
     CHECK_STATUS_STATE_CONFUSION,
     CHECK_STATUS_STATE_PARALYSIS,
     CHECK_STATUS_STATE_ATTRACT,
@@ -2781,6 +2787,19 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(subscript_move_is_heal_blocked);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
+            battleCtx->statusCheckState++;
+            break;
+
+        // Oxide: a sound move chosen before Throat Chop landed fails on its turn.
+        case CHECK_STATUS_STATE_THROAT_CHOP:
+            if (Move_ThroatChopped(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+                LOAD_SUBSEQ(subscript_move_is_throat_chopped);
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 

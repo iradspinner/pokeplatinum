@@ -109,7 +109,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
   affecting a Skarmory (67). Set 68 (2026-09-30, `main-production`): against
   a wild Shedinja, Freeze Shock and Ice Burn each charge on the first turn,
-  and only the second turn says "It doesn't affect". A stub
+  and only the second turn says "It doesn't affect". Sets 69 and 70
+  (2026-09-30, `main-production`): Lunar Blessing and Jungle Healing fail at
+  full HP with no status, and otherwise heal a quarter and cure paralysis;
+  after a Ninjask's Throat Chop, Hyper Voice fails that turn and neither it
+  nor Heal Bell can be chosen the next, then both come back. A stub
   effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
