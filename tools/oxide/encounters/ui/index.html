@@ -352,7 +352,7 @@ tr.got .spname { font-weight: 600; }
 
 
 #dexlist, #movelist { border-right: 1px solid var(--rule); background: var(--panel); }
-#dexright, #moveright { border-left: 1px solid var(--rule); background: var(--panel);
+#dexright { border-left: 1px solid var(--rule); background: var(--panel);
   padding: 12px 14px 40px; }
 #dexmid, #movemid { padding: 14px 20px 40px; font-size: 18px; }
 
@@ -562,12 +562,15 @@ table.facts td { padding: 1px 0; }
 /* The column scrolls, so a card keeps its height rather than shrinking to
    fit the window and clipping what it holds. */
 #dexmid > *, #dexright > * { flex-shrink: 0; }
-#dexmid .card { background: var(--panel); border: 1px solid var(--rule);
+/* A card is a <section>, and every section scrolls on its own (the columns'
+   rule), which would let the column squeeze it below its content; a card
+   never scrolls, the column does. */
+#dexmid .card, #movemid .card { background: var(--panel); border: 1px solid var(--rule);
   border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column;
-  gap: 10px; min-width: 0; }
-#dexmid .card h2, #dexright h2 { margin: 0; font-size: 17px; }
+  gap: 10px; min-width: 0; overflow: visible; }
+#dexmid .card h2, #dexright h2, #movemid .card h2 { margin: 0; font-size: 17px; }
 #dexmid .cardrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-#dexmid .cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+#dexmid .cardhead, #movemid .cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 #dexmid .cardhead .total { color: var(--dim); font-family: var(--mono); }
 #dexmid .cardhead .total .num { color: var(--ink); font-weight: 600; }
 #dexmid .vdelta { font-family: var(--sans); font-size: 13px; margin-left: 6px; }
@@ -686,7 +689,7 @@ table.facts td { padding: 1px 0; }
 /* ---- the moves view ---------------------------------------------------- */
 /* One row per move, the numbers in columns so they line up down the list. */
 .movecols, .moverow { display: grid; align-items: center; gap: 6px;
-  grid-template-columns: 74px 1fr 64px 38px 38px 38px; }
+  grid-template-columns: 78px 1fr 70px 38px 38px 34px; }
 .movecols { margin-top: 8px; font-size: 13px; color: var(--dim); line-height: 1.2; }
 .movecols .num { font-family: inherit; }
 .moverow { min-height: 34px; padding: 2px 12px; cursor: pointer; }
@@ -709,9 +712,6 @@ table.facts td { padding: 1px 0; }
 .chip.warn { border-color: var(--warn); }
 .stubnote { border-left: 3px solid var(--warn); padding: 4px 10px;
   margin-top: 12px; font-size: 15.5px; }
-.movelinks { display: flex; flex-wrap: wrap; gap: 4px 2px; }
-.movelinks a { text-decoration: none; }
-.movelinks a:hover .chip { border-color: var(--place-ink); }
 .learner { display: flex; align-items: center; gap: 8px; padding: 2px 0;
   cursor: pointer; }
 .learner:hover { background: var(--sunken); }
@@ -726,6 +726,38 @@ table.was td { padding: 1px 16px 1px 0; font-family: var(--mono);
 /* A description is prose, so it keeps the text face and a reading width. */
 table.was td.text { font-family: var(--sans); max-width: 34ch; }
 table.was td.old { color: var(--dim); text-decoration: line-through; }
+/* The Moves tab as Ian approved it (2026-09-29, the redesign's Moves board):
+   the list, and the move in cards two wide, with who learns it given the
+   whole width (his note: a larger box) and the move's peers under it. */
+#movemain { grid-template-columns: 420px minmax(560px, 1fr); }
+#movefilter { width: 100%; box-sizing: border-box; }
+#movemid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+  align-content: start; padding: 20px 24px 40px; font-size: 16px; }
+#movemid > .sub { grid-column: span 2; }
+#movemid .span2 { grid-column: span 2; }
+.movehero .headline { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.movehero .species-name { margin: 0; font-size: 32px; line-height: 1.1; }
+.movehero .tl { display: flex; align-items: center; gap: 10px; }
+.movehero .entry { margin: 0; max-width: 72ch; line-height: 1.5; font-size: 16.5px; }
+.movehero .stubnote { margin-top: 0; }
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.tile { background: var(--sunken); border-radius: 10px; padding: 12px 14px; }
+.tile .k { font-size: 13px; color: var(--dim); }
+.tile .v { font: 600 26px/1.25 var(--mono); }
+.tile .v.words { font: 700 17px/1.4 var(--sans); margin-top: 4px; }
+.flagchips { display: flex; flex-wrap: wrap; gap: 6px; }
+#movemid .card h3 { margin: 4px 0 0; font-size: 15px; color: var(--dim); }
+.learners { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2px 18px; }
+#movemid .learner { padding: 4px 8px; border-radius: 8px; background: var(--sunken); }
+#movemid .learner:hover { background: var(--place-bg); }
+.peers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px;
+  row-gap: 2px; }
+.peer { display: grid; grid-template-columns: 1fr 50px 70px 40px; column-gap: 8px;
+  align-items: center; padding: 6px 8px; border-radius: 6px; cursor: pointer; }
+.peer:hover { background: var(--sunken); }
+.peer.me { background: var(--place-bg); font-weight: 700; }
+.peer .num { color: var(--dim); }
 </style>
 </head>
 <body>
@@ -815,7 +847,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
         <button data-f="stub" title="Moves whose effect is still a placeholder script">Unscripted</button>
       </div>
       <div class="movecols">
-        <span></span><span>Move</span><span>Cat</span>
+        <span>Type</span><span>Move</span><span>Class</span>
         <span class="num">Pow</span><span class="num">Acc</span>
         <span class="num" title="Species that learn it, by any means">Who</span>
       </div>
@@ -823,7 +855,6 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <div id="moverows"></div>
   </section>
   <section id="movemid"><p class="sub">Choose a move.</p></section>
-  <section id="moveright"></section>
 </main>
 
 <!-- The trainer team builder (build plan item 28): every trainer's team, read
@@ -1405,50 +1436,94 @@ function drawMoveDetail() {
          ${flags && flags.lost.length ? `<tr><th>Lost</th><td colspan="2">${flags.lost.map(tidy).join(", ")}</td></tr>` : ""}
          </table>`
       : `<p class="sub">As vanilla Platinum has it.</p>`;
-  $("#movemid").innerHTML = `
-    <span class="dexnum">#${String(d.id).padStart(3, "0")}</span>
-    <div class="species-name">${esc(d.name)}
-      ${delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
-    <div>${typeChip(d.type)} <span class="sub">${tidy(d.class)}</span></div>
-    <div class="sub" style="margin-top:8px; max-width:46ch">${esc(d.description || "")}</div>
-    ${moveStub(d)}
+  // The four numbers the mockup gives tiles; a status move has no power and
+  // a sure hit no accuracy, and each says so rather than leaving a gap.
+  const status = d.class === "STATUS";
+  const tile = (k, v, words) => `<div class="tile"><div class="k">${k}</div>
+    <div class="v${words ? " words" : ""}">${v}</div></div>`;
+  const extra = [d.priority ? `Priority ${signed(d.priority)}` : "", d.machine || ""]
+    .filter(Boolean).join(" &middot; ");
 
-    <div class="dexsec">
-      <h4>The numbers</h4>
-      ${moveNumbers(d)}
-    </div>
-
-    <div class="dexsec">
-      <h4>Flags</h4>
-      ${(d.flags || []).map(f => `<span class="chip plain">${esc(tidy(f))}</span>`).join("")
-        || `<span class="sub">none</span>`}
-    </div>
-
-    <div class="dexsec">
-      <h4>Against vanilla</h4>
-      ${was}
-    </div>`;
-
-  // Who learns it, one group per way of learning. Each row opens the species,
-  // and says the first split its species is met wild, if it is at all.
+  // Who learns it, one group per way of learning, over the whole width (Ian's
+  // note: a larger box). Each opens the species and says the first split it is
+  // met wild, if it is at all.
   const groups = {};
   (d.learners || []).forEach(l => (groups[l.how] = groups[l.how] || []).push(l));
+  const count = new Set((d.learners || []).map(l => l.species)).size;
   const who = Object.keys(HOW).filter(h => groups[h]).map(h => `
-    <div class="dexsec"><h4>${HOW[h]} &middot; ${groups[h].length}</h4>
-      ${groups[h].map(l => `<div class="learner" data-sp="${l.species}" title="Open ${esc(l.label)}">
+    <h3>${HOW[h]} &middot; ${groups[h].length}</h3>
+    <div class="learners">${groups[h].map(l => `<div class="learner" data-sp="${l.species}" title="Open ${esc(l.label)}">
         ${icon(l.species)}
         ${h === "level" ? `<span class="num lv">${l.level === 0 ? lvText(0) : "Lv " + l.level}</span>` : ""}
+        ${h === "machine" && l.machine ? `<span class="num lv">${esc(l.machine)}</span>` : ""}
         <span class="nm">${esc(l.label)}</span>
-        ${l.first_split ? splitTag(l.first_split)
-          : `<span class="sub">not wild</span>`}
-      </div>`).join("")}
-    </div>`).join("");
-  $("#moveright").innerHTML = `
-    <h4 style="margin:0 0 8px; font-size:15px; color:var(--dim)">Who learns it</h4>
-    ${who || `<p class="sub">No species learns it${delta.new
-      ? ". The new species' learnsets are still to be refilled, which is element 4's last piece." : "."}</p>`}`;
-  $("#moveright").querySelectorAll(".learner").forEach(el =>
+        ${l.first_split ? splitTag(l.first_split) : `<span class="sub">not wild</span>`}
+      </div>`).join("")}</div>`).join("");
+
+  // Its peers: the moves of its type and class, by power, with this one
+  // marked, a window of sixteen around it when there are more.
+  const peersAll = MOVES.filter(r => r.type === d.type && r.class === d.class)
+    .sort((a, b) => status ? a.name.localeCompare(b.name)
+      : (b.power || 0) - (a.power || 0) || a.name.localeCompare(b.name));
+  const at = Math.max(0, peersAll.findIndex(r => r.move === d.move));
+  const from = Math.max(0, Math.min(at - 8, peersAll.length - 16));
+  const peers = peersAll.slice(from, from + 16);
+  const acc = r => r.accuracy ? r.accuracy + "%" : "sure hit";
+
+  $("#movemid").innerHTML = `
+    <section class="card span2 movehero">
+      <div class="headline">
+        <span class="dexnum">#${String(d.id).padStart(3, "0")}</span>
+        <h1 class="species-name">${esc(d.name)}</h1>
+        ${delta.new ? `<span class="chip place">new in Oxide</span>` : ""}
+      </div>
+      <div class="tl">${typeChip(d.type)} <span class="sub">${tidy(d.class)}</span></div>
+      <p class="entry">${esc(d.description || "")}</p>
+      ${moveStub(d)}
+      <div class="tiles">
+        ${tile("Power", status ? "&middot;" : d.power || "varies")}
+        ${tile("Accuracy", d.accuracy ? d.accuracy + "%" : "sure hit")}
+        ${tile("PP", d.pp)}
+        ${tile("Target", esc(tidy(d.range)), true)}
+      </div>
+      ${extra ? `<div class="sub">${extra}</div>` : ""}
+    </section>
+
+    <section class="card">
+      <h2>What it does in Oxide</h2>
+      <p style="margin:0">${esc(tidy(d.effect))}${d.effect_chance
+        ? `, ${d.effect_chance}% of the time` : ""}.
+        <span class="sub num">effect #${d.effect_id}</span></p>
+      <div class="flagchips">${(d.flags || []).map(f => `<span class="chip plain">${esc(tidy(f))}</span>`).join("")
+        || `<span class="sub">No flags.</span>`}</div>
+    </section>
+
+    <section class="card">
+      <h2>Against vanilla</h2>
+      ${was}
+    </section>
+
+    <section class="card span2">
+      <div class="cardhead"><h2>Who learns it</h2>
+        <span class="sub">${count} species</span></div>
+      ${who || `<p class="sub">No species learns it${delta.new
+        ? ". The new species' learnsets are still to be refilled, which is element 4's last piece." : "."}</p>`}
+    </section>
+
+    <section class="card span2">
+      <div class="cardhead"><h2>${esc(tidy(d.type))} ${status ? "status" : tidy(d.class).toLowerCase()} moves${
+        status ? "" : ", by power"}</h2>
+        <span class="sub">this move marked${peersAll.length > peers.length
+          ? `; ${peers.length} of ${peersAll.length}` : ""}</span></div>
+      <div class="peers">${peers.map(r => `<div class="peer${r.move === d.move ? " me" : ""}" data-mv="${r.move}">
+          <span>${esc(r.name)}</span><span class="num">${status ? "" : r.power || "varies"}</span>
+          <span class="num">${acc(r)}</span><span class="num">${r.pp}</span></div>`).join("")}</div>
+    </section>`;
+  $("#movemid").scrollTop = 0;
+  $("#movemid").querySelectorAll(".learner").forEach(el =>
     el.onclick = () => openSpecies(el.dataset.sp));
+  $("#movemid").querySelectorAll(".peer").forEach(el =>
+    el.onclick = () => el.dataset.mv !== d.move && selectMove(el.dataset.mv));
 }
 
 // A jump from another view clears a filter that would hide the row it lands
