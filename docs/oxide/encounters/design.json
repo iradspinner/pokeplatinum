@@ -11583,7 +11583,7 @@
     "encounters_verity_lakefront": {
       "archetype": "A18",
       "band": "early",
-      "intent": "A new capture area (the map still needs grass and its header pointed here): Pikipek and Blipbug at home, eight lines, Minccino by day, Kricketot by night.",
+      "intent": "A new capture area: Pikipek and Blipbug at home, eight lines, Minccino by day, Kricketot by night.",
       "locked": [],
       "base_level": 2,
       "split": "Roark",
@@ -11610,7 +11610,7 @@
     "encounters_amity_square": {
       "archetype": "A15",
       "band": "early",
-      "intent": "A new capture area (the map still needs grass and its header pointed here): Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Smoochum by day, Drifloon and Purrloin by night; Smoochum and Drifloon are here under Fantina's cap (2026-09-27). A draft for Ian.",
+      "intent": "A new capture area: Hearthome's park, a garden like the Trophy Garden but at very low levels, since only small Pokemon may walk in with you. Skitty and Swablu lead the cute lines; Minccino and Smoochum by day, Drifloon and Purrloin by night; Smoochum and Drifloon are here under Fantina's cap (2026-09-27). A draft for Ian.",
       "locked": [],
       "base_level": 8,
       "order": 39,
