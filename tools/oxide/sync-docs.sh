@@ -111,6 +111,8 @@ copy "encounters/availability-plan.json" "Claude outputs/encounters/availability
 copy "encounters/availability.md" "Claude outputs/encounters/availability.md"
 copy "encounters/scripted-sources.md" "Claude outputs/encounters/scripted-sources.md"
 copy "encounters/scripted.json" "Claude outputs/encounters/scripted.json"
+copy "encounters/water-biomes.json" "Claude outputs/encounters/water-biomes.json"
+copy "encounters/water-lint-draft.md" "Claude outputs/encounters/water-lint-draft.md"
 copy "encounters/values.json" "Claude outputs/encounters/values.json"
 copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship-evolutions.md"
 copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
