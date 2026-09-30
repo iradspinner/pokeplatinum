@@ -455,8 +455,8 @@ button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cur
 .ico { width: 32px; height: 32px; }
 .ico img { width: 32px; height: 64px; display: block; image-rendering: pixelated; }
 
-.dexrow { display: flex; align-items: center; gap: 8px; min-height: 36px;
-  padding: 2px 12px; cursor: pointer; border-bottom: 1px solid transparent; }
+.dexrow { display: flex; align-items: center; gap: 6px; min-height: 36px;
+  padding: 2px 8px; cursor: pointer; border-bottom: 1px solid transparent; }
 .dexrow:hover { background: var(--sunken); }
 /* the species being viewed is place, like the selected area */
 .dexrow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
@@ -544,24 +544,67 @@ table.facts td { padding: 1px 0; }
 .dexsec { margin-top: 18px; }
 .dexsec > h4 { margin: 0 0 8px; font-size: 15px; font-weight: 600;
   color: var(--dim); letter-spacing: .03em; }
-/* The species page's centre is two columns: the creature and what hurts it
-   on the left, its line and where each member is met on the right (Ian,
-   2026-09-27). They stack when the centre is too narrow for both. What it
-   can learn lives in the right column of the page alone. */
-.dexcols { display: grid; gap: 0 32px; align-items: start;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
-/* The line: stages down the column, a branch's siblings side by side, and
-   where each member is met directly under it. */
-.lineflow { display: flex; flex-direction: column; gap: 4px; }
-.lineflow .stagerow { display: grid; gap: 8px;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
-.lineflow .down { color: var(--faint); text-align: center; font-size: 15px; line-height: 1; }
-.linecard { border: 1px solid var(--rule); border-radius: 4px; padding: 6px 8px;
-  background: var(--panel); }
+/* The Dex tab as Ian approved it (2026-09-29, the redesign's Main board): a
+   narrow list, the species in cards down the centre, and its moves in a
+   rail of their own on the right. */
+#dexmain { grid-template-columns: 300px minmax(560px, 1fr) 400px; }
+#dexmid { display: flex; flex-direction: column; gap: 16px; padding: 20px 24px 40px;
+  font-size: 16px; }
+/* The column scrolls, so a card keeps its height rather than shrinking to
+   fit the window and clipping what it holds. */
+#dexmid > *, #dexright > * { flex-shrink: 0; }
+#dexmid .card { background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column;
+  gap: 10px; min-width: 0; }
+#dexmid .card h2, #dexright h2 { margin: 0; font-size: 17px; }
+#dexmid .cardrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+#dexmid .cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+#dexmid .cardhead .total { color: var(--dim); font-family: var(--mono); }
+#dexmid .cardhead .total .num { color: var(--ink); font-weight: 600; }
+#dexmid .vdelta { font-family: var(--sans); font-size: 13px; margin-left: 6px; }
+#dexmid table.stats { max-width: none; }
+#dexmid table.facts { margin-top: 2px; }
+#dexmid .card.dexhero { flex-direction: row; align-items: flex-start; gap: 20px; }
+.dexhero .who { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.dexhero .species-name { margin: 0; font-size: 32px; line-height: 1.1; }
+.dexhero .tl { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dexhero .entry { margin: 0; max-width: 60ch; line-height: 1.5; color: var(--dim); }
+.dexhero .tocalc { color: var(--place-ink); }
+.dmgwords { display: flex; flex-wrap: wrap; gap: 6px 24px; font-size: 15px; }
+.dmgwords .weak { color: var(--stat-0); }
+.dmgwords .resist { color: var(--stat-4); }
+#dexmid .mxgrid { grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 6px; }
+#dexmid .mxcell { border-radius: 8px; padding: 6px 2px; }
+/* The line across the page: each stage a column, an arrow between stages
+   carrying how the next is reached when a stage has one way in, and a
+   branch's siblings stacked in their column, each saying how it is reached. */
+.lineflow { display: flex; align-items: stretch; gap: 10px; }
+.lineflow .stagecol { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.lineflow .evoarrow { width: 60px; flex: none; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; color: var(--dim); font-size: 13px;
+  text-align: center; }
+.lineflow .evoarrow b { font-size: 20px; font-weight: 400; }
+.linecard { border: 1px solid var(--rule); border-radius: 10px; padding: 10px 12px;
+  background: var(--sunken); }
 .linecard.here { border-color: var(--place-ink); }
-.linecard .head { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.linecard .head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  font-size: 16px; font-weight: 700; }
+.linecard .way { font-size: 13px; color: var(--dim); margin-bottom: 4px; }
 .linecard .met { font-size: 14px; padding: 2px 4px; border-radius: 3px; line-height: 1.35; }
-.linecard .none { font-size: 14px; color: var(--faint); }
+.linecard .none { font-size: 14px; color: var(--dim); }
+/* The moves rail: four tabs over one table (the redesign, 2026-09-29). */
+#dexright { display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 40px; }
+.segtabs { display: flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.segtabs button { flex: 1; border: 0; padding: 8px 4px; font-size: 14px; background: transparent;
+  color: var(--dim); cursor: pointer; }
+.segtabs button + button { border-left: 1px solid var(--rule); }
+.segtabs button.on { background: var(--place-bg); color: var(--place-ink); font-weight: 700; }
+.segtabs button:disabled { color: var(--faint); cursor: default; }
+.segtabs .n { font-family: var(--mono); }
+.movetab { width: 100%; }
+.movetab tbody tr:nth-child(odd) td { background: var(--sunken); }
+.movetab td { padding: 5px 6px; }
+.movetab th { padding: 0 6px 4px; }
 #dexright .dexsec:first-child { margin-top: 0; }
 .evoline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .evoline .arrow { color: var(--faint); font-size: 16.5px; }
@@ -960,10 +1003,7 @@ function drawDexList() {
       <span class="ico"><img src="${sprite(r.folder, "icon")}" alt="" loading="lazy"></span>
       <span class="nm">${esc(r.name)}${weatherTag(r)}</span>
       <span class="tt">${r.types.map(t => typeChip(t, "mini")).join("")}</span>
-      <span class="num" style="width:3.2em">${r.bst}</span>
-      <span class="delta${r.canon_delta < 0 ? " down" : ""}" style="width:3em"
-            title="against this species' real Generation 9 self">${
-        r.canon_delta ? signed(r.canon_delta) : ""}</span>
+      <span class="num" style="width:2.6em">${r.bst}</span>
     </div>`).join("") || `<p class="sub" style="padding:10px 12px">Nothing matches.</p>`;
   $("#dexrows").querySelectorAll(".dexrow").forEach(el =>
     el.onclick = () => selectSpecies(el.dataset.sp));
@@ -1020,15 +1060,6 @@ function facts(d) {
   </table>`;
 }
 
-// Machine, tutor and egg moves as a run of type chips, each opening its move.
-// The level-up table carries the numbers; these only need to say what.
-function moveLinks(title, list, prefix) {
-  if (!list || !list.length) return "";
-  return `<div class="dexsec"><h4>${title} &middot; ${list.length}</h4>
-    <div class="movelinks">${list.map(m => `<a href="#" data-mv="${m.move}"
-      title="${esc(prefix ? prefix(m) : "")}">${typeChip(m.type || "NORMAL", "mini", m.label)}</a>`).join("")}</div></div>`;
-}
-
 // A species with a weather ability in a regular slot, which Oxide rules out:
 // the player never sets or ends weather. Shown wherever the species is offered.
 function weatherTag(x) {
@@ -1043,6 +1074,18 @@ function weatherTag(x) {
 const lvText = lv => lv === 0
   ? `<span title="An evolution move: taught on evolving into this species, and by the Move Relearner">Evo</span>`
   : lv;
+
+// An evolution's condition in the Dex's line, beside the level when it has
+// one (the redesign, 2026-09-29); the method names as the tree writes them,
+// without their EVO_ prefix.
+const EVO_WORDS = { LEVEL_KNOW_MOVE: "knowing a set move", LEVEL_MOSS_ROCK: "by the Moss Rock",
+  LEVEL_ICE_ROCK: "by the Ice Rock", LEVEL_MAGNETIC_FIELD: "in Mt. Coronet",
+  LEVEL_BEAUTY: "with high Beauty", LEVEL_MALE: "male", LEVEL_FEMALE: "female",
+  LEVEL_SPECIES_IN_PARTY: "with a partner in the party", LEVEL_ATK_GT_DEF: "Attack over Defense",
+  LEVEL_ATK_LT_DEF: "Defense over Attack", LEVEL_ATK_EQ_DEF: "Attack equal to Defense",
+  LEVEL_PID_LOW: "by its personality", LEVEL_PID_HIGH: "by its personality",
+  LEVEL_NINJASK: "", LEVEL_SHEDINJA: "with a spare slot and a Poke Ball" };
+const titled = t => String(t).split("_").map(w => w[0] + w.slice(1).toLowerCase()).join(" ");
 
 function evoText(e) {
   if (e.level) return `level ${e.level}`;
@@ -1075,78 +1118,111 @@ function drawDexDetail() {
       ${typeChip(t, "mini")}<span class="m">×${multLabel(v)}</span></div>`;
   }).join("")}</div>`;
   // Where one member of the line is met, under that member (Ian, 2026-09-27):
-  // each place opens its table.
+  // each place opens its table. A member met nowhere says so in Ian's words
+  // (the redesign, 2026-09-29).
   const metList = caps => (caps || []).length ? caps.map(c => `<div class="met go"
       data-area="${esc(c.area)}" data-kind="${esc(c.kind)}" title="Open this table">
       <b>${esc(c.location || c.area)}</b> ${splitTag(c.split)}<span class="arrow">&rsaquo;</span><br>
       <span class="sub">${esc(KINDS[c.kind] || c.kind)} &middot; ${c.share
         ? `<span class="share">${pct(c.share)}</span>` : "one of five slots"} &middot;
         level ${c.level_min}${c.level_max !== c.level_min ? "&ndash;" + c.level_max : ""}</span>
-    </div>`).join("") : `<div class="none">Not in any table.</div>`;
+    </div>`).join("") : `<div class="none">No Wild Encounters</div>`;
+
+  // Damage taken in words above the grid: the weaknesses, the resistances and
+  // the immunities, the strongest first.
+  const byMult = v => TYPES.filter(t => ((d.matchups || {})[t] ?? 1) === v).map(tidy);
+  const bucket = (v, sign) => byMult(v).length ? `${byMult(v).join(", ")} ${sign}` : "";
+  const said = (...parts) => parts.filter(Boolean).join(" &middot; ");
+  const weak = said(bucket(4, "×4"), bucket(2, "×2"));
+  const resist = said(bucket(0.25, "×¼"), bucket(0.5, "×½"));
+  const immune = byMult(0).join(", ");
+
+  // The line across the page, stage by stage, with how each member is reached
+  // from the one before it: over the arrow when a stage has one way in, on
+  // each card when a branch has several (Eevee's).
+  const line = d.line || [];
+  const into = sp => { for (const m of line) for (const e of m.evolutions || [])
+    if (e.into === sp) return e; return null; };
+  const how = e => {
+    if (!e) return "";
+    const m = String(e.method || "").replace(/^EVO_/, "");
+    const item = e.item && titled(e.item);
+    const lv = e.level ? `Lv ${e.level}` : "";
+    if (/HELD_ITEM/.test(m)) return `holding ${item}${/NIGHT/.test(m) ? " at night" : /DAY/.test(m) ? " by day" : ""}`;
+    if (item) return item + (/MALE$/.test(m) ? (/FEMALE$/.test(m) ? ", female" : ", male") : "");
+    return [lv, EVO_WORDS[m] || (lv ? "" : tidy(m))].filter(Boolean).join(", ");
+  };
+  const stages = stagesOf(line);
+  const lineHtml = stages.map((group, i) => {
+    const ways = group.map(m => how(into(m.species)));
+    const one = new Set(ways).size === 1 ? ways[0] : "";
+    return `${i ? `<div class="evoarrow"><span>${esc(one)}</span><b>&rarr;</b></div>` : ""}
+      <div class="stagecol">${group.map((m, j) => `
+        <div class="linecard${m.species === d.species ? " here" : ""}">
+          <div class="head"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
+            <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a></div>
+          ${i && !one && ways[j] ? `<div class="way">${esc(ways[j])}</div>` : ""}
+          ${metList(m.captures)}
+        </div>`).join("")}</div>`;
+  }).join("");
 
   $("#dexmid").innerHTML = `
-    <div style="display:flex; gap:16px; align-items:flex-start">
+    <section class="card dexhero">
       <div class="stage">${front ? `<span class="spr"><img src="${sprite(d.folder, front)}" alt=""></span>` : ""}</div>
-      <div>
+      <div class="who">
         ${number ? `<span class="dexnum">#${String(number).padStart(3, "0")}</span>` : ""}
-        <div class="species-name">${esc(d.name)}
-          ${d.delta && d.delta.new ? `<span class="chip place mini">new</span>` : ""}</div>
-        <div>${d.types.map(t => typeChip(t)).join("")}
+        <h1 class="species-name">${esc(d.name)}
+          ${d.delta && d.delta.new ? `<span class="chip place mini">new</span>` : ""}</h1>
+        <div class="tl">${d.types.map(t => typeChip(t)).join("")}
              <span class="sub">${esc(d.category || "")}</span>
              ${d.canon_name ? `<a href="#" class="tocalc" id="tocalc"
-               title="Open the calculator with this species as the attacker">Calc</a>` : ""}</div>
-        <div class="sub" style="margin-top:8px">${canonNote}${
-          bstDelta ? `; <span class="delta${bstDelta < 0 ? " down" : ""}">${signed(bstDelta)}</span> from vanilla Platinum` : ""}</div>
-        ${d.canon && d.canon.types ? `<div class="sub">typed
-          ${d.canon.types.now.join(" / ")} here, ${d.canon.types.was.join(" / ")} really</div>` : ""}
-        <div class="sub" style="margin-top:8px; max-width:46ch">${esc(d.entry || "")}</div>
+               title="Open the calculator with this species as the attacker">Open in Calc</a>` : ""}</div>
+        <p class="entry">${esc(d.entry || "")}</p>
+        <div class="sub">${canonNote}${d.canon && d.canon.types ? `; typed
+          ${d.canon.types.now.join(" / ")} here, ${d.canon.types.was.join(" / ")} really` : ""}</div>
       </div>
+    </section>
+
+    <div class="cardrow">
+      <section class="card">
+        <div class="cardhead"><h2>Base stats</h2>
+          <span class="total">total <span class="num">${d.bst}</span>${bstDelta
+            ? ` <span class="chip plain vdelta">${signed(bstDelta)} from vanilla</span>` : ""}</span></div>
+        <table class="stats">${statRows(d)}</table>
+      </section>
+      <section class="card">
+        <h2>Abilities and the rest</h2>
+        <div>
+          ${d.abilities.map(a => `<span class="chip plain${(d.weather || []).includes(a) ? " warn" : ""}">${esc(tidy(a))}</span>`).join("")}
+          ${d.hidden_ability ? `<span class="chip place">${esc(tidy(d.hidden_ability))} &middot; hidden</span>` : ""}
+        </div>
+        ${d.delta && d.delta.abilities
+          ? `<div class="sub">Vanilla had
+             ${d.delta.abilities.was.map(tidy).join(", ") || "none"}</div>` : ""}
+        ${(d.weather || []).length ? `<div class="stubnote">${esc(d.weather.map(tidy).join(" and "))}
+          sets or cancels weather, which the player never does in Oxide. It stays in the
+          pool, and the main track's ability pass moves it out of the regular slot.</div>` : ""}
+        ${facts(d)}
+      </section>
     </div>
 
-    <div class="dexcols"><div>
-    <div class="dexsec">
-      <h4>Base stats &middot; total <span class="num">${d.bst}</span></h4>
-      <table class="stats">${statRows(d)}</table>
-    </div>
-
-    <div class="dexsec"><h4>Damage taken</h4>${mx}</div>
-
-    <div class="dexsec">
-      <h4>Abilities</h4>
-      ${d.abilities.map(a => `<span class="chip plain${(d.weather || []).includes(a) ? " warn" : ""}">${esc(tidy(a))}</span>`).join("")}
-      ${d.hidden_ability ? `<span class="chip place">${esc(tidy(d.hidden_ability))} &middot; hidden</span>` : ""}
-      ${d.delta && d.delta.abilities
-        ? `<div class="sub" style="margin-top:4px">Vanilla had
-           ${d.delta.abilities.was.map(tidy).join(", ") || "none"}</div>` : ""}
-      ${(d.weather || []).length ? `<div class="stubnote">${esc(d.weather.map(tidy).join(" and "))}
-        sets or cancels weather, which the player never does in Oxide. It stays in the
-        pool, and the main track's ability pass moves it out of the regular slot.</div>` : ""}
-    </div>
-
-    <div class="dexsec">
-      <h4>The rest of it</h4>
-      ${facts(d)}
-    </div>
-    </div><div>
-
-    <div class="dexsec">
-      <h4>The line, and where each is met</h4>
-      <div class="lineflow">
-        ${stagesOf(d.line || []).map(group => `<div class="stagerow">${group.map(m => `
-          <div class="linecard${m.species === d.species ? " here" : ""}">
-            <div class="head"><span class="ico"><img src="${sprite(m.folder, "icon")}" alt=""></span>
-              <a href="#" data-sp="${m.species}" class="${m.species === d.species ? "here" : ""}">${esc(m.label)}</a></div>
-            ${metList(m.captures)}
-          </div>`).join("")}</div>`).join('<div class="down">⌄</div>')}
+    <section class="card">
+      <h2>Damage taken</h2>
+      <div class="dmgwords">
+        ${weak ? `<span><b class="weak">Weak</b> <span class="sub">${weak}</span></span>` : ""}
+        ${resist ? `<span><b class="resist">Resists</b> <span class="sub">${resist}</span></span>` : ""}
+        ${immune ? `<span><b>Immune</b> <span class="sub">${esc(immune)}</span></span>` : ""}
       </div>
-      ${d.evolutions.length ? `<div class="sub" style="margin-top:6px">
-        ${d.evolutions.map(e => `${esc(d.name)} &rarr; ${esc(e.label || "")}
-          <span class="sub">(${esc(evoText(e))})</span>`).join("; ")}</div>` : ""}
-      ${(d.formes || []).length ? `<div class="sub" style="margin-top:6px">
+      ${mx}
+    </section>
+
+    <section class="card">
+      <h2>The line, and where each is met</h2>
+      <div class="lineflow">${lineHtml}</div>
+      ${(d.formes || []).length ? `<div class="sub">
         Formes: ${d.formes.map(e => `<a href="#" data-sp="${e.into}">${esc(e.label || "")}</a>
           <span class="sub">(${esc(evoText(e))}, day or night)</span>`).join("; ")}</div>` : ""}
-    </div>
-    </div></div>`;
+    </section>`;
   $("#dexmid").querySelectorAll("a[data-sp]").forEach(a =>
     a.onclick = ev => { ev.preventDefault(); selectSpecies(a.dataset.sp); });
   const toCalc = $("#tocalc");
@@ -1161,23 +1237,39 @@ function drawDexDetail() {
 
 // What a species can learn, in the page's right column and nowhere else (Ian,
 // 2026-09-27): its four lists, or one move's details with a way back to them.
+// The four ways in one table each, behind tabs (the redesign, 2026-09-29):
+// level-up first, and the tab chosen stays chosen from species to species.
+let DEXMOVETAB = "level";
+const DEX_MOVE_TABS = [
+  ["level", "Level-up", d => d.learnset, m => lvText(m.level), "Lv"],
+  ["machine", "Machines", d => d.machine_moves, m => esc(m.machine || ""), "TM"],
+  ["tutor", "Tutor", d => d.tutor_moves, () => "", ""],
+  ["egg", "Egg", d => d.egg_moves, () => "", ""],
+];
+
 function drawDexMoves(d) {
+  const tab = DEX_MOVE_TABS.find(t => t[0] === DEXMOVETAB) || DEX_MOVE_TABS[0];
+  const list = tab[2](d) || [];
+  const dot = v => v ? v : `<span class="sub">&middot;</span>`;
   $("#dexright").innerHTML = `
-    <div class="dexsec">
-      <h4>Level-up moves</h4>
-      <table class="learn">
-        <thead><tr><th>Lv</th><th>Move</th><th>Type</th><th>Cat</th>
-          <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
-        <tbody>${d.learnset.map(m => `<tr>
-          <td class="num">${lvText(m.level)}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
-          <td>${m.type ? typeChip(m.type, "mini") : ""}</td><td class="sub">${tidy(m.class)}</td>
-          <td class="num">${m.power || ""}</td><td class="num">${m.accuracy || ""}</td>
-        </tr>`).join("")}</tbody>
-      </table>
-    </div>
-    ${moveLinks("Machine moves", d.machine_moves, m => m.machine)}
-    ${moveLinks("Tutor moves", d.tutor_moves)}
-    ${moveLinks("Egg moves", d.egg_moves)}`;
+    <h2>Moves</h2>
+    <div class="segtabs">${DEX_MOVE_TABS.map(([k, label, get]) => {
+      const n = (get(d) || []).length;
+      return `<button data-tab="${k}" class="${k === tab[0] ? "on" : ""}"${n ? "" : " disabled"}>${label}${
+        n ? ` <span class="n">${n}</span>` : ""}</button>`;
+    }).join("")}</div>
+    ${list.length ? `<table class="learn movetab">
+      <thead><tr><th>${tab[4]}</th><th>Move</th><th>Type</th>
+        <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
+      <tbody>${list.map(m => `<tr>
+        <td class="num">${tab[3](m)}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
+        <td>${m.type ? typeChip(m.type, "mini") : ""}</td>
+        <td class="num">${dot(m.power)}</td><td class="num">${dot(m.accuracy)}</td>
+      </tr>`).join("")}</tbody>
+    </table>` : `<p class="sub">None.</p>`}
+    <p class="sub">Click a move to read it here; the lists come back with one click.</p>`;
+  $("#dexright").querySelectorAll(".segtabs button").forEach(b =>
+    b.onclick = () => { DEXMOVETAB = b.dataset.tab; drawDexMoves(d); });
   $("#dexright").querySelectorAll("a[data-mv]").forEach(a =>
     a.onclick = ev => { ev.preventDefault(); showDexMove(a.dataset.mv); });
 }
