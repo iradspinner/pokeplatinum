@@ -430,6 +430,9 @@ Basic_ScoreMoveEffectByEffect:
     // Oxide: Life Dew heals as Recover does; Strength Sap fails when the
     // target's Attack is already at -6.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Basic_CheckCanRecoverHP
+    // Oxide, change (Ian, 2026-09-27, the new moves' routing): Lunar Blessing and Jungle
+    // Healing heal and cure, and fail only with nothing to do (2026-09-30).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Basic_CheckLunarBlessing
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
     // Oxide: Sticky Web fails when the target's side already has one, and is
     // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
@@ -789,6 +792,13 @@ Basic_CheckCanRecoverHP:
 
 Basic_CheckCanRecoverHP_Terminate:
     PopOrEnd 
+
+Basic_CheckLunarBlessing:
+    // Oxide: Lunar Blessing and Jungle Healing also cure a status, so at 100% HP they
+    // score -8 only when the attacker has no status either, where they fail (in a
+    // double battle the partner may still gain, which Life Dew's check ignores too).
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckCanRecoverHP_Terminate
+    GoTo Basic_CheckCanRecoverHP
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.
@@ -2251,6 +2261,7 @@ Expert_Main:
     // Oxide, change (Ian, 2026-09-27): the new recovery moves, as Recover.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Expert_Recovery // Oxide, change (Ian, 2026-09-27)
     // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
     // condition the damage estimate does not see, scored as Wake-Up Slap and
     // Smelling Salts are.
