@@ -289,6 +289,33 @@ def main():
     results.append(("a slower Pokemon's Quick Claw moves it first about one time in five",
                     50 <= firsts <= 115, f"{firsts} of 400"))
 
+    # Powder: Grass types are immune, and the AI knows; Leaf Guard stops
+    # status in sun (the engine knows, the AI does not).
+    recs = [{"constant": "SPECIES_TSAREENA", "species": "Tsareena", "how": "test", "level": 26, "nature": "Lonely",
+             "ivs": IV, "evs": EV, "ability": "Leaf Guard", "moves": ["Stomp"], "fill": False},
+            {"constant": "SPECIES_GOLBAT", "species": "Golbat", "how": "test", "level": 26, "nature": "Lonely",
+             "ivs": IV, "evs": EV, "ability": "Inner Focus", "moves": ["Wing Attack"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("gardenia"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0", "p1"], boss_keys, flags, 0)
+    b.dice = pl.RunDice(random.Random(5), True); b.rng = random.Random(5)
+    rose, tsa, gol = boss(b, "Roserade"), b.p.mons[0], b.p.mons[1]
+    spore = mv(rose, "Stun Spore")
+    for _ in range(20):
+        pl.status_move(b, rose, spore, tsa, True)
+    results.append(("Stun Spore never paralyses a Grass type, and the AI scores it -10",
+                    tsa.status is None and fightai.basic(b, rose, tsa, spore, 0) == -10,
+                    f"{tsa.status}, {fightai.basic(b, rose, tsa, spore, 0)}"))
+    b.weather = "Sun"
+    gol.ability = "Leaf Guard"
+    for _ in range(20):
+        pl.status_move(b, rose, spore, gol, True)
+    results.append(("Leaf Guard stops status in sun", gol.status is None, f"{gol.status}"))
+    b.weather = None
+    for _ in range(20):
+        pl.status_move(b, rose, spore, gol, True)
+    results.append(("out of sun Leaf Guard does not", gol.status == "par", f"{gol.status}"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

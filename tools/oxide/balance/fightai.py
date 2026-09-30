@@ -146,6 +146,10 @@ def basic(b, u, t, mv, f):
         return -10
     if mv.damaging() and eff(b, mv, t) == 0:
         return -10
+    # Basic_CheckPowderImmunity (Oxide): a powder move at a Grass type or an
+    # Overcoat holder scores -10; Rage Powder is aimed at its user.
+    if mv.name in fs.POWDER and mv.name != "Rage Powder" and fs.powder_immune(t, mv):
+        return -10
     if e in fs.STATUS_OF:
         # Status moves skip Basic's immunity check (basic.md, lines 62 to 68);
         # of the status handlers only Basic_CheckCannotParalyze asks the type

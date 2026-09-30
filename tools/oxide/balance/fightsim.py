@@ -413,8 +413,24 @@ def can_status(b, target, status):
     return target.ability not in immune.get(status, set())
 
 
+# The powder and spore moves (battle_lib.c, sPowderMoves): Grass types and
+# Overcoat are immune to them in Oxide (Generation 6).
+POWDER = {"Cotton Spore", "Poison Powder", "Sleep Powder", "Stun Spore", "Spore", "Powder",
+          "Rage Powder", "Magic Powder"}
+
+
+def powder_immune(target, mv):
+    return mv.name in POWDER and ("Grass" in target.types or target.ability == "Overcoat")
+
+
+def leaf_guarded(b, target):
+    """Leaf Guard keeps every major status off its holder in sun. The engine
+    knows it; the AI does not, so this is not part of can_status."""
+    return target.ability == "Leaf Guard" and b.weather == "Sun"
+
+
 def give_status(b, target, status):
-    if not can_status(b, target, status):
+    if not can_status(b, target, status) or leaf_guarded(b, target):
         return False
     target.status = status
     if status == "slp":
@@ -724,6 +740,8 @@ def status_move(b, att, mv, dfn, first):
         # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
         # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.
         if mv.name == "Thunder Wave" and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+            return
+        if powder_immune(dfn, mv):
             return
         if not b.accuracy_hits(att, dfn, mv):
             return

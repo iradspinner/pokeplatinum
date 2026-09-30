@@ -242,7 +242,7 @@ def give_status(b, target, status):
     # keeps fightsim's sleep roll.
     if not hasattr(b, "dice"):
         return _FS_GIVE_STATUS(b, target, status)
-    if not fs.can_status(b, target, status):
+    if not fs.can_status(b, target, status) or fs.leaf_guarded(b, target):
         return False
     target.status = status
     if status == "slp":
@@ -563,6 +563,9 @@ def status_move(b, att, mv, dfn, first):
         # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
         # while Hypnosis sleeps a Dark type and Will-O-Wisp burns a Normal one.
         if mv.name == "Thunder Wave" and fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+            return
+        # Grass types and Overcoat are immune to powder and spore moves.
+        if fs.powder_immune(dfn, mv):
             return
         if not accuracy_hits(b, att, dfn, mv):
             return
