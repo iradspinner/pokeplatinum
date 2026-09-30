@@ -1343,6 +1343,14 @@
     .long (\jump_on_fail-.) / 4 - 1
     .endm
 
+    @ Oxide: jumps when Safeguard is up on the battler's side and the attacker's
+    @ Infiltrator does not pass it.
+    .macro CheckSafeguard battler, jump_safeguard_up
+    .long BTLCMD_CHECKSAFEGUARD
+    .long \battler
+    .long (\jump_safeguard_up-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

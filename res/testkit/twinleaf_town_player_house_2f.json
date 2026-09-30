@@ -522,6 +522,14 @@
             "en_US": "Kaizo move data"
         },
         {
+            "id": "TestKit_Text_MenuStapleInfiltratorSubstitute",
+            "en_US": "Infiltrator, Substitute"
+        },
+        {
+            "id": "TestKit_Text_MenuStapleInfiltratorSafeguard",
+            "en_US": "Infiltrator, Safeguard"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },

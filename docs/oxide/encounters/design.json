@@ -290,6 +290,12 @@
             42
           ]
         ]
+      },
+      "water_biome": "industrial",
+      "water_biome_why": "the ironworks' river (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Qwilfish": "the poisoned fish of an industrial river (review)",
+        "Frillish": "the review's 1% at the ironworks"
       }
     },
     "encounters_great_marsh_1": {
@@ -445,7 +451,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_2": {
       "archetype": "A11",
@@ -600,7 +608,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_3": {
       "archetype": "A12",
@@ -755,7 +765,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_4": {
       "archetype": "A11",
@@ -910,7 +922,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_5": {
       "archetype": "A16",
@@ -1065,7 +1079,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_6": {
       "archetype": "A11",
@@ -1220,7 +1236,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the Great Marsh (review: marsh-true) (draft, 2026-09-29)"
     },
     "encounters_iron_island_1f": {
       "archetype": "A17",
@@ -1539,6 +1557,13 @@
             46
           ]
         ]
+      },
+      "water_biome": "lake",
+      "water_biome_why": "the cold lake, one of the three lakes (draft, 2026-09-29)",
+      "water_earned": {
+        "Lapras": "Lapras at Acuity (review)",
+        "Seel": "the cold lake's seal (review)",
+        "Spheal": "the cold lake's seal (review's 1%)"
       }
     },
     "encounters_lake_valor": {
@@ -1690,6 +1715,11 @@
             42
           ]
         ]
+      },
+      "water_biome": "lake",
+      "water_biome_why": "the bombed lake, one of the three lakes (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "a ghost at the bombed lake (review's lake palette)"
       }
     },
     "encounters_lake_verity": {
@@ -1823,7 +1853,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "lake",
+      "water_biome_why": "one of the three lakes, which Ian names as water places (draft, 2026-09-29)"
     },
     "encounters_lake_verity_low_water": {
       "archetype": "A15",
@@ -1956,7 +1988,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "lake",
+      "water_biome_why": "Lake Verity after the blast, the same lake (draft, 2026-09-29)"
     },
     "encounters_maniac_tunnel": {
       "archetype": "A14",
@@ -2203,7 +2237,9 @@
           ]
         ]
       },
-      "capture_area": "Mt. Coronet South"
+      "capture_area": "Mt. Coronet South",
+      "water_biome": "cave_pool",
+      "water_biome_why": "the mountain's cave stream; vanilla's Surf was Zubat and Golbat (draft, 2026-09-29)"
     },
     "encounters_mt_coronet_1f_tunnel_room": {
       "archetype": "A17",
@@ -2554,7 +2590,12 @@
           ]
         ]
       },
-      "capture_area": "Mt. Coronet B1F"
+      "capture_area": "Mt. Coronet B1F",
+      "water_biome": "cave_pool",
+      "water_biome_why": "the underground lake; vanilla's Surf was Zubat and Golbat (draft, 2026-09-29)",
+      "water_earned": {
+        "Feebas": "Feebas and Milotic are fixed here, a super-wanted line"
+      }
     },
     "encounters_mt_coronet_outside_north": {
       "archetype": "A19",
@@ -3005,6 +3046,11 @@
       },
       "slot_species": {
         "6": "SPECIES_MUDKIP"
+      },
+      "water_biome": "cave_pool",
+      "water_biome_why": "the Gate's cave pool; vanilla's Surf was Psyduck and Zubat (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "a ghost in the Gate's pool, the review's 1%"
       }
     },
     "encounters_oreburgh_mine_b1f": {
@@ -3192,6 +3238,11 @@
             34
           ]
         ]
+      },
+      "water_biome": "cave_pool",
+      "water_biome_why": "a cave pool; vanilla's Surf was Psyduck and Zubat (draft, 2026-09-29)",
+      "water_earned": {
+        "Feebas": "Feebas and Milotic are fixed here, a super-wanted line"
       }
     },
     "encounters_route_201": {
@@ -3387,7 +3438,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the fishing pool beside the route (review) (draft, 2026-09-29)"
     },
     "encounters_route_204_north": {
       "archetype": "A14",
@@ -3521,7 +3574,9 @@
       },
       "slot_species": {
         "3": "SPECIES_BUDEW"
-      }
+      },
+      "water_biome": "lowland_river",
+      "water_biome_why": "the same river, north of the Ravaged Path (review) (draft, 2026-09-29)"
     },
     "encounters_route_204_south": {
       "archetype": "A19",
@@ -3658,7 +3713,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "lowland_river",
+      "water_biome_why": "the river south of the Ravaged Path (review) (draft, 2026-09-29)"
     },
     "encounters_route_205_north": {
       "archetype": "A19",
@@ -3794,7 +3851,9 @@
             34
           ]
         ]
-      }
+      },
+      "water_biome": "lowland_river",
+      "water_biome_why": "the river by Eterna Forest (review) (draft, 2026-09-29)"
     },
     "encounters_route_205_south": {
       "archetype": "A19",
@@ -3930,7 +3989,9 @@
             34
           ]
         ]
-      }
+      },
+      "water_biome": "lowland_river",
+      "water_biome_why": "the river below the Windworks (review) (draft, 2026-09-29)"
     },
     "encounters_route_206": {
       "archetype": "A19",
@@ -4145,7 +4206,9 @@
             36
           ]
         ]
-      }
+      },
+      "water_biome": "mountain_stream",
+      "water_biome_why": "the stream down from Mt. Coronet (review) (draft, 2026-09-29)"
     },
     "encounters_route_209": {
       "archetype": "A19",
@@ -4299,6 +4362,11 @@
             38
           ]
         ]
+      },
+      "water_biome": "mountain_stream",
+      "water_biome_why": "the stream by the Lost Tower (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "a ghost jelly under the graveyard (review)"
       }
     },
     "encounters_route_209_lost_tower_1f": {
@@ -4583,6 +4651,11 @@
             42
           ]
         ]
+      },
+      "water_biome": "mountain_stream",
+      "water_biome_why": "the fog stream (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "Jellicent in the fog stays (review)"
       }
     },
     "encounters_route_210_south": {
@@ -4830,7 +4903,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the garden pond by the Pokemon Mansion (review) (draft, 2026-09-29)"
     },
     "encounters_route_212_south": {
       "archetype": "A19",
@@ -4984,7 +5059,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "the rain swamp, the Froakie line's home (review) (draft, 2026-09-29)"
     },
     "encounters_route_213": {
       "archetype": "A19",
@@ -5138,7 +5215,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "the beach and its tide pools (review) (draft, 2026-09-29)"
     },
     "encounters_route_214": {
       "archetype": "A19",
@@ -5292,7 +5371,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the pond above the cave (review) (draft, 2026-09-29)"
     },
     "encounters_route_215": {
       "archetype": "A17",
@@ -5513,7 +5594,9 @@
             42
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "the strait's shallows (review: Finneon and Krabby) (draft, 2026-09-29)"
     },
     "encounters_route_221": {
       "archetype": "A19",
@@ -5667,7 +5750,9 @@
             42
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "the coast (review) (draft, 2026-09-29)"
     },
     "encounters_route_222": {
       "archetype": "A19",
@@ -5821,7 +5906,9 @@
             48
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "Sunyshore's beach (review) (draft, 2026-09-29)"
     },
     "encounters_route_224": {
       "archetype": "A19",
@@ -5976,7 +6063,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "not in the review: the post-game coast by the map (draft, 2026-09-29)"
     },
     "encounters_route_225": {
       "archetype": "A19",
@@ -6130,7 +6219,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "mountain_stream",
+      "water_biome_why": "a mountain stream (review) (draft, 2026-09-29)"
     },
     "encounters_route_226": {
       "archetype": "A18",
@@ -6281,7 +6372,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "open_sea",
+      "water_biome_why": "the sea below the cliffs (review) (draft, 2026-09-29)"
     },
     "encounters_route_227": {
       "archetype": "A19",
@@ -6435,6 +6528,11 @@
             55
           ]
         ]
+      },
+      "water_biome": "hot_spring",
+      "water_biome_why": "the volcanic hot springs (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Feebas": "Feebas and Milotic are fixed here, a super-wanted line"
       }
     },
     "encounters_route_228": {
@@ -6589,7 +6687,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "hot_spring",
+      "water_biome_why": "the desert oasis (review) (draft, 2026-09-29)"
     },
     "encounters_route_229": {
       "archetype": "A19",
@@ -6743,7 +6843,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "lowland_river",
+      "water_biome_why": "the meadow stream (review) (draft, 2026-09-29)"
     },
     "encounters_route_230": {
       "archetype": "A18",
@@ -6894,7 +6996,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "open_sea",
+      "water_biome_why": "the tropical sea (review) (draft, 2026-09-29)"
     },
     "encounters_ruin_maniac_cave_long": {
       "archetype": "A16",
@@ -7098,6 +7202,11 @@
             55
           ]
         ]
+      },
+      "water_biome": "lake",
+      "water_biome_why": "the fogbound lake (review); vanilla's Surf was all Golduck (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "a ghost at the fogbound lake (review's lake palette)"
       }
     },
     "encounters_snowpoint_temple_1f": {
@@ -9381,6 +9490,11 @@
             34
           ]
         ]
+      },
+      "water_biome": "industrial",
+      "water_biome_why": "the power plant's water (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Chinchou": "the one inland home of an electric fish (review)"
       }
     },
     "encounters_valor_lakefront": {
@@ -9613,7 +9727,9 @@
             52
           ]
         ]
-      }
+      },
+      "water_biome": "cave_pool",
+      "water_biome_why": "the cave river's side room, post-game (draft, 2026-09-29)"
     },
     "encounters_victory_road_1f_room_3": {
       "archetype": "A13",
@@ -9819,7 +9935,9 @@
             52
           ]
         ]
-      }
+      },
+      "water_biome": "cave_pool",
+      "water_biome_why": "the cave river; vanilla's Surf was Floatzel and Golbat (draft, 2026-09-29)"
     },
     "encounters_wayward_cave_1f": {
       "archetype": "A15",
@@ -10006,7 +10124,9 @@
             42
           ]
         ]
-      }
+      },
+      "water_biome": "harbour",
+      "water_biome_why": "the harbour (review) (draft, 2026-09-29)"
     },
     "encounters_celestic_town": {
       "archetype": null,
@@ -10139,6 +10259,11 @@
             42
           ]
         ]
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the spring pond (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Frillish": "Jellicent at 60% in the old town's pond stays (review)"
       }
     },
     "encounters_eterna_city": {
@@ -10254,7 +10379,9 @@
             34
           ]
         ]
-      }
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the town canal, a pond's palette (review) (draft, 2026-09-29)"
     },
     "encounters_great_marsh_lookout": {
       "archetype": null,
@@ -10405,7 +10532,9 @@
             42
           ]
         ]
-      }
+      },
+      "water_biome": "open_sea",
+      "water_biome_why": "the open sea round the island (review) (draft, 2026-09-29)"
     },
     "encounters_pastoria_city": {
       "archetype": null,
@@ -10538,7 +10667,9 @@
             40
           ]
         ]
-      }
+      },
+      "water_biome": "marsh",
+      "water_biome_why": "marsh-edge water, which the review keeps as it is (draft, 2026-09-29)"
     },
     "encounters_pokemon_league": {
       "archetype": null,
@@ -10671,7 +10802,9 @@
             52
           ]
         ]
-      }
+      },
+      "water_biome": "mountain_stream",
+      "water_biome_why": "the mountaintop pools (review) (draft, 2026-09-29)"
     },
     "encounters_resort_area": {
       "archetype": null,
@@ -10804,7 +10937,9 @@
             55
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "the warm sea off the resort (review) (draft, 2026-09-29)"
     },
     "encounters_route_219": {
       "archetype": null,
@@ -10919,7 +11054,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "beach",
+      "water_biome_why": "the beach south of Sandgem (review) (draft, 2026-09-29)"
     },
     "encounters_route_220": {
       "archetype": null,
@@ -11052,7 +11189,9 @@
             42
           ]
         ]
-      }
+      },
+      "water_biome": "open_sea",
+      "water_biome_why": "open sea (review) (draft, 2026-09-29)"
     },
     "encounters_route_223": {
       "archetype": null,
@@ -11185,7 +11324,9 @@
             52
           ]
         ]
-      }
+      },
+      "water_biome": "open_sea",
+      "water_biome_why": "the deep sea before the League (review) (draft, 2026-09-29)"
     },
     "encounters_sunyshore_city": {
       "archetype": null,
@@ -11318,7 +11459,9 @@
             48
           ]
         ]
-      }
+      },
+      "water_biome": "harbour",
+      "water_biome_why": "the harbour (review) (draft, 2026-09-29)"
     },
     "encounters_twinleaf_town": {
       "archetype": null,
@@ -11433,7 +11576,9 @@
             32
           ]
         ]
-      }
+      },
+      "water_biome": "village_pond",
+      "water_biome_why": "the village pond (review: already a pond on the Old Rod and Surf) (draft, 2026-09-29)"
     },
     "encounters_verity_lakefront": {
       "archetype": "A18",
@@ -11589,6 +11734,11 @@
             52
           ]
         ]
+      },
+      "water_biome": "cold_sea",
+      "water_biome_why": "the cold harbour (review) (draft, 2026-09-29)",
+      "water_earned": {
+        "Snover": "the Ice slots through the fishing holes stay (review)"
       }
     },
     "encounters_sandgem_town": {

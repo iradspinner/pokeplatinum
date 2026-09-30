@@ -17,14 +17,12 @@ For reference, the obtainable species whose hidden ability sets or cancels weath
 
 | Species | Slot | Ability | What it does | First split | How |
 |---|---|---|---|---|---|
-| Alolan Ninetales | hidden | Snow Warning | sets snow | Roark | Route 207: grass, as Vulpix; Alolan Ninetales by a Ice Stone |
 | Golduck | hidden | Cloud Nine | cancels weather | Roark | Lake Verity: Old Rod, as Psyduck; Golduck by level 33 |
-| Ninetales | hidden | Drought | sets sun | Roark | Route 207: grass, as Vulpix; Ninetales by a Fire Stone |
 | Pelipper | hidden | Drizzle | sets rain | Roark | Sandgem Town: grass, as Wingull; Pelipper by level 25 |
-| Politoed | hidden | Drizzle | sets rain | Roark | Route 203: Old Rod, as Poliwag; Poliwhirl by level 25, then Politoed by holding a King's Rock |
 | Psyduck | hidden | Cloud Nine | cancels weather | Roark | Lake Verity: Old Rod |
 | Vulpix | hidden | Drought | sets sun | Roark | Route 207: grass |
 | Abomasnow | hidden | Snow Warning | sets snow | Gardenia | Mt. Coronet North: grass, as Snover; Abomasnow by level 40 |
+| Alolan Ninetales | hidden | Snow Warning | sets snow | Gardenia | Mt. Coronet North: grass |
 | Snover | hidden | Snow Warning | sets snow | Gardenia | Mt. Coronet North: grass |
 | Altaria | hidden | Cloud Nine | cancels weather | Fantina | Amity Square: grass, as Swablu; Altaria by level 35 |
 | Hippopotas | hidden | Sand Stream | sets a sandstorm | Fantina | Wayward Cave: grass |
@@ -33,6 +31,8 @@ For reference, the obtainable species whose hidden ability sets or cancels weath
 | Tyranitar | hidden | Sand Stream | sets a sandstorm | Fantina | Wayward Cave: grass, as Larvitar; Pupitar by level 30, then Tyranitar by level 55 |
 | Lickilicky | hidden | Cloud Nine | cancels weather | Maylene | Route 215: grass, as Lickitung; Lickilicky by knowing a set move |
 | Lickitung | hidden | Cloud Nine | cancels weather | Maylene | Route 215: grass |
+| Ninetales | hidden | Drought | sets sun | Maylene | Route 207: grass, as Vulpix; Ninetales by a Fire Stone |
+| Politoed | hidden | Drizzle | sets rain | Wake | Route 203: Old Rod, as Poliwag; Poliwhirl by level 25, then Politoed by holding a King's Rock |
 
 Flagged species with no way to obtain them now (held back, or with no source), left out of the lists above:
 

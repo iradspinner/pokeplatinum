@@ -2,6 +2,10 @@
 
 
 _000:
+    // Oxide: a Pokemon facing an Unnerve holder cannot eat its Berry, so the
+    // type-resist Berries (and the Chilan Berry) do nothing, as BerryBlockedByUnnerve
+    // rules for the Berries eaten from C.
+    CheckAbility CHECK_HAVE_ON_OPPOSING_SIDE, BTLSCR_MSG_TEMP, ABILITY_UNNERVE, _262
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_IGNORE_TYPE_CHECKS|SYSCTL_IGNORE_IMMUNITIES, _262
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ONE_HIT_KO, _262
     CheckAbility CHECK_NOT_HAVE, BTLSCR_ATTACKER, ABILITY_NORMALIZE, _020

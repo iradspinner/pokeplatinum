@@ -9647,6 +9647,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} is switched\n",
         "out with the {STRVAR_1 8, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsPoisoning_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was cured of its\n",
+        "poisoning!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsPoisoning_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was cured\n",
+        "of its poisoning!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonWasCuredOfItsPoisoning_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was cured\n",
+        "of its poisoning!"
+      ]
     }
   ]
 }
