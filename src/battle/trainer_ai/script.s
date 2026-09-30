@@ -210,6 +210,16 @@ Basic_CheckPrankster:
     // affect a Dark-type target (element 5), so score -10.
     IfPranksterBlockedByDark ScoreMinus10
 
+Basic_CheckMagicBounce:
+    // Oxide: Magic Bounce, a hidden ability since element 8, turns a move Magic Coat would back
+    // on its user, unless Mold Breaker ignores it, so a reflectable move into a target the AI
+    // knows or guesses has it scores -10, as a sound move into Soundproof does.
+    CheckBattlerAbility AI_BATTLER_DEFENDER, ABILITY_MAGIC_BOUNCE
+    IfLoadedNotEqualTo AI_HAVE, Basic_CheckQueenlyMajesty
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckQueenlyMajesty
+    IfMoveCanBeReflected ScoreMinus10
+
 Basic_CheckQueenlyMajesty:
     // Oxide: Queenly Majesty stops a move of raised priority aimed at its
     // holder or the holder's partner (element 5), unless Mold Breaker ignores

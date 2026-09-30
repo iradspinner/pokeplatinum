@@ -202,6 +202,7 @@ static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext
 static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2867,6 +2868,32 @@ static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleCo
     }
 
     if (damage == expected) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored is one Magic Coat and Magic
+ * Bounce turn back on its user.
+ *
+ * The engine turns a move back when it carries MOVE_FLAG_CAN_MAGIC_COAT and is
+ * aimed at the holder (BattleControllerPlayer_MoveStolen). A move that works
+ * on its user or its user's side, or on the whole field, is left alone, as
+ * IfPranksterBlockedByDark leaves it; one aimed at the foe's side (Spikes and
+ * the like) counts, since the engine aims it at a foe.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int range = MOVE_DATA(AI_CONTEXT.move).range;
+
+    if ((MOVE_DATA(AI_CONTEXT.move).flags & MOVE_FLAG_CAN_MAGIC_COAT)
+        && (range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
         AIScript_Iter(battleCtx, jump);
     }
 }
