@@ -266,6 +266,29 @@ def main():
                     pick[1].name == "Struggle" and vull.hp < hp_v and hp_b - bronzor.hp == bronzor.maxhp // 4,
                     f"{pick[1].name}; Vullaby {hp_v} to {vull.hp}; Bronzor {hp_b} to {bronzor.hp} of {bronzor.maxhp}"))
 
+    # Quick Claw: a slower player's Pokemon holding it moves first about one
+    # time in five.
+    geo = b.p.mons[1]
+    b.p.active = 1
+    geo.item = "Quick Claw"
+    bronzor.pp = {m.name: 10 for m in bronzor.moves}
+    firsts = 0
+    for i in range(400):
+        c = pl.clone_battle(b)
+        c.rng = random.Random(i); c.dice = pl.RunDice(c.rng, True)
+        g, bz = c.p.cur(), c.b.cur()
+        g.hp, bz.hp = g.maxhp, bz.maxhp
+        log = []
+        orig = pl.use_move
+        pl.use_move = lambda bb, att, m, d, first, _o=orig, _l=log: (_l.append(att.side), _o(bb, att, m, d, first))
+        try:
+            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Calm Mind")))
+        finally:
+            pl.use_move = orig
+        firsts += bool(log) and log[0] == "p"
+    results.append(("a slower Pokemon's Quick Claw moves it first about one time in five",
+                    50 <= firsts <= 115, f"{firsts} of 400"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

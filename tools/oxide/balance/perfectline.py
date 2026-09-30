@@ -995,10 +995,12 @@ def _turn(c, pa, aa):
             if c.trick_room:
                 sa, sd = -sa, -sd
             if sa < sd or (sa == sd and not c.dice.tie_player_first()):
-                order.reverse()
+                # The player is slower: its Quick Claw (one in five) keeps it
+                # first. Before this the check sat after this branch and could
+                # never fire.
+                if not (me.item == "Quick Claw" and c.dice.good(0.2)):
+                    order.reverse()
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):
-                order.reverse()
-            elif me.item == "Quick Claw" and sa < sd and c.dice.good(0.2):
                 order.reverse()
     for i, (mon, mv) in enumerate(order):
         target = fs.foe_of(c, mon)
