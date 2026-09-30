@@ -1,4 +1,4 @@
-# The encounter tool: a build plan
+# The Platinum OxiDex (the encounter tool): a build plan
 
 Written 2026-09-20, from `docs/oxide/encounter-tool-design.md` (v1.0) and the
 measurements in `docs/oxide/encounter-design-survey.md`, both of which are now
