@@ -226,6 +226,11 @@ class Mon:
         self.sub = 0
         self.charging = None
         self.recharge = False
+        # Block and Mean Look: this Pokemon cannot switch while the Pokemon
+        # that trapped it (trapped_by, its key) stays in. Ingrain roots the
+        # user: it cannot switch, and heals at the end of each turn.
+        self.trapped_by = None
+        self.ingrained = False
         self.lock = None                 # (move, turns) for Outrage and kin
         self.choice = None
         self.taunt = 0
@@ -452,6 +457,33 @@ def hurt(b, mon, amount):
     if amount <= 0 or not mon.alive():
         return
     mon.hp = max(0, mon.hp - amount)
+    berry_check(mon)
+
+
+# A pinch berry raises a stat by one stage once its holder is at a quarter of
+# its HP or less; Sitrus heals a quarter and Oran 10 once at half or less. In
+# Generation 4 each fires as soon as the HP drops, not at the end of the turn.
+PINCH_BERRIES = {"Apicot Berry": "spd", "Liechi Berry": "atk", "Ganlon Berry": "def",
+                 "Salac Berry": "spe", "Petaya Berry": "spa"}
+
+
+def berry_check(mon):
+    if not mon.alive() or not mon.item:
+        return
+    if mon.item in PINCH_BERRIES and mon.hp * 4 <= mon.maxhp:
+        change_stages(mon, {PINCH_BERRIES[mon.item]: 1})
+        mon.item = None
+    elif mon.item == "Sitrus Berry" and mon.hp * 2 <= mon.maxhp:
+        heal(mon, mon.maxhp // 4)
+        mon.item = None
+    elif mon.item == "Oran Berry" and mon.hp * 2 <= mon.maxhp:
+        heal(mon, 10)
+        mon.item = None
+
+
+def can_switch(mon):
+    """False while Block, Mean Look or its own Ingrain holds it in."""
+    return mon.trapped_by is None and not mon.ingrained
 
 
 def heal(mon, amount):
@@ -794,6 +826,11 @@ def status_move(b, att, mv, dfn, first):
 
 def switch_in(b, side, index, slot=0):
     """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
+    leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
+    if leaving is not None:
+        for foe in (b.b if side is b.p else b.p).mons:
+            if foe.trapped_by == leaving.key:
+                foe.trapped_by = None
     if slot == 0:
         side.cur().reset_volatile()
         side.active = index
@@ -867,6 +904,9 @@ def _end_of_turn_mon(b, side, m):
             m.yawn -= 1
             if m.yawn == 0:
                 give_status(b, m, "slp")
+        if m.ingrained and m.alive() and m.hp < m.maxhp:
+            gain = m.maxhp // 16
+            heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
         if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
             heal(m, m.maxhp // 4)
             m.item = None

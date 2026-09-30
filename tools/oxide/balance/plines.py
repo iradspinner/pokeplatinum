@@ -198,7 +198,7 @@ def decide(b, line):
         return "move", me.moves[0]
     moves = [mv for mv in me.moves if usable(b, me, foe, mv)]
     attacks = [mv for mv in moves if mv.damaging()]
-    can_switch = not me.bound and b.p.bench()
+    can_switch = not me.bound and fs.can_switch(me) and b.p.bench()
     win, t_me, t_foe, _plain, _crit = exchange(b)
     first = (b.speed(me) > b.speed(foe)) if not b.trick_room else (b.speed(me) < b.speed(foe))
     # A knockout this turn that the foe cannot answer first.

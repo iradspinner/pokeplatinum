@@ -407,6 +407,8 @@ def attack(b, att, mv, dfn, first):
             return
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
+        if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
+            dmg *= 2
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_IF_HIT" and att.hit_this_turn:
@@ -422,9 +424,10 @@ def attack(b, att, mv, dfn, first):
         dealt = 0
     else:
         full = dfn.hp == dfn.maxhp
-        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+        sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
+        if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
             dmg = dfn.hp - 1
-            if dfn.item == "Focus Sash":
+            if dfn.item == "Focus Sash" and not sturdy:
                 dfn.item = None
         if dmg >= dfn.hp and getattr(dfn, "enduring", False):
             dmg = dfn.hp - 1
@@ -434,6 +437,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
+        fs.berry_check(dfn)
         dfn.hit_this_turn = (mv.cat, dealt)
         dfn.last_hit_by = mv
         if dfn.status == "frz" and mv.type == "Fire":
@@ -442,7 +446,18 @@ def attack(b, att, mv, dfn, first):
     if e in fs.RECOIL and att.ability != "Rock Head":
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
     if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
-        fs.heal(att, dealt // 2)
+        # Big Root raises what a draining move restores by 30%.
+        gain = dealt // 2
+        fs.heal(att, int(gain * 1.3) if att.item == "Big Root" else gain)
+    if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
+        # Bug Bite and Pluck eat the target's berry and take its effect.
+        berry, dfn.item = dfn.item, None
+        if berry == "Sitrus Berry":
+            fs.heal(att, att.maxhp // 4)
+        elif berry == "Oran Berry":
+            fs.heal(att, 10)
+        elif berry in fs.PINCH_BERRIES:
+            fs.change_stages(att, {fs.PINCH_BERRIES[berry]: 1})
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in fs.SELF_KO:
@@ -533,6 +548,11 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STATUS_SLEEP_NEXT_TURN":
         if not dfn.status and not dfn.yawn and not dfn.sub:
             dfn.yawn = 2
+    elif e == "PREVENT_ESCAPE":
+        if dfn.trapped_by is None and not dfn.sub:
+            dfn.trapped_by = att.key
+    elif e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
+        att.ingrained = True
     elif e == "STATUS_LEECH_SEED":
         if "Grass" not in dfn.types and not dfn.sub:
             dfn.seeded = True
@@ -905,6 +925,22 @@ def _turn(c, pa, aa):
     """The turn's body on a battle whose dice are set: switches, the two
     moves in order, the end of the turn, a knockout's replacement."""
     b_active_p, b_active_b = c.p.active, c.b.active
+    if pa[0] == "switch" and not fs.can_switch(c.p.cur()):
+        raise ValueError(f"{c.p.cur().species} is trapped and cannot switch")
+    # Pursuit hits a Pokemon that is switching out before it leaves, at
+    # double power, and is then spent for the turn.
+    if pa[0] == "switch" and aa[0] == "move" and aa[1].effect == "HIT_BEFORE_SWITCH" and c.b.cur().alive():
+        c.b.cur().pursuing = True
+        use_move(c, c.b.cur(), aa[1], c.p.cur(), True)
+        c.b.cur().pursuing = False
+        aa = ("none", None)
+        if not c.p.cur().alive():
+            pa = ("none", None)
+    if aa[0] == "switch" and pa[0] == "move" and pa[1].effect == "HIT_BEFORE_SWITCH" and c.p.cur().alive():
+        c.p.cur().pursuing = True
+        use_move(c, c.p.cur(), pa[1], c.b.cur(), True)
+        c.p.cur().pursuing = False
+        pa = ("none", None)
     if pa[0] == "switch":
         fs.switch_in(c, c.p, pa[1])
     if aa[0] == "switch":

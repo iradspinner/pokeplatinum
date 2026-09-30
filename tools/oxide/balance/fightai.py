@@ -147,6 +147,12 @@ def basic(b, u, t, mv, f):
         return -5 if t.confused else (-10 if t.ability == "Own Tempo" else 0)
     if e == "STATUS_LEECH_SEED":
         return -10 if t.seeded or "Grass" in t.types else 0
+    # Basic_CheckMeanLook and Basic_CheckAlreadyIngrained
+    # (docs/oxide/battle-ai/basic.md): a second trap, a second rooting.
+    if e == "PREVENT_ESCAPE":
+        return -10 if t.trapped_by is not None else 0
+    if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
+        return -10 if u.ingrained else 0
     if e in fs.SELF_STAGES:
         ch = fs.SELF_STAGES[e]
         stats = [k for k, v in ch.items() if v > 0]
@@ -647,6 +653,8 @@ def _se_moves(b, mon, t):
 
 def should_switch(b, side, u, t):
     """The switch rules (section 3 of the spec), first answer decides."""
+    if not fs.can_switch(u):
+        return None          # trapped by Block or Mean Look, or rooted by Ingrain
     bench = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
     if not bench or u.bound:
         return None
