@@ -106,6 +106,7 @@ u32 PokedexSort_DeoxysForm(const PokedexSortData *param0, int formIndex);
 u32 PokedexSort_Form(const PokedexSortData *param0, u32 species, int formIndex);
 u32 PokedexSort_NumFormsSeen(const PokedexSortData *param0, u32 species);
 BOOL PokedexSort_IsNationalUnlocked(const PokedexSortData *param0);
+BOOL PokedexSort_HasNationalDexFromStory(const PokedexSortData *param0);
 void PokedexSort_SetCurrentSpecies(PokedexSortData *param0, u32 param1);
 u32 PokedexSort_GetCurrentSpecies(const PokedexSortData *param0);
 void PokedexSort_SetBootMode(PokedexSortData *param0, u32 param1);
