@@ -1706,13 +1706,13 @@
     "redux_hc": 18
    },
    "left_out": {},
-   "calcs": 101864,
+   "calcs": 101884,
    "errors": [
     "b2.2 Cyclone: damage is not a number"
    ],
-   "node_seconds": 32.34,
-   "wall_seconds": 33.27,
-   "fingerprint": "fd699a7b2c6cbdfbf0fa",
+   "node_seconds": 14.26,
+   "wall_seconds": 14.56,
+   "fingerprint": "fba0ec479543fcee3160",
    "verified": true
   },
   "maylene": {
@@ -1870,11 +1870,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 31734,
+   "calcs": 31740,
    "errors": [],
-   "node_seconds": 9.21,
-   "wall_seconds": 9.63,
-   "fingerprint": "1a9c2727d31b958f2735",
+   "node_seconds": 6.55,
+   "wall_seconds": 6.74,
+   "fingerprint": "13a9cf403594174f49a6",
    "verified": true
   },
   "barry_4": {
@@ -2288,11 +2288,11 @@
     "redux_hc": 18
    },
    "left_out": {},
-   "calcs": 135328,
+   "calcs": 135349,
    "errors": [],
-   "node_seconds": 39.01,
-   "wall_seconds": 39.84,
-   "fingerprint": "366cdd9223c95ed5863d",
+   "node_seconds": 18.12,
+   "wall_seconds": 18.46,
+   "fingerprint": "8298b68e838743506446",
    "verified": true
   },
   "wake": {
@@ -2461,11 +2461,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 45781,
+   "calcs": 45788,
    "errors": [],
-   "node_seconds": 17.59,
-   "wall_seconds": 18.14,
-   "fingerprint": "ed3bb7db02b87191d3a1",
+   "node_seconds": 8.22,
+   "wall_seconds": 8.46,
+   "fingerprint": "0a2794b07bcd462f4f5c",
    "verified": true
   },
   "cyrus_1": {
@@ -2635,11 +2635,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 52865,
+   "calcs": 52872,
    "errors": [],
-   "node_seconds": 17.97,
-   "wall_seconds": 18.7,
-   "fingerprint": "aa25f6646a6f382fc16e",
+   "node_seconds": 9.14,
+   "wall_seconds": 9.31,
+   "fingerprint": "845ecad7a94f5b263b34",
    "verified": true
   },
   "barry_5": {
@@ -3055,11 +3055,11 @@
     "redux_hc": 18
    },
    "left_out": {},
-   "calcs": 174880,
+   "calcs": 174903,
    "errors": [],
-   "node_seconds": 43.4,
-   "wall_seconds": 44.21,
-   "fingerprint": "8411d5927f87df1b947d",
+   "node_seconds": 21.12,
+   "wall_seconds": 21.64,
+   "fingerprint": "7d15858fefb61b9a71db",
    "verified": true
   },
   "byron": {
@@ -3225,11 +3225,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 60355,
+   "calcs": 60363,
    "errors": [],
-   "node_seconds": 20.25,
-   "wall_seconds": 20.7,
-   "fingerprint": "0c3fee2e6ec6a49104d7",
+   "node_seconds": 6.82,
+   "wall_seconds": 7.05,
+   "fingerprint": "8f89a16a63d467a134a4",
    "verified": true
   },
   "saturn_1": {
@@ -3399,11 +3399,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 55518,
+   "calcs": 55525,
    "errors": [],
-   "node_seconds": 10.53,
-   "wall_seconds": 10.96,
-   "fingerprint": "e30e7e141835ab721b4e",
+   "node_seconds": 6.21,
+   "wall_seconds": 6.41,
+   "fingerprint": "674128ea0dd68f57c275",
    "verified": true
   },
   "mars_2": {
@@ -3567,11 +3567,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 47208,
+   "calcs": 47214,
    "errors": [],
-   "node_seconds": 9.81,
-   "wall_seconds": 10.01,
-   "fingerprint": "33ef9e2b07ac2922c0e0",
+   "node_seconds": 5.26,
+   "wall_seconds": 5.41,
+   "fingerprint": "939450babb6b3ccf6d0a",
    "verified": true
   },
   "candice": {
@@ -3750,11 +3750,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 70370,
+   "calcs": 70379,
    "errors": [],
-   "node_seconds": 13.78,
-   "wall_seconds": 14.09,
-   "fingerprint": "8ad7497c843af7b86166",
+   "node_seconds": 8.58,
+   "wall_seconds": 8.82,
+   "fingerprint": "d22a174810aaae77225e",
    "verified": true
   },
   "cyrus_2": {
@@ -3930,11 +3930,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 71559,
+   "calcs": 71568,
    "errors": [],
-   "node_seconds": 13.58,
-   "wall_seconds": 13.85,
-   "fingerprint": "091b8398e07249179846",
+   "node_seconds": 11.96,
+   "wall_seconds": 12.17,
+   "fingerprint": "ff76b680cfc77648dcec",
    "verified": true
   },
   "saturn_2": {
@@ -4099,11 +4099,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 49478,
+   "calcs": 49484,
    "errors": [],
-   "node_seconds": 9.85,
-   "wall_seconds": 10.09,
-   "fingerprint": "ba562e2d3c1cefb4a23b",
+   "node_seconds": 8.5,
+   "wall_seconds": 8.74,
+   "fingerprint": "7e45986000f6c6fbd56b",
    "verified": true
   },
   "mars_jupiter": {
@@ -4400,11 +4400,11 @@
     "redux_hc": 12
    },
    "left_out": {},
-   "calcs": 131890,
+   "calcs": 131905,
    "errors": [],
-   "node_seconds": 23.59,
-   "wall_seconds": 24.15,
-   "fingerprint": "f52573caaf3f130cfdee",
+   "node_seconds": 18.6,
+   "wall_seconds": 18.96,
+   "fingerprint": "b3bcb9e722d420736dcb",
    "verified": true
   },
   "cyrus_3": {
@@ -4567,11 +4567,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 62676,
+   "calcs": 62683,
    "errors": [],
-   "node_seconds": 11.82,
-   "wall_seconds": 12.07,
-   "fingerprint": "12bc2593c59410476f8b",
+   "node_seconds": 10.49,
+   "wall_seconds": 10.74,
+   "fingerprint": "0a29c7b59cc77a66eb82",
    "verified": true
   },
   "volkner": {
@@ -4749,11 +4749,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 71792,
+   "calcs": 71800,
    "errors": [],
-   "node_seconds": 12.1,
-   "wall_seconds": 12.58,
-   "fingerprint": "9fcb2910216ead56ed4f",
+   "node_seconds": 12.33,
+   "wall_seconds": 12.78,
+   "fingerprint": "7b897989fb92e2d3cde1",
    "verified": true
   },
   "barry_6": {
@@ -5177,11 +5177,11 @@
     "redux_hc": 18
    },
    "left_out": {},
-   "calcs": 189112,
+   "calcs": 189133,
    "errors": [],
-   "node_seconds": 31.54,
-   "wall_seconds": 32.14,
-   "fingerprint": "47e5c9a4fcaba7daffb7",
+   "node_seconds": 25.2,
+   "wall_seconds": 25.65,
+   "fingerprint": "b6e1080579ec6574c70a",
    "verified": true
   },
   "aaron": {
@@ -5351,11 +5351,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 71848,
+   "calcs": 71856,
    "errors": [],
-   "node_seconds": 12.1,
-   "wall_seconds": 12.73,
-   "fingerprint": "fa2d91a040b15ccabec6",
+   "node_seconds": 12.04,
+   "wall_seconds": 12.71,
+   "fingerprint": "445d9117b399005d6723",
    "verified": true
   },
   "bertha": {
@@ -5531,11 +5531,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 71848,
+   "calcs": 71856,
    "errors": [],
-   "node_seconds": 16.78,
-   "wall_seconds": 17.04,
-   "fingerprint": "25b987b0af6106b59db5",
+   "node_seconds": 11.99,
+   "wall_seconds": 12.28,
+   "fingerprint": "03de5640f904499283fd",
    "verified": true
   },
   "flint": {
@@ -5705,11 +5705,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 64267,
+   "calcs": 64274,
    "errors": [],
-   "node_seconds": 15.28,
-   "wall_seconds": 15.53,
-   "fingerprint": "f962c52782ca13c65daf",
+   "node_seconds": 10.89,
+   "wall_seconds": 11.21,
+   "fingerprint": "d351c9f6d7e329ebbab1",
    "verified": true
   },
   "lucian": {
@@ -5881,13 +5881,13 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 71848,
+   "calcs": 71856,
    "errors": [
     "b0.5 Acidic Payback: damage is not a number"
    ],
-   "node_seconds": 16.65,
-   "wall_seconds": 17.1,
-   "fingerprint": "4cf0b4d9e289851f0a6a",
+   "node_seconds": 11.98,
+   "wall_seconds": 12.64,
+   "fingerprint": "2a4568f19dd5c56af292",
    "verified": true
   },
   "cynthia": {
@@ -6047,11 +6047,11 @@
     "redux_hc": 6
    },
    "left_out": {},
-   "calcs": 64267,
+   "calcs": 64274,
    "errors": [],
-   "node_seconds": 15.26,
-   "wall_seconds": 15.52,
-   "fingerprint": "5afdf99fe75e8fba6660",
+   "node_seconds": 10.6,
+   "wall_seconds": 10.87,
+   "fingerprint": "0b07e25194039724c7d3",
    "verified": true
   }
  }

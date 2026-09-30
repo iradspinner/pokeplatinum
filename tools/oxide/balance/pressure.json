@@ -1892,11 +1892,11 @@
      "branches": []
     }
    ],
-   "calcs": 60213,
+   "calcs": 60226,
    "errors": [],
-   "node_seconds": 10.28,
-   "wall_seconds": 10.53,
-   "fingerprint": "5665a8a9177a4d087410",
+   "node_seconds": 10.2,
+   "wall_seconds": 10.41,
+   "fingerprint": "194df53ceee03b6085a5",
    "verified": true
   },
   "maylene": {
@@ -2050,11 +2050,11 @@
      "branches": []
     }
    ],
-   "calcs": 31378,
+   "calcs": 31384,
    "errors": [],
-   "node_seconds": 5.39,
-   "wall_seconds": 5.58,
-   "fingerprint": "096de215e5196deacc07",
+   "node_seconds": 5.05,
+   "wall_seconds": 5.19,
+   "fingerprint": "b86471c597e68ef463b0",
    "verified": true
   },
   "barry_4": {
@@ -2397,11 +2397,11 @@
      ]
     }
    ],
-   "calcs": 100382,
+   "calcs": 100398,
    "errors": [],
-   "node_seconds": 15.56,
-   "wall_seconds": 15.85,
-   "fingerprint": "e16d71cf9094664df640",
+   "node_seconds": 14.77,
+   "wall_seconds": 15.05,
+   "fingerprint": "b6323b1405b912e14ec4",
    "verified": true
   },
   "wake": {
@@ -2564,11 +2564,11 @@
      "branches": []
     }
    ],
-   "calcs": 40162,
+   "calcs": 40168,
    "errors": [],
-   "node_seconds": 6.95,
-   "wall_seconds": 7.16,
-   "fingerprint": "9c0ef1f60a39947c772d",
+   "node_seconds": 6.88,
+   "wall_seconds": 7.07,
+   "fingerprint": "d602a1028de8be02ebe0",
    "verified": true
   },
   "cyrus_1": {
@@ -2727,11 +2727,11 @@
      "branches": []
     }
    ],
-   "calcs": 45375,
+   "calcs": 45381,
    "errors": [],
-   "node_seconds": 8.18,
-   "wall_seconds": 8.43,
-   "fingerprint": "014b99c606de4f0b0eee",
+   "node_seconds": 8.12,
+   "wall_seconds": 8.45,
+   "fingerprint": "22d472bfba33362c30fa",
    "verified": true
   },
   "barry_5": {
@@ -3077,11 +3077,11 @@
      ]
     }
    ],
-   "calcs": 119840,
+   "calcs": 119856,
    "errors": [],
-   "node_seconds": 18.06,
-   "wall_seconds": 18.42,
-   "fingerprint": "63fa40aa5f34e16c8646",
+   "node_seconds": 17.07,
+   "wall_seconds": 17.4,
+   "fingerprint": "41996ad0c534d9737ced",
    "verified": true
   },
   "byron": {
@@ -3246,11 +3246,11 @@
      "branches": []
     }
    ],
-   "calcs": 52430,
+   "calcs": 52437,
    "errors": [],
-   "node_seconds": 9.42,
-   "wall_seconds": 9.83,
-   "fingerprint": "facaf3d89784e9054e09",
+   "node_seconds": 9.95,
+   "wall_seconds": 10.21,
+   "fingerprint": "b3606123ea30ebe3854a",
    "verified": true
   },
   "saturn_1": {
@@ -3410,11 +3410,11 @@
      "branches": []
     }
    ],
-   "calcs": 47208,
+   "calcs": 47214,
    "errors": [],
-   "node_seconds": 8.75,
-   "wall_seconds": 9.18,
-   "fingerprint": "65e80dbd8cc2850f5ad4",
+   "node_seconds": 8.71,
+   "wall_seconds": 8.94,
+   "fingerprint": "b49e32a7daaeb6f04fb2",
    "verified": true
   },
   "somnu_moira": {
@@ -3594,11 +3594,11 @@
      ]
     }
    ],
-   "calcs": 67276,
+   "calcs": 67285,
    "errors": [],
-   "node_seconds": 13.59,
-   "wall_seconds": 13.85,
-   "fingerprint": "6a259f25bfc3e289373a",
+   "node_seconds": 11.48,
+   "wall_seconds": 11.77,
+   "fingerprint": "29723910c04a5cf780ee",
    "verified": true
   },
   "mars_2": {
@@ -3770,11 +3770,11 @@
      "branches": []
     }
    ],
-   "calcs": 59408,
+   "calcs": 59416,
    "errors": [],
-   "node_seconds": 12.03,
-   "wall_seconds": 12.29,
-   "fingerprint": "7804bacde3ffbcc3ffa6",
+   "node_seconds": 10.68,
+   "wall_seconds": 10.97,
+   "fingerprint": "5fa54c4ee6382cbb3af6",
    "verified": true
   },
   "candice": {
@@ -3941,11 +3941,11 @@
      "branches": []
     }
    ],
-   "calcs": 46766,
+   "calcs": 46772,
    "errors": [],
-   "node_seconds": 8.84,
-   "wall_seconds": 9.14,
-   "fingerprint": "baa5a765f9198e991216",
+   "node_seconds": 8.69,
+   "wall_seconds": 8.96,
+   "fingerprint": "c67fe75abc8ab2bc65a5",
    "verified": true
   },
   "cyrus_2": {
@@ -4114,11 +4114,11 @@
      "branches": []
     }
    ],
-   "calcs": 53885,
+   "calcs": 53892,
    "errors": [],
-   "node_seconds": 11.45,
-   "wall_seconds": 11.82,
-   "fingerprint": "a3a9fd1b3b45b5860487",
+   "node_seconds": 9.16,
+   "wall_seconds": 9.4,
+   "fingerprint": "01734bdefb1c455c3888",
    "verified": true
   },
   "saturn_2": {
@@ -4284,11 +4284,11 @@
      "branches": []
     }
    ],
-   "calcs": 63165,
+   "calcs": 63173,
    "errors": [],
-   "node_seconds": 13.65,
-   "wall_seconds": 14.02,
-   "fingerprint": "9f7e663b888a993b6de8",
+   "node_seconds": 10.8,
+   "wall_seconds": 11.17,
+   "fingerprint": "9b85f8162f590c024b7c",
    "verified": true
   },
   "mars_jupiter": {
@@ -4543,11 +4543,11 @@
      "branches": []
     }
    ],
-   "calcs": 101151,
+   "calcs": 101163,
    "errors": [],
-   "node_seconds": 20.34,
-   "wall_seconds": 20.66,
-   "fingerprint": "3619ee0596434e40b394",
+   "node_seconds": 14.37,
+   "wall_seconds": 14.81,
+   "fingerprint": "822da6c37af633696603",
    "verified": true
   },
   "cyrus_3": {
@@ -4710,11 +4710,11 @@
      "branches": []
     }
    ],
-   "calcs": 62676,
+   "calcs": 62683,
    "errors": [],
-   "node_seconds": 13.59,
-   "wall_seconds": 13.91,
-   "fingerprint": "305789b7f523cb799b6c",
+   "node_seconds": 10.25,
+   "wall_seconds": 10.51,
+   "fingerprint": "ec07683ee5399803c4ac",
    "verified": true
   },
   "volkner": {
@@ -4887,11 +4887,11 @@
      "branches": []
     }
    ],
-   "calcs": 54068,
+   "calcs": 54074,
    "errors": [],
-   "node_seconds": 11.94,
-   "wall_seconds": 12.21,
-   "fingerprint": "175152b82618b4e74010",
+   "node_seconds": 8.98,
+   "wall_seconds": 9.29,
+   "fingerprint": "4e651e00973b98dd0fac",
    "verified": true
   },
   "flint_volkner": {
@@ -5045,11 +5045,11 @@
      "branches": []
     }
    ],
-   "calcs": 55312,
+   "calcs": 55318,
    "errors": [],
-   "node_seconds": 13.01,
-   "wall_seconds": 13.42,
-   "fingerprint": "969a3b40c1c9cb0ced9e",
+   "node_seconds": 6.69,
+   "wall_seconds": 6.95,
+   "fingerprint": "5010a66e1d2d701d1b48",
    "verified": true
   },
   "lucas_dawn_3": {
@@ -5803,11 +5803,11 @@
      "branches": []
     }
    ],
-   "calcs": 366576,
+   "calcs": 366618,
    "errors": [],
-   "node_seconds": 49.44,
-   "wall_seconds": 50.44,
-   "fingerprint": "a633decff39c44893c0c",
+   "node_seconds": 42.39,
+   "wall_seconds": 43.35,
+   "fingerprint": "fea2667ae9a9b171b777",
    "verified": true
   },
   "barry_6": {
@@ -6213,11 +6213,11 @@
      ]
     }
    ],
-   "calcs": 186424,
+   "calcs": 186445,
    "errors": [],
-   "node_seconds": 30.39,
-   "wall_seconds": 30.98,
-   "fingerprint": "7fbaf3b2c66de1bccaa4",
+   "node_seconds": 23.06,
+   "wall_seconds": 23.47,
+   "fingerprint": "5f32b63685772aadced3",
    "verified": true
   },
   "aaron": {
@@ -6387,11 +6387,11 @@
      "branches": []
     }
    ],
-   "calcs": 70056,
+   "calcs": 70064,
    "errors": [],
-   "node_seconds": 15.61,
-   "wall_seconds": 16.06,
-   "fingerprint": "5f1952c36969894ed780",
+   "node_seconds": 10.87,
+   "wall_seconds": 11.08,
+   "fingerprint": "dd8b7fbe38d684427b1f",
    "verified": true
   },
   "bertha": {
@@ -6561,11 +6561,11 @@
      "branches": []
     }
    ],
-   "calcs": 55342,
+   "calcs": 55348,
    "errors": [],
-   "node_seconds": 13.12,
-   "wall_seconds": 13.49,
-   "fingerprint": "16d72b9758714f8b1212",
+   "node_seconds": 8.89,
+   "wall_seconds": 9.07,
+   "fingerprint": "aaad46eb20a7417e6b74",
    "verified": true
   },
   "flint": {
@@ -6733,11 +6733,11 @@
      "branches": []
     }
    ],
-   "calcs": 54446,
+   "calcs": 54452,
    "errors": [],
-   "node_seconds": 13.2,
-   "wall_seconds": 13.6,
-   "fingerprint": "4208e48f93e0e0d98134",
+   "node_seconds": 9.06,
+   "wall_seconds": 9.22,
+   "fingerprint": "2d61df70bb6187c1b423",
    "verified": true
   },
   "lucian": {
@@ -6908,11 +6908,11 @@
      "branches": []
     }
    ],
-   "calcs": 54446,
+   "calcs": 54452,
    "errors": [],
-   "node_seconds": 13.49,
-   "wall_seconds": 13.83,
-   "fingerprint": "84114b5bacaa1d2643b6",
+   "node_seconds": 9.38,
+   "wall_seconds": 9.54,
+   "fingerprint": "ca1643ffd0d6bea148d8",
    "verified": true
   },
   "cynthia": {
@@ -7075,11 +7075,11 @@
      "branches": []
     }
    ],
-   "calcs": 54894,
+   "calcs": 54900,
    "errors": [],
-   "node_seconds": 11.43,
-   "wall_seconds": 11.68,
-   "fingerprint": "7a647cfd9ef394a7a53e",
+   "node_seconds": 9.37,
+   "wall_seconds": 9.74,
+   "fingerprint": "ca9bd0fc9010a3e87733",
    "verified": true
   }
  }
