@@ -53,6 +53,21 @@
   --stat-3: light-dark(#5AB0AE, #7ED8D5);
   --stat-4: light-dark(#1C7C7D, #4CC3C0);
 
+  /* The Trainers tab's team sheet (the redesign, 2026-09-29): paper in every
+     theme, as Ian's own trainer sheets are, with a slate header and legend.
+     Its type tints mix 42% of the type into the paper; test_m4 holds ink to
+     4.5:1 on each. */
+  --sheet: #F7F6F1;
+  --sheet-ink: #1B1B1B;
+  --sheet-faint: #5E5A50;
+  --sheet-line: #B9B5A6;
+  --sheet-sub: #DEDBD2;
+  --sheet-item: #FBF0CC;
+  --sheet-head: #3F5A60;
+  --sheet-head2: #4B6A70;
+  --sheet-head-ink: #FFFFFF;
+  --sheet-dark: #1F2526;
+
   /* the combobox menu's shadow, the one translucent colour on the page */
   --shadow: light-dark(rgba(20, 40, 40, .16), rgba(0, 0, 0, .5));
 

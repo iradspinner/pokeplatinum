@@ -806,6 +806,28 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def _trainer_sprite(self, folder):
+        """A trainer class's front sprite, res/trainers/classes/<folder>/
+        front.png, for the Trainers tab's team sheet (the redesign,
+        2026-09-29). Like a species' sprite it is indexed colour with the
+        game's clear colour in palette entry 0, made clear the same way; an
+        animated class is a strip of frames down the image, which the page
+        crops to the first."""
+        folder = folder.replace(".png", "")
+        if "/" in folder or ".." in folder or not folder:
+            return self._send({"error": "no such trainer sprite"}, 404)
+        path = os.path.join(model.repo_root(), "res", "trainers", "classes", folder, "front.png")
+        try:
+            with open(path, "rb") as f:
+                body = _transparent_background(f.read())
+        except OSError:
+            return self._send({"error": "no such trainer sprite"}, 404)
+        self.send_response(200)
+        self.send_header("Content-Type", "image/png")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
     def _doc(self, url, ref):
         """/doc is every document, /doc/<repo path> one of them, both read
         fresh from disk or from `ref`; nothing here writes."""
@@ -855,7 +877,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return super().do_GET()
         # /api alone, or /api/area, /api/move or /api/sprite without the name
         # they need, is an unknown endpoint like any other, not a crash.
-        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer", "pair") and len(parts) < 3):
+        if len(parts) < 2 or (parts[1] in ("area", "move", "sprite", "trainer-sprite", "trainer", "pair") and len(parts) < 3):
             return self._send({"error": "unknown endpoint"}, 404)
         # The Sync bridge (savewatch.py): the save's state for the Calc tab's
         # save bar, or its party and boxes packed for the calculator's Sync.
@@ -981,6 +1003,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._send(out, 404 if "error" in out else 200)
             if parts[1] == "sprite":
                 return self._sprite(parts[2], parts[3] if len(parts) > 3 else "icon")
+            if parts[1] == "trainer-sprite":
+                return self._trainer_sprite(parts[2])
             if parts[1] == "simulate":
                 # One simulated run (the Simulator tab). The seed makes a box
                 # reproducible; the page sends a fresh one to regenerate.
