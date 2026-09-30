@@ -1,0 +1,3682 @@
+{
+ "blind_rate": 0.845,
+ "blind_clean_share": 0.48,
+ "planned_rate": 0.999,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.001,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.234,
+ "blind_wipe": 0.002,
+ "convergence": {
+  "10": 0.936,
+  "50": 0.972,
+  "100": 0.978,
+  "300": 0.986
+ },
+ "runs": 251160,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Scientist Fredrick",
+ "split": "HQ",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 9.0,
+ "rows": [
+  {
+   "rate": 0.825,
+   "deaths": 0.225,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Orbeetle; answers Alakazam->Mantine; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.865,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Orbeetle; answers Gardevoir->Orbeetle, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.395,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Gliscor; answers Gardevoir->Gliscor, Alakazam->Breloom; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "11": 1.0
+   },
+   "line": "lead Galvantula; answers Gardevoir->Quagsire, Alakazam->Quagsire; switch losing; setup at 5+ safe turns at full HP; free pivots; save Quagsire for Alakazam",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Gliscor",
+    "Milotic",
+    "Ninetales",
+    "Orbeetle",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Ninetales; answers Gardevoir->Ninetales, Alakazam->Klefki; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Klefki",
+    "Manaphy",
+    "Ninetales",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.803,
+   "deaths": 0.353,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Milotic; answers Gardevoir->Milotic, Alakazam->Bastiodon; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Bastiodon",
+    "Manaphy",
+    "Milotic",
+    "Crobat"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Galvantula; answers Gardevoir->Lopunny, Alakazam->Galvantula; switch losing; setup at 4+ safe turns; bait locks; free pivots; save Galvantula for Alakazam",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Jellicent",
+    "Liepard",
+    "Lopunny",
+    "Blastoise"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.163,
+   "wipe": 0.01,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Mantine",
+    "Blissey",
+    "Palossand"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gothitelle; answers Gardevoir->Ninetales, Alakazam->Probopass; switch hp below 0.5; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Probopass for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Ninetales",
+    "Noctowl",
+    "Probopass",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.73,
+   "deaths": 0.453,
+   "wipe": 0.013,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Vaporeon; answers Alakazam->Probopass; switch hp below 0.4; setup at 3+ safe turns; no status moves; free pivots; save Probopass for Alakazam",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Liepard",
+    "Probopass",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Gliscor; answers Gardevoir->Gliscor, Alakazam->Gothitelle; switch losing; setup at 3+ safe turns; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Gothitelle",
+    "Masquerain",
+    "Probopass",
+    "Vikavolt",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.075,
+   "wipe": 0.005,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Carbink; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.57,
+   "wipe": 0.01,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Milotic; answers Gardevoir->Milotic, Alakazam->Lanturn; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; save Lanturn for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "54": 1.0
+   },
+   "line": "lead Glimmora; answers Gardevoir->Relicanth, Alakazam->Araquanid; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Araquanid for Alakazam",
+   "candidates": 54,
+   "converged": true,
+   "runs": 1680,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Lopunny; answers Alakazam->Luxray; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Wailord, Alakazam->Rapidash; switch losing; setup at 3+ safe turns at full HP; save Rapidash for Alakazam",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:1",
+   "team": [
+    "Milotic",
+    "Rapidash",
+    "Torterra",
+    "Wailord",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Gothitelle",
+    "Ninetales",
+    "Rapidash",
+    "Vaporeon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Mamoswine",
+    "Ninetales",
+    "Rapidash",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight; switch never; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Togekiss",
+    "Cherrim",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Chandelure, Alakazam->Mandibuzz; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Absol",
+    "Mandibuzz",
+    "Masquerain",
+    "Vaporeon",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Glimmora; answers Gardevoir->Feraligatr, Alakazam->Garganacl; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Garganacl for Alakazam",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Glimmora",
+    "Mandibuzz",
+    "Chandelure",
+    "Decidueye"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Torterra, Alakazam->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Milotic",
+    "Ninetales",
+    "Octillery",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Glimmora; answers Gardevoir->Bastiodon, Alakazam->Torterra; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Bastiodon",
+    "Mamoswine",
+    "Milotic",
+    "Torterra",
+    "Tropius"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Greninja; answers Gardevoir->Greninja, Alakazam->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.415,
+   "wipe": 0.03,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Starmie; answers Gardevoir->Starmie; switch losing; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.415,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Pachirisu; answers Gardevoir->Pachirisu; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "33": 1.0
+   },
+   "line": "lead Staraptor; answers Gardevoir->Crobat, Alakazam->Glalie; switch losing; setup at 3+ safe turns at full HP; save Glalie for Alakazam",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.205,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Vespiquen; answers Gardevoir->Starmie, Alakazam->Bastiodon; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Bastiodon for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.053,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Milotic",
+    "Orbeetle",
+    "Bronzong",
+    "Chandelure",
+    "Corviknight",
+    "Delphox"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Luxray; answers Gardevoir->Chandelure, Alakazam->Crustle; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Crustle for Alakazam",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Orbeetle",
+    "Staraptor",
+    "Chandelure",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Bronzong, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns; bait locks; save Mandibuzz for Alakazam",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Greninja",
+    "Mandibuzz",
+    "Orbeetle",
+    "Bronzong",
+    "Corviknight",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Manaphy",
+    "Starmie",
+    "Chandelure",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Frosmoth; switch losing; setup at 3+ safe turns",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Garganacl",
+    "Manaphy",
+    "Masquerain",
+    "Purugly"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Delphox; answers Gardevoir->Delphox, Alakazam->Delphox; switch losing; setup at 5+ safe turns; free pivots; save Delphox for Alakazam",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Magnezone",
+    "Manaphy",
+    "Scizor",
+    "Delphox"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Ludicolo",
+    "Bronzong",
+    "Scizor",
+    "Delphox"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Kricketune",
+    "Manaphy",
+    "Mandibuzz",
+    "Bronzong"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.605,
+   "deaths": 0.405,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.5,
+    "20": 0.55,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Electivire; answers Gardevoir->Electivire; switch never; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.23,
+   "wipe": 0.005,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Wailord; answers Gardevoir->Wailord, Alakazam->Shiftry; switch hp below 0.6; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1220,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.59,
+   "deaths": 0.57,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Vaporeon; answers Gardevoir->Vaporeon, Alakazam->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.32,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Crustle; answers Gardevoir->Crustle, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; bait locks; save Ferrothorn for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Orbeetle; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Metagross",
+    "Orbeetle",
+    "Wailord",
+    "Cinderace",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Metagross; answers Alakazam->Metagross; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Metagross",
+    "Qwilfish",
+    "Talonflame",
+    "Vespiquen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "39": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Bronzong, Alakazam->Wailord; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Wailord for Alakazam",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Orbeetle, Alakazam->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1940,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Orbeetle",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Araquanid, Alakazam->Araquanid; switch losing; setup at 3+ safe turns at full HP; save Araquanid for Alakazam",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Steelix",
+    "Vespiquen",
+    "Cinderace",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Corviknight; switch losing; setup at 3+ safe turns at full HP; bait locks; save Corviknight for Alakazam",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Palossand",
+    "Weavile",
+    "Whiscash",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Frosmoth; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Magmortar",
+    "Seaking",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.4,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Kingdra; switch losing; setup at 3+ safe turns at full HP; save Kingdra for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.4,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Kingdra; answers Gardevoir->Cinderace, Alakazam->Lanturn; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Masquerain; answers Gardevoir->Kingdra; switch losing; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.195,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "33": 1.0
+   },
+   "line": "lead Bastiodon; answers Gardevoir->Milotic, Alakazam->Shiftry; switch losing; setup at 4+ safe turns; no status moves; free pivots; save Shiftry for Alakazam",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Cinderace; answers Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Milotic",
+    "Orbeetle",
+    "Bronzong",
+    "Talonflame",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Gardevoir->Corviknight, Alakazam->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Mantine",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace",
+    "Corviknight"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Luxray",
+    "Rapidash",
+    "Rotom",
+    "Togekiss",
+    "Ceruledge"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Lurantis",
+    "Manaphy",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corviknight; answers Gardevoir->Corviknight, Alakazam->Corviknight; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; save Corviknight for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Jellicent",
+    "Talonflame",
+    "Togekiss",
+    "Corviknight",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Orbeetle, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Orbeetle for Alakazam",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Milotic",
+    "Octillery",
+    "Orbeetle",
+    "Tentacruel",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Absol; answers Gardevoir->Jellicent, Alakazam->Absol; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Absol",
+    "Masquerain"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmora; answers Gardevoir->Lurantis, Alakazam->Corviknight; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 2 turns; save Corviknight for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Lurantis",
+    "Rapidash",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bronzong; answers Gardevoir->Bronzong, Alakazam->Bronzong; switch losing; setup at 3+ safe turns at full HP; free pivots; save Bronzong for Alakazam",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Gliscor; answers Gardevoir->Gliscor, Alakazam->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cherrim; answers Gardevoir->Cherrim, Alakazam->Torterra; switch never; setup at 3+ safe turns at full HP; bait locks; save Torterra for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Wailord; answers Gardevoir->Wailord, Alakazam->Gliscor; switch losing; setup at 2+ safe turns; no status moves; bait locks",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.22,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Rotom; answers Gardevoir->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Wailord; answers Gardevoir->Wailord; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Milotic",
+    "Orbeetle",
+    "Bronzong",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.863,
+   "deaths": 0.24,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Wailord; answers Gardevoir->Wailord, Alakazam->Steelix; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Milotic",
+    "Rhyperior",
+    "Steelix",
+    "Wailord"
+   ],
+   "seconds": 5.1
+  },
+  {
+   "rate": 0.787,
+   "deaths": 0.327,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Bronzong; answers Gardevoir->Bronzong, Alakazam->Weavile; switch losing; setup at 3+ safe turns at full HP; save Weavile for Alakazam",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Grapploct",
+    "Liepard",
+    "Bronzong",
+    "Steelix",
+    "Weavile"
+   ],
+   "seconds": 5.1
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Cherrim; answers Gardevoir->Cherrim, Alakazam->Torterra; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:5",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Seaking",
+    "Serperior",
+    "Torterra",
+    "Cherrim"
+   ],
+   "seconds": 6.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Torterra, Alakazam->Snorlax; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Liepard",
+    "Rotom",
+    "Snorlax",
+    "Torterra",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.753,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "102": 1.0
+   },
+   "line": "lead Bronzong; answers Gardevoir->Bronzong, Alakazam->Castform; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Castform for Alakazam",
+   "candidates": 102,
+   "converged": true,
+   "runs": 2940,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Liepard",
+    "Bronzong",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.777,
+   "deaths": 0.37,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "216": 1.0
+   },
+   "line": "lead Bronzong; answers Gardevoir->Bronzong, Alakazam->Snorlax; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Snorlax for Alakazam",
+   "candidates": 216,
+   "converged": true,
+   "runs": 5220,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Bronzong",
+    "Seaking",
+    "Snorlax",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Snorlax, Alakazam->Snorlax; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Snorlax for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Mightyena",
+    "Snorlax",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Scizor; switch losing; setup at 3+ safe turns at full HP; save Scizor for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.205,
+   "wipe": 0.025,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Frosmoth; answers Gardevoir->Frosmoth, Alakazam->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.685,
+   "deaths": 0.505,
+   "wipe": 0.005,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Chandelure; answers Gardevoir->Chandelure, Alakazam->Togekiss; switch losing; setup at 3+ safe turns at full HP; free pivots; save Togekiss for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Electivire, Alakazam->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Electivire, Alakazam->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Araquanid, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Frosmoth",
+    "Orbeetle",
+    "Chandelure",
+    "Cinderace",
+    "Dusknoir"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Absol; answers Gardevoir->Cherrim, Alakazam->Absol; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Absol",
+    "Milotic",
+    "Seaking",
+    "Vikavolt",
+    "Cherrim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Mandibuzz",
+    "Scizor",
+    "Togekiss",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Glimmora; answers Gardevoir->Araquanid, Alakazam->Mightyena; switch never; setup at 2+ safe turns at full HP; bait locks; free pivots; save Mightyena for Alakazam",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Absol",
+    "Lumineon",
+    "Manaphy",
+    "Mightyena"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Ninetales; answers Gardevoir->Ninetales, Alakazam->Abomasnow; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Absol",
+    "Ninetales",
+    "Alakazam",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.797,
+   "deaths": 0.28,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Hippowdon; answers Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Mandibuzz",
+    "Scizor"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.823,
+   "deaths": 0.29,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Manaphy; answers Gardevoir->Manaphy, Alakazam->Shiftry; switch never; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Empoleon",
+    "Hariyama",
+    "Manaphy",
+    "Mantine",
+    "Shiftry"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Florges, Alakazam->Electivire; switch losing; setup at 5+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Electivire for Alakazam",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Mightyena",
+    "Vikavolt",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.695,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95
+   },
+   "line": "lead Quagsire; answers Alakazam->Absol; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots; save Absol for Alakazam",
+   "candidates": 120,
+   "converged": true,
+   "runs": 3000,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.47,
+   "deaths": 1.06,
+   "wipe": 0.005,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Seaking; answers Alakazam->Abomasnow; switch hp below 0.4; setup at 5+ safe turns at full HP; stall timed effects at 3 turns; save Abomasnow for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Staraptor; answers Gardevoir->Jellicent, Alakazam->Empoleon; switch never; setup at 3+ safe turns at full HP; save Empoleon for Alakazam",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Electivire, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.46,
+   "wipe": 0.01,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Whiscash; answers Alakazam->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Araquanid, Alakazam->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Gliscor",
+    "Houndoom",
+    "Rapidash",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Gardevoir->Jellicent, Alakazam->Cofagrigus; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Cofagrigus for Alakazam",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Jellicent",
+    "Absol",
+    "Mantine",
+    "Rotom",
+    "Cherrim",
+    "Cofagrigus"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Incineroar",
+    "Breloom",
+    "Rapidash",
+    "Vaporeon",
+    "Vespiquen",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Gardevoir->Gastrodon, Alakazam->Weavile; switch losing; setup at 4+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Masquerain",
+    "Rotom",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Goodra",
+    "Incineroar",
+    "Ludicolo",
+    "Rapidash",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Gardevoir->Rapidash, Alakazam->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Magnezone",
+    "Mantine",
+    "Rapidash",
+    "Talonflame",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "22": 1.0
+   },
+   "line": "lead Cherrim; answers Gardevoir->Cherrim, Alakazam->Houndoom; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Houndoom for Alakazam",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Houndoom",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Rotom, Alakazam->Araquanid; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Araquanid for Alakazam",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Jellicent",
+    "Absol",
+    "Rotom",
+    "Tentacruel",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.305,
+   "deaths": 1.27,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Castform; answers Gardevoir->Jellicent, Alakazam->Togekiss; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Cinderace; answers Alakazam->Lapras; switch losing; setup at 3+ safe turns; save Lapras for Alakazam",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Delcatty, Alakazam->Araquanid; switch losing; setup at 2+ safe turns; no status moves; free pivots; save Araquanid for Alakazam",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1280,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.29,
+   "wipe": 0.01,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Quagsire; answers Alakazam->Mandibuzz; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Alakazam->Bronzong; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Bronzong for Alakazam",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Frosmoth",
+    "Orbeetle",
+    "Bronzong",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "189": 1.0
+   },
+   "line": "lead Roserade; answers Gardevoir->Roserade, Alakazam->Vespiquen; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Vespiquen for Alakazam",
+   "candidates": 189,
+   "converged": true,
+   "runs": 4680,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Hippowdon",
+    "Palossand",
+    "Roserade",
+    "Vespiquen",
+    "Yanmega"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Vespiquen; answers Alakazam->Bastiodon; switch hp below 0.7; setup at 5+ safe turns at full HP; no status moves; free pivots; save Bastiodon for Alakazam",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Bastiodon",
+    "Mightyena",
+    "Vaporeon",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.227,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Hippowdon; answers Alakazam->Mightyena; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Hippowdon",
+    "Mantine",
+    "Mightyena",
+    "Quagsire",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.283,
+   "wipe": 0.01,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "35": 1.0
+   },
+   "line": "lead Araquanid; answers Gardevoir->Araquanid, Alakazam->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mantine",
+    "Masquerain",
+    "Steelix",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Orbeetle, Alakazam->Drifblim; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Masquerain",
+    "Orbeetle",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "75": 1.0
+   },
+   "line": "lead Orbeetle; answers Gardevoir->Orbeetle, Alakazam->Orbeetle; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 75,
+   "converged": true,
+   "runs": 2400,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Orbeetle",
+    "Whiscash",
+    "Crawdaunt",
+    "Delcatty"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jellicent",
+    "Absol",
+    "Palossand",
+    "Togekiss",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.545,
+   "deaths": 0.705,
+   "wipe": 0.005,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Gastrodon; answers Alakazam->Abomasnow; switch hp below 0.4; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "29": 1.0
+   },
+   "line": "lead Honchkrow; answers Gardevoir->Honchkrow, Alakazam->Honchkrow; switch losing; setup at 3+ safe turns at full HP; bait locks; save Honchkrow for Alakazam",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Talonflame; answers Gardevoir->Talonflame, Alakazam->Delphox; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 3 turns; save Delphox for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Glimmora; answers Gardevoir->Kingdra, Alakazam->Jellicent; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Jellicent for Alakazam",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Orbeetle; answers Gardevoir->Orbeetle, Alakazam->Orbeetle; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1320,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "31": 1.0
+   },
+   "line": "lead Delphox; answers Gardevoir->Honchkrow, Alakazam->Milotic; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Milotic for Alakazam",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:9",
+   "team": [
+    "Honchkrow",
+    "Milotic",
+    "Ninetales",
+    "Orbeetle",
+    "Cinderace",
+    "Delphox"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Metagross; answers Gardevoir->Metagross, Alakazam->Hippowdon; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Hippowdon for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Absol",
+    "Masquerain",
+    "Metagross",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Metagross; answers Gardevoir->Metagross, Alakazam->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Kingdra",
+    "Lurantis",
+    "Metagross",
+    "Milotic",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.147,
+   "wipe": 0.013,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Delphox; answers Gardevoir->Ceruledge, Alakazam->Lurantis; switch losing; setup at 2+ safe turns; free pivots; save Lurantis for Alakazam",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Lurantis",
+    "Mantine",
+    "Ceruledge",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "57": 1.0
+   },
+   "line": "lead Delphox; answers Gardevoir->Delphox; switch losing; setup at 5+ safe turns",
+   "candidates": 57,
+   "converged": true,
+   "runs": 2040,
+   "kind": "planned:9",
+   "team": [
+    "Mantine",
+    "Metagross",
+    "Walrein",
+    "Corsola",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.08,
+   "wipe": 0.007,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Delphox; answers Gardevoir->Delphox, Alakazam->Steelix; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon",
+    "Crawdaunt",
+    "Delphox"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Palossand; switch losing; setup at 5+ safe turns; bait locks; free pivots; save Palossand for Alakazam",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Palossand",
+    "Whiscash",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.523,
+   "deaths": 0.58,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.55,
+    "120": 0.55,
+    "130": 0.55,
+    "140": 0.55,
+    "150": 0.55,
+    "160": 0.55,
+    "170": 0.6,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Cinderace; answers Gardevoir->Cinderace, Alakazam->Dubwool; switch hp below 0.5; setup at 4+ safe turns; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Vaporeon",
+    "Walrein",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 2.8
+  }
+ ],
+ "key": "tr830"
+}

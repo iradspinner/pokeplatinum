@@ -1,0 +1,3055 @@
+{
+ "blind_rate": 0.969,
+ "blind_clean_share": 0.96,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.04,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.997,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 122560,
+ "search_budget": 60,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "Candice",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 1.9,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Nidoking->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Nidoking->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mr. Rime; answers Nidoking->Mr. Rime; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Hippowdon",
+    "Milotic",
+    "Mr. Rime",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Bibarel",
+    "Blastoise",
+    "Manaphy",
+    "Talonflame",
+    "Crawdaunt"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alakazam; answers Nidoking->Alakazam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Jellicent",
+    "Lopunny",
+    "Blastoise",
+    "Alakazam"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Nidoking->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Jellicent",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gothitelle; answers Nidoking->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Noctowl",
+    "Vaporeon",
+    "Alakazam",
+    "Crobat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Liepard",
+    "Manaphy",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Nidoking->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Probopass",
+    "Snorlax",
+    "Delcatty",
+    "Dewgong"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Nidoking->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lopunny; answers Nidoking->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kingdra",
+    "Absol",
+    "Manaphy",
+    "Milotic",
+    "Whiscash",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gothitelle; answers Nidoking->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Gothitelle",
+    "Hippowdon",
+    "Ninetales",
+    "Rapidash",
+    "Vaporeon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mamoswine; answers Nidoking->Araquanid; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Ludicolo",
+    "Mamoswine",
+    "Ninetales",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Palossand",
+    "Togekiss",
+    "Whiscash",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Nidoking->Ludicolo; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Absol",
+    "Ludicolo",
+    "Masquerain",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Dewgong; answers Nidoking->Garganacl; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Mandibuzz",
+    "Whiscash",
+    "Decidueye",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Bastiodon",
+    "Mamoswine",
+    "Milotic",
+    "Tropius",
+    "Decidueye"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Nidoking->Greninja; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mamoswine; answers Nidoking->Mamoswine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.5,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Crawdaunt; answers Nidoking->Crawdaunt; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Nidoking->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Greninja; answers Nidoking->Greninja; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Absol",
+    "Milotic",
+    "Orbeetle",
+    "Palossand",
+    "Dewgong"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Nidoking->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Orbeetle",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Greninja; answers Nidoking->Jellicent; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Greninja",
+    "Jellicent",
+    "Lumineon",
+    "Orbeetle",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Glalie",
+    "Manaphy",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Manaphy",
+    "Octillery",
+    "Purugly",
+    "Tentacruel",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Manaphy",
+    "Scizor",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Glalie; answers Nidoking->Ludicolo; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Ludicolo",
+    "Octillery",
+    "Bronzong",
+    "Scizor"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Kricketune",
+    "Manaphy",
+    "Bronzong",
+    "Purugly"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers none; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Nidoking->Gastrodon; switch hp below 0.4; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Nidoking->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Ferrothorn; answers none; switch losing; setup at 5+ safe turns; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Nidoking->Wailord; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Lumineon",
+    "Vaporeon",
+    "Wailord",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Nidoking->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Qwilfish",
+    "Vaporeon",
+    "Cinccino",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Frosmoth; answers Nidoking->Frosmoth; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Nidoking->Gastrodon; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Orbeetle",
+    "Wailord"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Nidoking->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Sharpedo",
+    "Vaporeon",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Palossand",
+    "Tentacruel",
+    "Weavile",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Gastrodon; answers none; switch never; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Magmortar",
+    "Seaking",
+    "Sharpedo",
+    "Cinccino"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kingdra; answers Nidoking->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Jellicent; answers Nidoking->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Dewgong; answers Nidoking->Lanturn; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Milotic",
+    "Talonflame",
+    "Tentacruel",
+    "Whiscash",
+    "Delcatty"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Nidoking->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Mantine",
+    "Octillery",
+    "Rapidash",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Nidoking->Heracross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Heracross",
+    "Luxray",
+    "Rapidash",
+    "Togekiss"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Jellicent",
+    "Manaphy",
+    "Quagsire",
+    "Rapidash",
+    "Ceruledge"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Jellicent",
+    "Corviknight",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Milotic",
+    "Octillery",
+    "Orbeetle",
+    "Quagsire",
+    "Tentacruel",
+    "Corsola"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Greninja; answers Nidoking->Greninja; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Absol",
+    "Seaking",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Heracross",
+    "Hippowdon",
+    "Octillery",
+    "Delcatty",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swampert; answers Nidoking->Swampert; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Nidoking->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Nidoking->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Nidoking->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Nidoking->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Heracross",
+    "Manaphy",
+    "Poliwrath",
+    "Quagsire",
+    "Weavile"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Nidoking->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Heracross",
+    "Lumineon",
+    "Milotic",
+    "Rhyperior",
+    "Wailord"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Liepard",
+    "Palossand",
+    "Poliwrath",
+    "Bronzong",
+    "Weavile"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Seaking",
+    "Tentacruel",
+    "Torterra",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Nidoking->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Heracross",
+    "Quagsire",
+    "Snorlax",
+    "Torterra",
+    "Cinccino"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Hippowdon",
+    "Palossand",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Snorlax; answers Nidoking->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Lumineon",
+    "Bronzong",
+    "Seaking",
+    "Snorlax",
+    "Castform"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Nidoking->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Lumineon",
+    "Mightyena",
+    "Poliwrath",
+    "Snorlax",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "14": 1.0
+   },
+   "line": "lead Donphan; answers Nidoking->Golem; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Alakazam; answers Nidoking->Alakazam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Nidoking->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hippowdon",
+    "Lumineon",
+    "Manaphy",
+    "Alakazam",
+    "Donphan",
+    "Dusknoir"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Milotic; answers Nidoking->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Absol",
+    "Milotic",
+    "Seaking",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Quagsire; answers Nidoking->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Absol",
+    "Mandibuzz",
+    "Quagsire",
+    "Scizor"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Lopunny",
+    "Lumineon",
+    "Manaphy",
+    "Mightyena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alakazam; answers Nidoking->Alakazam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Hariyama",
+    "Absol",
+    "Alakazam",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Scizor",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Hariyama",
+    "Jellicent",
+    "Manaphy",
+    "Mantine",
+    "Ambipom"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Lumineon",
+    "Manaphy",
+    "Donphan",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Nidoking->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Glalie; answers none; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Nidoking->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lopunny; answers Nidoking->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Nidoking->Octillery; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Hariyama",
+    "Houndoom",
+    "Manaphy",
+    "Octillery",
+    "Weavile"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cofagrigus; answers Nidoking->Cofagrigus; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Jellicent",
+    "Absol",
+    "Lumineon",
+    "Cherrim",
+    "Cofagrigus"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Nidoking->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Goodra",
+    "Ludicolo",
+    "Machamp",
+    "Breloom",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Goodra; answers Nidoking->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Goodra",
+    "Masquerain",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Goodra; answers Nidoking->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Goodra",
+    "Ludicolo",
+    "Lumineon",
+    "Mamoswine",
+    "Castform"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Nidoking->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Houndoom",
+    "Magnezone",
+    "Talonflame",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Octillery",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Nidoking->Jellicent; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Tentacruel",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Ludicolo; answers none; switch hp below 0.5; setup at 5+ safe turns at full HP; no status moves",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Lapras; answers Nidoking->Lapras; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.23,
+   "deaths": 0.97,
+   "wipe": 0.0,
+   "screened": 0.15,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Cinderace; answers Nidoking->Mantine; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kingdra; answers Nidoking->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Frosmoth; answers Nidoking->Frosmoth; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Hippowdon",
+    "Jellicent",
+    "Machamp",
+    "Palossand",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Kingdra",
+    "Machamp",
+    "Palossand",
+    "Yanmega"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Vaporeon",
+    "Delcatty",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Hippowdon",
+    "Lapras",
+    "Machamp",
+    "Quagsire",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Mantine; answers Nidoking->Steelix; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mantine",
+    "Steelix",
+    "Crawdaunt",
+    "Delcatty"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Araquanid; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Hippowdon",
+    "Absol",
+    "Masquerain",
+    "Orbeetle",
+    "Drifblim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lapras; answers Nidoking->Lapras; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Liepard",
+    "Machamp",
+    "Orbeetle",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Jellicent",
+    "Absol",
+    "Palossand",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hippowdon; answers Nidoking->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "37": 1.0
+   },
+   "line": "lead Delphox; answers none; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1340,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lopunny; answers Nidoking->Whiscash; switch hp below 0.4; setup at 4+ safe turns; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Nidoking->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Honchkrow",
+    "Lopunny",
+    "Orbeetle",
+    "Vaporeon",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mr. Rime; answers Nidoking->Mr. Rime; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Absol",
+    "Mr. Rime",
+    "Toucannon",
+    "Walrein"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Nidoking->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Kingdra",
+    "Lurantis",
+    "Weavile",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mr. Rime; answers Nidoking->Mr. Rime; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Furret",
+    "Lurantis",
+    "Mr. Rime",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Nidoking->Dubwool; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Metagross",
+    "Walrein",
+    "Corsola",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Nidoking->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Nidoking->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Palossand",
+    "Whiscash",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Nidoking->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Vaporeon",
+    "Walrein",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  }
+ ],
+ "key": "tr419"
+}

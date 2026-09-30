@@ -1,0 +1,3765 @@
+{
+ "blind_rate": 0.859,
+ "blind_clean_share": 0.56,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.193,
+ "blind_wipe": 0.003,
+ "convergence": {
+  "10": 0.872,
+  "50": 0.939,
+  "100": 0.955,
+  "300": 0.968
+ },
+ "runs": 268420,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Jose",
+ "split": "Galactic",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 13.9,
+ "rows": [
+  {
+   "rate": 0.64,
+   "deaths": 0.54,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.5,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75
+   },
+   "line": "lead Dewgong; answers Golduck->Manaphy, Sandslash->Crobat, Manectric->Tsareena; switch hp below 0.6; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 2 turns; save Crobat for Sandslash",
+   "candidates": 120,
+   "converged": true,
+   "runs": 3000,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Crobat",
+    "Dewgong"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Sandslash->Hippowdon, Manectric->Delcatty; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Liepard",
+    "Corsola",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Vikavolt; answers Golduck->Seaking, Sandslash->Bronzong, Manectric->Quagsire; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Bronzong for Sandslash",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Bronzong",
+    "Quagsire",
+    "Seaking",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Milotic; answers Golduck->Pelipper, Sandslash->Pelipper, Manectric->Whiscash; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Golduck",
+    "Milotic",
+    "Pelipper",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.195,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Altaria; answers Golduck->Altaria, Sandslash->Toxapex, Manectric->Snorlax; switch losing; setup at 3+ safe turns; save Snorlax for Manectric",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Mandibuzz",
+    "Seaking",
+    "Snorlax",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delcatty; answers Golduck->Ludicolo, Sandslash->Manaphy, Manectric->Altaria; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Ludicolo",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alomomola; answers Golduck->Alomomola, Sandslash->Gengar, Manectric->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Gengar",
+    "Orbeetle",
+    "Pawmot",
+    "Quagsire",
+    "Alomomola"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.17,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.1,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "134": 1.0
+   },
+   "line": "lead Blastoise; answers Golduck->Manaphy, Sandslash->Vespiquen, Manectric->Vikavolt; switch losing; setup at 2+ safe turns; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 134,
+   "converged": true,
+   "runs": 3580,
+   "kind": "planned:0",
+   "team": [
+    "Liepard",
+    "Blastoise",
+    "Manaphy",
+    "Seaking",
+    "Vespiquen",
+    "Vikavolt"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Mr. Rime; answers Sandslash->Crobat, Manectric->Ninetales; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; save Crobat for Sandslash",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Lanturn",
+    "Mr. Rime",
+    "Ninetales",
+    "Ceruledge",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 9.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "81": 1.0
+   },
+   "line": "lead Roserade; answers Golduck->Quagsire, Sandslash->Roserade, Manectric->Quagsire; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 81,
+   "converged": true,
+   "runs": 2520,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Jumpluff",
+    "Bibarel",
+    "Quagsire",
+    "Roserade"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "73": 1.0
+   },
+   "line": "lead Gliscor; answers Golduck->Galvantula, Sandslash->Mandibuzz, Manectric->Jumpluff; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 73,
+   "converged": true,
+   "runs": 2360,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Frosmoth",
+    "Galvantula",
+    "Gliscor",
+    "Jumpluff",
+    "Mandibuzz"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "45": 1.0
+   },
+   "line": "lead Electivire; answers Sandslash->Orbeetle, Manectric->Bastiodon; switch losing; setup at 4+ safe turns at full HP; save Bastiodon for Manectric",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Gothitelle",
+    "Bastiodon",
+    "Orbeetle",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.717,
+   "deaths": 0.33,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.3,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7,
+    "310": 0.75,
+    "320": 0.75,
+    "330": 0.75,
+    "340": 0.75,
+    "350": 0.75,
+    "360": 0.75,
+    "370": 0.75,
+    "380": 0.75,
+    "390": 0.75,
+    "400": 0.75,
+    "410": 0.75,
+    "420": 0.75,
+    "430": 0.75,
+    "440": 0.75,
+    "450": 0.75
+   },
+   "line": "lead Bronzong; answers Manectric->Gothitelle; switch hp below 0.7; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Gothitelle for Manectric",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lumineon",
+    "Milotic",
+    "Bronzong",
+    "Vaporeon",
+    "Crobat"
+   ],
+   "seconds": 13.4
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.6,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Gothitelle; answers Golduck->Carbink, Sandslash->Gothitelle, Manectric->Whiscash; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Lumineon",
+    "Carbink",
+    "Turtonator",
+    "Whiscash"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cherrim; answers Golduck->Cherrim, Sandslash->Roserade, Manectric->Drifblim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Kricketune",
+    "Roserade",
+    "Cherrim",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.695,
+   "deaths": 0.415,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.35,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Luxray; answers Golduck->Pelipper, Sandslash->Togekiss, Manectric->Abomasnow; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Abomasnow for Manectric",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Houndoom",
+    "Luxray",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Corviknight, Manectric->Mamoswine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Corviknight"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Octillery; answers Golduck->Absol, Sandslash->Octillery, Manectric->Electivire; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Vikavolt; answers Golduck->Tropius, Sandslash->Araquanid, Manectric->Ludicolo; switch hp below 0.3; setup at 3+ safe turns at full HP; bait locks; save Ludicolo for Manectric",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Araquanid",
+    "Ludicolo",
+    "Tropius",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 8.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Octillery; answers Golduck->Octillery, Sandslash->Bronzong, Manectric->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Octillery",
+    "Bronzong",
+    "Carbink",
+    "Torterra",
+    "Turtonator"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Bronzong, Manectric->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Ludicolo",
+    "Manaphy",
+    "Bronzong",
+    "Turtonator"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.48,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Decidueye; answers Golduck->Decidueye, Sandslash->Araquanid, Manectric->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Florges",
+    "Wailord",
+    "Cherrim",
+    "Crawdaunt",
+    "Decidueye"
+   ],
+   "seconds": 7.4
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "99": 1.0
+   },
+   "line": "lead Toxapex; answers Golduck->Cherrim, Sandslash->Corviknight, Manectric->Altaria; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 99,
+   "converged": true,
+   "runs": 2880,
+   "kind": "planned:1",
+   "team": [
+    "Purugly",
+    "Toxapex",
+    "Vespiquen",
+    "Cherrim",
+    "Corviknight",
+    "Altaria"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Decidueye; answers Golduck->Decidueye, Sandslash->Bronzong, Manectric->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Liepard",
+    "Palossand",
+    "Bronzong",
+    "Alakazam",
+    "Decidueye"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "99": 1.0
+   },
+   "line": "lead Decidueye; answers Golduck->Decidueye, Sandslash->Bronzong, Manectric->Altaria; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Altaria for Manectric",
+   "candidates": 99,
+   "converged": true,
+   "runs": 2880,
+   "kind": "planned:1",
+   "team": [
+    "Gothitelle",
+    "Lumineon",
+    "Pelipper",
+    "Bronzong",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Lurantis; answers Golduck->Pelipper, Sandslash->Pelipper, Manectric->Lurantis; switch hp below 0.5; setup at 2+ safe turns; no status moves; bait locks; save Lurantis for Manectric",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1940,
+   "kind": "planned:1",
+   "team": [
+    "Lurantis",
+    "Milotic",
+    "Pelipper",
+    "Purugly",
+    "Salazzle",
+    "Corviknight"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.195,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Delphox; answers Golduck->Mienshao, Sandslash->Mienshao; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Mienshao for Sandslash",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Mienshao",
+    "Breloom",
+    "Talonflame",
+    "Walrein",
+    "Delphox"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.66,
+   "deaths": 0.385,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Magnezone; answers Golduck->Mienshao, Sandslash->Palossand, Manectric->Palossand; switch hp below 0.6; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Magnezone",
+    "Mienshao",
+    "Pachirisu",
+    "Palossand",
+    "Toxicroak",
+    "Alomomola"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vespiquen; answers Golduck->Vespiquen, Sandslash->Girafarig, Manectric->Golem; switch losing; setup at 3+ safe turns; free pivots; save Girafarig for Sandslash",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Girafarig",
+    "Gliscor",
+    "Golem",
+    "Scizor",
+    "Vespiquen"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.535,
+   "deaths": 1.285,
+   "wipe": 0.115,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.4
+   },
+   "line": "lead Octillery; answers Golduck->Octillery, Sandslash->Kricketune, Manectric->Kricketune; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; save Kricketune for Manectric",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Houndoom",
+    "Kricketune",
+    "Octillery",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.625,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Girafarig; answers Golduck->Starmie, Sandslash->Masquerain, Manectric->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Girafarig",
+    "Magnezone",
+    "Masquerain",
+    "Starmie",
+    "Chandelure",
+    "Yanmega"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Vespiquen, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; save Gastrodon for Manectric",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Ludicolo",
+    "Manaphy",
+    "Orbeetle",
+    "Quagsire",
+    "Vespiquen"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Carbink; answers Golduck->Gastrodon, Sandslash->Lunatone, Manectric->Gastrodon; switch losing; setup at 4+ safe turns at full HP; save Gastrodon for Manectric",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Girafarig",
+    "Jellicent",
+    "Lunatone",
+    "Carbink",
+    "Whiscash"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Manectric->Gastrodon; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Gastrodon for Manectric",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Houndoom",
+    "Ludicolo",
+    "Quagsire",
+    "Chandelure",
+    "Weavile"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Granbull; answers Sandslash->Tentacruel, Manectric->Corviknight; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Tentacruel for Sandslash",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Leavanny",
+    "Mienshao",
+    "Octillery",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.197,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Girafarig; answers Golduck->Girafarig, Sandslash->Weavile, Manectric->Houndoom; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Houndoom",
+    "Milotic",
+    "Poliwrath",
+    "Chandelure",
+    "Weavile"
+   ],
+   "seconds": 10.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Quagsire; answers Golduck->Quagsire, Sandslash->Leavanny, Manectric->Granbull; switch losing; setup at 3+ safe turns at full HP; save Leavanny for Sandslash",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Leavanny",
+    "Luxray",
+    "Mamoswine",
+    "Breloom",
+    "Quagsire"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Quagsire; answers Golduck->Quagsire, Sandslash->Poliwrath, Manectric->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Milotic",
+    "Poliwrath",
+    "Quagsire",
+    "Togekiss",
+    "Chandelure"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.453,
+   "deaths": 0.613,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.15,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.25,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.25,
+    "130": 0.25,
+    "140": 0.35,
+    "150": 0.35,
+    "160": 0.35,
+    "170": 0.35,
+    "180": 0.35,
+    "190": 0.35,
+    "200": 0.35,
+    "210": 0.35,
+    "220": 0.35,
+    "230": 0.35,
+    "240": 0.35,
+    "250": 0.35,
+    "260": 0.35,
+    "270": 0.35,
+    "280": 0.35,
+    "290": 0.35,
+    "300": 0.35
+   },
+   "line": "lead Luxray; answers Golduck->Ludicolo, Sandslash->Octillery, Manectric->Ludicolo; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots; save Ludicolo for Manectric",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Ludicolo",
+    "Luxray",
+    "Octillery",
+    "Pachirisu"
+   ],
+   "seconds": 7.9
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ferrothorn; answers Golduck->Ninetales-Alola, Sandslash->Skarmory, Manectric->Steelix; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Skarmory",
+    "Steelix",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Altaria"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.265,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Whiscash; answers Sandslash->Mantine, Manectric->Whiscash; switch hp below 0.3; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Mantine for Sandslash",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Magmortar",
+    "Mantine",
+    "Rapidash",
+    "Talonflame",
+    "Whiscash"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Mienshao; answers Golduck->Tentacruel, Sandslash->Glalie, Manectric->Chandelure; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:3",
+   "team": [
+    "Glalie",
+    "Mienshao",
+    "Bronzong",
+    "Tentacruel",
+    "Chandelure",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Araquanid; answers Golduck->Quagsire, Sandslash->Araquanid, Manectric->Quagsire; switch hp below 0.4; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Bibarel",
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "29": 1.0
+   },
+   "line": "lead Gengar; answers Golduck->Corviknight, Sandslash->Gengar, Manectric->Metagross; switch losing; setup at 3+ safe turns at full HP; free pivots; save Metagross for Manectric",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Metagross",
+    "Salazzle",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Araquanid, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Gastrodon for Manectric",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Gastrodon",
+    "Manaphy",
+    "Wailord",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Abomasnow, Sandslash->Golduck, Manectric->Donphan; switch losing; setup at 4+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Golduck",
+    "Hawlucha",
+    "Magcargo",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Leavanny; answers Golduck->Leavanny, Sandslash->Gengar, Manectric->Leavanny; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Gengar for Sandslash",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Gengar",
+    "Glimmora",
+    "Jellicent",
+    "Leavanny",
+    "Quagsire",
+    "Sharpedo"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Raichu; answers Golduck->Manaphy, Sandslash->Manaphy, Manectric->Granbull; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; save Manaphy for Sandslash",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Manaphy",
+    "Raichu",
+    "Talonflame",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "17": 1.0
+   },
+   "line": "lead Whiscash; answers Golduck->Tentacruel, Sandslash->Bastiodon; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Bastiodon for Sandslash",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash",
+    "Alomomola",
+    "Ambipom"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Araquanid; answers Golduck->Araquanid, Sandslash->Gengar, Manectric->Magcargo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Gengar",
+    "Heracross",
+    "Liepard",
+    "Magcargo"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "245": 1.0
+   },
+   "line": "lead Heracross; answers Golduck->Heracross, Sandslash->Yanmega, Manectric->Milotic; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 245,
+   "converged": true,
+   "runs": 5800,
+   "kind": "planned:3",
+   "team": [
+    "Heracross",
+    "Liepard",
+    "Lumineon",
+    "Milotic",
+    "Yanmega",
+    "Dubwool"
+   ],
+   "seconds": 8.0
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "112": 1.0
+   },
+   "line": "lead Ferrothorn; answers Golduck->Ferrothorn, Sandslash->Corviknight, Manectric->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 112,
+   "converged": true,
+   "runs": 3140,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Raichu",
+    "Toucannon",
+    "Corviknight",
+    "Dubwool"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "line": "lead Altaria; answers Golduck->Altaria, Sandslash->Greninja; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Machamp",
+    "Quagsire",
+    "Salazzle",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Lurantis; answers Golduck->Glimmora, Sandslash->Donphan, Manectric->Donphan; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Donphan for Manectric",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:4",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Absol",
+    "Lurantis",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.865,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Leavanny; answers Sandslash->Leavanny, Manectric->Pawmot; switch losing; setup at 3+ safe turns at full HP; no status moves; save Leavanny for Sandslash",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Pawmot",
+    "Quagsire",
+    "Sharpedo",
+    "Charizard"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Sandslash->Corviknight, Manectric->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Mantine",
+    "Corviknight",
+    "Crawdaunt",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.56,
+   "deaths": 0.765,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.1,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Florges; answers Golduck->Florges, Sandslash->Florges, Manectric->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Mantine",
+    "Rapidash",
+    "Seaking",
+    "Sharpedo",
+    "Altaria"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Vespiquen, Manectric->Quagsire; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Manaphy",
+    "Orbeetle",
+    "Quagsire",
+    "Vespiquen",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Octillery; answers Golduck->Octillery, Sandslash->Orbeetle, Manectric->Bastiodon; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Poliwrath",
+    "Rapidash",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "19": 1.0
+   },
+   "line": "lead Octillery; answers Golduck->Octillery, Sandslash->Dewgong, Manectric->Electivire; switch hp below 0.4; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:4",
+   "team": [
+    "Luxray",
+    "Octillery",
+    "Togekiss",
+    "Delcatty",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Golduck->Bronzong, Sandslash->Bronzong, Manectric->Glimmora; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Luxray",
+    "Mienshao",
+    "Bronzong",
+    "Togekiss"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "79": 1.0
+   },
+   "line": "lead Gastrodon; answers Golduck->Ninetales-Alola, Sandslash->Bronzong, Manectric->Gastrodon; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; save Gastrodon for Manectric",
+   "candidates": 79,
+   "converged": true,
+   "runs": 2480,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Bronzong",
+    "Seaking",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Corsola"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "155": 1.0
+   },
+   "line": "lead Skuntank; answers Sandslash->Palossand, Manectric->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 155,
+   "converged": true,
+   "runs": 4000,
+   "kind": "planned:4",
+   "team": [
+    "Palossand",
+    "Quagsire",
+    "Salazzle",
+    "Sharpedo",
+    "Skuntank",
+    "Delcatty"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Leavanny; answers Golduck->Leavanny, Sandslash->Gastrodon, Manectric->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Leavanny",
+    "Octillery",
+    "Palossand",
+    "Skuntank"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.337,
+   "deaths": 0.72,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.1,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.4,
+    "100": 0.4,
+    "110": 0.4,
+    "120": 0.4,
+    "130": 0.4,
+    "140": 0.4,
+    "150": 0.4,
+    "160": 0.4,
+    "170": 0.4,
+    "180": 0.4,
+    "190": 0.4,
+    "200": 0.4,
+    "210": 0.4,
+    "220": 0.4,
+    "230": 0.4,
+    "240": 0.4,
+    "250": 0.4,
+    "260": 0.4,
+    "270": 0.4,
+    "280": 0.4,
+    "290": 0.4,
+    "300": 0.4
+   },
+   "line": "lead Lumineon; answers Golduck->Absol, Manectric->Octillery; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Milotic",
+    "Octillery",
+    "Rotom",
+    "Dubwool"
+   ],
+   "seconds": 8.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Serperior; answers Sandslash->Manaphy, Manectric->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 980,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Manaphy",
+    "Pawmot",
+    "Serperior",
+    "Talonflame",
+    "Vaporeon"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Sandslash->Torterra, Manectric->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Gliscor",
+    "Bastiodon",
+    "Noctowl",
+    "Poliwrath",
+    "Torterra",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.445,
+   "deaths": 0.615,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Corsola; answers Golduck->Alomomola, Sandslash->Whiscash, Manectric->Whiscash; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Milotic",
+    "Carbink",
+    "Castform",
+    "Whiscash",
+    "Corsola",
+    "Alomomola"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Sandslash->Hippowdon, Manectric->Hippowdon; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Hippowdon for Manectric",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Hippowdon",
+    "Machamp",
+    "Masquerain",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ferrothorn; answers Golduck->Ferrothorn, Sandslash->Vespiquen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Bastiodon",
+    "Bibarel",
+    "Swampert",
+    "Vespiquen"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Serperior; answers Golduck->Serperior, Sandslash->Manaphy, Manectric->Swampert; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Heracross",
+    "Manaphy",
+    "Orbeetle",
+    "Serperior",
+    "Swampert",
+    "Castform"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Wailord; answers Golduck->Wailord, Sandslash->Jellicent, Manectric->Altaria; switch losing; setup at 4+ safe turns; free pivots; save Jellicent for Sandslash",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:5",
+   "team": [
+    "Heracross",
+    "Jellicent",
+    "Leavanny",
+    "Lumineon",
+    "Wailord",
+    "Altaria"
+   ],
+   "seconds": 8.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swampert; answers Golduck->Swampert, Sandslash->Manaphy, Manectric->Breloom; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Breloom for Manectric",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Glimmora",
+    "Golem",
+    "Manaphy",
+    "Breloom",
+    "Swampert"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Manectric->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Bastiodon",
+    "Liepard",
+    "Manaphy",
+    "Cherrim"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.197,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.05,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Lanturn; answers Golduck->Seaking, Sandslash->Wailord, Manectric->Rotom; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Lanturn",
+    "Rotom",
+    "Seaking",
+    "Wailord",
+    "Cinccino"
+   ],
+   "seconds": 7.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Serperior; answers Golduck->Serperior, Sandslash->Sinistcha, Manectric->Rhyperior; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Rhyperior",
+    "Serperior",
+    "Sinistcha",
+    "Walrein",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swampert; answers Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Gastrodon for Manectric",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Manaphy",
+    "Bronzong",
+    "Swampert",
+    "Tsareena",
+    "Cinccino"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Castform; answers Golduck->Castform, Sandslash->Greninja, Manectric->Rhyperior; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Greninja",
+    "Hippowdon",
+    "Rhyperior",
+    "Sharpedo",
+    "Castform"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Arboliva; answers Golduck->Arboliva, Sandslash->Tentacruel, Manectric->Palossand; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Galvantula",
+    "Palossand",
+    "Tentacruel",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Golduck->Jellicent, Sandslash->Vespiquen, Manectric->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Jellicent",
+    "Mandibuzz",
+    "Mantine",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.56,
+   "deaths": 0.705,
+   "wipe": 0.02,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.2,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Jellicent; answers Golduck->Jellicent, Sandslash->Bibarel, Manectric->Shiftry; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Jellicent",
+    "Bibarel",
+    "Shiftry",
+    "Vespiquen",
+    "Crawdaunt"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Sandslash->Masquerain, Manectric->Scizor; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Ninetales",
+    "Quagsire",
+    "Scizor",
+    "Vaporeon"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.615,
+   "deaths": 0.43,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.3,
+    "20": 0.35,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Weezing-Galar; answers Golduck->Lanturn, Sandslash->Lumineon, Manectric->Weezing-Galar; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Weezing-Galar",
+    "Huntail",
+    "Lanturn",
+    "Lumineon",
+    "Ninetales",
+    "Ambipom"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Vespiquen, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Vespiquen",
+    "Vikavolt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Araquanid, Manectric->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Houndoom",
+    "Manaphy",
+    "Vespiquen",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Vespiquen, Manectric->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Manaphy",
+    "Mandibuzz",
+    "Salazzle",
+    "Vespiquen"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "92": 1.0
+   },
+   "line": "lead Tsareena; answers Golduck->Tsareena, Manectric->Bastiodon; switch losing; setup at 3+ safe turns at full HP; save Bastiodon for Manectric",
+   "candidates": 92,
+   "converged": true,
+   "runs": 2740,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Bastiodon",
+    "Mightyena",
+    "Plusle",
+    "Tsareena",
+    "Corsola"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Tsareena; answers Golduck->Tsareena, Manectric->Gastrodon; switch losing; setup at 2+ safe turns; no status moves; bait locks; stall timed effects at 1 turns; save Gastrodon for Manectric",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Lumineon",
+    "Tsareena",
+    "Vaporeon",
+    "Altaria",
+    "Crawdaunt"
+   ],
+   "seconds": 7.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Leavanny; answers Golduck->Leavanny, Sandslash->Araquanid, Manectric->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Araquanid",
+    "Hippowdon",
+    "Houndoom",
+    "Leavanny",
+    "Breloom"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "63": 1.0
+   },
+   "line": "lead Frosmoth; answers Golduck->Frosmoth, Sandslash->Orbeetle, Manectric->Rhyperior; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 63,
+   "converged": true,
+   "runs": 2160,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Orbeetle",
+    "Quagsire",
+    "Rhyperior",
+    "Ambipom",
+    "Dewgong"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lurantis; answers Golduck->Lurantis, Sandslash->Manaphy, Manectric->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Glalie",
+    "Absol",
+    "Lurantis",
+    "Manaphy",
+    "Mightyena",
+    "Tentacruel"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Electivire; answers Golduck->Altaria, Sandslash->Frosmoth, Manectric->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Gothitelle",
+    "Seaking",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.405,
+   "wipe": 0.005,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Sandslash->Gothitelle, Manectric->Heracross; switch losing; setup at 3+ safe turns at full HP; free pivots; save Heracross for Manectric",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gothitelle",
+    "Heracross",
+    "Lanturn",
+    "Mantine",
+    "Salazzle",
+    "Seaking"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cherrim; answers Golduck->Cherrim, Sandslash->Kingdra, Manectric->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Glalie",
+    "Golem",
+    "Kingdra",
+    "Lopunny",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Magnezone; answers Golduck->Magnezone, Sandslash->Frosmoth, Manectric->Machamp; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Frosmoth",
+    "Glimmora",
+    "Machamp",
+    "Magnezone",
+    "Staraptor",
+    "Turtonator"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gothitelle; answers Golduck->Gothitelle, Sandslash->Mandibuzz, Manectric->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Mandibuzz",
+    "Palossand",
+    "Rapidash",
+    "Crobat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Gastrodon, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Gastrodon",
+    "Goodra",
+    "Kingdra",
+    "Ludicolo",
+    "Quagsire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Hariyama; answers Golduck->Hariyama, Sandslash->Araquanid, Manectric->Garganacl; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Hariyama",
+    "Houndoom",
+    "Sharpedo",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Florges; answers Golduck->Florges, Sandslash->Pelipper, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gastrodon",
+    "Pelipper",
+    "Quagsire",
+    "Vespiquen"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Sandslash->Seaking; switch losing; setup at 3+ safe turns at full HP; save Seaking for Sandslash",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Hawlucha",
+    "Manaphy",
+    "Seaking",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.773,
+   "deaths": 0.303,
+   "wipe": 0.007,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.5,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Gothitelle; answers Golduck->Togekiss, Sandslash->Gothitelle, Manectric->Hariyama; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Gothitelle",
+    "Hariyama",
+    "Seaking",
+    "Castform",
+    "Togekiss",
+    "Cofagrigus"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vespiquen; answers Golduck->Vespiquen, Sandslash->Pelipper, Manectric->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Golem",
+    "Heracross",
+    "Pelipper",
+    "Rapidash",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Ludicolo, Manectric->Mamoswine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Glimmora",
+    "Ludicolo",
+    "Mamoswine",
+    "Castform",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Sandslash->Mamoswine, Manectric->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Golem",
+    "Absol",
+    "Mamoswine",
+    "Mantine",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Sinistcha; answers Golduck->Sinistcha, Sandslash->Sinistcha, Manectric->Sinistcha; switch losing; setup at 3+ safe turns at full HP; save Sinistcha for Manectric",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Sinistcha",
+    "Toxapex",
+    "Vespiquen",
+    "Clefable"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.105,
+   "wipe": 0.005,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Ferrothorn; answers Golduck->Ferrothorn, Sandslash->Ferrothorn, Manectric->Carbink; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Mandibuzz",
+    "Carbink",
+    "Castform",
+    "Toxapex",
+    "Weezing"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Leavanny; answers Golduck->Leavanny, Sandslash->Leavanny, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Leavanny",
+    "Liepard",
+    "Seaking",
+    "Clefable"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Walrein, Sandslash->Skarmory, Manectric->Whiscash; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Hawlucha",
+    "Skarmory",
+    "Walrein",
+    "Whiscash",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Delcatty; answers Golduck->Gastrodon, Sandslash->Pelipper, Manectric->Whiscash; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1240,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Lapras",
+    "Pelipper",
+    "Sharpedo",
+    "Whiscash",
+    "Delcatty"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Sinistcha; answers Golduck->Sinistcha, Sandslash->Sinistcha, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Gastrodon for Manectric",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Gastrodon",
+    "Kingdra",
+    "Orbeetle",
+    "Sinistcha",
+    "Vespiquen"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.35,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "49": 1.0
+   },
+   "line": "lead Leavanny; answers Golduck->Leavanny, Sandslash->Leavanny, Manectric->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Beautifly",
+    "Lanturn",
+    "Leavanny",
+    "Ludicolo",
+    "Seaking"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sinistcha; answers Golduck->Sinistcha, Sandslash->Sinistcha, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Leavanny",
+    "Sinistcha",
+    "Castform",
+    "Weavile",
+    "Cherrim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.54,
+   "deaths": 0.587,
+   "wipe": 0.003,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Araquanid, Manectric->Cherrim; switch losing; setup at 3+ safe turns; no status moves; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Manaphy",
+    "Orbeetle",
+    "Toxapex",
+    "Vespiquen",
+    "Cherrim"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.183,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 1.0
+   },
+   "line": "lead Sharpedo; answers Sandslash->Skarmory, Manectric->Skarmory; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:8",
+   "team": [
+    "Mantine",
+    "Pelipper",
+    "Sharpedo",
+    "Skarmory",
+    "Carbink",
+    "Drifblim"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.753,
+   "deaths": 0.253,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Florges; answers Golduck->Florges, Sandslash->Jellicent, Manectric->Machamp; switch hp below 0.5; setup at 4+ safe turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 5.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Sinistcha, Manectric->Ludicolo; switch losing; setup at 2+ safe turns at full HP; save Ludicolo for Manectric",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Ludicolo",
+    "Pelipper",
+    "Sinistcha",
+    "Sudowoodo",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Kingdra; answers Golduck->Kingdra, Sandslash->Kingdra, Manectric->Gastrodon; switch hp below 0.2; setup at 2+ safe turns at full HP; bait locks; save Kingdra for Sandslash",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Kingdra",
+    "Masquerain",
+    "Yanmega",
+    "Corsola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ambipom; answers Sandslash->Walrein, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Walrein for Sandslash",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Salazzle",
+    "Ceruledge",
+    "Walrein",
+    "Ambipom"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.61,
+   "deaths": 0.575,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.3,
+    "20": 0.5,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Lurantis; answers Golduck->Greninja, Sandslash->Ceruledge, Manectric->Lurantis; switch losing; setup at 2+ safe turns; stall timed effects at 3 turns; save Lurantis for Manectric",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Jellicent",
+    "Lurantis",
+    "Ceruledge",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Florges; answers Golduck->Florges, Sandslash->Gliscor, Manectric->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Granbull",
+    "Honchkrow",
+    "Mandibuzz",
+    "Donphan"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.695,
+   "deaths": 0.305,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Furret; answers Golduck->Cherrim, Sandslash->Talonflame, Manectric->Ceruledge; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Talonflame",
+    "Ceruledge",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Seaking; answers Golduck->Seaking, Sandslash->Glalie, Manectric->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:9",
+   "team": [
+    "Glalie",
+    "Lucario",
+    "Lumineon",
+    "Seaking",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Sandslash->Manaphy, Manectric->Gastrodon; switch losing; setup at 3+ safe turns at full HP; save Manaphy for Sandslash",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Gastrodon",
+    "Manaphy",
+    "Quagsire",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Gastrodon; answers Golduck->Gastrodon, Sandslash->Gliscor, Manectric->Quagsire; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Gastrodon",
+    "Gliscor",
+    "Absol",
+    "Mantine",
+    "Quagsire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Mandibuzz, Manectric->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Ludicolo",
+    "Mandibuzz",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Golduck->Altaria, Sandslash->Hippowdon, Manectric->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Mr. Rime",
+    "Quagsire",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Corsola; answers Sandslash->Hawlucha, Manectric->Gastrodon; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Gastrodon for Manectric",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Greninja",
+    "Hawlucha",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Sandslash->Kingler, Manectric->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Golem",
+    "Kingler",
+    "Masquerain",
+    "Whiscash",
+    "Cofagrigus",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Machamp; answers Sandslash->Hippowdon, Manectric->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Granbull",
+    "Hippowdon",
+    "Lopunny",
+    "Machamp",
+    "Quagsire",
+    "Relicanth"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Golduck->Ludicolo, Sandslash->Palossand, Manectric->Delcatty; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Weezing-Galar",
+    "Ludicolo",
+    "Manaphy",
+    "Palossand",
+    "Purugly",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  }
+ ],
+ "key": "tr565"
+}

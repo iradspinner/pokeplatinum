@@ -1,0 +1,3037 @@
+{
+ "blind_rate": 0.973,
+ "blind_clean_share": 0.94,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.028,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 118960,
+ "search_budget": 60,
+ "converged_share": 1.0,
+ "label": "Youngster Darius",
+ "split": "Roark",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 3.4,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Purrloin",
+    "Steenee",
+    "Tentacool",
+    "Zubat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Barboach",
+    "Kadabra",
+    "Bibarel",
+    "Makuhita",
+    "Phanpy",
+    "Raboot"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Geodude",
+    "Krabby",
+    "Phanpy",
+    "Ponyta",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Dottler",
+    "Geodude",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Makuhita; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Grubbin",
+    "Makuhita",
+    "Phanpy",
+    "Ponyta",
+    "Raboot",
+    "Steenee"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Krabby",
+    "Bibarel",
+    "Makuhita",
+    "Surskit"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Makuhita; answers Aron->Makuhita, Onix->Krabby; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Kadabra",
+    "Krabby",
+    "Bibarel",
+    "Makuhita",
+    "Steenee",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Geodude",
+    "Grubbin",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Geodude",
+    "Makuhita",
+    "Raboot",
+    "Surskit"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Grubbin",
+    "Bibarel",
+    "Makuhita",
+    "Raboot",
+    "Steenee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Geodude",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Purrloin",
+    "Steenee"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Kadabra",
+    "Phanpy",
+    "Ponyta",
+    "Surskit"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Makuhita",
+    "Ponyta",
+    "Purrloin",
+    "Surskit",
+    "Zubat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Kricketune",
+    "Makuhita",
+    "Budew",
+    "Turtwig"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wooloo; answers Aron->Wooloo, Onix->Surskit; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Ponyta",
+    "Surskit",
+    "Vullaby",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Aron->Nosepass, Onix->Surskit; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Corvisquire",
+    "Finneon",
+    "Nosepass",
+    "Ponyta",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Barboach",
+    "Kricketune",
+    "Nosepass",
+    "Budew",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Turtwig; answers Aron->Turtwig, Onix->Turtwig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Finneon",
+    "Luvdisc",
+    "Nosepass",
+    "Budew",
+    "Turtwig",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Luvdisc",
+    "Makuhita",
+    "Surskit",
+    "Turtwig"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Kadabra",
+    "Luvdisc",
+    "Turtwig",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Luvdisc",
+    "Makuhita",
+    "Budew",
+    "Turtwig"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Kricketune",
+    "Luvdisc",
+    "Makuhita",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Kricketune",
+    "Luxio",
+    "Makuhita",
+    "Nosepass",
+    "Turtwig"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Kadabra",
+    "Makuhita",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Luvdisc",
+    "Makuhita",
+    "Nosepass",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Nosepass; answers Onix->Kadabra; switch losing; setup at 4+ safe turns; bait locks; stall timed effects at 2 turns; save Kadabra for Onix",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Finneon",
+    "Kadabra",
+    "Makuhita",
+    "Nosepass",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Poochyena",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.565,
+   "deaths": 0.455,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Nosepass; answers Aron->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Dottler",
+    "Kricketune",
+    "Magby",
+    "Nosepass",
+    "Vulpix"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Prinplup; answers Aron->Prinplup, Onix->Corvisquire; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Magby",
+    "Prinplup",
+    "Surskit",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Luvdisc",
+    "Surskit",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Nacli; answers Aron->Nacli, Onix->Finneon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Dottler",
+    "Finneon",
+    "Magby",
+    "Nacli",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Luvdisc",
+    "Nacli",
+    "Prinplup",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Finneon",
+    "Goldeen",
+    "Kricketune",
+    "Surskit"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Luvdisc",
+    "Poochyena",
+    "Prinplup",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Goldeen",
+    "Lombre",
+    "Nosepass",
+    "Surskit"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Kricketune",
+    "Nosepass",
+    "Prinplup",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Dottler; answers Aron->Goldeen, Onix->Finneon; switch losing; setup at 5+ safe turns at full HP; free pivots; save Finneon for Onix",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Goldeen",
+    "Kricketune",
+    "Luvdisc",
+    "Prinplup"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Finneon",
+    "Kricketune",
+    "Luvdisc",
+    "Poochyena",
+    "Prinplup",
+    "Staravia"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Aron->Prinplup, Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Luvdisc",
+    "Prinplup",
+    "Staravia",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Aron->Makuhita, Onix->Wooloo; switch losing; setup at 3+ safe turns at full HP; save Wooloo for Onix",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Makuhita",
+    "Surskit",
+    "Tentacool",
+    "Trumbeak",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Prinplup",
+    "Sewaddle",
+    "Tentacool",
+    "Trumbeak"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Makuhita",
+    "Sewaddle",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Wooloo, Onix->Phanpy; switch hp below 0.3; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Phanpy for Onix",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:3",
+   "team": [
+    "Dottler",
+    "Houndour",
+    "Phanpy",
+    "Purrloin",
+    "Tentacool",
+    "Wooloo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Bibarel",
+    "Krabby",
+    "Purrloin",
+    "Sewaddle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Krabby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Prinplup",
+    "Sewaddle",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Corvisquire",
+    "Bibarel",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Prinplup"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Makuhita",
+    "Phanpy",
+    "Purrloin",
+    "Surskit"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Krabby",
+    "Phanpy",
+    "Sewaddle",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Phanpy",
+    "Prinplup",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Krabby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Corvisquire",
+    "Krabby",
+    "Phanpy",
+    "Tentacool",
+    "Trumbeak",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Barboach",
+    "Krabby",
+    "Makuhita",
+    "Prinplup",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Dottler",
+    "Goldeen",
+    "Nacli",
+    "Onix",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Goldeen",
+    "Krabby",
+    "Onix",
+    "Raboot",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Barboach",
+    "Krabby",
+    "Nacli",
+    "Nosepass",
+    "Tentacool",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Barboach",
+    "Nosepass",
+    "Pawmi",
+    "Raboot",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Krabby; answers Aron->Krabby, Onix->Krabby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Goldeen",
+    "Krabby",
+    "Kricketune",
+    "Nosepass",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Krabby",
+    "Nosepass",
+    "Onix",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Nosepass",
+    "Onix",
+    "Surskit"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Pawmi",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Krabby; answers Aron->Krabby, Onix->Krabby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Krabby",
+    "Lombre",
+    "Nacli",
+    "Pawmi",
+    "Raboot",
+    "Vulpix"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Krabby",
+    "Luxio",
+    "Nacli",
+    "Onix",
+    "Raboot",
+    "Wooloo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Krabby",
+    "Kricketune",
+    "Onix",
+    "Raboot",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Kricketune",
+    "Lombre",
+    "Raboot",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Nacli",
+    "Nosepass",
+    "Onix",
+    "Surskit"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Houndour",
+    "Lombre",
+    "Sewaddle",
+    "Turtwig"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nacli; answers Aron->Nacli, Onix->Finneon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Nacli",
+    "Pawmi",
+    "Sewaddle",
+    "Tentacool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:5",
+   "team": [
+    "Lombre",
+    "Nacli",
+    "Phanpy",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Geodude",
+    "Bibarel",
+    "Kadabra",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Nacli",
+    "Pawmi",
+    "Sewaddle",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Geodude",
+    "Bibarel",
+    "Phanpy",
+    "Turtwig"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Geodude",
+    "Lombre",
+    "Nacli",
+    "Turtwig"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Kadabra",
+    "Nacli",
+    "Phanpy",
+    "Purrloin"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Kadabra",
+    "Lombre",
+    "Phanpy",
+    "Purrloin",
+    "Turtwig"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Pawmi",
+    "Phanpy",
+    "Turtwig",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Geodude",
+    "Bibarel",
+    "Lombre",
+    "Pawmi"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Geodude",
+    "Lombre",
+    "Tentacool",
+    "Turtwig"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Kadabra",
+    "Nacli",
+    "Phanpy",
+    "Sewaddle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Bibarel",
+    "Lombre",
+    "Onix",
+    "Zubat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.335,
+   "deaths": 0.665,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.45,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Raboot; answers Aron->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Purrloin",
+    "Raboot",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Finneon",
+    "Onix",
+    "Purrloin",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Onix",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Raboot; answers Aron->Raboot, Onix->Surskit; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Raboot",
+    "Smoliv",
+    "Surskit",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Bibarel",
+    "Onix",
+    "Raboot",
+    "Surskit"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Kadabra",
+    "Onix",
+    "Raboot",
+    "Smoliv",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Aron->Bibarel, Onix->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Goldeen",
+    "Kadabra",
+    "Raboot",
+    "Smoliv",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Bibarel",
+    "Onix",
+    "Steenee",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Lombre",
+    "Onix",
+    "Smoliv",
+    "Zubat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Onix",
+    "Steenee",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corphish; answers Aron->Corphish, Onix->Surskit; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Lombre",
+    "Smoliv",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Dottler",
+    "Finneon",
+    "Onix",
+    "Purrloin",
+    "Steenee"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Machop; answers Aron->Machop, Onix->Machop; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Finneon",
+    "Machop",
+    "Purrloin",
+    "Staravia",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Geodude",
+    "Nosepass",
+    "Purrloin",
+    "Budew",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Aron->Furret, Onix->Machop; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Bibarel",
+    "Goldeen",
+    "Machop",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.785,
+   "deaths": 0.26,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Makuhita; answers Aron->Makuhita, Onix->Makuhita; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Goldeen",
+    "Makuhita",
+    "Ponyta",
+    "Budew",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Geodude",
+    "Bibarel",
+    "Machop",
+    "Raboot",
+    "Budew"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Geodude",
+    "Bibarel",
+    "Machop",
+    "Makuhita"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Aron->Bibarel, Onix->Machop; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Machop",
+    "Nidorino",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Aron->Bibarel, Onix->Purrloin; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Purrloin for Onix",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Nosepass",
+    "Purrloin",
+    "Budew",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Geodude",
+    "Machop",
+    "Makuhita",
+    "Nidorino",
+    "Vullaby"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Geodude",
+    "Goldeen",
+    "Makuhita",
+    "Surskit"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Geodude",
+    "Bibarel",
+    "Makuhita",
+    "Nosepass",
+    "Surskit"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Geodude",
+    "Bibarel",
+    "Makuhita",
+    "Nosepass",
+    "Raboot",
+    "Surskit"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Aron->Geodude, Onix->Geodude; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Geodude",
+    "Machop",
+    "Purrloin",
+    "Surskit"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Onix",
+    "Raboot",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bibarel; answers Aron->Purrloin, Onix->Wooloo; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Bibarel",
+    "Purrloin",
+    "Surskit",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Pawmi",
+    "Steenee",
+    "Vulpix",
+    "Zubat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Onix",
+    "Pawmi",
+    "Raboot",
+    "Steenee",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wooloo; answers Aron->Wooloo, Onix->Finneon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Nosepass",
+    "Pawmi",
+    "Steenee",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Corphish",
+    "Finneon",
+    "Bibarel",
+    "Onix",
+    "Surskit"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Aron->Barboach, Onix->Barboach; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Bibarel",
+    "Pawmi",
+    "Raboot",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Aron->Raboot, Onix->Corphish; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Raboot",
+    "Surskit",
+    "Trumbeak",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Corphish",
+    "Bibarel",
+    "Nosepass",
+    "Onix",
+    "Pawmi",
+    "Trumbeak"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Corphish",
+    "Bibarel",
+    "Nosepass",
+    "Onix",
+    "Raboot"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Onix",
+    "Raboot",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Nosepass",
+    "Onix",
+    "Raboot",
+    "Trumbeak"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Aron->Bibarel, Onix->Corphish; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Corphish",
+    "Bibarel",
+    "Nosepass",
+    "Pawmi",
+    "Steenee",
+    "Tentacool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Dottler",
+    "Onix",
+    "Phanpy",
+    "Surskit",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Finneon",
+    "Kricketune",
+    "Luxio",
+    "Nacli",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Phanpy, Onix->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Goldeen",
+    "Nacli",
+    "Phanpy",
+    "Sewaddle",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Prinplup; answers Aron->Prinplup, Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Prinplup for Onix",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Finneon",
+    "Lombre",
+    "Luxio",
+    "Prinplup",
+    "Purrloin",
+    "Sewaddle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tentacool; answers Aron->Nacli, Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Luxio",
+    "Makuhita",
+    "Nacli",
+    "Prinplup",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Makuhita",
+    "Onix",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Phanpy; answers Aron->Kricketune, Onix->Makuhita; switch losing; setup at 3+ safe turns at full HP; save Makuhita for Onix",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Makuhita",
+    "Phanpy",
+    "Sewaddle",
+    "Surskit"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Kricketune",
+    "Makuhita",
+    "Onix",
+    "Phanpy"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Makuhita",
+    "Nacli",
+    "Onix",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Aron->Furret, Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Kricketune",
+    "Lombre",
+    "Prinplup",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Goldeen",
+    "Lombre",
+    "Nacli",
+    "Onix",
+    "Phanpy"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Aron->Onix, Onix->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Makuhita",
+    "Nacli",
+    "Onix",
+    "Phanpy"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Aron->Furret, Onix->Prinplup; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Kricketune",
+    "Lombre",
+    "Prinplup",
+    "Tentacool"
+   ],
+   "seconds": 0.6
+  }
+ ],
+ "key": "tr245"
+}

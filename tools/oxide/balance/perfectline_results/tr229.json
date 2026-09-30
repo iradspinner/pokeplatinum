@@ -1,0 +1,3644 @@
+{
+ "blind_rate": 0.865,
+ "blind_clean_share": 0.56,
+ "planned_rate": 0.998,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.003,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.194,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.907,
+  "50": 0.957,
+  "100": 0.972,
+  "300": 0.98
+ },
+ "runs": 245100,
+ "search_budget": 600,
+ "converged_share": 1.0,
+ "label": "Veteran Clayton",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 16.4,
+ "rows": [
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Bronzong, Lickilicky->Gliscor, Relicanth->Bronzong; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Delibird; answers Staraptor->Delibird, Lickilicky->Vikavolt, Relicanth->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 980,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.535,
+   "deaths": 0.535,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.15,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Lickilicky->Ceruledge, Relicanth->Seaking; switch losing; setup at 3+ safe turns at full HP; free pivots; save Seaking for Relicanth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.51,
+   "deaths": 0.925,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6
+   },
+   "line": "lead Altaria; answers Lickilicky->Snorlax, Relicanth->Whiscash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "35": 1.0
+   },
+   "line": "lead Delibird; answers Staraptor->Delibird, Lickilicky->Ludicolo, Relicanth->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Bronzong, Relicanth->Manaphy; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Jellicent",
+    "Manaphy",
+    "Pawmot",
+    "Bronzong"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 1.0
+   },
+   "line": "lead Starmie; answers Staraptor->Starmie, Lickilicky->Hippowdon, Relicanth->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Articuno",
+    "Hippowdon",
+    "Lanturn",
+    "Carbink",
+    "Starmie"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Weavile; answers Staraptor->Weavile, Lickilicky->Gengar, Relicanth->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Gengar",
+    "Gothitelle",
+    "Lumineon",
+    "Weavile",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.27,
+   "deaths": 0.76,
+   "wipe": 0.0,
+   "screened": 0.15,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "30": 0.0,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15,
+    "70": 0.15,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.25,
+    "130": 0.25,
+    "140": 0.25,
+    "150": 0.25,
+    "160": 0.25,
+    "170": 0.25,
+    "180": 0.25,
+    "190": 0.25,
+    "200": 0.25,
+    "210": 0.3,
+    "220": 0.3,
+    "230": 0.3,
+    "240": 0.3,
+    "250": 0.3,
+    "260": 0.3,
+    "270": 0.3,
+    "280": 0.3,
+    "290": 0.3,
+    "300": 0.3
+   },
+   "line": "lead Floatzel; answers Lickilicky->Tsareena, Relicanth->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Arboliva",
+    "Frosmoth",
+    "Palossand",
+    "Tsareena",
+    "Vespiquen"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "55": 1.0
+   },
+   "line": "lead Glalie; answers Staraptor->Frosmoth, Lickilicky->Glalie, Relicanth->Quagsire; switch losing; setup at 4+ safe turns at full HP; bait locks; save Quagsire for Relicanth",
+   "candidates": 55,
+   "converged": true,
+   "runs": 2000,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Ninetales",
+    "Breloom",
+    "Quagsire",
+    "Cinderace"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Bronzong, Relicanth->Snorlax; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1940,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Purugly",
+    "Snorlax",
+    "Cinderace"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Relicanth->Snorlax; switch losing; setup at 2+ safe turns at full HP; save Snorlax for Relicanth",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Gliscor",
+    "Jumpluff",
+    "Masquerain",
+    "Snorlax",
+    "Delibird"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.767,
+   "deaths": 0.247,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 1.0
+   },
+   "line": "lead Salazzle; answers Staraptor->Salazzle, Lickilicky->Tsareena, Relicanth->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 190,
+   "converged": true,
+   "runs": 4700,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Masquerain",
+    "Palossand",
+    "Salazzle",
+    "Tsareena",
+    "Altaria"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.7,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Turtonator; answers Staraptor->Turtonator, Lickilicky->Tropius, Relicanth->Gastrodon; switch losing; setup at 3+ safe turns at full HP; save Tropius for Lickilicky",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.615,
+   "deaths": 0.445,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Turtonator; answers Staraptor->Turtonator, Lickilicky->Vikavolt, Relicanth->Lurantis; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Glalie; answers Lickilicky->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Kingdra; answers Lickilicky->Cherrim, Relicanth->Cherrim; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Cherrim for Lickilicky",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.315,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Garganacl; answers Staraptor->Garganacl, Lickilicky->Seaking, Relicanth->Florges; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Bronzong, Relicanth->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Jellicent",
+    "Luxray",
+    "Bronzong",
+    "Corviknight"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.5,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 1.0
+   },
+   "line": "lead Glalie; answers Staraptor->Articuno, Lickilicky->Tropius; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Tropius for Lickilicky",
+   "candidates": 240,
+   "converged": true,
+   "runs": 5700,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Golem",
+    "Huntail",
+    "Lanturn",
+    "Tropius"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Vespiquen, Relicanth->Kingdra; switch losing; setup at 2+ safe turns at full HP; no status moves; save Kingdra for Relicanth",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Lanturn",
+    "Liepard",
+    "Lurantis",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Wailord; answers Staraptor->Rapidash, Lickilicky->Hippowdon, Relicanth->Wailord; switch losing; setup at 4+ safe turns at full HP; save Wailord for Relicanth",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mamoswine",
+    "Mandibuzz",
+    "Mantine",
+    "Rapidash",
+    "Wailord"
+   ],
+   "seconds": 8.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Mamoswine, Lickilicky->Drifblim, Relicanth->Mamoswine; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Mamoswine",
+    "Salazzle",
+    "Weavile",
+    "Drifblim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.65,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Lickilicky->Bastiodon, Relicanth->Feraligatr; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Bastiodon for Lickilicky",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Togekiss"
+   ],
+   "seconds": 8.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "27": 1.0
+   },
+   "line": "lead Wailord; answers Staraptor->Wailord, Lickilicky->Glalie, Relicanth->Torterra; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Liepard",
+    "Octillery",
+    "Torterra",
+    "Wailord"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Carbink; answers Staraptor->Carbink, Lickilicky->Decidueye, Relicanth->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Carbink",
+    "Torterra",
+    "Vespiquen",
+    "Cherrim",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Whiscash, Lickilicky->Vespiquen, Relicanth->Lanturn; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Weavile; answers Lickilicky->Snorlax, Relicanth->Feraligatr; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Feraligatr for Relicanth",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.205,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Wailord; answers Staraptor->Ceruledge, Lickilicky->Ceruledge, Relicanth->Quagsire; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Quagsire for Relicanth",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.15,
+   "wipe": 0.005,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Wailord, Relicanth->Wailord; switch never; setup at 4+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.425,
+   "deaths": 0.925,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.35,
+    "20": 0.45,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Granbull; answers Lickilicky->Granbull, Relicanth->Milotic; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Crustle; answers Staraptor->Crustle, Lickilicky->Corviknight, Relicanth->Hariyama; switch losing; setup at 3+ safe turns at full HP; save Hariyama for Relicanth",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Hariyama",
+    "Mienshao",
+    "Pheromosa",
+    "Corviknight",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Staraptor; answers Staraptor->Staraptor, Lickilicky->Snorlax, Relicanth->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Snorlax",
+    "Staraptor",
+    "Starmie",
+    "Weezing"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.243,
+   "wipe": 0.003,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Garganacl; answers Staraptor->Garganacl, Lickilicky->Vespiquen, Relicanth->Mienshao; switch never; setup at 3+ safe turns at full HP; save Mienshao for Relicanth",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Garganacl",
+    "Masquerain",
+    "Mienshao",
+    "Vespiquen",
+    "Crawdaunt"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Pachirisu; answers Staraptor->Pachirisu, Lickilicky->Pheromosa, Relicanth->Pheromosa; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Pheromosa for Lickilicky",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Jellicent",
+    "Pachirisu",
+    "Pheromosa",
+    "Staraptor",
+    "Togedemaru",
+    "Chandelure"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Golem, Lickilicky->Crustle, Relicanth->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Golem",
+    "Absol",
+    "Togedemaru",
+    "Wailord",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Electivire, Lickilicky->Electivire, Relicanth->Ludicolo; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Ludicolo",
+    "Luxray",
+    "Masquerain",
+    "Palossand"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.213,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.45,
+    "20": 0.5,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Pheromosa; answers Staraptor->Pheromosa, Lickilicky->Machamp; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Machamp",
+    "Mightyena",
+    "Pelipper",
+    "Pheromosa",
+    "Seaking",
+    "Weavile"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Carbink; answers Staraptor->Carbink; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Florges",
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Carbink"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Ludicolo; answers Staraptor->Bronzong, Relicanth->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "37": 1.0
+   },
+   "line": "lead Salazzle; answers Staraptor->Cresselia, Lickilicky->Heracross, Relicanth->Cresselia; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1340,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Magcargo; answers Staraptor->Magcargo, Lickilicky->Corviknight, Relicanth->Shiftry; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "18": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Lanturn, Relicanth->Skarmory; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Lanturn for Lickilicky",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.42,
+   "deaths": 1.13,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Relicanth; answers Staraptor->Relicanth, Lickilicky->Wailord, Relicanth->Wailord; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Wailord for Lickilicky",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Metagross; answers Staraptor->Granbull, Lickilicky->Heracross, Relicanth->Mienshao; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Mienshao for Relicanth",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Granbull",
+    "Heracross",
+    "Metagross",
+    "Mienshao",
+    "Corviknight"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Wailord; answers Staraptor->Wailord, Lickilicky->Steelix, Relicanth->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Greninja",
+    "Steelix",
+    "Wailord",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.867,
+   "deaths": 0.197,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Crustle; answers Staraptor->Crustle, Lickilicky->Ferrothorn, Relicanth->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Greninja",
+    "Jellicent",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 7.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Bastiodon; answers Lickilicky->Donphan, Relicanth->Palossand; switch hp below 0.6; setup at 4+ safe turns at full HP; free pivots; save Donphan for Lickilicky",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Bastiodon",
+    "Palossand",
+    "Shiftry",
+    "Donphan"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "28": 1.0
+   },
+   "line": "lead Steelix; answers Lickilicky->Masquerain, Relicanth->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:3",
+   "team": [
+    "Hariyama",
+    "Ludicolo",
+    "Masquerain",
+    "Orbeetle",
+    "Steelix",
+    "Delcatty"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.207,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "197": 1.0
+   },
+   "line": "lead Crustle; answers Staraptor->Bronzong, Lickilicky->Cresselia, Relicanth->Cresselia; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 197,
+   "converged": true,
+   "runs": 4840,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Mienshao",
+    "Bronzong",
+    "Cresselia",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 5.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Electivire, Lickilicky->Steelix, Relicanth->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Galvantula",
+    "Hariyama",
+    "Steelix",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "66": 1.0
+   },
+   "line": "lead Metagross; answers Staraptor->Metagross, Lickilicky->Vikavolt, Relicanth->Metagross; switch hp below 0.7; setup at 2+ safe turns at full HP; no status moves; free pivots; save Metagross for Relicanth",
+   "candidates": 66,
+   "converged": true,
+   "runs": 2220,
+   "kind": "planned:3",
+   "team": [
+    "Granbull",
+    "Kingdra",
+    "Metagross",
+    "Palossand",
+    "Vikavolt",
+    "Whiscash"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.305,
+   "wipe": 0.005,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Crustle; answers Staraptor->Crustle, Lickilicky->Crustle, Relicanth->Corsola; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Corsola for Relicanth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Electivire, Lickilicky->Electivire, Relicanth->Blissey; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.305,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Whiscash; answers Lickilicky->Masquerain, Relicanth->Masquerain; switch hp below 0.3; setup at 2+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Bronzong, Relicanth->Bronzong; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Arboliva, Lickilicky->Corviknight, Relicanth->Arboliva; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Lickilicky->Bronzong, Relicanth->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Mienshao",
+    "Pheromosa",
+    "Bronzong",
+    "Rotom",
+    "Corviknight"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Wailord; answers Staraptor->Wailord, Lickilicky->Machamp, Relicanth->Poliwrath; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Machamp",
+    "Mienshao",
+    "Octillery",
+    "Poliwrath",
+    "Wailord"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Bronzong, Relicanth->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Pheromosa",
+    "Bronzong",
+    "Rapidash",
+    "Shiftry",
+    "Corviknight"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Jellicent; answers Staraptor->Rotom, Lickilicky->Shiftry, Relicanth->Salazzle; switch losing; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Rotom",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "224": 1.0
+   },
+   "line": "lead Vikavolt; answers Staraptor->Vikavolt, Lickilicky->Kingdra, Relicanth->Vikavolt; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Vikavolt for Relicanth",
+   "candidates": 224,
+   "converged": true,
+   "runs": 5380,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Kingdra",
+    "Luxray",
+    "Vikavolt",
+    "Dubwool"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "69": 1.0
+   },
+   "line": "lead Crustle; answers Staraptor->Manaphy, Lickilicky->Crustle, Relicanth->Poliwrath; switch losing; setup at 3+ safe turns; free pivots; save Crustle for Lickilicky",
+   "candidates": 69,
+   "converged": true,
+   "runs": 2280,
+   "kind": "planned:4",
+   "team": [
+    "Manaphy",
+    "Poliwrath",
+    "Quagsire",
+    "Sharpedo",
+    "Cinderace",
+    "Crustle"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Vikavolt; answers Lickilicky->Vaporeon, Relicanth->Florges; switch losing; setup at 5+ safe turns at full HP; save Vaporeon for Lickilicky",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Masquerain",
+    "Orbeetle",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pawmot; answers Staraptor->Delcatty, Lickilicky->Machamp, Relicanth->Machamp; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Jellicent",
+    "Machamp",
+    "Pawmot",
+    "Poliwrath",
+    "Delcatty"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Magcargo; answers Staraptor->Magcargo, Lickilicky->Walrein, Relicanth->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmora; answers Staraptor->Glimmora, Lickilicky->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.705,
+   "deaths": 0.365,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Crustle; answers Staraptor->Vaporeon, Lickilicky->Crustle; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Crustle for Lickilicky",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "16": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Hippowdon, Lickilicky->Sinistcha, Relicanth->Sinistcha; switch never; setup at 4+ safe turns; stall timed effects at 1 turns; save Sinistcha for Lickilicky",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.135,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Milotic; answers Lickilicky->Machamp, Relicanth->Tsareena; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Tsareena for Relicanth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Rotom, Lickilicky->Steelix, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Grapploct",
+    "Mienshao",
+    "Bronzong",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rhyperior; answers Staraptor->Rhyperior, Lickilicky->Bronzong, Relicanth->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Poliwrath",
+    "Bronzong",
+    "Rhyperior",
+    "Tsareena",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Staraptor->Walrein, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP; save Steelix for Relicanth",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Heracross",
+    "Jellicent",
+    "Steelix",
+    "Walrein",
+    "Whiscash"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Staraptor->Weavile, Lickilicky->Dhelmise, Relicanth->Heracross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Hippowdon",
+    "Castform",
+    "Weavile",
+    "Dhelmise"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.183,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Crustle; answers Staraptor->Crustle, Lickilicky->Hawlucha, Relicanth->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Lickilicky->Steelix, Relicanth->Torterra; switch losing; setup at 3+ safe turns at full HP; save Steelix for Lickilicky",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Pawmot",
+    "Steelix",
+    "Castform",
+    "Torterra",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Pawmot; answers Staraptor->Crustle, Lickilicky->Pawmot, Relicanth->Heracross; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; save Pawmot for Lickilicky",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Articuno",
+    "Heracross",
+    "Mandibuzz",
+    "Pawmot",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Staraptor->Glalie, Lickilicky->Mienshao, Relicanth->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Hawlucha",
+    "Mienshao",
+    "Breloom",
+    "Serperior",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Glimmora; answers Staraptor->Glimmora, Lickilicky->Scizor, Relicanth->Milotic; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.255,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.6,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Plusle; answers Lickilicky->Scizor, Relicanth->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Vespiquen, Lickilicky->Scizor, Relicanth->Lanturn; switch hp below 0.3; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Dusknoir; answers Lickilicky->Drifblim, Relicanth->Shiftry; switch hp below 0.4; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Electivire, Lickilicky->Hippowdon, Relicanth->Dusknoir; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Bronzong, Lickilicky->Steelix, Relicanth->Electivire; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Steelix for Lickilicky",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:6",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Bronzong",
+    "Steelix",
+    "Corviknight",
+    "Dusknoir"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Staraptor->Galvantula, Lickilicky->Donphan, Relicanth->Cresselia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Lurantis",
+    "Togedemaru",
+    "Cresselia",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Manaphy; answers Staraptor->Manaphy, Lickilicky->Cresselia, Relicanth->Tsareena; switch losing; setup at 2+ safe turns; save Cresselia for Lickilicky",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Pelipper, Relicanth->Cresselia; switch losing; setup at 3+ safe turns at full HP; save Cresselia for Relicanth",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Lanturn",
+    "Pelipper",
+    "Plusle",
+    "Whiscash",
+    "Cresselia"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Galvantula; answers Staraptor->Galvantula, Lickilicky->Drifblim, Relicanth->Cresselia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Floatzel",
+    "Galvantula",
+    "Absol",
+    "Cresselia",
+    "Drifblim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Staraptor->Galvantula, Lickilicky->Hariyama, Relicanth->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Glalie",
+    "Hariyama",
+    "Breloom",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Staraptor->Bronzong, Lickilicky->Scizor, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hippowdon",
+    "Bronzong",
+    "Scizor",
+    "Steelix",
+    "Vikavolt",
+    "Cresselia"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "27": 1.0
+   },
+   "line": "lead Masquerain; answers Staraptor->Rhyperior, Lickilicky->Steelix, Relicanth->Steelix; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Steelix for Relicanth",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:6",
+   "team": [
+    "Masquerain",
+    "Rhyperior",
+    "Carbink",
+    "Steelix",
+    "Cresselia",
+    "Drifblim"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "29": 1.0
+   },
+   "line": "lead Glimmora; answers Staraptor->Glimmora, Lickilicky->Hariyama, Relicanth->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "23": 1.0
+   },
+   "line": "lead Steelix; answers Staraptor->Steelix, Lickilicky->Gliscor, Relicanth->Abomasnow; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Abomasnow for Relicanth",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "54": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Flygon, Relicanth->Poliwrath; switch losing; setup at 5+ safe turns at full HP; bait locks; save Poliwrath for Relicanth",
+   "candidates": 54,
+   "converged": true,
+   "runs": 1680,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Lickilicky->Vespiquen, Relicanth->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Staraptor->Cherrim, Relicanth->Hariyama; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Staraptor->Rotom, Lickilicky->Steelix, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Kingdra",
+    "Masquerain",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Electivire, Lickilicky->Electivire, Relicanth->Poliwrath; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Furret",
+    "Houndoom",
+    "Poliwrath",
+    "Quagsire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Hariyama, Relicanth->Jellicent; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Gothitelle",
+    "Hariyama",
+    "Jellicent",
+    "Kingdra",
+    "Lanturn",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Staraptor->Rotom, Lickilicky->Magnezone, Relicanth->Mantine; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Mantine for Relicanth",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Rotom",
+    "Staraptor",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "97": 1.0
+   },
+   "line": "lead Kingdra; answers Lickilicky->Crustle, Relicanth->Kingdra; switch losing; setup at 3+ safe turns; stall timed effects at 3 turns",
+   "candidates": 97,
+   "converged": true,
+   "runs": 2840,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Poliwrath",
+    "Crustle"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Staraptor->Garganacl, Lickilicky->Rotom, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Gliscor",
+    "Kingdra",
+    "Rotom",
+    "Steelix",
+    "Toxapex"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Lickilicky->Steelix, Relicanth->Magnezone; switch losing; setup at 3+ safe turns at full HP; bait locks; save Steelix for Lickilicky",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Annihilape",
+    "Kingdra",
+    "Magnezone",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Staraptor->Rotom, Lickilicky->Breloom, Relicanth->Breloom; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Houndoom",
+    "Palossand",
+    "Breloom",
+    "Rotom"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Lapras; answers Lickilicky->Ferrothorn, Relicanth->Ferrothorn; switch hp below 0.4; setup at 5+ safe turns; bait locks; free pivots; save Ferrothorn for Relicanth",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1200,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.35,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Bastiodon; answers Lickilicky->Florges, Relicanth->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.345,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Mienshao; answers Staraptor->Mienshao, Lickilicky->Mienshao, Relicanth->Mienshao; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Houndoom; answers Staraptor->Houndoom, Lickilicky->Masquerain, Relicanth->Florges; switch losing; setup at 3+ safe turns; no status moves; save Florges for Relicanth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.815,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.95,
+    "50": 0.95,
+    "51": 1.0
+   },
+   "line": "lead Mienshao; answers Staraptor->Mienshao, Lickilicky->Mienshao, Relicanth->Mienshao; switch losing; setup at 3+ safe turns at full HP; no status moves; save Mienshao for Lickilicky",
+   "candidates": 51,
+   "converged": true,
+   "runs": 1620,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Walrein; answers Staraptor->Walrein, Lickilicky->Mienshao, Relicanth->Ferrothorn; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Ferrothorn for Relicanth",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:8",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Ferrothorn",
+    "Mienshao",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Articuno, Lickilicky->Machamp, Relicanth->Mienshao; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Rapidash-Galar",
+    "Articuno",
+    "Machamp",
+    "Masquerain",
+    "Mienshao"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 1.0
+   },
+   "line": "lead Walrein; answers Staraptor->Jellicent, Lickilicky->Lapras, Relicanth->Machamp; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Machamp for Relicanth",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Hawlucha",
+    "Jellicent",
+    "Lapras",
+    "Machamp",
+    "Walrein"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.54,
+   "deaths": 0.57,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.6,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.7,
+    "300": 0.7,
+    "310": 0.7,
+    "320": 0.7,
+    "330": 0.7,
+    "340": 0.7,
+    "350": 0.7,
+    "360": 0.7,
+    "370": 0.7,
+    "380": 0.75,
+    "390": 0.75,
+    "400": 0.75,
+    "410": 0.75,
+    "420": 0.75,
+    "430": 0.75,
+    "440": 0.75,
+    "450": 0.75,
+    "460": 0.75,
+    "470": 0.75,
+    "480": 0.75,
+    "490": 0.75,
+    "500": 0.75,
+    "510": 0.75,
+    "520": 0.75,
+    "530": 0.75,
+    "540": 0.75,
+    "550": 0.75,
+    "560": 0.75,
+    "570": 0.75,
+    "580": 0.75,
+    "590": 0.75,
+    "600": 0.75
+   },
+   "line": "lead Walrein; answers Staraptor->Carbink, Lickilicky->Walrein, Relicanth->Leavanny; switch losing; setup at 3+ safe turns; no status moves; save Walrein for Lickilicky",
+   "candidates": 600,
+   "converged": true,
+   "runs": 12900,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Leavanny",
+    "Milotic",
+    "Carbink",
+    "Walrein",
+    "Clefable"
+   ],
+   "seconds": 10.1
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Magcargo; answers Staraptor->Magcargo, Lickilicky->Hippowdon, Relicanth->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Absol",
+    "Magcargo",
+    "Roserade",
+    "Castform"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.173,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Houndoom; answers Staraptor->Houndoom, Lickilicky->Pelipper, Relicanth->Castform; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Pelipper",
+    "Castform",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Articuno; answers Staraptor->Manaphy, Lickilicky->Ferrothorn, Relicanth->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Manaphy",
+    "Palossand",
+    "Vespiquen",
+    "Corsola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.137,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "17": 1.0
+   },
+   "line": "lead Garganacl; answers Staraptor->Garganacl, Lickilicky->Sinistcha, Relicanth->Sinistcha; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Kingdra",
+    "Liepard",
+    "Pelipper",
+    "Sinistcha",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Weavile; answers Staraptor->Weavile, Lickilicky->Cinderace, Relicanth->Quagsire; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Pheromosa; answers Staraptor->Pheromosa, Lickilicky->Mandibuzz, Relicanth->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Gastrodon; answers Lickilicky->Hariyama, Relicanth->Whiscash; switch losing; setup at 3+ safe turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Walrein; answers Lickilicky->Hariyama, Relicanth->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Lanturn; answers Lickilicky->Machamp, Relicanth->Lanturn; switch losing; setup at 4+ safe turns at full HP; no status moves",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Metagross, Lickilicky->Steelix, Relicanth->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Metagross",
+    "Pheromosa",
+    "Steelix",
+    "Corviknight"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Staraptor->Glimmora, Lickilicky->Donphan, Relicanth->Galvantula; switch losing; setup at 4+ safe turns; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Jellicent",
+    "Salazzle",
+    "Delphox",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Rhyperior; answers Staraptor->Rhyperior, Lickilicky->Corviknight, Relicanth->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Lanturn",
+    "Rhyperior",
+    "Vikavolt",
+    "Whiscash",
+    "Cherrim",
+    "Corviknight"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Galvantula; answers Staraptor->Kricketune, Lickilicky->Salazzle, Relicanth->Steelix; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Gliscor",
+    "Kricketune",
+    "Salazzle",
+    "Steelix",
+    "Delphox"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Staraptor->Lanturn, Lickilicky->Hariyama, Relicanth->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Hariyama",
+    "Lanturn",
+    "Togekiss",
+    "Weavile"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.723,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.6,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Kingler; answers Lickilicky->Hawlucha, Relicanth->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Hawlucha",
+    "Kingler",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "53": 1.0
+   },
+   "line": "lead Electivire; answers Staraptor->Delcatty, Lickilicky->Corviknight, Relicanth->Electivire; switch hp below 0.5; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Corviknight for Lickilicky",
+   "candidates": 53,
+   "converged": true,
+   "runs": 1960,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Kingler",
+    "Lurantis",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "103": 1.0
+   },
+   "line": "lead Metagross; answers Staraptor->Metagross, Lickilicky->Steelix, Relicanth->Metagross; switch hp below 0.4; setup at 3+ safe turns; bait locks; save Metagross for Relicanth",
+   "candidates": 103,
+   "converged": true,
+   "runs": 2960,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Metagross",
+    "Salazzle",
+    "Steelix",
+    "Walrein",
+    "Delphox"
+   ],
+   "seconds": 2.8
+  }
+ ],
+ "key": "tr229"
+}

@@ -1,0 +1,3032 @@
+{
+ "blind_rate": 0.988,
+ "blind_clean_share": 0.96,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.015,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.998,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 118220,
+ "search_budget": 24,
+ "converged_share": 1.0,
+ "label": "School Kid Forrest",
+ "split": "Volkner",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 1.4,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Manaphy",
+    "Tsareena",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Delibird; answers Magneton->Bronzong; switch hp below 0.4; setup at 5+ safe turns; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Hippowdon",
+    "Liepard",
+    "Octillery",
+    "Bronzong",
+    "Quagsire",
+    "Delibird"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Sharpedo; answers Magneton->Vikavolt; switch never; setup at 3+ safe turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Vikavolt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Magneton->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Articuno",
+    "Golduck",
+    "Toxapex",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Magneton->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Snorlax",
+    "Altaria"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lopunny; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Lopunny",
+    "Breloom",
+    "Bronzong",
+    "Probopass",
+    "Quagsire",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Roserade; answers Magneton->Ninetales; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Ninetales",
+    "Roserade",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Magneton->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Weezing-Galar",
+    "Greninja",
+    "Breloom",
+    "Probopass",
+    "Vespiquen",
+    "Alakazam"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Magneton->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Weezing-Galar",
+    "Galvantula",
+    "Ludicolo",
+    "Mantine",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Magneton->Ninetales; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Golduck",
+    "Milotic",
+    "Ninetales",
+    "Pawmot",
+    "Talonflame",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Blissey; answers Magneton->Blissey; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Lopunny",
+    "Blissey",
+    "Mr. Rime",
+    "Palossand",
+    "Probopass",
+    "Tentacruel"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Magneton->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gengar",
+    "Hippowdon",
+    "Ludicolo",
+    "Orbeetle",
+    "Sharpedo",
+    "Alakazam"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Magneton->Ninetales; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Liepard",
+    "Ludicolo",
+    "Ninetales",
+    "Talonflame",
+    "Tsareena",
+    "Alomomola"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Magneton->Ninetales; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Vaporeon"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Blissey; answers Magneton->Blissey; switch losing; setup at 2+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Masquerain",
+    "Blissey",
+    "Bronzong",
+    "Vikavolt",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Turtonator; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Gastrodon",
+    "Purugly",
+    "Seaking",
+    "Turtonator",
+    "Dewgong",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Tropius; answers Magneton->Tropius; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Houndoom",
+    "Kingdra",
+    "Tropius",
+    "Turtonator"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "12": 1.0
+   },
+   "line": "lead Togekiss; answers none; switch hp below 0.3; setup at 3+ safe turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Glalie",
+    "Golduck",
+    "Lurantis",
+    "Mandibuzz",
+    "Togekiss",
+    "Vikavolt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Turtonator; answers Magneton->Turtonator; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Grapploct",
+    "Houndoom",
+    "Turtonator",
+    "Chandelure"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash; answers Magneton->Turtonator; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Rapidash",
+    "Turtonator",
+    "Corviknight",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Decidueye; answers Magneton->Sharpedo; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Mamoswine",
+    "Sharpedo",
+    "Decidueye",
+    "Drifblim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Glalie",
+    "Leavanny",
+    "Lopunny",
+    "Ludicolo",
+    "Lumineon"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Chandelure; answers Magneton->Chandelure; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Absol",
+    "Kricketune",
+    "Togekiss",
+    "Chandelure",
+    "Wailord"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Blissey; answers Magneton->Blissey; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Mamoswine",
+    "Blissey",
+    "Bronzong",
+    "Salazzle",
+    "Solrock",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Magneton->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Floatzel",
+    "Kingdra",
+    "Torterra",
+    "Vikavolt",
+    "Altaria",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Magneton->Roserade; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Grapploct",
+    "Roserade",
+    "Tropius",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Chandelure; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mantine",
+    "Breloom",
+    "Purugly",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Magneton->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Breloom",
+    "Starmie",
+    "Talonflame",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Hariyama",
+    "Houndoom",
+    "Palossand",
+    "Seaking",
+    "Togedemaru"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Ludicolo",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Toxicroak; answers Magneton->Toxicroak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Orbeetle",
+    "Toxicroak",
+    "Wailord",
+    "Crobat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Quagsire; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Greninja",
+    "Machamp",
+    "Milotic",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Girafarig",
+    "Ludicolo",
+    "Lunatone",
+    "Magnezone",
+    "Sharpedo"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Magnezone",
+    "Octillery",
+    "Poliwrath",
+    "Toxicroak",
+    "Yanmega"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Wailord; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Masquerain",
+    "Quagsire",
+    "Scizor",
+    "Snorlax",
+    "Wailord"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Magneton->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Bastiodon",
+    "Jellicent",
+    "Orbeetle",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Toxicroak; answers Magneton->Toxicroak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Ludicolo",
+    "Mightyena",
+    "Orbeetle",
+    "Toxicroak",
+    "Chandelure",
+    "Crustle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Manaphy",
+    "Poliwrath",
+    "Seaking",
+    "Cinderace",
+    "Crawdaunt",
+    "Delphox"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Magneton->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Ludicolo",
+    "Breloom",
+    "Pelipper",
+    "Crobat",
+    "Crustle"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Magneton->Gorebyss; switch losing; setup at 5+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Gorebyss",
+    "Heracross",
+    "Lanturn",
+    "Mienshao",
+    "Ambipom"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Magmortar; answers Magneton->Magmortar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Jellicent",
+    "Magmortar",
+    "Mandibuzz",
+    "Weavile"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Floatzel; answers Magneton->Electivire; switch hp below 0.4; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Lanturn",
+    "Seaking",
+    "Toucannon",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Girafarig; answers Magneton->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Gengar",
+    "Girafarig",
+    "Magmortar",
+    "Rapidash",
+    "Vaporeon",
+    "Yanmega"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Magneton->Heracross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Heracross",
+    "Metagross",
+    "Milotic",
+    "Togekiss"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Ludicolo",
+    "Metagross",
+    "Palossand",
+    "Sharpedo",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Leavanny",
+    "Bibarel",
+    "Liepard",
+    "Shiftry"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Frosmoth",
+    "Golduck",
+    "Ludicolo",
+    "Palossand"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Magneton->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Frosmoth",
+    "Rapidash",
+    "Toucannon",
+    "Ambipom",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Glimmora",
+    "Hawlucha",
+    "Mantine",
+    "Milotic",
+    "Steelix",
+    "Cresselia"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Sharpedo; answers Magneton->Raichu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Masquerain",
+    "Mienshao",
+    "Raichu",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Gengar",
+    "Gorebyss",
+    "Bibarel",
+    "Quagsire",
+    "Togekiss"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Quagsire",
+    "Sharpedo",
+    "Steelix",
+    "Weavile",
+    "Ambipom"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Corviknight; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Mienshao",
+    "Quagsire",
+    "Ceruledge",
+    "Corviknight"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Glalie; answers Magneton->Floatzel; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:4",
+   "team": [
+    "Floatzel",
+    "Glalie",
+    "Carbink",
+    "Vaporeon",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Frosmoth",
+    "Lanturn",
+    "Masquerain",
+    "Skuntank",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Absol; answers Magneton->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Absol",
+    "Leavanny",
+    "Masquerain",
+    "Carbink"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charizard; answers Magneton->Charizard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Heracross",
+    "Skuntank",
+    "Ceruledge",
+    "Charizard",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Magneton->Whiscash; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Absol",
+    "Blissey",
+    "Orbeetle",
+    "Bronzong",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Garganacl; answers Magneton->Sharpedo; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Frosmoth",
+    "Garganacl",
+    "Gastrodon",
+    "Kricketune",
+    "Bronzong",
+    "Sharpedo"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Lanturn",
+    "Milotic",
+    "Togekiss",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Altaria; answers none; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Mantine",
+    "Mienshao",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Heracross; answers Magneton->Heracross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Heracross",
+    "Luxray",
+    "Palossand",
+    "Togekiss",
+    "Wailord"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Absol",
+    "Rapidash",
+    "Skuntank",
+    "Ceruledge"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.057,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Masquerain",
+    "Blissey",
+    "Quagsire",
+    "Tentacruel",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Magneton->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Octillery",
+    "Carbink",
+    "Ceruledge",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Serperior",
+    "Walrein",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Jellicent",
+    "Liepard",
+    "Mandibuzz",
+    "Pelipper"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Magneton->Heracross; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Heracross",
+    "Lanturn",
+    "Leavanny",
+    "Bibarel",
+    "Quagsire",
+    "Crustle"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swampert; answers Magneton->Greninja; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Greninja",
+    "Jellicent",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Grapploct; answers Magneton->Grapploct; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Grapploct",
+    "Heracross",
+    "Jellicent",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Grapploct",
+    "Orbeetle",
+    "Palossand",
+    "Talonflame"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Poliwrath; answers none; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Noctowl",
+    "Pelipper",
+    "Poliwrath"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Poliwrath; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Jellicent",
+    "Machamp",
+    "Poliwrath",
+    "Vespiquen"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Manaphy",
+    "Bronzong",
+    "Wailord",
+    "Cinccino",
+    "Crawdaunt"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Poliwrath; answers Magneton->Bastiodon; switch losing; setup at 2+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Grapploct",
+    "Jellicent",
+    "Bastiodon",
+    "Orbeetle",
+    "Poliwrath"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Magneton->Crawdaunt; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Orbeetle",
+    "Quagsire",
+    "Torterra",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Machamp; answers Magneton->Galvantula; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Galvantula",
+    "Machamp",
+    "Talonflame",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Milotic",
+    "Poliwrath",
+    "Bronzong",
+    "Sinistcha",
+    "Steelix",
+    "Altaria"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hippowdon; answers Magneton->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Hippowdon",
+    "Mightyena",
+    "Tsareena",
+    "Crawdaunt",
+    "Dewgong"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Florges; answers Magneton->Florges; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Golem",
+    "Hariyama",
+    "Milotic",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Magneton->Houndoom; switch hp below 0.4; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Gastrodon",
+    "Houndoom",
+    "Mandibuzz",
+    "Altaria"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mandibuzz; answers Magneton->Donphan; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Mandibuzz",
+    "Mightyena",
+    "Plusle",
+    "Ambipom",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Breloom; switch hp below 0.6; setup at 4+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Absol",
+    "Milotic",
+    "Breloom",
+    "Carbink",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Altaria; answers Magneton->Lopunny; switch never; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:6",
+   "team": [
+    "Lopunny",
+    "Ninetales",
+    "Bronzong",
+    "Whiscash",
+    "Chandelure",
+    "Altaria"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch hp below 0.5; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Gastrodon",
+    "Bastiodon",
+    "Absol",
+    "Lanturn",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Dusknoir; answers Magneton->Dusknoir; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Electivire",
+    "Orbeetle",
+    "Carbink",
+    "Alakazam",
+    "Cresselia",
+    "Dusknoir"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Ninetales",
+    "Breloom",
+    "Quagsire",
+    "Togedemaru"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Manaphy",
+    "Breloom",
+    "Bronzong",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Chandelure; switch losing; setup at 2+ safe turns; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Absol",
+    "Salazzle",
+    "Chandelure",
+    "Altaria",
+    "Drifblim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ambipom; answers Magneton->Donphan; switch losing; setup at 2+ safe turns; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Absol",
+    "Bronzong",
+    "Togedemaru",
+    "Ambipom",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Mandibuzz",
+    "Cinderace",
+    "Cresselia",
+    "Dusknoir"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Quagsire; answers Magneton->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Frosmoth",
+    "Garganacl",
+    "Articuno",
+    "Liepard",
+    "Quagsire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Magneton->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Azumarill",
+    "Gliscor",
+    "Lopunny",
+    "Toucannon",
+    "Cinderace"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Annihilape",
+    "Lumineon",
+    "Mantine",
+    "Steelix",
+    "Talonflame"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Azumarill",
+    "Goodra",
+    "Absol",
+    "Mantine",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Gothitelle",
+    "Staraptor",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Annihilape; answers Magneton->Annihilape; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Hawlucha",
+    "Incineroar",
+    "Absol",
+    "Lanturn",
+    "Raichu"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Ludicolo",
+    "Masquerain",
+    "Rotom",
+    "Cofagrigus"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Talonflame; answers Magneton->Incineroar; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Glimmora",
+    "Incineroar",
+    "Bastiodon",
+    "Lanturn",
+    "Rotom",
+    "Talonflame"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Raichu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Hariyama",
+    "Lanturn",
+    "Raichu",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Floatzel; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Masquerain",
+    "Palossand",
+    "Tentacruel",
+    "Turtonator"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Flygon",
+    "Houndoom",
+    "Salazzle",
+    "Toxapex"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Heracross",
+    "Lopunny",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Magneton->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Incineroar",
+    "Palossand",
+    "Raichu",
+    "Seaking",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Absol; answers Magneton->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Garganacl",
+    "Absol",
+    "Ludicolo",
+    "Walrein",
+    "Weezing"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Machamp; answers Magneton->Machamp; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Garganacl",
+    "Machamp",
+    "Orbeetle",
+    "Weezing",
+    "Corsola"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glalie; answers Magneton->Cherrim; switch never; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Glalie",
+    "Houndoom",
+    "Pachirisu",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers none; switch losing; setup at 4+ safe turns; bait locks; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Leavanny",
+    "Orbeetle",
+    "Toxapex",
+    "Walrein",
+    "Drifblim"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Sharpedo; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Seaking",
+    "Sharpedo",
+    "Skarmory",
+    "Vespiquen",
+    "Walrein"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Sharpedo; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Hawlucha",
+    "Hippowdon",
+    "Magcargo",
+    "Orbeetle",
+    "Sharpedo"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magneton->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Sharpedo",
+    "Toxapex",
+    "Cinderace",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Whiscash; answers Magneton->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Houndoom",
+    "Orbeetle",
+    "Whiscash",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Sinistcha; answers none; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:8",
+   "team": [
+    "Beautifly",
+    "Ludicolo",
+    "Quagsire",
+    "Sinistcha",
+    "Weezing",
+    "Yanmega"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Magneton->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Vikavolt",
+    "Walrein",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Hippowdon",
+    "Houndoom",
+    "Steelix",
+    "Castform",
+    "Corsola",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Lapras",
+    "Machamp",
+    "Steelix"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Magneton->Ferrothorn; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Hawlucha",
+    "Vaporeon",
+    "Whiscash",
+    "Yanmega"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Mandibuzz",
+    "Metagross",
+    "Purugly",
+    "Steelix",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Magneton->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Gliscor",
+    "Lanturn",
+    "Octillery",
+    "Toxapex",
+    "Delphox"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Magneton->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Metagross",
+    "Pheromosa",
+    "Toucannon",
+    "Toxapex",
+    "Cherrim"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Weezing-Galar",
+    "Gliscor",
+    "Bastiodon",
+    "Steelix",
+    "Toxapex",
+    "Ambipom"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Golem",
+    "Bastiodon",
+    "Walrein",
+    "Cinderace"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Magneton->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Lanturn",
+    "Quagsire",
+    "Steelix",
+    "Vikavolt"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lucario; answers Magneton->Lucario; switch losing; setup at 2+ safe turns; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Lucario",
+    "Metagross",
+    "Ninetales",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Magneton->Whiscash; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Galvantula",
+    "Hariyama",
+    "Honchkrow",
+    "Bastiodon",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Honchkrow; answers Magneton->Quagsire; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Honchkrow",
+    "Metagross",
+    "Orbeetle",
+    "Quagsire",
+    "Tentacruel"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Magneton->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Arboliva",
+    "Greninja",
+    "Hippowdon",
+    "Honchkrow",
+    "Vikavolt"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magneton->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Hippowdon",
+    "Bastiodon",
+    "Lucario",
+    "Lurantis"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Magneton->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Lanturn",
+    "Lopunny",
+    "Lurantis",
+    "Palossand",
+    "Toxapex"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Magneton->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Bastiodon",
+    "Kricketune",
+    "Lumineon",
+    "Milotic"
+   ],
+   "seconds": 0.2
+  }
+ ],
+ "key": "tr341"
+}

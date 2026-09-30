@@ -1,0 +1,3261 @@
+{
+ "blind_rate": 0.961,
+ "blind_clean_share": 0.86,
+ "planned_rate": 0.999,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.001,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.044,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.968,
+  "50": 0.989,
+  "100": 0.994,
+  "300": 0.997
+ },
+ "runs": 165620,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Mars 1",
+ "split": "Gardenia",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 16.9,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Donphan, Zubat->Donphan, Bronzor->Liepard, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Pawmo",
+    "Tentacool",
+    "Delcatty",
+    "Donphan",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Meowth->Hariyama, Zubat->Snover, Purugly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Snover",
+    "Combee",
+    "Delcatty",
+    "Dottler",
+    "Rapidash-Galar",
+    "Hariyama"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Meowth->Dottler, Zubat->Bibarel, Bronzor->Hariyama, Purugly->Hariyama; switch hp below 0.4; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Steenee",
+    "Tentacool",
+    "Dottler",
+    "Barboach",
+    "Hariyama",
+    "Bibarel"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Shiftry",
+    "Araquanid",
+    "Barboach",
+    "Graveler"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Delcatty; answers Meowth->Hariyama, Zubat->Golbat, Bronzor->Raboot, Purugly->Snover; switch losing; setup at 3+ safe turns; save Golbat for Zubat",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:0",
+   "team": [
+    "Raboot",
+    "Snover",
+    "Tentacool",
+    "Delcatty",
+    "Golbat",
+    "Hariyama"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Shiftry; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP; save Graveler for Zubat",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Pawmo",
+    "Shiftry",
+    "Golbat",
+    "Graveler",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "55": 1.0
+   },
+   "line": "lead Delcatty; answers Meowth->Donphan, Zubat->Delcatty, Purugly->Donphan; switch hp below 0.4; setup at 4+ safe turns; stall timed effects at 1 turns; save Delcatty for Zubat",
+   "candidates": 55,
+   "converged": true,
+   "runs": 2000,
+   "kind": "planned:0",
+   "team": [
+    "Pawmo",
+    "Brionne",
+    "Raboot",
+    "Delcatty",
+    "Donphan",
+    "Bibarel"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Meowth->Breloom, Zubat->Liepard, Bronzor->Liepard, Purugly->Breloom; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Pawmo",
+    "Steenee",
+    "Combee",
+    "Liepard",
+    "Mienfoo"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Shiftry; answers Meowth->Shiftry, Zubat->Brionne, Bronzor->Shiftry, Purugly->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Brionne",
+    "Shiftry",
+    "Vullaby",
+    "Delcatty",
+    "Rapidash-Galar",
+    "Mienfoo"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Meowth->Araquanid, Zubat->Steenee, Bronzor->Liepard, Purugly->Mienfoo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Snover",
+    "Steenee",
+    "Vullaby",
+    "Araquanid",
+    "Liepard",
+    "Mienfoo"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Vullaby, Zubat->Breloom, Bronzor->Shiftry, Purugly->Donphan; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Shiftry for Bronzor",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Shiftry",
+    "Vullaby",
+    "Delcatty",
+    "Donphan",
+    "Hariyama"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Snover; answers Meowth->Donphan, Zubat->Donphan, Bronzor->Donphan, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Raboot",
+    "Snover",
+    "Donphan",
+    "Golbat"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 1.0
+   },
+   "line": "lead Bibarel; answers Meowth->Bibarel, Zubat->Bibarel, Bronzor->Masquerain, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:0",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Barboach",
+    "Bibarel",
+    "Masquerain",
+    "Mienfoo"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Kricketune, Purugly->Graveler; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Clefable",
+    "Combee",
+    "Finneon",
+    "Graveler",
+    "Kricketune",
+    "Luxio"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Meowth->Combee, Zubat->Grotle, Bronzor->Vullaby, Purugly->Dubwool; switch hp below 0.3; setup at 4+ safe turns at full HP; no status moves; free pivots; save Grotle for Zubat",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Trumbeak",
+    "Vullaby",
+    "Combee",
+    "Dubwool",
+    "Grotle",
+    "Masquerain"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Floatzel; answers Meowth->Floatzel, Zubat->Brionne, Bronzor->Vullaby, Purugly->Floatzel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:1",
+   "team": [
+    "Brionne",
+    "Skiploom",
+    "Steenee",
+    "Vullaby",
+    "Floatzel",
+    "Goldeen"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Floatzel; answers Meowth->Noctowl, Zubat->Dubwool, Bronzor->Noctowl, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Noctowl",
+    "Steenee",
+    "Vulpix",
+    "Dubwool",
+    "Floatzel",
+    "Luxio"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Nosepass, Bronzor->Kricketune, Purugly->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:1",
+   "team": [
+    "Nosepass",
+    "Brionne",
+    "Skiploom",
+    "Trumbeak",
+    "Vulpix",
+    "Kricketune"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Corvisquire; answers Meowth->Corvisquire, Zubat->Corvisquire, Bronzor->Hariyama, Purugly->Noctowl; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Corvisquire for Zubat",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Noctowl",
+    "Brionne",
+    "Corvisquire",
+    "Hariyama",
+    "Luxio",
+    "Masquerain"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Corvisquire; answers Meowth->Clefable, Zubat->Floatzel, Bronzor->Vullaby, Purugly->Noctowl; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 3 turns; save Noctowl for Purugly",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Noctowl",
+    "Vullaby",
+    "Clefable",
+    "Corvisquire",
+    "Floatzel",
+    "Goldeen"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Clefable, Purugly->Grotle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Clefable",
+    "Corvisquire",
+    "Finneon",
+    "Grotle",
+    "Luxio"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Dubwool, Bronzor->Noctowl, Purugly->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Noctowl",
+    "Brionne",
+    "Corvisquire",
+    "Dubwool",
+    "Finneon",
+    "Graveler"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.757,
+   "deaths": 0.247,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Nosepass, Bronzor->Dubwool, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 2100,
+   "kind": "planned:1",
+   "team": [
+    "Nosepass",
+    "Brionne",
+    "Skiploom",
+    "Dubwool",
+    "Barboach",
+    "Finneon"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Purugly->Goldeen; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Goldeen for Purugly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Brionne",
+    "Clefable",
+    "Goldeen",
+    "Hariyama",
+    "Kadabra"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "58": 1.0
+   },
+   "line": "lead Kadabra; answers Meowth->Lopunny, Zubat->Graveler, Bronzor->Lopunny, Purugly->Dubwool; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Lopunny for Bronzor",
+   "candidates": 58,
+   "converged": true,
+   "runs": 2060,
+   "kind": "planned:1",
+   "team": [
+    "Corvisquire",
+    "Dubwool",
+    "Finneon",
+    "Graveler",
+    "Kadabra",
+    "Lopunny"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Vullaby, Purugly->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Corvisquire",
+    "Floatzel"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hariyama; answers Meowth->Hariyama, Zubat->Corvisquire, Bronzor->Vullaby, Purugly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Budew",
+    "Vullaby",
+    "Corvisquire",
+    "Dottler",
+    "Finneon",
+    "Hariyama"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Munchlax, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Munchlax",
+    "Prinplup",
+    "Tentacool",
+    "Chinchou",
+    "Dottler",
+    "Mightyena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Pachirisu; answers Meowth->Pachirisu, Zubat->Pachirisu, Bronzor->Pachirisu, Purugly->Swadloon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:2",
+   "team": [
+    "Pachirisu",
+    "Budew",
+    "Swadloon",
+    "Tentacool",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Brionne, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Brionne",
+    "Swadloon",
+    "Clefable",
+    "Combee",
+    "Finneon",
+    "Mightyena"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "39": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Combee, Purugly->Hariyama; switch losing; setup at 4+ safe turns at full HP; free pivots; save Combee for Zubat",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1380,
+   "kind": "blind:2",
+   "team": [
+    "Tentacool",
+    "Clefable",
+    "Combee",
+    "Barboach",
+    "Goldeen",
+    "Hariyama"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Braixen, Bronzor->Pachirisu, Purugly->Hariyama; switch hp below 0.4; setup at 4+ safe turns; bait locks",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:2",
+   "team": [
+    "Braixen",
+    "Pachirisu",
+    "Clefable",
+    "Corvisquire",
+    "Hariyama",
+    "Kricketune"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Barboach, Bronzor->Hariyama, Purugly->Hariyama; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:2",
+   "team": [
+    "Clefable",
+    "Dottler",
+    "Barboach",
+    "Finneon",
+    "Hariyama",
+    "Masquerain"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Prinplup, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Prinplup",
+    "Swadloon",
+    "Clamperl",
+    "Corvisquire",
+    "Goldeen",
+    "Mightyena"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Staravia; answers Meowth->Corphish, Bronzor->Swadloon, Purugly->Braixen; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Braixen",
+    "Staravia",
+    "Swadloon",
+    "Clamperl",
+    "Corphish",
+    "Masquerain"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Kricketune; answers Meowth->Kricketune, Zubat->Munchlax, Bronzor->Vullaby, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Munchlax",
+    "Staravia",
+    "Vullaby",
+    "Chinchou",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Mightyena, Bronzor->Mightyena, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Staravia",
+    "Tentacool",
+    "Dottler",
+    "Barboach",
+    "Masquerain",
+    "Mightyena"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Brionne, Bronzor->Shiftry, Purugly->Shiftry; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Shiftry",
+    "Staravia",
+    "Clefable",
+    "Goldeen"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Hariyama; answers Meowth->Hariyama, Zubat->Corphish, Bronzor->Kricketune, Purugly->Hariyama; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Budew",
+    "Swadloon",
+    "Corphish",
+    "Barboach",
+    "Hariyama",
+    "Kricketune"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzor; answers Meowth->Bronzor, Zubat->Bronzor, Bronzor->Liepard, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Bronzor",
+    "Swadloon",
+    "Vullaby",
+    "Dubwool",
+    "Liepard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Snover, Bronzor->Liepard, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP; bait locks; save Snover for Zubat",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Snover",
+    "Steenee",
+    "Goldeen",
+    "Graveler",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:3",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Shiftry",
+    "Bronzor",
+    "Tentacool",
+    "Graveler"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Liepard; answers Zubat->Dubwool, Bronzor->Liepard, Purugly->Dubwool; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Tentacool",
+    "Dubwool",
+    "Barboach",
+    "Liepard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pachirisu; answers Meowth->Pachirisu, Zubat->Pachirisu, Bronzor->Liepard, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Pachirisu",
+    "Tentacool",
+    "Vullaby",
+    "Goldeen",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzor; answers Meowth->Bronzor, Zubat->Bronzor, Bronzor->Liepard, Purugly->Prinplup; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Prinplup",
+    "Bronzor",
+    "Trumbeak",
+    "Vullaby",
+    "Corvisquire",
+    "Liepard"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Shiftry",
+    "Bronzor",
+    "Dottler",
+    "Goldeen",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Shiftry, Purugly->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Shiftry",
+    "Snover",
+    "Carbink",
+    "Goldeen",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "91": 1.0
+   },
+   "line": "lead Tentacool; answers Meowth->Graveler, Zubat->Carbink, Bronzor->Donphan, Purugly->Carbink; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 2 turns; save Donphan for Bronzor",
+   "candidates": 91,
+   "converged": true,
+   "runs": 2720,
+   "kind": "planned:3",
+   "team": [
+    "Tentacool",
+    "Carbink",
+    "Corvisquire",
+    "Donphan",
+    "Graveler",
+    "Krabby"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.137,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "223": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Bibarel, Zubat->Prinplup, Bronzor->Bibarel, Purugly->Graveler; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 223,
+   "converged": true,
+   "runs": 5360,
+   "kind": "planned:3",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Dottler",
+    "Dubwool",
+    "Graveler",
+    "Bibarel"
+   ],
+   "seconds": 10.3
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Steenee, Zubat->Pachirisu, Bronzor->Masquerain, Purugly->Graveler; switch losing; setup at 2+ safe turns at full HP; bait locks; save Masquerain for Bronzor",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:3",
+   "team": [
+    "Pachirisu",
+    "Steenee",
+    "Tentacool",
+    "Dubwool",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.843,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Carbink; answers Meowth->Carbink, Zubat->Snover, Bronzor->Carbink, Purugly->Carbink; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Snover for Zubat",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Aipom",
+    "Snover",
+    "Carbink",
+    "Combee",
+    "Barboach",
+    "Bibarel"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corvisquire; answers Meowth->Corvisquire, Zubat->Dubwool, Bronzor->Liepard, Purugly->Dubwool; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 2 turns; save Liepard for Bronzor",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Snover",
+    "Trumbeak",
+    "Corvisquire",
+    "Dubwool",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Meowth->Dubwool, Zubat->Dubwool, Bronzor->Vullaby, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Raboot",
+    "Vullaby",
+    "Dottler",
+    "Dubwool",
+    "Krabby",
+    "Masquerain"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Goldeen; answers Meowth->Mightyena, Zubat->Raboot, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP; bait locks; save Mightyena for Purugly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Raboot",
+    "Chinchou",
+    "Frogadier",
+    "Goldeen",
+    "Krabby",
+    "Mightyena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Luxio; answers Meowth->Krabby, Zubat->Luxio, Bronzor->Luxio, Purugly->Swadloon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Luxio for Zubat",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Swadloon",
+    "Chinchou",
+    "Dottler",
+    "Krabby",
+    "Lombre",
+    "Luxio"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Mightyena, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Dottler",
+    "Goldeen",
+    "Kricketune",
+    "Mightyena"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Meowth->Mightyena, Zubat->Raboot, Bronzor->Mightyena, Purugly->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Tentacool",
+    "Chinchou",
+    "Clamperl",
+    "Mightyena"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Nosepass, Bronzor->Vullaby, Purugly->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Vullaby",
+    "Clefable",
+    "Frogadier",
+    "Kricketune",
+    "Mienfoo"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Kricketune, Purugly->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Vulpix",
+    "Clamperl",
+    "Kricketune",
+    "Lombre"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Kricketune; answers Meowth->Kricketune, Zubat->Vullaby, Bronzor->Vullaby, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Vullaby",
+    "Dottler",
+    "Frogadier",
+    "Kricketune",
+    "Lombre",
+    "Masquerain"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Meowth->Chinchou, Zubat->Krabby, Bronzor->Kricketune; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Krabby for Zubat",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Chinchou",
+    "Clamperl",
+    "Dubwool",
+    "Krabby",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Mightyena, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Chinchou",
+    "Dubwool",
+    "Kricketune",
+    "Mightyena"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Nosepass, Bronzor->Wormadam, Purugly->Dubwool; switch losing; setup at 5+ safe turns; save Wormadam for Bronzor",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Pawmo",
+    "Wormadam",
+    "Dottler",
+    "Dubwool",
+    "Mienfoo"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Vullaby, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Swadloon",
+    "Vullaby",
+    "Clamperl",
+    "Clefable",
+    "Masquerain"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Raboot; answers Meowth->Wormadam, Zubat->Nosepass, Purugly->Mienfoo; switch hp below 0.6; setup at 3+ safe turns; free pivots; save Nosepass for Zubat",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Raboot",
+    "Wormadam",
+    "Dottler",
+    "Lombre",
+    "Mienfoo"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Liepard; answers Meowth->Liepard, Zubat->Chinchou, Bronzor->Snorunt, Purugly->Chinchou; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Pawmo",
+    "Snorunt",
+    "Swadloon",
+    "Chinchou",
+    "Goldeen",
+    "Liepard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0
+   },
+   "line": "lead Snorunt; answers Meowth->Graveler, Zubat->Grotle, Bronzor->Graveler, Purugly->Bibarel; switch losing; setup at 3+ safe turns at full HP; save Graveler for Bronzor",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Snorunt",
+    "Swadloon",
+    "Graveler",
+    "Grotle",
+    "Bibarel"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Pawmo; answers Meowth->Pawmo, Zubat->Naclstack, Purugly->Bibarel; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Dottler",
+    "Finneon",
+    "Goldeen",
+    "Bibarel"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "rate": 0.705,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.55,
+    "20": 0.7,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Swadloon; answers Zubat->Fletchinder, Bronzor->Barboach, Purugly->Swadloon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Snorunt",
+    "Swadloon",
+    "Dottler",
+    "Barboach",
+    "Fletchinder",
+    "Goldeen"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Meowth->Onix, Zubat->Onix, Bronzor->Vullaby, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Onix",
+    "Tentacool",
+    "Vullaby",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "16": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Cherrim, Purugly->Cherrim; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Cherrim for Bronzor",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Cherrim",
+    "Fletchinder",
+    "Golbat",
+    "Graveler",
+    "Lombre"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.737,
+   "deaths": 0.283,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Naclstack; answers Meowth->Snorunt, Zubat->Pawmo, Purugly->Dottler; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Snorunt",
+    "Dottler",
+    "Barboach",
+    "Kadabra"
+   ],
+   "seconds": 13.5
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Pawmo; answers Meowth->Pawmo, Zubat->Fletchinder, Bronzor->Vullaby, Purugly->Pawmo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Dottler",
+    "Fletchinder",
+    "Goldeen",
+    "Kadabra"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Onix, Zubat->Onix, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Onix",
+    "Pawmo",
+    "Servine",
+    "Shiftry",
+    "Combee",
+    "Graveler"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Donphan, Zubat->Donphan, Bronzor->Liepard, Purugly->Donphan; switch hp below 0.6; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Donphan for Purugly",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Servine",
+    "Donphan",
+    "Goldeen",
+    "Grotle",
+    "Liepard",
+    "Lombre"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "76": 1.0
+   },
+   "line": "lead Kadabra; answers Meowth->Kadabra, Zubat->Onix, Purugly->Graveler; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Onix for Zubat",
+   "candidates": 76,
+   "converged": true,
+   "runs": 2420,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Onix",
+    "Finneon",
+    "Golbat",
+    "Graveler",
+    "Kadabra"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.157,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "38": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Swadloon, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1660,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Swadloon",
+    "Barboach",
+    "Finneon",
+    "Goldeen",
+    "Graveler"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Servine; answers Meowth->Servine, Zubat->Chinchou, Bronzor->Vullaby, Purugly->Servine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Servine",
+    "Snorunt",
+    "Vullaby",
+    "Chinchou",
+    "Finneon",
+    "Kadabra"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Brionne, Bronzor->Liepard, Purugly->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Steenee",
+    "Clefable",
+    "Goldeen",
+    "Liepard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dottler; answers Meowth->Onix, Zubat->Onix, Bronzor->Tentacool, Purugly->Onix; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns; save Tentacool for Bronzor",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Onix",
+    "Shellos",
+    "Tentacool",
+    "Vullaby",
+    "Dottler",
+    "Goldeen"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Bibarel, Bronzor->Liepard, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Shellos",
+    "Tentacool",
+    "Clefable",
+    "Bibarel",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "25": 1.0
+   },
+   "line": "lead Onix; answers Meowth->Tentacool, Zubat->Onix, Bronzor->Clefable, Purugly->Brionne; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1100,
+   "kind": "blind:6",
+   "team": [
+    "Onix",
+    "Brionne",
+    "Tentacool",
+    "Clefable",
+    "Corphish",
+    "Dubwool"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Meowth->Breloom, Zubat->Bibarel, Bronzor->Vullaby, Purugly->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Breloom",
+    "Raboot",
+    "Steenee",
+    "Vullaby",
+    "Bibarel",
+    "Kadabra"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Meowth->Onix, Zubat->Onix, Bronzor->Shiftry, Purugly->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Onix",
+    "Shiftry",
+    "Vullaby",
+    "Dubwool",
+    "Bibarel",
+    "Kadabra"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Onix; answers Meowth->Onix, Zubat->Onix, Bronzor->Donphan, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:6",
+   "team": [
+    "Onix",
+    "Breloom",
+    "Charjabug",
+    "Clefable",
+    "Corphish",
+    "Donphan"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Onix; answers Meowth->Onix, Zubat->Swadloon, Bronzor->Dottler, Purugly->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:6",
+   "team": [
+    "Aipom",
+    "Onix",
+    "Raboot",
+    "Steenee",
+    "Swadloon",
+    "Dottler"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Donphan, Zubat->Charjabug, Bronzor->Liepard, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; save Liepard for Bronzor",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Charjabug",
+    "Donphan",
+    "Bibarel",
+    "Liepard"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Donphan, Zubat->Donphan, Bronzor->Shiftry, Purugly->Breloom; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Shiftry",
+    "Steenee",
+    "Cherrim",
+    "Donphan",
+    "Goldeen"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.237,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Charjabug; answers Meowth->Charjabug, Zubat->Charjabug, Purugly->Corphish; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Corphish for Purugly",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Brionne",
+    "Charjabug",
+    "Combee",
+    "Corphish",
+    "Goldeen",
+    "Kadabra"
+   ],
+   "seconds": 10.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Donphan, Zubat->Donphan, Bronzor->Vullaby, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Naclstack",
+    "Vullaby",
+    "Clefable",
+    "Combee",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Meowth->Clefable, Zubat->Bibarel, Bronzor->Shiftry, Purugly->Dubwool; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Shiftry",
+    "Swadloon",
+    "Vullaby",
+    "Clefable",
+    "Dubwool",
+    "Bibarel"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bibarel; answers Meowth->Nidoking, Zubat->Golbat, Bronzor->Liepard, Purugly->Golbat; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Golbat for Purugly",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Nidoking",
+    "Tentacool",
+    "Vullaby",
+    "Golbat",
+    "Bibarel",
+    "Liepard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lombre; answers Meowth->Ninetales-Alola, Zubat->Ninetales-Alola, Bronzor->Ninetales-Alola; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Ninetales-Alola for Zubat",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Staravia",
+    "Torracat",
+    "Ninetales-Alola",
+    "Goldeen",
+    "Lombre",
+    "Machop"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Meowth->Breloom, Zubat->Bibarel, Bronzor->Liepard, Purugly->Masquerain; switch hp below 0.2; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Breloom",
+    "Raboot",
+    "Swadloon",
+    "Bibarel",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Vullaby, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Golbat",
+    "Graveler",
+    "Lombre",
+    "Machop"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Meowth->Hariyama, Zubat->Raboot, Bronzor->Liepard, Purugly->Hariyama; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swadloon",
+    "Combee",
+    "Hariyama",
+    "Liepard"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Raboot; answers Meowth->Raboot, Zubat->Nidoking, Bronzor->Rapidash-Galar, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP; save Masquerain for Purugly",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Raboot",
+    "Torracat",
+    "Rapidash-Galar",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Ninetales-Alola, Purugly->Graveler; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Graveler for Purugly",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Breloom",
+    "Raboot",
+    "Ninetales-Alola",
+    "Furret",
+    "Graveler"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Meowth->Ninetales-Alola, Zubat->Ninetales-Alola, Bronzor->Liepard, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Tentacool",
+    "Torracat",
+    "Vullaby",
+    "Ninetales-Alola",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Meowth->Ninetales-Alola, Zubat->Charjabug, Bronzor->Ninetales-Alola, Purugly->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Tentacool",
+    "Torracat",
+    "Ninetales-Alola",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Lombre"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Liepard; answers Meowth->Nidoking, Zubat->Nidoking, Bronzor->Liepard, Purugly->Machop; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Swadloon",
+    "Vullaby",
+    "Golbat",
+    "Liepard",
+    "Machop"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Hariyama; answers Meowth->Nidoking, Zubat->Nidoking, Bronzor->Vullaby, Purugly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Swadloon",
+    "Vullaby",
+    "Bibarel",
+    "Hariyama",
+    "Lombre"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Liepard; answers Meowth->Nidoking, Zubat->Nidoking, Bronzor->Liepard, Purugly->Hariyama; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Breloom",
+    "Rapidash-Galar",
+    "Hariyama",
+    "Liepard",
+    "Machop"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Meowth->Ninetales-Alola, Zubat->Charjabug, Bronzor->Liepard, Purugly->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Staravia",
+    "Torracat",
+    "Ninetales-Alola",
+    "Charjabug",
+    "Furret",
+    "Liepard"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Liepard, Purugly->Wormadam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Charjabug",
+    "Combee",
+    "Corphish",
+    "Liepard"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.135,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Graveler, Zubat->Naclstack, Bronzor->Dottler, Purugly->Dubwool; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Dottler for Bronzor",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Corphish",
+    "Dottler",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Masquerain; answers Meowth->Nidoking, Zubat->Masquerain, Bronzor->Charjabug, Purugly->Charjabug; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Charjabug for Bronzor",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Nidoking",
+    "Vulpix",
+    "Charjabug",
+    "Corphish",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Meowth->Bibarel, Zubat->Bibarel, Bronzor->Liepard, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Dottler",
+    "Golbat",
+    "Bibarel",
+    "Liepard",
+    "Lombre",
+    "Masquerain"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Shiftry, Bronzor->Shiftry, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Shiftry",
+    "Dubwool",
+    "Graveler",
+    "Mienfoo"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Charjabug; answers Meowth->Nidoking, Zubat->Nidoking, Bronzor->Liepard, Purugly->Charjabug; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 3 turns; save Nidoking for Zubat",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:8",
+   "team": [
+    "Nidoking",
+    "Charjabug",
+    "Cherrim",
+    "Golbat",
+    "Liepard",
+    "Lombre"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Shiftry, Bronzor->Shiftry, Purugly->Shiftry; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Shiftry",
+    "Skiploom",
+    "Barboach",
+    "Finneon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Wormadam; answers Meowth->Wormadam, Zubat->Trumbeak, Bronzor->Cherrim, Purugly->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:8",
+   "team": [
+    "Trumbeak",
+    "Wormadam",
+    "Cherrim",
+    "Corphish",
+    "Masquerain",
+    "Mienfoo"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Combee; answers Meowth->Trumbeak, Zubat->Golbat, Bronzor->Masquerain, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Trumbeak",
+    "Combee",
+    "Corphish",
+    "Barboach",
+    "Golbat",
+    "Masquerain"
+   ],
+   "seconds": 8.0
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Wormadam; answers Meowth->Wormadam, Zubat->Charjabug, Bronzor->Masquerain, Purugly->Masquerain; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:8",
+   "team": [
+    "Vulpix",
+    "Wormadam",
+    "Charjabug",
+    "Corphish",
+    "Finneon",
+    "Masquerain"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Wormadam; answers Meowth->Wormadam, Zubat->Golbat, Bronzor->Wormadam, Purugly->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1760,
+   "kind": "planned:8",
+   "team": [
+    "Pawmo",
+    "Skiploom",
+    "Wormadam",
+    "Barboach",
+    "Golbat",
+    "Mienfoo"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Liepard, Purugly->Masquerain; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Vullaby",
+    "Liepard",
+    "Lombre",
+    "Masquerain"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Naclstack; answers Meowth->Naclstack, Zubat->Naclstack, Bronzor->Cherrim, Purugly->Golbat; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; save Golbat for Purugly",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1580,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Nidoking",
+    "Vulpix",
+    "Cherrim",
+    "Corphish",
+    "Golbat"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Combee, Zubat->Liepard, Bronzor->Liepard, Purugly->Barboach; switch losing; setup at 5+ safe turns at full HP; bait locks; save Liepard for Zubat",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Combee",
+    "Donphan",
+    "Barboach",
+    "Goldeen",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Donphan; answers Meowth->Goldeen, Zubat->Donphan, Bronzor->Wormadam, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:9",
+   "team": [
+    "Aipom",
+    "Wormadam",
+    "Donphan",
+    "Barboach",
+    "Goldeen",
+    "Kricketune"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Finneon, Bronzor->Carvanha, Purugly->Masquerain; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:9",
+   "team": [
+    "Nosepass",
+    "Tentacool",
+    "Carvanha",
+    "Combee",
+    "Finneon",
+    "Masquerain"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Vullaby, Bronzor->Vullaby, Purugly->Nosepass; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Nosepass",
+    "Snover",
+    "Swadloon",
+    "Tentacool",
+    "Vullaby",
+    "Luxio"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Donphan, Bronzor->Carvanha, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:9",
+   "team": [
+    "Prinplup",
+    "Carvanha",
+    "Combee",
+    "Donphan",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Graveler; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Kricketune, Purugly->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Nosepass",
+    "Prinplup",
+    "Snover",
+    "Graveler",
+    "Kricketune"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "55": 1.0
+   },
+   "line": "lead Snover; answers Meowth->Barboach, Zubat->Donphan, Bronzor->Donphan, Purugly->Aipom; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; save Donphan for Zubat",
+   "candidates": 55,
+   "converged": true,
+   "runs": 2000,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Minun",
+    "Brionne",
+    "Snover",
+    "Donphan",
+    "Barboach"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "47": 1.0
+   },
+   "line": "lead Aipom; answers Meowth->Furret, Zubat->Furret, Bronzor->Kricketune, Purugly->Furret; switch never; setup at 5+ safe turns at full HP; save Furret for Zubat",
+   "candidates": 47,
+   "converged": true,
+   "runs": 1840,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Dottler",
+    "Furret",
+    "Kricketune",
+    "Luxio"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cherrim; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Nosepass, Purugly->Liepard; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Nosepass",
+    "Vullaby",
+    "Cherrim",
+    "Dottler",
+    "Graveler",
+    "Liepard"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Snover; answers Zubat->Graveler, Bronzor->Graveler, Purugly->Tentacool; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Tentacool for Purugly",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Snover",
+    "Tentacool",
+    "Cherrim",
+    "Finneon",
+    "Graveler"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Nosepass; answers Meowth->Nosepass, Zubat->Cherrim, Bronzor->Liepard, Purugly->Liepard; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Nosepass",
+    "Brionne",
+    "Vullaby",
+    "Cherrim",
+    "Dottler",
+    "Liepard"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Meowth->Graveler, Zubat->Graveler, Bronzor->Liepard, Purugly->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Wormadam",
+    "Goldeen",
+    "Graveler",
+    "Liepard",
+    "Luxio"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Kricketune; answers Meowth->Kricketune, Zubat->Luxio, Bronzor->Kricketune, Purugly->Kricketune; switch losing; setup at 3+ safe turns at full HP; bait locks; save Kricketune for Purugly",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Prinplup",
+    "Golbat",
+    "Kricketune",
+    "Luxio"
+   ],
+   "seconds": 1.3
+  }
+ ],
+ "key": "mars_1"
+}

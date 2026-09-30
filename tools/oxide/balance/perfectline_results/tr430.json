@@ -1,0 +1,3463 @@
+{
+ "blind_rate": 0.793,
+ "blind_clean_share": 0.58,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.298,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.889,
+  "50": 0.968,
+  "100": 0.979,
+  "300": 0.99
+ },
+ "runs": 206100,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "HQ",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 7.4,
+ "rows": [
+  {
+   "rate": 0.705,
+   "deaths": 0.325,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.05,
+    "20": 0.1,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Bibarel; answers Houndoom->Lanturn; switch losing; setup at 2+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Glalie; answers Houndoom->Glalie, Victreebel->Glalie; switch never; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Glalie for Victreebel",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Breloom; switch losing; setup at 5+ safe turns; stall timed effects at 1 turns",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.305,
+   "deaths": 1.55,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Hippowdon; answers Victreebel->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Lopunny",
+    "Milotic",
+    "Snorlax",
+    "Tentacruel",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ninetales; answers Houndoom->Cinderace, Victreebel->Talonflame; switch hp below 0.4; setup at 5+ safe turns at full HP; bait locks; free pivots; save Talonflame for Victreebel",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Klefki",
+    "Manaphy",
+    "Ninetales",
+    "Pelipper",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.183,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "57": 1.0
+   },
+   "line": "lead Yanmega; answers Houndoom->Milotic, Victreebel->Crobat; switch never; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 57,
+   "converged": true,
+   "runs": 2040,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Bastiodon",
+    "Manaphy",
+    "Milotic",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 1.0
+   },
+   "line": "lead Starmie; answers Houndoom->Alakazam, Victreebel->Blastoise; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Blastoise for Victreebel",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Lopunny",
+    "Blastoise",
+    "Starmie",
+    "Alakazam"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mantine; answers Houndoom->Mantine, Victreebel->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Mantine",
+    "Blissey",
+    "Palossand"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lopunny; answers Houndoom->Lopunny, Victreebel->Crobat; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Ninetales",
+    "Noctowl",
+    "Alakazam",
+    "Crobat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Probopass",
+    "Snorlax",
+    "Vaporeon",
+    "Altaria"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Blissey",
+    "Probopass",
+    "Snorlax",
+    "Delcatty"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace, Victreebel->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.32,
+   "deaths": 0.68,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Carbink; answers Victreebel->Corviknight; switch hp below 0.4; setup at 4+ safe turns; no status moves; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Quagsire, Victreebel->Milotic; switch hp below 0.4; setup at 4+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Relicanth, Victreebel->Glimmora; switch losing; setup at 3+ safe turns at full HP; bait locks; save Glimmora for Victreebel",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lopunny; answers Victreebel->Luxray; switch never; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Houndoom; answers Houndoom->Cinderace, Victreebel->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Kingdra",
+    "Mantine",
+    "Milotic",
+    "Tentacruel",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gothitelle; answers Houndoom->Gothitelle, Victreebel->Gothitelle; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Gothitelle",
+    "Ninetales",
+    "Pelipper",
+    "Rapidash",
+    "Vaporeon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "16": 1.0
+   },
+   "line": "lead Floatzel; answers Houndoom->Crawdaunt, Victreebel->Floatzel; switch never; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Ludicolo",
+    "Ninetales",
+    "Rapidash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "23": 1.0
+   },
+   "line": "lead Alakazam; answers Houndoom->Cinderace, Victreebel->Cinderace; switch never; setup at 5+ safe turns; no status moves; stall timed effects at 3 turns; save Cinderace for Victreebel",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Togekiss",
+    "Alakazam",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Mandibuzz; answers Houndoom->Mandibuzz, Victreebel->Pelipper; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Mandibuzz",
+    "Masquerain",
+    "Pelipper",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Houndoom->Glimmora, Victreebel->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Glimmora",
+    "Mandibuzz",
+    "Chandelure",
+    "Decidueye"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "47": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Torterra, Victreebel->Corviknight; switch losing; setup at 4+ safe turns at full HP; free pivots; save Corviknight for Victreebel",
+   "candidates": 47,
+   "converged": true,
+   "runs": 1840,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Kingdra",
+    "Manaphy",
+    "Milotic",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "18": 1.0
+   },
+   "line": "lead Tropius; answers Houndoom->Milotic, Victreebel->Bastiodon; switch hp below 0.7; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Bastiodon for Victreebel",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Bastiodon",
+    "Mantine",
+    "Milotic",
+    "Tropius",
+    "Decidueye"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "26": 1.0
+   },
+   "line": "lead Greninja; answers Houndoom->Greninja, Victreebel->Scizor; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Scizor for Victreebel",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Starmie; answers Houndoom->Starmie, Victreebel->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.11,
+   "deaths": 1.185,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.1,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2
+   },
+   "line": "lead Ludicolo; answers Houndoom->Seaking, Victreebel->Toxicroak; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Toxicroak for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Staraptor; answers Houndoom->Staraptor, Victreebel->Crobat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "44": 1.0
+   },
+   "line": "lead Starmie; answers Houndoom->Vespiquen, Victreebel->Leavanny; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Leavanny for Victreebel",
+   "candidates": 44,
+   "converged": true,
+   "runs": 1480,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Milotic",
+    "Snorlax",
+    "Staraptor",
+    "Starmie",
+    "Electivire"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.1,
+    "16": 1.0
+   },
+   "line": "lead Staraptor; answers Houndoom->Crustle, Victreebel->Scizor; switch losing; setup at 5+ safe turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Orbeetle",
+    "Scizor",
+    "Staraptor",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Houndoom->Greninja, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Greninja",
+    "Mandibuzz",
+    "Bronzong",
+    "Staraptor",
+    "Starmie",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Ludicolo, Victreebel->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Glalie",
+    "Ludicolo",
+    "Manaphy",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Purugly; answers Houndoom->Garganacl, Victreebel->Houndoom; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Houndoom",
+    "Manaphy",
+    "Purugly",
+    "Tentacruel"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Tentacruel; answers Victreebel->Tentacruel; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Scizor",
+    "Tentacruel",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.723,
+   "deaths": 0.403,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.35,
+    "50": 0.45,
+    "60": 0.5,
+    "70": 0.5,
+    "80": 0.5,
+    "90": 0.5,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Ludicolo; answers Houndoom->Glalie, Victreebel->Bronzong; switch never; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Bronzong for Victreebel",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Ludicolo",
+    "Bronzong",
+    "Scizor",
+    "Yanmega"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Manaphy, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Kricketune",
+    "Manaphy",
+    "Mandibuzz",
+    "Bronzong",
+    "Purugly"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.6,
+    "33": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Alomomola, Victreebel->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.365,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Araquanid; answers Houndoom->Araquanid; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.62,
+   "deaths": 0.42,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.15,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Vaporeon; answers Houndoom->Gastrodon, Victreebel->Bastiodon; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Bastiodon for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.315,
+   "deaths": 2.065,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.05,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45
+   },
+   "line": "lead Orbeetle; answers Victreebel->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.5,
+   "deaths": 0.5,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.0,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.35,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55
+   },
+   "line": "lead Rapidash; answers Victreebel->Rapidash; switch losing; setup at 5+ safe turns; bait locks; save Rapidash for Victreebel",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mantine; answers Houndoom->Mantine, Victreebel->Tentacruel; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Kingdra",
+    "Mantine",
+    "Rapidash",
+    "Tentacruel",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "251": 1.0
+   },
+   "line": "lead Bastiodon; answers Houndoom->Talonflame, Victreebel->Talonflame; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 251,
+   "converged": true,
+   "runs": 5920,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Qwilfish",
+    "Talonflame",
+    "Vespiquen",
+    "Dubwool"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "154": 1.0
+   },
+   "line": "lead Magmortar; answers Houndoom->Magmortar, Victreebel->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots; save Bastiodon for Victreebel",
+   "candidates": 154,
+   "converged": true,
+   "runs": 3980,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Kingdra; answers Houndoom->Kingdra, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Electivire, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Mandibuzz",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Sharpedo; answers Houndoom->Cinderace, Victreebel->Araquanid; switch losing; setup at 4+ safe turns at full HP; save Araquanid for Victreebel",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Qwilfish",
+    "Sharpedo",
+    "Vespiquen",
+    "Cinderace",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "175": 1.0
+   },
+   "line": "lead Weavile; answers Houndoom->Tentacruel, Victreebel->Empoleon; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 175,
+   "converged": true,
+   "runs": 4400,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Palossand",
+    "Tentacruel",
+    "Weavile",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "42": 1.0
+   },
+   "line": "lead Gastrodon; answers Houndoom->Gastrodon, Victreebel->Magmortar; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Magmortar for Victreebel",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1740,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Magmortar",
+    "Mantine",
+    "Sharpedo",
+    "Corviknight",
+    "Crobat"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.51,
+   "deaths": 0.495,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.4,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Ninetales-Alola; answers Houndoom->Rapidash, Victreebel->Rapidash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Rapidash for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "21": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Tentacruel, Victreebel->Charizard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.5,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Masquerain; answers Houndoom->Masquerain, Victreebel->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Greninja; answers Houndoom->Milotic, Victreebel->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "17": 1.0
+   },
+   "line": "lead Tentacruel; answers Houndoom->Talonflame, Victreebel->Tentacruel; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Tentacruel for Victreebel",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:4",
+   "team": [
+    "Mantine",
+    "Milotic",
+    "Talonflame",
+    "Tentacruel",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mantine; answers Houndoom->Mantine, Victreebel->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Mantine",
+    "Rapidash",
+    "Ceruledge",
+    "Charizard",
+    "Corviknight"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.763,
+   "deaths": 0.237,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.45,
+    "70": 0.55,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.6,
+    "170": 0.6,
+    "180": 0.75,
+    "190": 0.75,
+    "200": 0.75,
+    "210": 0.75,
+    "220": 0.75,
+    "230": 0.75,
+    "240": 0.75,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.75
+   },
+   "line": "lead Heracross; answers Houndoom->Altaria, Victreebel->Heracross; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Heracross for Victreebel",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Heracross",
+    "Luxray",
+    "Rapidash",
+    "Togekiss",
+    "Altaria"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace, Victreebel->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Heracross",
+    "Pawmot",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Talonflame; answers Houndoom->Kingdra, Victreebel->Corviknight; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Talonflame",
+    "Corviknight",
+    "Delibird",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Octillery; answers Houndoom->Milotic, Victreebel->Tentacruel; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Bastiodon",
+    "Milotic",
+    "Octillery",
+    "Tentacruel",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Florges, Victreebel->Manaphy; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Manaphy",
+    "Seaking"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Lopunny; answers Houndoom->Lopunny, Victreebel->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Lopunny",
+    "Pawmot",
+    "Rapidash",
+    "Tentacruel",
+    "Delcatty"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Palossand; answers Victreebel->Bronzong; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.63,
+   "deaths": 0.6,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.15,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Floatzel; answers Houndoom->Floatzel, Victreebel->Crustle; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Torterra; answers Houndoom->Torterra, Victreebel->Torterra; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Torterra for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Gliscor; answers Houndoom->Floatzel, Victreebel->Castform; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.275,
+   "deaths": 0.81,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Walrein; answers Houndoom->Walrein; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Milotic",
+    "Snorlax",
+    "Tentacruel",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Heracross",
+    "Milotic",
+    "Rhyperior",
+    "Snorlax",
+    "Wailord"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Liepard, Victreebel->Weavile; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 3 turns; save Weavile for Victreebel",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Grapploct",
+    "Liepard",
+    "Bronzong",
+    "Weavile",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "45": 1.0
+   },
+   "line": "lead Torterra; answers Houndoom->Torterra, Victreebel->Torterra; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:5",
+   "team": [
+    "Manaphy",
+    "Seaking",
+    "Sinistcha",
+    "Tentacruel",
+    "Torterra",
+    "Dewgong"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Glimmora",
+    "Heracross",
+    "Snorlax",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Florges; answers Houndoom->Florges, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Bronzong for Victreebel",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Noctowl",
+    "Bronzong",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Bronzong",
+    "Seaking",
+    "Snorlax",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Houndoom->Snorlax, Victreebel->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Snorlax",
+    "Whiscash",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace, Victreebel->Scizor; switch losing; setup at 3+ safe turns at full HP; save Scizor for Victreebel",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.13,
+   "deaths": 1.33,
+   "wipe": 0.0,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.05,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2
+   },
+   "line": "lead Emolga; answers Victreebel->Golem; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mantine; answers Houndoom->Mantine, Victreebel->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "28": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Mantine, Victreebel->Weavile; switch never; setup at 5+ safe turns at full HP; no status moves; bait locks; save Weavile for Victreebel",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1160,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.075,
+   "deaths": 1.44,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Empoleon; answers Houndoom->Tsareena, Victreebel->Empoleon; switch hp below 0.6; setup at 3+ safe turns at full HP; no status moves; save Empoleon for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "18": 1.0
+   },
+   "line": "lead Dusknoir; answers Victreebel->Electivire; switch hp below 0.3; setup at 3+ safe turns; save Electivire for Victreebel",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Lopunny",
+    "Milotic",
+    "Cinderace",
+    "Dusknoir",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "109": 1.0
+   },
+   "line": "lead Pelipper; answers Houndoom->Milotic, Victreebel->Milotic; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Milotic for Victreebel",
+   "candidates": 109,
+   "converged": true,
+   "runs": 3080,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Glimmora, Victreebel->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Mandibuzz",
+    "Scizor",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.35,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "82": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Glimmora, Victreebel->Manaphy; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Manaphy for Victreebel",
+   "candidates": 82,
+   "converged": true,
+   "runs": 2540,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Absol",
+    "Lumineon",
+    "Manaphy",
+    "Ninetales"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Alakazam; answers Houndoom->Cinderace, Victreebel->Cinderace; switch losing; setup at 5+ safe turns at full HP; free pivots; save Cinderace for Victreebel",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Absol",
+    "Ninetales",
+    "Alakazam",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.15,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.8,
+    "310": 0.8,
+    "320": 0.8,
+    "330": 0.8,
+    "340": 0.8,
+    "350": 0.8,
+    "360": 0.8,
+    "370": 0.8,
+    "380": 0.8,
+    "390": 0.8,
+    "400": 0.8,
+    "410": 0.8,
+    "420": 0.8,
+    "430": 0.8,
+    "440": 0.8,
+    "450": 0.8
+   },
+   "line": "lead Hippowdon; answers Victreebel->Mandibuzz; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Mandibuzz",
+    "Scizor"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Pelipper; answers Houndoom->Pelipper, Victreebel->Pelipper; switch never; setup at 3+ safe turns; no status moves",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Glimmora",
+    "Hariyama",
+    "Manaphy",
+    "Mantine",
+    "Pelipper"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Electivire, Victreebel->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Manaphy",
+    "Crobat",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Quagsire; answers Victreebel->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "51": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Crustle, Victreebel->Glalie; switch losing; setup at 3+ safe turns; no status moves; bait locks",
+   "candidates": 51,
+   "converged": true,
+   "runs": 1620,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Staraptor; answers Houndoom->Empoleon, Victreebel->Staraptor; switch never; setup at 3+ safe turns at full HP; save Staraptor for Victreebel",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.855,
+   "deaths": 0.145,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Raichu, Victreebel->Mandibuzz; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.605,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Crustle; answers Houndoom->Crustle; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Cinderace, Victreebel->Houndoom; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Houndoom for Victreebel",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Houndoom",
+    "Mantine",
+    "Staraptor",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "26": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Mantine, Victreebel->Annihilape; switch never; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Annihilape for Victreebel",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Hawlucha",
+    "Absol",
+    "Mantine",
+    "Cherrim",
+    "Cofagrigus"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Breloom, Victreebel->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Incineroar",
+    "Ludicolo",
+    "Breloom",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Houndoom->Tentacruel, Victreebel->Goodra; switch never; setup at 5+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Goodra",
+    "Tentacruel",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Ludicolo; switch hp below 0.5; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Goodra",
+    "Incineroar",
+    "Ludicolo",
+    "Rapidash",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Houndoom; answers Houndoom->Houndoom; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Houndoom",
+    "Magnezone",
+    "Mantine",
+    "Rapidash",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Araquanid; answers Houndoom->Hawlucha, Victreebel->Araquanid; switch losing; setup at 3+ safe turns at full HP; free pivots; save Araquanid for Victreebel",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Houndoom",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Machamp; answers Houndoom->Annihilape, Victreebel->Ludicolo; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Ludicolo for Victreebel",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Absol",
+    "Ludicolo",
+    "Machamp",
+    "Tentacruel",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.95,
+    "50": 0.95,
+    "54": 1.0
+   },
+   "line": "lead Pelipper; answers Houndoom->Ludicolo; switch never; setup at 2+ safe turns at full HP",
+   "candidates": 54,
+   "converged": true,
+   "runs": 1680,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "12": 1.0
+   },
+   "line": "lead Florges; answers Houndoom->Cinderace; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Delcatty; answers Houndoom->Hawlucha, Victreebel->Hawlucha; switch hp below 0.3; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Hawlucha for Victreebel",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "13": 1.0
+   },
+   "line": "lead Cinderace; answers Victreebel->Masquerain; switch never; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Quagsire; answers Houndoom->Kingdra, Victreebel->Bastiodon; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; save Bastiodon for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Cinderace; answers Victreebel->Cinderace; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Cinderace for Victreebel",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Kingdra",
+    "Mantine",
+    "Weezing",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "41": 1.0
+   },
+   "line": "lead Machamp; answers Houndoom->Roserade, Victreebel->Yanmega; switch losing; setup at 5+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Yanmega for Victreebel",
+   "candidates": 41,
+   "converged": true,
+   "runs": 1720,
+   "kind": "planned:8",
+   "team": [
+    "Kingdra",
+    "Machamp",
+    "Palossand",
+    "Roserade",
+    "Vespiquen",
+    "Yanmega"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Kingdra, Victreebel->Bastiodon; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1700,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Kingdra",
+    "Vaporeon",
+    "Delcatty"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "41": 1.0
+   },
+   "line": "lead Hawlucha; answers Houndoom->Mantine, Victreebel->Crustle; switch losing; setup at 3+ safe turns at full HP; bait locks; save Crustle for Victreebel",
+   "candidates": 41,
+   "converged": true,
+   "runs": 1720,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Lapras",
+    "Mantine",
+    "Quagsire",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Mantine; answers Houndoom->Empoleon, Victreebel->Araquanid; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mandibuzz",
+    "Mantine",
+    "Steelix",
+    "Crawdaunt"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Araquanid, Victreebel->Drifblim; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Ludicolo",
+    "Masquerain",
+    "Orbeetle",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Machamp; answers Houndoom->Orbeetle, Victreebel->Machamp; switch hp below 0.4; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Lapras",
+    "Liepard",
+    "Machamp",
+    "Orbeetle",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pelipper; answers Victreebel->Drifblim; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Drifblim for Victreebel",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jellicent",
+    "Palossand",
+    "Pelipper",
+    "Togekiss",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Hariyama; answers Houndoom->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Delcatty; answers Houndoom->Delcatty, Victreebel->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Ludicolo, Victreebel->Delphox; switch losing; setup at 4+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lopunny; answers Houndoom->Glimmora, Victreebel->Lopunny; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Lopunny for Victreebel",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.45,
+   "deaths": 0.645,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.0,
+    "20": 0.1,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.35,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65
+   },
+   "line": "lead Palossand; answers Houndoom->Glalie, Victreebel->Orbeetle; switch losing; setup at 3+ safe turns at full HP; free pivots; save Orbeetle for Victreebel",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Houndoom->Milotic; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Milotic",
+    "Ninetales",
+    "Talonflame",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 1.0
+   },
+   "line": "lead Lucario; answers Houndoom->Talonflame, Victreebel->Ludicolo; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Lucario",
+    "Ludicolo",
+    "Talonflame",
+    "Toucannon",
+    "Walrein"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "16": 1.0
+   },
+   "line": "lead Tentacruel; answers Houndoom->Altaria, Victreebel->Tentacruel; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Tentacruel for Victreebel",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Kingdra",
+    "Lurantis",
+    "Milotic",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Mantine; answers Houndoom->Mantine, Victreebel->Tentacruel; switch losing; setup at 3+ safe turns; free pivots; save Tentacruel for Victreebel",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Lurantis",
+    "Mantine",
+    "Mr. Rime",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "33": 1.0
+   },
+   "line": "lead Floatzel; answers Houndoom->Metagross, Victreebel->Floatzel; switch hp below 0.6; setup at 5+ safe turns at full HP; free pivots; save Floatzel for Victreebel",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Mantine",
+    "Metagross",
+    "Walrein",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Manaphy; answers Houndoom->Vaporeon, Victreebel->Steelix; switch hp below 0.6; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Steelix for Victreebel",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace; switch never; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Palossand",
+    "Whiscash",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Cinderace; answers Houndoom->Cinderace, Victreebel->Glimmora; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Glimmora for Victreebel",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Vaporeon",
+    "Walrein",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  }
+ ],
+ "key": "tr430"
+}

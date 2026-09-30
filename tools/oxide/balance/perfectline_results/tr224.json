@@ -1,0 +1,3823 @@
+{
+ "blind_rate": 0.643,
+ "blind_clean_share": 0.26,
+ "planned_rate": 0.999,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.001,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.644,
+ "blind_wipe": 0.013,
+ "convergence": {
+  "10": 0.81,
+  "50": 0.897,
+  "100": 0.921,
+  "300": 0.96
+ },
+ "runs": 281340,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Omar",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 11.9,
+ "rows": [
+  {
+   "rate": 0.705,
+   "deaths": 0.405,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Electivire; answers Mothim->Bronzong, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Greninja; answers Mamoswine->Greninja, Mothim->Vikavolt, Rampardos->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.465,
+   "deaths": 0.535,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.65,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Pelipper; answers Mamoswine->Pelipper, Mothim->Articuno; switch losing; setup at 3+ safe turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.395,
+   "deaths": 0.97,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.4,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.4
+   },
+   "line": "lead Golduck; answers Mothim->Snorlax, Rampardos->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.6,
+   "deaths": 0.61,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Blastoise; answers Mothim->Mandibuzz, Rampardos->Ludicolo; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Hippowdon; answers Mamoswine->Hippowdon, Mothim->Electivire, Rampardos->Hippowdon; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Electivire",
+    "Hippowdon",
+    "Manaphy",
+    "Pawmot",
+    "Pelipper",
+    "Roserade"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "48": 1.0
+   },
+   "line": "lead Hippowdon; answers Mamoswine->Hippowdon, Mothim->Carbink, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 48,
+   "converged": true,
+   "runs": 1860,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Lopunny",
+    "Carbink",
+    "Starmie",
+    "Corsola",
+    "Crobat"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.6,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Crawdaunt; answers Mamoswine->Crawdaunt, Mothim->Corsola, Rampardos->Probopass; switch never; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lumineon",
+    "Probopass",
+    "Weavile",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "95": 1.0
+   },
+   "line": "lead Tsareena; answers Mamoswine->Tsareena, Mothim->Frosmoth, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 95,
+   "converged": true,
+   "runs": 2800,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Octillery",
+    "Palossand",
+    "Pelipper",
+    "Tsareena"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "46": 1.0
+   },
+   "line": "lead Roserade; answers Mamoswine->Roserade, Rampardos->Greninja; switch losing; setup at 3+ safe turns at full HP; save Greninja for Rampardos",
+   "candidates": 46,
+   "converged": true,
+   "runs": 1820,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Greninja",
+    "Milotic",
+    "Ninetales",
+    "Quagsire",
+    "Roserade"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.5,
+    "70": 0.5,
+    "80": 0.5,
+    "90": 0.5,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "143": 1.0
+   },
+   "line": "lead Roserade; answers Mamoswine->Gliscor, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Hippowdon for Rampardos",
+   "candidates": 143,
+   "converged": true,
+   "runs": 3760,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Klefki",
+    "Bronzong",
+    "Purugly",
+    "Roserade"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "28": 1.0
+   },
+   "line": "lead Manaphy; answers Mamoswine->Manaphy, Mothim->Delibird, Rampardos->Gliscor; switch losing; setup at 5+ safe turns; no status moves; bait locks; stall timed effects at 1 turns; save Delibird for Mothim",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Jumpluff",
+    "Manaphy",
+    "Tsareena",
+    "Delibird"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.203,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.2,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Hippowdon; answers Mamoswine->Hippowdon, Mothim->Probopass, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP; save Palossand for Rampardos",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Milotic",
+    "Palossand",
+    "Probopass",
+    "Altaria"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 0.3,
+   "deaths": 1.235,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.0,
+    "20": 0.1,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Tropius; answers Mamoswine->Dewgong, Mothim->Gastrodon, Rampardos->Gastrodon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.35,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Kingdra; answers Mothim->Houndoom, Rampardos->Kingdra; switch never; setup at 3+ safe turns at full HP; free pivots; save Houndoom for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.43,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Araquanid; answers Mamoswine->Araquanid, Mothim->Araquanid, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.335,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Kingdra; answers Mothim->Rapidash, Rampardos->Kingdra; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Kingdra for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.585,
+   "deaths": 0.53,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.25,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Dubwool; answers Mamoswine->Dubwool, Mothim->Seaking; switch hp below 0.4; setup at 3+ safe turns at full HP; save Seaking for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Mamoswine->Feraligatr, Mothim->Electivire, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Hawlucha",
+    "Hippowdon",
+    "Pelipper",
+    "Roserade"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.157,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Mamoswine->Huntail, Mothim->Articuno, Rampardos->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Golem",
+    "Huntail",
+    "Lumineon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.627,
+   "deaths": 1.12,
+   "wipe": 0.013,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Pelipper; answers Mamoswine->Kingdra, Mothim->Lanturn, Rampardos->Greninja; switch never; setup at 3+ safe turns at full HP; save Lanturn for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Lanturn",
+    "Liepard",
+    "Blissey",
+    "Pelipper"
+   ],
+   "seconds": 6.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Mamoswine->Mamoswine, Mothim->Wailord, Rampardos->Hippowdon; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mamoswine",
+    "Mandibuzz",
+    "Mantine",
+    "Rapidash",
+    "Wailord"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.193,
+   "deaths": 1.517,
+   "wipe": 0.0,
+   "screened": 0.15,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1,
+    "70": 0.1,
+    "80": 0.1,
+    "90": 0.1,
+    "100": 0.1,
+    "110": 0.15,
+    "120": 0.15,
+    "130": 0.15,
+    "140": 0.15,
+    "150": 0.15,
+    "160": 0.15,
+    "170": 0.15,
+    "180": 0.15,
+    "190": 0.15,
+    "200": 0.15,
+    "210": 0.15,
+    "220": 0.15,
+    "230": 0.15,
+    "240": 0.15,
+    "250": 0.15,
+    "260": 0.15,
+    "270": 0.15,
+    "280": 0.15,
+    "290": 0.15,
+    "300": 0.15
+   },
+   "line": "lead Weavile; answers Mamoswine->Octillery, Mothim->Glalie, Rampardos->Weavile; switch never; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 1 turns; save Glalie for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Octillery",
+    "Salazzle",
+    "Seaking",
+    "Weavile",
+    "Drifblim"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 0.707,
+   "deaths": 0.317,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.45,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Golduck; answers Mothim->Golduck, Rampardos->Bastiodon; switch hp below 0.5; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Golduck for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Ninetales",
+    "Seaking",
+    "Togekiss"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Wailord; answers Mamoswine->Wailord, Mothim->Glalie, Rampardos->Hippowdon; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Octillery",
+    "Torterra",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Roserade; answers Mamoswine->Roserade, Mothim->Carbink, Rampardos->Roserade; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Milotic",
+    "Roserade",
+    "Carbink",
+    "Vespiquen",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.545,
+   "deaths": 1.325,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.4,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Whiscash; answers Mothim->Lanturn, Rampardos->Tentacruel; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Tentacruel for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Feraligatr; answers Mothim->Snorlax, Rampardos->Feraligatr; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Feraligatr for Rampardos",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Jellicent, Mothim->Wailord, Rampardos->Togedemaru; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.725,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Wailord; answers Mamoswine->Wailord, Mothim->Wailord, Rampardos->Electivire; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.395,
+   "deaths": 0.625,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.2,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Granbull; answers Mamoswine->Granbull, Mothim->Milotic, Rampardos->Mightyena; switch never; setup at 3+ safe turns at full HP; free pivots; save Mightyena for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Electivire; answers Mamoswine->Pelipper, Mothim->Feraligatr, Rampardos->Magnezone; switch losing; setup at 3+ safe turns; save Magnezone for Rampardos",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Hariyama",
+    "Magnezone",
+    "Manaphy",
+    "Pelipper"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "46": 1.0
+   },
+   "line": "lead Granbull; answers Mamoswine->Granbull, Mothim->Octillery, Rampardos->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 46,
+   "converged": true,
+   "runs": 1820,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Granbull",
+    "Luxray",
+    "Octillery",
+    "Starmie",
+    "Walrein"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.353,
+   "deaths": 0.857,
+   "wipe": 0.007,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.1,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35,
+    "70": 0.35,
+    "80": 0.35,
+    "90": 0.35,
+    "100": 0.35,
+    "110": 0.35,
+    "120": 0.35,
+    "130": 0.35,
+    "140": 0.55,
+    "150": 0.55,
+    "160": 0.55,
+    "170": 0.55,
+    "180": 0.55,
+    "190": 0.55,
+    "200": 0.55,
+    "210": 0.55,
+    "220": 0.55,
+    "230": 0.55,
+    "240": 0.55,
+    "250": 0.55,
+    "260": 0.55,
+    "270": 0.55,
+    "280": 0.55,
+    "290": 0.55,
+    "300": 0.55
+   },
+   "line": "lead Floatzel; answers Mamoswine->Floatzel, Rampardos->Floatzel; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Floatzel for Rampardos",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Garganacl",
+    "Jellicent",
+    "Octillery",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Jellicent, Mothim->Bastiodon, Rampardos->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Jellicent",
+    "Pachirisu",
+    "Togedemaru",
+    "Chandelure",
+    "Alomomola"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "35": 1.0
+   },
+   "line": "lead Wailord; answers Mamoswine->Crawdaunt, Mothim->Togedemaru, Rampardos->Togedemaru; switch hp below 0.6; setup at 3+ safe turns; stall timed effects at 2 turns; save Togedemaru for Mothim",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Golem",
+    "Togedemaru",
+    "Wailord",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Mamoswine->Jellicent, Mothim->Purugly, Rampardos->Palossand; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Purugly for Mothim",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Ludicolo",
+    "Masquerain",
+    "Palossand",
+    "Purugly"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Machamp; answers Mamoswine->Pelipper, Mothim->Weavile, Rampardos->Seaking; switch hp below 0.6; setup at 4+ safe turns at full HP; bait locks; save Seaking for Rampardos",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Machamp",
+    "Pelipper",
+    "Seaking",
+    "Carbink",
+    "Weavile"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Mamoswine->Feraligatr, Mothim->Carbink, Rampardos->Feraligatr; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Florges",
+    "Greninja",
+    "Absol",
+    "Machamp",
+    "Carbink"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.65,
+   "deaths": 0.605,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Cinccino; answers Mothim->Abomasnow, Rampardos->Ludicolo; switch losing; setup at 2+ safe turns; stall timed effects at 3 turns; save Ludicolo for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.345,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Gorebyss; answers Mothim->Salazzle, Rampardos->Heracross; switch hp below 0.6; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Salazzle for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.01,
+   "deaths": 4.465,
+   "wipe": 0.43,
+   "screened": 0.05,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.05,
+    "40": 0.05,
+    "50": 0.05,
+    "60": 0.05
+   },
+   "line": "lead Magcargo; answers Mamoswine->Corviknight, Mothim->Bibarel, Rampardos->Shiftry; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Mamoswine->Hawlucha, Mothim->Lanturn, Rampardos->Hawlucha; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "22": 1.0
+   },
+   "line": "lead Wailord; answers Mamoswine->Wailord, Mothim->Galvantula, Rampardos->Quagsire; switch losing; setup at 2+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Ferrothorn; answers Mamoswine->Manaphy, Mothim->Hawlucha, Rampardos->Ferrothorn; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Hawlucha for Mothim",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Ferrothorn",
+    "Hawlucha",
+    "Manaphy",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.49,
+   "deaths": 0.6,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.4,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.4,
+    "100": 0.4,
+    "110": 0.4,
+    "120": 0.4,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Dubwool; answers Mothim->Wailord, Rampardos->Greninja; switch hp below 0.4; setup at 3+ safe turns at full HP; save Wailord for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Greninja",
+    "Tentacruel",
+    "Wailord",
+    "Crobat",
+    "Dubwool"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.237,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Seaking; answers Mamoswine->Greninja, Mothim->Seaking, Rampardos->Ferrothorn; switch losing; setup at 5+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Greninja",
+    "Jellicent",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 8.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "15": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Ferrothorn, Mothim->Bastiodon, Rampardos->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; save Ferrothorn for Rampardos",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Jellicent",
+    "Bastiodon",
+    "Palossand",
+    "Shiftry"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Hariyama; answers Mamoswine->Hariyama, Mothim->Togekiss, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Hariyama",
+    "Ludicolo",
+    "Orbeetle",
+    "Steelix",
+    "Togekiss",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.75,
+    "62": 1.0
+   },
+   "line": "lead Floatzel; answers Mothim->Cresselia, Rampardos->Bronzong; switch never; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Bronzong for Rampardos",
+   "candidates": 62,
+   "converged": true,
+   "runs": 2140,
+   "kind": "planned:3",
+   "team": [
+    "Floatzel",
+    "Mandibuzz",
+    "Bronzong",
+    "Cresselia",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Hariyama; answers Mothim->Empoleon, Rampardos->Ferrothorn; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; save Ferrothorn for Rampardos",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Greninja",
+    "Hariyama",
+    "Sharpedo",
+    "Weavile"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Granbull; answers Mamoswine->Granbull, Mothim->Whiscash, Rampardos->Metagross; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:3",
+   "team": [
+    "Granbull",
+    "Kingdra",
+    "Metagross",
+    "Palossand",
+    "Vikavolt",
+    "Whiscash"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.34,
+   "deaths": 0.98,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.45,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55
+   },
+   "line": "lead Pheromosa; answers Mamoswine->Pheromosa, Rampardos->Pheromosa; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Pheromosa for Rampardos",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.805,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Kingdra; answers Mamoswine->Kingdra, Mothim->Ceruledge, Rampardos->Kingdra; switch losing; setup at 4+ safe turns; bait locks",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Masquerain; answers Mamoswine->Lumineon, Mothim->Charizard, Rampardos->Whiscash; switch hp below 0.5; setup at 3+ safe turns; bait locks; free pivots; save Whiscash for Rampardos",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.235,
+   "deaths": 1.53,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.15,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Greninja; answers Mamoswine->Kingdra, Mothim->Vespiquen, Rampardos->Kingdra; switch never; setup at 2+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.2,
+    "20": 0.25,
+    "23": 1.0
+   },
+   "line": "lead Pawmot; answers Mamoswine->Rotom, Mothim->Lanturn, Rampardos->Pawmot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hippowdon; answers Mamoswine->Hippowdon, Mothim->Electivire, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Hawlucha",
+    "Hippowdon",
+    "Manaphy",
+    "Palossand",
+    "Pawmot"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Machamp; answers Mamoswine->Machamp, Mothim->Wailord, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Machamp",
+    "Mienshao",
+    "Octillery",
+    "Poliwrath",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.42,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.55,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Pheromosa; answers Mamoswine->Pheromosa, Mothim->Kingdra; switch losing; setup at 2+ safe turns at full HP; no status moves; save Kingdra for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Kingdra",
+    "Lopunny",
+    "Blissey",
+    "Pheromosa",
+    "Corviknight"
+   ],
+   "seconds": 6.6
+  },
+  {
+   "rate": 0.65,
+   "deaths": 1.133,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Electivire; answers Mamoswine->Electivire, Rampardos->Electivire; switch hp below 0.4; setup at 4+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Rotom",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge",
+    "Corsola"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.66,
+   "deaths": 0.65,
+   "wipe": 0.02,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Abomasnow; answers Mamoswine->Talonflame, Mothim->Kingdra, Rampardos->Kingdra; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Kingdra",
+    "Talonflame",
+    "Vikavolt",
+    "Dubwool"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Quagsire; answers Mamoswine->Manaphy, Mothim->Tentacruel, Rampardos->Manaphy; switch losing; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Manaphy",
+    "Quagsire",
+    "Sharpedo",
+    "Tentacruel",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Florges; answers Mamoswine->Crawdaunt, Mothim->Florges, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Palossand",
+    "Vaporeon",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Pawmot; answers Mamoswine->Tentacruel, Mothim->Lopunny, Rampardos->Tentacruel; switch never; setup at 2+ safe turns; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Lopunny",
+    "Pawmot",
+    "Poliwrath",
+    "Tentacruel",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.625,
+   "deaths": 0.4,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.55,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Walrein; answers Mothim->Magcargo, Rampardos->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.55,
+   "deaths": 0.91,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.45,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Glimmora; answers Mamoswine->Leavanny, Mothim->Togekiss, Rampardos->Gliscor; switch never; setup at 2+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Poliwrath; answers Mamoswine->Poliwrath, Mothim->Vaporeon, Rampardos->Swampert; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Pawmot; answers Mamoswine->Bastiodon, Mothim->Hippowdon; switch losing; setup at 3+ safe turns; save Hippowdon for Mothim",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Machamp; answers Mamoswine->Machamp, Mothim->Milotic, Rampardos->Tsareena; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Mamoswine->Steelix, Mothim->Electivire, Rampardos->Steelix; switch never; setup at 4+ safe turns at full HP; save Electivire for Mothim",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Hawlucha",
+    "Manaphy",
+    "Pawmot",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.223,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tsareena; answers Mamoswine->Tsareena, Mothim->Altaria, Rampardos->Rhyperior; switch never; setup at 3+ safe turns at full HP; bait locks; save Altaria for Mothim",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Palossand",
+    "Rhyperior",
+    "Talonflame",
+    "Tsareena",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Jellicent, Mothim->Walrein, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Hippowdon",
+    "Jellicent",
+    "Steelix",
+    "Walrein",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Floatzel; answers Mamoswine->Hippowdon, Mothim->Heracross, Rampardos->Hawlucha; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Hawlucha",
+    "Heracross",
+    "Hippowdon",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ferrothorn; answers Mamoswine->Hawlucha, Mothim->Hawlucha, Rampardos->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Hawlucha for Mothim",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Mamoswine->Steelix, Mothim->Articuno, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Pawmot",
+    "Steelix",
+    "Castform",
+    "Altaria",
+    "Crustle"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pawmot; answers Rampardos->Floatzel; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Floatzel for Rampardos",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Mandibuzz",
+    "Pawmot",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hawlucha; answers Mamoswine->Tentacruel, Mothim->Glalie, Rampardos->Alomomola; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Glalie for Mothim",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Hawlucha",
+    "Serperior",
+    "Tentacruel",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.045,
+   "deaths": 1.55,
+   "wipe": 0.0,
+   "screened": 0.15,
+   "screen": {
+    "10": 0.05,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Ninetales; answers Mamoswine->Araquanid, Rampardos->Scizor; switch never; setup at 2+ safe turns; bait locks; free pivots; save Scizor for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.135,
+   "deaths": 0.935,
+   "wipe": 0.0,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Mightyena; answers Mothim->Scizor; switch hp below 0.5; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Scizor for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.36,
+   "deaths": 1.155,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.1,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Masquerain; answers Mothim->Lanturn, Rampardos->Scizor; switch never; setup at 4+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.16,
+   "deaths": 2.66,
+   "wipe": 0.2,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Abomasnow; answers Mamoswine->Shiftry, Mothim->Dusknoir, Rampardos->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Abomasnow; answers Mamoswine->Abomasnow, Mothim->Dusknoir, Rampardos->Hippowdon; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Dusknoir for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hippowdon; answers Mamoswine->Hippowdon, Mothim->Electivire, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Electivire",
+    "Hippowdon",
+    "Kingdra",
+    "Manaphy",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.213,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "153": 1.0
+   },
+   "line": "lead Galvantula; answers Mamoswine->Galvantula, Mothim->Cresselia, Rampardos->Togedemaru; switch losing; setup at 5+ safe turns; no status moves; bait locks",
+   "candidates": 153,
+   "converged": true,
+   "runs": 3960,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Palossand",
+    "Togedemaru",
+    "Cresselia",
+    "Donphan"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.173,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Tsareena; answers Mamoswine->Tsareena, Mothim->Tsareena, Rampardos->Palossand; switch losing; setup at 2+ safe turns; save Tsareena for Mothim",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Palossand",
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.843,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Pelipper; answers Mamoswine->Pelipper, Rampardos->Whiscash; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Whiscash for Rampardos",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Pelipper",
+    "Plusle",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "128": 1.0
+   },
+   "line": "lead Floatzel; answers Mothim->Rhyperior, Rampardos->Rhyperior; switch hp below 0.6; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 128,
+   "converged": true,
+   "runs": 3460,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Floatzel",
+    "Bastiodon",
+    "Absol",
+    "Rhyperior",
+    "Drifblim"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "131": 1.0
+   },
+   "line": "lead Hariyama; answers Mamoswine->Abomasnow, Mothim->Glalie, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP; free pivots; save Palossand for Rampardos",
+   "candidates": 131,
+   "converged": true,
+   "runs": 3520,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hariyama",
+    "Palossand",
+    "Breloom",
+    "Drifblim"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "42": 1.0
+   },
+   "line": "lead Vikavolt; answers Mamoswine->Hippowdon, Mothim->Vikavolt, Rampardos->Hippowdon; switch losing; setup at 2+ safe turns; bait locks; stall timed effects at 3 turns; save Hippowdon for Rampardos",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1740,
+   "kind": "planned:6",
+   "team": [
+    "Hippowdon",
+    "Milotic",
+    "Bronzong",
+    "Steelix",
+    "Vikavolt",
+    "Cresselia"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Mamoswine->Steelix, Mothim->Carbink, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Rhyperior",
+    "Carbink",
+    "Steelix",
+    "Cresselia",
+    "Drifblim"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Jellicent; answers Mamoswine->Araquanid, Mothim->Golem, Rampardos->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.75,
+   "deaths": 0.315,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Abomasnow; answers Mamoswine->Gliscor, Mothim->Dewgong, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.17,
+   "deaths": 1.01,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Lanturn; answers Mamoswine->Poliwrath, Mothim->Abomasnow; switch losing; setup at 5+ safe turns; no status moves; stall timed effects at 3 turns; save Abomasnow for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.065,
+   "deaths": 1.815,
+   "wipe": 0.0,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2
+   },
+   "line": "lead Gastrodon; answers Mothim->Articuno; switch never; setup at 3+ safe turns at full HP; save Articuno for Mothim",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.645,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Furret; answers Mothim->Rotom, Rampardos->Pelipper; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Annihilape; answers Mamoswine->Pelipper, Mothim->Magnezone; switch losing; setup at 5+ safe turns; no status moves; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Annihilape",
+    "Magnezone",
+    "Manaphy",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Poliwrath; answers Mamoswine->Poliwrath, Mothim->Electivire, Rampardos->Quagsire; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Quagsire for Rampardos",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Furret",
+    "Houndoom",
+    "Poliwrath",
+    "Quagsire"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Mamoswine->Kingdra, Mothim->Kingdra, Rampardos->Kingdra; switch hp below 0.6; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Kingdra for Mothim",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Azumarill",
+    "Hariyama",
+    "Incineroar",
+    "Jellicent",
+    "Kingdra",
+    "Milotic"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.1,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2,
+    "70": 0.2,
+    "80": 0.2,
+    "90": 0.2,
+    "100": 0.2,
+    "110": 0.2,
+    "120": 0.35,
+    "130": 0.35,
+    "140": 0.35,
+    "150": 0.35,
+    "160": 0.35,
+    "170": 0.35,
+    "179": 1.0
+   },
+   "line": "lead Lumineon; answers Mamoswine->Lumineon, Mothim->Magnezone, Rampardos->Magnezone; switch losing; setup at 3+ safe turns at full HP; save Magnezone for Rampardos",
+   "candidates": 179,
+   "converged": true,
+   "runs": 4480,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Rotom",
+    "Tentacruel",
+    "Ninetales-Alola"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "118": 1.0
+   },
+   "line": "lead Poliwrath; answers Mamoswine->Poliwrath, Mothim->Kingdra, Rampardos->Gliscor; switch hp below 0.4; setup at 5+ safe turns at full HP",
+   "candidates": 118,
+   "converged": true,
+   "runs": 3260,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Poliwrath",
+    "Crustle"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Azumarill; answers Mothim->Garganacl, Rampardos->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Azumarill",
+    "Gliscor",
+    "Kingdra",
+    "Rotom",
+    "Toxapex"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Kingdra; answers Mothim->Abomasnow, Rampardos->Steelix; switch losing; setup at 3+ safe turns; bait locks; save Steelix for Rampardos",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Annihilape",
+    "Kingdra",
+    "Magnezone",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.713,
+   "deaths": 0.367,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "29": 1.0
+   },
+   "line": "lead Abomasnow; answers Mamoswine->Abomasnow, Mothim->Abomasnow, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Flygon",
+    "Palossand",
+    "Breloom",
+    "Seaking"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Ferrothorn, Mothim->Lapras, Rampardos->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; save Lapras for Mothim",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1100,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.815,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.6,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Greninja; answers Mamoswine->Greninja, Mothim->Togekiss, Rampardos->Bastiodon; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.385,
+   "deaths": 0.77,
+   "wipe": 0.02,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.1,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Crawdaunt; answers Mamoswine->Araquanid, Mothim->Vikavolt, Rampardos->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.12,
+   "deaths": 1.745,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.05,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Masquerain; answers Mamoswine->Araquanid, Mothim->Yanmega, Rampardos->Florges; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.33,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.5,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Mienshao; answers Mamoswine->Mienshao, Rampardos->Mienshao; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ferrothorn; answers Mamoswine->Ferrothorn, Mothim->Electivire, Rampardos->Manaphy; switch hp below 0.4; setup at 3+ safe turns; save Manaphy for Rampardos",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Hippowdon",
+    "Manaphy",
+    "Pelipper",
+    "Roserade"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "55": 1.0
+   },
+   "line": "lead Electivire; answers Mamoswine->Manaphy, Mothim->Manaphy, Rampardos->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 55,
+   "converged": true,
+   "runs": 2000,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Articuno",
+    "Greninja",
+    "Lumineon",
+    "Manaphy",
+    "Mienshao"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.1,
+    "13": 1.0
+   },
+   "line": "lead Lapras; answers Mamoswine->Machamp, Mothim->Hawlucha; switch losing; setup at 3+ safe turns at full HP; free pivots; save Hawlucha for Mothim",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Jellicent",
+    "Lapras",
+    "Machamp",
+    "Pelipper",
+    "Seaking"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.4,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Walrein; answers Mothim->Carbink, Rampardos->Walrein; switch losing; setup at 3+ safe turns at full HP; free pivots; save Carbink for Mothim",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Leavanny",
+    "Milotic",
+    "Carbink",
+    "Walrein",
+    "Clefable"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.2,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "56": 1.0
+   },
+   "line": "lead Roserade; answers Mamoswine->Hippowdon, Mothim->Florges, Rampardos->Hippowdon; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 56,
+   "converged": true,
+   "runs": 2020,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Absol",
+    "Magcargo",
+    "Milotic",
+    "Roserade"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.45,
+    "40": 0.7,
+    "50": 0.7,
+    "54": 1.0
+   },
+   "line": "lead Floatzel; answers Mothim->Houndoom, Rampardos->Cinderace; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Cinderace for Rampardos",
+   "candidates": 54,
+   "converged": true,
+   "runs": 1980,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Pelipper",
+    "Castform",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ferrothorn; answers Mamoswine->Ferrothorn, Mothim->Articuno, Rampardos->Palossand; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Manaphy",
+    "Palossand",
+    "Togekiss",
+    "Corsola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Roserade; answers Mamoswine->Roserade, Mothim->Garganacl, Rampardos->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Kingdra",
+    "Liepard",
+    "Pelipper",
+    "Roserade",
+    "Donphan"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Greninja; answers Mamoswine->Greninja, Mothim->Talonflame, Rampardos->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "23": 1.0
+   },
+   "line": "lead Masquerain; answers Mamoswine->Manaphy, Mothim->Mandibuzz, Rampardos->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots; save Mandibuzz for Mothim",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.5,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Mamoswine->Gastrodon, Mothim->Whiscash, Rampardos->Greninja; switch hp below 0.3; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Greninja for Rampardos",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lucario; answers Mamoswine->Hariyama, Mothim->Ceruledge, Rampardos->Lucario; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.56,
+   "deaths": 0.44,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.25,
+    "20": 0.35,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Machamp; answers Mamoswine->Machamp, Mothim->Honchkrow; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Mamoswine->Feraligatr, Mothim->Feraligatr, Rampardos->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Feraligatr",
+    "Hawlucha",
+    "Hippowdon",
+    "Kingler",
+    "Lucario",
+    "Manaphy"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Jellicent; answers Mamoswine->Jellicent, Mothim->Jellicent, Rampardos->Donphan; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Lopunny",
+    "Salazzle",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lucario; answers Mamoswine->Lucario, Mothim->Milotic, Rampardos->Rhyperior; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lucario",
+    "Lumineon",
+    "Milotic",
+    "Rhyperior",
+    "Vikavolt",
+    "Cherrim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Mamoswine->Steelix, Mothim->Delphox, Rampardos->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Gliscor",
+    "Kricketune",
+    "Rhyperior",
+    "Salazzle",
+    "Steelix",
+    "Delphox"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lucario; answers Mamoswine->Abomasnow, Mothim->Togekiss, Rampardos->Lucario; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Togekiss for Mothim",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Hariyama",
+    "Lucario",
+    "Talonflame",
+    "Togekiss"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "15": 1.0
+   },
+   "line": "lead Hawlucha; answers Mamoswine->Sharpedo, Mothim->Kingler, Rampardos->Dubwool; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Hawlucha",
+    "Kingler",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.85,
+    "90": 0.9,
+    "91": 1.0
+   },
+   "line": "lead Kingler; answers Mothim->Electivire, Rampardos->Kingler; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Kingler for Rampardos",
+   "candidates": 91,
+   "converged": true,
+   "runs": 2720,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Jellicent",
+    "Kingler",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Crawdaunt; answers Mamoswine->Crawdaunt, Mothim->Togekiss, Rampardos->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Metagross",
+    "Salazzle",
+    "Togekiss",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.1
+  }
+ ],
+ "key": "tr224"
+}

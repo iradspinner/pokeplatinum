@@ -1,0 +1,3375 @@
+{
+ "blind_rate": 0.869,
+ "blind_clean_share": 0.62,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.196,
+ "blind_wipe": 0.003,
+ "convergence": {
+  "10": 0.958,
+  "50": 0.988,
+  "100": 0.991,
+  "300": 0.993
+ },
+ "runs": 189520,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "HQ",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 8.8,
+ "rows": [
+  {
+   "rate": 0.845,
+   "deaths": 0.295,
+   "wipe": 0.015,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Mantine; answers Marowak->Bibarel, Gengar->Mantine; switch hp below 0.4; setup at 3+ safe turns; no status moves; bait locks; stall timed effects at 3 turns; save Mantine for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Glalie; answers Marowak->Glalie, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Marowak->Weavile, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Sharpedo; answers Gengar->Empoleon; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Empoleon for Gengar",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Marowak->Glalie, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Lanturn",
+    "Vaporeon",
+    "Weavile",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Blastoise",
+    "Manaphy",
+    "Pelipper",
+    "Talonflame",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Abomasnow, Gengar->Crobat; switch never; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Starmie; answers Marowak->Starmie, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Lopunny",
+    "Blastoise",
+    "Starmie",
+    "Alakazam"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Liepard",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Marowak->Vaporeon, Gengar->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Ninetales",
+    "Noctowl",
+    "Vaporeon",
+    "Alakazam"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Marowak->Glalie, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Lanturn",
+    "Liepard",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Golduck; answers Marowak->Golduck, Gengar->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Garganacl",
+    "Golduck",
+    "Gothitelle",
+    "Lopunny",
+    "Probopass",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Lopunny; answers Marowak->Abomasnow, Gengar->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.35,
+   "wipe": 0.01,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Relicanth; answers Marowak->Relicanth, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "26": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Milotic, Gengar->Manaphy; switch losing; setup at 5+ safe turns; no status moves; free pivots; stall timed effects at 3 turns; save Manaphy for Gengar",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Abomasnow; answers Marowak->Abomasnow, Gengar->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Marowak->Lanturn, Gengar->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Houndoom, Gengar->Mantine; switch hp below 0.3; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Mantine for Gengar",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Manaphy",
+    "Mantine",
+    "Sharpedo",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Vaporeon; answers Marowak->Gastrodon, Gengar->Vaporeon; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Vaporeon for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Ninetales",
+    "Pelipper",
+    "Rapidash",
+    "Vaporeon"
+   ],
+   "seconds": 5.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Ludicolo",
+    "Ninetales",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Huntail",
+    "Ludicolo",
+    "Togekiss",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Absol",
+    "Ludicolo",
+    "Mandibuzz",
+    "Pelipper",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Marowak->Feraligatr, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Manaphy",
+    "Mandibuzz",
+    "Decidueye",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "29": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Torterra",
+    "Corviknight",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.167,
+   "wipe": 0.007,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Mantine; answers Marowak->Mamoswine, Gengar->Mantine; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mamoswine",
+    "Mantine",
+    "Tropius",
+    "Decidueye"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Marowak->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Octillery; answers Marowak->Octillery, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Crawdaunt, Gengar->Crawdaunt; switch losing; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Crawdaunt for Gengar",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.485,
+   "deaths": 0.78,
+   "wipe": 0.005,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.4,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Glalie; answers Marowak->Glalie; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Marowak->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Manaphy, Gengar->Sharpedo; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Ludicolo",
+    "Manaphy",
+    "Sharpedo",
+    "Starmie",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "68": 1.0
+   },
+   "line": "lead Mightyena; answers Gengar->Orbeetle; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 68,
+   "converged": true,
+   "runs": 2260,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Mightyena",
+    "Orbeetle",
+    "Staraptor",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Marowak->Greninja, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Greninja",
+    "Leavanny",
+    "Mandibuzz",
+    "Bronzong",
+    "Crawdaunt",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Starmie; answers Marowak->Ludicolo, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Glalie",
+    "Ludicolo",
+    "Manaphy",
+    "Starmie",
+    "Corviknight"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.16,
+   "wipe": 0.003,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Manaphy; answers Marowak->Frosmoth, Gengar->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Garganacl",
+    "Manaphy",
+    "Octillery",
+    "Purugly",
+    "Dewgong"
+   ],
+   "seconds": 5.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Absol",
+    "Manaphy",
+    "Scizor",
+    "Sharpedo",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.173,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Octillery; answers Marowak->Glalie, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP; save Bronzong for Gengar",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Ludicolo",
+    "Octillery",
+    "Bronzong",
+    "Scizor"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bronzong; answers Marowak->Manaphy, Gengar->Manaphy; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns; save Manaphy for Gengar",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Kricketune",
+    "Manaphy",
+    "Mandibuzz",
+    "Bronzong"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.555,
+   "deaths": 0.675,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Ludicolo; answers Marowak->Electivire; switch never; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Shiftry; answers Marowak->Shiftry, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Marowak->Vaporeon, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.2,
+   "deaths": 0.915,
+   "wipe": 0.0,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.05,
+    "20": 0.2,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Vikavolt; answers none; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Mantine",
+    "Vaporeon",
+    "Walrein",
+    "Weavile",
+    "Crawdaunt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Floatzel",
+    "Bastiodon",
+    "Qwilfish",
+    "Vaporeon",
+    "Cinccino"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.867,
+   "deaths": 0.247,
+   "wipe": 0.007,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "68": 1.0
+   },
+   "line": "lead Mantine; answers Marowak->Frosmoth, Gengar->Delcatty; switch losing; setup at 5+ safe turns at full HP; save Delcatty for Gengar",
+   "candidates": 68,
+   "converged": true,
+   "runs": 2260,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Mantine",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Marowak->Kingdra, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Bronzong",
+    "Sharpedo",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Abomasnow; answers Marowak->Abomasnow, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Leavanny",
+    "Mandibuzz",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Vespiquen, Gengar->Qwilfish; switch losing; setup at 2+ safe turns; stall timed effects at 1 turns; save Qwilfish for Gengar",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Qwilfish",
+    "Sharpedo",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Leavanny",
+    "Palossand",
+    "Weavile",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Frosmoth, Gengar->Corviknight; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Magmortar",
+    "Mantine",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Sharpedo; answers none; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "15": 1.0
+   },
+   "line": "lead Kingdra; answers Marowak->Milotic, Gengar->Kingdra; switch hp below 0.4; setup at 3+ safe turns; stall timed effects at 3 turns; save Kingdra for Gengar",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Marowak->Kingdra, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "39": 1.0
+   },
+   "line": "lead Greninja; answers Marowak->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1380,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.675,
+   "deaths": 0.325,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Lanturn; answers Marowak->Lanturn, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Manaphy; switch losing; setup at 3+ safe turns at full HP; save Manaphy for Gengar",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Floatzel",
+    "Lanturn",
+    "Manaphy",
+    "Mantine",
+    "Sharpedo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Empoleon; switch hp below 0.4; setup at 2+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Mantine",
+    "Rapidash",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Marowak->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Luxray",
+    "Rapidash",
+    "Togekiss",
+    "Altaria"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Rapidash; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:4",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Leavanny",
+    "Manaphy",
+    "Rapidash",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.17,
+   "wipe": 0.007,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Golduck; answers Marowak->Golduck, Gengar->Gastrodon; switch hp below 0.4; setup at 3+ safe turns at full HP; save Gastrodon for Gengar",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Golduck",
+    "Hippowdon",
+    "Togekiss",
+    "Corviknight",
+    "Donphan"
+   ],
+   "seconds": 7.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Octillery; answers Marowak->Octillery, Gengar->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Lanturn",
+    "Milotic",
+    "Octillery",
+    "Tentacruel",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Greninja, Gengar->Manaphy; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Absol",
+    "Manaphy",
+    "Seaking"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Octillery; answers Marowak->Octillery, Gengar->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Octillery",
+    "Rapidash",
+    "Shiftry",
+    "Delcatty"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Marowak->Weavile, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.495,
+   "deaths": 0.85,
+   "wipe": 0.025,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Whiscash; answers Gengar->Poliwrath; switch hp below 0.4; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Poliwrath for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.215,
+   "wipe": 0.025,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "58": 1.0
+   },
+   "line": "lead Torterra; answers Marowak->Torterra, Gengar->Torterra; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Torterra for Gengar",
+   "candidates": 58,
+   "converged": true,
+   "runs": 1760,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.865,
+   "deaths": 0.2,
+   "wipe": 0.005,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Milotic; answers Gengar->Wailord; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns; save Wailord for Gengar",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.735,
+   "deaths": 0.435,
+   "wipe": 0.015,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Walrein; answers Marowak->Golduck, Gengar->Walrein; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Walrein for Gengar",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Ludicolo",
+    "Manaphy",
+    "Vaporeon",
+    "Weavile",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.11,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "72": 1.0
+   },
+   "line": "lead Wailord; answers none; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 72,
+   "converged": true,
+   "runs": 2340,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Milotic",
+    "Rhyperior",
+    "Snorlax",
+    "Wailord"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Liepard",
+    "Ludicolo",
+    "Bronzong",
+    "Walrein",
+    "Weavile"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Torterra; answers Marowak->Torterra, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Manaphy",
+    "Seaking",
+    "Serperior",
+    "Torterra",
+    "Crawdaunt",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Torterra; answers Marowak->Torterra, Gengar->Snorlax; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Golduck",
+    "Sharpedo",
+    "Snorlax",
+    "Torterra"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Golduck",
+    "Castform",
+    "Walrein",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Marowak->Floatzel, Gengar->Snorlax; switch losing; setup at 3+ safe turns at full HP; free pivots; save Snorlax for Gengar",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Bibarel",
+    "Bronzong",
+    "Snorlax",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Marowak->Lanturn, Gengar->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Lumineon",
+    "Mightyena",
+    "Snorlax",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Marowak->Manaphy, Gengar->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.675,
+   "deaths": 0.8,
+   "wipe": 0.015,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Frosmoth; answers Marowak->Frosmoth, Gengar->Frosmoth; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Mantine; answers Marowak->Chandelure; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mantine; answers Marowak->Mantine, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Empoleon; answers Gengar->Empoleon; switch losing; setup at 2+ safe turns at full HP; bait locks; save Empoleon for Gengar",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Shiftry",
+    "Vaporeon",
+    "Walrein",
+    "Weavile",
+    "Dusknoir"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.27,
+   "wipe": 0.013,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Walrein; answers Marowak->Tsareena, Gengar->Walrein; switch losing; setup at 3+ safe turns at full HP; save Walrein for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Milotic",
+    "Pelipper",
+    "Tsareena",
+    "Walrein",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "15": 1.0
+   },
+   "line": "lead Shiftry; answers Marowak->Shiftry, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Mandibuzz",
+    "Scizor",
+    "Shiftry",
+    "Togekiss",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Lumineon",
+    "Manaphy",
+    "Mightyena",
+    "Rhyperior"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Absol",
+    "Alakazam",
+    "Walrein",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Marowak->Lanturn, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Mandibuzz",
+    "Scizor"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Hariyama",
+    "Manaphy",
+    "Mantine",
+    "Pelipper",
+    "Shiftry"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Togekiss; answers Gengar->Frosmoth; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Frosmoth for Gengar",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Huntail",
+    "Manaphy",
+    "Mightyena",
+    "Togekiss",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Huntail; answers Marowak->Huntail, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.52,
+   "deaths": 0.735,
+   "wipe": 0.005,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.5,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Glalie; answers Marowak->Crustle; switch losing; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.15,
+    "14": 1.0
+   },
+   "line": "lead Lopunny; answers Gengar->Liepard; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Octillery; answers Marowak->Octillery, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Sharpedo; answers Marowak->Empoleon, Gengar->Weavile; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Weavile for Gengar",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Houndoom",
+    "Manaphy",
+    "Mantine",
+    "Sharpedo",
+    "Weavile"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mantine; answers Marowak->Mantine, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Weavile",
+    "Ninetales-Alola",
+    "Cherrim",
+    "Cofagrigus"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Incineroar",
+    "Ludicolo",
+    "Breloom",
+    "Togekiss",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.25,
+    "17": 1.0
+   },
+   "line": "lead Crustle; answers Marowak->Masquerain, Gengar->Gastrodon; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; save Gastrodon for Gengar",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Goodra",
+    "Masquerain",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Goodra",
+    "Incineroar",
+    "Ludicolo",
+    "Weavile",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Vaporeon; answers Marowak->Houndoom, Gengar->Houndoom; switch never; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:7",
+   "team": [
+    "Houndoom",
+    "Magnezone",
+    "Mantine",
+    "Rapidash",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Houndoom; answers Marowak->Houndoom, Gengar->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Sharpedo",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Ludicolo",
+    "Octillery",
+    "Tentacruel",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "13": 1.0
+   },
+   "line": "lead Lapras; answers Marowak->Quagsire, Gengar->Lapras; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Lapras for Gengar",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Sinistcha; answers Marowak->Sinistcha, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mantine; answers Marowak->Mantine, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Ludicolo; switch losing; setup at 4+ safe turns at full HP; save Ludicolo for Gengar",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Lanturn",
+    "Ludicolo",
+    "Manaphy",
+    "Mantine",
+    "Walrein"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.713,
+   "deaths": 0.373,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85,
+    "310": 0.85,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Kingdra; answers Marowak->Hippowdon; switch hp below 0.6; setup at 4+ safe turns; stall timed effects at 1 turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Hippowdon",
+    "Kingdra",
+    "Palossand",
+    "Yanmega"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Marowak->Manaphy, Gengar->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Manaphy",
+    "Mightyena",
+    "Vaporeon",
+    "Delcatty",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Quagsire; answers Marowak->Quagsire; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Mantine",
+    "Quagsire",
+    "Sharpedo",
+    "Walrein",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Empoleon, Gengar->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mandibuzz",
+    "Mantine",
+    "Steelix",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Lanturn",
+    "Ludicolo",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Marowak->Walrein, Gengar->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Liepard",
+    "Orbeetle",
+    "Walrein",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pelipper; answers Marowak->Pelipper, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Absol",
+    "Palossand",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.575,
+   "deaths": 0.68,
+   "wipe": 0.02,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Abomasnow; answers Marowak->Abomasnow, Gengar->Gastrodon; switch hp below 0.3; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Marowak->Huntail, Gengar->Honchkrow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.265,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "38": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Ludicolo; switch losing; setup at 3+ safe turns at full HP; bait locks; save Ludicolo for Gengar",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1360,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.645,
+   "deaths": 0.465,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.5,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Kingdra; answers Marowak->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.505,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Glalie; answers Marowak->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Lanturn",
+    "Ludicolo",
+    "Sharpedo",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Marowak->Ludicolo, Gengar->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Absol",
+    "Ludicolo",
+    "Toucannon",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Kingdra; answers Marowak->Kingdra, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Kingdra",
+    "Lurantis",
+    "Weavile",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Empoleon; answers Marowak->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Ludicolo",
+    "Lurantis",
+    "Mantine",
+    "Walrein",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.247,
+   "wipe": 0.003,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Walrein; answers Marowak->Mantine; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Mantine",
+    "Metagross",
+    "Walrein",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Kingdra; answers Marowak->Kingdra, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Lanturn; answers Marowak->Whiscash, Gengar->Lanturn; switch losing; setup at 5+ safe turns; bait locks; free pivots; save Lanturn for Gengar",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Lanturn",
+    "Palossand",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Marowak->Vaporeon, Gengar->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Vaporeon",
+    "Walrein",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  }
+ ],
+ "key": "tr509"
+}

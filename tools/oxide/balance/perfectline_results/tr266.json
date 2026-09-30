@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 0.999,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.001,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 115420,
+ "search_budget": 7,
+ "converged_share": 1.0,
+ "label": "Camper Drew",
+ "split": "Fantina",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 2.7,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Gastly->Rapidash-Galar, Gastly->Shiftry, Gastly->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Litwick",
+    "Brionne",
+    "Shiftry",
+    "Whiscash",
+    "Charjabug",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Gastly->Swablu, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Swablu",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Gastly->Graveler, Gastly->Charjabug; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Tentacruel",
+    "Charjabug",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Gastly->Donphan, Gastly->Hariyama, Gastly->Hariyama; switch losing; setup at 5+ safe turns; save Hariyama for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Hariyama",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Gastly->Swablu, Gastly->Delcatty, Gastly->Delcatty; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Swablu",
+    "Whiscash",
+    "Delcatty",
+    "Dwebble",
+    "Gligar"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Shiftry, Gastly->Shiftry, Gastly->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Naclstack",
+    "Orbeetle",
+    "Shiftry",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Gastly->Graveler, Gastly->Breloom, Gastly->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Togetic",
+    "Vullaby",
+    "Araquanid",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mightyena; answers Gastly->Mightyena, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Brionne",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Donphan, Gastly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Kadabra",
+    "Raboot",
+    "Charjabug",
+    "Combee",
+    "Donphan",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Gastly->Swablu, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Orbeetle",
+    "Swablu",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Brionne",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Gastly->Hariyama, Gastly->Hariyama; switch losing; setup at 4+ safe turns at full HP; save Hariyama for Gastly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Naclstack",
+    "Pawmo",
+    "Swablu",
+    "Tsareena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Gastly->Hariyama, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Bibarel",
+    "Swablu",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Gastly->Probopass, Gastly->Floatzel, Gastly->Floatzel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Probopass",
+    "Togetic",
+    "Floatzel",
+    "Fomantis"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Brionne; answers Gastly->Togetic, Gastly->Brionne, Gastly->Brionne; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Brionne",
+    "Togetic",
+    "Clefable"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Brionne; answers Gastly->Brionne, Gastly->Lopunny, Gastly->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Lopunny",
+    "Masquerain",
+    "Noctowl",
+    "Brionne",
+    "Floatzel"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Gastly->Luxray, Gastly->Luxray, Gastly->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kadabra",
+    "Luxray",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Fomantis"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Carbink, Gastly->Lumineon, Gastly->Lumineon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Salazzle",
+    "Seaking",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Carbink, Gastly->Noctowl, Gastly->Noctowl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Noctowl",
+    "Torterra",
+    "Carbink",
+    "Fomantis"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Carbink, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Kricketune",
+    "Carbink",
+    "Umbreon",
+    "Vullaby",
+    "Fomantis"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Salazzle",
+    "Seaking",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Gastly->Luxray, Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Lumineon",
+    "Luxray",
+    "Bronzong",
+    "Swablu",
+    "Toucannon"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Umbreon, Gastly->Whiscash, Gastly->Vulpix; switch losing; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Whiscash for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Swablu",
+    "Carbink",
+    "Umbreon",
+    "Vulpix",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Gastly->Torterra, Gastly->Torterra, Gastly->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Litwick",
+    "Salazzle",
+    "Torterra",
+    "Vullaby",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Carbink, Gastly->Luxray, Gastly->Combee; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Combee for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Luxray",
+    "Bronzong",
+    "Carbink",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Gastly->Naclstack, Gastly->Salazzle, Gastly->Vulpix; switch never; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns; save Vulpix for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Luxray",
+    "Naclstack",
+    "Noctowl",
+    "Probopass",
+    "Salazzle",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Donphan, Gastly->Orbeetle, Gastly->Shiftry; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Orbeetle for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Gastly->Vullaby, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lumineon",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Gastly->Leavanny, Gastly->Liepard, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Togetic",
+    "Combee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Gastly->Hariyama, Gastly->Hariyama, Gastly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Kricketune",
+    "Seaking",
+    "Togetic",
+    "Fletchinder"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Shiftry, Gastly->Staravia, Gastly->Staravia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Mismagius",
+    "Munchlax",
+    "Shiftry",
+    "Staravia"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vullaby; answers Gastly->Crawdaunt, Gastly->Vullaby, Gastly->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Liepard",
+    "Vullaby",
+    "Corvisquire",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Gastly->Mightyena, Gastly->Lumineon, Gastly->Lumineon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mightyena",
+    "Prinplup",
+    "Seaking",
+    "Swablu"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Huntail",
+    "Orbeetle",
+    "Roselia",
+    "Tentacruel",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Donphan, Gastly->Donphan, Gastly->Shiftry; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Shiftry for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Shiftry",
+    "Whiscash",
+    "Combee",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mismagius",
+    "Braixen",
+    "Brionne",
+    "Whiscash"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Swablu",
+    "Togetic",
+    "Umbreon",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Gastly->Hariyama, Gastly->Whiscash, Gastly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Orbeetle",
+    "Pachirisu",
+    "Roselia",
+    "Swablu",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Braixen; answers Gastly->Brionne, Gastly->Braixen; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Braixen",
+    "Brionne",
+    "Prinplup",
+    "Roselia",
+    "Swablu"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Shiftry, Gastly->Ambipom, Gastly->Ambipom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Charjabug",
+    "Ambipom",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Gastly->Kingler, Gastly->Bastiodon; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Bastiodon for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Togetic",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pachirisu; answers Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns; bait locks; save Toucannon for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Pachirisu",
+    "Seaking",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Gastly->Togetic, Gastly->Shiftry, Gastly->Shiftry; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Prinplup",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Litwick, Gastly->Brionne, Gastly->Shiftry; switch losing; setup at 3+ safe turns; bait locks; save Brionne for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Tentacruel"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Shiftry, Gastly->Shiftry, Gastly->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Leavanny",
+    "Shiftry",
+    "Snover",
+    "Tentacruel",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Pachirisu",
+    "Umbreon",
+    "Whiscash",
+    "Donphan",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Orbeetle",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Gastly->Combee, Gastly->Bibarel; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Carbink",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Gastly->Carbink, Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Toucannon for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Brionne",
+    "Toucannon",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Carbink; answers Gastly->Carbink, Gastly->Masquerain, Gastly->Jynx; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Masquerain for Gastly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Snover",
+    "Togetic",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Toucannon, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Prinplup",
+    "Snover",
+    "Toucannon",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Gastly->Tsareena, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Brionne",
+    "Seaking",
+    "Tsareena",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Gastly->Masquerain, Gastly->Glameow, Gastly->Glameow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Pawmo",
+    "Raboot",
+    "Vulpix",
+    "Glameow"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Gastly->Mightyena, Gastly->Huntail, Gastly->Mightyena; switch never; setup at 2+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Seaking",
+    "Tsareena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Gastly->Mightyena, Gastly->Bronzong, Gastly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Huntail",
+    "Kricketune",
+    "Mightyena",
+    "Bronzong",
+    "Wormadam",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Togetic, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Orbeetle",
+    "Togetic",
+    "Tsareena",
+    "Frogadier"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Gastly->Wormadam, Gastly->Glameow, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kingler",
+    "Mienfoo",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Glameow"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Gastly->Naclstack, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Naclstack",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Gastly->Huntail, Gastly->Hariyama, Gastly->Raboot; switch losing; setup at 3+ safe turns at full HP; save Raboot for Gastly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Naclstack",
+    "Raboot",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Gastly->Probopass, Gastly->Glameow, Gastly->Glameow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Leavanny",
+    "Probopass",
+    "Tsareena",
+    "Frogadier",
+    "Glameow"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Gastly->Tsareena, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Raboot",
+    "Tsareena",
+    "Charjabug"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Gastly->Mightyena, Gastly->Whiscash, Gastly->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Gastly->Vullaby, Gastly->Glameow, Gastly->Glameow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Vullaby",
+    "Charjabug",
+    "Frogadier",
+    "Glameow"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lombre",
+    "Seaking",
+    "Tentacruel",
+    "Tsareena",
+    "Umbreon"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Gastly->Tentacruel, Gastly->Umbreon, Gastly->Hariyama; switch losing; setup at 3+ safe turns at full HP; save Hariyama for Gastly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Lanturn",
+    "Bronzong",
+    "Tentacruel",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Gastly->Swablu, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Lanturn",
+    "Lombre",
+    "Orbeetle",
+    "Servine",
+    "Swablu",
+    "Cherrim"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Gastly->Togetic, Gastly->Tentacruel, Gastly->Togetic; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Togetic for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Stunky",
+    "Swablu",
+    "Tentacruel",
+    "Togetic",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Gastly->Swablu, Gastly->Haunter, Gastly->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Naclstack",
+    "Seaking",
+    "Swablu",
+    "Fomantis",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Whiscash, Gastly->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Seaking",
+    "Whiscash",
+    "Donphan",
+    "Fletchinder",
+    "Fomantis",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Gastly->Steelix, Gastly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Bronzong",
+    "Steelix",
+    "Stunky",
+    "Fletchinder",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Gastly->Steelix, Gastly->Bronzong, Gastly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Bronzong",
+    "Steelix",
+    "Torterra",
+    "Glimmet",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Togetic, Gastly->Togetic, Gastly->Whiscash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Lombre",
+    "Pawmo",
+    "Togetic",
+    "Whiscash",
+    "Donphan",
+    "Glimmet"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Togetic, Gastly->Bronzong, Gastly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Bronzong",
+    "Swablu",
+    "Tentacruel",
+    "Togetic"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Liepard; answers Gastly->Liepard, Gastly->Lanturn, Gastly->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Naclstack",
+    "Fomantis"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Gastly->Torterra, Gastly->Torterra, Gastly->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Stunky",
+    "Torterra",
+    "Fletchinder",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Donphan, Gastly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Leavanny",
+    "Vullaby",
+    "Cherrim",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Seaking; answers Gastly->Cherrim, Gastly->Seaking, Gastly->Liepard; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; save Seaking for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Liepard",
+    "Bronzong",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Pawmo, Gastly->Graveler, Gastly->Shiftry; switch never; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Shiftry for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Pawmo",
+    "Shiftry",
+    "Steelix",
+    "Graveler"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Gastly->Tsareena, Gastly->Tsareena, Gastly->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Tsareena",
+    "Cherrim",
+    "Clefable",
+    "Combee",
+    "Fomantis"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Bibarel",
+    "Raboot",
+    "Umbreon",
+    "Wailmer",
+    "Gastrodon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Naclstack",
+    "Sandygast",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Wailmer, Gastly->Wailmer; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Sandygast",
+    "Umbreon",
+    "Wailmer",
+    "Charjabug",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Litwick; answers Gastly->Steelix, Gastly->Tsareena, Gastly->Tsareena; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Tsareena for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Litwick",
+    "Naclstack",
+    "Steelix",
+    "Tsareena",
+    "Umbreon",
+    "Fomantis"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Gastly->Crawdaunt, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Seaking",
+    "Togetic",
+    "Umbreon",
+    "Charjabug",
+    "Crawdaunt",
+    "Glimmet"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ambipom; answers Gastly->Ambipom, Gastly->Togetic; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Togetic for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Seaking",
+    "Togetic",
+    "Ambipom",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Gastly->Seaking, Gastly->Tentacruel; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Tentacruel for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Tentacruel",
+    "Togetic",
+    "Ambipom",
+    "Gastrodon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Gastly->Steelix, Gastly->Sandygast, Gastly->Bibarel; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Sandygast",
+    "Steelix",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Gastly->Steelix, Gastly->Litwick, Gastly->Steelix; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Litwick",
+    "Orbeetle",
+    "Raboot",
+    "Sandygast",
+    "Steelix",
+    "Fomantis"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Gastly->Swablu, Gastly->Liepard, Gastly->Swablu; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Liepard for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Bibarel",
+    "Steelix",
+    "Swablu",
+    "Umbreon",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Seaking",
+    "Tentacruel",
+    "Cherrim",
+    "Donphan",
+    "Gastrodon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Gastly->Donphan, Gastly->Donphan; switch losing; setup at 3+ safe turns at full HP; free pivots; save Donphan for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Leavanny",
+    "Litwick",
+    "Masquerain",
+    "Raboot",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Liepard; answers Gastly->Hariyama, Gastly->Hariyama, Gastly->Hariyama; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Hariyama for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Mienfoo",
+    "Seaking",
+    "Charjabug",
+    "Dwebble"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Breloom",
+    "Swablu",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swablu",
+    "Umbreon",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Gastly->Breloom, Gastly->Furret, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Seaking",
+    "Fletchinder",
+    "Furret",
+    "Gligar"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Gastly->Ninetales-Alola, Gastly->Ninetales-Alola, Gastly->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Mienfoo",
+    "Ninetales-Alola",
+    "Combee",
+    "Rapidash-Galar",
+    "Gligar"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Umbreon",
+    "Vullaby",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Gastly->Charjabug, Gastly->Hariyama, Gastly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Pawmo",
+    "Rotom",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Togetic, Gastly->Furret, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Rotom",
+    "Togetic",
+    "Furret"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Gastly->Ninetales-Alola, Gastly->Ninetales-Alola, Gastly->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Masquerain",
+    "Ninetales-Alola",
+    "Tentacruel",
+    "Vullaby",
+    "Dwebble",
+    "Fletchinder"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Ninetales-Alola, Gastly->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Ninetales-Alola",
+    "Rotom",
+    "Togetic",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lombre; answers Gastly->Lombre, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Lombre",
+    "Lumineon",
+    "Tentacruel",
+    "Torracat",
+    "Combee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Masquerain; answers Gastly->Togetic, Gastly->Staravia, Gastly->Staravia; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Liepard",
+    "Masquerain",
+    "Breloom",
+    "Staravia",
+    "Togetic"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Furret, Gastly->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bastiodon",
+    "Nidoking",
+    "Tentacruel",
+    "Combee",
+    "Dwebble",
+    "Furret"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Liepard; answers Gastly->Liepard, Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Mienfoo",
+    "Toucannon",
+    "Vulpix",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Toucannon; answers Gastly->Bastiodon, Gastly->Toucannon, Gastly->Toucannon; switch losing; setup at 3+ safe turns at full HP; save Toucannon for Gastly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Toucannon",
+    "Whiscash",
+    "Charjabug",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Gastly->Graveler, Gastly->Lopunny, Gastly->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Mienfoo",
+    "Nidoking",
+    "Vullaby",
+    "Wormadam",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Lombre, Gastly->Lombre; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lombre",
+    "Togetic",
+    "Charjabug",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Dubwool, Gastly->Pawmo, Gastly->Pawmo; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Pawmo for Gastly",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:8",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Togetic",
+    "Vullaby",
+    "Vulpix",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Shiftry, Gastly->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Naclstack",
+    "Raboot",
+    "Shiftry",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Gastly->Naclstack, Gastly->Masquerain, Gastly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Masquerain",
+    "Naclstack",
+    "Rotom",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Gastly->Graveler, Gastly->Toucannon, Gastly->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Lopunny",
+    "Raboot",
+    "Toucannon",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Liepard, Gastly->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Umbreon, Gastly->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Umbreon",
+    "Vulpix",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crawdaunt; answers Gastly->Crawdaunt, Gastly->Vullaby, Gastly->Vullaby; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Vullaby",
+    "Charjabug",
+    "Crawdaunt",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Gastly->Shiftry, Gastly->Wailmer, Gastly->Wailmer; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Shiftry",
+    "Wailmer",
+    "Whiscash",
+    "Wormadam",
+    "Charjabug"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Bibarel, Gastly->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Bibarel",
+    "Masquerain",
+    "Rotom",
+    "Shiftry"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Lopunny, Gastly->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Lopunny",
+    "Luxray",
+    "Rotom",
+    "Umbreon",
+    "Wormadam",
+    "Cherrim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Ambipom, Gastly->Ambipom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Brionne",
+    "Ambipom",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Gastly->Vullaby, Gastly->Masquerain, Gastly->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Prinplup",
+    "Snover",
+    "Vullaby",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmet; answers Gastly->Glimmet, Gastly->Wailmer, Gastly->Furret; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Snover",
+    "Wailmer",
+    "Ambipom",
+    "Furret",
+    "Glimmet",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Furret; answers Gastly->Brionne, Gastly->Lopunny, Gastly->Lopunny; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Lopunny",
+    "Brionne",
+    "Sandygast",
+    "Sharpedo",
+    "Furret"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Gastly->Luxray, Gastly->Luxray, Gastly->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Leavanny",
+    "Luxray",
+    "Sandygast",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Gastly->Donphan, Gastly->Wailmer, Gastly->Wailmer; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Leavanny",
+    "Rotom",
+    "Wailmer",
+    "Wormadam",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Gastly->Probopass, Gastly->Donphan, Gastly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Brionne",
+    "Probopass",
+    "Wormadam",
+    "Donphan",
+    "Galvantula"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Gastly->Umbreon, Gastly->Tentacruel, Gastly->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Leavanny",
+    "Minun",
+    "Prinplup",
+    "Tentacruel",
+    "Umbreon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Togetic, Gastly->Wailmer, Gastly->Wailmer; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Combee",
+    "Glimmet"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Brionne; answers Gastly->Brionne, Gastly->Seaking, Gastly->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Brionne",
+    "Prinplup",
+    "Seaking",
+    "Snover",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Gastly->Togetic, Gastly->Liepard, Gastly->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Prinplup",
+    "Rotom",
+    "Snover",
+    "Togetic"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Gastly->Bastiodon, Gastly->Furret, Gastly->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Sharpedo",
+    "Snover",
+    "Cherrim",
+    "Furret"
+   ],
+   "seconds": 0.6
+  }
+ ],
+ "key": "tr266"
+}

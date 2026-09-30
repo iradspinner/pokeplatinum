@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 0.998,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.002,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 154140,
+ "search_budget": 30,
+ "converged_share": 1.0,
+ "label": "Twins Teri & Tia",
+ "split": "Maylene",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 3.2,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lumineon and Primarina, then Graveler, Cinderace, Roselia, Seaking",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:0",
+   "team": [
+    "Graveler",
+    "Lumineon",
+    "Primarina",
+    "Roselia",
+    "Seaking",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Hariyama, then Lumineon, Primarina, Probopass, Bibarel",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:0",
+   "team": [
+    "Rapidash-Galar",
+    "Hariyama",
+    "Bibarel",
+    "Lumineon",
+    "Primarina",
+    "Probopass"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Tsareena, then Roselia, Vikavolt, Vaporeon, Hippowdon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Roselia",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lumineon and Orbeetle, then Floette, Arboliva, Vikavolt, Pawmot",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Orbeetle",
+    "Pawmot",
+    "Vikavolt",
+    "Arboliva",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Togetic, then Vikavolt, Chansey, Donphan, Tsareena",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:0",
+   "team": [
+    "Haunter",
+    "Togetic",
+    "Tsareena",
+    "Vikavolt",
+    "Chansey",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Galvantula and Leavanny, then Noctowl, Vikavolt, Tsareena, Orbeetle",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Leavanny",
+    "Noctowl",
+    "Orbeetle",
+    "Tsareena",
+    "Vikavolt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Talonflame, then Electivire, Cinderace, Vikavolt, Cofagrigus",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Talonflame",
+    "Vikavolt",
+    "Cinderace",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Liepard, then Vullaby, Seaking, Probopass, Roselia",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Liepard",
+    "Probopass",
+    "Roselia",
+    "Seaking",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Golbat and Graveler, then Leavanny, Liepard, Drifblim, Cofagrigus",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Golbat",
+    "Graveler",
+    "Leavanny",
+    "Liepard",
+    "Cofagrigus",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Milotic, then Talonflame, Lumineon, Electivire, Noctowl",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Milotic",
+    "Noctowl",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hippowdon and Kadabra, then Roselia, Donphan, Primarina, Vaporeon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Kadabra",
+    "Primarina",
+    "Roselia",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Bastiodon, then Tsareena, Vaporeon, Togetic, Pachirisu",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Bastiodon",
+    "Pachirisu",
+    "Togetic",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Galvantula and Golbat, then Arboliva, Probopass, Bibarel, Electivire",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Golbat",
+    "Bibarel",
+    "Probopass",
+    "Arboliva",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Klefki and Kricketune, then Toucannon, Noctowl, Combee, Vullaby",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:1",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Noctowl",
+    "Toucannon",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Graveler and Salazzle, then Dubwool, Floatzel, Vaporeon, Togetic",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Salazzle",
+    "Togetic",
+    "Vaporeon",
+    "Dubwool",
+    "Floatzel"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Graveler and Masquerain, then Vaporeon, Vikavolt, Floatzel, Lopunny",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Vaporeon",
+    "Vikavolt",
+    "Floatzel"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "line": "lead Litwick and Cherrim, then Torterra, Chansey, Probopass, Togetic",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Probopass",
+    "Togetic",
+    "Torterra",
+    "Chansey",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Toucannon, then Vikavolt, Kricketune, Ninetales, Altaria",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:1",
+   "team": [
+    "Garganacl",
+    "Kricketune",
+    "Ninetales",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Masquerain, then Bronzong, Torterra, Vullaby, Altaria",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Bronzong",
+    "Torterra",
+    "Vullaby",
+    "Altaria"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Noctowl, then Bastiodon, Vaporeon, Tentacruel, Lurantis",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Lurantis",
+    "Noctowl",
+    "Tentacruel",
+    "Vaporeon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Houndoom and Kricketune, then Luxray, Lumineon, Masquerain, Corvisquire",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Kricketune",
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Corvisquire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Kricketune and Masquerain, then Probopass, Altaria, Tentacruel, Floette",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Probopass",
+    "Tentacruel",
+    "Altaria",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Lopunny, then Toucannon, Bastiodon, Togetic, Kricketune",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Kricketune",
+    "Lopunny",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Luxray, then Altaria, Vaporeon, Lanturn, Electivire",
+   "candidates": 27,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "27": 1.0
+   },
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Luxray",
+    "Vaporeon",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Houndoom and Bronzong, then Tentacruel, Dusclops, Combee, Salazzle",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Bronzong",
+    "Salazzle",
+    "Tentacruel",
+    "Combee",
+    "Dusclops"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Houndoom, then Masquerain, Togetic, Lanturn, Carbink",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Rapidash-Galar",
+    "Houndoom",
+    "Lanturn",
+    "Masquerain",
+    "Carbink",
+    "Togetic"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Granbull, then Vaporeon, Noctowl, Mismagius, Vullaby",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Mismagius",
+    "Noctowl",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Kricketune and Mismagius, then Staraptor, Vikavolt, Sneasel, Talonflame",
+   "candidates": 27,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "27": 1.0
+   },
+   "runs": 1140,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mismagius",
+    "Sneasel",
+    "Staraptor",
+    "Talonflame",
+    "Vikavolt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Gastrodon and Masquerain, then Chansey, Combee, Whiscash, Delphox",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Masquerain",
+    "Whiscash",
+    "Chansey",
+    "Combee",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Lumineon, then Sharpedo, Delphox, Whiscash, Floette",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Sharpedo",
+    "Whiscash",
+    "Delphox",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Honchkrow and Mightyena, then Seaking, Corvisquire, Clefable, Combee",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:2",
+   "team": [
+    "Honchkrow",
+    "Mightyena",
+    "Seaking",
+    "Clefable",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Gothorita, then Breloom, Rotom, Seaking, Clefable",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Gothorita",
+    "Breloom",
+    "Rotom",
+    "Seaking",
+    "Clefable"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Granbull, then Masquerain, Corvisquire, Mightyena, Talonflame",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Granbull",
+    "Masquerain",
+    "Mightyena",
+    "Talonflame",
+    "Corvisquire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Leavanny, then Drifblim, Pelipper, Staraptor, Vaporeon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Glimmora",
+    "Leavanny",
+    "Pelipper",
+    "Staraptor",
+    "Vaporeon",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Lurantis, then Electivire, Vikavolt, Mightyena, Pelipper",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Lurantis",
+    "Mightyena",
+    "Pelipper",
+    "Vikavolt",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Orbeetle, then Combee, Vaporeon, Drifblim, Seaking",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Orbeetle",
+    "Seaking",
+    "Vaporeon",
+    "Combee",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Masquerain, then Sneasel, Rotom, Combee, Drifblim",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Masquerain",
+    "Rotom",
+    "Sneasel",
+    "Combee",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Granbull and Noctowl, then Pelipper, Snorunt, Staraptor, Sharpedo",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Noctowl",
+    "Pelipper",
+    "Sharpedo",
+    "Snorunt",
+    "Staraptor"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lumineon and Masquerain, then Chansey, Delphox, Seaking, Staraptor",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Seaking",
+    "Staraptor",
+    "Chansey",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Jynx and Seaking, then Shiftry, Floette, Vikavolt, Gastrodon",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Jynx",
+    "Seaking",
+    "Shiftry",
+    "Vikavolt",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Vullaby, then Seaking, Graveler, Combee, Corvisquire",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Seaking",
+    "Vullaby",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Orbeetle, then Seaking, Vaporeon, Carbink, Bronzong",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Bronzong",
+    "Seaking",
+    "Carbink",
+    "Vaporeon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Honchkrow and Leavanny, then Whiscash, Sneasel, Ambipom, Liepard",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:3",
+   "team": [
+    "Honchkrow",
+    "Leavanny",
+    "Liepard",
+    "Sneasel",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Leavanny, then Whiscash, Vaporeon, Ambipom, Toucannon",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Toucannon",
+    "Vaporeon",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Girafarig, then Sneasel, Orbeetle, Ambipom, Vikavolt",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Girafarig",
+    "Orbeetle",
+    "Sneasel",
+    "Vikavolt",
+    "Ambipom"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Breloom and Orbeetle, then Shiftry, Floette, Togetic, Dubwool",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:3",
+   "team": [
+    "Breloom",
+    "Orbeetle",
+    "Shiftry",
+    "Togetic",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Girafarig and Bibarel, then Dubwool, Vaporeon, Leavanny, Liepard",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Girafarig",
+    "Bibarel",
+    "Leavanny",
+    "Liepard",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Ludicolo and Bronzong, then Snover, Electivire, Toucannon, Ambipom",
+   "candidates": 26,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "26": 1.0
+   },
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Ludicolo",
+    "Bronzong",
+    "Snover",
+    "Toucannon",
+    "Ambipom",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Jynx and Milotic, then Empoleon, Breloom, Dubwool, Ambipom",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Milotic",
+    "Breloom",
+    "Ambipom",
+    "Dubwool",
+    "Empoleon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Jynx, then Shiftry, Empoleon, Togetic, Talonflame",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Jynx",
+    "Shiftry",
+    "Talonflame",
+    "Togetic",
+    "Empoleon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bronzong and Vaporeon, then Electivire, Vikavolt, Corvisquire, Empoleon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:3",
+   "team": [
+    "Bronzong",
+    "Vaporeon",
+    "Vikavolt",
+    "Corvisquire",
+    "Electivire",
+    "Empoleon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Sinistcha, then Snover, Corvisquire, Masquerain, Dubwool",
+   "candidates": 27,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "27": 1.0
+   },
+   "runs": 1140,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Sinistcha",
+    "Snover",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Ludicolo and Mienshao, then Floette, Vaporeon, Quagsire, Togetic",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:4",
+   "team": [
+    "Ludicolo",
+    "Mienshao",
+    "Quagsire",
+    "Togetic",
+    "Vaporeon",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Galvantula and Masquerain, then Mienshao, Steelix, Quagsire, Rotom",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:4",
+   "team": [
+    "Galvantula",
+    "Masquerain",
+    "Mienshao",
+    "Quagsire",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Luxray, then Bronzong, Gastrodon, Mightyena, Rotom",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:4",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Luxray",
+    "Mightyena",
+    "Bronzong",
+    "Rotom"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Kricketune, then Combee, Tsareena, Floatzel, Rotom",
+   "candidates": 27,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "27": 1.0
+   },
+   "runs": 1140,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Rotom",
+    "Tsareena",
+    "Combee",
+    "Floatzel"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bronzong and Steelix, then Rotom, Crawdaunt, Seaking, Whiscash",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:4",
+   "team": [
+    "Bronzong",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Kricketune and Masquerain, then Steelix, Dubwool, Bronzong, Electivire",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Bronzong",
+    "Steelix",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Mienshao and Bronzong, then Togetic, Pawmot, Steelix, Electivire",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Mienshao",
+    "Pawmot",
+    "Bronzong",
+    "Steelix",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Orbeetle, then Rotom, Bastiodon, Clefable, Pawmot",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Orbeetle",
+    "Pawmot",
+    "Rotom",
+    "Clefable"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Galvantula and Glimmora, then Kricketune, Rotom, Bastiodon, Vullaby",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Bastiodon",
+    "Kricketune",
+    "Rotom",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Lanturn, then Vaporeon, Seaking, Dubwool, Steelix",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Lanturn",
+    "Seaking",
+    "Steelix",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Mismagius, then Donphan, Electivire, Mienshao, Bastiodon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Mienshao",
+    "Mismagius",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Galvantula and Garganacl, then Steelix, Clefable, Tsareena, Cinderace",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Garganacl",
+    "Steelix",
+    "Tsareena",
+    "Cinderace",
+    "Clefable"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Mightyena and Orbeetle, then Dubwool, Cinderace, Steelix, Seaking",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:4",
+   "team": [
+    "Mightyena",
+    "Orbeetle",
+    "Seaking",
+    "Steelix",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Ludicolo, then Crustle, Octillery, Vaporeon, Tentacruel",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Octillery",
+    "Tentacruel",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "line": "lead Bibarel and Mightyena, then Talonflame, Noctowl, Electivire, Togetic",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:5",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Noctowl",
+    "Talonflame",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Haunter, then Ludicolo, Primarina, Leavanny, Shiftry",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Leavanny",
+    "Ludicolo",
+    "Primarina",
+    "Shiftry"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Glimmora, then Leavanny, Noctowl, Shiftry, Talonflame",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Leavanny",
+    "Noctowl",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Orbeetle, then Talonflame, Octillery, Whiscash, Torterra",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:5",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Talonflame",
+    "Torterra",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Liepard and Bronzong, then Primarina, Talonflame, Crustle, Castform",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Liepard",
+    "Bronzong",
+    "Primarina",
+    "Talonflame",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "line": "lead Lurantis and Primarina, then Snover, Cherrim, Octillery, Vullaby",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Lurantis",
+    "Octillery",
+    "Primarina",
+    "Snover",
+    "Vullaby",
+    "Cherrim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Noctowl, then Snover, Talonflame, Electivire, Castform",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Noctowl",
+    "Snover",
+    "Talonflame",
+    "Castform",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Shiftry, then Primarina, Altaria, Vaporeon, Torterra",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Primarina",
+    "Shiftry",
+    "Torterra",
+    "Vaporeon",
+    "Altaria"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Ludicolo and Primarina, then Torterra, Crustle, Vullaby, Vaporeon",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Ludicolo",
+    "Primarina",
+    "Torterra",
+    "Vaporeon",
+    "Vullaby",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Liepard, then Shiftry, Mismagius, Orbeetle, Talonflame",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Liepard",
+    "Mismagius",
+    "Orbeetle",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Lanturn, then Shiftry, Primarina, Togetic, Noctowl",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Noctowl",
+    "Primarina",
+    "Shiftry",
+    "Togetic"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lanturn and Ludicolo, then Castform, Mightyena, Tentacruel, Noctowl",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Ludicolo",
+    "Mightyena",
+    "Noctowl",
+    "Tentacruel",
+    "Castform"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Litwick, then Vaporeon, Cinderace, Combee, Sandygast",
+   "candidates": 26,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "26": 1.0
+   },
+   "runs": 1120,
+   "kind": "blind:6",
+   "team": [
+    "Leavanny",
+    "Litwick",
+    "Sandygast",
+    "Vaporeon",
+    "Cinderace",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Orbeetle, then Kadabra, Scizor, Altaria, Rhyhorn",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:6",
+   "team": [
+    "Garganacl",
+    "Kadabra",
+    "Orbeetle",
+    "Rhyhorn",
+    "Scizor",
+    "Altaria"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Leavanny, then Combee, Scizor, Breloom, Gastrodon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Leavanny",
+    "Breloom",
+    "Scizor",
+    "Combee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bibarel and Mightyena, then Floette, Masquerain, Scizor, Dubwool",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Mightyena",
+    "Scizor",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lanturn and Tentacruel, then Togetic, Tsareena, Clefable, Donphan",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Clefable",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Glimmora, then Donphan, Masquerain, Leavanny, Orbeetle",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Leavanny",
+    "Masquerain",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Shiftry, then Electivire, Cherrim, Vullaby, Donphan",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Shiftry",
+    "Vullaby",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Scizor, then Cinderace, Tentacruel, Cherrim, Wailmer",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Scizor",
+    "Tentacruel",
+    "Wailmer",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Glimmora, then Mightyena, Leavanny, Bibarel, Clefable",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Bibarel",
+    "Leavanny",
+    "Mightyena",
+    "Clefable"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Leavanny, then Cherrim, Combee, Graveler, Orbeetle",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Leavanny",
+    "Orbeetle",
+    "Cherrim",
+    "Combee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "line": "lead Bibarel and Lanturn, then Drifblim, Scizor, Breloom, Cinderace",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Lanturn",
+    "Breloom",
+    "Scizor",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Kadabra and Lanturn, then Mightyena, Cinderace, Dubwool, Donphan",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:6",
+   "team": [
+    "Kadabra",
+    "Lanturn",
+    "Mightyena",
+    "Cinderace",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Breloom, then Tsareena, Dubwool, Gothorita, Vullaby",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Gothorita",
+    "Breloom",
+    "Tsareena",
+    "Vullaby",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Leavanny, then Vullaby, Vaporeon, Steelix, Masquerain",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Masquerain",
+    "Steelix",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Furret and Hariyama, then Breloom, Azumarill, Crawdaunt, Meowscarada",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Hariyama",
+    "Meowscarada",
+    "Breloom",
+    "Crawdaunt",
+    "Azumarill"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Lanturn, then Vaporeon, Electivire, Machoke, Floette",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:7",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Machoke",
+    "Vaporeon",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Masquerain and Sharpedo, then Cherrim, Staraptor, Steelix, Whiscash",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Sharpedo",
+    "Staraptor",
+    "Steelix",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Masquerain, then Crawdaunt, Vullaby, Breloom, Chansey",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:7",
+   "team": [
+    "Glimmora",
+    "Masquerain",
+    "Breloom",
+    "Vullaby",
+    "Chansey",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Honchkrow and Lopunny, then Azumarill, Staraptor, Probopass, Togetic",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Lopunny",
+    "Probopass",
+    "Staraptor",
+    "Togetic",
+    "Azumarill"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Glimmora, then Lanturn, Cherrim, Cinderace, Meowscarada",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Lanturn",
+    "Meowscarada",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Glimmora, then Cinderace, Honchkrow, Steelix, Meowscarada",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Honchkrow",
+    "Meowscarada",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Haunter and Bibarel, then Seaking, Primarina, Kingler, Lanturn",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Haunter",
+    "Bibarel",
+    "Kingler",
+    "Lanturn",
+    "Primarina",
+    "Seaking"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lanturn and Leavanny, then Primarina, Electivire, Masquerain, Tentacruel",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Primarina",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Haunter, then Floette, Meowscarada, Bronzong, Breloom",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Haunter",
+    "Meowscarada",
+    "Breloom",
+    "Bronzong",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Haunter, then Crawdaunt, Honchkrow, Lanturn, Cherrim",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Haunter",
+    "Honchkrow",
+    "Lanturn",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Rapidash-Galar and Incineroar, then Mienshao, Chansey, Tentacruel, Steelix",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Incineroar",
+    "Mienshao",
+    "Steelix",
+    "Tentacruel",
+    "Chansey"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lopunny and Lumineon, then Graveler, Pachirisu, Floette, Primarina",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Lumineon",
+    "Pachirisu",
+    "Primarina",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Shiftry, then Cherrim, Seaking, Whiscash, Dubwool",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Seaking",
+    "Shiftry",
+    "Whiscash",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Masquerain and Mismagius, then Chimecho, Vullaby, Pachirisu, Castform",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:8",
+   "team": [
+    "Masquerain",
+    "Mismagius",
+    "Pachirisu",
+    "Castform",
+    "Vullaby",
+    "Chimecho"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Primarina, then Altaria, Donphan, Floette, Graveler",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Leavanny",
+    "Primarina",
+    "Altaria",
+    "Donphan",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Graveler and Masquerain, then Dubwool, Lopunny, Altaria, Shiftry",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Shiftry",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Liepard, then Donphan, Cherrim, Electivire, Castform",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Liepard",
+    "Castform",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Bronzong, then Cherrim, Pachirisu, Sharpedo, Chimecho",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Pachirisu",
+    "Bronzong",
+    "Sharpedo",
+    "Cherrim",
+    "Chimecho"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Graveler and Toucannon, then Pawmot, Steelix, Cofagrigus, Vaporeon",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:8",
+   "team": [
+    "Graveler",
+    "Pawmot",
+    "Steelix",
+    "Toucannon",
+    "Vaporeon",
+    "Cofagrigus"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Leavanny and Ninetales-Alola, then Steelix, Togetic, Vaporeon, Cherrim",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Ninetales-Alola",
+    "Steelix",
+    "Togetic",
+    "Vaporeon",
+    "Cherrim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Gligar and Lopunny, then Sharpedo, Donphan, Lumineon, Masquerain",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:8",
+   "team": [
+    "Gligar",
+    "Lopunny",
+    "Lumineon",
+    "Masquerain",
+    "Sharpedo",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Liepard and Lopunny, then Cherrim, Donphan, Vullaby, Pachirisu",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Pachirisu",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Ninetales-Alola, then Cinderace, Castform, Pachirisu, Graveler",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Ninetales-Alola",
+    "Pachirisu",
+    "Castform",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Garganacl and Pelipper, then Cherrim, Chimecho, Cofagrigus, Liepard",
+   "candidates": 28,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "28": 1.0
+   },
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Liepard",
+    "Pelipper",
+    "Cherrim",
+    "Chimecho",
+    "Cofagrigus"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Tsareena, then Vaporeon, Empoleon, Vikavolt, Seaking",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Seaking",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt",
+    "Empoleon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Girafarig and Togetic, then Floette, Vaporeon, Vullaby, Bastiodon",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:9",
+   "team": [
+    "Girafarig",
+    "Bastiodon",
+    "Togetic",
+    "Vaporeon",
+    "Vullaby",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Furret and Girafarig, then Whiscash, Glimmora, Ludicolo, Luxray",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Girafarig",
+    "Glimmora",
+    "Ludicolo",
+    "Luxray",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Furret and Kricketune, then Breloom, Togetic, Crustle, Yanmega",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Breloom",
+    "Togetic",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Hariyama and Rotom, then Scizor, Combee, Snover, Whiscash",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Rotom",
+    "Scizor",
+    "Snover",
+    "Whiscash",
+    "Combee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Bastiodon and Breloom, then Donphan, Yanmega, Vullaby, Shiftry",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Breloom",
+    "Shiftry",
+    "Vullaby",
+    "Yanmega",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Luxray and Seaking, then Wailmer, Yanmega, Vullaby, Charizard",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Seaking",
+    "Vullaby",
+    "Wailmer",
+    "Yanmega",
+    "Charizard"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Luxray and Scizor, then Crustle, Steelix, Tentacruel, Yanmega",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Scizor",
+    "Steelix",
+    "Tentacruel",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Orbeetle and Snover, then Togetic, Wailmer, Talonflame, Crawdaunt",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:9",
+   "team": [
+    "Orbeetle",
+    "Snover",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Lurantis and Vullaby, then Empoleon, Sharpedo, Seaking, Combee",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Lurantis",
+    "Seaking",
+    "Sharpedo",
+    "Vullaby",
+    "Combee",
+    "Empoleon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Girafarig and Hariyama, then Cherrim, Talonflame, Togetic, Wailmer",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Hariyama",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Glimmora and Hariyama, then Tentacruel, Luxray, Scizor, Kricketune",
+   "candidates": 29,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "29": 1.0
+   },
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Hariyama",
+    "Kricketune",
+    "Luxray",
+    "Scizor",
+    "Tentacruel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "line": "lead Houndoom and Snover, then Vikavolt, Vullaby, Charizard, Togetic",
+   "candidates": 30,
+   "converged": true,
+   "dice": "game odds",
+   "screen": {
+    "30": 1.0
+   },
+   "runs": 1200,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Snover",
+    "Togetic",
+    "Vikavolt",
+    "Vullaby",
+    "Charizard"
+   ],
+   "seconds": 0.4
+  }
+ ],
+ "key": "tr65"
+}
