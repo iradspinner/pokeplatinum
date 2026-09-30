@@ -2385,6 +2385,36 @@ lands, and each change is re-scored as it lands.
    21 stages; the proposal lists them, and a stage left with more than one
    level-0 move is marked for Ian). The main track makes
    `species_import.py` keep level 0 from now on.
+
+   **Early fixed damage, held for the next learnset revision** (Ian,
+   2026-09-30). Charmander must not have Dragon Rage in Roark's split:
+   "charmander should absolutely not get that move in the rom in roark
+   split, that needs to be flagged to be changed." Charmander is a Route
+   207 catch before Roark and learns it at 16, Roark's cap. Dragon Rage is
+   a flat 40, so it knocks out Nosepass (38 HP) outright and takes about
+   four fifths of Cranidos. Learnset v3 still has it at 16 (Charmeleon's
+   at 17, past the cap). The revision moves Charmander's out of Roark's
+   split. A flat 40 is still more than half of most foes' HP in Gardenia's
+   split, so whether it waits longer than that goes to Ian with the rest.
+
+   The Overseer's scan of oxide found the other early fixed damage, read
+   here on oxide's tree (the first split a line is on the player's side).
+   Ian has not ruled on these; they go to him with the next learnset
+   questions, with this track's reading:
+
+   | Move | Line | Learns at | First split | Reading |
+   |---|---|---|---|---|
+   | Dragon Rage (40) | Charmander, Charmeleon | 16, 17 | Roark | Ruled: out of Roark's split |
+   | Dragon Rage | Gible | 7 | Fantina | known when caught (level 18, Wayward Cave B1F), about half a foe there, its best attack until Dragon Claw at 27 |
+   | Dragon Rage | Salandit | 21 | Fantina | under half a foe there |
+   | Dragon Rage | Dratini, Gyarados | 15, 23 | not ownable | trainers' palette only |
+   | Sonic Boom (20) | Voltorb | 8 | not ownable | trainers' palette only |
+   | Sonic Boom | Magnemite, Yanma | 14 | Byron, Maylene | trivial by then |
+
+   The level-damage moves (Night Shade, Seismic Toss, Psywave) sit on many
+   lines at levels 1 to 17. They deal the user's level, which is milder; the
+   revision lists the ones learned before Gardenia's split for Ian rather
+   than moving them.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
