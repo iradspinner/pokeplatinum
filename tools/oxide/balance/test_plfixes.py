@@ -194,6 +194,34 @@ def main():
                     picks == {"Ingrain": 400} and rooted["Constrict"] > 300 and not rooted["Rock Tomb"],
                     f"first {dict(picks)}, rooted {dict(rooted)}"))
 
+    # Rollout: the first hit after Defense Curl is 60 power (2x, not 4x), and
+    # the AI costs Rollout at its listed 30, so Rock Throw stays its strongest.
+    recs = [{"constant": "SPECIES_GEODUDE", "species": "Geodude", "how": "test", "level": 16, "nature": "Jolly",
+             "ivs": IV, "evs": EV, "ability": "Sturdy", "moves": ["Magnitude", "Rock Throw"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0"], boss_keys, flags, 0)
+    b.p.mons[0].item = None
+    rng = random.Random(1)
+    b.dice, b.rng = pl.RunDice(rng, True), rng
+    geo = boss(b, "Geodude")
+    geo.turns_in = 1
+    rollout, throw = mv(geo, "Rollout"), mv(geo, "Rock Throw")
+    plain = [b.damage(geo, b.p.cur(), rollout, crit=False, roll=15)]
+    geo.curled = True
+    fs.rollout_after(geo, rollout, True)
+    first = b.damage(geo, b.p.cur(), rollout, crit=False, roll=15)
+    fs.rollout_after(geo, rollout, True)
+    second = b.damage(geo, b.p.cur(), rollout, crit=False, roll=15)
+    geo.rollout, geo.lock, geo.rollout_hit = 0, None, 0
+    scores = fightai.score_moves(b, geo, b.p.cur(), b.ai_flags)
+    by = {m.name: s for m, s in zip(geo.moves, scores)}
+    results.append(("Rollout: the first curled hit is 2x, the next 4x; the AI costs it at 30 power",
+                    first == 2 * plain[0] or abs(first - 2 * plain[0]) <= 1,
+                    f"plain {plain[0]}, curled first {first}, second {second}; scores {by}"))
+    results.append(("the AI scores curled Rollout below Rock Throw against a Geodude",
+                    by["Rollout"] < by["Rock Throw"], f"{by}"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

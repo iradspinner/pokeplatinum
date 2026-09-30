@@ -364,7 +364,10 @@ class Battle:
             mult *= 0.75
         if crit:
             mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
-        mult *= rollout_mult(att, mv)
+        if not ai_view:
+            # TrainerAI_CalcDamage has no Rollout case: the AI costs it at
+            # its listed power, with no Defense Curl and no run count.
+            mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
     def accuracy_hits(self, att, dfn, mv):
@@ -436,7 +439,9 @@ def rollout_mult(att, mv):
     twice again after Defense Curl."""
     if mv.effect != ROLLOUT:
         return 1
-    return 2 ** getattr(att, "rollout", 0) * (2 if getattr(att, "curled", False) else 1)
+    # The hit's place in the run, taken before rollout_after moved the count
+    # on: the first hit is 1x, then 2x, 4x...; Defense Curl doubles each.
+    return 2 ** getattr(att, "rollout_hit", 0) * (2 if getattr(att, "curled", False) else 1)
 
 
 def rollout_after(att, mv, hit):
@@ -444,6 +449,7 @@ def rollout_after(att, mv, hit):
     miss or its fifth hit."""
     if mv.effect != ROLLOUT:
         return
+    att.rollout_hit = getattr(att, "rollout", 0) if hit else 0
     att.rollout = getattr(att, "rollout", 0) + 1 if hit else 0
     if not hit or att.rollout >= 5:
         att.rollout = 0
