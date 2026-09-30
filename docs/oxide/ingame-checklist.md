@@ -368,6 +368,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf
   Psychic/Fairy. The Pokedex's info page shows the NORMAL plate for Fairy, the
   known gap in Phase 4's Fairy entry.
+- [ ] The box deposit hang is gone (`main-box-hang`, 2026-09-30): at a
+  Pokemon Center PC and with the Pocket PC, open Deposit, back out with B and
+  again with the on-screen exit; each returns to the PC menu. Then Withdraw
+  and Move Pokemon the same way, and a Pokemon's ability shows in the storage
+  screen's preview as before.
 - [ ] Fossils wait for Cycling Road (`main-production`, Ian, 2026-09-30).
   With a Root, Armor or Skull Fossil from Oreburgh Mine B2F, talk to the
   researcher in the Mining Museum before riding Cycling Road: he greets you,
