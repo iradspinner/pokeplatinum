@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 95,
+        "hp": 105,
         "attack": 85,
         "defense": 85,
         "speed": 35,
         "special_attack": 65,
-        "special_defense": 65
+        "special_defense": 75
     },
     "types": [ "TYPE_WATER", "TYPE_GROUND" ],
     "catch_rate": 90,
@@ -28,8 +28,8 @@
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [
-        "ABILITY_DAMP",
         "ABILITY_WATER_ABSORB",
+        "ABILITY_UNAWARE",
         "ABILITY_UNAWARE"
     ],
     "safari_flee_rate": 60,

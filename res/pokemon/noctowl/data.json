@@ -4,7 +4,7 @@
         "attack": 86,
         "defense": 50,
         "speed": 70,
-        "special_attack": 76,
+        "special_attack": 86,
         "special_defense": 96
     },
     "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
@@ -30,7 +30,7 @@
     "abilities": [
         "ABILITY_INSOMNIA",
         "ABILITY_TINTED_LENS",
-        "ABILITY_TINTED_LENS"
+        "ABILITY_KEEN_EYE"
     ],
     "safari_flee_rate": 60,
     "body_color": "MON_COLOR_BROWN",

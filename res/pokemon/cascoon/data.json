@@ -5,7 +5,7 @@
         "defense": 55,
         "speed": 15,
         "special_attack": 25,
-        "special_defense": 25
+        "special_defense": 55
     },
     "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 120,

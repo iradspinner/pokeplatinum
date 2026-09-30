@@ -20,8 +20,20 @@ Ian's 17 retypes and three stat slips, field moves on their badge alone,
 and the last weather abilities moved to the hidden slot, all rescored and
 verified: Volkner's fight reads harder with the Electric/Fighting
 Electivire and Electric/Dark Luxray, and the rank correlation with Ian's
-ratings is -0.57. Next: the buff review's decisions, then learnset v3 and
-the TM pass.
+ratings is -0.57. Then (`balance-buffs`) the buff review's decisions:
+the sheet's slips, section A's junk-ability fixes, section B, and Ian's
+second answers (Wormadam's Overcoat, Armaldo's abilities, Donphan,
+Tangela, Politoed and Rotom's stats, and Kaizo's numbers for the species
+the player cannot catch). The variants were scored in
+[the review's scores](reviews/buff-review/scores.md) (no single change
+moved a story fight by more than 0.1), and Ian took sections C and D,
+Houndoom's line (Houndour evolving at 27) and Talonflame's Gale Wings,
+with Haunter and Emolga approved by name as flagged stages; Glaceon's Ice
+Scales waits for testing in play. His last answers: one fix each for the
+lines whose hidden ability repeated a regular one, Kaizo's Gallade,
+Drought hidden for the Slugma line, and halfway buffs for Articuno and
+Suicune. All of it is rescored and verified. Next: learnset v3 on these
+stats, then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
@@ -1252,7 +1264,7 @@ names and type chart, so B1 reads it straight from the ROM. Its move table is
 not among the named anchors and has to be located. Because Odyssey is all
 double battles, it needs the doubles version of the pressure score (spread
 moves, two attackers at once). Oxide needs that anyway for its 34 double
-trainer battles and its wild doubles. Until the doubles score is checked,
+trainer battles (wild doubles are dropped, Ian, 2026-09-29). Until the doubles score is checked,
 Odyssey's weight in the fit is kept low. Insurgence is an RPG Maker game with
 no data here, and Ian last played it long ago, so it is left out unless a
 trainer list turns up.

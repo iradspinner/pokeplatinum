@@ -1604,7 +1604,45 @@ def main():
         450: "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
         459: "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
         460: "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
+        # The blind buff review (Ian, 2026-09-29): the sheet's ability slips and
+        # the junk-ability fixes.
+        25: "Pikachu: Reckless (Ian, 2026-09-29)",
+        26: "Raichu: Lightning Rod (Ian, 2026-09-29)",
+        80: "Slowbro: Regenerator and Own Tempo (Ian, 2026-09-29)",
+        97: "Hypno: Insomnia only (Ian, 2026-09-29)",
+        163: "Hoothoot: Insomnia and Tinted Lens (Ian, 2026-09-29)",
+        170: "Chinchou: Volt Absorb and Water Absorb (Ian, 2026-09-29)",
+        171: "Lanturn: Volt Absorb and Water Absorb (Ian, 2026-09-29)",
+        194: "Wooper: Water Absorb and Unaware (Ian, 2026-09-29)",
+        195: "Quagsire: Water Absorb and Unaware (Ian, 2026-09-29)",
+        199: "Slowking: Regenerator and Own Tempo (Ian, 2026-09-29)",
+        220: "Swinub: Snow Cloak and Thick Fat (Ian, 2026-09-29)",
+        221: "Piloswine: Snow Cloak and Thick Fat (Ian, 2026-09-29)",
+        225: "Delibird: Vital Spirit and Adaptability (Ian, 2026-09-29)",
+        300: "Skitty: Cute Charm (Ian, 2026-09-29)",
+        301: "Delcatty: Cute Charm (Ian, 2026-09-29)",
+        402: "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)",
+        # The review's second answers (Ian, 2026-09-29).
+        413: "Wormadam: Anticipation and Overcoat, moved up from hidden (Ian, 2026-09-29)",
+        348: "Armaldo: Swift Swim and Battle Armor, the sheet's (Ian, 2026-09-29)",
+        250: "Ho-Oh: Magic Guard, Kaizo's, for the trainer that has it (Ian, 2026-09-29)",
+        # Lines whose hidden ability repeated a regular one, and Kaizo's
+        # Gallade (Ian, 2026-09-29).
+        6: "Charizard: Blaze only; Solar Power stays hidden (Ian, 2026-09-29)",
+        443: "Gible: Rough Skin; Sand Veil is hidden (Ian, 2026-09-29)",
+        444: "Gabite: Rough Skin and Shed Skin; Sand Veil is hidden (Ian, 2026-09-29)",
+        445: "Garchomp: Rough Skin; Sand Veil is hidden (Ian, 2026-09-29)",
+        60: "Poliwag: Swift Swim and Water Absorb (Ian, 2026-09-29)",
+        61: "Poliwhirl: Swift Swim and Water Absorb (Ian, 2026-09-29)",
+        62: "Poliwrath: Swift Swim and Water Absorb (Ian, 2026-09-29)",
+        320: "Wailmer: Pressure and Water Veil (Ian, 2026-09-29)",
+        321: "Wailord: Pressure and Water Veil (Ian, 2026-09-29)",
+        475: "Gallade: Hyper Cutter and Steadfast, as Kaizo's ROM has (Ian, 2026-09-29)",
+        99: "Kingler: Hyper Cutter and Sheer Force; Shell Armor is hidden (Ian, 2026-09-29)",
     }
+    # The two forms also take Overcoat beside Anticipation (Ian, 2026-09-29).
+    ABILITIES_DIVERGED[499] += "; Overcoat too (Ian, 2026-09-29)"
+    ABILITIES_DIVERGED[500] += "; Overcoat too (Ian, 2026-09-29)"
 
     # Base stats the base ROM set by a slip, which Oxide has corrected to Ian's
     # change sheet ("My Version RomHack Docs", Pokemon Changes; Kaizo agrees for
@@ -1613,6 +1651,59 @@ def main():
         11: "Metapod's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
         14: "Kakuna's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
         292: "Shedinja's Sp. Def is 10, not 5 (Ian, 2026-09-29)",
+        # The blind buff review (Ian, 2026-09-29): the sheet's slips and the
+        # high-confidence stat changes.
+        22: "Fearow's Sp. Atk is 31, the sheet's (Ian, 2026-09-29)",
+        64: "Kadabra takes Kaizo's bulk, not its Speed (Ian, 2026-09-29)",
+        73: "Tentacruel's Atk 80 and Sp. Atk 90, the sheet's (Ian, 2026-09-29)",
+        75: "Graveler's Speed is 45, the sheet's (Ian, 2026-09-29)",
+        110: "Weezing's Sp. Atk 90 and Sp. Def 85, the sheet's (Ian, 2026-09-29)",
+        164: "Noctowl's Sp. Atk is 86, the sheet's (Ian, 2026-09-29)",
+        195: "Quagsire's HP 105 and Sp. Def 75 (Ian, 2026-09-29)",
+        225: "Delibird to 65/90/60/85/60/100 (Ian, 2026-09-29)",
+        227: "Skarmory's Atk 85 and Sp. Def 80, the sheet's (Ian, 2026-09-29)",
+        268: "Cascoon's Sp. Def is 55, the sheet's (Ian, 2026-09-29)",
+        303: "Mawile's HP 70 and Sp. Def 75 (Ian, 2026-09-29)",
+        354: "Banette's Speed is 85, the sheet's (Ian, 2026-09-29)",
+        402: "Kricketune to 87/105/61/55/61/75 (Ian, 2026-09-29)",
+        # The review's second answers (Ian, 2026-09-29).
+        114: "Tangela's Sp. Def is 50, Kaizo's (Ian, 2026-09-29)",
+        186: "Politoed's Atk is 85, Kaizo's (Ian, 2026-09-29)",
+        232: "Donphan's Sp. Atk is 55, the sheet's (Ian, 2026-09-29)",
+        479: "Rotom takes Kaizo's 50/65/107/105/107/91, its forms coming after Fantina's split "
+             "(Ian, 2026-09-29)",
+        # Kaizo's numbers for the species the player cannot catch, so trainer
+        # teams carried over from Kaizo fight as they did there (Ian, 2026-09-29).
+        39: "Jigglypuff to Kaizo's 115/45/38/60/55/20 (Ian, 2026-09-29)",
+        51: "Dugtrio's Atk is 100, Kaizo's (Ian, 2026-09-29)",
+        83: "Farfetch'd to Kaizo's 52/95/85/58/82/65 (Ian, 2026-09-29)",
+        88: "Grimer's Sp. Def is 75, Kaizo's (Ian, 2026-09-29)",
+        165: "Ledyba's Atk is 50, Kaizo's (Ian, 2026-09-29)",
+        167: "Spinarak's Speed is 50, Kaizo's (Ian, 2026-09-29)",
+        174: "Igglybuff to Kaizo's 90/45/20/45/25/20 (Ian, 2026-09-29)",
+        243: "Raikou's Sp. Atk is 135, Kaizo's (Ian, 2026-09-29)",
+        244: "Entei's Atk is 135, Kaizo's (Ian, 2026-09-29)",
+        # Halfway to Kaizo's numbers for two legendaries the player can own.
+        144: "Articuno's Sp. Atk 110 and Sp. Def 120 (Ian, 2026-09-29)",
+        245: "Suicune's HP is 110 (Ian, 2026-09-29)",
+        # The variants Ian took from their scores (2026-09-29;
+        # docs/oxide/reviews/buff-review/scores.md).
+        67: "Machoke to 90/100/80/50/70/45 (Ian, 2026-09-29)",
+        87: "Dewgong to Odyssey's 100/70/90/70/100/70 (Ian, 2026-09-29)",
+        93: "Haunter to Kaizo's 60/50/60/115/75/110 (Ian, 2026-09-29)",
+        99: "Kingler's HP 65 and Sp. Def 65 (Ian, 2026-09-29)",
+        111: "Rhyhorn to 90/95/95/30/30/25 (Ian, 2026-09-29)",
+        119: "Seaking to Odyssey's 85/105/70/65/80/70 (Ian, 2026-09-29)",
+        171: "Lanturn's Def 68, Sp. Atk 86 and Sp. Def 86 (Ian, 2026-09-29)",
+        185: "Sudowoodo to 85/110/115/30/80/30 (Ian, 2026-09-29)",
+        229: "Houndoom's Sp. Atk 120 and Speed 105 (Ian, 2026-09-29)",
+        247: "Pupitar's HP 80 and Atk 94 (Ian, 2026-09-29)",
+        272: "Ludicolo's Def 80 and Sp. Atk 100 (Ian, 2026-09-29)",
+        337: "Lunatone's Sp. Atk 110 and Sp. Def 95 (Ian, 2026-09-29)",
+        338: "Solrock's Atk 110 and Def 95 (Ian, 2026-09-29)",
+        400: "Bibarel's Def 70 and Sp. Def 70 (Ian, 2026-09-29)",
+        414: "Mothim to 80/94/60/94/60/76 (Ian, 2026-09-29)",
+        444: "Gabite to 68/90/75/50/65/82 (Ian, 2026-09-29)",
     }
 
     # species: personal + learnset + evolutions live in one data.json
