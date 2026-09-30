@@ -228,6 +228,7 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None):
         mult *= 0.5
     if crit:
         mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
+    mult *= fs.rollout_mult(att, mv)
     return max(1, int(base * mult))
 
 
@@ -368,7 +369,9 @@ def attack(b, att, mv, dfn, first):
     if not accuracy_hits(b, att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             fs.hurt(b, att, att.maxhp // 2)
+        fs.rollout_after(att, mv, False)
         return
+    fs.rollout_after(att, mv, True)
     trainer = not player(att)
     dmg = None
     if mv.effect == "ONE_HIT_KO":
@@ -535,6 +538,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.seeded = True
     elif e in fs.SELF_STAGES:
         fs.change_stages(att, fs.SELF_STAGES[e])
+        if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
+            att.curled = True
     elif e in fs.FOE_STAGES:
         if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
@@ -945,7 +950,7 @@ def _turn(c, pa, aa):
         if mon.lock:
             mv, left = mon.lock
             mon.lock = (mv, left - 1) if left > 1 else None
-            if left <= 1 and not mon.confused:
+            if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
                 mon.confused = c.dice.confusion(mon.side)
     if c.b.alive() and not c.b.cur().alive():
         idx = fightai.replacement(c, c.b, c.p.cur())

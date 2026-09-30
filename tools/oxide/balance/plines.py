@@ -29,11 +29,12 @@ SWITCH_RULES = ("losing", "losing", "hp", "never")
 class Line:
     __slots__ = ("lead", "answers", "switch_rule", "hp_floor", "setup_turns", "setup_full",
                  "use_status", "seed", "bait_lock", "free_pivot", "stall", "reserved",
-                 "screens", "hazards", "pairs")
+                 "screens", "hazards", "pairs", "def_setup", "foe_drop", "sleep_open")
 
     def __init__(self, lead, answers, switch_rule="losing", hp_floor=0.4, setup_turns=3,
                  setup_full=True, use_status=True, seed=0, bait_lock=False, free_pivot=False,
-                 stall=0, reserved=None, screens=False, hazards=False, pairs=None):
+                 stall=0, reserved=None, screens=False, hazards=False, pairs=None,
+                 def_setup=False, foe_drop=False, sleep_open=False):
         self.lead = lead
         self.answers = answers            # {foe key: team index or None}
         self.switch_rule = switch_rule    # losing: leave a losing exchange for a winning one
@@ -50,6 +51,9 @@ class Line:
         self.screens = screens            # Reflect or Light Screen against the foe's kind of hit
         self.hazards = hazards            # rocks, spikes or toxic spikes with foes still to come
         self.pairs = pairs or {}          # {foe key: (chipper, finisher)}: two on one foe
+        self.def_setup = def_setup        # raise Defense against a physical foe (Simple doubles it)
+        self.foe_drop = foe_drop          # lower the foe's attacking stat, or its accuracy
+        self.sleep_open = sleep_open      # open with sleep against the foe's strongest
 
     def describe(self, st, team):
         ans = ", ".join(f"{st['pokemon'][k]['species']}->{st['pokemon'][team[i]]['species']}"
@@ -63,6 +67,8 @@ class Line:
                 + "".join(f"; save {st['pokemon'][team[i]]['species']} for {st['pokemon'][k]['species']}"
                           for i, k in self.reserved.items())
                 + f"{'; screens' if self.screens else ''}{'; hazards' if self.hazards else ''}"
+                + f"{'; Defense setup' if self.def_setup else ''}{'; stat drops' if self.foe_drop else ''}"
+                + f"{'; sleep opener' if self.sleep_open else ''}"
                 + "".join(f"; {st['pokemon'][team[a]]['species']} then {st['pokemon'][team[c]]['species']} "
                           f"on {st['pokemon'][k]['species']}" for k, (a, c) in self.pairs.items()))
 
@@ -176,6 +182,11 @@ def _timed_left(b):
     return min(left) if left else None
 
 
+def _strongest(b):
+    """The foe side's strongest Pokemon: the highest level, then the most HP."""
+    return max(b.b.mons, key=lambda m: (m.level, m.maxhp)).key
+
+
 def decide(b, line):
     """('move', Move) or ('switch', index) for the player under this line."""
     me, foe = b.p.cur(), b.b.cur()
@@ -229,6 +240,28 @@ def decide(b, line):
                 mv = next((m for m in moves if m.effect == eff), None)
                 if mv is not None:
                     return "move", mv
+    phys = sum(1 for mv in foe.moves if mv.damaging() and mv.cat == "Physical")
+    spec = sum(1 for mv in foe.moves if mv.damaging() and mv.cat == "Special")
+    # Sleep as the opening against the foe's strongest Pokemon.
+    if line.sleep_open and t_foe >= 2 and foe.status is None and foe.key == _strongest(b):
+        mv = next((m for m in moves if m.effect == "STATUS_SLEEP" and fs.can_status(b, foe, "slp")), None)
+        if mv is not None:
+            return "move", mv
+    # Defense setup against a physical foe, to +4 (Simple doubles each use).
+    if line.def_setup and phys and phys >= spec and t_foe >= 2 and me.stages["def"] < 4:
+        mv = next((m for m in moves if m.effect in fs.SELF_STAGES
+                   and fs.SELF_STAGES[m.effect].get("def", 0) > 0), None)
+        if mv is not None:
+            return "move", mv
+    # A drop on the foe's attacking stat, else its accuracy, to -2.
+    if line.foe_drop and t_foe >= 2 and t_me >= 2 and (phys or spec):
+        for stat in ("atk" if phys >= spec else "spa", "acc"):
+            if foe.stages[stat] <= -2:
+                continue
+            mv = next((m for m in moves if m.effect in fs.FOE_STAGES
+                       and fs.FOE_STAGES[m.effect].get(stat, 0) < 0), None)
+            if mv is not None:
+                return "move", mv
     # Hazards, with two or more of the foe's Pokemon still to come.
     if line.hazards and t_foe >= 2 and sum(1 for m in b.b.mons if m.alive()) >= 3:
         hz = b.b.hazards
@@ -387,7 +420,8 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
         pair = best_pair(b, bm[k])
         if pair is not None:
             pairs[k] = pair
-    line = Line(lead, answers, screens=True, hazards=True, pairs=pairs)
+    line = Line(lead, answers, screens=True, hazards=True, pairs=pairs,
+                def_setup=True, foe_drop=True, sleep_open=True)
     if rng.random() < jitter:
         line.switch_rule = rng.choice(SWITCH_RULES)
     if rng.random() < jitter:
@@ -398,6 +432,12 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
         line.setup_full = rng.random() < 0.5
     if rng.random() < jitter:
         line.use_status = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.def_setup = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.foe_drop = rng.random() < 0.6
+    if rng.random() < jitter:
+        line.sleep_open = rng.random() < 0.7
     if rng.random() < jitter:
         line.screens = rng.random() < 0.8
     if rng.random() < jitter:

@@ -215,6 +215,8 @@ class Mon:
 
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
+        self.rollout = 0
+        self.curled = False
         self.confused = 0
         self.flinch = False
         self.seeded = False
@@ -357,6 +359,7 @@ class Battle:
             mult *= 0.75
         if crit:
             mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
+        mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
     def accuracy_hits(self, att, dfn, mv):
@@ -414,8 +417,34 @@ def give_status(b, target, status):
 
 
 def change_stages(mon, changes):
+    # Simple doubles every change to its own stages.
+    mult = 2 if getattr(mon, "ability", None) == "Simple" else 1
     for k, v in changes.items():
-        mon.stages[k] = max(-6, min(6, mon.stages[k] + v))
+        mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
+
+
+ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
+
+
+def rollout_mult(att, mv):
+    """Rollout and Ice Ball double each hit in a row, five at most, and
+    twice again after Defense Curl."""
+    if mv.effect != ROLLOUT:
+        return 1
+    return 2 ** getattr(att, "rollout", 0) * (2 if getattr(att, "curled", False) else 1)
+
+
+def rollout_after(att, mv, hit):
+    """The lock after a use: the next hit in a row, or the run broken by a
+    miss or its fifth hit."""
+    if mv.effect != ROLLOUT:
+        return
+    att.rollout = getattr(att, "rollout", 0) + 1 if hit else 0
+    if not hit or att.rollout >= 5:
+        att.rollout = 0
+        att.lock = None
+    else:
+        att.lock = (mv, 5 - att.rollout)
 
 
 def hurt(b, mon, amount):
@@ -532,7 +561,9 @@ def attack(b, att, mv, dfn, first):
     if not b.accuracy_hits(att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             hurt(b, att, att.maxhp // 2)
+        rollout_after(att, mv, False)
         return
+    rollout_after(att, mv, True)
     # Fixed-damage moves.
     dmg = None
     if mv.effect == "ONE_HIT_KO":
@@ -671,6 +702,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.seeded = True
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
+        if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
+            att.curled = True
     elif e in FOE_STAGES:
         if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
             change_stages(dfn, FOE_STAGES[e])
@@ -1235,7 +1268,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             if mon.lock:
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
-                if left <= 1 and not mon.confused:
+                if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
                     mon.confused = rng.randint(2, 5)
         # Faints are replaced.
         if b.b.alive() and not b.b.cur().alive():
@@ -1418,7 +1451,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             if mon.lock:
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
-                if left <= 1 and not mon.confused:
+                if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
                     mon.confused = rng.randint(2, 5)
         # Refill fainted slots from each slot's own party.
         for side in (b.p, b.b):
