@@ -23,6 +23,37 @@ def context(split):
     return sim.context(split)
 
 
+def planned_box(split, seed=0):
+    """[species constant] of the box the encounter tool expects by the
+    split's end: the simulator's best-play run (each area's best option,
+    the dupes clause, no deaths), at the stage each reaches by the cap."""
+    ctx = context(split)
+    r = sim.run(split, seed=seed, ctx=ctx)
+    return [m["stage"] for m in r["box"] if m.get("alive", True)]
+
+
+def save_box(path, split):
+    """[species constant] of the living Pokemon in a real save (the
+    OxiDex's save reader; the graveyard boxes are left out, as the
+    simulator's start_from_save reads them), at the stage each reaches by
+    the split's cap."""
+    from ..encounters import model, savefile
+    ctx = context(split)
+    save = savefile.read(path)
+    start = sim.start_from_save(save, model.load_encounters(), split)
+    return [ctx["values"].stage(m["species"]) for m in start["members"] if m.get("alive", True)]
+
+
+def box_from(source, split, rng):
+    """One box by its source: "random" (a random run), "planned" (the
+    simulator's best-play run) or "save:<path>" (a real save)."""
+    if source == "planned":
+        return planned_box(split)
+    if source.startswith("save:"):
+        return save_box(source[len("save:"):], split)
+    return random_box(split, rng)
+
+
 def random_box(split, rng):
     """[species constant] of one run's box by the split's end, each at the
     stage it reaches by the cap, the starter first."""

@@ -208,12 +208,18 @@ def _job(args):
 
 
 def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, seed=SEED,
-               budget=pl.BUDGET, strict=False, log=sys.stdout):
+               budget=pl.BUDGET, strict=False, log=sys.stdout, box_source="random"):
+    """One fight's readings. `box_source` names the boxes it reads from:
+    "random" (n_boxes random runs), "planned" (the encounter tool's
+    best-play box) or "save:<path>" (Ian's own save); the last two are one
+    box each, and the reading records which it used."""
     st = prep["st"]
     rng = random.Random(seed)
     jobs = []
+    if box_source != "random":
+        n_boxes = 1
     for bi in range(n_boxes):
-        box = boxes.random_box(prep["split"], random.Random(seed * 100 + bi))
+        box = boxes.box_from(box_source, prep["split"], random.Random(seed * 100 + bi))
         keys = box_keys(st, box, rng)
         boss_keys, flags, _starter = variant_for(prep, box)
         for j, team in enumerate(sixes(keys, blind, rng)):
@@ -226,7 +232,8 @@ def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, se
     with ctx.Pool(procs or max(1, os.cpu_count() - 2), initializer=_init, initargs=(prep,)) as pool_:
         rows = pool_.map(_job, jobs, chunksize=1)
     out = summarise_strict(rows) if strict else summarise(rows)
-    out.update({"label": prep["label"], "split": prep["split"], "boxes": n_boxes, "blind": blind,
+    out.update({"label": prep["label"], "split": prep["split"], "boxes": n_boxes, "box_source": box_source,
+                "blind": blind,
                 "planned": planned, "budget": budget, "strict": strict,
                 "seconds": round(time.time() - t0, 1), "rows": rows})
     if strict:
@@ -344,6 +351,8 @@ def main(argv=None):
     ap.add_argument("--trace", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--strict", action="store_true", help="the strict perfect-line search instead of lines")
+    ap.add_argument("--box", default="random",
+                    help='the boxes read from: "random", "planned", or "save:<path to a .sav>"')
     args = ap.parse_args(argv)
     if args.report:
         report(strict=args.strict)
@@ -372,9 +381,10 @@ def main(argv=None):
                 print(prep["label"], r)
             continue
         out = read_fight(prep, args.boxes, args.blind, args.planned, args.procs, budget=args.budget,
-                         strict=args.strict)
+                         strict=args.strict, box_source=args.box)
         out["key"] = prep["key"]
-        name = f"{prep['key']}{'-strict' if args.strict else ''}.json"
+        tag = "" if args.box == "random" else "-" + ("planned" if args.box == "planned" else "save")
+        name = f"{prep['key']}{tag}{'-strict' if args.strict else ''}.json"
         with open(os.path.join(RESULTS, name), "w", encoding="utf-8") as f:
             json.dump(out, f, indent=1)
     return 0
