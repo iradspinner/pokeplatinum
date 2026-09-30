@@ -316,6 +316,36 @@ def main():
         pl.status_move(b, rose, spore, gol, True)
     results.append(("out of sun Leaf Guard does not", gol.status == "par", f"{gol.status}"))
 
+    # Switching (TrainerAI_ShouldSwitch): an asleep Natural Cure holder at
+    # half HP or more, not hit, leaves seven times in eight; Natural Gift is
+    # typed by its berry, so Lumineon's Watmel gift counts as super-effective
+    # against a Bug type and keeps it in nine times in ten.
+    recs = [{"constant": "SPECIES_VIKAVOLT", "species": "Vikavolt", "how": "test", "level": 26, "nature": "Jolly",
+             "ivs": IV, "evs": EV, "ability": "Levitate", "moves": ["Spark", "Bug Bite"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("gardenia"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0"], boss_keys, flags, 0)
+    vika = b.p.cur()
+    rose = boss(b, "Roserade")
+    b.b.active = b.b.mons.index(rose)
+    rose.status, rose.sleep, rose.last_hit_by = "slp", 3, None
+    left = 0
+    for i in range(800):
+        b.rng = random.Random(i)
+        left += fightai.should_switch(b, b.b, rose, vika) is not None
+    results.append(("an asleep Natural Cure holder at full HP, not hit, switches about 7 in 8",
+                    0.82 <= left / 800 <= 0.93, f"{left} of 800"))
+    lum = boss(b, "Lumineon")
+    b.b.active = b.b.mons.index(lum)
+    lum.last_hit_by = mv(vika, "Spark")
+    gift = mv(lum, "Natural Gift")
+    stays = 0
+    for i in range(800):
+        b.rng = random.Random(i)
+        stays += fightai.should_switch(b, b.b, lum, vika) is None
+    results.append(("Natural Gift takes its berry's type: Watmel's Fire keeps Lumineon in about 9 in 10 against Vikavolt",
+                    fightai.move_type(b, lum, gift) == "Fire" and stays / 800 >= 0.85, f"{fightai.move_type(b, lum, gift)}, stayed {stays} of 800"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

@@ -14,7 +14,11 @@ Weather and Harassment. The AI reads its damage at the top roll with no
 critical hit. Rules for moves Oxide's trainers rarely carry are left out;
 fightsim's report counts the effects it meets without a rule.
 """
-from . import fightsim as fs
+import functools
+import json
+import os
+
+from . import data, fightsim as fs
 
 BASIC, EVAL, EXPERT, SETUP_FIRST, RISKY, EXTREMES, BATON, TAG, CHECK_HP, WEATHER, HARASS = range(11)
 
@@ -88,6 +92,34 @@ def chance(b, p):
 
 def eff(b, mv, t):
     return fs.effectiveness(b.st["chart"], mv.type, t.types)
+
+
+@functools.lru_cache(maxsize=None)
+def _gift_type(item):
+    """A berry's Natural Gift type, from its item data."""
+    path = os.path.join(data.ROOT, "res", "items", "data", item.lower().replace(" ", "_") + ".json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            ty = json.load(f).get("naturalGiftType")
+    except OSError:
+        return None
+    return ty[len("TYPE_"):].title() if ty else None
+
+
+def move_type(b, mon, mv):
+    """The type a move really has in battle (TrainerAI_MoveType,
+    Move_CalcVariableType): Weather Ball by the weather, Natural Gift by the
+    berry held; the switching checks read these."""
+    if mv.name == "Weather Ball" and b.weather:
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+    if mv.name == "Natural Gift":
+        if mon.item and "Berry" in mon.item:
+            return _gift_type(mon.item) or mv.type
+    return mv.type
+
+
+def eff_of(b, mon, mv, t):
+    return fs.effectiveness(b.st["chart"], move_type(b, mon, mv), t.types)
 
 
 def score_moves(b, u, t, flags):
@@ -692,47 +724,104 @@ def choose_doubles(b, u):
 
 
 def _se_moves(b, mon, t):
-    return [m for m in mon.moves if m.damaging() and eff(b, m, t) >= 2]
+    return [m for m in mon.moves if m.damaging() and eff_of(b, mon, m, t) >= 2]
+
+
+# The abilities that take a type's moves, as AI_AbilityAbsorbsType has them
+# (Oxide adds Storm Drain, Dry Skin, Lightning Rod, Motor Drive, Sap Sipper).
+ABSORBS = {"Fire": {"Flash Fire"}, "Water": {"Water Absorb", "Storm Drain", "Dry Skin"},
+           "Electric": {"Volt Absorb", "Lightning Rod", "Motor Drive"}, "Grass": {"Sap Sipper"}}
+
+
+def _any_se_moves(b, mon, t):
+    """Every move, status moves too, whose type hits t super-effectively:
+    BattleSystem_CalcEffectiveness, which the party checks use, sets the flag
+    whatever the move's power."""
+    return [m for m in mon.moves if eff_of(b, mon, m, t) >= 2]
+
+
+def _hit_type(b, mv):
+    """The type the last move that hit had (moveHitType): Weather Ball's
+    comes from the weather."""
+    if mv.name == "Weather Ball" and b.weather:
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+    return mv.type
 
 
 def should_switch(b, side, u, t):
-    """The switch rules (section 3 of the spec), first answer decides."""
+    """TrainerAI_ShouldSwitch (trainer_ai.c), rule by rule; in singles each
+    party check reads the one foe as both defenders, so it rolls twice."""
     if not fs.can_switch(u):
         return None          # trapped by Block or Mean Look, or rooted by Ingrain
     bench = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
     if not bench or u.bound:
         return None
-    # Rule 1: Perish Song's count has run down, so it leaves.
+    # AI_PerishSongKO
     if u.perish == 1:
         return replacement(b, side, t)
-    # Rule 3: every damaging move of two or more is immune.
-    dmg = [m for m in u.moves if m.damaging()]
-    if len(dmg) >= 2 and all(eff(b, m, t) == 0 for m in dmg):
+    # AI_CannotDamageWonderGuard: no super-effective attack on a Wonder Guard foe.
+    if t.ability == "Wonder Guard" and not _se_moves(b, u, t):
         for i in bench:
-            for m in _se_moves(b, side.mons[i], t):
+            for m in _any_se_moves(b, side.mons[i], t):
                 if chance(b, 66.7):
                     return i
+    # AI_OnlyIneffectiveMoves: two or more attacks, every one immune.
+    dmg = [m for m in u.moves if m.damaging()]
+    if len(dmg) >= 2 and all(eff_of(b, u, m, t) == 0 for m in dmg):
         for i in bench:
             for m in side.mons[i].moves:
-                if m.damaging() and eff(b, m, t) == 1 and chance(b, 50):
+                if m.damaging() and eff_of(b, side.mons[i], m, t) >= 2:
+                    for _ in range(2):
+                        if chance(b, 66.7):
+                            return i
+        for i in bench:
+            for m in side.mons[i].moves:
+                if m.damaging() and eff_of(b, side.mons[i], m, t) == 1:
+                    for _ in range(2):
+                        if chance(b, 50):
+                            return i
+    hit = u.last_hit_by
+    # AI_HasAbsorbAbilityInParty: a super-effective attack of its own keeps it
+    # in two times in three; otherwise a bench member that takes the type of
+    # the attack that hit it comes in, one time in two.
+    if not (_se_moves(b, u, t) and chance(b, 66.7)) and hit is not None and hit.damaging():
+        htype = _hit_type(b, hit)
+        if u.ability not in ABSORBS.get(htype, ()):
+            for i in bench:
+                if side.mons[i].ability in ABSORBS.get(htype, ()) and chance(b, 50):
                     return i
-    # The gates: a super-effective move of its own, or stages built up.
+    # AI_IsAsleepWithNaturalCure, at half HP or more.
+    if u.status == "slp" and u.ability == "Natural Cure" and u.hp >= u.maxhp // 2:
+        if hit is None and chance(b, 50):
+            return replacement(b, side, t)
+        if (hit is None or not hit.damaging()) and chance(b, 50):
+            return replacement(b, side, t)
+        if hit is not None and hit.damaging():
+            for want in (0, "res"):
+                for i in bench:
+                    m = side.mons[i]
+                    e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
+                    if (e == 0 if want == 0 else 0 < e < 1) and _any_se_moves(b, m, t):
+                        return i
+        if chance(b, 50):
+            return replacement(b, side, t)
+    # AI_HasSuperEffectiveMove: each super-effective attack keeps it in nine
+    # times in ten; four or more boosts keep it in.
     for m in _se_moves(b, u, t):
         if chance(b, 90):
             return None
     if sum(v for k, v in u.stages.items() if v > 0 and k != "acc") >= 4:
         return None
-    # Rules 6 and 7: hit by a damaging move a bench member is immune to or
-    # resists, and that member has a super-effective move on the attacker.
-    hit = u.last_hit_by
+    # AI_HasPartyMemberWithSuperEffectiveMove: a bench member immune to (one
+    # in two per move) or resisting (one in three per move) the attack that
+    # hit it, with a super-effective move of any kind at the foe.
     if hit is not None and hit.damaging():
         for want, p in ((0, 50), ("res", 33.3)):
             for i in bench:
                 m = side.mons[i]
-                e = fs.effectiveness(b.st["chart"], hit.type, m.types)
-                ok = e == 0 if want == 0 else 0 < e < 1
-                if ok:
-                    for _mv in _se_moves(b, m, t):
+                e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
+                if e == 0 if want == 0 else 0 < e < 1:
+                    for _mv in _any_se_moves(b, m, t):
                         if chance(b, p):
                             return i
     return None
