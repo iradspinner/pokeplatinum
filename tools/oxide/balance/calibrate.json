@@ -15,7 +15,7 @@
    "threat_chance": 0.433,
    "answers_duel": 0.408,
    "answers_sure": 0.41,
-   "answers_bait": 0.434,
+   "answers_bait": 0.435,
    "answers_branch": 0.428,
    "safe": 0.213,
    "cover": 1.0,
@@ -143,21 +143,21 @@
      "threat_chance": 0.819,
      "answers_duel": 0.411,
      "answers_sure": 0.41,
-     "answers_bait": 0.545,
+     "answers_bait": 0.548,
      "forced": [
       "Chatter",
       "Heat Wave",
       "Hyper Voice"
      ],
-     "answers_branch": 0.545,
+     "answers_branch": 0.548,
      "branches": []
     }
    ],
    "calcs": 46766,
    "errors": [],
-   "node_seconds": 8.19,
-   "wall_seconds": 8.37,
-   "fingerprint": "43d2e6eaf1addd3a4681",
+   "node_seconds": 7.49,
+   "wall_seconds": 7.71,
+   "fingerprint": "04180bb2f0df3ec528e6",
    "verified": true
   },
   "hesperid_coronet": {
@@ -172,10 +172,10 @@
    "answers": 0.39,
    "answers_lock": 0.39,
    "threat_chance": 0.37,
-   "answers_duel": 0.456,
-   "answers_sure": 0.452,
-   "answers_bait": 0.456,
-   "answers_branch": 0.409,
+   "answers_duel": 0.457,
+   "answers_sure": 0.453,
+   "answers_bait": 0.457,
+   "answers_branch": 0.41,
    "safe": 0.22,
    "cover": 1.0,
    "best_one": 1.0,
@@ -224,11 +224,11 @@
      "answers": 0.548,
      "answers_lock": 0.548,
      "threat_chance": 0.245,
-     "answers_duel": 0.394,
-     "answers_sure": 0.391,
-     "answers_bait": 0.394,
+     "answers_duel": 0.395,
+     "answers_sure": 0.393,
+     "answers_bait": 0.395,
      "forced": [],
-     "answers_branch": 0.394,
+     "answers_branch": 0.395,
      "branches": []
     },
     {
@@ -323,19 +323,19 @@
      "answers": 0.622,
      "answers_lock": 0.622,
      "threat_chance": 0.118,
-     "answers_duel": 0.255,
-     "answers_sure": 0.256,
-     "answers_bait": 0.255,
+     "answers_duel": 0.258,
+     "answers_sure": 0.258,
+     "answers_bait": 0.258,
      "forced": [],
-     "answers_branch": 0.255,
+     "answers_branch": 0.258,
      "branches": []
     }
    ],
    "calcs": 77532,
    "errors": [],
-   "node_seconds": 13.29,
-   "wall_seconds": 13.55,
-   "fingerprint": "4eecc32b462266dc2ebf",
+   "node_seconds": 10.84,
+   "wall_seconds": 11.1,
+   "fingerprint": "fc5374d16c7a51590c16",
    "verified": true
   }
  }

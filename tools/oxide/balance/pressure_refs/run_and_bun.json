@@ -174,9 +174,9 @@
    "left_out": {},
    "calcs": 4461,
    "errors": [],
-   "node_seconds": 1.49,
+   "node_seconds": 1.46,
    "wall_seconds": 1.58,
-   "fingerprint": "a78b12c6c99b1e2f9c3b",
+   "fingerprint": "02d792dafff54b9546a7",
    "verified": true
   },
   "gardenia": {
@@ -343,8 +343,8 @@
    "calcs": 9754,
    "errors": [],
    "node_seconds": 2.54,
-   "wall_seconds": 2.67,
-   "fingerprint": "fe3aac6f8f26cbac621d",
+   "wall_seconds": 2.78,
+   "fingerprint": "1eb8c96509fe6c82a2eb",
    "verified": true
   },
   "fantina": {
@@ -524,9 +524,9 @@
    "left_out": {},
    "calcs": 18782,
    "errors": [],
-   "node_seconds": 4.83,
-   "wall_seconds": 5.04,
-   "fingerprint": "3da7d4d8bf101f0bad3c",
+   "node_seconds": 3.94,
+   "wall_seconds": 4.07,
+   "fingerprint": "f6256ab624680a905365",
    "verified": true
   },
   "maylene": {
@@ -689,9 +689,9 @@
    "left_out": {},
    "calcs": 31022,
    "errors": [],
-   "node_seconds": 6.62,
-   "wall_seconds": 6.81,
-   "fingerprint": "1feb24e8230d141b70f3",
+   "node_seconds": 5.77,
+   "wall_seconds": 5.98,
+   "fingerprint": "1f99cff55220143e1735",
    "verified": true
   },
   "wake": {
@@ -708,11 +708,11 @@
    "threat": 0.877,
    "answers": 0.011,
    "answers_lock": 0.011,
-   "threat_chance": 0.865,
-   "answers_duel": 0.015,
-   "answers_sure": 0.014,
-   "answers_bait": 0.015,
-   "answers_branch": 0.015,
+   "threat_chance": 0.864,
+   "answers_duel": 0.016,
+   "answers_sure": 0.015,
+   "answers_bait": 0.016,
+   "answers_branch": 0.016,
    "safe": 0.099,
    "cover": null,
    "best_one": 0.667,
@@ -764,15 +764,15 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.955,
+     "threat": 0.953,
      "answers": 0.0,
      "answers_lock": 0.0,
-     "threat_chance": 0.936,
-     "answers_duel": 0.035,
-     "answers_sure": 0.035,
-     "answers_bait": 0.035,
+     "threat_chance": 0.934,
+     "answers_duel": 0.037,
+     "answers_sure": 0.037,
+     "answers_bait": 0.037,
      "forced": [],
-     "answers_branch": 0.035,
+     "answers_branch": 0.037,
      "branches": []
     },
     {
@@ -858,9 +858,9 @@
    "left_out": {},
    "calcs": 38953,
    "errors": [],
-   "node_seconds": 8.16,
-   "wall_seconds": 8.4,
-   "fingerprint": "dcc0ac35fa39d42e6fb2",
+   "node_seconds": 6.98,
+   "wall_seconds": 7.19,
+   "fingerprint": "af672dd9084e25de2cfc",
    "verified": true
   },
   "byron": {
@@ -874,10 +874,10 @@
     "Leader Winona [Boss]"
    ],
    "ace": 70,
-   "threat": 0.938,
-   "answers": 0.01,
-   "answers_lock": 0.011,
-   "threat_chance": 0.932,
+   "threat": 0.937,
+   "answers": 0.011,
+   "answers_lock": 0.012,
+   "threat_chance": 0.931,
    "answers_duel": 0.006,
    "answers_sure": 0.005,
    "answers_bait": 0.03,
@@ -983,10 +983,10 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.701,
+     "threat": 0.699,
      "answers": 0.055,
      "answers_lock": 0.055,
-     "threat_chance": 0.701,
+     "threat_chance": 0.698,
      "answers_duel": 0.002,
      "answers_sure": 0.002,
      "answers_bait": 0.002,
@@ -1003,8 +1003,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.986,
-     "answers": 0.005,
-     "answers_lock": 0.005,
+     "answers": 0.007,
+     "answers_lock": 0.007,
      "threat_chance": 0.96,
      "answers_duel": 0.006,
      "answers_sure": 0.005,
@@ -1039,9 +1039,9 @@
    "left_out": {},
    "calcs": 60790,
    "errors": [],
-   "node_seconds": 10.59,
-   "wall_seconds": 10.97,
-   "fingerprint": "f8a0b1e2f5fc34547780",
+   "node_seconds": 10.4,
+   "wall_seconds": 10.71,
+   "fingerprint": "e816da6fa076b5810ac4",
    "verified": true
   },
   "candice": {
@@ -1265,9 +1265,9 @@
    "errors": [
     "b0.4 Nature's Madness: damage is not a number"
    ],
-   "node_seconds": 13.72,
-   "wall_seconds": 14.08,
-   "fingerprint": "6efce04703198e77dbf9",
+   "node_seconds": 13.34,
+   "wall_seconds": 13.67,
+   "fingerprint": "7034d60bf5983dc4b31e",
    "verified": true
   },
   "volkner": {
@@ -1435,9 +1435,9 @@
    "left_out": {},
    "calcs": 53620,
    "errors": [],
-   "node_seconds": 9.37,
+   "node_seconds": 9.32,
    "wall_seconds": 9.68,
-   "fingerprint": "d4ddb8b8042475bccc2c",
+   "fingerprint": "ecec8405cc65a4362e4a",
    "verified": true
   },
   "aaron": {
@@ -1615,9 +1615,9 @@
    "left_out": {},
    "calcs": 71400,
    "errors": [],
-   "node_seconds": 12.41,
-   "wall_seconds": 12.71,
-   "fingerprint": "c413a6b6af356dff307a",
+   "node_seconds": 11.8,
+   "wall_seconds": 12.15,
+   "fingerprint": "c42e162a3ced0c26c40a",
    "verified": true
   },
   "bertha": {
@@ -1795,9 +1795,9 @@
    "left_out": {},
    "calcs": 62923,
    "errors": [],
-   "node_seconds": 10.57,
-   "wall_seconds": 10.81,
-   "fingerprint": "1d466fb5022295050b9a",
+   "node_seconds": 9.99,
+   "wall_seconds": 10.21,
+   "fingerprint": "f2743a1cfe3bbc9b0489",
    "verified": true
   },
   "flint": {
@@ -1977,9 +1977,9 @@
    "left_out": {},
    "calcs": 70504,
    "errors": [],
-   "node_seconds": 12.79,
-   "wall_seconds": 13.08,
-   "fingerprint": "893d8bbb902711cb6be3",
+   "node_seconds": 12.23,
+   "wall_seconds": 12.57,
+   "fingerprint": "bb2c99738b8768b59c89",
    "verified": true
   },
   "lucian": {
@@ -1997,14 +1997,14 @@
    "answers": 0.022,
    "answers_lock": 0.022,
    "threat_chance": 0.921,
-   "answers_duel": 0.017,
+   "answers_duel": 0.018,
    "answers_sure": 0.014,
-   "answers_bait": 0.017,
+   "answers_bait": 0.018,
    "answers_branch": 0.006,
    "safe": 0.054,
    "cover": null,
-   "best_one": 0.333,
-   "broad": 0.0,
+   "best_one": 0.5,
+   "broad": 0.002,
    "unanswered": [
     "Reshiram"
    ],
@@ -2085,9 +2085,9 @@
      "answers": 0.0,
      "answers_lock": 0.0,
      "threat_chance": 0.951,
-     "answers_duel": 0.027,
-     "answers_sure": 0.018,
-     "answers_bait": 0.027,
+     "answers_duel": 0.028,
+     "answers_sure": 0.02,
+     "answers_bait": 0.028,
      "forced": [],
      "answers_branch": 0.011,
      "branches": [
@@ -2146,9 +2146,9 @@
      "answers": 0.0,
      "answers_lock": 0.0,
      "threat_chance": 0.942,
-     "answers_duel": 0.051,
-     "answers_sure": 0.04,
-     "answers_bait": 0.051,
+     "answers_duel": 0.052,
+     "answers_sure": 0.042,
+     "answers_bait": 0.052,
      "forced": [],
      "answers_branch": 0.024,
      "branches": [
@@ -2162,9 +2162,9 @@
    "left_out": {},
    "calcs": 87010,
    "errors": [],
-   "node_seconds": 15.63,
-   "wall_seconds": 15.97,
-   "fingerprint": "0e3c87ee70b26136e60d",
+   "node_seconds": 14.85,
+   "wall_seconds": 15.14,
+   "fingerprint": "e721034a6328f7dadc3c",
    "verified": true
   },
   "cynthia": {
@@ -2337,9 +2337,9 @@
    "left_out": {},
    "calcs": 70952,
    "errors": [],
-   "node_seconds": 13.96,
-   "wall_seconds": 14.17,
-   "fingerprint": "fb9f1889b3bb36a4dd72",
+   "node_seconds": 12.49,
+   "wall_seconds": 12.78,
+   "fingerprint": "3cf366849c406403b8f3",
    "verified": true
   }
  }
