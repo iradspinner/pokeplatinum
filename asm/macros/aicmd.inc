@@ -665,6 +665,15 @@
     .long (\jump-.) / 4 - 1
     .endm
 
+    // Oxide: jump if the attacker's Mold Breaker ignores the given battler's
+    // ability, that is, the attacker has Mold Breaker and the battler holds no
+    // Ability Shield.
+    .macro IfMoldBreakerIgnores battler:req, jump:req
+    .long AICMD_IFMOLDBREAKERIGNORES
+    .long \battler
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req
