@@ -3473,30 +3473,31 @@
    "entries": {
     "flags": [
      {"at": ["scripts_mining_museum:32"], "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_mining_museum:205"], "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_mining_museum:39"], "commit": "a8f815af4", "daily": false, "flag": 2449, "name": "FLAG_PASSED_CYCLING_ROAD", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_mining_museum:208"], "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "pokemon": [
-     {"command": "GivePokemon", "file": "scripts_mining_museum", "how": "GivePokemon", "item": [], "level": [{"name": "20", "value": 20, "when": ""}], "line": 229, "mode": "variable", "origin": "vanilla", "reached": true, "species": [{"by": [], "match": "set elsewhere", "name": "set elsewhere (this map's script stores SPECIES_NONE)", "value": null, "when": ""}]}
+     {"command": "GivePokemon", "file": "scripts_mining_museum", "how": "GivePokemon", "item": [], "level": [{"name": "20", "value": 20, "when": ""}], "line": 232, "mode": "variable", "origin": "vanilla", "reached": true, "species": [{"by": [], "match": "set elsewhere", "name": "set elsewhere (this map's script stores SPECIES_NONE)", "value": null, "when": ""}]}
     ],
     "vars": [
-     {"at": ["scripts_mining_museum:94", "scripts_mining_museum:109", "scripts_mining_museum:114", "scripts_mining_museum:119", "scripts_mining_museum:124", "scripts_mining_museum:129", "scripts_mining_museum:134", "scripts_mining_museum:139", "scripts_mining_museum:143", "scripts_mining_museum:147", "scripts_mining_museum:151", "scripts_mining_museum:155", "scripts_mining_museum:159", "scripts_mining_museum:163", "scripts_mining_museum:167", "scripts_mining_museum:244"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_mining_museum:171"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
-     {"at": ["scripts_mining_museum:175"], "name": "VAR_MAP_LOCAL_0x02", "op": "check", "origin": "vanilla", "reached": true, "var": 16386},
-     {"at": ["scripts_mining_museum:179"], "name": "VAR_MAP_LOCAL_0x03", "op": "check", "origin": "vanilla", "reached": true, "var": 16387},
-     {"at": ["scripts_mining_museum:183"], "name": "VAR_MAP_LOCAL_0x04", "op": "check", "origin": "vanilla", "reached": true, "var": 16388},
-     {"at": ["scripts_mining_museum:187"], "name": "VAR_MAP_LOCAL_0x05", "op": "check", "origin": "vanilla", "reached": true, "var": 16389},
-     {"at": ["scripts_mining_museum:191"], "name": "VAR_MAP_LOCAL_0x06", "op": "check", "origin": "vanilla", "reached": true, "var": 16390},
-     {"at": ["scripts_mining_museum:195"], "name": "VAR_MAP_LOCAL_0x07", "op": "check", "origin": "vanilla", "reached": true, "var": 16391},
-     {"at": ["scripts_mining_museum:36", "scripts_mining_museum:103", "scripts_mining_museum:220", "scripts_mining_museum:224", "scripts_mining_museum:229"], "name": "VAR_REVIVED_POKEMON_SPECIES", "op": "check", "origin": "vanilla", "reached": true, "var": 16564},
-     {"at": ["scripts_mining_museum:108", "scripts_mining_museum:113", "scripts_mining_museum:118", "scripts_mining_museum:123", "scripts_mining_museum:128", "scripts_mining_museum:133", "scripts_mining_museum:138", "scripts_mining_museum:240", "scripts_mining_museum:241"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_mining_museum:143"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385},
-     {"at": ["scripts_mining_museum:147"], "name": "VAR_MAP_LOCAL_0x02", "op": "set", "origin": "vanilla", "reached": true, "var": 16386},
-     {"at": ["scripts_mining_museum:151"], "name": "VAR_MAP_LOCAL_0x03", "op": "set", "origin": "vanilla", "reached": true, "var": 16387},
-     {"at": ["scripts_mining_museum:155"], "name": "VAR_MAP_LOCAL_0x04", "op": "set", "origin": "vanilla", "reached": true, "var": 16388},
-     {"at": ["scripts_mining_museum:159"], "name": "VAR_MAP_LOCAL_0x05", "op": "set", "origin": "vanilla", "reached": true, "var": 16389},
-     {"at": ["scripts_mining_museum:163"], "name": "VAR_MAP_LOCAL_0x06", "op": "set", "origin": "vanilla", "reached": true, "var": 16390},
-     {"at": ["scripts_mining_museum:167"], "name": "VAR_MAP_LOCAL_0x07", "op": "set", "origin": "vanilla", "reached": true, "var": 16391},
-     {"at": ["scripts_mining_museum:102", "scripts_mining_museum:200", "scripts_mining_museum:231"], "name": "VAR_REVIVED_POKEMON_SPECIES", "op": "set", "origin": "vanilla", "reached": true, "var": 16564}
+     {"at": ["scripts_mining_museum:97", "scripts_mining_museum:112", "scripts_mining_museum:117", "scripts_mining_museum:122", "scripts_mining_museum:127", "scripts_mining_museum:132", "scripts_mining_museum:137", "scripts_mining_museum:142", "scripts_mining_museum:146", "scripts_mining_museum:150", "scripts_mining_museum:154", "scripts_mining_museum:158", "scripts_mining_museum:162", "scripts_mining_museum:166", "scripts_mining_museum:170", "scripts_mining_museum:247"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_mining_museum:174"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_mining_museum:178"], "name": "VAR_MAP_LOCAL_0x02", "op": "check", "origin": "vanilla", "reached": true, "var": 16386},
+     {"at": ["scripts_mining_museum:182"], "name": "VAR_MAP_LOCAL_0x03", "op": "check", "origin": "vanilla", "reached": true, "var": 16387},
+     {"at": ["scripts_mining_museum:186"], "name": "VAR_MAP_LOCAL_0x04", "op": "check", "origin": "vanilla", "reached": true, "var": 16388},
+     {"at": ["scripts_mining_museum:190"], "name": "VAR_MAP_LOCAL_0x05", "op": "check", "origin": "vanilla", "reached": true, "var": 16389},
+     {"at": ["scripts_mining_museum:194"], "name": "VAR_MAP_LOCAL_0x06", "op": "check", "origin": "vanilla", "reached": true, "var": 16390},
+     {"at": ["scripts_mining_museum:198"], "name": "VAR_MAP_LOCAL_0x07", "op": "check", "origin": "vanilla", "reached": true, "var": 16391},
+     {"at": ["scripts_mining_museum:36", "scripts_mining_museum:106", "scripts_mining_museum:223", "scripts_mining_museum:227", "scripts_mining_museum:232"], "name": "VAR_REVIVED_POKEMON_SPECIES", "op": "check", "origin": "vanilla", "reached": true, "var": 16564},
+     {"at": ["scripts_mining_museum:111", "scripts_mining_museum:116", "scripts_mining_museum:121", "scripts_mining_museum:126", "scripts_mining_museum:131", "scripts_mining_museum:136", "scripts_mining_museum:141", "scripts_mining_museum:243", "scripts_mining_museum:244"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_mining_museum:146"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_mining_museum:150"], "name": "VAR_MAP_LOCAL_0x02", "op": "set", "origin": "vanilla", "reached": true, "var": 16386},
+     {"at": ["scripts_mining_museum:154"], "name": "VAR_MAP_LOCAL_0x03", "op": "set", "origin": "vanilla", "reached": true, "var": 16387},
+     {"at": ["scripts_mining_museum:158"], "name": "VAR_MAP_LOCAL_0x04", "op": "set", "origin": "vanilla", "reached": true, "var": 16388},
+     {"at": ["scripts_mining_museum:162"], "name": "VAR_MAP_LOCAL_0x05", "op": "set", "origin": "vanilla", "reached": true, "var": 16389},
+     {"at": ["scripts_mining_museum:166"], "name": "VAR_MAP_LOCAL_0x06", "op": "set", "origin": "vanilla", "reached": true, "var": 16390},
+     {"at": ["scripts_mining_museum:170"], "name": "VAR_MAP_LOCAL_0x07", "op": "set", "origin": "vanilla", "reached": true, "var": 16391},
+     {"at": ["scripts_mining_museum:105", "scripts_mining_museum:203", "scripts_mining_museum:234"], "name": "VAR_REVIVED_POKEMON_SPECIES", "op": "set", "origin": "vanilla", "reached": true, "var": 16564}
     ]
    },
    "events": "events_mining_museum",
@@ -3516,13 +3517,7 @@
    "undecoded": {
     "variables set elsewhere": 1
    },
-   "unreached": [
-    {
-     "label": "MiningMuseum_NotYetReady",
-     "line": 274,
-     "number": null
-    }
-   ]
+   "unreached": []
   },
   {
    "entries": {
@@ -11616,19 +11611,20 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_route_206_cycling_road_south_gate:71"], "daily": false, "flag": 299, "name": "FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_206_cycling_road_south_gate:62"], "daily": false, "flag": 2454, "name": "FLAG_FORCE_BIKING_IN_GATE", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_206_cycling_road_south_gate:77"], "daily": false, "flag": 299, "name": "FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_206_cycling_road_south_gate:24", "scripts_route_206_cycling_road_south_gate:45"], "daily": false, "flag": 2454, "name": "FLAG_FORCE_BIKING_IN_GATE", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_route_206_cycling_road_south_gate:75"], "daily": false, "flag": 299, "name": "FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_206_cycling_road_south_gate:66"], "daily": false, "flag": 2454, "name": "FLAG_FORCE_BIKING_IN_GATE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_206_cycling_road_south_gate:81"], "daily": false, "flag": 299, "name": "FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_206_cycling_road_south_gate:18"], "commit": "a8f815af4", "daily": false, "flag": 2449, "name": "FLAG_PASSED_CYCLING_ROAD", "op": "set", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_route_206_cycling_road_south_gate:28", "scripts_route_206_cycling_road_south_gate:49"], "daily": false, "flag": 2454, "name": "FLAG_FORCE_BIKING_IN_GATE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
      {"at": ["events_route_206_cycling_road_south_gate:96", "events_route_206_cycling_road_south_gate:106"], "name": "VAR_MAP_LOCAL_0x02", "op": "check", "origin": "vanilla", "reached": true, "var": 16386},
      {"at": ["scripts_init_route_206_cycling_road_south_gate:9"], "name": "VAR_MAP_LOCAL_0x03", "op": "check", "origin": "vanilla", "reached": true, "var": 16387},
-     {"at": ["scripts_route_206_cycling_road_south_gate:19"], "name": "VAR_MAP_LOCAL_0x05", "op": "check", "origin": "vanilla", "reached": true, "var": 16389},
-     {"at": ["scripts_route_206_cycling_road_south_gate:46", "scripts_route_206_cycling_road_south_gate:63"], "name": "VAR_MAP_LOCAL_0x02", "op": "set", "origin": "vanilla", "reached": true, "var": 16386},
-     {"at": ["scripts_route_206_cycling_road_south_gate:20"], "name": "VAR_MAP_LOCAL_0x03", "op": "set", "origin": "vanilla", "reached": true, "var": 16387},
-     {"at": ["scripts_route_206_cycling_road_south_gate:18"], "name": "VAR_MAP_LOCAL_0x04", "op": "set", "origin": "vanilla", "reached": true, "var": 16388},
-     {"at": ["scripts_route_206_cycling_road_south_gate:18"], "name": "VAR_MAP_LOCAL_0x05", "op": "set", "origin": "vanilla", "reached": true, "var": 16389}
+     {"at": ["scripts_route_206_cycling_road_south_gate:23"], "name": "VAR_MAP_LOCAL_0x05", "op": "check", "origin": "vanilla", "reached": true, "var": 16389},
+     {"at": ["scripts_route_206_cycling_road_south_gate:50", "scripts_route_206_cycling_road_south_gate:67"], "name": "VAR_MAP_LOCAL_0x02", "op": "set", "origin": "vanilla", "reached": true, "var": 16386},
+     {"at": ["scripts_route_206_cycling_road_south_gate:24"], "name": "VAR_MAP_LOCAL_0x03", "op": "set", "origin": "vanilla", "reached": true, "var": 16387},
+     {"at": ["scripts_route_206_cycling_road_south_gate:22"], "name": "VAR_MAP_LOCAL_0x04", "op": "set", "origin": "vanilla", "reached": true, "var": 16388},
+     {"at": ["scripts_route_206_cycling_road_south_gate:22"], "name": "VAR_MAP_LOCAL_0x05", "op": "set", "origin": "vanilla", "reached": true, "var": 16389}
     ]
    },
    "events": "events_route_206_cycling_road_south_gate",
@@ -18811,10 +18807,10 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 43,
+   "Oxide": 45,
    "base ROM": 215,
    "gone": 93,
-   "total": 3234,
+   "total": 3236,
    "vanilla": 2976
   },
   "hidden_items": {

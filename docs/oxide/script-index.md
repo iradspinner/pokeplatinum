@@ -18,7 +18,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Items given | 167 | 131 | 35 | 1 | 0 | 5 |
 | Item balls | 332 | 327 | 0 | 5 | 0 | 2 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3234 | 2976 | 215 | 43 | 0 | 93 |
+| Flags | 3236 | 2976 | 215 | 45 | 0 | 93 |
 | Variables | 1124 | 1082 | 31 | 11 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -35,7 +35,7 @@ What the tool could not read, counted rather than guessed:
 | numbers no table holds | 0 | 0 |
 | variables set elsewhere | 36 | 11 |
 
-Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 67 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
+Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
 ### Maps by split
 
@@ -1616,12 +1616,12 @@ Flags:
 
 Pokemon given:
 
-- GivePokemon: set elsewhere (this map's script stores SPECIES_NONE) at level 20. Vanilla. `scripts_mining_museum.s:229`
+- GivePokemon: set elsewhere (this map's script stores SPECIES_NONE) at level 20. Vanilla. `scripts_mining_museum.s:232`
 
 Flags:
 
 - Set: FLAG_MAP_LOCAL_0x01.
-- Checked: FLAG_MAP_LOCAL_0x01.
+- Checked: FLAG_MAP_LOCAL_0x01, FLAG_PASSED_CYCLING_ROAD (added, Oxide).
 
 Variables:
 
@@ -1629,8 +1629,6 @@ Variables:
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06, VAR_MAP_LOCAL_0x07, VAR_REVIVED_POKEMON_SPECIES.
 
 Gone from vanilla: flag FLAG_RECEIVED_EXPLORER_KIT (check).
-
-Scripts nothing reaches: code at `MiningMuseum_NotYetReady` (line 274).
 
 Could not read: 1 variables set elsewhere.
 
@@ -1699,7 +1697,7 @@ Variables:
 
 Flags:
 
-- Set: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, FLAG_FORCE_BIKING_IN_GATE.
+- Set: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, FLAG_PASSED_CYCLING_ROAD (added, Oxide), FLAG_FORCE_BIKING_IN_GATE.
 - Cleared: FLAG_FORCE_BIKING_IN_GATE.
 - Checked: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG.
 
