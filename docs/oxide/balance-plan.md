@@ -20,8 +20,18 @@ Ian's 17 retypes and three stat slips, field moves on their badge alone,
 and the last weather abilities moved to the hidden slot, all rescored and
 verified: Volkner's fight reads harder with the Electric/Fighting
 Electivire and Electric/Dark Luxray, and the rank correlation with Ian's
-ratings is -0.57. Next: the buff review's decisions, then learnset v3 and
-the TM pass.
+ratings is -0.57. Then (`balance-buffs`) the buff review's decisions:
+the sheet's slips, section A's junk-ability fixes, section B, and Ian's
+second answers (Wormadam's Overcoat, Armaldo's abilities, Donphan,
+Tangela, Politoed and Rotom's stats, and Kaizo's numbers for the species
+the player cannot catch), all rescored and verified. The variants Ian
+decides from are scored in
+[the review's scores](reviews/buff-review/scores.md): no single change
+moves a story fight by more than 0.1, and none brings a species near the
+carries-the-game line. Waiting on Ian: those variants, one fix each for
+the lines whose hidden ability repeats a regular one, four Kaizo ability
+disagreements, and the obtainable legendaries Kaizo buffs. Next: learnset
+v3 on these stats, then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.

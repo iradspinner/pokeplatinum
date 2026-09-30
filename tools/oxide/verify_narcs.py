@@ -501,6 +501,13 @@ PICK_LIST_RETYPES = {
 # Mawile, Quagsire).
 BUFF_REVIEW_STATS = {22, 64, 73, 75, 110, 164, 195, 225, 227, 268, 303, 354, 402}
 
+# The review's second answers (Ian, 2026-09-29): Tangela, Politoed, Donphan and
+# Rotom (Kaizo's appliance numbers, since its forms come after Fantina's split),
+# and Kaizo's numbers for the species the player cannot catch, so trainer teams
+# carried over from Kaizo fight as they did there.
+BUFF_REVIEW_SECOND_STATS = {114, 186, 232, 479}
+KAIZO_TRAINER_STATS = {39, 51, 83, 88, 165, 167, 174, 243, 244}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -523,6 +530,12 @@ DIVERGED = {
             "members": BUFF_REVIEW_STATS,
             "why": "the blind buff review (Ian, 2026-09-29): the sheet's slips, and the "
                    "high-confidence stat changes (import_base_rom.py's BASE_STATS_DIVERGED)",
+        },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),
+            "members": BUFF_REVIEW_SECOND_STATS | KAIZO_TRAINER_STATS,
+            "why": "the buff review's second answers, and Kaizo's numbers for the species "
+                   "the player cannot catch (Ian, 2026-09-29)",
         },
         {
             "offsets": (6, 7),  # type1, type2
@@ -728,8 +741,10 @@ PERSONAL_BASE_EXP_AT = 0x09
 # Species records whose two regular abilities differ from the reference on
 # purpose, by reference member, with the ability ids they must now hold.
 PERSONAL_ABILITIES_DIVERGED = {
-    499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
-    500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    499: ((107, 142), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, "
+                      "2026-09-27), and Overcoat (2026-09-29)"),
+    500: ((107, 142), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, "
+                      "2026-09-27), and Overcoat (2026-09-29)"),
     # The player never sets or ends weather (Ian, 2026-09-29): each weather
     # ability moves to the hidden slot, for trainers, and the regular slots
     # keep the line's others.
@@ -758,6 +773,9 @@ PERSONAL_ABILITIES_DIVERGED = {
     300: ((56, 0), "Skitty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
     301: ((56, 0), "Delcatty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
     402: ((52, 101), "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)"),
+    413: ((107, 142), "Wormadam: Anticipation and Overcoat, moved up from hidden (Ian, 2026-09-29)"),
+    348: ((33, 4), "Armaldo: Swift Swim and Battle Armor, the sheet's (Ian, 2026-09-29)"),
+    250: ((98, 0), "Ho-Oh: Magic Guard, Kaizo's, for the trainer that has it (Ian, 2026-09-29)"),
 }
 
 

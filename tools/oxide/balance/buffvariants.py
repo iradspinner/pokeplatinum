@@ -5,6 +5,7 @@ own level and after Maylene's split, and Houndoom's sheet line with
 Houndour's evolution after Gardenia's split).
 
     PYTHONPATH=. python3 -m tools.oxide.balance.buffvariants run NAME OUT.json   # one variant
+    PYTHONPATH=. python3 -m tools.oxide.balance.buffvariants report DIR docs/oxide/reviews/buff-review/scores.md
 
 `run` changes the named species' records in the working tree, scores the 33
 story fights and Hesperid's two as B6's levers do (every matchup, the

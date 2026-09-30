@@ -1614,7 +1614,14 @@ def main():
         300: "Skitty: Cute Charm (Ian, 2026-09-29)",
         301: "Delcatty: Cute Charm (Ian, 2026-09-29)",
         402: "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)",
+        # The review's second answers (Ian, 2026-09-29).
+        413: "Wormadam: Anticipation and Overcoat, moved up from hidden (Ian, 2026-09-29)",
+        348: "Armaldo: Swift Swim and Battle Armor, the sheet's (Ian, 2026-09-29)",
+        250: "Ho-Oh: Magic Guard, Kaizo's, for the trainer that has it (Ian, 2026-09-29)",
     }
+    # The two forms also take Overcoat beside Anticipation (Ian, 2026-09-29).
+    ABILITIES_DIVERGED[499] += "; Overcoat too (Ian, 2026-09-29)"
+    ABILITIES_DIVERGED[500] += "; Overcoat too (Ian, 2026-09-29)"
 
     # Base stats the base ROM set by a slip, which Oxide has corrected to Ian's
     # change sheet ("My Version RomHack Docs", Pokemon Changes; Kaizo agrees for
@@ -1638,6 +1645,23 @@ def main():
         303: "Mawile's HP 70 and Sp. Def 75 (Ian, 2026-09-29)",
         354: "Banette's Speed is 85, the sheet's (Ian, 2026-09-29)",
         402: "Kricketune to 87/105/61/55/61/75 (Ian, 2026-09-29)",
+        # The review's second answers (Ian, 2026-09-29).
+        114: "Tangela's Sp. Def is 50, Kaizo's (Ian, 2026-09-29)",
+        186: "Politoed's Atk is 85, Kaizo's (Ian, 2026-09-29)",
+        232: "Donphan's Sp. Atk is 55, the sheet's (Ian, 2026-09-29)",
+        479: "Rotom takes Kaizo's 50/65/107/105/107/91, its forms coming after Fantina's split "
+             "(Ian, 2026-09-29)",
+        # Kaizo's numbers for the species the player cannot catch, so trainer
+        # teams carried over from Kaizo fight as they did there (Ian, 2026-09-29).
+        39: "Jigglypuff to Kaizo's 115/45/38/60/55/20 (Ian, 2026-09-29)",
+        51: "Dugtrio's Atk is 100, Kaizo's (Ian, 2026-09-29)",
+        83: "Farfetch'd to Kaizo's 52/95/85/58/82/65 (Ian, 2026-09-29)",
+        88: "Grimer's Sp. Def is 75, Kaizo's (Ian, 2026-09-29)",
+        165: "Ledyba's Atk is 50, Kaizo's (Ian, 2026-09-29)",
+        167: "Spinarak's Speed is 50, Kaizo's (Ian, 2026-09-29)",
+        174: "Igglybuff to Kaizo's 90/45/20/45/25/20 (Ian, 2026-09-29)",
+        243: "Raikou's Sp. Atk is 135, Kaizo's (Ian, 2026-09-29)",
+        244: "Entei's Atk is 135, Kaizo's (Ian, 2026-09-29)",
     }
 
     # species: personal + learnset + evolutions live in one data.json

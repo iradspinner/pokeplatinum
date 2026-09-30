@@ -357,9 +357,9 @@
    "left_out": {},
    "calcs": 13509,
    "errors": [],
-   "node_seconds": 3.18,
-   "wall_seconds": 3.42,
-   "fingerprint": "8d8069053145d917c146",
+   "node_seconds": 2.22,
+   "wall_seconds": 2.35,
+   "fingerprint": "629efca94c142bcdc528",
    "verified": true
   },
   "fantina": {
@@ -450,10 +450,10 @@
      "weather": null,
      "choice": false,
      "locked_move": null,
-     "threat": 0.974,
+     "threat": 0.971,
      "answers": 0.0,
      "answers_lock": 0.0,
-     "threat_chance": 0.974,
+     "threat_chance": 0.971,
      "answers_duel": 0.007,
      "answers_sure": 0.007,
      "answers_bait": 0.007,
@@ -525,9 +525,9 @@
    "left_out": {},
    "calcs": 16960,
    "errors": [],
-   "node_seconds": 3.81,
-   "wall_seconds": 3.99,
-   "fingerprint": "5e0b3c346f9b94f69aa3",
+   "node_seconds": 2.81,
+   "wall_seconds": 2.96,
+   "fingerprint": "e8092dbe14e0ca539ad2",
    "verified": true
   },
   "maylene": {
@@ -707,9 +707,9 @@
    "errors": [
     "b0.4 Pain Split: damage is not a number"
    ],
-   "node_seconds": 7.78,
-   "wall_seconds": 7.99,
-   "fingerprint": "5832c8de96ea6b4ea3e2",
+   "node_seconds": 6.91,
+   "wall_seconds": 7.09,
+   "fingerprint": "fcc8aa86ce72766c3c13",
    "verified": true
   },
   "wake": {
@@ -899,9 +899,9 @@
    "left_out": {},
    "calcs": 50997,
    "errors": [],
-   "node_seconds": 9.13,
-   "wall_seconds": 9.33,
-   "fingerprint": "a8dea6be00d8f97de077",
+   "node_seconds": 8.36,
+   "wall_seconds": 8.56,
+   "fingerprint": "540be5f6b90dd82a9da2",
    "verified": true
   },
   "byron": {
@@ -1010,7 +1010,7 @@
      "threat": 0.892,
      "answers": 0.011,
      "answers_lock": 0.011,
-     "threat_chance": 0.86,
+     "threat_chance": 0.859,
      "answers_duel": 0.001,
      "answers_sure": 0.0,
      "answers_bait": 0.001,
@@ -1082,9 +1082,9 @@
    "left_out": {},
    "calcs": 52430,
    "errors": [],
-   "node_seconds": 9.76,
-   "wall_seconds": 9.99,
-   "fingerprint": "4227949685235916de19",
+   "node_seconds": 8.97,
+   "wall_seconds": 9.15,
+   "fingerprint": "65b92c15b2c0df677515",
    "verified": true
   },
   "candice": {
@@ -1297,9 +1297,9 @@
    "left_out": {},
    "calcs": 69486,
    "errors": [],
-   "node_seconds": 12.68,
-   "wall_seconds": 13.01,
-   "fingerprint": "cb714134b96d1f64e648",
+   "node_seconds": 11.43,
+   "wall_seconds": 11.66,
+   "fingerprint": "34bee70d2ac7c8634304",
    "verified": true
   },
   "volkner": {
@@ -1486,9 +1486,9 @@
    "left_out": {},
    "calcs": 70000,
    "errors": [],
-   "node_seconds": 12.35,
-   "wall_seconds": 12.98,
-   "fingerprint": "cd7a0aa813eb8fcbf797",
+   "node_seconds": 11.59,
+   "wall_seconds": 11.99,
+   "fingerprint": "c8245c2dc5955ee66dfc",
    "verified": true
   },
   "aaron": {
@@ -1669,9 +1669,9 @@
    "left_out": {},
    "calcs": 70504,
    "errors": [],
-   "node_seconds": 12.42,
-   "wall_seconds": 12.77,
-   "fingerprint": "9433ff721883bac2db92",
+   "node_seconds": 11.36,
+   "wall_seconds": 11.74,
+   "fingerprint": "854a69fb8e037bd03cc4",
    "verified": true
   },
   "bertha": {
@@ -1850,9 +1850,9 @@
    "left_out": {},
    "calcs": 89698,
    "errors": [],
-   "node_seconds": 15.09,
-   "wall_seconds": 15.38,
-   "fingerprint": "6246f9b89f3e1007a7c8",
+   "node_seconds": 13.81,
+   "wall_seconds": 14.14,
+   "fingerprint": "a14ca7c1eac2be5f658d",
    "verified": true
   },
   "flint": {
@@ -2020,9 +2020,9 @@
    "left_out": {},
    "calcs": 72744,
    "errors": [],
-   "node_seconds": 12.6,
-   "wall_seconds": 12.85,
-   "fingerprint": "016cbb78c425ff3c72b8",
+   "node_seconds": 11.93,
+   "wall_seconds": 12.4,
+   "fingerprint": "001bb2ec2c6c171a5e0d",
    "verified": true
   },
   "lucian": {
@@ -2200,9 +2200,9 @@
    "left_out": {},
    "calcs": 71848,
    "errors": [],
-   "node_seconds": 12.57,
-   "wall_seconds": 12.83,
-   "fingerprint": "2e466803a2f71597ba35",
+   "node_seconds": 11.67,
+   "wall_seconds": 12.08,
+   "fingerprint": "c87e7025f54275d5bc97",
    "verified": true
   },
   "cynthia": {
@@ -2375,9 +2375,9 @@
    "left_out": {},
    "calcs": 64267,
    "errors": [],
-   "node_seconds": 11.63,
-   "wall_seconds": 11.94,
-   "fingerprint": "601dfb25bfc7bffbdc7b",
+   "node_seconds": 10.76,
+   "wall_seconds": 11.09,
+   "fingerprint": "7379372b1ef1e377cf04",
    "verified": true
   }
  }
