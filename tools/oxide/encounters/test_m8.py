@@ -571,9 +571,10 @@ def check_calculator(results):
                                                "sa": 85, "sd": 85, "sp": 102}
                     and poks["Clefairy"]["types"] == ["Fairy"]
                     and poks["Ninetales-Alola"]["types"] == ["Ice", "Fairy"]
-                    # the two regular slots; Gible has a hidden one too since element 8
-                    and poks["Gible"]["abilities"].get("0") == "Sand Veil"
-                    and poks["Gible"]["abilities"].get("1") == "Rough Skin",
+                    # Gible's one regular ability and its hidden one: Rough Skin,
+                    # with Sand Veil hidden since the buff review (Ian, 2026-09-29)
+                    and poks["Gible"]["abilities"].get("0") == "Rough Skin"
+                    and poks["Gible"]["abilities"].get("H") == "Sand Veil",
                     f"{len(poks)} species"))
     moves = blob["moves"]
     results.append(("moves carry Oxide's type, category and power, and a coded "
