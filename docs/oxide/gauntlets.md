@@ -38,8 +38,8 @@ While a section is open:
   onto the warp's tile the player is walked back off it;
 - the Pocket PC and the Escape Rope refuse, with their own message in the bag;
 - Dig, Fly and Teleport refuse, with their own message in the party menu. Fly
-  and Teleport are added to Ian's list because two of Mt. Coronet's maps
-  inside a section are outdoors, where both work.
+  and Teleport were added because two of Mt. Coronet's maps inside a section
+  are outdoors, where both work, and Ian kept them (2026-09-29).
 
 Galactic HQ 3F's way back is refused only while the player holds the Galactic
 Key. Its way on is a locked door, and a player who skipped the key on B2F
@@ -90,15 +90,17 @@ five things.
 | Galactic HQ 1F | The route passes only the grunt. Fredrick stands in a pocket reached only by coming down from 2F. | Fredrick stays in section 4's list, so that section closes only when the player moves on to 2F. |
 | Galactic HQ 2F | The route passes only one grunt. Darrius and the other two stand on 2F's east side, reached from 3F through the hall. | They stay in section 5's list; section 6's lock holds on that detour, so a player there cannot heal. |
 | Mt. Coronet | Two climbs meet on the north ledge: the tunnel from Route 211, and the southern route through 3F and 4F. Somnu on 5F comes after both. | Only the southern route opens section 8; a player who takes the tunnel meets Somnu outside any section. |
-| Victory Road | 1F alone runs from the entrance to the exit. 2F is a Strength-puzzle loop off 1F's near half; B1F's main part is a dead end off the same stretch; Ondrej stands in a separate B1F pocket off the far half. | Blocking a way back on 2F or B1F could shut a player in, so they are detours inside the 1F sections' locks, not sections of their own, and their eight trainers are optional. The four Victory Road sections become two. |
+| Victory Road | 1F alone runs from the entrance to the exit. 2F is a Strength-puzzle loop off 1F's near half; B1F's main part is a dead end off the same stretch; Ondrej stands in a separate B1F pocket off the far half. | Blocking a way back on 2F or B1F could shut a player in, so they are detours inside the 1F sections' locks, not sections of their own, and their eight trainers are optional. The four Victory Road sections become two (Ian, 2026-09-29). |
 
 On Victory Road 1F the walk passes Bryce and Hana, then Mariah and Miles, then
 Edgar, then Clinton, so no line puts Miles with Clinton and Edgar. The line
 sits after Miles. The far half's list keeps today's three, so unless Miles was
-beaten before the line, the far half closes only at the exit. Moving him to the
-near half's list is one line in `src/gauntlet.c`.
+beaten before the line, the far half closes only at the exit. Ian kept him in
+the far half (2026-09-29).
 
-## Wording, drafts for Ian
+## Wording
+
+Ian approved both messages as drafted (2026-09-29).
 
 | Where | Text |
 |---|---|
