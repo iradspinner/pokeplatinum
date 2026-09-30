@@ -126,12 +126,21 @@ is listed for Ian.
   replacement is a perfect-line measure: how easily a line is found that wins
   with no deaths within his luck budget (every secondary status chance
   against the player happens, one crit may, never two in a row; the trainer
-  uses Oxide's AI, taking the worst pick where it could choose). A blind
-  session designs and prototypes it in `~/oxide-trials/scoring-review/`;
-  until it reports, the scale is not refitted. Ian's own list of the hardest
-  fights is the check any new scoring must keep. The simulator's critical
-  hits are Platinum's (1/16, doubled), not Oxide's (1/24, 1.5x); fix that
-  when the scorer is rebuilt.
+  uses Oxide's AI, taking the worst pick where it could choose). Ian's step
+  2 (2026-09-30): search candidate lines (policies with responses), take the
+  best, and read its clean-win rate over fresh runs, with its mean deaths
+  and wipe chance beside it so the hardest fights, where no line wins
+  cleanly, still separate (Wake, Barry 6). The blind prototype
+  (`~/oxide-trials/scoring-review/out/`) is adopted as the direction and
+  moves into this track's tools; Ian approved its six assumptions (the
+  player's own luck, sleep and confusion lengths, flinches and stat drops at
+  their chance, Oxide's Generation 7 crits, trainer item procs at their
+  odds, freeze thawing 1 in 5 on both sides). Ian's sixteen ratings were
+  made with a planned team but on an older dex and older movesets (Roark
+  was always answered with Geodude), so they give direction only; his 40
+  pairs are the better check, and the bar of 13 of 14 held out is too
+  high (Ian, 2026-09-30). The scale stays unfitted until the new scorer
+  reads his pairs better than the old one did.
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.
