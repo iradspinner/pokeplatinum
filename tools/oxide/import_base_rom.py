@@ -1254,6 +1254,7 @@ TEXT_BANK_ITEM_NAMES = 392
 TEXT_BANK_ITEM_NAMES_WITH_ARTICLES = 393
 TEXT_BANK_ITEM_NAMES_PLURAL = 394
 TEXT_BANK_MOVE_DESCRIPTIONS = 646
+TEXT_BANK_ABILITY_DESCRIPTIONS = 612
 
 # Single entries that deliberately differ from the base ROM inside a bank that
 # is otherwise checked against it, keyed by bank and then by entry. A bank that
@@ -1282,6 +1283,10 @@ TEXT_ENTRIES_DIVERGED.update({
 # which put its shared entries under comparison.
 TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_NAMES_WITH_ARTICLES][443] = (
     "the Pocket PC, which the base ROM named in the item names only")
+# Sturdy leaves its holder at 1 HP from a hit taken at full HP, as in the
+# later games, so its description says so (Ian, 2026-09-29).
+TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
+    "Sturdy's description gives its later-games rule, which Oxide has")
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
