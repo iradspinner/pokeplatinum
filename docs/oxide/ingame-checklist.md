@@ -177,6 +177,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   in on the first turn. From then the wild Shuckle's Fake Out ("But it
   failed!") comes before Mew's Extreme Speed every turn, though Mew is far
   faster. Minimize says "sharply rose!". Mew's summary shows Minimize at 3 PP.
+- [ ] **Infiltrator** (Modern rules, "Infiltrator, Substitute" and
+  "Infiltrator, Safeguard"; `main-element5-gaps`). Against the Snorlax, once
+  its Substitute is up, Crobat's Cross Poison takes Snorlax's own HP and can
+  poison it, Screech lowers its Defense, and Confuse Ray confuses it, with the
+  doll still standing. Against the Chansey, with Safeguard up, Toxic badly
+  poisons it and Confuse Ray confuses it. And the Geodude of Modern rules'
+  "Sturdy" entry shows the new description in its summary: "It survives any
+  hit at full HP and 1-hit KO attacks."
 
 - [ ] **The new species on the field** (the "Sprite heights" entry, with
   `main-sprite-heights` merged). Four wild Pokemon come in turn: Wooloo,
@@ -346,6 +354,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 4. The ordinary ROM, mid-game
 
+- [ ] **Pastel Veil and Unnerve** (`main-element5-gaps`), whenever they come
+  up, since the kit cannot run a double battle or give a foe an item. A
+  Galarian Rapidash (Pastel Veil) sent in during a double battle beside a
+  poisoned partner cures it: "{partner} was cured of its poisoning!", and the
+  poison icon goes. A Pokemon of yours holding a type-resist Berry (an Occa
+  and the like) takes a super-effective hit in full, the Berry unused, while a
+  foe with Unnerve (Rookidee's and Joltik's lines have it) is out.
 - [ ] **Field moves by badge** (`main-field-moves`), with no HM in the bag and
   no Pokemon that knows the move, as each badge comes. After Roark, a
   breakable rock offers Rock Smash; after Gardenia, a small tree offers Cut;
