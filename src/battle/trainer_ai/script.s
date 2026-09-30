@@ -393,6 +393,7 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, Basic_CheckMagnetRise
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, Basic_CheckDefog
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, Basic_CheckTrickRoom
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WONDER_ROOM, Basic_CheckWonderRoom // Oxide
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
@@ -1869,6 +1870,12 @@ Basic_CheckTrickRoom:
     // Treat speed ties as being faster than the target.
     IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, ScoreMinus10
     IfSpeedCompareEqualTo COMPARE_SPEED_TIE, ScoreMinus10
+    PopOrEnd 
+
+Basic_CheckWonderRoom:
+    // Oxide: under a boss fight's permanent Wonder Room the move fails, so score -10, as
+    // Trick Room does under its permanent room. The AI knows nothing else of Wonder Room.
+    IfFieldConditionsMask FIELD_CONDITION_WONDER_ROOM_PERM, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckCaptivate:
