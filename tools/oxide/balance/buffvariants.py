@@ -173,10 +173,91 @@ def run(name, out):
         json.dump({"variant": name, "fights": res}, f, indent=1, sort_keys=True)
 
 
+def _load(folder, name):
+    path = os.path.join(folder, f"{name}.json")
+    if not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)["fights"]
+
+
+def _share(fights, constant):
+    """(boss Pokemon faced, surely answered, alone answered, fights met) for
+    one species over the story fights."""
+    faced = answered = alone = met = 0
+    for r in fights.values():
+        row = r["species"].get(constant)
+        if row and row["faced"]:
+            faced += row["faced"]
+            answered += row["answered"]
+            alone += row["alone"]
+            met += 1
+    return faced, answered, alone, met
+
+
+def report(folder, out=sys.stdout):
+    """The doc: for each variant, the story fights it moves on Ian's scale
+    and each changed species' own share of the boss Pokemon it surely
+    answers, against B6's line for a species that carries the game."""
+    say = lambda *a: print(*a, file=out)
+    base = _load(folder, "base")
+    line = b6.scale_line()
+    scale = lambda safe: b6.on_scale(safe, line)
+    say("# Buff review: the changes Ian decides from the scores\n")
+    say("Written by `tools/oxide/balance/buffvariants.py` for the buff review's sections C and D "
+        "and the variants Ian asked for (2026-09-29). Each variant is scored on the 33 story fights "
+        "and Hesperid's two, as B6's levers score them, against the tree with his approved changes "
+        "(the sheet's slips, section A's five lines and section B). A negative change on his scale "
+        "is an easier fight. A species' share is the boss Pokemon it surely answers out of those it "
+        f"faces, over the story fights it is on the player's side for; B6 flags a species that "
+        f"carries the game at {b6.CARRIES} or more over {b6.MIN_FIGHTS} or more fights.\n")
+    say("Gale Wings is read at its best case: the Flying moves of a Gale Wings Pokemon go first in "
+        "every matchup, since the scorer cannot follow its full-HP condition turn by turn. A "
+        "variant that adds an ability puts it in the first slot, which the player's side reads.\n")
+    say("| Variant | Fights moved 0.1 or more on Ian's scale | Mean change | Species' share, now to "
+        "variant (fights) |")
+    say("|---|---|---|---|")
+    for name, (label, changes) in VARIANTS.items():
+        var = _load(folder, name)
+        if var is None:
+            say(f"| {label} | not run | | |")
+            continue
+        moved = []
+        deltas = []
+        for key, r in var.items():
+            d = scale(r["safe"]) - scale(base[key]["safe"])
+            deltas.append(d)
+            if abs(d) >= 0.1:
+                moved.append((d, r["label"]))
+        moved.sort()
+        cells = ", ".join(f"{lab} {d:+.1f}" for d, lab in moved) or "none"
+        shares = []
+        for sp in changes:
+            c = "SPECIES_" + sp.upper()
+            f0, a0, _l0, m0 = _share(base, c)
+            f1, a1, _l1, m1 = _share(var, c)
+            if f0 or f1:
+                flag = " (carries)" if f1 and a1 / f1 >= b6.CARRIES and m1 >= b6.MIN_FIGHTS else ""
+                shares.append(f"{sp.title()} {a0 / f0 if f0 else 0:.2f} to {a1 / f1 if f1 else 0:.2f} "
+                              f"({m1}){flag}")
+        say(f"| {label} | {cells} | {sum(deltas) / len(deltas):+.2f} | "
+            f"{'; '.join(shares) or 'not on the side in a story fight'} |")
+    say("\nNot scored, since the scorer cannot read them:\n")
+    for what, why in UNSCORED.items():
+        say(f"- {what}: {why}.")
+
+
 def main(argv=None):
     argv = sys.argv[1:] if argv is None else argv
     if len(argv) == 3 and argv[0] == "run" and (argv[1] == "base" or argv[1] in VARIANTS):
         run(argv[1], argv[2])
+        return 0
+    if len(argv) >= 2 and argv[0] == "report":
+        if len(argv) == 3:
+            with open(argv[2], "w", encoding="utf-8") as f:
+                report(argv[1], f)
+        else:
+            report(argv[1])
         return 0
     print(__doc__)
     return 2
