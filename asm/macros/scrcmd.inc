@@ -5248,6 +5248,17 @@
     .short \location
     .endm
 
+    /* Platinum Oxide: run by the coord events of a line that splits one map
+       between two gauntlet sections (src/gauntlet.c, sGauntletLines). Stepping
+       onto the far tile facing the way forward opens the section beyond;
+       \destVar is GAUNTLET_LINE_TURN_BACK when the player stepped onto the
+       near tile facing back while that section is open, else
+       GAUNTLET_LINE_NOTHING. */
+    .macro GauntletStepOnLine destVar
+    .short SCRCMD_GAUNTLETSTEPONLINE
+    .short \destVar
+    .endm
+
 #ifdef OXIDE_TESTKIT
     /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
        \partySlot into \form. Rotom takes the game's own form change, which
