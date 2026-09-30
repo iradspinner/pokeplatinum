@@ -490,6 +490,55 @@ def check_dim_theme(results):
                     bool(dim) and not short and 'value === "dim"' in js
                     and 'setAttribute("data-theme", "dim")' in js, "; ".join(short) or
                     f"{len(dim)} tokens"))
+    # The Dark theme too, since the redesign brightened its surfaces (Ian,
+    # 2026-09-29): each light-dark() token's dark value, and the chip's dark
+    # mix from the page's own rule.
+    dark = {k: b for k, _, b in re.findall(
+        r"--([\w-]+):\s*light-dark\((#[0-9A-Fa-f]{6}),\s*(#[0-9A-Fa-f]{6})\)", css)}
+    dmix = re.search(r"\.chip \{[^}]*light-dark\(color-mix\(in srgb, var\(--t\) \d+%, var\(--panel\)\),\s*"
+                     r"color-mix\(in srgb, var\(--t\) (\d+)%", page)
+    dark_mix = int(dmix.group(1)) / 100 if dmix else 0.34
+    dshort = []
+    for surface in ("panel", "ground"):
+        for token, need in (("ink", 4.5), ("dim", 4.5), ("mass", 4.5), ("place-ink", 4.5),
+                            ("act", 4.5), ("warn", 4.5), ("error", 4.5), ("faint", 3.0)):
+            r = ratio(dark[token], dark[surface])
+            if r < need:
+                dshort.append(f"{token} on {surface} {r:.1f}")
+    for name, colour in types.items():
+        r = ratio(dark["ink"], mix(colour, dark["panel"], dark_mix))
+        if r < 4.5:
+            dshort.append(f"ink on {name} {r:.1f}")
+    results.append(("the Dark theme keeps text at WCAG's ratios on its surfaces and chips",
+                    bool(dark) and bool(dmix) and not dshort,
+                    "; ".join(dshort) or f"chips mix {dark_mix:.0%}"))
+
+
+def check_faces_and_switch(results):
+    """The redesign (Ian, 2026-09-29): the three faces ship in ui/fonts with
+    their OFL licences and nothing loads from the network, and the header's
+    theme switch is four buttons, Dark, Dim, Light and Auto, that theme.js
+    wires and marks."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    css = open(os.path.join(ui, "theme.css"), encoding="utf-8").read()
+    page = open(os.path.join(ui, "index.html"), encoding="utf-8").read()
+    js = open(os.path.join(ui, "theme.js"), encoding="utf-8").read()
+    urls = re.findall(r"url\((fonts/[^)]+)\)", css)
+    missing = [u for u in urls if not os.path.exists(os.path.join(ui, u))]
+    families = set(re.findall(r'font-family: "([^"]+)"', css))
+    licences = [f for f in os.listdir(os.path.join(ui, "fonts")) if f.startswith("OFL-")]
+    remote = re.findall(r"(?:href|src)=\"https?://|url\(https?://|@import", css + page)
+    results.append(("the three faces ship in ui/fonts with their licences, and the page "
+                    "loads no font or stylesheet from the network",
+                    families == {"Atkinson Hyperlegible", "JetBrains Mono", "Silkscreen"}
+                    and len(urls) == 7 and not missing and len(licences) == 3 and not remote,
+                    f"{sorted(families)}, missing {missing}, remote {remote[:2]}"))
+    results.append(("the header's theme switch is Dark, Dim, Light and Auto, wired and marked "
+                    "by theme.js",
+                    all(f'data-theme-set="{k}"' in page for k in ("dark", "dim", "light", "auto"))
+                    and "function set(value)" in js and "function mark()" in js
+                    and "[data-theme-set]" in js, ""))
 
 
 def main():
@@ -501,7 +550,8 @@ def main():
         for check in (check_endpoints, check_display_names,
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_rejections,
-                      check_edit_is_local, check_no_colour_literals, check_dim_theme):
+                      check_edit_is_local, check_no_colour_literals, check_dim_theme,
+                      check_faces_and_switch):
             check(results)
     finally:
         httpd.shutdown()

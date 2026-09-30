@@ -16,11 +16,14 @@
 :root {
   color-scheme: light dark;
 
-  /* surfaces and text */
-  --ground: light-dark(#EEF4F3, #0E1819);
-  --panel: light-dark(#FAFCFC, #142122);
-  --sunken: light-dark(#E1EBEA, #1D2E30);
-  --rule: light-dark(#C9D8D6, #2A3E40);
+  /* surfaces and text. The dark surfaces are a step brighter and more teal
+     than they were (Ian, 2026-09-29, the redesign), the sunken wells more
+     teal only, so text in them keeps its contrast; test_m4 measures both
+     dark looks. */
+  --ground: light-dark(#EEF4F3, #0F1C1E);
+  --panel: light-dark(#FAFCFC, #142627);
+  --sunken: light-dark(#E1EBEA, #1B3032);
+  --rule: light-dark(#C9D8D6, #294446);
   --ink: light-dark(#172524, #E3EEED);
   --dim: light-dark(#536667, #93AAA9);
   --faint: light-dark(#7A9191, #5A7272);
@@ -80,13 +83,15 @@
   accent-color: var(--mass);              /* native checkboxes and radios */
   scrollbar-color: var(--faint) var(--panel);
 
-  /* The three faces. The sans and the tabular mono carry everything that is
-     read or compared; the pixel face is for identity only (the title, the view
-     and time-of-day tabs, the uplift headline, the dex number). They live here
+  /* The three faces, the redesign's (Ian, 2026-09-29), shipped in fonts/ so
+     nothing loads from the network. Atkinson Hyperlegible and the tabular
+     JetBrains Mono carry everything that is read or compared; the pixel
+     face, Silkscreen, is for identity only (the title, the view and
+     time-of-day tabs, the uplift headline, the dex number). They live here
      rather than in the page so the damage calculator's skin can share them. */
-  --sans: system-ui, "Segoe UI Variable", "Segoe UI", sans-serif;
-  --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --pixel: "Pixelify Sans", var(--mono);
+  --sans: "Atkinson Hyperlegible", system-ui, "Segoe UI Variable", "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --pixel: "Silkscreen", var(--mono);
 }
 
 /* Dim (Ian, 2026-09-28): the dark theme's scheme on a cyan ground, between
@@ -97,16 +102,17 @@
    every light-dark() token above resolves to its dark value except the ones
    redefined here: the surfaces, the text, and the five meanings, each a
    little lighter than its dark value in the same hue so it keeps 4.5:1 on
-   the cyan. Measured (WCAG), the lowest are error on the panel 5.5, ink on
-   the Ice chip 5.0 (chips mix 25% of their type in Dim, against 34% in
-   Dark; index.html), and error on a sunken well 4.7. The repel segments,
+   the cyan. Its surfaces went a step brighter and more teal on 2026-09-29
+   (Ian, the redesign). Measured (WCAG) since, the lowest are ink on the Ice
+   chip 4.7 (chips mix 25% of their type in Dim, against 34% in Dark;
+   index.html), and error and warn in a sunken well 4.6. The repel segments,
    stat bands and type colours keep their dark values. */
 :root[data-theme="dim"] {
   color-scheme: dark;
-  --ground: #22484F;
-  --panel: #285057;
-  --sunken: #315961;
-  --rule: #46747C;
+  --ground: #204E56;
+  --panel: #26565E;
+  --sunken: #2D5C65;
+  --rule: #427B85;
   --ink: #F2F7F6;
   --dim: #C4D3D2;
   --faint: #A0B5B4;
@@ -120,15 +126,38 @@
   --shadow: rgba(0, 0, 0, .4);
 }
 
-/* Pixelify Sans, weight 600, latin subset; provenance in fonts/README.md.
-   Blocking rather than swapping: the file is local and 8 KB, and a swap would
-   make the title jump on every load. The url resolves against this file, so
-   the calculator's skin can load theme.css from another folder and still find
-   the font. */
+/* The three faces, latin subsets from @fontsource 5.3.0; provenance and
+   the OFL licences in fonts/README.md. Blocking rather than swapping: the
+   files are local and small, and a swap would make the page jump on every
+   load. The urls resolve against this file, so the calculator's skin can
+   load theme.css from another folder and still find them. Silkscreen has one
+   weight, declared for 400 to 700 so the browser draws it as it is rather
+   than faking a bolder one where the page asks for 600. */
 @font-face {
-  font-family: "Pixelify Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-display: block;
-  src: url(fonts/PixelifySans-600-latin.woff2) format("woff2");
+  font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 400;
+  font-display: block; src: url(fonts/AtkinsonHyperlegible-400-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700;
+  font-display: block; src: url(fonts/AtkinsonHyperlegible-700-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 400;
+  font-display: block; src: url(fonts/AtkinsonHyperlegible-400-italic-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible"; font-style: italic; font-weight: 700;
+  font-display: block; src: url(fonts/AtkinsonHyperlegible-700-italic-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono"; font-style: normal; font-weight: 400;
+  font-display: block; src: url(fonts/JetBrainsMono-400-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "JetBrains Mono"; font-style: normal; font-weight: 600;
+  font-display: block; src: url(fonts/JetBrainsMono-600-latin.woff2) format("woff2");
+}
+@font-face {
+  font-family: "Silkscreen"; font-style: normal; font-weight: 400 700;
+  font-display: block; src: url(fonts/Silkscreen-400-latin.woff2) format("woff2");
 }
