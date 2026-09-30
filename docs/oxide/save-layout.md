@@ -348,6 +348,14 @@ box, is box 30. The calculator's own Read Save did assume 18, with box 18 as
 the graveyard; the encounter track's `encounter-save-30-boxes` reads as many
 boxes as the block holds.
 
+## The gauntlets take an unused variable (2026-09-29)
+
+Nothing moves. `VAR_GAUNTLET_SECTION` (`src/gauntlet.c`) holds the open
+gauntlet section's number, or 0 when none is open, in vanilla's
+`VAR_UNUSED_0x408F`, which no script, vanilla, base ROM or Oxide, reads or
+writes. An older save holds 0 there, so it loads with no section open; the
+first section opens when the player next walks in through a way in.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
