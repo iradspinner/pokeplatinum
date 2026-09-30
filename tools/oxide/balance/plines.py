@@ -28,10 +28,11 @@ SWITCH_RULES = ("losing", "losing", "hp", "never")
 
 class Line:
     __slots__ = ("lead", "answers", "switch_rule", "hp_floor", "setup_turns", "setup_full",
-                 "use_status", "seed")
+                 "use_status", "seed", "bait_lock", "free_pivot", "stall", "reserved")
 
     def __init__(self, lead, answers, switch_rule="losing", hp_floor=0.4, setup_turns=3,
-                 setup_full=True, use_status=True, seed=0):
+                 setup_full=True, use_status=True, seed=0, bait_lock=False, free_pivot=False,
+                 stall=0, reserved=None):
         self.lead = lead
         self.answers = answers            # {foe key: team index or None}
         self.switch_rule = switch_rule    # losing: leave a losing exchange for a winning one
@@ -40,6 +41,11 @@ class Line:
         self.setup_full = setup_full      # setup only at full HP
         self.use_status = use_status
         self.seed = seed
+        # Ian's own plans (2026-09-30), each a rule with a parameter:
+        self.bait_lock = bait_lock        # once a foe is Choice-locked, switch to what the lock cannot hurt
+        self.free_pivot = free_pivot      # leave a losing exchange through a Pokemon immune to the foe's hit
+        self.stall = stall                # stall a foe's timed effect with this many turns or fewer left
+        self.reserved = reserved or {}    # {team index: foe key} saved for that later foe
 
     def describe(self, st, team):
         ans = ", ".join(f"{st['pokemon'][k]['species']}->{st['pokemon'][team[i]]['species']}"
@@ -47,7 +53,11 @@ class Line:
         return (f"lead {st['pokemon'][team[self.lead]]['species']}; answers {ans or 'none'}; "
                 f"switch {self.switch_rule}{f' below {self.hp_floor:.1f}' if self.switch_rule == 'hp' else ''}; "
                 f"setup at {self.setup_turns}+ safe turns{' at full HP' if self.setup_full else ''}"
-                f"{'' if self.use_status else '; no status moves'}")
+                f"{'' if self.use_status else '; no status moves'}"
+                f"{'; bait locks' if self.bait_lock else ''}{'; free pivots' if self.free_pivot else ''}"
+                f"{f'; stall timed effects at {self.stall} turns' if self.stall else ''}"
+                + "".join(f"; save {st['pokemon'][team[i]]['species']} for {st['pokemon'][k]['species']}"
+                          for i, k in self.reserved.items()))
 
 
 # ---- applying a line ---------------------------------------------------------------------------------
@@ -136,6 +146,29 @@ def best_switch(b, me, foe):
     return best[1] if best else None
 
 
+def _held(line, i, foe):
+    """Whether team member i is saved for a later foe other than this one."""
+    k = line.reserved.get(i)
+    return k is not None and k != foe.key
+
+
+def _free_against(b, foe, mv_types):
+    """The bench members the foe's moves of these types do nothing to."""
+    return [i for i, m in enumerate(b.p.mons)
+            if i != b.p.active and m.alive()
+            and all(fs.effectiveness(b.st["chart"], t, m.types) == 0 for t in mv_types)]
+
+
+def _timed_left(b):
+    """Turns left on the foe side's screens and tailwind, and Trick Room; the
+    fewest of those running, or None."""
+    side = b.b
+    left = [v for v in side.screens.values() if v] + ([side.tailwind] if side.tailwind else [])
+    if b.trick_room and b.trick_room < 999:
+        left.append(b.trick_room)
+    return min(left) if left else None
+
+
 def decide(b, line):
     """('move', Move) or ('switch', index) for the player under this line."""
     me, foe = b.p.cur(), b.b.cur()
@@ -155,15 +188,48 @@ def decide(b, line):
         if (mv.acc == 0 or mv.acc >= 100) and pl.dmg_low(b, me, foe, mv) >= foe.hp \
                 and (mv.pri > 0 or first or t_foe > 1):
             return "move", mv
+    # Baiting a lock: the foe is locked into one Choice move; switch to a
+    # Pokemon that move cannot touch, so its turns are spent for nothing.
+    if line.bait_lock and can_switch and foe.choice:
+        locked = fs.move(foe.choice)
+        if locked is not None and locked.damaging() and pl.dmg_top(b, foe, me, locked) > 0:
+            free = [i for i in _free_against(b, foe, [locked.type]) if not _held(line, i, foe)]
+            if free:
+                return "switch", free[0]
     # The answer to this foe comes in when it appears.
     if can_switch and foe.turns_in == 0:
         ans = line.answers.get(foe.key)
         if ans is not None and ans != b.p.active and b.p.mons[ans].alive():
             return "switch", ans
+    # Stalling a timed effect: with none of our hits a knockout, wait out the
+    # foe's screens, tailwind or Trick Room behind Protect when it is nearly
+    # over, or through a free switch.
+    left = _timed_left(b) if line.stall else None
+    if left is not None and left <= line.stall and not win:
+        guard = next((mv for mv in moves if mv.effect == "PROTECT" and not me.protect_streak), None) \
+            if hasattr(me, "protect_streak") else next((mv for mv in moves if mv.effect == "PROTECT"), None)
+        if guard is not None:
+            return "move", guard
+        if can_switch:
+            hits = [mv.type for mv in foe.moves if mv.damaging()]
+            free = [i for i in _free_against(b, foe, hits) if not _held(line, i, foe)]
+            if free:
+                return "switch", free[0]
     # Leaving a losing exchange.
     if can_switch and not win and line.switch_rule != "never":
         if line.switch_rule == "losing" or me.hp / me.maxhp < line.hp_floor:
             idx = best_switch(b, me, foe)
+            if idx is not None and _held(line, idx, foe):
+                idx = None
+            if idx is None and line.free_pivot:
+                # A free pivot: through a Pokemon the foe's hardest hit on us
+                # cannot touch, to choose again next turn.
+                hard = max((mv for mv in foe.moves if mv.damaging()),
+                           key=lambda mv: pl.dmg_top(b, foe, me, mv), default=None)
+                if hard is not None:
+                    free = [i for i in _free_against(b, foe, [hard.type]) if not _held(line, i, foe)]
+                    if free:
+                        return "switch", free[0]
             if idx is not None:
                 return "switch", idx
     # A status or setup move when there is time for it.
@@ -268,6 +334,18 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
         line.setup_full = rng.random() < 0.5
     if rng.random() < jitter:
         line.use_status = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.bait_lock = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.free_pivot = rng.random() < 0.7
+    if rng.random() < jitter:
+        line.stall = rng.choice([0, 1, 2, 3])
+    if rng.random() < jitter:
+        # Save the answer to one of the later foes for it.
+        later = [k for k in boss_keys[1:] if answers.get(k) is not None]
+        if later:
+            k = rng.choice(later)
+            line.reserved = {answers[k]: k}
     return line
 
 
