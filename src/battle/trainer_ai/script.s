@@ -251,6 +251,7 @@ Basic_ScoreMoveEffect:
 Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, Basic_CheckCannotSleep
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, Basic_CheckCannotExplode
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIND_BLOWN, Basic_CheckMindBlown // Oxide
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, Basic_CheckDreamEater
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, Basic_CheckHighStatStage_Attack
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, Basic_CheckHighStatStage_Defense
@@ -558,6 +559,17 @@ Basic_SafeguardSleep_Passed:
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
 Basic_CheckCannotSleep_End:
+    PopOrEnd 
+
+Basic_CheckMindBlown:
+    // Oxide: Damp stops Mind Blown as it stops Explosion (effect 408 makes the same test), so
+    // score -10 with Explosion's check of the target. Mind Blown does not faint its user, so
+    // Explosion's last-Pokemon check is left out.
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckMindBlown_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_DAMP, ScoreMinus10
+
+Basic_CheckMindBlown_End:
     PopOrEnd 
 
 Basic_CheckCannotExplode:
