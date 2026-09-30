@@ -34,6 +34,9 @@ MiningMuseum_FossilResearcher:
     @ Vanilla made him wait until the player held the Explorer Kit. Oxide never
     @ gives the kit (the Underground is closed), so he revives from the start.
     GoToIfNe VAR_REVIVED_POKEMON_SPECIES, 0, MiningMuseum_PokemonRevival
+    @ No fossil Pokemon before Fantina's split (Ian, 2026-09-30): he waits until
+    @ the player has come through Cycling Road.
+    GoToIfUnset FLAG_PASSED_CYCLING_ROAD, MiningMuseum_NotYetReady
     GetFossilCount VAR_0x8000
     GoToIfEq VAR_0x8000, 0, MiningMuseum_NoFossils
     Message MiningMuseum_Text_ShallIReviveFossil

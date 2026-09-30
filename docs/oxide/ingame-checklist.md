@@ -362,6 +362,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf
   Psychic/Fairy. The Pokedex's info page shows the NORMAL plate for Fairy, the
   known gap in Phase 4's Fairy entry.
+- [ ] Fossils wait for Cycling Road (`main-production`, Ian, 2026-09-30).
+  With a Root, Armor or Skull Fossil from Oreburgh Mine B2F, talk to the
+  researcher in the Mining Museum before riding Cycling Road: he greets you,
+  says his machine's parts come from Eterna by way of Cycling Road, and
+  revives nothing. Ride down Cycling Road into its south gate, come back, and
+  he offers to revive it as before (level 20, the next time you talk to him).
 
 ## 4. The ordinary ROM, mid-game
 
@@ -449,6 +455,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Route 213, have no clown; everyone else in them talks as before, and
   Veilstone's Elekid gift still gives Elekid.
 - [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] The battle backdrop on the new grass (`main-production`, Ian's open bug
+  of 2026-09-30): a wild battle in Sandgem's, Jubilife's, Floaroma's or
+  Solaceon's grass shows the route backdrop over a grass platform, as on Route
+  201, not the town's indoor-looking arena; Amity Square and Verity Lakefront
+  look the same as ever. A trainer fight on a town's paved ground (the
+  Galactic pair in Jubilife with Dawn) keeps the town backdrop.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.

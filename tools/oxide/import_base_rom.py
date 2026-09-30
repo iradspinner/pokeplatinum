@@ -1373,6 +1373,9 @@ TEXT_BANKS_SKIPPED.update({
 # description, still vanilla's "three sets of button settings", now says what
 # the option does. The bank keeps its size, so it is skipped whole.
 TEXT_BANKS_SKIPPED[220] = "the UNLOCK FPS description rewritten for its two choices (2026-09-29)"
+# Fossils wait for Cycling Road (Ian, 2026-09-30): the researcher's unreachable
+# "not yet" line, vanilla's wait for the Explorer Kit, now says why he waits.
+TEXT_BANKS_SKIPPED[79] = "the Mining Museum's reviver waits for Cycling Road, and his line says so (2026-09-30)"
 
 
 def text_bank_names():

@@ -12,6 +12,10 @@
     ScriptEntryEnd
 
 Route206CyclingRoadSouthGate_OnTransition:
+    @ Oxide: either way into this gate needs the Bicycle, from the foot of Cycling
+    @ Road or up Route 207's slope, and the Mining Museum revives Fossils only
+    @ once this is set (Ian, 2026-09-30).
+    SetFlag FLAG_PASSED_CYCLING_ROAD
     End
 
 Route206CyclingRoadSouthGate_OnFrame_TryForceBiking:
