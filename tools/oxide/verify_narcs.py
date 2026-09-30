@@ -495,6 +495,12 @@ PICK_LIST_RETYPES = {
     480, 481, 482,
 }
 
+# The blind buff review's stat changes (Ian, 2026-09-29), by dex number: the
+# sheet's slips (Fearow, Kadabra's bulk, Tentacruel, Graveler, Weezing,
+# Noctowl, Skarmory, Cascoon, Banette) and section B (Delibird, Kricketune,
+# Mawile, Quagsire).
+BUFF_REVIEW_STATS = {22, 64, 73, 75, 110, 164, 195, 225, 227, 268, 303, 354, 402}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -511,6 +517,18 @@ DIVERGED = {
             "why": "the base ROM's slips in Metapod's, Kakuna's and Shedinja's special "
                    "stats, corrected to Ian's change sheet (2026-09-29; import_base_rom.py's "
                    "BASE_STATS_DIVERGED)",
+        },
+        {
+            "offsets": (0, 1, 2, 3, 4, 5),  # HP, Atk, Def, Speed, Sp. Atk, Sp. Def
+            "members": BUFF_REVIEW_STATS,
+            "why": "the blind buff review (Ian, 2026-09-29): the sheet's slips, and the "
+                   "high-confidence stat changes (import_base_rom.py's BASE_STATS_DIVERGED)",
+        },
+        {
+            "offsets": (6, 7),  # type1, type2
+            "members": {333, 334, 370},
+            "why": "the buff review's Fairy retypes: Swablu Fairy/Flying, Altaria "
+                   "Dragon/Fairy, Luvdisc Water/Fairy (Ian, 2026-09-29)",
         },
     ],
     # A list when more than one change touches the archive; a member passes if
@@ -722,6 +740,24 @@ PERSONAL_ABILITIES_DIVERGED = {
     450: ((47, 0), "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
     459: ((91, 43), "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
     460: ((91, 43), "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
+    # The blind buff review (Ian, 2026-09-29): the sheet's ability slips and
+    # the junk-ability fixes.
+    25: ((120, 0), "Pikachu: Reckless, the sheet's (Ian, 2026-09-29)"),
+    26: ((31, 0), "Raichu: Lightning Rod, the sheet's (Ian, 2026-09-29)"),
+    80: ((144, 20), "Slowbro: Regenerator and Own Tempo; Oblivious is junk (Ian, 2026-09-29)"),
+    97: ((15, 0), "Hypno: Insomnia only, the sheet's (Ian, 2026-09-29)"),
+    163: ((15, 110), "Hoothoot: Insomnia and Tinted Lens, as Noctowl (Ian, 2026-09-29)"),
+    170: ((10, 11), "Chinchou: Volt Absorb and Water Absorb; Illuminate is junk (Ian, 2026-09-29)"),
+    171: ((10, 11), "Lanturn: Volt Absorb and Water Absorb; Illuminate is junk (Ian, 2026-09-29)"),
+    194: ((11, 109), "Wooper: Water Absorb and Unaware; Damp is junk (Ian, 2026-09-29)"),
+    195: ((11, 109), "Quagsire: Water Absorb and Unaware; Damp is junk (Ian, 2026-09-29)"),
+    199: ((144, 20), "Slowking: Regenerator and Own Tempo; Oblivious is junk (Ian, 2026-09-29)"),
+    220: ((81, 47), "Swinub: Snow Cloak and Thick Fat, as Mamoswine (Ian, 2026-09-29)"),
+    221: ((81, 47), "Piloswine: Snow Cloak and Thick Fat, as Mamoswine (Ian, 2026-09-29)"),
+    225: ((72, 91), "Delibird: Vital Spirit and Adaptability (Ian, 2026-09-29)"),
+    300: ((56, 0), "Skitty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
+    301: ((56, 0), "Delcatty: Cute Charm; Normalize is junk (Ian, 2026-09-29)"),
+    402: ((52, 101), "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)"),
 }
 
 

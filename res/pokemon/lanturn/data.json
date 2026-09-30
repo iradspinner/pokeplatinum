@@ -29,7 +29,7 @@
     "egg_groups": [ "EGG_GROUP_WATER_2", "EGG_GROUP_WATER_2" ],
     "abilities": [
         "ABILITY_VOLT_ABSORB",
-        "ABILITY_ILLUMINATE",
+        "ABILITY_WATER_ABSORB",
         "ABILITY_WATER_ABSORB"
     ],
     "safari_flee_rate": 0,

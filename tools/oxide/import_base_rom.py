@@ -1558,6 +1558,33 @@ def main():
     ABILITIES_DIVERGED = {
         499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
         500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        # The player never sets or ends weather (Ian, 2026-09-29): the weather
+        # abilities moved to the hidden slot.
+        54: "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
+        55: "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
+        248: "Tyranitar: Shed Skin; Sand Stream is hidden (Ian, 2026-09-29)",
+        449: "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
+        450: "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
+        459: "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
+        460: "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
+        # The blind buff review (Ian, 2026-09-29): the sheet's ability slips and
+        # the junk-ability fixes.
+        25: "Pikachu: Reckless (Ian, 2026-09-29)",
+        26: "Raichu: Lightning Rod (Ian, 2026-09-29)",
+        80: "Slowbro: Regenerator and Own Tempo (Ian, 2026-09-29)",
+        97: "Hypno: Insomnia only (Ian, 2026-09-29)",
+        163: "Hoothoot: Insomnia and Tinted Lens (Ian, 2026-09-29)",
+        170: "Chinchou: Volt Absorb and Water Absorb (Ian, 2026-09-29)",
+        171: "Lanturn: Volt Absorb and Water Absorb (Ian, 2026-09-29)",
+        194: "Wooper: Water Absorb and Unaware (Ian, 2026-09-29)",
+        195: "Quagsire: Water Absorb and Unaware (Ian, 2026-09-29)",
+        199: "Slowking: Regenerator and Own Tempo (Ian, 2026-09-29)",
+        220: "Swinub: Snow Cloak and Thick Fat (Ian, 2026-09-29)",
+        221: "Piloswine: Snow Cloak and Thick Fat (Ian, 2026-09-29)",
+        225: "Delibird: Vital Spirit and Adaptability (Ian, 2026-09-29)",
+        300: "Skitty: Cute Charm (Ian, 2026-09-29)",
+        301: "Delcatty: Cute Charm (Ian, 2026-09-29)",
+        402: "Kricketune: Hyper Cutter and Technician (Ian, 2026-09-29)",
     }
 
     # Base stats the base ROM set by a slip, which Oxide has corrected to Ian's
@@ -1567,6 +1594,21 @@ def main():
         11: "Metapod's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
         14: "Kakuna's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
         292: "Shedinja's Sp. Def is 10, not 5 (Ian, 2026-09-29)",
+        # The blind buff review (Ian, 2026-09-29): the sheet's slips and the
+        # high-confidence stat changes.
+        22: "Fearow's Sp. Atk is 31, the sheet's (Ian, 2026-09-29)",
+        64: "Kadabra takes Kaizo's bulk, not its Speed (Ian, 2026-09-29)",
+        73: "Tentacruel's Atk 80 and Sp. Atk 90, the sheet's (Ian, 2026-09-29)",
+        75: "Graveler's Speed is 45, the sheet's (Ian, 2026-09-29)",
+        110: "Weezing's Sp. Atk 90 and Sp. Def 85, the sheet's (Ian, 2026-09-29)",
+        164: "Noctowl's Sp. Atk is 86, the sheet's (Ian, 2026-09-29)",
+        195: "Quagsire's HP 105 and Sp. Def 75 (Ian, 2026-09-29)",
+        225: "Delibird to 65/90/60/85/60/100 (Ian, 2026-09-29)",
+        227: "Skarmory's Atk 85 and Sp. Def 80, the sheet's (Ian, 2026-09-29)",
+        268: "Cascoon's Sp. Def is 55, the sheet's (Ian, 2026-09-29)",
+        303: "Mawile's HP 70 and Sp. Def 75 (Ian, 2026-09-29)",
+        354: "Banette's Speed is 85, the sheet's (Ian, 2026-09-29)",
+        402: "Kricketune to 87/105/61/55/61/75 (Ian, 2026-09-29)",
     }
 
     # species: personal + learnset + evolutions live in one data.json
