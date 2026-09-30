@@ -139,8 +139,13 @@ is listed for Ian.
   made with a planned team but on an older dex and older movesets (Roark
   was always answered with Geodude), so they give direction only; his 40
   pairs are the better check, and the bar of 13 of 14 held out is too
-  high (Ian, 2026-09-30). The scale stays unfitted until the new scorer
-  reads his pairs better than the old one did.
+  high (Ian, 2026-09-30). On today's data the new scorer agreed with 7
+  of 15 held-out pairs and the refitted old headline with 10, so **the
+  1-to-10 scale is dropped for now** (Ian, 2026-09-30): difficulty is
+  judged in the scorer's own numbers (the best line's clean-win rate, mean
+  deaths and wipe chance, blind or planned), Ian sets the targets for an
+  average ordinary trainer, a gauntlet and a boss from example fights, and
+  his first run's ratings check the scorer against real play.
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.
