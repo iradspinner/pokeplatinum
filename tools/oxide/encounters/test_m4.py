@@ -514,6 +514,53 @@ def check_dim_theme(results):
                     "; ".join(dshort) or f"chips mix {dark_mix:.0%}"))
 
 
+def check_team_sheet(results):
+    """The Trainers tab's team sheet (the redesign, 2026-09-29) is paper in
+    every theme, and a cell tinted by a type keeps its ink at WCAG's 4.5:1:
+    the mix is read from the page's own rule and the colours from theme.css.
+    The trainer sprites come from res/trainers/classes, one folder per class,
+    and the AI flags sit in a fixed grid."""
+    import re
+    ui = os.path.join(model.repo_root(), "tools", "oxide", "encounters", "ui")
+    css = open(os.path.join(ui, "theme.css"), encoding="utf-8").read()
+    page = open(os.path.join(ui, "index.html"), encoding="utf-8").read()
+    tok = dict(re.findall(r"--(sheet[\w-]*):\s*(#[0-9A-Fa-f]{6})", css))
+    types = dict(re.findall(r"--type-(\w+):\s*(#[0-9A-Fa-f]{6})", css))
+    m = re.search(r"\.sheet \.t \{[^}]*color-mix\(in srgb, var\(--t\) (\d+)%, var\(--sheet\)\)", page)
+
+    def lum(h):
+        r, g, b = (int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
+        f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+        return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+    def ratio(a, b):
+        hi, lo = sorted((lum(a), lum(b)), reverse=True)
+        return (hi + 0.05) / (lo + 0.05)
+
+    def mix(a, b, p):
+        return "#" + "".join(f"{round(int(a[i:i + 2], 16) * p + int(b[i:i + 2], 16) * (1 - p)):02X}"
+                             for i in (1, 3, 5))
+
+    short = []
+    if m and tok:
+        p = int(m.group(1)) / 100
+        for name, colour in types.items():
+            r = ratio(tok["sheet-ink"], mix(colour, tok["sheet"], p))
+            if r < 4.5:
+                short.append(f"ink on {name} {r:.1f}")
+        for fg, bg in (("sheet-ink", "sheet"), ("sheet-faint", "sheet"), ("sheet-ink", "sheet-item"),
+                       ("sheet-ink", "sheet-sub"), ("sheet-head-ink", "sheet-head")):
+            if ratio(tok[fg], tok[bg]) < 4.5:
+                short.append(f"{fg} on {bg} {ratio(tok[fg], tok[bg]):.1f}")
+    results.append(("the team sheet's type tints and its paper keep text at WCAG's 4.5:1",
+                    bool(m) and bool(tok) and not short, "; ".join(short) or f"{len(tok)} tokens"))
+    classes = os.path.join(model.repo_root(), "res", "trainers", "classes")
+    results.append(("trainer sprites come from res/trainers/classes, and the AI flags are a fixed grid",
+                    os.path.isfile(os.path.join(classes, "leader_roark", "front.png"))
+                    and "/api/trainer-sprite/" in page and "const AI_GRID = [" in page
+                    and 'class="aigrid"' in page, ""))
+
+
 def check_faces_and_switch(results):
     """The redesign (Ian, 2026-09-29): the three faces ship in ui/fonts with
     their OFL licences and nothing loads from the network, and the header's
@@ -551,7 +598,7 @@ def main():
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_rejections,
                       check_edit_is_local, check_no_colour_literals, check_dim_theme,
-                      check_faces_and_switch):
+                      check_faces_and_switch, check_team_sheet):
             check(results)
     finally:
         httpd.shutdown()

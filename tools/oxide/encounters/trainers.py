@@ -362,6 +362,14 @@ def _default_move_ids(root, member):
     return calc_trainers.default_moves(learnset, member["level"])
 
 
+def _class_folder(root, cls):
+    """TRAINER_CLASS_LEADER_ROARK is res/trainers/classes/leader_roark, or
+    None when the class has no folder."""
+    folder = str(cls or "").replace("TRAINER_CLASS_", "").lower()
+    return folder if folder and os.path.isdir(
+        os.path.join(root, "res", "trainers", "classes", folder)) else None
+
+
 def detail(root, stem, data=None):
     """One trainer's team, as the file has it and as the game builds it.
     `data` is an unsaved edit of the file, shown the same way."""
@@ -396,6 +404,9 @@ def detail(root, stem, data=None):
         "data": data,
         "stem": stem, "label": calc_trainers.trainer_name(root, data, stem),
         "name": data.get("name", ""), "class": data.get("class"),
+        # The class's sprite folder under res/trainers/classes, which the
+        # page asks /api/trainer-sprite for (the redesign, 2026-09-29).
+        "sprite": _class_folder(root, data.get("class")),
         "ai_flags": data.get("ai_flags") or [], "double_battle": bool(data.get("double_battle")),
         "items": data.get("items") or [], "split": split, "cap": caps().get(split),
         "members": members,

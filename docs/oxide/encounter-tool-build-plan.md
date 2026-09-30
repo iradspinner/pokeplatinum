@@ -1267,7 +1267,25 @@ that stay. None blocks anything.
      class by power, sixteen around it, this one marked, each opening its
      move. Every card is a section, and sections scroll on their own, so
      the cards are kept from scrolling (that had clipped the Dex's too).
-   - Trainers and Box sim follow.
+   - **Trainers** (`encounter-redesign-trainers`, stacked on Moves): the
+     list at 280px and the right panel gone. The trainer is a header line
+     with its split and cap, its file and the save bar; the team is a sheet,
+     paper in every theme with a slate header and legend, one column a
+     Pokemon: its sprite, level and species, types, nature and ability
+     (faint and italic when the game rolls them), item, and four moves
+     tinted by type and bold when they share a type with their user, every
+     cell edited in place. The form, IV scale, gender, move lists and
+     removal sit in each Pokemon's menu, the dots on its sprite. The three
+     move lists open in a card under the sheet while a move is edited.
+     Under that, the score, threat and answers as bars, and battle and AI.
+     A pair is two sheets, the one being worked on outlined. Ian's notes:
+     the trainer sprites work (`/api/trainer-sprite/<class>`, each class's
+     `front.png` from `res/trainers/classes` with its clear colour made
+     clear and the first frame shown), and the AI flags are a fixed grid
+     three wide, headed "AI Flags:", one icon per flag in its own cell, lit
+     when the trainer has it, Double battle the last cell. `test_m4` holds
+     the sheet's type tints and paper to WCAG's 4.5:1.
+   - Box sim follows.
    - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
      wild, each with one home and at most one neighbour, and Froakie's 1%
      is cut to a few water areas that fit it (R21 flags it); the late

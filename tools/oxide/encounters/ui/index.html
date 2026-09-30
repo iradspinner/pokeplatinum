@@ -356,36 +356,30 @@ tr.got .spname { font-weight: 600; }
   padding: 12px 14px 40px; }
 #dexmid, #movemid { padding: 14px 20px 40px; font-size: 18px; }
 
-/* The Trainers tab: the list, the team, and the trainer's own settings. */
+/* The Trainers tab as Ian approved it (2026-09-29, the redesign's Trainers
+   board): the list, then the trainer in the centre: a header line with its
+   save bar, the team as a sheet, the move lists while a move is edited, and
+   a row of cards for the score, threat and answers, and battle and AI. */
+#trainmain { grid-template-columns: 280px minmax(720px, 1fr); }
 #trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
-#trainright { border-left: 1px solid var(--rule); background: var(--panel);
-  padding: 0 14px 40px; }
-/* Either side panel folds to a strip to give the team room (Ian,
-   2026-09-27). The right one is wide enough for a member's three move lists,
-   which sit there beside the member being edited, and keeps its width when
-   it shows the score instead, so the editor never moves under the pointer. */
-#trainmain { grid-template-columns: var(--trl, 380px) minmax(440px, 1fr) var(--trr, 600px); }
-#trmoves .mcol h3 { margin: 10px 0 0; }
-#trainmain.foldl { --trl: 36px; }
-#trainmain.foldr { --trr: 36px; }
-.unfold { display: none; }
-#trainmain.foldl #trainlist > :not(.unfold),
-#trainmain.foldr #trainright > :not(.unfold) { display: none; }
-#trainmain.foldl #trainlist > .unfold,
-#trainmain.foldr #trainright > .unfold { display: block; writing-mode: vertical-rl;
-  margin: 10px auto; padding: 8px 2px; font-size: 14.5px; color: var(--dim); }
-#trainmain.foldr #trainright { padding: 0; }
-.fhead { display: flex; gap: 6px; }
-.fhead input { flex: 1; min-width: 0; }
-#trhead { position: sticky; top: 0; z-index: 5; background: var(--panel);
-  padding: 12px 0 6px; border-bottom: 1px solid var(--rule); }
-#trhead .savebar { position: static; padding: 0; }
-#trhead .savebar .fold { margin-left: auto; }
-#trhead .est { margin: 6px 0 0; font-size: 15px; }
-#trhead .est .scorenum { font-size: 20px; }
-#trhead .sortbar { margin-top: 8px; }
-.member.on { border-left: 3px solid var(--place-ink); padding-left: 9px; margin-left: -12px; }
-#trainmid { padding: 14px 20px 40px; font-size: 17px; }
+#trainfilter { width: 100%; box-sizing: border-box; }
+#trainmid { padding: 18px 22px 40px; font-size: 16px; display: flex; flex-direction: column;
+  gap: 12px; }
+#trainmid > * { flex-shrink: 0; }
+#trainmid .card { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0;
+  overflow: visible; }
+#trainmid .card[hidden] { display: none; }
+#trainmid .card h2, #trainmid .sidehead h2 { margin: 0; font-size: 16px; }
+#trainmid .cardhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+#trainmid .card p { margin: 0; }
+.trtop { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.trtop h1 { margin: 0; font-size: 26px; }
+.trtop code { font-size: 13px; color: var(--dim); }
+.trtop .grow { flex: 1; }
+.trsavebar { display: flex; align-items: center; gap: 8px; }
+.sidehead { display: flex; align-items: baseline; gap: 12px; margin-top: 6px; }
+.findings { display: flex; flex-direction: column; gap: 2px; }
 #trainfilter { width: 100%; }
 .trrow { display: grid; grid-template-columns: 1fr auto; align-items: center;
   gap: 0 8px; padding: 4px 12px; cursor: pointer; }
@@ -400,17 +394,68 @@ tr.got .spname { font-weight: 600; }
 .trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
 .trrow .pairgap { display: inline-block; width: 14px; }
 .trrow.sub { padding-left: 34px; font-size: 15px; }
-/* A pair's two teams side by side; the one being worked on is marked. */
-.pairsides { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 8px; }
-.pairsides .side { min-width: 0; padding-left: 12px; border-left: 3px solid transparent; }
-.pairsides .side.on { border-left-color: var(--place-ink); }
-.pairsides .side h3 { margin: 6px 0 2px; }
-.pairsides .member.on { margin-left: 0; padding-left: 6px; }
-.member { display: grid; grid-template-columns: 40px 1fr; gap: 2px 12px;
-  padding: 10px 0; border-bottom: 1px solid var(--rule); }
-.member .l1 { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-.member .facts { color: var(--dim); font-size: 15.5px; }
-.member .moves { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+/* The team sheet: paper in every theme, as Ian's own trainer sheets are,
+   with a slate header and legend; a move's cell takes its type's tint. */
+.sheet { display: grid; grid-template-columns: 130px repeat(6, minmax(0, 1fr)) 118px;
+  border: 1px solid var(--sheet-line); border-radius: 10px; overflow: visible;
+  background: var(--sheet); color: var(--sheet-ink); }
+.sheet.on { outline: 3px solid var(--place-ink); outline-offset: 2px; }
+.sheet .shead { grid-column: 1 / -1; padding: 8px 12px; text-align: center; font-size: 20px;
+  font-weight: 700; background: var(--sheet-head); color: var(--sheet-head-ink);
+  border-radius: 9px 9px 0 0; }
+.sheet .trcol { background: var(--sheet-head2); display: flex; align-items: center;
+  justify-content: center; border-right: 1px solid var(--sheet-line); border-radius: 0 0 0 9px; }
+.sheet .trspr { width: 120px; height: 120px; overflow: hidden; display: block; }
+.sheet .trspr img { width: 120px; display: block; image-rendering: pixelated; }
+.sheet .col { display: flex; flex-direction: column; border-right: 1px solid var(--sheet-line);
+  min-width: 0; }
+.sheet .col.on { box-shadow: inset 0 0 0 2px var(--place-ink); }
+.sheet .cell { box-sizing: border-box; height: 33px; display: flex; align-items: center;
+  justify-content: center; gap: 4px; border-top: 1px solid var(--sheet-line); padding: 0 4px;
+  min-width: 0; font-size: 14.5px; }
+.sheet .sprcell { height: 150px; background: var(--sheet-dark); position: relative; border-top: 0; }
+.sheet .big { width: 120px; height: 120px; overflow: hidden; display: block; }
+.sheet .big img { width: 240px; height: 120px; display: block; image-rendering: pixelated; }
+.sheet .title { height: 35px; background: var(--sheet-sub); font-weight: 700; }
+.sheet .title.bad { box-shadow: inset 0 -3px 0 var(--error); }
+.sheet .title.over input.lvl { color: var(--warn); }
+.sheet .pair2 { display: flex; }
+.sheet .pair2 > .cell { flex: 1 1 0; }
+.sheet .pair2 > .cell + .cell { border-left: 1px solid var(--sheet-line); }
+.sheet .t { --t: var(--type-normal); background: color-mix(in srgb, var(--t) 42%, var(--sheet));
+  font-weight: 700; }
+.sheet .mvcell.t { font-weight: 400; }
+.sheet .itemcell { background: var(--sheet-item); }
+.sheet .deflt { color: var(--sheet-faint); font-style: italic; }
+.sheet .sub { color: var(--sheet-faint); }
+.sheet input, .sheet select { font: inherit; color: inherit; background: transparent; border: 0;
+  border-radius: 4px; text-align: center; width: 100%; min-width: 0; padding: 2px 4px; }
+.sheet select { text-align-last: center; cursor: pointer; appearance: none; }
+.sheet select.rolled { color: var(--sheet-faint); font-style: italic; }
+.sheet input:focus, .sheet select:focus { outline: 2px solid var(--place-ink); background: var(--sheet); }
+.sheet input.lvl { width: 3.2em; flex: none; font-family: var(--mono); }
+.sheet input.sp { flex: 1; font-weight: 700; text-align: left; }
+.sheet input.stab { font-weight: 700; }
+.sheet .sheetlegend { background: var(--sheet-head); color: var(--sheet-head-ink);
+  display: flex; flex-direction: column; border-radius: 0 0 9px 0; }
+.sheet .sheetlegend .cell { border-top-color: var(--sheet-head2); font-size: 14.5px; }
+.sheet .sheetlegend .sprcell { background: transparent; }
+.sheet .sheetlegend .title { background: transparent; font-weight: 400; }
+.sheet .sheetlegend .movesl { height: 132px; }
+.sheet .addcol { align-items: center; justify-content: center; }
+.sheet .addcol button { margin-top: 60px; }
+/* A Pokemon's menu, on its sprite: the fields the sheet leaves off. */
+.colmenu { position: absolute; top: 4px; right: 6px; }
+.colmenu summary { list-style: none; cursor: pointer; color: var(--sheet-head-ink);
+  padding: 0 6px; border-radius: 4px; font-weight: 700; }
+.colmenu summary::-webkit-details-marker { display: none; }
+.colmenu summary:hover, .colmenu[open] summary { background: var(--sheet-head); }
+.colmenu .pop { position: absolute; top: 26px; right: 0; z-index: 20; width: 250px;
+  background: var(--panel); color: var(--ink); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 10px 12px; box-shadow: 0 6px 20px var(--shadow); display: flex; flex-direction: column;
+  gap: 6px; text-align: left; font-size: 14.5px; }
+.colmenu .pop input, .colmenu .pop select { font-size: 14.5px; }
+.colmenu .pop p { margin: 0; }
 /* The three move lists, side by side and never merged (Ian, 2026-09-27). */
 .mcols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 12px; }
 .mcol h3 { margin: 10px 0 0; font-size: 16px; }
@@ -419,40 +464,49 @@ tr.got .spname { font-weight: 600; }
 .mrow .nm { flex: 1; min-width: 0; }
 .mrow .how { font-size: 13.5px; color: var(--dim); text-align: right; }
 .mrow.gone .nm { color: var(--faint); }
-/* A move reads as its type (Ian, 2026-09-27): its box in the editor and its
-   name in the move lists take the type's colour, blended as a chip's is. */
+/* A move reads as its type (Ian, 2026-09-27): its name in the move lists
+   takes the type's colour, blended as a chip's is. */
 .typed { background: light-dark(color-mix(in srgb, var(--t) 24%, var(--panel)),
                                 color-mix(in srgb, var(--t) 34%, var(--panel)));
   border: 1px solid color-mix(in srgb, var(--t) 60%, var(--panel)); }
 .mrow .nm.typed { border-radius: 3px; padding: 0 5px; }
 .mrow.known .nm { font-weight: 600; }
+.mrow[data-move]:not([data-move=""]) { cursor: pointer; }
+.mrow[data-move]:not([data-move=""]):hover { background: var(--sunken); }
 button.linkish { background: none; border: 0; padding: 0; color: var(--dim); cursor: pointer;
-  font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); }
-/* The editor: every field of a member is an input, and the lint's findings
-   sit under the member they are about, red for an error, brown for a warning. */
-.member input.ed, .member select.ed { font-size: 15px; }
-.member input.sp { width: 11em; font-weight: 600; }
-.member input.sm { width: 4.4em; }
-.member .edrow { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
-  font-size: 15px; color: var(--dim); margin: 6px 0 4px; }
-.member .moves input { width: 100%; }
+  font-size: 15px; text-decoration: underline; text-decoration-color: var(--faint); text-align: left; }
 .finding { margin: 2px 0; font-size: 15px; }
 .finding.error { color: var(--error); }
 .finding.warn { color: var(--warn); }
-.savebar { display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
-  position: sticky; top: 0; background: var(--panel); padding: 2px 0 8px; }
-#trainright .flags label { display: block; font-size: 15px; }
+/* The cards under the sheet. */
+.trbottom { display: grid; grid-template-columns: 300px minmax(0, 1fr) 300px; gap: 14px;
+  align-items: start; }
 /* The score is the one number worth acting on here, so it is gold. */
 .scorenum { font: 600 24px/1 var(--mono); color: var(--act); margin-right: 4px; }
-#trainright table.grid { margin: 4px 0 8px; font-size: 15px; }
+.scorenum.big { font-size: 40px; }
+.scorebig { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+#trainmid table.grid { margin: 4px 0 8px; font-size: 15px; }
 .fullscore { border-top: 1px solid var(--rule); margin-top: 8px; padding-top: 6px; }
 .fullscore.stale .scorenum { color: var(--faint); }
-#trainright ul.sub { margin: 0 0 6px; padding-left: 18px; }
-.mrow[data-move]:not([data-move=""]) { cursor: pointer; }
-.mrow[data-move]:not([data-move=""]):hover { background: var(--sunken); }
-#trainright h3 { margin: 14px 0 4px; font-size: 16px; }
-#trainright ul.flags { list-style: none; padding: 0; margin: 0; font-size: 15px; }
-#trainright ul.flags li.off { color: var(--faint); }
+#trainmid ul.sub { margin: 0 0 6px; padding-left: 18px; }
+.threat { display: grid; grid-template-columns: 130px 1fr 1fr; column-gap: 12px; row-gap: 6px;
+  align-items: center; }
+.threat .barline { display: flex; align-items: center; gap: 8px; }
+.threat .track { flex: 1; height: 8px; border-radius: 999px; background: var(--sunken); }
+.threat .track i { display: block; height: 8px; border-radius: 999px; }
+.threat .thr { background: var(--stat-0); }
+.threat .ans { background: var(--stat-4); }
+.threat .num { font-size: 13px; width: 3em; text-align: right; }
+/* The AI flags: a fixed grid, every flag in its own cell (Ian, 2026-09-29). */
+.aihead { font-weight: 700; font-size: 14.5px; }
+.aigrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.aiflag { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px;
+  border-radius: 8px; border: 1px dashed var(--rule); background: transparent; color: var(--faint);
+  font-size: 12.5px; line-height: 1.2; cursor: pointer; text-align: center; }
+.aiflag svg { width: 24px; height: 24px; }
+.aiflag:hover { border-color: var(--place-ink); }
+.aiflag.on { border: 1px solid var(--place-ink); background: var(--place-bg); color: var(--place-ink);
+  font-weight: 700; }
 
 /* The sprites are frame sheets: a front or back is two 80x80 frames side by
    side, a party icon is two 32x32 frames stacked. Both show their first. */
@@ -861,23 +915,15 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
      from res/trainers/data/ and shown as the game builds it (trainers.py). -->
 <main id="trainmain" hidden>
   <section id="trainlist">
-    <button class="unfold" data-fold="l" title="Show the trainer list">Trainers</button>
     <div class="listhead">
-      <div class="fhead"><input id="trainfilter" placeholder="Find a trainer, a class or a species">
-        <button class="fold" data-fold="l" title="Fold the trainer list away to give the team room">Hide</button></div>
-      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">Score</button>
+      <input id="trainfilter" placeholder="Find a trainer, a class or a species">
+      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">By score</button>
         <button data-k="order">Play order</button>
         <select id="trainsplit"><option value="">Every split</option></select></div>
     </div>
     <div id="trainrows"></div>
   </section>
   <section id="trainmid"><p class="sub">Choose a trainer.</p></section>
-  <section id="trainright">
-    <button class="unfold" data-fold="r" title="Show the save bar, the score and the move lists">Save, score and moves</button>
-    <div id="trhead" hidden></div>
-    <div id="trmoves"></div>
-    <div id="trpane"></div>
-  </section>
   <datalist id="dl-species"></datalist><datalist id="dl-moves"></datalist><datalist id="dl-items"></datalist>
 </main>
 
@@ -1747,11 +1793,8 @@ let TRAINERS = null, TRSEL = null, TRDETAIL = null, TRMEMBER = null, TRLISTS = n
 // 2026-09-27), "order" is play order. A trainer with no stored score (a
 // rematch, a dummy, a facility trainer) follows the scored ones in play order.
 let TRSORT = "score";
-// The right panel shows one pane: a member's move lists, or the trainer's
-// score and settings. TRFOLD is which side panels are folded, kept in this
-// browser only, like the theme.
-let TRPANE = "trainer", TRFOLD = "";
-try { TRFOLD = localStorage.getItem("oxidex-trfold") || ""; } catch (e) { /* private window */ }
+// Whether a member's move lists show under the sheet ("moves") or not.
+let TRPANE = "trainer";
 // A move constant's type, for its colour.
 let TRTYPE = new Map();
 const moveStyle = c => {
@@ -1806,13 +1849,6 @@ async function loadTrainers() {
     $("#dl-" + kind).innerHTML = pairs.map(([, n]) => `<option value="${esc(n)}">`).join("");
   }
   TRTYPE = new Map(TRAINERS.choices.moves.map(([c, , t]) => [c, t]));
-}
-
-// Folds the side panels TRFOLD names ("l", "r" or both).
-function layoutTrainers() {
-  const m = $("#trainmain");
-  m.classList.toggle("foldl", TRFOLD.includes("l"));
-  m.classList.toggle("foldr", TRFOLD.includes("r"));
 }
 
 // Play order is by split, then by the team's highest level.
@@ -1987,14 +2023,14 @@ function onSide(k, fields) {
 const sideNow = () => TRPAIR ? TRPAIR.active : null;
 // The team members of the trainer being worked on: in a pair, its column only.
 const memberEls = () => document.querySelectorAll(TRPAIR
-  ? `#trainmid .side[data-side="${TRPAIR.active}"] .member` : "#trainmid .member");
+  ? `#trainmid .sheet[data-side="${TRPAIR.active}"] .col[data-i]` : "#trainmid .sheet .col[data-i]");
 // An event inside a pair's column makes that side the active one; the
 // columns' highlight and the right panel follow. True when the side changed.
 function sideOf(ev) {
   const col = TRPAIR && ev.target.closest("[data-side]");
   if (!col || +col.dataset.side === TRPAIR.active) return false;
   useSide(+col.dataset.side);
-  document.querySelectorAll("#trainmid .side").forEach(el =>
+  document.querySelectorAll("#trainmid .sheet[data-side]").forEach(el =>
     el.classList.toggle("on", +el.dataset.side === TRPAIR.active));
   drawMoveLists();
   drawTrainerRight();
@@ -2028,18 +2064,21 @@ async function scoreTrainer() {
   drawTrainerRight();
 }
 
-// The score panel for one trainer, or for a pair as one fight: `e` is the
+// The score card for one trainer, or for a pair as one fight: `e` is the
 // estimate, `scored` the last full score ({result, team}), and `team` what
-// is being edited now, which says whether that full score is stale.
+// is being edited now, which says whether that full score is stale. The
+// stored score is the list's, from the last rescore.
 function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
   const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
     : TRFINDINGS.some(f => f.severity === "error");
-  if (!e) return `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
-  if (e.error) return `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
+  const head = `<h2>Score${TRPAIR ? ", the pair as one fight" : ""}</h2>`;
+  if (!e) return head + `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
+  if (e.error) return head + `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
   const pc = v => Math.round(v * 100) + "%";
   const fit = e.fit || {};
-  const mons = (e.mons || []).map(m => `<tr><td>${esc(m.species)}</td><td class="num">${m.level}</td>
-      <td class="num">${pc(m.threat)}</td><td class="num">${pc(m.answers)}</td></tr>`).join("");
+  const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
+    : TRAINERS.rows.find(r => r.stem === TRSEL));
+  const stored = row && row.score ? row.score.scale.toFixed(1) : null;
   let full = "";
   if (scored) {
     const s = scored.result, stale = scored.team !== team;
@@ -2056,17 +2095,16 @@ function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TRED
       ${refs ? `<table class="grid"><thead><tr><th>Same seat in</th><th class="num">Scale</th></tr></thead>
         <tbody>${refs}</tbody></table>` : ""}</div>`;
   }
-  return `<p><b class="scorenum">${e.scale}</b> on the fight scale (${esc(e.band)}), an estimate</p>
+  return `${head}<div class="scorebig"><b class="scorenum big">${e.scale}</b>
+      <span class="sub">on the fight scale (${esc(e.band)}), an estimate</span></div>
+    <p class="sub">Safe switch-ins ${pc(e.safe)}, threat ${pc(e.threat)}, answers ${pc(e.answers)}.${
+      stored ? ` Stored score ${stored}.` : ""}</p>
     <p class="sub">${esc(e.split)} split, cap ${e.cap}${e.weather ? ", " + esc(e.weather) : ""}${
-      e.trick_room ? ", Trick Room" : ""}. Against the full score it is ${fit.story_mean_error} off
-      on average over the ${fit.story_n} story fights, ${fit.story_max_error} at worst.</p>
-    <p class="sub">Safe switch-ins ${pc(e.safe)}, threat ${pc(e.threat)}, answers ${pc(e.answers)}.</p>
-    ${mons ? `<table class="grid"><thead><tr><th>Pokemon</th><th class="num">Lv</th>
-      <th class="num" title="Share of the player's side it knocks out in two hits, moving first">Threat</th>
-      <th class="num" title="Share of the player's side that does that to it">Answers</th></tr></thead>
-      <tbody>${mons}</tbody></table>` : ""}
-    <p><button id="trscore"${TRSCORING ? " disabled" : ""}>${TRSCORING ? "Scoring" : "Score it"}</button>
-      <span class="sub">the balance track's full scorer, 1 to 20 seconds</span></p>
+      e.trick_room ? ", Trick Room" : ""}. Against the full score the estimate is ${fit.story_mean_error}
+      off on average over the ${fit.story_n} story fights, ${fit.story_max_error} at worst.</p>
+    <p><button id="trscore"${TRSCORING ? " disabled" : ""}>${TRSCORING ? "Scoring"
+      : "Score it with the full scorer"}</button></p>
+    <p class="sub">The balance track's full scorer, 1 to 20 seconds.</p>
     ${full}`;
 }
 
@@ -2184,7 +2222,9 @@ async function saveTrainer() {
   } catch (e) { toast(e.message, true); }
 }
 
-// The three move lists for one team member, at its level (learnsets.py).
+// The three move lists for one team member, at its level (learnsets.py), in
+// a card under the team sheet while one of its moves is being edited (the
+// redesign, 2026-09-29; the lists stay three, never merged, Ian 2026-09-27).
 async function showMoveLists(i, quiet) {
   const f = TREDIT.party[i];
   const q = new URLSearchParams({ species: f.species, form: f.form || 0, level: f.level });
@@ -2193,29 +2233,20 @@ async function showMoveLists(i, quiet) {
   } catch (e) { return toast(e.message, true); }
   TRMEMBER = i;
   TRPANE = "moves";
-  // Asking for the lists unfolds the panel they are in; clicking into a move
-  // box (quiet) leaves a fold alone.
-  if (!quiet && TRFOLD.includes("r")) foldTrainers("r");
-  drawTrainerRight();
   drawMoveLists();
-  memberEls().forEach((el, k) => el.classList.toggle("on", k === i));
-  if (!quiet) $("#trainright").scrollTop = 0;
-}
-
-function foldTrainers(side) {
-  TRFOLD = TRFOLD.includes(side) ? TRFOLD.replace(side, "") : TRFOLD + side;
-  try { localStorage.setItem("oxidex-trfold", TRFOLD); } catch (e) { /* private window */ }
-  layoutTrainers();
+  memberEls().forEach(el => el.classList.toggle("on", +el.dataset.i === i));
+  if (!quiet && $("#trmoves")) $("#trmoves").scrollIntoView({ block: "nearest" });
 }
 
 function drawMoveLists() {
   const box = $("#trmoves");
-  box.hidden = TRPANE !== "moves";
-  if (!TRLISTS || TRMEMBER === null || !TREDIT || !TREDIT.party[TRMEMBER]) {
-    box.innerHTML = `<p class="sub">Click into a Pokemon's move box, or its Move lists, to see
-      what it can learn here while you edit its moves.</p>`;
+  if (!box) return;
+  if (TRPANE !== "moves" || !TRLISTS || TRMEMBER === null || !TREDIT || !TREDIT.party[TRMEMBER]) {
+    box.hidden = true;
+    box.innerHTML = "";
     return;
   }
+  box.hidden = false;
   const f = TREDIT.party[TRMEMBER], L = TRLISTS;
   const known = new Set(f.moves || []);
   const pickable = Array.isArray(f.moves);
@@ -2227,7 +2258,8 @@ function drawMoveLists() {
   const col = (title, sub, list, none) => `<div class="mcol"><h3>${esc(title)}</h3>
       <p class="sub">${esc(sub || "")}</p>${list.length ? list.map(row).join("")
         : `<p class="sub">${esc(none)}</p>`}</div>`;
-  box.innerHTML = `<h3>Moves for ${esc(nameOf("species", f.species))} at level ${L.level}</h3>
+  box.innerHTML = `<div class="cardhead"><h2>Moves for ${esc(nameOf("species", f.species))} at level ${L.level}</h2>
+      <button class="linkish" data-closelists>Close</button></div>
     <p class="sub">Three lists, kept apart. Bold is a move it knows now; a greyed move is one
       Oxide does not have.${pickable ? " Click a move to put it in the move box last chosen." : ""}</p>
     <div class="mcols">
@@ -2252,67 +2284,126 @@ function setMove(i, slot, c) {
   f.moves = out;
 }
 
-const findingsFor = i => TRFINDINGS.filter(f => f.member === i).map(f =>
-  `<p class="finding ${f.severity}">${esc(f.message)}</p>`).join("");
+// The lint's findings for the team being drawn, each naming its Pokemon.
+function findingsList() {
+  const all = TRFINDINGS.map(x => {
+    const f = x.member !== null && x.member !== undefined && (TREDIT.party || [])[x.member];
+    return `<p class="finding ${x.severity}">${f ? esc(nameOf("species", f.species)) + ": " : ""}${esc(x.message)}</p>`;
+  }).join("");
+  return all ? `<div class="findings">${all}</div>` : "";
+}
 
-function memberEditor(f, i) {
+// The team as a sheet, one column per Pokemon (the redesign's Trainers
+// board, 2026-09-29): its sprite, then its level and species, types, nature
+// and ability, item and four moves, every cell edited in place. A move
+// shares its type's tint, and one of its user's own types is bold. A
+// Pokemon's form, IV scale, gender, move lists and removal sit in its menu,
+// off the sheet. SHEETSIDE names the pair side being drawn, for the menus.
+let SHEETSIDE = null;
+function sheetColumn(f, i) {
   const m = (TRDETAIL.members || [])[i];
   const b = m && m.file.species === f.species ? m.built : null;
+  const types = b ? m.types : [];
   const hasMoves = Array.isArray(f.moves), hasItem = typeof f.item === "string";
   const id = k => `tr-${i}-${k}`;
-  const over = TRDETAIL.cap && f.level > TRDETAIL.cap
-    ? `<span class="sub">${f.level - TRDETAIL.cap} over the cap</span>` : "";
+  const over = TRDETAIL.cap && f.level > TRDETAIL.cap;
   const ab = (m && m.file.species === f.species && m.abilities) || {};
-  const abName = a => a ? tidy(a) : "none";
-  const abilities = [[0, `either slot (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`],
-    [1, `slot 1: ${abName(ab["1"])}`], [2, `slot 2: ${abName(ab["2"])}`],
-    [3, `hidden: ${abName(ab.hidden)}`]];
-  const sel = (k, opts, val) => `<select class="ed" id="${id(k)}" data-i="${i}" data-k="${k}">${
-    opts.map(([v, l]) => `<option value="${esc(v)}"${String(v) === String(val) ? " selected" : ""}>${
-      esc(l)}</option>`).join("")}</select>`;
-  const natures = [["", "rolled" + (b && !f.nature ? ` (${b.nature})` : "")]]
-    .concat(TRAINERS.choices.natures);
+  const abName = a => a ? titled(a) : "none";
+  const abilities = [[0, b && !f.ability ? b.ability : `either (${abName(ab["1"])} or ${abName(ab["2"] || ab["1"])})`],
+    [1, abName(ab["1"])], [2, abName(ab["2"])], [3, `${abName(ab.hidden)} (hidden)`]];
+  const sel = (k, opts, val, label, rolled) => `<select class="ed${rolled ? " rolled" : ""}" id="${id(k)}"
+      data-i="${i}" data-k="${k}" aria-label="${esc(label)}" title="${esc(label)}${rolled
+      ? ", rolled by the game; choose one to name it" : ""}">${opts.map(([v, l]) => `<option value="${
+      esc(v)}"${String(v) === String(val) ? " selected" : ""}>${esc(l)}</option>`).join("")}</select>`;
+  const natures = [["", b && !f.nature ? b.nature : "rolled"]].concat(TRAINERS.choices.natures);
   const num = (k, lo, hi) => `<input type="number" class="ed num sm" id="${id(k)}" data-i="${i}"
       data-k="${k}" min="${lo}" max="${hi}" value="${f[k] || 0}">`;
-  const moves = hasMoves ? [0, 1, 2, 3].map(j => {
-      const c = (f.moves || [])[j], typed = moveStyle(c);
-      return `<input class="ed mv${typed ? " typed" : ""}" id="${id("mv" + j)}"${typed}
-      data-i="${i}" data-k="moves" data-slot="${j}" list="dl-moves" placeholder="no move"
-      value="${esc(nameOf("moves", c))}">`;
-    }).join("")
-    : `<p class="sub">No moves listed, so the game gives the level-up default${
-        b ? ": " + esc(b.moves.join(", ")) : ""}.</p>`;
-  return `<div class="member${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}">
-    ${icon(f.species, true)}
-    <div>
-      <div class="l1">
-        <input class="ed sp" id="${id("species")}" data-i="${i}" data-k="species" list="dl-species"
-               value="${esc(nameOf("species", f.species))}">
-        <label class="sub">form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
-        <label class="sub">Lv ${num("level", 1, 100)}</label>${over}
-        <span>${b ? m.types.map(t => typeChip(t, "mini")).join("") : ""}</span>
-        <button class="linkish" data-remove="${i}" title="Take this Pokemon out of the team">Remove</button>
-      </div>
-      <div class="edrow">
-        ${hasItem ? `<label>Item <input class="ed" id="${id("item")}" data-i="${i}" data-k="item"
-            list="dl-items" placeholder="none" value="${esc(nameOf("items", f.item))}"></label>` : ""}
-        <label>Ability ${sel("ability", abilities, f.ability || 0)}</label>
-        <label>Nature ${sel("nature", natures, f.nature || "")}</label>
-        <label>IV scale ${num("iv_scale", 0, 255)}</label>
-        <span>${m && b ? "IVs " + m.iv : ""}</span>
-        <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "")}</label>
-      </div>
-      <div class="moves">${moves}</div>
-      <div class="facts">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},
-        ${esc(b.gender)}${b.item ? ", holding " + esc(b.item) : ""}.` : "Rebuilding the team."}</div>
-      ${findingsFor(i)}
-      <button class="linkish" data-lists="${i}">Move lists</button>
+  const errs = TRFINDINGS.some(x => x.member === i && x.severity === "error");
+  const typeCell = t => t
+    ? `<div class="cell t" style="--t: var(--type-${t.toLowerCase()})">${esc(tidy(t))}</div>`
+    : `<div class="cell"></div>`;
+  const who = esc(nameOf("species", f.species));
+  const moveCell = j => {
+    const c = (f.moves || [])[j], t = TRTYPE.get(c), stab = t && types.includes(t);
+    return `<div class="cell mvcell${t ? " t" : ""}"${t ? ` style="--t: var(--type-${t.toLowerCase()})"` : ""}>
+      <input class="ed mv${stab ? " stab" : ""}" id="${id("mv" + j)}" data-i="${i}" data-k="moves"
+        data-slot="${j}" list="dl-moves" placeholder="no move" aria-label="${who}'s move ${j + 1}"
+        value="${esc(nameOf("moves", c))}"></div>`;
+  };
+  const moves = hasMoves ? [0, 1, 2, 3].map(moveCell).join("")
+    : [0, 1, 2, 3].map(j => `<div class="cell deflt" title="The level-up default: this trainer lists no moves">${
+        esc((b && b.moves[j]) || "")}</div>`).join("");
+  const key = `${SHEETSIDE === null ? "s" : SHEETSIDE}-${i}`;
+  return `<div class="col${TRPANE === "moves" && i === TRMEMBER ? " on" : ""}" data-i="${i}">
+    <div class="cell sprcell">
+      <span class="big"><img src="/api/sprite/${folderOf(f.species)}/male_front" alt=""
+        onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('male_front','female_front')}"></span>
+      <details class="colmenu" data-key="${key}">
+        <summary title="Form, IV scale, gender, move lists and more" aria-label="More for ${who}">&middot;&middot;&middot;</summary>
+        <div class="pop">
+          <label>Form ${num("form", 0, (TRAINERS.choices.forms[f.species] || 1) - 1)}</label>
+          <label>IV scale ${num("iv_scale", 0, 255)} <span class="sub">${m && b ? "IVs " + m.iv : ""}</span></label>
+          <label>Gender ${sel("gender", [["", "either"], ["male", "male"], ["female", "female"]], f.gender || "", "Gender")}</label>
+          <p class="sub">${b ? `In battle: ${esc(b.ability)}, ${esc(b.nature)}${f.nature ? " (named)" : ""},
+            ${esc(b.gender)}${b.item ? ", holding " + esc(b.item) : ""}.` : "Rebuilding the team."}</p>
+          <button class="linkish" data-lists="${i}">Move lists</button>
+          <a href="#" data-sp="${f.species}">Open in the Dex</a>
+          <button class="linkish" data-remove="${i}">Take it out of the team</button>
+        </div>
+      </details>
     </div>
+    <div class="cell title${errs ? " bad" : ""}${over ? " over" : ""}"${over
+      ? ` title="${f.level - TRDETAIL.cap} over the cap of ${TRDETAIL.cap}"` : ""}>Lv
+      <input type="number" class="ed num lvl" id="${id("level")}" data-i="${i}" data-k="level" min="1"
+        max="100" aria-label="${who}'s level" value="${f.level || 0}">
+      <input class="ed sp" id="${id("species")}" data-i="${i}" data-k="species" list="dl-species"
+        aria-label="Species" value="${who}"></div>
+    <div class="pair2">${typeCell(types[0])}${typeCell(types[1])}</div>
+    <div class="pair2"><div class="cell">${sel("nature", natures, f.nature || "", "Nature", !f.nature)}</div>
+      <div class="cell">${sel("ability", abilities, f.ability || 0, "Ability", !f.ability)}</div></div>
+    <div class="cell itemcell">${hasItem ? `<input class="ed" id="${id("item")}" data-i="${i}" data-k="item"
+        list="dl-items" placeholder="no item" aria-label="${who}'s item" value="${esc(nameOf("items", f.item))}">`
+      : `<span class="sub">holds nothing</span>`}</div>
+    ${moves}
   </div>`;
 }
 
+function sheetHtml(k = null) {
+  SHEETSIDE = k;
+  const d = TRDETAIL, party = TREDIT.party || [];
+  const cols = party.map(sheetColumn);
+  if (party.length < 6) cols.push(`<div class="col addcol">${party.length
+    ? `<button data-add>Add a Pokemon</button>` : ""}</div>`);
+  while (cols.length < 6) cols.push(`<div class="col blank"></div>`);
+  SHEETSIDE = null;
+  return `<div class="shead">${esc(d.label)}</div>
+    <div class="trcol">${d.sprite ? `<span class="trspr"><img src="/api/trainer-sprite/${esc(d.sprite)}"
+      alt="${esc(d.label)}"></span>` : ""}</div>
+    ${cols.join("")}
+    <div class="sheetlegend"><div class="cell sprcell"></div><div class="cell title">Pokemon</div>
+      <div class="cell">Types</div><div class="cell">Nature, ability</div><div class="cell">Item</div>
+      <div class="cell movesl">Moves</div></div>`;
+}
+
+// A menu left open stays open when the team is redrawn after an edit in it.
+const openMenus = () => [...document.querySelectorAll("#trainmid details.colmenu[open]")]
+  .map(el => el.dataset.key);
+const restoreMenus = keys => keys.forEach(k => {
+  const el = document.querySelector(`#trainmid details.colmenu[data-key="${k}"]`);
+  if (el) el.open = true;
+});
+
+// The parts of the page the single trainer and the pair share, written once
+// so each id is: the save bar's place in the header line, and under the
+// sheet the move lists and the row of cards.
+const TR_SAVEBAR = `<span class="grow"></span><span class="trsavebar" id="trsavebar"></span>`;
+const TR_TAIL = `<p class="sub">Click any cell to edit it in place: a level, a species, a
+  nature, an ability, an item, a move. Bold moves share a type with their user. A Pokemon's form,
+  IV scale and gender, its move lists and its removal sit in its menu, the dots on its sprite.</p>
+  <div id="trmoves" class="card" hidden></div>
+  <div class="trbottom" id="trbottom"></div>`;
 // Runs `fn` with side k's state loaded, then puts the active side back, so
-// both columns of a pair draw with the single editor's own code.
+// both sheets of a pair draw with the single editor's own code.
 function asSide(k, fn) {
   const keep = [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER];
   const s = TRPAIR.sides[k];
@@ -2323,36 +2414,35 @@ function asSide(k, fn) {
   finally { [TREDIT, TRDETAIL, TRFINDINGS, TRESTIMATE, TRDIRTY, TRSCORE, TRMEMBER] = keep; }
 }
 
-// A pair: one header for the fight, then both teams side by side, each in
-// the single editor, with its own findings and estimate. Its element ids
-// carry the side's number, so the two columns never share one.
+// A pair: one header for the fight, then each team's sheet, the one being
+// worked on outlined. Its element ids carry the side's number, so the two
+// sheets never share one.
 function drawPair() {
   stashSide();
-  const info = TRPAIR.info, pe = TRPAIR.estimate, focus = document.activeElement && document.activeElement.id;
+  const info = TRPAIR.info, focus = document.activeElement && document.activeElement.id;
+  const menus = openMenus();
   const tops = TRPAIR.sides.map(s => Math.max(0, ...(s.edit.party || []).map(f => f.level || 0)));
-  const cols = TRPAIR.sides.map((s, k) => asSide(k, () => {
-    const party = TREDIT.party || [], e = TRESTIMATE;
-    const html = `<div class="side${k === TRPAIR.active ? " on" : ""}" data-side="${k}">
-      <h3>${esc(TRDETAIL.label)}</h3>
-      <p class="sub"><code>${esc(s.stem)}.json</code>${e && !e.error ? `, its own estimate
-        <b class="num">${e.scale}</b>` : ""}${TRDIRTY ? ", unsaved" : ""}</p>
-      ${findingsFor(null)}
-      ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
-      <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p></div>`;
+  const sheets = TRPAIR.sides.map((s, k) => asSide(k, () => {
+    const e = TRESTIMATE;
+    const html = `<div class="sidehead"><h2>${esc(TRDETAIL.label)}</h2>
+        <span class="sub"><code>${esc(s.stem)}.json</code>${e && !e.error ? `, its own estimate
+          <b class="num">${e.scale}</b>` : ""}${TRDIRTY ? ", unsaved" : ""}</span></div>
+      ${findingsList()}
+      <div class="sheet${k === TRPAIR.active ? " on" : ""}" data-side="${k}">${sheetHtml(k)}</div>`;
     return html.replace(/id="tr-/g, `id="tr${k}-`);
   }));
-  $("#trainmid").innerHTML = `<h2 style="margin:0">${esc(info.label)}
-      <span class="tag">double</span></h2>
-    <p class="sub">${splitTag(info.split, " split")} ${info.cap
-      ? `Level cap ${info.cap}; the teams' highest levels are ${tops.join(" and ")}.`
-      : "Not placed in a split, so it has no level cap."}
-      One battle against both: ${esc(pairHow(info))}${info.maps.length
-        ? ", " + esc(info.maps.map(mapName).join(", ")) : ""}.</p>
-    ${pe && !pe.error ? `<p><b class="scorenum">${pe.scale}</b> the pair as one fight, an estimate
-      (${esc(pe.band)})</p>` : pe && pe.error ? `<p class="sub">The pair is not scored: ${esc(pe.error)}.</p>` : ""}
-    <p class="sub">Each team's own estimate is beside its name. Save writes both teams, or neither
-      if either has an error.</p>
-    <div class="pairsides">${cols.join("")}</div>`;
+  $("#trainmid").innerHTML = `
+    <div class="trtop"><h1>${esc(info.label)}</h1><span class="tag">double</span>
+      <span class="chip plain">${info.split ? esc(info.split) + " split" : "No split"}${
+        info.cap ? ", cap " + info.cap : ""}</span>
+      ${TR_SAVEBAR}</div>
+    <p class="sub">${info.cap ? `The teams' highest levels are ${tops.join(" and ")}. `
+      : "Not placed in a split, so it has no level cap. "}One battle against both: ${esc(pairHow(info))}${
+      info.maps.length ? ", " + esc(info.maps.map(mapName).join(", ")) : ""}. Save writes both teams,
+      or neither if either has an error. Click into a team to work on it.</p>
+    ${sheets.join("")}
+    ${TR_TAIL}`;
+  restoreMenus(menus);
   drawMoveLists();
   drawTrainerRight();
   if (focus && /^tr\d-/.test(focus) && document.getElementById(focus))
@@ -2364,66 +2454,121 @@ function drawTrainer() {
   const d = TRDETAIL, party = TREDIT.party || [];
   const top = Math.max(0, ...party.map(f => f.level || 0));
   const focus = document.activeElement && document.activeElement.id;
-  $("#trainmid").innerHTML = `<h2 style="margin:0">${esc(d.label)}</h2>
-    <p class="sub">${splitTag(d.split, " split")} ${d.cap
-      ? `Level cap ${d.cap}; the team's highest level is ${top}.`
-      : "Not placed in a split, so it has no level cap."} <code>${esc(d.stem)}.json</code></p>
-    ${findingsFor(null)}
-    ${party.map(memberEditor).join("") || `<p class="sub">No party.</p>`}
-    <p>${party.length < 6 ? `<button data-add>Add a Pokemon</button>` : ""}</p>`;
+  const menus = openMenus();
+  $("#trainmid").innerHTML = `
+    <div class="trtop"><h1>${esc(d.label)}</h1>
+      <span class="chip plain">${d.split ? esc(d.split) + " split" : "No split"}${d.cap ? ", cap " + d.cap : ""}</span>
+      <code>${esc(d.stem)}.json</code>
+      ${TR_SAVEBAR}</div>
+    <p class="sub">${d.cap ? `The team's highest level is ${top}.`
+      : "Not placed in a split, so it has no level cap."}</p>
+    ${findingsList()}
+    <div class="sheet">${sheetHtml()}</div>
+    ${TR_TAIL}`;
+  restoreMenus(menus);
   drawMoveLists();
   drawTrainerRight();
   if (focus && focus.startsWith("tr-") && document.getElementById(focus))
     document.getElementById(focus).focus();
 }
 
+// The AI flags as a fixed grid (Ian, 2026-09-29): every flag a trainer can
+// use has its own cell in its own place, lit when the trainer has it, so a
+// team's AI reads at a glance. Double battle is the grid's last cell. A wild
+// battle's flags (roaming, the Safari Zone, the catch tutorial) and unused
+// bits appear only on a trainer that sets them.
+const AI_GRID = ["AI_FLAG_BASIC", "AI_FLAG_EVAL_ATTACK", "AI_FLAG_EXPERT",
+  "AI_FLAG_SETUP_FIRST_TURN", "AI_FLAG_RISKY", "AI_FLAG_PRIORITIZE_EXTREMES",
+  "AI_FLAG_BATON_PASS", "AI_FLAG_TAG_STRATEGY", "AI_FLAG_CHECK_HP",
+  "AI_FLAG_WEATHER", "AI_FLAG_HARRASSMENT", "DOUBLE"];
+// Each icon a few strokes in the text colour, so it follows the cell.
+const AI_ICON = {
+  AI_FLAG_BASIC: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/>',
+  AI_FLAG_EVAL_ATTACK: '<path d="M5 19l4-4M7 17l2 2M14.5 4.5L20 4l-.5 5.5L9 20l-5-5z"/>',
+  AI_FLAG_EXPERT: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5l-5.3 2.9 1.2-6-4.5-4.1 6-.7z"/>',
+  AI_FLAG_SETUP_FIRST_TURN: '<circle cx="12" cy="12" r="9"/><path d="M12 16.5v-9M8.5 11L12 7.5l3.5 3.5"/>',
+  AI_FLAG_RISKY: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h.01M15 15h.01M15 9h.01M9 15h.01M12 12h.01" stroke-width="3"/>',
+  AI_FLAG_PRIORITIZE_EXTREMES: '<path d="M4 6v12M20 6v12M7 12h10M10 9l-3 3 3 3M14 9l3 3-3 3"/>',
+  AI_FLAG_BATON_PASS: '<path d="M4 8h13M14 5l3 3-3 3M20 16H7M10 13l-3 3 3 3"/>',
+  AI_FLAG_TAG_STRATEGY: '<circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M11 20c0-3 2.2-5 5-5s5 2 5 5"/>',
+  AI_FLAG_CHECK_HP: '<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+  AI_FLAG_WEATHER: '<path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 11.5 3.3 3.3 0 0 0 7 18z"/>',
+  AI_FLAG_HARRASSMENT: '<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>',
+  DOUBLE: '<rect x="3" y="8" width="10" height="10" rx="2"/><rect x="11" y="5" width="10" height="10" rx="2"/>',
+};
+const AI_OTHER = '<path d="M5 21V4h11l-2 4 2 4H5"/>';
+const aiLabel = f => f === "DOUBLE" ? "Double battle"
+  : f === "AI_FLAG_HARRASSMENT" ? "Harassment" : f === "AI_FLAG_CHECK_HP" ? "Check HP" : flagLabel(f);
+const aiIcon = f => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${AI_ICON[f] || AI_OTHER}</svg>`;
+
+function battleCard() {
+  const d = TRDETAIL, t = TREDIT, party = t.party || [], on = new Set(t.ai_flags || []);
+  const extra = (d.all_ai_flags || []).filter(f => !AI_GRID.includes(f) && on.has(f));
+  const cell = f => {
+    const lit = f === "DOUBLE" ? !!t.double_battle : on.has(f), label = aiLabel(f);
+    return `<button class="aiflag${lit ? " on" : ""}" data-flag="${f}" aria-pressed="${lit}"
+      title="${esc(label)}, ${lit ? "on" : "off"}: click to turn it ${lit ? "off" : "on"}">${
+      aiIcon(f)}<span>${esc(label)}</span></button>`;
+  };
+  return `<h2>Battle and AI</h2>
+    ${TRPAIR ? `<p class="sub">${esc(d.label)}'s own settings.</p>` : ""}
+    <div class="aihead">AI Flags:</div>
+    <div class="aigrid">${AI_GRID.concat(extra).map(cell).join("")}</div>
+    ${party.length && !Array.isArray(party[0].moves) ? `<p class="sub">This trainer lists no moves,
+      so each Pokemon has its level-up default.</p>
+      <button id="trgivemoves">List moves for every Pokemon</button>` : ""}
+    ${party.length && typeof party[0].item !== "string" ? `<p class="sub">This trainer's Pokemon
+      hold nothing.</p><button id="trgiveitems">Let them hold items</button>` : ""}
+    ${d.items.length ? `<p class="sub">The trainer's own items: ${
+      d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}.</p>` : ""}`;
+}
+
+// Threat and answers per Pokemon, as bars, from the estimate: the share of
+// the player's side each knocks out in two hits moving first, and the share
+// that does that to it.
+function threatCard(e) {
+  const mons = (e && !e.error && e.mons) || [];
+  const pc = v => Math.round(v * 100) + "%";
+  return `<h2>Threat and answers</h2>
+    ${mons.length ? `<div class="threat">
+      <span class="sub">Pokemon</span>
+      <span class="sub" title="Share of the player's side it knocks out in two hits, moving first">Threat</span>
+      <span class="sub" title="Share of the player's side that does that to it">Answers</span>
+      ${mons.map(m => `<span>${esc(m.species)} <span class="sub num">${m.level}</span></span>
+        <span class="barline"><span class="track"><i class="thr" style="width:${pc(m.threat)}"></i></span>
+          <span class="num">${pc(m.threat)}</span></span>
+        <span class="barline"><span class="track"><i class="ans" style="width:${pc(m.answers)}"></i></span>
+          <span class="num">${pc(m.answers)}</span></span>`).join("")}</div>`
+      : `<p class="sub">The bars follow the estimate.</p>`}`;
+}
+
+// The save bar in the header line, and the row of cards under the sheet:
+// the score, threat and answers, and the battle and AI settings. Redrawn on
+// every edit without touching the sheet, so a box being typed in keeps its
+// focus.
 function drawTrainerRight() {
-  const d = TRDETAIL, t = TREDIT, party = t.party || [];
-  // A pair saves as one, so its state counts both sides.
+  if (!TREDIT) return;
   let dirty = TRDIRTY, errors = TRFINDINGS.filter(f => f.severity === "error").length;
   if (TRPAIR) {
     stashSide();
     dirty = TRPAIR.sides.some(s => s.dirty);
     errors = TRPAIR.sides.reduce((n, s) => n + s.findings.filter(f => f.severity === "error").length, 0);
   }
-  const state = !dirty ? "No unsaved changes." : errors
-    ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving.` : "Unsaved changes.";
-  // A pair's headline is the pair as one fight; the team being worked on
-  // shows its own estimate in its column.
+  const state = !dirty ? "No unsaved changes" : errors
+    ? `${errors} error${errors > 1 ? "s" : ""} to fix before saving` : "Unsaved changes";
+  const bar = $("#trsavebar");
+  if (bar) bar.innerHTML = `<span class="sub">${state}</span>
+    <button id="trrevert"${dirty ? "" : " disabled"}>Revert</button>
+    <button id="trsave"${!dirty || errors ? " disabled" : ""}>Save${TRPAIR ? " both" : ""}</button>`;
+  const bottom = $("#trbottom");
+  if (!bottom) return;
   const e = TRPAIR ? TRPAIR.estimate : TRESTIMATE;
-  const est = e && !e.error ? `<b class="scorenum">${e.scale}</b> the estimate (${esc(e.band)})${
-    TRPAIR ? " of the pair as one fight" : ""}` : "";
-  const head = $("#trhead");
-  head.hidden = false;
-  head.innerHTML = `<div class="savebar">
-      <button id="trsave"${!dirty || errors ? " disabled" : ""}>Save${TRPAIR ? " both" : ""}</button>
-      <button id="trrevert"${dirty ? "" : " disabled"}>Revert</button>
-      <span class="sub">${state}</span>
-      <button class="fold" data-fold="r" title="Fold this panel away to give the team room">Hide</button></div>
-    ${TRPAIR ? `<p class="sub">Working on ${esc(d.label)}; click into the other team to switch.</p>` : ""}
-    ${est ? `<p class="est">${est}</p>` : ""}
-    <div class="sortbar"><button data-pane="moves"${TRPANE === "moves" ? ' class="on"' : ""}>Move lists</button>
-      <button data-pane="trainer"${TRPANE === "trainer" ? ' class="on"' : ""}>Score and settings</button></div>`;
-  layoutTrainers();
-  const pane = $("#trpane");
-  pane.hidden = TRPANE !== "trainer";
-  $("#trmoves").hidden = TRPANE !== "moves";
-  pane.innerHTML = `<h3>Score${TRPAIR ? ", the pair as one fight" : ""}</h3>
-    ${TRPAIR ? scoreBlock(TRPAIR.estimate, TRPAIR.score, JSON.stringify(pairEdits())) : scoreBlock()}
-    ${TRPAIR ? `<h3>Settings of ${esc(d.label)}</h3>` : ""}
-    <h3>Battle</h3>
-    <label><input type="checkbox" id="trdouble"${t.double_battle ? " checked" : ""}> Double battle</label>
-    <h3>AI flags</h3>
-    <div class="flags">${d.all_ai_flags.map(f => `<label><input type="checkbox" data-flag="${f}"${
-      (t.ai_flags || []).includes(f) ? " checked" : ""}> ${esc(flagLabel(f))}</label>`).join("")}</div>
-    ${party.length && !Array.isArray(party[0].moves) ? `<h3>Moves</h3>
-      <p class="sub">This trainer lists no moves, so each Pokemon has its level-up default.</p>
-      <button id="trgivemoves">List moves for every Pokemon</button>` : ""}
-    ${party.length && typeof party[0].item !== "string" ? `<h3>Held items</h3>
-      <p class="sub">This trainer's Pokemon hold nothing.</p>
-      <button id="trgiveitems">Let them hold items</button>` : ""}
-    ${d.items.length ? `<h3>The trainer's own items</h3><p>${
-      d.items.map(i => esc(tidy(i.replace("ITEM_", "")))).join(", ")}</p>` : ""}`;
+  bottom.innerHTML = `
+    <section class="card">${TRPAIR ? scoreBlock(TRPAIR.estimate, TRPAIR.score,
+      JSON.stringify(pairEdits())) : scoreBlock()}</section>
+    <section class="card">${threatCard(e)}</section>
+    <section class="card">${battleCard()}</section>`;
 }
 
 async function setView(view) {
@@ -3200,24 +3345,73 @@ document.querySelectorAll("#trainlist .sortbar button").forEach(b => b.onclick =
           .forEach(x => x.classList.toggle("on", x === b));
   if (TRAINERS) { sortTrainers(); drawTrainerList(); }
 });
-// The team editor. A member's icon opens its dex page; "Move lists", or
-// clicking into one of its move boxes, shows its three lists in the right
-// panel, where a move clicked goes into the move box last chosen; Remove and
-// Add change the party.
+// The team editor, all of it in the centre column since the redesign
+// (2026-09-29). A cell's menu opens its Pokemon in the Dex, shows its move
+// lists or takes it out; clicking into a move box shows its three lists
+// under the sheet, where a move clicked goes into the move box last chosen;
+// a flag's cell turns it on or off; Save, Revert and the scorer are in the
+// header line and the cards under the sheet.
 $("#trainmid").addEventListener("click", ev => {
   if (!TREDIT) return;
   sideOf(ev);
+  if (ev.target.closest("[data-closelists]")) {
+    TRPANE = "trainer";
+    memberEls().forEach(el => el.classList.remove("on"));
+    return drawMoveLists();
+  }
   const lists = ev.target.closest("[data-lists]");
   if (lists) return showMoveLists(+lists.dataset.lists);
   const rm = ev.target.closest("[data-remove]");
   if (rm) {
     TREDIT.party.splice(+rm.dataset.remove, 1);
     TRMEMBER = TRLISTS = TRFOCUS = null;
+    TRPANE = "trainer";
     edited();
     return drawTrainer();
   }
   if (ev.target.closest("[data-add]")) {
     TREDIT.party.push(clone(TREDIT.party[TREDIT.party.length - 1]));
+    edited();
+    return drawTrainer();
+  }
+  const flag = ev.target.closest(".aiflag");
+  if (flag) {
+    const f = flag.dataset.flag;
+    if (f === "DOUBLE") TREDIT.double_battle = !TREDIT.double_battle;
+    else {
+      const on = new Set(TREDIT.ai_flags || []);
+      on.has(f) ? on.delete(f) : on.add(f);
+      TREDIT.ai_flags = TRDETAIL.all_ai_flags.filter(x => on.has(x));
+    }
+    return edited();
+  }
+  const pick = ev.target.closest(".mrow[data-move]");
+  if (pick && pick.dataset.move && TRMEMBER !== null) {
+    const f = TREDIT.party[TRMEMBER];
+    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
+      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
+    setMove(TRMEMBER, slot, pick.dataset.move);
+    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
+    edited();
+    return drawTrainer();
+  }
+  const id = ev.target.id;
+  if (id === "trsave") return saveTrainer();
+  if (id === "trscore") return scoreTrainer();
+  if (id === "trrevert") {
+    TRDIRTY = false;
+    if (TRPAIR) {
+      TRPAIR.sides.forEach(s => { s.dirty = false; });
+      return selectPair(TRPAIR.key);
+    }
+    return selectTrainer(TRSEL);
+  }
+  if (id === "trgivemoves" || id === "trgiveitems") {
+    if (id === "trgivemoves") {
+      TREDIT.party.forEach((f, i) => { f.moves = ((TRDETAIL.members || [])[i] || {}).default_move_ids || []; });
+    } else {
+      TREDIT.party.forEach(f => { f.item = "ITEM_NONE"; });
+    }
     edited();
     return drawTrainer();
   }
@@ -3228,17 +3422,11 @@ $("#trainmid").addEventListener("click", ev => {
 });
 $("#trainmid").addEventListener("focusin", ev => {
   if (TREDIT) sideOf(ev);
-  const box = ev.target.closest(".mv");
+  const box = ev.target.closest("input.mv");
   if (!box) return;
   TRFOCUS = { i: +box.dataset.i, slot: +box.dataset.slot };
   if (TRPANE !== "moves" || TRMEMBER !== TRFOCUS.i || !TRLISTS) showMoveLists(TRFOCUS.i, true);
 });
-// Either side panel folds, whether or not a trainer is open.
-$("#trainmain").addEventListener("click", ev => {
-  const f = ev.target.closest("[data-fold]");
-  if (f) foldTrainers(f.dataset.fold);
-});
-layoutTrainers();
 // A field is committed when it changes (Enter, or leaving the box). A name
 // that is not a species, move or item is refused and put back.
 $("#trainmid").addEventListener("change", ev => {
@@ -3270,55 +3458,6 @@ $("#trainmid").addEventListener("change", ev => {
     f[k] = parseInt(v, 10);
   }
   edited();
-});
-$("#trainright").addEventListener("change", ev => {
-  if (!TREDIT) return;
-  if (ev.target.id === "trdouble") TREDIT.double_battle = ev.target.checked;
-  else if (ev.target.dataset.flag) {
-    const on = new Set([...document.querySelectorAll("#trainright [data-flag]")]
-      .filter(x => x.checked).map(x => x.dataset.flag));
-    TREDIT.ai_flags = TRDETAIL.all_ai_flags.filter(f => on.has(f));
-  } else return;
-  edited();
-});
-$("#trainright").addEventListener("click", ev => {
-  if (!TREDIT) return;
-  const tab = ev.target.closest("[data-pane]");
-  if (tab) {
-    TRPANE = tab.dataset.pane;
-    memberEls().forEach((el, k) =>
-      el.classList.toggle("on", TRPANE === "moves" && k === TRMEMBER));
-    drawTrainerRight();
-    return drawMoveLists();
-  }
-  const pick = ev.target.closest(".mrow[data-move]");
-  if (pick && pick.dataset.move && TRMEMBER !== null) {
-    const f = TREDIT.party[TRMEMBER];
-    const slot = TRFOCUS && TRFOCUS.i === TRMEMBER ? TRFOCUS.slot
-      : Math.min((f.moves || []).filter(x => x !== "MOVE_NONE").length, 3);
-    setMove(TRMEMBER, slot, pick.dataset.move);
-    TRFOCUS = { i: TRMEMBER, slot: Math.min(slot + 1, 3) };
-    edited();
-    return drawTrainer();
-  }
-  const id = ev.target.id;
-  if (id === "trsave") return saveTrainer();
-  if (id === "trscore") return scoreTrainer();
-  if (id === "trrevert") {
-    TRDIRTY = false;
-    if (TRPAIR) {
-      TRPAIR.sides.forEach(s => { s.dirty = false; });
-      return selectPair(TRPAIR.key);
-    }
-    return selectTrainer(TRSEL);
-  }
-  if (id === "trgivemoves") {
-    TREDIT.party.forEach((f, i) => { f.moves = ((TRDETAIL.members || [])[i] || {}).default_move_ids || []; });
-  } else if (id === "trgiveitems") {
-    TREDIT.party.forEach(f => { f.item = "ITEM_NONE"; });
-  } else return;
-  edited();
-  drawTrainer();
 });
 // Leaving the page with an unsaved team asks first.
 window.addEventListener("beforeunload", ev => {
