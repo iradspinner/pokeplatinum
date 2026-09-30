@@ -3304,6 +3304,10 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
                 type = TYPE_DARK;
                 break;
 
+            case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+                type = TYPE_FAIRY;
+                break;
+
             default:
                 type = TYPE_NORMAL;
                 break;
@@ -3570,6 +3574,10 @@ static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx,
 
         case HOLD_EFFECT_ARCEUS_DARK:
             result = TYPE_DARK;
+            break;
+
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            result = TYPE_FAIRY;
             break;
 
         default:

@@ -1535,6 +1535,7 @@ Basic_NaturalGiftBerries:
     TableEntry ITEM_CUSTAP_BERRY
     TableEntry ITEM_JABOCA_BERRY
     TableEntry ITEM_ROWAP_BERRY
+    TableEntry ITEM_ROSELI_BERRY // Oxide, element 7: Fairy, as the engine's Natural Gift has it
     TableEntry TABLE_END
 
 Basic_CheckTailwind:
@@ -4042,6 +4043,7 @@ Expert_Thief_EncouragedItemEffects:
     TableEntry HOLD_EFFECT_WEAKEN_SE_DARK
     TableEntry HOLD_EFFECT_WEAKEN_SE_STEEL
     TableEntry HOLD_EFFECT_WEAKEN_NORMAL
+    TableEntry HOLD_EFFECT_WEAKEN_SE_FAIRY // Oxide, element 7: the Roseli Berry
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
