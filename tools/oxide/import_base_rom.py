@@ -1599,7 +1599,7 @@ def main():
         # abilities moved to the hidden slot.
         54: "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
         55: "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
-        248: "Tyranitar: Shed Skin; Sand Stream is hidden (Ian, 2026-09-29)",
+        248: "Tyranitar: Unnerve; Sand Stream is hidden (Ian, 2026-09-29 and 2026-09-30)",
         449: "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
         450: "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
         459: "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",

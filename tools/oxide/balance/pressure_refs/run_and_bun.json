@@ -1261,9 +1261,9 @@
    "errors": [
     "b0.4 Nature's Madness: damage is not a number"
    ],
-   "node_seconds": 14.21,
-   "wall_seconds": 14.53,
-   "fingerprint": "f1256ac91e320647d6f6",
+   "node_seconds": 16.56,
+   "wall_seconds": 16.92,
+   "fingerprint": "0cbe6c00ed2f19743aea",
    "verified": true
   },
   "volkner": {
@@ -1431,9 +1431,9 @@
    "left_out": {},
    "calcs": 53620,
    "errors": [],
-   "node_seconds": 9.65,
-   "wall_seconds": 10.1,
-   "fingerprint": "9896456aa52ed6fe172f",
+   "node_seconds": 13.24,
+   "wall_seconds": 13.55,
+   "fingerprint": "bbe5b7e8dba7bda23487",
    "verified": true
   },
   "aaron": {
@@ -1611,9 +1611,9 @@
    "left_out": {},
    "calcs": 71400,
    "errors": [],
-   "node_seconds": 12.3,
-   "wall_seconds": 12.62,
-   "fingerprint": "11e68d27922a417cc6c8",
+   "node_seconds": 15.85,
+   "wall_seconds": 16.18,
+   "fingerprint": "1208674eea669cd85350",
    "verified": true
   },
   "bertha": {
@@ -1791,9 +1791,9 @@
    "left_out": {},
    "calcs": 62923,
    "errors": [],
-   "node_seconds": 9.84,
-   "wall_seconds": 10.06,
-   "fingerprint": "1a7d7c3f398504a12ad6",
+   "node_seconds": 12.04,
+   "wall_seconds": 12.31,
+   "fingerprint": "a4b0a66eedb1d09e94a3",
    "verified": true
   },
   "flint": {
@@ -1973,9 +1973,9 @@
    "left_out": {},
    "calcs": 70504,
    "errors": [],
-   "node_seconds": 13.05,
-   "wall_seconds": 13.31,
-   "fingerprint": "5e69175358fee602c3db",
+   "node_seconds": 13.89,
+   "wall_seconds": 14.23,
+   "fingerprint": "837084912ead5dd565d7",
    "verified": true
   },
   "lucian": {
@@ -2158,9 +2158,9 @@
    "left_out": {},
    "calcs": 87010,
    "errors": [],
-   "node_seconds": 15.25,
-   "wall_seconds": 15.6,
-   "fingerprint": "632b3a0661efd4392975",
+   "node_seconds": 17.13,
+   "wall_seconds": 17.49,
+   "fingerprint": "1c38f6f8c72592a3d36b",
    "verified": true
   },
   "cynthia": {
@@ -2333,9 +2333,9 @@
    "left_out": {},
    "calcs": 70952,
    "errors": [],
-   "node_seconds": 13.4,
-   "wall_seconds": 13.76,
-   "fingerprint": "d61d34c21db4fe309a2d",
+   "node_seconds": 16.2,
+   "wall_seconds": 16.4,
+   "fingerprint": "07a8f247875c2d993294",
    "verified": true
   }
  }

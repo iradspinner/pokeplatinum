@@ -120,10 +120,25 @@ is listed for Ian.
   downsides, and plays with stalling, PP stalling, pivoting and safe setup.
 - **A loss of any kind ends the run** (2026-09-28), so every fight is a
   first and only attempt; nothing may assume a retry.
-- **The stored score is the guide.** The rebuilt simulator reached 9 of 15
-  held-out pairs against a bar of 13 and matched four of Ian's top ten
-  (2026-09-27), so it is a record, not the score. Ian's own list of the
-  hardest fights is the check any new scoring must keep.
+- **Fight scoring is under review** (2026-09-30). The rebuilt simulator
+  reached 9 of 15 held-out pairs against a bar of 13 (2026-09-27), and the
+  1-to-10 scale fitted since then reads only the player's bulk. Ian's
+  replacement is a perfect-line measure: how easily a line is found that wins
+  with no deaths within his luck budget (every secondary status chance
+  against the player happens, one crit may, never two in a row; the trainer
+  uses Oxide's AI, taking the worst pick where it could choose). A blind
+  session designs and prototypes it in `~/oxide-trials/scoring-review/`;
+  until it reports, the scale is not refitted. Ian's own list of the hardest
+  fights is the check any new scoring must keep. The simulator's critical
+  hits are Platinum's (1/16, doubled), not Oxide's (1/24, 1.5x); fix that
+  when the scorer is rebuilt.
+- **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
+  ROM no trainer keeps default moves, so default movesets carry no weight in
+  any argument about learnsets or level-1 order.
+- **Trainer design sits at about 6/10 of Platinum Kaizo** (2026-09-29):
+  `.claude/rules/standing-rulings.md` has the whole ruling (no one-hit KO
+  moves, rare evasion and trapping, at most one forced trade per boss and
+  none before Fantina, no overlevelled optional trainers, some doubles).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to

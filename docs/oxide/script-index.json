@@ -317,12 +317,12 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_field_moves:409"], "daily": false, "flag": 123, "name": "FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_field_moves:377"], "daily": false, "flag": 123, "name": "FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_field_moves:414"], "name": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16561},
-     {"at": ["scripts_field_moves:412"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16589},
-     {"at": ["scripts_field_moves:419"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16589}
+     {"at": ["scripts_field_moves:91"], "name": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16561},
+     {"at": ["scripts_field_moves:90"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16589},
+     {"at": ["scripts_field_moves:94"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16589}
     ]
    },
    "file": "scripts_field_moves",
@@ -331,17 +331,17 @@
    "missing": [],
    "title": "scripts_field_moves",
    "undecoded": {
-    "commands with no name": 30
+    "commands with no name": 2
    },
    "unreached": [
     {
-     "label": "FieldMoves_Entry5",
-     "line": 109,
+     "label": "FieldMoves_Fog_Unused",
+     "line": 343,
      "number": 6
     },
     {
-     "label": "FieldMoves_Entry7",
-     "line": 133,
+     "label": "FieldMoves_Dummy8",
+     "line": 462,
      "number": 8
     }
    ]
@@ -526,9 +526,11 @@
      {"at": ["scripts_init_new_game:127"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "set", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "vars": [
+     {"at": ["scripts_init_new_game:146", "scripts_init_new_game:147", "scripts_init_new_game:148"], "commit": "f68f85178", "name": "VAR_LEGENDARY_POOL_ACUITY_SPECIES", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16493},
+     {"at": ["scripts_init_new_game:151", "scripts_init_new_game:152", "scripts_init_new_game:153", "scripts_init_new_game:154", "scripts_init_new_game:155", "scripts_init_new_game:156", "scripts_init_new_game:157"], "commit": "f68f85178", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16494},
      {"at": ["scripts_init_new_game:112"], "name": "VAR_CONSECUTIVE_BONUS_ROUND_WINS", "op": "set", "origin": "vanilla", "reached": true, "var": 16448},
-     {"at": ["scripts_init_new_game:139", "scripts_init_new_game:154", "scripts_init_new_game:158"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ACUITY_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16493},
-     {"at": ["scripts_init_new_game:144", "scripts_init_new_game:162", "scripts_init_new_game:166", "scripts_init_new_game:170", "scripts_init_new_game:174", "scripts_init_new_game:178", "scripts_init_new_game:182"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16494},
+     {"at": ["scripts_init_new_game:145", "scripts_init_new_game:161", "scripts_init_new_game:169", "scripts_init_new_game:173"], "commit": "f68f85178", "name": "VAR_LEGENDARY_POOL_ACUITY_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16493},
+     {"at": ["scripts_init_new_game:150", "scripts_init_new_game:165", "scripts_init_new_game:177", "scripts_init_new_game:181", "scripts_init_new_game:185", "scripts_init_new_game:189", "scripts_init_new_game:193", "scripts_init_new_game:197"], "commit": "f68f85178", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16494},
      {"at": ["scripts_init_new_game:24"], "name": "VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16496},
      {"at": ["scripts_init_new_game:53"], "name": "VAR_OREBURGH_GATE_1F_HIKER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16531}
     ]
@@ -2219,8 +2221,8 @@
      {"at": ["scripts_jubilife_city:365"], "commit": "81d02e28e", "daily": false, "flag": 2698, "name": "FLAG_UNK_0x0A8A", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
      {"at": ["scripts_jubilife_city:730"], "daily": false, "flag": 378, "name": "FLAG_HIDE_JUBILIFE_CITY_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:340"], "daily": false, "flag": 385, "name": "FLAG_HIDE_JUBILIFE_CITY_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_jubilife_city:1138"], "daily": false, "flag": 395, "name": "FLAG_HIDE_JUBILIFE_CITY_COLLECTOR", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_jubilife_city:1129"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_jubilife_city:1139"], "daily": false, "flag": 395, "name": "FLAG_HIDE_JUBILIFE_CITY_COLLECTOR", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_jubilife_city:1130"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:919"], "daily": false, "flag": 503, "name": "FLAG_HIDE_POKETCH_CO_1F_POKETCH_CO_PRESIDENT", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_jubilife_city:303"], "daily": false, "flag": 343, "name": "FLAG_SAILED_TO_BATTLE_ZONE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_jubilife_city:319"], "daily": false, "flag": 344, "name": "FLAG_CAUGHT_DARKRAI", "op": "hides", "origin": "vanilla", "reached": true},
@@ -2237,7 +2239,7 @@
      {"at": ["scripts_jubilife_city:502"], "daily": false, "flag": 237, "name": "FLAG_RECEIVED_COUPON_1", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:527"], "daily": false, "flag": 238, "name": "FLAG_RECEIVED_COUPON_2", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:559"], "daily": false, "flag": 239, "name": "FLAG_RECEIVED_COUPON_3", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_jubilife_city:1157"], "daily": false, "flag": 242, "name": "FLAG_RECEIVED_FASHION_CASE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_jubilife_city:1158"], "daily": false, "flag": 242, "name": "FLAG_RECEIVED_FASHION_CASE", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:918"], "daily": false, "flag": 243, "name": "FLAG_RECEIVED_POKETCH", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:921"], "daily": false, "flag": 385, "name": "FLAG_HIDE_JUBILIFE_CITY_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_city:1039"], "daily": false, "flag": 412, "name": "FLAG_HIDE_JUBILIFE_GALACTIC_GRUNTS", "op": "set", "origin": "vanilla", "reached": true},
@@ -2254,24 +2256,24 @@
      {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_jubilife_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_COUPON_2", "value": 461, "when": ""}], "line": 528, "mode": "variable", "origin": "vanilla", "reached": true},
      {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_jubilife_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_COUPON_3", "value": 462, "when": ""}], "line": 560, "mode": "variable", "origin": "vanilla", "reached": true},
      {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_jubilife_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_VS_RECORDER", "value": 465, "when": ""}], "line": 971, "mode": "variable", "origin": "vanilla", "reached": true},
-     {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_jubilife_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_FASHION_CASE", "value": 435, "when": ""}], "line": 1156, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_jubilife_city", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_FASHION_CASE", "value": 435, "when": ""}], "line": 1157, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTagBattle", "file": "scripts_jubilife_city", "how": "StartTagBattle", "line": 1026, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR", "value": 613, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP", "value": 614, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG", "value": 615, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR", "value": 616, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_PIPLUP", "value": 617, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_TURTWIG", "value": 618, "when": "VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1", "value": 414, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2", "value": 415, "when": ""}]}]}
+     {"command": "StartTagBattle", "file": "scripts_jubilife_city", "how": "StartTagBattle", "line": 1026, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR", "value": 613, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP", "value": 614, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG", "value": 615, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR", "value": 616, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_PIPLUP", "value": 617, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_JUBILIFE_CITY_TURTWIG", "value": 618, "when": "VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1", "value": 414, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2", "value": 415, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_jubilife_city:44", "scripts_jubilife_city:46"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_jubilife_city:1187"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_jubilife_city:1188"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
      {"at": ["events_jubilife_city:672"], "name": "VAR_JUBILIFE_LOOKER_PAL_PAD_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16502},
      {"at": ["events_jubilife_city:622", "events_jubilife_city:632", "events_jubilife_city:642", "scripts_jubilife_city:39", "scripts_jubilife_city:41"], "name": "VAR_JUBILIFE_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16503},
      {"at": ["events_jubilife_city:662", "scripts_jubilife_city:217"], "name": "VAR_POKETCH_CAMPAIGN_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16615},
      {"at": ["events_jubilife_city:652"], "name": "VAR_GTS_ACCESS_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16624},
      {"at": ["scripts_jubilife_city:43"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_jubilife_city:1169", "scripts_jubilife_city:1189"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_jubilife_city:1170", "scripts_jubilife_city:1190"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385},
      {"at": ["scripts_jubilife_city:395", "scripts_jubilife_city:398"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_jubilife_city:354", "scripts_jubilife_city:1131"], "name": "VAR_JUBILIFE_LOOKER_PAL_PAD_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16502},
-     {"at": ["scripts_jubilife_city:605", "scripts_jubilife_city:1000", "scripts_jubilife_city:1130"], "name": "VAR_JUBILIFE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16503},
-     {"at": ["scripts_jubilife_city:1132"], "name": "VAR_OREBURGH_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16505},
+     {"at": ["scripts_jubilife_city:354", "scripts_jubilife_city:1132"], "name": "VAR_JUBILIFE_LOOKER_PAL_PAD_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16502},
+     {"at": ["scripts_jubilife_city:605", "scripts_jubilife_city:1000", "scripts_jubilife_city:1131"], "name": "VAR_JUBILIFE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16503},
+     {"at": ["scripts_jubilife_city:1133"], "name": "VAR_OREBURGH_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16505},
      {"at": ["scripts_jubilife_city:245"], "name": "VAR_POKETCH_CAMPAIGN_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16615}
     ]
    },
@@ -2454,14 +2456,14 @@
      {"at": ["scripts_jubilife_tv_2f:29"], "daily": false, "flag": 317, "name": "FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_tv_2f:14"], "daily": false, "flag": 533, "name": "FLAG_HIDE_JUBILIFE_TV_2F_REPORTER", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_jubilife_tv_2f:39"], "daily": false, "flag": 533, "name": "FLAG_HIDE_JUBILIFE_TV_2F_REPORTER", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_jubilife_tv_2f:39"], "daily": false, "flag": 317, "name": "FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_jubilife_tv_2f:40"], "daily": false, "flag": 317, "name": "FLAG_RECEIVED_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_jubilife_tv_2f:18"], "daily": false, "flag": 533, "name": "FLAG_HIDE_JUBILIFE_TV_2F_REPORTER", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
      {"at": ["scripts_jubilife_tv_2f:13"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_jubilife_tv_2f:45"], "name": "VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true, "var": 16650},
+     {"at": ["scripts_jubilife_tv_2f:46"], "name": "VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true, "var": 16650},
      {"at": ["scripts_jubilife_tv_2f:12"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_jubilife_tv_2f:34"], "name": "VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true, "var": 16650}
+     {"at": ["scripts_jubilife_tv_2f:35"], "name": "VAR_JUBILIFE_TV_2F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true, "var": 16650}
     ]
    },
    "events": "events_jubilife_tv_2f",
@@ -2705,32 +2707,32 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_trainers_school:139", "scripts_trainers_school:267", "scripts_trainers_school:268"], "daily": false, "flag": 268, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_HARRISON", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_trainers_school:174", "scripts_trainers_school:175", "scripts_trainers_school:209", "scripts_trainers_school:232"], "daily": false, "flag": 269, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_CHRISTINE", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_trainers_school:138", "scripts_trainers_school:293"], "daily": false, "flag": 274, "name": "FLAG_RECEIVED_TRAINERS_SCHOOL_POTION", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_trainers_school:139", "scripts_trainers_school:269", "scripts_trainers_school:270"], "daily": false, "flag": 268, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_HARRISON", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_trainers_school:175", "scripts_trainers_school:176", "scripts_trainers_school:210", "scripts_trainers_school:233"], "daily": false, "flag": 269, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_CHRISTINE", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_trainers_school:138", "scripts_trainers_school:295"], "daily": false, "flag": 274, "name": "FLAG_RECEIVED_TRAINERS_SCHOOL_POTION", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_trainers_school:77"], "daily": false, "flag": 501, "name": "FLAG_HIDE_JUBILIFE_CITY_CLOWNS_1_AND_2", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_trainers_school:76"], "daily": false, "flag": 502, "name": "FLAG_HIDE_JUBILIFE_CITY_POKETCH_CO_PRESIDENT", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_trainers_school:41"], "daily": false, "flag": 500, "name": "FLAG_HIDE_TRAINERS_SCHOOL_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_trainers_school:146"], "daily": false, "flag": 1273, "name": "FLAG_OBTAINED_TRAINERS_SCHOOL_X_ATTACK", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_trainers_school:75"], "daily": false, "flag": 241, "name": "FLAG_TALKED_TO_TRAINERS_SCHOOL_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_trainers_school:173"], "daily": false, "flag": 268, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_HARRISON", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_trainers_school:266"], "daily": false, "flag": 269, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_CHRISTINE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_trainers_school:191"], "daily": false, "flag": 274, "name": "FLAG_RECEIVED_TRAINERS_SCHOOL_POTION", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_trainers_school:174"], "daily": false, "flag": 268, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_HARRISON", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_trainers_school:268"], "daily": false, "flag": 269, "name": "FLAG_DEFEATED_TRAINERS_SCHOOL_SCHOOL_KID_CHRISTINE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_trainers_school:192"], "daily": false, "flag": 274, "name": "FLAG_RECEIVED_TRAINERS_SCHOOL_POTION", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
      {"count": 1, "daily": false, "event": "object_events", "file": "events_trainers_school", "flag": 1273, "flag_name": "FLAG_OBTAINED_TRAINERS_SCHOOL_X_ATTACK", "item": "ITEM_X_ATTACK", "item_id": 57, "line": 147, "origin": "vanilla", "reached": true}
     ],
     "items": [
      {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_trainers_school", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TOWN_MAP", "value": 442, "when": ""}], "line": 38, "mode": "variable", "origin": "vanilla", "reached": true},
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_trainers_school", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POTION", "value": 17, "when": ""}], "line": 190, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_trainers_school", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POTION", "value": 17, "when": ""}], "line": 191, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 156, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 161, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 166, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 249, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 254, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 259, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]}
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 157, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 162, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 167, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_HARRISON", "value": 342, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 251, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 256, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_trainers_school", "how": "StartTrainerBattle", "line": 261, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_SCHOOL_KID_CHRISTINE", "value": 345, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_trainers_school:74"], "name": "VAR_POKETCH_CAMPAIGN_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16615}
@@ -2822,12 +2824,12 @@
      {"at": ["scripts_canalave_city:367"], "daily": false, "flag": 344, "name": "FLAG_CAUGHT_DARKRAI", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:369"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:334"], "commit": "81d02e28e", "daily": false, "flag": 2688, "name": "FLAG_UNK_0x0A80", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_canalave_city:602"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:601"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:603"], "daily": false, "flag": 373, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:602"], "daily": false, "flag": 404, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:580"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:104"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:386"], "daily": false, "flag": 576, "name": "FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_canalave_city:603"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:604"], "daily": false, "flag": 659, "name": "FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:191"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:221"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:236"], "daily": false, "flag": 436, "name": "FLAG_HIDE_CANALAVE_CITY_SAILOR", "op": "hides", "origin": "vanilla", "reached": true},
@@ -2835,7 +2837,7 @@
      {"at": ["events_canalave_city:296"], "daily": false, "flag": 716, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_LIBRARY", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:251"], "daily": false, "flag": 1148, "name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_canalave_city:311"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_canalave_city:664"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_canalave_city:665"], "daily": false, "flag": 434, "name": "FLAG_HIDE_CANALAVE_CITY_RIVAL_BRIDGE", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:399"], "daily": false, "flag": 435, "name": "FLAG_HIDE_CANALAVE_CITY_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:400"], "daily": false, "flag": 437, "name": "FLAG_HIDE_CANALAVE_CITY_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_canalave_city:37"], "daily": false, "flag": 445, "name": "FLAG_HIDE_CELESTIC_TOWN_CYNTHIA", "op": "set", "origin": "vanilla", "reached": true},
@@ -2848,10 +2850,10 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_canalave_city", "flag": 1148, "flag_name": "FLAG_OBTAINED_CANALAVE_CITY_TM89", "item": "ITEM_TM89", "item_id": 416, "line": 252, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 642, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 645, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 648, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 675, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 643, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_TURTWIG", "value": 477, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 646, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR", "value": 478, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 649, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_CANALAVE_CITY_PIPLUP", "value": 476, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_canalave_city", "how": "StartTrainerBattle", "line": 676, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_213", "value": 213, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
      {"at": ["scripts_canalave_city:43", "scripts_canalave_city:45", "scripts_canalave_city:56", "scripts_canalave_city:58", "scripts_canalave_city:240", "scripts_canalave_city:311", "scripts_canalave_city:372", "scripts_canalave_city:375"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -2860,7 +2862,7 @@
      {"at": ["scripts_canalave_city:254"], "name": "VAR_LUNAR_WING_EVENT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16646},
      {"at": ["scripts_canalave_city:55", "scripts_canalave_city:371", "scripts_canalave_city:374", "scripts_canalave_city:379", "scripts_canalave_city:576"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_canalave_city:404", "scripts_canalave_city:407"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:401", "scripts_canalave_city:600", "scripts_canalave_city:660"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
+     {"at": ["scripts_canalave_city:94", "scripts_canalave_city:401", "scripts_canalave_city:601", "scripts_canalave_city:661"], "name": "VAR_CANALAVE_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16504},
      {"at": ["scripts_canalave_city:95"], "name": "VAR_CANALAVE_LIBRARY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16562},
      {"at": ["scripts_canalave_city:306", "scripts_canalave_city:359"], "name": "VAR_DARKRAI_EVENT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16632}
     ]
@@ -4063,25 +4065,25 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_eterna_city_underground_man_house:444"], "daily": false, "flag": 189, "name": "FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_underground_man_house:285", "scripts_eterna_city_underground_man_house:286", "scripts_eterna_city_underground_man_house:308", "scripts_eterna_city_underground_man_house:309", "scripts_eterna_city_underground_man_house:328", "scripts_eterna_city_underground_man_house:329", "scripts_eterna_city_underground_man_house:348", "scripts_eterna_city_underground_man_house:349"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "check", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_eterna_city_underground_man_house:164", "scripts_eterna_city_underground_man_house:185", "scripts_eterna_city_underground_man_house:206", "scripts_eterna_city_underground_man_house:221", "scripts_eterna_city_underground_man_house:245", "scripts_eterna_city_underground_man_house:283"], "daily": false, "flag": 273, "name": "FLAG_HAS_ACTIVE_UNDERGROUND_MISSION", "op": "check", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:445"], "daily": false, "flag": 189, "name": "FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_underground_man_house:286", "scripts_eterna_city_underground_man_house:287", "scripts_eterna_city_underground_man_house:309", "scripts_eterna_city_underground_man_house:310", "scripts_eterna_city_underground_man_house:329", "scripts_eterna_city_underground_man_house:330", "scripts_eterna_city_underground_man_house:349", "scripts_eterna_city_underground_man_house:350"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "check", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:164", "scripts_eterna_city_underground_man_house:185", "scripts_eterna_city_underground_man_house:206", "scripts_eterna_city_underground_man_house:221", "scripts_eterna_city_underground_man_house:245", "scripts_eterna_city_underground_man_house:284"], "daily": false, "flag": 273, "name": "FLAG_HAS_ACTIVE_UNDERGROUND_MISSION", "op": "check", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:165"], "daily": false, "flag": 2414, "name": "FLAG_ENTERED_UNDERGROUND", "op": "check", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:186"], "daily": false, "flag": 2415, "name": "FLAG_DIGGING_FOR_FOSSILS", "op": "check", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:207"], "daily": false, "flag": 2416, "name": "FLAG_SPHERE_ACQUIRED", "op": "check", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:222"], "daily": false, "flag": 2417, "name": "FLAG_CREATED_SECRET_BASE", "op": "check", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:246"], "daily": false, "flag": 2418, "name": "FLAG_DECORATED_SECRET_BASE", "op": "check", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_eterna_city_underground_man_house:284"], "daily": false, "flag": 2419, "name": "FLAG_DELIVERED_STOLEN_FLAG", "op": "check", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_eterna_city_underground_man_house:249", "scripts_eterna_city_underground_man_house:294", "scripts_eterna_city_underground_man_house:316", "scripts_eterna_city_underground_man_house:336", "scripts_eterna_city_underground_man_house:356"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "clear", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_eterna_city_underground_man_house:167", "scripts_eterna_city_underground_man_house:188", "scripts_eterna_city_underground_man_house:209", "scripts_eterna_city_underground_man_house:224", "scripts_eterna_city_underground_man_house:248", "scripts_eterna_city_underground_man_house:293"], "daily": false, "flag": 273, "name": "FLAG_HAS_ACTIVE_UNDERGROUND_MISSION", "op": "clear", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_eterna_city_underground_man_house:445"], "daily": false, "flag": 189, "name": "FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_eterna_city_underground_man_house:366"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "set", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:285"], "daily": false, "flag": 2419, "name": "FLAG_DELIVERED_STOLEN_FLAG", "op": "check", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:249", "scripts_eterna_city_underground_man_house:295", "scripts_eterna_city_underground_man_house:317", "scripts_eterna_city_underground_man_house:337", "scripts_eterna_city_underground_man_house:357"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "clear", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:167", "scripts_eterna_city_underground_man_house:188", "scripts_eterna_city_underground_man_house:209", "scripts_eterna_city_underground_man_house:224", "scripts_eterna_city_underground_man_house:248", "scripts_eterna_city_underground_man_house:294"], "daily": false, "flag": 273, "name": "FLAG_HAS_ACTIVE_UNDERGROUND_MISSION", "op": "clear", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_eterna_city_underground_man_house:446"], "daily": false, "flag": 189, "name": "FLAG_TALKED_TO_UNDERGROUND_MAN_HOUSE_SCIENTIST_M", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_eterna_city_underground_man_house:367"], "daily": false, "flag": 252, "name": "FLAG_COULD_NOT_RECEIVE_UNDERGROUND_MAN_REWARD", "op": "set", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:59", "scripts_eterna_city_underground_man_house:67", "scripts_eterna_city_underground_man_house:75", "scripts_eterna_city_underground_man_house:83", "scripts_eterna_city_underground_man_house:91", "scripts_eterna_city_underground_man_house:99"], "daily": false, "flag": 273, "name": "FLAG_HAS_ACTIVE_UNDERGROUND_MISSION", "op": "set", "origin": "vanilla", "reached": false},
      {"at": ["scripts_eterna_city_underground_man_house:34"], "daily": false, "flag": 275, "name": "FLAG_ACCEPTED_UNDERGROUND_MAN_AS_MENTOR", "op": "set", "origin": "vanilla", "reached": false}
     ],
     "vars": [
      {"at": ["scripts_eterna_city_underground_man_house:152", "scripts_eterna_city_underground_man_house:153", "scripts_eterna_city_underground_man_house:154", "scripts_eterna_city_underground_man_house:155", "scripts_eterna_city_underground_man_house:156", "scripts_eterna_city_underground_man_house:157", "scripts_eterna_city_underground_man_house:158", "scripts_eterna_city_underground_man_house:159", "scripts_eterna_city_underground_man_house:160"], "name": "VAR_CURRENT_UNDERGROUND_MISSION", "op": "check", "origin": "vanilla", "reached": false, "var": 16566},
-     {"at": ["scripts_eterna_city_underground_man_house:166", "scripts_eterna_city_underground_man_house:187", "scripts_eterna_city_underground_man_house:208", "scripts_eterna_city_underground_man_house:223", "scripts_eterna_city_underground_man_house:247", "scripts_eterna_city_underground_man_house:292", "scripts_eterna_city_underground_man_house:315", "scripts_eterna_city_underground_man_house:335", "scripts_eterna_city_underground_man_house:355"], "name": "VAR_CURRENT_UNDERGROUND_MISSION", "op": "set", "origin": "vanilla", "reached": false, "var": 16566}
+     {"at": ["scripts_eterna_city_underground_man_house:166", "scripts_eterna_city_underground_man_house:187", "scripts_eterna_city_underground_man_house:208", "scripts_eterna_city_underground_man_house:223", "scripts_eterna_city_underground_man_house:247", "scripts_eterna_city_underground_man_house:293", "scripts_eterna_city_underground_man_house:316", "scripts_eterna_city_underground_man_house:336", "scripts_eterna_city_underground_man_house:356"], "name": "VAR_CURRENT_UNDERGROUND_MISSION", "op": "set", "origin": "vanilla", "reached": false, "var": 16566}
     ]
    },
    "events": "events_eterna_city_underground_man_house",
@@ -4705,13 +4707,13 @@
      {"at": ["events_route_209_gate_to_hearthome_city:24"], "daily": false, "flag": 519, "name": "FLAG_HIDE_HEARTHOME_CITY_ROUTE_209_GATE_RIVAL", "op": "hides", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 36, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_PIPLUP", "value": 470, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 41, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_TURTWIG", "value": 471, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 46, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_CHIMCHAR", "value": 472, "when": ""}]}]}
+     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 37, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_PIPLUP", "value": 470, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 42, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_TURTWIG", "value": 471, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_route_209_gate_to_hearthome_city", "how": "StartTrainerBattle", "line": 47, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_209_CHIMCHAR", "value": 472, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["events_route_209_gate_to_hearthome_city:57"], "name": "VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16507},
-     {"at": ["scripts_route_209_gate_to_hearthome_city:66"], "name": "VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16507}
+     {"at": ["scripts_route_209_gate_to_hearthome_city:67"], "name": "VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16507}
     ]
    },
    "events": "events_route_209_gate_to_hearthome_city",
@@ -4912,15 +4914,15 @@
     "flags": [
      {"at": ["scripts_pastoria_city:43", "scripts_pastoria_city:118"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:129"], "daily": false, "flag": 296, "name": "FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:363"], "daily": false, "flag": 342, "name": "FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:382"], "commit": "81d02e28e", "daily": false, "flag": 2686, "name": "FLAG_UNK_0x0A7E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pastoria_city:374"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pastoria_city:380"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pastoria_city:378"], "commit": "81d02e28e", "daily": false, "flag": 2693, "name": "FLAG_UNK_0x0A85", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_pastoria_city:206", "scripts_pastoria_city:231", "scripts_pastoria_city:294"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:249", "scripts_pastoria_city:291"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:514", "scripts_pastoria_city:547"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:590"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:365"], "daily": false, "flag": 342, "name": "FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:384"], "commit": "81d02e28e", "daily": false, "flag": 2686, "name": "FLAG_UNK_0x0A7E", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_pastoria_city:376"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_pastoria_city:382"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_pastoria_city:380"], "commit": "81d02e28e", "daily": false, "flag": 2693, "name": "FLAG_UNK_0x0A85", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_pastoria_city:207", "scripts_pastoria_city:233", "scripts_pastoria_city:296"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:251", "scripts_pastoria_city:293"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:516", "scripts_pastoria_city:549"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:592"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:318", "events_pastoria_city:349"], "daily": false, "flag": 371, "name": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:410"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:425"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
@@ -4928,14 +4930,14 @@
      {"at": ["events_pastoria_city:440"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:123"], "daily": false, "flag": 1088, "name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_pastoria_city:455"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_pastoria_city:579"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:737"], "daily": false, "flag": 259, "name": "FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:142"], "daily": false, "flag": 296, "name": "FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:581"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:739"], "daily": false, "flag": 259, "name": "FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:143"], "daily": false, "flag": 296, "name": "FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:36"], "daily": false, "flag": 382, "name": "FLAG_HIDE_ROUTE_212_BLOCKADE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:741"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:577"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:260"], "daily": false, "flag": 527, "name": "FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pastoria_city:607"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_pastoria_city:743"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:579"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:262"], "daily": false, "flag": 527, "name": "FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pastoria_city:609"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_pastoria_city", "flag": 757, "flag_name": "FLAG_OBTAINED_HIDDEN_PASTORIA_CITY_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 4, "origin": "vanilla", "reached": true}
@@ -4944,16 +4946,16 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 124, "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 488, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "value": 474, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 491, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR", "value": 475, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 494, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_PIPLUP", "value": 473, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 670, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_212", "value": 212, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 490, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "value": 474, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 493, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR", "value": 475, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 496, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_PIPLUP", "value": 473, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 672, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_212", "value": 212, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["events_pastoria_city:566", "events_pastoria_city:576", "events_pastoria_city:586", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:196", "scripts_pastoria_city:198"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
+     {"at": ["events_pastoria_city:566", "events_pastoria_city:576", "events_pastoria_city:586", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:197", "scripts_pastoria_city:199"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
      {"at": ["events_pastoria_city:596"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16583},
-     {"at": ["scripts_pastoria_city:296", "scripts_pastoria_city:578", "scripts_pastoria_city:713"], "name": "VAR_PASTORIA_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16508},
-     {"at": ["scripts_pastoria_city:35", "scripts_pastoria_city:365"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16583}
+     {"at": ["scripts_pastoria_city:298", "scripts_pastoria_city:580", "scripts_pastoria_city:715"], "name": "VAR_PASTORIA_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16508},
+     {"at": ["scripts_pastoria_city:35", "scripts_pastoria_city:367"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16583}
     ]
    },
    "events": "events_pastoria_city",
@@ -5234,7 +5236,7 @@
      {"at": ["scripts_veilstone_city:462"], "commit": "81d02e28e", "daily": false, "flag": 2692, "name": "FLAG_UNK_0x0A84", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
      {"at": ["scripts_veilstone_city:227"], "daily": false, "flag": 401, "name": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:418"], "daily": false, "flag": 424, "name": "FLAG_HIDE_VEILSTONE_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1078"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1079"], "daily": false, "flag": 525, "name": "FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:182", "scripts_veilstone_city:907"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:441"], "daily": false, "flag": 401, "name": "FLAG_HIDE_VEILSTONE_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_veilstone_city:156"], "daily": false, "flag": 424, "name": "FLAG_HIDE_VEILSTONE_COUNTERPART", "op": "hides", "origin": "vanilla", "reached": true},
@@ -5248,8 +5250,8 @@
      {"at": ["scripts_veilstone_city:708"], "daily": false, "flag": 155, "name": "FLAG_AGREED_WITH_LOOKER_TO_ENTER_HIDEOUT", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:112"], "daily": false, "flag": 204, "name": "FLAG_RECEIVED_VEILSTONE_CITY_TM63", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:178"], "daily": false, "flag": 341, "name": "FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1076"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city:1077"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1077"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city:1078"], "daily": false, "flag": 650, "name": "FLAG_HIDE_VEILSTONE_CITY_LOOKER", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_veilstone_city:730"], "commit": "81d02e28e", "daily": false, "flag": 2691, "name": "FLAG_UNK_0x0A83", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "hidden_items": [
@@ -5267,7 +5269,7 @@
     ],
     "trainers": [
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_veilstone_city", "how": "StartTrainerBattle", "line": 807, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_211", "value": 211, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTagBattle", "file": "scripts_veilstone_city", "how": "StartTagBattle", "line": 860, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "value": 621, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "value": 622, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "value": 623, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "value": 624, "when": "VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "value": 625, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP", "value": 626, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "value": 848, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2", "value": 849, "when": ""}]}]}
+     {"command": "StartTagBattle", "file": "scripts_veilstone_city", "how": "StartTagBattle", "line": 860, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG", "value": 621, "when": "VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR", "value": 622, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP", "value": 623, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_TURTWIG", "value": 624, "when": "VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR", "value": 625, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0"}, {"by": ["VAR_RESULT"], "name": "TRAINER_DAWN_VEILSTONE_CITY_PIPLUP", "value": 626, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0"}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1", "value": 848, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2", "value": 849, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_veilstone_city:49", "scripts_veilstone_city:51"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -5278,7 +5280,7 @@
      {"at": ["scripts_veilstone_city:509", "scripts_veilstone_city:512"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
      {"at": ["scripts_veilstone_city:279"], "name": "VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16629},
      {"at": ["scripts_veilstone_city:420"], "name": "VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16666},
-     {"at": ["scripts_veilstone_city:707", "scripts_veilstone_city:1079"], "name": "VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16671}
+     {"at": ["scripts_veilstone_city:707", "scripts_veilstone_city:1080"], "name": "VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16671}
     ]
    },
    "events": "events_veilstone_city",
@@ -5428,11 +5430,11 @@
    "entries": {
     "flags": [
      {"at": ["scripts_veilstone_store_1f:49"], "daily": false, "flag": 297, "name": "FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_store_1f:59"], "daily": false, "flag": 297, "name": "FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_veilstone_store_1f:60"], "daily": false, "flag": 297, "name": "FLAG_RECEIVED_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_veilstone_store_1f:65"], "name": "VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true, "var": 16647},
-     {"at": ["scripts_veilstone_store_1f:54"], "name": "VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true, "var": 16647}
+     {"at": ["scripts_veilstone_store_1f:66"], "name": "VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "check", "origin": "vanilla", "reached": true, "var": 16647},
+     {"at": ["scripts_veilstone_store_1f:55"], "name": "VAR_VEILSTONE_STORE_1F_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true, "var": 16647}
     ]
    },
    "events": "events_veilstone_store_1f",
@@ -6296,7 +6298,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Pokemon League",
    "undecoded": {},
@@ -6315,7 +6317,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_south_pokecenter_1f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League South Pokecenter 1F",
    "undecoded": {},
@@ -6345,7 +6347,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_south_pokecenter_2f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League South Pokecenter 2F",
    "undecoded": {},
@@ -6372,7 +6374,7 @@
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:25"], "daily": false, "flag": 649, "name": "FLAG_HIDE_POKEMON_LEAGUE_LUCIAN_ROOM_EXIT_DOOR", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_pokemon_league_north_pokecenter_1f:84"], "daily": false, "flag": 541, "name": "FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:68"], "daily": false, "flag": 175, "name": "FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_pokemon_league_north_pokecenter_1f:194"], "daily": false, "flag": 541, "name": "FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_pokemon_league_north_pokecenter_1f:195"], "daily": false, "flag": 541, "name": "FLAG_HIDE_POKEMON_LEAGUE_NORTH_POKECENTER_1F_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:18"], "daily": false, "flag": 642, "name": "FLAG_HIDE_POKEMON_LEAGUE_AARON_ROOM_ENTRANCE_DOOR", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:19"], "daily": false, "flag": 643, "name": "FLAG_HIDE_POKEMON_LEAGUE_BERTHA_ROOM_ENTRANCE_DOOR", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:20"], "daily": false, "flag": 644, "name": "FLAG_HIDE_POKEMON_LEAGUE_FLINT_ROOM_ENTRANCE_DOOR", "op": "set", "origin": "vanilla", "reached": true},
@@ -6380,13 +6382,13 @@
      {"at": ["scripts_pokemon_league_north_pokecenter_1f:17"], "daily": false, "flag": 2548, "name": "FLAG_FIRST_ARRIVAL_POKEMON_LEAGUE", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 146, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP", "value": 479, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 150, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG", "value": 480, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 154, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR", "value": 481, "when": ""}]}]}
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 147, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP", "value": 479, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 151, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG", "value": 480, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_pokemon_league_north_pokecenter_1f", "how": "StartTrainerBattle", "line": 155, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR", "value": 481, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["events_pokemon_league_north_pokecenter_1f:144"], "name": "VAR_RIVAL_BEAT_SUNYSHORE_GYM", "op": "check", "origin": "vanilla", "reached": true, "var": 16623},
-     {"at": ["scripts_pokemon_league_north_pokecenter_1f:189"], "name": "VAR_RIVAL_BEAT_SUNYSHORE_GYM", "op": "set", "origin": "vanilla", "reached": true, "var": 16623}
+     {"at": ["scripts_pokemon_league_north_pokecenter_1f:190"], "name": "VAR_RIVAL_BEAT_SUNYSHORE_GYM", "op": "set", "origin": "vanilla", "reached": true, "var": 16623}
     ]
    },
    "events": "events_pokemon_league_north_pokecenter_1f",
@@ -6396,7 +6398,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_north_pokecenter_1f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League North Pokecenter 1F",
    "undecoded": {},
@@ -6418,7 +6420,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_elevator_to_aaron_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Elevator To Aaron Room",
    "undecoded": {},
@@ -6440,7 +6442,7 @@
     ],
     "vars": [
      {"at": ["scripts_init_pokemon_league_aaron_room:8"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
-     {"at": ["scripts_pokemon_league_aaron_room:68"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385}
+     {"at": ["scripts_pokemon_league_aaron_room:74"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": false, "var": 16385}
     ]
    },
    "events": "events_pokemon_league_aaron_room",
@@ -6450,7 +6452,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_aaron_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Aaron Room",
    "undecoded": {},
@@ -6472,7 +6474,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_elevator_to_bertha_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Elevator To Bertha Room",
    "undecoded": {},
@@ -6504,7 +6506,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_bertha_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Bertha Room",
    "undecoded": {},
@@ -6526,7 +6528,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_elevator_to_flint_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Elevator To Flint Room",
    "undecoded": {},
@@ -6559,7 +6561,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_flint_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Flint Room",
    "undecoded": {},
@@ -6581,7 +6583,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_elevator_to_lucian_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Elevator To Lucian Room",
    "undecoded": {},
@@ -6613,7 +6615,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_lucian_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Lucian Room",
    "undecoded": {},
@@ -6635,7 +6637,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_elevator_to_champion_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Elevator To Champion Room",
    "undecoded": {},
@@ -6669,7 +6671,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_champion_room",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Champion Room",
    "undecoded": {},
@@ -6694,7 +6696,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_hallway_to_hall_of_fame",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Hallway To Hall Of Fame",
    "undecoded": {},
@@ -6756,7 +6758,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_hall_of_fame",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League Hall Of Fame",
    "undecoded": {},
@@ -6781,14 +6783,14 @@
      {"at": ["events_fight_area:489"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_fight_area:139"], "daily": false, "flag": 107, "name": "FLAG_RECEIVED_SUPER_ROD", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_fight_area:541"], "daily": false, "flag": 467, "name": "FLAG_HIDE_FIGHT_AREA_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_fight_area:222", "scripts_fight_area:373", "scripts_fight_area:621"], "daily": false, "flag": 660, "name": "FLAG_HIDE_FIGHT_AREA_BLOCKADE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_fight_area:222", "scripts_fight_area:373", "scripts_fight_area:622"], "daily": false, "flag": 660, "name": "FLAG_HIDE_FIGHT_AREA_BLOCKADE", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_fight_area:545"], "commit": "81d02e28e", "daily": false, "flag": 2683, "name": "FLAG_UNK_0x0A7B", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "items": [
      {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_fight_area", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SUPER_ROD", "value": 447, "when": ""}], "line": 138, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTagBattle", "file": "scripts_fight_area", "how": "StartTagBattle", "line": 400, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_FIGHT_AREA_TURTWIG", "value": 924, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG"}, {"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR", "value": 925, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR"}, {"by": [], "name": "TRAINER_RIVAL_FIGHT_AREA_PIPLUP", "value": 923, "when": ""}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_VOLKNER_FIGHT_AREA", "value": 921, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA", "value": 922, "when": ""}]}]}
+     {"command": "StartTagBattle", "file": "scripts_fight_area", "how": "StartTagBattle", "line": 400, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_FIGHT_AREA_TURTWIG", "value": 924, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG"}, {"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR", "value": 925, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY"}, {"by": [], "name": "TRAINER_RIVAL_FIGHT_AREA_PIPLUP", "value": 923, "when": ""}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_LEADER_VOLKNER_FIGHT_AREA", "value": 921, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA", "value": 922, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_fight_area:223", "scripts_init_fight_area:9"], "name": "VAR_FIGHT_AREA_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16513},
@@ -7867,7 +7869,7 @@
      {"at": ["events_spear_pillar:39", "events_spear_pillar:69"], "daily": false, "flag": 457, "name": "FLAG_HIDE_SPEAR_PILLAR_MARS_JUPITER", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_spear_pillar:24"], "daily": false, "flag": 458, "name": "FLAG_HIDE_SPEAR_PILLAR_CYRUS", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_spear_pillar:204"], "daily": false, "flag": 306, "name": "FLAG_SPEAR_PILLAR_IS_DISTORTED", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_spear_pillar:258"], "daily": false, "flag": 453, "name": "FLAG_HIDE_SPEAR_PILLAR_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_spear_pillar:259"], "daily": false, "flag": 453, "name": "FLAG_HIDE_SPEAR_PILLAR_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_spear_pillar:198"], "daily": false, "flag": 456, "name": "FLAG_HIDE_SPEAR_PILLAR_GRUNTS", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_spear_pillar:199"], "daily": false, "flag": 457, "name": "FLAG_HIDE_SPEAR_PILLAR_MARS_JUPITER", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_spear_pillar:200"], "daily": false, "flag": 458, "name": "FLAG_HIDE_SPEAR_PILLAR_CYRUS", "op": "set", "origin": "vanilla", "reached": true},
@@ -7875,8 +7877,8 @@
      {"at": ["scripts_spear_pillar:18"], "daily": false, "flag": 2503, "name": "FLAG_FIRST_ARRIVAL_SPEAR_PILLAR", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
-     {"command": "StartTagBattle", "file": "scripts_spear_pillar", "how": "StartTagBattle", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG", "value": 619, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG"}, {"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR", "value": 620, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR"}, {"by": [], "name": "TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP", "value": 607, "when": ""}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_COMMANDER_MARS_SPEAR_PILLAR", "value": 528, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR", "value": 407, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_spear_pillar", "how": "StartTrainerBattle", "line": 265, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1", "value": 521, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2", "value": 527, "when": ""}]}]}
+     {"command": "StartTagBattle", "file": "scripts_spear_pillar", "how": "StartTagBattle", "line": 72, "origin": "vanilla", "reached": true, "slots": [{"mode": "variable", "role": "partnerTrainer", "values": [{"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG", "value": 619, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG"}, {"by": ["VAR_RESULT"], "name": "TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR", "value": 620, "when": "VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY"}, {"by": [], "name": "TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP", "value": 607, "when": ""}]}, {"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_COMMANDER_MARS_SPEAR_PILLAR", "value": 528, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR", "value": 407, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_spear_pillar", "how": "StartTrainerBattle", "line": 266, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1", "value": 521, "when": ""}]}, {"mode": "number", "role": "enemyTrainer2", "values": [{"name": "TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2", "value": 527, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_spear_pillar:22", "scripts_spear_pillar:24", "scripts_spear_pillar:132", "scripts_spear_pillar:135", "scripts_spear_pillar:138"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -7884,7 +7886,7 @@
      {"at": ["events_spear_pillar:131"], "name": "VAR_HALL_OF_ORIGIN_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16664},
      {"at": ["scripts_spear_pillar:21", "scripts_spear_pillar:131", "scripts_spear_pillar:134", "scripts_spear_pillar:137"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_spear_pillar:145", "scripts_spear_pillar:148"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_spear_pillar:90", "scripts_spear_pillar:154", "scripts_spear_pillar:201", "scripts_spear_pillar:243"], "name": "VAR_SPEAR_PILLAR_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16536},
+     {"at": ["scripts_spear_pillar:90", "scripts_spear_pillar:154", "scripts_spear_pillar:201", "scripts_spear_pillar:244"], "name": "VAR_SPEAR_PILLAR_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16536},
      {"at": ["scripts_spear_pillar:205"], "name": "VAR_SPEAR_PILLAR_DISTORTED_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16579},
      {"at": ["scripts_spear_pillar:142"], "name": "VAR_HALL_OF_ORIGIN_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16664}
     ]
@@ -8096,19 +8098,19 @@
      {"event": "object_events", "file": "events_victory_road_1f", "how": "sees the player", "line": 161, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_ACE_TRAINER_MARIAH", "value": 226, "when": ""}]}]},
      {"event": "object_events", "file": "events_victory_road_1f", "how": "sees the player", "line": 178, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_VETERAN_EDGAR", "value": 228, "when": ""}]}]},
      {"event": "object_events", "file": "events_victory_road_1f", "how": "sees the player", "line": 195, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_DRAGON_TAMER_CLINTON", "value": 231, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 126, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_779", "value": 779, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 131, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_780", "value": 780, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 136, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_781", "value": 781, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 157, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_782", "value": 782, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 162, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_783", "value": 783, "when": ""}]}], "source": "Oxide"},
-     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 167, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_784", "value": 784, "when": ""}]}], "source": "Oxide"}
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 127, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_779", "value": 779, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 132, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_780", "value": 780, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 137, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_781", "value": 781, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 159, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_782", "value": 782, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 164, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_783", "value": 783, "when": ""}]}], "source": "Oxide"},
+     {"command": "StartTrainerBattle", "commit": "3a3472432", "file": "scripts_victory_road_1f", "how": "StartTrainerBattle", "line": 169, "origin": "added", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_784", "value": 784, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
      {"at": ["scripts_victory_road_1f:17", "scripts_victory_road_1f:48"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["events_victory_road_1f:326"], "commit": "3a3472432", "name": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16492},
      {"at": ["scripts_victory_road_1f:16", "scripts_victory_road_1f:47"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_victory_road_1f:49", "scripts_victory_road_1f:53"], "commit": "3a3472432", "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16416},
-     {"at": ["scripts_victory_road_1f:189"], "commit": "3a3472432", "name": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16492}
+     {"at": ["scripts_victory_road_1f:191"], "commit": "3a3472432", "name": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16492}
     ]
    },
    "events": "events_victory_road_1f",
@@ -8118,7 +8120,7 @@
    "location": "Victory Road",
    "missing": [],
    "scripts": "scripts_victory_road_1f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Victory Road 1F",
    "undecoded": {},
@@ -8180,7 +8182,7 @@
    "location": "Victory Road",
    "missing": [],
    "scripts": "scripts_empty",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Victory Road 2F",
    "undecoded": {},
@@ -8217,7 +8219,7 @@
    "location": "Victory Road",
    "missing": [],
    "scripts": "scripts_empty",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Victory Road B1F",
    "undecoded": {},
@@ -8987,7 +8989,7 @@
    "location": "Sendoff Spring",
    "missing": [],
    "scripts": "scripts_sendoff_spring",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Sendoff Spring",
    "undecoded": {
@@ -10279,18 +10281,18 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_verity_cavern:39", "scripts_verity_cavern:45", "scripts_verity_cavern:51"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_verity_cavern:90"], "daily": false, "flag": 662, "name": "FLAG_HIDE_VERITY_CAVERN_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_verity_cavern:44", "scripts_verity_cavern:50", "scripts_verity_cavern:56"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_verity_cavern:95"], "daily": false, "flag": 662, "name": "FLAG_HIDE_VERITY_CAVERN_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_verity_cavern:9"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_verity_cavern:24"], "daily": false, "flag": 662, "name": "FLAG_HIDE_VERITY_CAVERN_PROF_OAK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_verity_cavern:36", "scripts_verity_cavern:42", "scripts_verity_cavern:48", "scripts_verity_cavern:54"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_verity_cavern:19", "scripts_verity_cavern:41", "scripts_verity_cavern:47", "scripts_verity_cavern:53", "scripts_verity_cavern:59"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_verity_cavern:11"], "daily": false, "flag": 2527, "name": "FLAG_FIRST_ARRIVAL_VERITY_CAVERN", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_verity_cavern:60"], "name": "VAR_ROAMING_MESPRIT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16473},
-     {"at": ["scripts_verity_cavern:14", "scripts_verity_cavern:30", "scripts_verity_cavern:33", "scripts_verity_cavern:57", "scripts_verity_cavern:97", "scripts_verity_cavern:103"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16494},
-     {"at": ["scripts_verity_cavern:121"], "name": "VAR_ROAMING_MESPRIT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16473},
-     {"at": ["scripts_verity_cavern:18"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16494}
+     {"at": ["scripts_verity_cavern:65"], "name": "VAR_ROAMING_MESPRIT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16473},
+     {"at": ["scripts_verity_cavern:14", "scripts_verity_cavern:35", "scripts_verity_cavern:38", "scripts_verity_cavern:62", "scripts_verity_cavern:102", "scripts_verity_cavern:108"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16494},
+     {"at": ["scripts_verity_cavern:126"], "name": "VAR_ROAMING_MESPRIT_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16473},
+     {"at": ["scripts_verity_cavern:23"], "commit": "ba09950fa", "name": "VAR_LEGENDARY_POOL_ROAMER_SPECIES", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16494}
     ]
    },
    "events": "events_verity_cavern",
@@ -11249,8 +11251,8 @@
      {"at": ["scripts_route_201:151"], "daily": false, "flag": 144, "name": "FLAG_HAS_POKEDEX", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:243"], "commit": "81d02e28e", "daily": false, "flag": 2714, "name": "FLAG_UNK_0x0A9A", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
      {"at": ["scripts_route_201:480"], "daily": false, "flag": 376, "name": "FLAG_HIDE_ROUTE_201_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_201:672"], "daily": false, "flag": 377, "name": "FLAG_HIDE_ROUTE_201_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_201:704", "scripts_route_201:718"], "daily": false, "flag": 381, "name": "FLAG_HIDE_ROUTE_201_BRIEFCASE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_201:673"], "daily": false, "flag": 377, "name": "FLAG_HIDE_ROUTE_201_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_201:705", "scripts_route_201:719"], "daily": false, "flag": 381, "name": "FLAG_HIDE_ROUTE_201_BRIEFCASE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:234"], "commit": "81d02e28e", "daily": false, "flag": 2714, "name": "FLAG_UNK_0x0A9A", "op": "clear", "origin": "added", "reached": true, "source": "base ROM"},
      {"at": ["events_route_201:39"], "daily": false, "flag": 370, "name": "FLAG_HIDE_ROUTE_201_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_route_201:84"], "daily": false, "flag": 376, "name": "FLAG_HIDE_ROUTE_201_PROF_ROWAN", "op": "hides", "origin": "vanilla", "reached": true},
@@ -11259,12 +11261,12 @@
      {"at": ["events_route_201:130"], "daily": false, "flag": 411, "name": "FLAG_HIDE_ETERNA_FOREST_CHERYL", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_route_201:114"], "daily": false, "flag": 418, "name": "FLAG_HIDE_ROUTE_205_SOUTH_GRUNTS", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:133"], "daily": false, "flag": 108, "name": "FLAG_RECEIVED_ROUTE_201_POTION", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_201:568", "scripts_route_201:803"], "daily": false, "flag": 370, "name": "FLAG_HIDE_ROUTE_201_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_201:568", "scripts_route_201:804"], "daily": false, "flag": 370, "name": "FLAG_HIDE_ROUTE_201_RIVAL", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:186"], "daily": false, "flag": 376, "name": "FLAG_HIDE_ROUTE_201_PROF_ROWAN", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:536"], "daily": false, "flag": 377, "name": "FLAG_HIDE_ROUTE_201_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_201:159"], "daily": false, "flag": 381, "name": "FLAG_HIDE_ROUTE_201_BRIEFCASE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_201:804"], "daily": false, "flag": 405, "name": "FLAG_DUMMY_0x0193", "op": "set", "origin": "vanilla", "reached": false},
-     {"at": ["scripts_route_201:806"], "daily": false, "flag": 406, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL", "op": "set", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_route_201:805"], "daily": false, "flag": 405, "name": "FLAG_DUMMY_0x0193", "op": "set", "origin": "vanilla", "reached": false},
+     {"at": ["scripts_route_201:807"], "daily": false, "flag": 406, "name": "FLAG_HIDE_LAKE_VERITY_LOW_WATER_RIVAL", "op": "set", "origin": "vanilla", "reached": false},
      {"at": ["scripts_route_201:419"], "commit": "81d02e28e", "daily": false, "flag": 2714, "name": "FLAG_UNK_0x0A9A", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "items": [
@@ -11275,9 +11277,9 @@
      {"command": "GivePokemon", "file": "scripts_route_201", "how": "GivePokemon", "item": [], "level": [{"name": "5", "value": 5, "when": ""}], "line": 445, "mode": "variable", "origin": "vanilla", "reached": true, "species": [{"by": [], "name": "set by GetPlayerStarterSpecies", "value": null, "when": ""}]}
     ],
     "trainers": [
-     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 691, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_TURTWIG", "value": 851, "when": ""}]}]},
-     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 694, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_CHIMCHAR", "value": 852, "when": ""}]}]},
-     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 697, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_PIPLUP", "value": 850, "when": ""}]}]}
+     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 692, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_TURTWIG", "value": 851, "when": ""}]}]},
+     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 695, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_CHIMCHAR", "value": 852, "when": ""}]}]},
+     {"command": "StartFirstBattle", "file": "scripts_route_201", "how": "StartFirstBattle", "line": 698, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "trainerID", "values": [{"name": "TRAINER_RIVAL_ROUTE_201_PIPLUP", "value": 850, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["scripts_route_201:30", "scripts_route_201:32"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
@@ -11285,9 +11287,9 @@
      {"at": ["scripts_route_201:29"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_route_201:252", "scripts_route_201:255"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
      {"at": ["scripts_route_201:180"], "commit": "81d02e28e", "name": "VAR_OBJ_GFX_ID_6", "op": "set", "origin": "added", "reached": true, "source": "base ROM", "var": 16422},
-     {"at": ["scripts_route_201:805"], "name": "VAR_VERITY_LAKEFRONT_STATE", "op": "set", "origin": "vanilla", "reached": false, "var": 16514},
-     {"at": ["scripts_route_201:563", "scripts_route_201:767", "scripts_route_201:786", "scripts_route_201:800"], "name": "VAR_FOLLOWER_RIVAL_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16518},
-     {"at": ["scripts_route_201:787"], "name": "VAR_PLAYER_HOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16548}
+     {"at": ["scripts_route_201:806"], "name": "VAR_VERITY_LAKEFRONT_STATE", "op": "set", "origin": "vanilla", "reached": false, "var": 16514},
+     {"at": ["scripts_route_201:563", "scripts_route_201:768", "scripts_route_201:787", "scripts_route_201:801"], "name": "VAR_FOLLOWER_RIVAL_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16518},
+     {"at": ["scripts_route_201:788"], "name": "VAR_PLAYER_HOUSE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16548}
     ]
    },
    "events": "events_route_201",
@@ -11317,7 +11319,7 @@
      {"at": ["scripts_route_202:207"], "daily": false, "flag": 375, "name": "FLAG_HIDE_SANDGEM_TOWN_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_route_202:63"], "daily": false, "flag": 392, "name": "FLAG_HIDE_ROUTE_202_COUNTERPART", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_route_202:138"], "daily": false, "flag": 1014, "name": "FLAG_OBTAINED_ROUTE_202_POTION", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_202:356"], "daily": false, "flag": 277, "name": "FLAG_TALKED_TO_ROUTE_202_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_route_202:357"], "daily": false, "flag": 277, "name": "FLAG_TALKED_TO_ROUTE_202_COUNTERPART", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "hidden_items": [
      {"count": 1, "daily": false, "event": "bg_events", "file": "events_route_202", "flag": 891, "flag_name": "FLAG_OBTAINED_HIDDEN_JUBILIFE_CITY_STARDUST", "item": "ITEM_STARDUST", "item_id": 90, "line": 4, "origin": "vanilla", "reached": true}
@@ -11326,25 +11328,25 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_route_202", "flag": 1014, "flag_name": "FLAG_OBTAINED_ROUTE_202_POTION", "item": "ITEM_POTION", "item_id": 17, "line": 139, "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "CallCommonScript", "count": [{"by": [], "name": "5", "value": 5, "when": ""}], "file": "scripts_route_202", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POKE_BALL", "value": 4, "when": ""}], "line": 388, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "CallCommonScript", "count": [{"by": [], "name": "5", "value": 5, "when": ""}], "file": "scripts_route_202", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POKE_BALL", "value": 4, "when": ""}], "line": 389, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_202", "how": "sees the player", "line": 19, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_YOUNGSTER_TRISTAN", "value": 1, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_202", "how": "sees the player", "line": 34, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_LASS_NATALIE", "value": 3, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_202", "how": "sees the player", "line": 49, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_YOUNGSTER_LOGAN", "value": 2, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 297, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_787", "value": 787, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 300, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_788", "value": 788, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 303, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_789", "value": 789, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 306, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_790", "value": 790, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 309, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_791", "value": 791, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 312, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_792", "value": 792, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 298, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_787", "value": 787, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 301, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_788", "value": 788, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 304, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_789", "value": 789, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 307, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_790", "value": 790, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 310, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_791", "value": 791, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_202", "how": "StartTrainerBattle", "line": 313, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_792", "value": 792, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
      {"at": ["scripts_route_202:20", "scripts_route_202:22"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["events_route_202:159", "scripts_route_202:17"], "name": "VAR_ROUTE_202_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16519},
      {"at": ["scripts_route_202:19"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_route_202:128", "scripts_route_202:131"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_route_202:208", "scripts_route_202:407"], "name": "VAR_ROUTE_202_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16519}
+     {"at": ["scripts_route_202:208", "scripts_route_202:408"], "name": "VAR_ROUTE_202_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16519}
     ]
    },
    "events": "events_route_202",
@@ -11380,13 +11382,13 @@
      {"event": "object_events", "file": "events_route_203", "how": "sees the player", "line": 44, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_LASS_KAITLIN", "value": 323, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_203", "how": "sees the player", "line": 61, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_YOUNGSTER_DALLAS", "value": 355, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_203", "how": "sees the player", "line": 78, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_LASS_MADELINE", "value": 322, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 77, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_PIPLUP", "value": 247, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 81, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_TURTWIG", "value": 248, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 85, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_CHIMCHAR", "value": 249, "when": ""}]}]}
+     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 78, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_PIPLUP", "value": 247, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 82, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_TURTWIG", "value": 248, "when": ""}]}]},
+     {"command": "StartTrainerBattle", "file": "scripts_route_203", "how": "StartTrainerBattle", "line": 86, "origin": "vanilla", "reached": true, "slots": [{"mode": "name", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_ROUTE_203_CHIMCHAR", "value": 249, "when": ""}]}]}
     ],
     "vars": [
      {"at": ["events_route_203:263"], "name": "VAR_ROUTE_203_RIVAL_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16520},
-     {"at": ["scripts_route_203:123"], "name": "VAR_ROUTE_203_RIVAL_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16520}
+     {"at": ["scripts_route_203:124"], "name": "VAR_ROUTE_203_RIVAL_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16520}
     ]
    },
    "events": "events_route_203",
@@ -11699,7 +11701,7 @@
      {"count": 1, "daily": false, "event": "object_events", "file": "events_route_207", "flag": 1335, "flag_name": "FLAG_OBTAINED_ROUTE_207_TIMER_BALL", "item": "ITEM_TIMER_BALL", "item_id": 10, "line": 443, "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_route_207", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_LUCKY_EGG", "value": 231, "when": ""}], "line": 288, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
+     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_route_207", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_LUCKY_EGG", "value": 231, "when": ""}], "line": 289, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "trainers": [
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 51, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_CAMPER_ANTHONY", "value": 34, "when": ""}]}]},
@@ -11708,19 +11710,19 @@
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 96, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_HIKER_JUSTIN", "value": 37, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 111, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_HIKER_KEVIN", "value": 36, "when": ""}]}]},
      {"event": "object_events", "file": "events_route_207", "how": "sees the player", "line": 126, "origin": "vanilla", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_BATTLE_GIRL_HELEN", "value": 38, "when": ""}]}]},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 217, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_799", "value": 799, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 223, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_793", "value": 793, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 229, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_794", "value": 794, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 235, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_802", "value": 802, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 241, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_800", "value": 800, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 247, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_801", "value": 801, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 218, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_799", "value": 799, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 224, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_793", "value": 793, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 230, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_794", "value": 794, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 236, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_802", "value": 802, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 242, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_800", "value": 800, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_route_207", "how": "StartTrainerBattle", "line": 248, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_801", "value": 801, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
      {"at": ["scripts_route_207:20", "scripts_route_207:22"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["events_route_207:508"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16524},
      {"at": ["scripts_route_207:19"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_route_207:115", "scripts_route_207:118"], "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "vanilla", "reached": true, "var": 16416},
-     {"at": ["scripts_route_207:301"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16524}
+     {"at": ["scripts_route_207:302"], "name": "VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16524}
     ]
    },
    "events": "events_route_207",
@@ -14130,41 +14132,41 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:285"], "daily": false, "flag": 272, "name": "FLAG_SHOWN_COMPLETE_LOCAL_DEX", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:404"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:204"], "daily": false, "flag": 2490, "name": "FLAG_FIRST_ARRIVAL_ETERNA_CITY", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:275"], "daily": false, "flag": 2494, "name": "FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:196"], "commit": "81d02e28e", "daily": false, "flag": 2716, "name": "FLAG_UNK_0x0A9C", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:562"], "daily": false, "flag": 375, "name": "FLAG_HIDE_SANDGEM_TOWN_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:166"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:170"], "daily": false, "flag": 409, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:308"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:309"], "daily": false, "flag": 480, "name": "FLAG_HIDE_VALOR_CAVERN_AZELF", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:310"], "daily": false, "flag": 481, "name": "FLAG_HIDE_ACUITY_CAVERN_UXIE", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:386"], "daily": false, "flag": 554, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:286"], "daily": false, "flag": 272, "name": "FLAG_SHOWN_COMPLETE_LOCAL_DEX", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:405"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:205"], "daily": false, "flag": 2490, "name": "FLAG_FIRST_ARRIVAL_ETERNA_CITY", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:276"], "daily": false, "flag": 2494, "name": "FLAG_FIRST_ARRIVAL_SUNYSHORE_CITY", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:197"], "commit": "81d02e28e", "daily": false, "flag": 2716, "name": "FLAG_UNK_0x0A9C", "op": "check", "origin": "added", "reached": true, "source": "base ROM"},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:563"], "daily": false, "flag": 375, "name": "FLAG_HIDE_SANDGEM_TOWN_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:167"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:171"], "daily": false, "flag": 409, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:309"], "daily": false, "flag": 479, "name": "FLAG_HIDE_VERITY_CAVERN_MESPRIT", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:310"], "daily": false, "flag": 480, "name": "FLAG_HIDE_VALOR_CAVERN_AZELF", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:311"], "daily": false, "flag": 481, "name": "FLAG_HIDE_ACUITY_CAVERN_UXIE", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:387"], "daily": false, "flag": 554, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["events_sandgem_town_pokemon_research_lab:58"], "daily": false, "flag": 408, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_sandgem_town_pokemon_research_lab:103"], "daily": false, "flag": 409, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_COUNTERPART", "op": "hides", "origin": "vanilla", "reached": true},
      {"at": ["events_sandgem_town_pokemon_research_lab:118"], "daily": false, "flag": 554, "name": "FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_OAK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:511"], "daily": false, "flag": 144, "name": "FLAG_HAS_POKEDEX", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:306"], "daily": false, "flag": 637, "name": "FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:492"], "daily": false, "flag": 660, "name": "FLAG_HIDE_FIGHT_AREA_BLOCKADE", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:464"], "daily": false, "flag": 2451, "name": "FLAG_ALT_MUSIC_ROWANS_LAB", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:411"], "commit": "81d02e28e", "daily": false, "flag": 2716, "name": "FLAG_UNK_0x0A9C", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:512"], "daily": false, "flag": 144, "name": "FLAG_HAS_POKEDEX", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:307"], "daily": false, "flag": 637, "name": "FLAG_HIDE_VALOR_LAKEFRONT_COLLECTOR", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:493"], "daily": false, "flag": 660, "name": "FLAG_HIDE_FIGHT_AREA_BLOCKADE", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:465"], "daily": false, "flag": 2451, "name": "FLAG_ALT_MUSIC_ROWANS_LAB", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:412"], "commit": "81d02e28e", "daily": false, "flag": 2716, "name": "FLAG_UNK_0x0A9C", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "items": [
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_OAKS_LETTER", "value": 452, "when": ""}], "line": 408, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_MEMBER_CARD", "value": 454, "when": ""}], "line": 409, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_AZURE_FLUTE", "value": 455, "when": ""}], "line": 410, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POKE_RADAR", "value": 431, "when": ""}], "line": 438, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_OAKS_LETTER", "value": 452, "when": ""}], "line": 409, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_MEMBER_CARD", "value": 454, "when": ""}], "line": 410, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "AddItem", "item": [{"name": "ITEM_AZURE_FLUTE", "value": 455, "when": ""}], "line": 411, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "CallCommonScript", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_sandgem_town_pokemon_research_lab", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_POKE_RADAR", "value": 431, "when": ""}], "line": 439, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:209", "scripts_sandgem_town_pokemon_research_lab:289"], "name": "VAR_SANDGEM_TOWN_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16497},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:406"], "name": "VAR_FIGHT_AREA_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16513},
-     {"at": ["scripts_init_sandgem_town_pokemon_research_lab:9", "scripts_init_sandgem_town_pokemon_research_lab:10", "scripts_sandgem_town_pokemon_research_lab:25", "scripts_sandgem_town_pokemon_research_lab:27", "scripts_sandgem_town_pokemon_research_lab:183"], "name": "VAR_SANDGEM_TOWN_LAB_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16550},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:154", "scripts_sandgem_town_pokemon_research_lab:194"], "name": "VAR_EXITED_DISTORTION_WORLD_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16554},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:311", "scripts_sandgem_town_pokemon_research_lab:563"], "name": "VAR_SANDGEM_TOWN_LAB_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16550},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:243"], "name": "VAR_EXITED_DISTORTION_WORLD_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16554},
-     {"at": ["scripts_sandgem_town_pokemon_research_lab:307"], "name": "VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16658}
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:210", "scripts_sandgem_town_pokemon_research_lab:290"], "name": "VAR_SANDGEM_TOWN_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16497},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:407"], "name": "VAR_FIGHT_AREA_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16513},
+     {"at": ["scripts_init_sandgem_town_pokemon_research_lab:9", "scripts_init_sandgem_town_pokemon_research_lab:10", "scripts_sandgem_town_pokemon_research_lab:25", "scripts_sandgem_town_pokemon_research_lab:27", "scripts_sandgem_town_pokemon_research_lab:184"], "name": "VAR_SANDGEM_TOWN_LAB_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16550},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:155", "scripts_sandgem_town_pokemon_research_lab:195"], "name": "VAR_EXITED_DISTORTION_WORLD_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16554},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:312", "scripts_sandgem_town_pokemon_research_lab:564"], "name": "VAR_SANDGEM_TOWN_LAB_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16550},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:244"], "name": "VAR_EXITED_DISTORTION_WORLD_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16554},
+     {"at": ["scripts_sandgem_town_pokemon_research_lab:308"], "name": "VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16658}
     ]
    },
    "events": "events_sandgem_town_pokemon_research_lab",
@@ -14181,17 +14183,17 @@
    "unreached": [
     {
      "label": "SandgemTownPokemonResearchLab_Entry3",
-     "line": 60,
+     "line": 61,
      "number": 4
     },
     {
      "label": "SandgemTownPokemonResearchLab_Entry6",
-     "line": 93,
+     "line": 94,
      "number": 7
     },
     {
      "label": "SandgemTownPokemonResearchLab_Entry12",
-     "line": 136,
+     "line": 137,
      "number": 13
     }
    ]
@@ -14975,19 +14977,19 @@
      {"at": ["scripts_battleground:27"], "daily": false, "flag": 231, "name": "FLAG_BUCK_LEFT_BATTLEGROUND", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_battleground:26"], "daily": false, "flag": 293, "name": "FLAG_TALKED_TO_BATTLEGROUND_BUCK", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_battleground:28"], "daily": false, "flag": 470, "name": "FLAG_HIDE_BATTLEGROUND_BUCK", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_battleground:636"], "commit": "81d02e28e", "daily": true, "flag": 2738, "name": "FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
+     {"at": ["scripts_battleground:638"], "commit": "81d02e28e", "daily": true, "flag": 2738, "name": "FLAG_DAILY_DEFEATED_SURVIVAL_AREA_RIVAL", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "items": [
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_IRON", "value": 47, "when": ""}], "line": 393, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_HP_UP", "value": 45, "when": ""}], "line": 407, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_PROTEIN", "value": 46, "when": ""}], "line": 420, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_CARBOS", "value": 48, "when": ""}], "line": 433, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_CALCIUM", "value": 49, "when": ""}], "line": 446, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_RARE_CANDY", "value": 50, "when": ""}], "line": 494, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_NUGGET", "value": 92, "when": ""}], "line": 508, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_PP_MAX", "value": 53, "when": ""}], "line": 522, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "2", "value": 2, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_MASTER_BALL", "value": 1, "when": ""}], "line": 536, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
-     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_ZINC", "value": 52, "when": ""}], "line": 550, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"}
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_IRON", "value": 47, "when": ""}], "line": 395, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_HP_UP", "value": 45, "when": ""}], "line": 409, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_PROTEIN", "value": 46, "when": ""}], "line": 422, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_CARBOS", "value": 48, "when": ""}], "line": 435, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_CALCIUM", "value": 49, "when": ""}], "line": 448, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_RARE_CANDY", "value": 50, "when": ""}], "line": 496, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_NUGGET", "value": 92, "when": ""}], "line": 510, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_PP_MAX", "value": 53, "when": ""}], "line": 524, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "2", "value": 2, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_MASTER_BALL", "value": 1, "when": ""}], "line": 538, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"},
+     {"command": "AddItem", "commit": "81d02e28e", "count": [{"name": "50", "value": 50, "when": ""}], "file": "scripts_battleground", "how": "AddItem", "item": [{"name": "ITEM_ZINC", "value": 52, "when": ""}], "line": 552, "mode": "name", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "trainers": [
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 223, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_BUCK_BATTLEGROUND", "value": 862, "when": ""}]}], "source": "base ROM"},
@@ -14995,23 +14997,23 @@
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 247, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RILEY_BATTLEGROUND", "value": 861, "when": ""}]}], "source": "base ROM"},
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 259, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MARLEY_BATTLEGROUND", "value": 863, "when": ""}]}], "source": "base ROM"},
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 271, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_MIRA_BATTLEGROUND", "value": 864, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 305, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_TOWER_TYCOON_PALMER_DUMMY", "value": 826, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 317, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_HALL_MATRON_ARGENTA_DUMMY", "value": 902, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 329, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_FACTORY_HEAD_THORTON_DUMMY", "value": 903, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 341, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_CASTLE_VALET_DARACH_DUMMY", "value": 905, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 353, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_ARCADE_STAR_DAHLIA_DUMMY", "value": 904, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 562, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_779", "value": 779, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 568, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_780", "value": 780, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 574, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_781", "value": 781, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 580, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_782", "value": 782, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 586, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_783", "value": 783, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 592, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_784", "value": 784, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 603, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG", "value": 838, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 606, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG", "value": 872, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 609, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR", "value": 839, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 612, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR", "value": 873, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 615, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP", "value": 837, "when": ""}]}], "source": "base ROM"},
-     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 618, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP", "value": 871, "when": ""}]}], "source": "base ROM"}
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 306, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_TOWER_TYCOON_PALMER_DUMMY", "value": 826, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 318, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_HALL_MATRON_ARGENTA_DUMMY", "value": 902, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 330, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_FACTORY_HEAD_THORTON_DUMMY", "value": 903, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 342, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_CASTLE_VALET_DARACH_DUMMY", "value": 905, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 354, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_ARCADE_STAR_DAHLIA_DUMMY", "value": 904, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 564, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_779", "value": 779, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 570, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_780", "value": 780, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 576, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_781", "value": 781, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 582, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_782", "value": 782, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 588, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_783", "value": 783, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 594, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_784", "value": 784, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 605, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG", "value": 838, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 608, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG", "value": 872, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 611, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR", "value": 839, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 614, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR", "value": 873, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 617, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP", "value": 837, "when": ""}]}], "source": "base ROM"},
+     {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_battleground", "how": "StartTrainerBattle", "line": 620, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP", "value": 871, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
      {"at": ["scripts_battleground:42", "scripts_battleground:44"], "commit": "81d02e28e", "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 16384},
@@ -15746,7 +15748,7 @@
    "location": "Route 223",
    "missing": [],
    "scripts": "scripts_empty",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its encounter table",
    "title": "Route 223",
    "undecoded": {},
@@ -16074,7 +16076,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_south_pokecenter_b1f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League South Pokecenter B1F",
    "undecoded": {},
@@ -16443,7 +16445,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_north_pokecenter_2f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League North Pokecenter 2F",
    "undecoded": {},
@@ -16469,7 +16471,7 @@
    "location": "Pokémon League",
    "missing": [],
    "scripts": "scripts_pokemon_league_north_pokecenter_b1f",
-   "split": "League",
+   "split": "Barry",
    "split_basis": "its location name",
    "title": "Pokemon League North Pokecenter B1F",
    "undecoded": {},
@@ -16532,7 +16534,7 @@
     "flags": [
      {"at": ["scripts_route_226_house:19"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_226_house:20"], "daily": false, "flag": 246, "name": "FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_route_226_house:54"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_route_226_house:54"], "daily": false, "flag": 245, "name": "FLAG_TRADED_FOR_FOPPA_MAGIKARP", "op": "set", "origin": "vanilla", "reached": false},
      {"at": ["scripts_route_226_house:23"], "daily": false, "flag": 246, "name": "FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_route_226_house:12"], "daily": false, "flag": 2545, "name": "FLAG_FIRST_ARRIVAL_THE_MEISTERS_HOUSE", "op": "set", "origin": "vanilla", "reached": true}
     ],
@@ -18796,6 +18798,7 @@
   "HQ",
   "Galactic",
   "Volkner",
+  "Barry",
   "League",
   "Post"
  ],
@@ -18860,10 +18863,10 @@
    "vanilla": 513
   },
   "vars": {
-   "Oxide": 9,
+   "Oxide": 11,
    "base ROM": 31,
    "gone": 32,
-   "total": 1122,
+   "total": 1124,
    "vanilla": 1082
   }
  }
