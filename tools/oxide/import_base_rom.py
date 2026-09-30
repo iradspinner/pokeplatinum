@@ -1365,6 +1365,10 @@ TEXT_BANKS_SKIPPED.update({
     i: "the gift clown and its lines removed (Ian, 2026-09-27)"
     for i in (38, 78, 574, 256, 97, 579, 159, 59)
 })
+# The options menu: UNLOCK FPS lost its ALWAYS choice (2026-09-29), and its
+# description, still vanilla's "three sets of button settings", now says what
+# the option does. The bank keeps its size, so it is skipped whole.
+TEXT_BANKS_SKIPPED[220] = "the UNLOCK FPS description rewritten for its two choices (2026-09-29)"
 
 
 def text_bank_names():
