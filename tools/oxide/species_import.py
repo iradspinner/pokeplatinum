@@ -196,12 +196,13 @@ class Converter:
 
     def learnset(self, donor_index):
         """Donor level-up moves, dropped to the ones Platinum has. Level 0 is
-        hg-engine's evolution-move marker and becomes 1, the earliest Platinum
-        can express."""
+        hg-engine's evolution-move marker, and Oxide reads it the same way: the
+        move is taught on evolving into the species (main-evo-moves,
+        2026-09-28), so it stays 0 (Ian, 2026-09-30)."""
         out = []
         for level, move in self.d.learnset(donor_index):
             if move <= self.max_move:
-                out.append([max(level, 1), self.moves[move]])
+                out.append([level, self.moves[move]])
         return out
 
     # What the second element of an evolution entry means, which speciesproc
@@ -529,12 +530,14 @@ class Writer:
         with open(os.path.join(out, "cry.txt"), "w", newline="") as f:
             f.write(CRY_BANK_LINE)
 
-        # sprite_data.json: the y offsets are the donor's, four bytes per species
-        # in the same order as the sprites. Everything else is a plain default;
-        # the animation ids and shadow only affect how the sprite bobs.
-        # A species with only one gender has an empty member where the other
-        # gender's offset would be, exactly as Platinum does; fall back to the
-        # gender it does have so sprite_data.json always has both keys.
+        # sprite_data.json: the y offsets written here are the donor's, four
+        # bytes per species in the same order as the sprites, and are only a
+        # placeholder: seat_sprites() replaces them, the lift and the shadow
+        # once every species is written, because a form borrows from its base.
+        # The animation ids and frames are plain defaults; they only affect how
+        # the sprite bobs. A species with only one gender has an empty member
+        # where the other gender's offset would be, exactly as Platinum does;
+        # fall back to the gender it does have so both keys are always there.
         raw = [self.offsets[dp * 4 + i] for i in range(4)]
         y = [(m[0] if m else 0) for m in raw]
         if not raw[0]:
@@ -588,6 +591,168 @@ def sprite_data(y_offsets):
         },
         "shadow": {"x_offset": 0, "size": "SHADOW_SIZE_MEDIUM"},
     }
+
+
+# ------------------------------------------------------------------ battle seats
+# Where each new species stands in battle (bb2e14ed5; the design doc's findings
+# log, 2026-09-28). The engine draws a front sprite at y + y_offset -
+# addl_y_offset, over a shadow on a fixed line. Vanilla sets y_offset so the
+# art's lowest opaque row lands on the frame's bottom row, 79, and lifts art
+# that hovers with addl_y_offset. hg-engine gives its species a height of 0 and
+# compensates in its own sprite offset, so its numbers cannot be copied; its
+# lift above the ground is worked back out of them instead.
+HG_ENGINE = os.environ.get("HG_ENGINE", os.path.expanduser("~/hg-engine"))
+SHADOW_SIZES = ["SHADOW_SIZE_NONE", "SHADOW_SIZE_SMALL", "SHADOW_SIZE_MEDIUM", "SHADOW_SIZE_LARGE"]
+
+# Vanilla's median lifts: art that stands sits 1 pixel up, art that hovers 9.
+# Vanilla lifts by what the art shows, not by type (perching birds sit at 0).
+GROUND_LIFT, HOVER_LIFT = 1, 9
+
+# Species hg-engine did not tune (its offset under 2 pixels) whose own art
+# hovers, as they do in their own games.
+HOVERING = {"FLABEBE", "FLOETTE", "CARBINK", "KLEFKI", "VIKAVOLT", "TAPU_FINI", "NIHILEGO",
+            "KARTANA", "POIPOLE", "ORBEETLE", "SINISTEA", "POLTEAGEIST", "SINISTCHA", "FROSMOTH"}
+
+# Where hg-engine's small offset left too much of the art's own gap: Emolga
+# and Yamask would hover 21 and 20 pixels, and Ferrothorn stands. Ian approved
+# these three and the hover list (2026-09-30).
+LIFT_OVERRIDES = {"EMOLGA": HOVER_LIFT, "YAMASK": HOVER_LIFT, "FERROTHORN": GROUND_LIFT}
+
+
+def lowest_opaque_row(png):
+    """The lowest row of the first 80 by 80 frame with any non-transparent
+    pixel, or -1 for an empty frame."""
+    from PIL import Image
+    px = Image.open(png).load()
+    low = -1
+    for y in range(80):
+        if any(px[x, y] != 0 for x in range(80)):
+            low = y
+    return low
+
+
+def floor_offsets(directory, face):
+    """Vanilla's y_offset for one side, per gender: 79 minus the art's lowest
+    opaque row, which puts the art on the frame's floor. A single-gender
+    species gives both keys the gender it has."""
+    out = {}
+    for gender in ("male", "female"):
+        png = os.path.join(directory, "%s_%s.png" % (gender, face))
+        if os.path.exists(png):
+            out[gender] = 79 - lowest_opaque_row(png)
+    out.setdefault("male", out.get("female"))
+    out.setdefault("female", out.get("male"))
+    return out
+
+
+def seated_gender(directory):
+    return "male" if os.path.exists(os.path.join(directory, "male_front.png")) else "female"
+
+
+def hg_sprite_offsets():
+    """hg-engine's spriteYOffset, shadowXOffset and shadowSize for each of its
+    species, keyed by its species id, which is the donor index."""
+    try:
+        ids_text = open(os.path.join(HG_ENGINE, "include", "constants", "species.h")).read()
+        text = open(os.path.join(HG_ENGINE, "data", "SpriteOffsets.c")).read()
+    except FileNotFoundError:
+        raise SystemExit("no hg-engine checkout at %s; set HG_ENGINE or clone it "
+                         "(the design doc, section 2)" % HG_ENGINE)
+    ids = {}
+    for m in re.finditer(r"#define (SPECIES_\w+)\s+(\d+)", ids_text):
+        ids.setdefault(m.group(1), int(m.group(2)))
+    out = {}
+    for m in re.finditer(r"\[(SPECIES_\w+)\]\s*=\s*\{(.*?)\.shadowSize\s*=\s*(\d+)", text, re.S):
+        y = re.search(r"\.spriteYOffset\s*=\s*(-?\d+)", m.group(2))
+        x = re.search(r"\.shadowXOffset\s*=\s*(-?\d+)", m.group(2))
+        if m.group(1) in ids and y and x:
+            out[ids[m.group(1)]] = (int(y.group(1)), int(x.group(1)), int(m.group(3)))
+    return out
+
+
+def seat_sprites(conv, dry_run, log):
+    """Set every imported species' battle heights, lift and shadow by vanilla's
+    rule, from the sprites already in res/pokemon. Run after the writes, since a
+    form takes its base species' lift and shadow and the base may come later.
+    With dry_run it only reports what would change, which makes it the check
+    that the committed values still follow the rule."""
+    offsets = hg_sprite_offsets()
+    heights = conv.d.narc(donor.NARC_SPRITE_OFFSETS)
+    species = [l.strip() for l in open(os.path.join(ROOT, "generated", "species.txt")) if l.strip()]
+    rows = {r["constant"]: r for r in conv.map}
+    by_donor = {int(r["donor_index"]): r["constant"] for r in conv.map}
+
+    def pdir(constant):
+        return os.path.join(ROOT, "res", "pokemon", dirname_of(constant))
+
+    plans = {}
+
+    def plan(constant):
+        """(lift, shadow size index, shadow x offset, why) for one species."""
+        if constant in plans:
+            return plans[constant]
+        name = constant[len("SPECIES_"):]
+        row = rows.get(constant)
+        if row is None:
+            # a native base: its present lift and shadow, from its own files
+            d = pdir(constant)
+            with open(os.path.join(d, "sprite_data.json")) as f:
+                sd = json.load(f)
+            g = seated_gender(d)
+            lift = floor_offsets(d, "front")[g] - sd["front"]["y_offset"][g] + sd["front"]["addl_y_offset"]
+            result = (lift, SHADOW_SIZES.index(sd["shadow"]["size"]), sd["shadow"]["x_offset"], "native")
+        elif constant in FORM_BASE_SPECIES:
+            base_id = FORM_BASE_SPECIES[constant]
+            # a new species' base by its donor index, a native's by its number
+            base = by_donor[base_id] if base_id in by_donor else species[base_id]
+            lift, size, x, _ = plan(base)
+            result = (lift, size, x, "as " + base[len("SPECIES_"):])
+        else:
+            dp = int(row["donor_index"])
+            hg_addl, shadow_x, shadow_size = offsets[dp]
+            if name in LIFT_OVERRIDES:
+                result = (LIFT_OVERRIDES[name], shadow_size, shadow_x, "overridden")
+            elif abs(hg_addl) >= 2:
+                # hg-engine tuned this one: its lift is where it draws the art's
+                # floor, 79 - lowest row - its height + its sprite offset
+                d = pdir(constant)
+                g = seated_gender(d)
+                member = heights[dp * 4 + (3 if g == "male" else 2)]
+                hg_height = struct.unpack("b", member[:1])[0] if member else 0
+                lift = floor_offsets(d, "front")[g] - hg_height + hg_addl
+                result = (lift, shadow_size, shadow_x, "hg-engine's")
+            elif name in HOVERING:
+                result = (HOVER_LIFT, shadow_size, shadow_x, "hovers")
+            else:
+                result = (GROUND_LIFT, shadow_size, shadow_x, "stands")
+        plans[constant] = result
+        return result
+
+    changed = 0
+    for row in conv.map:
+        constant = row["constant"]
+        lift, size, x, why = plan(constant)
+        d = pdir(constant)
+        path = os.path.join(d, "sprite_data.json")
+        with open(path) as f:
+            text = f.read()
+        sd = json.loads(text)
+        front, back = floor_offsets(d, "front"), floor_offsets(d, "back")
+        sd["front"]["y_offset"] = {"female": front["female"], "male": front["male"]}
+        sd["back"]["y_offset"] = {"female": back["female"], "male": back["male"]}
+        sd["front"]["addl_y_offset"] = lift
+        sd["shadow"] = {"x_offset": x, "size": SHADOW_SIZES[size]}
+        new = json.dumps(sd, indent=4) + "\n"
+        if new == text:
+            continue
+        changed += 1
+        log.append("%s %s: front %s, back %s, lift %d (%s)" % (
+            "would seat" if dry_run else "seated", dirname_of(constant),
+            front["male"], back["male"], lift, why))
+        if not dry_run:
+            with open(path, "w") as f:
+                f.write(new)
+    log.append("battle seats: %s %d of %d" % ("would change" if dry_run else "changed", changed, len(conv.map)))
 
 
 def fix_offspring(written, natives):
