@@ -1064,6 +1064,47 @@ def carry_evolved(fam, res):
     return res
 
 
+@functools.lru_cache(maxsize=None)
+def donor_evolution_moves():
+    """{species: {MOVE_X}} the donor teaches each of the new species at
+    level 0, hg-engine's mark for a move learned on evolving. Oxide's
+    importer wrote them at level 1, which Platinum could not express before
+    the evolution-move work."""
+    from .. import donor, species_import as si
+    d = donor.Donor()
+    moves = si.enum_list("moves")
+    out = {}
+    for row in si.load_map():
+        got = {moves[m] for lv, m in d.learnset(int(row["donor_index"])) if lv == 0 and m < len(moves)}
+        if got:
+            out[row["constant"]] = got
+    return out
+
+
+DONOR_ZERO = {}    # (stage, move): True, once each however often a family is proposed
+
+
+def donor_level_zero(fam, res):
+    """Ian (2026-09-30): the new species' donor evolution moves go from
+    level 1 to level 0, learned on evolving as the natives' are. Each is
+    moved where it still sits at level 1; the stage then counts as having
+    its evolution move, so evolution_moves adds none beside it."""
+    for s in fam:
+        want = donor_evolution_moves().get(s)
+        if not want:
+            continue
+        lst, notes = list(res[s][0]), list(res[s][1])
+        moved = [c for l, c in lst if l == 1 and c in want]
+        if not moved:
+            continue
+        lst = [(0, c) for c in moved] + [(l, c) for l, c in lst if not (l == 1 and c in moved)]
+        for c in moved:
+            notes.append((c, "1 to 0: the donor's evolution move, learned on evolving (Ian, 2026-09-30)"))
+            DONOR_ZERO[(s, c)] = True
+        res[s] = (lst, notes)
+    return res
+
+
 def evolution_moves(fam, res):
     """Ian (2026-09-28): an evolution move (level 0, taught the moment the
     Pokemon evolves; never known by a wild, gift or trainer Pokemon), used
@@ -1081,7 +1122,9 @@ def evolution_moves(fam, res):
             continue
         types = _types(s)
         lst, notes = list(res[s][0]), list(res[s][1])
-        if any(l == 0 for l, _c in lst):
+        # A stage with an evolution move already gets no other, unless Ian
+        # named one (Sylveon's Draining Kiss beside its donor moves).
+        if any(l == 0 for l, _c in lst) and s not in RULED_EVOLUTION_MOVES:
             continue
         pick = None
         if s in RULED_EVOLUTION_MOVES:
@@ -1409,6 +1452,7 @@ def propose_family(fam):
     res = carry_evolved(fam, res)
     res = ruled_lists(fam, res)
     res = late_moves(fam, res)
+    res = donor_level_zero(fam, res)
     res = evolution_moves(fam, res)
     PROPOSED.update({s: res[s][0] for s in fam})
     res = close_gaps(fam, res)
@@ -2507,6 +2551,18 @@ def _write_rulings(p):
         p("| Stage | Move | Why |\n|---|---|---|")
         for s, c, why in sorted(EVOLUTION_MOVES):
             p(f"| {_sp(s)} | {name(c)} | {why} |")
+    if DONOR_ZERO:
+        # Level-0 moves on each stage's final list, donor and added alike.
+        several = {s: sum(1 for l, _c in PROPOSED.get(s, ()) if l == 0) for s, _c in DONOR_ZERO}
+        p("\n## The new species' donor evolution moves\n")
+        p(f"Ian's ruling (2026-09-30): the moves the donor teaches on evolving, which Oxide's "
+          f"importer had written at level 1, go to level 0. {len(DONOR_ZERO)} moves on "
+          f"{len({s for s, _c in DONOR_ZERO})} stages. A strong move learned on evolving, and a stage "
+          f"left with more than one level-0 move, are marked for Ian.\n")
+        p("| Stage | Move | Strong by the rules | Level-0 moves on the stage |\n|---|---|---|---|")
+        for s, c in sorted(DONOR_ZERO):
+            strong = "yes, for Ian" if good_attack(c, _types(s)) else ""
+            p(f"| {_sp(s)} | {name(c)} | {strong} | {several[s]}{', for Ian' if several[s] > 1 else ''} |")
     p("\n## A move in the last splits\n")
     by_src = collections.Counter(src.split(" at ")[0].split(" ")[0] if src.startswith("Kaizo") else
                                  ("the later games" if " at " in src else src) for _s, _c, _lv, src in LATE_ADDED)

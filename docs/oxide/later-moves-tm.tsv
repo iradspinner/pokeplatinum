@@ -924,18 +924,6 @@ SPECIES_MAGMAR	Round	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM
 SPECIES_MAGMAR	Scorching Sands	runs	Sword and Shield tutor; Scarlet and Violet TM; Legends Z-A TM
 SPECIES_MAGMAR	Temper Flare	runs	Scarlet and Violet TM
 SPECIES_MAGMAR	Tera Blast	runs	Scarlet and Violet TM
-SPECIES_GYARADOS	Brutal Swing	runs	Sun and Moon TM; Ultra Sun and Ultra Moon TM; Sword and Shield TM
-SPECIES_GYARADOS	Bulldoze	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM; Omega Ruby and Alpha Sapphire TM; Sun and Moon TM; Ultra Sun and Ultra Moon TM; Sword and Shield TM; Brilliant Diamond and Shining Pearl TM; Scarlet and Violet TM; Legends Z-A TM
-SPECIES_GYARADOS	Chilling Water	runs	Scarlet and Violet TM; Legends Z-A TM
-SPECIES_GYARADOS	Confide	runs	X and Y TM; Omega Ruby and Alpha Sapphire TM; Sun and Moon TM; Ultra Sun and Ultra Moon TM
-SPECIES_GYARADOS	Dragon Cheer	partial: status move running the plain-hit script: its effect never happens	Scarlet and Violet TM
-SPECIES_GYARADOS	Incinerate	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM; Omega Ruby and Alpha Sapphire TM
-SPECIES_GYARADOS	Lash Out	runs	Sword and Shield tutor; Scarlet and Violet TM
-SPECIES_GYARADOS	Round	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM; Omega Ruby and Alpha Sapphire TM; Sun and Moon TM; Ultra Sun and Ultra Moon TM; Sword and Shield TM
-SPECIES_GYARADOS	Scald	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM; Omega Ruby and Alpha Sapphire TM; Sun and Moon TM; Ultra Sun and Ultra Moon TM; Let's Go TM; Sword and Shield TM; Brilliant Diamond and Shining Pearl TM; Scarlet and Violet TM; Legends Z-A TM
-SPECIES_GYARADOS	Scale Shot	partial: hits two to five times; the Speed rise and Defense drop are missing	Sword and Shield tutor; Scarlet and Violet TM; Legends Z-A TM
-SPECIES_GYARADOS	Temper Flare	runs	Scarlet and Violet TM
-SPECIES_GYARADOS	Tera Blast	runs	Scarlet and Violet TM
 SPECIES_LAPRAS	Alluring Voice	runs	Scarlet and Violet TM
 SPECIES_LAPRAS	Body Press	runs	Sword and Shield TM; Scarlet and Violet TM; Legends Z-A TM
 SPECIES_LAPRAS	Bulldoze	runs	Black and White TM; Black 2 and White 2 TM; X and Y TM; Omega Ruby and Alpha Sapphire TM; Sun and Moon TM; Ultra Sun and Ultra Moon TM; Sword and Shield TM; Brilliant Diamond and Shining Pearl TM; Scarlet and Violet TM; Legends Z-A TM

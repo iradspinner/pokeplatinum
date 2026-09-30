@@ -6,11 +6,39 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-29).** Every score is rescored on the combined
+**The perfect-line scorer** (Ian's rulings, 2026-09-30, on the scoring
+review in `~/oxide-trials/scoring-review/out/`). The perfect-line scorer
+is the direction: a fight reads as the clean-win rate of the best line
+found, with that line's mean deaths and wipe chance beside it, so the
+hardest fights, where no line wins cleanly (Wake, Barry 6), still
+separate. Ian approved the prototype's six assumptions as its design
+lists them: the player's own luck at the game's odds, real sleep and
+confusion lengths, flinches and stat drops at their chance, Oxide's
+Generation 7 critical hits, trainer items proccing at their odds, and a
+freeze thawing 1 in 5 on both sides. His sixteen ratings were made with a
+planned team but on an older dex and older movesets, so they are
+directional only; his 40 pairs are the better check, and a bar of 13 of
+14 held out credits them too much. The scale stays unfitted until the new
+scorer reads his pairs better than the old one did. The work, on its own
+branch: the prototype moves into `tools/oxide/balance/`, the four
+simulator faults it found are fixed with tests (Oxide's critical hits,
+status moves failing on type immunity, Natural Gift and Fling spending
+the item, weather moves with the rocks), mean deaths and wipe chance are
+added, then doubles, Ian's line vocabulary (baiting a lock, free pivots,
+stalling a timed effect, saving a Pokemon for a later foe), convergence
+per fight, and boxes from Ian's save and the planned box; then a rerun on
+the v3 learnsets.
+
+**Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
 1,030. The census leaves out the test kit, the pool takes the encounter
-tool's scripted sources it lacked (the fossils in Fantina's split, Acuity
-Cavern's draw in Volkner's), and an item counts from the split the way to
+tool's scripted sources it lacked (the fossils in Fantina's split, where
+Ian's gate puts them: the Mining Museum revives none until the player is
+through Cycling Road, 2026-09-30; the box model counts them from there
+too; Acuity
+Cavern's draw in Volkner's), the Great Marsh lookout's daily Pokemon are
+cut and no longer counted (Ian, 2026-09-30; branch
+`balance-tyranitar-unnerve`), and an item counts from the split the way to
 it opens: Surf, the other field moves, the bike, its ramp jumps and
 scripted arrivals (the stone correction under the item pass). Doubles
 against two trainers at once are rescore units of their own (56 pairs),
@@ -56,10 +84,10 @@ levers only caps and map weather move the scores much. The Barry split
 side fixed, and the Barry split"). Next: the design
 passes, starting with the learnset study (design pass 3). Its parts 1 and
 2 have found Kaizo's patterns as rules ("What parts 1 and 2 found"), and
-the generator waits on Ian's word on them. The scores weigh the stone
-plan now and read Ian's three Lucas and Dawn fights as story fights, and
-the gauntlet proposal (design pass 5) waits on his choice of areas and
-two questions.
+Ian gave his word on them on 2026-09-27. The scores weigh the stone plan
+now and read Ian's three Lucas and Dawn fights as story fights, and Ian
+settled the gauntlet proposal's areas and its two questions the same day
+(design pass 5).
 
 ## The target
 
@@ -683,11 +711,12 @@ Every level of every zone trainer above the cap comes down 18. That keeps
 each party's spread and the routes' order, and puts the zone at the usual
 filler depth, 4 to 9 under the cap, just ahead of the Galactic fights Ian
 means to be the hardest stretch before the League. The one trainer already
-under the cap (Dragon Tamer Keegan on Route 228, 57) stays. So does Volkner
-and Flint's tag battle at the Fight Area (74 to 75): once the main track
-gates it behind the Beacon Badge it is a League-split fight, where 75
-already fits a cap of 78. Until that gate lands, `splits.py` still counts
-it in Galactic. **Done on 2026-09-25**, on branch
+under the cap (Dragon Tamer Keegan on Route 228, 57) stays. So did Volkner
+and Flint's tag battle at the Fight Area (74 to 75), read then as a League
+fight. It waits for the Beacon Badge, so it sits in Barry's split under a
+cap of 71. Only Barry's own ace reaches that cap (Ian, 2026-09-30), so the
+trainer pass brings the tag battle's aces of 74 and 75 to slightly under
+71. **Done on 2026-09-25**, on branch
 `balance-battle-zone-relevel-v2`: 139 levels in 54 trainer files, levels
 only. The importer's TRAINERS_DIVERGED leaves those levels alone and
 reports the 54 as diverged; with their entries removed it would carry all
@@ -1432,16 +1461,20 @@ misses, read by hand:
 | 36, Lucian and Bertha | Lucian a lot | Bertha (2.62 lost to 0.99) | a quarter of Bertha's kills are the permanent sandstorm finishing Pokemon the player never heals, and Lucian's three Choice items let the player bait a lock, the weakness Ian's own ruling names |
 
 Two limits of the model bear on the last two rows: the player uses no
-items in battle, and it plans a six for each fight. For Ian: whether his
-grades of ordinary trainers assume a prepared team, which decides whether
-they are read from a realistic box (the box mode) or from the planned six;
-and whether the player heals with items in a boss fight.
+items in battle, and it plans a six for each fight. Ian answered both
+(2026-09-27): an ordinary trainer is met blind, from a realistic box, and
+a boss with a six planned for it, and the player uses no items in any
+battle.
 
 ## Open questions for Ian
 
 Ian's ratings of sixteen fights (open question 1 until 2026-09-25) are in
-"What Ian's ratings showed". None are open: Ian approved the stone plan
-on 2026-09-27 (design pass 2).
+"What Ian's ratings showed". Ian approved the stone plan on 2026-09-27
+(design pass 2). The questions still open sit where they arose, most in
+design pass 3's "Open for Ian"; the tracker's Waiting on Ian lists them as
+coming with the learnset v3 report: the eleven held gap-fillers, the
+bar's thresholds, the five-level wait, the 138 wild slots, the good-move
+share and the later-moves rows for Ian.
 
 ## Order of work
 
@@ -1501,7 +1534,7 @@ on 2026-09-27 (design pass 2).
   the 18 filler trainers B1d places too early (`metrics.late_visits`).
   Built 2026-09-23 (`world.py`, `required.py`, `test_b1e`) for the story
   path's overworld routes and the simple indoor maps; see "What B1e
-  found". Its check waits on Ian's examples (open question 2). Gyms with
+  found". Its check against Ian's examples was made on 2026-09-25. Gyms with
   moving parts and multi-floor dungeons are left for later, if the
   placement pass needs them.
 - [x] **B2, structural metrics** for every reference and for Oxide as it
@@ -1581,9 +1614,9 @@ on 2026-09-27 (design pass 2).
   The engine's computed powers reached the scores on 2026-09-26 (the
   encounter track's item 22). The seven moves that pick another stat or
   type (Foul Play, Body Press, Psyshock, Sacred Sword, Darkest Lariat,
-  Freeze-Dry, Flying Press) and Rage Fist follow when a cloud session's
-  engine work merges and the encounter track's item 23 teaches the
-  calculator, with a smaller rescore.
+  Freeze-Dry, Flying Press) and Rage Fist followed once the encounter
+  track's item 23 taught the calculator, and were rescored on 2026-09-26
+  and 27.
 - [x] **Incremental rescores** (Ian, 2026-09-27), before B6's runs. A full
   rescore costs about 45 minutes a run on this CPU and two runs must agree,
   even when a change touches a few fights. Each stored score gets a
@@ -1803,8 +1836,9 @@ lands, and each change is re-scored as it lands.
    - Every Plate keeps one or two fixed finds, the only Light Clay is on
      Mt. Coronet B1F (Candice's split), and the Root, Armor and Skull
      Fossils stay in Oreburgh Mine B2F; the four fossils Ian deleted go
-     with their balls there too. The Pixie Plate is not in the game yet
-     (element 7); when it is, it takes one fixed find like the others.
+     with their balls there too. Element 7 added the Pixie Plate, but only
+     the test kit places it; the item pass gives it one fixed find like
+     the others.
    - Money: 21 Star Pieces and 14 Nuggets stay as fixed finds.
 
    **Corrected** (2026-09-29, the combined rescore's census): the census
@@ -1841,6 +1875,9 @@ lands, and each change is re-scored as it lands.
    **No Life Orb for the player** (Ian, 2026-09-27): Stark Mountain's
    outside map still has a Life Orb ball (Galactic's split). The item pass
    replaces it; the main track makes the change.
+
+   **Argenta's reward** (Ian, 2026-09-27) is items, which the item pass
+   picks, and the pass places the one Pixie Plate.
 3. **Species, abilities and learnsets**, including the base ROM's 228
    duplicated second ability slots. From the same answers: no weather move
    in any player learnset, tutor or egg list, and no ability that sets or
@@ -1849,7 +1886,8 @@ lands, and each change is re-scored as it lands.
    Torkoal are weighed for trainers only. Done for the last five lines
    (Ian, 2026-09-29): Cloud Nine (Psyduck, Golduck), Snow Warning (Snover,
    Abomasnow) and Sand Stream (Hippopotas, Hippowdon, Tyranitar) are hidden
-   abilities now, Tyranitar's regular one Shed Skin, and the 20 trainer
+   abilities now, Tyranitar's regular one Unnerve (Ian, 2026-09-30; Pupitar
+   keeps Shed Skin; branch `balance-tyranitar-unnerve`), and the 20 trainer
    Pokemon that bring the weather take the hidden slot; no weather ability
    is left in a regular slot. Alakazam, Ampharos, Dugtrio,
    Electrode, Farfetch'd, Jumpluff, Pikachu, Roserade and Swellow get their
@@ -2108,16 +2146,15 @@ lands, and each change is re-scored as it lands.
    The level-1 lists are kept whole, as the relearner's menu and the trainer
    palette; cutting them to six attacks and two status moves dropped 1,491
    entries for no gain to the player, and tidiness is all it bought. They
-   are ordered strongest first, which matters in one place: a wild or
-   trainer Pokemon with fewer than four moves of its own at its level fills
-   from level 1, from the end. 426 of the 1,802 trainer Pokemon take default
-   moves; they would get the weaker level-1 moves, which the trainer pass
-   can override with sets of their own.
+   are ordered strongest first, which matters in one place: a wild
+   Pokemon with fewer than four moves of its own at its level fills from
+   level 1, from the end. A trainer Pokemon never does: every trainer team
+   in the finished ROM is set by hand, with no default moves (Ian,
+   2026-09-27).
 
    For Ian before any sweeping pass: whether level 1 should be strongest
    first (wild evolved Pokemon soon after evolving are no better than one
-   raised) or weakest first (such Pokemon, and trainers on default moves,
-   get the strongest); whether more delays should be exclusive, as Kaizo
+   raised) or weakest first (such Pokemon get the strongest); whether more delays should be exclusive, as Kaizo
    has them; and a move for Fletchinder.
 
    **The second design, and its full proposal** (2026-09-27, `learnplan.py
@@ -2308,13 +2345,29 @@ lands, and each change is re-scored as it lands.
    With these the proposal changes 501 of the 652 lists; every check
    passes.
 
-   Open for Ian: the bar's thresholds, which 206 stages pass before
+   Open for Ian ("Open questions for Ian" points here): the bar's thresholds, which 206 stages pass before
    Byron's split; the five levels that make a pre-evolution route a delay;
    the 138 wild slots that can still end an encounter, which this design
    leaves where Oxide has them (the first generator moved them above the
    wild levels); and the catches left with no good move by their split's
    cap, 75 against 70 now, since Kaizo places several good attacks later
    (Maylene's split falls from 0.74 of catches with one to 0.62).
+
+   **For the ability pass.** A Levitate Vibrava, retyped Bug/Flying, holds
+   its Ground immunity twice (the main track found it on 2026-09-29); the
+   pass gives it another ability. Glaceon's Ice Scales went to testing in
+   play (Ian, 2026-09-29) but is not in the data: it is tried by giving
+   Glaceon Ice Scales as its first ability on a branch with a test-kit
+   entry for a Glaceon (the main track's), scored with the fixed scorer
+   before it lands.
+
+   **The new species' evolution moves** (Ian, 2026-09-30). The donor
+   marks a move learned on evolving with level 0, and Oxide's importer
+   wrote each at level 1, the earliest Platinum could express before the
+   evolution-move work. Learnset v3 puts them back at level 0 (28 moves on
+   21 stages; the proposal lists them, and a stage left with more than one
+   level-0 move is marked for Ian). The main track makes
+   `species_import.py` keep level 0 from now on.
 4. **Weather** on routes and in gyms. Weather from an ability stays for
    the whole battle, and trainers keep theirs.
 
@@ -2335,7 +2388,10 @@ Generation 4 branch, as element 5's abilities will.
    Ian's placement change: more ordinary trainers made unavoidable, checked
    against B1e's list, and **the gauntlets** (Ian, 2026-09-27): which
    one-way areas the Pocket PC refuses to work in, and how many trainers
-   each holds in a row, proposed to Ian first. Also the **level 71 Lucas and Dawn fight** (trainer
+   each holds in a row, proposed to Ian first. **Cyrus 1's levels go up**
+   (Ian, 2026-09-27), and **the Fight Area's aces** (74 and 75) come to
+   slightly under 71, since only Barry's ace reaches Barry's cap (Ian,
+   2026-09-30). Also the **level 71 Lucas and Dawn fight** (trainer
    slots 779 to 784, one per starter): Ian designed it for the start of
    Victory Road, and Victory Road 1F's script starts it there now (the main
    track's `3a3472432`, which moved the Battle Zone after the Galactic HQ).
