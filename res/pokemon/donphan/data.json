@@ -4,7 +4,7 @@
         "attack": 120,
         "defense": 130,
         "speed": 50,
-        "special_attack": 60,
+        "special_attack": 55,
         "special_defense": 60
     },
     "types": [ "TYPE_GROUND", "TYPE_GROUND" ],

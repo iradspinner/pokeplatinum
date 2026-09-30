@@ -4,8 +4,8 @@
         "attack": 90,
         "defense": 120,
         "speed": 60,
-        "special_attack": 85,
-        "special_defense": 70
+        "special_attack": 90,
+        "special_defense": 85
     },
     "types": [ "TYPE_POISON", "TYPE_POISON" ],
     "catch_rate": 60,

@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 45,
-        "attack": 55,
-        "defense": 45,
-        "speed": 75,
-        "special_attack": 65,
-        "special_defense": 45
+        "hp": 65,
+        "attack": 90,
+        "defense": 60,
+        "speed": 100,
+        "special_attack": 85,
+        "special_defense": 60
     },
     "types": [ "TYPE_ICE", "TYPE_FLYING" ],
     "catch_rate": 45,
@@ -29,7 +29,7 @@
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [
         "ABILITY_VITAL_SPIRIT",
-        "ABILITY_HUSTLE",
+        "ABILITY_ADAPTABILITY",
         "ABILITY_INSOMNIA"
     ],
     "safari_flee_rate": 0,

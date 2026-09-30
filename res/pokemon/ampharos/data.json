@@ -7,7 +7,7 @@
         "special_attack": 115,
         "special_defense": 90
     },
-    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 194,
     "ev_yields": {
