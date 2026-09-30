@@ -149,6 +149,27 @@ def main():
     results.append(("After Nosepass: Barboach draws Lileep (stage 1), Grubbin draws Cranidos (stage 1)",
                     picks.get("Barboach") == "Lileep" and picks.get("Grubbin") == "Cranidos", str(picks)))
 
+    # Magnitude rolls its power (10 to 150) and deals that power's damage.
+    recs = [{"constant": "SPECIES_GEODUDE", "species": "Geodude", "how": "test", "level": 16, "nature": "Jolly",
+             "ivs": IV, "evs": EV, "ability": "Sturdy", "moves": ["Magnitude", "Rock Throw"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    seen, damages = set(), []
+    for seed in range(40):
+        b = pl.make_battle(prep["st"], ["p0"], boss_keys, flags, 0)
+        b.p.mons[0].item = None
+        rng = random.Random(seed)
+        b.dice, b.rng = pl.RunDice(rng, True), rng
+        cran = boss(b, "Cranidos")
+        cran.item = None
+        before = cran.hp
+        pl.attack(b, b.p.cur(), mv(b.p.cur(), "Magnitude"), cran, True)
+        seen.add(b.last_magnitude)
+        damages.append(before - cran.hp)
+    results.append(("Magnitude rolls its power and deals damage by it",
+                    len(seen) >= 4 and max(damages) > 40 and min(damages) > 0,
+                    f"powers seen {sorted(seen)}, damage {min(damages)} to {max(damages)}"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")

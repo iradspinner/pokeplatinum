@@ -402,7 +402,22 @@ def attack(b, att, mv, dfn, first):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
             crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate)
-        dmg = damage_of(b, att, dfn, mv, crit, top=trainer, roll=b.dice.roll(trainer) if b.dice.mode == "run" else None)
+        key = att.key
+        if mv.name == "Magnitude":
+            # The power is rolled first, at the game's odds for either side
+            # in a run (the player's own luck, question 1 of design.md), and
+            # its row is that power's (fightsim.prepare adds them).
+            powers = list(fs.MAGNITUDE_POWERS)
+            weights = [fs.MAGNITUDE_POWERS[p] for p in powers]
+            rng = getattr(b, "rng", None)
+            p = rng.choices(powers, weights)[0] if rng is not None else 70
+            att.key = f"{key}#m{p}"
+            b.last_magnitude = p
+        try:
+            dmg = damage_of(b, att, dfn, mv, crit, top=trainer,
+                            roll=b.dice.roll(trainer) if b.dice.mode == "run" else None)
+        finally:
+            att.key = key
         if dmg is None:
             return
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:

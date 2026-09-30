@@ -452,6 +452,12 @@ def rollout_after(att, mv, hit):
         att.lock = (mv, 5 - att.rollout)
 
 
+# Magnitude's powers and their chances in percent (Generation 4, Magnitude 4
+# to 10). The decomp names its effect BATTLE_EFFECT_PSYWAVE, as pret's vanilla
+# data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
+MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
+
+
 def hurt(b, mon, amount):
     """HP lost to anything but a move's hit."""
     if amount <= 0 or not mon.alive():
@@ -1868,6 +1874,18 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for a in group:
                     if spread(a):
                         pairs += [[a, d, spread(a), w] for d in group if d != a]
+    # Magnitude's power is rolled when it is used (MAGNITUDE_POWERS), so the
+    # calculator is asked once per power level, each as its own attacker key
+    # ("<key>#m<power>") carrying that power, against every foe it can meet.
+    for k in list(pkeys) + list(qkeys):
+        if "Magnitude" in moves.get(k, ()):
+            for p in MAGNITUDE_POWERS:
+                dk = f"{k}#m{p}"
+                pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
+                    "type": "Ground", "category": "Physical", "basePower": p}})
+                for w in weathers:
+                    for d in bkeys:
+                        pairs.append([dk, d, ["Magnitude"], w])
     out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
