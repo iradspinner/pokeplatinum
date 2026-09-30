@@ -59,6 +59,10 @@ read, so they are written here too. Each is a standing instruction.
   ones; bag items may heal between its fights (the danger is deaths
   snowballing); bosses stay outside it, with gauntlets leading up to them; and
   a majority of the game's trainers should be mandatory (Ian, 2026-09-27).
+  How a gauntlet holds the player (Ian, 2026-09-29): only the way back is
+  blocked, a one-way ledge at the entrance where the map allows, so the
+  player cannot retreat to heal but may push on past a trainer; while a
+  section is open the Pocket PC, the Escape Rope and Dig refuse.
 - Evolution stones are deliberately scarce (Ian, 2026-09-27): two lines
   competing for one stone is intended, because it weakens the box and makes
   the player choose (with one Sun Stone, an Eevee and a Charcadet owner picks a
