@@ -32,8 +32,38 @@ with Haunter and Emolga approved by name as flagged stages; Glaceon's Ice
 Scales waits for testing in play. His last answers: one fix each for the
 lines whose hidden ability repeated a regular one, Kaizo's Gallade,
 Drought hidden for the Slugma line, and halfway buffs for Articuno and
-Suicune. All of it is rescored and verified. Next: learnset v3 on these
-stats, then the TM pass.
+Suicune. All of it is rescored and verified, and landed on `oxide`.
+
+**The scorer under review (2026-09-30, `balance-boxmodel`).** Ian flagged
+that the player's side overstated the player, and it did: one of every
+species obtainable by the split, each with the two strongest damaging
+moves of every type it could learn, every reached TM taught to every
+compatible species, and a Choice item or Life Orb in hand. The branch
+gives each Pokemon four moves chosen for coverage (at most one taught,
+since TMs are single-use), bans the Choice items and Life Orb from the
+player's side, and weights every share by a realistic box (the encounter
+tool's box simulator, 300 runs a split, stored in `boxshares.json`); the
+Kaizo scorer's own box gets the same. Rescored and verified on all 1,030
+units. What it showed: a fight's place on Ian's scale comes only from safe
+switch-ins, which read the player's bulk, so four moves and the item ban
+move no scale reading; the box weighting does, and it predicts Ian's
+ratings worse (held-out error 1.52 against the whole pool's 1.36), with no
+reading possible below 4.4. Ian chose neither side model (2026-09-30). He
+proposed a new measure instead: a fight's difficulty is how easily a
+perfect line is found, a plan that wins with no deaths whatever the RNG
+does within a luck budget (every secondary status chance against the
+player happens; one crit against the player may happen, never two or two
+in a row; the trainer's AI picks the move worst for the player among those
+it could pick). Step 1 counts how often a random six from a random whole
+box has a perfect line; step 2 counts the perfect lines of the box's best
+team. Movesets fill in order: best STAB, coverage or a second STAB,
+coverage, then the best status move by the status tiers. A separate
+session designs and prototypes it blind in `~/oxide-trials/scoring-review/`.
+Until its results are in, the scale is not refitted and the average-fight
+calibration, the gauntlet list and the Kaizo study's scores are held.
+`balance-boxmodel` stays as it is: the four-move limit and the item ban
+carry into the new scorer. Next: learnset v3, which needs no fight score,
+then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
