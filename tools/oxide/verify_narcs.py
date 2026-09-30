@@ -486,13 +486,33 @@ KAIZO_POWER_NATIVES = {190, 302, 306, 342, 429, 443}
 # Octazooka, Sky Uppercut, Dragon Rush, Rock Climb, Double Hit.
 KAIZO_ACCURACY_NATIVES = {158, 190, 327, 407, 431, 458}
 
+# Ian's retypes from the original pick-list (2026-09-29), by dex number:
+# Charizard, Ninetales, Larvitar, Pupitar, Tyranitar (Dark first), Sceptile,
+# Masquerain, Trapinch, Vibrava, Flygon, Milotic, Glalie, Luxray, Electivire,
+# Uxie, Mesprit and Azelf.
+PICK_LIST_RETYPES = {
+    6, 38, 246, 247, 248, 254, 284, 328, 329, 330, 350, 362, 405, 466,
+    480, 481, 482,
+}
+
 DIVERGED = {
-    "poketool/personal/pl_personal.narc": {
-        "offsets": (6, 7),  # type1, type2
-        "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
-                    209, 210, 280, 281, 282, 298, 303, 439, 468},
-        "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c)",
-    },
+    "poketool/personal/pl_personal.narc": [
+        {
+            "offsets": (6, 7),  # type1, type2
+            "members": {35, 36, 39, 40, 122, 173, 174, 175, 176, 183, 184,
+                        209, 210, 280, 281, 282, 298, 303, 439, 468}
+                       | PICK_LIST_RETYPES,
+            "why": "twenty species retyped to Fairy (Phase 4 element 1, commit 64021978c), "
+                   "and seventeen retyped from the original pick-list (Ian, 2026-09-29)",
+        },
+        {
+            "offsets": (4, 5),  # Sp. Atk, Sp. Def
+            "members": {11, 14, 292},
+            "why": "the base ROM's slips in Metapod's, Kakuna's and Shedinja's special "
+                   "stats, corrected to Ian's change sheet (2026-09-29; import_base_rom.py's "
+                   "BASE_STATS_DIVERGED)",
+        },
+    ],
     # A list when more than one change touches the archive; a member passes if
     # every byte it differs at is allowed by some entry that lists it.
     "poketool/waza/pl_waza_tbl.narc": [
@@ -692,6 +712,16 @@ PERSONAL_BASE_EXP_AT = 0x09
 PERSONAL_ABILITIES_DIVERGED = {
     499: ((107, 0), "Wormadam's Sandy form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
     500: ((107, 0), "Wormadam's Trash form: Anticipation, not the base ROM's Snow Cloak (Ian, 2026-09-27)"),
+    # The player never sets or ends weather (Ian, 2026-09-29): each weather
+    # ability moves to the hidden slot, for trainers, and the regular slots
+    # keep the line's others.
+    54: ((6, 33), "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
+    55: ((6, 33), "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
+    248: ((61, 0), "Tyranitar: Shed Skin, Pupitar's; Sand Stream is hidden (Ian, 2026-09-29)"),
+    449: ((47, 0), "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
+    450: ((47, 0), "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
+    459: ((91, 43), "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
+    460: ((91, 43), "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
 }
 
 
@@ -720,9 +750,9 @@ def check_personal(b, r, path):
     """Compare pl_personal field by field. The built archive holds more species
     than the reference and the ones after the natives have moved, so each
     reference member is looked up where it now lives; the shared ones have to
-    agree, allowing the Fairy retypes and a hidden-ability slot the reference
-    has no room for."""
-    rule = DIVERGED.get(path, {"members": set(), "offsets": ()})
+    agree, allowing the bytes DIVERGED's entries allow (the retypes, the
+    corrected stats) and a hidden-ability slot the reference has no room for."""
+    rules = diverged_rules(path)
     bad, intended, extra = [], [], max(0, len(b) - len(r))
     hidden = 0
     for i in range(len(r)):
@@ -746,8 +776,10 @@ def check_personal(b, r, path):
             continue
         if bh == rh:
             continue
-        if i in rule["members"] and all(bh[o] == rh[o] or o in rule["offsets"]
-                                        for o in range(len(bh))):
+        # Pooled over every entry that lists the member, as intended_divergence
+        # does for the move table.
+        allowed = {o for rule in rules if i in rule["members"] for o in rule["offsets"]}
+        if allowed and all(bh[o] == rh[o] or o in allowed for o in range(len(bh))):
             intended.append(i)
         else:
             bad.append(i)

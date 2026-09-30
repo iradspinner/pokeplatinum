@@ -544,6 +544,23 @@ TRAINERS_DIVERGED.update({stem: {"level": _BATTLE_ZONE_RELEVEL} for stem in (
     "swimmer_lydia", "swimmer_mallory", "swimmer_sam", "swimmer_sophia",
     "swimmer_wade", "veteran_harlan", "buck_stark_mountain",
 )})
+# The weather abilities moved to the hidden slot (Ian, 2026-09-29), and the
+# trainer Pokemon of those lines that bring the weather ask for it with
+# "ability": 3, which the base ROM's record has no value for. "ability" is
+# left alone on every party member of each.
+_WEATHER_HIDDEN = ("its weather Pokemon take the hidden slot, where the weather ability "
+                   "moved (Ian, 2026-09-29)")
+for _stem in (
+    "ace_trainer_jonah", "ace_trainer_mariah", "ace_trainer_meagan", "ace_trainer_sergio",
+    "ace_trainer_stefan", "elite_four_bertha", "elite_four_bertha_rematch",
+    "galactic_grunt_lake_verity_4", "galactic_grunt_mt_coronet_5f_1",
+    "galactic_grunt_team_galactic_eterna_building_3f", "leader_candice_rematch",
+    "leader_roark_rematch", "parasol_lady_alexa_rematch_2", "parasol_lady_alexa_rematch_3",
+    "riley_battleground", "ruin_maniac_bryan", "skier_andrea_rematch_1",
+    "skier_andrea_rematch_2", "skier_edward", "veteran_brenden",
+):
+    # Beside any field already diverged (Stefan's and Meagan's Battle Zone levels).
+    TRAINERS_DIVERGED.setdefault(_stem, {})["ability"] = _WEATHER_HIDDEN
 # Trainers edited in the encounter tool's team builder (encounter build plan
 # item 28) are listed in trainers_diverged.json beside this file, which the
 # builder writes on every save, so a save never edits this code. The same
@@ -788,6 +805,13 @@ def apply_trainer_diff(json_path, new_header, new_party, old_header, old_party, 
                 text = jsonstyle.replace_value(text, path, val)
                 changed.append(f"party[{i}].{key}: {om.get(key)!r} -> {val!r}")
 
+            # A diverged "ability" keeps Oxide's value, as a diverged field
+            # does in the full rewrite above.
+            if "ability" in diverged:
+                try:
+                    nm = dict(nm, ability=jsonstyle.get_value(text, ["party", i, "ability"]))
+                except KeyError:
+                    pass
             if nm["ability"] != om.get("ability", 0) or nm["gender"] != om.get("gender"):
                 try:
                     jsonstyle.get_value(text, ["party", i, "ability"])
@@ -1254,6 +1278,7 @@ TEXT_BANK_ITEM_NAMES = 392
 TEXT_BANK_ITEM_NAMES_WITH_ARTICLES = 393
 TEXT_BANK_ITEM_NAMES_PLURAL = 394
 TEXT_BANK_MOVE_DESCRIPTIONS = 646
+TEXT_BANK_ABILITY_DESCRIPTIONS = 612
 
 # Single entries that deliberately differ from the base ROM inside a bank that
 # is otherwise checked against it, keyed by bank and then by entry. A bank that
@@ -1282,6 +1307,10 @@ TEXT_ENTRIES_DIVERGED.update({
 # which put its shared entries under comparison.
 TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_NAMES_WITH_ARTICLES][443] = (
     "the Pocket PC, which the base ROM named in the item names only")
+# Sturdy leaves its holder at 1 HP from a hit taken at full HP, as in the
+# later games, so its description says so (Ian, 2026-09-29).
+TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
+    "Sturdy's description gives its later-games rule, which Oxide has")
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
@@ -1558,6 +1587,24 @@ def main():
     ABILITIES_DIVERGED = {
         499: "Wormadam's Sandy form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
         500: "Wormadam's Trash form takes Anticipation back from Snow Cloak (Ian, 2026-09-27)",
+        # The player never sets or ends weather (Ian, 2026-09-29): the weather
+        # abilities moved to the hidden slot.
+        54: "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
+        55: "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)",
+        248: "Tyranitar: Shed Skin; Sand Stream is hidden (Ian, 2026-09-29)",
+        449: "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
+        450: "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)",
+        459: "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
+        460: "Abomasnow: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)",
+    }
+
+    # Base stats the base ROM set by a slip, which Oxide has corrected to Ian's
+    # change sheet ("My Version RomHack Docs", Pokemon Changes; Kaizo agrees for
+    # the two cocoons). The rest of each record is still carried over.
+    BASE_STATS_DIVERGED = {
+        11: "Metapod's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
+        14: "Kakuna's +30 goes on Sp. Def, not Sp. Atk (Ian, 2026-09-29)",
+        292: "Shedinja's Sp. Def is 10, not 5 (Ian, 2026-09-29)",
     }
 
     # species: personal + learnset + evolutions live in one data.json
@@ -1591,6 +1638,11 @@ def main():
             old["learnset"].pop("by_level")
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+        if i in BASE_STATS_DIVERGED:
+            new.pop("base_stats")
+            old.pop("base_stats")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"base_stats: diverged, left alone ({BASE_STATS_DIVERGED[i]})"]))
         if i in ABILITIES_DIVERGED:
             new.pop("abilities")
             old.pop("abilities")

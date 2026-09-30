@@ -49,7 +49,9 @@
                 "MOVE_REST"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
         }
     ],
     "messages": [

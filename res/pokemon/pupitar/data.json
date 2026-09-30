@@ -7,7 +7,7 @@
         "special_attack": 65,
         "special_defense": 70
     },
-    "types": [ "TYPE_ROCK", "TYPE_GROUND" ],
+    "types": [ "TYPE_DARK", "TYPE_GROUND" ],
     "catch_rate": 45,
     "base_exp_reward": 144,
     "ev_yields": {

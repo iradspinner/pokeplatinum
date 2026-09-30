@@ -5,7 +5,7 @@
         "defense": 5,
         "speed": 80,
         "special_attack": 100,
-        "special_defense": 5
+        "special_defense": 10
     },
     "types": [ "TYPE_BUG", "TYPE_GHOST" ],
     "catch_rate": 45,

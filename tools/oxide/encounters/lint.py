@@ -89,6 +89,15 @@ DEFAULT_THRESHOLDS = {
     "r13_share_span_min": 4.0,
     "r13_min_tables": 4,
     "r14_max_shared_land_rate": 0.5,
+    # R21: the capture areas one line may fill a water table's 1% slot in
+    # before it is a running gag (the blind review's principle 19).
+    "r21_one_percent_max_areas": 3,
+    # R23: the share of a water table a non-Water line may hold, outside a
+    # cave pool, where the bat may lead as vanilla had it (principle 15).
+    "r23_non_water_share_max": 0.30,
+    # R24: the distinct lines, from distinct families, a water table holds
+    # (principle 18).
+    "r24_water_lines_min": 5,
     # R12: the most expected encounters a line's first stage may cost at its
     # cheapest table and rung, by the pick-list's tier. A gate line is
     # scripted (legendary, starter, fossil, static battle) and is judged on
@@ -106,7 +115,10 @@ DEFAULT_THRESHOLDS = {
 
 # Rules vanilla must pass; the M3 gate checks exactly these.
 DESCRIPTIVE = {"R1b", "R2", "R6", "R8", "R9", "R11", "R14"}
-ASPIRATIONAL = {"R3", "R5", "R11b", "R13"}
+ASPIRATIONAL = {"R3", "R5", "R11b", "R13",
+                # The water rules (lint_water), warnings until Ian's water
+                # re-authoring makes them hold (2026-09-29).
+                "R19", "R19b", "R20", "R21", "R22", "R23", "R24"}
 
 
 # The top rung, from Gardenia's split on (Ian, 2026-09-26). A repel manip
@@ -573,9 +585,140 @@ def lint_hidden(grants):
     return out
 
 
-def lint_all(areas, sidecar, availability=None, hidden=None):
+WATER_KINDS = ("old_rod", "good_rod", "super_rod", "surf")
+WATER_NAMES = {"old_rod": "Old Rod", "good_rod": "Good Rod", "super_rod": "Super Rod",
+               "surf": "Surf"}
+
+
+def lint_water(water, info, t):
+    """The water rules, from the blind encounter review's principles (Ian
+    adopted them as principles on 2026-09-29; the tables are re-authored
+    later), all aspirational warnings until then.
+
+    `water` is one dict per live water table: name, area (its capture area),
+    biome (the sidecar's water_biome, or None), earned (the lines its
+    water_earned names), opens ({kind: the split that method opens in}) and
+    slots ({kind: [species by slot]}). `info` gives line ({species: line}),
+    water_type ({species: bool}), palettes ({biome: set of lines}), inland
+    (the inland biomes), sea_only (species), split_idx, same_groups (sets of
+    table names R15 holds identical) and name ({line or species: a name})."""
+    out = []
+    line, name = info["line"], info["name"]
+    nm = lambda x: name.get(x) or x.replace("SPECIES_", "").title()
+    lnm = lambda x: (info.get("line_name") or {}).get(x) or nm(x)
+    rates = {k: A.TABLE_KINDS[k][2] for k in WATER_KINDS}
+
+    # R19 and R19b: every line in the table's biome's palette or earned
+    # there; a sea stage in inland water is its own finding.
+    for w in water:
+        if not w["biome"]:
+            out.append(Finding("R19", "warn", "table", w["name"],
+                               "has no water_biome in the sidecar, so its lines cannot be judged"))
+            continue
+        palette = info["palettes"].get(w["biome"]) or set()
+        inland = w["biome"] in info["inland"]
+        for kind, sps in w["slots"].items():
+            for sp in dict.fromkeys(sps):
+                ln = line.get(sp, sp)
+                if ln in w["earned"]:
+                    continue
+                if ln not in palette:
+                    out.append(Finding("R19", "warn", "table", w["name"],
+                        f"{nm(sp)} on the {WATER_NAMES[kind]} is not in the {w['biome']} palette"))
+                if inland and sp in info["sea_only"]:
+                    out.append(Finding("R19b", "warn", "table", w["name"],
+                        f"{nm(sp)} on the {WATER_NAMES[kind]} is a sea line in {w['biome']} water"))
+
+    # R20: within a capture area, a line is in one of the four methods, the
+    # Super Rod's 1% allowed to be the adult of a Good Rod line.
+    by_area = collections.defaultdict(lambda: collections.defaultdict(list))
+    for w in water:
+        for kind, sps in w["slots"].items():
+            for i, sp in enumerate(sps):
+                by_area[w["area"]][line.get(sp, sp)].append((kind, i, sp))
+    for area, lines in by_area.items():
+        for ln, seen in lines.items():
+            kinds = {k for k, _, _ in seen}
+            if len(kinds) < 2:
+                continue
+            if kinds == {"good_rod", "super_rod"} and all(
+                    i == 4 for k, i, _ in seen if k == "super_rod"):
+                continue
+            out.append(Finding("R20", "warn", "area", area,
+                f"the {lnm(ln)} line is on the " + ", ".join(
+                    WATER_NAMES[k] for k in WATER_KINDS if k in kinds)
+                + "; a line belongs to one of an area's water tables"))
+
+    # R21: the 1% slot is the place's rarity, not one line in many areas.
+    ones = collections.defaultdict(set)
+    for w in water:
+        for kind, sps in w["slots"].items():
+            if len(sps) == 5:
+                ones[line.get(sps[4], sps[4])].add(w["area"])
+    limit = t.get("r21_one_percent_max_areas", 3)
+    for ln, areas in sorted(ones.items(), key=lambda x: -len(x[1])):
+        if len(areas) > limit:
+            out.append(Finding("R21", "warn", "game", lnm(ln),
+                f"the {lnm(ln)} line is a water 1% in {len(areas)} capture areas, over {limit}: "
+                + ", ".join(sorted(areas))))
+
+    # R22: within the split a method opens in, no two areas share a top pair.
+    same = {}
+    for g in info.get("same_groups") or []:
+        for n in g:
+            same[n] = frozenset(g)
+    pairs = collections.defaultdict(list)
+    for w in water:
+        for kind, sps in w["slots"].items():
+            if len(sps) < 2:
+                continue
+            pair = frozenset(line.get(sp, sp) for sp in sps[:2])
+            if len(pair) == 2:
+                pairs[(w["opens"].get(kind), pair)].append((w["area"], w["name"], kind))
+    for (split, pair), where in sorted(pairs.items(), key=lambda x: (
+            info["split_idx"].get(x[0][0], 99), sorted(x[0][1]))):
+        # One capture area counts once, and so does one R15 "same" group,
+        # whose tables are identical by design.
+        areas, keys = [], set()
+        for area, tname, kind in where:
+            key = same.get(tname) or area
+            if key not in keys:
+                keys.add(key)
+                areas.append((area, tname, kind))
+        if len(areas) > 1:
+            out.append(Finding("R22", "warn", "game", split or "?",
+                f"{' and '.join(sorted(lnm(l) for l in pair))} lead " + "; ".join(
+                    f"{a} ({WATER_NAMES[k]})" for a, _, k in areas)
+                + f", all opening in {split}; a top pair belongs to one area per split"))
+
+    # R23: non-Water lines at 30% of a table or less, off the cave pools.
+    cap = t.get("r23_non_water_share_max", 0.30)
+    for w in water:
+        if w["biome"] == "cave_pool":
+            continue
+        for kind, sps in w["slots"].items():
+            share = sum(r for sp, r in zip(sps, rates[kind])
+                        if not info["water_type"].get(sp, True)) / 100
+            if share > cap:
+                out.append(Finding("R23", "warn", "table", w["name"],
+                    f"the {WATER_NAMES[kind]} is {share:.0%} non-Water, over {cap:.0%} outside a cave"))
+
+    # R24: a water table holds five lines from five families.
+    need = t.get("r24_water_lines_min", 5)
+    for w in water:
+        for kind, sps in w["slots"].items():
+            n = len({line.get(sp, sp) for sp in sps})
+            if len(sps) >= need and n < need:
+                out.append(Finding("R24", "warn", "table", w["name"],
+                    f"the {WATER_NAMES[kind]} holds {n} lines, under {need}"))
+    return out
+
+
+def lint_all(areas, sidecar, availability=None, hidden=None, water=None):
     """`hidden` is audit.hidden_ability_grants() for the tree being linted, or
-    None to leave R18 out (a reference tree's scripts are not read)."""
+    None to leave R18 out (a reference tree's scripts are not read). `water`
+    is (tables, info) for lint_water, or None to leave the water rules out
+    (a reference tree was never given biomes)."""
     t = thresholds_from(sidecar)
     entries = (sidecar or {}).get("areas") or {}
     out = []
@@ -584,6 +727,8 @@ def lint_all(areas, sidecar, availability=None, hidden=None):
     out += lint_game(areas, t, availability)
     out += lint_groups(areas, sidecar, t)
     out += lint_hidden(hidden)
+    if water:
+        out += lint_water(water[0], water[1], t)
     return out
 
 

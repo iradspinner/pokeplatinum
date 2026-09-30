@@ -396,4 +396,5 @@ subscript_files = files(
     'subscript_red_card.s',
     'subscript_eject_button.s',
     'subscript_relic_song_form.s',
+    'subscript_pastel_veil.s',
 )

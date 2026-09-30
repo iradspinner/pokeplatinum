@@ -862,6 +862,8 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler); // Platinum Oxide: u
  * FALSE if the ability is ignored, or if the defender does not have it.
  */
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
+BOOL BattleSystem_InfiltratorPasses(BattleContext *battleCtx, int battler);
+BOOL BattleSystem_InfiltratorPassesEffect(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Checks if there are any Pokemon which can act as a replacement for a

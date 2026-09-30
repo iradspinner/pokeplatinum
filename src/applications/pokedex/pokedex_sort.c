@@ -105,14 +105,15 @@ void PokedexSort_DefaultPokedexSort(PokedexSortData *param0, PokedexDefaultSortP
     param0->pokedex = param1->pokedex;
     param0->timeOfDay = param1->timeOfDay;
 
-    if (Pokedex_IsNationalDexObtained(param0->pokedex)) {
-        param0->isNationalDexUnlocked = TRUE;
-    } else {
-        param0->isNationalDexUnlocked = FALSE;
-    }
+    // Platinum Oxide: the national listing can be switched to from the start
+    // (Ian's answer on "always national dex"; the curated regional dex is a
+    // presentation layer on top). Only this screen changes: the save's National
+    // Dex flag, which story, encounters and other systems read, is left to the
+    // story, and the screen still opens on the regional dex until it is set.
+    param0->isNationalDexUnlocked = TRUE;
 
     if (param1->bootMode == POKEDEX_BOOT_DEFAULT) {
-        if (param0->isNationalDexUnlocked) {
+        if (Pokedex_IsNationalDexObtained(param0->pokedex)) {
             isNationalDex = TRUE;
         } else {
             isNationalDex = FALSE;
@@ -242,7 +243,16 @@ u32 PokedexSort_NumFormsSeen(const PokedexSortData *param0, u32 species)
     return Pokedex_NumFormsSeen(param0->pokedex, species);
 }
 
+// Platinum Oxide: always, as above; this is what the mode switch reads.
 BOOL PokedexSort_IsNationalUnlocked(const PokedexSortData *param0)
+{
+    return param0->isNationalDexUnlocked;
+}
+
+// Platinum Oxide: whether the story has given the National Dex, for what
+// follows the game rather than the listing: the area map's special
+// encounters, which the wild encounter code gates on the same flag.
+BOOL PokedexSort_HasNationalDexFromStory(const PokedexSortData *param0)
 {
     return Pokedex_IsNationalDexObtained(param0->pokedex);
 }

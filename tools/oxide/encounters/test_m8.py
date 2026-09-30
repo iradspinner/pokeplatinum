@@ -270,14 +270,19 @@ def check_weather_flag(results):
     flagged = sorted(s for s, r in rows.items() if r["weather"])
     page = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ui", "index.html"),
                 encoding="utf-8").read()
+    # Since Ian's ruling of 2026-09-29 moved the last obtainable lines' weather
+    # to their hidden slots (Hippopotas, Snover, Psyduck, Larvitar's), only
+    # legendaries the player never gets carry it in a regular slot.
     results.append(("a weather ability in a regular slot is flagged, a hidden one is not",
-                    rows["SPECIES_HIPPOPOTAS"]["weather"] == ["SAND_STREAM"]
+                    rows["SPECIES_GROUDON"]["weather"] == ["DROUGHT"]
+                    and server.dex_detail("SPECIES_KYOGRE")["weather"] == ["DRIZZLE"]
+                    and rows["SPECIES_HIPPOPOTAS"]["weather"] == []
+                    and pokedex.load(root, "SPECIES_HIPPOPOTAS")["hidden_ability"] == "SAND_STREAM"
                     and rows["SPECIES_ALOLAN_NINETALES"]["weather"] == []
                     and pokedex.load(root, "SPECIES_ALOLAN_NINETALES")["hidden_ability"]
                     == "SNOW_WARNING"
-                    and server.dex_detail("SPECIES_SNOVER")["weather"] == ["SNOW_WARNING"]
                     and not rows["SPECIES_BULBASAUR"]["weather"],
-                    f"{len(flagged)} species"))
+                    f"{len(flagged)} species: {', '.join(flagged)}"))
     results.append(("the page shows the flag in the dex and on every source's species",
                     page.count("${weatherTag(") == 4 and 'data-f="weather"' in page,
                     ""))

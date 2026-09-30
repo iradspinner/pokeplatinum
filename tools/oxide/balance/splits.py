@@ -463,9 +463,10 @@ BICYCLE_FROM = "Fantina"
 # The objects on a map that a field move clears (a boulder, pushed aside).
 OBSTACLES = {"OBJ_EVENT_GFX_ROCK_SMASH": "Rock Smash", "OBJ_EVENT_GFX_CUT_TREE": "Cut",
              "OBJ_EVENT_GFX_STRENGTH_BOULDER": "Strength"}
-# The field moves that open a way: the HM that teaches each, and the name of
-# its check in field_move_tasks.c, which names the badge it asks for. The
-# Bicycle is a key item with no badge.
+# The field moves that open a way: the HM that taught each (no longer needed
+# since the badge alone opens it), and the name of its check in
+# field_move_tasks.c, which names the badge it asks for. The Bicycle is a key
+# item with no badge.
 FIELD_MOVES = {"Bicycle": ("ITEM_BICYCLE", None), "Rock Smash": ("ITEM_HM06", "RockSmash"), "Cut": ("ITEM_HM01", "Cut"),
                "Surf": ("ITEM_HM03", "Surf"), "Strength": ("ITEM_HM04", "Strength"),
                "Rock Climb": ("ITEM_HM08", "RockClimb"), "Waterfall": ("ITEM_HM07", "Waterfall")}
@@ -511,9 +512,11 @@ def field_move_badges():
 
 @functools.lru_cache(maxsize=None)
 def field_move_splits():
-    """{move: the first split it can be used in}: the later of the split its
-    HM is first in hand (a script's gift, a mart, or a ball or hidden item
-    reached on foot) and the split after its badge's gym."""
+    """{move: the first split it can be used in}: the split after its
+    badge's gym. A field move needs its badge alone since main-field-moves
+    (2026-09-29), no HM; the Bicycle, a key item with no badge, counts from
+    the later of the split it is first in hand (a script's gift, a mart, or
+    a ball or hidden item reached on foot) and BICYCLE_FROM."""
     first = {}
 
     def seen(split, item):
@@ -529,10 +532,11 @@ def field_move_splits():
     out = {}
     for move, (hm, check) in FIELD_MOVES.items():
         gym = BADGE_GYM.get(field_move_badges().get(move))
-        if hm in first and check is None:
-            out[move] = max(first[hm], BICYCLE_FROM, key=SPLITS.index)
-        elif hm in first and gym in SPLITS[:-1]:
-            out[move] = max(first[hm], SPLITS[SPLITS.index(gym) + 1], key=SPLITS.index)
+        if check is None:
+            if hm in first:
+                out[move] = max(first[hm], BICYCLE_FROM, key=SPLITS.index)
+        elif gym in SPLITS[:-1]:
+            out[move] = SPLITS[SPLITS.index(gym) + 1]
     return out
 
 
