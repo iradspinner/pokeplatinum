@@ -1215,6 +1215,23 @@ that stay. None blocks anything.
    and needed nothing. Checked by `test_savefile` on a synthetic 30-box
    save, and once in headless Chrome through Read Save.
 
+45. **The water principles as lint (2026-09-29, the Overseer's approval of
+   this track's proposal, on `encounter-water-lint`).** Ian adopted the
+   blind encounter review's water principles as principles only; the water
+   tables are re-authored later, and nothing here changes a table. Each
+   water table's sidecar entry names a biome (`water_biome`, with
+   `water_biome_why` and the place's earned lines in `water_earned`), and
+   `water-biomes.json` gives each of the twelve biomes its palette and the
+   sea lines by stage. Seven aspirational warnings follow: R19 a line off its
+   biome's palette, R19b a sea line inland, R20 a line in two of a capture
+   area's water methods (the Super Rod 1% adult of a Good Rod line allowed),
+   R21 a line as the 1% in more than three areas, R22 two areas opening in
+   one split with the same top pair (R15's "same" groups exempt), R23
+   non-Water over 30% outside a cave, and R24 a water table under five
+   lines. The biome of every area is a draft for Ian, with today's counts
+   beside it in `water-lint-draft.md` (854 warnings, 395 of them R19); he
+   decides it as one question. `test_m3` checks each rule on made-up tables.
+
 ## Standing rules
 
 The authoring rules (splits, caps, width, the evolution pass, the no-leak rule
