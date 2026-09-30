@@ -147,7 +147,12 @@ def basic(b, u, t, mv, f):
     if mv.damaging() and eff(b, mv, t) == 0:
         return -10
     if e in fs.STATUS_OF:
-        return -10 if not fs.can_status(b, t, fs.STATUS_OF[e]) or eff(b, mv, t) == 0 else 0
+        # Status moves skip Basic's immunity check (basic.md, lines 62 to 68);
+        # of the status handlers only Basic_CheckCannotParalyze asks the type
+        # chart (Thunder Wave on Ground, Glare on Ghost). So Hypnosis keeps its
+        # score against a Dark type.
+        immune = e == "STATUS_PARALYZE" and eff(b, mv, t) == 0
+        return -10 if not fs.can_status(b, t, fs.STATUS_OF[e]) or immune else 0
     if e == "STATUS_SLEEP_NEXT_TURN":
         return -10 if t.status or t.yawn or not fs.can_status(b, t, "slp") else 0
     if e in ("STATUS_CONFUSE", "ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):

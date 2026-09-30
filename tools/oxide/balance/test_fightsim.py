@@ -11,11 +11,12 @@ import sys
 from . import fightai, fightsim as fs
 
 CHART = {"Normal": {"Ghost": 0.0, "Rock": 0.5}, "Fire": {"Grass": 2.0, "Water": 0.5},
-         "Water": {"Fire": 2.0}, "Grass": {"Water": 2.0}, "Ghost": {"Normal": 0.0}}
+         "Water": {"Fire": 2.0}, "Grass": {"Water": 2.0}, "Ghost": {"Normal": 0.0},
+         "Electric": {"Ground": 0.0, "Water": 2.0}}
 
 
 def _chart():
-    types = ["Normal", "Fire", "Water", "Grass", "Ghost", "Rock"]
+    types = ["Normal", "Fire", "Water", "Grass", "Ghost", "Rock", "Electric", "Ground"]
     return {a: {d: CHART.get(a, {}).get(d, 1.0) for d in types} for a in types}
 
 
@@ -62,16 +63,18 @@ def check_crit_odds(results):
 
 
 def check_status_immunity(results):
-    """A status move of a type the target is immune to fails: Glare, a
-    Normal move, on a Ghost."""
-    b, p, foe = battle(["Glare"], ["Tackle"], {}, b_types=("Ghost",))
-    fs.status_move(b, p, fs.move("Glare"), foe, True)
-    ghost = foe.status
-    b2, p2, foe2 = battle(["Glare"], ["Tackle"], {})
+    """Among status moves only Thunder Wave meets the type chart
+    (BattleControllerPlayer_CheckTypeChart runs it for moves with power and
+    for Thunder Wave): Thunder Wave fails on a Ground type, while Glare, a
+    Normal move with no power, still paralyses a Ghost."""
+    b, p, foe = battle(["Thunder Wave"], ["Tackle"], {}, b_types=("Ground",))
+    fs.status_move(b, p, fs.move("Thunder Wave"), foe, True)
+    ground = foe.status
+    b2, p2, foe2 = battle(["Glare"], ["Tackle"], {}, b_types=("Ghost",))
     fs.status_move(b2, p2, fs.move("Glare"), foe2, True)
-    ok = ghost is None and foe2.status == "par"
-    results.append(("a status move fails on a type immune to it", ok,
-                    f"Ghost {ghost}, Normal {foe2.status}"))
+    ok = ground is None and foe2.status == "par"
+    results.append(("only Thunder Wave among status moves is stopped by type", ok,
+                    f"Ground {ground}, Ghost {foe2.status}"))
 
 
 def check_item_moves(results):

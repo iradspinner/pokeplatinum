@@ -720,9 +720,10 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if dfn.protecting:
             return
-        # A status move of a type the target is immune to fails, as Glare
-        # does on a Ghost or Thunder Wave on a Ground type.
-        if e in STATUS_OF and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+        # The engine runs the type chart only for moves with power, and for
+        # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
+        # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.
+        if mv.name == "Thunder Wave" and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         if not b.accuracy_hits(att, dfn, mv):
             return

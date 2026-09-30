@@ -542,9 +542,10 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if dfn.protecting:
             return
-        # A status move of a type the target is immune to fails (Thunder
-        # Wave on a Ground type); fightsim lets it through.
-        if fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0 and e in fs.STATUS_OF:
+        # Only Thunder Wave among the status moves meets the type chart
+        # (BattleControllerPlayer_CheckTypeChart): it fails on a Ground type,
+        # while Hypnosis sleeps a Dark type and Will-O-Wisp burns a Normal one.
+        if mv.name == "Thunder Wave" and fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         if not accuracy_hits(b, att, dfn, mv):
             return

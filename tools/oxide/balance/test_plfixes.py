@@ -222,6 +222,39 @@ def main():
     results.append(("the AI scores curled Rollout below Rock Throw against a Geodude",
                     by["Rollout"] < by["Rock Throw"], f"{by}"))
 
+    # Status moves and the type chart: only Thunder Wave is gated by type in
+    # the engine; the AI's Basic zeroes only the paralysis moves by type.
+    iv20 = {k: 20 for k in IV}
+    recs = [{"constant": "SPECIES_VULLABY", "species": "Vullaby", "how": "test", "level": 22, "nature": "Hardy",
+             "ivs": iv20, "evs": EV, "ability": "Big Pecks", "moves": ["Pluck", "Leer"], "fill": False},
+            {"constant": "SPECIES_GEODUDE", "species": "Geodude", "how": "test", "level": 22, "nature": "Impish",
+             "ivs": IV, "evs": EV, "ability": "Sturdy", "moves": ["Magnitude", "Rock Throw"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("mars_1"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0", "p1"], boss_keys, flags, 0)
+    rng = random.Random(3)
+    b.dice, b.rng = pl.RunDice(rng, True), rng
+    bronzor = boss(b, "Bronzor")
+    vull = b.p.cur()
+    hyp = mv(bronzor, "Hypnosis")
+    results.append(("Basic does not zero Hypnosis against a Dark type",
+                    fightai.basic(b, bronzor, vull, hyp, 0) == 0, f"{fightai.basic(b, bronzor, vull, hyp, 0)}"))
+    slept = 0
+    for i in range(40):
+        vull.status, vull.sleep = None, 0
+        b.rng = random.Random(i); b.dice = pl.RunDice(b.rng, True)
+        pl.status_move(b, bronzor, hyp, vull, True)
+        slept += vull.status == "slp"
+    vull.status, vull.sleep = None, 0
+    results.append(("Hypnosis puts a Dark type to sleep at its accuracy", 12 <= slept <= 36, f"{slept} of 40"))
+    tw = fs.move("Thunder Wave")
+    if tw is not None:
+        geo = b.p.mons[1]
+        pl.status_move(b, bronzor, tw, geo, True)
+        results.append(("Thunder Wave still fails on a Ground type", geo.status is None, f"{geo.status}"))
+        results.append(("Basic still zeroes Thunder Wave against a Ground type",
+                        fightai.basic(b, bronzor, geo, tw, 0) == -10, f"{fightai.basic(b, bronzor, geo, tw, 0)}"))
+
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
         print(f"  {'ok  ' if ok else 'FAIL'}  {name:{width}}  {note}")
