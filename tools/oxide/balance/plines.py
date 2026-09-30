@@ -189,26 +189,45 @@ def decide(b, line):
 
 # ---- runs ----------------------------------------------------------------------------------------------
 
-def play_run(st, team, boss_keys, flags, line, rng, one_crit=True):
-    """One random run under the line: (clean win, won, turns)."""
+def play_run(st, team, boss_keys, flags, line, rng, one_crit=True, to_end=False):
+    """One random run under the line: (clean win, won, turns, deaths). It
+    stops at the player's first death unless `to_end`, which plays on to a
+    win or a wipe; the dice are the same up to that death either way, so a
+    run's clean result does not depend on it."""
     b = pl.make_battle(st, team, boss_keys, flags, line.lead)
     b.dice = pl.RunDice(rng, one_crit)
     b.rng = rng
+    dead = lambda: sum(1 for m in b.p.mons if not m.alive())
     while b.turn < RUN_TURN_CAP:
-        if pl.player_lost(b):
-            return False, False, b.turn
+        if not b.p.alive():
+            return False, False, b.turn, dead()
+        if pl.player_lost(b) and not to_end:
+            return False, False, b.turn, dead()
         if not b.b.alive():
-            return True, True, b.turn
+            return dead() == 0, True, b.turn, dead()
         pl.play_turn(b, decide(b, line), rng, one_crit)
-    return False, False, b.turn
+    return False, False, b.turn, dead()
 
 
 def clean_rate(st, team, boss_keys, flags, line, runs, rng, one_crit=True):
     clean = 0
     for _ in range(runs):
-        c, _w, _t = play_run(st, team, boss_keys, flags, line, rng, one_crit)
+        c, _w, _t, _d = play_run(st, team, boss_keys, flags, line, rng, one_crit)
         clean += c
     return clean / runs
+
+
+def line_stats(st, team, boss_keys, flags, line, runs, rng, one_crit=True):
+    """(clean-win rate, mean deaths, wipe chance) over runs played to the
+    end (Ian, 2026-09-30: the hardest fights, where no line wins cleanly,
+    still separate by what the best line costs)."""
+    clean = deaths = wipes = 0
+    for _ in range(runs):
+        c, w, _t, d = play_run(st, team, boss_keys, flags, line, rng, one_crit, to_end=True)
+        clean += c
+        deaths += d
+        wipes += not w and d == len(team)
+    return clean / runs, deaths / runs, wipes / runs
 
 
 # ---- candidate lines ------------------------------------------------------------------------------------
@@ -271,10 +290,12 @@ def search(st, team, boss_keys, flags, candidates=50, screen_runs=20, keep=3, co
     scored.sort(key=lambda x: (-x[0], x[1]))
     best = None
     for r, i, line in scored[:keep]:
-        rate = clean_rate(st, team, boss_keys, flags, line, confirm_runs, random.Random(seed * 104729 + i), one_crit)
-        if best is None or rate > best[0]:
-            best = (rate, r, line)
-    rate, screened, line = best
-    return {"rate": round(rate, 3), "screened": round(screened, 3), "screen": curve,
+        rate, deaths, wipe = line_stats(st, team, boss_keys, flags, line, confirm_runs,
+                                        random.Random(seed * 104729 + i), one_crit)
+        if best is None or (rate, -deaths) > (best[0], -best[3]):
+            best = (rate, r, line, deaths, wipe)
+    rate, screened, line, deaths, wipe = best
+    return {"rate": round(rate, 3), "deaths": round(deaths, 3), "wipe": round(wipe, 3),
+            "screened": round(screened, 3), "screen": curve,
             "line": line.describe(st, team), "candidates": len(scored),
             "runs": len(scored) * screen_runs + min(keep, len(scored)) * confirm_runs}

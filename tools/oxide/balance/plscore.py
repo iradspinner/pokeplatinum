@@ -235,6 +235,7 @@ def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, se
               f"({len(rows)} searches, {out['seconds']} s)", file=log, flush=True)
     else:
         print(f"{prep['label']:28} blind {out['blind_rate']:.2f}  planned {out['planned_rate']:.2f}  "
+              f"deaths {out['planned_deaths']:.2f}  wipe {out['planned_wipe']:.2f}  "
               f"best {out['best_rate']:.2f}  conv {out['convergence']}  ({len(rows)} sixes, {out['seconds']} s)",
               file=log, flush=True)
     return out
@@ -249,8 +250,12 @@ def summarise(rows):
     blind = [r for r in rows if r["kind"].startswith("blind")]
     planned = [r for r in rows if r["kind"].startswith("planned")]
     by_box = collections.defaultdict(list)
+    boxes_rows = collections.defaultdict(list)
     for r in planned:
         by_box[r["kind"].split(":")[1]].append(r["rate"])
+        boxes_rows[r["kind"].split(":")[1]].append(r)
+    # Each box's best six: the highest clean-win rate, then the fewest deaths.
+    best_six = [max(rs, key=lambda r: (r["rate"], -r.get("deaths", 0.0))) for rs in boxes_rows.values()]
     def at_most(screen, at):
         """The best screening rate once `at` candidates had been tried: the
         curve's last point at or before it, else its first (a search that
@@ -269,6 +274,13 @@ def summarise(rows):
             "planned_rate": mean([max(v) for v in by_box.values()]),
             "planned_clean_share": mean([1.0 if max(v) >= 0.9 else 0.0 for v in by_box.values()]),
             "best_rate": max((r["rate"] for r in planned + blind), default=0.0),
+            # What the best line costs where it does not win cleanly: its mean
+            # deaths and the chance of a wipe, for each box's best six and
+            # over the blind sixes.
+            "planned_deaths": mean([r.get("deaths", 0.0) for r in best_six]),
+            "planned_wipe": mean([r.get("wipe", 0.0) for r in best_six]),
+            "blind_deaths": mean([r.get("deaths", 0.0) for r in blind]),
+            "blind_wipe": mean([r.get("wipe", 0.0) for r in blind]),
             "convergence": curve,
             "runs": sum(r.get("runs", 0) for r in rows)}
 
@@ -305,11 +317,13 @@ def report(out=sys.stdout, strict=False):
             print(f"{r['label'][:29]:30}{r['split']:10}{r['blind_share']:>7.2f}{r['planned_share']:>9.2f}"
                   f"{r['box_share']:>7.2f}{r['undecided']:>8.2f}{str(ian):>5}", file=out)
         return
-    print(f"{'fight':30}{'split':10}{'blind':>7}{'planned':>9}{'best':>6}{'conv 10/50/100/all':>22}{'Ian':>5}", file=out)
+    print(f"{'fight':30}{'split':10}{'blind':>7}{'planned':>9}{'deaths':>8}{'wipe':>6}{'best':>6}"
+          f"{'conv 10/50/100/all':>22}{'Ian':>5}", file=out)
     for r in sorted(rows, key=lambda r: -r["planned_rate"]):
         ian = calibrate.IAN_RATINGS.get(r.get("key"), "")
         conv = "/".join(f"{v:.2f}" for v in r["convergence"].values())
         print(f"{r['label'][:29]:30}{r['split']:10}{r['blind_rate']:>7.2f}{r['planned_rate']:>9.2f}"
+              f"{r.get('planned_deaths', 0):>8.2f}{r.get('planned_wipe', 0):>6.2f}"
               f"{r['best_rate']:>6.2f}{conv:>22}{str(ian):>5}", file=out)
 
 

@@ -944,6 +944,14 @@ def _turn(c, pa, aa):
         idx = fightai.replacement(c, c.b, c.p.cur())
         if idx is not None:
             fs.switch_in(c, c.b, idx)
+    # A run played past a death (plines' mean deaths and wipe chance) needs
+    # the player's knocked-out Pokemon replaced too; before any death this
+    # never fires, so a clean result is unchanged.
+    if c.p.alive() and not c.p.cur().alive():
+        idx = fs.player_replacement(c)
+        if idx is None or not c.p.mons[idx].alive():
+            idx = next(i for i, m in enumerate(c.p.mons) if m.alive())
+        fs.switch_in(c, c.p, idx)
     # The matchup changed (a switch on either side, or a knockout): every
     # kind of bad luck is on offer again.
     return (c.p.active == b_active_p and c.b.active == b_active_b
