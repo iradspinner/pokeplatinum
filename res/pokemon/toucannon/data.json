@@ -34,9 +34,9 @@
         "EGG_GROUP_FLYING"
     ],
     "abilities": [
-        "ABILITY_KEEN_EYE",
+        "ABILITY_SHEER_FORCE",
         "ABILITY_SKILL_LINK",
-        "ABILITY_SHEER_FORCE"
+        "ABILITY_KEEN_EYE"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",

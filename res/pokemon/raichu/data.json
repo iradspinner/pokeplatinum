@@ -30,7 +30,7 @@
     "abilities": [
         "ABILITY_LIGHTNING_ROD",
         "ABILITY_NONE",
-        "ABILITY_LIGHTNING_ROD"
+        "ABILITY_STATIC"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_YELLOW",
