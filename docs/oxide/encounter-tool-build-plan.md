@@ -1295,8 +1295,8 @@ that stay. None blocks anything.
      how sure and its lock; the starter is not a zone), and **Delay Zones**,
      every place the run saves for later, what it waits for and until
      when, and what it takes there in the end. Both are read from the run
-     itself; this track's reading of the two names, put to Ian with the
-     tab. Then the run split by split, each with its cap and how many areas
+     itself, in this track's reading of the two names, which Ian
+     confirmed as built (2026-09-29, through the Overseer). Then the run split by split, each with its cap and how many areas
      catch now or wait, a row per area: the pick and how, the lock, how
      sure (from "How sure is it?", for the run it was asked for), and its
      worth as a bar. The server now sends each split's cap with a run.
