@@ -1,6 +1,6 @@
 # The TM pass, a draft
 
-Written by `tmpass.py` (2026-09-28) for Ian's rulings of the same day. It writes no game data. TMs are single-use again and each placement gives a set number of copies: strong TMs one, utility two (three where Ian picks), weak ones given by a single optional trainer. Egg lists are only the trainers' palette. The TSVs beside this file hold the detail: the set (`tm-pass-set.tsv`), who learns each (`tm-pass-compat.tsv`), the items the reach fix moves (`tm-pass-reach.tsv`) and the egg lists (`tm-pass-eggs.tsv`).
+Written by `tmpass.py` for Ian's rulings of 2026-09-28, rerun on learnset v3 on 2026-09-30. It writes no game data. TMs are single-use again and each placement gives a set number of copies: strong TMs one, utility two (three where Ian picks), weak ones given by a single optional trainer. Egg lists are only the trainers' palette. The TSVs beside this file hold the detail: the set (`tm-pass-set.tsv`), who learns each (`tm-pass-compat.tsv`), the items the reach fix moves (`tm-pass-reach.tsv`) and the egg lists (`tm-pass-eggs.tsv`).
 
 ## Reach
 
@@ -42,9 +42,9 @@ The census reaches 390 item balls and hidden items on foot; 178 wait for a field
 
 ## The set
 
-65 of today's 92 TMs stay; 27 go (Ian's removals, and any that no longer qualify). 35 new ones come from the later games' TM and tutor moves, ranked by how many lines with a stage that has no niche they would give a role, then by lines reached, then by worth. The line falls at 100 TMs; the 15 after it are shown so Ian can move it. The six HMs are below, and the reliable-status group apart.
+65 of today's 92 TMs stay (Thunder Wave among them, in the reliable-status group); 27 go (Ian's removals, and cuts proposed for Ian where a move no longer qualifies). 35 new ones come from the later games' TM and tutor moves, ranked by how many lines with a stage that has no niche they would give a role, then by lines reached, then by worth. The line falls at 100 TMs; the 15 after it are shown so Ian can move it. The six HMs are below, and the reliable-status group apart.
 
-Leaving: TM01 Focus Punch (Ian's removal), TM06 Toxic (Ian's removal), TM07 Hail (Ian's removal), TM11 Sunny Day (Ian's removal), TM17 Protect (Ian's removal), TM18 Rain Dance (Ian's removal), TM20 Safeguard (a status move rated under B), TM32 Double Team (Ian's removal), TM37 Sandstorm (Ian's removal), TM41 Torment (a status move rated under B), TM45 Attract (a status move rated under B), TM46 Thief (Ian's removal), TM48 Skill Swap (Ian's removal), TM49 Snatch (Ian's removal), TM56 Fling (hangs on a held item), TM61 Will-O-Wisp (Ian's removal), TM63 Embargo (Ian's removal), TM64 Explosion (the user faints, which in a nuzlocke is a death), TM67 Recycle (a status move rated under B), TM70 Flash (Ian's removal), TM75 Swords Dance (Ian's removal), TM77 Psych Up (a status move rated under B), TM78 Captivate (a status move rated under B), TM83 Natural Gift (hangs on a held item), TM85 Dream Eater (Ian's removal), TM87 Swagger (a status move rated under B), TM90 Substitute (Ian's removal).
+Leaving: TM01 Focus Punch (Ian's removal), TM06 Toxic (Ian's removal), TM07 Hail (Ian's removal), TM11 Sunny Day (Ian's removal), TM17 Protect (Ian's removal), TM18 Rain Dance (Ian's removal), TM20 Safeguard (proposed for Ian: a status move rated under B), TM32 Double Team (Ian's removal), TM37 Sandstorm (Ian's removal), TM41 Torment (proposed for Ian: a status move rated under B), TM45 Attract (proposed for Ian: a status move rated under B), TM46 Thief (Ian's removal), TM48 Skill Swap (Ian's removal), TM49 Snatch (Ian's removal), TM56 Fling (proposed for Ian: hangs on a held item), TM61 Will-O-Wisp (Ian's removal), TM63 Embargo (Ian's removal), TM64 Explosion (proposed for Ian: the user faints, which in a nuzlocke is a death), TM67 Recycle (proposed for Ian: a status move rated under B), TM70 Flash (Ian's removal), TM75 Swords Dance (Ian's removal), TM77 Psych Up (proposed for Ian: a status move rated under B), TM78 Captivate (proposed for Ian: a status move rated under B), TM83 Natural Gift (proposed for Ian: hangs on a held item), TM85 Dream Eater (Ian's removal), TM87 Swagger (proposed for Ian: a status move rated under B), TM90 Substitute (Ian's removal).
 
 | New TM | Tier | Lines | Lines without a niche it helps | Worth |
 |---|---|---|---|---|
@@ -131,16 +131,15 @@ Toxic, Will-O-Wisp and each status move that inflicts a major status at 90% or m
 | TM | Lines | Placed |
 |---|---|---|
 | Thunder Wave | 63 | HQ: VEILSTONE_CITY_GALACTIC_WAREHOUSE (ball, today ITEM_HM02) |
-| Glare | 0 | -: no free place from that split |
-| Spore | 1 | -: no free place from that split |
-| Thunder Wave | 63 | -: no free place from that split |
 | Toxic | 200 | -: its place today, in Wake, is before Byron; no free place from that split |
 | Will-O-Wisp | 37 | -: no free place from that split |
 | Yawn | 15 | -: no free place from that split |
 
+Left out of the group as no real option, since at most one line could learn it: Glare (0 lines), Spore (1 line).
+
 ## Placement and copies
 
-Strong 38, utility 52, weak 16. Candidates for a third copy are marked; Ian picks. Weak TMs go behind an optional trainer on the easier side of its split, named below; marts keep selling what they sell now.
+Strong 35, utility 52, weak 16. Candidates for a third copy are marked; Ian picks. Weak TMs go behind an optional trainer on the easier side of its split, named below; marts keep selling what they sell now.
 
 | TM | Tier | Copies | Split | Where |
 |---|---|---|---|---|
@@ -229,7 +228,6 @@ Strong 38, utility 52, weak 16. Candidates for a third copy are marked; Ian pick
 | Dual Wingbeat | utility | 2 | - | no free place from that split |
 | Earth Power | strong | 1 | - | no free place from that split |
 | Foul Play | strong | 1 | - | no free place from that split |
-| Glare | strong | 1 | - | no free place from that split |
 | Heal Bell | utility | 2 | - | no free place from that split |
 | Hyper Voice | strong | 1 | - | no free place from that split |
 | Iron Head | utility | 2 | - | no free place from that split |
@@ -238,12 +236,10 @@ Strong 38, utility 52, weak 16. Candidates for a third copy are marked; Ian pick
 | Play Rough | strong | 1 | - | no free place from that split |
 | Poltergeist | strong | 1 | - | no free place from that split |
 | Psybeam | utility | 2 | - | no free place from that split |
-| Spore | strong | 1 | - | no free place from that split |
 | StompingTantrum | utility | 2 | - | no free place from that split |
 | Sucker Punch | utility | 2 | - | no free place from that split |
 | Synthesis | utility | 2 | - | no free place from that split |
 | Tailwind | strong | 1 | - | no free place from that split |
-| Thunder Wave | strong | 1 | - | no free place from that split |
 | Toxic | strong | 1 | - | its place today, in Wake, is before Byron; no free place from that split |
 | Toxic Spikes | strong | 1 | - | no free place from that split |
 | Venoshock | utility | 2 | - | no free place from that split |

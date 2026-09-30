@@ -153,8 +153,16 @@ def relaxed_group():
             continue
         acc = m.get("accuracy") or 0
         if lp.name(c) in RELAXED_NAMED or (m.get("effect") in STATUS_EFFECTS and (acc == 0 or acc >= 90)):
+            if lines_reached(c) < RELAXED_MIN_LINES:
+                # A TM one line or none can learn is no real option.
+                RELAXED_TOO_FEW.append((c, lines_reached(c)))
+                continue
             out.append(c)
     return sorted(out, key=lp.name)
+
+
+RELAXED_MIN_LINES = 2
+RELAXED_TOO_FEW = []
 
 
 def tier(c):
@@ -367,7 +375,7 @@ def place(kept, chosen, relaxed, places, proposal):
     by_move = collections.defaultdict(list)
     for sl in tm_slots:
         by_move[move_of.get(sl["item"])].append(sl)
-    set_moves = [c for _k, c in kept] + [x[0] for x in chosen] + list(relaxed)
+    set_moves = list(dict.fromkeys([c for _k, c in kept] + [x[0] for x in chosen] + list(relaxed)))
     free = [sl for c, sls in by_move.items() if c not in set_moves for sl in sls]
     free.sort(key=lambda sl: (pool.split_index(sl["split"]) if sl["split"] in pool.SPLITS else 99, sl["map"]))
     rows = []
@@ -553,7 +561,8 @@ def _write_md(out, res):
     nm = lp.name
     rows = res["rows"]
     p("# The TM pass, a draft\n")
-    p("Written by `tmpass.py` (2026-09-28) for Ian's rulings of the same day. It writes no game data. "
+    p("Written by `tmpass.py` for Ian's rulings of 2026-09-28, rerun on learnset v3 on 2026-09-30. "
+      "It writes no game data. "
       "TMs are single-use again and each placement gives a set number of copies: strong TMs one, "
       "utility two (three where Ian picks), weak ones given by a single optional trainer. Egg lists "
       "are only the trainers' palette. The TSVs beside this file hold the detail: the set "
@@ -573,12 +582,18 @@ def _write_md(out, res):
           f"{x['map_split']} | {x['split']} |")
     kept, chosen = res["kept"], res["chosen"]
     p("\n## The set\n")
-    p(f"{len(kept)} of today's 92 TMs stay; {len(res['dropped'])} go (Ian's removals, and any that no "
-      f"longer qualify). {len(chosen)} new ones come from the later games' TM and tutor moves, ranked by "
+    in_group = [c for _k, c in kept if c in res["relaxed"]]
+    p(f"{len(kept)} of today's 92 TMs stay"
+      + (f" ({', '.join(nm(c) for c in in_group)} among them, in the reliable-status group)" if in_group else "")
+      + f"; {len(res['dropped'])} go (Ian's removals, and cuts proposed for Ian where a move no "
+      f"longer qualifies). {len(chosen)} new ones come from the later games' TM and tutor moves, ranked by "
       f"how many lines with a stage that has no niche they would give a role, then by lines reached, "
       f"then by worth. The line falls at {len(kept) + len(chosen)} TMs; the {len(res['below'])} after it "
       f"are shown so Ian can move it. The six HMs are below, and the reliable-status group apart.\n")
-    p("Leaving: " + ", ".join(f"{k} {nm(c)} ({why})" for k, c, why in res["dropped"]) + ".\n")
+    # Ian's own removals say so; every other cut is a proposal for him.
+    ian = "Ian's removal"
+    leave = lambda why: why if why == ian else "proposed for Ian: " + why
+    p("Leaving: " + ", ".join(f"{k} {nm(c)} ({leave(why)})" for k, c, why in res["dropped"]) + ".\n")
     p("| New TM | Tier | Lines | Lines without a niche it helps | Worth |\n|---|---|---|---|---|")
     for c, lift, reached, w in chosen:
         p(f"| {nm(c)} | {tier(c)} | {reached} | {lift} | {w:.0f} |")
@@ -598,6 +613,10 @@ def _write_md(out, res):
     p("| TM | Lines | Placed |\n|---|---|---|")
     for r in (r for r in rows if r["relaxed"]):
         p(f"| {nm(r['move'])} | {lines_reached(r['move'])} | {r['split'] or '-'}: {r['place'] or r['note']} |")
+    if RELAXED_TOO_FEW:
+        p("\nLeft out of the group as no real option, since at most one line could learn it: "
+          + ", ".join(f"{nm(c)} ({n} line{'s' if n != 1 else ''})" for c, n in sorted(RELAXED_TOO_FEW, key=lambda x: nm(x[0])))
+          + ".")
     p("\n## Placement and copies\n")
     counts = collections.Counter(r["tier"] for r in rows)
     p(f"Strong {counts['strong']}, utility {counts['utility']}, weak {counts['weak']}. Candidates for a "
