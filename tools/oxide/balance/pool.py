@@ -21,7 +21,8 @@ Where each piece comes from:
   above that split's cap; then the encounter tool's scripted sources for
   species that file places nowhere, at the tool's split (the fossils, and
   Acuity Cavern's legendary draw). Swarms, the Poke Radar, the GBA slots and the
-  Trophy Garden dailies are never used (Ian, 2026-09-21), so they are not
+  Trophy Garden dailies are never used (Ian, 2026-09-21), and the Great
+  Marsh lookout's daily Pokemon are cut (Ian, 2026-09-30), so they are not
   sources. Then every evolution reachable at the cap: one that needs an
   item (a stone, or an item held on level-up) from the split that item is
   first in reach, a wild Pokemon's held item included; the rest by the
@@ -179,6 +180,8 @@ def catches():
     from_file = set()
     with open(SOURCES, encoding="utf-8") as f:
         for row in csv.DictReader(f):
+            if row["method"].startswith("great marsh daily"):
+                continue
             split = locs.get(row["location"])
             level = _source_level(row["level"])
             if split and cap.get(split) and level <= cap[split]:

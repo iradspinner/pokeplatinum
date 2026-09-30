@@ -3401,9 +3401,9 @@
    "left_out": {},
    "calcs": 55518,
    "errors": [],
-   "node_seconds": 19.54,
-   "wall_seconds": 20.02,
-   "fingerprint": "8124972cdc60e1eeadc2",
+   "node_seconds": 12.11,
+   "wall_seconds": 12.35,
+   "fingerprint": "b6d3f647483297d17711",
    "verified": true
   },
   "mars_2": {
@@ -3569,9 +3569,9 @@
    "left_out": {},
    "calcs": 47208,
    "errors": [],
-   "node_seconds": 17.51,
-   "wall_seconds": 17.98,
-   "fingerprint": "e9c2067c0381eebd721f",
+   "node_seconds": 10.97,
+   "wall_seconds": 11.24,
+   "fingerprint": "58ba4a97d96aa15613ea",
    "verified": true
   },
   "candice": {
@@ -3752,9 +3752,9 @@
    "left_out": {},
    "calcs": 70370,
    "errors": [],
-   "node_seconds": 22.72,
-   "wall_seconds": 23.39,
-   "fingerprint": "1d11ee7fe7de82d2a638",
+   "node_seconds": 15.29,
+   "wall_seconds": 15.63,
+   "fingerprint": "3def71826638cc5267fc",
    "verified": true
   },
   "cyrus_2": {
@@ -3932,9 +3932,9 @@
    "left_out": {},
    "calcs": 71559,
    "errors": [],
-   "node_seconds": 24.79,
-   "wall_seconds": 25.37,
-   "fingerprint": "fa5c11dcdef8fe9e1c34",
+   "node_seconds": 15.46,
+   "wall_seconds": 15.95,
+   "fingerprint": "bab53b1ea9228f38449b",
    "verified": true
   },
   "saturn_2": {
@@ -4101,9 +4101,9 @@
    "left_out": {},
    "calcs": 49478,
    "errors": [],
-   "node_seconds": 17.96,
-   "wall_seconds": 18.64,
-   "fingerprint": "f733f4e04c1fc8aaea00",
+   "node_seconds": 11.59,
+   "wall_seconds": 11.88,
+   "fingerprint": "6099c5784c7a44e80cba",
    "verified": true
   },
   "mars_jupiter": {
@@ -4402,9 +4402,9 @@
    "left_out": {},
    "calcs": 131890,
    "errors": [],
-   "node_seconds": 36.66,
-   "wall_seconds": 37.63,
-   "fingerprint": "cddfc443e4b38ed5d284",
+   "node_seconds": 25.93,
+   "wall_seconds": 26.44,
+   "fingerprint": "4dbaca3af153a9bd22a1",
    "verified": true
   },
   "cyrus_3": {
@@ -4569,9 +4569,9 @@
    "left_out": {},
    "calcs": 62676,
    "errors": [],
-   "node_seconds": 17.72,
-   "wall_seconds": 18.43,
-   "fingerprint": "50964f42af3fc1f72363",
+   "node_seconds": 13.45,
+   "wall_seconds": 13.79,
+   "fingerprint": "f089ec3cd4a612487825",
    "verified": true
   },
   "volkner": {
@@ -4750,9 +4750,9 @@
    "left_out": {},
    "calcs": 71792,
    "errors": [],
-   "node_seconds": 23.7,
-   "wall_seconds": 24.35,
-   "fingerprint": "d38e4a29cc9e834011ec",
+   "node_seconds": 15.25,
+   "wall_seconds": 15.79,
+   "fingerprint": "eb96d413222bb95de3e8",
    "verified": true
   },
   "barry_6": {
@@ -5174,9 +5174,9 @@
    "left_out": {},
    "calcs": 189112,
    "errors": [],
-   "node_seconds": 46.29,
-   "wall_seconds": 47.11,
-   "fingerprint": "616c7b4544fbd6d814ad",
+   "node_seconds": 34.4,
+   "wall_seconds": 35.0,
+   "fingerprint": "06beb8a96866d8c9d15c",
    "verified": true
   },
   "aaron": {
@@ -5348,9 +5348,9 @@
    "left_out": {},
    "calcs": 71848,
    "errors": [],
-   "node_seconds": 17.29,
-   "wall_seconds": 17.66,
-   "fingerprint": "4b26566abbbc80b88006",
+   "node_seconds": 15.18,
+   "wall_seconds": 15.74,
+   "fingerprint": "798d7879773714a0ae70",
    "verified": true
   },
   "bertha": {
@@ -5528,9 +5528,9 @@
    "left_out": {},
    "calcs": 71848,
    "errors": [],
-   "node_seconds": 18.18,
-   "wall_seconds": 18.55,
-   "fingerprint": "9ec6ba04af72d81ef09c",
+   "node_seconds": 15.03,
+   "wall_seconds": 15.4,
+   "fingerprint": "60abcd325451c53bdcbc",
    "verified": true
   },
   "flint": {
@@ -5702,9 +5702,9 @@
    "left_out": {},
    "calcs": 64267,
    "errors": [],
-   "node_seconds": 18.15,
-   "wall_seconds": 18.63,
-   "fingerprint": "b6d1babaf238fb1a6c92",
+   "node_seconds": 13.13,
+   "wall_seconds": 13.47,
+   "fingerprint": "a8bc8fe6c6fb6efa0d8b",
    "verified": true
   },
   "lucian": {
@@ -5880,9 +5880,9 @@
    "errors": [
     "b0.5 Acidic Payback: damage is not a number"
    ],
-   "node_seconds": 20.06,
-   "wall_seconds": 20.43,
-   "fingerprint": "a75d4a01e1f175526677",
+   "node_seconds": 13.98,
+   "wall_seconds": 14.26,
+   "fingerprint": "86e941279f60df7a96d7",
    "verified": true
   },
   "cynthia": {
@@ -6047,9 +6047,9 @@
    "left_out": {},
    "calcs": 73192,
    "errors": [],
-   "node_seconds": 21.55,
-   "wall_seconds": 21.9,
-   "fingerprint": "6b871ae39cdc2680f1f2",
+   "node_seconds": 15.2,
+   "wall_seconds": 15.61,
+   "fingerprint": "def274a491a2af7cde1c",
    "verified": true
   }
  }

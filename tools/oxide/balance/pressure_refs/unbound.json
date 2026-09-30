@@ -920,9 +920,9 @@
    "left_out": {},
    "calcs": 54192,
    "errors": [],
-   "node_seconds": 8.86,
-   "wall_seconds": 9.14,
-   "fingerprint": "80a626e12e4036f85495",
+   "node_seconds": 12.39,
+   "wall_seconds": 12.67,
+   "fingerprint": "9a8b5e44f4c557891656",
    "verified": true
   },
   "volkner": {
@@ -1083,9 +1083,9 @@
    },
    "calcs": 68208,
    "errors": [],
-   "node_seconds": 11.59,
-   "wall_seconds": 11.89,
-   "fingerprint": "4b479d6a9a313489d75c",
+   "node_seconds": 15.86,
+   "wall_seconds": 16.31,
+   "fingerprint": "37b5c475ec80e8fc278b",
    "verified": true
   },
   "aaron": {
@@ -1242,9 +1242,9 @@
    },
    "calcs": 43729,
    "errors": [],
-   "node_seconds": 7.91,
-   "wall_seconds": 8.2,
-   "fingerprint": "4e6bbb1e8a1da5ec381e",
+   "node_seconds": 11.34,
+   "wall_seconds": 11.65,
+   "fingerprint": "1330ff4f3c214d1733b8",
    "verified": true
   },
   "bertha": {
@@ -1400,9 +1400,9 @@
    "left_out": {},
    "calcs": 70056,
    "errors": [],
-   "node_seconds": 11.29,
-   "wall_seconds": 11.52,
-   "fingerprint": "b478f07bc62ce28f6c08",
+   "node_seconds": 15.12,
+   "wall_seconds": 15.38,
+   "fingerprint": "cef068a2b625708240b9",
    "verified": true
   },
   "flint": {
@@ -1558,9 +1558,9 @@
    "left_out": {},
    "calcs": 62027,
    "errors": [],
-   "node_seconds": 10.28,
-   "wall_seconds": 10.68,
-   "fingerprint": "5b6d64e142392543a216",
+   "node_seconds": 14.61,
+   "wall_seconds": 14.9,
+   "fingerprint": "bf4731bc41d8d9951e75",
    "verified": true
   },
   "lucian": {
@@ -1705,9 +1705,9 @@
    "left_out": {},
    "calcs": 45521,
    "errors": [],
-   "node_seconds": 7.93,
-   "wall_seconds": 8.35,
-   "fingerprint": "c963a0d4c1a5694f454a",
+   "node_seconds": 11.59,
+   "wall_seconds": 11.85,
+   "fingerprint": "7b0a0129d8d48af4da7d",
    "verified": true
   },
   "cynthia": {
@@ -1873,9 +1873,9 @@
    "left_out": {},
    "calcs": 53102,
    "errors": [],
-   "node_seconds": 9.36,
-   "wall_seconds": 9.58,
-   "fingerprint": "bd0911eff5f5560c4f3f",
+   "node_seconds": 12.7,
+   "wall_seconds": 13.0,
+   "fingerprint": "f5f6a1f119c96a158835",
    "verified": true
   }
  }

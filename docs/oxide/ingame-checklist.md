@@ -68,10 +68,10 @@ replacement went in on 2026-09-29, and all of this was done that day:
   Wormadam, Shellos or Gastrodon form shows the icon one place along; that is
   known and harmless (`save-layout.md`, the Meloetta section).
 
-- [ ] Once `main-battlelog` merges, **the battle log**: your current save
-  loads and plays as before. Fight two trainers, save, and the OxiDex's
-  Battle Log shows both, with who knocked out whom. Lose one fight on
-  purpose if convenient; it is logged too, as lost.
+- [x] **The battle log**: done 2026-09-28, three wins on Route 202 on
+  51fa6cdaa; the OxiDex's Battle Log listed all three, and Sync and the log
+  also work on melonDS-oxide's live feed. Still unseen: a lost fight logging
+  as lost.
 
 ## 2. The test kit ROM
 
@@ -268,8 +268,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Lucas uses the Turtwig line. With Turtwig, Barry has Scorbunny; with Piplup,
   Turtwig. The Jubilife TV mask, the Veilstone Department Store socialite's
   mask and the Underground Man's doll are the fire starter's.
-- [ ] Once the battle log lands (main track): fight two trainers, save, and
-  both battles show in the OxiDex's Battle Log, with the right knockouts.
+- [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
@@ -325,6 +324,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   exit are open, with no woman stepping in; talking to her gives the sealed
   tunnels line. In Oreburgh's Mining Museum the fossil researcher offers to
   revive a fossil without the kit (once a fossil can be had).
+- [ ] A trainer's hidden ability: in the Eterna Galactic building, 3F, the
+  grunt's level 24 Snover sets hail as it enters (Snow Warning, its hidden
+  slot, through the party's ability 3; 20 trainers use it since aa3bbc3356).
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.

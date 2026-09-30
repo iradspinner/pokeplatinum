@@ -772,7 +772,7 @@ PERSONAL_ABILITIES_DIVERGED = {
     # keep the line's others.
     54: ((6, 33), "Psyduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
     55: ((6, 33), "Golduck: Damp and Swift Swim; Cloud Nine is hidden (Ian, 2026-09-29)"),
-    248: ((61, 0), "Tyranitar: Shed Skin, Pupitar's; Sand Stream is hidden (Ian, 2026-09-29)"),
+    248: ((127, 0), "Tyranitar: Unnerve; Sand Stream is hidden (Ian, 2026-09-29 and 2026-09-30)"),
     449: ((47, 0), "Hippopotas: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
     450: ((47, 0), "Hippowdon: Thick Fat; Sand Stream is hidden (Ian, 2026-09-29)"),
     459: ((91, 43), "Snover: Adaptability and Soundproof; Snow Warning is hidden (Ian, 2026-09-29)"),
