@@ -1038,6 +1038,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                         "unmatched": start["unmatched"],
                                         "graveyard": start["graveyard"]}
                 out["splits"] = [sp for sp in progression.SPLITS if sp != "Post"]
+                # Each split's cap, for the run's split headers (the redesign).
+                out["caps"] = {sp: progression.cap_of(st.sidecar, sp) for sp in out["splits"]}
                 out["starters"] = [{"value": sp, "label": dex.display_name(sp)} for sp in
                                    next(src["pool"] for src in st.scripted
                                         if src["kind"] == "starter")]

@@ -1286,7 +1286,20 @@ that stay. None blocks anything.
      three wide, headed "AI Flags:", one icon per flag in its own cell, lit
      when the trainer has it, Double battle the last cell. `test_m4` holds
      the sheet's type tints and paper to WCAG's 4.5:1.
-   - Box sim follows.
+   - **Box sim** (`encounter-redesign-boxsim`, stacked on Trainers): the
+     settings in a 290px rail (Regenerate, How sure is it?, the locks and
+     the seed), the box by worth in a 330px rail, and the run between.
+     Ian's note took room from box worth, living sum and best six, now one
+     slim strip, and gave it to two cards: **Next Non-Delay Zone**, the
+     next place the run catches in rather than saves (its pick, how, worth,
+     how sure and its lock; the starter is not a zone), and **Delay Zones**,
+     every place the run saves for later, what it waits for and until
+     when, and what it takes there in the end. Both are read from the run
+     itself; this track's reading of the two names, put to Ian with the
+     tab. Then the run split by split, each with its cap and how many areas
+     catch now or wait, a row per area: the pick and how, the lock, how
+     sure (from "How sure is it?", for the run it was asked for), and its
+     worth as a bar. The server now sends each split's cap with a run.
    - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
      wild, each with one home and at most one neighbour, and Froakie's 1%
      is cut to a few water areas that fit it (R21 flags it); the late
