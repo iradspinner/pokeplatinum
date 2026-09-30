@@ -824,7 +824,16 @@ STAT_GAP = 20
 # and listed for him: Alolan Ninetales, a proper list for the wild catch and
 # the Ice Stone route (ruling 19; the Overseer's read of 2026-09-28): a Fairy
 # attack in Fantina's split and a stronger Ice move in Byron's.
-RULED_LISTS = {"SPECIES_ALOLAN_NINETALES": [(30, "MOVE_DRAINING_KISS"), (45, "MOVE_ICE_BEAM")]}
+RULED_LISTS = {"SPECIES_ALOLAN_NINETALES": [(30, "MOVE_DRAINING_KISS"), (45, "MOVE_ICE_BEAM")],
+               # Ian's answers on v3 (2026-09-29): Sylveon's Fairy attack in
+               # Fantina's split, where it is first had, and Chandelure's
+               # Ghost one in Byron's, where the flags stop looking (moved
+               # from 65).
+               "SPECIES_SYLVEON": [(32, "MOVE_DAZZLING_GLEAM")],
+               "SPECIES_CHANDELURE": [(48, "MOVE_SHADOW_BALL")]}
+# Evolution moves Ian has chosen by name (2026-09-29): Sylveon learns
+# Draining Kiss on evolving, so it has a Fairy attack whatever its level.
+RULED_EVOLUTION_MOVES = {"SPECIES_SYLVEON": "MOVE_DRAINING_KISS"}
 RULED_PLACED = []             # (stage, move, level), for Ian by name
 DEAD_MOVED = []               # (stage, move, moved to, action), moved entries undone
 
@@ -1075,7 +1084,9 @@ def evolution_moves(fam, res):
         if any(l == 0 for l, _c in lst):
             continue
         pick = None
-        if s in VIRTUAL_PARENT or s in PLANNED_PARENT:
+        if s in RULED_EVOLUTION_MOVES:
+            pick, why = RULED_EVOLUTION_MOVES[s], "Ian's choice by name (2026-09-29)"
+        elif s in VIRTUAL_PARENT or s in PLANNED_PARENT:
             want = EVOLUTION_MOVE_TYPES.get(s, types)
             listed = ([c for _lv, c in virtual_parent_list(s)] if s in VIRTUAL_PARENT else []) \
                 + [c for _lv, c in later_level_list(s)]
@@ -1284,11 +1295,20 @@ def ruled_lists(fam, res):
             continue
         lst, notes = list(res[s][0]), list(res[s][1])
         for lv, c in RULED_LISTS[s]:
-            if any(l > 1 and cc == c for l, cc in lst):
+            if (lv, c) in lst:
                 continue
+            # A ruled level moves the move there (Chandelure's Shadow Ball
+            # from 65 into Byron's split); a level-1 copy stays for the
+            # relearner until dedupe weighs it.
+            before = lst
+            moved = [l for l, cc in lst if cc == c and l > 1]
+            lst = [e for e in lst if not (e[1] == c and e[0] > 1)]
             placed, why, meta = _place(s, lst, c, lv, ruled=True)
             if placed is None:
+                lst = before                    # refused: the move stays where it was
                 continue
+            if moved:
+                why = "; ".join(x for x in (f"moved from {moved[0]}", why) if x)
             _commit(s, c, placed, dict(meta, ruled=True), lst)
             lst = sorted(lst + [(placed, c)], key=lambda e: e[0])
             notes.append((c, f"new at {placed}: Ian's list for it by name" + (f"; {why}" if why else "")))
