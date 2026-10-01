@@ -256,6 +256,7 @@ class Mon:
         # BattleAI_SetAbility); the trainer's AI guesses until then.
         self.revealed = None
         self.flash_fire = False          # lit by a Fire move it took
+        self.aqua_ring = False           # a sixteenth back at each turn's end
 
     def alive(self):
         return self.hp > 0
@@ -730,6 +731,11 @@ def use_move(b, att, mv, dfn, first, targets=None):
                 change_stages(att, {"def": 1})
             return
     att.charging = None
+    if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
+        # Sleep Talk works only asleep, and then uses one of its other moves.
+        mv = sleep_talk_pick(b, att) if att.status == "slp" else None
+        if mv is None:
+            return
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
@@ -895,8 +901,27 @@ def attack(b, att, mv, dfn, first):
         dfn.item = None
 
 
+# The moves Sleep Talk never calls (Gen 4's list, by effect).
+SLEEP_TALK_SKIPS = {"USE_RANDOM_LEARNED_MOVE_SLEEP", "HIT_LAST_WHIFF_IF_HIT", "BIDE", "UPROAR", "COPY_MOVE",
+                    "CALL_RANDOM_MOVE", "USE_MOVE_FIRST", "USE_LAST_USED_MOVE", "MIMIC", "SKETCH"}
+
+
+def sleep_talk_pick(b, att):
+    """Sleep Talk: one of its user's other moves at random, never a move
+    that needs a charge turn or one on Gen 4's list; with no dice (the strict
+    search) the first such move. None when there is none."""
+    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN]
+    if not picks:
+        return None
+    rng = getattr(b, "rng", None)
+    return rng.choice(picks) if rng is not None else picks[0]
+
+
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if e == "RESTORE_HP_EVERY_TURN":
+        att.aqua_ring = True             # Aqua Ring
+        return
     foe_side = b.p if dfn.side == "p" else b.b
     own_side = b.p if att.side == "p" else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -1095,6 +1120,8 @@ def _end_of_turn_mon(b, side, m):
             if not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
                 hurt(b, m, m.maxhp // 16)
         if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
+            heal(m, m.maxhp // 16)
+        if m.aqua_ring:
             heal(m, m.maxhp // 16)
         if m.status in ("brn", "psn") and m.ability != "Magic Guard":
             hurt(b, m, m.maxhp // 8)

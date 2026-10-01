@@ -132,6 +132,32 @@ def explosion_checks():
     return out
 
 
+def sleep_talk_and_aqua_ring_checks():
+    """Sleep Talk used asleep calls one of its user's other moves (the AI now
+    scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
+    each turn's end (the Scoring Agent, 2026-10-01)."""
+    from .test_fightai import battle
+    out = []
+    b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Body Slam", "Aqua Ring"])],
+               [("Machamp", 40, "Guts", ["Cross Chop"])])
+    lax, champ = b.b.cur(), b.p.cur()
+    for label, attack in (("simulator", fs.use_move), ("search", pl.use_move)):
+        b.rng, b.dice = random.Random(3), pl.RunDice(random.Random(3), True)
+        champ.hp = champ.maxhp
+        lax.status, lax.sleep = "slp", 3
+        attack(b, lax, fs.move("Sleep Talk"), champ, True)
+        hit = champ.maxhp - champ.hp
+        out.append((f"{label}: Sleep Talk asleep calls Body Slam", hit > 0, f"Machamp took {hit}"))
+    lax.status, lax.sleep = None, 0
+    fs.status_move(b, lax, fs.move("Aqua Ring"), champ, True)
+    lax.hp = lax.maxhp // 2
+    before = lax.hp
+    fs.end_of_turn(b)
+    out.append(("Aqua Ring heals a sixteenth at the turn's end", lax.hp - before == lax.maxhp // 16,
+                f"{before} -> {lax.hp} of {lax.maxhp}"))
+    return out
+
+
 def sleep_checks():
     """Handoff step 2, sleep length (Scoring Agent, 2026-09-30). The engine's
     counter is 2 to 5 (`Random 3, 2` in the fall-asleep script), less one
@@ -465,6 +491,7 @@ def main():
     results += fixed_damage_checks()
     results += explosion_checks()
     results += sleep_checks()
+    results += sleep_talk_and_aqua_ring_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

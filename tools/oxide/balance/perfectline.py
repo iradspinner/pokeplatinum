@@ -334,6 +334,10 @@ def use_move(b, att, mv, dfn, first):
                 fs.change_stages(att, {"def": 1})
             return
     att.charging = None
+    if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
+        mv = fs.sleep_talk_pick(b, att) if att.status == "slp" else None
+        if mv is None:
+            return
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
@@ -560,6 +564,9 @@ def attack(b, att, mv, dfn, first):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if e == "RESTORE_HP_EVERY_TURN":
+        att.aqua_ring = True             # Aqua Ring (fightsim heals it at the turn's end)
+        return
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -787,7 +794,7 @@ def _ai_mon(m):
     the last hit was recorded with, and the Custap pinch."""
     return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
             tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
-            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2)
+            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire)
 
 
 def ai_key(b):
