@@ -246,6 +246,9 @@ class Mon:
         self.baton = False
         self.chosen = None
         self.perish = 0                  # Perish Song's count; switching out clears it
+        # The moves the trainer's AI has seen this Pokemon use since it came
+        # in (AI_CONTEXT.battlerMoves; fightai.choose records them).
+        self.shown = []
 
     def alive(self):
         return self.hp > 0
@@ -316,9 +319,16 @@ class Battle:
         return got["rolls"]
 
     def speed(self, mon):
-        s = self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1
-        s = s * stage_mult(mon.stages["spe"])
-        if mon.status == "par":
+        """Speed as BattleSystem_CompareBattlerSpeed works it, in whole
+        numbers: the calculator's figure (weather abilities and items in
+        it) at the Speed stage (sStatStageBoosts, truncated), then Quick
+        Feet's 1.5 with a status or else paralysis's quarter, then Tailwind."""
+        s = int(self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1)
+        st = mon.stages["spe"]
+        s = s * (10 + 5 * st) // 10 if st >= 0 else s * 10 // (10 - 5 * st)
+        if mon.ability == "Quick Feet" and mon.status:
+            s = s * 15 // 10
+        elif mon.status == "par":
             s //= 4
         side = self.p if mon.side == "p" else self.b
         if side.tailwind:
@@ -566,6 +576,17 @@ def foe_of(b, mon):
     return next((m for m in side.on_field() if m.alive()), side.cur())
 
 
+def could_not_act(att):
+    """A turn the Pokemon could not act (recharging, frozen, asleep,
+    flinched, hurt by its confusion, fully paralysed, or a status move
+    stopped by Taunt). The engine never marks such a move as succeeded, so
+    it records no previous move (movePrevByBattler is MOVE_NONE, which the
+    AI reads as move 0) and the Protect run breaks
+    (BattleControllerPlayer_UpdateMoveBuffers)."""
+    att.last = None
+    att.protect_run = 0
+
+
 def sleep_tick(att):
     """One move attempt while asleep (the sleep check in
     battle_controller_player.c). The engine's counter is att.sleep + 1, set
@@ -589,30 +610,30 @@ def use_move(b, att, mv, dfn, first, targets=None):
     # The user's own state first.
     if att.recharge:
         att.recharge = False
-        return
+        return could_not_act(att)
     if att.status == "frz":
         if b.rng.random() < 0.2 or mv.effect == "THAW_AND_BURN_HIT":
             att.status = None
         else:
-            return
+            return could_not_act(att)
     if att.status == "slp":
         # The counter is the turns it cannot move (one to four); when it has
         # run out the Pokemon wakes and acts the same turn, as in Generation 4.
         if sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return
+                return could_not_act(att)
     if att.flinch:
         att.flinch = False
-        return
+        return could_not_act(att)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
             hurt(b, att, confusion_damage(att, b.rng))
-            return
+            return could_not_act(att)
     if att.status == "par" and b.rng.random() < 0.25:
-        return
+        return could_not_act(att)
     if att.taunt and mv.cat == "Status":
-        return
+        return could_not_act(att)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0

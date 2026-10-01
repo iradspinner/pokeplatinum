@@ -288,30 +288,30 @@ def use_move(b, att, mv, dfn, first):
         return
     if att.recharge:
         att.recharge = False
-        return
+        return fs.could_not_act(att)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
         # frozen (question 9); in a run both thaw at 1 in 5 a turn.
         if mv.effect == "THAW_AND_BURN_HIT" or b.dice.thaws(att):
             att.status = None
         else:
-            return
+            return fs.could_not_act(att)
     if att.status == "slp":
         if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return
+                return fs.could_not_act(att)
     if att.flinch:
         att.flinch = False
-        return
+        return fs.could_not_act(att)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5)):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
-            return
+            return fs.could_not_act(att)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25)):
-        return
+        return fs.could_not_act(att)
     if att.taunt and mv.cat == "Status":
-        return
+        return fs.could_not_act(att)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0

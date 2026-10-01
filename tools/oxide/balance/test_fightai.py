@@ -100,6 +100,356 @@ def fixture():
              f"{u} vs {t}, Rock Throw {f}")]
 
 
+# ---- Expert, routine by routine ------------------------------------------------------------------
+
+class Seq(Dice):
+    """Dice that return a given sequence, then repeat its last value: for
+    the rows where all-pass and all-fail cannot tell two readings apart."""
+
+    def __init__(self, values):
+        self.values = list(values)
+
+    def random(self):
+        return self.values.pop(0) if len(self.values) > 1 else self.values[0]
+
+
+EX_BOSS = [("Snorlax", 40, "Thick Fat", ["Body Slam", "Crunch", "Earthquake", "Fire Punch"]),
+           ("Gengar", 40, "Levitate", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Focus Blast"])]
+EX_PLAYER = [("Machamp", 40, "Guts", ["Cross Chop", "Rock Slide"]),
+             ("Blissey", 40, "Natural Cure", ["Seismic Toss"])]
+
+
+def hp(m, pct):
+    """Set m's HP so that frac() reads pct, as AICmd_IfHPPercent* would."""
+    m.hp = max(1, pct * m.maxhp // 100) if pct else 0
+    while 100 * m.hp // m.maxhp < pct:
+        m.hp += 1
+
+
+def speeds(b, user, foe):
+    """Fix the two Speeds the AI compares (user: the trainer's Pokemon)."""
+    b.speed = lambda m: user if m.side == "b" else foe
+
+
+def moves(m, *names):
+    m.moves = [fs.move(n) for n in names]
+    m.pp = {x.name: x.pp for x in m.moves}
+
+
+def ex(move, setup=None, dice=PASS):
+    """Expert's score for Snorlax's move against Machamp, after setup(b, u,
+    t); Snorlax moves first unless setup says otherwise."""
+    b = battle(EX_BOSS, EX_PLAYER)
+    u, t = b.b.cur(), b.p.cur()
+    moves(u, move, "Body Slam")
+    speeds(b, 100, 50)
+    if setup:
+        setup(b, u, t)
+    b.rng = dice if isinstance(dice, Dice) else Dice(dice)
+    return ai.expert(b, u, t, fs.move(move))
+
+
+def _t(**kw):
+    """A setup that sets fields on the user (u_*), the target (t_*) or the
+    battle (b_*), HP by percent (u_hp, t_hp), stages (u_atk and so on),
+    speed (slower=True or tie=True), and the target's last and shown moves."""
+    def setup(b, u, t):
+        for k, v in kw.items():
+            who, _, field = k.partition("_")
+            mon = {"u": u, "t": t}.get(who)
+            if k == "slower":
+                speeds(b, 50, 100)
+            elif k == "tie":
+                speeds(b, 80, 80)
+            elif k == "weather":
+                b.weather = v
+            elif k == "trick_room":
+                b.trick_room = v
+            elif who == "b":
+                setattr(b, field, v)
+            elif field == "hp":
+                hp(mon, v)
+            elif field in fs.STAGE_KEYS:
+                mon.stages[field] = v
+            elif field == "last":
+                mon.last = fs.move(v) if v else None
+            elif field == "shown":
+                mon.shown = [fs.move(n) for n in v]
+            elif field == "moves":
+                moves(mon, *v)
+            else:
+                setattr(mon, field, v)
+    return setup
+
+
+def _last_pokemon(b):
+    for m in b.b.mons[1:]:
+        m.hp = 0
+
+
+# (label, move, setup, score with every chance passing, score with every one failing)
+EXPERT_ROWS = [
+    ("StatusSleep, with Dream Eater", "Hypnosis", _t(u_moves=("Hypnosis", "Dream Eater")), 1, 0),
+    ("DrainMove, Draining Kiss into a Fire type", "Draining Kiss", _t(t_types=["Fire"]), -3, 0),
+    ("Explosion, faster at full HP, foe evasion +4", "Explosion", _t(t_eva=4), -5, -1),
+    ("Explosion, slower at 25%", "Explosion", _t(slower=True, u_hp=25), 2, 0),
+    ("DreamEater, sleeping foe", "Dream Eater", _t(t_status="slp"), 3, 0),
+    ("DreamEater, Dark foe", "Dream Eater", _t(t_types=["Dark"]), -1, -1),
+    ("MirrorMove, foe's last Thunder Wave", "Mirror Move", _t(t_last="Thunder Wave"), 2, 0),
+    ("MirrorMove, foe's last Tackle", "Mirror Move", _t(t_last="Tackle"), -1, 0),
+    ("StatusAttackUp, Swords Dance at full HP", "Swords Dance", None, 2, 0),
+    ("StatusAttackUp, Hone Claws at full HP", "Hone Claws", None, 2, 0),
+    ("StatusAttackUp, Work Up at 60%", "Work Up", _t(u_hp=60), -2, 0),
+    ("StatusDefenseUp, Iron Defense at 60%, foe's last Flamethrower", "Iron Defense",
+     _t(u_hp=60, t_last="Flamethrower"), -2, -2),
+    ("StatusDefenseUp, Coil at full HP", "Coil", None, 2, 0),
+    ("StatusSpeedUp, Agility slower", "Agility", _t(slower=True), 3, 0),
+    ("StatusSpeedUp, Autotomize faster", "Autotomize", None, -3, -3),
+    ("StatusSpAttackUp, Nasty Plot at 60%", "Nasty Plot", _t(u_hp=60), -2, 0),
+    ("StatusSpDefenseUp, Calm Mind at 60%, foe's last Tackle", "Calm Mind", _t(u_hp=60, t_last="Tackle"), -2, -2),
+    ("StatusSpDefenseUp, Take Heart at full HP", "Take Heart", None, 2, 0),
+    ("(none) Stockpile has no Expert routine", "Stockpile", None, 0, 0),
+    ("StatusEvasionUp, at 45% rooted, foe badly poisoned and cursed", "Double Team",
+     _t(u_hp=45, u_eva=1, u_ingrained=True, t_status="tox", t_cursed=True), 6, 0),
+    ("BypassAccuracyMove, foe evasion +5", "Aerial Ace", _t(t_eva=5), 2, 1),
+    ("StatusAttackDown, Growl, foe's last Flamethrower", "Growl", _t(t_last="Flamethrower"), -2, 0),
+    ("StatusAttackDown, Charm at 80%, foe at 60% and Attack -1", "Charm", _t(u_hp=80, t_hp=60, t_atk=-1), -4, -4),
+    ("StatusAttackDown, Noble Roar, foe's last Flamethrower", "Noble Roar", _t(t_last="Flamethrower"), -2, 0),
+    ("StatusDefenseDown, Screech at 60%", "Screech", _t(u_hp=60), -2, 0),
+    ("StatusDefenseDown, Tickle at 60%", "Tickle", _t(u_hp=60), -2, 0),
+    ("SpeedDownOnHit, Icy Wind slower into a Grass type", "Icy Wind", _t(slower=True, t_types=["Grass"]), 2, 0),
+    ("SpeedDownOnHit, Icy Wind into a Water type", "Icy Wind", _t(slower=True, t_types=["Water"]), 0, 0),
+    ("SpeedDownOnHit, Bubble Beam is not named", "Bubble Beam", _t(slower=True), 0, 0),
+    ("SpeedDownOnHit, Rock Tomb on a speed tie counts as not slower", "Rock Tomb", _t(tie=True, t_types=["Normal"]), -3, -3),
+    ("StatusSpeedDown, Scary Face slower", "Scary Face", _t(slower=True), 2, 0),
+    ("StatusSpAttackDown, Eerie Impulse, foe has not moved", "Eerie Impulse", None, -2, 0),
+    ("StatusAccuracyDown, Sand Attack, foe badly poisoned", "Sand Attack", _t(t_status="tox"), 2, 0),
+    ("StatusAccuracyDown, at 60%, foe accuracy -1", "Sand Attack", _t(u_hp=60, t_acc=-1), -3, 0),
+    ("StatusEvasionDown, Sweet Scent at 60%", "Sweet Scent", _t(u_hp=60), -2, 0),
+    ("Haze, foe Attack +3", "Haze", _t(t_atk=3), 3, 0),
+    ("Haze, nothing raised", "Haze", None, -1, 0),
+    ("ClearSmog, foe Sp. Atk +3", "Clear Smog", _t(t_spa=3), 3, 0),
+    ("Bide, at 80%", "Bide", _t(u_hp=80), -2, -2),
+    ("ForceSwitch, Roar, foe in for four turns", "Roar", _t(t_turns_in=4), 4, 0),
+    ("ForceSwitch, Dragon Tail with nothing to gain", "Dragon Tail", None, -3, -3),
+    ("Conversion, at 80% after the first turn", "Conversion", _t(u_hp=80, b_turn=2), -4, -2),
+    ("Synthesis, slower at 50% in rain", "Synthesis", _t(slower=True, u_hp=50, weather="Rain"), 0, -2),
+    ("Synthesis, Shore Up skips the weather", "Shore Up", _t(slower=True, u_hp=50, weather="Sand"), 2, 0),
+    ("Recovery, faster at 50% (the faster heal)", "Recover", _t(u_hp=50), -8, -8),
+    ("Recovery, Strength Sap slower at 50%", "Strength Sap", _t(slower=True, u_hp=50), 2, 0),
+    ("ToxicLeechSeed, both at 40%, with Protect", "Toxic",
+     _t(u_hp=40, t_hp=40, u_moves=("Toxic", "Tackle", "Protect")), -4, 0),
+    ("LightScreen, foe's last Flamethrower", "Light Screen", _t(t_last="Flamethrower"), 2, 0),
+    ("Reflect, foe has not moved (move 0 is physical)", "Reflect", None, 2, 0),
+    ("AuroraVeil, foe's last Flamethrower", "Aurora Veil", _t(t_last="Flamethrower"), 2, 0),
+    ("Rest, faster at 45%", "Rest", _t(u_hp=45), -3, 0),
+    ("Rest, slower at 50%", "Rest", _t(slower=True, u_hp=50), 3, 0),
+    ("OHKOMove", "Sheer Cold", None, 1, 0),
+    ("SuperFang, foe at 50%", "Super Fang", _t(t_hp=50), -1, -1),
+    ("BindingMove, Mean Look on a cursed foe", "Mean Look", _t(t_cursed=True), 1, 0),
+    ("HighCritical, Slash, neutral", "Slash", _t(t_types=["Water"]), 1, 0),
+    ("HighCritical, Drill Run into Levitate reads as immune", "Drill Run", _t(t_ability="Levitate"), 0, 0),
+    ("HighCritical, Frost Breath into a Grass type", "Frost Breath", _t(t_types=["Grass"]), 1, 0),
+    ("SpeedUpOnHit, Esper Wing faster (not the high-critical routine)", "Esper Wing", None, 0, 0),
+    ("Swagger with Psych Up, foe Attack +0, first turn", "Swagger", _t(u_moves=("Swagger", "Psych Up")), -5, -5),
+    ("Swagger with Psych Up, foe Attack -3, first turn", "Swagger",
+     _t(u_moves=("Swagger", "Psych Up"), t_atk=-3), 5, 5),
+    ("Swagger alone, foe at 40%", "Swagger", _t(t_hp=40), -1, -1),
+    ("Flatter, foe at full HP", "Flatter", None, 1, 0),
+    ("StatusConfuse, foe at 25%", "Confuse Ray", _t(t_hp=25), -3, -2),
+    ("StatusPoison, user at 40%", "Poison Powder", _t(u_hp=40), -1, -1),
+    ("StatusParalyze, slower", "Thunder Wave", _t(slower=True), 3, 0),
+    ("StatusParalyze, faster at 60%", "Thunder Wave", _t(u_hp=60), -1, -1),
+    ("VitalThrow, faster at 50%", "Vital Throw", _t(u_hp=50), -1, 0),
+    ("Substitute, Focus Punch, 60%, foe's last Confuse Ray, foe unconfused", "Substitute",
+     _t(u_hp=60, u_moves=("Substitute", "Focus Punch"), t_last="Confuse Ray"), 0, 0),
+    ("Substitute, foe's last Leech Seed, foe unseeded", "Substitute", _t(t_last="Leech Seed"), 1, 0),
+    ("RechargeTurn, Giga Impact with Truant", "Giga Impact", _t(u_ability="Truant", u_hp=50), 1, 0),
+    ("RechargeTurn, Hyper Beam faster at 50%", "Hyper Beam", _t(u_hp=50), -1, -1),
+    ("Disable, foe's last Tackle", "Disable", _t(t_last="Tackle"), 1, 1),
+    ("Counter, foe's last Tackle", "Counter", _t(t_last="Tackle"), 1, 0),
+    ("Counter, foe's last Flamethrower", "Counter", _t(t_last="Flamethrower"), -1, -1),
+    ("Counter, a Psychic foe that has not moved", "Counter", _t(t_types=["Psychic"]), 4, 0),
+    ("Counter, knowing Mirror Coat, at 40%", "Counter", _t(u_hp=40, u_moves=("Counter", "Mirror Coat")), 3, 0),
+    ("MirrorCoat, knowing Counter", "Mirror Coat", _t(u_moves=("Mirror Coat", "Counter")), 4, 0),
+    ("MirrorCoat, a Water foe that has not moved", "Mirror Coat", _t(t_types=["Water"]), 0, 0),
+    ("MirrorCoat, at 25%, foe's last Tackle", "Mirror Coat", _t(u_hp=25, t_last="Tackle"), -3, -1),
+    ("Encore, foe's last Swords Dance", "Encore", _t(t_last="Swords Dance"), 3, 0),
+    ("Encore, foe's last Tackle", "Encore", _t(t_last="Tackle"), -2, -2),
+    ("PainSplit, faster at 30%, foe at 90%", "Pain Split", _t(u_hp=30, t_hp=90), 1, 1),
+    ("Nightmare, Snore", "Snore", None, 2, 2),
+    ("LockOn", "Lock-On", None, 2, 0),
+    ("SleepTalk, asleep", "Sleep Talk", _t(u_status="slp"), 10, 10),
+    ("SleepTalk, awake", "Sleep Talk", None, -5, -5),
+    ("DestinyBond, faster at 25%", "Destiny Bond", _t(u_hp=25), 3, -1),
+    ("DestinyBond, slower at 25%", "Destiny Bond", _t(slower=True, u_hp=25), -1, -1),
+    ("Reversal, Flail faster at 5%", "Flail", _t(u_hp=5), 2, 1),
+    ("Reversal, slower at 50%", "Reversal", _t(slower=True, u_hp=50), 0, 0),
+    ("HealBell, nobody statused", "Heal Bell", None, -5, -5),
+    ("Thief, the foe's item not named", "Thief", None, -2, -2),
+    ("Curse, Defense +0", "Curse", None, 3, 0),
+    ("Curse, with Gyro Ball, Defense +1", "Curse", _t(u_def=1, u_moves=("Curse", "Gyro Ball")), 3, 0),
+    ("Curse, a Ghost user at 60%", "Curse", _t(u_types=["Ghost"], u_hp=60), -1, -1),
+    ("Protect, nothing", "Protect", None, 1, 0),
+    ("Protect, user under Perish Song", "Protect", _t(u_perish=2), -2, -2),
+    ("Protect, foe seen using Recover", "Protect", _t(t_shown=["Recover"]), -2, -2),
+    ("Protect, foe badly poisoned, run of one", "Protect", _t(t_status="tox", u_protect_run=1), -1, 1),
+    ("Spikes, with Roar", "Spikes", _t(u_moves=("Spikes", "Roar")), 2, 0),
+    ("Spikes, Sticky Web", "Sticky Web", None, 1, 0),
+    ("ToxicSpikes, with Whirlwind", "Toxic Spikes", _t(u_moves=("Toxic Spikes", "Whirlwind")), 2, 0),
+    ("StealthRock, with Dragon Tail (not Roar)", "Stealth Rock", _t(u_moves=("Stealth Rock", "Dragon Tail")), 1, 0),
+    ("Foresight, a Ghost foe", "Foresight", _t(t_types=["Ghost"]), 2, 0),
+    ("Foresight, nothing", "Foresight", None, -2, -2),
+    ("Endure, at 20%", "Endure", _t(u_hp=20), 1, 0),
+    ("Endure, at 2%", "Endure", _t(u_hp=2), -1, -1),
+    ("BatonPass, Attack +3, faster at 50%", "Baton Pass", _t(u_atk=3, u_hp=50), 2, 0),
+    ("BatonPass, nothing raised", "Baton Pass", None, -2, -2),
+    ("Pursuit, first turn, foe shown U-turn", "Pursuit", _t(u_turns_in=0, t_shown=["U-turn"]), 2, 0),
+    ("RainDance, Swift Swim slower", "Rain Dance", _t(slower=True, u_ability="Swift Swim"), 1, 1),
+    ("RainDance, Swift Swim on a speed tie (faster half the time)", "Rain Dance",
+     _t(tie=True, u_ability="Swift Swim"), 0, 1),
+    ("RainDance, Rain Dish in clear weather", "Rain Dance", _t(u_ability="Rain Dish"), 1, 1),
+    ("SunnyDay, Flower Gift in clear weather", "Sunny Day", _t(u_ability="Flower Gift"), 1, 1),
+    ("SunnyDay, Leaf Guard paralysed", "Sunny Day", _t(u_ability="Leaf Guard", u_status="par"), 0, 0),
+    ("BellyDrum, at 89%", "Belly Drum", _t(u_hp=89), -2, -2),
+    ("PsychUp, foe Attack +3", "Psych Up", _t(t_atk=3), 1, 1),
+    ("ChargeTurnNoInvuln, Solar Beam in sun", "Solar Beam", _t(weather="Sun"), 2, 2),
+    ("ChargeTurnNoInvuln, Solar Beam into a Fire type", "Solar Beam", _t(t_types=["Fire"]), -2, -2),
+    ("ChargeTurnNoInvuln, at 38%", "Solar Beam", _t(u_hp=38), -1, -1),
+    ("Thunder, Hurricane in sun", "Hurricane", _t(weather="Sun", t_types=["Normal"]), -3, 0),
+    ("RainStorm, Bleakwind Storm in sun", "Bleakwind Storm", _t(weather="Sun", t_types=["Normal"]), 0, 0),
+    ("ChargeTurnWithInvuln, Dig faster", "Dig", _t(t_types=["Normal"]), 1, 0),
+    ("ChargeTurnWithInvuln, Dig slower", "Dig", _t(slower=True, t_types=["Normal"]), 0, 0),
+    ("ChargeTurnWithInvuln, Dig into a Flying type", "Dig", _t(t_types=["Flying"]), -1, -1),
+    ("ChargeTurnWithInvuln, Fly with a Power Herb", "Fly", _t(u_item="Power Herb"), 2, 2),
+    ("FakeOut, First Impression", "First Impression", None, 2, 2),
+    ("SpitUp, two Stockpiles", "Spit Up", _t(u_stockpile=2), 2, 0),
+    ("Hail, in rain with Blizzard and Ice Body", "Hail",
+     _t(weather="Rain", u_ability="Ice Body", u_moves=("Hail", "Blizzard")), 5, 5),
+    ("Facade, burned", "Facade", _t(u_status="brn"), 1, 1),
+    ("FocusPunch, behind a Substitute", "Focus Punch", _t(u_sub=20, t_types=["Normal"]), 5, 5),
+    ("FocusPunch, second turn out", "Focus Punch", _t(u_turns_in=1, t_types=["Normal"]), 1, 0),
+    ("SmellingSalts, paralysed foe", "Smelling Salts", _t(t_status="par"), 1, 1),
+    ("Trick, holding a Choice Scarf", "Trick", _t(u_item="Choice Scarf"), 5, 5),
+    ("Trick, holding Leftovers", "Trick", _t(u_item="Leftovers"), -3, -3),
+    ("ChangeUserAbility, Role Play for Speed Boost", "Role Play", _t(t_ability="Speed Boost"), 2, 0),
+    ("Ingrain changes nothing", "Ingrain", None, 0, 0),
+    ("Superpower, faster at full HP", "Superpower", _t(t_types=["Normal"]), -1, -1),
+    ("Superpower, faster at 35%", "Superpower", _t(u_hp=35, t_types=["Normal"]), 0, 0),
+    ("Superpower, Attack -1, slower at 70%", "Superpower",
+     _t(u_atk=-1, slower=True, u_hp=70, t_types=["Normal"]), -1, -1),
+    ("MagicCoat, second turn, foe at full HP", "Magic Coat", _t(u_turns_in=1), -1, 0),
+    ("Recycle, a Lum Berry to bring back", "Recycle", _t(u_recycle="Lum Berry"), 1, 0),
+    ("Revenge, Avalanche, healthy foe", "Avalanche", None, 2, -2),
+    ("BrickBreak, Reflect up", "Brick Break", lambda b, u, t: b.p.screens.update(Reflect=5), 1, 1),
+    ("KnockOff, second turn out", "Knock Off", _t(u_turns_in=1), 1, 0),
+    ("Endeavor, faster at 40%", "Endeavor", _t(u_hp=40), 1, 1),
+    ("Endeavor, faster at 41%", "Endeavor", _t(u_hp=41), -1, -1),
+    ("WaterSpout, Eruption faster at 50%", "Eruption", _t(u_hp=50, t_types=["Normal"]), -1, -1),
+    ("Imprison, second turn", "Imprison", _t(u_turns_in=1), 2, 0),
+    ("Refresh, foe at 49%", "Refresh", _t(t_hp=49), -1, -1),
+    ("Snatch, first turn", "Snatch", _t(u_turns_in=0), 2, 0),
+    ("MudSport, an Electric foe", "Mud Sport", _t(t_types=["Electric"]), 1, 1),
+    ("Overheat, faster at 60%", "Overheat", _t(u_hp=60, t_types=["Normal"]), -1, -1),
+    ("CloseCombat, slower at 81%", "Close Combat", _t(slower=True, u_hp=81, t_types=["Normal"]), 0, 0),
+    ("DragonDance, slower at 40%", "Dragon Dance", _t(slower=True, u_hp=40), 1, 0),
+    ("DragonDance, slower at 40%, the coin failing and the next roll passing", "Dragon Dance",
+     _t(slower=True, u_hp=40), Seq([0.9999, 0.0]), 0),
+    ("DragonDance, Quiver Dance slower", "Quiver Dance", _t(slower=True), 1, 0),
+    ("Gravity, a Flying foe", "Gravity", _t(t_types=["Flying"]), 1, 0),
+    ("MiracleEye, a Dark foe", "Miracle Eye", _t(t_types=["Dark"]), 2, 0),
+    ("WakeUpSlap, sleeping foe", "Wake-Up Slap", _t(t_status="slp", t_types=["Normal"]), 1, 1),
+    ("HammerArm, slower", "Hammer Arm", _t(slower=True, t_types=["Normal"]), 1, 1),
+    ("GyroBall changes nothing", "Gyro Ball", None, 0, 0),
+    ("Brine, foe at 50%", "Brine", _t(t_hp=50, t_types=["Normal"]), 2, 1),
+    ("Feint, foe seen using Protect, run 3", "Feint", _t(t_shown=["Protect"], t_protect_run=3), -2, -2),
+    ("Pluck, Bug Bite on the first turn", "Bug Bite", _t(u_turns_in=0, t_types=["Normal"]), 2, 0),
+    ("Tailwind, faster at full HP", "Tailwind", None, -1, 0),
+    ("Tailwind, slower at 50%", "Tailwind", _t(slower=True, u_hp=50), 1, 0),
+    ("Tailwind, a tie at full HP", "Tailwind", _t(tie=True), -1, 0),
+    ("Acupressure, at 50%", "Acupressure", _t(u_hp=50), -1, -1),
+    ("MetalBurst, foe asleep", "Metal Burst", _t(t_status="slp"), -1, -1),
+    ("Payback, slower at full HP", "Payback", _t(slower=True, t_types=["Normal"]), 1, 0),
+    ("Payback, slower at 29%", "Payback", _t(slower=True, u_hp=29, t_types=["Normal"]), 0, 0),
+    ("Assurance, slower", "Assurance", _t(slower=True, t_types=["Normal"]), 1, 0),
+    ("Embargo", "Embargo", None, 1, 0),
+    ("Fling, holding nothing", "Fling", _t(u_item=None, t_types=["Normal"]), -2, -2),
+    ("PsychoShift, healthy user", "Psycho Shift", None, -10, -10),
+    ("TrumpCard, one PP left", "Trump Card", _t(u_pp={"Trump Card": 1}, t_types=["Normal"]), 3, 3),
+    ("HealBlock, foe seen using Recover", "Heal Block", _t(t_shown=["Recover"]), 1, 0),
+    ("WringOut, foe at full HP, faster", "Wring Out", _t(t_types=["Normal"]), 3, 2),
+    ("PowerTrick, at 30%", "Power Trick", _t(u_hp=30), -2, -2),
+    ("GastroAcid, foe at 25%", "Gastro Acid", _t(t_hp=25), -2, 0),
+    ("LuckyChant, at 69%", "Lucky Chant", _t(u_hp=69), -1, -1),
+    ("MeFirst, slower", "Me First", _t(slower=True), -2, -2),
+    ("Copycat, faster, foe's last Thunder Wave", "Copycat", _t(t_last="Thunder Wave"), 2, 0),
+    ("PowerSwap, foe +4 Attack and Sp. Atk", "Power Swap", _t(t_atk=4, t_spa=4), 5, 0),
+    ("Punishment, foe stages summing to 7", "Punishment", _t(t_atk=4, t_spa=3, t_types=["Normal"]), 4, 0),
+    ("LastResort, the other moves used", "Last Resort", _t(u_last_resort_count=1, t_types=["Normal"]), 1, 1),
+    ("WorrySeed, foe seen using Rest", "Worry Seed", _t(t_shown=["Rest"]), 3, 1),
+    ("SuckerPunch, into a Fighting type", "Sucker Punch", None, -1, -1),
+    ("HeartSwap, foe +2 Attack", "Heart Swap", _t(t_atk=2), 1, 1),
+    ("AquaRing, at 30%", "Aqua Ring", _t(u_hp=30), 1, 0),
+    ("MagnetRise, a Ground foe seen using Earthquake", "Magnet Rise",
+     _t(t_types=["Ground"], t_shown=["Earthquake"]), 2, 2),
+    ("Defog, at 60% with nothing anywhere", "Defog", _t(u_hp=60), -2, 0),
+    ("TrickRoom, slower", "Trick Room", _t(slower=True), 3, 0),
+    ("TrickRoom, a last Pokemon at 30%", "Trick Room",
+     lambda b, u, t: (speeds(b, 50, 100), hp(u, 30), _last_pokemon(b)), 0, 0),
+    ("Blizzard, into a Water type", "Blizzard", _t(t_types=["Water"]), -3, 0),
+    ("Captivate, foe's last Tackle", "Captivate", _t(t_last="Tackle"), -1, 0),
+    ("RecoilMove, Brave Bird into a Steel type with Rock Head", "Brave Bird",
+     _t(t_types=["Steel"], u_ability="Rock Head"), 0, 0),
+    ("RecoilMove, neutral with Rock Head", "Brave Bird", _t(t_types=["Normal"], u_ability="Rock Head"), 1, 1),
+    ("HealingWish, faster at full HP", "Healing Wish", None, -5, 0),
+    ("Hex, a burned Normal foe (immune)", "Hex", _t(t_status="brn", t_types=["Normal"]), -1, -1),
+    ("Venoshock, a poisoned foe", "Venoshock", _t(t_status="psn", t_types=["Normal"]), 1, 1),
+    ("Acrobatics, holding nothing", "Acrobatics", _t(t_types=["Normal"]), 1, 1),
+    ("BoltBeak, a speed tie", "Bolt Beak", _t(tie=True, t_types=["Normal"]), 1, 0),
+    ("RapidSpin, Stealth Rock on its side, slower", "Rapid Spin",
+     lambda b, u, t: (speeds(b, 50, 100), b.b.hazards.update(rocks=1)), 3, 2),
+    ("RapidSpin, into a Ghost type", "Rapid Spin", _t(t_types=["Ghost"]), -1, -1),
+    ("SpeedUpOnHit, Flame Charge slower", "Flame Charge", _t(slower=True, t_types=["Normal"]), 1, 0),
+    ("SpeedUpOnHit, under Trick Room", "Flame Charge", _t(slower=True, trick_room=5, t_types=["Normal"]), 0, 0),
+    ("MortalSpin, seeded", "Mortal Spin", _t(u_seeded=True, t_types=["Normal"]), 2, 2),
+    ("PartingShot, a bench that hits harder, faster, foe at full HP", "Parting Shot",
+     _t(u_moves=("Parting Shot",)), 3, 1),
+    ("PartingShot, the last Pokemon, as Growl", "Parting Shot",
+     lambda b, u, t: (_last_pokemon(b), setattr(t, "last", fs.move("Flamethrower"))), -2, 0),
+    ("UTurn, faster, foe at full HP, the bench hits harder", "U-turn",
+     _t(t_types=["Normal"], u_moves=("U-turn",)), 3, 1),
+    ("UTurn, with a super-effective attack", "U-turn",
+     _t(t_types=["Normal"], u_moves=("U-turn", "Close Combat")), 1, 1),
+    ("UTurn, slower, foe at 20%", "U-turn", _t(slower=True, t_hp=20, t_types=["Normal"], u_moves=("U-turn",)), 2, 0),
+    ("UTurn, into a Steel type", "U-turn", _t(t_types=["Steel"]), -1, -1),
+]
+
+
+@check
+def expert_routines():
+    out = []
+    for label, move, setup, want_pass, want_fail in EXPERT_ROWS:
+        if isinstance(want_pass, Dice):
+            # A row pinned by a dice sequence: one reading, want_fail its score.
+            got = ex(move, setup, want_pass)
+            out.append((f"Expert_{label}", got == want_fail, f"{got} (want {want_fail})"))
+            continue
+        got = (ex(move, setup, PASS), ex(move, setup, FAIL))
+        out.append((f"Expert_{label}", got == (want_pass, want_fail),
+                    f"pass {got[0]}, fail {got[1]} (want {want_pass}, {want_fail})"))
+    return out
+
+
+@check
+def expert_dispatch():
+    """Every label Expert_Main routes to has a routine, and none is left over."""
+    routes = ai.expert_routes()
+    missing = sorted({lab for lab in routes.values() if lab not in ai.EXPERT_ROUTINES})
+    unused = sorted(set(ai.EXPERT_ROUTINES) - set(routes.values()))
+    return [("Expert_Main's table: every label has a routine", not missing and not unused and len(routes) >= 237,
+             f"{len(routes)} effects, missing {missing}, unused {unused}")]
+
+
 def main():
     results = checks()
     width = max(len(label) for label, _, _ in results)
