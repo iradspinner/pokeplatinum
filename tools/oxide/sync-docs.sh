@@ -54,6 +54,7 @@ copy "reviews/encounter-review/water.md" "notes/reviews/encounter-review/water.m
 copy "reviews/encounter-review/principles.md" "notes/reviews/encounter-review/principles.md"
 copy "save-layout.md" "notes/save-layout.md"
 copy "battle-log.md" "notes/battle-log.md"
+copy "trainer-scoring-handoff.md" "notes/trainer-scoring-handoff.md"
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "species-id-scheme.md" "notes/species-id-scheme.md"

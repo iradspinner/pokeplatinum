@@ -69,6 +69,8 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - **The learnset decisions**, to come with learnset v3's report: the eleven held gap-fillers beside what later games offer, the bar's thresholds, the five-level wait, the 138 wild slots that can end an encounter, the good-move share, and the later-moves report's rows marked for Ian.
 
+- **The trainer-scoring handoff** (2026-09-30): the learnings of the three-gym run (Roark, Mars 1 and Gardenia played by hand on the simulator) for a new agent that trains the trainer scorer are in `docs/oxide/trainer-scoring-handoff.md`, with its harness in `~/oxide-trials/three-gym-run/`. Five decisions are his: who takes it on, whether a win that loses only a planned least-valuable Pokemon counts, the box model for bosses, what Gardenia's 28% clean rate for this box means, and whether AI ties break at random or worst for the player.
+
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
 
 - **Also his**: the Frontier Brain teams (he builds them), the gauntlet trainer list (after the scoring review and the average-fight calibration), the zone-by-zone land pass with the encounter track, and reading the water biome draft.
