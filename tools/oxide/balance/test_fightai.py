@@ -927,6 +927,23 @@ def damage_figure_and_engine():
     return out
 
 
+@check
+def cache_key():
+    """perfectline caches the AI's picks by what it reads: states the AI
+    tells apart must not share a key."""
+    b = battle(EX_BOSS, EX_PLAYER)
+    u, t = b.b.cur(), b.p.cur()
+    keys = []
+    for turns, pct in ((2, 70), (4, 70), (2, 69)):
+        t.turns_in = turns
+        hp(u, pct)
+        keys.append(pl.ai_key(b))
+    t.shown = [fs.move("Recover")]
+    keys.append(pl.ai_key(b))
+    return [("perfectline's AI cache key tells turns in, HP thresholds and seen moves apart",
+             len(set(keys)) == 4, f"{len(set(keys))} distinct of 4")]
+
+
 def main():
     results = checks()
     width = max(len(label) for label, _, _ in results)

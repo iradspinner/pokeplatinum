@@ -777,30 +777,49 @@ def worse_or_equal(v, w):
 
 # ---- the adversary's and the player's options ----------------------------------------------------
 
+def _ai_mon(m):
+    """What fightai reads of one Pokemon beyond mon_key: who it is, its last
+    move by name (Mirror Move, Encore, Copycat and Baton Pass read the move),
+    its turns in up to the four Roar reads, the moves the AI has seen it
+    use, the ability a message has named, trapping and rooting, the type
+    the last hit was recorded with, and the Custap pinch."""
+    return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
+            tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
+            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2)
+
+
 def ai_key(b):
     """What the trainer's AI reads at a state: its own active Pokemon whole,
-    the player's active one by the HP bands the scoring uses and by which of
-    the trainer's moves would knock it out, who is alive on each bench, the
-    field, and whether it is the first turn."""
+    the player's active one by every HP threshold the AI tests and by which
+    of the trainer's moves would knock it out, the Pokemon on each side and
+    the trainer's bench by HP and status, the field, the turn's Quick Claw
+    roll, and whether it is the battle's first turn."""
     u, t = b.b.cur(), b.p.cur()
     kills = tuple((fightai.figure(b, u, t, m) or 0) >= t.hp for m in u.moves)
     tk = mon_key(t)
-    tk = (_band(t.frac()), kills) + tk[1:]
+    tk = (_band(t.frac()), kills, t.hp == t.maxhp) + tk[1:] + _ai_mon(t)
     uk = mon_key(u)
-    uk = (_band(u.frac()), u.hp == u.maxhp) + uk[1:]
-    return (uk, tk, tuple(m.alive() for m in b.p.mons), tuple(m.alive() for m in b.b.mons),
+    uk = (_band(u.frac()), u.hp == u.maxhp, u.hp >= u.maxhp // 2) + uk[1:] + _ai_mon(u)
+    bench = tuple((m.key, m.alive(), m.hp == m.maxhp, m.status) for m in b.b.mons)
+    quick = tuple(sorted((getattr(b, "quick", None) or {}).items()))
+    return (uk, tk, bench, tuple((m.key, m.alive(), m.status) for m in b.p.mons),
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
-            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags)
+            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick)
 
 
 _AI_CACHE = {}
+_AI_CACHE_ST = None
 
 
 def _band(frac):
-    """The HP bands the AI's scoring reads."""
-    return (frac >= 100, frac >= 90, frac > 80, frac > 70, frac >= 60, frac > 50, frac >= 40,
-            frac > 30, frac > 25)
+    """Every HP threshold fightai reads, with both > and >= (frac is a whole
+    number, so frac > x is frac >= x + 1)."""
+    return tuple(frac >= x for x in _BANDS)
+
+
+_BANDS = sorted({y for x in (4, 8, 20, 25, 26, 30, 33, 34, 35, 38, 40, 50, 51, 60, 70, 75, 80, 85, 90, 100)
+                 for y in (x, x + 1)})
 
 
 _figure = fightai.figure
@@ -838,6 +857,12 @@ def ai_actions(b, key=None):
     most frequent first: [(('move', Move) or ('switch', index), frequency)].
     Cached by what the AI reads."""
     u, t = b.b.cur(), b.p.cur()
+    # One fight's picks are no use in another: the cache holds one fight's
+    # prepared state at a time (an id can be reused once a state is freed).
+    global _AI_CACHE_ST
+    if _AI_CACHE_ST is not b.st:
+        _AI_CACHE.clear()
+        _AI_CACHE_ST = b.st
     k = ai_key(b)
     got = _AI_CACHE.get(k)
     if got is None:
@@ -886,18 +911,24 @@ def player_actions(b):
     if me.recharge:
         return [("move", me.moves[0])]
     out = []
-    for mv in me.moves:
-        if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
-            continue
-        if me.choice and mv.name != me.choice:
-            continue
-        if mv.effect in fs.SELF_KO or mv.effect == "FAINT_AND_ATK_SP_ATK_DOWN_2":
-            continue
-        f = fightai.figure(b, me, foe, mv)
-        if fightai.basic(b, me, foe, mv, f) <= -8:
-            continue           # a move that would do nothing here
-        out.append(("move", mv))
-    if not me.bound:
+    # The filter borrows the trainer AI's Basic; its few rolls (a speed tie)
+    # get fixed dice here, so the search stays deterministic.
+    saved, b.rng = b.rng, b.rng if getattr(b, "rng", None) is not None else random.Random(0)
+    try:
+        for mv in me.moves:
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
+                continue
+            if me.choice and mv.name != me.choice:
+                continue
+            if mv.effect in fs.SELF_KO or mv.effect == "FAINT_AND_ATK_SP_ATK_DOWN_2":
+                continue
+            f = fightai.figure(b, me, foe, mv)
+            if fightai.basic(b, me, foe, mv, f) <= -8:
+                continue           # a move that would do nothing here
+            out.append(("move", mv))
+    finally:
+        b.rng = saved
+    if not me.bound and fs.can_switch(me):
         for i, m in enumerate(b.p.mons):
             if i != b.p.active and m.alive():
                 out.append(("switch", i))

@@ -153,7 +153,9 @@ def ability_of(b, u, mon):
     slots. Each call is its own flip, as each command is."""
     if getattr(mon, "suppressed", False):
         return None
-    if mon.side == u.side:
+    # Its own side reads the real ability; so does the player, whose plan
+    # knows the trainer's Pokemon (the guess is the trainer AI's alone).
+    if mon.side == u.side or u.side == "p":
         return mon.ability
     if getattr(mon, "revealed", None):
         return mon.revealed
@@ -171,7 +173,7 @@ def check_ability(b, u, mon, name):
     the ability asked about, and read as its first slot otherwise. No flip."""
     if getattr(mon, "suppressed", False):
         ab = None
-    elif mon.side == u.side:
+    elif mon.side == u.side or u.side == "p":
         ab = mon.ability
     elif getattr(mon, "revealed", None):
         ab = mon.revealed
@@ -219,7 +221,8 @@ def figure(b, u, t, mv):
     if mv.effect in fixed:
         return fixed[mv.effect]
     if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL":
-        return u.level * (5 + int(b.rng.random() * 11)) // 10    # drawn again each time
+        r = b.rng.random() if getattr(b, "rng", None) is not None else 0.5
+        return u.level * (5 + int(r * 11)) // 10    # drawn again each time
     d = b.damage(u, t, mv, ai_view=True)
     if d == 0 and t.side == "p":
         d = _unabsorbed(b, u, t, mv)
