@@ -33,6 +33,21 @@ pairs and the old fightfit headline with 10, neither near the bar of 13;
 v3's learnsets moved only Fantina (easier) and Maylene (harder) by 0.10
 or more.
 
+**The scorer has its own track** (Ian, 2026-09-30). A dedicated Scoring
+Agent owns the fight simulator, its trainer AI and the perfect-line
+scorer, and its status home is
+[the trainer scoring handoff](trainer-scoring-handoff.md) ("The track"
+lists the files): `fightsim.py` and `fightai.py`; `perfectline.py`,
+`perfectline.json` and `perfectline_results/`; `plscore.py`,
+`plines.py`, `plkaizo.py`, `plrescore.py`, `ppairs.py`, `pboxes.py` and
+`pdoubles.py`; and their tests, `test_fightsim.py`, `test_plfixes.py` and
+`test_pline.py`. The fightai audit moved there with the files, and so
+did the Kaizo study's scores, which `plkaizo.py` makes. This track keeps
+the rest of `tools/oxide/balance/`, runs the scorer for its own passes,
+and asks the Scoring Agent for any change to it. The whole-game store on
+`oxide` (459 fights, 18 verified) is stale under the simulator fixes of
+the three-gym run, so no reading from it is current.
+
 **The 1-to-10 scale is dropped for now** (Ian, 2026-09-30). Nothing is
 fitted to his pairs any more. The trainer pass judges difficulty in the
 scorer's own numbers: the best line's clean-win rate, its mean deaths and
