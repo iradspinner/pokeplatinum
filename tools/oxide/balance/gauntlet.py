@@ -40,6 +40,7 @@ gauntlets and fights with one another, not with a run.
 """
 import argparse
 import collections
+import functools
 import json
 import os
 import random
@@ -298,12 +299,15 @@ def _fmt(r):
 # snowballing. Ian judged the first reading too kind, because one team must
 # answer several different fights. So this one plays each trainer's fight
 # out: the six stay together through the section; a member keeps the field
-# from one boss Pokemon to the next unless another answers it better, and
-# swapping in at a fight's start costs the incoming member a hit (after a
-# faint, and between boss Pokemon, the game's Shift mode lets the player
-# swap free); every hit rolls its damage and its accuracy, and one in
-# sixteen is critical, twice as hard. After each trainer the survivors heal
-# to full, as the bag allows, and a member that fell stays fallen.
+# from one boss Pokemon to the next unless another answers it better even
+# after paying for the swap, since Oxide forces the Set battle style
+# (element 8) and swapping out a member still standing, at a fight's start
+# or after it knocks out a boss Pokemon, costs the incoming member a hit
+# (until 2026-09-30 the swap between boss Pokemon was free, as the Shift
+# style would allow); a fainted member's replacement comes in free; every
+# hit rolls its damage and its accuracy, and a critical hit at Oxide's odds
+# (CRIT_RATE, below). After each trainer the survivors heal to full, as the
+# bag allows, and a member that fell stays fallen.
 
 # Each section: its label, its maps in walking order, which half of a map
 # (0 or 1, None for all of it), and the trainers left out of it. Mt.
@@ -327,7 +331,38 @@ SECTIONS = {
         ("1F, the far half", ["VICTORY_ROAD_1F"], 1, ()),
         ("2F", ["VICTORY_ROAD_2F"], None, ()), ("B1F", ["VICTORY_ROAD_B1F"], None, ())],
 }
-CRIT = 1 / 16
+# Oxide's critical hits, the Generation 7 ones the engine and the fight
+# simulator use (until 2026-09-30 this reader rolled Platinum's, one in
+# sixteen at twice the damage): one in 24 at 1.5 times, one in 8 for a
+# move whose effect raises the stage (Slash, Stone Edge and the like), and
+# none against Battle Armor or Shell Armor.
+CRIT_RATE = (1 / 24, 1 / 8)
+CRIT_MUL = 1.5
+NO_CRIT = ("Battle Armor", "Shell Armor")
+
+
+@functools.lru_cache(maxsize=None)
+def _high_crit():
+    """Compact names of the moves whose effect raises the critical stage,
+    read from Oxide's move data as the simulator reads the effect."""
+    out = set()
+    for d in os.listdir(pressure.MOVES_DIR):
+        path = os.path.join(pressure.MOVES_DIR, d, "data.json")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            rec = json.load(f)
+        effect = ((rec.get("effect") or {}).get("type") or "").replace("BATTLE_EFFECT_", "")
+        if effect.startswith(("HIGH_CRITICAL", "CHARGE_TURN_HIGH_CRIT")):
+            out.add(metrics_compact(rec["name"]))
+    return frozenset(out)
+
+
+def _crit_chance(move, defender_ability):
+    if defender_ability in NO_CRIT:
+        return 0.0
+    high = metrics_compact(pressure.MOVE_SPELLING.get(move, move)) in _high_crit()
+    return CRIT_RATE[1 if high else 0]
 MAX_TURNS = 30
 
 
@@ -392,12 +427,14 @@ def _choice(row, weather):
     return best[1:] if best else None
 
 
-def _hit(choice, rng):
-    """One use of a move: its damage, 0 on a miss."""
-    _move, rolls, _pr, acc, _slow = choice
+def _hit(choice, rng, defender_ability=None):
+    """One use of a move: its damage, 0 on a miss, a critical hit at
+    Oxide's odds against the defender's ability."""
+    move, rolls, _pr, acc, _slow = choice
     if rng.random() >= acc:
         return 0
-    return rng.choice(rolls) * (2 if rng.random() < CRIT else 1)
+    roll = rng.choice(rolls)
+    return int(roll * CRIT_MUL) if rng.random() < _crit_chance(move, defender_ability) else roll
 
 
 def _first(up, a, b, trick_room, rng):
@@ -427,20 +464,28 @@ def fight(st, pk, bk, hp, boss_hp, rng):
             if ch is None or turn % ch[4]:
                 continue
             if side == "p":
-                boss_hp -= _hit(ch, rng)
+                boss_hp -= _hit(ch, rng, st["info"][bk].get("ability"))
             else:
-                hp -= _hit(ch, rng)
+                hp -= _hit(ch, rng, st["info"][pk].get("ability"))
     return max(hp, 0), max(boss_hp, 0)
 
 
-def _pick(st, rate, alive, hp, bk, boss_share):
+def _pick(st, rate, alive, hp, bk, boss_share, active=None):
     """The member a player sends at a boss Pokemon, by the first reading's
     even-handed duel: the one that wins losing the least share of its HP,
-    else the one that leaves the boss the least."""
+    else the one that leaves the boss the least. While `active` is out and
+    standing, any other member pays for the swap with one of the boss's
+    hits before its duel starts, and that hit counts in what it loses, so
+    the player stays in unless another answers the boss better even after
+    taking the hit."""
     best_win, best_lose = None, None
     for pk in alive:
         share = hp[pk] / st["info"][pk]["hp"]
-        won, left, after = duel(rate[(pk, bk)], share, boss_share)
+        start = share - rate[(pk, bk)][1] if active is not None and pk != active else share
+        if start <= 0:
+            won, left, after = False, 0.0, boss_share
+        else:
+            won, left, after = duel(rate[(pk, bk)], start, boss_share)
         if won:
             if best_win is None or share - left < best_win[0]:
                 best_win = (share - left, pk)
@@ -467,25 +512,30 @@ def run_section(st, team_sizes, pool_keys, n=PARTIES, seed=SEED):
         hp = dict(full)
         deaths = 0
         for boss_mons in fights:
+            # The party's lead goes out first.
             active = next((pk for pk in party if hp[pk] > 0), None)
-            opening = True
             for bk in boss_mons:
+                w = next(w for _v, k, _m, w in st["bosses"] if k == bk)
                 boss_hp = st["info"][bk]["hp"]
                 while boss_hp > 0:
                     alive = [pk for pk in party if hp[pk] > 0]
                     if not alive:
                         break
-                    pk = _pick(st, rate, alive, hp, bk, boss_hp / st["info"][bk]["hp"])
-                    if opening and pk != active:
-                        # Swapping in against the fight's first Pokemon costs a hit.
-                        b = _choice(st["rows"][(bk, pk)], None)
+                    # Oxide forces the Set battle style (element 8): a member
+                    # still standing, at the fight's start or after it knocks
+                    # out a boss Pokemon, is swapped out only at the cost of a
+                    # hit to the one coming in. A fainted member's replacement
+                    # comes in free, in either style.
+                    standing = active if active in alive else None
+                    pk = _pick(st, rate, alive, hp, bk, boss_hp / st["info"][bk]["hp"], standing)
+                    if standing is not None and pk != standing:
+                        b = _choice(st["rows"][(bk, pk)], w)
                         if b:
-                            hp[pk] -= _hit(b, rng)
+                            hp[pk] -= _hit(b, rng, st["info"][pk].get("ability"))
                         if hp[pk] <= 0:
                             hp[pk] = 0
                             deaths += 1
                             continue
-                    opening = False
                     active = pk
                     hp[pk], boss_hp = fight(st, pk, bk, hp[pk], boss_hp, rng)
                     if hp[pk] <= 0:
