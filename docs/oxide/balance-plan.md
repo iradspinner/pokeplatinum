@@ -2254,52 +2254,78 @@ Generation 4 branch, as element 5's abilities will.
 
    The second reading (`gauntlet.py`, now its default) keeps a party of six
    from the strongest third of the split's side together through a
-   section and plays each fight out. A member keeps the field from one
-   boss Pokemon to the next unless another answers it better; swapping in
-   at a fight's start costs the incoming member a hit (after a faint and
-   between boss Pokemon the game's Shift mode swaps free); every hit rolls
-   its damage and its accuracy, and one in sixteen is critical. After each
-   trainer the survivors heal to full and the dead stay dead. The reading
-   is the share of parties that finish with no death, beside the split's
-   story fights read the same way from a healed party (a rival's fight team
-   by team). Two runs gave the same readings.
+   section and plays each fight out. Oxide forces the Set battle style
+   (element 8), so swapping out a member still standing, at a fight's
+   start or after it knocks out a boss Pokemon, costs the incoming member
+   a hit, and a fainted member's replacement comes in free. A member keeps
+   the field from one boss Pokemon to the next unless another answers it
+   better even after that hit. Every hit rolls its damage and its accuracy,
+   and one in sixteen is critical. After each trainer the survivors heal
+   to full and the dead stay dead. The reading is the share of parties
+   that finish with no death, beside the split's story fights read the
+   same way from a healed party (a rival's fight team by team). Two runs
+   gave the same readings.
 
-   | Section | Split | Trainers | Clean clears | Deaths a run |
-   |---|---|---|---|---|
-   | Eterna building, 1F and 2F | Fantina | 4 | 0.94 | 0.06 |
-   | Eterna building, 3F | Fantina | 2 | 0.99 | 0.01 |
-   | Galactic HQ, 1F | HQ | 2 | 0.68 | 0.41 |
-   | Galactic HQ, 2F | HQ | 4 | 0.42 | 0.93 |
-   | Galactic HQ, 3F | HQ | 4 | 0.55 | 0.83 |
-   | Galactic HQ, B2F | HQ | 2 | 0.46 | 1.06 |
-   | Mt. Coronet, 1F's tunnel | Galactic | 3 | 0.78 | 0.26 |
-   | Mt. Coronet, 3F, 4F and Somnu on 5F | Galactic | 5 | 0.71 | 0.34 |
-   | Victory Road, 1F nearer the entrance | League | 3 | 0.86 | 0.16 |
-   | Victory Road, 1F's far half | League | 3 | 0.71 | 0.37 |
-   | Victory Road, 2F | League | 4 | 0.54 | 0.71 |
-   | Victory Road, B1F | League | 4 | 0.69 | 0.43 |
+   Until 2026-09-30 the reader let the player swap free between boss
+   Pokemon, as the Shift style would, and charged the opening swap's hit
+   without weighing it when choosing (the Overseer found the first). The
+   table gives the old reader, the charge alone, and this reading, all on
+   oxide at `5bd779430`, as clean clears with deaths a run beside them.
+   The charge alone makes every section harsher; weighing it, the player
+   stays in rather than pay a hit for a small gain, and the sections come
+   back to where they were or better, while the story fights stay far
+   harsher, since a boss's later Pokemon can no longer be met by a fresh
+   answer for free.
 
-   | Story fight, read the same way | Clean clears |
-   |---|---|
-   | Jupiter 1, Lucas and Dawn 2, Fantina | 0.98, 0.97, 0.32 |
-   | Cyrus 2, Saturn 2 | 0.60, 0.47 |
-   | Mars and Jupiter, Cyrus 3 | 0.52, 0.30 |
-   | Lucas and Dawn 3, Barry 6, Aaron, Bertha | 0.71, 0.48, 0.76, 0.64 |
-   | Flint, Lucian, Cynthia | 0.14, 0.39, 0.06 |
+   | Section | Split | Trainers | Old reader | Charge alone | This reading |
+   |---|---|---|---|---|---|
+   | Eterna building, 1F and 2F | Fantina | 4 | 0.98, 0.02 | 0.93, 0.08 | 0.98, 0.02 |
+   | Eterna building, 3F | Fantina | 2 | 0.99, 0.01 | 0.95, 0.05 | 1.00, 0.00 |
+   | Galactic HQ, 1F | HQ | 2 | 0.65, 0.45 | 0.59, 0.59 | 0.81, 0.22 |
+   | Galactic HQ, 2F | HQ | 4 | 0.44, 0.92 | 0.34, 1.20 | 0.56, 0.67 |
+   | Galactic HQ, 3F | HQ | 4 | 0.56, 0.78 | 0.45, 1.03 | 0.71, 0.34 |
+   | Galactic HQ, B2F | HQ | 2 | 0.49, 0.87 | 0.45, 0.99 | 0.68, 0.37 |
+   | Mt. Coronet, 1F's tunnel | Galactic | 3 | 0.77, 0.26 | 0.76, 0.27 | 0.93, 0.08 |
+   | Mt. Coronet, 3F, 4F and Somnu on 5F | Galactic | 5 | 0.72, 0.32 | 0.40, 0.89 | 0.86, 0.15 |
+   | Victory Road, 1F nearer the entrance | Barry | 3 | 0.72, 0.33 | 0.36, 1.05 | 0.72, 0.36 |
+   | Victory Road, 1F's far half | Barry | 3 | 0.51, 0.73 | 0.26, 1.59 | 0.49, 0.81 |
+   | Victory Road, 2F | Barry | 4 | 0.25, 1.75 | 0.06, 3.60 | 0.30, 1.57 |
+   | Victory Road, B1F | Barry | 4 | 0.42, 1.06 | 0.12, 3.10 | 0.38, 1.24 |
 
-   What it shows. The Eterna building's grunts cost nothing yet: its
-   trainers are at the bottom of the scale, so it is a gauntlet in name
-   until the trainer pass raises them, and as the first gauntlet it should
-   stay the lightest. The Galactic HQ's sections are as deadly as its
-   bosses, so they are not yet on the easier side: Scientist Fredrick (3.8
-   on Ian's scale, against the split's 2.8) and a B2F grunt (4.0) are the
-   ones to soften. Mt. Coronet takes two sections once its officers are
-   left out: Hesperid is a fight Ian rated, a boss, and Moira (4.9) and
-   Argo (5.2) are far above the split's 3.4; Somnu, at it, closes the
-   second section, and the climb leads up to Hesperid and Spear Pillar.
-   Victory Road's four sections sit on the easier side of the League's
-   fights, but six of its fourteen trainers are above the split's average
-   (Omar 4.7 and Henry 5.1 most), to soften or to leave optional.
+   | Story fight, read the same way | Old reader | Charge alone | This reading |
+   |---|---|---|---|
+   | Jupiter 1 | 0.99 | 0.94 | 0.98 |
+   | Lucas and Dawn 2 | 0.97 | 0.86 | 0.92 |
+   | Fantina | 0.25 | 0.01 | 0.02 |
+   | Cyrus 2 | 0.55 | 0.07 | 0.10 |
+   | Saturn 2 | 0.33 | 0.02 | 0.03 |
+   | Mars and Jupiter | 0.54 | 0.03 | 0.27 |
+   | Cyrus 3 | 0.31 | 0.02 | 0.05 |
+   | Flint and Volkner | 0.03 | 0.00 | 0.00 |
+   | Lucas and Dawn 3 | 0.49 | 0.04 | 0.12 |
+   | Barry 6 | 0.15 | 0.01 | 0.02 |
+
+   What it shows. Ian's first targets (2026-09-30) put a section at 60%
+   clean or more, and too hard below 50%; they were set in the
+   perfect-line scorer's numbers, and this reader is cruder (random strong
+   sixes, each duel its hardest hit), so the comparison is a guide. The
+   Eterna building's grunts still cost nothing: its trainers are at the
+   bottom of the scale, so it is a gauntlet in name until the trainer pass
+   raises them, and as the first gauntlet it should stay the lightest. The
+   Galactic HQ's sections now read easier than its bosses; 2F, at 0.56, is
+   the one under 60%, and Scientist Fredrick (3.9 on Ian's scale, against
+   the split's 3.0) and a B2F grunt (4.1) are still the ones to soften.
+   Mt. Coronet takes two sections once its officers are left out, both
+   well on the easier side: Hesperid is a fight Ian rated, a boss, and
+   Moira and Argo read far above the split's average; Somnu, at it, closes
+   the second section, and the climb leads up to Hesperid and Spear
+   Pillar. Victory Road, now in Barry's split, is the problem: the far half
+   of 1F (0.49), 2F (0.30) and B1F (0.38) are all below 50%, and seven of
+   its fourteen trainers read above the split's 3.4 (Ace Trainers Omar 5.7
+   and Henry 5.9 most, then Clayton, Miles, Edgar, Clinton and Jo and Pat),
+   to soften or to leave optional. The story fights from Fantina on read near
+   zero here because random parties do not plan; bosses are judged planned,
+   by the scorer, so this column only sizes sections against one another.
 
    How the reading could be truer still, in order of weight: a drafted team
    rather than random strong sixes (the species that answer the split's
