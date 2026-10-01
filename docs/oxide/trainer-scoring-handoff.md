@@ -48,18 +48,18 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-01).** Steps 1 and 2 of the order of work are
-done on branch `scoring-fightai-audit`, which waits for the Overseer to land
-it. The trainer AI now follows `script.s` and `trainer_ai.c` at HEAD routine
-by routine, with 365 checks in `test_fightai.py`, and the simulator's known
-gaps are filled ("The fightai audit", below). The corrected AI reads the
-three hand-played lines differently: Roark 199 of 200, Mars 1 191 and
-Gardenia 29. Each change is traced below to a rule the game has and the old
-port lacked. Step 3 waits on Ian's two answers ("Waiting on Ian", below). The
-perfect-line store has been stale since the simulator fixes of 2026-09-30
-(`test_pline` passes 1 of 3) and needs `plrescore.py` once the AI is settled.
-The Kaizo reader's `perfectline_results/kaizo.json` was never committed;
-rerun `plkaizo.py` rather than copying it.
+**Where it stands (2026-10-01).** Steps 1 and 2 of the order of work are on
+`oxide` (6ce38e1e26): the trainer AI follows `script.s` and `trainer_ai.c`
+at HEAD routine by routine, with 365 checks in `test_fightai.py`, and the
+simulator's known gaps are filled ("The fightai audit", below). Ian answered
+the two questions it raised (his answers of 2026-10-01, below), and step 3
+has begun on branch `scoring-step3-bar`, measured against the hand-played
+lines rerun on the corrected AI by all three of Ian's numbers (the table
+under "The job"). The perfect-line store has been stale since the simulator
+fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
+blind study before it, are entries in the tracker's Scheduled list. The
+Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
+`plkaizo.py` rather than copying it.
 
 ## The job
 
@@ -75,13 +75,28 @@ Make the scorer's line search find lines at least as good as the hand-played
 ones, on the same box, and say which planning ideas it needed to get there.
 Then use it on the bosses.
 
-The first acceptance check is the three fights below:
+The first acceptance check is the three fights below. A line is judged on
+three numbers together, never the clean rate alone (Ian, 2026-10-01): the
+clean rate (won with no Pokemon fainting), the win rate (won at all) and the
+death count (the mean number of the player's Pokemon that faint per fight,
+over every fight played). The death count is what separates the gnarliest
+fights. The bar is our hand-played lines rerun on the corrected AI, 200 runs
+each on the harness's own seeds; the scorer's line must match or beat ours on
+the whole of the three, and every report to Ian shows all three side by side.
 
-| Fight | Hand-played clean wins | The scorer must reach |
-|---|---|---|
-| Roark | 199 of 200 | 95% or better |
-| Mars 1 | 198 of 200 | 95% or better |
-| Gardenia | 57 of 200 (best found) | 28% or better, or a better line than ours |
+| Fight | Our line | Clean | Won | Deaths per fight |
+|---|---|---|---|---|
+| Roark | S12 | 199/200 | 200/200 | 0.005 |
+| Mars 1 | S1, the PP stall | 191/200 | 200/200 | 0.045 |
+| Gardenia | L1 | 29/200 | 116/200 | 3.325 |
+
+Each figure comes from the harness script's own rows (`compare3.py`,
+`mars2.py` and `gardenia4.py` in `~/oxide-trials/three-gym-run/`, whose
+`run()` plays every fight to its end and returns whether it was won and how
+many of the player's Pokemon fainted), with the variant and seeds the
+script's `main()` uses, so the clean rates match the scripts' own output. The
+figures before the audit (Roark 199, Mars 1 198, Gardenia 57 clean) were
+measured on an AI that got many picks wrong, and no longer count.
 
 Beating our Gardenia line is welcome. Our planning there was not optimal: the
 run that lost Vikavolt had a better play at turn 12 than our rules found
@@ -378,15 +393,16 @@ trainer's Quick Claw is still a luck event its AI does not foresee, and
 Sleep Talk calls the first eligible move; the damage model counts a
 two-to-five-hit move as three hits.
 
-## Waiting on Ian
+## Ian's answers on the audit (2026-10-01)
 
-1. **The bar for step 3.** The acceptance table under "The job" was measured
-   on the old AI. Rerun on the corrected one, the hand-played lines read
-   Roark 199, Mars 1 191 and Gardenia 29 of 200. Should the scorer be asked
-   to match these reruns, or the old figures?
-2. **When to rescore.** The perfect-line store needs `plrescore.py` for all
-   459 fights. It can run as soon as the branch lands, or after Ian has read
-   the audit and step 3 has settled the search.
+1. **The bar for step 3:** our hand-played lines rerun on the corrected AI,
+   not the old figures, judged on the clean rate, the win rate and the death
+   count together. The table under "The job" holds all three for each line.
+2. **The rescore:** not yet. Once step 3 passes Ian's check, the Scoring
+   Agent's learnings and the scoring method go to the Kaizo blind study,
+   which gives a broad comb to shape Oxide's trainers quickly; the full
+   rescore of the 459 fights comes after that comb. Both wait in the
+   tracker's Scheduled list.
 
 ## The harness
 
