@@ -944,6 +944,82 @@ def cache_key():
              len(set(keys)) == 4, f"{len(set(keys))} distinct of 4")]
 
 
+def doubles(dice=PASS):
+    """The Expert fixture as a double battle: Snorlax beside Gengar against
+    Machamp beside Blissey."""
+    b = battle(EX_BOSS, EX_PLAYER)
+    b.doubles = True
+    b.b.active2, b.p.active2 = 1, 1
+    b.rng = Dice(dice)
+    return b, b.b.mons[0], b.b.mons[1], b.p.mons[0], b.p.mons[1]
+
+
+def _as(mon, types=None, ability=None, hp_pct=None):
+    if types is not None:
+        mon.types = list(types)
+    if ability is not None:
+        mon.ability = ability
+    if hp_pct is not None:
+        hp(mon, hp_pct)
+    return mon
+
+
+@check
+def tag_strategy_routines():
+    out = []
+    # A single battle: Follow Me with no partner for good scores -10.
+    b = battle(EX_BOSS, EX_PLAYER)
+    b.rng = Dice(PASS)
+    lax = b.b.cur()
+    got = ai.tag_strategy(b, lax, b.p.cur(), fs.move("Follow Me"), None)
+    out.append(("TagStrategy_FollowMe: a single battle", got == -10, f"{got}"))
+    rows = []
+    b, lax, gen, champ, bliss = doubles()
+    rows.append(("TagStrategy_Earthquake: beside a Rock/Bug partner", ai._tag_quake(lax, _as(gen, ["Rock", "Bug"], "Swift Swim")), -10))
+    rows.append(("TagStrategy_Earthquake: beside a Levitate partner", ai._tag_quake(lax, _as(gen, ["Ghost", "Poison"], "Levitate")), 2))
+    rows.append(("TagStrategy_Explosion: beside a Ghost partner", ai._tag_boom(lax, _as(gen, ["Ghost"], "Levitate")), 0))
+    rows.append(("TagStrategy_Explosion: beside a Grass/Dark partner", ai._tag_boom(lax, _as(gen, ["Grass", "Dark"], "Chlorophyll")), -10))
+    rows.append(("TagStrategy_CheckElectricMove: Discharge beside a Water/Ground partner",
+                 ai._tag_electric(b, lax, champ, fs.move("Discharge"), _as(gen, ["Water", "Ground"], "Damp")), 3))
+    rows.append(("TagStrategy_CheckWaterMove: Surf beside a Water/Ground partner",
+                 ai._tag_water(b, lax, champ, fs.move("Surf"), _as(gen, ["Water", "Ground"], "Damp")), -10))
+    rows.append(("TagStrategy_CheckFireMove: Lava Plume beside a Bug/Rock partner",
+                 ai._tag_fire(lax, fs.move("Lava Plume"), _as(gen, ["Bug", "Rock"], "Sturdy")), -10))
+    lax.flash_fire = True
+    rows.append(("TagStrategy_CheckFireMove: a lit Flash Fire's Flamethrower",
+                 ai._tag_fire(lax, fs.move("Flamethrower"), gen), 1))
+    lax.flash_fire = False
+    rows.append(("TagStrategy_Sandstorm: beside a Rock partner",
+                 ai._tag_weather(b, _as(lax, ["Normal"], "Thick Fat"), "Sandstorm") if _as(gen, ["Bug", "Rock"]) else 0, 2))
+    # The partner pass: Flamethrower at a Flash Fire partner, unlit then lit.
+    _as(gen, ["Fire"], "Flash Fire")
+    unlit = ai.tag_partner(b, lax, gen, fs.move("Flamethrower"))
+    gen.flash_fire = True
+    lit = ai.tag_partner(b, lax, gen, fs.move("Flamethrower"))
+    gen.flash_fire = False
+    rows.append(("TagStrategy_Partner: Flamethrower at an unlit Flash Fire partner", unlit, 3))
+    rows.append(("TagStrategy_Partner: the same once it is lit", lit, -30))
+    for label, got, want in rows:
+        out.append((label, got == want, f"{got} (want {want})"))
+    # Helping Hand on a partner above half HP: +2 at 75%, else -1.
+    got = []
+    for dice in (PASS, FAIL):
+        b, lax, gen, champ, bliss = doubles(dice)
+        hp(gen, 60)
+        got.append(ai.tag_partner(b, lax, gen, fs.move("Helping Hand")))
+    out.append(("TagStrategy_Partner: Helping Hand on a partner at 60%", got == [2, -1], f"{got}"))
+    # The damage step: Gengar's Thunderbolt into a target typed Grass (half),
+    # not a knockout, not the strongest of the pair, the other foe standing.
+    got = []
+    for dice in (PASS, FAIL):
+        b, lax, gen, champ, bliss = doubles(dice)
+        champ.types = ["Grass"]
+        got.append(ai.tag_strategy(b, gen, champ, fs.move("Thunderbolt"), lax))
+    out.append(("TagStrategy_Main: a resisted move loses 1 at 75% while the other foe stands",
+                got == [-1, 0], f"{got}"))
+    return out
+
+
 def main():
     results = checks()
     width = max(len(label) for label, _, _ in results)

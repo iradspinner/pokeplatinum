@@ -233,8 +233,6 @@ def figure(b, u, t, mv):
         d //= 5 if (u.ability == "Skill Link" and mv.effect == "MULTI_HIT") else hits
     if u.item == "Life Orb":
         d = d * 4096 // 5324                       # the calculator's 1.3, taken back off
-    if u.ability == "Flash Fire" and mv.type == "Fire" and not getattr(u, "flash_fire", False):
-        d = d * 2 // 3                             # the row has Flash Fire always on
     if PINCH.get(u.ability) == mv.type and u.hp <= u.maxhp // 3:
         d = d * 3 // 2                             # the row is made at full HP
     return d
@@ -443,6 +441,8 @@ def flag_score(bit, b, u, t, mv, f, best):
         return 5 if b.turn == 0 and w and b.weather != w else 0
     if bit == BATON:
         return baton_pass(b, u, t, mv, f)
+    if bit == TAG:
+        return tag_strategy(b, u, t, mv, fs.ally_of(b, u))
     if bit == HARASS:
         return 2 if mv.effect in script_table("Harrassment_Effects") and chance(b, 50) else 0
     return 0
@@ -3012,54 +3012,405 @@ def choose(b, u, t):
     return "move", u.moves[b.rng.choice(picks)]
 
 
+def skip_odds(n):
+    """The percent chance that `IfRandomLessThan n` does not jump."""
+    return (256 - n) * 100 / 256
+
+
+def ally_slot(b, u):
+    """The Pokemon in u's partner slot, standing or not; None in a single
+    battle. The weather rows and the partner's Lightning Rod and Storm Drain
+    checks read the slot without asking whether it stands."""
+    side = _side(b, u)
+    if side.active2 is None:
+        return None
+    idx = side.active2 if side.mons[side.active] is u else side.active
+    return side.mons[idx]
+
+
+def other_foe(b, u, t):
+    """The target's partner on the field, or None when that slot stands empty."""
+    return next((x for x in fs.foes_of(b, u) if x is not t), None) if getattr(b, "doubles", False) else None
+
+
+def ai_sees(b, u, mon, name):
+    """AICmd_CheckBattlerAbility answering "have"."""
+    return check_ability(b, u, mon, name) == "have"
+
+
+# ---- Tag Strategy ----------------------------------------------------------------------------------
+#
+# TagStrategy_Main for a move aimed at a foe: the damage step, then the
+# first special case that fits (script.s, TagStrategy_Main through
+# TagStrategy_CheckFireMove); TagStrategy_Partner for a move aimed at the
+# AI's own partner. The flag runs in every trainer double battle (forced on)
+# and in the single battles of the trainers whose files carry it.
+
+TAG_FLAT = {"ONE_HIT_KO", "40_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL", "20_DAMAGE_FLAT"}
+QUAKES = {"Earthquake", "Magnitude", "Bulldoze"}
+BOOMS = {"Explosion", "Self-Destruct"}
+NEW_SPREAD = {"Brutal Swing", "Boomburst", "Sludge Wave", "Petal Blizzard", "Synchronoise", "Misty Explosion"}
+NOT_PORTED = {"Skill Swap", "Future Sight", "Doom Desire", "Gravity", "Trick Room"}
+
+
 def tag_strategy(b, u, t, mv, ally):
-    """Tag Strategy toward a foe, lightly (section 4 of the spec): a spread
-    move that hurts the ally is marked down, Explosion beside a living ally
-    most of all, and a strongest or super-effective hit a little up."""
+    """TagStrategy_Main for a move aimed at a foe. The damage step: a
+    resisted move that does not knock out loses 1 (2 for a quarter) at 75%
+    while the target's partner stands; the strongest move of the AI's two
+    Pokemon on this target (a fainted partner's moves still count) +1 at 50%
+    (80.5% for the priority-one effect); otherwise, or when that roll fails,
+    a twice effective move +1 at 60.9% and a four times one +1 at 75%. The
+    flat-damage effects skip the effectiveness parts."""
     s = 0
-    if ally is not None:
-        if mv.range == "ALL_ADJACENT" and mv.damaging():
-            e = eff(b, mv, ally)
-            if e == 0 or (mv.type == "Ground" and (ally.ability == "Levitate" or "Flying" in ally.types)):
-                s += 2
-            elif e >= 2:
-                s -= 10
-            else:
-                s -= 3
-        if mv.effect in fs.SELF_KO and mv.damaging():
-            s += 0 if "Ghost" in ally.types else (-3 if set(ally.types) & {"Rock", "Steel"} else -10)
     f = figure(b, u, t, mv)
-    if f:
-        mine = [figure(b, u, t, m) or 0 for m in u.moves]
-        theirs = [figure(b, ally, t, m) or 0 for m in ally.moves] if ally else []
-        if f >= max(mine + theirs):
-            s += 1 if chance(b, 80.5 if mv.pri > 0 else 50) else 0
-        elif eff(b, mv, t) >= 2 and chance(b, 60.9):
+    if f is not None:
+        flat = mv.effect in TAG_FLAT
+        if not flat:
+            m = script_eff(b, u, t, mv)
+            kills = f >= t.hp and not (t.hp == t.maxhp and t.ability == "Sturdy" and not mold(u, t))
+            tp = other_foe(b, u, t)
+            if m in (HALF, QUARTER) and not kills and tp is not None and tp.frac() > 0 and chance(b, 75):
+                s -= 1 if m == HALF else 2
+        mate = ally_slot(b, u)
+        mine = [figure(b, u, t, x) or 0 for x in u.moves]
+        theirs = [figure(b, mate, t, x) or 0 for x in mate.moves] if mate is not None else []
+        if f >= max(mine + theirs) and chance(b, skip_odds(50) if mv.effect == "PRIORITY_1" else 50):
             s += 1
-    return s
+        elif not flat:
+            m = script_eff(b, u, t, mv)
+            if m == DOUBLE and chance(b, skip_odds(100)):
+                s += 1
+            elif m == QUADRUPLE and chance(b, 75):
+                s += 1
+    return s + tag_special(b, u, t, mv, ally)
+
+
+def tag_special(b, u, t, mv, ally):
+    """TagStrategy_CheckSpecialScoring: the first case that fits, by move
+    id, then by listed type (Weather Ball by its weather), then Helping Hand."""
+    n = mv.name
+    if n in QUAKES:
+        return _tag_quake(u, ally)
+    if n in BOOMS:
+        return _tag_boom(u, ally)
+    if n in NEW_SPREAD:
+        return _tag_spread(b, u, mv, ally)
+    if n in NOT_PORTED:
+        return 0          # no trainer in a double battle carries these (2026-09-30)
+    if n in ("Rain Dance", "Sunny Day", "Hail", "Sandstorm"):
+        return _tag_weather(b, u, n)
+    if n == "Follow Me":
+        return _tag_follow_me(b, u, ally)
+    ty = move_type(b, u, mv) if n == "Weather Ball" else mv.type
+    if ty == "Electric":
+        return _tag_electric(b, u, t, mv, ally)
+    if ty == "Fire":
+        return _tag_fire(u, mv, ally)
+    if ty == "Water":
+        return _tag_water(b, u, t, mv, ally)
+    # TagStrategy_PartnerKnowsHelpingHand: a damaging move with a comparison,
+    # flat damage aside, beside a standing Helping Hand user.
+    if ally is not None and any(x.name == "Helping Hand" for x in ally.moves) \
+            and mv.effect not in TAG_FLAT and figure(b, u, t, mv) is not None:
+        return 1
+    return 0
+
+
+def _tag_quake(u, ally):
+    """TagStrategy_Earthquake (Earthquake, Magnitude, Bulldoze)."""
+    if ally is None:
+        return 0
+    if getattr(ally, "magnet_rise", 0):
+        return 2
+    if not mold(u, ally) and ally.ability in ("Levitate", "Telepathy"):
+        return 2
+    tys = set(ally.types)
+    if "Flying" in tys:
+        return 2
+    if tys & {"Fire", "Electric", "Poison", "Rock"}:
+        return -10
+    return -3 if "Steel" not in tys or tys & {"Bug", "Grass"} else -10
+
+
+def _tag_boom(u, ally):
+    """TagStrategy_Explosion."""
+    if ally is None or "Ghost" in ally.types:
+        return 0
+    if not mold(u, ally) and ally.ability == "Telepathy":
+        return 0
+    return -3 if set(ally.types) & {"Rock", "Steel"} else -10
+
+
+def _tag_spread(b, u, mv, ally):
+    """TagStrategy_SpreadMove (the new spread moves)."""
+    if ally is None:
+        return 0
+    boom = mv.name == "Misty Explosion"
+    if not mold(u, ally):
+        if ally.ability == "Telepathy" or (mv.name == "Boomburst" and ally.ability == "Soundproof"):
+            return 0 if boom else 2
+        if mv.name == "Petal Blizzard" and ally.ability == "Sap Sipper":
+            return 3
+    m = script_eff(b, u, ally, mv)
+    if m == IMMUNE:
+        return 0 if boom else 2
+    if m in (DOUBLE, QUADRUPLE):
+        return -10
+    if m in (HALF, QUARTER):
+        return -3
+    return -10 if boom else -3
+
+
+def _sun_part(b, x):
+    a = x.ability
+    if a == "Leaf Guard":
+        return 2 if not x.status and x.frac() >= 30 else 0
+    if a == "Flower Gift":
+        return 2
+    if a == "Dry Skin":
+        return -2
+    if a == "Solar Power":
+        # The +1 at half HP or more runs on into the 50% -2 (bug O5, vanilla).
+        return (1 if x.frac() >= 50 else 0) - (2 if chance(b, 50) else 0)
+    return 0
+
+
+def _tag_weather(b, u, name):
+    """TagStrategy_RainDance, SunnyDay, Hail and Sandstorm: the rows for the
+    user and whoever is in its partner slot."""
+    total = 0
+    for x in (u, ally_slot(b, u)):
+        if x is None:
+            continue
+        if name == "Rain Dance":
+            total += 2 if x.ability == "Dry Skin" or (x.ability == "Hydration" and x.status) else 0
+        elif name == "Sunny Day":
+            total += _sun_part(b, x)
+        elif name == "Hail":
+            blizzard = any(m.name == "Blizzard" for m in x.moves) and (x is u or x.alive())
+            total += 2 if x.ability in ("Ice Body", "Snow Cloak") or blizzard else 0
+        else:
+            total += 2 if x.ability == "Sand Veil" or "Rock" in x.types else 0
+    return total
+
+
+def _tag_follow_me(b, u, ally):
+    """TagStrategy_FollowMe: -10 with no partner for good; otherwise by the
+    user's and the partner's HP bands, at 75%."""
+    if ally is None:
+        return -10
+    hu, ha = u.frac(), ally.frac()
+    if hu <= 30:
+        return -5 if chance(b, 75) else 0
+    band = 0 if ha > 90 else 1 if ha > 50 else 2 if ha > 30 else 3
+    row = (-1, 1, 2, 3) if hu > 90 else (-2, -1, 1, 2) if hu > 50 else (-2, -2, 1, 2)
+    return row[band] if chance(b, 75) else 0
+
+
+def can_draw_in(u, mv):
+    """IfMoveCanBeDrawnIn: a single target or random foe, no Normalize, no Mold Breaker."""
+    return mv.range in ("SINGLE_TARGET", "RANDOM_OPPONENT") and u.ability not in ("Normalize", "Mold Breaker")
+
+
+def _tag_electric(b, u, t, mv, ally):
+    """TagStrategy_CheckElectricMove."""
+    if mv.name in ("Discharge", "Parabolic Charge"):
+        if ally is None:
+            return 0
+        if not mold(u, ally) and ally.ability in ("Motor Drive", "Volt Absorb", "Lightning Rod", "Telepathy"):
+            return 3
+        tys = set(ally.types)
+        if "Ground" in tys:
+            return 3
+        return -10 if tys & {"Water", "Flying"} else -3
+    if not can_draw_in(u, mv):
+        return 0
+    tp = other_foe(b, u, t)
+    if tp is not None and ai_sees(b, u, tp, "Lightning Rod"):
+        return -10
+    mate = ally_slot(b, u)
+    return -10 if mate is not None and mate.ability == "Lightning Rod" else 0
+
+
+def _tag_water(b, u, t, mv, ally):
+    """TagStrategy_CheckWaterMove."""
+    if mv.name in ("Surf", "Sparkling Aria"):
+        if ally is None:
+            return 0
+        if mv.name == "Sparkling Aria" and not mold(u, ally) and ally.ability == "Soundproof":
+            return 2
+        if not mold(u, ally):
+            if ally.ability in ("Dry Skin", "Water Absorb", "Storm Drain"):
+                return 3
+            if ally.ability == "Telepathy":
+                return 2
+        tys = set(ally.types)
+        if tys & {"Ground", "Fire"}:
+            return -10
+        return -3 if "Rock" not in tys or tys & {"Water", "Grass", "Dragon"} else -10
+    if not can_draw_in(u, mv):
+        return 0
+    tp = other_foe(b, u, t)
+    if tp is not None and ai_sees(b, u, tp, "Storm Drain"):
+        return -10
+    mate = ally_slot(b, u)
+    return -10 if mate is not None and mate.ability == "Storm Drain" else 0
+
+
+def _tag_fire(u, mv, ally):
+    """TagStrategy_CheckFireMove."""
+    s = 1 if getattr(u, "flash_fire", False) else 0
+    if mv.name not in ("Lava Plume", "Searing Shot", "Mind Blown") or ally is None:
+        return s
+    if not mold(u, ally):
+        if ally.ability == "Dry Skin":
+            return s - 3
+        if ally.ability == "Flash Fire":
+            return s + 3
+        if ally.ability == "Telepathy":
+            return s + 2
+    return s - 10 if set(ally.types) & {"Grass", "Steel", "Ice", "Bug"} else s - 3
+
+
+def _absorb_ladder(b, x):
+    h = x.frac()
+    if h == 100:
+        return -10
+    if h > 90:
+        return 0
+    return 3 if chance(b, 25 if h > 75 else 50 if h > 50 else 75) else 0
+
+
+def _raise_rule(b, x, stat):
+    """Motor Drive, Lightning Rod, Storm Drain and Sap Sipper: 62.5% no
+    change, else -30 at +6 and +3 below."""
+    if chance(b, 62.5):
+        return 0
+    return -30 if x.stages[stat] >= 6 else 3
+
+
+def _p_electric(b, x):
+    if x.ability == "Motor Drive":
+        return _raise_rule(b, x, "spe")
+    if x.ability == "Volt Absorb":
+        return _absorb_ladder(b, x)
+    if x.ability == "Lightning Rod":
+        return _raise_rule(b, x, "spa")
+    return -30
+
+
+def _p_water(b, x):
+    if x.ability in ("Water Absorb", "Dry Skin"):
+        return _absorb_ladder(b, x)
+    return _raise_rule(b, x, "spa") if x.ability == "Storm Drain" else -30
+
+
+def _p_grass(b, x):
+    return _raise_rule(b, x, "atk") if x.ability == "Sap Sipper" else -30
+
+
+def _p_fire(x):
+    return 3 if x.ability == "Flash Fire" and not getattr(x, "flash_fire", False) else -30
+
+
+def tag_partner(b, u, ally, mv):
+    """TagStrategy_Partner: a move aimed at the AI's own partner. Only
+    whether the result keeps the score at 100 or more matters to the driver."""
+    if ally is None:
+        return -30
+    ty = move_type(b, u, mv) if mv.name == "Weather Ball" else mv.type
+    if mv.damaging() and has_comparison(mv):
+        rule = {"Fire": lambda: _p_fire(ally), "Electric": lambda: _p_electric(b, ally),
+                "Water": lambda: _p_water(b, ally), "Grass": lambda: _p_grass(b, ally)}.get(ty)
+        return rule() if rule else -30
+    if ty == "Grass":
+        return _p_grass(b, ally)
+    n = mv.name
+    if n == "Will-O-Wisp":
+        if ally.ability == "Flash Fire":
+            return _p_fire(ally)
+        ok = (ally.ability == "Guts" and not ally.status and "Fire" not in ally.types
+              and ally.item not in ("Flame Orb", "Toxic Orb") and ally.frac() >= 81)
+        return 5 if ok else -30
+    if n == "Thunder Wave":
+        if "Ground" in ally.types or ally.ability not in ("Motor Drive", "Volt Absorb", "Lightning Rod"):
+            return -30
+        return _p_electric(b, ally)
+    if mv.effect in ("STATUS_BADLY_POISON", "STATUS_POISON"):
+        ok = ally.ability == "Poison Heal" and not ally.status and ally.item != "Toxic Orb" and ally.frac() <= 91
+        return 5 if ok else -30
+    if n == "Helping Hand":
+        if ally.frac() == 0:
+            return -30
+        others = fs.foes_of(b, u) + [u]
+        if ally.frac() > 50 or all(b.speed(ally) > b.speed(x) for x in others):
+            return 2 if chance(b, 75) else -1
+        return 0
+    if n == "Swagger":
+        if ally.item not in ("Persim Berry", "Lum Berry"):
+            return -30
+        return 0 if ally.stages["atk"] >= 2 else 3
+    if n == "Gastro Acid":
+        return 5 if ally.ability in ("Truant", "Slow Start") else -30
+    if n == "Acupressure":
+        if any(v >= 6 for v in ally.stages.values()):
+            return -30
+        if ally.frac() < 51:
+            return -1
+        if ally.frac() <= 90 and chance(b, 50):
+            return 0
+        return 2 if chance(b, skip_odds(80)) else 0
+    return -30        # Skill Swap's partner rules are not ported; no double battle carries it
+
+
+def partner_scores(b, u, ally, flags):
+    """The partner pass: every routine but Tag Strategy and Check HP stops at
+    once on the partner, and Check HP runs the partner rules again."""
+    out = []
+    for mv in u.moves:
+        if u.pp.get(mv.name, 1) <= 0:
+            out.append(0)
+            continue
+        s = 0 if invalid(b, u, mv) else 100
+        for bit in (TAG, CHECK_HP):
+            if flags >> bit & 1:
+                s += tag_partner(b, u, ally, mv)
+                s = 0 if s < 0 or s > 127 else s
+        out.append(s)
+    return out
 
 
 def choose_doubles(b, u):
-    """('move', Move, target): each foe scored as the target in turn, the
-    best move for each kept, and the target whose best scores highest."""
+    """('move', Move, target): TrainerAI_MainDoubles. Each other standing
+    battler is scored as the target in turn, the AI's partner included, with
+    Tag Strategy forced on; each target keeps its best move (ties at
+    random); a partner whose best is below 100 is dropped; the target with
+    the highest best wins (ties at random); a move for the user or its ally
+    aimed at the foe's side, and a non-Ghost Curse, turn on the user."""
     if u.lock:
         return "move", u.lock[0], None
     if u.charging is not None:
         return "move", u.charging, None
     if u.recharge:
         return "move", u.moves[0], None
-    foes = fs.foes_of(b, u)
+    flags = b.ai_flags | 1 << TAG
     ally = fs.ally_of(b, u)
-    best = []
-    for t in foes:
-        record_last_move(t)
-        scores = score_moves(b, u, t, b.ai_flags)
-        for i, mv in enumerate(u.moves):
-            s = scores[i] + (tag_strategy(b, u, t, mv, ally) if scores[i] > 0 else 0)
-            best.append((s, b.rng.random(), mv, t))
-    if not best:
+    per_target = []
+    for t in fs.foes_of(b, u) + ([ally] if ally is not None else []):
+        if t is not ally:
+            record_last_move(t)
+        scores = partner_scores(b, u, ally, flags) if t is ally else score_moves(b, u, t, flags)
+        top = max(scores)
+        if t is ally and top < 100:
+            continue
+        i = b.rng.choice([k for k, sc in enumerate(scores) if sc == top])
+        per_target.append((top, u.moves[i], t))
+    if not per_target:
         return "move", u.moves[0], None
-    s, _r, mv, t = max(best, key=lambda x: (x[0], x[1]))
+    top = max(x[0] for x in per_target)
+    _s, mv, t = b.rng.choice([x for x in per_target if x[0] == top])
+    if (mv.range == "USER_OR_ALLY" and t.side == "p") or (mv.effect == "CURSE" and "Ghost" not in u.types):
+        t = u
     return "move", mv, t
 
 

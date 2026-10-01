@@ -451,6 +451,8 @@ def attack(b, att, mv, dfn, first):
     if dmg <= 0:
         if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
         return
     if dfn.sub:
         dfn.sub = max(0, dfn.sub - dmg)

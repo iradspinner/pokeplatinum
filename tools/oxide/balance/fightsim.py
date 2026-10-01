@@ -255,6 +255,7 @@ class Mon:
         # The ability a battle message has named (AI_CONTEXT.battlerAbilities,
         # BattleAI_SetAbility); the trainer's AI guesses until then.
         self.revealed = None
+        self.flash_fire = False          # lit by a Fire move it took
 
     def alive(self):
         return self.hp > 0
@@ -370,6 +371,8 @@ class Battle:
             mult *= 0.5
         if att.ability == "Guts" and att.status:
             mult *= 1.5
+        if att.ability == "Flash Fire" and mv.type == "Fire" and not att.flash_fire:
+            mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         if att.side == "p" and BOOSTER_TYPE.get(att.item) == mv.type:
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
@@ -821,6 +824,8 @@ def attack(b, att, mv, dfn, first):
     if dmg <= 0:
         if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
     if dfn.sub:
@@ -1558,6 +1563,8 @@ def targets_of(b, att, mv, chosen):
         return [b.rng.choice(foes)] if foes else []
     if chosen is not None and chosen in foes:
         return [chosen]
+    if chosen is not None and (chosen is att or chosen is ally_of(b, att)):
+        return [chosen]                  # the AI aimed it at its partner or at itself
     return foes[:1]
 
 
