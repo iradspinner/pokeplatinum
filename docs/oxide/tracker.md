@@ -11,7 +11,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 **Who is on what** (2026-09-30):
 
 1. **Balance Agent**: learnset v3 on `balance-learngen-v2`, then the TM pass rerun. The fight scorer is under review (Phase 5, below), so the box-model fix on `balance-boxmodel` (four moves, no Choice item or Life Orb) waits, and the scale, the average-fight calibration, the gauntlet list and the Kaizo study's `scores.md` are held. Since 2026-09-30 the simulator, its AI and the scorer belong to the Scoring Agent, the fightai audit with them; this track runs the scorer and asks that track for changes.
-2. **Scoring Agent** (new, 2026-09-30): not started; Ian starts it with the prompt in its status home, `docs/oxide/trainer-scoring-handoff.md`. It trains the trainer scorer on the three-gym run's ground truth, owns the fight simulator, its AI and the perfect-line scorer in `tools/oxide/balance/` (the doc lists the files), and brings Ian every line and planning idea with its reasoning until he is sure it reads fights as the three-gym run did.
+2. **Scoring Agent** (new, 2026-09-30): running since 2026-09-30, on the fightai audit first; its status home is `docs/oxide/trainer-scoring-handoff.md`. It trains the trainer scorer on the three-gym run's ground truth, owns the fight simulator, its AI and the perfect-line scorer in `tools/oxide/balance/` (the doc lists the files), and brings Ian every line and planning idea with its reasoning until he is sure it reads fights as the three-gym run did.
 3. **Encounter Tool Builder**: not running. Next: the zone-by-zone land pass with Ian, the water re-authoring after it, Grimer, Muk and Bibarel, and the rerun of its lint and reports against the retypes (below).
 4. **Main Production Agent**: running (2026-09-30). `main-production` holds the Sandgem backdrop bug, fossils waiting for Cycling Road, the species importer's heights and level-0 moves, Wonder Guard's charging moves, and Throat Chop and Lunar Blessing, all built and waiting to land; `main-box-hang` adds the box deposit fix on top, and `main-element6` element 6's fixes of 2026-09-30 on top of that. `main-gauntlets` (e5bf0f2cf) is held for Ian's trainer list.
 5. **Overseer**: landings, this tracker, the audit of 2026-09-30 (sessions cut off by the usage limit, read for lost to-dos).
@@ -70,7 +70,7 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - **The learnset decisions**, to come with learnset v3's report: the eleven held gap-fillers beside what later games offer, the bar's thresholds, the five-level wait, the 138 wild slots that can end an encounter, the good-move share, and the later-moves report's rows marked for Ian.
 
-- **Start the Scoring Agent** with the prompt in `docs/oxide/trainer-scoring-handoff.md` ("The track"). Ian answered the handoff's five questions on 2026-09-30 (the doc records them), and checks the agent's reasoning on each line until he is sure it reads fights as the three-gym run did.
+- **The Scoring Agent's reasoning** (2026-09-30): Ian checks every line it finds and every planning idea it adds, with its reasoning, before it builds on them, until he is sure it reads fights as the three-gym run did. Its answers on the handoff's five questions are in `docs/oxide/trainer-scoring-handoff.md`.
 
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
 
