@@ -297,12 +297,9 @@ def use_move(b, att, mv, dfn, first):
         else:
             return
     if att.status == "slp":
-        if att.sleep > 0:
-            att.sleep -= 1
+        if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
                 return
-        else:
-            att.status = None
     if att.flinch:
         att.flinch = False
         return
@@ -381,24 +378,23 @@ def attack(b, att, mv, dfn, first):
         return
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
-    dmg = None
+    # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
+    # trainer's way in the search, as a damage roll does, and rolls in a run.
+    tenths = 10
+    if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL":
+        tenths = b.dice.rng.randint(5, 15) if b.dice.mode == "run" else (15 if trainer else 5)
+    dmg = fs.fixed_damage(b, att, dfn, mv, tenths)
     if mv.effect == "ONE_HIT_KO":
-        if att.level < dfn.level:
+        if fs.ohko_blocked(b, att, dfn, mv):
             return
         p_ohko = (30 + att.level - dfn.level) / 100
         if not (b.dice.bad("ohko", p_ohko) if trainer else b.dice.good(p_ohko)):
             return
         dmg = dfn.hp
-    elif mv.effect == "HALVE_HP":
-        dmg = max(1, dfn.hp // 2)
-    elif mv.effect == "LEVEL_DAMAGE_FLAT":
-        dmg = att.level
-    elif mv.effect == "SET_HP_EQUAL_TO_USER":
-        dmg = max(0, dfn.hp - att.hp)
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want):
+        if not hit or (want and hit[0] != want) or fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     elif mv.effect == "STRUGGLE":
@@ -492,7 +488,7 @@ def attack(b, att, mv, dfn, first):
             fs.change_stages(att, {fs.PINCH_BERRIES[berry]: 1})
     if e == "RECHARGE_AFTER":
         att.recharge = True
-    if e in fs.SELF_KO:
+    if e in fs.SELF_KO or e == "FINAL_GAMBIT":
         att.hp = 0
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:

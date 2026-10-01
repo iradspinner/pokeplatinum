@@ -479,6 +479,48 @@ def rollout_after(att, mv, hit):
 # data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
 MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
 
+# The moves whose effect script sets the damage itself (res/battle/scripts/
+# effects): stat stages, screens, burn, items and critical hits never touch
+# the figure, but the type chart still runs, so an immune target takes
+# nothing (ApplyTypeMultiplier flags MOVE_STATUS_INEFFECTIVE even with
+# SYSCTL_IGNORE_TYPE_CHECKS set): Seismic Toss misses a Ghost, Night Shade a
+# Normal type, Dragon Rage a Fairy.
+FIXED_DAMAGE = {"40_DAMAGE_FLAT", "20_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
+                "HALVE_HP", "QUARTER_HP", "SET_HP_EQUAL_TO_USER", "FINAL_GAMBIT"}
+
+
+def fixed_damage(b, att, dfn, mv, tenths=10):
+    """A fixed-damage move's damage, 0 when it fails or the target's type is
+    immune, or None for any other move. tenths is Psywave's roll, 5 to 15
+    (`Random 10, 5`, then level times the roll over ten, at least 1)."""
+    if mv.effect not in FIXED_DAMAGE:
+        return None
+    if effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+        return 0
+    e = mv.effect
+    if e == "40_DAMAGE_FLAT":
+        return 40
+    if e == "20_DAMAGE_FLAT":
+        return 20
+    if e == "LEVEL_DAMAGE_FLAT":
+        return att.level
+    if e == "RANDOM_DAMAGE_1_TO_150_LEVEL":
+        return max(1, att.level * tenths // 10)
+    if e == "HALVE_HP":
+        return max(1, dfn.hp // 2)                 # BattleSystem_Divide keeps at least 1
+    if e == "QUARTER_HP":
+        return 3 * max(1, dfn.hp // 4)            # three quarters of the target's HP, as its script has it
+    if e == "SET_HP_EQUAL_TO_USER":
+        return max(0, dfn.hp - att.hp)            # fails when the target has no more HP than the user
+    return att.hp                                 # Final Gambit; attack() faints the user
+
+
+def ohko_blocked(b, att, dfn, mv):
+    """A one-hit KO move fails on a type it cannot hit, a higher-level
+    target, or Sturdy unless the user has Mold Breaker (BtlCmd_TryOHKOMove)."""
+    return (effectiveness(b.st["chart"], mv.type, dfn.types) == 0 or att.level < dfn.level
+            or (dfn.ability == "Sturdy" and att.ability != "Mold Breaker"))
+
 
 def hurt(b, mon, amount):
     """HP lost to anything but a move's hit."""
@@ -524,6 +566,21 @@ def foe_of(b, mon):
     return next((m for m in side.on_field() if m.alive()), side.cur())
 
 
+def sleep_tick(att):
+    """One move attempt while asleep (the sleep check in
+    battle_controller_player.c). The engine's counter is att.sleep + 1, set
+    to 2 to 5 by the fall-asleep script and to 3 by Rest; each attempt takes
+    one off, two with Early Bird, and the Pokemon wakes and acts once it
+    reaches zero. True while it stays asleep."""
+    drop = 2 if att.ability == "Early Bird" else 1
+    if att.sleep >= drop:
+        att.sleep -= drop
+        return True
+    att.sleep = 0
+    att.status = None
+    return False
+
+
 def use_move(b, att, mv, dfn, first, targets=None):
     """One move, from its user's turn check to its last effect. `first`:
     whether the target has not moved yet this turn."""
@@ -541,12 +598,9 @@ def use_move(b, att, mv, dfn, first, targets=None):
     if att.status == "slp":
         # The counter is the turns it cannot move (one to four); when it has
         # run out the Pokemon wakes and acts the same turn, as in Generation 4.
-        if att.sleep > 0:
-            att.sleep -= 1
+        if sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
                 return
-        else:
-            att.status = None
     if att.flinch:
         att.flinch = False
         return
@@ -625,21 +679,15 @@ def attack(b, att, mv, dfn, first):
         return
     rollout_after(att, mv, True)
     # Fixed-damage moves.
-    dmg = None
+    dmg = fixed_damage(b, att, dfn, mv, b.rng.randint(5, 15) if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL" else 10)
     if mv.effect == "ONE_HIT_KO":
-        if att.level < dfn.level or b.rng.random() * 100 >= 30 + att.level - dfn.level:
+        if ohko_blocked(b, att, dfn, mv) or b.rng.random() * 100 >= 30 + att.level - dfn.level:
             return
         dmg = dfn.hp
-    elif mv.effect == "HALVE_HP":
-        dmg = max(1, dfn.hp // 2)
-    elif mv.effect == "LEVEL_DAMAGE_FLAT":
-        dmg = att.level
-    elif mv.effect == "SET_HP_EQUAL_TO_USER":
-        dmg = max(0, dfn.hp - att.hp)
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want):
+        if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     if dmg is None:
@@ -687,7 +735,7 @@ def attack(b, att, mv, dfn, first):
         heal(att, dealt // 2)
     if e == "RECHARGE_AFTER":
         att.recharge = True
-    if e in SELF_KO:
+    if e in SELF_KO or e == "FINAL_GAMBIT":
         att.hp = 0
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
