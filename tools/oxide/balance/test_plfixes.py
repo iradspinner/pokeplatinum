@@ -103,6 +103,35 @@ def fixed_damage_checks():
     return out
 
 
+def explosion_checks():
+    """Explosion's effect script faints its user before the hit, so it
+    faints into a Ghost or a Protect too; Damp stops the move and the user
+    keeps its HP (the Scoring Agent, 2026-09-30)."""
+    from .test_fightai import battle
+    out = []
+    b = battle([("Geodude", 20, "Sturdy", ["Explosion", "Rock Throw"])],
+               [("Misdreavus", 20, "Levitate", ["Astonish"]), ("Psyduck", 20, "Damp", ["Water Gun"]),
+                ("Snorlax", 30, "Thick Fat", ["Body Slam"])])
+    geo = b.b.cur()
+    ghost, duck, lax = b.p.mons
+    boom = fs.move("Explosion")
+    for label, attack in (("simulator", fs.attack), ("search", pl.attack)):
+        seen = []
+        for target, protect in ((ghost, False), (lax, True), (duck, False)):
+            b.rng, b.dice = random.Random(1), pl.RunDice(random.Random(1), True)
+            geo.hp, target.hp = geo.maxhp, target.maxhp
+            target.protecting = protect
+            b.p.active = b.p.mons.index(target)
+            attack(b, geo, boom, target, True)
+            target.protecting = False
+            seen.append((geo.hp, target.maxhp - target.hp))
+        ok = seen[0] == (0, 0) and seen[1] == (0, 0) and seen[2][0] == geo.maxhp and seen[2][1] == 0
+        out.append((f"{label}: Explosion faints its user into a Ghost or Protect; Damp stops it",
+                    ok, f"(user HP, damage) Ghost {seen[0]}, Protect {seen[1]}, Damp {seen[2]}"))
+    b.p.active = 0
+    return out
+
+
 def sleep_checks():
     """Handoff step 2, sleep length (Scoring Agent, 2026-09-30). The engine's
     counter is 2 to 5 (`Random 3, 2` in the fall-asleep script), less one
@@ -434,6 +463,7 @@ def main():
                     fightai.move_type(b, lum, gift) == "Fire" and stays / 800 >= 0.85, f"{fightai.move_type(b, lum, gift)}, stayed {stays} of 800"))
 
     results += fixed_damage_checks()
+    results += explosion_checks()
     results += sleep_checks()
 
     width = max(len(r[0]) for r in results)

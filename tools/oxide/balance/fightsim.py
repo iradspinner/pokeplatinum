@@ -653,8 +653,24 @@ def confusion_damage(mon, rng):
     return int(base * rng.randint(85, 100) / 100)
 
 
+def explode_first(b, att):
+    """Explosion and Self-Destruct (effect script 7) set their user's HP to
+    0 before the hit is worked out, so the user faints even when the move
+    then misses or meets Protect, an immune type or a Pokemon in the air. A
+    Damp Pokemon anywhere on the field stops the move first, and its user
+    keeps its HP, unless the user has Mold Breaker. False when Damp stopped
+    it."""
+    if att.ability != "Mold Breaker" and any(
+            m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
+        return False
+    att.hp = 0
+    return True
+
+
 def attack(b, att, mv, dfn, first):
     if not dfn.alive():
+        return
+    if mv.effect in SELF_KO and not explode_first(b, att):
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE:
         return

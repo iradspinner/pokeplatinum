@@ -355,6 +355,8 @@ def confusion_damage(mon, roll):
 def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
+    if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
+        return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE:
         return
     if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
