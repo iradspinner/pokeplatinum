@@ -39,6 +39,148 @@ def boss(b, species):
     return b.b.cur()
 
 
+def _hits(b, attack, att, name, dfn, tries=30, hp=None):
+    """The damage of each landed use of a move over a number of tries, the
+    target's HP reset (to hp, or full) before each."""
+    move = fs.move(name)
+    att.moves = [move]
+    att.pp = {name: 99}
+    out = []
+    for i in range(tries):
+        b.rng = random.Random(i)
+        b.dice = pl.RunDice(random.Random(i), True)
+        dfn.hp = hp or dfn.maxhp
+        att.hit_this_turn = None
+        attack(b, att, move, dfn, True)
+        out.append((hp or dfn.maxhp) - dfn.hp)
+    return out
+
+
+def fixed_damage_checks():
+    """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
+    script sets the damage itself, so stages, screens and crits never touch
+    it, but an immune type still takes nothing. Both attack paths, the
+    simulator's and the perfect-line search's, are checked."""
+    from .test_fightai import battle
+    out = []
+    b = battle([("Gible", 20, "Rough Skin", ["Dragon Rage", "Sonic Boom"]),
+                ("Raticate", 20, "Guts", ["Super Fang", "Counter"])],
+               [("Snorlax", 30, "Thick Fat", ["Body Slam"]), ("Misdreavus", 20, "Levitate", ["Astonish"]),
+                ("Geodude", 20, "Sturdy", ["Rock Throw"]), ("Umbreon", 30, "Synchronize", ["Bite"])])
+    gible, rat = b.b.mons
+    lax, ghost, geo, dark = b.p.mons
+    for label, attack in (("simulator", fs.attack), ("search", pl.attack)):
+        gible.stages["spa"] = 6
+        b.p.screens["Light Screen"] = 5
+        got = {d for d in _hits(b, attack, gible, "Dragon Rage", lax) if d}
+        gible.stages["spa"] = 0
+        b.p.screens["Light Screen"] = 0
+        out.append((f"{label}: Dragon Rage does 40 through +6 and Light Screen", got == {40}, f"{sorted(got)}"))
+        immune = {name: max(_hits(b, attack, user, name, target)) for name, user, target in (
+            ("Seismic Toss", rat, ghost), ("Sonic Boom", gible, ghost), ("Night Shade", gible, lax),
+            ("Super Fang", rat, ghost), ("Endeavor", rat, ghost))}
+        out.append((f"{label}: fixed-damage moves do nothing to an immune type", not any(immune.values()),
+                    f"{immune}"))
+        got = {d for d in _hits(b, attack, rat, "Super Fang", lax, hp=101) if d}
+        out.append((f"{label}: Super Fang takes half the target's current HP", got == {50}, f"{sorted(got)}"))
+        got = {d for d in _hits(b, attack, rat, "Psywave", lax, tries=200) if d}
+        out.append((f"{label}: Psywave does half to one and a half times the level, in tenths",
+                    got <= {20 * t // 10 for t in range(5, 16)} and len(got) >= 6, f"{sorted(got)}"))
+        rat.level = 60
+        ko = max(_hits(b, attack, rat, "Horn Drill", geo, tries=60))
+        rat.level = 20
+        out.append((f"{label}: a one-hit KO move fails into Sturdy", ko == 0, f"took {ko}"))
+        rat.hit_this_turn = ("Physical", 30)
+        countered = []
+        for i in range(10):
+            b.rng, b.dice = random.Random(i), pl.RunDice(random.Random(i), True)
+            ghost.hp = ghost.maxhp
+            rat.hit_this_turn = ("Physical", 30)
+            rat.moves, rat.pp = [fs.move("Counter")], {"Counter": 99}
+            attack(b, rat, fs.move("Counter"), ghost, True)
+            countered.append(ghost.maxhp - ghost.hp)
+        out.append((f"{label}: Counter does nothing to a Ghost", not any(countered), f"{countered}"))
+    return out
+
+
+def explosion_checks():
+    """Explosion's effect script faints its user before the hit, so it
+    faints into a Ghost or a Protect too; Damp stops the move and the user
+    keeps its HP (the Scoring Agent, 2026-09-30)."""
+    from .test_fightai import battle
+    out = []
+    b = battle([("Geodude", 20, "Sturdy", ["Explosion", "Rock Throw"])],
+               [("Misdreavus", 20, "Levitate", ["Astonish"]), ("Psyduck", 20, "Damp", ["Water Gun"]),
+                ("Snorlax", 30, "Thick Fat", ["Body Slam"])])
+    geo = b.b.cur()
+    ghost, duck, lax = b.p.mons
+    boom = fs.move("Explosion")
+    for label, attack in (("simulator", fs.attack), ("search", pl.attack)):
+        seen = []
+        for target, protect in ((ghost, False), (lax, True), (duck, False)):
+            b.rng, b.dice = random.Random(1), pl.RunDice(random.Random(1), True)
+            geo.hp, target.hp = geo.maxhp, target.maxhp
+            target.protecting = protect
+            b.p.active = b.p.mons.index(target)
+            attack(b, geo, boom, target, True)
+            target.protecting = False
+            seen.append((geo.hp, target.maxhp - target.hp))
+        ok = seen[0] == (0, 0) and seen[1] == (0, 0) and seen[2][0] == geo.maxhp and seen[2][1] == 0
+        out.append((f"{label}: Explosion faints its user into a Ghost or Protect; Damp stops it",
+                    ok, f"(user HP, damage) Ghost {seen[0]}, Protect {seen[1]}, Damp {seen[2]}"))
+    b.p.active = 0
+    return out
+
+
+def sleep_talk_and_aqua_ring_checks():
+    """Sleep Talk used asleep calls one of its user's other moves (the AI now
+    scores it +10 asleep, as the game does); Aqua Ring heals a sixteenth at
+    each turn's end (the Scoring Agent, 2026-10-01)."""
+    from .test_fightai import battle
+    out = []
+    b = battle([("Snorlax", 40, "Thick Fat", ["Sleep Talk", "Body Slam", "Aqua Ring"])],
+               [("Machamp", 40, "Guts", ["Cross Chop"])])
+    lax, champ = b.b.cur(), b.p.cur()
+    for label, attack in (("simulator", fs.use_move), ("search", pl.use_move)):
+        b.rng, b.dice = random.Random(3), pl.RunDice(random.Random(3), True)
+        champ.hp = champ.maxhp
+        lax.status, lax.sleep = "slp", 3
+        attack(b, lax, fs.move("Sleep Talk"), champ, True)
+        hit = champ.maxhp - champ.hp
+        out.append((f"{label}: Sleep Talk asleep calls Body Slam", hit > 0, f"Machamp took {hit}"))
+    lax.status, lax.sleep = None, 0
+    fs.status_move(b, lax, fs.move("Aqua Ring"), champ, True)
+    lax.hp = lax.maxhp // 2
+    before = lax.hp
+    fs.end_of_turn(b)
+    out.append(("Aqua Ring heals a sixteenth at the turn's end", lax.hp - before == lax.maxhp // 16,
+                f"{before} -> {lax.hp} of {lax.maxhp}"))
+    return out
+
+
+def sleep_checks():
+    """Handoff step 2, sleep length (Scoring Agent, 2026-09-30). The engine's
+    counter is 2 to 5 (`Random 3, 2` in the fall-asleep script), less one
+    per move attempt, waking to act at zero: one to four turns, as the
+    simulator draws. Rest sets 3, two turns. Early Bird takes two a time."""
+    out = []
+
+    def turns_asleep(sleep, ability):
+        mon = type("M", (), {})()
+        mon.status, mon.sleep, mon.ability = "slp", sleep, ability
+        n = 0
+        while fs.sleep_tick(mon):
+            n += 1
+        return n
+    plain = [turns_asleep(s, None) for s in (1, 2, 3, 4)]
+    early = [turns_asleep(s, "Early Bird") for s in (1, 2, 3, 4)]
+    rest = (turns_asleep(2, None), turns_asleep(2, "Early Bird"))
+    out.append(("sleep lasts one to four turns; Early Bird zero, one, one or two",
+                plain == [1, 2, 3, 4] and early == [0, 1, 1, 2], f"plain {plain}, Early Bird {early}"))
+    out.append(("Rest sleeps two turns, one with Early Bird", rest == (2, 1), f"{rest}"))
+    return out
+
+
 def main():
     results = []
 
@@ -345,6 +487,11 @@ def main():
         stays += fightai.should_switch(b, b.b, lum, vika) is None
     results.append(("Natural Gift takes its berry's type: Watmel's Fire keeps Lumineon in about 9 in 10 against Vikavolt",
                     fightai.move_type(b, lum, gift) == "Fire" and stays / 800 >= 0.85, f"{fightai.move_type(b, lum, gift)}, stayed {stays} of 800"))
+
+    results += fixed_damage_checks()
+    results += explosion_checks()
+    results += sleep_checks()
+    results += sleep_talk_and_aqua_ring_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

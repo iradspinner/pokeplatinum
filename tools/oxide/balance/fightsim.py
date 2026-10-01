@@ -94,7 +94,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const")
+                 "contact", "sound", "pp", "const", "reflectable")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -112,6 +112,7 @@ class Move:
         flags = rec.get("flags") or []
         self.contact = "MAKES_CONTACT" in flags
         self.sound = "SOUND" in " ".join(flags)
+        self.reflectable = any("MAGIC_COAT" in f for f in flags)
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -210,6 +211,7 @@ class Mon:
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
         self.pp = {m.name: m.pp for m in self.moves}
+        self.ivs = rec.get("ivs") or {}
         self.status, self.sleep, self.toxic = None, 0, 0
         self.reset_volatile()
 
@@ -237,7 +239,8 @@ class Mon:
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
-        self.last_hit_by = None          # the move that hit it since it last acted
+        self.last_hit_by = None          # the move last aimed at it since it last acted
+        self.last_hit_type = None        # that move's type as the battle recorded it (Weather Ball)
         self.crit_stage = 0
         self.bound = 0
         self.enduring = False
@@ -246,6 +249,14 @@ class Mon:
         self.baton = False
         self.chosen = None
         self.perish = 0                  # Perish Song's count; switching out clears it
+        # The moves the trainer's AI has seen this Pokemon use since it came
+        # in (AI_CONTEXT.battlerMoves; fightai.choose records them).
+        self.shown = []
+        # The ability a battle message has named (AI_CONTEXT.battlerAbilities,
+        # BattleAI_SetAbility); the trainer's AI guesses until then.
+        self.revealed = None
+        self.flash_fire = False          # lit by a Fire move it took
+        self.aqua_ring = False           # a sixteenth back at each turn's end
 
     def alive(self):
         return self.hp > 0
@@ -316,9 +327,16 @@ class Battle:
         return got["rolls"]
 
     def speed(self, mon):
-        s = self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1
-        s = s * stage_mult(mon.stages["spe"])
-        if mon.status == "par":
+        """Speed as BattleSystem_CompareBattlerSpeed works it, in whole
+        numbers: the calculator's figure (weather abilities and items in
+        it) at the Speed stage (sStatStageBoosts, truncated), then Quick
+        Feet's 1.5 with a status or else paralysis's quarter, then Tailwind."""
+        s = int(self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1)
+        st = mon.stages["spe"]
+        s = s * (10 + 5 * st) // 10 if st >= 0 else s * 10 // (10 - 5 * st)
+        if mon.ability == "Quick Feet" and mon.status:
+            s = s * 15 // 10
+        elif mon.status == "par":
             s //= 4
         side = self.p if mon.side == "p" else self.b
         if side.tailwind:
@@ -354,11 +372,13 @@ class Battle:
             mult *= 0.5
         if att.ability == "Guts" and att.status:
             mult *= 1.5
+        if att.ability == "Flash Fire" and mv.type == "Fire" and not att.flash_fire:
+            mult *= 2 / 3        # the calculator's row has Flash Fire always lit
         if att.side == "p" and BOOSTER_TYPE.get(att.item) == mv.type:
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
-        if side.screens[screen] and not crit:
+        if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
             mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
         if getattr(self, "spread", False):
             mult *= 0.75
@@ -408,9 +428,51 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
-    immune = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil"},
-              "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
-    return target.ability not in immune.get(status, set())
+    return target.ability not in STATUS_ABILITIES.get(status, set())
+
+
+STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil"},
+                    "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
+# The abilities announced as their holder comes in (each message tags the
+# ability, so BattleAI_SetAbility records it).
+ENTRY_ANNOUNCED = {"Intimidate", "Pressure", "Mold Breaker", "Drizzle", "Drought", "Sand Stream",
+                   "Snow Warning", "Download", "Trace", "Anticipation", "Forewarn", "Frisk", "Slow Start",
+                   "Unnerve", "Neutralizing Gas"}
+
+
+# The abilities that turn a hit to nothing, and so are named when they do.
+ZEROING = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
+           "Storm Drain", "Sap Sipper", "Levitate", "Wonder Guard", "Soundproof", "Bulletproof"}
+
+
+# The abilities that take a move whole, which the AI's damage estimate does
+# not see (fightai.figure costs the move on an ability-blank twin).
+AI_BLIND_ABSORBS = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
+                    "Storm Drain", "Sap Sipper", "Soundproof", "Bulletproof"}
+
+
+def reveal(mon):
+    """A battle message has named mon's ability (BattleAI_SetAbility): the
+    trainer's AI reads it from now on, until mon leaves the field. The
+    simulator names it where the engine would for what the simulator
+    models: an entry announcement, a hit the ability turns to nothing, Sturdy
+    holding, a status or a stat drop the ability stops."""
+    mon.revealed = mon.ability
+
+
+def stat_drop_blocked(b, mon, changes):
+    """Whether mon's ability stops a drop the foe inflicts (Clear Body and
+    White Smoke stop any; Hyper Cutter Attack, Keen Eye accuracy, Big Pecks
+    Defense); the ability that stops it is named."""
+    falls = {k for k, v in changes.items() if v < 0}
+    if not falls:
+        return False
+    ab = mon.ability
+    if ab in ("Clear Body", "White Smoke") or (ab == "Hyper Cutter" and falls <= {"atk"}) \
+            or (ab == "Keen Eye" and falls <= {"acc"}) or (ab == "Big Pecks" and falls <= {"def"}):
+        reveal(mon)
+        return True
+    return False
 
 
 # The powder and spore moves (battle_lib.c, sPowderMoves): Grass types and
@@ -431,6 +493,9 @@ def leaf_guarded(b, target):
 
 def give_status(b, target, status):
     if not can_status(b, target, status) or leaf_guarded(b, target):
+        if target.alive() and not target.status and (target.ability in STATUS_ABILITIES.get(status, ())
+                                                     or leaf_guarded(b, target)):
+            reveal(target)
         return False
     target.status = status
     if status == "slp":
@@ -479,6 +544,48 @@ def rollout_after(att, mv, hit):
 # data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
 MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
 
+# The moves whose effect script sets the damage itself (res/battle/scripts/
+# effects): stat stages, screens, burn, items and critical hits never touch
+# the figure, but the type chart still runs, so an immune target takes
+# nothing (ApplyTypeMultiplier flags MOVE_STATUS_INEFFECTIVE even with
+# SYSCTL_IGNORE_TYPE_CHECKS set): Seismic Toss misses a Ghost, Night Shade a
+# Normal type, Dragon Rage a Fairy.
+FIXED_DAMAGE = {"40_DAMAGE_FLAT", "20_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
+                "HALVE_HP", "QUARTER_HP", "SET_HP_EQUAL_TO_USER", "FINAL_GAMBIT"}
+
+
+def fixed_damage(b, att, dfn, mv, tenths=10):
+    """A fixed-damage move's damage, 0 when it fails or the target's type is
+    immune, or None for any other move. tenths is Psywave's roll, 5 to 15
+    (`Random 10, 5`, then level times the roll over ten, at least 1)."""
+    if mv.effect not in FIXED_DAMAGE:
+        return None
+    if effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+        return 0
+    e = mv.effect
+    if e == "40_DAMAGE_FLAT":
+        return 40
+    if e == "20_DAMAGE_FLAT":
+        return 20
+    if e == "LEVEL_DAMAGE_FLAT":
+        return att.level
+    if e == "RANDOM_DAMAGE_1_TO_150_LEVEL":
+        return max(1, att.level * tenths // 10)
+    if e == "HALVE_HP":
+        return max(1, dfn.hp // 2)                 # BattleSystem_Divide keeps at least 1
+    if e == "QUARTER_HP":
+        return 3 * max(1, dfn.hp // 4)            # three quarters of the target's HP, as its script has it
+    if e == "SET_HP_EQUAL_TO_USER":
+        return max(0, dfn.hp - att.hp)            # fails when the target has no more HP than the user
+    return att.hp                                 # Final Gambit; attack() faints the user
+
+
+def ohko_blocked(b, att, dfn, mv):
+    """A one-hit KO move fails on a type it cannot hit, a higher-level
+    target, or Sturdy unless the user has Mold Breaker (BtlCmd_TryOHKOMove)."""
+    return (effectiveness(b.st["chart"], mv.type, dfn.types) == 0 or att.level < dfn.level
+            or (dfn.ability == "Sturdy" and att.ability != "Mold Breaker"))
+
 
 def hurt(b, mon, amount):
     """HP lost to anything but a move's hit."""
@@ -524,46 +631,92 @@ def foe_of(b, mon):
     return next((m for m in side.on_field() if m.alive()), side.cur())
 
 
+# The ranges whose defender is the user itself (BattleSystem_Defender): a
+# move of these never marks a foe as hit.
+OWN_RANGES = {"USER", "USER_SIDE", "SINGLE_TARGET_SPECIAL", "FIELD", "ALL", "ALLY", "USER_OR_ALLY"}
+
+
+def mark_hit(b, mv, dfn, shown, targets=None):
+    """BattleControllerPlayer_UpdateFlagsWhenHit: once the attack message
+    shows, the move is the last to hit its defender, a status move or a
+    miss included; a user that could not move clears its defender's record
+    instead. The switch rules read this record."""
+    if mv.range in OWN_RANGES or dfn is None:
+        return
+    for d in targets or [dfn]:
+        d.last_hit_by = mv if shown else None
+        d.last_hit_type = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+                           if shown and mv.name == "Weather Ball" else mv.type if shown else None)
+
+
+def could_not_act(b, att, mv, dfn, targets=None):
+    """A turn the Pokemon could not act (recharging, frozen, asleep,
+    flinched, hurt by its confusion, fully paralysed, or a status move
+    stopped by Taunt). The engine never marks such a move as succeeded, so
+    it records no previous move (movePrevByBattler is MOVE_NONE, which the
+    AI reads as move 0) and the Protect run breaks
+    (BattleControllerPlayer_UpdateMoveBuffers); its target's last-hit
+    record is cleared."""
+    att.last = None
+    att.protect_run = 0
+    mark_hit(b, mv, dfn, False, targets)
+
+
+def sleep_tick(att):
+    """One move attempt while asleep (the sleep check in
+    battle_controller_player.c). The engine's counter is att.sleep + 1, set
+    to 2 to 5 by the fall-asleep script and to 3 by Rest; each attempt takes
+    one off, two with Early Bird, and the Pokemon wakes and acts once it
+    reaches zero. True while it stays asleep."""
+    drop = 2 if att.ability == "Early Bird" else 1
+    if att.sleep >= drop:
+        att.sleep -= drop
+        return True
+    att.sleep = 0
+    att.status = None
+    return False
+
+
 def use_move(b, att, mv, dfn, first, targets=None):
     """One move, from its user's turn check to its last effect. `first`:
     whether the target has not moved yet this turn."""
     if not att.alive():
         return
+    # Its own record clears with its action, whatever happens
+    # (BattleControllerPlayer_ClearFlags).
+    att.last_hit_by = None
     # The user's own state first.
     if att.recharge:
         att.recharge = False
-        return
+        return could_not_act(b, att, mv, dfn, targets)
     if att.status == "frz":
         if b.rng.random() < 0.2 or mv.effect == "THAW_AND_BURN_HIT":
             att.status = None
         else:
-            return
+            return could_not_act(b, att, mv, dfn, targets)
     if att.status == "slp":
         # The counter is the turns it cannot move (one to four); when it has
         # run out the Pokemon wakes and acts the same turn, as in Generation 4.
-        if att.sleep > 0:
-            att.sleep -= 1
+        if sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return
-        else:
-            att.status = None
+                return could_not_act(b, att, mv, dfn, targets)
     if att.flinch:
         att.flinch = False
-        return
+        return could_not_act(b, att, mv, dfn, targets)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
             hurt(b, att, confusion_damage(att, b.rng))
-            return
+            return could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and b.rng.random() < 0.25:
-        return
+        return could_not_act(b, att, mv, dfn, targets)
     if att.taunt and mv.cat == "Status":
-        return
+        return could_not_act(b, att, mv, dfn, targets)
+    mark_hit(b, mv, dfn, True, targets)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv
-    att.last_hit_by = None
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -578,6 +731,11 @@ def use_move(b, att, mv, dfn, first, targets=None):
                 change_stages(att, {"def": 1})
             return
     att.charging = None
+    if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
+        # Sleep Talk works only asleep, and then uses one of its other moves.
+        mv = sleep_talk_pick(b, att) if att.status == "slp" else None
+        if mv is None:
+            return
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
@@ -599,8 +757,24 @@ def confusion_damage(mon, rng):
     return int(base * rng.randint(85, 100) / 100)
 
 
+def explode_first(b, att):
+    """Explosion and Self-Destruct (effect script 7) set their user's HP to
+    0 before the hit is worked out, so the user faints even when the move
+    then misses or meets Protect, an immune type or a Pokemon in the air. A
+    Damp Pokemon anywhere on the field stops the move first, and its user
+    keeps its HP, unless the user has Mold Breaker. False when Damp stopped
+    it."""
+    if att.ability != "Mold Breaker" and any(
+            m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
+        return False
+    att.hp = 0
+    return True
+
+
 def attack(b, att, mv, dfn, first):
     if not dfn.alive():
+        return
+    if mv.effect in SELF_KO and not explode_first(b, att):
         return
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE:
         return
@@ -610,7 +784,7 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
-    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
+    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one (a
     # Natural Gift needs a berry).
@@ -625,21 +799,15 @@ def attack(b, att, mv, dfn, first):
         return
     rollout_after(att, mv, True)
     # Fixed-damage moves.
-    dmg = None
+    dmg = fixed_damage(b, att, dfn, mv, b.rng.randint(5, 15) if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL" else 10)
     if mv.effect == "ONE_HIT_KO":
-        if att.level < dfn.level or b.rng.random() * 100 >= 30 + att.level - dfn.level:
+        if ohko_blocked(b, att, dfn, mv) or b.rng.random() * 100 >= 30 + att.level - dfn.level:
             return
         dmg = dfn.hp
-    elif mv.effect == "HALVE_HP":
-        dmg = max(1, dfn.hp // 2)
-    elif mv.effect == "LEVEL_DAMAGE_FLAT":
-        dmg = att.level
-    elif mv.effect == "SET_HP_EQUAL_TO_USER":
-        dmg = max(0, dfn.hp - att.hp)
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want):
+        if not hit or (want and hit[0] != want) or effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     if dmg is None:
@@ -660,6 +828,10 @@ def attack(b, att, mv, dfn, first):
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
     if dmg <= 0:
+        if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
     if dfn.sub:
@@ -668,6 +840,8 @@ def attack(b, att, mv, dfn, first):
     else:
         full = dfn.hp == dfn.maxhp
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+            if dfn.ability == "Sturdy":
+                reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash":
                 dfn.item = None
@@ -676,7 +850,6 @@ def attack(b, att, mv, dfn, first):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         dfn.hit_this_turn = (mv.cat, dealt)
-        dfn.last_hit_by = mv
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     # The move's own effects.
@@ -687,7 +860,7 @@ def attack(b, att, mv, dfn, first):
         heal(att, dealt // 2)
     if e == "RECHARGE_AFTER":
         att.recharge = True
-    if e in SELF_KO:
+    if e in SELF_KO or e == "FINAL_GAMBIT":
         att.hp = 0
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
@@ -718,7 +891,7 @@ def attack(b, att, mv, dfn, first):
         dfn.flinch = True
     if e == "CONFUSE_HIT" and b.rng.random() * 100 < chance and not dfn.confused:
         dfn.confused = b.rng.randint(2, 5)
-    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and dfn.ability not in ("Clear Body", "White Smoke"):
+    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
@@ -728,8 +901,27 @@ def attack(b, att, mv, dfn, first):
         dfn.item = None
 
 
+# The moves Sleep Talk never calls (Gen 4's list, by effect).
+SLEEP_TALK_SKIPS = {"USE_RANDOM_LEARNED_MOVE_SLEEP", "HIT_LAST_WHIFF_IF_HIT", "BIDE", "UPROAR", "COPY_MOVE",
+                    "CALL_RANDOM_MOVE", "USE_MOVE_FIRST", "USE_LAST_USED_MOVE", "MIMIC", "SKETCH"}
+
+
+def sleep_talk_pick(b, att):
+    """Sleep Talk: one of its user's other moves at random, never a move
+    that needs a charge turn or one on Gen 4's list; with no dice (the strict
+    search) the first such move. None when there is none."""
+    picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN]
+    if not picks:
+        return None
+    rng = getattr(b, "rng", None)
+    return rng.choice(picks) if rng is not None else picks[0]
+
+
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if e == "RESTORE_HP_EVERY_TURN":
+        att.aqua_ring = True             # Aqua Ring
+        return
     foe_side = b.p if dfn.side == "p" else b.b
     own_side = b.p if att.side == "p" else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -768,7 +960,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
+        if not dfn.sub and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -871,6 +1063,11 @@ def switch_in(b, side, index, slot=0):
         side.active2 = index
     new = side.mons[index]
     new.reset_volatile()
+    # The engine sets fakeOutTurnNumber to the turn count plus one when a
+    # Pokemon comes in, and counts its turns from the first decision after:
+    # one switched in during a turn reads 0 at the next turn, as does a
+    # faint replacement sent in after the end of the turn.
+    new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
     if side.hazards["rocks"]:
         eff = b.st["rock_eff"].get(new.key, 1)
@@ -886,13 +1083,20 @@ def switch_in(b, side, index, slot=0):
     weather = ABILITY_WEATHER.get(new.ability)
     if weather:
         b.weather, b.weather_turns = weather, 0
+    if new.ability in ENTRY_ANNOUNCED:
+        reveal(new)
     if new.ability == "Intimidate":
         for foe in (b.b if side is b.p else b.p).on_field():
-            if foe.alive() and foe.ability not in ("Clear Body", "White Smoke", "Hyper Cutter"):
+            if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
                 change_stages(foe, {"atk": -1})
 
 
 def end_of_turn(b):
+    _end_of_turn(b)
+    b.mid_turn = False
+
+
+def _end_of_turn(b):
     for side in (b.p, b.b):
         for m in side.on_field():
             _end_of_turn_mon(b, side, m)
@@ -916,6 +1120,8 @@ def _end_of_turn_mon(b, side, m):
             if not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
                 hurt(b, m, m.maxhp // 16)
         if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
+            heal(m, m.maxhp // 16)
+        if m.aqua_ring:
             heal(m, m.maxhp // 16)
         if m.status in ("brn", "psn") and m.ability != "Magic Guard":
             hurt(b, m, m.maxhp // 8)
@@ -1303,6 +1509,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             break
         pa = player_choice(b)
         ba = fightai.choose(b, b.b.cur(), b.p.cur())
+        b.mid_turn = True
         me, foe = b.p.cur(), b.b.cur()
         # Switches first.
         if pa[0] == "switch":
@@ -1383,6 +1590,8 @@ def targets_of(b, att, mv, chosen):
         return [b.rng.choice(foes)] if foes else []
     if chosen is not None and chosen in foes:
         return [chosen]
+    if chosen is not None and (chosen is att or chosen is ally_of(b, att)):
+        return [chosen]                  # the AI aimed it at its partner or at itself
     return foes[:1]
 
 
@@ -1505,6 +1714,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
                 acts.append((mon, a[1], a[2]))
         for mon, mv, _t in acts:
             mon.chosen = mv
+        b.mid_turn = True
         keyed = [(-mv.pri, -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(), mon, mv, t)
                  for mon, mv, t in acts]
         for *_k, mon, mv, t in sorted(keyed, key=lambda x: x[:3]):
@@ -1911,6 +2121,21 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in bkeys:
                         pairs.append([dk, d, ["Magnitude"], w])
+    # The trainer's AI costs a move with BattleSystem_CalcMoveDamage, which
+    # knows nothing of the abilities that take a move whole; the calculator's
+    # row for such a Pokemon reads 0. So each player Pokemon with one gets a
+    # twin with the ability blank, rowed against every trainer Pokemon, for
+    # fightai.figure's estimate (Basic refuses the move by its guess at the
+    # ability instead).
+    ai_twin = {}
+    for k in list(pkeys):
+        if pokemon[k].get("ability") in AI_BLIND_ABSORBS:
+            twin = f"{k}#ai"
+            pokemon[twin] = dict(pokemon[k], ability=WEATHER_STAND_IN)
+            ai_twin[k] = twin
+            for w in weathers:
+                for d in bkeys:
+                    pairs.append([d, twin, party_hits(d), w])
     out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
@@ -1929,7 +2154,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "player": list(variants), "variants": variants, "group": group,
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": pressure.CALC_WEATHER.get(weather, weather) if weather else None,
-            "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split}
+            "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
+            "ai_twin": ai_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):

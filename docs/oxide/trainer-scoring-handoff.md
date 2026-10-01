@@ -23,7 +23,8 @@ It owns the fight simulator, its trainer AI and the perfect-line scorer in
 - `perfectline.py`, `perfectline.json` and `perfectline_results/`
 - `plscore.py`, `plines.py`, `plkaizo.py`, `plrescore.py`, `ppairs.py`,
   `pboxes.py` and `pdoubles.py`
-- their tests: `test_fightsim.py`, `test_plfixes.py` and `test_pline.py`
+- their tests: `test_fightsim.py`, `test_plfixes.py`, `test_pline.py` and
+  `test_fightai.py` (the AI routine by routine, added 2026-10-01)
 
 The rest of `tools/oxide/balance/` stays the balance track's. The balance
 track runs the scorer for its passes and asks this track for any change to
@@ -47,13 +48,18 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-09-30).** The agent has not started yet. The scorer
-and every simulator fix below are on `oxide` (153d11de2, which landed
-`overseer-sim-fixes` and `balance-perfectline` under it), so the scoring
-track and the balance track start from one tree; cut the track's branch from
-there. One output was never committed: the Kaizo reader's
-`perfectline_results/kaizo.json`, left untracked in the Balance Agent's
-`balance-perfectline` worktree. Rerun `plkaizo.py` rather than copying it.
+**Where it stands (2026-10-01).** Steps 1 and 2 of the order of work are
+done on branch `scoring-fightai-audit`, which waits for the Overseer to land
+it. The trainer AI now follows `script.s` and `trainer_ai.c` at HEAD routine
+by routine, with 365 checks in `test_fightai.py`, and the simulator's known
+gaps are filled ("The fightai audit", below). The corrected AI reads the
+three hand-played lines differently: Roark 199 of 200, Mars 1 191 and
+Gardenia 29. Each change is traced below to a rule the game has and the old
+port lacked. Step 3 waits on Ian's two answers ("Waiting on Ian", below). The
+perfect-line store has been stale since the simulator fixes of 2026-09-30
+(`test_pline` passes 1 of 3) and needs `plrescore.py` once the AI is settled.
+The Kaizo reader's `perfectline_results/kaizo.json` was never committed;
+rerun `plkaizo.py` rather than copying it.
 
 ## The job
 
@@ -267,22 +273,120 @@ Earlier fixes:
 - Pinch berries fire.
 - `BattleAI_PostKOSwitchIn`'s second stage is fixed.
 
-Known gaps, none fixed yet:
+The known gaps of 2026-09-30 are closed on `scoring-fightai-audit`
+(2026-10-01):
 
-- **Fixed-damage moves** have no case. Dragon Rage (40) and Sonic Boom (20)
-  fall through to the damage rows at power 1. Ian ruled that Charmander must
-  not have Dragon Rage in Roark's split; that ruling is held for the next
-  learnset revision.
-- **Status moves are not recorded as the move that last hit,** though the
-  engine records them. The Natural Cure switch rule then reads 87.5% where the
-  engine reads 75%.
-- **Oxide's Phase 4 AI catch-up rules** (the table in
-  `docs/oxide/battle-ai/README.md`) are mostly unchecked in the port: Big Pecks
-  and Mirror Armor, Sturdy in the knockout checks, Queenly Majesty, Bulletproof,
-  Purifying Salt and the rest. The Balance Agent's pending fightai audit covers
-  them, routine by routine with a test each.
-- **Sleep length** in the simulator (1 to 4 turns) is not checked against the
-  engine.
+- **Fixed-damage moves** take their scripts' figures, untouched by stages,
+  screens or critical hits, and do nothing to an immune type; one-hit KO
+  moves fail into Sturdy. Ian's ruling that Charmander has no Dragon Rage in
+  Roark's split is still held for the next learnset revision.
+- **The move that last hit** is recorded as the engine records it: any move
+  aimed at the Pokemon, status moves and misses included.
+- **Oxide's Phase 4 AI catch-up rules** are all in, through the audit below.
+- **Sleep length** matches the engine (a counter of 2 to 5, one off per move
+  attempt); Early Bird, which was missing, takes two off.
+
+## The fightai audit (2026-09-30 to 2026-10-01)
+
+Four read-only audits compared the port with `script.s` and `trainer_ai.c`
+at HEAD, one each for the score engine with Basic and Evaluate Attack, the
+two halves of Expert, and the smaller flags with switching. The Scoring
+Agent checked each headline claim against the script before applying it, and
+settled the points where the audits disagreed by reading the engine. Each
+routine has a check in `test_fightai.py`, pinned with every chance passing
+and every chance failing; most of those checks fail on the old port.
+
+What the old port got wrong, in the rules that decide fights most:
+
+- Expert ran a condensed list. 62 of its routines scored nothing, among them
+  Curse, Sleep Talk, Baton Pass, Destiny Bond, Counter, Mirror Coat, Bug Bite
+  and the charge-turn moves; seven names in its sets were not effects at all,
+  so Quiver Dance, Shell Smash, Coil, Work Up and Hone Claws scored nothing.
+  Expert now reads its jump table from the script, one routine per label.
+- Evaluate Attack never reached its -2 for Sucker Punch, Explosion and Focus
+  Punch, and gave the knockout +6 by priority instead of by effect.
+- The damage figure counted every hit of a multi-hit move, included Life
+  Orb, and left out Low Kick, Hidden Power, Natural Gift and the other moves
+  listed at power 1.
+- The AI read the player's real ability; the game guesses between the
+  species' two regular abilities until a battle message names one.
+- Check HP had two bands where the script has five tables; the Baton Pass
+  flag had no routine; Risky and Harassment had the wrong lists.
+- The switch rules ran after a Choice lock instead of before it, missed
+  Shadow Tag, Arena Trap and Magnet Pull, and read effectiveness as a type
+  product where the engine reads chart flags (Levitate counts, and an
+  immunity met first does not stop a later weakness).
+- The post-knockout pick took a candidate with a type score of 0, and costed
+  moves without the target's stat stages; the engine's never-reset score is
+  now kept.
+- Tag Strategy ran only in doubles and only lightly; the partner pass did
+  not exist, so Belle and Pa's Ninetales never aimed Flamethrower at its Flash
+  Fire Vulpix as the game does.
+
+Two engine facts the brief did not have. The AI knows the turn's Quick Claw
+roll: `speedRand` is rolled before the AI chooses and read again by the turn
+order, so on a turn the player's Quick Claw fires the AI reads itself
+slower; in a run the simulator now draws the roll first. And the calculator's
+rows already cap damage at a Sturdy target's full HP less one, so against
+Sturdy every strong move ties in the AI's figure where the engine has one
+strongest (recorded, not fixed).
+
+The simulator gained, beside the gaps above: Explosion fainting its user
+before the hit (into a Ghost or Protect too, Damp aside), the turn count of a
+Pokemon switched in mid-turn (Fake Out no longer works on a lead's second
+turn), the previous move cleared on a turn the Pokemon could not act, Speed
+in whole numbers with Quick Feet, Hyper Cutter, Keen Eye and Big Pecks
+stopping drops, Brick Break and Infiltrator passing screens, Flash Fire lit
+by a Fire move (and its boost taken off while unlit), Sleep Talk and Aqua
+Ring, and the abilities a battle message names. The perfect-line search's AI
+cache key now covers everything the AI reads, and the search no longer
+offers a trapped player a switch.
+
+The three hand-played lines, rerun on the same seeds:
+
+| Fight | Line | Before the audit | After |
+|---|---|---|---|
+| Roark | S12 | 197/200 | 199/200 |
+| Mars 1 | S1, the PP stall | 198/200 | 191/200 |
+| Gardenia | L1 | 57/200 | 29/200 |
+
+Mars 1 changes through the post-knockout pick. After Geodude knocks out
+Meowth, Bronzor came in every time; it still does when Geodude's Defense is
+unchanged, since Confusion against its low Special Defense outscores every
+physical move. But Meowth carries Screech, and in runs where it has Screeched
+Geodude to -2 Defense, Zubat's Bite (first in party order) outscores
+Confusion and Zubat comes in. "Geodude knocks out Meowth, so Bronzor comes
+in" holds only when Meowth has not Screeched first.
+
+Gardenia changes through her picks, each a rule the game has. Solar Beam
+into a target that resists it takes -2 (Golbat, Vullaby, Tsareena) and in
+sun into Popplio +2. Breloom's and Roserade's Stun Spore into Vullaby is
+refused half the time (the AI guesses Overcoat), and Breloom's Mach Punch
+into Tsareena half the time (Queenly Majesty). Bullet Seed no longer reads as
+Breloom's strongest attack. Natural Gift now has its berry's figure:
+Shiftry's becomes certain against Tsareena and Vikavolt, and Lumineon's is
+used when it is strongest, mostly in sun. The Golbat and Roserade finale
+alone is unchanged (279 of 300 at full HP); Golbat now reaches it hurt more
+often.
+
+Left open, none changing a pick in a fight Oxide has now: the AI partners
+beside the player and the switch rules in double battles were not ported;
+Me First and Copycat need calculator rows of a Pokemon on itself; Judgment's
+plate, Gravity, Magnet Rise, Foresight, Embargo and genders are not
+simulated, so the routines reading them stay off; in the strict search a
+trainer's Quick Claw is still a luck event its AI does not foresee, and
+Sleep Talk calls the first eligible move; the damage model counts a
+two-to-five-hit move as three hits.
+
+## Waiting on Ian
+
+1. **The bar for step 3.** The acceptance table under "The job" was measured
+   on the old AI. Rerun on the corrected one, the hand-played lines read
+   Roark 199, Mars 1 191 and Gardenia 29 of 200. Should the scorer be asked
+   to match these reruns, or the old figures?
+2. **When to rescore.** The perfect-line store needs `plrescore.py` for all
+   459 fights. It can run as soon as the branch lands, or after Ian has read
+   the audit and step 3 has settled the search.
 
 ## The harness
 

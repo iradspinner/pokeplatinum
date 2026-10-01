@@ -243,6 +243,9 @@ def give_status(b, target, status):
     if not hasattr(b, "dice"):
         return _FS_GIVE_STATUS(b, target, status)
     if not fs.can_status(b, target, status) or fs.leaf_guarded(b, target):
+        if target.alive() and not target.status and (target.ability in fs.STATUS_ABILITIES.get(status, ())
+                                                     or fs.leaf_guarded(b, target)):
+            fs.reveal(target)
         return False
     target.status = status
     if status == "slp":
@@ -286,40 +289,38 @@ def accuracy_hits(b, att, dfn, mv):
 def use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
     if att.recharge:
         att.recharge = False
-        return
+        return fs.could_not_act(b, att, mv, dfn)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
         # frozen (question 9); in a run both thaw at 1 in 5 a turn.
         if mv.effect == "THAW_AND_BURN_HIT" or b.dice.thaws(att):
             att.status = None
         else:
-            return
+            return fs.could_not_act(b, att, mv, dfn)
     if att.status == "slp":
-        if att.sleep > 0:
-            att.sleep -= 1
+        if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return
-        else:
-            att.status = None
+                return fs.could_not_act(b, att, mv, dfn)
     if att.flinch:
         att.flinch = False
-        return
+        return fs.could_not_act(b, att, mv, dfn)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5)):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
-            return
+            return fs.could_not_act(b, att, mv, dfn)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25)):
-        return
+        return fs.could_not_act(b, att, mv, dfn)
     if att.taunt and mv.cat == "Status":
-        return
+        return fs.could_not_act(b, att, mv, dfn)
+    fs.mark_hit(b, mv, dfn, True)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv
-    att.last_hit_by = None
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
     if mv.effect in fs.TWO_TURN and att.charging is None:
@@ -333,6 +334,10 @@ def use_move(b, att, mv, dfn, first):
                 fs.change_stages(att, {"def": 1})
             return
     att.charging = None
+    if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
+        mv = fs.sleep_talk_pick(b, att) if att.status == "slp" else None
+        if mv is None:
+            return
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
@@ -358,6 +363,8 @@ def confusion_damage(mon, roll):
 def attack(b, att, mv, dfn, first):
     if not dfn.alive():
         return
+    if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
+        return
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE:
         return
     if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
@@ -366,7 +373,7 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
-    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
+    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one;
     # fightsim keeps the item and fires them every turn.
@@ -381,24 +388,23 @@ def attack(b, att, mv, dfn, first):
         return
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
-    dmg = None
+    # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
+    # trainer's way in the search, as a damage roll does, and rolls in a run.
+    tenths = 10
+    if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL":
+        tenths = b.dice.rng.randint(5, 15) if b.dice.mode == "run" else (15 if trainer else 5)
+    dmg = fs.fixed_damage(b, att, dfn, mv, tenths)
     if mv.effect == "ONE_HIT_KO":
-        if att.level < dfn.level:
+        if fs.ohko_blocked(b, att, dfn, mv):
             return
         p_ohko = (30 + att.level - dfn.level) / 100
         if not (b.dice.bad("ohko", p_ohko) if trainer else b.dice.good(p_ohko)):
             return
         dmg = dfn.hp
-    elif mv.effect == "HALVE_HP":
-        dmg = max(1, dfn.hp // 2)
-    elif mv.effect == "LEVEL_DAMAGE_FLAT":
-        dmg = att.level
-    elif mv.effect == "SET_HP_EQUAL_TO_USER":
-        dmg = max(0, dfn.hp - att.hp)
     elif mv.effect in ("COUNTER", "MIRROR_COAT", "METAL_BURST"):
         hit = att.hit_this_turn
         want = {"COUNTER": "Physical", "MIRROR_COAT": "Special"}.get(mv.effect)
-        if not hit or (want and hit[0] != want):
+        if not hit or (want and hit[0] != want) or fs.effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
             return
         dmg = int(hit[1] * (1.5 if mv.effect == "METAL_BURST" else 2))
     elif mv.effect == "STRUGGLE":
@@ -447,6 +453,10 @@ def attack(b, att, mv, dfn, first):
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
     if dmg <= 0:
+        if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
+            if dfn.ability == "Flash Fire" and mv.type == "Fire":
+                dfn.flash_fire = True
         return
     if dfn.sub:
         dfn.sub = max(0, dfn.sub - dmg)
@@ -455,6 +465,8 @@ def attack(b, att, mv, dfn, first):
         full = dfn.hp == dfn.maxhp
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
+            if sturdy:
+                fs.reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash" and not sturdy:
                 dfn.item = None
@@ -468,7 +480,6 @@ def attack(b, att, mv, dfn, first):
         dfn.hp -= dealt
         fs.berry_check(dfn)
         dfn.hit_this_turn = (mv.cat, dealt)
-        dfn.last_hit_by = mv
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     e = mv.effect
@@ -492,7 +503,7 @@ def attack(b, att, mv, dfn, first):
             fs.change_stages(att, {fs.PINCH_BERRIES[berry]: 1})
     if e == "RECHARGE_AFTER":
         att.recharge = True
-    if e in fs.SELF_KO:
+    if e in fs.SELF_KO or e == "FINAL_GAMBIT":
         att.hp = 0
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
@@ -540,8 +551,8 @@ def attack(b, att, mv, dfn, first):
         dfn.flinch = True
     if e == "CONFUSE_HIT" and chance and not dfn.confused and (trainer or b.dice.good(chance / 100)):
         dfn.confused = b.dice.confusion(dfn.side)
-    if e in fs.HIT_FOE_STAGES and chance and dfn.ability not in ("Clear Body", "White Smoke") \
-            and secondary("statdrop", chance / 100):
+    if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
+            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
@@ -553,6 +564,9 @@ def attack(b, att, mv, dfn, first):
 
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
+    if e == "RESTORE_HP_EVERY_TURN":
+        att.aqua_ring = True             # Aqua Ring (fightsim heals it at the turn's end)
+        return
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -597,7 +611,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
+        if not dfn.sub and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -772,30 +786,49 @@ def worse_or_equal(v, w):
 
 # ---- the adversary's and the player's options ----------------------------------------------------
 
+def _ai_mon(m):
+    """What fightai reads of one Pokemon beyond mon_key: who it is, its last
+    move by name (Mirror Move, Encore, Copycat and Baton Pass read the move),
+    its turns in up to the four Roar reads, the moves the AI has seen it
+    use, the ability a message has named, trapping and rooting, the type
+    the last hit was recorded with, and the Custap pinch."""
+    return (m.key, None if m.last is None else m.last.name, max(-1, min(m.turns_in, 4)),
+            tuple(x.name for x in m.shown), m.revealed, m.trapped_by is not None, m.ingrained,
+            m.last_hit_type, m.hp <= m.maxhp // 4, m.hp <= m.maxhp // 2, m.aqua_ring, m.flash_fire)
+
+
 def ai_key(b):
     """What the trainer's AI reads at a state: its own active Pokemon whole,
-    the player's active one by the HP bands the scoring uses and by which of
-    the trainer's moves would knock it out, who is alive on each bench, the
-    field, and whether it is the first turn."""
+    the player's active one by every HP threshold the AI tests and by which
+    of the trainer's moves would knock it out, the Pokemon on each side and
+    the trainer's bench by HP and status, the field, the turn's Quick Claw
+    roll, and whether it is the battle's first turn."""
     u, t = b.b.cur(), b.p.cur()
     kills = tuple((fightai.figure(b, u, t, m) or 0) >= t.hp for m in u.moves)
     tk = mon_key(t)
-    tk = (_band(t.frac()), kills) + tk[1:]
+    tk = (_band(t.frac()), kills, t.hp == t.maxhp) + tk[1:] + _ai_mon(t)
     uk = mon_key(u)
-    uk = (_band(u.frac()), u.hp == u.maxhp) + uk[1:]
-    return (uk, tk, tuple(m.alive() for m in b.p.mons), tuple(m.alive() for m in b.b.mons),
+    uk = (_band(u.frac()), u.hp == u.maxhp, u.hp >= u.maxhp // 2) + uk[1:] + _ai_mon(u)
+    bench = tuple((m.key, m.alive(), m.hp == m.maxhp, m.status) for m in b.b.mons)
+    quick = tuple(sorted((getattr(b, "quick", None) or {}).items()))
+    return (uk, tk, bench, tuple((m.key, m.alive(), m.status) for m in b.p.mons),
             b.p.active, b.b.active, tuple(b.p.screens.values()), tuple(b.b.screens.values()),
             b.p.tailwind, b.b.tailwind, tuple(b.p.hazards.values()), tuple(b.b.hazards.values()),
-            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags)
+            b.p.safeguard, b.b.safeguard, b.weather, b.trick_room > 0, b.turn == 0, b.ai_flags, quick)
 
 
 _AI_CACHE = {}
+_AI_CACHE_ST = None
 
 
 def _band(frac):
-    """The HP bands the AI's scoring reads."""
-    return (frac >= 100, frac >= 90, frac > 80, frac > 70, frac >= 60, frac > 50, frac >= 40,
-            frac > 30, frac > 25)
+    """Every HP threshold fightai reads, with both > and >= (frac is a whole
+    number, so frac > x is frac >= x + 1)."""
+    return tuple(frac >= x for x in _BANDS)
+
+
+_BANDS = sorted({y for x in (4, 8, 20, 25, 26, 30, 33, 34, 35, 38, 40, 50, 51, 60, 70, 75, 80, 85, 90, 100)
+                 for y in (x, x + 1)})
 
 
 _figure = fightai.figure
@@ -833,6 +866,12 @@ def ai_actions(b, key=None):
     most frequent first: [(('move', Move) or ('switch', index), frequency)].
     Cached by what the AI reads."""
     u, t = b.b.cur(), b.p.cur()
+    # One fight's picks are no use in another: the cache holds one fight's
+    # prepared state at a time (an id can be reused once a state is freed).
+    global _AI_CACHE_ST
+    if _AI_CACHE_ST is not b.st:
+        _AI_CACHE.clear()
+        _AI_CACHE_ST = b.st
     k = ai_key(b)
     got = _AI_CACHE.get(k)
     if got is None:
@@ -881,18 +920,24 @@ def player_actions(b):
     if me.recharge:
         return [("move", me.moves[0])]
     out = []
-    for mv in me.moves:
-        if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
-            continue
-        if me.choice and mv.name != me.choice:
-            continue
-        if mv.effect in fs.SELF_KO or mv.effect == "FAINT_AND_ATK_SP_ATK_DOWN_2":
-            continue
-        f = fightai.figure(b, me, foe, mv)
-        if fightai.basic(b, me, foe, mv, f) <= -8:
-            continue           # a move that would do nothing here
-        out.append(("move", mv))
-    if not me.bound:
+    # The filter borrows the trainer AI's Basic; its few rolls (a speed tie)
+    # get fixed dice here, so the search stays deterministic.
+    saved, b.rng = b.rng, b.rng if getattr(b, "rng", None) is not None else random.Random(0)
+    try:
+        for mv in me.moves:
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
+                continue
+            if me.choice and mv.name != me.choice:
+                continue
+            if mv.effect in fs.SELF_KO or mv.effect == "FAINT_AND_ATK_SP_ATK_DOWN_2":
+                continue
+            f = fightai.figure(b, me, foe, mv)
+            if fightai.basic(b, me, foe, mv, f) <= -8:
+                continue           # a move that would do nothing here
+            out.append(("move", mv))
+    finally:
+        b.rng = saved
+    if not me.bound and fs.can_switch(me):
         for i, m in enumerate(b.p.mons):
             if i != b.p.active and m.alive():
                 out.append(("switch", i))
@@ -961,6 +1006,9 @@ def _turn(c, pa, aa):
     """The turn's body on a battle whose dice are set: switches, the two
     moves in order, the end of the turn, a knockout's replacement."""
     b_active_p, b_active_b = c.p.active, c.b.active
+    c.mid_turn = True
+    quick = getattr(c, "quick", None)
+    c.quick = None
     if pa[0] == "switch" and not fs.can_switch(c.p.cur()):
         raise ValueError(f"{c.p.cur().species} is trapped and cannot switch")
     # Pursuit hits a Pokemon that is switching out before it leaves, at
@@ -997,7 +1045,16 @@ def _turn(c, pa, aa):
             sa, sd = c.speed(a), c.speed(d)
             if c.trick_room:
                 sa, sd = -sa, -sd
-            if sa < sd or (sa == sd and not c.dice.tie_player_first()):
+            if quick is not None:
+                # A run: each Quick Claw was rolled before the trainer chose
+                # (speedRand, which the AI's speed reading also sees); one
+                # that fired puts its holder first, two cancel.
+                qp, qf = quick.get(me.key, False), quick.get(foe.key, False)
+                if qf and not qp:
+                    order.reverse()
+                elif qp == qf and (sa < sd or (sa == sd and not c.dice.tie_player_first())):
+                    order.reverse()
+            elif sa < sd or (sa == sd and not c.dice.tie_player_first()):
                 # The player is slower: its Quick Claw (one in five) keeps it
                 # first. Before this the check sat after this branch and could
                 # never fire.
@@ -1064,6 +1121,10 @@ def play_turn(b, pa, rng, one_crit=True):
     b.rng = rng
     b.dice = RunDice(rng, one_crit) if not isinstance(getattr(b, "dice", None), RunDice) else b.dice
     b.dice.rng = rng
+    # Quick Claw is rolled before anyone chooses, and the trainer's AI reads
+    # the roll (BattleSystem_CompareBattlerSpeed sees speedRand).
+    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2) if player(m) else b.dice.bad("quickclaw", 0.2))
+               for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     _turn(b, pa, aa)
     return b
