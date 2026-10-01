@@ -48,9 +48,12 @@ before you build on it. Start with step 1 of its order of work.
 ```
 
 **Where it stands (2026-09-30).** The agent has not started yet. The scorer
-and the simulator fixes land on `oxide` first (`overseer-sim-fixes`, which
-carries `balance-perfectline` with it), so the scoring track and the balance
-track start from one tree.
+and every simulator fix below are on `oxide` (153d11de2, which landed
+`overseer-sim-fixes` and `balance-perfectline` under it), so the scoring
+track and the balance track start from one tree; cut the track's branch from
+there. One output was never committed: the Kaizo reader's
+`perfectline_results/kaizo.json`, left untracked in the Balance Agent's
+`balance-perfectline` worktree. Rerun `plkaizo.py` rather than copying it.
 
 ## The job
 
@@ -243,10 +246,9 @@ map), more than it needs more rollouts.
 
 ## The simulator
 
-The fixes from this work are on branch `overseer-sim-fixes`, with tests in
+The fixes from this work are on `oxide` since 153d11de2, with tests in
 `tools/oxide/balance/test_plfixes.py` (24 of 24) and `test_fightsim.py`
-(17 of 17). The Balance Agent merged the branch up to b09743ff42 into
-`balance-perfectline`. These five later commits wait for its next merge:
+(17 of 17). The last five were:
 
 | Commit | Fix |
 |---|---|
@@ -256,7 +258,7 @@ The fixes from this work are on branch `overseer-sim-fixes`, with tests in
 | 095fe2f58c | Powder immunity for Grass types and Overcoat, in the engine and the AI; Leaf Guard in the engine |
 | 48ed15ab6b | The switching rules as `TrainerAI_ShouldSwitch` has them, and real types for Weather Ball and Natural Gift |
 
-Earlier on the same branch:
+Earlier fixes:
 
 - Magnitude rolls its power.
 - Rollout's power is fixed.
@@ -293,12 +295,12 @@ The working scripts are in `~/oxide-trials/three-gym-run/`, with a README:
 
 They are notes for one box and one fight each, not tools. They show how each
 answer above was found and give a way to re-check it. Run them from a checkout
-of `overseer-sim-fixes` at 48ed15ab6b or later.
+of `oxide` at 153d11de2 or later.
 
 ## A suggested order of work
 
-1. Once the scorer and the simulator fixes are on `oxide`, finish the fightai
-   audit against the battle-ai docs and the decomp, with a test per routine.
+1. Finish the fightai audit against the battle-ai docs and the decomp, with a
+   test per routine.
 2. Fill the known gaps above.
 3. Reproduce the three fights. Give the scorer the run's box, and require
    lines at least as good as the table's. Where it falls short, find which
