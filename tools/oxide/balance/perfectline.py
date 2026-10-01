@@ -286,37 +286,38 @@ def accuracy_hits(b, att, dfn, mv):
 def use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
+    att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
     if att.recharge:
         att.recharge = False
-        return fs.could_not_act(att)
+        return fs.could_not_act(b, att, mv, dfn)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
         # frozen (question 9); in a run both thaw at 1 in 5 a turn.
         if mv.effect == "THAW_AND_BURN_HIT" or b.dice.thaws(att):
             att.status = None
         else:
-            return fs.could_not_act(att)
+            return fs.could_not_act(b, att, mv, dfn)
     if att.status == "slp":
         if fs.sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return fs.could_not_act(att)
+                return fs.could_not_act(b, att, mv, dfn)
     if att.flinch:
         att.flinch = False
-        return fs.could_not_act(att)
+        return fs.could_not_act(b, att, mv, dfn)
     if att.confused:
         att.confused -= 1
         if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5)):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
-            return fs.could_not_act(att)
+            return fs.could_not_act(b, att, mv, dfn)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25)):
-        return fs.could_not_act(att)
+        return fs.could_not_act(b, att, mv, dfn)
     if att.taunt and mv.cat == "Status":
-        return fs.could_not_act(att)
+        return fs.could_not_act(b, att, mv, dfn)
+    fs.mark_hit(b, mv, dfn, True)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv
-    att.last_hit_by = None
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
     if mv.effect in fs.TWO_TURN and att.charging is None:
@@ -365,7 +366,7 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
-    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
+    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one;
     # fightsim keeps the item and fires them every turn.
@@ -466,7 +467,6 @@ def attack(b, att, mv, dfn, first):
         dfn.hp -= dealt
         fs.berry_check(dfn)
         dfn.hit_this_turn = (mv.cat, dealt)
-        dfn.last_hit_by = mv
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     e = mv.effect
@@ -959,6 +959,9 @@ def _turn(c, pa, aa):
     """The turn's body on a battle whose dice are set: switches, the two
     moves in order, the end of the turn, a knockout's replacement."""
     b_active_p, b_active_b = c.p.active, c.b.active
+    c.mid_turn = True
+    quick = getattr(c, "quick", None)
+    c.quick = None
     if pa[0] == "switch" and not fs.can_switch(c.p.cur()):
         raise ValueError(f"{c.p.cur().species} is trapped and cannot switch")
     # Pursuit hits a Pokemon that is switching out before it leaves, at
@@ -995,7 +998,16 @@ def _turn(c, pa, aa):
             sa, sd = c.speed(a), c.speed(d)
             if c.trick_room:
                 sa, sd = -sa, -sd
-            if sa < sd or (sa == sd and not c.dice.tie_player_first()):
+            if quick is not None:
+                # A run: each Quick Claw was rolled before the trainer chose
+                # (speedRand, which the AI's speed reading also sees); one
+                # that fired puts its holder first, two cancel.
+                qp, qf = quick.get(me.key, False), quick.get(foe.key, False)
+                if qf and not qp:
+                    order.reverse()
+                elif qp == qf and (sa < sd or (sa == sd and not c.dice.tie_player_first())):
+                    order.reverse()
+            elif sa < sd or (sa == sd and not c.dice.tie_player_first()):
                 # The player is slower: its Quick Claw (one in five) keeps it
                 # first. Before this the check sat after this branch and could
                 # never fire.
@@ -1062,6 +1074,10 @@ def play_turn(b, pa, rng, one_crit=True):
     b.rng = rng
     b.dice = RunDice(rng, one_crit) if not isinstance(getattr(b, "dice", None), RunDice) else b.dice
     b.dice.rng = rng
+    # Quick Claw is rolled before anyone chooses, and the trainer's AI reads
+    # the roll (BattleSystem_CompareBattlerSpeed sees speedRand).
+    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2) if player(m) else b.dice.bad("quickclaw", 0.2))
+               for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     _turn(b, pa, aa)
     return b

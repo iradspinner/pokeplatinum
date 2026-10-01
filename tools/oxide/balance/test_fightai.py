@@ -450,6 +450,221 @@ def expert_dispatch():
              f"{len(routes)} effects, missing {missing}, unused {unused}")]
 
 
+# ---- the smaller flags, switching, the post-knockout pick ----------------------------------------
+
+def fl(bit, move, setup=None, dice=PASS):
+    """One flag's change to Snorlax's move against Machamp."""
+    b = battle(EX_BOSS, EX_PLAYER)
+    u, t = b.b.cur(), b.p.cur()
+    moves(u, move, "Body Slam")
+    speeds(b, 100, 50)
+    if setup:
+        setup(b, u, t)
+    b.rng = dice if isinstance(dice, Dice) else Dice(dice)
+    mvo = fs.move(move)
+    return ai.flag_score(bit, b, u, t, mvo, ai.figure(b, u, t, mvo), None)
+
+
+FLAG_ROWS = [
+    # (label, bit, move, setup, every chance passing, every chance failing)
+    ("SetupFirstTurn, Charge is not in the table", ai.SETUP_FIRST, "Charge", None, 0, 0),
+    ("SetupFirstTurn, Magnet Rise on turn 0", ai.SETUP_FIRST, "Magnet Rise", None, 2, 0),
+    ("SetupFirstTurn, Swords Dance on turn 1", ai.SETUP_FIRST, "Swords Dance", _t(b_turn=1), 0, 0),
+    ("Risky, Magnitude is not in the table", ai.RISKY, "Magnitude", None, 0, 0),
+    ("Risky, Gyro Ball", ai.RISKY, "Gyro Ball", None, 2, 0),
+    ("Risky, Explosion", ai.RISKY, "Explosion", None, 2, 0),
+    ("Harassment, Teeter Dance", ai.HARASS, "Teeter Dance", None, 2, 0),
+    ("Harassment, Spite", ai.HARASS, "Spite", None, 2, 0),
+    ("Harassment, Toxic is not in the table", ai.HARASS, "Toxic", None, 0, 0),
+    ("Weather, Sunny Day on turn 0", ai.WEATHER, "Sunny Day", None, 5, 5),
+    ("Weather, Sunny Day with the sun up", ai.WEATHER, "Sunny Day", _t(weather="Sun"), 0, 0),
+    ("Weather, Rain Dance in sun", ai.WEATHER, "Rain Dance", _t(weather="Sun"), 5, 5),
+    ("Weather, Rain Dance on turn 1", ai.WEATHER, "Rain Dance", _t(b_turn=1), 0, 0),
+    ("CheckHP, Explosion at 50%, foe at full HP", ai.CHECK_HP, "Explosion", _t(u_hp=50), -2, 0),
+    ("CheckHP, Explosion at full HP, foe at 20%", ai.CHECK_HP, "Explosion", _t(t_hp=20), -4, 0),
+    ("CheckHP, Explosion at 30%", ai.CHECK_HP, "Explosion", _t(u_hp=30), 0, 0),
+    ("CheckHP, Explosion at 31%", ai.CHECK_HP, "Explosion", _t(u_hp=31), -2, 0),
+    ("CheckHP, Hypnosis, foe at 50%", ai.CHECK_HP, "Hypnosis", _t(t_hp=50), 0, 0),
+    ("CheckHP, Agility, foe at 50%", ai.CHECK_HP, "Agility", _t(t_hp=50), -2, 0),
+    ("CheckHP, Reflect at 50%", ai.CHECK_HP, "Reflect", _t(u_hp=50), 0, 0),
+    ("CheckHP, Water Spout at 20%", ai.CHECK_HP, "Water Spout", _t(u_hp=20), -2, 0),
+    ("BatonPass flag, Swords Dance on turn 0, knowing Baton Pass", ai.BATON, "Swords Dance",
+     _t(u_moves=("Swords Dance", "Baton Pass")), 5, 5),
+    ("BatonPass flag, Swords Dance on turn 2 at 50%", ai.BATON, "Swords Dance",
+     _t(u_moves=("Swords Dance", "Baton Pass"), b_turn=2, u_hp=50), -10, -10),
+    ("BatonPass flag, Protect after its own Protect", ai.BATON, "Protect",
+     _t(u_moves=("Protect", "Baton Pass"), b_turn=2, u_last="Protect"), -2, -2),
+    ("BatonPass flag, Protect after an attack", ai.BATON, "Protect",
+     _t(u_moves=("Protect", "Baton Pass"), b_turn=2, u_last="X-Scissor"), 2, 2),
+    ("BatonPass flag, Baton Pass at Attack +2", ai.BATON, "Baton Pass", _t(u_atk=2, b_turn=2), 2, 2),
+    ("BatonPass flag, Baton Pass on turn 0", ai.BATON, "Baton Pass", None, -2, -2),
+    ("BatonPass flag, Heal Order without Baton Pass, turn 2 at 50%", ai.BATON, "Heal Order",
+     _t(b_turn=2, u_hp=50), -7, 0),
+    ("BatonPass flag, an attack with a comparison", ai.BATON, "Body Slam", None, 0, 0),
+    ("BatonPass flag, no bench", ai.BATON, "Swords Dance", lambda b, u, t: _last_pokemon(b), 0, 0),
+]
+
+
+@check
+def flag_routines():
+    out = []
+    for label, bit, move, setup, wp, wf in FLAG_ROWS:
+        got = (fl(bit, move, setup, PASS), fl(bit, move, setup, FAIL))
+        out.append((label, got == (wp, wf), f"pass {got[0]}, fail {got[1]} (want {wp}, {wf})"))
+    return out
+
+
+SW_BOSS = [("Pikachu", 40, "Static", ["Thunderbolt", "Thunder Shock"]),
+           ("Gyarados", 40, "Intimidate", ["Waterfall", "Ice Fang"]),
+           ("Gengar", 40, "Levitate", ["Shadow Ball", "Sludge Bomb"]),
+           ("Bronzong", 40, "Levitate", ["Shadow Ball", "Gyro Ball"])]
+SW_PLAYER = [("Dugtrio", 40, "Arena Trap", ["Earthquake", "Night Slash"]),
+             ("Gliscor", 40, "Hyper Cutter", ["Earthquake", "X-Scissor"]),
+             ("Skarmory", 40, "Keen Eye", ["Drill Peck", "Steel Wing"]),
+             ("Alakazam", 40, "Inner Focus", ["Psychic", "Earthquake"])]
+
+
+def sw(setup, dice=PASS):
+    """The switch decision for the trainer's lead against the player's lead,
+    after setup(b, u, t)."""
+    b = battle(SW_BOSS, SW_PLAYER)
+    u, t = b.b.cur(), b.p.cur()
+    setup(b, u, t)
+    b.rng = dice if isinstance(dice, Dice) else Dice(dice)
+    return ai.should_switch(b, b.b, b.b.cur(), b.p.cur())
+
+
+def _to(b, side, species):
+    side.active = next(i for i, m in enumerate(side.mons) if m.species == species)
+
+
+@check
+def switching():
+    out = []
+
+    def lead(boss=None, player=None):
+        def setup(b, u, t):
+            if boss:
+                _to(b, b.b, boss)
+            if player:
+                _to(b, b.p, player)
+        return setup
+    # Arena Trap holds the AI's Pikachu, whose Electric attacks cannot touch Dugtrio.
+    got = (sw(lead(), PASS), sw(lead(), FAIL))
+    out.append(("ShouldSwitch: a foe's Arena Trap keeps the AI in", got == (None, None), f"{got}"))
+
+    def gliscor(b, u, t):
+        _to(b, b.p, "Gliscor")
+    got = (sw(gliscor, PASS), sw(gliscor, FAIL))
+    out.append(("ShouldSwitch: two attacks with no effect, a bench Ice Fang comes in",
+                got == (1, None), f"{got} (want 1 passing, None failing)"))
+
+    def ghost_trapped(b, u, t):
+        _to(b, b.b, "Gengar")
+        b.b.cur().trapped_by = t.key
+        b.b.cur().perish = 1
+    got = (sw(ghost_trapped, PASS), sw(ghost_trapped, FAIL))
+    out.append(("ShouldSwitch: a Ghost is never held, so Perish Song moves it",
+                got[0] is not None and got[1] is not None, f"{got}"))
+
+    def boosted(b, u, t):
+        _to(b, b.p, "Alakazam")
+        u.stages.update(atk=3, acc=1)
+        u.last_hit_by = fs.move("Earthquake")
+    got = sw(boosted, PASS)
+    out.append(("ShouldSwitch: four stages up, accuracy counted, keeps it in", got is None, f"{got}"))
+
+    # Choice lock: the switch rules still run.
+    b = battle(SW_BOSS, SW_PLAYER)
+    _to(b, b.p, "Alakazam")
+    u = b.b.cur()
+    u.choice, u.perish = "Thunderbolt", 1
+    b.rng = Dice(FAIL)
+    got = ai.choose(b, u, b.p.cur())
+    out.append(("PickCommand: a Choice-locked Pokemon still switches under Perish Song",
+                got[0] == "switch", f"{got}"))
+
+    # The flags: Ground on Skarmory reads super effective and immune; Levitate.
+    b = battle(SW_BOSS, SW_PLAYER)
+    flags = (ai.type_flags(b, "Ground", ["Steel", "Flying"]), ai.type_flags(b, "Electric", ["Ground", "Flying"]),
+             ai.type_flags(b, "Ground", ["Flying", "Bug"]), ai.type_flags(b, "Normal", ["Rock", "Ghost"]),
+             ai.type_flags(b, "Fire", ["Water", "Grass"]))
+    want = ((True, True, False), (True, True, False), (True, False, True), (True, False, False),
+            (False, False, False))
+    out.append(("Effectiveness flags meet types in the chart's order (bug 10, kept)", flags == want, f"{flags}"))
+    dug = b.p.cur()
+    bronzong = next(m for m in b.b.mons if m.species == "Bronzong")
+    eq = fs.move("Earthquake")
+    out.append(("Levitate: Earthquake on Bronzong is neither super effective (active) nor anything but immune (bench)",
+                not ai.active_flags(b, dug, eq, bronzong)[1] and ai.bench_flags(b, dug.ability, "Ground", bronzong)[0],
+                f"active {ai.active_flags(b, dug, eq, bronzong)}, bench {ai.bench_flags(b, dug.ability, 'Ground', bronzong)}"))
+    return out
+
+
+@check
+def post_ko_pick():
+    out = []
+    # Stage 1 never takes a candidate whose type score is 0. Against the
+    # player's Gengar, Kangaskhan (Normal, 0) has a super-effective Pursuit,
+    # which stage 1 used to take; Steelix (above 0) has no super-effective
+    # move, so the engine goes to stage 2, where Iron Tail outscores Pursuit.
+    b = battle([("Gengar", 40, "Levitate", ["Shadow Ball"]), ("Kangaskhan", 40, "Early Bird", ["Pursuit"]),
+                ("Steelix", 40, "Sturdy", ["Iron Tail"])],
+               [("Gengar", 40, "Levitate", ["Shadow Ball"])])
+    b.rng = Dice(PASS)
+    got = b.b.mons[ai.replacement(b, b.b, b.p.cur())].species
+    out.append(("PostKOSwitchIn stage 1: a type score of 0 is never taken", got == "Steelix", f"picked {got}"))
+    # A status move costs 2 (3 with the same-type bonus), 0 into an immunity.
+    b = battle([("Gengar", 40, "Levitate", ["Shadow Ball"]), ("Snorlax", 40, "Thick Fat", ["Growl", "Body Slam"])],
+               [("Machamp", 40, "Guts", ["Cross Chop"])])
+    gengar, lax, champ = b.b.mons[0], b.b.mons[1], b.p.cur()
+    growl = fs.move("Growl")
+    out.append(("PostKOSwitchIn stage 2: a status move scores 2, 0 into an immunity",
+                ai._ko_score(b, gengar, lax, champ, growl) == 2 and ai._ko_score(b, lax, lax, champ, growl) == 3,
+                f"{ai._ko_score(b, gengar, lax, champ, growl)}, as Snorlax {ai._ko_score(b, lax, lax, champ, growl)}"))
+    return out
+
+
+@check
+def hit_record_and_turns():
+    out = []
+    b = battle(EX_BOSS, EX_PLAYER)
+    lax, champ = b.b.cur(), b.p.cur()
+    b.rng = Dice(0.5)
+    fs.use_move(b, champ, fs.move("Thunder Wave"), lax, True)
+    tw = lax.last_hit_by
+    fs.use_move(b, champ, fs.move("Swords Dance"), lax, True)
+    sd = lax.last_hit_by
+    champ.status = "par"
+    b.rng = Dice(0.0)             # fully paralysed
+    fs.use_move(b, champ, fs.move("Cross Chop"), lax, True)
+    cleared = lax.last_hit_by
+    out.append(("Hit record: a status move records, a self-move leaves it, a turn unable to act clears it",
+                tw is not None and tw.name == "Thunder Wave" and sd is tw and cleared is None,
+                f"{tw}, {sd}, {cleared}"))
+    # A Pokemon switched in during a turn reads its first turn at the next.
+    b = battle(EX_BOSS, EX_PLAYER)
+    b.mid_turn = True
+    fs.switch_in(b, b.p, 1)
+    fs.end_of_turn(b)
+    first = b.p.cur().turns_in
+    fs.end_of_turn(b)
+    lead = b.b.cur().turns_in
+    out.append(("Turn count: a mid-turn switch-in reads 0 the next turn; a lead 2 at its third",
+                first == 0 and lead == 2, f"{first}, {lead}"))
+    # The AI knows a Quick Claw fired: its Pokemon reads itself slower.
+    b = battle(EX_BOSS, EX_PLAYER)
+    lax, champ = b.b.cur(), b.p.cur()
+    speeds(b, 100, 50)
+    champ.item = "Quick Claw"
+    before = ai.slower(b, lax, champ)
+    b.quick = {champ.key: True}
+    after = ai.slower(b, lax, champ)
+    out.append(("Speed: the player's Quick Claw that fires this turn makes the AI read itself slower",
+                not before and after, f"{before}, {after}"))
+    return out
+
+
 def main():
     results = checks()
     width = max(len(label) for label, _, _ in results)

@@ -29,24 +29,6 @@ NO_CALC = {"HALVE_DEFENSE", "EXPLOSION", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HI
            "SKIP_CHARGE_TURN_IN_SUN", "SPIT_UP", "HIT_LAST_WHIFF_IF_HIT", "LOWER_OWN_ATK_AND_DEF",
            "DECREASE_POWER_WITH_LESS_USER_HP", "HIT_FIRST_IF_TARGET_ATTACKING", "RECOIL_HALF",
            "ONE_HIT_KO", "COUNTER", "MIRROR_COAT", "METAL_BURST", "INCREASE_POWER_WITH_LESS_HP"}
-SETUP_FIRST_LIST = (set(fs.SELF_STAGES) | set(fs.FOE_STAGES) | {"SET_LIGHT_SCREEN", "SET_REFLECT",
-                    "STATUS_CONFUSE", "STATUS_POISON", "STATUS_PARALYZE", "STATUS_BURN",
-                    "SET_SUBSTITUTE", "STATUS_LEECH_SEED", "CURSE", "ATK_UP_2_STATUS_CONFUSION",
-                    "SP_ATK_UP_CAUSE_CONFUSION", "STATUS_SLEEP_NEXT_TURN", "DOUBLE_SPEED_3_TURNS",
-                    "CRIT_UP_2"}) - {"ATK_SPD_UP"}
-RISKY_LIST = {"STATUS_SLEEP", "HALVE_DEFENSE", "EXPLOSION", "ONE_HIT_KO", "HIGH_CRITICAL",
-              "STATUS_CONFUSE", "CALL_RANDOM_MOVE", "PSYWAVE", "COUNTER", "KO_MON_THAT_DEFEATED_USER",
-              "ATK_UP_2_STATUS_CONFUSION", "INFATUATE", "RAISE_ALL_STATS_HIT",
-              "MAX_ATK_LOSE_HALF_MAX_HP", "MIRROR_COAT", "HIT_LAST_WHIFF_IF_HIT", "DOUBLE_POWER_IF_HIT",
-              "HIT_FIRST_IF_TARGET_ATTACKING", "DOUBLE_POWER_IF_MOVING_SECOND", "METAL_BURST"}
-HARASS_LIST = {"STATUS_SLEEP", "ATK_DOWN", "DEF_DOWN", "ACC_DOWN", "EVA_DOWN", "ATK_DOWN_2",
-               "DEF_DOWN_2", "SPEED_DOWN_2", "SP_DEF_DOWN_2", "STATUS_CONFUSE", "STATUS_POISON",
-               "STATUS_PARALYZE", "STATUS_LEECH_SEED", "ENCORE", "SET_SPIKES",
-               "ATK_UP_2_STATUS_CONFUSION", "INFATUATE", "TORMENT", "STATUS_BURN",
-               "STATUS_SLEEP_NEXT_TURN", "REMOVE_HELD_ITEM", "TOXIC_SPIKES",
-               "SP_ATK_UP_CAUSE_CONFUSION", "ATK_DEF_DOWN", "SP_ATK_DOWN_2_OPPOSITE_GENDER"}
-
-
 def has_comparison(mv):
     return mv.damaging() and mv.effect not in NO_CALC and (mv.power > 1 or mv.effect == "LEVEL_DAMAGE_FLAT")
 
@@ -78,7 +60,7 @@ def _first_item(b, mon, foe):
     AI picks), or its Custap Berry is in its pinch (a quarter HP, half with
     Gluttony; Unnerve on the foe holds it)."""
     if mon.item == "Quick Claw":
-        return bool(getattr(b, "quick", {}).get(mon.key))
+        return bool((getattr(b, "quick", None) or {}).get(mon.key))
     if mon.item == "Custap Berry" and foe.ability != "Unnerve":
         return mon.hp <= mon.maxhp // (2 if mon.ability == "Gluttony" else 4)
     return False
@@ -147,7 +129,23 @@ def move_type(b, mon, mv):
     if mv.name == "Natural Gift":
         if mon.item and "Berry" in mon.item:
             return _gift_type(mon.item) or mv.type
+    if mv.effect == "RANDOM_POWER_BASED_ON_IVS":
+        return hidden_power_type(getattr(mon, "ivs", None)) or mv.type
     return mv.type
+
+
+HIDDEN_POWER_TYPES = ("Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "Fire",
+                      "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark")
+
+
+def hidden_power_type(ivs):
+    """Hidden Power's type from the IVs' low bits (Move_CalcVariableType): a
+    trainer's IVs are all one value, so all even gives Fighting and all odd
+    Dark."""
+    if not ivs:
+        return None
+    bits = sum((ivs.get(k, 0) & 1) << n for n, k in enumerate(("hp", "at", "df", "sp", "sa", "sd")))
+    return HIDDEN_POWER_TYPES[bits * 15 // 63]
 
 
 def eff_of(b, mon, mv, t):
@@ -187,9 +185,12 @@ def flag_score(bit, b, u, t, mv, f, best):
     if bit == EXPERT:
         return expert(b, u, t, mv, f)
     if bit == SETUP_FIRST:
-        return 2 if b.turn == 0 and mv.effect in SETUP_FIRST_LIST and chance(b, 68.75) else 0
+        # SetupFirstTurn_Main: the battle's first turn (LoadTurnCount is
+        # totalTurns), a move in its table, +2 at 68.75%.
+        return 2 if b.turn == 0 and mv.effect in script_table("SetupFirstTurn_SetupEffects") \
+            and chance(b, 68.75) else 0
     if bit == RISKY:
-        return 2 if mv.effect in RISKY_LIST and chance(b, 50) else 0
+        return 2 if mv.effect in script_table("Risky_RiskyEffects") and chance(b, 50) else 0
     if bit == EXTREMES:
         return 2 if f is None and chance(b, 60.9) else 0
     if bit == CHECK_HP:
@@ -197,8 +198,10 @@ def flag_score(bit, b, u, t, mv, f, best):
     if bit == WEATHER:
         w = fs.WEATHER_OF.get(mv.effect)
         return 5 if b.turn == 0 and w and b.weather != w else 0
+    if bit == BATON:
+        return baton_pass(b, u, t, mv, f)
     if bit == HARASS:
-        return 2 if mv.effect in HARASS_LIST and chance(b, 50) else 0
+        return 2 if mv.effect in script_table("Harrassment_Effects") and chance(b, 50) else 0
     return 0
 
 
@@ -2232,12 +2235,35 @@ EXPERT_ROUTINES = {
 
 
 @functools.lru_cache(maxsize=None)
+def _script_lines():
+    path = os.path.join(data.ROOT, "src", "battle", "trainer_ai", "script.s")
+    with open(path, encoding="utf-8") as f:
+        return tuple(f.read().splitlines())
+
+
+@functools.lru_cache(maxsize=None)
+def script_table(label):
+    """The battle effects a TableEntry list in script.s names, by its
+    label, so the flags read the script's own lists."""
+    lines = _script_lines()
+    out = set()
+    for line in lines[lines.index(label + ":") + 1:]:
+        st = line.strip()
+        if not st or st.startswith("//"):
+            continue
+        if not st.startswith("TableEntry") or "TABLE_END" in st:
+            break
+        m = re.match(r"TableEntry BATTLE_EFFECT_(\w+)", st)
+        if m:
+            out.add(m.group(1))
+    return frozenset(out)
+
+
+@functools.lru_cache(maxsize=None)
 def expert_routes():
     """{effect: label} from Expert_Main's jump table in script.s, first
     match winning, as the script runs it."""
-    path = os.path.join(data.ROOT, "src", "battle", "trainer_ai", "script.s")
-    with open(path, encoding="utf-8") as f:
-        lines = f.read().splitlines()
+    lines = _script_lines()
     start = lines.index("Expert_Main:")
     routes = {}
     for line in lines[start + 1:]:
@@ -2259,24 +2285,61 @@ def expert(b, u, t, mv, f=None):
     return EXPERT_ROUTINES[label](_Ctx(b, u, t, mv))
 
 
-CHECK_HIGH = {"HALVE_DEFENSE", "EXPLOSION", "RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE",
-              "HEAL_HALF_MORE_IN_SUN", "REST", "SURVIVE_WITH_1_HP", "KO_MON_THAT_DEFEATED_USER",
-              "INCREASE_POWER_WITH_LESS_HP"}
-CHECK_LOW = set(fs.SELF_STAGES) | {"SET_LIGHT_SCREEN", "SET_REFLECT", "CRIT_UP_2",
-                                   "MAX_ATK_LOSE_HALF_MAX_HP", "PREVENT_STAT_REDUCTION"}
-CHECK_FOE_LOW = set(fs.STATUS_OF) | set(fs.FOE_STAGES) | {"STATUS_CONFUSE", "STATUS_LEECH_SEED",
-                                                          "STATUS_SLEEP_NEXT_TURN"}
-
-
 def check_hp(b, u, t, mv):
-    s = 0
+    """CheckHP_Main: one table by the user's HP band (above 70%, 31% to 70%,
+    30% or less) and one by the target's (the band above 70% is an empty
+    table); a move in either takes -2 at 80.5%."""
     e = mv.effect
     hu, ht = u.frac(), t.frac()
-    if (hu > 70 and e in CHECK_HIGH) or (hu <= 70 and e in CHECK_LOW):
-        s -= 2 if chance(b, 80.5) else 0
-    if ht <= 70 and e in CHECK_FOE_LOW:
-        s -= 2 if chance(b, 80.5) else 0
+    s = 0
+    mine = ("CheckHP_DiscourageAtHighHP" if hu > 70 else "CheckHP_DiscourageAtMediumHP" if hu > 30
+            else "CheckHP_DiscourageAtLowHP")
+    if e in script_table(mine) and chance(b, 80.5):
+        s -= 2
+    theirs = ("CheckHP_Target_DiscourageAtHighHP" if ht > 70 else "CheckHP_Target_DiscourageAtMediumHP"
+              if ht > 30 else "CheckHP_Target_DiscourageAtLowHP")
+    if e in script_table(theirs) and chance(b, 80.5):
+        s -= 2
     return s
+
+
+# BatonPass_EvalMove names these by move id.
+BATON_BOOSTS = {"MOVE_SWORDS_DANCE", "MOVE_DRAGON_DANCE", "MOVE_CALM_MIND", "MOVE_NASTY_PLOT"}
+
+
+def baton_pass(b, u, t, mv, f):
+    """BatonPass_Main: moves without a damage comparison, while a party
+    member is left to pass to. Without Baton Pass it still runs 68.75% of
+    the time. The four named boosts, and any other move after +3 at 92.2%
+    (it falls through, vanilla), take +5 on the battle's first turn, -10
+    below 60% HP, else +1; Protect, -2 after the user's own Protect or
+    Detect, else +2; Baton Pass, -2 on the first turn, else up to +3 by
+    the first of Attack and Sp. Atk raised."""
+    if not _side(b, u).bench() or f is not None:
+        return 0
+    if not any(m.effect == "PASS_STATS_AND_STATUS" for m in u.moves) and not chance(b, 68.75):
+        return 0
+    s = 0
+    if mv.const in BATON_BOOSTS:
+        pass
+    elif mv.effect == "PROTECT":
+        return -2 if u.last is not None and u.last.const in ("MOVE_PROTECT", "MOVE_DETECT") else 2
+    elif mv.const == "MOVE_BATON_PASS":
+        if b.turn == 0:
+            return -2
+        for k in ("atk", "spa"):
+            if u.stages[k] >= 1:
+                return min(u.stages[k], 3)
+        return 0
+    else:
+        if not chance(b, 92.2):
+            return 0
+        s = 3
+    if b.turn == 0:
+        return s + 5
+    if u.frac() < 60:
+        return s - 10
+    return s + 1
 
 
 def record_last_move(t):
@@ -2296,6 +2359,11 @@ def choose(b, u, t):
     if u.recharge:
         return "move", u.moves[0]
     record_last_move(t)
+    # TrainerAI_PickCommand asks the switch rules first; only a recharge, a
+    # lock or a charging move skips them, not a Choice lock or empty PP.
+    sw = should_switch(b, _side(b, u), u, t)
+    if sw is not None:
+        return "switch", sw
     if u.choice:
         locked = next((m for m in u.moves if m.name == u.choice), None)
         if locked is not None and u.pp.get(locked.name, 1) > 0:
@@ -2304,10 +2372,6 @@ def choose(b, u, t):
     # (battle_lib.c, the MOVE_STRUGGLE fallback in the turn order code).
     if all(u.pp.get(m.name, 1) <= 0 for m in u.moves):
         return "move", fs.move("Struggle")
-    side = b.p if u.side == "p" else b.b
-    sw = should_switch(b, side, u, t)
-    if sw is not None:
-        return "switch", sw
     scores = score_moves(b, u, t, b.ai_flags)
     top = max(scores)
     picks = [i for i, s in enumerate(scores) if s == top]
@@ -2365,8 +2429,95 @@ def choose_doubles(b, u):
     return "move", mv, t
 
 
+# ---- switching and the post-knockout pick ------------------------------------------------------
+#
+# These read the engine's effectiveness flags rather than a type product
+# (the Scoring Agent's audit, 2026-09-30). BattleSystem_ApplyTypeChart (the
+# active Pokemon's moves) and BattleSystem_CalcEffectiveness (the bench, the
+# post-knockout pick) walk the type chart entry by entry and keep "super
+# effective" and "not very effective" as flags each later entry toggles, so
+# an immunity met first does not stop a later weakness from setting "super
+# effective" (switching-and-items.md bug 10, vanilla, kept): Earthquake reads
+# super effective on Skarmory, Thunderbolt on Gliscor, Poison moves on a
+# Steel or Fairy type.
+
+# The order the chart meets a defender's types in, for the attacking types
+# whose immunity is not their last entry (battle_lib.c, sTypeMatchupMultipliers).
+CHART_ORDER = {
+    "Electric": ("Water", "Electric", "Grass", "Ground", "Flying", "Dragon"),
+    "Poison": ("Grass", "Poison", "Ground", "Rock", "Ghost", "Steel", "Fairy"),
+    "Ground": ("Fire", "Electric", "Grass", "Poison", "Flying", "Bug", "Rock", "Steel"),
+    "Psychic": ("Fighting", "Poison", "Psychic", "Dark", "Steel"),
+    "Ghost": ("Normal", "Psychic", "Dark", "Steel", "Ghost"),
+}
+
+
+def type_flags(b, mtype, types, scrappy=False):
+    """(no effect, super effective, not very effective) as the engine's
+    flags read for a move of this type into these types."""
+    def mul(ty):
+        # Scrappy stops the chart before Normal and Fighting meet Ghost.
+        if scrappy and ty == "Ghost" and mtype in ("Normal", "Fighting"):
+            return 1.0
+        return fs.effectiveness(b.st["chart"], mtype, [ty])
+    order = CHART_ORDER.get(mtype)
+    tys = list(dict.fromkeys(t.title() for t in types))
+    if order:
+        tys.sort(key=lambda ty: order.index(ty) if ty in order else len(order))
+    else:
+        tys.sort(key=lambda ty: mul(ty) == 0)     # every other immunity is the last entry met
+    ine = se = nve = False
+    for ty in tys:
+        m = mul(ty)
+        if m == 0:
+            ine, se, nve = True, False, False
+        elif m < 1:
+            se, nve = (False, nve) if se else (False, True)
+        elif m > 1:
+            se, nve = (se, False) if nve else (True, False)
+    return ine, se, nve
+
+
+def active_flags(b, u, mv, foe):
+    """BattleSystem_ApplyTypeChart's flags for the active Pokemon's move: a
+    move of power 0 never sets "super" or "not very", Levitate sets a flag
+    of its own (neither "no effect" nor super effective), and an Air Balloon
+    makes a Ground move "no effect"."""
+    ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
+    if ty == "Ground" and mv.name != "Thousand Arrows":
+        if foe.ability == "Levitate" and u.ability not in MOLD_BREAKER:
+            return False, False, False
+        if foe.item == "Air Balloon":
+            return True, False, False
+    ine, se, nve = type_flags(b, ty, foe.types, u.ability == "Scrappy")
+    return (ine, se, nve) if mv.power else (ine, False, False)
+
+
+def bench_flags(b, att_ability, mtype, foe):
+    """BattleSystem_CalcEffectiveness's flags: power is not read, so status
+    moves count (bug 9, kept); Levitate is "no effect" to a Ground move;
+    Wonder Guard makes anything not super effective "no effect"."""
+    if att_ability == "Normalize":
+        mtype = "Normal"
+    mold = att_ability in MOLD_BREAKER
+    if mtype == "Ground" and foe.ability == "Levitate" and not mold:
+        return True, False, False
+    ine, se, nve = type_flags(b, mtype, foe.types, att_ability == "Scrappy")
+    if foe.ability == "Wonder Guard" and not mold and not se:
+        ine = True
+    return ine, se, nve
+
+
 def _se_moves(b, mon, t):
-    return [m for m in mon.moves if m.damaging() and eff_of(b, mon, m, t) >= 2]
+    """The active Pokemon's moves AI_HasSuperEffectiveMove counts (attacks
+    only, by ApplyTypeChart's flag)."""
+    return [m for m in mon.moves if active_flags(b, mon, m, t)[1]]
+
+
+def _any_se_moves(b, mon, t):
+    """A Pokemon's moves CalcEffectiveness marks super effective on t, status
+    moves included: the bench checks and the post-knockout pick read these."""
+    return [m for m in mon.moves if bench_flags(b, mon.ability, move_type(b, mon, m), t)[1]]
 
 
 # The abilities that take a type's moves, as AI_AbilityAbsorbsType has them
@@ -2375,28 +2526,56 @@ ABSORBS = {"Fire": {"Flash Fire"}, "Water": {"Water Absorb", "Storm Drain", "Dry
            "Electric": {"Volt Absorb", "Lightning Rod", "Motor Drive"}, "Grass": {"Sap Sipper"}}
 
 
-def _any_se_moves(b, mon, t):
-    """Every move, status moves too, whose type hits t super-effectively:
-    BattleSystem_CalcEffectiveness, which the party checks use, sets the flag
-    whatever the move's power."""
-    return [m for m in mon.moves if eff_of(b, mon, m, t) >= 2]
+def _hit_type(mon, hit):
+    """The type of the move that last hit mon, as the absorber rule reads it:
+    its listed type, except Weather Ball, which reads the type the battle
+    recorded when it hit (moveHitType)."""
+    if hit.name == "Weather Ball":
+        return getattr(mon, "last_hit_type", None) or hit.type
+    return hit.type
 
 
-def _hit_type(b, mv):
-    """The type the last move that hit had (moveHitType): Weather Ball's
-    comes from the weather."""
-    if mv.name == "Weather Ball" and b.weather:
-        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
-    return mv.type
+def ai_trapped(b, u, t):
+    """The trap test at the top of TrainerAI_ShouldSwitch: a Ghost is never
+    held; otherwise a bind, Mean Look or Block, its own Ingrain, a foe's
+    Shadow Tag or Arena Trap (the AI exempts no Flying or Levitate user),
+    or another battler's Magnet Pull on a Steel user."""
+    if "Ghost" in u.types:
+        return False
+    if u.trapped_by is not None or u.bound or u.ingrained:
+        return True
+    foes = fs.foes_of(b, u) if getattr(b, "doubles", False) else [t]
+    if any(f.ability in ("Shadow Tag", "Arena Trap") for f in foes):
+        return True
+    near = foes + ([fs.ally_of(b, u)] if getattr(b, "doubles", False) and fs.ally_of(b, u) else [])
+    return "Steel" in u.types and any(m.ability == "Magnet Pull" for m in near)
+
+
+def _party_counter(b, side, bench, t, hit, want, p):
+    """AI_HasPartyMemberWithSuperEffectiveMove: a bench Pokemon the last hit
+    cannot touch (want "ine") or that resists it (want "nve"), read with the
+    hitter's ability and type for the move, with a roll of p per move of any
+    kind super effective on the hitter."""
+    if hit is None or not hit.power:
+        return None
+    htype = move_type(b, t, hit)
+    for i in bench:
+        mon = side.mons[i]
+        ine, _se, nve = bench_flags(b, t.ability, htype, mon)
+        if ine if want == "ine" else nve:
+            for _m in _any_se_moves(b, mon, t):
+                if chance(b, p):
+                    return i
+    return None
 
 
 def should_switch(b, side, u, t):
-    """TrainerAI_ShouldSwitch (trainer_ai.c), rule by rule; in singles each
-    party check reads the one foe as both defenders, so it rolls twice."""
-    if not fs.can_switch(u):
-        return None          # trapped by Block or Mean Look, or rooted by Ingrain
+    """TrainerAI_ShouldSwitch, rule by rule; in singles each party check
+    reads the one foe as both defenders, so it rolls twice."""
+    if ai_trapped(b, u, t):
+        return None
     bench = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
-    if not bench or u.bound:
+    if not bench:
         return None
     # AI_PerishSongKO
     if u.perish == 1:
@@ -2404,21 +2583,23 @@ def should_switch(b, side, u, t):
     # AI_CannotDamageWonderGuard: no super-effective attack on a Wonder Guard foe.
     if t.ability == "Wonder Guard" and not _se_moves(b, u, t):
         for i in bench:
-            for m in _any_se_moves(b, side.mons[i], t):
+            for _m in _any_se_moves(b, side.mons[i], t):
                 if chance(b, 66.7):
                     return i
-    # AI_OnlyIneffectiveMoves: two or more attacks, every one immune.
-    dmg = [m for m in u.moves if m.damaging()]
-    if len(dmg) >= 2 and all(eff_of(b, u, m, t) == 0 for m in dmg):
+    # AI_OnlyIneffectiveMoves: two or more attacks, every one with no effect.
+    dmg = [m for m in u.moves if m.power]
+    if len(dmg) >= 2 and all(active_flags(b, u, m, t)[0] for m in dmg):
         for i in bench:
-            for m in side.mons[i].moves:
-                if m.damaging() and eff_of(b, side.mons[i], m, t) >= 2:
+            mon = side.mons[i]
+            for m in mon.moves:
+                if m.power and bench_flags(b, mon.ability, move_type(b, mon, m), t)[1]:
                     for _ in range(2):
                         if chance(b, 66.7):
                             return i
         for i in bench:
-            for m in side.mons[i].moves:
-                if m.damaging() and eff_of(b, side.mons[i], m, t) == 1:
+            mon = side.mons[i]
+            for m in mon.moves:
+                if m.power and bench_flags(b, mon.ability, move_type(b, mon, m), t) == (False, False, False):
                     for _ in range(2):
                         if chance(b, 50):
                             return i
@@ -2426,8 +2607,8 @@ def should_switch(b, side, u, t):
     # AI_HasAbsorbAbilityInParty: a super-effective attack of its own keeps it
     # in two times in three; otherwise a bench member that takes the type of
     # the attack that hit it comes in, one time in two.
-    if not (_se_moves(b, u, t) and chance(b, 66.7)) and hit is not None and hit.damaging():
-        htype = _hit_type(b, hit)
+    if not (_se_moves(b, u, t) and chance(b, 66.7)) and hit is not None and hit.power:
+        htype = _hit_type(u, hit)
         if u.ability not in ABSORBS.get(htype, ()):
             for i in bench:
                 if side.mons[i].ability in ABSORBS.get(htype, ()) and chance(b, 50):
@@ -2436,44 +2617,94 @@ def should_switch(b, side, u, t):
     if u.status == "slp" and u.ability == "Natural Cure" and u.hp >= u.maxhp // 2:
         if hit is None and chance(b, 50):
             return replacement(b, side, t)
-        if (hit is None or not hit.damaging()) and chance(b, 50):
+        if (hit is None or not hit.power) and chance(b, 50):
             return replacement(b, side, t)
-        if hit is not None and hit.damaging():
-            for want in (0, "res"):
-                for i in bench:
-                    m = side.mons[i]
-                    e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
-                    if (e == 0 if want == 0 else 0 < e < 1) and _any_se_moves(b, m, t):
-                        return i
+        for want in ("ine", "nve"):
+            i = _party_counter(b, side, bench, t, hit, want, 100)
+            if i is not None:
+                return i
         if chance(b, 50):
             return replacement(b, side, t)
     # AI_HasSuperEffectiveMove: each super-effective attack keeps it in nine
-    # times in ten; four or more boosts keep it in.
-    for m in _se_moves(b, u, t):
+    # times in ten; AI_IsHeavilyStatBoosted (four or more stages up, accuracy
+    # and evasion counted) keeps it in.
+    for _m in _se_moves(b, u, t):
         if chance(b, 90):
             return None
-    if sum(v for k, v in u.stages.items() if v > 0 and k != "acc") >= 4:
+    if sum(v for v in u.stages.values() if v > 0) >= 4:
         return None
-    # AI_HasPartyMemberWithSuperEffectiveMove: a bench member immune to (one
-    # in two per move) or resisting (one in three per move) the attack that
-    # hit it, with a super-effective move of any kind at the foe.
-    if hit is not None and hit.damaging():
-        for want, p in ((0, 50), ("res", 33.3)):
-            for i in bench:
-                m = side.mons[i]
-                e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
-                if e == 0 if want == 0 else 0 < e < 1:
-                    for _mv in _any_se_moves(b, m, t):
-                        if chance(b, p):
-                            return i
+    # AI_HasPartyMemberWithSuperEffectiveMove: immune, one in two per move;
+    # resisting, one in three per move.
+    for want, p in (("ine", 50), ("nve", 100 / 3)):
+        i = _party_counter(b, side, bench, t, hit, want, p)
+        if i is not None:
+            return i
     return None
 
 
+PINCH = {"Overgrow": "Grass", "Blaze": "Fire", "Torrent": "Water", "Swarm": "Bug"}
+
+
+def _ko_score(b, fainted, cand, target, m):
+    """One move's stage 2 score in BattleAI_PostKOSwitchIn: the move costed by
+    BattleSystem_CalcMoveDamage as the fainted Pokemon would use it (its
+    stats and stages, the target's stages and screens, its HP of 0, so a
+    pinch ability counts; no same-type bonus or type yet), cut to a byte;
+    then ApplyTypeChart (the fainted Pokemon's same-type bonus, the chart,
+    Filter, Solid Rock, Expert Belt, Tinted Lens), cut to a byte again; 0
+    into an immunity. A status move costs 2 (no class branch, CalcMoveDamage
+    returns its closing + 2). The calculator's top roll includes the
+    same-type bonus and the type, so they are divided back out of it."""
+    ty = move_type(b, cand, m)
+    if ty == "Ground" and m.name != "Thousand Arrows" and (
+            (target.ability == "Levitate" and fainted.ability not in MOLD_BREAKER) or target.item == "Air Balloon"):
+        return 0
+    ine, se, nve = type_flags(b, ty, target.types, fainted.ability == "Scrappy")
+    if ine:
+        return 0
+    if m.power and target.ability == "Wonder Guard" and fainted.ability not in MOLD_BREAKER and not se:
+        return 0
+    stab = (2 if fainted.ability == "Adaptability" else 1.5) if ty in fainted.types else 1
+    eff = fs.effectiveness(b.st["chart"], ty, target.types)
+    if m.cat == "Status":
+        d = 2
+    else:
+        top = b.damage(fainted, target, m, ai_view=True)
+        if not top:
+            d = 0
+        else:
+            d = int(top / (stab * eff) + 0.5)
+            if PINCH.get(fainted.ability) == ty:
+                d = d * 3 // 2
+    d %= 256
+    if ty in fainted.types:
+        d = d * 2 if fainted.ability == "Adaptability" else d * 15 // 10
+    for x in dict.fromkeys(target.types):
+        mx = fs.effectiveness(b.st["chart"], ty, [x])
+        if d:
+            d = max(1, d * int(mx * 10) // 10)
+    if m.power and se and target.ability in ("Filter", "Solid Rock", "Prism Armor") \
+            and fainted.ability not in MOLD_BREAKER:
+        d = d * 3 // 4
+    if m.power and se and fainted.item == "Expert Belt":
+        d = d * 120 // 100
+    if m.power and nve and fainted.ability == "Tinted Lens":
+        d *= 2
+    return d % 256
+
+
 def replacement(b, side, target, owner=None):
-    """The post-faint pick: by type match-up first (the candidate's types
-    against the target's), taken only with a super-effective move; else by
-    the damage its moves would do. In a tag battle only the fainted
-    Pokemon's own trainer's party can refill its slot."""
+    """BattleAI_PostKOSwitchIn, as the engine runs it. Stage 1: the candidate
+    whose two types (one type counted twice) score highest against the
+    target (40 times the chart each, summed into a byte; a score of 0 is
+    never taken), with a move of any kind super effective on it, in party
+    order on ties; one without such a move is set aside and the next tried.
+    Stage 2: the candidate whose moves score highest by _ko_score, ties by
+    party order. The score is never reset (bug 16): a power-1 move or an
+    empty slot compares the last figure again, before stage 2's first
+    figure the last one stage 1 computed. With nothing above 0, the first
+    living candidate. In a tag battle only the fainted Pokemon's own
+    trainer's party can refill its slot."""
     def mine(m):
         return owner is None or getattr(m, "owner", None) == owner
     cands = [i for i, m in enumerate(side.mons)
@@ -2482,36 +2713,33 @@ def replacement(b, side, target, owner=None):
         cands = [i for i, m in enumerate(side.mons) if m.alive()]
     if not cands:
         return None
-    chart = b.st["chart"]
 
     def type_score(m):
         tys = m.types if len(m.types) == 2 else m.types * 2
-        total = 0
-        for ty in tys:
-            total += int(40 * fs.effectiveness(chart, ty, target.types))
-        return total % 256
-    for i in sorted(cands, key=lambda i: (-type_score(side.mons[i]), i)):
-        if _se_moves(b, side.mons[i], target) or any(
-                m.cat == "Status" and eff(b, m, target) >= 2 for m in side.mons[i].moves):
-            return i
-    # Stage 2 (BattleAI_PostKOSwitchIn, battle_lib.c): each candidate's
-    # moves are costed as if the Pokemon that just fainted used them, at
-    # its stats, types and ability, by the top roll without a critical hit;
-    # a move listed at power 1 (variable power: Low Kick, Magnitude) is
-    # skipped, an immune target scores 0, and the score is a u8, so a figure
-    # past 255 wraps. The highest wins, ties by party order.
-    fainted = side.mons[side.active]
-    row = b.row(fainted, target)
-    best, best_score = cands[0], 0
-    for i in sorted(cands):
-        for m in side.mons[i].moves:
-            if not m.damaging() or m.power == 1:
+        return sum(int(40 * fs.effectiveness(b.st["chart"], ty, target.types)) for ty in tys) % 256
+    score = 0                      # the engine's one u8, carried from stage to stage
+    set_aside = set()
+    while True:
+        best, picked = 0, None
+        for i in cands:
+            if i in set_aside:
                 continue
-            got = (row or {}).get("moves", {}).get(m.name) if row else None
-            score = (got["rolls"][-1] if got and got.get("rolls") else 0)
-            if eff(b, m, target) == 0:
-                score = 0
-            score %= 256
-            if score > best_score:
-                best, best_score = i, score
-    return best
+            score = type_score(side.mons[i])
+            if best < score:
+                best, picked = score, i
+        if picked is None:
+            break
+        if _any_se_moves(b, side.mons[picked], target):
+            return picked
+        set_aside.add(picked)
+    fainted = side.mons[side.active]
+    best, picked = 0, None
+    for i in cands:
+        moves = side.mons[i].moves
+        for j in range(4):
+            m = moves[j] if j < len(moves) else None
+            if m is not None and m.power != 1:
+                score = _ko_score(b, fainted, side.mons[i], target, m)
+            if best < score:
+                best, picked = score, i
+    return picked if picked is not None else cands[0]

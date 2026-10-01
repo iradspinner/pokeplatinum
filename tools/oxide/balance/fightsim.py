@@ -210,6 +210,7 @@ class Mon:
         self.item = info.get("item") or rec.get("item")
         self.moves = [move(m) for m in moves][:4]
         self.pp = {m.name: m.pp for m in self.moves}
+        self.ivs = rec.get("ivs") or {}
         self.status, self.sleep, self.toxic = None, 0, 0
         self.reset_volatile()
 
@@ -237,7 +238,8 @@ class Mon:
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
-        self.last_hit_by = None          # the move that hit it since it last acted
+        self.last_hit_by = None          # the move last aimed at it since it last acted
+        self.last_hit_type = None        # that move's type as the battle recorded it (Weather Ball)
         self.crit_stage = 0
         self.bound = 0
         self.enduring = False
@@ -576,15 +578,35 @@ def foe_of(b, mon):
     return next((m for m in side.on_field() if m.alive()), side.cur())
 
 
-def could_not_act(att):
+# The ranges whose defender is the user itself (BattleSystem_Defender): a
+# move of these never marks a foe as hit.
+OWN_RANGES = {"USER", "USER_SIDE", "SINGLE_TARGET_SPECIAL", "FIELD", "ALL", "ALLY", "USER_OR_ALLY"}
+
+
+def mark_hit(b, mv, dfn, shown, targets=None):
+    """BattleControllerPlayer_UpdateFlagsWhenHit: once the attack message
+    shows, the move is the last to hit its defender, a status move or a
+    miss included; a user that could not move clears its defender's record
+    instead. The switch rules read this record."""
+    if mv.range in OWN_RANGES or dfn is None:
+        return
+    for d in targets or [dfn]:
+        d.last_hit_by = mv if shown else None
+        d.last_hit_type = ({"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+                           if shown and mv.name == "Weather Ball" else mv.type if shown else None)
+
+
+def could_not_act(b, att, mv, dfn, targets=None):
     """A turn the Pokemon could not act (recharging, frozen, asleep,
     flinched, hurt by its confusion, fully paralysed, or a status move
     stopped by Taunt). The engine never marks such a move as succeeded, so
     it records no previous move (movePrevByBattler is MOVE_NONE, which the
     AI reads as move 0) and the Protect run breaks
-    (BattleControllerPlayer_UpdateMoveBuffers)."""
+    (BattleControllerPlayer_UpdateMoveBuffers); its target's last-hit
+    record is cleared."""
     att.last = None
     att.protect_run = 0
+    mark_hit(b, mv, dfn, False, targets)
 
 
 def sleep_tick(att):
@@ -607,38 +629,41 @@ def use_move(b, att, mv, dfn, first, targets=None):
     whether the target has not moved yet this turn."""
     if not att.alive():
         return
+    # Its own record clears with its action, whatever happens
+    # (BattleControllerPlayer_ClearFlags).
+    att.last_hit_by = None
     # The user's own state first.
     if att.recharge:
         att.recharge = False
-        return could_not_act(att)
+        return could_not_act(b, att, mv, dfn, targets)
     if att.status == "frz":
         if b.rng.random() < 0.2 or mv.effect == "THAW_AND_BURN_HIT":
             att.status = None
         else:
-            return could_not_act(att)
+            return could_not_act(b, att, mv, dfn, targets)
     if att.status == "slp":
         # The counter is the turns it cannot move (one to four); when it has
         # run out the Pokemon wakes and acts the same turn, as in Generation 4.
         if sleep_tick(att):
             if mv.effect not in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):
-                return could_not_act(att)
+                return could_not_act(b, att, mv, dfn, targets)
     if att.flinch:
         att.flinch = False
-        return could_not_act(att)
+        return could_not_act(b, att, mv, dfn, targets)
     if att.confused:
         att.confused -= 1
         if att.confused and b.rng.random() < 0.5:
             hurt(b, att, confusion_damage(att, b.rng))
-            return could_not_act(att)
+            return could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and b.rng.random() < 0.25:
-        return could_not_act(att)
+        return could_not_act(b, att, mv, dfn, targets)
     if att.taunt and mv.cat == "Status":
-        return could_not_act(att)
+        return could_not_act(b, att, mv, dfn, targets)
+    mark_hit(b, mv, dfn, True, targets)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
     if mv.effect not in ("PROTECT", "SURVIVE_WITH_1_HP"):
         att.protect_run = 0
     att.last = mv
-    att.last_hit_by = None
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
     # Charging moves: the first turn only charges (Fly and Dig vanish).
@@ -701,7 +726,7 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
-    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
+    if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one (a
     # Natural Gift needs a berry).
@@ -761,7 +786,6 @@ def attack(b, att, mv, dfn, first):
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
         dfn.hit_this_turn = (mv.cat, dealt)
-        dfn.last_hit_by = mv
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
     # The move's own effects.
@@ -956,6 +980,11 @@ def switch_in(b, side, index, slot=0):
         side.active2 = index
     new = side.mons[index]
     new.reset_volatile()
+    # The engine sets fakeOutTurnNumber to the turn count plus one when a
+    # Pokemon comes in, and counts its turns from the first decision after:
+    # one switched in during a turn reads 0 at the next turn, as does a
+    # faint replacement sent in after the end of the turn.
+    new.turns_in = -1 if getattr(b, "mid_turn", False) else 0
     new.toxic = 0                # Toxic's count starts again on a switch
     if side.hazards["rocks"]:
         eff = b.st["rock_eff"].get(new.key, 1)
@@ -978,6 +1007,11 @@ def switch_in(b, side, index, slot=0):
 
 
 def end_of_turn(b):
+    _end_of_turn(b)
+    b.mid_turn = False
+
+
+def _end_of_turn(b):
     for side in (b.p, b.b):
         for m in side.on_field():
             _end_of_turn_mon(b, side, m)
@@ -1388,6 +1422,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             break
         pa = player_choice(b)
         ba = fightai.choose(b, b.b.cur(), b.p.cur())
+        b.mid_turn = True
         me, foe = b.p.cur(), b.b.cur()
         # Switches first.
         if pa[0] == "switch":
@@ -1590,6 +1625,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
                 acts.append((mon, a[1], a[2]))
         for mon, mv, _t in acts:
             mon.chosen = mv
+        b.mid_turn = True
         keyed = [(-mv.pri, -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(), mon, mv, t)
                  for mon, mv, t in acts]
         for *_k, mon, mv, t in sorted(keyed, key=lambda x: x[:3]):
