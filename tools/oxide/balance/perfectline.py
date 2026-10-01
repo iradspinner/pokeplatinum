@@ -243,6 +243,9 @@ def give_status(b, target, status):
     if not hasattr(b, "dice"):
         return _FS_GIVE_STATUS(b, target, status)
     if not fs.can_status(b, target, status) or fs.leaf_guarded(b, target):
+        if target.alive() and not target.status and (target.ability in fs.STATUS_ABILITIES.get(status, ())
+                                                     or fs.leaf_guarded(b, target)):
+            fs.reveal(target)
         return False
     target.status = status
     if status == "slp":
@@ -446,6 +449,8 @@ def attack(b, att, mv, dfn, first):
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
     if dmg <= 0:
+        if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
         return
     if dfn.sub:
         dfn.sub = max(0, dfn.sub - dmg)
@@ -454,6 +459,8 @@ def attack(b, att, mv, dfn, first):
         full = dfn.hp == dfn.maxhp
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
+            if sturdy:
+                fs.reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash" and not sturdy:
                 dfn.item = None
@@ -538,8 +545,8 @@ def attack(b, att, mv, dfn, first):
         dfn.flinch = True
     if e == "CONFUSE_HIT" and chance and not dfn.confused and (trainer or b.dice.good(chance / 100)):
         dfn.confused = b.dice.confusion(dfn.side)
-    if e in fs.HIT_FOE_STAGES and chance and dfn.ability not in ("Clear Body", "White Smoke") \
-            and secondary("statdrop", chance / 100):
+    if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
+            and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
@@ -595,7 +602,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
+        if not dfn.sub and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:

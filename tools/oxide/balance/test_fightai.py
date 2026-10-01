@@ -10,6 +10,7 @@ fail, so both branches of a random check are pinned.
     PYTHONPATH=. python3 -m tools.oxide.balance.test_fightai
 """
 import functools
+import random
 import sys
 
 from . import fightai as ai, fightsim as fs, perfectline as pl
@@ -662,6 +663,267 @@ def hit_record_and_turns():
     after = ai.slower(b, lax, champ)
     out.append(("Speed: the player's Quick Claw that fires this turn makes the AI read itself slower",
                 not before and after, f"{before}, {after}"))
+    return out
+
+
+# ---- Basic, Evaluate Attack, the figure and what the AI knows -------------------------------------
+
+A_BOSS = [("Kangaskhan", 40, "Scrappy", ["Body Slam", "Hidden Power", "Low Kick", "Magnitude"]),
+          ("Starmie", 40, "Natural Cure", ["Surf", "Thunder Wave"]),
+          ("Arcanine", 40, "Intimidate", ["Flamethrower", "Roar"]),
+          ("Gengar", 40, "Levitate", ["Shadow Ball", "Hypnosis"]),
+          ("Absol", 40, "Super Luck", ["Sucker Punch", "Night Slash", "Quick Attack", "Feint"]),
+          ("Venusaur", 40, "Overgrow", ["Sleep Powder", "Energy Ball"]),
+          ("Golem", 40, "Rock Head", ["Explosion", "Rock Slide"]),
+          ("Breloom", 40, "Effect Spore", ["Bullet Seed", "Seed Bomb"]),
+          ("Raichu", 40, "Static", ["Thunderbolt", "Thunder Wave"], "Expert Belt"),
+          ("Lucario", 40, "Inner Focus", ["Aura Sphere", "Vacuum Wave"], "Life Orb"),
+          ("Rampardos", 40, "Mold Breaker", ["Rock Slide", "Head Smash"])]
+A_PLAYER = [("Quagsire", 40, "Unaware", ["Surf"]), ("Houndoom", 40, "Flash Fire", ["Crunch"]),
+            ("Hoothoot", 40, "Tinted Lens", ["Peck"]), ("Gengar", 40, "Levitate", ["Shadow Ball"]),
+            ("Exploud", 40, "Scrappy", ["Hyper Voice"]), ("Jangmo-o", 40, "Soundproof", ["Dragon Tail"]),
+            ("Bronzong", 40, "Heatproof", ["Gyro Ball"]), ("Zigzagoon", 40, "Gluttony", ["Tackle"]),
+            ("Psyduck", 40, "Swift Swim", ["Water Gun"]), ("Tsareena", 40, "Leaf Guard", ["Trop Kick"]),
+            ("Goodra", 40, "Hydration", ["Dragon Pulse"]), ("Slowpoke", 40, "Own Tempo", ["Water Gun"]),
+            ("Starly", 10, "Keen Eye", ["Tackle"]), ("Machop", 40, "Guts", ["Karate Chop"]),
+            ("Gallade", 40, "Steadfast", ["Psycho Cut"]), ("Fletchling", 40, "Big Pecks", ["Peck"]),
+            ("Beldum", 40, "Clear Body", ["Take Down"]), ("Torkoal", 40, "Shell Armor", ["Ember"]),
+            ("Octillery", 40, "Sniper", ["Octazooka"]), ("Clefable", 40, "Magic Guard", ["Moonblast"]),
+            ("Snorlax", 40, "Thick Fat", ["Body Slam"]), ("Shedinja", 40, "Wonder Guard", ["Shadow Sneak"]),
+            ("Lickitung", 40, "Oblivious", ["Lick"]), ("Glameow", 40, "Limber", ["Scratch"]),
+            ("Wailord", 40, "Pressure", ["Water Gun"]), ("Muk", 40, "Stench", ["Sludge"]),
+            ("Dewgong", 40, "Thick Fat", ["Aurora Beam"]), ("Hoppip", 40, "Chlorophyll", ["Tackle"]),
+            ("Sealeo", 40, "Ice Body", ["Water Gun"]), ("Gyarados", 70, "Intimidate", ["Waterfall"]),
+            ("Geodude", 10, "Sturdy", ["Tackle"]), ("Lanturn", 40, "Volt Absorb", ["Spark"]),
+            ("Ninjask", 40, "Speed Boost", ["Scratch"]), ("Yanma", 40, "Compound Eyes", ["Tackle"]),
+            ("Bidoof", 40, "Simple", ["Tackle"])]
+
+
+def ab(boss_sp, player_sp, move, setup=None, dice=PASS, fn="basic"):
+    """Basic's (or Evaluate Attack's) score for the trainer's boss_sp using
+    move against the player's player_sp, after setup(b, u, t); the trainer's
+    Pokemon moves first unless setup says otherwise."""
+    b = battle(A_BOSS, A_PLAYER)
+    _to(b, b.b, boss_sp)
+    _to(b, b.p, player_sp)
+    u, t = b.b.cur(), b.p.cur()
+    if all(m.name != move for m in u.moves):
+        moves(u, move, *[m.name for m in u.moves])
+    speeds(b, 100, 50)
+    if setup:
+        setup(b, u, t)
+    b.rng = dice if isinstance(dice, Dice) else Dice(dice)
+    mvo = fs.move(move)
+    f = ai.figure(b, u, t, mvo)
+    if fn == "basic":
+        return ai.basic(b, u, t, mvo, f)
+    figs = [ai.figure(b, u, t, m) for m in u.moves]
+    best = max((x for x in figs if x is not None), default=None)
+    return ai.evaluate_attack(b, u, t, mvo, f, best)
+
+
+def _alone(b, u, t):
+    """Each side down to its active Pokemon."""
+    for side in (b.b, b.p):
+        for i, m in enumerate(side.mons):
+            if i != side.active:
+                m.hp = 0
+
+
+# (label, trainer's Pokemon, player's Pokemon, move, setup, every chance passing, every one failing).
+# The AI guesses a player's ability between its species' two slots: the
+# first on a passing coin, the second on a failing one.
+BASIC_ROWS = [
+    ("CheckForImmunity: Scrappy's Body Slam into a Ghost", "Kangaskhan", "Gengar", "Body Slam", None, 0, 0),
+    ("CheckForImmunity: Hidden Power at odd IVs is Dark, into a Ghost", "Kangaskhan", "Gengar", "Hidden Power",
+     None, 0, 0),
+    ("CheckForImmunity: Magnitude into a real Levitate", "Kangaskhan", "Gengar", "Magnitude", None, -10, -10),
+    ("absorbing checks: Surf into Quagsire (Water Absorb or Unaware)", "Starmie", "Quagsire", "Surf", None, -12, 0),
+    ("absorbing checks: Flamethrower into Houndoom (Early Bird or Flash Fire)", "Arcanine", "Houndoom",
+     "Flamethrower", None, 0, -12),
+    ("CheckMagnitude: into Bronzong (Levitate or Heatproof, real Heatproof)", "Kangaskhan", "Bronzong",
+     "Magnitude", None, -12, 0),
+    ("CheckSoundproof: Screech into Exploud (Scrappy or Soundproof)", "Kangaskhan", "Exploud", "Screech", None, 0, -10),
+    ("CheckBulletproof: Shadow Ball into Jangmo-o (Bulletproof or Soundproof)", "Gengar", "Jangmo-o",
+     "Shadow Ball", None, -10, 0),
+    ("CheckQueenlyMajesty: Sucker Punch into Tsareena (Leaf Guard or Queenly Majesty)", "Absol", "Tsareena",
+     "Sucker Punch", None, 0, -10),
+    ("CheckPowderImmunity and SapSipper: Sleep Powder into Goodra (Sap Sipper or Hydration)", "Venusaur", "Goodra",
+     "Sleep Powder", None, -10, 0),
+    ("CheckRest: Leaf Guard in sun at half HP", "Gengar", "Zigzagoon", "Rest",
+     _t(u_ability="Leaf Guard", weather="Sun", u_hp=50), -10, -10),
+    ("CheckTaunt: into Slowpoke (Oblivious or Own Tempo)", "Gengar", "Slowpoke", "Taunt", None, -10, 0),
+    ("CheckTaunt: into a taunted Zigzagoon (Basic never checks it)", "Gengar", "Zigzagoon", "Taunt", _t(t_taunt=3), 0, 0),
+    ("CheckCannotSleep: Hypnosis into Hoothoot (Insomnia or Tinted Lens)", "Gengar", "Hoothoot", "Hypnosis",
+     None, -10, 0),
+    ("CheckCannotSleep: Hypnosis once Tinted Lens is named", "Gengar", "Hoothoot", "Hypnosis",
+     _t(t_revealed="Tinted Lens"), 0, 0),
+    ("CheckCannotSleep: Hypnosis into a Substitute (Basic never looks)", "Gengar", "Zigzagoon", "Hypnosis",
+     _t(t_sub=10), 0, 0),
+    ("CheckCannotSleep: Yawn into a drowsy target", "Gengar", "Zigzagoon", "Yawn", _t(t_yawn=1), 0, 0),
+    ("CheckCannotExplode: each side on its last Pokemon", "Golem", "Zigzagoon", "Explosion", _alone, -1, -1),
+    ("CheckCannotExplode: into Psyduck (Damp or Swift Swim)", "Golem", "Psyduck", "Explosion", None, -10, 0),
+    ("CheckDreamEater: an awake target", "Gengar", "Zigzagoon", "Dream Eater", None, -8, -8),
+    ("CheckBellyDrum: at 50%", "Gengar", "Zigzagoon", "Belly Drum", _t(u_hp=50), -10, -10),
+    ("CheckHighStatStage: Swords Dance at +6", "Gengar", "Zigzagoon", "Swords Dance", _t(u_atk=6), -10, -10),
+    ("CheckHighStatStage: Agility under Trick Room", "Gengar", "Zigzagoon", "Agility", _t(trick_room=5), -10, -10),
+    ("CheckHighStatStage: Charge has no stage check", "Gengar", "Zigzagoon", "Charge", _t(u_spd=6), 0, 0),
+    ("CheckHighStatStage_Evasion: Double Team into Starly (Keen Eye)", "Gengar", "Starly", "Double Team",
+     None, -10, -10),
+    ("CheckHighStatStage_Evasion: Double Team into Machop (Guts or No Guard)", "Gengar", "Machop", "Double Team",
+     None, 0, -10),
+    ("CheckLowStatStage_Attack: Growl into Gallade (Hyper Cutter or Steadfast)", "Gengar", "Gallade", "Growl",
+     None, -10, 0),
+    ("CheckLowStatStage_Defense: Screech into Fletchling (Big Pecks)", "Gengar", "Fletchling", "Screech",
+     None, -10, -10),
+    ("CheckLowStatStage_Speed: Scary Face under Trick Room", "Gengar", "Zigzagoon", "Scary Face",
+     _t(trick_room=5), -10, -10),
+    ("CheckLowStatStage_Speed: Scary Face into Ninjask (Speed Boost, read with no coin)", "Gengar", "Ninjask",
+     "Scary Face", None, -10, -10),
+    ("CheckLowStatStage_Speed: Scary Face into Yanma (Speed Boost unknown until named)", "Gengar", "Yanma",
+     "Scary Face", None, 0, 0),
+    ("CheckLowStatStage_Accuracy: Sand Attack into Starly (Keen Eye)", "Gengar", "Starly", "Sand Attack",
+     None, -10, -10),
+    ("CheckClearBodyEffect: Leer into Beldum", "Gengar", "Beldum", "Leer", None, -10, -10),
+    ("CheckClearBodyEffect: Leer into Torkoal (White Smoke or Shell Armor)", "Gengar", "Torkoal", "Leer", None, -10, 0),
+    ("CheckStatStageImbalance: Psych Up with nothing raised", "Gengar", "Zigzagoon", "Psych Up", None, -10, -10),
+    ("CheckCanForceSwitch: Roar into Octillery (Suction Cups or Sniper)", "Arcanine", "Octillery", "Roar",
+     None, -10, 0),
+    ("CheckCanRecoverHP: Recover at full HP", "Gengar", "Zigzagoon", "Recover", None, -8, -8),
+    ("CheckCannotPoison: Toxic into Clefable (Magic Guard)", "Gengar", "Clefable", "Toxic", None, -10, -10),
+    ("CheckCannotPoison: Toxic into Snorlax (Immunity or Thick Fat)", "Gengar", "Snorlax", "Toxic", None, -10, 0),
+    ("CheckAlreadyUnderLightScreen", "Gengar", "Zigzagoon", "Light Screen",
+     lambda b, u, t: b.b.screens.update({"Light Screen": 5}), -8, -8),
+    ("CheckOHKOWouldFail: Sheer Cold into a higher level", "Gengar", "Zigzagoon", "Sheer Cold", _t(u_level=30),
+     -10, -10),
+    ("CheckNonStandardDamage: Hyper Beam into Shedinja", "Kangaskhan", "Shedinja", "Hyper Beam", None, -10, -10),
+    ("CheckNonStandardDamage: Night Shade into Shedinja (super effective)", "Gengar", "Shedinja", "Night Shade",
+     None, 0, 0),
+    ("CheckCannotConfuse: Confuse Ray into Lickitung (Own Tempo or Oblivious)", "Gengar", "Lickitung",
+     "Confuse Ray", None, -10, 0),
+    ("CheckCannotConfuse: Swagger into Safeguard", "Gengar", "Zigzagoon", "Swagger",
+     lambda b, u, t: setattr(b.p, "safeguard", 5), -10, -10),
+    ("Safeguard: an Infiltrator's Toxic passes it", "Gengar", "Zigzagoon", "Toxic",
+     lambda b, u, t: (setattr(b.p, "safeguard", 5), setattr(u, "ability", "Infiltrator")), 0, 0),
+    ("CheckCannotParalyze: Stun Spore into Glameow (Limber)", "Venusaur", "Glameow", "Stun Spore", None, -10, -10),
+    ("CheckCannotParalyze: Thunder Wave into a Substitute", "Starmie", "Zigzagoon", "Thunder Wave", _t(t_sub=10), 0, 0),
+    ("CheckCannotLeechSeed: into Clefable (Magic Guard)", "Venusaur", "Clefable", "Leech Seed", None, -10, -10),
+    ("CheckAttackerAsleep: Sleep Talk awake", "Gengar", "Zigzagoon", "Sleep Talk", None, -8, -8),
+    ("CheckMeanLook: Block into a Ghost", "Kangaskhan", "Gengar", "Block", None, -10, -10),
+    ("CheckCurse: a Ghost's Curse into a cursed target", "Gengar", "Zigzagoon", "Curse", _t(t_cursed=True), -10, -10),
+    ("CheckPerishSong: only the user has a count", "Gengar", "Zigzagoon", "Perish Song", _t(u_perish=2), 0, 0),
+    ("CheckCannotAttract: into Slowpoke (Oblivious or Own Tempo)", "Gengar", "Slowpoke", "Attract", None, -10, 0),
+    ("CheckMemento: the last Pokemon", "Gengar", "Zigzagoon", "Memento", _alone, -10, -10),
+    ("CheckRainDance: into a paralysed Dewgong (Thick Fat or Hydration)", "Starmie", "Dewgong", "Rain Dance",
+     _t(t_status="par"), 0, -8),
+    ("CheckSunnyDay: into Hoppip (Chlorophyll or Leaf Guard)", "Arcanine", "Hoppip", "Sunny Day", None, 0, -10),
+    ("CheckCanSpitUpOrSwallow: Swallow into a Ghost", "Gengar", "Gengar", "Swallow", _t(u_stockpile=1), -10, -10),
+    ("CheckHail: into Sealeo (Ice Body)", "Gengar", "Sealeo", "Hail", None, -8, -8),
+    ("CheckCannotBurn: Will-O-Wisp into Wailord (Pressure or Water Veil)", "Gengar", "Wailord", "Will-O-Wisp",
+     None, 0, -10),
+    ("CheckHelpingHand: a single battle", "Gengar", "Zigzagoon", "Helping Hand", None, -10, -10),
+    ("CheckCanRemoveItem: Knock Off into Muk with Leftovers (Stench or Sticky Hold)", "Absol", "Muk", "Knock Off",
+     _t(t_item="Leftovers"), 0, -10),
+    ("CheckCanRemoveItem: Knock Off into no item", "Absol", "Zigzagoon", "Knock Off", None, -10, -10),
+    ("CheckTickle: Defense at -6", "Gengar", "Zigzagoon", "Tickle", _t(t_def=-6), -8, -8),
+    ("CheckDragonDance: Speed +6 under Trick Room", "Gengar", "Zigzagoon", "Dragon Dance",
+     _t(u_spe=6, trick_room=5), -10, -10),
+    ("CheckShiftGear: Attack +6", "Gengar", "Zigzagoon", "Shift Gear", _t(u_atk=6), -10, -10),
+    ("CheckHealingWish: a full and healthy bench", "Gengar", "Zigzagoon", "Healing Wish", None, -30, -30),
+    ("CheckNaturalGift: no item", "Gengar", "Zigzagoon", "Natural Gift", None, -10, -10),
+    ("CheckFling: no item", "Gengar", "Zigzagoon", "Fling", None, -10, -10),
+    ("CheckFling: a Flame Orb into a burned target", "Gengar", "Zigzagoon", "Fling",
+     _t(u_item="Flame Orb", t_status="brn"), 3, 3),
+    ("CheckCopycat: turn 0, faster", "Gengar", "Zigzagoon", "Copycat", None, -10, -10),
+    ("CheckCopycat: turn 1", "Gengar", "Zigzagoon", "Copycat", _t(b_turn=1), 0, 0),
+    ("CheckAquaRing: already up", "Gengar", "Zigzagoon", "Aqua Ring", _t(u_aqua_ring=True), -10, -10),
+    ("CheckCanRefreshStatus: no status", "Gengar", "Zigzagoon", "Refresh", None, -10, -10),
+    ("CheckFirstTurnInBattle: Fake Out on the second turn out", "Kangaskhan", "Zigzagoon", "Fake Out",
+     _t(u_turns_in=1), -10, -10),
+]
+
+
+EVAL_ROWS = [
+    ("EvalAttack_MaybeDeprioritize: Sucker Punch (no comparison)", "Absol", "Zigzagoon", "Sucker Punch", None, -2, 0),
+    ("EvalAttack_MaybeDeprioritize: Explosion (no comparison)", "Golem", "Zigzagoon", "Explosion", None, -2, 0),
+    ("EvalAttack_ApplyKillBonuses: Quick Attack (PRIORITY_1) knocks out", "Absol", "Starly", "Quick Attack",
+     None, 6, 6),
+    ("EvalAttack_ApplyKillBonuses: Feint knocks out (+4: the effect, not the priority)", "Absol", "Starly", "Feint",
+     None, 4, 4),
+    ("EvalAttack_CheckQuadEffective: Thunder Wave into Gyarados", "Starmie", "Gyarados", "Thunder Wave", None, 2, 0),
+    ("EvalAttack_CheckQuadEffective: an Expert Belt reads no bucket", "Raichu", "Gyarados", "Thunderbolt", None, 0, 0),
+    ("AI_SturdySurvives: a full-HP Sturdy target survives", "Golem", "Geodude", "Rock Slide", None, 0, 0),
+    ("AI_SturdySurvives: Mold Breaker gets past Sturdy", "Rampardos", "Geodude", "Rock Slide", None, 4, 4),
+]
+
+
+@check
+def basic_routines():
+    out = []
+    for label, bsp, psp, move, setup, wp, wf in BASIC_ROWS:
+        got = (ab(bsp, psp, move, setup, PASS), ab(bsp, psp, move, setup, FAIL))
+        out.append((f"Basic_{label}", got == (wp, wf), f"pass {got[0]}, fail {got[1]} (want {wp}, {wf})"))
+    for label, bsp, psp, move, setup, wp, wf in EVAL_ROWS:
+        got = (ab(bsp, psp, move, setup, PASS, "eval"), ab(bsp, psp, move, setup, FAIL, "eval"))
+        out.append((label, got == (wp, wf), f"pass {got[0]}, fail {got[1]} (want {wp}, {wf})"))
+    return out
+
+
+@check
+def damage_figure_and_engine():
+    out = []
+    b = battle(A_BOSS, A_PLAYER)
+    _to(b, b.p, "Bidoof")
+    t = b.p.cur()
+    _to(b, b.b, "Breloom")
+    bre = b.b.cur()
+    one, row = ai.figure(b, bre, t, fs.move("Bullet Seed")), b.damage(bre, t, fs.move("Bullet Seed"), ai_view=True)
+    out.append(("figure: one hit of a multi-hit move (the row adds three)", one == row // 3, f"{one} of {row}"))
+    _to(b, b.b, "Lucario")
+    luc = b.b.cur()
+    lo, raw = ai.figure(b, luc, t, fs.move("Aura Sphere")), b.damage(luc, t, fs.move("Aura Sphere"), ai_view=True)
+    out.append(("figure: Life Orb is not in the AI's estimate", lo == raw * 4096 // 5324, f"{lo} of {raw}"))
+    _to(b, b.b, "Kangaskhan")
+    kan = b.b.cur()
+    lk = ai.figure(b, kan, t, fs.move("Low Kick"))
+    out.append(("figure: Low Kick (listed at power 1) gets a figure", lk is not None and lk > 0, f"{lk}"))
+    out.append(("move type: Hidden Power at odd IVs is Dark", ai.move_type(b, kan, fs.move("Hidden Power")) == "Dark",
+                ai.move_type(b, kan, fs.move("Hidden Power"))))
+    _to(b, b.b, "Raichu")
+    _to(b, b.p, "Lanturn")
+    rai, lan = b.b.cur(), b.p.cur()
+    tb = ai.figure(b, rai, lan, fs.move("Thunderbolt"))
+    out.append(("figure: the estimate ignores Volt Absorb (the ability-blank twin row)",
+                tb is not None and tb > 0 and b.damage(rai, lan, fs.move("Thunderbolt"), ai_view=True) == 0, f"{tb}"))
+    # The score engine: a Choice lock rules out the other moves only while
+    # the item is held; a slot with no PP scores 0.
+    _to(b, b.b, "Starmie")
+    star = b.b.cur()
+    star.choice, star.item = "Surf", None
+    free = ai.invalid(b, star, fs.move("Thunder Wave"))
+    star.item = "Choice Specs"
+    held = ai.invalid(b, star, fs.move("Thunder Wave"))
+    star.choice = star.item = None
+    star.pp["Surf"] = 0
+    b.rng = Dice(PASS)
+    sc = ai.score_moves(b, star, b.p.cur(), 1)
+    out.append(("TrainerAI_Init: a Choice lock holds only with the item; no PP scores 0",
+                not free and held and sc[0] == 0, f"{free}, {held}, {sc}"))
+    # What the AI learns: Intimidate names itself as it comes in; a hit an
+    # ability takes names it; Sturdy holding names it.
+    b = battle(A_BOSS, A_PLAYER)
+    _to(b, b.b, "Arcanine")
+    b.mid_turn = False
+    fs.switch_in(b, b.p, next(i for i, m in enumerate(b.p.mons) if m.species == "Gyarados"))
+    gy = b.p.cur()
+    named = gy.revealed
+    fs.switch_in(b, b.p, next(i for i, m in enumerate(b.p.mons) if m.species == "Houndoom"))
+    hd = b.p.cur()
+    b.rng = random.Random(1)
+    fs.attack(b, b.b.cur(), fs.move("Flamethrower"), hd, True)
+    out.append(("Revealed abilities: Intimidate on entry, forgotten on leaving; Flash Fire on taking a Fire move",
+                named == "Intimidate" and gy.revealed is None and hd.revealed == "Flash Fire",
+                f"{named}, {gy.revealed}, {hd.revealed}"))
     return out
 
 

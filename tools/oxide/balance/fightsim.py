@@ -94,7 +94,7 @@ def pokedex_moves():
 class Move:
     """One move as the simulator reads it."""
     __slots__ = ("name", "type", "cat", "power", "acc", "pri", "effect", "chance", "range",
-                 "contact", "sound", "pp", "const")
+                 "contact", "sound", "pp", "const", "reflectable")
 
     def __init__(self, name):
         by, compact = _by_calc_name()
@@ -112,6 +112,7 @@ class Move:
         flags = rec.get("flags") or []
         self.contact = "MAKES_CONTACT" in flags
         self.sound = "SOUND" in " ".join(flags)
+        self.reflectable = any("MAGIC_COAT" in f for f in flags)
         self.pp = rec.get("pp") or 10
 
     def damaging(self):
@@ -251,6 +252,9 @@ class Mon:
         # The moves the trainer's AI has seen this Pokemon use since it came
         # in (AI_CONTEXT.battlerMoves; fightai.choose records them).
         self.shown = []
+        # The ability a battle message has named (AI_CONTEXT.battlerAbilities,
+        # BattleAI_SetAbility); the trainer's AI guesses until then.
+        self.revealed = None
 
     def alive(self):
         return self.hp > 0
@@ -370,7 +374,7 @@ class Battle:
             mult *= 1.2          # the player's rows are item-free; a booster adds its fifth here
         side = self.p if dfn.side == "p" else self.b
         screen = "Reflect" if mv.cat == "Physical" else "Light Screen"
-        if side.screens[screen] and not crit:
+        if side.screens[screen] and not crit and mv.effect != "REMOVE_SCREENS" and att.ability != "Infiltrator":
             mult *= 2 / 3 if getattr(self, "doubles", False) else 0.5
         if getattr(self, "spread", False):
             mult *= 0.75
@@ -420,9 +424,51 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
-    immune = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil"},
-              "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
-    return target.ability not in immune.get(status, set())
+    return target.ability not in STATUS_ABILITIES.get(status, set())
+
+
+STATUS_ABILITIES = {"slp": {"Insomnia", "Vital Spirit"}, "par": {"Limber"}, "brn": {"Water Veil"},
+                    "psn": {"Immunity"}, "tox": {"Immunity"}, "frz": {"Magma Armor"}}
+# The abilities announced as their holder comes in (each message tags the
+# ability, so BattleAI_SetAbility records it).
+ENTRY_ANNOUNCED = {"Intimidate", "Pressure", "Mold Breaker", "Drizzle", "Drought", "Sand Stream",
+                   "Snow Warning", "Download", "Trace", "Anticipation", "Forewarn", "Frisk", "Slow Start",
+                   "Unnerve", "Neutralizing Gas"}
+
+
+# The abilities that turn a hit to nothing, and so are named when they do.
+ZEROING = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
+           "Storm Drain", "Sap Sipper", "Levitate", "Wonder Guard", "Soundproof", "Bulletproof"}
+
+
+# The abilities that take a move whole, which the AI's damage estimate does
+# not see (fightai.figure costs the move on an ability-blank twin).
+AI_BLIND_ABSORBS = {"Volt Absorb", "Water Absorb", "Flash Fire", "Motor Drive", "Dry Skin", "Lightning Rod",
+                    "Storm Drain", "Sap Sipper", "Soundproof", "Bulletproof"}
+
+
+def reveal(mon):
+    """A battle message has named mon's ability (BattleAI_SetAbility): the
+    trainer's AI reads it from now on, until mon leaves the field. The
+    simulator names it where the engine would for what the simulator
+    models: an entry announcement, a hit the ability turns to nothing, Sturdy
+    holding, a status or a stat drop the ability stops."""
+    mon.revealed = mon.ability
+
+
+def stat_drop_blocked(b, mon, changes):
+    """Whether mon's ability stops a drop the foe inflicts (Clear Body and
+    White Smoke stop any; Hyper Cutter Attack, Keen Eye accuracy, Big Pecks
+    Defense); the ability that stops it is named."""
+    falls = {k for k, v in changes.items() if v < 0}
+    if not falls:
+        return False
+    ab = mon.ability
+    if ab in ("Clear Body", "White Smoke") or (ab == "Hyper Cutter" and falls <= {"atk"}) \
+            or (ab == "Keen Eye" and falls <= {"acc"}) or (ab == "Big Pecks" and falls <= {"def"}):
+        reveal(mon)
+        return True
+    return False
 
 
 # The powder and spore moves (battle_lib.c, sPowderMoves): Grass types and
@@ -443,6 +489,9 @@ def leaf_guarded(b, target):
 
 def give_status(b, target, status):
     if not can_status(b, target, status) or leaf_guarded(b, target):
+        if target.alive() and not target.status and (target.ability in STATUS_ABILITIES.get(status, ())
+                                                     or leaf_guarded(b, target)):
+            reveal(target)
         return False
     target.status = status
     if status == "slp":
@@ -770,6 +819,8 @@ def attack(b, att, mv, dfn, first):
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
     if dmg <= 0:
+        if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
+            reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
     if dfn.sub:
@@ -778,6 +829,8 @@ def attack(b, att, mv, dfn, first):
     else:
         full = dfn.hp == dfn.maxhp
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
+            if dfn.ability == "Sturdy":
+                reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash":
                 dfn.item = None
@@ -827,7 +880,7 @@ def attack(b, att, mv, dfn, first):
         dfn.flinch = True
     if e == "CONFUSE_HIT" and b.rng.random() * 100 < chance and not dfn.confused:
         dfn.confused = b.rng.randint(2, 5)
-    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and dfn.ability not in ("Clear Body", "White Smoke"):
+    if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
@@ -877,7 +930,7 @@ def status_move(b, att, mv, dfn, first):
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
+        if not dfn.sub and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -1000,9 +1053,11 @@ def switch_in(b, side, index, slot=0):
     weather = ABILITY_WEATHER.get(new.ability)
     if weather:
         b.weather, b.weather_turns = weather, 0
+    if new.ability in ENTRY_ANNOUNCED:
+        reveal(new)
     if new.ability == "Intimidate":
         for foe in (b.b if side is b.p else b.p).on_field():
-            if foe.alive() and foe.ability not in ("Clear Body", "White Smoke", "Hyper Cutter"):
+            if foe.alive() and not stat_drop_blocked(b, foe, {"atk": -1}):
                 change_stages(foe, {"atk": -1})
 
 
@@ -2032,6 +2087,21 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for w in weathers:
                     for d in bkeys:
                         pairs.append([dk, d, ["Magnitude"], w])
+    # The trainer's AI costs a move with BattleSystem_CalcMoveDamage, which
+    # knows nothing of the abilities that take a move whole; the calculator's
+    # row for such a Pokemon reads 0. So each player Pokemon with one gets a
+    # twin with the ability blank, rowed against every trainer Pokemon, for
+    # fightai.figure's estimate (Basic refuses the move by its guess at the
+    # ability instead).
+    ai_twin = {}
+    for k in list(pkeys):
+        if pokemon[k].get("ability") in AI_BLIND_ABSORBS:
+            twin = f"{k}#ai"
+            pokemon[twin] = dict(pokemon[k], ability=WEATHER_STAND_IN)
+            ai_twin[k] = twin
+            for w in weathers:
+                for d in bkeys:
+                    pairs.append([d, twin, party_hits(d), w])
     out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:
@@ -2050,7 +2120,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             "player": list(variants), "variants": variants, "group": group,
             "bosses": boss_keys, "partners": partner_keys,
             "base_weather": pressure.CALC_WEATHER.get(weather, weather) if weather else None,
-            "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split}
+            "rock_eff": rock, "trick_room": trick_room, "chart": blob["type_chart"], "split": split,
+            "ai_twin": ai_twin}
 
 
 def effectiveness(blob_or_chart, atk_type, def_types):

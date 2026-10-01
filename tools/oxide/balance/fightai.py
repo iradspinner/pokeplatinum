@@ -14,6 +14,7 @@ Weather and Harassment. The AI reads its damage at the top roll with no
 critical hit. Rules for moves Oxide's trainers rarely carry are left out;
 fightsim's report counts the effects it meets without a rule.
 """
+import copy
 import functools
 import json
 import os
@@ -23,25 +24,236 @@ from . import data, fightsim as fs
 
 BASIC, EVAL, EXPERT, SETUP_FIRST, RISKY, EXTREMES, BATON, TAG, CHECK_HP, WEATHER, HARASS = range(11)
 
-# Effects that have no damage figure for the AI (1.3 of the spec).
-NO_CALC = {"HALVE_DEFENSE", "EXPLOSION", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HIGH_CRIT",
-           "CHARGE_TURN_HIGH_CRIT_FLINCH", "RECHARGE_AFTER", "CHARGE_TURN_DEF_UP", "SOLAR_BEAM",
+# ---- Audit A (2026-09-30): the score engine, the damage figure, what the AI
+# knows of its target, Basic and Evaluate Attack, as script.s and
+# trainer_ai.c have them at HEAD. Paste into tools/oxide/balance/fightai.py:
+# it replaces NO_CALC, has_comparison, figure, score_moves, choose, basic and
+# evaluate_attack, and adds the helpers they call. Fields the simulator does
+# not keep yet are read with getattr and a default that leaves the check off.
+
+# sNoDamageCalcMoveEffects (trainer_ai.c 31 to 46): no figure, whatever the power.
+NO_CALC = {"HALVE_DEFENSE", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HIGH_CRIT",
+           "CHARGE_TURN_HIGH_CRIT_FLINCH", "RECHARGE_AFTER", "CHARGE_TURN_DEF_UP",
            "SKIP_CHARGE_TURN_IN_SUN", "SPIT_UP", "HIT_LAST_WHIFF_IF_HIT", "LOWER_OWN_ATK_AND_DEF",
-           "DECREASE_POWER_WITH_LESS_USER_HP", "HIT_FIRST_IF_TARGET_ATTACKING", "RECOIL_HALF",
-           "ONE_HIT_KO", "COUNTER", "MIRROR_COAT", "METAL_BURST", "INCREASE_POWER_WITH_LESS_HP"}
+           "DECREASE_POWER_WITH_LESS_USER_HP", "HIT_FIRST_IF_TARGET_ATTACKING", "RECOIL_HALF"}
+# sAltPowerMoveEffects (48 to 61): a figure although the listed power is 1.
+ALT_POWER = {"RANDOM_POWER_BASED_ON_IVS", "POWER_BASED_ON_LOW_SPEED", "NATURAL_GIFT", "JUDGEMENT",
+             "40_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
+             "POWER_BASED_ON_FRIENDSHIP", "POWER_BASED_ON_LOW_FRIENDSHIP", "20_DAMAGE_FLAT",
+             "INCREASE_POWER_WITH_WEIGHT"}
+# sComputedPowerHits (Oxide, 67 to 71): listed at power 1, given a figure.
+COMPUTED_POWER_HITS = {"MOVE_ELECTRO_BALL", "MOVE_HARD_PRESS"}
+# The hits the calculator's row adds up (calc_headless.js rolls(); move.js
+# counts a two-to-five-hit move as 3, or 5 with Skill Link). The AI's
+# estimate is a single hit (BattleSystem_CalcMoveDamage).
+ROW_HITS = {"MULTI_HIT": 3, "HIT_TWICE": 2}
+# The pinch abilities BattleSystem_CalcMoveDamage applies at a third of HP or
+# less; the calculator's rows are made at full HP.
+# Hidden Power's types in IV order (TrainerAI_MoveType, the Mystery type skipped).
+TRAP_ABILITIES = ("Shadow Tag", "Magnet Pull", "Arena Trap")
+NOT_AT_FOE = ("USER", "USER_SIDE", "FIELD", "ALLY", "USER_OR_ALLY")
+# Basic_CheckSoundproof's list (script.s 139 to 170).
+BASIC_SOUND = {"MOVE_GROWL", "MOVE_ROAR", "MOVE_SING", "MOVE_SUPERSONIC", "MOVE_SCREECH",
+               "MOVE_SNORE", "MOVE_UPROAR", "MOVE_METAL_SOUND", "MOVE_GRASS_WHISTLE",
+               "MOVE_HYPER_VOICE", "MOVE_BUG_BUZZ", "MOVE_CHATTER", "MOVE_ALLURING_VOICE",
+               "MOVE_BOOMBURST", "MOVE_CLANGING_SCALES", "MOVE_CONFIDE", "MOVE_DISARMING_VOICE",
+               "MOVE_ECHOED_VOICE", "MOVE_EERIE_SPELL", "MOVE_NOBLE_ROAR", "MOVE_OVERDRIVE",
+               "MOVE_PARTING_SHOT", "MOVE_PSYCHIC_NOISE", "MOVE_RELIC_SONG", "MOVE_ROUND",
+               "MOVE_SNARL", "MOVE_SPARKLING_ARIA", "MOVE_TORCH_SONG"}
+# The engine's sSoundMoves, which Throat Chop reads (battle_lib.c).
+SOUND_MOVES = BASIC_SOUND | {"MOVE_HEAL_BELL", "MOVE_HOWL", "MOVE_PERISH_SONG", "MOVE_CLANGOROUS_SOUL"}
+# Basic_CheckBulletproof's list (176 to 203), the engine's sBallAndBombMoves.
+BALL_AND_BOMB = {"MOVE_ACID_SPRAY", "MOVE_AURA_SPHERE", "MOVE_BARRAGE", "MOVE_BEAK_BLAST",
+                 "MOVE_BULLET_SEED", "MOVE_EGG_BOMB", "MOVE_ELECTRO_BALL", "MOVE_ENERGY_BALL",
+                 "MOVE_FOCUS_BLAST", "MOVE_GYRO_BALL", "MOVE_ICE_BALL", "MOVE_MAGNET_BOMB",
+                 "MOVE_MIST_BALL", "MOVE_MUD_BOMB", "MOVE_OCTAZOOKA", "MOVE_POLLEN_PUFF",
+                 "MOVE_PYRO_BALL", "MOVE_ROCK_BLAST", "MOVE_ROCK_WRECKER", "MOVE_SEARING_SHOT",
+                 "MOVE_SEED_BOMB", "MOVE_SHADOW_BALL", "MOVE_SLUDGE_BOMB", "MOVE_SYRUP_BOMB",
+                 "MOVE_WEATHER_BALL", "MOVE_ZAP_CANNON"}
+# Basic_ScoreMoveEffect (236 to 249): the powders less Rage Powder, and the
+# Grass status moves aimed at the foe that are not powders.
+BASIC_POWDERS = {"MOVE_COTTON_SPORE", "MOVE_POISON_POWDER", "MOVE_SLEEP_POWDER", "MOVE_STUN_SPORE",
+                 "MOVE_SPORE", "MOVE_POWDER", "MOVE_MAGIC_POWDER"}
+GRASS_STATUS = {"MOVE_LEECH_SEED", "MOVE_GRASS_WHISTLE", "MOVE_WORRY_SEED"}
+# The abilities Basic_CheckForImmunity reads through the guess, by the type
+# each takes (82 to 93).
+ABSORBS_TYPE = {"Volt Absorb": "Electric", "Motor Drive": "Electric", "Lightning Rod": "Electric",
+                "Water Absorb": "Water", "Storm Drain": "Water", "Dry Skin": "Water",
+                "Flash Fire": "Fire", "Sap Sipper": "Grass", "Levitate": "Ground"}
+# Effects whose charge turn MoveIsOnDamagingTurn excludes, so Wonder Guard
+# does not flag them while the AI chooses (battle_lib.c 9431 to 9456).
+CHARGE_TURN = {"BIDE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
+               "CHARGE_TURN_DEF_UP", "SKIP_CHARGE_TURN_IN_SUN", "FLY", "DIVE", "DIG", "BOUNCE",
+               "SHADOW_FORCE", "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS",
+               "CHARGE_TURN_PARALYZE_HIT", "CHARGE_TURN_BURN_HIT",
+               "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2", "SKY_DROP"}
+# Move_FailsInHighGravity and Move_HealBlocked (battle_lib.c 3757 to 3816).
+GRAVITY_FAILS = {"MOVE_FLY", "MOVE_BOUNCE", "MOVE_JUMP_KICK", "MOVE_HI_JUMP_KICK", "MOVE_SPLASH",
+                 "MOVE_MAGNET_RISE"}
+HEAL_BLOCKED = {"MOVE_RECOVER", "MOVE_SOFTBOILED", "MOVE_REST", "MOVE_MILK_DRINK",
+                "MOVE_MORNING_SUN", "MOVE_SYNTHESIS", "MOVE_MOONLIGHT", "MOVE_SWALLOW",
+                "MOVE_HEAL_ORDER", "MOVE_SLACK_OFF", "MOVE_ROOST", "MOVE_LUNAR_DANCE",
+                "MOVE_HEALING_WISH", "MOVE_WISH", "MOVE_LUNAR_BLESSING", "MOVE_JUNGLE_HEALING"}
+# Basic's raising handlers: (the stat at +6 that scores -10, the stats at
+# +6 that score -8, refused under Trick Room).
+RAISES = {
+    "ATK_UP": ("atk", (), False), "ATK_UP_2": ("atk", (), False),
+    "DEF_UP": ("def", (), False), "DEF_UP_2": ("def", (), False), "DEF_UP_3": ("def", (), False),
+    "DEF_UP_DOUBLE_ROLLOUT_POWER": ("def", (), False),
+    "SPEED_UP": ("spe", (), True), "SPEED_UP_2": ("spe", (), True), "AUTOTOMIZE": ("spe", (), True),
+    "SP_ATK_UP": ("spa", (), False), "SP_ATK_UP_2": ("spa", (), False),
+    "SP_DEF_UP": ("spd", (), False), "SP_DEF_UP_2": ("spd", (), False),
+    "DEF_SPD_UP": ("def", ("spd",), False), "ATK_DEF_UP": ("atk", ("def",), False),
+    "SP_ATK_SP_DEF_UP": ("spa", ("spd",), False), "ATK_SPD_UP": ("atk", ("spe",), True),
+    "ATK_ACC_UP": ("atk", ("acc",), False), "SP_ATK_SP_DEF_SPEED_UP": ("spa", ("spd", "spe"), True),
+    "ATK_DEF_ACC_UP": ("atk", ("def", "acc"), False), "SPEED_UP_2_ATK_UP": ("atk", ("spe",), True),
+    "ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN": ("atk", ("spa", "spe"), True),
+    "ATK_SP_ATK_UP": ("atk", ("spa",), False),
+    "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP": ("atk", ("spa", "spe"), True),
+    "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2": ("spa", ("spd", "spe"), True),
+    "ATK_DEF_SPEED_UP": ("atk", ("def", "spe"), True),
+    "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP": ("atk", ("def", "spe", "spa", "spd"), False),
+}
+# Basic's lowering handlers by the stage each reads (the two harsh accuracy
+# and evasion drops go to each other's handler, as vanilla sends them).
+LOWERS = {"ATK_DOWN": "atk", "ATK_DOWN_2": "atk", "DEF_DOWN": "def", "DEF_DOWN_2": "def",
+          "SPEED_DOWN": "spe", "SPEED_DOWN_2": "spe", "SP_ATK_DOWN": "spa", "SP_ATK_DOWN_2": "spa",
+          "SP_DEF_DOWN": "spd", "SP_DEF_DOWN_2": "spd", "ACC_DOWN": "acc", "EVA_DOWN": "eva",
+          "EVA_DOWN_2": "acc", "ACC_DOWN_2": "eva"}
+# The effects Basic_CheckNonStandardDamageOrChargeTurn takes (870 to 882).
+NONSTANDARD = {"BIDE", "CHARGE_TURN_HIGH_CRIT", "HALVE_HP", "40_DAMAGE_FLAT", "RECHARGE_AFTER",
+               "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL", "COUNTER",
+               "INCREASE_POWER_WITH_LESS_HP", "POWER_BASED_ON_FRIENDSHIP", "RANDOM_POWER_MAYBE_HEAL",
+               "POWER_BASED_ON_LOW_FRIENDSHIP", "20_DAMAGE_FLAT", "RANDOM_POWER_BASED_ON_IVS",
+               "MIRROR_COAT", "CHARGE_TURN_DEF_UP", "HIT_LAST_WHIFF_IF_HIT", "LOWER_OWN_ATK_AND_DEF",
+               "SET_HP_EQUAL_TO_USER", "INCREASE_POWER_WITH_WEIGHT", "POWER_BASED_ON_LOW_SPEED",
+               "HIGHER_POWER_WHEN_LOW_PP", "INCREASE_POWER_WITH_MORE_HP",
+               "INCREASE_POWER_WITH_MORE_STAT_UP"}
+# Status effects element 4 added whose effect is not written yet (442 to 456).
+UNWRITTEN = {"ADD_THIRD_TYPE_GHOST", "ADD_THIRD_TYPE_GRASS", "APPLY_TERRAINS",
+             "CHANGE_TO_PSYCHIC_TYPE", "DECORATE", "ION_DELUGE", "POWDER", "QUASH",
+             "SET_ABILITY_TO_SIMPLE", "SHED_TAIL", "STUFF_CHEEKS", "TIDY_UP", "TOXIC_THREAD",
+             "WEATHER_SNOW"}
+
+
+# ---- what the AI knows of its target
+
+def _regular_abilities(mon):
+    """SPECIES_DATA_ABILITY_1 and _2 of the Pokemon's species; the
+    calculator's blob is made from the same species data."""
+    ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
+    return ab.get("0"), ab.get("1")
+
+
+def ability_of(b, u, mon):
+    """AICmd_LoadBattlerAbility as the AI's Pokemon u reads mon (trainer_ai.c
+    1217 to 1260): no ability under Gastro Acid; its own side's real ability;
+    for a foe, the ability a battle message has named (mon.revealed), else the
+    real one if it traps, else a fresh coin between its species' two regular
+    slots. Each call is its own flip, as each command is."""
+    if getattr(mon, "suppressed", False):
+        return None
+    if mon.side == u.side:
+        return mon.ability
+    if getattr(mon, "revealed", None):
+        return mon.revealed
+    if mon.ability in TRAP_ABILITIES:
+        return mon.ability
+    a1, a2 = _regular_abilities(mon)
+    if a1 and a2:
+        return a1 if chance(b, 50) else a2
+    return a1 or a2
+
+
+def check_ability(b, u, mon, name):
+    """AICmd_CheckBattlerAbility (1262 to 1317): "have", "not" or "unknown".
+    An unannounced foe whose species has two slots is unknown when either is
+    the ability asked about, and read as its first slot otherwise. No flip."""
+    if getattr(mon, "suppressed", False):
+        ab = None
+    elif mon.side == u.side:
+        ab = mon.ability
+    elif getattr(mon, "revealed", None):
+        ab = mon.revealed
+    elif mon.ability in TRAP_ABILITIES:
+        ab = mon.ability
+    else:
+        a1, a2 = _regular_abilities(mon)
+        ab = (None if name in (a1, a2) else a1) if a1 and a2 else (a1 or a2)
+    if ab is None:
+        return "unknown"
+    return "have" if ab == name else "not"
+
+
+def mold(u, mon):
+    """AICmd_IfMoldBreakerIgnores and Battler_IgnorableAbility: u's Mold
+    Breaker gets past mon's ability unless mon holds an Ability Shield."""
+    return u.ability == "Mold Breaker" and mon.item != "Ability Shield"
+
+
+def script_type(b, u, mv):
+    """LoadTypeFrom LOAD_MOVE_TYPE (AI_ScriptMoveType, 974 to 981): Weather
+    Ball's type from the weather, every other move its listed type."""
+    return move_type(b, u, mv) if mv.const == "MOVE_WEATHER_BALL" else mv.type
+
+
+# ---- the damage figure
+
 def has_comparison(mv):
-    return mv.damaging() and mv.effect not in NO_CALC and (mv.power > 1 or mv.effect == "LEVEL_DAMAGE_FLAT")
+    """AICmd_FlagMoveDamageScore's gate (1058 to 1113): an alternative-power
+    effect, a computed-power hit, or listed power above 1 outside the
+    no-calc table."""
+    return (mv.effect in ALT_POWER or mv.const in COMPUTED_POWER_HITS
+            or (mv.power > 1 and mv.effect not in NO_CALC))
 
 
 def figure(b, u, t, mv):
-    """The AI's damage figure: the top roll, no critical hit, stages and
-    screens applied; 0 for an immunity, None without a comparison."""
+    """TrainerAI_CalcDamage at the top roll (3249 to 3528): no critical
+    hit, one hit of a multi-hit move, no Life Orb; 0 for an immunity the type
+    chart flags; None without a comparison. Fixed damage is set directly."""
     if not has_comparison(mv):
         return None
-    if mv.effect == "LEVEL_DAMAGE_FLAT":
-        return u.level if fs.effectiveness(b.st["chart"], mv.type, t.types) else 0
+    if script_eff(b, u, t, mv) == 0:
+        return 0
+    fixed = {"LEVEL_DAMAGE_FLAT": u.level, "40_DAMAGE_FLAT": 40, "20_DAMAGE_FLAT": 20}
+    if mv.effect in fixed:
+        return fixed[mv.effect]
+    if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL":
+        return u.level * (5 + int(b.rng.random() * 11)) // 10    # drawn again each time
     d = b.damage(u, t, mv, ai_view=True)
-    return 0 if d is None else d
+    if d == 0 and t.side == "p":
+        d = _unabsorbed(b, u, t, mv)
+    if d is None:
+        return None          # no row: no comparison, rather than an immunity
+    hits = ROW_HITS.get(mv.effect)
+    if hits:
+        d //= 5 if (u.ability == "Skill Link" and mv.effect == "MULTI_HIT") else hits
+    if u.item == "Life Orb":
+        d = d * 4096 // 5324                       # the calculator's 1.3, taken back off
+    if u.ability == "Flash Fire" and mv.type == "Fire" and not getattr(u, "flash_fire", False):
+        d = d * 2 // 3                             # the row has Flash Fire always on
+    if PINCH.get(u.ability) == mv.type and u.hp <= u.maxhp // 3:
+        d = d * 3 // 2                             # the row is made at full HP
+    return d
+
+
+def _unabsorbed(b, u, t, mv):
+    """The estimate leaves out the abilities that take a move whole (Flash
+    Fire, Volt Absorb, Water Absorb, Motor Drive, Dry Skin, Lightning Rod,
+    Storm Drain, Sap Sipper, Soundproof, Bulletproof), which the calculator's
+    row reads as 0. Cost the move on the Pokemon's ability-blank twin, once
+    prepare() makes one (st["ai_twin"]), else on the same Pokemon with its
+    other regular ability; with neither, 0 stands."""
+    base = t.key.split("~")[0]
+    twins = [b.st.get("ai_twin", {}).get(t.key)] + list(b.st.get("variants", {}).get(base, ()))
+    for k in twins:
+        if k and k != t.key:
+            alt = copy.copy(t)
+            alt.key = k
+            d = b.damage(u, alt, mv, ai_view=True)
+            if d:
+                return d
+    return 0
 
 
 # Who moves first, as the AI reads it: BattleSystem_CompareBattlerSpeed,
@@ -152,27 +364,55 @@ def eff_of(b, mon, mv, t):
     return fs.effectiveness(b.st["chart"], move_type(b, mon, mv), t.types)
 
 
+def invalid(b, u, mv):
+    """BattleSystem_CheckInvalidMoves(CHECK_INVALID_ALL) for one of u's moves
+    (battle_lib.c 2394 to 2485)."""
+    if u.pp.get(mv.name, 1) <= 0:
+        return True
+    if mv.name == getattr(u, "disabled", None):
+        return True
+    if getattr(u, "tormented", False) and u.last is not None and u.last.name == mv.name:
+        return True
+    if u.taunt and mv.power == 0:
+        return True
+    if mv.name in getattr(u, "sealed", ()):                   # the foe's Imprison
+        return True
+    if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
+        return True
+    if getattr(u, "heal_block", 0) and mv.const in HEAL_BLOCKED:
+        return True
+    if mv.const == "MOVE_BELCH" and not getattr(u, "ate_berry", False):
+        return True
+    if getattr(u, "throat_chop", 0) and mv.const in SOUND_MOVES:
+        return True
+    if u.item == "Assault Vest" and mv.cat == "Status" and mv.const != "MOVE_ME_FIRST":
+        return True
+    enc = getattr(u, "encore", None)
+    if enc is not None and mv.name != enc:
+        return True
+    if u.choice and (u.item or "").startswith("Choice") and mv.name != u.choice \
+            and any(m.name == u.choice for m in u.moves):
+        return True
+    return False
+
+
 def score_moves(b, u, t, flags):
-    """[score] for u's four slots."""
+    """[score] for u's four slots (TrainerAI_Init, TrainerAI_EvalMoves): 100,
+    or 0 for a move CheckInvalidMoves rules out, which the routines still
+    score; a slot with no PP is 0 under every flag. Each flag's total is
+    floored at 0, and past 127 the signed byte wraps and is floored to 0."""
     figs = [figure(b, u, t, m) for m in u.moves]
     best = max((f for f in figs if f is not None), default=None)
     out = []
     for i, mv in enumerate(u.moves):
-        s = 100
-        invalid = u.pp.get(mv.name, 1) <= 0 or (u.taunt and mv.cat == "Status") or \
-            (u.choice and mv.name != u.choice)
-        if invalid:
-            s = 0
-        f = figs[i]
-        for bit in range(11):
-            if not flags >> bit & 1:
-                continue
-            s += flag_score(bit, b, u, t, mv, f, best)
-            s = 0 if s < 0 else s
-            if s > 127:
-                s = 0                      # the signed byte wraps
         if u.pp.get(mv.name, 1) <= 0:
-            s = -1                         # no PP: never picked
+            out.append(0)
+            continue
+        s = 0 if invalid(b, u, mv) else 100
+        for bit in range(11):
+            if flags >> bit & 1:
+                s += flag_score(bit, b, u, t, mv, figs[i], best)
+                s = 0 if s < 0 or s > 127 else s
         out.append(s)
     return out
 
@@ -205,129 +445,511 @@ def flag_score(bit, b, u, t, mv, f, best):
     return 0
 
 
-def basic(b, u, t, mv, f):
-    e = mv.effect
-    foe_side = b.p if t.side == "p" else b.b
-    own_side = b.p if u.side == "p" else b.b
-    if mv.damaging() and f == 0:
+# ---- Basic
+
+def basic(b, u, t, mv, f=None):
+    """Basic_Main (script.s 52 to 467) and every handler it reaches."""
+    r = _basic_entry(b, u, t, mv)
+    if r is not None:
+        return r
+    return _basic_effect(b, u, t, mv)
+
+
+def _basic_entry(b, u, t, mv):
+    """Basic_Main to Basic_CheckQueenlyMajesty_Priority (52 to 234): the
+    score to end on, or None to go on to Basic_ScoreMoveEffect."""
+    e40 = script_eff(b, u, t, mv)
+    if mv.const in ("MOVE_FISSURE", "MOVE_HORN_DRILL") or has_comparison(mv) or mv.power > 0:
+        # Basic_CheckForImmunity and the absorbing abilities (73 to 128).
+        if e40 == 0:
+            return -10
+        if not mold(u, t):
+            ab = ability_of(b, u, t)
+            if ABSORBS_TYPE.get(ab) == script_type(b, u, mv) or (ab == "Wonder Guard" and e40 not in (80, 160)):
+                return -12
+    # Basic_CheckSoundproof (134 to 170): with Mold Breaker and a Soundproof
+    # guess the script jumps to Basic_ScoreMoveEffect, past the next four.
+    if ability_of(b, u, t) == "Soundproof":
+        if mold(u, t):
+            return None
+        if mv.const in BASIC_SOUND:
+            return -10
+    # Basic_CheckBulletproof (172 to 203).
+    if ability_of(b, u, t) == "Bulletproof" and not mold(u, t) and mv.const in BALL_AND_BOMB:
         return -10
-    if mv.damaging() and eff(b, mv, t) == 0:
+    # Basic_CheckPrankster (205 to 208), IfPranksterBlockedByDark.
+    if (u.ability == "Prankster" and mv.cat == "Status" and mv.range not in NOT_AT_FOE
+            and mv.range != "OPPONENT_SIDE" and "Dark" in t.types):
         return -10
-    # Basic_CheckPowderImmunity (Oxide): a powder move at a Grass type or an
-    # Overcoat holder scores -10; Rage Powder is aimed at its user.
-    if mv.name in fs.POWDER and mv.name != "Rage Powder" and fs.powder_immune(t, mv):
+    # Basic_CheckMagicBounce (210 to 217).
+    if (check_ability(b, u, t, "Magic Bounce") == "have" and not mold(u, t)
+            and getattr(mv, "reflectable", False) and mv.range not in NOT_AT_FOE):
         return -10
-    if e in fs.STATUS_OF:
-        # Status moves skip Basic's immunity check (basic.md, lines 62 to 68);
-        # of the status handlers only Basic_CheckCannotParalyze asks the type
-        # chart (Thunder Wave on Ground, Glare on Ghost). So Hypnosis keeps its
-        # score against a Dark type.
-        immune = e == "STATUS_PARALYZE" and eff(b, mv, t) == 0
-        return -10 if not fs.can_status(b, t, fs.STATUS_OF[e]) or immune else 0
-    if e == "STATUS_SLEEP_NEXT_TURN":
-        return -10 if t.status or t.yawn or not fs.can_status(b, t, "slp") else 0
-    if e in ("STATUS_CONFUSE", "ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
-        return -5 if t.confused else (-10 if t.ability == "Own Tempo" else 0)
-    if e == "STATUS_LEECH_SEED":
-        return -10 if t.seeded or "Grass" in t.types else 0
-    # Basic_CheckMeanLook and Basic_CheckAlreadyIngrained
-    # (docs/oxide/battle-ai/basic.md): a second trap, a second rooting.
-    if e == "PREVENT_ESCAPE":
-        return -10 if t.trapped_by is not None else 0
-    if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
-        return -10 if u.ingrained else 0
-    if e in fs.SELF_STAGES:
-        ch = fs.SELF_STAGES[e]
-        stats = [k for k, v in ch.items() if v > 0]
-        if stats and u.stages[stats[0]] >= 6:
-            return -10
-        if len(stats) > 1 and u.stages[stats[1]] >= 6:
-            return -8
-        if "spe" in stats and b.trick_room:
-            return -10
-        return 0
-    if e in fs.FOE_STAGES:
-        k = next(iter(fs.FOE_STAGES[e]))
-        if t.stages[k] <= -6:
-            return -10
-        if t.ability in ("Clear Body", "White Smoke") or (k == "atk" and t.ability == "Hyper Cutter"):
-            return -10
-        return 0
-    if e == "MAX_ATK_LOSE_HALF_MAX_HP":
-        return -10 if u.frac() <= 50 or u.stages["atk"] >= 6 else 0
-    if e == "CURSE" and "Ghost" not in u.types:
-        return -10 if u.stages["atk"] >= 6 else (-8 if u.stages["def"] >= 6 else 0)
-    if e == "CRIT_UP_2":
-        return -10 if u.crit_stage else 0
-    if e in ("SET_LIGHT_SCREEN", "SET_REFLECT"):
-        key = "Light Screen" if e == "SET_LIGHT_SCREEN" else "Reflect"
-        return -8 if own_side.screens[key] else 0
-    if e == "PREVENT_STATUS":
-        return -8 if own_side.safeguard else 0
-    if e == "DOUBLE_SPEED_3_TURNS":
-        return -10 if own_side.tailwind or b.trick_room else 0
-    if e == "TRICK_ROOM":
-        return -10 if not slower(b, u, t) else 0
-    if e == "SET_SUBSTITUTE":
-        return -8 if u.sub else (-10 if u.frac() <= 25 else 0)
-    if e in fs.WEATHER_OF:
-        return -8 if b.weather == fs.WEATHER_OF[e] else 0
-    if e == "SET_SPIKES":
-        return -10 if foe_side.hazards["spikes"] >= 3 or not foe_side.bench() else 0
-    if e == "TOXIC_SPIKES":
-        return -10 if foe_side.hazards["tspikes"] >= 2 or not foe_side.bench() else 0
-    if e == "STEALTH_ROCK":
-        return -10 if foe_side.hazards["rocks"] or not foe_side.bench() else 0
-    if e in fs.HEAL_HALF or e == "HEAL_HALF_MORE_IN_SUN":
-        return -8 if u.hp == u.maxhp else 0
-    if e == "REST":
-        return -8 if u.hp == u.maxhp else (-10 if u.ability in ("Insomnia", "Vital Spirit") else 0)
-    if e == "RECOVER_DAMAGE_SLEEP":
-        return -8 if t.status != "slp" else 0
-    if e in fs.SELF_KO and mv.damaging():
-        if eff(b, mv, t) == 0:
-            return -10
-        if not own_side.bench() and foe_side.bench():
-            return -10
-        return 0
-    if e == "FORCE_SWITCH":
-        return -10 if not foe_side.bench() else 0
-    if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY":
-        return -10 if u.turns_in > 0 else 0
-    if e == "HIT_IN_3_TURNS":
-        return -12 if getattr(t, "future", 0) else 0
-    if e == "RESET_STAT_CHANGES":
-        worse = any(v < 0 for v in u.stages.values()) or any(v > 0 for v in t.stages.values())
-        return 0 if worse else -10
-    if e == "TAUNT":
-        return -10 if t.taunt else 0
-    if e == "ALL_FAINT_3_TURNS":
-        return -10 if t.perish or u.perish else 0
-    if e in ("PASS_STATS_AND_STATUS",):
-        return -10 if not own_side.bench() else 0
-    if e == "PROTECT":
-        return 0
+    # Basic_CheckQueenlyMajesty (219 to 234): a move of raised priority at the foe.
+    pri = mv.pri + (1 if u.ability == "Prankster" and mv.cat == "Status" else 0)
+    if pri > 0 and mv.range not in NOT_AT_FOE and not mold(u, t) \
+            and ability_of(b, u, t) == "Queenly Majesty":
+        return -10
+    return None
+
+
+def _clear_body(b, u, t):
+    """Basic_CheckClearBodyEffect and Basic_CheckFlowerVeil (722 to 752), the
+    tail of every lowering handler."""
+    ab = ability_of(b, u, t)
+    if ab in ("Clear Body", "White Smoke") or (ab == "Mirror Armor" and not mold(u, t)):
+        return -10
+    if "Grass" in t.types and not mold(u, t) and ability_of(b, u, t) == "Flower Veil":
+        return -10
     return 0
 
 
+def _basic_effect(b, u, t, mv):
+    """Basic_ScoreMoveEffect and the effect dispatch (236 to 467) with the
+    handler each effect reaches; an effect not listed scores 0."""
+    e, c = mv.effect, mv.const
+    foe = b.p if t.side == "p" else b.b
+    own = b.p if u.side == "p" else b.b
+    hu = u.frac()
+    guard = bool(foe.safeguard) and u.ability != "Infiltrator"       # Basic_Safeguard*, 908 to 931
+
+    # Basic_CheckPowderImmunity (519 to 529), falling into Basic_CheckSapSipper (531 to 539).
+    if c in BASIC_POWDERS or c in GRASS_STATUS:
+        if c in BASIC_POWDERS and "Grass" in t.types:
+            return -10
+        if not mold(u, t):
+            if c in BASIC_POWDERS and ability_of(b, u, t) == "Overcoat":
+                return -10
+            if script_type(b, u, mv) == "Grass" and ability_of(b, u, t) == "Sap Sipper":
+                return -10
+
+    if e in ("STATUS_SLEEP", "STATUS_SLEEP_NEXT_TURN"):            # Basic_CheckCannotSleep
+        if t.status or guard or ability_of(b, u, t) in ("Insomnia", "Vital Spirit"):
+            return -10
+        return -10 if not mold(u, t) and ability_of(b, u, t) in ("Purifying Salt", "Sweet Veil") else 0
+    if e == "HALVE_DEFENSE":                                        # Basic_CheckCannotExplode
+        if script_eff(b, u, t, mv) == 0:
+            return -10
+        if not mold(u, t) and ability_of(b, u, t) == "Damp":
+            return -10
+        if not own.bench():                                         # Basic_CheckLastMon
+            return -10 if foe.bench() else -1
+        return 0
+    if e == "MIND_BLOWN":
+        return -10 if not mold(u, t) and ability_of(b, u, t) == "Damp" else 0
+    if e == "RECOVER_DAMAGE_SLEEP":                                 # Basic_CheckDreamEater
+        if t.status != "slp":
+            return -8
+        return -10 if script_eff(b, u, t, mv) == 0 else 0
+    if e == "MAX_ATK_LOSE_HALF_MAX_HP":                             # Basic_CheckBellyDrum
+        return -10 if hu < 51 or u.stages["atk"] >= 6 else 0
+    if e in RAISES:
+        first, rest, room = RAISES[e]
+        if room and b.trick_room:
+            return -10
+        if (e == "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP" and hu < 51) or \
+                (e == "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP" and hu < 34):
+            return -10
+        if u.stages[first] >= 6:
+            return -10
+        return -8 if any(u.stages[k] >= 6 for k in rest) else 0
+    if e in ("ACC_UP", "ACC_UP_2", "EVA_UP", "EVA_UP_2", "EVA_UP_2_MINIMIZE"):
+        k = "acc" if e.startswith("ACC") else "eva"
+        blocks = ("No Guard",) if k == "acc" else ("No Guard", "Keen Eye", "Illuminate")
+        if ability_of(b, u, t) in blocks or u.ability == "No Guard":
+            return -10
+        return -10 if u.stages[k] >= 6 else 0
+    if e == "TAKE_HEART":                                           # Basic_CheckTakeHeart
+        if u.status:
+            return 0
+        return -10 if u.stages["spa"] >= 6 else (-8 if u.stages["spd"] >= 6 else 0)
+    if e in LOWERS:                                                 # Basic_CheckLowStatStage_*
+        k = LOWERS[e]
+        if k == "spe" and b.trick_room:
+            return -10
+        if t.stages[k] <= -6:
+            return -10
+        if k == "atk" and ability_of(b, u, t) == "Hyper Cutter":
+            return -10
+        if k == "def" and ability_of(b, u, t) == "Big Pecks":
+            return -10
+        if k == "spe" and check_ability(b, u, t, "Speed Boost") == "have":
+            return -10
+        if k == "acc" and (u.ability == "No Guard"
+                           or ability_of(b, u, t) in ("Keen Eye", "Illuminate", "No Guard")):
+            return -10
+        if k == "eva" and (u.ability in ("No Guard", "Keen Eye", "Illuminate")
+                           or ability_of(b, u, t) == "No Guard"):
+            return -10
+        return _clear_body(b, u, t)
+    if e in ("RESET_STAT_CHANGES", "COPY_STAT_CHANGES", "SWAP_STAT_CHANGES"):
+        worse = any(v < 0 for v in u.stages.values()) or any(v > 0 for v in t.stages.values())
+        return 0 if worse else -10                                  # Basic_CheckStatStageImbalance
+    if e == "FORCE_SWITCH":                                         # Basic_CheckCanForceSwitch
+        if not foe.bench():
+            return -10
+        return -10 if not mold(u, t) and ability_of(b, u, t) == "Suction Cups" else 0
+    if e in ("RESTORE_HALF_HP", "HEAL_HALF_MORE_IN_SUN", "HEAL_HALF_REMOVE_FLYING_TYPE",
+             "LIFE_DEW", "UNUSED_133", "UNUSED_134", "UNUSED_157"):  # Basic_CheckCanRecoverHP
+        return -8 if hu == 100 else 0
+    if e == "LUNAR_BLESSING":
+        return 0 if u.status else (-8 if hu == 100 else 0)
+    if e in ("STATUS_POISON", "STATUS_BADLY_POISON"):              # Basic_CheckCannotPoison
+        if {"Steel", "Poison"} & set(t.types):
+            return -10
+        ab = ability_of(b, u, t)
+        if ab in ("Immunity", "Magic Guard", "Poison Heal") or (ab == "Leaf Guard" and b.weather == "Sun"):
+            return -10
+        if ability_of(b, u, t) == "Hydration" and b.weather == "Rain":
+            return -10
+        if t.status or guard:
+            return -10
+        return -10 if not mold(u, t) and ability_of(b, u, t) in ("Purifying Salt", "Pastel Veil") else 0
+    if e == "SET_LIGHT_SCREEN":
+        return -8 if own.screens["Light Screen"] else 0
+    if e == "SET_REFLECT":
+        return -8 if own.screens["Reflect"] else 0
+    if e == "PREVENT_STAT_REDUCTION":                               # Mist
+        return -8 if getattr(own, "mist", 0) else 0
+    if e == "PREVENT_STATUS":                                       # Safeguard
+        return -8 if own.safeguard else 0
+    if e == "ONE_HIT_KO":                                           # Basic_CheckOHKOWouldFail
+        if script_eff(b, u, t, mv) == 0:
+            return -10
+        if not mold(u, t) and ability_of(b, u, t) == "Sturdy":
+            return -10
+        return -10 if u.level < t.level else 0
+    if e in NONSTANDARD or e == "PSYWAVE":
+        # Basic_CheckMagnitude (Magnitude's effect is PSYWAVE): its Mold
+        # Breaker test reads a stale value and never fires (vanilla B5).
+        if e == "PSYWAVE" and ability_of(b, u, t) == "Levitate":
+            return -10
+        e40 = script_eff(b, u, t, mv)                                # Basic_CheckNonStandardDamageOrChargeTurn
+        if e40 == 0:
+            return -10
+        if ability_of(b, u, t) == "Wonder Guard" and not mold(u, t) and e40 not in (80, 160):
+            return -10
+        return 0
+    if e == "CRIT_UP_2":                                            # Basic_CheckAlreadyPumpedUp
+        return -10 if u.crit_stage else 0
+    if e in ("STATUS_CONFUSE", "ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
+        if t.confused:                                              # Basic_CheckCannotConfuse
+            return -5
+        return -10 if ability_of(b, u, t) == "Own Tempo" or guard else 0
+    if e == "STATUS_PARALYZE":                                      # Basic_CheckCannotParalyze
+        if script_eff(b, u, t, mv) == 0 or "Electric" in t.types or ability_of(b, u, t) == "Limber":
+            return -10
+        if not mold(u, t):
+            if ability_of(b, u, t) == "Purifying Salt":
+                return -10
+            if c == "MOVE_THUNDER_WAVE" and \
+                    ability_of(b, u, t) in ("Motor Drive", "Volt Absorb", "Lightning Rod"):
+                return -10
+        return -10 if t.status or guard else 0
+    if e == "SET_SUBSTITUTE":                                       # Basic_CheckCannotSubstitute
+        return -8 if u.sub else (-10 if hu < 26 else 0)
+    if e == "STATUS_LEECH_SEED":                                    # Basic_CheckCannotLeechSeed
+        if t.seeded or "Grass" in t.types:
+            return -10
+        return -10 if ability_of(b, u, t) == "Magic Guard" else 0
+    if e == "DISABLE":
+        return -8 if getattr(t, "disabled", None) else 0
+    if e == "ENCORE":
+        return -8 if getattr(t, "encore", None) else 0
+    if e in ("DAMAGE_WHILE_ASLEEP", "USE_RANDOM_LEARNED_MOVE_SLEEP"):  # Basic_CheckAttackerAsleep
+        return -8 if u.status != "slp" else 0
+    if e == "NEXT_ATTACK_ALWAYS_HITS":                              # Basic_CheckLockOn
+        if getattr(t, "locked_on", 0) or u.ability == "No Guard":
+            return -10
+        return -10 if ability_of(b, u, t) == "No Guard" else 0
+    if e == "PREVENT_ESCAPE":                                       # Basic_CheckMeanLook
+        return -10 if t.trapped_by is not None or "Ghost" in t.types else 0
+    if e == "STATUS_NIGHTMARE":                                     # Basic_CheckNightmare
+        if getattr(t, "nightmare", False):
+            return -10
+        if t.status != "slp":
+            return -8
+        return -10 if ability_of(b, u, t) == "Magic Guard" else 0
+    if e == "CURSE":                                                # Basic_CheckCurse
+        if "Ghost" in u.types:
+            return -10 if t.cursed or ability_of(b, u, t) == "Magic Guard" else 0
+        return -10 if u.stages["atk"] >= 6 else (-8 if u.stages["def"] >= 6 else 0)
+    if e == "SET_SPIKES":                                           # Basic_CheckSpikes
+        return -10 if foe.hazards["spikes"] >= 3 or not foe.bench() else 0
+    if e == "FORESIGHT":
+        return -10 if getattr(t, "foresight", False) else 0
+    if e == "ALL_FAINT_3_TURNS":                                    # Basic_CheckPerishSong
+        return -10 if t.perish else 0
+    if e == "WEATHER_SANDSTORM":
+        return -8 if b.weather == "Sand" else 0
+    if e == "INFATUATE":                                            # Basic_CheckCannotAttract
+        if getattr(t, "infatuated", False) or ability_of(b, u, t) == "Oblivious":
+            return -10
+        ug, tg = getattr(u, "gender", None), getattr(t, "gender", None)
+        if ug is None or tg is None:
+            return 0                                                # genders not kept yet
+        return 0 if {ug, tg} == {"M", "F"} else -10
+    if e == "FAINT_AND_ATK_SP_ATK_DOWN_2":                          # Basic_CheckMemento
+        if not mold(u, t) and ability_of(b, u, t) in ("Clear Body", "White Smoke"):
+            return -10
+        if t.stages["atk"] <= -6:
+            return -10
+        if t.stages["spa"] <= -6:
+            return -8
+        return -10 if not own.bench() else 0
+    if e == "PASS_STATS_AND_STATUS":                                # Basic_CheckBatonPass
+        return -10 if not own.bench() else 0
+    if e == "WEATHER_RAIN":                                         # Basic_CheckRainDance
+        if u.ability not in ("Swift Swim", "Hydration") and ability_of(b, u, t) == "Hydration" and t.status:
+            return -8
+        return -8 if b.weather == "Rain" else 0
+    if e == "WEATHER_SUN":                                          # Basic_CheckSunnyDay
+        if u.ability not in ("Flower Gift", "Leaf Guard", "Solar Power") and \
+                ability_of(b, u, t) == "Leaf Guard" and not t.status:
+            return -10
+        return -8 if b.weather == "Sun" else 0
+    if e == "HIT_IN_3_TURNS":                                       # Basic_CheckFutureSight
+        return -12 if getattr(foe, "future_sight", 0) or getattr(own, "future_sight", 0) else 0
+    if e == "FLEE_FROM_WILD_BATTLE":                                # Teleport
+        return -10
+    if e in ("ALWAYS_FLINCH_FIRST_TURN_ONLY", "FIRST_TURN_ONLY"):   # Basic_CheckFirstTurnInBattle
+        return 0 if u.turns_in <= 0 else -10
+    if e == "STOCKPILE":                                            # Basic_CheckMaxStockpile
+        return -10 if getattr(u, "stockpile", 0) == 3 else 0
+    if e in ("SPIT_UP", "SWALLOW"):                                 # Basic_CheckCanSpitUpOrSwallow
+        if script_eff(b, u, t, mv) == 0 or getattr(u, "stockpile", 0) == 0:
+            return -10
+        return -8 if e == "SWALLOW" and hu == 100 else 0
+    if e == "WEATHER_HAIL":                                         # Basic_CheckHail
+        if b.weather == "Hail":
+            return -8
+        if ability_of(b, u, t) != "Ice Body":
+            return 0
+        return 0 if u.ability == "Ice Body" else -8
+    if e == "TORMENT":
+        return -10 if getattr(t, "tormented", False) else 0
+    if e == "STATUS_BURN":                                          # Basic_CheckCannotBurn
+        if ability_of(b, u, t) in ("Water Veil", "Magic Guard") or t.status or "Fire" in t.types or guard:
+            return -10
+        return -10 if not mold(u, t) and ability_of(b, u, t) in ("Purifying Salt", "Water Bubble") else 0
+    if e == "BOOST_ALLY_POWER_BY_50_PERCENT":                       # Basic_CheckHelpingHand
+        return 0 if getattr(b, "doubles", False) else -10
+    if e in ("SWITCH_HELD_ITEMS", "REMOVE_HELD_ITEM"):              # Basic_CheckCanRemoveItem
+        return -10 if ability_of(b, u, t) == "Sticky Hold" or not t.item else 0
+    if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":                     # Basic_CheckAlreadyIngrained
+        return -10 if u.ingrained else 0
+    if e == "RECYCLE":
+        return -10 if not getattr(u, "recycle_item", None) else 0
+    if e == "MAKE_SHARED_MOVES_UNUSEABLE":                          # Basic_CheckCanImprison
+        return -10 if getattr(u, "imprisoning", False) or getattr(t, "sealed", ()) else 0
+    if e == "HEAL_STATUS":                                          # Basic_CheckCanRefreshStatus
+        return 0 if u.status in ("brn", "psn", "tox", "par") else -10
+    if e == "HALVE_ELECTRIC_DAMAGE":                                # Mud Sport
+        return -10 if getattr(u, "mud_sport", False) else 0
+    if e == "HALVE_FIRE_DAMAGE":                                    # Water Sport
+        return -10 if getattr(u, "water_sport", False) else 0
+    if e == "ATK_DEF_DOWN":                                         # Basic_CheckTickle
+        if not mold(u, t) and ability_of(b, u, t) in ("Clear Body", "White Smoke"):
+            return -10
+        return -10 if t.stages["atk"] <= -6 else (-8 if t.stages["def"] <= -6 else 0)
+    if e == "CAMOUFLAGE":
+        return -10 if getattr(u, "camouflaged", False) else 0
+    if e == "GRAVITY":
+        return -10 if getattr(b, "gravity", 0) else 0
+    if e == "IGNORE_EVATION_REMOVE_DARK_IMMUNE":                    # Miracle Eye
+        return -10 if getattr(t, "miracle_eye", False) else 0
+    if e in ("FAINT_AND_FULL_HEAL_NEXT_MON", "FAINT_FULL_RESTORE_NEXT_MON"):
+        # Basic_CheckHealingWish and Basic_CheckLunarDance: -20, a further -10
+        # on the last Pokemon or with nothing to mend (a fainted or on-field
+        # party member counts as wounded, vanilla B7).
+        if not own.bench():
+            return -30
+        others = [m for m in own.mons if m is not u]
+        useful = any(m.status for m in own.bench()) or any(m.hp < m.maxhp for m in others)
+        if e == "FAINT_FULL_RESTORE_NEXT_MON":
+            useful = useful or any(m.pp.get(x.name, x.pp) < x.pp for m in others for x in m.moves)
+        return -20 if useful else -30
+    if e == "NATURAL_GIFT":                                         # Basic_CheckNaturalGift
+        if not (u.item and _gift_type(u.item)):
+            return -10
+        return -10 if script_eff(b, u, t, mv) == 0 else 0
+    if e == "DOUBLE_SPEED_3_TURNS":                                 # Basic_CheckTailwind
+        return -10 if b.trick_room or own.tailwind else 0
+    if e == "RANDOM_STAT_UP_2":                                     # Basic_CheckAcupressure
+        return -10 if any(v >= 6 for v in u.stages.values()) else 0
+    if e == "METAL_BURST":                                          # Basic_CheckMetalBurst
+        if script_eff(b, u, t, mv) == 0 or ability_of(b, u, t) == "Stall" \
+                or getattr(t, "known_item", None) == "Shiny Stone":
+            return -10
+        if u.ability == "Stall" or u.item == "Shiny Stone":
+            return 0
+        return -10 if speed_order(b, u, t) == "faster" else 0
+    if e == "PREVENT_ITEM_USE":                                     # Basic_CheckEmbargo
+        return -10 if getattr(t, "embargo", 0) else 0
+    if e == "FLING":
+        return _basic_fling(b, u, t, mv)
+    if e == "TRANSFER_STATUS":
+        return _basic_psycho_shift(b, u, t)
+    if e == "PREVENT_HEALING":                                      # Basic_CheckHealBlock
+        return -10 if getattr(t, "heal_block", 0) else 0
+    if e == "SWAP_ATK_DEF":                                         # Basic_CheckPowerTrick
+        return -10 if getattr(u, "power_trick", False) else 0
+    if e == "SUPRESS_ABILITY":                                      # Basic_CheckGastroAcid
+        if getattr(t, "suppressed", False):
+            return -10
+        return -10 if ability_of(b, u, t) in ("Multitype", "Truant", "Slow Start", "Stench",
+                                              "Run Away", "Pickup", "Honey Gather") else 0
+    if e == "PREVENT_CRITS":                                        # Basic_CheckLuckyChant
+        return -10 if getattr(own, "lucky_chant", 0) else 0
+    if e == "USE_LAST_USED_MOVE":                                   # Basic_CheckCopycat
+        return -10 if b.turn == 0 and speed_order(b, u, t) == "faster" else 0
+    if e == "SWAP_ATK_SP_ATK_STAT_CHANGES":                         # Basic_CheckPowerSwap
+        return -10 if t.stages["atk"] - u.stages["atk"] < 1 and t.stages["spa"] - u.stages["spa"] < 1 else 0
+    if e == "SWAP_DEF_SP_DEF_STAT_CHANGES":                         # Basic_CheckGuardSwap
+        return -10 if t.stages["def"] - u.stages["def"] < 1 and t.stages["spd"] - u.stages["spd"] < 1 else 0
+    if e == "FAIL_IF_NOT_USED_ALL_OTHER_MOVES":                     # Basic_CheckLastResort
+        others = [m.name for m in u.moves if m.name != mv.name]
+        used = getattr(u, "used_moves", set())
+        return 0 if others and all(n in used for n in others) else -10
+    if e == "SET_ABILITY_TO_INSOMNIA":                              # Basic_CheckWorrySeed
+        if ability_of(b, u, t) in ("Truant", "Insomnia", "Vital Spirit", "Multitype"):
+            return -10
+        seen = {m.name for m in shown(t)}
+        return -10 if t.status == "slp" and not seen & {"Sleep Talk", "Snore"} else 0
+    if e == "TOXIC_SPIKES":                                         # Basic_CheckToxicSpikes
+        return -10 if foe.hazards["tspikes"] >= 2 or not foe.bench() else 0
+    if e == "RESTORE_HP_EVERY_TURN":                                # Basic_CheckAquaRing
+        return -10 if getattr(u, "aqua_ring", False) else 0
+    if e == "GIVE_GROUND_IMMUNITY":                                 # Basic_CheckMagnetRise
+        return -10 if getattr(u, "magnet_rise", 0) or u.ability == "Levitate" or "Flying" in u.types else 0
+    if e == "REMOVE_HAZARDS_SCREENS_EVA_DOWN":
+        return _basic_defog(b, u, t, own, foe)
+    if e == "TRICK_ROOM":                                           # Basic_CheckTrickRoom
+        if getattr(b, "trick_room_perm", b.trick_room >= 999):
+            return -10
+        return -10 if speed_order(b, u, t) != "slower" else 0
+    if e == "WONDER_ROOM":                                          # Basic_CheckWonderRoom
+        return -10 if getattr(b, "wonder_room_perm", False) else 0
+    if e == "SP_ATK_DOWN_2_OPPOSITE_GENDER":                        # Basic_CheckCaptivate
+        if not mold(u, t) and ability_of(b, u, t) in ("Oblivious", "Clear Body", "White Smoke"):
+            return -10
+        ug, tg = getattr(u, "gender", None), getattr(t, "gender", None)
+        if ug is not None and tg is not None and {ug, tg} != {"M", "F"}:
+            return -10
+        return -10 if t.stages["spa"] <= -6 else 0
+    if e == "STEALTH_ROCK":                                         # Basic_CheckStealthRock
+        return -10 if foe.hazards["rocks"] or not foe.bench() else 0
+    if e == "POLTERGEIST":
+        return -10 if not t.item else 0
+    if e == "STICKY_WEB":
+        return -10 if getattr(foe, "sticky_web", False) or not foe.bench() else 0
+    if e == "SET_AURORA_VEIL":
+        if getattr(own, "aurora_veil", 0):
+            return -8
+        return -10 if b.weather != "Hail" else 0
+    if e == "STRENGTH_SAP":
+        return -10 if t.stages["atk"] <= -6 else 0
+    if e == "PARTING_SHOT":
+        return -10 if t.stages["atk"] <= -6 and t.stages["spa"] <= -6 else 0
+    if (e == "HIT" and mv.power == 0) or e in UNWRITTEN:            # Basic_CheckUnwrittenStatusMove
+        return -10
+    if e == "REST":                                                 # Basic_CheckRest
+        if hu == 100:
+            return -8
+        if u.ability in ("Insomnia", "Vital Spirit", "Purifying Salt", "Sweet Veil") or \
+                (u.ability == "Leaf Guard" and b.weather == "Sun"):
+            return -10
+        return -10 if u.ability != "Soundproof" and getattr(b, "uproar", 0) else 0
+    if e == "TAUNT":                                                # Basic_CheckTaunt
+        return -10 if not mold(u, t) and ability_of(b, u, t) == "Oblivious" else 0
+    return 0
+
+
+def _basic_fling(b, u, t, mv):
+    """Basic_CheckFling (1602 to 1702)."""
+    if script_eff(b, u, t, mv) == 0:
+        return -10
+    rec = _item(u.item) if u.item else {}
+    if (rec.get("flingPower") or 0) < 10 or u.ability == "Multitype":
+        return -10
+    hold = rec.get("holdEffect")
+    foe_guard = (b.p if t.side == "p" else b.b).safeguard
+    own_guard = (b.p if u.side == "p" else b.b).safeguard
+    if hold in ("HOLD_EFFECT_PSN_USER", "HOLD_EFFECT_STRENGTHEN_POISON"):
+        if not (foe_guard or t.status or u.ability == "Poison Heal" or {"Poison", "Steel"} & set(t.types)
+                or ability_of(b, u, t) in ("Immunity", "Poison Heal", "Magic Guard")):
+            return 0
+        if own_guard or u.status or {"Poison", "Steel"} & set(u.types) or \
+                u.ability in ("Klutz", "Immunity", "Poison Heal", "Magic Guard", "Guts"):
+            return -5
+        return 3
+    if hold == "HOLD_EFFECT_BRN_USER":
+        if not (foe_guard or t.status or "Fire" in t.types
+                or ability_of(b, u, t) in ("Magic Guard", "Water Veil")):
+            return 0
+        if own_guard or u.status or "Fire" in u.types or \
+                u.ability in ("Klutz", "Magic Guard", "Water Veil", "Guts"):
+            return -5
+        return 3
+    if hold == "HOLD_EFFECT_PIKA_SPATK_UP":
+        return -5 if foe_guard or t.status or ability_of(b, u, t) == "Limber" else 0
+    return 0
+
+
+def _basic_psycho_shift(b, u, t):
+    """Basic_CheckCanPsychoShift (1704 to 1754)."""
+    if not u.status or t.status or (b.p if t.side == "p" else b.b).safeguard:
+        return -10
+    if u.status in ("psn", "tox"):
+        if u.ability == "Poison Heal" or {"Poison", "Steel"} & set(t.types):
+            return -10
+        return -10 if ability_of(b, u, t) in ("Immunity", "Poison Heal", "Magic Guard") else 0
+    if u.status == "brn":
+        if "Fire" in t.types:
+            return -10
+        return -10 if ability_of(b, u, t) in ("Magic Guard", "Water Veil") else 0
+    if u.status == "par":
+        return -10 if ability_of(b, u, t) == "Limber" else 0
+    return 0
+
+
+def _basic_defog(b, u, t, own, foe):
+    """Basic_CheckDefog (1879 to 1911): refused only at -6 evasion with
+    nothing to clear on either side."""
+    if t.stages["eva"] > -6 or foe.screens["Light Screen"] or foe.screens["Reflect"] \
+            or getattr(foe, "aurora_veil", 0) or any(own.hazards.values()) \
+            or getattr(own, "sticky_web", False) or b.weather == "Fog":
+        return 0
+    if not foe.bench():
+        return -10
+    return 0 if any(foe.hazards.values()) or getattr(foe, "sticky_web", False) else -10
+
+
+# ---- Evaluate Attack
+
 def evaluate_attack(b, u, t, mv, f, best):
-    if f is None:
-        # Moves without a comparison skip straight to the last row.
-        return 2 if eff(b, mv, t) >= 4 and chance(b, 68.75) else 0
-    kills = f >= t.hp and not (t.hp == t.maxhp and t.ability == "Sturdy")
-    if kills:
-        if mv.effect == "PRIORITY_1" or (mv.pri > 0 and mv.effect not in (
-                "ALWAYS_FLINCH_FIRST_TURN_ONLY", "HIT_FIRST_IF_TARGET_ATTACKING")):
-            return 6
-        if mv.effect == "HIT_IN_3_TURNS":
-            return 4 if chance(b, 33.6) else 0
-        return 4
-    if best is not None and f < best:
-        return -1
+    """EvalAttack_Main (script.s 7155 to 7217)."""
+    if f is not None:
+        # IfCurrentMoveKills USE_MAX_DAMAGE after AI_SturdySurvives: Sturdy
+        # at full HP leaves its holder on 1 HP unless Mold Breaker ignores it.
+        dmg = f
+        if t.hp == t.maxhp and dmg >= t.hp and t.ability == "Sturdy" and not mold(u, t):
+            dmg = t.hp - 1
+        if t.hp <= dmg:                                             # EvalAttack_ApplyKillBonuses
+            if mv.effect == "HALVE_DEFENSE":
+                return 0
+            if mv.effect in ("HIT_LAST_WHIFF_IF_HIT", "HIT_FIRST_IF_TARGET_ATTACKING", "HIT_IN_3_TURNS"):
+                return 4 if chance(b, 33.6) else 0                  # IfRandomLessThan 170 skips it
+            return 6 if mv.effect == "PRIORITY_1" else 4            # the effect, not the priority
+        if best is not None and f < best:                           # AI_NOT_HIGHEST_DAMAGE
+            return -1
     s = 0
-    if mv.effect in fs.SELF_KO or mv.effect in ("HIT_LAST_WHIFF_IF_HIT", "HIT_FIRST_IF_TARGET_ATTACKING"):
-        s -= 2 if chance(b, 80.1) else 0
-    if eff(b, mv, t) >= 4 and chance(b, 68.75):
+    # EvalAttack_MaybeDeprioritize: a move with no comparison reaches it too.
+    if mv.effect in ("HALVE_DEFENSE", "HIT_LAST_WHIFF_IF_HIT", "HIT_FIRST_IF_TARGET_ATTACKING") \
+            and chance(b, 80.1):                                    # IfRandomLessThan 51 skips it
+        s -= 2
+    # EvalAttack_CheckQuadEffective, status moves included (vanilla O12).
+    if script_eff(b, u, t, mv) == 160 and chance(b, 68.75):          # IfRandomLessThan 80 skips it
         s += 2
     return s
 
@@ -347,21 +969,23 @@ def evaluate_attack(b, u, t, mv, f, best):
 
 # The values AICmd_IfMoveEffectivenessEquals compares (include/constants/battle.h).
 IMMUNE, QUARTER, HALF, DOUBLE, QUADRUPLE = 0, 10, 20, 80, 160
-MOLD_BREAKER = ("Mold Breaker", "Teravolt", "Turboblaze")
 
 
 def script_eff(b, u, t, mv):
     """The number AICmd_IfMoveEffectivenessEquals compares for u's move into
-    t: BattleSystem_ApplyTypeChart from a base of 40 (STAB, the chart type by
-    type, Filter and Solid Rock, Expert Belt, Tinted Lens), with plain STAB's
-    1.5 divided back out at the four exact values, and any immunity flag
-    (the type chart, Levitate, an Air Balloon, Wonder Guard) reading 0. A
-    neutral STAB hit (60), or one Filter or Tinted Lens scaled, matches none
-    of the five, as in the game."""
-    breaker = u.ability in MOLD_BREAKER
+    t: BattleSystem_ApplyTypeChart from a base of 40 at the move's battle
+    type (STAB, the chart type by type, Filter and Solid Rock, Expert Belt,
+    Tinted Lens), with plain STAB's 1.5 divided back out at the four exact
+    values, and any immunity flag (the chart, Levitate, Magnet Rise, an Air
+    Balloon, Wonder Guard) reading 0. Scrappy and Foresight get Normal and
+    Fighting past a Ghost; an Iron Ball, Thousand Arrows or Gravity grounds
+    a Flying type; Freeze-Dry hits Water. A neutral STAB hit (60), or one
+    Filter or Tinted Lens scaled, matches none of the five, as in the game."""
     ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
-    if ty == "Ground" and mv.name != "Thousand Arrows" and (
-            (t.ability == "Levitate" and not breaker) or t.item == "Air Balloon"):
+    grounded = t.item == "Iron Ball" or mv.const == "MOVE_THOUSAND_ARROWS"
+    if ty == "Ground" and not grounded and (
+            (t.ability == "Levitate" and not mold(u, t)) or getattr(t, "magnet_rise", 0)
+            or t.item == "Air Balloon"):
         return IMMUNE
     d = 40
     if ty in u.types:
@@ -369,20 +993,27 @@ def script_eff(b, u, t, mv):
     steps = 0
     for typ in dict.fromkeys(t.types):
         m = fs.effectiveness(b.st["chart"], ty, [typ])
-        if m == 0 and typ == "Ghost" and ty in ("Normal", "Fighting") and u.ability == "Scrappy":
+        if mv.const == "MOVE_FREEZE_DRY" and typ == "Water":
+            m = 2.0
+        if m == 0 and typ == "Ghost" and ty in ("Normal", "Fighting") and (
+                u.ability == "Scrappy" or getattr(t, "foresight", False)):
+            continue
+        if m == 0 and typ == "Flying" and ty == "Ground" and (grounded or getattr(b, "gravity", 0)):
             continue
         if m == 0:
             return IMMUNE
         d = max(1, d * int(m * 10) // 10)
         steps += 1 if m > 1 else -1 if m < 1 else 0
-    if t.ability == "Wonder Guard" and not breaker and steps <= 0:
+    if mv.power and t.ability == "Wonder Guard" and not mold(u, t) and steps <= 0 \
+            and mv.effect not in CHARGE_TURN:
         return IMMUNE
-    if steps > 0 and t.ability in ("Filter", "Solid Rock", "Prism Armor") and not breaker:
-        d = d * 3 // 4
-    if steps > 0 and u.item == "Expert Belt":
-        d = d * 120 // 100
-    if steps < 0 and u.ability == "Tinted Lens":
-        d *= 2
+    if mv.power:
+        if steps > 0 and t.ability in ("Filter", "Solid Rock", "Prism Armor") and not mold(u, t):
+            d = d * 3 // 4
+        if steps > 0 and u.item == "Expert Belt":
+            d = d * 120 // 100
+        if steps < 0 and u.ability == "Tinted Lens":
+            d *= 2
     return {120: DOUBLE, 240: QUADRUPLE, 30: HALF, 15: QUARTER}.get(d, d)
 
 
@@ -2351,7 +2982,12 @@ def record_last_move(t):
 
 
 def choose(b, u, t):
-    """('move', Move) or ('switch', index) for the trainer's active Pokemon."""
+    """('move', Move) or ('switch', index), in the engine's order: a locked
+    Pokemon picks nothing (Battler_CanPickCommand); the target's last move
+    joins the moves the AI has seen; TrainerAI_PickCommand asks the switch
+    rules; the command input gives Struggle when every move is ruled out and
+    the Encore move under Encore; then the scores, the highest winning and
+    ties at random. A Choice lock rules the other moves out (invalid)."""
     if u.lock:
         return "move", u.lock[0]
     if u.charging is not None:
@@ -2359,22 +2995,17 @@ def choose(b, u, t):
     if u.recharge:
         return "move", u.moves[0]
     record_last_move(t)
-    # TrainerAI_PickCommand asks the switch rules first; only a recharge, a
-    # lock or a charging move skips them, not a Choice lock or empty PP.
     sw = should_switch(b, _side(b, u), u, t)
     if sw is not None:
         return "switch", sw
-    if u.choice:
-        locked = next((m for m in u.moves if m.name == u.choice), None)
-        if locked is not None and u.pp.get(locked.name, 1) > 0:
-            return "move", locked
-    # With no PP left in any move the engine substitutes Struggle
-    # (battle_lib.c, the MOVE_STRUGGLE fallback in the turn order code).
-    if all(u.pp.get(m.name, 1) <= 0 for m in u.moves):
+    if all(invalid(b, u, m) for m in u.moves):
         return "move", fs.move("Struggle")
+    enc = getattr(u, "encore", None)
+    if enc is not None:
+        return "move", next(m for m in u.moves if m.name == enc)
     scores = score_moves(b, u, t, b.ai_flags)
     top = max(scores)
-    picks = [i for i, s in enumerate(scores) if s == top]
+    picks = [i for i, sc in enumerate(scores) if sc == top]
     return "move", u.moves[b.rng.choice(picks)]
 
 
@@ -2485,7 +3116,7 @@ def active_flags(b, u, mv, foe):
     makes a Ground move "no effect"."""
     ty = "Normal" if u.ability == "Normalize" else move_type(b, u, mv)
     if ty == "Ground" and mv.name != "Thousand Arrows":
-        if foe.ability == "Levitate" and u.ability not in MOLD_BREAKER:
+        if foe.ability == "Levitate" and not mold(u, foe):
             return False, False, False
         if foe.item == "Air Balloon":
             return True, False, False
@@ -2499,7 +3130,7 @@ def bench_flags(b, att_ability, mtype, foe):
     Wonder Guard makes anything not super effective "no effect"."""
     if att_ability == "Normalize":
         mtype = "Normal"
-    mold = att_ability in MOLD_BREAKER
+    mold = att_ability == "Mold Breaker"
     if mtype == "Ground" and foe.ability == "Levitate" and not mold:
         return True, False, False
     ine, se, nve = type_flags(b, mtype, foe.types, att_ability == "Scrappy")
@@ -2657,12 +3288,12 @@ def _ko_score(b, fainted, cand, target, m):
     same-type bonus and the type, so they are divided back out of it."""
     ty = move_type(b, cand, m)
     if ty == "Ground" and m.name != "Thousand Arrows" and (
-            (target.ability == "Levitate" and fainted.ability not in MOLD_BREAKER) or target.item == "Air Balloon"):
+            (target.ability == "Levitate" and not mold(fainted, target)) or target.item == "Air Balloon"):
         return 0
     ine, se, nve = type_flags(b, ty, target.types, fainted.ability == "Scrappy")
     if ine:
         return 0
-    if m.power and target.ability == "Wonder Guard" and fainted.ability not in MOLD_BREAKER and not se:
+    if m.power and target.ability == "Wonder Guard" and not mold(fainted, target) and not se:
         return 0
     stab = (2 if fainted.ability == "Adaptability" else 1.5) if ty in fainted.types else 1
     eff = fs.effectiveness(b.st["chart"], ty, target.types)
@@ -2684,7 +3315,7 @@ def _ko_score(b, fainted, cand, target, m):
         if d:
             d = max(1, d * int(mx * 10) // 10)
     if m.power and se and target.ability in ("Filter", "Solid Rock", "Prism Armor") \
-            and fainted.ability not in MOLD_BREAKER:
+            and not mold(fainted, target):
         d = d * 3 // 4
     if m.power and se and fainted.item == "Expert Belt":
         d = d * 120 // 100
