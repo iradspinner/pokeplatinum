@@ -27,6 +27,8 @@ Then act on the classification:
 
 Check claims against the tree rather than against other docs. Run the dry runs, count the files, and grep for the symbol.
 
+Check every deferred instruction. Run `python3 tools/oxide/deferred_check.py -v`. For each Scheduled entry, test its "Why:" against the tree and the latest rulings, and its "Unneeded if:" against what has happened since. An entry whose reason no longer holds goes to Ian; it is not carried out and not silently deleted. Any instruction elsewhere that waits on a day or a condition ("once X lands", "after the TM pass") moves into the Scheduled list with its reason, and the other place points at it.
+
 ## 3. The findings log
 
 The design doc's section 8 may lose an entry only when its lesson already lives in a working rule, a skill, a tool or a status home. If the lesson lives nowhere else, move it into the right skill first, then delete the entry. Several entries telling one story can be merged into one.

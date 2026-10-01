@@ -30,10 +30,9 @@
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
 #   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
 #                                           # no fetch, no merge, no push (the QA pass)
-#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM from tools/oxide/fetch-rom,
-#                                         # instead of building one; only the build's small
-#                                         # helper files are made, on two jobs (for while
-#                                         # this CPU cannot take a full build)
+#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM built elsewhere, instead of
+#                                         # building one; only the build's small helper
+#                                         # files are made, on two jobs
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -464,6 +463,12 @@ if [ "$tracker_words" -gt 6000 ]; then
 else
     echo "tracker.md is $tracker_words words (warns over 6,000)"
 fi
+
+# Deferred instructions (Ian, 2026-10-01): each lives in the tracker's
+# Scheduled list with why it exists and what would make it unneeded, and is
+# checked against today's state before it is done. An entry without its
+# reason, one past due, or a dated deferral anywhere else fails here.
+check "deferred instructions (deferred_check.py)" "$PY" tools/oxide/deferred_check.py
 
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"

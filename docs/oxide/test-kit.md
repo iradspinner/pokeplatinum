@@ -9,15 +9,14 @@ kit its own form command rather than warping to Rotom's room.
 ## Getting the ROM
 
 ```
-tools/oxide/fetch-rom --testkit [commit]   # the playtest copy, built on GitHub
-make testkit                               # a local build, for development only
+make testkit                               # writes build-testkit/pokeplatinum.us.nds
 ```
 
-`fetch-rom --testkit` asks the private builder for `make testkit` instead of
-`make rom` and downloads `pokeplatinum-oxide-testkit-<commit>.nds`, checked
-against the builder's SHA-1, as it does for the ordinary ROM. Hand Ian that
-copy, not one built on this CPU. The local build writes
-`build-testkit/pokeplatinum.us.nds`.
+Build it from the same pushed commit as the ordinary ROM, and copy it into
+`~/oxide-playtest` as `pokeplatinum-oxide-testkit-<commit>.nds` for Ian. The
+ordinary ROM of that commit is the one checked against GitHub's SHA-1, since
+GitHub builds only the ordinary ROM. The private builder that once built the
+test kit on GitHub was retired on 2026-10-01.
 
 ## Why the ROM of record cannot change
 

@@ -18,7 +18,13 @@ the facts they point at live in the docs, not here.
    hash on purpose.
 2. Run `git status` and `git log -1`. The tree should be clean and `HEAD` is the
    resume point. If the tree is dirty, another session is mid-work in this
-   checkout: do not touch its files and say so.
+   checkout: do not touch its files and say so. Then run
+   `python3 tools/oxide/deferred_check.py` and read the tracker's Scheduled
+   list. An entry that is due is checked against today's state before it is
+   done: if its "Why:" no longer holds, or its "Unneeded if:" has come true,
+   ask Ian instead of acting. A date is not an order; on 2026-10-01 a dated
+   note had two workflows switched back on that the new CPU had made
+   unnecessary.
 3. Work out which track you are on and where its status lives:
    - Phases 0 to 5 (the engine port and everything before it): the tracker.
    - The encounter tool and the encounter authoring pass:
@@ -34,8 +40,8 @@ the facts they point at live in the docs, not here.
 6. Unless you are the Overseer, do the work on a worktree branch
    (`EnterWorktree` or `git worktree add`) and push that branch when its tests
    are green. The Oxide Overseer lands it on `oxide` with
-   `tools/oxide/merge-branch.sh`, which builds the merged tree on GitHub and
-   runs the gate on that ROM.
+   `tools/oxide/merge-branch.sh`, which builds the merged tree here and runs
+   the gate on that ROM.
 
 ## While working
 
@@ -76,7 +82,11 @@ Run these in order; skipping one is how the next session starts confused.
    6,000 words). A trap still in force goes in a skill or the findings log
    first, because the archive is read only when pointed at. Add what changes
    what happens next, keep the "Where things stand" block true for `HEAD`, and
-   keep entries short, pointing at the file that holds the detail. If you are the encounter track, edit only your
+   keep entries short, pointing at the file that holds the detail. Anything
+   to be done on a later day or once something happens goes in the Scheduled
+   list with its "Why:" and "Unneeded if:". If this session changed something
+   an entry rests on (hardware, a ruling, a dropped feature), update every
+   entry, doc and memory resting on it in the same commit. If you are the encounter track, edit only your
    one paragraph here; the balance track edits its plan instead.
 2. **Findings.** A durable fact learned this session (a correction, a defect, a
    measurement, a format detail) goes in the design doc's section 8 findings log,

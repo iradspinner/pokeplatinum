@@ -28,6 +28,16 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
+- An instruction to act on a later day, or once something happens, lives only
+  in the tracker's Scheduled list, with why it exists and what would make it
+  unneeded. A date is not an order: before acting on an entry, check its
+  reason against today's state, and ask Ian if it no longer holds (Ian,
+  2026-10-01). `tools/oxide/deferred_check.py`, run by the gate, refuses an
+  entry without its reason, an entry past due, and a dated deferral anywhere
+  else.
+- When the permission check refuses an action a task needs, stop the task and
+  tell Ian what was refused and why it was needed. Never work around it (Ian,
+  2026-10-01).
 - Update your status home (below) at the end of every session and commit it;
   a finished tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
@@ -106,13 +116,11 @@ SHA-1 for it, copied into `~/oxide-playtest` as
 `pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
 same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
-`tools/oxide/fetch-rom` builds a pushed commit in the private repo
-`iradspinner/oxide-rom-builder` instead, and it spends Actions minutes and
-storage. **No GitHub Actions in the private repos until 2026-10-01** (Ian,
-2026-09-29): the account's Actions storage is used up, and he will not be
-billed for more. Their workflows are switched off, so `fetch-rom` and a
-melonDS-oxide build fail until then. The public repo's build on each push to
-`oxide` is free and stays on.
+**No GitHub Actions in the private repos, for good** (Ian, 2026-10-01): every
+ROM is built here, the private ROM builder and `fetch-rom` are retired, and
+Ian's melonDS fork is to be built on his PC with MSYS2 (the tracker's
+Scheduled list). The public repo's build on each push to `oxide` is free and
+stays on.
 
 GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's

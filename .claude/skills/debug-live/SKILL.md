@@ -28,8 +28,6 @@ and the reading.
    from another build puts every breakpoint in the wrong place. Build, check
    the ROM's SHA-1 against GitHub's build of the same commit (CLAUDE.md,
    Build), and give Ian the path and the hash. He loads that file.
-   `tools/oxide/fetch-rom` brings only the ROM, with no `main.nef`, so build
-   locally for any session that plants breakpoints.
 4. Pick the breakpoints and work out what each will cost Ian. Warn him before
    arming one that an ordinary action trips (talking to any NPC, opening a
    menu, every frame of a wait), and say how to get past it.

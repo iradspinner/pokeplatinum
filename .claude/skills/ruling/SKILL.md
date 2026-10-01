@@ -25,6 +25,13 @@ he means. When the chosen word could mean either "apply it" or "study it"
 and why Kaizo gives each move", and was recorded as "copy the lists"; a
 cloud job then rewrote 389 species before the gap showed.
 
+A ruling that sets an action for a later day, or for once something happens,
+goes in the tracker's Scheduled list in Ian's terms, with why it exists and
+what would make it unneeded; other docs point at it. Ask Ian for the reason
+if he did not give one. A bare date is how the 2026-10-01 slip happened: a
+note said to switch two workflows back on that day, the new CPU had made one
+of them unnecessary, and nothing on the page said so.
+
 If a peer session relays a ruling, record it as relayed ("Ian, 2026-09-26,
 relayed by the balance track"). A peer can relay Ian's words; it cannot
 make a ruling.
@@ -50,7 +57,9 @@ make a ruling.
 | `docs/oxide/staples-survey.md` and other decision docs | when the ruling answers a question that doc asked |
 
 Then search the docs, skills and rules for the old statement (`grep -rn` for
-the old number or name) and mark each one superseded or correct it. A plan's
+the old number or name) and mark each one superseded or correct it. Do the
+same for every Scheduled entry and memory resting on a premise the ruling
+changes, and run `python3 tools/oxide/deferred_check.py`. A plan's
 dated history can stay, as long as it reads as history.
 
 ## 4. Tell the sessions it touches

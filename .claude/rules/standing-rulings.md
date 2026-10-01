@@ -133,11 +133,27 @@ read, so they are written here too. Each is a standing instruction.
   new game on the first ROM with the change, and again after each later
   one (the TM pass's Bag growth, 30 boxes). Tell him before the landing
   which ROM starts the new game, and keep the OxiDex's save reader in step.
-- No GitHub Actions in the private repos (`oxide-rom-builder`, `melonDS-oxide`)
-  until 2026-10-01 (Ian, 2026-09-29): the account's Actions storage is used
-  up and he will not pay for more. Their workflows are switched off and their
-  artifacts deleted; build locally, and land with `merge-branch.sh`, which
-  now builds here. The public repo's build on a push to `oxide` is free.
+- No GitHub Actions in the private repos (`oxide-rom-builder`,
+  `melonDS-oxide`), for good (Ian, 2026-10-01, ending the pause of
+  2026-09-29). Every ROM is built locally and landed with `merge-branch.sh`;
+  the private ROM builder and `fetch-rom` are retired; the melonDS fork is to
+  be built on Ian's PC with MSYS2. The public repo's build on a push to
+  `oxide` is free and stays on, and gives the SHA-1 to compare with.
+- An instruction to act on a later day, or once something happens (Ian,
+  2026-10-01), lives only in the tracker's Scheduled list, with why it exists
+  and what would make it unneeded; other docs point at it. Before acting on
+  an entry, a session checks its reason against today's state and asks Ian if
+  it no longer holds. A session that changes a premise (new hardware, a
+  reversed ruling, a dropped feature) updates every entry and note resting on
+  it in the same commit. `tools/oxide/deferred_check.py`, run by the gate,
+  refuses an entry without its reason, an entry past due, and a dated
+  deferral anywhere else. The rule exists because on 2026-10-01 the Overseer
+  switched two workflows back on from a dated note, though the new CPU had
+  made one of them unnecessary.
+- When the permission check refuses an action a task needs, the session stops
+  the task and tells Ian what was refused and why it was needed, and never
+  works around it (Ian, 2026-10-01). A cloud session says so in its branch's
+  last commit.
 - New held items go behind optional challenges, not in shops (Ian,
   2026-09-29): element 7's held items (Eviolite, Assault Vest, Rocky Helmet
   and the rest) are each placed as the reward for an optional trainer, a
