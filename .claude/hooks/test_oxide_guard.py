@@ -32,6 +32,20 @@ def main():
         "cd x && git add -A": True, "git add docs/oxide/tracker.md": False,
         "melonDS.exe": True, "nohup ./melonDS": True, "./AppRun": True,
         "cat melonDS.toml": False,
+        # Every way of starting it found so far stays refused.
+        "melonDS": True, "./melonDS-x86_64.AppImage": True, "squashfs-root/AppRun": True,
+        "/mnt/c/Users/Ian/melonDS-oxide/melonDS.exe &": True,
+        "melonDS-previous.exe": True, "echo x | melonDS": True,
+        "cmd.exe /c start melonDS.exe": True, "cmd.exe /c \"start melonDS.exe\"": True,
+        "bash -c \"cd /tmp; ./melonDS\"": True, "sh -c 'nohup melonDS.exe'": True,
+        "powershell.exe -Command \"Start-Process melonDS.exe\"": True,
+        "eval ./melonDS": True,
+        # A quoted pattern or message is data, not commands (2026-10-01: a grep
+        # pattern with \\| was split into fake commands and refused).
+        "grep -n \"Private\\|melonDS-oxide fork\\|Skip\" MEMORY.md": False,
+        "git commit -m \"melonDS; notes\"": False,
+        "ls ~/oxide-playtest/melonDS-oxide": False,
+        "curl http://127.0.0.1:31124/status | head": False,
         "make rom": False, "ninja -C build": False,
         "git commit -F - <<'EOF'\nSubject\n\ngit add -A was not used\nEOF": False,
     }
