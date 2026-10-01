@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 1.0,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.0,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 115020,
+ "search_budget": 6,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "Fantina",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 2.5,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Litwick",
+    "Brionne",
+    "Shiftry",
+    "Whiscash",
+    "Charjabug",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Swablu",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Tentacruel",
+    "Charjabug",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Hariyama",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dwebble; answers Glameow->Dwebble, Skitty->Dwebble; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Swablu",
+    "Whiscash",
+    "Delcatty",
+    "Dwebble",
+    "Gligar"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Naclstack",
+    "Orbeetle",
+    "Shiftry",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Togetic",
+    "Vullaby",
+    "Araquanid",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Mienfoo",
+    "Mightyena",
+    "Brionne",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Kadabra",
+    "Raboot",
+    "Charjabug",
+    "Combee",
+    "Donphan",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mienfoo",
+    "Orbeetle",
+    "Swablu",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Naclstack",
+    "Brionne",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Mienfoo",
+    "Naclstack",
+    "Pawmo",
+    "Swablu"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Bibarel",
+    "Swablu",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Glameow->Probopass, Skitty->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Probopass",
+    "Togetic",
+    "Floatzel",
+    "Fomantis"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Brionne",
+    "Togetic",
+    "Clefable"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Lopunny",
+    "Masquerain",
+    "Noctowl",
+    "Brionne",
+    "Floatzel"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Glameow->Luxray, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kadabra",
+    "Luxray",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Fomantis"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Glameow->Carbink, Skitty->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Salazzle",
+    "Seaking",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Masquerain",
+    "Noctowl",
+    "Torterra",
+    "Fomantis"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Glameow->Carbink, Skitty->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Kricketune",
+    "Carbink",
+    "Umbreon",
+    "Vullaby",
+    "Fomantis"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Salazzle",
+    "Seaking",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Glameow->Bronzong, Skitty->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Lumineon",
+    "Luxray",
+    "Bronzong",
+    "Swablu",
+    "Toucannon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Glameow->Carbink, Skitty->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Swablu",
+    "Carbink",
+    "Umbreon",
+    "Vulpix",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Glameow->Dubwool, Skitty->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Salazzle",
+    "Torterra",
+    "Vullaby",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Glameow->Bronzong, Skitty->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Luxray",
+    "Bronzong",
+    "Combee",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Noctowl",
+    "Probopass",
+    "Salazzle",
+    "Vulpix"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Glameow->Huntail, Skitty->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lumineon",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Glameow->Huntail, Skitty->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Togetic",
+    "Combee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Glameow->Hariyama, Skitty->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Kricketune",
+    "Seaking",
+    "Togetic",
+    "Fletchinder"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Glameow->Shiftry, Skitty->Mismagius; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Mismagius",
+    "Munchlax",
+    "Shiftry",
+    "Staravia"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Liepard",
+    "Vullaby",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mightyena",
+    "Munchlax",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Tentacruel",
+    "Clefable",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Mismagius; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Shiftry",
+    "Whiscash",
+    "Combee",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Milotic",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Swablu",
+    "Togetic",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Glameow->Hariyama, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Orbeetle",
+    "Pachirisu",
+    "Roselia",
+    "Swablu",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Glameow->Shiftry, Skitty->Ambipom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Charjabug",
+    "Ambipom",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Togetic",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Glameow->Kingler, Skitty->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Pachirisu",
+    "Seaking",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Prinplup",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Tentacruel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Leavanny",
+    "Milotic",
+    "Shiftry",
+    "Snover",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Umbreon",
+    "Whiscash",
+    "Donphan",
+    "Dubwool",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Glameow->Umbreon, Skitty->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Orbeetle",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Glameow->Carbink, Skitty->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Carbink",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Jynx",
+    "Masquerain",
+    "Brionne",
+    "Toucannon",
+    "Carbink"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Glameow->Carbink, Skitty->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Snover",
+    "Togetic",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Prinplup",
+    "Snover",
+    "Toucannon",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Brionne",
+    "Seaking",
+    "Tsareena",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Pawmo",
+    "Raboot",
+    "Vulpix",
+    "Glameow"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Seaking",
+    "Tsareena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Glameow->Bronzong, Skitty->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Huntail",
+    "Kricketune",
+    "Mightyena",
+    "Bronzong",
+    "Wormadam",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Glameow->Tsareena, Skitty->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Orbeetle",
+    "Togetic",
+    "Tsareena",
+    "Frogadier"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Glameow->Kingler, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kingler",
+    "Mienfoo",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Glameow"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Glameow->Kricketune, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Clefable"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Naclstack",
+    "Raboot",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Glameow->Probopass, Skitty->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Probopass",
+    "Tsareena",
+    "Dubwool",
+    "Frogadier",
+    "Glameow"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Raboot",
+    "Charjabug"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Vullaby",
+    "Charjabug",
+    "Clefable",
+    "Glameow"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Glameow->Tsareena, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Lombre",
+    "Seaking",
+    "Tentacruel",
+    "Tsareena",
+    "Umbreon",
+    "Clefable"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Glameow->Bronzong, Skitty->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Bronzong",
+    "Tentacruel",
+    "Umbreon",
+    "Clefable",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Glameow->Orbeetle, Skitty->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Lanturn",
+    "Lombre",
+    "Orbeetle",
+    "Servine",
+    "Swablu",
+    "Cherrim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Glameow->Tentacruel, Skitty->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Stunky",
+    "Swablu",
+    "Tentacruel",
+    "Togetic",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Naclstack",
+    "Seaking",
+    "Swablu",
+    "Fomantis",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Seaking",
+    "Whiscash",
+    "Donphan",
+    "Fletchinder",
+    "Fomantis",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Bronzong",
+    "Steelix",
+    "Stunky",
+    "Fletchinder",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Bronzong",
+    "Steelix",
+    "Torterra",
+    "Glimmet",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Lombre",
+    "Pawmo",
+    "Togetic",
+    "Whiscash",
+    "Donphan",
+    "Glimmet"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Pawmo",
+    "Bronzong",
+    "Swablu",
+    "Togetic"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Naclstack",
+    "Fomantis"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Stunky",
+    "Torterra",
+    "Fletchinder",
+    "Graveler"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Haunter",
+    "Leavanny",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Liepard",
+    "Bronzong",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Pawmo",
+    "Shiftry",
+    "Steelix",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Glameow->Tsareena, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Tsareena",
+    "Cherrim",
+    "Clefable",
+    "Combee",
+    "Fomantis"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Glameow->Umbreon, Skitty->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Bibarel",
+    "Raboot",
+    "Umbreon",
+    "Wailmer",
+    "Gastrodon"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Sandygast; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Naclstack",
+    "Sandygast",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Sandygast; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Sandygast",
+    "Umbreon",
+    "Wailmer",
+    "Charjabug",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Litwick",
+    "Naclstack",
+    "Steelix",
+    "Tsareena",
+    "Umbreon",
+    "Fomantis"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Glameow->Dubwool, Skitty->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Seaking",
+    "Togetic",
+    "Umbreon",
+    "Charjabug",
+    "Dubwool",
+    "Glimmet"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Glameow->Orbeetle, Skitty->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Togetic",
+    "Ambipom",
+    "Clefable",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Glameow->Gastrodon, Skitty->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Tentacruel",
+    "Togetic",
+    "Ambipom",
+    "Gastrodon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Sandygast; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Sandygast",
+    "Steelix",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Litwick",
+    "Orbeetle",
+    "Raboot",
+    "Sandygast",
+    "Steelix",
+    "Fomantis"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Glameow->Steelix, Skitty->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Bibarel",
+    "Steelix",
+    "Swablu",
+    "Umbreon",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Seaking",
+    "Tentacruel",
+    "Clefable",
+    "Donphan",
+    "Gastrodon"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Litwick; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Masquerain",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dwebble; answers Glameow->Dwebble, Skitty->Dwebble; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Mienfoo",
+    "Seaking",
+    "Charjabug",
+    "Dwebble"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Breloom",
+    "Swablu",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Glameow->Umbreon, Skitty->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swablu",
+    "Umbreon",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gligar; answers Glameow->Gligar, Skitty->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Seaking",
+    "Fletchinder",
+    "Furret",
+    "Gligar"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Mienfoo",
+    "Ninetales-Alola",
+    "Combee",
+    "Rapidash-Galar",
+    "Gligar"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Umbreon",
+    "Vullaby",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Glameow->Hariyama, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Pawmo",
+    "Rotom",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Rotom",
+    "Togetic",
+    "Furret"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dwebble; answers Glameow->Dwebble, Skitty->Dwebble; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Masquerain",
+    "Ninetales-Alola",
+    "Tentacruel",
+    "Vullaby",
+    "Dwebble",
+    "Fletchinder"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Ninetales-Alola",
+    "Rotom",
+    "Togetic",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Glameow->Tentacruel, Skitty->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Lombre",
+    "Lumineon",
+    "Tentacruel",
+    "Torracat",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Mienfoo",
+    "Breloom",
+    "Staravia",
+    "Togetic"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bastiodon",
+    "Nidoking",
+    "Tentacruel",
+    "Combee",
+    "Dwebble",
+    "Furret"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Glameow->Dubwool, Skitty->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Mienfoo",
+    "Toucannon",
+    "Vulpix",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Toucannon",
+    "Whiscash",
+    "Charjabug",
+    "Cherrim"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Mienfoo",
+    "Nidoking",
+    "Vullaby",
+    "Wormadam",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lombre",
+    "Togetic",
+    "Charjabug",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Glameow->Dubwool, Skitty->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Togetic",
+    "Vullaby",
+    "Vulpix",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Naclstack",
+    "Raboot",
+    "Shiftry",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Glameow->Naclstack, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Masquerain",
+    "Naclstack",
+    "Rotom",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Lopunny",
+    "Raboot",
+    "Toucannon",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Glameow->Bronzong, Skitty->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Mienfoo",
+    "Vulpix",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Vullaby",
+    "Charjabug",
+    "Crawdaunt",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Shiftry",
+    "Wailmer",
+    "Whiscash",
+    "Wormadam",
+    "Charjabug"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Bibarel",
+    "Masquerain",
+    "Rotom",
+    "Shiftry"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Umbreon; answers Glameow->Umbreon, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Lopunny",
+    "Luxray",
+    "Rotom",
+    "Umbreon",
+    "Wormadam",
+    "Cherrim"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Brionne",
+    "Ambipom",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Prinplup",
+    "Snover",
+    "Vullaby",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Glameow->Graveler, Skitty->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Snover",
+    "Wailmer",
+    "Ambipom",
+    "Furret",
+    "Glimmet",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Glameow->Furret, Skitty->Sandygast; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Lopunny",
+    "Brionne",
+    "Sandygast",
+    "Sharpedo",
+    "Furret"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Sandygast; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Luxray",
+    "Sandygast",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Glameow->Donphan, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Leavanny",
+    "Rotom",
+    "Wailmer",
+    "Wormadam",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Minun",
+    "Brionne",
+    "Probopass",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Leavanny",
+    "Prinplup",
+    "Tentacruel",
+    "Umbreon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Combee",
+    "Glimmet"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Glameow->Whiscash, Skitty->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Brionne",
+    "Prinplup",
+    "Seaking",
+    "Snover",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Glameow->Masquerain, Skitty->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Prinplup",
+    "Rotom",
+    "Snover",
+    "Togetic"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Glameow->Bastiodon, Skitty->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Sharpedo",
+    "Snover",
+    "Cherrim",
+    "Furret"
+   ],
+   "seconds": 0.5
+  }
+ ],
+ "key": "tr410"
+}

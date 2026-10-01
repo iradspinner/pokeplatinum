@@ -14,7 +14,11 @@ Weather and Harassment. The AI reads its damage at the top roll with no
 critical hit. Rules for moves Oxide's trainers rarely carry are left out;
 fightsim's report counts the effects it meets without a rule.
 """
-from . import fightsim as fs
+import functools
+import json
+import os
+
+from . import data, fightsim as fs
 
 BASIC, EVAL, EXPERT, SETUP_FIRST, RISKY, EXTREMES, BATON, TAG, CHECK_HP, WEATHER, HARASS = range(11)
 
@@ -26,7 +30,9 @@ NO_CALC = {"HALVE_DEFENSE", "EXPLOSION", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HI
            "ONE_HIT_KO", "COUNTER", "MIRROR_COAT", "METAL_BURST", "INCREASE_POWER_WITH_LESS_HP"}
 ATK_UP = {"ATK_UP", "ATK_UP_2", "HONE_CLAWS", "WORK_UP", "GROWTH"}
 SPA_UP = {"SP_ATK_UP", "SP_ATK_UP_2"}
-DEF_UP = {"DEF_UP", "DEF_UP_2", "ATK_DEF_UP", "DEF_UP_DOUBLE_ROLLOUT_POWER", "COIL"}
+# Defense Curl (DEF_UP_DOUBLE_ROLLOUT_POWER) has no Expert routine in the game:
+# StatusDefenseUp takes DEF_UP, DEF_UP_2 and ATK_DEF_UP (expert-1.md, dispatch).
+DEF_UP = {"DEF_UP", "DEF_UP_2", "ATK_DEF_UP", "COIL"}
 SPD_UP = {"SP_ATK_SP_DEF_UP", "SP_DEF_UP_2", "DEF_SPD_UP", "STOCKPILE"}
 DANCE = {"ATK_SPD_UP", "QUIVER_DANCE", "SHIFT_GEAR", "SHELL_SMASH"}
 SLEEP = {"STATUS_SLEEP"}
@@ -68,6 +74,11 @@ def figure(b, u, t, mv):
     return 0 if d is None else d
 
 
+# The Speed-lowering attacks SpeedDownOnHit names by move id (expert-1.md).
+SPEED_DOWN_NAMED = {"Icy Wind", "Rock Tomb", "Mud Shot", "Bulldoze", "Electroweb", "Low Sweep",
+                    "Glaciate", "Drum Beating", "Pounce"}
+
+
 def slower(b, u, t):
     su, st_ = b.speed(u), b.speed(t)
     if b.trick_room:
@@ -81,6 +92,34 @@ def chance(b, p):
 
 def eff(b, mv, t):
     return fs.effectiveness(b.st["chart"], mv.type, t.types)
+
+
+@functools.lru_cache(maxsize=None)
+def _gift_type(item):
+    """A berry's Natural Gift type, from its item data."""
+    path = os.path.join(data.ROOT, "res", "items", "data", item.lower().replace(" ", "_") + ".json")
+    try:
+        with open(path, encoding="utf-8") as f:
+            ty = json.load(f).get("naturalGiftType")
+    except OSError:
+        return None
+    return ty[len("TYPE_"):].title() if ty else None
+
+
+def move_type(b, mon, mv):
+    """The type a move really has in battle (TrainerAI_MoveType,
+    Move_CalcVariableType): Weather Ball by the weather, Natural Gift by the
+    berry held; the switching checks read these."""
+    if mv.name == "Weather Ball" and b.weather:
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+    if mv.name == "Natural Gift":
+        if mon.item and "Berry" in mon.item:
+            return _gift_type(mon.item) or mv.type
+    return mv.type
+
+
+def eff_of(b, mon, mv, t):
+    return fs.effectiveness(b.st["chart"], move_type(b, mon, mv), t.types)
 
 
 def score_moves(b, u, t, flags):
@@ -139,14 +178,29 @@ def basic(b, u, t, mv, f):
         return -10
     if mv.damaging() and eff(b, mv, t) == 0:
         return -10
+    # Basic_CheckPowderImmunity (Oxide): a powder move at a Grass type or an
+    # Overcoat holder scores -10; Rage Powder is aimed at its user.
+    if mv.name in fs.POWDER and mv.name != "Rage Powder" and fs.powder_immune(t, mv):
+        return -10
     if e in fs.STATUS_OF:
-        return -10 if not fs.can_status(b, t, fs.STATUS_OF[e]) or eff(b, mv, t) == 0 else 0
+        # Status moves skip Basic's immunity check (basic.md, lines 62 to 68);
+        # of the status handlers only Basic_CheckCannotParalyze asks the type
+        # chart (Thunder Wave on Ground, Glare on Ghost). So Hypnosis keeps its
+        # score against a Dark type.
+        immune = e == "STATUS_PARALYZE" and eff(b, mv, t) == 0
+        return -10 if not fs.can_status(b, t, fs.STATUS_OF[e]) or immune else 0
     if e == "STATUS_SLEEP_NEXT_TURN":
         return -10 if t.status or t.yawn or not fs.can_status(b, t, "slp") else 0
     if e in ("STATUS_CONFUSE", "ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         return -5 if t.confused else (-10 if t.ability == "Own Tempo" else 0)
     if e == "STATUS_LEECH_SEED":
         return -10 if t.seeded or "Grass" in t.types else 0
+    # Basic_CheckMeanLook and Basic_CheckAlreadyIngrained
+    # (docs/oxide/battle-ai/basic.md): a second trap, a second rooting.
+    if e == "PREVENT_ESCAPE":
+        return -10 if t.trapped_by is not None else 0
+    if e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
+        return -10 if u.ingrained else 0
     if e in fs.SELF_STAGES:
         ch = fs.SELF_STAGES[e]
         stats = [k for k, v in ch.items() if v > 0]
@@ -278,6 +332,30 @@ def expert(b, u, t, mv, f):
             s += 3
         elif not slow and hu <= 70:
             s -= 1
+    elif e in ("LOWER_SPEED_HIT", "SPEED_DOWN", "SPEED_DOWN_2"):
+        # SpeedDownOnHit (2338 to 2351) and StatusSpeedDown (2353 to 2366),
+        # expert-1.md: an attack the foe resists or is immune to scores
+        # nothing; only the attacks named by move id (Icy Wind, Rock Tomb,
+        # Mud Shot, and Oxide's six since 2026-09-27) and the Speed-lowering
+        # status moves go on to Speed Down, where a user that is not slower
+        # (a tie counts as not slower) takes -3 and a slower one +2 at 72.7%.
+        if e == "LOWER_SPEED_HIT" and (res or eff(b, mv, t) == 0 or mv.name not in SPEED_DOWN_NAMED):
+            return s
+        if not slow:
+            s -= 3
+        elif chance(b, 72.7):
+            s += 2
+    elif e == "HIT_BEFORE_SWITCH":
+        # Pursuit (3706 to 3735): +1 at 50% on the user's first turn in,
+        # otherwise +1 at 50% against a Ghost or Psychic foe; then +1 at 50%
+        # if the foe has shown U-turn.
+        if u.turns_in == 0:
+            if chance(b, 50):
+                s += 1
+        elif ("Ghost" in t.types or "Psychic" in t.types) and chance(b, 50):
+            s += 1
+        if any(m.name == "U-turn" for m in getattr(t, "shown", ())) and chance(b, 50):
+            s += 1
     elif e in CONFUSE or e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
         if e != "STATUS_CONFUSE" and chance(b, 50):
             s += 1
@@ -581,6 +659,10 @@ def choose(b, u, t):
         locked = next((m for m in u.moves if m.name == u.choice), None)
         if locked is not None and u.pp.get(locked.name, 1) > 0:
             return "move", locked
+    # With no PP left in any move the engine substitutes Struggle
+    # (battle_lib.c, the MOVE_STRUGGLE fallback in the turn order code).
+    if all(u.pp.get(m.name, 1) <= 0 for m in u.moves):
+        return "move", fs.move("Struggle")
     side = b.p if u.side == "p" else b.b
     sw = should_switch(b, side, u, t)
     if sw is not None:
@@ -642,45 +724,104 @@ def choose_doubles(b, u):
 
 
 def _se_moves(b, mon, t):
-    return [m for m in mon.moves if m.damaging() and eff(b, m, t) >= 2]
+    return [m for m in mon.moves if m.damaging() and eff_of(b, mon, m, t) >= 2]
+
+
+# The abilities that take a type's moves, as AI_AbilityAbsorbsType has them
+# (Oxide adds Storm Drain, Dry Skin, Lightning Rod, Motor Drive, Sap Sipper).
+ABSORBS = {"Fire": {"Flash Fire"}, "Water": {"Water Absorb", "Storm Drain", "Dry Skin"},
+           "Electric": {"Volt Absorb", "Lightning Rod", "Motor Drive"}, "Grass": {"Sap Sipper"}}
+
+
+def _any_se_moves(b, mon, t):
+    """Every move, status moves too, whose type hits t super-effectively:
+    BattleSystem_CalcEffectiveness, which the party checks use, sets the flag
+    whatever the move's power."""
+    return [m for m in mon.moves if eff_of(b, mon, m, t) >= 2]
+
+
+def _hit_type(b, mv):
+    """The type the last move that hit had (moveHitType): Weather Ball's
+    comes from the weather."""
+    if mv.name == "Weather Ball" and b.weather:
+        return {"Sun": "Fire", "Rain": "Water", "Hail": "Ice", "Sand": "Rock"}.get(b.weather, mv.type)
+    return mv.type
 
 
 def should_switch(b, side, u, t):
-    """The switch rules (section 3 of the spec), first answer decides."""
+    """TrainerAI_ShouldSwitch (trainer_ai.c), rule by rule; in singles each
+    party check reads the one foe as both defenders, so it rolls twice."""
+    if not fs.can_switch(u):
+        return None          # trapped by Block or Mean Look, or rooted by Ingrain
     bench = [i for i, m in enumerate(side.mons) if i != side.active and m.alive()]
     if not bench or u.bound:
         return None
-    # Rule 1: Perish Song's count has run down, so it leaves.
+    # AI_PerishSongKO
     if u.perish == 1:
         return replacement(b, side, t)
-    # Rule 3: every damaging move of two or more is immune.
-    dmg = [m for m in u.moves if m.damaging()]
-    if len(dmg) >= 2 and all(eff(b, m, t) == 0 for m in dmg):
+    # AI_CannotDamageWonderGuard: no super-effective attack on a Wonder Guard foe.
+    if t.ability == "Wonder Guard" and not _se_moves(b, u, t):
         for i in bench:
-            for m in _se_moves(b, side.mons[i], t):
+            for m in _any_se_moves(b, side.mons[i], t):
                 if chance(b, 66.7):
                     return i
+    # AI_OnlyIneffectiveMoves: two or more attacks, every one immune.
+    dmg = [m for m in u.moves if m.damaging()]
+    if len(dmg) >= 2 and all(eff_of(b, u, m, t) == 0 for m in dmg):
         for i in bench:
             for m in side.mons[i].moves:
-                if m.damaging() and eff(b, m, t) == 1 and chance(b, 50):
+                if m.damaging() and eff_of(b, side.mons[i], m, t) >= 2:
+                    for _ in range(2):
+                        if chance(b, 66.7):
+                            return i
+        for i in bench:
+            for m in side.mons[i].moves:
+                if m.damaging() and eff_of(b, side.mons[i], m, t) == 1:
+                    for _ in range(2):
+                        if chance(b, 50):
+                            return i
+    hit = u.last_hit_by
+    # AI_HasAbsorbAbilityInParty: a super-effective attack of its own keeps it
+    # in two times in three; otherwise a bench member that takes the type of
+    # the attack that hit it comes in, one time in two.
+    if not (_se_moves(b, u, t) and chance(b, 66.7)) and hit is not None and hit.damaging():
+        htype = _hit_type(b, hit)
+        if u.ability not in ABSORBS.get(htype, ()):
+            for i in bench:
+                if side.mons[i].ability in ABSORBS.get(htype, ()) and chance(b, 50):
                     return i
-    # The gates: a super-effective move of its own, or stages built up.
+    # AI_IsAsleepWithNaturalCure, at half HP or more.
+    if u.status == "slp" and u.ability == "Natural Cure" and u.hp >= u.maxhp // 2:
+        if hit is None and chance(b, 50):
+            return replacement(b, side, t)
+        if (hit is None or not hit.damaging()) and chance(b, 50):
+            return replacement(b, side, t)
+        if hit is not None and hit.damaging():
+            for want in (0, "res"):
+                for i in bench:
+                    m = side.mons[i]
+                    e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
+                    if (e == 0 if want == 0 else 0 < e < 1) and _any_se_moves(b, m, t):
+                        return i
+        if chance(b, 50):
+            return replacement(b, side, t)
+    # AI_HasSuperEffectiveMove: each super-effective attack keeps it in nine
+    # times in ten; four or more boosts keep it in.
     for m in _se_moves(b, u, t):
         if chance(b, 90):
             return None
     if sum(v for k, v in u.stages.items() if v > 0 and k != "acc") >= 4:
         return None
-    # Rules 6 and 7: hit by a damaging move a bench member is immune to or
-    # resists, and that member has a super-effective move on the attacker.
-    hit = u.last_hit_by
+    # AI_HasPartyMemberWithSuperEffectiveMove: a bench member immune to (one
+    # in two per move) or resisting (one in three per move) the attack that
+    # hit it, with a super-effective move of any kind at the foe.
     if hit is not None and hit.damaging():
         for want, p in ((0, 50), ("res", 33.3)):
             for i in bench:
                 m = side.mons[i]
-                e = fs.effectiveness(b.st["chart"], hit.type, m.types)
-                ok = e == 0 if want == 0 else 0 < e < 1
-                if ok:
-                    for _mv in _se_moves(b, m, t):
+                e = fs.effectiveness(b.st["chart"], _hit_type(b, hit), m.types)
+                if e == 0 if want == 0 else 0 < e < 1:
+                    for _mv in _any_se_moves(b, m, t):
                         if chance(b, p):
                             return i
     return None
@@ -711,6 +852,24 @@ def replacement(b, side, target, owner=None):
         if _se_moves(b, side.mons[i], target) or any(
                 m.cat == "Status" and eff(b, m, target) >= 2 for m in side.mons[i].moves):
             return i
-    best = max(cands, key=lambda i: (max((figure(b, side.mons[i], target, m) or 0
-                                          for m in side.mons[i].moves), default=0), -i))
+    # Stage 2 (BattleAI_PostKOSwitchIn, battle_lib.c): each candidate's
+    # moves are costed as if the Pokemon that just fainted used them, at
+    # its stats, types and ability, by the top roll without a critical hit;
+    # a move listed at power 1 (variable power: Low Kick, Magnitude) is
+    # skipped, an immune target scores 0, and the score is a u8, so a figure
+    # past 255 wraps. The highest wins, ties by party order.
+    fainted = side.mons[side.active]
+    row = b.row(fainted, target)
+    best, best_score = cands[0], 0
+    for i in sorted(cands):
+        for m in side.mons[i].moves:
+            if not m.damaging() or m.power == 1:
+                continue
+            got = (row or {}).get("moves", {}).get(m.name) if row else None
+            score = (got["rolls"][-1] if got and got.get("rolls") else 0)
+            if eff(b, m, target) == 0:
+                score = 0
+            score %= 256
+            if score > best_score:
+                best, best_score = i, score
     return best

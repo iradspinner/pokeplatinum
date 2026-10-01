@@ -1,0 +1,3410 @@
+{
+ "blind_rate": 0.864,
+ "blind_clean_share": 0.62,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.237,
+ "blind_wipe": 0.004,
+ "convergence": {
+  "10": 0.856,
+  "50": 0.953,
+  "100": 0.979,
+  "300": 0.994
+ },
+ "runs": 196480,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Swimmer\u2640 Haley",
+ "split": "Wake",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 9.7,
+ "rows": [
+  {
+   "rate": 0.75,
+   "deaths": 0.325,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Galvantula; answers Golduck->Vaporeon, Slowbro->Galvantula; switch losing; setup at 5+ safe turns; stall timed effects at 1 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Bastiodon",
+    "Lumineon",
+    "Roserade",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 1.0
+   },
+   "line": "lead Lumineon; answers Slowbro->Florges; switch hp below 0.3; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Florges for Slowbro",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Lumineon",
+    "Pawmot",
+    "Vikavolt",
+    "Drifblim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "38": 1.0
+   },
+   "line": "lead Orbeetle; answers Golduck->Orbeetle, Slowbro->Arboliva; switch hp below 0.4; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1360,
+   "kind": "blind:0",
+   "team": [
+    "Arboliva",
+    "Absol",
+    "Orbeetle",
+    "Sharpedo",
+    "Vikavolt",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "35": 1.0
+   },
+   "line": "lead Absol; answers Golduck->Manaphy, Slowbro->Absol; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:0",
+   "team": [
+    "Gengar",
+    "Absol",
+    "Manaphy",
+    "Togekiss",
+    "Tsareena",
+    "Vikavolt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cofagrigus; answers Golduck->Cofagrigus, Slowbro->Primarina; switch losing; setup at 3+ safe turns at full HP; bait locks; save Primarina for Slowbro",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Bibarel",
+    "Primarina",
+    "Probopass",
+    "Tsareena",
+    "Vikavolt",
+    "Cofagrigus"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.55,
+    "30": 0.55,
+    "33": 1.0
+   },
+   "line": "lead Orbeetle; answers Golduck->Orbeetle, Slowbro->Ferrothorn; switch losing; setup at 3+ safe turns; no status moves; bait locks; stall timed effects at 3 turns; save Ferrothorn for Slowbro",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:0",
+   "team": [
+    "Ferrothorn",
+    "Arboliva",
+    "Leavanny",
+    "Orbeetle",
+    "Pachirisu",
+    "Sharpedo"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.137,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "13": 1.0
+   },
+   "line": "lead Cofagrigus; answers Golduck->Sharpedo, Slowbro->Leavanny; switch hp below 0.3; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:0",
+   "team": [
+    "Leavanny",
+    "Ludicolo",
+    "Probopass",
+    "Sharpedo",
+    "Cofagrigus",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.5,
+    "70": 0.5,
+    "80": 0.5,
+    "90": 0.5,
+    "100": 0.5,
+    "110": 0.5,
+    "120": 0.5,
+    "130": 0.5,
+    "140": 0.5,
+    "150": 0.5,
+    "152": 1.0
+   },
+   "line": "lead Probopass; answers Golduck->Manaphy; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 152,
+   "converged": true,
+   "runs": 3940,
+   "kind": "planned:0",
+   "team": [
+    "Ferrothorn",
+    "Leavanny",
+    "Manaphy",
+    "Probopass",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.35,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4,
+    "62": 1.0
+   },
+   "line": "lead Pachirisu; answers Golduck->Pachirisu, Slowbro->Ferrothorn; switch losing; setup at 3+ safe turns; save Ferrothorn for Slowbro",
+   "candidates": 62,
+   "converged": true,
+   "runs": 2140,
+   "kind": "planned:0",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Liepard",
+    "Pachirisu",
+    "Tangrowth",
+    "Cinderace"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 1.0
+   },
+   "line": "lead Pachirisu; answers Slowbro->Orbeetle; switch never; setup at 4+ safe turns; bait locks; free pivots; save Orbeetle for Slowbro",
+   "candidates": 110,
+   "converged": true,
+   "runs": 3100,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Orbeetle",
+    "Pachirisu",
+    "Tangrowth",
+    "Togekiss",
+    "Tsareena"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "72": 1.0
+   },
+   "line": "lead Sharpedo; answers Slowbro->Floatzel; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; save Floatzel for Slowbro",
+   "candidates": 72,
+   "converged": true,
+   "runs": 2340,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Arboliva",
+    "Bibarel",
+    "Milotic",
+    "Pachirisu",
+    "Sharpedo"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Pachirisu; answers Golduck->Lumineon, Slowbro->Pachirisu; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:0",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Pachirisu",
+    "Purugly",
+    "Roserade",
+    "Vaporeon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.373,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.65,
+    "78": 1.0
+   },
+   "line": "lead Golem; answers Slowbro->Leavanny; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Leavanny for Slowbro",
+   "candidates": 78,
+   "converged": true,
+   "runs": 2460,
+   "kind": "planned:0",
+   "team": [
+    "Golem",
+    "Leavanny",
+    "Manaphy",
+    "Pawmot",
+    "Sharpedo",
+    "Vikavolt"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Luxray; answers Golduck->Luxray, Slowbro->Luxray; switch never; setup at 3+ safe turns at full HP; save Luxray for Slowbro",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Luxray",
+    "Ninetales",
+    "Carbink",
+    "Tentacruel",
+    "Delcatty"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.0,
+   "deaths": 3.035,
+   "wipe": 0.095,
+   "screened": 0.0,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "30": 0.05,
+    "40": 0.05,
+    "50": 0.05,
+    "60": 0.05
+   },
+   "line": "lead Quagsire; answers Golduck->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Lopunny",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Steelix",
+    "Combee"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Luxray; answers Golduck->Luxray, Slowbro->Luxray; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; save Luxray for Slowbro",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Luxray",
+    "Masquerain",
+    "Probopass",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "16": 1.0
+   },
+   "line": "lead Bastiodon; answers Golduck->Bastiodon, Slowbro->Leavanny; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:1",
+   "team": [
+    "Golem",
+    "Bastiodon",
+    "Leavanny",
+    "Lurantis",
+    "Vullaby",
+    "Alakazam"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "16": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Slowbro->Dusclops; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Manaphy",
+    "Togekiss",
+    "Toucannon",
+    "Vaporeon",
+    "Dusclops"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Lanturn for Slowbro",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Lanturn",
+    "Leavanny",
+    "Lurantis",
+    "Luxray",
+    "Torterra"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Bastiodon; answers Slowbro->Torterra; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Torterra",
+    "Cherrim",
+    "Alakazam",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Luxray; answers Golduck->Luxray, Slowbro->Luxray; switch hp below 0.3; setup at 2+ safe turns at full HP; no status moves; save Luxray for Slowbro",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Florges",
+    "Absol",
+    "Luxray",
+    "Vullaby",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.15,
+    "20": 0.4,
+    "26": 1.0
+   },
+   "line": "lead Bronzong; answers Slowbro->Masquerain; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:1",
+   "team": [
+    "Lurantis",
+    "Masquerain",
+    "Quagsire",
+    "Bronzong",
+    "Yanmega",
+    "Cherrim"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Luxray; answers Golduck->Luxray, Slowbro->Luxray; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Luxray",
+    "Blissey",
+    "Weezing",
+    "Cherrim",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Dubwool; answers Golduck->Dubwool, Slowbro->Luxray; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:1",
+   "team": [
+    "Luxray",
+    "Probopass",
+    "Rapidash",
+    "Delcatty",
+    "Dubwool",
+    "Dusclops"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Dusclops; answers Golduck->Dusclops, Slowbro->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Lurantis",
+    "Togekiss",
+    "Torterra",
+    "Toucannon",
+    "Vikavolt",
+    "Dusclops"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Masquerain, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP; save Lanturn for Slowbro",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Quagsire",
+    "Togekiss",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Granbull; answers Golduck->Granbull, Slowbro->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:2",
+   "team": [
+    "Garganacl",
+    "Granbull",
+    "Masquerain",
+    "Pelipper",
+    "Sneasel",
+    "Whiscash"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Mightyena; answers Golduck->Empoleon, Slowbro->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:2",
+   "team": [
+    "Gothitelle",
+    "Lurantis",
+    "Mightyena",
+    "Pelipper",
+    "Staraptor",
+    "Empoleon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.95,
+    "50": 0.95,
+    "55": 1.0
+   },
+   "line": "lead Talonflame; answers Golduck->Talonflame, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 55,
+   "converged": true,
+   "runs": 1700,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Gothitelle",
+    "Leavanny",
+    "Seaking",
+    "Snorlax",
+    "Talonflame"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Florges; switch losing; setup at 3+ safe turns at full HP; bait locks; save Florges for Slowbro",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Florges",
+    "Klefki",
+    "Sneasel",
+    "Talonflame",
+    "Corviknight",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.44,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Sharpedo; answers Golduck->Vikavolt, Slowbro->Quagsire; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Quagsire for Slowbro",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Lurantis",
+    "Quagsire",
+    "Sharpedo",
+    "Togekiss",
+    "Vikavolt"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Sharpedo; answers Golduck->Empoleon, Slowbro->Sharpedo; switch losing; setup at 3+ safe turns at full HP; save Sharpedo for Slowbro",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Orbeetle",
+    "Rotom",
+    "Scizor",
+    "Sharpedo",
+    "Empoleon"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Rotom; answers Golduck->Mightyena, Slowbro->Mightyena; switch losing; setup at 3+ safe turns at full HP; free pivots; save Mightyena for Slowbro",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Granbull",
+    "Manaphy",
+    "Mightyena",
+    "Mismagius",
+    "Rotom"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Granbull; answers Golduck->Granbull, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Honchkrow",
+    "Mightyena",
+    "Mismagius",
+    "Rotom",
+    "Snorlax"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Golduck->Rotom, Slowbro->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Kricketune",
+    "Lumineon",
+    "Rotom",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "115": 1.0
+   },
+   "line": "lead Empoleon; answers Golduck->Manaphy, Slowbro->Honchkrow; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 115,
+   "converged": true,
+   "runs": 3200,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Honchkrow",
+    "Manaphy",
+    "Sharpedo",
+    "Tsareena",
+    "Empoleon"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Empoleon; answers Golduck->Empoleon, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Gothitelle",
+    "Leavanny",
+    "Lumineon",
+    "Quagsire",
+    "Shiftry",
+    "Empoleon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Empoleon; answers Golduck->Empoleon, Slowbro->Lurantis; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Lurantis",
+    "Mightyena",
+    "Noctowl",
+    "Drifblim",
+    "Empoleon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Sharpedo; answers Golduck->Sharpedo, Slowbro->Kricketune; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Kricketune for Slowbro",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:2",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Masquerain",
+    "Mightyena",
+    "Breloom",
+    "Sharpedo"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Combee; answers Golduck->Abomasnow, Slowbro->Sinistcha; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Garganacl",
+    "Sinistcha",
+    "Talonflame",
+    "Yanmega",
+    "Combee"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "22": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Slowbro->Kingdra; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Kingdra for Slowbro",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:3",
+   "team": [
+    "Kingdra",
+    "Liepard",
+    "Manaphy",
+    "Blissey",
+    "Steelix",
+    "Toucannon"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.105,
+   "deaths": 1.585,
+   "wipe": 0.04,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Ludicolo; answers Golduck->Jynx; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Jynx",
+    "Ludicolo",
+    "Milotic",
+    "Quagsire",
+    "Combee",
+    "Corviknight"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.65,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Dubwool; answers Golduck->Dubwool, Slowbro->Yanmega; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Yanmega for Slowbro",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Manaphy",
+    "Raichu",
+    "Yanmega",
+    "Dubwool"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Lurantis, Slowbro->Orbeetle; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 1 turns; save Orbeetle for Slowbro",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bibarel",
+    "Lurantis",
+    "Milotic",
+    "Orbeetle",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Orbeetle, Slowbro->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Crawdaunt for Slowbro",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Leavanny",
+    "Orbeetle",
+    "Raichu",
+    "Crawdaunt",
+    "Empoleon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "92": 1.0
+   },
+   "line": "lead Galvantula; answers Golduck->Galvantula, Slowbro->Crawdaunt; switch never; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 92,
+   "converged": true,
+   "runs": 2740,
+   "kind": "planned:3",
+   "team": [
+    "Galvantula",
+    "Garganacl",
+    "Orbeetle",
+    "Carbink",
+    "Chandelure",
+    "Crawdaunt"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Corviknight; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Sinistcha",
+    "Steelix",
+    "Corviknight",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Orbeetle; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Galvantula",
+    "Orbeetle",
+    "Raichu",
+    "Yanmega",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Corviknight, Slowbro->Electivire; switch never; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Electivire for Slowbro",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Raichu",
+    "Steelix",
+    "Corviknight",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Galvantula; answers Golduck->Galvantula, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP; save Shiftry for Slowbro",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Galvantula",
+    "Bastiodon",
+    "Honchkrow",
+    "Orbeetle",
+    "Breloom",
+    "Shiftry"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.35,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Slowbro->Yanmega; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Yanmega for Slowbro",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Houndoom",
+    "Masquerain",
+    "Seaking",
+    "Yanmega",
+    "Combee"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Golduck->Steelix, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Manaphy",
+    "Masquerain",
+    "Seaking",
+    "Shiftry",
+    "Carbink",
+    "Steelix"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.175,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Slowbro->Bronzong; switch hp below 0.6; setup at 5+ safe turns; save Bronzong for Slowbro",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Mismagius",
+    "Bronzong",
+    "Quagsire",
+    "Vullaby"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Slowbro->Araquanid; switch losing; setup at 3+ safe turns; no status moves; save Araquanid for Slowbro",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:4",
+   "team": [
+    "Araquanid",
+    "Lanturn",
+    "Magcargo",
+    "Purugly",
+    "Vikavolt",
+    "Combee"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Kingler; answers Golduck->Kingler, Slowbro->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Araquanid",
+    "Florges",
+    "Kingler",
+    "Blissey",
+    "Tsareena",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Slowbro->Blissey; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Blissey for Slowbro",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Blissey",
+    "Masquerain",
+    "Mienshao",
+    "Seaking"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Slowbro->Mr. Rime; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Manaphy",
+    "Mightyena",
+    "Mr. Rime",
+    "Purugly",
+    "Crobat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Crawdaunt, Slowbro->Lanturn; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Lanturn",
+    "Mightyena",
+    "Orbeetle",
+    "Rotom",
+    "Sharpedo",
+    "Crawdaunt"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Golduck->Crawdaunt, Slowbro->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Masquerain",
+    "Orbeetle",
+    "Rotom",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "68": 1.0
+   },
+   "line": "lead Masquerain; answers Slowbro->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 68,
+   "converged": true,
+   "runs": 2260,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Masquerain",
+    "Seaking",
+    "Sharpedo",
+    "Tsareena",
+    "Clefable"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Luxray",
+    "Sharpedo",
+    "Carbink",
+    "Crawdaunt"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Luxray",
+    "Magcargo",
+    "Mightyena",
+    "Combee",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Blissey; answers Golduck->Luxray, Slowbro->Rotom; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Kricketune",
+    "Luxray",
+    "Blissey",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Lanturn, Slowbro->Crawdaunt; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Lanturn",
+    "Luxray",
+    "Pawmot",
+    "Quagsire",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Rotom, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Lanturn",
+    "Ludicolo",
+    "Manaphy",
+    "Orbeetle",
+    "Rotom",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mismagius; answers Golduck->Mismagius, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Bibarel",
+    "Manaphy",
+    "Mismagius",
+    "Primarina",
+    "Snorlax",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Bronzong; answers Golduck->Bronzong, Slowbro->Shiftry; switch hp below 0.2; setup at 5+ safe turns; save Shiftry for Slowbro",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Ludicolo",
+    "Mightyena",
+    "Bronzong",
+    "Shiftry",
+    "Combee"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Bibarel; answers Slowbro->Mightyena; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Bibarel",
+    "Mightyena",
+    "Primarina",
+    "Castform",
+    "Altaria"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Golduck->Steelix, Slowbro->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Palossand",
+    "Skuntank",
+    "Steelix",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.44,
+   "deaths": 0.82,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Ferrothorn; answers Golduck->Ferrothorn, Slowbro->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Lurantis",
+    "Rhydon",
+    "Serperior",
+    "Skuntank"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.95,
+    "60": 0.95,
+    "65": 1.0
+   },
+   "line": "lead Orbeetle; answers Golduck->Orbeetle, Slowbro->Orbeetle; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Orbeetle for Slowbro",
+   "candidates": 65,
+   "converged": true,
+   "runs": 2200,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Lanturn",
+    "Leavanny",
+    "Mismagius",
+    "Orbeetle",
+    "Serperior"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.357,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.45,
+    "140": 0.45,
+    "150": 0.45,
+    "160": 0.45,
+    "170": 0.5,
+    "180": 0.5,
+    "190": 0.5,
+    "200": 0.5,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Seaking; answers Golduck->Seaking, Slowbro->Shiftry; switch hp below 0.4; setup at 5+ safe turns; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Garganacl",
+    "Liepard",
+    "Seaking",
+    "Serperior",
+    "Shiftry"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Ludicolo; answers Golduck->Mightyena, Slowbro->Skuntank; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Ludicolo",
+    "Manaphy",
+    "Mightyena",
+    "Skuntank",
+    "Cherrim",
+    "Alakazam"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "13": 1.0
+   },
+   "line": "lead Mismagius; answers Slowbro->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Ferrothorn for Slowbro",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Ludicolo",
+    "Mismagius",
+    "Quagsire",
+    "Serperior",
+    "Tsareena"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bronzong; answers Golduck->Bronzong, Slowbro->Serperior; switch losing; setup at 4+ safe turns; stall timed effects at 1 turns; save Serperior for Slowbro",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Leavanny",
+    "Mismagius",
+    "Bronzong",
+    "Serperior"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.25,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "85": 1.0
+   },
+   "line": "lead Charizard; answers Golduck->Manaphy, Slowbro->Ferrothorn; switch hp below 0.4; setup at 5+ safe turns; no status moves; stall timed effects at 1 turns; save Ferrothorn for Slowbro",
+   "candidates": 85,
+   "converged": true,
+   "runs": 2600,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Houndoom",
+    "Leavanny",
+    "Manaphy",
+    "Pawmot",
+    "Charizard"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Abomasnow, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Abomasnow",
+    "Leavanny",
+    "Mightyena",
+    "Bronzong",
+    "Snorlax",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Mightyena",
+    "Orbeetle",
+    "Pawmot",
+    "Shiftry",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "45": 1.0
+   },
+   "line": "lead Bibarel; answers Golduck->Bastiodon, Slowbro->Arboliva; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1500,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Azumarill",
+    "Bastiodon",
+    "Bibarel",
+    "Leavanny",
+    "Rhydon"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.255,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 1.0
+   },
+   "line": "lead Chandelure; answers none; switch losing; setup at 3+ safe turns",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1400,
+   "kind": "blind:6",
+   "team": [
+    "Hippowdon",
+    "Houndoom",
+    "Bibarel",
+    "Chandelure",
+    "Cherrim",
+    "Alakazam"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lanturn; answers Golduck->Scizor, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Rhydon",
+    "Scizor",
+    "Vikavolt",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.25,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Lumineon; answers none; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Galvantula",
+    "Lumineon",
+    "Breloom",
+    "Rhydon",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Liepard",
+    "Scizor",
+    "Toxicroak",
+    "Alakazam",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Mightyena",
+    "Orbeetle",
+    "Scizor",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "96": 1.0
+   },
+   "line": "lead Scizor; answers Golduck->Wailord, Slowbro->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Mightyena",
+    "Scizor",
+    "Tsareena",
+    "Wailord",
+    "Drifblim"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Rhydon",
+    "Shiftry",
+    "Vikavolt",
+    "Crawdaunt",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Wailord; answers Golduck->Wailord, Slowbro->Lanturn; switch hp below 0.3; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:6",
+   "team": [
+    "Houndoom",
+    "Lanturn",
+    "Leavanny",
+    "Togekiss",
+    "Wailord",
+    "Drifblim"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Azumarill; answers Golduck->Azumarill, Slowbro->Arboliva; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Arboliva",
+    "Azumarill",
+    "Leavanny",
+    "Masquerain",
+    "Shiftry",
+    "Tsareena"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "37": 1.0
+   },
+   "line": "lead Azumarill; answers none; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1640,
+   "kind": "planned:6",
+   "team": [
+    "Azumarill",
+    "Gothitelle",
+    "Palossand",
+    "Tsareena",
+    "Vikavolt",
+    "Chandelure"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Crawdaunt, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Lanturn for Slowbro",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mightyena",
+    "Scizor",
+    "Seaking",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Golduck->Mightyena, Slowbro->Altaria; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Altaria for Slowbro",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Masquerain",
+    "Mightyena",
+    "Seaking",
+    "Tsareena",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.46,
+   "wipe": 0.005,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Crustle; answers Golduck->Crustle; switch losing; setup at 4+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Leavanny",
+    "Blissey",
+    "Palossand",
+    "Breloom",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.215,
+   "deaths": 0.925,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.3,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Delcatty; answers Golduck->Delcatty, Slowbro->Yanmega; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Machamp",
+    "Primarina",
+    "Vaporeon",
+    "Yanmega",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:7",
+   "team": [
+    "Grapploct",
+    "Incineroar",
+    "Lanturn",
+    "Meowscarada",
+    "Palossand",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.35,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.7,
+    "50": 0.7,
+    "52": 1.0
+   },
+   "line": "lead Bibarel; answers Slowbro->Meowscarada; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1640,
+   "kind": "blind:7",
+   "team": [
+    "Gengar",
+    "Bibarel",
+    "Meowscarada",
+    "Vaporeon",
+    "Cherrim",
+    "Delphox"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.2,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Sharpedo; answers Golduck->Vaporeon, Slowbro->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gengar",
+    "Hariyama",
+    "Liepard",
+    "Machamp",
+    "Sharpedo",
+    "Vaporeon"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Ludicolo",
+    "Manaphy",
+    "Sharpedo",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Sharpedo; answers Golduck->Crustle, Slowbro->Lanturn; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Lanturn",
+    "Sharpedo",
+    "Cherrim",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lanturn; answers Golduck->Lanturn, Slowbro->Bronzong; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Bronzong for Slowbro",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Ludicolo",
+    "Bronzong",
+    "Sharpedo",
+    "Cinccino"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Slowbro->Honchkrow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Manaphy",
+    "Primarina",
+    "Probopass",
+    "Staraptor",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "13": 1.0
+   },
+   "line": "lead Delcatty; answers Golduck->Delcatty, Slowbro->Vespiquen; switch losing; setup at 3+ safe turns at full HP; free pivots; save Vespiquen for Slowbro",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Ludicolo",
+    "Manaphy",
+    "Seaking",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Meowscarada; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Grapploct",
+    "Meowscarada",
+    "Steelix",
+    "Vespiquen",
+    "Cherrim",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "66": 1.0
+   },
+   "line": "lead Manaphy; answers Golduck->Manaphy, Slowbro->Manaphy; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 66,
+   "converged": true,
+   "runs": 2220,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Leavanny",
+    "Manaphy",
+    "Primarina",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Meowscarada; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Meowscarada",
+    "Mienshao",
+    "Palossand",
+    "Rapidash",
+    "Cherrim",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Electivire, Slowbro->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Manaphy",
+    "Pelipper",
+    "Sharpedo",
+    "Vullaby",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Mismagius; answers Golduck->Mismagius, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP; save Snorlax for Slowbro",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:8",
+   "team": [
+    "Bibarel",
+    "Mismagius",
+    "Rapidash",
+    "Snorlax",
+    "Togekiss",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.675,
+   "wipe": 0.07,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Lopunny; answers Slowbro->Lurantis; switch losing; setup at 4+ safe turns; no status moves; stall timed effects at 2 turns; save Lurantis for Slowbro",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Ludicolo",
+    "Lurantis",
+    "Milotic",
+    "Tropius",
+    "Vaporeon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Lopunny; answers Golduck->Lopunny, Slowbro->Shiftry; switch hp below 0.4; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Palossand",
+    "Bronzong",
+    "Shiftry",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Masquerain; answers Golduck->Masquerain, Slowbro->Tropius; switch losing; setup at 3+ safe turns; free pivots; save Tropius for Slowbro",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:8",
+   "team": [
+    "Gliscor",
+    "Ludicolo",
+    "Masquerain",
+    "Bronzong",
+    "Tangrowth",
+    "Tropius"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Dubwool; answers Golduck->Dubwool, Slowbro->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots; save Leavanny for Slowbro",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Leavanny",
+    "Mismagius",
+    "Pachirisu",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Pachirisu; answers Golduck->Primarina, Slowbro->Cherrim; switch hp below 0.5; setup at 3+ safe turns; bait locks; free pivots; save Cherrim for Slowbro",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Pachirisu",
+    "Pelipper",
+    "Primarina",
+    "Sharpedo",
+    "Vaporeon",
+    "Cherrim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mismagius; answers Golduck->Mismagius, Slowbro->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Milotic",
+    "Mismagius",
+    "Pachirisu",
+    "Snorlax",
+    "Talonflame",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Mismagius; answers Golduck->Mismagius, Slowbro->Florges; switch losing; setup at 3+ safe turns at full HP; free pivots; save Florges for Slowbro",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Houndoom",
+    "Lurantis",
+    "Mismagius",
+    "Pachirisu",
+    "Whiscash"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers Golduck->Girafarig, Slowbro->Electivire; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Golem",
+    "Bibarel",
+    "Manaphy",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "39": 1.0
+   },
+   "line": "lead Mismagius; answers Golduck->Mismagius, Slowbro->Sharpedo; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:8",
+   "team": [
+    "Mismagius",
+    "Octillery",
+    "Pachirisu",
+    "Pawmot",
+    "Sharpedo",
+    "Chimecho"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "19": 1.0
+   },
+   "line": "lead Pachirisu; answers Golduck->Pachirisu, Slowbro->Shiftry; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Shiftry for Slowbro",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:8",
+   "team": [
+    "Golem",
+    "Pachirisu",
+    "Pawmot",
+    "Shiftry",
+    "Tangrowth",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.14,
+   "wipe": 0.007,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "181": 1.0
+   },
+   "line": "lead Sharpedo; answers Golduck->Snorlax, Slowbro->Tropius; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Tropius for Slowbro",
+   "candidates": 181,
+   "converged": true,
+   "runs": 4520,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Palossand",
+    "Sharpedo",
+    "Snorlax",
+    "Tropius",
+    "Dubwool"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.525,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.5,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Tentacruel; answers Golduck->Florges, Slowbro->Florges; switch losing; setup at 5+ safe turns; no status moves; bait locks; free pivots; save Florges for Slowbro",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Tentacruel",
+    "Vullaby",
+    "Crustle",
+    "Empoleon"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Abomasnow; answers Golduck->Yanmega, Slowbro->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Ferrothorn",
+    "Steelix",
+    "Vaporeon",
+    "Yanmega",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Abomasnow, Slowbro->Arboliva; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Arboliva",
+    "Florges",
+    "Hariyama",
+    "Kricketune",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.12,
+   "wipe": 0.005,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "11": 1.0
+   },
+   "line": "lead Araquanid; answers Golduck->Furret, Slowbro->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Ferrothorn for Slowbro",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:9",
+   "team": [
+    "Araquanid",
+    "Ferrothorn",
+    "Furret",
+    "Breloom",
+    "Raichu",
+    "Seaking"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Glimmora; answers Slowbro->Leavanny; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Girafarig",
+    "Glimmora",
+    "Grapploct",
+    "Leavanny",
+    "Lurantis",
+    "Tentacruel"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Luxray, Slowbro->Abomasnow; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Lanturn",
+    "Luxray",
+    "Rotom",
+    "Scizor",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Abomasnow, Slowbro->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Girafarig",
+    "Ludicolo",
+    "Raichu",
+    "Steelix",
+    "Vikavolt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Abomasnow; answers Golduck->Abomasnow, Slowbro->Scizor; switch losing; setup at 4+ safe turns; save Scizor for Slowbro",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Lanturn",
+    "Manaphy",
+    "Purugly",
+    "Scizor",
+    "Wailord"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lurantis",
+    "Ninetales",
+    "Raichu",
+    "Shiftry",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Golduck->Luxray, Slowbro->Kricketune; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hariyama",
+    "Kricketune",
+    "Luxray",
+    "Sharpedo",
+    "Tsareena",
+    "Wailord"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "11": 1.0
+   },
+   "line": "lead Araquanid; answers Golduck->Sharpedo, Slowbro->Ferrothorn; switch losing; setup at 5+ safe turns at full HP; bait locks; save Ferrothorn for Slowbro",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:9",
+   "team": [
+    "Araquanid",
+    "Ferrothorn",
+    "Bastiodon",
+    "Leavanny",
+    "Ludicolo",
+    "Sharpedo"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ninetales; answers Golduck->Ninetales, Slowbro->Arboliva; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Arboliva",
+    "Leavanny",
+    "Ninetales",
+    "Rotom",
+    "Yanmega",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Golduck->Crawdaunt, Slowbro->Lurantis; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Araquanid",
+    "Lurantis",
+    "Luxray",
+    "Vullaby",
+    "Crawdaunt",
+    "Empoleon"
+   ],
+   "seconds": 0.8
+  }
+ ],
+ "key": "tr105"
+}

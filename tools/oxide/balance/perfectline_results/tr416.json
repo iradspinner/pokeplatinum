@@ -1,0 +1,3546 @@
+{
+ "blind_rate": 0.906,
+ "blind_clean_share": 0.72,
+ "planned_rate": 0.992,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.008,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.117,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.929,
+  "50": 0.971,
+  "100": 0.983,
+  "300": 0.991
+ },
+ "runs": 223840,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Galactic Officer Argo",
+ "split": "Byron",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 18.0,
+ "rows": [
+  {
+   "rate": 0.89,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Vespiquen; answers Kecleon->Vespiquen, Houndoom->Araquanid, Armaldo->Mantine, Dugtrio->Absol, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Mantine",
+    "Orbeetle",
+    "Vespiquen",
+    "Vikavolt"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Arboliva; answers Kecleon->Manaphy, Houndoom->Manaphy, Armaldo->Garganacl, Dugtrio->Arboliva, Rotom-Mow->Tsareena; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1160,
+   "kind": "blind:0",
+   "team": [
+    "Arboliva",
+    "Garganacl",
+    "Gengar",
+    "Manaphy",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Gliscor; answers Kecleon->Togekiss, Houndoom->Gliscor, Armaldo->Wailord, Dugtrio->Wailord, Rotom-Mow->Vikavolt; switch hp below 0.3; setup at 2+ safe turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Absol",
+    "Togekiss",
+    "Tsareena",
+    "Vikavolt",
+    "Wailord"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.95,
+    "30": 0.95,
+    "38": 1.0
+   },
+   "line": "lead Cinderace; answers Kecleon->Steelix, Houndoom->Cinderace, Armaldo->Bibarel, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1360,
+   "kind": "blind:0",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Bibarel",
+    "Steelix",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Orbeetle; answers Kecleon->Vikavolt, Houndoom->Purugly, Armaldo->Ferrothorn, Dugtrio->Ferrothorn, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Vikavolt for Rotom-Mow",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1640,
+   "kind": "blind:0",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Orbeetle",
+    "Purugly",
+    "Quagsire",
+    "Vikavolt"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "143": 1.0
+   },
+   "line": "lead Gliscor; answers Kecleon->Lumineon, Houndoom->Gliscor, Armaldo->Floatzel, Dugtrio->Gliscor, Rotom-Mow->Scizor; switch losing; setup at 2+ safe turns at full HP; save Gliscor for Dugtrio",
+   "candidates": 143,
+   "converged": true,
+   "runs": 3760,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Hariyama",
+    "Lumineon",
+    "Scizor",
+    "Tsareena"
+   ],
+   "seconds": 7.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Cofagrigus; answers Kecleon->Cofagrigus, Houndoom->Donphan, Armaldo->Glalie, Dugtrio->Cofagrigus, Rotom-Mow->Roserade; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Glalie for Armaldo",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Quagsire",
+    "Roserade",
+    "Cofagrigus",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Hippowdon, Armaldo->Empoleon, Dugtrio->Hippowdon, Rotom-Mow->Roserade; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Hariyama",
+    "Hippowdon",
+    "Roserade",
+    "Vikavolt",
+    "Cofagrigus"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Manaphy; answers Kecleon->Cinderace, Houndoom->Cinderace, Armaldo->Manaphy, Dugtrio->Manaphy, Rotom-Mow->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Liepard",
+    "Lumineon",
+    "Manaphy",
+    "Scizor",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 11.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Araquanid; answers Kecleon->Araquanid, Houndoom->Hippowdon, Armaldo->Bastiodon, Dugtrio->Arboliva, Rotom-Mow->Arboliva; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Araquanid",
+    "Arboliva",
+    "Bastiodon",
+    "Hippowdon",
+    "Talonflame",
+    "Tentacruel"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "64": 1.0
+   },
+   "line": "lead Togekiss; answers Kecleon->Florges, Dugtrio->Tsareena, Rotom-Mow->Tentacruel; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns; save Tentacruel for Rotom-Mow",
+   "candidates": 64,
+   "converged": true,
+   "runs": 2180,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Steelix",
+    "Tentacruel",
+    "Togekiss",
+    "Tsareena",
+    "Ninetales-Alola"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.173,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Araquanid; answers Kecleon->Cinderace, Houndoom->Donphan, Armaldo->Araquanid, Dugtrio->Donphan, Rotom-Mow->Cinderace; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Donphan for Dugtrio",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Araquanid",
+    "Hariyama",
+    "Purugly",
+    "Tsareena",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 11.3
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "115": 1.0
+   },
+   "line": "lead Tentacruel; answers Houndoom->Tentacruel, Armaldo->Empoleon, Dugtrio->Palossand, Rotom-Mow->Arboliva; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 115,
+   "converged": true,
+   "runs": 3200,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Arboliva",
+    "Gastrodon",
+    "Palossand",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 6.7
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.475,
+   "wipe": 0.01,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Primarina; answers Kecleon->Primarina, Houndoom->Primarina, Armaldo->Klefki, Dugtrio->Cherrim, Rotom-Mow->Mismagius; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Ferrothorn",
+    "Klefki",
+    "Absol",
+    "Mismagius",
+    "Primarina",
+    "Cherrim"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.56,
+   "deaths": 0.47,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Primarina; answers Kecleon->Primarina, Houndoom->Purugly, Armaldo->Ferrothorn, Dugtrio->Ludicolo, Rotom-Mow->Absol; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Ferrothorn",
+    "Glalie",
+    "Absol",
+    "Ludicolo",
+    "Primarina",
+    "Purugly"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Kingdra; answers Houndoom->Kingdra, Armaldo->Kingdra, Dugtrio->Ludicolo, Rotom-Mow->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Glalie",
+    "Jellicent",
+    "Kingdra",
+    "Lanturn",
+    "Ludicolo",
+    "Scizor"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Heracross; answers Kecleon->Heracross, Houndoom->Ninetales, Armaldo->Glimmora, Dugtrio->Heracross, Rotom-Mow->Heracross; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:1",
+   "team": [
+    "Glimmora",
+    "Heracross",
+    "Liepard",
+    "Manaphy",
+    "Ninetales",
+    "Primarina"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Breloom; answers Kecleon->Breloom, Houndoom->Manaphy, Dugtrio->Breloom, Rotom-Mow->Blissey; switch losing; setup at 5+ safe turns at full HP; bait locks; save Blissey for Rotom-Mow",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Glimmora",
+    "Manaphy",
+    "Blissey",
+    "Pachirisu",
+    "Breloom",
+    "Cinccino"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Weezing; answers Kecleon->Weezing, Houndoom->Hariyama, Armaldo->Hariyama, Dugtrio->Tsareena, Rotom-Mow->Weezing; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Hariyama",
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tsareena",
+    "Weezing"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Breloom; answers Kecleon->Breloom, Houndoom->Golem, Armaldo->Steelix, Dugtrio->Cherrim, Rotom-Mow->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Manaphy",
+    "Breloom",
+    "Rapidash",
+    "Steelix",
+    "Cherrim"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.243,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 1.0
+   },
+   "line": "lead Araquanid; answers Kecleon->Mismagius, Houndoom->Torterra, Armaldo->Corviknight, Dugtrio->Liepard, Rotom-Mow->Absol; switch losing; setup at 3+ safe turns",
+   "candidates": 80,
+   "converged": true,
+   "runs": 2500,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Liepard",
+    "Mismagius",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Tentacruel; answers Kecleon->Torterra, Houndoom->Torterra, Armaldo->Tentacruel, Dugtrio->Torterra, Rotom-Mow->Leavanny; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1580,
+   "kind": "planned:1",
+   "team": [
+    "Leavanny",
+    "Mismagius",
+    "Tentacruel",
+    "Torterra",
+    "Cherrim",
+    "Drifblim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 1.0
+   },
+   "line": "lead Togekiss; answers Kecleon->Pachirisu, Houndoom->Togekiss, Armaldo->Hariyama, Dugtrio->Cherrim, Rotom-Mow->Orbeetle; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:1",
+   "team": [
+    "Hariyama",
+    "Milotic",
+    "Orbeetle",
+    "Pachirisu",
+    "Togekiss",
+    "Cherrim"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Kecleon->Weezing, Houndoom->Milotic, Armaldo->Manaphy, Dugtrio->Weezing, Rotom-Mow->Ninetales; switch losing; setup at 3+ safe turns at full HP; save Ninetales for Rotom-Mow",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Milotic",
+    "Ninetales",
+    "Vullaby",
+    "Weezing",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.247,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Kingdra; answers Kecleon->Kingdra, Houndoom->Kingdra, Armaldo->Steelix, Dugtrio->Cherrim, Rotom-Mow->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Kingdra",
+    "Ludicolo",
+    "Pachirisu",
+    "Carbink",
+    "Steelix",
+    "Cherrim"
+   ],
+   "seconds": 13.2
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "209": 1.0
+   },
+   "line": "lead Whiscash; answers Kecleon->Araquanid, Houndoom->Whiscash, Dugtrio->Araquanid, Rotom-Mow->Wormadam; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Araquanid for Dugtrio",
+   "candidates": 209,
+   "converged": true,
+   "runs": 5080,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Lopunny",
+    "Scizor",
+    "Whiscash",
+    "Wormadam"
+   ],
+   "seconds": 11.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "21": 1.0
+   },
+   "line": "lead Rotom; answers Kecleon->Rapidash, Houndoom->Steelix, Armaldo->Steelix, Dugtrio->Steelix, Rotom-Mow->Pachirisu; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:2",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Pachirisu",
+    "Rapidash",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Tangrowth; answers Kecleon->Tangrowth, Houndoom->Quagsire, Armaldo->Lanturn, Dugtrio->Tangrowth, Rotom-Mow->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Quagsire",
+    "Tangrowth",
+    "Vullaby",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Granbull; answers Kecleon->Granbull, Houndoom->Golem, Armaldo->Golem, Dugtrio->Granbull, Rotom-Mow->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Granbull",
+    "Rapidash",
+    "Rotom",
+    "Tentacruel",
+    "Togekiss"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "56": 1.0
+   },
+   "line": "lead Kingler; answers Kecleon->Electivire, Houndoom->Quagsire, Armaldo->Kingler, Dugtrio->Quagsire, Rotom-Mow->Cinderace; switch losing; setup at 2+ safe turns at full HP; free pivots; save Cinderace for Rotom-Mow",
+   "candidates": 56,
+   "converged": true,
+   "runs": 1720,
+   "kind": "blind:2",
+   "team": [
+    "Kingler",
+    "Lopunny",
+    "Quagsire",
+    "Whiscash",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Florges; answers Kecleon->Florges, Houndoom->Lanturn, Armaldo->Steelix, Dugtrio->Steelix, Rotom-Mow->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Greninja",
+    "Lanturn",
+    "Milotic",
+    "Steelix"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Kecleon->Hariyama, Houndoom->Kingdra, Armaldo->Floatzel, Rotom-Mow->Hariyama; switch losing; setup at 3+ safe turns at full HP; save Floatzel for Armaldo",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Hariyama",
+    "Kingdra",
+    "Milotic",
+    "Rotom",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Granbull; answers Houndoom->Mismagius, Armaldo->Mismagius, Dugtrio->Granbull, Rotom-Mow->Orbeetle; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:2",
+   "team": [
+    "Gardevoir",
+    "Glimmora",
+    "Granbull",
+    "Mightyena",
+    "Mismagius",
+    "Orbeetle"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Togekiss; answers Kecleon->Staraptor, Houndoom->Garganacl, Armaldo->Togekiss, Dugtrio->Gastrodon, Rotom-Mow->Togekiss; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots; save Gastrodon for Dugtrio",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Gastrodon",
+    "Staraptor",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Masquerain; answers Houndoom->Lanturn, Armaldo->Gastrodon, Dugtrio->Gastrodon, Rotom-Mow->Talonflame; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Lanturn",
+    "Masquerain",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Feraligatr; answers Kecleon->Feraligatr, Houndoom->Feraligatr, Armaldo->Kingler, Dugtrio->Clefable, Rotom-Mow->Kingdra; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Kingdra for Rotom-Mow",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Jellicent",
+    "Kingdra",
+    "Kingler",
+    "Clefable",
+    "Corviknight"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "65": 1.0
+   },
+   "line": "lead Rotom; answers Kecleon->Seaking, Houndoom->Quagsire, Armaldo->Steelix, Dugtrio->Rotom, Rotom-Mow->Ninetales-Alola; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Quagsire for Houndoom",
+   "candidates": 65,
+   "converged": true,
+   "runs": 2200,
+   "kind": "planned:2",
+   "team": [
+    "Mightyena",
+    "Quagsire",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Ninetales-Alola"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Kecleon->Araquanid, Houndoom->Lanturn, Armaldo->Glimmora, Dugtrio->Manaphy, Rotom-Mow->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Lanturn",
+    "Manaphy",
+    "Staraptor",
+    "Talonflame"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Kecleon->Poliwrath, Houndoom->Milotic, Armaldo->Vespiquen, Dugtrio->Steelix, Rotom-Mow->Vespiquen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Masquerain",
+    "Milotic",
+    "Poliwrath",
+    "Steelix",
+    "Vespiquen"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Wailord; answers Kecleon->Togekiss, Houndoom->Magcargo, Armaldo->Vaporeon, Dugtrio->Tsareena, Rotom-Mow->Magcargo; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1280,
+   "kind": "blind:3",
+   "team": [
+    "Lumineon",
+    "Magcargo",
+    "Togekiss",
+    "Tsareena",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Toxicroak; answers Kecleon->Toxicroak, Houndoom->Cinderace, Armaldo->Bronzong, Dugtrio->Bronzong, Rotom-Mow->Altaria; switch losing; setup at 4+ safe turns at full HP; no status moves; save Altaria for Rotom-Mow",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Grapploct",
+    "Bronzong",
+    "Tentacruel",
+    "Toxicroak",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Gastrodon, Armaldo->Seaking, Dugtrio->Tsareena, Rotom-Mow->Vikavolt; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Seaking",
+    "Tentacruel",
+    "Toucannon",
+    "Tsareena",
+    "Vikavolt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Florges; answers Kecleon->Florges, Houndoom->Glimmora, Armaldo->Klefki, Dugtrio->Florges, Rotom-Mow->Altaria; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Glimmora for Houndoom",
+   "candidates": 19,
+   "converged": true,
+   "runs": 980,
+   "kind": "blind:3",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Klefki",
+    "Toucannon",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.49,
+   "deaths": 0.675,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Tsareena; answers Kecleon->Chandelure, Armaldo->Tsareena, Dugtrio->Togekiss; switch losing; setup at 2+ safe turns; no status moves; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Rapidash",
+    "Togekiss",
+    "Tsareena",
+    "Chandelure",
+    "Corviknight"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weezing; answers Kecleon->Weezing, Houndoom->Tsareena, Armaldo->Grapploct, Dugtrio->Tsareena, Rotom-Mow->Weezing; switch losing; setup at 3+ safe turns at full HP; save Grapploct for Armaldo",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Golduck",
+    "Grapploct",
+    "Milotic",
+    "Tsareena",
+    "Weezing",
+    "Dubwool"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.097,
+   "wipe": 0.003,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Seaking; answers Kecleon->Florges, Houndoom->Empoleon, Dugtrio->Seaking; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Florges",
+    "Lumineon",
+    "Primarina",
+    "Seaking"
+   ],
+   "seconds": 12.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weezing; answers Kecleon->Weezing, Houndoom->Magcargo, Armaldo->Steelix, Dugtrio->Weezing, Rotom-Mow->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Floatzel",
+    "Lumineon",
+    "Magcargo",
+    "Steelix",
+    "Chandelure",
+    "Weezing"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Kecleon->Golduck, Houndoom->Togekiss, Armaldo->Steelix, Dugtrio->Whiscash; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Golduck",
+    "Steelix",
+    "Tentacruel",
+    "Togekiss",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weezing; answers Kecleon->Florges, Houndoom->Empoleon, Armaldo->Empoleon, Dugtrio->Weezing, Rotom-Mow->Ferrothorn; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Florges",
+    "Golduck",
+    "Grapploct",
+    "Weezing"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "86": 1.0
+   },
+   "line": "lead Steelix; answers Houndoom->Lanturn, Armaldo->Golduck, Dugtrio->Tsareena, Rotom-Mow->Gothitelle; switch hp below 0.5; setup at 3+ safe turns; no status moves; free pivots; save Tsareena for Dugtrio",
+   "candidates": 86,
+   "converged": true,
+   "runs": 2620,
+   "kind": "planned:3",
+   "team": [
+    "Golduck",
+    "Gothitelle",
+    "Lanturn",
+    "Lumineon",
+    "Steelix",
+    "Tsareena"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Primarina; answers Kecleon->Primarina, Houndoom->Cinderace, Armaldo->Floatzel, Dugtrio->Primarina, Rotom-Mow->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Floatzel",
+    "Bibarel",
+    "Primarina",
+    "Vaporeon",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Kecleon->Wailord, Houndoom->Magcargo, Armaldo->Steelix, Dugtrio->Steelix, Rotom-Mow->Magcargo; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Magcargo",
+    "Steelix",
+    "Talonflame",
+    "Wailord"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Florges; answers Kecleon->Florges, Houndoom->Floatzel, Armaldo->Electivire, Dugtrio->Arboliva, Rotom-Mow->Florges; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:4",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Arboliva",
+    "Mr. Rime",
+    "Solrock",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nidoqueen; answers Kecleon->Nidoqueen, Houndoom->Poliwrath, Armaldo->Steelix, Dugtrio->Steelix, Rotom-Mow->Altaria; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Nidoqueen",
+    "Poliwrath",
+    "Steelix",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Hippowdon, Armaldo->Hippowdon, Dugtrio->Lurantis, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Lurantis",
+    "Mightyena",
+    "Carbink",
+    "Vikavolt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Leavanny; answers Kecleon->Leavanny, Houndoom->Solrock, Armaldo->Glimmora, Rotom-Mow->Leavanny; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Leavanny for Rotom-Mow",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Leavanny",
+    "Solrock",
+    "Tentacruel",
+    "Togekiss"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Crawdaunt, Armaldo->Carbink, Dugtrio->Tsareena, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP; bait locks; save Crawdaunt for Houndoom",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Gardevoir",
+    "Rotom",
+    "Carbink",
+    "Tsareena",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Nidoqueen; answers Kecleon->Nidoqueen, Houndoom->Nidoqueen, Armaldo->Grapploct, Dugtrio->Sinistcha, Rotom-Mow->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Grapploct",
+    "Lumineon",
+    "Nidoqueen",
+    "Rotom",
+    "Sinistcha",
+    "Tsareena"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Nidoqueen; answers Kecleon->Nidoqueen, Houndoom->Quagsire, Armaldo->Nidoqueen, Rotom-Mow->Ludicolo; switch losing; setup at 3+ safe turns at full HP; bait locks; save Nidoqueen for Armaldo",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Ludicolo",
+    "Manaphy",
+    "Nidoqueen",
+    "Quagsire",
+    "Rotom",
+    "Cinderace"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Vespiquen; answers Kecleon->Empoleon, Houndoom->Seaking, Armaldo->Empoleon, Dugtrio->Solrock, Rotom-Mow->Bronzong; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Bronzong",
+    "Seaking",
+    "Solrock",
+    "Vespiquen",
+    "Donphan"
+   ],
+   "seconds": 12.3
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "32": 1.0
+   },
+   "line": "lead Nidoqueen; answers Kecleon->Vespiquen, Houndoom->Nidoqueen, Armaldo->Nidoqueen, Dugtrio->Florges; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Nidoqueen",
+    "Tentacruel",
+    "Vespiquen",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.9,
+    "28": 1.0
+   },
+   "line": "lead Poliwrath; answers Kecleon->Steelix, Houndoom->Cinderace, Armaldo->Poliwrath, Dugtrio->Steelix, Rotom-Mow->Galvantula; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns; save Galvantula for Rotom-Mow",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Lumineon",
+    "Poliwrath",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Togekiss; answers Kecleon->Grapploct, Houndoom->Lanturn, Armaldo->Empoleon, Dugtrio->Grapploct, Rotom-Mow->Mightyena; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Grapploct",
+    "Lanturn",
+    "Mightyena",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Poliwrath, Dugtrio->Tsareena, Rotom-Mow->Galvantula; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Poliwrath",
+    "Tentacruel",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Lanturn; answers Kecleon->Lanturn, Houndoom->Quagsire, Armaldo->Crawdaunt, Dugtrio->Araquanid, Rotom-Mow->Nidoqueen; switch losing; setup at 4+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:4",
+   "team": [
+    "Araquanid",
+    "Lanturn",
+    "Nidoqueen",
+    "Purugly",
+    "Quagsire",
+    "Crawdaunt"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Pawmot; answers Kecleon->Florges, Houndoom->Floatzel, Armaldo->Pawmot, Rotom-Mow->Florges; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Pawmot",
+    "Rotom",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.175,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Gastrodon; answers Kecleon->Gastrodon, Houndoom->Gastrodon, Dugtrio->Cherrim, Rotom-Mow->Carbink; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Gastrodon",
+    "Lopunny",
+    "Orbeetle",
+    "Raichu",
+    "Carbink",
+    "Cherrim"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Breloom; answers Kecleon->Breloom, Houndoom->Hippowdon, Armaldo->Palossand, Dugtrio->Hippowdon, Rotom-Mow->Alakazam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:5",
+   "team": [
+    "Hippowdon",
+    "Ludicolo",
+    "Palossand",
+    "Breloom",
+    "Alakazam",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.095,
+   "wipe": 0.005,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Araquanid; answers Kecleon->Araquanid, Houndoom->Manaphy, Armaldo->Glimmora, Dugtrio->Manaphy, Rotom-Mow->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots; save Manaphy for Dugtrio",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:5",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Ludicolo",
+    "Lurantis",
+    "Manaphy",
+    "Vullaby"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Togekiss; answers Kecleon->Electivire, Houndoom->Bastiodon, Armaldo->Bastiodon, Dugtrio->Florges, Rotom-Mow->Togekiss; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Bastiodon",
+    "Bibarel",
+    "Togekiss",
+    "Electivire"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Gliscor; answers Kecleon->Gliscor, Houndoom->Milotic, Armaldo->Metagross, Dugtrio->Electivire, Rotom-Mow->Crustle; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Metagross",
+    "Milotic",
+    "Rotom",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gliscor; answers Kecleon->Gliscor, Armaldo->Vaporeon, Dugtrio->Lopunny, Rotom-Mow->Galvantula; switch losing; setup at 3+ safe turns at full HP; save Galvantula for Rotom-Mow",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Galvantula",
+    "Gliscor",
+    "Golem",
+    "Lopunny",
+    "Rotom",
+    "Vaporeon"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Florges; answers Kecleon->Florges, Houndoom->Bastiodon, Armaldo->Bastiodon, Dugtrio->Lurantis, Rotom-Mow->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Bastiodon",
+    "Lurantis",
+    "Orbeetle",
+    "Seaking"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Houndoom->Orbeetle, Armaldo->Arboliva, Dugtrio->Araquanid, Rotom-Mow->Bronzong; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Araquanid",
+    "Arboliva",
+    "Orbeetle",
+    "Bronzong",
+    "Steelix",
+    "Crustle"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.63,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.45,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.7,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85,
+    "310": 0.85,
+    "320": 0.85,
+    "330": 0.85,
+    "340": 0.85,
+    "350": 0.85,
+    "360": 0.85,
+    "370": 0.85,
+    "380": 0.85,
+    "390": 0.85,
+    "400": 0.85,
+    "410": 0.85,
+    "420": 0.85,
+    "430": 0.85,
+    "440": 0.85,
+    "450": 0.85
+   },
+   "line": "lead Pelipper; answers Kecleon->Pelipper, Houndoom->Manaphy, Armaldo->Manaphy, Dugtrio->Vaporeon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Manaphy",
+    "Pelipper",
+    "Torterra",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 11.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "219": 1.0
+   },
+   "line": "lead Alakazam; answers Houndoom->Whiscash, Armaldo->Vaporeon, Dugtrio->Lurantis, Rotom-Mow->Lopunny; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 219,
+   "converged": true,
+   "runs": 5280,
+   "kind": "planned:5",
+   "team": [
+    "Lopunny",
+    "Lurantis",
+    "Alakazam",
+    "Castform",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 9.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Golduck; answers Dugtrio->Golduck; switch losing; setup at 5+ safe turns at full HP; free pivots; save Golduck for Dugtrio",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Golduck",
+    "Bibarel",
+    "Mismagius",
+    "Palossand"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Araquanid; answers Kecleon->Araquanid, Houndoom->Bastiodon, Armaldo->Bastiodon, Dugtrio->Rotom, Rotom-Mow->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Golduck",
+    "Bastiodon",
+    "Rotom",
+    "Cinderace"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.375,
+   "deaths": 0.935,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.2,
+    "20": 0.25,
+    "30": 0.4,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Araquanid; answers Kecleon->Araquanid, Houndoom->Empoleon, Armaldo->Empoleon, Dugtrio->Jellicent; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Jellicent for Dugtrio",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Jellicent",
+    "Mantine",
+    "Breloom",
+    "Seaking"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "25": 1.0
+   },
+   "line": "lead Alomomola; answers Kecleon->Hippowdon, Houndoom->Alomomola, Armaldo->Hippowdon, Rotom-Mow->Milotic; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Milotic for Rotom-Mow",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1100,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Mightyena",
+    "Milotic",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Florges, Houndoom->Hippowdon, Armaldo->Gastrodon, Dugtrio->Hippowdon, Rotom-Mow->Vikavolt; switch hp below 0.3; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Hippowdon for Dugtrio",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:6",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gastrodon",
+    "Hippowdon",
+    "Liepard",
+    "Vikavolt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Pelipper; answers Kecleon->Pelipper, Houndoom->Sharpedo, Armaldo->Sharpedo, Dugtrio->Cherrim, Rotom-Mow->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Scizor for Rotom-Mow",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Breloom",
+    "Pelipper",
+    "Scizor",
+    "Sharpedo",
+    "Cherrim"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Kecleon->Altaria, Houndoom->Garganacl, Armaldo->Empoleon, Dugtrio->Donphan, Rotom-Mow->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Garganacl",
+    "Orbeetle",
+    "Shiftry",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Hariyama; answers Kecleon->Tsareena, Armaldo->Hariyama, Dugtrio->Kingdra, Rotom-Mow->Milotic; switch losing; setup at 3+ safe turns; free pivots; save Milotic for Rotom-Mow",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Kingdra",
+    "Milotic",
+    "Tsareena",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "38": 1.0
+   },
+   "line": "lead Lanturn; answers Kecleon->Glimmora, Houndoom->Empoleon, Armaldo->Lanturn, Dugtrio->Quagsire, Rotom-Mow->Kingdra; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Empoleon for Houndoom",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1660,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Glimmora",
+    "Kingdra",
+    "Lanturn",
+    "Quagsire",
+    "Crawdaunt"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Alomomola; answers Kecleon->Alomomola, Houndoom->Kingdra, Armaldo->Kingdra, Dugtrio->Cherrim, Rotom-Mow->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Chandelure",
+    "Cherrim",
+    "Alomomola",
+    "Crawdaunt"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Ninetales; answers Kecleon->Altaria, Houndoom->Mightyena, Armaldo->Scizor, Dugtrio->Cherrim, Rotom-Mow->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Mightyena",
+    "Ninetales",
+    "Scizor",
+    "Vikavolt",
+    "Cherrim",
+    "Altaria"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Vespiquen; answers Houndoom->Manaphy, Dugtrio->Manaphy, Rotom-Mow->Togekiss; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Manaphy",
+    "Mantine",
+    "Tentacruel",
+    "Togekiss",
+    "Vespiquen"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Rhyperior; answers Kecleon->Hippowdon, Houndoom->Hippowdon, Armaldo->Golem, Dugtrio->Rhyperior, Rotom-Mow->Electivire; switch losing; setup at 3+ safe turns at full HP; bait locks; save Hippowdon for Houndoom",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Hippowdon",
+    "Bibarel",
+    "Rhyperior",
+    "Drifblim",
+    "Electivire"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.157,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Rhyperior; answers Kecleon->Rhyperior, Houndoom->Golem, Armaldo->Golem, Dugtrio->Leavanny, Rotom-Mow->Leavanny; switch hp below 0.5; setup at 2+ safe turns; stall timed effects at 1 turns; save Golem for Armaldo",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Absol",
+    "Leavanny",
+    "Rhyperior",
+    "Vaporeon",
+    "Alakazam"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Breloom; answers Kecleon->Breloom, Houndoom->Bastiodon, Armaldo->Bastiodon, Dugtrio->Breloom, Rotom-Mow->Gardevoir; switch losing; setup at 3+ safe turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Gastrodon",
+    "Bastiodon",
+    "Breloom",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Wailord; answers Kecleon->Ninetales, Houndoom->Wailord, Armaldo->Florges, Dugtrio->Wailord, Rotom-Mow->Ninetales; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Lumineon",
+    "Ninetales",
+    "Pelipper",
+    "Carbink",
+    "Wailord"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "42": 1.0
+   },
+   "line": "lead Florges; answers Houndoom->Whiscash, Armaldo->Hariyama, Dugtrio->Gothitelle, Rotom-Mow->Florges; switch losing; setup at 3+ safe turns; save Whiscash for Houndoom",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1440,
+   "kind": "blind:7",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gothitelle",
+    "Hariyama",
+    "Vullaby",
+    "Whiscash"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Hippowdon, Armaldo->Golem, Dugtrio->Lurantis, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Golem",
+    "Hippowdon",
+    "Lurantis",
+    "Vikavolt",
+    "Cofagrigus"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Hariyama; answers Kecleon->Florges, Houndoom->Quagsire, Armaldo->Hariyama, Dugtrio->Hariyama, Rotom-Mow->Hariyama; switch losing; setup at 5+ safe turns at full HP; save Hariyama for Armaldo",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Hariyama",
+    "Mantine",
+    "Quagsire",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Ninetales; answers Kecleon->Ninetales, Houndoom->Golem, Armaldo->Golem, Dugtrio->Donphan, Rotom-Mow->Skuntank; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Golem for Houndoom",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Golem",
+    "Ninetales",
+    "Skuntank",
+    "Talonflame",
+    "Cofagrigus",
+    "Donphan"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Annihilape; answers Kecleon->Annihilape, Houndoom->Crustle, Armaldo->Annihilape, Dugtrio->Castform; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Florges",
+    "Hariyama",
+    "Rotom",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hawlucha; answers Kecleon->Hawlucha, Houndoom->Bastiodon, Armaldo->Bastiodon, Dugtrio->Hawlucha, Rotom-Mow->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Sharpedo",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "25": 1.0
+   },
+   "line": "lead Masquerain; answers Kecleon->Crawdaunt, Houndoom->Vaporeon, Armaldo->Raichu, Dugtrio->Hariyama, Rotom-Mow->Scizor; switch losing; setup at 5+ safe turns; bait locks",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Masquerain",
+    "Raichu",
+    "Scizor",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vespiquen; answers Kecleon->Vespiquen, Houndoom->Hippowdon, Armaldo->Hariyama, Dugtrio->Hippowdon, Rotom-Mow->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Bibarel",
+    "Leavanny",
+    "Vespiquen",
+    "Cofagrigus"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Wailord; answers Kecleon->Wailord, Houndoom->Hippowdon, Armaldo->Hippowdon, Dugtrio->Lurantis, Rotom-Mow->Lurantis; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Hippowdon",
+    "Lopunny",
+    "Lurantis",
+    "Rotom",
+    "Wailord",
+    "Electivire"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Hawlucha; answers Kecleon->Hawlucha, Houndoom->Lanturn, Armaldo->Lanturn, Dugtrio->Hawlucha, Rotom-Mow->Toxicroak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Hawlucha",
+    "Lanturn",
+    "Bibarel",
+    "Staraptor",
+    "Toxicroak"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "21": 1.0
+   },
+   "line": "lead Wailord; answers Kecleon->Vikavolt, Houndoom->Lanturn, Armaldo->Lanturn, Dugtrio->Wailord, Rotom-Mow->Vikavolt; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Lanturn for Houndoom",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Staraptor",
+    "Vikavolt",
+    "Wailord",
+    "Crawdaunt"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lumineon; answers Kecleon->Florges, Houndoom->Lumineon, Armaldo->Quagsire, Dugtrio->Arboliva, Rotom-Mow->Florges; switch hp below 0.6; setup at 5+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Lumineon",
+    "Quagsire",
+    "Rotom",
+    "Wormadam"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Togekiss; answers Kecleon->Electivire, Houndoom->Quagsire, Armaldo->Quagsire, Dugtrio->Quagsire, Rotom-Mow->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:8",
+   "team": [
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Cofagrigus",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9
+   },
+   "line": "lead Talonflame; answers Kecleon->Talonflame, Houndoom->Quagsire, Armaldo->Quagsire, Dugtrio->Tsareena, Rotom-Mow->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 120,
+   "converged": true,
+   "runs": 3000,
+   "kind": "blind:8",
+   "team": [
+    "Girafarig",
+    "Mightyena",
+    "Quagsire",
+    "Talonflame",
+    "Castform",
+    "Tsareena"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Lanturn, Armaldo->Mightyena, Dugtrio->Manaphy, Rotom-Mow->Vikavolt; switch never; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:8",
+   "team": [
+    "Lanturn",
+    "Manaphy",
+    "Mightyena",
+    "Steelix",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Tropius; answers Kecleon->Beautifly, Houndoom->Garganacl, Armaldo->Garganacl, Dugtrio->Tropius, Rotom-Mow->Ampharos; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Garganacl",
+    "Golduck",
+    "Beautifly",
+    "Lanturn",
+    "Tropius",
+    "Ampharos"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gliscor; answers Kecleon->Gliscor, Houndoom->Garganacl, Armaldo->Garganacl, Dugtrio->Gliscor, Rotom-Mow->Gardevoir; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:8",
+   "team": [
+    "Gardevoir",
+    "Garganacl",
+    "Gliscor",
+    "Manaphy",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weezing; answers Kecleon->Weezing, Houndoom->Milotic, Armaldo->Milotic, Dugtrio->Gliscor, Rotom-Mow->Weezing; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Gliscor",
+    "Milotic",
+    "Tsareena",
+    "Weezing",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bronzong; answers Kecleon->Togekiss, Armaldo->Manaphy, Dugtrio->Togekiss, Rotom-Mow->Bronzong; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Girafarig",
+    "Manaphy",
+    "Bronzong",
+    "Togekiss",
+    "Ampharos"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Vikavolt; answers Kecleon->Vikavolt, Houndoom->Altaria, Armaldo->Donphan, Rotom-Mow->Vikavolt; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Pawmot",
+    "Seaking",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.75,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.9,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Tentacruel; answers Kecleon->Tentacruel, Houndoom->Girafarig, Armaldo->Floatzel, Dugtrio->Girafarig, Rotom-Mow->Houndoom; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Houndoom",
+    "Rapidash",
+    "Tentacruel",
+    "Vullaby"
+   ],
+   "seconds": 8.4
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Shiftry; answers Kecleon->Gliscor, Houndoom->Whiscash, Armaldo->Manaphy, Dugtrio->Gliscor, Rotom-Mow->Florges; switch losing; setup at 3+ safe turns at full HP; save Florges for Rotom-Mow",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Manaphy",
+    "Octillery",
+    "Shiftry",
+    "Whiscash"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Turtonator; answers Kecleon->Gardevoir, Houndoom->Turtonator, Armaldo->Steelix, Dugtrio->Crustle, Rotom-Mow->Turtonator; switch hp below 0.6; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:8",
+   "team": [
+    "Gardevoir",
+    "Absol",
+    "Rapidash",
+    "Steelix",
+    "Turtonator",
+    "Crustle"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "82": 1.0
+   },
+   "line": "lead Pawmot; answers Kecleon->Vikavolt, Houndoom->Mightyena, Dugtrio->Girafarig, Rotom-Mow->Pawmot; switch losing; setup at 3+ safe turns at full HP; save Mightyena for Houndoom",
+   "candidates": 82,
+   "converged": true,
+   "runs": 2540,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Girafarig",
+    "Mightyena",
+    "Pawmot",
+    "Rapidash",
+    "Vikavolt"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Absol; answers Kecleon->Gliscor, Houndoom->Gliscor, Armaldo->Vaporeon, Dugtrio->Shiftry, Rotom-Mow->Absol; switch losing; setup at 2+ safe turns; bait locks; free pivots; save Shiftry for Dugtrio",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:8",
+   "team": [
+    "Gliscor",
+    "Golem",
+    "Absol",
+    "Shiftry",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.755,
+   "deaths": 0.305,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Cherrim; answers Kecleon->Mantine, Houndoom->Crawdaunt, Rotom-Mow->Mr. Rime; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Crawdaunt for Houndoom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Mantine",
+    "Mr. Rime",
+    "Quagsire",
+    "Whiscash",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Kecleon->Hippowdon, Houndoom->Hippowdon, Armaldo->Steelix, Dugtrio->Hippowdon, Rotom-Mow->Crustle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Golem",
+    "Hippowdon",
+    "Quagsire",
+    "Rotom",
+    "Steelix",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Tropius; answers Kecleon->Tropius, Houndoom->Kommo-o, Armaldo->Raichu, Dugtrio->Kommo-o, Rotom-Mow->Leavanny; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Leavanny for Rotom-Mow",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:9",
+   "team": [
+    "Golem",
+    "Kommo-o",
+    "Leavanny",
+    "Masquerain",
+    "Raichu",
+    "Tropius"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.59,
+   "deaths": 0.465,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.65,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7
+   },
+   "line": "lead Masquerain; answers Kecleon->Florges, Houndoom->Ninetales, Armaldo->Masquerain, Dugtrio->Cherrim, Rotom-Mow->Starmie; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Masquerain",
+    "Ninetales",
+    "Starmie",
+    "Cherrim"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Talonflame; answers Kecleon->Rotom, Houndoom->Cinderace, Armaldo->Empoleon, Dugtrio->Rotom, Rotom-Mow->Cinderace; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Empoleon",
+    "Absol",
+    "Pelipper",
+    "Rotom",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Grapploct; answers Kecleon->Hariyama, Houndoom->Kommo-o, Armaldo->Milotic, Dugtrio->Kommo-o, Rotom-Mow->Milotic; switch losing; setup at 3+ safe turns at full HP; free pivots; save Kommo-o for Houndoom",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:9",
+   "team": [
+    "Grapploct",
+    "Hariyama",
+    "Kommo-o",
+    "Milotic",
+    "Rotom",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Grapploct; answers Kecleon->Grapploct, Houndoom->Corsola, Armaldo->Grapploct, Dugtrio->Breloom, Rotom-Mow->Glimmora; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Glimmora",
+    "Grapploct",
+    "Luxray",
+    "Breloom",
+    "Corsola"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "100": 1.0,
+    "110": 1.0,
+    "120": 1.0,
+    "121": 1.0
+   },
+   "line": "lead Seaking; answers Kecleon->Hippowdon, Houndoom->Seaking, Armaldo->Hippowdon, Dugtrio->Hippowdon, Rotom-Mow->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 121,
+   "converged": true,
+   "runs": 3320,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Mr. Rime",
+    "Seaking",
+    "Starmie",
+    "Tentacruel"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Girafarig; answers Kecleon->Girafarig, Houndoom->Girafarig, Armaldo->Glimmora, Dugtrio->Crustle, Rotom-Mow->Glimmora; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Glimmora",
+    "Milotic",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.803,
+   "deaths": 0.217,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Raichu; answers Kecleon->Raichu, Houndoom->Girafarig, Armaldo->Florges, Dugtrio->Mismagius, Rotom-Mow->Raichu; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Mismagius for Dugtrio",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:9",
+   "team": [
+    "Florges",
+    "Girafarig",
+    "Kommo-o",
+    "Mismagius",
+    "Raichu",
+    "Cinderace"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.867,
+   "deaths": 0.133,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "101": 1.0
+   },
+   "line": "lead Mantine; answers Kecleon->Steelix, Houndoom->Cinderace, Armaldo->Steelix, Dugtrio->Steelix, Rotom-Mow->Houndoom; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 101,
+   "converged": true,
+   "runs": 2920,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Kricketune",
+    "Mantine",
+    "Raichu",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "126": 1.0
+   },
+   "line": "lead Whiscash; answers Kecleon->Whiscash, Houndoom->Vaporeon, Armaldo->Sharpedo, Dugtrio->Orbeetle, Rotom-Mow->Orbeetle; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Orbeetle for Dugtrio",
+   "candidates": 126,
+   "converged": true,
+   "runs": 3420,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Orbeetle",
+    "Sharpedo",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Vikavolt; answers Houndoom->Vaporeon, Armaldo->Golem, Dugtrio->Cherrim, Rotom-Mow->Leavanny; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Vaporeon for Houndoom",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:9",
+   "team": [
+    "Golem",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vikavolt",
+    "Cherrim"
+   ],
+   "seconds": 1.9
+  }
+ ],
+ "key": "tr416"
+}

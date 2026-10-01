@@ -58,7 +58,13 @@ from . import b6, data, pool, pressure, teamscore
 
 RUNS = 200
 MAX_TURNS = 80
-CRIT_RATE = {0: 1 / 16, 1: 1 / 8, 2: 1 / 4, 3: 1 / 3, 4: 1 / 2}
+# Oxide's critical hits, the Generation 7 odds and multiplier
+# (src/battle/battle_lib.c sCriticalStageRates, battle_script.c
+# ApplyCriticalMul), not Platinum's 1 in 16 and double damage.
+CRIT_RATE = {0: 1 / 24, 1: 1 / 8, 2: 1 / 2, 3: 1.0, 4: 1.0}
+CRIT_MUL = 1.5
+# The rock that stretches each weather a move sets from five turns to eight.
+WEATHER_ROCK = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
 STAGE_KEYS = ("atk", "def", "spa", "spd", "spe", "acc", "eva")
 TIERS = {"SSS": 6, "S": 5, "A": 4, "B": 3, "C": 2, "D": 1, "F": 0}
 
@@ -209,6 +215,8 @@ class Mon:
 
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
+        self.rollout = 0
+        self.curled = False
         self.confused = 0
         self.flinch = False
         self.seeded = False
@@ -218,6 +226,11 @@ class Mon:
         self.sub = 0
         self.charging = None
         self.recharge = False
+        # Block and Mean Look: this Pokemon cannot switch while the Pokemon
+        # that trapped it (trapped_by, its key) stays in. Ingrain roots the
+        # user: it cannot switch, and heals at the end of each turn.
+        self.trapped_by = None
+        self.ingrained = False
         self.lock = None                 # (move, turns) for Outrage and kin
         self.choice = None
         self.taunt = 0
@@ -350,7 +363,11 @@ class Battle:
         if getattr(self, "spread", False):
             mult *= 0.75
         if crit:
-            mult *= 2
+            mult *= CRIT_MUL * (1.5 if att.ability == "Sniper" else 1.0)
+        if not ai_view:
+            # TrainerAI_CalcDamage has no Rollout case: the AI costs it at
+            # its listed power, with no Defense Curl and no run count.
+            mult *= rollout_mult(att, mv)
         return max(1, int(base * mult))
 
     def accuracy_hits(self, att, dfn, mv):
@@ -396,8 +413,24 @@ def can_status(b, target, status):
     return target.ability not in immune.get(status, set())
 
 
+# The powder and spore moves (battle_lib.c, sPowderMoves): Grass types and
+# Overcoat are immune to them in Oxide (Generation 6).
+POWDER = {"Cotton Spore", "Poison Powder", "Sleep Powder", "Stun Spore", "Spore", "Powder",
+          "Rage Powder", "Magic Powder"}
+
+
+def powder_immune(target, mv):
+    return mv.name in POWDER and ("Grass" in target.types or target.ability == "Overcoat")
+
+
+def leaf_guarded(b, target):
+    """Leaf Guard keeps every major status off its holder in sun. The engine
+    knows it; the AI does not, so this is not part of can_status."""
+    return target.ability == "Leaf Guard" and b.weather == "Sun"
+
+
 def give_status(b, target, status):
-    if not can_status(b, target, status):
+    if not can_status(b, target, status) or leaf_guarded(b, target):
         return False
     target.status = status
     if status == "slp":
@@ -408,8 +441,43 @@ def give_status(b, target, status):
 
 
 def change_stages(mon, changes):
+    # Simple doubles every change to its own stages.
+    mult = 2 if getattr(mon, "ability", None) == "Simple" else 1
     for k, v in changes.items():
-        mon.stages[k] = max(-6, min(6, mon.stages[k] + v))
+        mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
+
+
+ROLLOUT = "DOUBLE_POWER_EACH_TURN_LOCK_INTO"   # Rollout and Ice Ball
+
+
+def rollout_mult(att, mv):
+    """Rollout and Ice Ball double each hit in a row, five at most, and
+    twice again after Defense Curl."""
+    if mv.effect != ROLLOUT:
+        return 1
+    # The hit's place in the run, taken before rollout_after moved the count
+    # on: the first hit is 1x, then 2x, 4x...; Defense Curl doubles each.
+    return 2 ** getattr(att, "rollout_hit", 0) * (2 if getattr(att, "curled", False) else 1)
+
+
+def rollout_after(att, mv, hit):
+    """The lock after a use: the next hit in a row, or the run broken by a
+    miss or its fifth hit."""
+    if mv.effect != ROLLOUT:
+        return
+    att.rollout_hit = getattr(att, "rollout", 0) if hit else 0
+    att.rollout = getattr(att, "rollout", 0) + 1 if hit else 0
+    if not hit or att.rollout >= 5:
+        att.rollout = 0
+        att.lock = None
+    else:
+        att.lock = (mv, 5 - att.rollout)
+
+
+# Magnitude's powers and their chances in percent (Generation 4, Magnitude 4
+# to 10). The decomp names its effect BATTLE_EFFECT_PSYWAVE, as pret's vanilla
+# data does; Psywave itself is RANDOM_DAMAGE_1_TO_150_LEVEL.
+MAGNITUDE_POWERS = {10: 5, 30: 10, 50: 20, 70: 30, 90: 20, 110: 10, 150: 5}
 
 
 def hurt(b, mon, amount):
@@ -417,6 +485,33 @@ def hurt(b, mon, amount):
     if amount <= 0 or not mon.alive():
         return
     mon.hp = max(0, mon.hp - amount)
+    berry_check(mon)
+
+
+# A pinch berry raises a stat by one stage once its holder is at a quarter of
+# its HP or less; Sitrus heals a quarter and Oran 10 once at half or less. In
+# Generation 4 each fires as soon as the HP drops, not at the end of the turn.
+PINCH_BERRIES = {"Apicot Berry": "spd", "Liechi Berry": "atk", "Ganlon Berry": "def",
+                 "Salac Berry": "spe", "Petaya Berry": "spa"}
+
+
+def berry_check(mon):
+    if not mon.alive() or not mon.item:
+        return
+    if mon.item in PINCH_BERRIES and mon.hp * 4 <= mon.maxhp:
+        change_stages(mon, {PINCH_BERRIES[mon.item]: 1})
+        mon.item = None
+    elif mon.item == "Sitrus Berry" and mon.hp * 2 <= mon.maxhp:
+        heal(mon, mon.maxhp // 4)
+        mon.item = None
+    elif mon.item == "Oran Berry" and mon.hp * 2 <= mon.maxhp:
+        heal(mon, 10)
+        mon.item = None
+
+
+def can_switch(mon):
+    """False while Block, Mean Look or its own Ingrain holds it in."""
+    return mon.trapped_by is None and not mon.ingrained
 
 
 def heal(mon, amount):
@@ -517,10 +612,18 @@ def attack(b, att, mv, dfn, first):
             return
     if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 1:
         return
+    # Natural Gift and Fling spend the held item, and fail without one (a
+    # Natural Gift needs a berry).
+    if mv.name in ("Natural Gift", "Fling"):
+        if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
+            return
+        att.item = None
     if not b.accuracy_hits(att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             hurt(b, att, att.maxhp // 2)
+        rollout_after(att, mv, False)
         return
+    rollout_after(att, mv, True)
     # Fixed-damage moves.
     dmg = None
     if mv.effect == "ONE_HIT_KO":
@@ -633,6 +736,13 @@ def status_move(b, att, mv, dfn, first):
     if targets_foe and dfn.alive():
         if dfn.protecting:
             return
+        # The engine runs the type chart only for moves with power, and for
+        # Thunder Wave (BattleControllerPlayer_CheckTypeChart), so Thunder
+        # Wave fails on a Ground type while Hypnosis still sleeps a Dark one.
+        if mv.name == "Thunder Wave" and effectiveness(b.st["chart"], mv.type, dfn.types) == 0:
+            return
+        if powder_immune(dfn, mv):
+            return
         if not b.accuracy_hits(att, dfn, mv):
             return
     if e in STATUS_OF:
@@ -655,6 +765,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.seeded = True
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
+        if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
+            att.curled = True
     elif e in FOE_STAGES:
         if not dfn.sub and dfn.ability not in ("Clear Body", "White Smoke"):
             change_stages(dfn, FOE_STAGES[e])
@@ -688,7 +800,8 @@ def status_move(b, att, mv, dfn, first):
             own_side.screens["Reflect"] = 8 if att.item == "Light Clay" else 5
     elif e in WEATHER_OF:
         if b.weather != WEATHER_OF[e]:
-            b.weather, b.weather_turns = WEATHER_OF[e], 5
+            b.weather = WEATHER_OF[e]
+            b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
     elif e == "TRICK_ROOM":
         b.trick_room = 0 if b.trick_room else 5
     elif e == "DOUBLE_SPEED_3_TURNS":
@@ -744,6 +857,11 @@ def status_move(b, att, mv, dfn, first):
 
 def switch_in(b, side, index, slot=0):
     """A Pokemon comes in to a slot: volatile state resets, hazards bite."""
+    leaving = side.cur() if slot == 0 else (side.mons[side.active2] if side.active2 is not None else None)
+    if leaving is not None:
+        for foe in (b.b if side is b.p else b.p).mons:
+            if foe.trapped_by == leaving.key:
+                foe.trapped_by = None
     if slot == 0:
         side.cur().reset_volatile()
         side.active = index
@@ -817,6 +935,9 @@ def _end_of_turn_mon(b, side, m):
             m.yawn -= 1
             if m.yawn == 0:
                 give_status(b, m, "slp")
+        if m.ingrained and m.alive() and m.hp < m.maxhp:
+            gain = m.maxhp // 16
+            heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
         if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
             heal(m, m.maxhp // 4)
             m.item = None
@@ -1218,7 +1339,7 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             if mon.lock:
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
-                if left <= 1 and not mon.confused:
+                if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
                     mon.confused = rng.randint(2, 5)
         # Faints are replaced.
         if b.b.alive() and not b.b.cur().alive():
@@ -1401,7 +1522,7 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
             if mon.lock:
                 mv, left = mon.lock
                 mon.lock = (mv, left - 1) if left > 1 else None
-                if left <= 1 and not mon.confused:
+                if left <= 1 and not mon.confused and mv.effect == "CONTINUE_AND_CONFUSE_SELF":
                     mon.confused = rng.randint(2, 5)
         # Refill fainted slots from each slot's own party.
         for side in (b.p, b.b):
@@ -1431,7 +1552,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
 DOWNSIDE = {"UPROAR": 0.5, "CONTINUE_AND_CONFUSE_SELF": 0.6, "USER_SP_ATK_DOWN_2": 0.8,
             "LOWER_OWN_ATK_AND_DEF": 0.85, "DEF_SPD_DOWN_HIT": 0.9, "SPEED_DOWN_HIT": 0.95}
 # The status and setup moves the player's policy knows how to use.
-POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF | {"MAX_ATK_LOSE_HALF_MAX_HP", "CURSE"}
+POLICY_STATUS = set(STATUS_OF) | set(SELF_STAGES) | HEAL_HALF | {"MAX_ATK_LOSE_HALF_MAX_HP", "CURSE"} \
+    | {"SET_REFLECT", "SET_LIGHT_SCREEN", "STEALTH_ROCK", "SET_SPIKES", "TOXIC_SPIKES"}   # screens and hazards, which the lines use
 
 
 def play_strength(name, types):
@@ -1465,12 +1587,18 @@ def player_moves(rec, can_names, tiers, types):
         if len(attacks) == 3:
             break
     status = [n for n in can_names if move(n).cat == "Status" and move(n).effect in POLICY_STATUS
-              and tiers.get(n, 0) >= TIERS["A"]]
+              and tiers.get(n, 0) >= TIERS["B"]]
     status.sort(key=lambda n: -tiers.get(n, 0))
-    if status:
-        return attacks + status[:1]
+    moves = attacks + [n for n in status[:1] if tiers.get(n, 0) >= TIERS["A"]]
+    # Every slot is filled, as a player fills them (the Roark read,
+    # 2026-09-30): a Pokemon with fewer than three attack types takes its
+    # next best status moves (B or better), then attacks of a type it has.
     rest = [n for n in ranked if n not in attacks]
-    return attacks + rest[:1]
+    for n in [s for s in status if s not in moves] + rest:
+        if len(moves) >= 4:
+            break
+        moves.append(n)
+    return moves
 
 
 # The player's items (Ian, 2026-09-27): never a Life Orb or a Choice item.
@@ -1644,7 +1772,8 @@ def family(species):
     return (pool.pre_evolutions().get(species) or [species])[-1]
 
 
-def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False):
+def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(), doubles=False,
+            given_side=None):
     """Everything a fight's battles read: the strong third of the side, the
     trainer's Pokemon, a partner's teams (keys q0.0 and on), and the
     calculator's rows for every pair in every weather the fight can have;
@@ -1670,14 +1799,23 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
             third.append(p)
     if BOX_MODE:
         third = side          # a box can hold anything the split's side has
+    if given_side is not None:
+        # A real save's Pokemon (pboxes.save_records): each keeps its level,
+        # nature, IVs, ability and, where the record carries them, its moves.
+        third = list(given_side)
     tiers = status_tiers()
     names = pool._move_names()
     pokemon, moves, variants = {}, {}, {}
     for i, p in enumerate(third):
         poks = blob["poks"].get(p["species"], {})
         types = poks.get("types") or []
-        can_names = sorted({names[c] for c in can[p["constant"]] if c in names})
+        can_names = sorted({names[c] for c in can.get(p["constant"], ()) if c in names})
         mv = player_moves(p, can_names, tiers, types)
+        if p.get("moves") and given_side is not None:
+            # The save's own moves, and with "fill" (a Pokemon lifted to the
+            # cap) its empty slots from the moveset rule.
+            real = [m for m in p["moves"] if m]
+            mv = real + ([m for m in mv if m not in real][:4 - len(real)] if p.get("fill") else [])
         # A caught Pokemon has either regular ability, never the hidden one,
         # and never one that sets or cancels weather (Ian, 2026-09-26: the
         # player never controls weather). A species whose regular slots hold
@@ -1686,6 +1824,8 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
         abilities = poks.get("abilities") or {}
         regular = [a for a in dict.fromkeys((abilities.get("0"), abilities.get("1")))
                    if a and a not in NO_WEATHER_ABILITY]
+        if given_side is not None and p.get("ability") and p["ability"] not in NO_WEATHER_ABILITY:
+            regular = [p["ability"]]
         # Rows without the player's item: items are handed out per team and
         # applied here (assign_items, Battle.damage).
         pokemon[f"p{i}"] = dict(p, moves=mv, item=None, ability=regular[0] if regular else WEATHER_STAND_IN)
@@ -1732,13 +1872,26 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
     def hits(k):
         return [m for m in moves[k] if move(m).damaging()]
 
+    # A trainer's rows carry every damaging move of its own party, not only
+    # its own: the post-knockout pick (fightai.replacement, stage 2) costs a
+    # candidate's moves as if the Pokemon that just fainted used them, as
+    # BattleAI_PostKOSwitchIn does. Extra moves in a row change nothing
+    # else, since every lookup is by the move's name.
+    def party_hits(k):
+        prefix = k.split(".")[0] + "."
+        out = []
+        for other in moves:
+            if other.startswith(prefix):
+                out += [m for m in hits(other) if m not in out]
+        return out
+
     def spread(k):
         return [m for m in moves[k] if move(m).damaging() and move(m).range == "ALL_ADJACENT"]
     for w in weathers:
         for a in pkeys + qkeys:
             for d in bkeys:
                 pairs.append([a, d, hits(a), w])
-                pairs.append([d, a, hits(d), w])
+                pairs.append([d, a, party_hits(d), w])
         if doubles or partners:
             # An ally's spread move on its ally: the player's and a
             # partner's Pokemon on each other, the trainers' on each other.
@@ -1746,6 +1899,18 @@ def prepare(split, parties, weather=None, trick_room=False, cap=None, partners=(
                 for a in group:
                     if spread(a):
                         pairs += [[a, d, spread(a), w] for d in group if d != a]
+    # Magnitude's power is rolled when it is used (MAGNITUDE_POWERS), so the
+    # calculator is asked once per power level, each as its own attacker key
+    # ("<key>#m<power>") carrying that power, against every foe it can meet.
+    for k in list(pkeys) + list(qkeys):
+        if "Magnitude" in moves.get(k, ()):
+            for p in MAGNITUDE_POWERS:
+                dk = f"{k}#m{p}"
+                pokemon[dk] = dict(pokemon[k], move_data={"Magnitude": {
+                    "type": "Ground", "category": "Physical", "basePower": p}})
+                for w in weathers:
+                    for d in bkeys:
+                        pairs.append([dk, d, ["Magnitude"], w])
     out = pressure.run_node(teamscore._blob_path(), {"pokemon": pokemon, "pairs": pairs})
     rows, speed = {}, {}
     for r in out["results"]:

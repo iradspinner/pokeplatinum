@@ -1,0 +1,3808 @@
+{
+ "blind_rate": 0.84,
+ "blind_clean_share": 0.56,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.221,
+ "blind_wipe": 0.002,
+ "convergence": {
+  "10": 0.837,
+  "50": 0.916,
+  "100": 0.938,
+  "300": 0.962
+ },
+ "runs": 277120,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Henry",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 11.8,
+ "rows": [
+  {
+   "rate": 0.935,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Delcatty; answers Rhyperior->Bronzong, Crawdaunt->Electivire, Magmortar->Hippowdon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.495,
+   "deaths": 0.865,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Greninja; answers Rhyperior->Greninja, Crawdaunt->Greninja, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "11": 1.0
+   },
+   "line": "lead Sharpedo; answers Rhyperior->Seaking, Crawdaunt->Articuno, Magmortar->Seaking; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Articuno for Crawdaunt",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.68,
+   "deaths": 0.375,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Whiscash; answers Rhyperior->Whiscash, Crawdaunt->Weezing-Galar, Magmortar->Golduck; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "26": 1.0
+   },
+   "line": "lead Ludicolo; answers Rhyperior->Ludicolo, Crawdaunt->Ludicolo, Magmortar->Blastoise; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Electivire, Crawdaunt->Electivire, Magmortar->Manaphy; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Electivire",
+    "Manaphy",
+    "Milotic",
+    "Pelipper",
+    "Tsareena",
+    "Alomomola"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Hippowdon; answers Crawdaunt->Lanturn, Magmortar->Frosmoth; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Hippowdon",
+    "Lanturn",
+    "Ninetales",
+    "Starmie",
+    "Talonflame"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.203,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "142": 1.0
+   },
+   "line": "lead Crawdaunt; answers Crawdaunt->Cinderace, Magmortar->Blastoise; switch losing; setup at 4+ safe turns; no status moves; save Cinderace for Crawdaunt",
+   "candidates": 142,
+   "converged": true,
+   "runs": 3740,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lumineon",
+    "Blastoise",
+    "Cinderace",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Octillery; answers Rhyperior->Octillery, Crawdaunt->Frosmoth, Magmortar->Octillery; switch losing; setup at 3+ safe turns at full HP; no status moves; save Frosmoth for Crawdaunt",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Arboliva",
+    "Frosmoth",
+    "Octillery",
+    "Pelipper",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "107": 1.0
+   },
+   "line": "lead Roserade; answers Rhyperior->Frosmoth, Crawdaunt->Frosmoth, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 107,
+   "converged": true,
+   "runs": 3040,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Milotic",
+    "Ninetales",
+    "Quagsire",
+    "Roserade",
+    "Cinderace"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Bronzong; answers Rhyperior->Bronzong, Crawdaunt->Cinderace, Magmortar->Milotic; switch losing; setup at 3+ safe turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Milotic",
+    "Bronzong",
+    "Purugly",
+    "Cinderace"
+   ],
+   "seconds": 8.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Magmortar->Manaphy; switch losing; setup at 2+ safe turns at full HP; save Manaphy for Magmortar",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Jumpluff",
+    "Manaphy",
+    "Masquerain",
+    "Tsareena"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Tsareena; answers Rhyperior->Tsareena, Crawdaunt->Alomomola, Magmortar->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Gorebyss",
+    "Milotic",
+    "Tsareena",
+    "Alomomola",
+    "Altaria"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.545,
+   "deaths": 0.535,
+   "wipe": 0.01,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Gastrodon; answers Rhyperior->Gastrodon, Crawdaunt->Tropius, Magmortar->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.05,
+    "20": 0.5,
+    "27": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Araquanid; answers Rhyperior->Mandibuzz, Magmortar->Araquanid; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "59": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Rapidash, Magmortar->Kingdra; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 1 turns; save Kingdra for Magmortar",
+   "candidates": 59,
+   "converged": true,
+   "runs": 1780,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.465,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Florges; answers Crawdaunt->Rapidash, Magmortar->Seaking; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Feraligatr, Magmortar->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Manaphy",
+    "Milotic",
+    "Pelipper",
+    "Wailord"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "84": 1.0
+   },
+   "line": "lead Crawdaunt; answers Rhyperior->Crawdaunt, Crawdaunt->Crawdaunt, Magmortar->Milotic; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Milotic for Magmortar",
+   "candidates": 84,
+   "converged": true,
+   "runs": 2580,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Huntail",
+    "Lumineon",
+    "Milotic",
+    "Tropius",
+    "Crawdaunt"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Lanturn, Magmortar->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Lanturn",
+    "Lurantis",
+    "Pelipper",
+    "Vespiquen"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.38,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Tentacruel; answers Rhyperior->Hippowdon, Crawdaunt->Mandibuzz, Magmortar->Tentacruel; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns; save Tentacruel for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mandibuzz",
+    "Mantine",
+    "Rapidash",
+    "Tentacruel",
+    "Wailord"
+   ],
+   "seconds": 7.7
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.45,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Crawdaunt; answers Crawdaunt->Crawdaunt, Magmortar->Octillery; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Octillery",
+    "Salazzle",
+    "Seaking",
+    "Weavile",
+    "Crawdaunt",
+    "Drifblim"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.777,
+   "deaths": 0.223,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.75,
+    "160": 0.75,
+    "170": 0.75,
+    "180": 0.75,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Articuno; answers Rhyperior->Articuno, Crawdaunt->Seaking, Magmortar->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Seaking for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Ninetales",
+    "Seaking",
+    "Togekiss"
+   ],
+   "seconds": 7.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Torterra; answers Rhyperior->Torterra, Crawdaunt->Leavanny, Magmortar->Torterra; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Torterra for Magmortar",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Leavanny",
+    "Liepard",
+    "Milotic",
+    "Octillery",
+    "Torterra",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Milotic; answers Rhyperior->Torterra, Crawdaunt->Roserade, Magmortar->Milotic; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Milotic",
+    "Roserade",
+    "Torterra",
+    "Vespiquen",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Rhyperior->Tentacruel, Crawdaunt->Lanturn, Magmortar->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 1.0
+   },
+   "line": "lead Feraligatr; answers Rhyperior->Feraligatr, Crawdaunt->Orbeetle, Magmortar->Weavile; switch losing; setup at 4+ safe turns; no status moves; stall timed effects at 2 turns",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1400,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Seaking, Crawdaunt->Togedemaru, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.95,
+    "39": 1.0
+   },
+   "line": "lead Wailord; answers Rhyperior->Wailord, Crawdaunt->Electivire, Magmortar->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1380,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.65,
+   "deaths": 0.35,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Sharpedo; answers Crawdaunt->Crobat, Magmortar->Crobat; switch losing; setup at 2+ safe turns; no status moves; bait locks; save Crobat for Magmortar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Wailord, Magmortar->Manaphy; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel",
+    "Wailord",
+    "Alomomola"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Octillery; answers Rhyperior->Octillery, Crawdaunt->Masquerain, Magmortar->Octillery; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Masquerain",
+    "Octillery",
+    "Staraptor",
+    "Starmie",
+    "Tentacruel"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Octillery; answers Rhyperior->Octillery, Crawdaunt->Masquerain, Magmortar->Octillery; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Masquerain",
+    "Octillery",
+    "Vespiquen",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Pachirisu, Crawdaunt->Togedemaru, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:2",
+   "team": [
+    "Jellicent",
+    "Pachirisu",
+    "Staraptor",
+    "Togedemaru",
+    "Chandelure",
+    "Alomomola"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "83": 1.0
+   },
+   "line": "lead Crawdaunt; answers Rhyperior->Crawdaunt, Crawdaunt->Electivire, Magmortar->Crustle; switch losing; setup at 2+ safe turns; bait locks; free pivots; save Electivire for Crawdaunt",
+   "candidates": 83,
+   "converged": true,
+   "runs": 2560,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Golem",
+    "Togedemaru",
+    "Wailord",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.437,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.85,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Ludicolo; answers Crawdaunt->Wormadam, Magmortar->Ludicolo; switch losing; setup at 4+ safe turns; bait locks; save Wormadam for Crawdaunt",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Ludicolo",
+    "Masquerain",
+    "Palossand",
+    "Wormadam",
+    "Alomomola"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "109": 1.0
+   },
+   "line": "lead Pelipper; answers Rhyperior->Alomomola; switch never; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 109,
+   "converged": true,
+   "runs": 3080,
+   "kind": "planned:2",
+   "team": [
+    "Gorebyss",
+    "Machamp",
+    "Mightyena",
+    "Pelipper",
+    "Seaking",
+    "Alomomola"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Rhyperior->Feraligatr, Crawdaunt->Poliwrath, Magmortar->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Florges",
+    "Gorebyss",
+    "Greninja",
+    "Absol",
+    "Poliwrath"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.695,
+   "deaths": 0.415,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.6,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Ludicolo; answers Rhyperior->Ludicolo, Crawdaunt->Abomasnow, Magmortar->Ludicolo; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.485,
+   "deaths": 0.6,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Cresselia; answers Rhyperior->Cresselia, Crawdaunt->Heracross, Magmortar->Gorebyss; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.6,
+   "deaths": 0.995,
+   "wipe": 0.065,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Shiftry; answers Rhyperior->Shiftry, Crawdaunt->Shiftry, Magmortar->Magcargo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0
+   },
+   "line": "lead Shiftry; answers Rhyperior->Shiftry, Crawdaunt->Lanturn, Magmortar->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "53": 1.0
+   },
+   "line": "lead Wailord; answers Rhyperior->Wailord, Crawdaunt->Galvantula, Magmortar->Wailord; switch never; setup at 5+ safe turns at full HP",
+   "candidates": 53,
+   "converged": true,
+   "runs": 1660,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Tentacruel; answers Rhyperior->Manaphy, Crawdaunt->Alomomola, Magmortar->Wailord; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Hariyama",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel",
+    "Wailord",
+    "Alomomola"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "58": 1.0
+   },
+   "line": "lead Greninja; answers Rhyperior->Frosmoth, Crawdaunt->Frosmoth, Magmortar->Wailord; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; save Wailord for Magmortar",
+   "candidates": 58,
+   "converged": true,
+   "runs": 2060,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Greninja",
+    "Tentacruel",
+    "Vaporeon",
+    "Wailord",
+    "Alomomola"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.867,
+   "deaths": 0.293,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Ferrothorn, Crawdaunt->Ferrothorn, Magmortar->Seaking; switch hp below 0.4; setup at 3+ safe turns; stall timed effects at 3 turns; save Seaking for Magmortar",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Greninja",
+    "Jellicent",
+    "Bibarel",
+    "Seaking"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Empoleon; answers Rhyperior->Cinderace, Crawdaunt->Shiftry; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Bastiodon",
+    "Shiftry",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.693,
+   "deaths": 0.307,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Ludicolo; answers Rhyperior->Ludicolo, Crawdaunt->Masquerain, Magmortar->Ludicolo; switch hp below 0.7; setup at 3+ safe turns; no status moves; bait locks; stall timed effects at 3 turns; save Masquerain for Crawdaunt",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Hariyama",
+    "Ludicolo",
+    "Masquerain",
+    "Orbeetle",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.2,
+    "20": 0.35,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.75,
+    "160": 0.75,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Cresselia; answers Rhyperior->Cresselia, Crawdaunt->Floatzel, Magmortar->Hariyama; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Floatzel",
+    "Hariyama",
+    "Bibarel",
+    "Mandibuzz",
+    "Chandelure",
+    "Cresselia"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Sharpedo; answers Rhyperior->Empoleon, Crawdaunt->Electivire, Magmortar->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Empoleon",
+    "Ferrothorn",
+    "Greninja",
+    "Hariyama",
+    "Sharpedo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Granbull, Magmortar->Kingdra; switch losing; setup at 3+ safe turns; bait locks; save Granbull for Crawdaunt",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Granbull",
+    "Kingdra",
+    "Metagross",
+    "Vikavolt",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 7.3
+  },
+  {
+   "rate": 0.485,
+   "deaths": 0.595,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.4,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7
+   },
+   "line": "lead Corsola; answers Crawdaunt->Absol, Magmortar->Golduck; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Electivire, Magmortar->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "13": 1.0
+   },
+   "line": "lead Masquerain; answers Rhyperior->Charizard, Crawdaunt->Masquerain, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Luxray, Magmortar->Greninja; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Sharpedo; answers Rhyperior->Sharpedo, Crawdaunt->Arboliva, Magmortar->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Lanturn for Magmortar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Poliwrath, Magmortar->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Manaphy",
+    "Milotic",
+    "Poliwrath",
+    "Tentacruel",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Octillery; answers Rhyperior->Octillery, Crawdaunt->Poliwrath, Magmortar->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Mienshao",
+    "Octillery",
+    "Poliwrath",
+    "Wailord",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "162": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Corviknight, Crawdaunt->Pheromosa, Magmortar->Kingdra; switch losing; setup at 2+ safe turns; free pivots; stall timed effects at 3 turns; save Pheromosa for Crawdaunt",
+   "candidates": 162,
+   "converged": true,
+   "runs": 4140,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Kingdra",
+    "Pheromosa",
+    "Rapidash",
+    "Corviknight",
+    "Crawdaunt"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Electivire, Crawdaunt->Electivire; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Rotom",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Luxray, Magmortar->Florges; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Kingdra",
+    "Luxray",
+    "Talonflame",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Manaphy, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Manaphy",
+    "Quagsire",
+    "Sharpedo",
+    "Tentacruel",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.757,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.75,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.75,
+    "310": 0.75,
+    "320": 0.75,
+    "330": 0.75,
+    "340": 0.75,
+    "350": 0.75,
+    "360": 0.75,
+    "370": 0.75,
+    "380": 0.75,
+    "390": 0.75,
+    "400": 0.75,
+    "410": 0.75,
+    "420": 0.75,
+    "430": 0.75,
+    "440": 0.75,
+    "450": 0.75
+   },
+   "line": "lead Crawdaunt; answers Rhyperior->Crawdaunt, Crawdaunt->Golduck, Magmortar->Vaporeon; switch hp below 0.2; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Vaporeon for Magmortar",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Orbeetle",
+    "Vaporeon",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 8.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Poliwrath; answers Rhyperior->Poliwrath, Crawdaunt->Poliwrath, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Jellicent",
+    "Pawmot",
+    "Poliwrath",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Cherrim; answers Rhyperior->Cherrim, Magmortar->Magcargo; switch losing; setup at 2+ safe turns; save Magcargo for Magmortar",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1640,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.36,
+   "deaths": 0.825,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Glimmora; answers Rhyperior->Bronzong, Crawdaunt->Leavanny, Magmortar->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Poliwrath; answers Rhyperior->Poliwrath, Crawdaunt->Poliwrath, Magmortar->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.75,
+   "deaths": 0.405,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Hippowdon; answers Rhyperior->Hippowdon, Crawdaunt->Pawmot; switch losing; setup at 3+ safe turns at full HP; save Pawmot for Crawdaunt",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Tsareena; answers Rhyperior->Tsareena, Magmortar->Seaking; switch losing; setup at 3+ safe turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Electivire, Magmortar->Manaphy; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Manaphy",
+    "Milotic",
+    "Pelipper",
+    "Poliwrath",
+    "Alomomola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Poliwrath; answers Rhyperior->Poliwrath, Crawdaunt->Poliwrath, Magmortar->Altaria; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Poliwrath",
+    "Talonflame",
+    "Tsareena",
+    "Cherrim",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.447,
+   "deaths": 0.75,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.55,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Jellicent; answers Rhyperior->Gastrodon, Crawdaunt->Jellicent, Magmortar->Jellicent; switch hp below 0.2; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Jellicent for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Jellicent",
+    "Mantine",
+    "Walrein",
+    "Whiscash"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "211": 1.0
+   },
+   "line": "lead Castform; answers Rhyperior->Dhelmise, Magmortar->Floatzel; switch never; setup at 3+ safe turns at full HP; no status moves; free pivots; save Floatzel for Magmortar",
+   "candidates": 211,
+   "converged": true,
+   "runs": 5120,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Hippowdon",
+    "Castform",
+    "Alomomola",
+    "Dhelmise"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 0.183,
+   "deaths": 1.31,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.25,
+    "130": 0.25,
+    "140": 0.25,
+    "150": 0.25,
+    "160": 0.25,
+    "170": 0.25,
+    "180": 0.25,
+    "190": 0.3,
+    "200": 0.3,
+    "210": 0.3,
+    "220": 0.35,
+    "230": 0.35,
+    "240": 0.35,
+    "250": 0.35,
+    "260": 0.35,
+    "270": 0.35,
+    "280": 0.35,
+    "290": 0.35,
+    "300": 0.35
+   },
+   "line": "lead Cherrim; answers Rhyperior->Bastiodon, Magmortar->Bastiodon; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 2 turns; save Bastiodon for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Bibarel",
+    "Cherrim"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "61": 1.0
+   },
+   "line": "lead Torterra; answers Rhyperior->Torterra, Crawdaunt->Altaria, Magmortar->Torterra; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 61,
+   "converged": true,
+   "runs": 2120,
+   "kind": "planned:5",
+   "team": [
+    "Pawmot",
+    "Castform",
+    "Torterra",
+    "Cherrim",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Crawdaunt; answers Rhyperior->Crawdaunt, Crawdaunt->Pawmot, Magmortar->Seaking; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Mandibuzz",
+    "Pawmot",
+    "Seaking",
+    "Alomomola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Tentacruel; answers Rhyperior->Cinderace, Crawdaunt->Tsareena, Magmortar->Tentacruel; switch losing; setup at 2+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:5",
+   "team": [
+    "Hawlucha",
+    "Serperior",
+    "Tentacruel",
+    "Tsareena",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "14": 1.0
+   },
+   "line": "lead Araquanid; answers Rhyperior->Araquanid, Crawdaunt->Scizor, Magmortar->Milotic; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.39,
+   "deaths": 0.865,
+   "wipe": 0.025,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65
+   },
+   "line": "lead Seaking; answers Crawdaunt->Seaking, Magmortar->Mantine; switch never; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Seaking for Crawdaunt",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "12": 1.0
+   },
+   "line": "lead Toxapex; answers Rhyperior->Masquerain, Magmortar->Lanturn; switch losing; setup at 3+ safe turns at full HP; free pivots; save Lanturn for Magmortar",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.665,
+   "deaths": 0.405,
+   "wipe": 0.005,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Abomasnow; answers Rhyperior->Abomasnow, Crawdaunt->Abomasnow, Magmortar->Mantine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "43": 1.0
+   },
+   "line": "lead Abomasnow; answers Rhyperior->Abomasnow, Crawdaunt->Electivire, Magmortar->Milotic; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1460,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Hariyama, Crawdaunt->Tsareena, Magmortar->Manaphy; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:6",
+   "team": [
+    "Electivire",
+    "Hariyama",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.247,
+   "deaths": 0.767,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.2,
+    "70": 0.35,
+    "80": 0.35,
+    "90": 0.35,
+    "100": 0.35,
+    "110": 0.35,
+    "120": 0.35,
+    "130": 0.35,
+    "140": 0.35,
+    "150": 0.35,
+    "160": 0.35,
+    "170": 0.35,
+    "180": 0.35,
+    "190": 0.35,
+    "200": 0.35,
+    "210": 0.35,
+    "220": 0.35,
+    "230": 0.35,
+    "240": 0.35,
+    "250": 0.35,
+    "260": 0.35,
+    "270": 0.35,
+    "280": 0.35,
+    "290": 0.35,
+    "300": 0.35
+   },
+   "line": "lead Togedemaru; answers Rhyperior->Cresselia, Crawdaunt->Togedemaru, Magmortar->Togedemaru; switch losing; setup at 4+ safe turns at full HP; no status moves; free pivots; save Togedemaru for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Lurantis",
+    "Togedemaru",
+    "Cresselia",
+    "Donphan"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Tsareena, Magmortar->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pelipper; answers Rhyperior->Pelipper, Crawdaunt->Pelipper, Magmortar->Whiscash; switch losing; setup at 3+ safe turns at full HP; save Whiscash for Magmortar",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Pelipper",
+    "Plusle",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "11": 1.0
+   },
+   "line": "lead Cresselia; answers Rhyperior->Cresselia, Crawdaunt->Absol, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Floatzel",
+    "Jellicent",
+    "Absol",
+    "Milotic",
+    "Cresselia"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Huntail; answers Rhyperior->Huntail, Crawdaunt->Breloom, Magmortar->Abomasnow; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Hariyama",
+    "Huntail",
+    "Breloom",
+    "Vespiquen",
+    "Drifblim"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.15,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Hippowdon; answers Crawdaunt->Milotic, Magmortar->Lumineon; switch losing; setup at 2+ safe turns at full HP; no status moves; save Lumineon for Magmortar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Lumineon",
+    "Milotic",
+    "Bronzong",
+    "Cresselia"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Rhyperior->Huntail, Crawdaunt->Tsareena, Magmortar->Huntail; switch losing; setup at 3+ safe turns at full HP; save Tsareena for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Huntail",
+    "Masquerain",
+    "Tsareena",
+    "Whiscash",
+    "Cresselia"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "31": 1.0
+   },
+   "line": "lead Hariyama; answers Rhyperior->Araquanid, Crawdaunt->Glimmora, Magmortar->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1220,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.645,
+   "deaths": 0.86,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Steelix; answers Rhyperior->Steelix, Crawdaunt->Gliscor, Magmortar->Gliscor; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Poliwrath; answers Rhyperior->Poliwrath, Crawdaunt->Poliwrath, Magmortar->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Gastrodon; answers Rhyperior->Gastrodon, Crawdaunt->Vespiquen, Magmortar->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Araquanid; answers Rhyperior->Araquanid, Crawdaunt->Araquanid, Magmortar->Pelipper; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Azumarill, Magmortar->Azumarill; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Azumarill",
+    "Hariyama",
+    "Manaphy",
+    "Milotic",
+    "Pelipper"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Poliwrath; answers Rhyperior->Poliwrath, Crawdaunt->Electivire, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Quagsire for Magmortar",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Houndoom",
+    "Octillery",
+    "Poliwrath",
+    "Quagsire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Azumarill, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Azumarill",
+    "Hariyama",
+    "Jellicent",
+    "Kingdra",
+    "Mantine",
+    "Milotic"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Tentacruel; answers Rhyperior->Tentacruel, Crawdaunt->Altaria, Magmortar->Tentacruel; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Rotom",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "106": 1.0
+   },
+   "line": "lead Greninja; answers Rhyperior->Absol, Crawdaunt->Absol, Magmortar->Octillery; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 106,
+   "converged": true,
+   "runs": 3020,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Octillery",
+    "Poliwrath"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Azumarill, Magmortar->Azumarill; switch losing; setup at 5+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Glimmora",
+    "Azumarill",
+    "Kingdra",
+    "Rotom",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "28": 1.0
+   },
+   "line": "lead Kingdra; answers Rhyperior->Kingdra, Crawdaunt->Kingdra, Magmortar->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Annihilape",
+    "Goodra",
+    "Kingdra",
+    "Magnezone",
+    "Pelipper"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "22": 1.0
+   },
+   "line": "lead Abomasnow; answers Rhyperior->Abomasnow, Crawdaunt->Flygon, Magmortar->Seaking; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Flygon",
+    "Breloom",
+    "Seaking",
+    "Tentacruel"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Jellicent; answers Rhyperior->Ferrothorn, Crawdaunt->Ferrothorn, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP; save Ferrothorn for Crawdaunt",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.5,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Greninja; answers Rhyperior->Greninja, Crawdaunt->Florges, Magmortar->Greninja; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Greninja for Magmortar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Araquanid; answers Rhyperior->Seaking, Crawdaunt->Mienshao, Magmortar->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Yanmega; answers Rhyperior->Empoleon, Crawdaunt->Masquerain, Magmortar->Araquanid; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Cherrim; answers Crawdaunt->Absol, Magmortar->Whiscash; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Whiscash for Magmortar",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Rhyperior->Manaphy, Magmortar->Manaphy; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Manaphy for Magmortar",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Manaphy",
+    "Milotic",
+    "Pelipper",
+    "Tentacruel"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "14": 1.0
+   },
+   "line": "lead Greninja; answers Rhyperior->Electivire, Crawdaunt->Electivire, Magmortar->Electivire; switch losing; setup at 3+ safe turns at full HP; save Electivire for Crawdaunt",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Rapidash-Galar",
+    "Articuno",
+    "Greninja",
+    "Lumineon",
+    "Mienshao"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.673,
+   "deaths": 0.523,
+   "wipe": 0.013,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "217": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Jellicent, Crawdaunt->Seaking, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 217,
+   "converged": true,
+   "runs": 5240,
+   "kind": "planned:8",
+   "team": [
+    "Jellicent",
+    "Lapras",
+    "Machamp",
+    "Mantine",
+    "Seaking",
+    "Walrein"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "17": 1.0
+   },
+   "line": "lead Greninja; answers Rhyperior->Greninja, Crawdaunt->Leavanny, Magmortar->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Leavanny",
+    "Milotic",
+    "Carbink",
+    "Walrein",
+    "Clefable"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Roserade; answers Rhyperior->Roserade, Crawdaunt->Florges, Magmortar->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Magcargo",
+    "Milotic",
+    "Roserade",
+    "Castform"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Pelipper; answers Crawdaunt->Cinderace, Magmortar->Milotic; switch losing; setup at 3+ safe turns at full HP; save Cinderace for Crawdaunt",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Milotic",
+    "Pelipper",
+    "Castform",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Ferrothorn; answers Rhyperior->Ferrothorn, Crawdaunt->Vespiquen, Magmortar->Manaphy; switch losing; setup at 5+ safe turns; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Manaphy",
+    "Palossand",
+    "Vespiquen",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "18": 1.0
+   },
+   "line": "lead Kingdra; answers Crawdaunt->Frosmoth, Magmortar->Kingdra; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Kingdra",
+    "Liepard",
+    "Pelipper",
+    "Sinistcha",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Greninja; answers Rhyperior->Quagsire, Crawdaunt->Cinderace, Magmortar->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Magmortar->Manaphy; switch losing; setup at 5+ safe turns at full HP; bait locks; save Manaphy for Magmortar",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "48": 1.0
+   },
+   "line": "lead Gastrodon; answers Crawdaunt->Hariyama, Magmortar->Whiscash; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 48,
+   "converged": true,
+   "runs": 1560,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.705,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Walrein; answers Rhyperior->Walrein, Crawdaunt->Hariyama, Magmortar->Ceruledge; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "25": 1.0
+   },
+   "line": "lead Huntail; answers Rhyperior->Huntail, Crawdaunt->Lanturn, Magmortar->Huntail; switch losing; setup at 3+ safe turns at full HP; free pivots; save Lanturn for Crawdaunt",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1100,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Rhyperior->Manaphy, Crawdaunt->Feraligatr, Magmortar->Feraligatr; switch losing; setup at 3+ safe turns at full HP; save Feraligatr for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Feraligatr",
+    "Hariyama",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Donphan; answers Rhyperior->Donphan, Crawdaunt->Arboliva, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Arboliva",
+    "Glimmora",
+    "Jellicent",
+    "Ludicolo",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cherrim; answers Rhyperior->Cherrim, Magmortar->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Lanturn",
+    "Lumineon",
+    "Milotic",
+    "Whiscash",
+    "Cherrim",
+    "Altaria"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Huntail; answers Rhyperior->Huntail, Crawdaunt->Kricketune, Magmortar->Huntail; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Gliscor",
+    "Huntail",
+    "Kricketune",
+    "Salazzle",
+    "Steelix",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.4,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Hariyama; answers Crawdaunt->Abomasnow, Magmortar->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Hariyama",
+    "Lanturn",
+    "Talonflame",
+    "Togekiss"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.763,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Kingler; answers Rhyperior->Kingler, Crawdaunt->Abomasnow; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; save Abomasnow for Crawdaunt",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Huntail",
+    "Kingler",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Kingler; answers Rhyperior->Kingler, Crawdaunt->Kingler, Magmortar->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Jellicent",
+    "Kingler",
+    "Lurantis",
+    "Corviknight"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "18": 1.0
+   },
+   "line": "lead Jellicent; answers Rhyperior->Feraligatr, Crawdaunt->Jellicent, Magmortar->Jellicent; switch losing; setup at 5+ safe turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:9",
+   "team": [
+    "Feraligatr",
+    "Jellicent",
+    "Kricketune",
+    "Tentacruel",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  }
+ ],
+ "key": "tr225"
+}

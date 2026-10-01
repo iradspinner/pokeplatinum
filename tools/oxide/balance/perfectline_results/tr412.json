@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 0.997,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.003,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 115780,
+ "search_budget": 10,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "Fantina",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 1.3,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Croagunk->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Litwick",
+    "Brionne",
+    "Shiftry",
+    "Whiscash",
+    "Charjabug",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Swablu",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Tentacruel",
+    "Charjabug",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Hariyama",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Swablu",
+    "Whiscash",
+    "Delcatty",
+    "Dwebble",
+    "Gligar"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gligar; answers Croagunk->Gligar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Naclstack",
+    "Orbeetle",
+    "Shiftry",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Togetic",
+    "Vullaby",
+    "Araquanid",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Croagunk->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Mienfoo",
+    "Mightyena",
+    "Brionne",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Croagunk->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Kadabra",
+    "Raboot",
+    "Charjabug",
+    "Combee",
+    "Donphan",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mienfoo",
+    "Orbeetle",
+    "Swablu",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Naclstack",
+    "Brionne",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Mienfoo",
+    "Naclstack",
+    "Pawmo",
+    "Swablu"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Bibarel",
+    "Swablu",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Probopass",
+    "Togetic",
+    "Floatzel",
+    "Fomantis"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Brionne",
+    "Togetic",
+    "Clefable"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Masquerain; answers Croagunk->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Lopunny",
+    "Masquerain",
+    "Noctowl",
+    "Brionne",
+    "Floatzel"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Croagunk->Luxray; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kadabra",
+    "Luxray",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Fomantis"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Croagunk->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Salazzle",
+    "Seaking",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Carbink; answers Croagunk->Bastiodon; switch never; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Masquerain",
+    "Noctowl",
+    "Torterra",
+    "Carbink"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Jumpluff; answers Croagunk->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Kricketune",
+    "Luxray",
+    "Carbink",
+    "Umbreon",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Salazzle; answers Croagunk->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Salazzle",
+    "Seaking",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Lumineon",
+    "Luxray",
+    "Bronzong",
+    "Swablu",
+    "Toucannon"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Swablu",
+    "Carbink",
+    "Umbreon",
+    "Vulpix",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Croagunk->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Salazzle",
+    "Torterra",
+    "Vullaby",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Croagunk->Bronzong; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Luxray",
+    "Bronzong",
+    "Combee",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Salazzle; answers Croagunk->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Noctowl",
+    "Probopass",
+    "Salazzle",
+    "Vulpix"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pachirisu; answers Croagunk->Huntail; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lumineon",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Togetic",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Kricketune",
+    "Seaking",
+    "Togetic",
+    "Fletchinder"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Mismagius; answers Croagunk->Staravia; switch hp below 0.4; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Mismagius",
+    "Munchlax",
+    "Shiftry",
+    "Staravia"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Croagunk->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Liepard",
+    "Vullaby",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mightyena",
+    "Munchlax",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Croagunk->Donphan; switch never; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Tentacruel",
+    "Clefable",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Shiftry",
+    "Whiscash",
+    "Combee",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Croagunk->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Milotic",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Swablu",
+    "Togetic",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Orbeetle",
+    "Pachirisu",
+    "Roselia",
+    "Swablu",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Charjabug",
+    "Ambipom",
+    "Golbat"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Togetic",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Pachirisu",
+    "Seaking",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Prinplup",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Litwick; answers Croagunk->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Tentacruel"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Leavanny; answers Croagunk->Whiscash; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Leavanny",
+    "Milotic",
+    "Shiftry",
+    "Snover",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Umbreon",
+    "Whiscash",
+    "Donphan",
+    "Dubwool",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Orbeetle",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers Croagunk->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Carbink",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Toucannon; answers Croagunk->Masquerain; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Jynx",
+    "Masquerain",
+    "Brionne",
+    "Toucannon",
+    "Carbink"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Snover",
+    "Togetic",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Prinplup",
+    "Snover",
+    "Toucannon",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Croagunk->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Brionne",
+    "Seaking",
+    "Tsareena",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pawmo; answers Croagunk->Orbeetle; switch hp below 0.7; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Pawmo",
+    "Raboot",
+    "Vulpix",
+    "Glameow"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers Croagunk->Huntail; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Seaking",
+    "Tsareena"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Huntail; answers none; switch never; setup at 2+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Huntail",
+    "Kricketune",
+    "Mightyena",
+    "Bronzong",
+    "Wormadam",
+    "Combee"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Orbeetle",
+    "Togetic",
+    "Tsareena",
+    "Frogadier"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Croagunk->Kingler; switch hp below 0.4; setup at 3+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Kingler",
+    "Mienfoo",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Glameow"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Croagunk->Clefable; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Clefable"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Croagunk->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Naclstack",
+    "Raboot",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Croagunk->Leavanny; switch losing; setup at 5+ safe turns; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Leavanny",
+    "Probopass",
+    "Tsareena",
+    "Dubwool",
+    "Frogadier"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Croagunk->Bastiodon; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Raboot",
+    "Charjabug"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Croagunk->Huntail; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Clefable; answers Croagunk->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Mienfoo",
+    "Vullaby",
+    "Charjabug",
+    "Clefable"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Croagunk->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Lombre",
+    "Seaking",
+    "Tentacruel",
+    "Tsareena",
+    "Umbreon",
+    "Clefable"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Clefable; answers none; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Bronzong",
+    "Tentacruel",
+    "Umbreon",
+    "Clefable",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Lanturn",
+    "Lombre",
+    "Orbeetle",
+    "Servine",
+    "Swablu",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Stunky",
+    "Swablu",
+    "Tentacruel",
+    "Togetic",
+    "Vullaby"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Naclstack",
+    "Seaking",
+    "Swablu",
+    "Fomantis",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Seaking",
+    "Whiscash",
+    "Donphan",
+    "Fletchinder",
+    "Fomantis",
+    "Graveler"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Croagunk->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Bronzong",
+    "Steelix",
+    "Stunky",
+    "Fletchinder",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Croagunk->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Bronzong",
+    "Steelix",
+    "Torterra",
+    "Glimmet",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Lombre",
+    "Pawmo",
+    "Togetic",
+    "Whiscash",
+    "Donphan",
+    "Glimmet"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Pawmo",
+    "Bronzong",
+    "Swablu",
+    "Togetic"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Haunter; answers Croagunk->Liepard; switch never; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Naclstack",
+    "Fomantis"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Croagunk->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Stunky",
+    "Torterra",
+    "Fletchinder",
+    "Graveler"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Haunter",
+    "Leavanny",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Croagunk->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Liepard",
+    "Bronzong",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Croagunk->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Pawmo",
+    "Shiftry",
+    "Steelix",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Croagunk->Clefable; switch never; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Tsareena",
+    "Cherrim",
+    "Clefable",
+    "Combee",
+    "Fomantis"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Croagunk->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Bibarel",
+    "Raboot",
+    "Umbreon",
+    "Wailmer",
+    "Gastrodon"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Croagunk->Bastiodon; switch hp below 0.5; setup at 3+ safe turns; no status moves; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Naclstack",
+    "Sandygast",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sandygast; answers Croagunk->Crawdaunt; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Sandygast",
+    "Umbreon",
+    "Wailmer",
+    "Charjabug",
+    "Crawdaunt"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Croagunk->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Litwick",
+    "Naclstack",
+    "Steelix",
+    "Tsareena",
+    "Umbreon",
+    "Fomantis"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Seaking",
+    "Togetic",
+    "Umbreon",
+    "Charjabug",
+    "Dubwool",
+    "Glimmet"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Togetic",
+    "Ambipom",
+    "Clefable",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Tentacruel",
+    "Togetic",
+    "Ambipom",
+    "Gastrodon"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Croagunk->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Sandygast",
+    "Steelix",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Litwick",
+    "Orbeetle",
+    "Raboot",
+    "Sandygast",
+    "Steelix",
+    "Charjabug"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Bibarel",
+    "Steelix",
+    "Swablu",
+    "Umbreon",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Gastrodon; switch losing; setup at 2+ safe turns; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Seaking",
+    "Tentacruel",
+    "Clefable",
+    "Donphan",
+    "Gastrodon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Croagunk->Clefable; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Masquerain",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Mienfoo",
+    "Seaking",
+    "Charjabug",
+    "Dwebble"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Breloom",
+    "Swablu",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swablu; answers Croagunk->Swablu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swablu",
+    "Umbreon",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gligar; answers Croagunk->Gligar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Seaking",
+    "Fletchinder",
+    "Furret",
+    "Gligar"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gligar; answers Croagunk->Gligar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Mienfoo",
+    "Ninetales-Alola",
+    "Combee",
+    "Rapidash-Galar",
+    "Gligar"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Croagunk->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Umbreon",
+    "Vullaby",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Pawmo",
+    "Rotom",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Rotom",
+    "Togetic",
+    "Furret"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Fletchinder; answers Croagunk->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Masquerain",
+    "Ninetales-Alola",
+    "Tentacruel",
+    "Vullaby",
+    "Dwebble",
+    "Fletchinder"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Ninetales-Alola",
+    "Rotom",
+    "Togetic",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lombre; answers Croagunk->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Lombre",
+    "Lumineon",
+    "Tentacruel",
+    "Torracat",
+    "Combee"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Mienfoo",
+    "Breloom",
+    "Staravia",
+    "Togetic"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nidoking; answers Croagunk->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Bastiodon",
+    "Nidoking",
+    "Tentacruel",
+    "Combee",
+    "Dwebble",
+    "Furret"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Toucannon; answers Croagunk->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Mienfoo",
+    "Toucannon",
+    "Vulpix",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Cherrim; switch hp below 0.5; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Toucannon",
+    "Whiscash",
+    "Charjabug",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nidoking; answers Croagunk->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Mienfoo",
+    "Nidoking",
+    "Vullaby",
+    "Wormadam",
+    "Graveler"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lombre",
+    "Togetic",
+    "Charjabug",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Togetic",
+    "Vullaby",
+    "Vulpix",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Naclstack",
+    "Raboot",
+    "Shiftry",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Masquerain",
+    "Naclstack",
+    "Rotom",
+    "Golbat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Leavanny; answers Croagunk->Leavanny; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Lopunny",
+    "Raboot",
+    "Toucannon",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Mienfoo",
+    "Vulpix",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charjabug; answers Croagunk->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Vullaby",
+    "Charjabug",
+    "Crawdaunt",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Croagunk->Wormadam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Shiftry",
+    "Wailmer",
+    "Whiscash",
+    "Wormadam",
+    "Charjabug"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Croagunk->Shiftry; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Bibarel",
+    "Masquerain",
+    "Rotom",
+    "Shiftry"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Croagunk->Wormadam; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Lopunny",
+    "Luxray",
+    "Rotom",
+    "Umbreon",
+    "Wormadam",
+    "Cherrim"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Brionne",
+    "Ambipom",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Masquerain; answers Croagunk->Orbeetle; switch hp below 0.2; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Prinplup",
+    "Snover",
+    "Vullaby",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailmer; answers Croagunk->Wailmer; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Snover",
+    "Wailmer",
+    "Ambipom",
+    "Furret",
+    "Glimmet",
+    "Graveler"
+   ],
+   "seconds": 0.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers Croagunk->Leavanny; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Lopunny",
+    "Brionne",
+    "Sandygast",
+    "Sharpedo",
+    "Furret"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Croagunk->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Luxray",
+    "Sandygast",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Leavanny",
+    "Rotom",
+    "Wailmer",
+    "Wormadam",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Croagunk->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Minun",
+    "Brionne",
+    "Probopass",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Croagunk->Kricketune; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Leavanny",
+    "Prinplup",
+    "Tentacruel",
+    "Umbreon"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Combee",
+    "Glimmet"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Croagunk->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Brionne",
+    "Prinplup",
+    "Seaking",
+    "Snover",
+    "Whiscash"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togetic; answers Croagunk->Togetic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Prinplup",
+    "Rotom",
+    "Snover",
+    "Togetic"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Sharpedo; answers Croagunk->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Sharpedo",
+    "Snover",
+    "Cherrim",
+    "Furret"
+   ],
+   "seconds": 0.2
+  }
+ ],
+ "key": "tr412"
+}

@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 1.0,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.0,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 115460,
+ "search_budget": 10,
+ "converged_share": 1.0,
+ "label": "Bug Catcher Donald",
+ "split": "Gardenia",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 2.1,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Pawmo",
+    "Tentacool",
+    "Delcatty",
+    "Donphan",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Snover",
+    "Combee",
+    "Delcatty",
+    "Dottler",
+    "Rapidash-Galar",
+    "Hariyama"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Pineco->Hariyama, Combee->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Steenee",
+    "Tentacool",
+    "Dottler",
+    "Barboach",
+    "Hariyama",
+    "Bibarel"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Shiftry",
+    "Araquanid",
+    "Barboach",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Golbat; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Golbat for Combee",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Raboot",
+    "Snover",
+    "Tentacool",
+    "Delcatty",
+    "Golbat",
+    "Hariyama"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Shiftry",
+    "Golbat",
+    "Graveler",
+    "Hariyama",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Raboot",
+    "Araquanid",
+    "Combee",
+    "Delcatty",
+    "Donphan",
+    "Bibarel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Pawmo",
+    "Combee",
+    "Rapidash-Galar",
+    "Liepard",
+    "Mienfoo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Brionne",
+    "Shiftry",
+    "Vullaby",
+    "Charjabug",
+    "Araquanid",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Pineco->Breloom, Combee->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Snover",
+    "Vullaby",
+    "Araquanid",
+    "Liepard",
+    "Mienfoo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Shiftry",
+    "Vullaby",
+    "Delcatty",
+    "Donphan",
+    "Hariyama"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Raboot",
+    "Snover",
+    "Donphan",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Barboach",
+    "Bibarel",
+    "Masquerain",
+    "Mienfoo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Clefable",
+    "Combee",
+    "Finneon",
+    "Graveler",
+    "Kricketune",
+    "Luxio"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Trumbeak",
+    "Vullaby",
+    "Combee",
+    "Dubwool",
+    "Grotle",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Brionne; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Brionne",
+    "Skiploom",
+    "Steenee",
+    "Vullaby",
+    "Floatzel",
+    "Goldeen"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Dubwool; answers Pineco->Dubwool, Combee->Noctowl; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; save Noctowl for Combee",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:1",
+   "team": [
+    "Noctowl",
+    "Steenee",
+    "Vulpix",
+    "Dubwool",
+    "Floatzel",
+    "Luxio"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Nosepass",
+    "Brionne",
+    "Skiploom",
+    "Trumbeak",
+    "Vulpix",
+    "Kricketune"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Vulpix",
+    "Dubwool",
+    "Hariyama",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Noctowl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Noctowl",
+    "Vullaby",
+    "Clefable",
+    "Corvisquire",
+    "Floatzel",
+    "Goldeen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Vulpix",
+    "Combee",
+    "Finneon",
+    "Grotle",
+    "Luxio"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Brionne",
+    "Combee",
+    "Corvisquire",
+    "Dubwool",
+    "Finneon",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Nosepass",
+    "Brionne",
+    "Skiploom",
+    "Dubwool",
+    "Barboach",
+    "Finneon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Brionne",
+    "Clefable",
+    "Goldeen",
+    "Hariyama",
+    "Kadabra"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Corvisquire",
+    "Dubwool",
+    "Finneon",
+    "Graveler",
+    "Kadabra",
+    "Lopunny"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Naclstack",
+    "Vullaby",
+    "Clefable",
+    "Corvisquire",
+    "Floatzel",
+    "Hariyama"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Budew",
+    "Vullaby",
+    "Corvisquire",
+    "Dottler",
+    "Finneon",
+    "Hariyama"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Pineco->Mightyena, Combee->Munchlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Munchlax",
+    "Prinplup",
+    "Tentacool",
+    "Chinchou",
+    "Dottler",
+    "Mightyena"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Pachirisu",
+    "Budew",
+    "Swadloon",
+    "Tentacool",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Brionne",
+    "Swadloon",
+    "Clefable",
+    "Combee",
+    "Finneon",
+    "Mightyena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Pineco->Hariyama, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Tentacool",
+    "Clefable",
+    "Combee",
+    "Barboach",
+    "Goldeen",
+    "Hariyama"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mightyena; answers Pineco->Hariyama, Combee->Hariyama; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Hariyama for Combee",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Braixen",
+    "Shiftry",
+    "Hariyama",
+    "Kricketune",
+    "Masquerain",
+    "Mightyena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Pineco->Hariyama, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Clefable",
+    "Dottler",
+    "Barboach",
+    "Finneon",
+    "Hariyama",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Prinplup",
+    "Swadloon",
+    "Clamperl",
+    "Corvisquire",
+    "Goldeen",
+    "Mightyena"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Staravia; answers Pineco->Masquerain, Combee->Masquerain; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots; save Masquerain for Combee",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Braixen",
+    "Staravia",
+    "Swadloon",
+    "Clamperl",
+    "Corphish",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Braixen; answers Pineco->Braixen, Combee->Braixen; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Munchlax",
+    "Braixen",
+    "Vullaby",
+    "Chinchou",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Pineco->Masquerain, Combee->Staravia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Staravia",
+    "Tentacool",
+    "Dottler",
+    "Barboach",
+    "Masquerain",
+    "Mightyena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Pineco->Shiftry, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Shiftry",
+    "Staravia",
+    "Clefable",
+    "Goldeen"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Budew",
+    "Vullaby",
+    "Corphish",
+    "Barboach",
+    "Hariyama",
+    "Kricketune"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzor; answers Pineco->Bronzor, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Bronzor",
+    "Swadloon",
+    "Vullaby",
+    "Dubwool",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Snover",
+    "Steenee",
+    "Goldeen",
+    "Graveler",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Shiftry",
+    "Bronzor",
+    "Tentacool",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Pineco->Dubwool, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Tentacool",
+    "Dubwool",
+    "Barboach",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Pachirisu",
+    "Tentacool",
+    "Vullaby",
+    "Goldeen",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Pineco->Carbink, Combee->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bronzor",
+    "Vullaby",
+    "Carbink",
+    "Dubwool",
+    "Graveler",
+    "Bibarel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Shiftry",
+    "Bronzor",
+    "Dottler",
+    "Goldeen",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Pineco->Carbink, Combee->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Shiftry",
+    "Bronzor",
+    "Carbink",
+    "Goldeen",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Pineco->Carbink, Combee->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Tentacool",
+    "Carbink",
+    "Combee",
+    "Corvisquire",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Tentacool",
+    "Dottler",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Pachirisu",
+    "Shiftry",
+    "Tentacool",
+    "Dubwool",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Pineco->Carbink, Combee->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bronzor",
+    "Snover",
+    "Carbink",
+    "Combee",
+    "Barboach",
+    "Bibarel"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzor; answers Pineco->Bronzor, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bronzor",
+    "Snover",
+    "Trumbeak",
+    "Corvisquire",
+    "Dubwool",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Raboot",
+    "Vullaby",
+    "Dottler",
+    "Dubwool",
+    "Krabby",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Raboot",
+    "Chinchou",
+    "Frogadier",
+    "Goldeen",
+    "Krabby",
+    "Mightyena"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Swadloon",
+    "Chinchou",
+    "Dottler",
+    "Krabby",
+    "Lombre",
+    "Luxio"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Pawmo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Dottler",
+    "Goldeen",
+    "Kricketune",
+    "Mightyena"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Mightyena, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Tentacool",
+    "Chinchou",
+    "Clamperl",
+    "Mightyena"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Vullaby",
+    "Wormadam",
+    "Dubwool",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Vulpix",
+    "Wormadam",
+    "Clamperl",
+    "Kricketune",
+    "Lombre"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Vullaby",
+    "Combee",
+    "Dottler",
+    "Frogadier",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Chinchou",
+    "Dubwool",
+    "Krabby",
+    "Kricketune",
+    "Masquerain"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Chinchou",
+    "Dubwool",
+    "Kricketune",
+    "Mightyena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Wormadam",
+    "Dottler",
+    "Dubwool",
+    "Kricketune",
+    "Mienfoo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Naclstack",
+    "Swadloon",
+    "Vullaby",
+    "Vulpix",
+    "Combee",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Nosepass",
+    "Raboot",
+    "Vulpix",
+    "Wormadam",
+    "Dottler",
+    "Masquerain"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Pawmo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Pawmo",
+    "Snorunt",
+    "Swadloon",
+    "Chinchou",
+    "Goldeen",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Snorunt",
+    "Swadloon",
+    "Graveler",
+    "Grotle",
+    "Bibarel"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Dottler",
+    "Finneon",
+    "Goldeen",
+    "Bibarel"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Swadloon; answers Pineco->Swadloon, Combee->Fletchinder; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Snorunt",
+    "Swadloon",
+    "Dottler",
+    "Barboach",
+    "Fletchinder",
+    "Goldeen"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Naclstack",
+    "Onix",
+    "Tentacool",
+    "Vullaby",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Vullaby",
+    "Cherrim",
+    "Golbat",
+    "Graveler",
+    "Bibarel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Snorunt",
+    "Dottler",
+    "Barboach",
+    "Kadabra"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Fletchinder; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Dottler",
+    "Fletchinder",
+    "Goldeen",
+    "Kadabra"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Onix",
+    "Pawmo",
+    "Servine",
+    "Shiftry",
+    "Combee",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Servine",
+    "Vullaby",
+    "Donphan",
+    "Goldeen",
+    "Grotle",
+    "Liepard"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Naclstack",
+    "Onix",
+    "Combee",
+    "Golbat",
+    "Graveler",
+    "Kadabra"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Pawmo",
+    "Swadloon",
+    "Barboach",
+    "Finneon",
+    "Goldeen",
+    "Graveler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Pineco->Vullaby, Combee->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Servine",
+    "Vullaby",
+    "Chinchou",
+    "Combee",
+    "Finneon",
+    "Kadabra"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Aipom; answers Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Steenee",
+    "Clefable",
+    "Goldeen",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Pineco->Onix, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Onix",
+    "Shellos",
+    "Tentacool",
+    "Vullaby",
+    "Dottler",
+    "Goldeen"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Pineco->Bibarel, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Shellos",
+    "Tentacool",
+    "Clefable",
+    "Bibarel",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Pineco->Onix, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Onix",
+    "Brionne",
+    "Tentacool",
+    "Clefable",
+    "Corphish",
+    "Dubwool"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Breloom",
+    "Raboot",
+    "Steenee",
+    "Vullaby",
+    "Bibarel",
+    "Kadabra"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Pineco->Onix, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Onix",
+    "Breloom",
+    "Shiftry",
+    "Vullaby",
+    "Dubwool",
+    "Bibarel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Pineco->Onix, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Onix",
+    "Breloom",
+    "Charjabug",
+    "Clefable",
+    "Corphish",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Pineco->Onix, Combee->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Onix",
+    "Raboot",
+    "Steenee",
+    "Tentacool",
+    "Combee",
+    "Dottler"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Brionne",
+    "Charjabug",
+    "Donphan",
+    "Bibarel",
+    "Liepard"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cherrim; answers Pineco->Cherrim, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Shiftry",
+    "Steenee",
+    "Cherrim",
+    "Donphan",
+    "Goldeen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Charjabug; answers Pineco->Charjabug, Combee->Charjabug; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Brionne",
+    "Charjabug",
+    "Combee",
+    "Corphish",
+    "Goldeen",
+    "Masquerain"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Naclstack",
+    "Vullaby",
+    "Clefable",
+    "Combee",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Shiftry; answers Pineco->Shiftry, Combee->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Shiftry",
+    "Swadloon",
+    "Vullaby",
+    "Clefable",
+    "Dubwool",
+    "Bibarel"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nidoking; answers Pineco->Nidoking, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Nidoking",
+    "Tentacool",
+    "Vullaby",
+    "Golbat",
+    "Bibarel",
+    "Liepard"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torracat; answers Pineco->Torracat, Combee->Lombre; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Staravia",
+    "Torracat",
+    "Ninetales-Alola",
+    "Goldeen",
+    "Lombre",
+    "Machop"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Breloom",
+    "Raboot",
+    "Swadloon",
+    "Bibarel",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Vullaby",
+    "Golbat",
+    "Graveler",
+    "Lombre",
+    "Machop"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Raboot; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swadloon",
+    "Combee",
+    "Hariyama",
+    "Liepard"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Raboot",
+    "Torracat",
+    "Rapidash-Galar",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Breloom",
+    "Raboot",
+    "Ninetales-Alola",
+    "Furret",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torracat; answers Pineco->Torracat, Combee->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Tentacool",
+    "Torracat",
+    "Vullaby",
+    "Ninetales-Alola",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Tentacool",
+    "Torracat",
+    "Ninetales-Alola",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Lombre"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Swadloon",
+    "Vullaby",
+    "Golbat",
+    "Graveler",
+    "Machop"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torracat; answers Pineco->Torracat, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Swadloon",
+    "Torracat",
+    "Vullaby",
+    "Bibarel",
+    "Hariyama"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Pineco->Rapidash-Galar, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Nidoking",
+    "Breloom",
+    "Rapidash-Galar",
+    "Golbat",
+    "Hariyama",
+    "Machop"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Pineco->Raboot, Combee->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Breloom",
+    "Raboot",
+    "Torracat",
+    "Ninetales-Alola",
+    "Charjabug",
+    "Furret"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Charjabug",
+    "Combee",
+    "Corphish",
+    "Liepard"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Wormadam",
+    "Corphish",
+    "Dottler",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Corphish; answers Pineco->Masquerain, Combee->Nidoking; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Nidoking for Combee",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:8",
+   "team": [
+    "Nidoking",
+    "Vulpix",
+    "Charjabug",
+    "Corphish",
+    "Bibarel",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Pineco->Golbat, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Dottler",
+    "Golbat",
+    "Bibarel",
+    "Liepard",
+    "Lombre",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Naclstack",
+    "Pawmo",
+    "Shiftry",
+    "Dubwool",
+    "Graveler",
+    "Mienfoo"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Wormadam; answers Combee->Nidoking; switch never; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Nidoking for Combee",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:8",
+   "team": [
+    "Nidoking",
+    "Raboot",
+    "Wormadam",
+    "Charjabug",
+    "Cherrim",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Shiftry",
+    "Skiploom",
+    "Combee",
+    "Barboach",
+    "Finneon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Trumbeak; answers Combee->Trumbeak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Trumbeak",
+    "Wormadam",
+    "Cherrim",
+    "Corphish",
+    "Masquerain",
+    "Mienfoo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Pineco->Golbat, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Trumbeak",
+    "Combee",
+    "Dottler",
+    "Barboach",
+    "Golbat",
+    "Masquerain"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Pineco->Masquerain, Combee->Raboot; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 2 turns; save Raboot for Combee",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Raboot",
+    "Vulpix",
+    "Wormadam",
+    "Charjabug",
+    "Finneon",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Pawmo",
+    "Skiploom",
+    "Wormadam",
+    "Barboach",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Vullaby",
+    "Vulpix",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Naclstack; answers Pineco->Naclstack, Combee->Nidoking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Naclstack",
+    "Nidoking",
+    "Vulpix",
+    "Wormadam",
+    "Cherrim",
+    "Golbat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Combee",
+    "Donphan",
+    "Barboach",
+    "Goldeen",
+    "Liepard",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Aipom",
+    "Wormadam",
+    "Donphan",
+    "Barboach",
+    "Goldeen",
+    "Kricketune"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Nosepass",
+    "Tentacool",
+    "Carvanha",
+    "Combee",
+    "Finneon",
+    "Masquerain"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Nosepass",
+    "Snover",
+    "Swadloon",
+    "Tentacool",
+    "Vullaby",
+    "Luxio"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Prinplup",
+    "Carvanha",
+    "Combee",
+    "Donphan",
+    "Graveler",
+    "Masquerain"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Nosepass",
+    "Cherrim",
+    "Furret",
+    "Golbat",
+    "Graveler",
+    "Kricketune"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Donphan; answers Pineco->Donphan, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Snover",
+    "Wormadam",
+    "Donphan",
+    "Barboach"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Tentacool",
+    "Cherrim",
+    "Dottler",
+    "Furret",
+    "Graveler",
+    "Kricketune"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Nosepass",
+    "Vullaby",
+    "Wormadam",
+    "Cherrim",
+    "Graveler",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Snover",
+    "Tentacool",
+    "Cherrim",
+    "Donphan",
+    "Finneon",
+    "Graveler"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Pineco->Nosepass, Combee->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Nosepass",
+    "Vullaby",
+    "Cherrim",
+    "Dottler",
+    "Kricketune",
+    "Liepard"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Graveler; answers Pineco->Graveler, Combee->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Wormadam",
+    "Goldeen",
+    "Graveler",
+    "Liepard",
+    "Luxio"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golbat; answers Pineco->Golbat, Combee->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Aipom",
+    "Brionne",
+    "Prinplup",
+    "Golbat",
+    "Kricketune",
+    "Luxio"
+   ],
+   "seconds": 0.4
+  }
+ ],
+ "key": "tr203"
+}

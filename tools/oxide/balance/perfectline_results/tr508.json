@@ -1,0 +1,3090 @@
+{
+ "blind_rate": 0.967,
+ "blind_clean_share": 0.88,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.037,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.984,
+  "50": 0.998,
+  "100": 0.999,
+  "300": 1.0
+ },
+ "runs": 131080,
+ "search_budget": 170,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "HQ",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 3.2,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Orbeetle; answers Cacturne->Orbeetle, Seviper->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Glalie; answers Cacturne->Florges, Seviper->Hippowdon; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Hippowdon for Seviper",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Weavile, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tsareena; answers Cacturne->Gliscor; switch never; setup at 3+ safe turns; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Galvantula; answers Cacturne->Galvantula, Seviper->Hippowdon; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "27": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Snorlax, Seviper->Weavile; switch hp below 0.6; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Weavile for Seviper",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:0",
+   "team": [
+    "Liepard",
+    "Snorlax",
+    "Vikavolt",
+    "Weavile",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Klefki; answers Cacturne->Klefki, Seviper->Klefki; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Klefki",
+    "Blastoise",
+    "Manaphy",
+    "Pelipper",
+    "Talonflame"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Yanmega; answers Cacturne->Yanmega, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Bastiodon",
+    "Manaphy",
+    "Sharpedo",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Galvantula; answers Cacturne->Galvantula, Seviper->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Liepard",
+    "Lopunny",
+    "Blastoise",
+    "Alakazam"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Frosmoth; answers Cacturne->Frosmoth, Seviper->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Liepard",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Ninetales; answers Cacturne->Ninetales, Seviper->Gothitelle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Gothitelle for Seviper",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Ninetales",
+    "Noctowl",
+    "Alakazam",
+    "Crobat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Glalie; answers Cacturne->Tsareena, Seviper->Glalie; switch hp below 0.6; setup at 4+ safe turns; bait locks; save Glalie for Seviper",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Lanturn",
+    "Liepard",
+    "Togekiss",
+    "Tsareena"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vikavolt; answers Cacturne->Vikavolt, Seviper->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Masquerain",
+    "Probopass",
+    "Snorlax",
+    "Vikavolt",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Feraligatr; answers Cacturne->Feraligatr, Seviper->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Seviper->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Florges, Seviper->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Araquanid, Seviper->Relicanth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.805,
+   "deaths": 0.195,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Altaria; answers Cacturne->Luxray; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Vespiquen; answers Cacturne->Vespiquen, Seviper->Feraligatr; switch losing; setup at 3+ safe turns at full HP; save Feraligatr for Seviper",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Kingdra",
+    "Absol",
+    "Tentacruel",
+    "Vespiquen",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ninetales; answers Cacturne->Ninetales, Seviper->Relicanth; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Gothitelle",
+    "Ninetales",
+    "Pelipper",
+    "Rapidash",
+    "Relicanth"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Cacturne->Floatzel, Seviper->Mamoswine; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Mamoswine",
+    "Ninetales",
+    "Rapidash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Whiscash; answers Cacturne->Corviknight, Seviper->Whiscash; switch losing; setup at 3+ safe turns; save Whiscash for Seviper",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Palossand",
+    "Togekiss",
+    "Whiscash",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "16": 1.0
+   },
+   "line": "lead Cinderace; answers Cacturne->Masquerain, Seviper->Cinderace; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:1",
+   "team": [
+    "Absol",
+    "Mandibuzz",
+    "Masquerain",
+    "Pelipper",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Seviper->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Glimmora",
+    "Luxray",
+    "Mandibuzz",
+    "Chandelure"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Seviper->Corviknight; switch hp below 0.3; setup at 2+ safe turns at full HP; save Corviknight for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tropius; answers Cacturne->Tropius, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Bastiodon",
+    "Kingdra",
+    "Mamoswine",
+    "Tropius"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Breloom; answers Cacturne->Breloom, Seviper->Golem; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Cacturne->Seaking, Seviper->Toxicroak; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Toxicroak for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crobat; answers Cacturne->Crobat, Seviper->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vespiquen; answers Cacturne->Vespiquen, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Cacturne->Luxray, Seviper->Houndoom; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Absol",
+    "Luxray",
+    "Orbeetle",
+    "Staraptor",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Orbeetle, Seviper->Crustle; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Orbeetle",
+    "Staraptor",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Magnezone; answers Cacturne->Magnezone, Seviper->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Magnezone",
+    "Mandibuzz",
+    "Orbeetle",
+    "Bronzong",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Glalie; answers Cacturne->Corviknight, Seviper->Corviknight; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots; save Corviknight for Seviper",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Glalie",
+    "Manaphy",
+    "Mienshao",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tentacruel; answers Cacturne->Florges, Seviper->Garganacl; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Manaphy",
+    "Purugly",
+    "Tentacruel",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Absol",
+    "Scizor",
+    "Tentacruel",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Glalie, Seviper->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; save Scizor for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Octillery",
+    "Bronzong",
+    "Scizor",
+    "Yanmega"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mandibuzz; answers Cacturne->Mandibuzz, Seviper->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Kricketune",
+    "Manaphy",
+    "Mandibuzz",
+    "Bronzong",
+    "Purugly"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Cacturne->Araquanid, Seviper->Empoleon; switch losing; setup at 3+ safe turns at full HP; free pivots; save Empoleon for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Liepard; answers Cacturne->Liepard, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Orbeetle; answers Cacturne->Crustle, Seviper->Yanmega; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ferrothorn; answers Cacturne->Ferrothorn, Seviper->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Seviper->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Liepard",
+    "Yanmega",
+    "Cinderace",
+    "Corviknight",
+    "Crobat",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vespiquen; answers Cacturne->Vespiquen, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Qwilfish",
+    "Vespiquen",
+    "Cinccino",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Florges, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Orbeetle; answers Cacturne->Vikavolt, Seviper->Vikavolt; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong",
+    "Vikavolt"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Florges, Seviper->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Leavanny",
+    "Mandibuzz",
+    "Bronzong",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Qwilfish",
+    "Sharpedo",
+    "Steelix",
+    "Vespiquen",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Tentacruel, Seviper->Whiscash; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Leavanny",
+    "Palossand",
+    "Tentacruel",
+    "Weavile",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Seviper->Gastrodon; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Magmortar",
+    "Seaking",
+    "Sharpedo",
+    "Corviknight",
+    "Crobat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Florges, Seviper->Kingdra; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Cacturne->Tentacruel, Seviper->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mandibuzz; answers Cacturne->Mandibuzz, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mienshao; answers Cacturne->Mienshao, Seviper->Skuntank; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Mienshao",
+    "Skuntank",
+    "Talonflame",
+    "Tentacruel",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Charizard; answers Cacturne->Corviknight, Seviper->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Rapidash",
+    "Ceruledge",
+    "Charizard",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Seviper->Glalie; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Heracross",
+    "Luxray",
+    "Rapidash",
+    "Togekiss"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.9,
+    "33": 1.0
+   },
+   "line": "lead Ceruledge; answers Cacturne->Cinderace, Seviper->Lurantis; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Lurantis for Seviper",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Lurantis",
+    "Pawmot",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Seviper->Donphan; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; save Donphan for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Kingdra",
+    "Togekiss",
+    "Corviknight",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Crustle, Seviper->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Octillery",
+    "Tentacruel",
+    "Cinderace",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Cacturne->Masquerain, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Jellicent",
+    "Absol",
+    "Masquerain",
+    "Seaking",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Rapidash, Seviper->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Hippowdon",
+    "Pawmot",
+    "Rapidash",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Weavile, Seviper->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Grapploct; answers Cacturne->Grapploct, Seviper->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gliscor; answers Cacturne->Gliscor, Seviper->Gliscor; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togekiss; answers Cacturne->Walrein, Seviper->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Mandibuzz, Seviper->Weavile; switch losing; setup at 3+ safe turns at full HP; bait locks; save Weavile for Seviper",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Heracross",
+    "Mandibuzz",
+    "Pawmot",
+    "Vespiquen",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Seviper->Heracross; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Heracross",
+    "Milotic",
+    "Rhyperior",
+    "Wailord"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Grapploct",
+    "Liepard",
+    "Poliwrath",
+    "Bronzong",
+    "Steelix"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Grapploct; answers Cacturne->Grapploct, Seviper->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Seaking",
+    "Tentacruel",
+    "Torterra",
+    "Crawdaunt",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Seviper->Toxapex; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Sharpedo",
+    "Snorlax",
+    "Toxapex",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ferrothorn; answers Cacturne->Ferrothorn, Seviper->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Florges",
+    "Liepard",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Bronzong; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Bronzong",
+    "Seaking",
+    "Snorlax",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Seviper->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Snorlax",
+    "Whiscash",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Breloom; answers Cacturne->Breloom, Seviper->Scizor; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Seviper->Donphan; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; save Donphan for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togekiss; answers Cacturne->Togekiss, Seviper->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weavile; answers Cacturne->Palossand, Seviper->Palossand; switch losing; setup at 4+ safe turns at full HP; bait locks; save Palossand for Seviper",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Scizor",
+    "Walrein",
+    "Cinderace",
+    "Crobat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.137,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 1.0
+   },
+   "line": "lead Vikavolt; answers Cacturne->Vikavolt, Seviper->Vikavolt; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Vikavolt",
+    "Walrein"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Mandibuzz",
+    "Scizor",
+    "Togekiss",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Araquanid, Seviper->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Absol",
+    "Lumineon",
+    "Manaphy",
+    "Corsola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Cinderace; answers Cacturne->Vikavolt, Seviper->Absol; switch losing; setup at 3+ safe turns at full HP; no status moves; save Absol for Seviper",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Absol",
+    "Alakazam",
+    "Vikavolt",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Seviper->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Mandibuzz",
+    "Scizor"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Seviper->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Glimmora",
+    "Hariyama",
+    "Manaphy",
+    "Pelipper",
+    "Shiftry"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Vikavolt; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Vikavolt",
+    "Crobat",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Turtonator; answers Cacturne->Absol, Seviper->Quagsire; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Cacturne->Hawlucha, Seviper->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Seviper->Empoleon; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; save Empoleon for Seviper",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Electivire; answers Cacturne->Electivire, Seviper->Electivire; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Incineroar; answers Cacturne->Hawlucha, Seviper->Incineroar; switch losing; setup at 3+ safe turns; save Incineroar for Seviper",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Houndoom",
+    "Incineroar",
+    "Staraptor",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Breloom; answers Seviper->Cofagrigus; switch losing; setup at 2+ safe turns at full HP; bait locks; save Cofagrigus for Seviper",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Absol",
+    "Breloom",
+    "Weavile",
+    "Cherrim",
+    "Cofagrigus",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 1.0
+   },
+   "line": "lead Weavile; answers none; switch never; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 170,
+   "converged": true,
+   "runs": 4300,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Incineroar",
+    "Machamp",
+    "Breloom",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Masquerain",
+    "Tentacruel",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Electivire; answers Cacturne->Electivire, Seviper->Incineroar; switch losing; setup at 3+ safe turns at full HP; free pivots; save Incineroar for Seviper",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Incineroar",
+    "Ludicolo",
+    "Rapidash",
+    "Castform",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Magnezone; answers Cacturne->Magnezone, Seviper->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Houndoom",
+    "Magnezone",
+    "Rapidash",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Seaking",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Crustle, Seviper->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Machamp",
+    "Tentacruel",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "62": 1.0
+   },
+   "line": "lead Walrein; answers Cacturne->Togekiss, Seviper->Walrein; switch losing; setup at 3+ safe turns at full HP; free pivots; save Walrein for Seviper",
+   "candidates": 62,
+   "converged": true,
+   "runs": 1840,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lanturn; answers Cacturne->Florges, Seviper->Quagsire; switch losing; setup at 3+ safe turns at full HP; save Quagsire for Seviper",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Delcatty; answers Seviper->Araquanid; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 2 turns; save Araquanid for Seviper",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.785,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Masquerain; answers Cacturne->Masquerain, Seviper->Dubwool; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Walrein; answers Cacturne->Walrein, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crustle; answers Cacturne->Hawlucha, Seviper->Crustle; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Crustle for Seviper",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Machamp",
+    "Weezing",
+    "Cinderace",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Machamp; answers Cacturne->Yanmega, Seviper->Garganacl; switch losing; setup at 3+ safe turns at full HP; save Garganacl for Seviper",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Beautifly",
+    "Kingdra",
+    "Machamp",
+    "Palossand",
+    "Yanmega"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Cacturne->Hawlucha, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Delcatty",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Quagsire; answers Cacturne->Quagsire; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Machamp",
+    "Quagsire",
+    "Walrein",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mandibuzz",
+    "Masquerain",
+    "Steelix",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Araquanid, Seviper->Orbeetle; switch losing; setup at 3+ safe turns at full HP; save Orbeetle for Seviper",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Masquerain",
+    "Orbeetle",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Orbeetle; answers Cacturne->Whiscash, Seviper->Orbeetle; switch hp below 0.4; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Liepard",
+    "Machamp",
+    "Orbeetle",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Togekiss; answers Cacturne->Togekiss, Seviper->Gastrodon; switch losing; setup at 3+ safe turns at full HP; save Gastrodon for Seviper",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Absol",
+    "Palossand",
+    "Pelipper",
+    "Togekiss",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hariyama; answers Cacturne->Hariyama, Seviper->Hippowdon; switch losing; setup at 3+ safe turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.27,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "57": 1.0
+   },
+   "line": "lead Crawdaunt; answers Cacturne->Honchkrow, Seviper->Delphox; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Delphox for Seviper",
+   "candidates": 57,
+   "converged": true,
+   "runs": 1740,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Talonflame; answers Cacturne->Talonflame, Seviper->Quagsire; switch losing; setup at 5+ safe turns; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Seviper->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Palossand; answers Cacturne->Orbeetle, Seviper->Florges; switch hp below 0.5; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Absol",
+    "Luxray",
+    "Orbeetle",
+    "Steelix",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lucario; answers Cacturne->Lucario, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Absol",
+    "Lucario",
+    "Seaking",
+    "Walrein"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Lurantis, Seviper->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Kingdra",
+    "Lurantis",
+    "Weavile",
+    "Altaria"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Whiscash, Seviper->Empoleon; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Lurantis",
+    "Tentacruel",
+    "Ceruledge",
+    "Walrein",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dubwool; answers Cacturne->Dubwool, Seviper->Metagross; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glalie",
+    "Metagross",
+    "Walrein",
+    "Corsola",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Steelix",
+    "Whiscash",
+    "Corsola"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Dubwool; answers Cacturne->Dubwool, Seviper->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Palossand",
+    "Whiscash",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Cacturne->Steelix, Seviper->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Steelix",
+    "Walrein",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  }
+ ],
+ "key": "tr508"
+}

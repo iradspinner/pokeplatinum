@@ -1,0 +1,3319 @@
+{
+ "blind_rate": 0.87,
+ "blind_clean_share": 0.66,
+ "planned_rate": 0.997,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.003,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.185,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.941,
+  "50": 0.988,
+  "100": 0.994,
+  "300": 0.998
+ },
+ "runs": 178300,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Galactic Officer Somnu",
+ "split": "Candice",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 11.8,
+ "rows": [
+  {
+   "rate": 0.76,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Gliscor; answers Swalot->Gliscor, Forretress->Gliscor, Glaceon->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Glalie; answers Forretress->Hippowdon, Glaceon->Cinderace; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Gliscor; answers Swalot->Gliscor, Forretress->Empoleon, Glaceon->Manaphy; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.405,
+   "deaths": 1.14,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Palossand; answers Swalot->Palossand, Forretress->Galvantula, Glaceon->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Swalot->Bastiodon, Forretress->Probopass, Glaceon->Probopass; switch losing; setup at 3+ safe turns; no status moves; bait locks; save Probopass for Forretress",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Probopass",
+    "Tsareena",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.85,
+    "16": 1.0
+   },
+   "line": "lead Hippowdon; answers Forretress->Manaphy, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Bibarel",
+    "Manaphy",
+    "Breloom",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bibarel; answers Swalot->Gengar, Forretress->Bastiodon, Glaceon->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks; save Bastiodon for Forretress",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Gengar",
+    "Bastiodon",
+    "Bibarel",
+    "Lanturn",
+    "Manaphy",
+    "Yanmega"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "22": 1.0
+   },
+   "line": "lead Galvantula; answers Swalot->Alakazam, Forretress->Jellicent, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Jellicent",
+    "Lopunny",
+    "Blastoise",
+    "Alakazam"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Forretress->Mantine, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Jellicent",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Probopass; answers Swalot->Probopass, Forretress->Probopass, Glaceon->Ninetales; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Lopunny",
+    "Ninetales",
+    "Noctowl",
+    "Probopass",
+    "Vaporeon",
+    "Alakazam"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Swalot->Probopass, Forretress->Probopass, Glaceon->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Lanturn",
+    "Probopass",
+    "Togekiss",
+    "Tsareena"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Swalot->Probopass, Forretress->Probopass, Glaceon->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Garganacl",
+    "Golduck",
+    "Gothitelle",
+    "Masquerain",
+    "Probopass",
+    "Vikavolt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Torterra; answers Forretress->Cinderace, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Carbink; answers Swalot->Corviknight, Forretress->Relicanth; switch never; setup at 2+ safe turns; stall timed effects at 2 turns; save Relicanth for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Manaphy; answers Forretress->Carbink, Glaceon->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Glimmora; answers Swalot->Glimmora; switch hp below 0.5; setup at 3+ safe turns; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.4,
+    "20": 0.45,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Luxray; answers Swalot->Solrock, Forretress->Lanturn; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Swalot->Manaphy, Forretress->Golem, Glaceon->Houndoom; switch losing; setup at 3+ safe turns at full HP; bait locks; save Houndoom for Glaceon",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Houndoom",
+    "Mamoswine",
+    "Manaphy",
+    "Relicanth",
+    "Seaking"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Relicanth; answers Swalot->Relicanth, Forretress->Ninetales, Glaceon->Ninetales; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Ninetales",
+    "Pelipper",
+    "Rapidash",
+    "Relicanth",
+    "Vaporeon"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Mamoswine; answers Swalot->Mamoswine, Forretress->Araquanid, Glaceon->Mamoswine; switch losing; setup at 2+ safe turns at full HP; no status moves; save Mamoswine for Glaceon",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Mamoswine",
+    "Ninetales",
+    "Rapidash",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "92": 1.0
+   },
+   "line": "lead Palossand; answers Swalot->Palossand, Forretress->Corviknight, Glaceon->Huntail; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 92,
+   "converged": true,
+   "runs": 2740,
+   "kind": "planned:1",
+   "team": [
+    "Huntail",
+    "Palossand",
+    "Togekiss",
+    "Cinderace",
+    "Corviknight",
+    "Dewgong"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Chandelure; answers Swalot->Pelipper, Forretress->Cinderace, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pelipper",
+    "Vaporeon",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Chandelure; answers Swalot->Chandelure, Forretress->Feraligatr, Glaceon->Feraligatr; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Glimmora",
+    "Mandibuzz",
+    "Chandelure",
+    "Decidueye"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Manaphy; answers Swalot->Manaphy, Forretress->Corviknight; switch never; setup at 3+ safe turns at full HP; no status moves; save Corviknight for Forretress",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Octillery",
+    "Relicanth",
+    "Seaking",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Mamoswine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Bastiodon",
+    "Lanturn",
+    "Mamoswine",
+    "Tropius",
+    "Decidueye"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Tentacruel; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "16": 1.0
+   },
+   "line": "lead Mamoswine; answers Swalot->Golem, Forretress->Golem, Glaceon->Mamoswine; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.135,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Toxicroak; answers Forretress->Masquerain; switch never; setup at 3+ safe turns at full HP; save Masquerain for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Jellicent, Glaceon->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Vaporeon; switch hp below 0.4; setup at 3+ safe turns at full HP; save Vaporeon for Glaceon",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Houndoom; answers Swalot->Palossand, Forretress->Houndoom, Glaceon->Mamoswine; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Houndoom",
+    "Mamoswine",
+    "Palossand",
+    "Walrein",
+    "Chandelure"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Lumineon; answers Swalot->Lumineon; switch hp below 0.6; setup at 2+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Staraptor",
+    "Chandelure",
+    "Crustle"
+   ],
+   "seconds": 9.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Glaceon->Bronzong; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Bronzong for Glaceon",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Greninja",
+    "Jellicent",
+    "Mamoswine",
+    "Bronzong",
+    "Delphox"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 0.65,
+    "29": 1.0
+   },
+   "line": "lead Girafarig; answers Swalot->Girafarig, Forretress->Manaphy, Glaceon->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Glalie",
+    "Manaphy",
+    "Mienshao",
+    "Corviknight"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "78": 1.0
+   },
+   "line": "lead Golem; answers Swalot->Golem, Forretress->Garganacl, Glaceon->Dewgong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 78,
+   "converged": true,
+   "runs": 2460,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Golem",
+    "Manaphy",
+    "Octillery",
+    "Purugly",
+    "Dewgong"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Golem; answers Swalot->Golem, Forretress->Lumineon, Glaceon->Manaphy; switch losing; setup at 3+ safe turns at full HP; save Lumineon for Forretress",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Lumineon",
+    "Magnezone",
+    "Manaphy",
+    "Scizor",
+    "Delphox"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Glalie; answers Swalot->Golem, Forretress->Scizor, Glaceon->Octillery; switch hp below 0.6; setup at 4+ safe turns at full HP; bait locks; save Octillery for Glaceon",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Golem",
+    "Octillery",
+    "Bronzong",
+    "Scizor"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Forretress->Manaphy, Glaceon->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Kricketune",
+    "Manaphy",
+    "Bronzong",
+    "Purugly",
+    "Seaking"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Abomasnow; answers Swalot->Electivire, Forretress->Crustle, Glaceon->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Whiscash; answers Swalot->Empoleon, Forretress->Whiscash, Glaceon->Araquanid; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Vaporeon; switch losing; setup at 5+ safe turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.315,
+   "deaths": 0.805,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Cinccino; answers Swalot->Orbeetle, Forretress->Crawdaunt; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Crawdaunt for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.52,
+   "deaths": 0.71,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Crustle; answers Forretress->Skarmory, Glaceon->Rapidash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Skarmory for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Garganacl; answers Swalot->Lumineon, Forretress->Metagross, Glaceon->Wailord; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Wailord for Glaceon",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Lumineon",
+    "Metagross",
+    "Vaporeon",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Metagross",
+    "Qwilfish",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Lumineon",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bronzong, Forretress->Bastiodon; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Metagross",
+    "Bronzong",
+    "Wailord"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.233,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "12": 1.0
+   },
+   "line": "lead Garganacl; answers Swalot->Garganacl, Forretress->Lumineon, Glaceon->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Garganacl",
+    "Lumineon",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Vaporeon; answers Swalot->Vaporeon, Forretress->Qwilfish, Glaceon->Araquanid; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Qwilfish for Forretress",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Qwilfish",
+    "Sharpedo",
+    "Steelix",
+    "Vaporeon",
+    "Cinderace"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Whiscash; answers Swalot->Gengar, Forretress->Empoleon, Glaceon->Tentacruel; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Palossand",
+    "Seaking",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "21": 1.0
+   },
+   "line": "lead Frosmoth; answers Swalot->Gastrodon, Forretress->Corviknight; switch losing; setup at 3+ safe turns; stall timed effects at 3 turns",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Magmortar",
+    "Seaking",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Forretress->Rapidash, Glaceon->Sharpedo; switch losing; setup at 3+ safe turns at full HP; free pivots; save Sharpedo for Glaceon",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Charizard; answers Swalot->Lanturn, Forretress->Cinderace, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Cinderace for Glaceon",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1200,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.325,
+   "deaths": 0.785,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Mandibuzz; answers Swalot->Mandibuzz, Forretress->Kingdra, Glaceon->Delcatty; switch losing; setup at 3+ safe turns at full HP; free pivots; save Delcatty for Glaceon",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Heracross; answers Swalot->Heracross, Forretress->Bastiodon, Glaceon->Heracross; switch hp below 0.5; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Mienshao",
+    "Seaking",
+    "Ceruledge",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Octillery",
+    "Rapidash",
+    "Ceruledge",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Rapidash; answers Swalot->Heracross, Forretress->Rotom, Glaceon->Rapidash; switch never; setup at 3+ safe turns at full HP; save Rotom for Forretress",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1580,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Heracross",
+    "Rapidash",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Heracross",
+    "Manaphy",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "144": 1.0
+   },
+   "line": "lead Corviknight; answers Forretress->Electivire, Glaceon->Golduck; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 144,
+   "converged": true,
+   "runs": 3780,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Jellicent",
+    "Togekiss",
+    "Corviknight",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 5.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Tentacruel",
+    "Ceruledge",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Masquerain, Glaceon->Manaphy; switch losing; setup at 5+ safe turns at full HP; save Masquerain for Forretress",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Manaphy",
+    "Masquerain",
+    "Seaking"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "117": 1.0
+   },
+   "line": "lead Hippowdon; answers Forretress->Pawmot, Glaceon->Octillery; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 117,
+   "converged": true,
+   "runs": 3240,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Octillery",
+    "Pawmot",
+    "Rapidash",
+    "Delcatty"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Palossand; answers Swalot->Bronzong, Forretress->Palossand, Glaceon->Bronzong; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; save Bronzong for Glaceon",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.25,
+   "wipe": 0.01,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Gliscor; answers Forretress->Gliscor, Glaceon->Floatzel; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Floatzel for Glaceon",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Torterra; answers Forretress->Wailord, Glaceon->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "38": 1.0
+   },
+   "line": "lead Gliscor; answers Swalot->Gliscor, Forretress->Wailord, Glaceon->Floatzel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1360,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Rotom; answers Swalot->Rotom, Glaceon->Walrein; switch losing; setup at 3+ safe turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Golduck; answers Forretress->Vaporeon, Glaceon->Poliwrath; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Heracross",
+    "Lanturn",
+    "Manaphy",
+    "Poliwrath",
+    "Vaporeon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Heracross; answers Swalot->Steelix, Forretress->Lumineon, Glaceon->Wailord; switch losing; setup at 2+ safe turns; bait locks; free pivots; save Wailord for Glaceon",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Heracross",
+    "Lumineon",
+    "Rhyperior",
+    "Steelix",
+    "Wailord"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Palossand; answers Swalot->Grapploct, Forretress->Steelix, Glaceon->Bronzong; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Palossand",
+    "Poliwrath",
+    "Bronzong",
+    "Steelix",
+    "Corsola"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Torterra; answers Forretress->Manaphy, Glaceon->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Manaphy",
+    "Seaking",
+    "Tentacruel",
+    "Torterra",
+    "Dewgong"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Swalot->Heracross, Forretress->Rotom, Glaceon->Rotom; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Heracross",
+    "Bibarel",
+    "Rotom",
+    "Snorlax",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Corsola; answers Swalot->Corsola, Forretress->Castform, Glaceon->Ninetales-Alola; switch losing; setup at 5+ safe turns at full HP; no status moves",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Golduck",
+    "Castform",
+    "Weavile",
+    "Ninetales-Alola",
+    "Corsola"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "33": 1.0
+   },
+   "line": "lead Bronzong; answers Forretress->Snorlax; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Bronzong",
+    "Seaking",
+    "Snorlax",
+    "Castform"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Poliwrath; answers Forretress->Glimmora, Glaceon->Cinderace; switch losing; setup at 3+ safe turns at full HP; save Cinderace for Glaceon",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Poliwrath",
+    "Snorlax",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cinderace; answers Swalot->Scizor, Glaceon->Scizor; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Golem; answers Swalot->Golem, Forretress->Frosmoth, Glaceon->Frosmoth; switch losing; setup at 5+ safe turns; stall timed effects at 1 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Chandelure; answers Swalot->Chandelure, Forretress->Chandelure, Glaceon->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Palossand; answers Swalot->Palossand, Forretress->Mantine, Glaceon->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Tsareena; answers Swalot->Scizor, Forretress->Empoleon, Glaceon->Scizor; switch losing; setup at 5+ safe turns at full HP; no status moves; save Scizor for Glaceon",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Chandelure; answers Swalot->Chandelure, Forretress->Chandelure, Glaceon->Cinderace; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Rhyperior",
+    "Chandelure",
+    "Walrein",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Seaking; answers Swalot->Golem, Forretress->Vikavolt, Glaceon->Walrein; switch losing; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Golem",
+    "Seaking",
+    "Tsareena",
+    "Vikavolt",
+    "Walrein"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cinderace; answers Swalot->Scizor, Glaceon->Scizor; switch losing; setup at 5+ safe turns at full HP; save Scizor for Glaceon",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Mandibuzz",
+    "Scizor",
+    "Togekiss",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "199": 1.0
+   },
+   "line": "lead Manaphy; answers Swalot->Manaphy, Forretress->Rhyperior; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Rhyperior for Forretress",
+   "candidates": 199,
+   "converged": true,
+   "runs": 4880,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Lumineon",
+    "Manaphy",
+    "Rhyperior",
+    "Corsola"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alakazam; answers Swalot->Alakazam, Forretress->Cinderace, Glaceon->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Absol",
+    "Alakazam",
+    "Walrein",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "26": 1.0
+   },
+   "line": "lead Liepard; answers Swalot->Jellicent, Forretress->Galvantula, Glaceon->Scizor; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Jellicent",
+    "Lanturn",
+    "Liepard",
+    "Scizor"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Swalot->Chandelure, Forretress->Chandelure, Glaceon->Empoleon; switch losing; setup at 3+ safe turns; save Chandelure for Forretress",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Hariyama",
+    "Manaphy",
+    "Mantine",
+    "Pelipper",
+    "Chandelure"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Golem; answers Forretress->Electivire, Glaceon->Frosmoth; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Electivire for Forretress",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Golem",
+    "Huntail",
+    "Manaphy",
+    "Vikavolt",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.64,
+   "deaths": 0.575,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Absol; answers Forretress->Turtonator; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Turtonator for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Abomasnow; answers Forretress->Crustle, Glaceon->Octillery; switch losing; setup at 4+ safe turns; bait locks; save Octillery for Glaceon",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Togekiss, Glaceon->Jellicent; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Raichu; answers Swalot->Electivire, Forretress->Cofagrigus, Glaceon->Electivire; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Electivire for Glaceon",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.255,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Crustle; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Octillery; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "45": 1.0
+   },
+   "line": "lead Mamoswine; answers Swalot->Octillery, Forretress->Annihilape, Glaceon->Houndoom; switch losing; setup at 3+ safe turns at full HP; free pivots; save Annihilape for Forretress",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Hawlucha",
+    "Houndoom",
+    "Mamoswine",
+    "Octillery",
+    "Ninetales-Alola"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Rotom, Glaceon->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Jellicent",
+    "Absol",
+    "Lumineon",
+    "Rotom",
+    "Ninetales-Alola",
+    "Cofagrigus"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Vaporeon; answers Forretress->Incineroar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Incineroar",
+    "Machamp",
+    "Breloom",
+    "Rapidash",
+    "Vaporeon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Gliscor; answers Swalot->Weavile, Forretress->Rotom, Glaceon->Weavile; switch losing; setup at 2+ safe turns; stall timed effects at 3 turns; save Rotom for Forretress",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Masquerain",
+    "Rotom",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mamoswine; answers Swalot->Mamoswine, Forretress->Ludicolo, Glaceon->Mamoswine; switch never; setup at 3+ safe turns at full HP; save Ludicolo for Forretress",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Incineroar",
+    "Ludicolo",
+    "Lumineon",
+    "Mamoswine",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vaporeon; answers Forretress->Annihilape, Glaceon->Annihilape; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Annihilape for Glaceon",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Houndoom",
+    "Magnezone",
+    "Rapidash",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Seaking; answers Swalot->Steelix, Forretress->Steelix, Glaceon->Houndoom; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Seaking",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Rotom, Glaceon->Octillery; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Octillery for Glaceon",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Jellicent",
+    "Absol",
+    "Octillery",
+    "Rotom",
+    "Tentacruel",
+    "Crustle"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Pelipper, Glaceon->Walrein; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Walrein for Glaceon",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Lanturn; answers Forretress->Cinderace, Glaceon->Cinderace; switch losing; setup at 3+ safe turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.61,
+   "deaths": 0.605,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Crawdaunt; answers Swalot->Sinistcha, Forretress->Dubwool, Glaceon->Araquanid; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; save Dubwool for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.35,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Mantine; answers Swalot->Mantine, Forretress->Masquerain; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Masquerain for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Walrein; switch losing; setup at 3+ safe turns at full HP; save Walrein for Glaceon",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Jellicent; answers Swalot->Jellicent, Forretress->Bastiodon, Glaceon->Manaphy; switch hp below 0.4; setup at 3+ safe turns; save Manaphy for Glaceon",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Jellicent",
+    "Lanturn",
+    "Manaphy",
+    "Palossand",
+    "Seaking"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Forretress->Corsola; switch never; setup at 2+ safe turns; free pivots; stall timed effects at 3 turns; save Corsola for Forretress",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Beautifly",
+    "Palossand",
+    "Yanmega",
+    "Corsola"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Manaphy; switch losing; setup at 3+ safe turns at full HP; save Bastiodon for Forretress",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Lumineon",
+    "Manaphy",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "16": 1.0
+   },
+   "line": "lead Dubwool; answers Forretress->Hawlucha, Glaceon->Lapras; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Lapras for Glaceon",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Lapras",
+    "Quagsire",
+    "Walrein",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Swalot->Steelix, Forretress->Steelix, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mantine",
+    "Masquerain",
+    "Steelix",
+    "Crawdaunt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "116": 1.0
+   },
+   "line": "lead Lanturn; answers Swalot->Lanturn, Forretress->Cinderace, Glaceon->Araquanid; switch hp below 0.4; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Cinderace for Forretress",
+   "candidates": 116,
+   "converged": true,
+   "runs": 3220,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Lanturn",
+    "Masquerain",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Bastiodon, Glaceon->Lapras; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Lapras",
+    "Liepard",
+    "Machamp",
+    "Seaking",
+    "Crawdaunt"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "27": 1.0
+   },
+   "line": "lead Cinderace; answers Swalot->Palossand, Forretress->Drifblim, Glaceon->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:8",
+   "team": [
+    "Jellicent",
+    "Palossand",
+    "Pelipper",
+    "Togekiss",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.37,
+   "deaths": 1.065,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Purugly; answers Forretress->Abomasnow, Glaceon->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "11": 1.0
+   },
+   "line": "lead Delphox; answers Forretress->Huntail; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Huntail for Forretress",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Forretress->Delphox, Glaceon->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lopunny; answers Swalot->Glimmora, Forretress->Jellicent; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 2 turns; save Jellicent for Forretress",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.725,
+   "deaths": 0.34,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Palossand; answers Forretress->Palossand, Glaceon->Glalie; switch losing; setup at 4+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Ninetales; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Metagross",
+    "Ninetales",
+    "Steelix",
+    "Ceruledge",
+    "Vaporeon",
+    "Cofagrigus"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Swalot->Bastiodon, Forretress->Lucario; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Lucario",
+    "Metagross",
+    "Seaking",
+    "Walrein"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Metagross; answers Swalot->Metagross, Forretress->Glimmora, Glaceon->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Kingdra",
+    "Lurantis",
+    "Metagross",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Swalot->Ceruledge, Forretress->Ceruledge, Glaceon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Mr. Rime",
+    "Seaking",
+    "Tentacruel",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Swalot->Metagross, Forretress->Delphox, Glaceon->Delphox; switch never; setup at 3+ safe turns at full HP; free pivots; save Delphox for Forretress",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Floatzel",
+    "Metagross",
+    "Walrein",
+    "Corsola",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Steelix; answers Swalot->Steelix, Forretress->Steelix, Glaceon->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon",
+    "Corsola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Bastiodon; answers Forretress->Palossand, Glaceon->Lanturn; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Lanturn",
+    "Mr. Rime",
+    "Palossand",
+    "Cinderace"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Swalot->Steelix, Forretress->Steelix, Glaceon->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Steelix",
+    "Vaporeon",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  }
+ ],
+ "key": "tr420"
+}

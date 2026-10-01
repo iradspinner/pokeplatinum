@@ -1,0 +1,3845 @@
+{
+ "blind_rate": 0.759,
+ "blind_clean_share": 0.36,
+ "planned_rate": 0.996,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.005,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.364,
+ "blind_wipe": 0.002,
+ "convergence": {
+  "10": 0.87,
+  "50": 0.939,
+  "100": 0.951,
+  "300": 0.963
+ },
+ "runs": 285480,
+ "search_budget": 600,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Zachery",
+ "split": "Volkner",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 13.0,
+ "rows": [
+  {
+   "rate": 0.875,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Tsareena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Manaphy",
+    "Tsareena",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Hippowdon; answers Rotom->Liepard; switch losing; setup at 4+ safe turns; bait locks",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1640,
+   "kind": "blind:0",
+   "team": [
+    "Hippowdon",
+    "Liepard",
+    "Octillery",
+    "Bronzong",
+    "Quagsire",
+    "Delibird"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.47,
+   "deaths": 1.21,
+   "wipe": 0.05,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Vikavolt; answers Rotom->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Vikavolt"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.225,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Ceruledge; answers Magnezone->Ceruledge; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Articuno",
+    "Golduck",
+    "Toxapex",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.265,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Snorlax; answers Magnezone->Snorlax, Rotom->Milotic; switch losing; setup at 3+ safe turns at full HP; free pivots; save Milotic for Rotom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Snorlax",
+    "Altaria"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:0",
+   "team": [
+    "Electivire",
+    "Lopunny",
+    "Ninetales",
+    "Salazzle",
+    "Tsareena",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Ninetales",
+    "Roserade",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Weezing-Galar",
+    "Greninja",
+    "Liepard",
+    "Breloom",
+    "Vespiquen",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Cinderace; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Cinderace for Rotom",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Weezing-Galar",
+    "Galvantula",
+    "Ludicolo",
+    "Manaphy",
+    "Mantine",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Magnezone->Pawmot, Rotom->Milotic; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Golduck",
+    "Liepard",
+    "Mandibuzz",
+    "Milotic",
+    "Ninetales",
+    "Pawmot"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.657,
+   "deaths": 0.387,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Lopunny; answers Rotom->Florges; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Gothitelle",
+    "Lopunny",
+    "Mr. Rime",
+    "Probopass",
+    "Tentacruel"
+   ],
+   "seconds": 9.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ceruledge; answers Magnezone->Ceruledge, Rotom->Weavile; switch losing; setup at 3+ safe turns at full HP; save Weavile for Rotom",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Frosmoth",
+    "Ludicolo",
+    "Ceruledge",
+    "Weavile",
+    "Alakazam"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Tsareena; answers Magnezone->Tsareena, Rotom->Frosmoth; switch losing; setup at 4+ safe turns; no status moves; free pivots; save Frosmoth for Rotom",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Liepard",
+    "Ludicolo",
+    "Ninetales",
+    "Tsareena",
+    "Alomomola"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.12,
+   "wipe": 0.005,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Ninetales; answers Magnezone->Ninetales, Rotom->Roserade; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Vaporeon"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.55,
+    "30": 0.65,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Mamoswine; answers Rotom->Blissey; switch hp below 0.4; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Blissey for Rotom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Masquerain",
+    "Blissey",
+    "Bronzong",
+    "Vikavolt",
+    "Dubwool"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Dewgong; answers Magnezone->Dewgong; switch hp below 0.4; setup at 2+ safe turns; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Gastrodon",
+    "Purugly",
+    "Seaking",
+    "Turtonator",
+    "Dewgong",
+    "Dubwool"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.135,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Kingdra; answers Magnezone->Kingdra, Rotom->Gothitelle; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Gothitelle for Rotom",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Houndoom",
+    "Kingdra",
+    "Tropius",
+    "Turtonator"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.62,
+   "deaths": 0.485,
+   "wipe": 0.005,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Togekiss; answers Rotom->Lurantis; switch losing; setup at 3+ safe turns; no status moves; bait locks; stall timed effects at 3 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Glalie",
+    "Golduck",
+    "Lurantis",
+    "Mandibuzz",
+    "Togekiss",
+    "Vikavolt"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Kingdra; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Kingdra for Rotom",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Kingdra",
+    "Ninetales",
+    "Torterra",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "12": 1.0
+   },
+   "line": "lead Rapidash; answers Magnezone->Corviknight, Rotom->Torterra; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 2 turns; save Torterra for Rotom",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Rapidash",
+    "Torterra",
+    "Turtonator",
+    "Corviknight",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.56,
+   "deaths": 0.567,
+   "wipe": 0.007,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Sharpedo; answers Magnezone->Gastrodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Gastrodon",
+    "Manaphy",
+    "Sharpedo",
+    "Decidueye",
+    "Drifblim"
+   ],
+   "seconds": 8.8
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.187,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Lopunny; answers Magnezone->Electivire, Rotom->Ludicolo; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Ludicolo for Rotom",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Glalie",
+    "Lopunny",
+    "Ludicolo",
+    "Lumineon",
+    "Torterra"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.837,
+   "deaths": 0.223,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.9,
+    "80": 0.95,
+    "87": 1.0
+   },
+   "line": "lead Chandelure; answers Magnezone->Chandelure, Rotom->Absol; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 87,
+   "converged": true,
+   "runs": 2640,
+   "kind": "planned:1",
+   "team": [
+    "Abomasnow",
+    "Garganacl",
+    "Absol",
+    "Togekiss",
+    "Chandelure",
+    "Wailord"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "39": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Salazzle; switch losing; setup at 2+ safe turns; free pivots; save Salazzle for Rotom",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Mamoswine",
+    "Salazzle",
+    "Solrock",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.727,
+   "deaths": 0.313,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Turtonator; answers Magnezone->Turtonator, Rotom->Kingdra; switch hp below 0.7; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:1",
+   "team": [
+    "Kingdra",
+    "Luxray",
+    "Torterra",
+    "Turtonator",
+    "Vikavolt",
+    "Dewgong"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Roserade; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Grapploct",
+    "Roserade",
+    "Tropius",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Breloom; answers Magnezone->Mantine, Rotom->Cinderace; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Cinderace for Rotom",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mantine",
+    "Breloom",
+    "Purugly",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.335,
+   "deaths": 1.26,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45
+   },
+   "line": "lead Empoleon; answers Magnezone->Empoleon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Breloom",
+    "Starmie",
+    "Talonflame",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Houndoom; switch losing; setup at 3+ safe turns at full HP; save Houndoom for Rotom",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Hariyama",
+    "Houndoom",
+    "Palossand",
+    "Seaking",
+    "Togedemaru"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ceruledge; answers Magnezone->Ceruledge, Rotom->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Gastrodon",
+    "Ludicolo",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.52,
+   "deaths": 0.64,
+   "wipe": 0.005,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Toxicroak; answers Magnezone->Toxicroak; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Orbeetle",
+    "Toxicroak",
+    "Wailord",
+    "Crobat"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Magnezone, Rotom->Luxray; switch never; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Lanturn",
+    "Luxray",
+    "Magnezone",
+    "Togedemaru"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire; switch hp below 0.7; setup at 3+ safe turns; bait locks",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1760,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Ludicolo",
+    "Lunatone",
+    "Magnezone",
+    "Ceruledge",
+    "Weezing"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "266": 1.0
+   },
+   "line": "lead Magnezone; answers Rotom->Magnezone; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Magnezone for Rotom",
+   "candidates": 266,
+   "converged": true,
+   "runs": 6220,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Magnezone",
+    "Poliwrath",
+    "Togedemaru",
+    "Toxicroak",
+    "Yanmega"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 0.147,
+   "deaths": 1.647,
+   "wipe": 0.007,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2,
+    "70": 0.2,
+    "80": 0.2,
+    "90": 0.2,
+    "100": 0.3,
+    "110": 0.3,
+    "120": 0.3,
+    "130": 0.3,
+    "140": 0.3,
+    "150": 0.3,
+    "160": 0.3,
+    "170": 0.3,
+    "180": 0.3,
+    "190": 0.3,
+    "200": 0.3,
+    "210": 0.3,
+    "220": 0.3,
+    "230": 0.3,
+    "240": 0.3,
+    "250": 0.3,
+    "260": 0.3,
+    "270": 0.3,
+    "280": 0.3,
+    "290": 0.3,
+    "300": 0.3
+   },
+   "line": "lead Snorlax; answers Magnezone->Mienshao; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mienshao",
+    "Scizor",
+    "Snorlax",
+    "Weezing"
+   ],
+   "seconds": 7.4
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots; save Bastiodon for Rotom",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Bastiodon",
+    "Jellicent",
+    "Magnezone",
+    "Manaphy",
+    "Whiscash"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.11,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "25": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Houndoom, Rotom->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Ludicolo",
+    "Mightyena",
+    "Orbeetle",
+    "Toxicroak",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "99": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 99,
+   "converged": true,
+   "runs": 2880,
+   "kind": "planned:2",
+   "team": [
+    "Manaphy",
+    "Seaking",
+    "Weavile",
+    "Cinderace",
+    "Crawdaunt",
+    "Delphox"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.803,
+   "deaths": 0.203,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Breloom; answers Magnezone->Breloom, Rotom->Glalie; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Ludicolo",
+    "Breloom",
+    "Pelipper",
+    "Crobat",
+    "Crustle"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.265,
+   "wipe": 0.005,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Heracross; answers Magnezone->Heracross, Rotom->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1240,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Gorebyss",
+    "Heracross",
+    "Lanturn",
+    "Mienshao",
+    "Ambipom"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.605,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Magmortar; answers Magnezone->Magmortar, Rotom->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Floatzel",
+    "Jellicent",
+    "Magmortar",
+    "Mandibuzz",
+    "Weavile"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.27,
+   "wipe": 0.01,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Lanturn",
+    "Seaking",
+    "Toucannon",
+    "Whiscash"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "63": 1.0
+   },
+   "line": "lead Rapidash; answers Magnezone->Rapidash, Rotom->Magmortar; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 63,
+   "converged": true,
+   "runs": 1860,
+   "kind": "blind:3",
+   "team": [
+    "Gengar",
+    "Girafarig",
+    "Magmortar",
+    "Rapidash",
+    "Vaporeon",
+    "Yanmega"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Heracross; answers Magnezone->Heracross, Rotom->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Heracross",
+    "Metagross",
+    "Milotic",
+    "Togekiss"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Lanturn; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1760,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Lanturn",
+    "Magcargo",
+    "Salazzle",
+    "Cinderace"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.633,
+   "deaths": 0.507,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Shiftry; answers Magnezone->Shiftry, Rotom->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Kingdra",
+    "Leavanny",
+    "Liepard",
+    "Manaphy",
+    "Shiftry"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Frosmoth; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Florges",
+    "Frosmoth",
+    "Palossand",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash; answers Magnezone->Rapidash, Rotom->Rapidash; switch losing; setup at 3+ safe turns at full HP; save Rapidash for Rotom",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Frosmoth",
+    "Magmortar",
+    "Rapidash",
+    "Shiftry",
+    "Toucannon"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Hawlucha; answers Magnezone->Cinderace, Rotom->Glimmora; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Glimmora for Rotom",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:3",
+   "team": [
+    "Glimmora",
+    "Hawlucha",
+    "Mantine",
+    "Milotic",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.493,
+   "deaths": 0.84,
+   "wipe": 0.01,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.35,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.45,
+    "140": 0.45,
+    "150": 0.45,
+    "160": 0.45,
+    "170": 0.45,
+    "180": 0.45,
+    "190": 0.45,
+    "200": 0.5,
+    "210": 0.5,
+    "220": 0.5,
+    "230": 0.5,
+    "240": 0.55,
+    "250": 0.55,
+    "260": 0.55,
+    "270": 0.55,
+    "280": 0.55,
+    "290": 0.55,
+    "300": 0.55,
+    "310": 0.55,
+    "320": 0.55,
+    "330": 0.6,
+    "340": 0.6,
+    "350": 0.6,
+    "360": 0.65,
+    "370": 0.65,
+    "380": 0.65,
+    "390": 0.65,
+    "400": 0.65,
+    "410": 0.65,
+    "420": 0.65,
+    "430": 0.65,
+    "440": 0.65,
+    "450": 0.65,
+    "460": 0.65,
+    "470": 0.65,
+    "480": 0.65,
+    "490": 0.65,
+    "500": 0.65,
+    "510": 0.65,
+    "520": 0.65,
+    "530": 0.65,
+    "540": 0.65,
+    "550": 0.65,
+    "560": 0.65,
+    "570": 0.65,
+    "580": 0.65,
+    "590": 0.65,
+    "600": 0.65
+   },
+   "line": "lead Masquerain; answers Magnezone->Magcargo, Rotom->Raichu; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 600,
+   "converged": true,
+   "runs": 12900,
+   "kind": "planned:3",
+   "team": [
+    "Magcargo",
+    "Masquerain",
+    "Mienshao",
+    "Raichu",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 10.0
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Ludicolo; answers Magnezone->Ludicolo, Rotom->Gastrodon; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Gengar",
+    "Gorebyss",
+    "Bibarel",
+    "Liepard",
+    "Ludicolo"
+   ],
+   "seconds": 11.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "19": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Magmortar, Rotom->Magmortar; switch hp below 0.3; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Magmortar for Rotom",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:3",
+   "team": [
+    "Electivire",
+    "Ferrothorn",
+    "Liepard",
+    "Magmortar",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Ceruledge; answers Magnezone->Electivire, Rotom->Florges; switch losing; setup at 3+ safe turns at full HP; save Florges for Rotom",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Mienshao",
+    "Quagsire",
+    "Ceruledge",
+    "Corviknight"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.035,
+   "deaths": 2.175,
+   "wipe": 0.005,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "30": 0.05,
+    "40": 0.05,
+    "50": 0.05,
+    "60": 0.1,
+    "70": 0.1,
+    "80": 0.1,
+    "90": 0.1
+   },
+   "line": "lead Vaporeon; answers Rotom->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Floatzel",
+    "Glalie",
+    "Carbink",
+    "Vaporeon",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Frosmoth",
+    "Lanturn",
+    "Masquerain",
+    "Skuntank",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.58,
+   "deaths": 0.5,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Absol; answers Rotom->Florges; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Absol",
+    "Leavanny",
+    "Masquerain",
+    "Carbink"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Heracross; answers Magnezone->Charizard, Rotom->Charizard; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:4",
+   "team": [
+    "Heracross",
+    "Skuntank",
+    "Ceruledge",
+    "Charizard",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash; answers Magnezone->Rapidash, Rotom->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Luxray",
+    "Rapidash",
+    "Shiftry",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.75,
+    "180": 0.75,
+    "190": 0.75,
+    "200": 0.75,
+    "210": 0.75,
+    "220": 0.75,
+    "230": 0.75,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9,
+    "310": 0.9,
+    "320": 0.9,
+    "330": 0.9,
+    "340": 0.9,
+    "350": 0.9,
+    "360": 0.9,
+    "370": 0.9,
+    "380": 0.9,
+    "390": 0.9,
+    "400": 0.9,
+    "410": 0.9,
+    "420": 0.9,
+    "430": 0.9,
+    "440": 0.9,
+    "450": 0.9
+   },
+   "line": "lead Frosmoth; answers Rotom->Frosmoth; switch losing; setup at 2+ safe turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:4",
+   "team": [
+    "Frosmoth",
+    "Garganacl",
+    "Kricketune",
+    "Lurantis",
+    "Bronzong",
+    "Ninetales-Alola"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Abomasnow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Garganacl",
+    "Lanturn",
+    "Milotic",
+    "Raichu",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.75,
+   "deaths": 0.327,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85,
+    "310": 0.85,
+    "320": 0.85,
+    "330": 0.85,
+    "340": 0.85,
+    "350": 0.85,
+    "360": 0.85,
+    "370": 0.85,
+    "380": 0.85,
+    "390": 0.85,
+    "400": 0.85,
+    "410": 0.85,
+    "420": 0.85,
+    "430": 0.85,
+    "440": 0.85,
+    "450": 0.85
+   },
+   "line": "lead Mienshao; answers Magnezone->Mienshao; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Mantine",
+    "Masquerain",
+    "Mienshao",
+    "Vikavolt"
+   ],
+   "seconds": 8.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Luxray; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Greninja",
+    "Heracross",
+    "Luxray",
+    "Togekiss",
+    "Wailord"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Rapidash; answers Magnezone->Electivire, Rotom->Absol; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Absol for Rotom",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Hippowdon",
+    "Absol",
+    "Rapidash",
+    "Skuntank",
+    "Ceruledge"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.207,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Ceruledge; answers Magnezone->Ceruledge, Rotom->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Manaphy",
+    "Masquerain",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ceruledge; answers Magnezone->Ceruledge, Rotom->Arboliva; switch losing; setup at 3+ safe turns at full HP; save Arboliva for Rotom",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Arboliva",
+    "Glimmora",
+    "Lumineon",
+    "Octillery",
+    "Carbink",
+    "Ceruledge"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Pawmot; answers Magnezone->Bastiodon, Rotom->Hippowdon; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Hippowdon for Rotom",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:5",
+   "team": [
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Serperior",
+    "Walrein",
+    "Dewgong"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Pelipper; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:5",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Jellicent",
+    "Liepard",
+    "Mandibuzz",
+    "Pelipper"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.155,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Heracross; answers Magnezone->Heracross, Rotom->Lanturn; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Heracross",
+    "Lanturn",
+    "Leavanny",
+    "Bibarel",
+    "Quagsire",
+    "Crustle"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.665,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Swampert; answers Magnezone->Swampert; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Greninja",
+    "Jellicent",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Grapploct; answers Magnezone->Grapploct, Rotom->Heracross; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Grapploct",
+    "Heracross",
+    "Jellicent",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Magcargo; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Magcargo for Rotom",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Lanturn",
+    "Magcargo",
+    "Torterra",
+    "Tsareena",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "27": 1.0
+   },
+   "line": "lead Gastrodon; answers Magnezone->Gastrodon, Rotom->Glalie; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Noctowl",
+    "Pelipper",
+    "Poliwrath"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Electivire; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Jellicent",
+    "Machamp",
+    "Poliwrath",
+    "Vespiquen"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.417,
+   "deaths": 0.98,
+   "wipe": 0.033,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.5,
+    "80": 0.5,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.6,
+    "170": 0.6,
+    "180": 0.6,
+    "190": 0.6,
+    "200": 0.6,
+    "210": 0.6,
+    "220": 0.6,
+    "230": 0.6,
+    "240": 0.6,
+    "250": 0.6,
+    "260": 0.6,
+    "270": 0.6,
+    "280": 0.6,
+    "290": 0.6,
+    "300": 0.6
+   },
+   "line": "lead Manaphy; answers Rotom->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Lumineon",
+    "Manaphy",
+    "Weavile",
+    "Cinccino",
+    "Crawdaunt"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Grapploct; answers Magnezone->Jellicent, Rotom->Magcargo; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Grapploct",
+    "Jellicent",
+    "Lanturn",
+    "Liepard",
+    "Magcargo"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "19": 1.0
+   },
+   "line": "lead Torterra; answers Magnezone->Torterra, Rotom->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Articuno",
+    "Orbeetle",
+    "Serperior",
+    "Torterra",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.787,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.1,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Rotom; answers Magnezone->Rotom, Rotom->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks; save Wailord for Rotom",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Galvantula",
+    "Machamp",
+    "Rotom",
+    "Talonflame",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 5.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Machamp; answers Magnezone->Sinistcha, Rotom->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Liepard",
+    "Machamp",
+    "Milotic",
+    "Poliwrath",
+    "Sinistcha"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Magnezone->Tsareena, Rotom->Arboliva; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Hippowdon",
+    "Mightyena",
+    "Tsareena",
+    "Crawdaunt",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Magnezone->Hariyama, Rotom->Milotic; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Golem",
+    "Hariyama",
+    "Milotic",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Houndoom, Rotom->Frosmoth; switch losing; setup at 5+ safe turns; free pivots",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Gastrodon",
+    "Houndoom",
+    "Mandibuzz",
+    "Altaria"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.535,
+   "deaths": 0.505,
+   "wipe": 0.005,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.3,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Hariyama; answers Magnezone->Hariyama; switch hp below 0.5; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Mandibuzz",
+    "Mightyena",
+    "Plusle",
+    "Ambipom",
+    "Donphan"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "15": 1.0
+   },
+   "line": "lead Hariyama; answers Magnezone->Carbink, Rotom->Milotic; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Absol",
+    "Milotic",
+    "Breloom",
+    "Carbink",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "27": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Electivire, Rotom->Electivire; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Electivire for Rotom",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:6",
+   "team": [
+    "Electivire",
+    "Lanturn",
+    "Ninetales",
+    "Salazzle",
+    "Tsareena",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Tsareena; answers none; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Bastiodon",
+    "Absol",
+    "Lanturn",
+    "Tsareena",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Dusknoir; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Orbeetle",
+    "Carbink",
+    "Weavile",
+    "Dusknoir"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Breloom; answers Magnezone->Breloom, Rotom->Absol; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Absol for Rotom",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Ninetales",
+    "Breloom",
+    "Quagsire",
+    "Corviknight"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Bastiodon; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Manaphy",
+    "Breloom",
+    "Bronzong",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.063,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "137": 1.0
+   },
+   "line": "lead Chandelure; answers Magnezone->Chandelure, Rotom->Absol; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 137,
+   "converged": true,
+   "runs": 3640,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Absol",
+    "Salazzle",
+    "Chandelure",
+    "Altaria",
+    "Drifblim"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "84": 1.0
+   },
+   "line": "lead Donphan; answers Rotom->Donphan; switch losing; setup at 3+ safe turns at full HP; bait locks; save Donphan for Rotom",
+   "candidates": 84,
+   "converged": true,
+   "runs": 2580,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Absol",
+    "Lurantis",
+    "Bronzong",
+    "Ambipom",
+    "Donphan"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Abomasnow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.545,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Araquanid; answers Rotom->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Frosmoth",
+    "Garganacl",
+    "Articuno",
+    "Liepard",
+    "Quagsire"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Florges; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Azumarill",
+    "Gliscor",
+    "Lopunny",
+    "Toucannon",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.68,
+   "deaths": 0.355,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Annihilape; answers Magnezone->Annihilape, Rotom->Empoleon; switch hp below 0.4; setup at 2+ safe turns; bait locks; free pivots; save Empoleon for Rotom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Annihilape",
+    "Lumineon",
+    "Mantine",
+    "Steelix",
+    "Talonflame"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Azumarill",
+    "Goodra",
+    "Absol",
+    "Mantine",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Electivire; answers Rotom->Gothitelle; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Gothitelle",
+    "Staraptor",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Incineroar; answers Magnezone->Electivire, Rotom->Incineroar; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Incineroar",
+    "Kingdra",
+    "Lanturn",
+    "Magnezone",
+    "Salazzle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Incineroar; answers Magnezone->Florges, Rotom->Incineroar; switch losing; setup at 3+ safe turns at full HP; bait locks; save Incineroar for Rotom",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:7",
+   "team": [
+    "Florges",
+    "Incineroar",
+    "Bastiodon",
+    "Ludicolo",
+    "Masquerain",
+    "Cofagrigus"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Incineroar; answers Magnezone->Incineroar, Rotom->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Goodra",
+    "Incineroar",
+    "Bastiodon",
+    "Lanturn"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Lurantis, Rotom->Gastrodon; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; save Gastrodon for Rotom",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Hariyama",
+    "Lanturn",
+    "Lurantis",
+    "Raichu",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.787,
+   "deaths": 0.307,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Turtonator; answers Magnezone->Turtonator, Rotom->Garganacl; switch hp below 0.7; setup at 3+ safe turns; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Kingdra",
+    "Masquerain",
+    "Tentacruel",
+    "Turtonator"
+   ],
+   "seconds": 5.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Florges; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Flygon",
+    "Houndoom",
+    "Salazzle",
+    "Toxapex"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Heracross; answers Magnezone->Heracross, Rotom->Glimmora; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Heracross",
+    "Kingdra",
+    "Mantine",
+    "Palossand"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Magnezone, Rotom->Magnezone; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Magnezone for Rotom",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Houndoom",
+    "Incineroar",
+    "Liepard",
+    "Magnezone",
+    "Seaking",
+    "Whiscash"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.335,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Weezing; answers Magnezone->Weezing, Rotom->Absol; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Garganacl",
+    "Absol",
+    "Ludicolo",
+    "Walrein",
+    "Weezing"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.135,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "59": 1.0
+   },
+   "line": "lead Machamp; answers Magnezone->Garganacl, Rotom->Frosmoth; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Frosmoth for Rotom",
+   "candidates": 59,
+   "converged": true,
+   "runs": 1780,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Garganacl",
+    "Machamp",
+    "Orbeetle",
+    "Weezing",
+    "Corsola"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "33": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Houndoom, Rotom->Glalie; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Glalie for Rotom",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Glalie",
+    "Houndoom",
+    "Pachirisu",
+    "Cherrim"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.165,
+   "deaths": 1.24,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Araquanid; answers none; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Leavanny",
+    "Orbeetle",
+    "Toxapex",
+    "Walrein",
+    "Drifblim"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.27,
+   "deaths": 1.28,
+   "wipe": 0.025,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Gastrodon; answers Magnezone->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Seaking",
+    "Sharpedo",
+    "Skarmory",
+    "Vespiquen",
+    "Walrein"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Houndoom; switch losing; setup at 4+ safe turns at full HP; save Houndoom for Rotom",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Rapidash-Galar",
+    "Houndoom",
+    "Kingdra",
+    "Magcargo",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Cinderace; answers none; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Rapidash-Galar",
+    "Sharpedo",
+    "Toxapex",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Houndoom; answers Magnezone->Houndoom; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Frosmoth",
+    "Hawlucha",
+    "Houndoom",
+    "Orbeetle",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "13": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Magnezone->Rapidash-Galar, Rotom->Quagsire; switch losing; setup at 3+ safe turns at full HP; save Quagsire for Rotom",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Rapidash-Galar",
+    "Beautifly",
+    "Ludicolo",
+    "Quagsire",
+    "Weezing",
+    "Yanmega"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Cinderace, Rotom->Manaphy; switch losing; setup at 3+ safe turns at full HP; free pivots; save Manaphy for Rotom",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Hippowdon",
+    "Manaphy",
+    "Walrein",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 1.0
+   },
+   "line": "lead Hippowdon; answers Magnezone->Houndoom, Rotom->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; free pivots; save Ferrothorn for Rotom",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1700,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Hippowdon",
+    "Houndoom",
+    "Kingdra",
+    "Castform",
+    "Corsola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Machamp; answers Magnezone->Machamp, Rotom->Abomasnow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Abomasnow",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Lapras",
+    "Machamp"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Cinderace; answers Rotom->Cinderace; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Cinderace for Rotom",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1760,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Hawlucha",
+    "Vaporeon",
+    "Yanmega",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.455,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.6,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Mandibuzz; answers Rotom->Metagross; switch hp below 0.4; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Mandibuzz",
+    "Metagross",
+    "Purugly",
+    "Steelix",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Magnezone->Delphox, Rotom->Arboliva; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Gliscor",
+    "Lanturn",
+    "Octillery",
+    "Toxapex",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.16,
+   "deaths": 1.335,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.0,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.3,
+    "60": 0.3,
+    "70": 0.3,
+    "80": 0.3,
+    "90": 0.3
+   },
+   "line": "lead Cherrim; answers Rotom->Metagross; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Metagross",
+    "Pheromosa",
+    "Toucannon",
+    "Toxapex",
+    "Cherrim"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.38,
+   "deaths": 0.745,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Ambipom; answers Magnezone->Gliscor, Rotom->Bastiodon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Weezing-Galar",
+    "Gliscor",
+    "Bastiodon",
+    "Steelix",
+    "Toxapex",
+    "Ambipom"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Walrein, Rotom->Electivire; switch hp below 0.5; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:9",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Golem",
+    "Bastiodon",
+    "Walrein",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Magnezone->Electivire; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Luxray",
+    "Ninetales",
+    "Salazzle",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.167,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Lucario; answers Magnezone->Lucario, Rotom->Ceruledge; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns; save Ceruledge for Rotom",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Lucario",
+    "Metagross",
+    "Ninetales",
+    "Ceruledge",
+    "Corviknight",
+    "Delphox"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.287,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "13": 1.0
+   },
+   "line": "lead Salazzle; answers Magnezone->Salazzle, Rotom->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Galvantula",
+    "Honchkrow",
+    "Bastiodon",
+    "Salazzle",
+    "Weavile"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.773,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "138": 1.0
+   },
+   "line": "lead Kingdra; answers Magnezone->Kingdra, Rotom->Abomasnow; switch losing; setup at 3+ safe turns at full HP; bait locks; save Abomasnow for Rotom",
+   "candidates": 138,
+   "converged": true,
+   "runs": 3660,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Empoleon",
+    "Kingdra",
+    "Metagross",
+    "Tentacruel",
+    "Toucannon"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Cinderace; answers Rotom->Arboliva; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Arboliva for Rotom",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:9",
+   "team": [
+    "Arboliva",
+    "Hippowdon",
+    "Bastiodon",
+    "Absol",
+    "Tentacruel",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lucario; answers Magnezone->Luxray, Rotom->Lurantis; switch hp below 0.6; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Lurantis for Rotom",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Lucario",
+    "Lurantis",
+    "Luxray",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Abomasnow; switch losing; setup at 3+ safe turns at full HP; bait locks; save Abomasnow for Rotom",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Lopunny",
+    "Lurantis",
+    "Ninetales",
+    "Toxapex"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.087,
+   "wipe": 0.007,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Magnezone->Electivire, Rotom->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Gastrodon",
+    "Bastiodon",
+    "Lumineon",
+    "Luxray",
+    "Milotic"
+   ],
+   "seconds": 0.5
+  }
+ ],
+ "key": "tr281"
+}
