@@ -126,7 +126,8 @@ is listed for Ian.
   replacement is a perfect-line measure: how easily a line is found that wins
   with no deaths within his luck budget (every secondary status chance
   against the player happens, one crit may, never two in a row; the trainer
-  uses Oxide's AI, taking the worst pick where it could choose). Ian's step
+  uses Oxide's AI, with ties between equal picks broken at random, Ian,
+  2026-09-30, replacing "the worst pick where it could choose"). Ian's step
   2 (2026-09-30): search candidate lines (policies with responses), take the
   best, and read its clean-win rate over fresh runs, with its mean deaths
   and wipe chance beside it so the hardest fights, where no line wins
@@ -152,6 +153,15 @@ is listed for Ian.
   ordinary trainer and below 50 for a gauntlet section. The boss target
   waits until the scorer reads Roark sensibly (it reads him far too hard,
   0.30 clean with a planned team, where Ian rated him 2).
+- **The scorer has its own track** (Ian, 2026-09-30): the Scoring Agent owns
+  the simulator, its AI and the scorer, and trains it on the three-gym run's
+  hand-played lines (`docs/oxide/trainer-scoring-handoff.md`). Ian's answers
+  there bind every fight reading. A win that loses a Pokemon is a win at a
+  cost, since the goal is to beat the game but each loss narrows later
+  team-building, so clean wins come first. A boss is read over a spread of
+  boxes, so its answers do not narrow to one Pokemon. When a fight reads too
+  hard, change the player's move pools first: they are sparse in interesting
+  options and lack many modern moves (his reading of Gardenia's 28 percent).
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.

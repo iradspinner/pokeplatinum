@@ -47,11 +47,12 @@ Then say in one or two sentences what this session will do, and do it.
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
 - Several sessions run in parallel: the Oxide Overseer, the main track, the
-  encounter track and the balance track, plus cloud sessions. Each edits only
-  its own status home: the tracker for the main track and the Overseer,
-  `docs/oxide/encounter-tool-build-plan.md` for the encounter tool (plus its
-  one paragraph at the top of the tracker), `docs/oxide/balance-plan.md` for
-  the balance track. Every track works on its own branch or worktree; the
+  encounter track, the balance track and the scoring track, plus cloud
+  sessions. Each edits only its own status home: the tracker for the main
+  track and the Overseer, `docs/oxide/encounter-tool-build-plan.md` for the
+  encounter tool (plus its one paragraph at the top of the tracker),
+  `docs/oxide/balance-plan.md` for the balance track, and
+  `docs/oxide/trainer-scoring-handoff.md` for the scoring track. Every track works on its own branch or worktree; the
   Overseer merges each into `oxide` with `tools/oxide/merge-branch.sh`.
 - Do not "improve" a carried-over map, script or table while a faithful
   carry-over is being verified; `checkmap.py` compares against the base ROM.

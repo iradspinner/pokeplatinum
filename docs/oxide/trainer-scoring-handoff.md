@@ -6,7 +6,53 @@ Gardenia by hand on the fight simulator, as a fresh three-gym run optimised
 toward Fantina's cap of 33, to learn what a scorer must know before it can be
 trusted. Every mistake along the way was a rule the simulator or the planner
 did not have. This document collects those rules, the lines that won, the
-simulator's state, and the decisions Ian still has to make.
+simulator's state, and Ian's answers on how the work is to be run.
+
+## The track
+
+Ian gave this work to a new, dedicated session, the **Scoring Agent**
+(2026-09-30). This document is its status home: it keeps a dated "Where it
+stands" paragraph under this section and adds its findings below, the way the
+balance plan does. Like every track it works on its own branch and the
+Overseer lands it.
+
+It owns the fight simulator, its trainer AI and the perfect-line scorer in
+`tools/oxide/balance/` (Ian, 2026-09-30):
+
+- `fightsim.py` and `fightai.py`
+- `perfectline.py`, `perfectline.json` and `perfectline_results/`
+- `plscore.py`, `plines.py`, `plkaizo.py`, `plrescore.py`, `ppairs.py`,
+  `pboxes.py` and `pdoubles.py`
+- their tests: `test_fightsim.py`, `test_plfixes.py` and `test_pline.py`
+
+The rest of `tools/oxide/balance/` stays the balance track's. The balance
+track runs the scorer for its passes and asks this track for any change to
+it. The fightai audit, which the Balance Agent had paused, moves here with the
+files.
+
+**Ian checks this agent's reasoning** until he is reasonably sure it picks up
+the trends the three-gym run found (2026-09-30). Until he says so, every fight
+line the agent reaches and every planning idea it adds to the search goes to
+him with its reasoning before the agent builds on it. That means the line
+turn by turn, why each choice was made, and which of the nine ideas below it
+used. A finding he has not checked stays a draft. When the agent pauses for
+his check, it tells the Overseer first, in one line.
+
+**Starting the session.** Ian starts it with this prompt:
+
+```
+You are the Scoring Agent for Platinum Oxide. Read CLAUDE.md, then
+docs/oxide/trainer-scoring-handoff.md, which is your brief and your status
+home. Ian checks your reasoning on every line and every new planning idea
+before you build on it. Start with step 1 of its order of work.
+```
+
+**Where it stands (2026-09-30).** The agent has not started yet. The scorer
+and the simulator fixes land on `oxide` first (`overseer-sim-fixes`, which
+carries `balance-perfectline` with it), so the scoring track and the balance
+track start from one tree.
+
+## The job
 
 The scorer's direction is already set in the balance plan
 (`docs/oxide/balance-plan.md`, its opening section on the perfect-line
@@ -15,8 +61,6 @@ line's mean deaths and wipe chance beside it. Bosses are read with a planned
 team, ordinary trainers blind. The boss target waits until the scorer reads
 Roark sensibly. These three fights are the first bosses with hand-checked
 answers.
-
-## The job
 
 Make the scorer's line search find lines at least as good as the hand-played
 ones, on the same box, and say which planning ideas it needed to get there.
@@ -63,8 +107,10 @@ of sun) wins 94%. Everything before it has to keep Golbat untouched and outlast
 the sun. The losses split between the Lumineon stage (Swagger, Silver Wind and
 Natural Gift wearing down the Singer) and the Shiftry stage (a pivot that takes
 one Solar Beam falls into Rock Tomb's knockout range, so Shiftry picks Rock Tomb
-over the charge). Whether 28% for this box says something about Gardenia or
-about the box is Ian's call (decision 4).
+over the charge). Ian reads the 28% as mostly the box's (2026-09-30): the
+player's move pools look sparse in interesting options and lack many of the
+more interesting modern moves, so they are the first thing to change, not
+Gardenia's team.
 
 ## What a scorer must model
 
@@ -136,9 +182,9 @@ decided a fight:
   moment. That is why Steenee hands over after one Play Nice.
 - **Everything else rolls at the game's odds**, as the six approved
   assumptions in the balance plan list them.
-- **Ties between equal AI picks.** The memory of Ian's budget says the pick
-  worst for him is assumed, but the simulator breaks ties at random. See
-  decision 5.
+- **Ties between equal AI picks break at random,** as the simulator does
+  (Ian, 2026-09-30). This replaces the earlier wording of the budget, which
+  assumed the pick worst for the player.
 
 ### The planning ideas that won fights
 
@@ -235,7 +281,6 @@ Known gaps, none fixed yet:
   them, routine by routine with a test each.
 - **Sleep length** in the simulator (1 to 4 turns) is not checked against the
   engine.
-- **AI ties** break at random, against Ian's budget. See decision 5.
 
 ## The harness
 
@@ -252,30 +297,36 @@ of `overseer-sim-fixes` at 48ed15ab6b or later.
 
 ## A suggested order of work
 
-1. Merge the simulator fixes, and finish the fightai audit against the
-   battle-ai docs and the decomp, with a test per routine.
+1. Once the scorer and the simulator fixes are on `oxide`, finish the fightai
+   audit against the battle-ai docs and the decomp, with a test per routine.
 2. Fill the known gaps above.
 3. Reproduce the three fights. Give the scorer the run's box, and require
    lines at least as good as the table's. Where it falls short, find which
-   planning idea it lacked and add it as a move in its search.
+   planning idea it lacked and add it as a move in its search. Each line and
+   each new idea goes to Ian for checking before the next step.
 4. Play the next bosses with Ian the same way (Jupiter and Fantina, at 33) to
    widen the ground truth before trusting the scorer on bosses it has never
    met.
-5. Then set the boss target with Ian, and hand the scorer to the trainer pass.
+5. Read each boss over a spread of boxes (answer 3 below), then set the boss
+   target with Ian, and hand the scorer to the trainer pass.
 
-## Decisions for Ian
+## Ian's answers (2026-09-30)
 
-1. **Who takes this on.** A new local session (its name and status home), or
-   the Balance Agent with this added to its plan.
-2. **Whether a win that loses only the planned, least-scaling Pokemon counts**
-   for anything in the scorer, or only clean wins count.
-3. **The box model for bosses:**
-   - one rolled box, as here
-   - many rolled boxes, reporting the spread
-   - the best box a careful player could build
-4. **What Gardenia's 28% means.** Our best line with this box at 26 wins
-   cleanly 28% of the time, against 99% at Roark and Mars. Is that the box, our
-   planning, or a sign that Gardenia's team is tuned too hard for Fantina's
-   split?
-5. **AI ties.** The budget in memory assumes the pick worst for the player; the
-   simulator rolls them. Which should the scorer use?
+1. **Who takes this on:** a new, dedicated agent, the Scoring Agent ("The
+   track", above). Ian checks its reasoning until he is sure it picks up the
+   trends found here.
+2. **Wins that lose a Pokemon.** The goal is to beat the game, so a win that
+   loses a Pokemon is still a win and the run goes on. But each loss takes
+   options away from the player's later team-building, so a player generally
+   plays not to lose any. The scorer keeps the clean-win rate as its
+   headline. It reports wins with losses beside it, along with what was
+   lost, and a planned sacrifice counts as a cost, not as a failure.
+3. **The box model for bosses:** a spread of boxes. The point is that a
+   fight's answers must not narrow to one Pokemon. Read each boss over many
+   rolled boxes, and report how the best lines spread across them. Flag a
+   boss whose winning lines all lean on the same Pokemon.
+4. **What Gardenia's 28% means.** Ian's first candidate for change is the
+   player's move pools, not her team. They look sparse in interesting options
+   and lack many of the more interesting modern moves. This goes to the
+   balance track's learnset work, not to this track.
+5. **AI ties:** break at random, as the simulator does now.

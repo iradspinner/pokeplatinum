@@ -15,7 +15,11 @@ read, so they are written here too. Each is a standing instruction.
   The encounter track owns `tools/oxide/encounters/`, `res/field/encounters/`,
   `docs/oxide/encounters/`, the `encounter-*.md` docs and one paragraph at the
   top of the tracker. The balance track owns `tools/oxide/balance/` and
-  `docs/oxide/balance-plan.md`.
+  `docs/oxide/balance-plan.md`, except the fight simulator, its AI and the
+  perfect-line scorer in that folder (`fightsim.py`, `fightai.py`,
+  `perfectline.py`, the `pl*.py`, `pboxes.py` and `pdoubles.py` modules, their
+  tests and results), which the scoring track owns with
+  `docs/oxide/trainer-scoring-handoff.md` (Ian, 2026-09-30).
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
@@ -91,6 +95,17 @@ read, so they are written here too. Each is a standing instruction.
   (2026-09-29), so the three-job limit of 2026-09-27 is lifted and local
   builds are trusted: a ROM counts when its SHA-1 matches GitHub's build of
   the same commit.
+- How the fight scorer reads a fight (Ian, 2026-09-30, on the trainer-scoring
+  handoff). The aim is to beat the game: a win that loses a Pokemon is still a
+  win, but each loss takes away later team-building options, so clean wins
+  come first and a planned sacrifice is a cost, not a failure. A boss is read
+  over a spread of rolled boxes, so that its answers do not narrow to one
+  Pokemon. Ties between equal AI picks break at random. Within Ian's luck
+  budget, every secondary status against the player lands and one crit
+  against the player may, never two in a row; the rest rolls at the game's
+  odds. When a fight reads too hard, the player's move pools are the first
+  candidate for change, since they are sparse in interesting options and lack
+  many modern moves.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
