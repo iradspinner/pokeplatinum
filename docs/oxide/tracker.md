@@ -70,7 +70,7 @@ Anything else is a regression. The encounter tool's own checks are in its build 
 
 - **The learnset decisions**, to come with learnset v3's report: the eleven held gap-fillers beside what later games offer, the bar's thresholds, the five-level wait, the 138 wild slots that can end an encounter, the good-move share, and the later-moves report's rows marked for Ian.
 
-- **The Scoring Agent's reasoning** (2026-09-30): Ian checks every line it finds and every planning idea it adds, with its reasoning, before it builds on them, until he is sure it reads fights as the three-gym run did. Its answers on the handoff's five questions are in `docs/oxide/trainer-scoring-handoff.md`.
+- **The Scoring Agent's reasoning** (2026-09-30): Ian checks every line it finds and every planning idea it adds, with its reasoning, before it builds on them, until he is sure it reads fights as the three-gym run did. Ian's answers on the handoff's five questions are in `docs/oxide/trainer-scoring-handoff.md`.
 
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
 
