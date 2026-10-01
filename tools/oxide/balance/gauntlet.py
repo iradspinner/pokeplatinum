@@ -40,6 +40,7 @@ gauntlets and fights with one another, not with a run.
 """
 import argparse
 import collections
+import functools
 import json
 import os
 import random
@@ -304,9 +305,9 @@ def _fmt(r):
 # or after it knocks out a boss Pokemon, costs the incoming member a hit
 # (until 2026-09-30 the swap between boss Pokemon was free, as the Shift
 # style would allow); a fainted member's replacement comes in free; every
-# hit rolls its damage and its accuracy, and one in sixteen is critical,
-# twice as hard. After each trainer the survivors heal to full, as the bag
-# allows, and a member that fell stays fallen.
+# hit rolls its damage and its accuracy, and a critical hit at Oxide's odds
+# (CRIT_RATE, below). After each trainer the survivors heal to full, as the
+# bag allows, and a member that fell stays fallen.
 
 # Each section: its label, its maps in walking order, which half of a map
 # (0 or 1, None for all of it), and the trainers left out of it. Mt.
@@ -330,7 +331,38 @@ SECTIONS = {
         ("1F, the far half", ["VICTORY_ROAD_1F"], 1, ()),
         ("2F", ["VICTORY_ROAD_2F"], None, ()), ("B1F", ["VICTORY_ROAD_B1F"], None, ())],
 }
-CRIT = 1 / 16
+# Oxide's critical hits, the Generation 7 ones the engine and the fight
+# simulator use (until 2026-09-30 this reader rolled Platinum's, one in
+# sixteen at twice the damage): one in 24 at 1.5 times, one in 8 for a
+# move whose effect raises the stage (Slash, Stone Edge and the like), and
+# none against Battle Armor or Shell Armor.
+CRIT_RATE = (1 / 24, 1 / 8)
+CRIT_MUL = 1.5
+NO_CRIT = ("Battle Armor", "Shell Armor")
+
+
+@functools.lru_cache(maxsize=None)
+def _high_crit():
+    """Compact names of the moves whose effect raises the critical stage,
+    read from Oxide's move data as the simulator reads the effect."""
+    out = set()
+    for d in os.listdir(pressure.MOVES_DIR):
+        path = os.path.join(pressure.MOVES_DIR, d, "data.json")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            rec = json.load(f)
+        effect = ((rec.get("effect") or {}).get("type") or "").replace("BATTLE_EFFECT_", "")
+        if effect.startswith(("HIGH_CRITICAL", "CHARGE_TURN_HIGH_CRIT")):
+            out.add(metrics_compact(rec["name"]))
+    return frozenset(out)
+
+
+def _crit_chance(move, defender_ability):
+    if defender_ability in NO_CRIT:
+        return 0.0
+    high = metrics_compact(pressure.MOVE_SPELLING.get(move, move)) in _high_crit()
+    return CRIT_RATE[1 if high else 0]
 MAX_TURNS = 30
 
 
@@ -395,12 +427,14 @@ def _choice(row, weather):
     return best[1:] if best else None
 
 
-def _hit(choice, rng):
-    """One use of a move: its damage, 0 on a miss."""
-    _move, rolls, _pr, acc, _slow = choice
+def _hit(choice, rng, defender_ability=None):
+    """One use of a move: its damage, 0 on a miss, a critical hit at
+    Oxide's odds against the defender's ability."""
+    move, rolls, _pr, acc, _slow = choice
     if rng.random() >= acc:
         return 0
-    return rng.choice(rolls) * (2 if rng.random() < CRIT else 1)
+    roll = rng.choice(rolls)
+    return int(roll * CRIT_MUL) if rng.random() < _crit_chance(move, defender_ability) else roll
 
 
 def _first(up, a, b, trick_room, rng):
@@ -430,9 +464,9 @@ def fight(st, pk, bk, hp, boss_hp, rng):
             if ch is None or turn % ch[4]:
                 continue
             if side == "p":
-                boss_hp -= _hit(ch, rng)
+                boss_hp -= _hit(ch, rng, st["info"][bk].get("ability"))
             else:
-                hp -= _hit(ch, rng)
+                hp -= _hit(ch, rng, st["info"][pk].get("ability"))
     return max(hp, 0), max(boss_hp, 0)
 
 
@@ -497,7 +531,7 @@ def run_section(st, team_sizes, pool_keys, n=PARTIES, seed=SEED):
                     if standing is not None and pk != standing:
                         b = _choice(st["rows"][(bk, pk)], w)
                         if b:
-                            hp[pk] -= _hit(b, rng)
+                            hp[pk] -= _hit(b, rng, st["info"][pk].get("ability"))
                         if hp[pk] <= 0:
                             hp[pk] = 0
                             deaths += 1

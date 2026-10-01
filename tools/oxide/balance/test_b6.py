@@ -135,6 +135,16 @@ def check_gauntlet(results):
     ]
     results.append(("a gauntlet swap costs the incoming member a hit (Set style)", all(picks),
                     str(picks)))
+    # Oxide's critical hits: one in 24 at 1.5 times, one in 8 for a
+    # high-critical move such as Slash, none against Shell Armor.
+    crits = [
+        gauntlet._crit_chance("Tackle", None) == 1 / 24,
+        gauntlet._crit_chance("Slash", None) == 1 / 8,
+        gauntlet._crit_chance("Stone Edge", None) == 1 / 8,
+        gauntlet._crit_chance("Slash", "Shell Armor") == 0.0,
+        gauntlet.CRIT_MUL == 1.5,
+    ]
+    results.append(("the gauntlet reading rolls Oxide's critical hits", all(crits), str(crits)))
     # The sections keep Ian's rulings: 2 to 5 trainers each, Victory Road 1F
     # halved from its entrance, and Mt. Coronet's bosses and hard officers out.
     sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))
