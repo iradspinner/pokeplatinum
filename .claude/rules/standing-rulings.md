@@ -105,7 +105,12 @@ read, so they are written here too. Each is a standing instruction.
   against the player may, never two in a row; the rest rolls at the game's
   odds. When a fight reads too hard, the player's move pools are the first
   candidate for change, since they are sparse in interesting options and lack
-  many modern moves.
+  many modern moves. A fight is judged on three numbers read together, never
+  the clean rate alone (Ian, 2026-10-01): the clean rate, the share of
+  simulated fights won with no Pokemon fainting; the win rate, the share won
+  at all (no wipe); and the death count, the average number of the player's
+  Pokemon that faint per simulated fight, which separates the hardest fights
+  (Gardenia, Wake, Cyrus 3, Cynthia) where few runs win cleanly.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
