@@ -1,0 +1,46 @@
+{
+ "fight": "barry_2",
+ "six": [
+  "Starly",
+  "Finneon",
+  "Dottler",
+  "Corvisquire",
+  "Bibarel",
+  "Krabby"
+ ],
+ "variant": 0,
+ "foes": [
+  "Starly 10",
+  "Turtwig 11"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": null
+ },
+ "luck": "unlucky",
+ "lead": "Corvisquire",
+ "lead_values": {
+  "Starly": 0.586,
+  "Finneon": 0.589,
+  "Dottler": 0.589,
+  "Corvisquire": 0.6,
+  "Bibarel": 0.59,
+  "Krabby": 0.589
+ },
+ "clean": 25,
+ "won": 25,
+ "deaths": 0.0,
+ "runs": 25,
+ "faints": [],
+ "cpu_seconds_per_run": 1.06,
+ "decisions_per_run": 2.0,
+ "turns_per_run": 2.0,
+ "lead_seconds": 2.4,
+ "wall_seconds": 1.2,
+ "procs": 29,
+ "fights_per_hour": 74090.7,
+ "worker_private_mb_max": 11,
+ "parent_mb": 87,
+ "lost_seeds": []
+}

@@ -123,6 +123,19 @@ GARDENIA = {
     "Golbat": ("SPECIES_GOLBAT", "Lonely", "Inner Focus", ["Wing Attack", "Bite", "Confuse Ray", "Supersonic"]),
 }
 
+# Goal 2's rival fights in Roark's split (the Overseer's provisional rule of
+# 2026-10-02, until Ian confirms it): the box is the captures from the areas
+# reached by the fight, each at the split's cap of 16 as the run had it at
+# Roark (the Pocket PC's Rare Candies make the cap reachable from Sandgem on),
+# and Barry 1, before Sandgem, meets the starter alone at level 5. Lucas and
+# Dawn 1 is on Route 202, read without the Route 202 catch (the fight may come
+# before it); Barry 2 is at the start of Route 203, after the Old Rod spots of
+# Twinleaf, Route 218 and Route 219 but before Route 203's own.
+BARRY_1 = {"Piplup": ("SPECIES_PIPLUP", "Gentle", "Torrent", ["Pound", "Growl"], 15, 5)}
+LUCAS_DAWN_1 = {n: ROARK[n] for n in ("Prinplup", "Wooloo", "Vulpix", "Bibarel", "Corvisquire")}
+BARRY_2 = {n: ROARK[n] for n in ("Prinplup", "Wooloo", "Vulpix", "Bibarel", "Corvisquire", "Dottler", "Starly",
+                                  "Wartortle", "Krabby", "Finneon")}
+
 # The hand-played line of each fight (the handoff's acceptance table): its
 # six, its held items, the harness script's seeds, and its three numbers on
 # the corrected AI (clean, won, deaths per fight, over 200 runs). `boosters`
@@ -140,6 +153,16 @@ FIGHTS = {
                      six=["Charmeleon", "Popplio", "Vikavolt", "Vullaby", "Golbat", "Tsareena"],
                      items={"Golbat": "Quick Claw"}, bar=(29, 116, 3.325),
                      boosters={"Fire": "Flame Plate", "Grass": "Miracle Seed", "Dragon": "Draco Plate"}),
+    # Goal 2's rival fights: no hand-played line, so no bar and no held items;
+    # `six` is the box itself where it has six or fewer, and Barry 2 is read
+    # over random sixes of its box (plplan --six).
+    "barry_1": dict(key="barry_1", cap=16, box=BARRY_1, seed0=11000, trace_seed=33, six=["Piplup"],
+                    items={}, bar=None, boosters={}),
+    "lucas_dawn_1": dict(key="lucas_dawn_1", cap=16, box=LUCAS_DAWN_1, seed0=12000, trace_seed=34,
+                         six=list(LUCAS_DAWN_1), items={}, bar=None, boosters={}),
+    "barry_2": dict(key="barry_2", cap=16, box=BARRY_2, seed0=13000, trace_seed=35,
+                    six=["Prinplup", "Wooloo", "Vulpix", "Bibarel", "Corvisquire", "Wartortle"],
+                    items={}, bar=None, boosters={}),
 }
 OUT = os.path.join(os.path.dirname(__file__), "perfectline_results", "step3")
 SEARCH_SEEDS = 4          # independent searches of the hand six

@@ -805,6 +805,35 @@ Pokemon. Lumineon takes most of its losses (Charmeleon 32 times, Tsareena 16,
 Vikavolt 14), and it leads Vullaby where we led Charmeleon. A fight costs
 about 210 seconds of one core at Mars 1 and 160 at Gardenia.
 
+## Goal 2: the rival fights of Roark's split (2026-10-02)
+
+The first three of goal 2's new fights, read by the play-out planner (they
+are short enough to need no network). Their boxes follow the Overseer's
+provisional rule, until Ian confirms it: the captures from the areas reached
+by each fight, every member at the split's cap of 16 as the run had it at
+Roark, since the Pocket PC's Rare Candies make the cap reachable from Sandgem
+on; Barry 1, before Sandgem, meets the starter alone at level 5. Lucas and
+Dawn 1 (Route 202) is read without the Route 202 catch, which may come after
+the fight; Barry 2 (the start of Route 203) after the Old Rod spots of
+Twinleaf, Route 218 and Route 219 but before Route 203's own. No held items.
+
+| Fight | Box | Real odds (75) | Very unlucky (25) |
+|---|---|---|---|
+| Barry 1 | Piplup at 5 (Pound, Growl) against Turtwig at 5 | 0 clean, 0 won | 0 clean, 0 won |
+| Lucas and Dawn 1 | Prinplup, Wooloo, Vulpix, Bibarel, Corvisquire at 16, each of the six variants | 75 clean each | 25 clean each |
+| Barry 2 | five random sixes from the ten caught by then, at 16 | 75 clean each | 25 clean each |
+
+Barry 1 cannot be won. Turtwig Withdraws, so Piplup's Pound does 1 to 3 a
+hit, and its Tackle, at the later games' 40 power and full accuracy (Oxide's
+move numbers; Generation 4 had 35 and 95%), takes 5 of Piplup's 21 HP; the
+look-ahead values every option, Growl included, as a certain loss from the
+first turn. Whether the game lets this first battle be lost without ending
+the run is not checked here. The other two are over in a turn or two, as the
+cap makes them; that is a true reading of Oxide as it stands, and flags them
+for the trainer pass. Readings: `planner-barry_1*`, `planner-lucas_dawn_1-v*`
+and `planner-barry_2-six*` in the results folder (`plplan --six` and
+`--variant` choose a six from the box and a rival's variant).
+
 ## Stage 2: the learned position value (from 2026-10-02)
 
 Stage 2 of the speed plan replaces the planner's play-outs with a network
