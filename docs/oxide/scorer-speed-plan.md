@@ -54,13 +54,53 @@ Inside a fight, by the profile:
 | Stage | Lever | Expected gain | Effort | Status |
 |---|---|---|---|---|
 | 1 | Store repeated lookups, the AI's odds per position, and the setup's file checks, instead of recomputing them | 2 to 3 times | a day or two | approved tentatively (Ian, 2026-10-02) |
-| 1 | Run under PyPy, a faster engine for the same Python code, installed portably in the home folder | 3 to 5 times | hours to test | approved tentatively (Ian, 2026-10-02) |
+| 1 | Run under PyPy, a faster engine for the same Python code, installed portably in the home folder | 3 to 5 times | hours to test | measured 2026-10-02: no real gain, not used (below) |
 | 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | waits on Ian, after stage 1 and the Roark check |
 | 3 | The simulator and AI rewritten in a compiled language | 30 to 100 times on the hot loop | weeks | in reserve |
 | any | Stop running a fight once its three numbers are known to a set margin | up to half the runs | small | not yet put to Ian |
 
 Stages 1 and 2 together should bring a full-game reading to a matter of
-hours. Stage 1 alone should bring the 500 hours to roughly 50 to 100.
+hours. Stage 1 alone was expected to bring the 500 hours to roughly 50 to
+100; measured, it did not (below).
+
+## What stage 1 measured (2026-10-02)
+
+| Measure | Before stage 1 | After stage 1 |
+|---|---|---|
+| Throughput, whole machine | 357 fights an hour (30 workers) | 407 fights an hour (29 workers) |
+| Memory per worker | about 2.5 GB after one fight, growing | at most 188 MB at peak |
+| Same seeds, same fights | | 24 of 24 identical, move for move |
+
+The stored lookups now keep only the AI's final odds per position, key them
+by two hashes, cap them and empty them each fight; the prepared fight is
+frozen before the workers fork, and pools are sized by memory as well as
+cores (the Scoring Agent, 55ae648e22). That ended the memory problem that
+crashed WSL, but added only about 14% speed: the play-outs themselves are the
+cost, and storing lookups does not shorten them.
+
+PyPy ran the scorer with identical results but no real gain. The Overseer's
+check on the same night: a bare loop runs 33 times faster under PyPy, so the
+install is sound; the simulator alone with a fixed player runs 1.3 to 1.6
+times faster; with the play-out policy it runs slower than CPython (0.65 to
+0.7 times); planner decisions 1.36 times. The trainer AI and the simulator
+are long chains of game-rule branches (fightai alone is about 3,700 lines),
+and PyPy's JIT speeds up code that repeats the same path. Here each turn takes
+different branches, so in a 19-second run the JIT built about 3,000 side
+paths and threw away 750 compiled ones. Its settings for long, branchy code
+made it slower still. The Overseer's 3 to 5 times estimate was wrong for
+this code.
+
+At 407 fights an hour, a reading of 200 fights at real odds and 200 very
+unlucky takes:
+
+| Goal | Fights simulated | Time |
+|---|---|---|
+| 1. Roark (500 real, 200 unlucky) | 700 | under 2 hours |
+| 2. The three-gym split, about ten major fights | about 4,000, before choosing sixes | about 10 hours |
+| 4. Everything, 459 fights | about 184,000 | about 450 hours |
+
+So stage 1's levers are spent, and hours for the whole game need stage 2,
+which replaces most play-outs, with stopping early by margin beside it.
 
 Stage 1 must not change any answer. The dice are keyed by seed, so the same
 seeds must give the same fights, move for move, before and after: a run of
