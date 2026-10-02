@@ -71,7 +71,12 @@ often than our line but almost never cleanly, as the play-out planner does
 through Fantina for Ian and the Overseer to choose from. A test on 100
 ordinary trainers showed that networks trained broadly judge easy trainers
 they never saw nearly as well as play-outs, but a held-out boss (Gardenia)
-not at all, so every boss needs labelled positions of its own. Every reading is now 75 fights at real odds
+not at all, so every boss needs labelled positions of its own; the cheapest
+recipe measured so far costs about 1.7 core-hours a fight ("The cost of
+labelling every boss", below). Ian ruled (2026-10-02) that a fight is
+ranked by its win rate first and its average faints second, the clean rate
+reported but not optimised; the planner's choice is to follow the same order
+in place of the loss weight of ten, which is the next change to make. Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -712,7 +717,13 @@ Prinplup, Steenee, all at 16), and it meets our line's numbers.
 | The play-out planner | very unlucky | 84% (21 of 25) | 100% | 0.160 |
 
 Over 500 fights at real odds it reads 98.2% clean, every fight won, 0.020
-faints, so its real-odds clean rate matches ours within a point. Its one
+faints, so its real-odds clean rate matches ours within a point. At the
+bar's own size (for Ian's check, the same evening), 2,000 fights at real odds
+read 97.7% clean, 100% won, 0.025 faints, and 500 very unlucky read 93.4%
+clean, 100% won, 0.076 faints (`planner-net-d1b+d2+d3-roark-2000` and
+`-unlucky-500`). By Ian's ruling of 2026-10-02, wins first and faints second,
+it ties our line at real odds and beats it very unlucky (100% against
+99.95%), with 0.010 and 0.033 more faints a fight. Its one
 faint at real odds was Onix to Cranidos; very unlucky, Onix to Cranidos and
 Nidorino to Lileep. Twenty-five very unlucky fights cannot tell 92% from our
 96.4% (two fights in 25 against one).
@@ -838,15 +849,22 @@ now knows this (`fightsim.FIRST_BATTLE`, checked in `test_plfixes`), and the
 readings above have it. The flag's other uses only change the touch screen's
 background and route the move choice through the trainer AI, as in any
 trainer battle. Losing it costs nothing in the game either: the script's lost
-branch returns to the field with a different message, with no blackout.
-Whether a loss there ends a nuzlocke run is Ian's rule to make.
+branch returns to the field with a different message, with no blackout. Ian
+ruled (2026-10-02) that this first battle is the only fight in the game that
+does not count for deaths or a wipe, so it is dropped from goal 2's fights
+and its reading below is information only.
 
 With a Piplup it cannot be won. Turtwig Withdraws, so Pound does 1 to 3 a
 hit, and its Tackle, at the later games' 40 power and full accuracy (Oxide's
 move numbers; Generation 4 had 35 and 95%), takes 5 of Piplup's 21 HP; the
 look-ahead values every option, Growl included, as a certain loss from the
 first turn. A neutral Piplup (Hardy) wins 1 of 75, so the run's Gentle
-nature is not the cause. The other two starters win almost always. Lucas and
+nature is not the cause. The cause is the base ROM's trainer data: Ian's
+edit gives the Turtwig a Piplup player meets an IV scale of 144, IVs of 17,
+where vanilla has 0. In-memory what-ifs (no data written) read Piplup's wins
+out of 75 as 0 with Oxide's Tackle and Generation 4's alike, 1 with vanilla's
+IVs alone, and 22 with vanilla's IVs and Tackle together: at level 5 the two
+Tackles round to the same 5 damage. The other two starters win almost always. Lucas and
 Dawn 1 and Barry 2 are over in a turn or two, as the cap makes them; that is
 a true reading of Oxide as it stands, and flags them for the trainer pass.
 Readings: `planner-barry_1-*`, `planner-lucas_dawn_1-v*` and
@@ -1078,6 +1096,112 @@ PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.o
 PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b+d2 --sixes 10 --repeat 3 --positions 12000 --seed 3 --out $S/data-d3
 PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d3 --from d2 --data $S/data-d3 $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
 ```
+
+## The cost of labelling every boss (2026-10-02)
+
+The Overseer counted about 110 fights in goal 3 that need labelled positions
+of their own (8 leaders, the Elite Four and the Champion, about 11 rival and
+6 Lucas and Dawn fights, 12 Galactic fights and about 68 Ace Trainers): at
+the three full rounds the gyms had, roughly 90 hours of labelling, repeated
+for every fight the trainer pass changes. Four levers were measured that
+afternoon. Every network below is the average of two trained from scratch
+by one recipe, and every reading is at real odds.
+
+**What labelling costs.** From the shards' own records:
+
+| Labelling | Core seconds per 1,000 positions |
+|---|---|
+| a boss by the play-out planner, budget 192 (the full rounds) | 72 to 122 |
+| a boss at budget 64 | 54 |
+| a round from the network's own play, one decision in five labelled | 52 |
+| the Ace Trainers of Fantina's split, budget 192 | 51 |
+| ordinary trainers of the first three splits | 8 |
+
+A full round for one boss is about 10 core-hours (some 20 minutes on 29
+workers); a tenth of a round, about 43,000 positions, is about one.
+
+**1. Ace Trainers do not generalise like ordinary trainers.** The two Ace
+Trainers of Fantina's split, Allen (280) and Catherine (284), were read on a
+box no labels used, 100 fights each:
+
+| Planner | Allen | Catherine |
+|---|---|---|
+| the play-out planner | 99 clean, 100 won, 0.01 faints | 100, 100, 0.00 |
+| networks that never saw them | 22, 79, 2.96 | 73, 96, 0.49 |
+| networks with 20,000 of their positions each | 67, 91, 0.90 | 81, 97, 0.45 |
+| networks with about 106,000 each | 80, 94, 0.60 | 86, 100, 0.16 |
+
+They belong with the bosses: unseen they read far worse than play-outs, and
+even 106,000 positions of their own leave a gap. Those positions came from
+the play-out planner's own fights, about nine fights per box, which lever 4
+below suggests is the weak point.
+
+**2. Fewer positions per boss.** Networks trained on everything except one
+boss's positions, plus that boss's labels in four amounts, 500 fights each:
+
+| The boss's labels | Positions | Mars 1 | Gardenia |
+|---|---|---|---|
+| none | 0 | 151 clean, 412 won, 2.30 faints | 0, 9, 5.96 |
+| a tenth of a round | about 42,000 | 465, 500, 0.09 | 2, 379, 2.99 (seeds 3 and 4: 82, 364, 2.83) |
+| a third of a round | about 138,000 | 462, 489, 0.20 | 1, 269, 4.33 (seeds 3 and 4: 12, 265, 4.10) |
+| one round | about 414,000 | 452, 500, 0.13 | 1, 383, 3.71 |
+| all three rounds | about 1.2 million | 480, 500, 0.06 | 1, 402, 3.70 |
+
+At Mars 1, where the clean rate shows quality, a tenth of a round already
+reads 93% clean with every fight won; the three rounds reach 96%, and the
+last two of them were labelled from the network's own play, which lever 4
+separates. Gardenia's column is not a curve of amount. A third reads worse
+than a tenth with both pairs of seeds, yet the networks' value error on her
+held-out positions is the same for both (2.0 to 2.2 on our six). The gap is
+one matchup: the third's networks lose Charmeleon to Lumineon in 260 fights
+of 500, against 110 for the tenth's, so which few positions a subset happens
+to judge well decides her reading more than how many positions it holds.
+
+**3. Fewer play-outs per label.** A third of a round of Gardenia labelled at
+budget 64 instead of 192 cost 54 core seconds per 1,000 positions against
+105, and read 0 clean, 351 won, 3.86 faints, against the budget-192 third's
+269 won (which carries the Charmeleon misjudgement). On this one comparison
+budget 64 halves the cost with no measured loss.
+
+**4. Rounds from the network's own play: spread, not deep.** At Mars 1,
+starting from the tenth's networks, a small round in which they played and
+play-outs labelled every decision gave 70,000 positions from only 21 fights
+(0.81 core-hours) and made the planner worse: 403 clean, 465 won, 0.58
+faints. The same cost spread over more fights, labelling one decision in
+five (`pldata --label-share 0.2`), gave 48,000 positions from 75 fights
+(0.70 core-hours) and made it better than all three full rounds: 486 clean,
+500 won, 0.028 faints. So the tenth of a round and one spread round, 1.67
+core-hours, read Mars 1 as well as the 28 core-hours of the full rounds.
+
+**5. A team change does not reuse its old labels.** On an in-memory change
+to Gardenia's team (no game data written: Lumineon given Icy Wind and Attract
+for Natural Gift and Swagger, Breloom Seed Bomb and Headbutt for Bullet Seed
+and Stun Spore, both holding a Sitrus Berry), which made her much easier,
+500 fights each:
+
+| Labels | Clean | Won | Faints |
+|---|---|---|---|
+| the play-out planner (75 fights) | 39 of 75 | 75 of 75 | 0.71 |
+| her old team's labels only | 1 | 348 | 4.10 |
+| a third of a round on the new team | 133 | 463 | 1.90 |
+| both | 124 | 433 | 2.21 |
+| none | 0 | 9 | 5.96 |
+
+The old labels keep the network playing the old fight, and adding them to new
+ones helps nothing. A changed fight needs new labels, at the same cost as a
+new one.
+
+**The estimate for goal 3.** With the recipe that matched the full rounds at
+Mars 1, a tenth of a round by the play-out planner and one spread round from
+the network's own play, a fight costs about 1.7 core-hours of labelling.
+For about 110 fights that is about 185 core-hours, some 6 to 7 hours on 29
+workers, and about 5 with budget 64 in the first stage. Training is minutes,
+and reading every fight on 100 simulated fights about half an hour. Each
+fight the trainer pass changes costs its 1.7 core-hours again, about 4
+minutes of the machine. Two cautions: the recipe has been measured on one
+boss so far (Mars 1; its check at Gardenia is the next reading), and the
+Ace Trainers, read over random boxes, may need their labels spread over more
+boxes than a boss read on one planned six.
 
 ## The harness
 

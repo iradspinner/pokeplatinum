@@ -213,10 +213,12 @@ Gardenia's positions, networks won 8 Gardenia fights of 500, against about
 420 once they had seen her. So every boss needs labelled positions of its
 own, with rounds from the network's own play. Ordinary trainers label fast
 (1.65 million positions from 80 trainers in ten minutes), so their pass is
-about an hour; a boss's three rounds took about 25 minutes each per fight on
-29 workers in the gyms' runs, so the bosses, rivals, named Galactic fights
-and Ace Trainers are the larger share, several hours more, and a full
-reading about an hour and a half.
+about an hour. For a boss, a tenth of a round by the play-out planner and one
+round from the network's own play spread over many fights (one decision in
+five labelled) read Mars 1 as well as the gyms' three full rounds, at 1.7
+core-hours against 28; for goal 3's roughly 110 fights that is 6 to 7 hours
+on 29 workers (the handoff doc's "The cost of labelling every boss"), and a
+full reading about an hour and a half.
 
 ## Hardware (2026-10-02)
 
