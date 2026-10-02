@@ -138,11 +138,18 @@ UNWRITTEN = {"ADD_THIRD_TYPE_GHOST", "ADD_THIRD_TYPE_GRASS", "APPLY_TERRAINS",
 
 # ---- what the AI knows of its target
 
+_REGULAR = {}
+
+
 def _regular_abilities(mon):
     """SPECIES_DATA_ABILITY_1 and _2 of the Pokemon's species; the
-    calculator's blob is made from the same species data."""
-    ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
-    return ab.get("0"), ab.get("1")
+    calculator's blob is made from the same species data. Kept per species,
+    since the blob does not change."""
+    got = _REGULAR.get(mon.species)
+    if got is None:
+        ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
+        got = _REGULAR[mon.species] = (ab.get("0"), ab.get("1"))
+    return got
 
 
 def ability_of(b, u, mon):
@@ -3459,9 +3466,24 @@ CHART_ORDER = {
 }
 
 
+_FLAGS = {}
+_CHARTS = {}
+
+
 def type_flags(b, mtype, types, scrappy=False):
     """(no effect, super effective, not very effective) as the engine's
-    flags read for a move of this type into these types."""
+    flags read for a move of this type into these types; kept by the chart,
+    the move's type, the target's types and Scrappy, all it depends on."""
+    chart = b.st["chart"]
+    _CHARTS[id(chart)] = chart          # held, so its id is never reused
+    k = (id(chart), mtype, tuple(types), scrappy)
+    got = _FLAGS.get(k)
+    if got is None:
+        got = _FLAGS[k] = _type_flags(b, mtype, types, scrappy)
+    return got
+
+
+def _type_flags(b, mtype, types, scrappy=False):
     def mul(ty):
         # Scrappy stops the chart before Normal and Fighting meet Ghost.
         if scrappy and ty == "Ghost" and mtype in ("Normal", "Fighting"):

@@ -50,15 +50,16 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-02).** Steps 1 and 2 of the order of work are on
-`oxide` (6ce38e1e26). Step 3 runs on branch `scoring-step3-bar` under Ian's
-rulings of 2026-10-01 and 2026-10-02 (below): the scorer is being rebuilt as
-a planner (`plplan.py`) that decides turn by turn by simulating its options
-at real odds, and the bar is re-measured at real odds. On 30 Roark seeds the
-planner now loses a Pokemon in 1 run of 30 (ours: about 1 in 70), but it
-costs about 133 seconds of one core per fight, which Ian judged far too long
-(2026-10-02): the whole game would take hundreds of hours. Cutting that cost
-is the open question with him before the Roark check goes to him. The perfect-line store has been stale since the simulator
+**Where it stands (2026-10-02).** The fightai audit and the known gaps are
+on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
+order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
+as a planner (`plplan.py`) that decides turn by turn by simulating its options
+at real odds (his rulings of 2026-10-01 and 2026-10-02, below). On 30 Roark
+seeds it loses a Pokemon in 1 run of 30, against our line's 1 in 70 or so,
+at about 133 seconds of one core per fight, which Ian judged far too long.
+Stage 1 of the speed plan (PyPy, and storing what repeats; no answer may
+change) is under way, and its seed-for-seed record is `plspeed.py`. The
+Roark reading for his check runs alongside it. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -591,22 +592,36 @@ They are notes for one box and one fight each, not tools. They show how each
 answer above was found and give a way to re-check it. Run them from a checkout
 of `oxide` at 153d11de2 or later.
 
-## A suggested order of work
+## The order of work
 
-1. Finish the fightai audit against the battle-ai docs and the decomp, with a
-   test per routine.
-2. Fill the known gaps above.
-3. Reproduce the three fights with a planner (Ian's ruling of 2026-10-01,
-   above). Give it the run's box, and require lines at least as good as the
-   table's on the three numbers. Where it falls short, find what in its
-   general machinery missed the idea (its depth, its position value, its
-   reading of the AI) and fix that, never adding a behaviour named for the
-   idea. Roark first; each fight's work goes to Ian before the next.
-4. Play the next bosses with Ian the same way (Jupiter and Fantina, at 33) to
-   widen the ground truth before trusting the scorer on bosses it has never
-   met.
-5. Read each boss over a spread of boxes (answer 3 below), then set the boss
-   target with Ian, and hand the scorer to the trainer pass.
+Steps 1 and 2 are done: the fightai audit against the battle-ai docs and the
+decomp, with a test per routine, and the known gaps filled (both on `oxide`
+at 6ce38e1e26). Ian set the goals from here in order (2026-10-02); the speed
+plan (`docs/oxide/scorer-speed-plan.md`) holds how the planner is made fast
+enough for the last of them.
+
+1. **Roark, relatively quickly, passing its tests.** The planner plays our
+   six and must meet the bar on the three numbers at real odds (the table
+   under "The job"), and Ian checks its reasoning: the line turn by turn, the
+   value behind each key choice, and which of the nine ideas arose on their
+   own. Where it falls short, the fix goes into its general machinery (how far
+   it looks, how it values a position, how it reads the AI), never into a
+   behaviour named for an idea. Stage 1 of the speed plan, which may not
+   change any answer, serves this step.
+2. **The three-gym split, through Fantina at cap 33,** under the three-gym
+   run's rules: the box rolled area by area, one capture per location name,
+   dupes re-rolled, honey trees counted, the two trades, only the items
+   reachable by each fight, TMs out until the TM pass, and evolutions held for
+   moves. Every major fight must pass. Roark, Mars 1 and Gardenia are held to
+   their hand-played bars. The fights with no hand-played bar (the rival
+   fights, Jupiter 1 and Fantina) pass when Ian has read the scorer's line and
+   reasoning for each and accepts it; he chose that over hand-playing them
+   first, so the earlier step of playing the next bosses with him by hand is
+   gone. The Kaizo study's broad comb of the trainers comes after this step.
+3. **Every major boss, rival, named Galactic fight and Ace Trainer,** on the
+   combed teams, each boss over a spread of boxes (Ian's answer 3 below).
+4. **Everything, the full rescore,** in a matter of hours with the spread of
+   boxes and the stress test included: the speed plan's goal.
 
 ## Ian's answers (2026-09-30)
 

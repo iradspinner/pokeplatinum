@@ -214,7 +214,7 @@ def _pool(st, jobs, procs):
         return p.map(_search, jobs, chunksize=1)
 
 
-def read(fight, mode, procs=None, log=sys.stdout):
+def read(fight, mode, procs=None, log=sys.stdout, tag=""):
     f = FIGHTS[fight]
     if mode == "hand":
         names = f["six"]
@@ -246,7 +246,7 @@ def read(fight, mode, procs=None, log=sys.stdout):
               f"clean {c}/200, won {w}/200, deaths {d:.3f} (search confirm {r['rate']:.2f}, "
               f"{r['candidates']} candidates, {r['seconds']} s)\n      {r['line']}", file=log)
     os.makedirs(OUT, exist_ok=True)
-    with open(os.path.join(OUT, f"{fight}-{mode}.json"), "w") as fh:
+    with open(os.path.join(OUT, f"{fight}-{mode}{tag}.json"), "w") as fh:
         json.dump({"fight": fight, "mode": mode, "bar": f["bar"], "names": names,
                    "items": f["items"] if mode == "hand" else None,
                    "rows": [{"team": [sp(k) for k in r["team"]], "line": r["line"],
@@ -275,11 +275,11 @@ def policy_from(d):
     return line
 
 
-def load(fight, mode):
+def load(fight, mode, tag=""):
     """A stored reading's best line: (fight, state, boss keys, AI flags,
     line, team keys, its row)."""
     f = FIGHTS[fight]
-    with open(os.path.join(OUT, f"{fight}-{mode}.json")) as fh:
+    with open(os.path.join(OUT, f"{fight}-{mode}{tag}.json")) as fh:
         saved = json.load(fh)
     prep = prepare(f, saved["names"], saved["items"])
     boss_keys, flags, _s = prep["variants"][0]
@@ -358,6 +358,7 @@ def main(argv=None):
     ap.add_argument("--of", default="hand", help="trace: the reading whose best line is traced")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--procs", type=int)
+    ap.add_argument("--tag", default="", help="a suffix for the stored reading's name")
     args = ap.parse_args(argv)
     for fight in args.fights:
         if args.mode == "trace":
@@ -376,7 +377,7 @@ def main(argv=None):
                 print(f"{fight} {n:12} L{st['pokemon'][k].get('level')} {st['pokemon'][k]['ability']:13} "
                       f"{', '.join(st['moves'][k])}{rule}")
         else:
-            read(fight, args.mode, args.procs)
+            read(fight, args.mode, args.procs, tag=args.tag)
     return 0
 
 

@@ -371,72 +371,163 @@ def pick_odds(dists):
     return out
 
 
-_DIST = {}
-_DIST_ST = None
+_ENTRIES = {}
+_ENTRIES_ST = None
+ENTRY_CACHE = 400000
+
+
+def roll_tree(fn):
+    """fn's chance() rolls as a tree: an inner node {"p": odds in percent,
+    False: the branch when the roll fails, True: when it passes}, a leaf
+    {"r": fn's result}. Built by running fn under every script of answers,
+    as outcomes does; fn must draw nothing else."""
+    global _SCRIPT
+    root, stack, runs = {}, [()], 0
+    while stack:
+        script = stack.pop()
+        runs += 1
+        if runs > ENUM_CAP:
+            raise RuntimeError(f"more than {ENUM_CAP} roll outcomes to enumerate")
+        _SCRIPT = s = _Script(script)
+        try:
+            r = fn()
+        finally:
+            _SCRIPT = None
+        node = root
+        for i, p in enumerate(s.asked):
+            if "p" not in node:
+                node["p"] = p
+            elif node["p"] != p:
+                raise RuntimeError("a roll's odds depend on more than the earlier rolls")
+            node = node.setdefault(script[i] if i < len(script) else False, {})
+        node["r"] = r
+        for i in range(len(script), len(s.asked)):
+            if s.asked[i] > 0:
+                stack.append(script + (False,) * (i - len(script)) + (True,))
+    return root
+
+
+def tree_odds(node, prob=1.0, out=None):
+    """{result: probability} over a roll tree."""
+    out = {} if out is None else out
+    if "r" in node:
+        out[node["r"]] = out.get(node["r"], 0.0) + prob
+        return out
+    q = min(max(node["p"] / 100.0, 0.0), 1.0)
+    if False in node and q < 1:
+        tree_odds(node[False], prob * (1 - q), out)
+    if True in node and q > 0:
+        tree_odds(node[True], prob * q, out)
+    return out
+
+
+def walk(node, rng):
+    """A roll tree played with real draws, one per roll and compared as
+    fightai.chance compares them, so the draws and the result are the ones
+    the AI's own code would make."""
+    while "r" not in node:
+        node = node[rng.random() * 100 < node["p"]]
+    return node["r"]
+
+
+def _entry(b, u, t):
+    """The AI's rolls at this state, cached by what it reads
+    (perfectline.ai_key): the switch check's tree, the fixed move if any, each
+    move slot's score tree, and the exact choice odds they give. Like
+    fightai.choose, it records the player's last move as seen."""
+    global _ENTRIES_ST
+    if _ENTRIES_ST is not b.st:
+        _ENTRIES.clear()
+        _ENTRIES_ST = b.st
+    k = pl.ai_key(b)
+    fightai.record_last_move(t)
+    got = _ENTRIES.get(k)
+    if got is None:
+        if len(_ENTRIES) >= ENTRY_CACHE:
+            _ENTRIES.clear()
+        got = _ENTRIES[k] = _build(b, u, t)
+    return got
+
+
+def _build(b, u, t):
+    saved = b.rng
+    b.rng = None             # any draw not made through chance() fails loudly
+    try:
+        side = fightai._side(b, u)
+        e = {"switch": roll_tree(lambda: fightai.should_switch(b, side, u, t)), "fixed": None, "slots": None}
+        sw = tree_odds(e["switch"])
+        dist = collections.defaultdict(float)
+        stay = sw.pop(None, 0.0)
+        for r, p in sw.items():
+            dist[("switch", r)] += p
+        fixed = fightai.fixed_move(b, u)
+        if fixed is not None:
+            e["fixed"] = fixed[1].name
+            if stay > 0:
+                dist[("move", fixed[1].name)] += stay
+        else:
+            figs = [fightai.figure(b, u, t, m) for m in u.moves]
+            best = max((f for f in figs if f is not None), default=None)
+            e["slots"] = [roll_tree(lambda i=i: fightai.score_slot(b, u, t, i, figs, best, b.ai_flags))
+                          for i in range(len(u.moves))]
+            if stay > 0:
+                for i, p in enumerate(pick_odds([tree_odds(tr) for tr in e["slots"]])):
+                    if p > 1e-12:
+                        dist[("move", u.moves[i].name)] += stay * p
+    finally:
+        b.rng = saved
+    e["dist"] = sorted(dist.items(), key=lambda x: -x[1])
+    return e
+
+
+def _action(u, kind, what):
+    if kind == "switch":
+        return "switch", what
+    if what == "Struggle":
+        return "move", fs.move("Struggle")
+    return "move", next(m for m in u.moves if m.name == what)
 
 
 def ai_distribution(b):
     """The trainer's choices at this state with their exact odds:
     [(('move', Move) or ('switch', index), probability)], most likely
     first. The turn's Quick Claw rolls (b.quick) must already be set, since
-    the AI reads them. Like fightai.choose, it records the player's last
-    move as seen. Cached by what the AI reads (perfectline.ai_key)."""
-    global _DIST_ST
+    the AI reads them."""
     u, t = b.b.cur(), b.p.cur()
     forced = fightai.forced_choice(u)
     if forced is not None:
         return [(forced, 1.0)]
-    if _DIST_ST is not b.st:
-        _DIST.clear()
-        _DIST_ST = b.st
-    k = pl.ai_key(b)
-    fightai.record_last_move(t)
-    got = _DIST.get(k)
-    if got is None:
-        got = _distribution(b, u, t)
-        _DIST[k] = got
-    out = []
-    for (kind, what), p in got:
-        if kind == "switch":
-            out.append((("switch", what), p))
-        elif what == "Struggle":
-            out.append((("move", fs.move("Struggle")), p))
-        else:
-            out.append((("move", next(m for m in u.moves if m.name == what)), p))
-    return out
+    return [(_action(u, kind, what), p) for (kind, what), p in _entry(b, u, t)["dist"]]
 
 
-def _distribution(b, u, t):
-    saved = b.rng
-    b.rng = None             # any draw not made through chance() fails loudly
-    try:
-        side = fightai._side(b, u)
-        dist = collections.defaultdict(float)
-        stay = 0.0
-        for r, p in outcomes(lambda: fightai.should_switch(b, side, u, t)):
-            if r is None:
-                stay += p
-            else:
-                dist[("switch", r)] += p
-        if stay > 0:
-            fixed = fightai.fixed_move(b, u)
-            if fixed is not None:
-                dist[("move", fixed[1].name)] += stay
-            else:
-                figs = [fightai.figure(b, u, t, m) for m in u.moves]
-                best = max((f for f in figs if f is not None), default=None)
-                dists = []
-                for i in range(len(u.moves)):
-                    d = collections.defaultdict(float)
-                    for s, p in outcomes(lambda i=i: fightai.score_slot(b, u, t, i, figs, best, b.ai_flags)):
-                        d[s] += p
-                    dists.append(d)
-                for i, p in enumerate(pick_odds(dists)):
-                    if p > 1e-12:
-                        dist[("move", u.moves[i].name)] += stay * p
-    finally:
-        b.rng = saved
-    return sorted(dist.items(), key=lambda x: -x[1])
+_choose = fightai.choose
+# Psywave's damage figure draws a number of its own while the AI scores, so a
+# Pokemon that knows it is left to the AI's own code.
+_OWN_DRAW = ("RANDOM_DAMAGE_1_TO_150_LEVEL",)
+
+
+def choose(b, u, t):
+    """fightai.choose by its stored roll trees: the same draws from b.rng in
+    the same order, so the same choice, without scoring every move afresh."""
+    forced = fightai.forced_choice(u)
+    if forced is not None:
+        return forced
+    if any(m.effect in _OWN_DRAW for m in u.moves):
+        return _choose(b, u, t)
+    e = _entry(b, u, t)
+    rng = b.rng
+    sw = walk(e["switch"], rng)
+    if sw is not None:
+        return "switch", sw
+    if e["fixed"] is not None:
+        return _action(u, "move", e["fixed"])
+    scores = [walk(tr, rng) for tr in e["slots"]]
+    top = max(scores)
+    picks = [i for i, sc in enumerate(scores) if sc == top]
+    return "move", u.moves[rng.choice(picks)]
+
+
+fightai.choose = choose
 
 
 # ---- the player's options, and the play-out's plain policy ---------------------------------------
@@ -665,6 +756,7 @@ PLAYOUTS = 1         # play-outs per position after the turn, without a budget
 # With a budget, options are weighed in stages: every option gets each of
 # these budgets in turn, and one trailing the leader by more than RACE_Z
 # standard errors of the difference is dropped before the next.
+BUDGET = 192
 STAGES = (24, 64)
 RACE_Z = 2.0
 
@@ -683,7 +775,7 @@ def _name(a, b):
 class Planner:
     """One run's player."""
 
-    def __init__(self, seed, playouts=PLAYOUTS, budget=None):
+    def __init__(self, seed, playouts=PLAYOUTS, budget=BUDGET):
         self.seed = seed
         self.playouts = playouts
         # With a budget, each option's turn against each trainer pick gets
@@ -773,7 +865,7 @@ class Planner:
         q, alive = self.weigh(b, acts, key)
         best = max(alive, key=lambda i: q[i])
         self.notes.append({"turn": b.turn, "options": [(_name(a, b) + ("" if i in alive else " (dropped)"),
-                                                        round(v, 3)) for i, (a, v) in enumerate(zip(acts, q))],
+                                                        v) for i, (a, v) in enumerate(zip(acts, q))],
                            "chose": best, "seconds": round(time.perf_counter() - t0, 2)})
         return acts[best]
 
@@ -800,7 +892,7 @@ class Planner:
             vals.append(self.position(c, key))
         best = max(range(len(cands)), key=lambda j: vals[j])
         self.notes.append({"turn": b.turn, "replacement": True, "seconds": round(time.perf_counter() - t0, 2),
-                           "options": [(b.p.mons[i].species, round(v, 3)) for i, v in zip(cands, vals)],
+                           "options": [(b.p.mons[i].species, v) for i, v in zip(cands, vals)],
                            "chose": best})
         return cands[best]
 
@@ -838,12 +930,14 @@ def real_turn(b, a, rng):
     return aa
 
 
-def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None):
+def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, record=None):
     """One run on the harness's dice for this seed, the world's luck `luck`
     ("real", or "unlucky" for the stress test; the planner itself always
     reckons at real odds): {"clean", "won", "deaths", "faints" [(fainted,
     foe out)], "seconds", "decisions", "notes"}. With `log`, each turn is
-    written to it with the options the planner weighed."""
+    written to it with the options the planner weighed; with `record` (a
+    list), each turn's whole outcome is appended to it, for plspeed's
+    seed-for-seed comparison."""
     rng = random.Random(seed)
     b = pl.make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck=luck)
@@ -870,6 +964,13 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None):
             for m, was in zip(b.p.mons, alive):
                 if was and not m.alive():
                     faints.append((m.species, foe))
+            if record is not None:
+                record.append({"turn": b.turn, "me": me, "foe": foe, "chose": name,
+                               "trainer": aa[1].name if aa[0] == "move" else ["switch", aa[1]],
+                               "player": [[m.hp, m.status, sorted(m.stages.items())] for m in b.p.mons],
+                               "trainer_side": [[m.hp, m.status, sorted(m.stages.items())] for m in b.b.mons],
+                               "weather": [b.weather, b.weather_turns],
+                               "notes": [dict(n2) for n2 in planner.notes[n:]]})
             if log is not None:
                 theirs = aa[1].name if aa[0] == "move" else "switch to " + b.b.mons[aa[1]].species
                 print(f"T{b.turn} [{b.weather or 'clear'}] {me}: {name} | {foe}: {theirs} "
@@ -967,12 +1068,13 @@ def main(argv=None):
     ap.add_argument("--trace", action="store_true")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--playouts", type=int, default=PLAYOUTS)
-    ap.add_argument("--budget", type=int, help="play-outs per option and trainer pick, shared by probability")
+    ap.add_argument("--budget", type=int, default=BUDGET,
+                    help="play-outs per option and trainer pick, shared by probability (0: none)")
     ap.add_argument("--luck", default="real", choices=("real", "unlucky"))
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     args = ap.parse_args(argv)
-    cfg = dict(playouts=args.playouts, budget=args.budget)
+    cfg = dict(playouts=args.playouts, budget=args.budget or None)
     if args.trace:
         trace(args.fight, args.seed, cfg, args.luck)
         return 0
