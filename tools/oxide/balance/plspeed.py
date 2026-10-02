@@ -23,7 +23,6 @@ from . import plplan
 
 SEEDS = {"roark": range(2000, 2012), "mars": range(7000, 7006), "gardenia": range(9000, 9006)}
 OUT = os.path.join(os.path.dirname(__file__), "perfectline_results", "step3", "speed")
-PROCS = 30
 
 _FIGHTS = {}
 
@@ -41,11 +40,14 @@ def _play(job):
     rec = []
     t0 = time.perf_counter()
     r = plplan.play(j["st"], j["team"], j["boss_keys"], j["flags"], j["lead"], seed, {}, "real", record=rec)
+    import resource
     return {"fight": fight, "seed": seed, "lead": j["lead"], "won": r["won"], "deaths": r["deaths"],
-            "turns": rec, "seconds": round(time.perf_counter() - t0, 2)}
+            "turns": rec, "seconds": round(time.perf_counter() - t0, 2),
+            "private_mb": plplan.memory()[1],
+            "peak_rss_mb": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024}
 
 
-def record(name, procs=PROCS, log=sys.stdout):
+def record(name, procs=None, log=sys.stdout):
     from . import plstep3
     t_setup = time.perf_counter()
     for fight in SEEDS:
@@ -55,11 +57,12 @@ def record(name, procs=PROCS, log=sys.stdout):
         _FIGHTS[fight] = {"st": prep["st"], "team": [f"p{i}" for i in range(len(f["six"]))],
                           "boss_keys": boss_keys, "flags": flags}
     setup = time.perf_counter() - t_setup
-    ctx = mp.get_context("fork")
+    parent_mb = plplan.memory()[0]
+    procs = procs or plplan.pool_size()
     t0 = time.perf_counter()
     # Each fight's lead is the same planner reading a reading makes (Planner.lead,
     # one candidate per process).
-    with ctx.Pool(procs) as pool:
+    with plplan.fork_pool(procs) as pool:
         vals = pool.map(_lead_value, [(fight, i) for fight in SEEDS for i in range(6)], chunksize=1)
     leads = {}
     for fight in SEEDS:
@@ -68,7 +71,7 @@ def record(name, procs=PROCS, log=sys.stdout):
     t_lead = time.perf_counter() - t0
     jobs = [(fight, seed) for fight, seeds in SEEDS.items() for seed in seeds]
     t0 = time.perf_counter()
-    with ctx.Pool(procs) as pool:
+    with plplan.fork_pool(procs) as pool:
         rows = pool.map(_play, jobs, chunksize=1)
     wall = time.perf_counter() - t0
     os.makedirs(OUT, exist_ok=True)
@@ -81,7 +84,9 @@ def record(name, procs=PROCS, log=sys.stdout):
                "fights_per_hour": round(len(rows) / wall * 3600, 1),
                "seconds_per_fight": {f: round(sum(r["seconds"] for r in rows if r["fight"] == f)
                                               / sum(1 for r in rows if r["fight"] == f), 1) for f in SEEDS},
-               "leads": leads}
+               "leads": leads, "parent_mb": parent_mb,
+               "worker_private_mb_max": max(r["private_mb"] for r in rows),
+               "worker_peak_rss_mb_max": max(r["peak_rss_mb"] for r in rows)}
     with open(os.path.join(OUT, name + ".summary.json"), "w") as fh:
         json.dump(summary, fh, indent=1)
     print(json.dumps(summary, indent=1), file=log)
@@ -136,7 +141,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("action", choices=("record", "compare"))
     ap.add_argument("names", nargs="+")
-    ap.add_argument("--procs", type=int, default=PROCS)
+    ap.add_argument("--procs", type=int, help="workers; by default as many as cores and memory allow")
     args = ap.parse_args(argv)
     if args.action == "record":
         record(args.names[0], args.procs)

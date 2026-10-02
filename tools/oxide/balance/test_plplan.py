@@ -56,7 +56,7 @@ def sampled(b, n, seed):
         c = plplan.clone(b)
         c.quick = {}
         c.rng = random.Random(seed * 100003 + i)
-        a = plplan._choose(c, c.b.cur(), c.p.cur())     # the AI's own code, not the replay
+        a = fightai.choose(c, c.b.cur(), c.p.cur())
         counts[(a[0], a[1].name if a[0] == "move" else a[1])] += 1
     return {k: v / n for k, v in counts.items()}
 
@@ -87,23 +87,18 @@ def exact_odds():
           f"{tried} states, worst gap {worst:.1f} standard errors; {bad[:3]}")
 
 
-def replay_is_exact():
-    """The stored roll trees replayed give the AI's own choice and draw the
-    same numbers: at every state, over many seeds, the replay and fightai's
-    own code pick alike and leave the random source in the same state."""
-    bad, n = [], 0
-    for label, b in states():
-        for seed in range(40):
-            c1, c2 = plplan.clone(b), plplan.clone(b)
-            c1.quick = c2.quick = {}
-            c1.rng, c2.rng = random.Random(seed), random.Random(seed)
-            a1 = plplan._choose(c1, c1.b.cur(), c1.p.cur())
-            a2 = plplan.choose(c2, c2.b.cur(), c2.p.cur())
-            n += 1
-            same = (a1[0], getattr(a1[1], "name", a1[1])) == (a2[0], getattr(a2[1], "name", a2[1]))
-            if not same or c1.rng.getstate() != c2.rng.getstate() or c1.p.cur().shown != c2.p.cur().shown:
-                bad.append((label, seed))
-    check("the replayed roll trees choose and draw as the AI's own code", not bad, f"{n} choices; {bad[:3]}")
+def store_fingerprints():
+    """The fingerprint cache gives back what was put under a key, misses a
+    key it never saw, and stays within its cap."""
+    s = plplan.Store(3)
+    keys = [(i, ("a", i), None) for i in range(5)]
+    for k in keys[:3]:
+        s.put(k, k[0])
+    hits = [s.get(k) for k in keys[:3]]
+    miss = s.get(keys[4])
+    s.put(keys[3], 3)
+    check("the cache returns its entries, misses unknown keys and keeps its cap",
+          hits == [0, 1, 2] and miss is None and len(s.d) <= 3, (hits, miss, len(s.d)))
 
 
 def pick_odds_rules():
@@ -192,7 +187,7 @@ def keyed_dice_share_luck():
 def main():
     print("the planner's pieces")
     pick_odds_rules()
-    replay_is_exact()
+    store_fingerprints()
     clone_is_separate()
     keyed_dice_share_luck()
     turn_odds()

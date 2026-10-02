@@ -371,81 +371,62 @@ def pick_odds(dists):
     return out
 
 
-_ENTRIES = {}
-_ENTRIES_ST = None
-ENTRY_CACHE = 400000
+class Store:
+    """A bounded cache keyed by a compact fingerprint of a large key: two
+    independent hashes of it (the key's own and its reverse order's), so the
+    large tuple itself is never kept. A fingerprint whose second hash
+    disagrees counts as a miss. It holds at most `cap` entries and empties
+    itself when full or when the fight changes (`reset`)."""
+
+    def __init__(self, cap):
+        self.cap = cap
+        self.d = {}
+
+    def get(self, key):
+        h = hash(key)
+        got = self.d.get(h)
+        if got is not None and got[0] == hash(key[::-1]):
+            return got[1]
+        return None
+
+    def put(self, key, value):
+        if len(self.d) >= self.cap:
+            self.d.clear()
+        self.d[hash(key)] = (hash(key[::-1]), value)
+        return value
+
+    def clear(self):
+        self.d.clear()
 
 
-def roll_tree(fn):
-    """fn's chance() rolls as a tree: an inner node {"p": odds in percent,
-    False: the branch when the roll fails, True: when it passes}, a leaf
-    {"r": fn's result}. Built by running fn under every script of answers,
-    as outcomes does; fn must draw nothing else."""
-    global _SCRIPT
-    root, stack, runs = {}, [()], 0
-    while stack:
-        script = stack.pop()
-        runs += 1
-        if runs > ENUM_CAP:
-            raise RuntimeError(f"more than {ENUM_CAP} roll outcomes to enumerate")
-        _SCRIPT = s = _Script(script)
-        try:
-            r = fn()
-        finally:
-            _SCRIPT = None
-        node = root
-        for i, p in enumerate(s.asked):
-            if "p" not in node:
-                node["p"] = p
-            elif node["p"] != p:
-                raise RuntimeError("a roll's odds depend on more than the earlier rolls")
-            node = node.setdefault(script[i] if i < len(script) else False, {})
-        node["r"] = r
-        for i in range(len(script), len(s.asked)):
-            if s.asked[i] > 0:
-                stack.append(script + (False,) * (i - len(script)) + (True,))
-    return root
+# The AI's exact choice odds by position: about 300 bytes an entry.
+_ODDS = Store(100000)
 
 
-def tree_odds(node, prob=1.0, out=None):
-    """{result: probability} over a roll tree."""
-    out = {} if out is None else out
-    if "r" in node:
-        out[node["r"]] = out.get(node["r"], 0.0) + prob
-        return out
-    q = min(max(node["p"] / 100.0, 0.0), 1.0)
-    if False in node and q < 1:
-        tree_odds(node[False], prob * (1 - q), out)
-    if True in node and q > 0:
-        tree_odds(node[True], prob * q, out)
-    return out
+def reset():
+    """Empty every per-fight cache: at the start of each fight and whenever
+    the fight's prepared state changes."""
+    _ODDS.clear()
+    _DUELS.clear()
 
 
-def walk(node, rng):
-    """A roll tree played with real draws, one per roll and compared as
-    fightai.chance compares them, so the draws and the result are the ones
-    the AI's own code would make."""
-    while "r" not in node:
-        node = node[rng.random() * 100 < node["p"]]
-    return node["r"]
+_ODDS_ST = None
 
 
-def _entry(b, u, t):
-    """The AI's rolls at this state, cached by what it reads
-    (perfectline.ai_key): the switch check's tree, the fixed move if any, each
-    move slot's score tree, and the exact choice odds they give. Like
+def _odds(b, u, t):
+    """The AI's exact choice odds at this state, [((kind, what), p)], cached
+    by a fingerprint of what it reads (perfectline.ai_key). Only the odds are
+    kept: the trees that give them are dropped once read. Like
     fightai.choose, it records the player's last move as seen."""
-    global _ENTRIES_ST
-    if _ENTRIES_ST is not b.st:
-        _ENTRIES.clear()
-        _ENTRIES_ST = b.st
+    global _ODDS_ST
+    if _ODDS_ST is not b.st:
+        reset()
+        _ODDS_ST = b.st
     k = pl.ai_key(b)
     fightai.record_last_move(t)
-    got = _ENTRIES.get(k)
+    got = _ODDS.get(k)
     if got is None:
-        if len(_ENTRIES) >= ENTRY_CACHE:
-            _ENTRIES.clear()
-        got = _ENTRIES[k] = _build(b, u, t)
+        got = _ODDS.put(k, _build(b, u, t))
     return got
 
 
@@ -454,30 +435,32 @@ def _build(b, u, t):
     b.rng = None             # any draw not made through chance() fails loudly
     try:
         side = fightai._side(b, u)
-        e = {"switch": roll_tree(lambda: fightai.should_switch(b, side, u, t)), "fixed": None, "slots": None}
-        sw = tree_odds(e["switch"])
         dist = collections.defaultdict(float)
-        stay = sw.pop(None, 0.0)
-        for r, p in sw.items():
-            dist[("switch", r)] += p
-        fixed = fightai.fixed_move(b, u)
-        if fixed is not None:
-            e["fixed"] = fixed[1].name
-            if stay > 0:
+        stay = 0.0
+        for r, p in outcomes(lambda: fightai.should_switch(b, side, u, t)):
+            if r is None:
+                stay += p
+            else:
+                dist[("switch", r)] += p
+        if stay > 0:
+            fixed = fightai.fixed_move(b, u)
+            if fixed is not None:
                 dist[("move", fixed[1].name)] += stay
-        else:
-            figs = [fightai.figure(b, u, t, m) for m in u.moves]
-            best = max((f for f in figs if f is not None), default=None)
-            e["slots"] = [roll_tree(lambda i=i: fightai.score_slot(b, u, t, i, figs, best, b.ai_flags))
-                          for i in range(len(u.moves))]
-            if stay > 0:
-                for i, p in enumerate(pick_odds([tree_odds(tr) for tr in e["slots"]])):
+            else:
+                figs = [fightai.figure(b, u, t, m) for m in u.moves]
+                best = max((f for f in figs if f is not None), default=None)
+                dists = []
+                for i in range(len(u.moves)):
+                    d = collections.defaultdict(float)
+                    for s, p in outcomes(lambda i=i: fightai.score_slot(b, u, t, i, figs, best, b.ai_flags)):
+                        d[s] += p
+                    dists.append(d)
+                for i, p in enumerate(pick_odds(dists)):
                     if p > 1e-12:
                         dist[("move", u.moves[i].name)] += stay * p
     finally:
         b.rng = saved
-    e["dist"] = sorted(dist.items(), key=lambda x: -x[1])
-    return e
+    return tuple(sorted(dist.items(), key=lambda x: -x[1]))
 
 
 def _action(u, kind, what):
@@ -497,37 +480,7 @@ def ai_distribution(b):
     forced = fightai.forced_choice(u)
     if forced is not None:
         return [(forced, 1.0)]
-    return [(_action(u, kind, what), p) for (kind, what), p in _entry(b, u, t)["dist"]]
-
-
-_choose = fightai.choose
-# Psywave's damage figure draws a number of its own while the AI scores, so a
-# Pokemon that knows it is left to the AI's own code.
-_OWN_DRAW = ("RANDOM_DAMAGE_1_TO_150_LEVEL",)
-
-
-def choose(b, u, t):
-    """fightai.choose by its stored roll trees: the same draws from b.rng in
-    the same order, so the same choice, without scoring every move afresh."""
-    forced = fightai.forced_choice(u)
-    if forced is not None:
-        return forced
-    if any(m.effect in _OWN_DRAW for m in u.moves):
-        return _choose(b, u, t)
-    e = _entry(b, u, t)
-    rng = b.rng
-    sw = walk(e["switch"], rng)
-    if sw is not None:
-        return "switch", sw
-    if e["fixed"] is not None:
-        return _action(u, "move", e["fixed"])
-    scores = [walk(tr, rng) for tr in e["slots"]]
-    top = max(scores)
-    picks = [i for i, sc in enumerate(scores) if sc == top]
-    return "move", u.moves[rng.choice(picks)]
-
-
-fightai.choose = choose
+    return [(_action(u, kind, what), p) for (kind, what), p in _odds(b, u, t)]
 
 
 # ---- the player's options, and the play-out's plain policy ---------------------------------------
@@ -639,24 +592,22 @@ def likeliest(c):
     return ai_distribution(c)[0][0]
 
 
-_DUELS = {}
+# Duel results by exact position: about 150 bytes an entry.
+_DUELS = Store(200000)
 _DUELS_ST = None
-DUEL_CACHE = 300000
 
 
 def duel(b, idx=None, entry=False):
-    """duel_at, remembered by the exact position: every play-out from one
-    position opens with the same duels."""
+    """duel_at, remembered by a fingerprint of the exact position: every
+    play-out from one position opens with the same duels."""
     global _DUELS_ST
     if _DUELS_ST is not b.st:
-        _DUELS.clear()
+        reset()
         _DUELS_ST = b.st
     k = (pl.state_key(b), pl._ai_mon(b.p.cur()), pl._ai_mon(b.b.cur()), b.turn == 0, idx, entry)
     got = _DUELS.get(k)
     if got is None:
-        if len(_DUELS) >= DUEL_CACHE:
-            _DUELS.clear()
-        got = _DUELS[k] = duel_at(b, idx, entry)
+        got = _DUELS.put(k, duel_at(b, idx, entry))
     return got
 
 
@@ -938,6 +889,7 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
     written to it with the options the planner weighed; with `record` (a
     list), each turn's whole outcome is appended to it, for plspeed's
     seed-for-seed comparison."""
+    reset()                  # each fight starts with empty caches, so memory stays bounded
     rng = random.Random(seed)
     b = pl.make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck=luck)
@@ -990,6 +942,42 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
 
 # ---- reading a fight -------------------------------------------------------------------------------
 
+# Memory for a pool of workers (in MB): a budget under tools/oxide/capped's
+# 22 GB stop, and each worker's own memory beyond what it shares with the
+# parent, as plspeed measures it (WORKER_MB, refreshed from its readings).
+MEM_BUDGET_MB = 18000
+WORKER_MB = 600
+
+
+def memory():
+    """(resident, private) MB of this process now: private is what it holds
+    that no other process shares, which is what each forked worker adds."""
+    out = {}
+    with open("/proc/self/smaps_rollup") as fh:
+        for line in fh:
+            parts = line.split()
+            if parts and parts[0] in ("Rss:", "Private_Clean:", "Private_Dirty:"):
+                out[parts[0]] = int(parts[1])
+    return out.get("Rss:", 0) // 1024, (out.get("Private_Clean:", 0) + out.get("Private_Dirty:", 0)) // 1024
+
+
+def pool_size(worker_mb=WORKER_MB, budget_mb=MEM_BUDGET_MB):
+    """Workers to run: no more than the cores allow (two left free), nor than
+    the memory budget holds after this process's own share."""
+    by_cores = max(1, os.cpu_count() - 2)
+    by_memory = max(1, (budget_mb - memory()[0]) // worker_mb)
+    return min(by_cores, by_memory)
+
+
+def fork_pool(procs):
+    """A pool of forked workers. The prepared fight is frozen first, so the
+    collector never touches its objects in a worker and they stay shared."""
+    import gc
+    gc.collect()
+    gc.freeze()
+    return mp.get_context("fork").Pool(procs)
+
+
 _JOB = {}
 
 
@@ -997,6 +985,7 @@ def _run(seed):
     j = _JOB
     r = play(j["st"], j["team"], j["boss_keys"], j["flags"], j["lead"], seed, j["cfg"], j["luck"])
     r.pop("notes")
+    r["private_mb"] = memory()[1]
     return r
 
 
@@ -1022,7 +1011,8 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     _JOB.update(st=st, team=team, boss_keys=boss_keys, flags=flags, lead=lead, cfg=cfg, luck=luck)
     seeds = [f["seed0"] + i for i in range(runs)]
     t0 = time.perf_counter()
-    with mp.get_context("fork").Pool(procs or max(1, os.cpu_count() - 2)) as pool:
+    procs = procs or pool_size()
+    with fork_pool(procs) as pool:
         rows = pool.map(_run, seeds, chunksize=1)
     wall = time.perf_counter() - t0
     clean = sum(r["clean"] for r in rows)
@@ -1037,7 +1027,10 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
            "cpu_seconds_per_run": round(cpu / runs, 2),
            "decisions_per_run": round(sum(r["decisions"] for r in rows) / runs, 1),
            "turns_per_run": round(sum(r["turns"] for r in rows) / runs, 1),
-           "lead_seconds": round(lead_s, 1), "wall_seconds": round(wall, 1)}
+           "lead_seconds": round(lead_s, 1), "wall_seconds": round(wall, 1), "procs": procs,
+           "fights_per_hour": round(runs / wall * 3600, 1),
+           "worker_private_mb_max": max(r["private_mb"] for r in rows),
+           "parent_mb": memory()[0]}
     print(f"{fight} ({luck} odds): clean {clean}/{runs}, won {won}/{runs}, deaths {deaths:.3f}; "
           f"lead {out['lead']}; {out['cpu_seconds_per_run']} s of one core per run, "
           f"{out['decisions_per_run']} decisions, {wall:.0f} s wall", file=log)
