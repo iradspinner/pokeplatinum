@@ -115,6 +115,7 @@ def prepare(f, given_side=None):
         for v, t in enumerate(trainers):
             starter = next((sp for sp, tag in STARTER_VARIANT.items() if t["constant"].endswith("_" + tag)), None)
             variants.append((st["bosses"][v], t["ai"], starter))
+        st["first_battle"] = any(t["constant"] in fs.FIRST_BATTLE for t in trainers)
         return {"st": st, "variants": variants, "split": split, "label": fight["label"], "key": key}
     t = data.oxide_trainers()[key]
     split = SPLIT_OVERRIDE.get(key) or (b6.placements()[key]["split"] if key in b6.placements()

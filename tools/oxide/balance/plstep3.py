@@ -131,7 +131,11 @@ GARDENIA = {
 # Dawn 1 is on Route 202, read without the Route 202 catch (the fight may come
 # before it); Barry 2 is at the start of Route 203, after the Old Rod spots of
 # Twinleaf, Route 218 and Route 219 but before Route 203's own.
-BARRY_1 = {"Piplup": ("SPECIES_PIPLUP", "Gentle", "Torrent", ["Pound", "Growl"], 15, 5)}
+# Barry 1 is also read for the other two starters (variant 1 for Turtwig, 2
+# for Chimchar), with a neutral nature since the run never had them.
+BARRY_1 = {"Piplup": ("SPECIES_PIPLUP", "Gentle", "Torrent", ["Pound", "Growl"], 15, 5),
+           "Turtwig": ("SPECIES_TURTWIG", "Hardy", "Overgrow", ["Tackle", "Withdraw"], 15, 5),
+           "Chimchar": ("SPECIES_CHIMCHAR", "Hardy", "Blaze", ["Scratch", "Leer"], 15, 5)}
 LUCAS_DAWN_1 = {n: ROARK[n] for n in ("Prinplup", "Wooloo", "Vulpix", "Bibarel", "Corvisquire")}
 BARRY_2 = {n: ROARK[n] for n in ("Prinplup", "Wooloo", "Vulpix", "Bibarel", "Corvisquire", "Dottler", "Starly",
                                   "Wartortle", "Krabby", "Finneon")}

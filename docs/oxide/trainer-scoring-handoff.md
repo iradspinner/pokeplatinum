@@ -819,20 +819,34 @@ Twinleaf, Route 218 and Route 219 but before Route 203's own. No held items.
 
 | Fight | Box | Real odds (75) | Very unlucky (25) |
 |---|---|---|---|
-| Barry 1 | Piplup at 5 (Pound, Growl) against Turtwig at 5 | 0 clean, 0 won | 0 clean, 0 won |
+| Barry 1 | Piplup at 5 (the run's, Gentle; Pound, Growl) against Turtwig | 0 clean, 0 won | 0 clean, 0 won |
+| Barry 1 | Turtwig at 5 (Hardy; Tackle, Withdraw) against Chimchar | 75 clean | 25 clean |
+| Barry 1 | Chimchar at 5 (Hardy; Scratch, Leer) against Piplup | 73 clean, 73 won | 25 clean |
 | Lucas and Dawn 1 | Prinplup, Wooloo, Vulpix, Bibarel, Corvisquire at 16, each of the six variants | 75 clean each | 25 clean each |
 | Barry 2 | five random sixes from the ten caught by then, at 16 | 75 clean each | 25 clean each |
 
-Barry 1 cannot be won. Turtwig Withdraws, so Piplup's Pound does 1 to 3 a
+Barry 1 is the game's first battle, and the engine gives it no critical hits
+on either side: the Route 201 script starts it with StartFirstBattle, which
+sets BATTLE_STATUS_FIRST_BATTLE, and BtlCmd_CalcCrit then sets the critical
+multiplier to 1 (the Overseer, from the decomp, 2026-10-02). The simulator
+now knows this (`fightsim.FIRST_BATTLE`, checked in `test_plfixes`), and the
+readings above have it. The flag's other uses only change the touch screen's
+background and route the move choice through the trainer AI, as in any
+trainer battle. Losing it costs nothing in the game either: the script's lost
+branch returns to the field with a different message, with no blackout.
+Whether a loss there ends a nuzlocke run is Ian's rule to make.
+
+With a Piplup it cannot be won. Turtwig Withdraws, so Pound does 1 to 3 a
 hit, and its Tackle, at the later games' 40 power and full accuracy (Oxide's
 move numbers; Generation 4 had 35 and 95%), takes 5 of Piplup's 21 HP; the
 look-ahead values every option, Growl included, as a certain loss from the
-first turn. Whether the game lets this first battle be lost without ending
-the run is not checked here. The other two are over in a turn or two, as the
-cap makes them; that is a true reading of Oxide as it stands, and flags them
-for the trainer pass. Readings: `planner-barry_1*`, `planner-lucas_dawn_1-v*`
-and `planner-barry_2-six*` in the results folder (`plplan --six` and
-`--variant` choose a six from the box and a rival's variant).
+first turn. A neutral Piplup (Hardy) wins 1 of 75, so the run's Gentle
+nature is not the cause. The other two starters win almost always. Lucas and
+Dawn 1 and Barry 2 are over in a turn or two, as the cap makes them; that is
+a true reading of Oxide as it stands, and flags them for the trainer pass.
+Readings: `planner-barry_1-*`, `planner-lucas_dawn_1-v*` and
+`planner-barry_2-six*` in the results folder (`plplan --six` and `--variant`
+choose a six from the box and a rival's variant).
 
 ## Stage 2: the learned position value (from 2026-10-02)
 

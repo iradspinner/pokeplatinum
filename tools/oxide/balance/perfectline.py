@@ -441,7 +441,10 @@ def attack(b, att, mv, dfn, first):
         dmg = struggle_damage(att, dfn, roll)
     if dmg is None:
         crit = False
-        if dfn.ability not in ("Battle Armor", "Shell Armor"):
+        # The first battle (Barry on Route 201) has no critical hits on either
+        # side: BtlCmd_CalcCrit sets the multiplier to 1 under
+        # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
+        if dfn.ability not in ("Battle Armor", "Shell Armor") and not b.st.get("first_battle"):
             stage = att.crit_stage + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                       mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
             if att.item in ("Scope Lens", "Razor Claw"):
