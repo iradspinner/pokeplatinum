@@ -138,11 +138,18 @@ UNWRITTEN = {"ADD_THIRD_TYPE_GHOST", "ADD_THIRD_TYPE_GRASS", "APPLY_TERRAINS",
 
 # ---- what the AI knows of its target
 
+_REGULAR = {}
+
+
 def _regular_abilities(mon):
     """SPECIES_DATA_ABILITY_1 and _2 of the Pokemon's species; the
-    calculator's blob is made from the same species data."""
-    ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
-    return ab.get("0"), ab.get("1")
+    calculator's blob is made from the same species data. Kept per species,
+    since the blob does not change."""
+    got = _REGULAR.get(mon.species)
+    if got is None:
+        ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
+        got = _REGULAR[mon.species] = (ab.get("0"), ab.get("1"))
+    return got
 
 
 def ability_of(b, u, mon):
@@ -404,18 +411,22 @@ def score_moves(b, u, t, flags):
     floored at 0, and past 127 the signed byte wraps and is floored to 0."""
     figs = [figure(b, u, t, m) for m in u.moves]
     best = max((f for f in figs if f is not None), default=None)
-    out = []
-    for i, mv in enumerate(u.moves):
-        if u.pp.get(mv.name, 1) <= 0:
-            out.append(0)
-            continue
-        s = 0 if invalid(b, u, mv) else 100
-        for bit in range(11):
-            if flags >> bit & 1:
-                s += flag_score(bit, b, u, t, mv, figs[i], best)
-                s = 0 if s < 0 or s > 127 else s
-        out.append(s)
-    return out
+    return [score_slot(b, u, t, i, figs, best, flags) for i in range(len(u.moves))]
+
+
+def score_slot(b, u, t, i, figs, best, flags):
+    """One slot's score in score_moves, given every slot's damage figure and
+    the best of them. A slot's rolls are its own, so the planner (plplan)
+    can enumerate them slot by slot."""
+    mv = u.moves[i]
+    if u.pp.get(mv.name, 1) <= 0:
+        return 0
+    s = 0 if invalid(b, u, mv) else 100
+    for bit in range(11):
+        if flags >> bit & 1:
+            s += flag_score(bit, b, u, t, mv, figs[i], best)
+            s = 0 if s < 0 or s > 127 else s
+    return s
 
 
 def flag_score(bit, b, u, t, mv, f, best):
@@ -2991,25 +3002,43 @@ def choose(b, u, t):
     rules; the command input gives Struggle when every move is ruled out and
     the Encore move under Encore; then the scores, the highest winning and
     ties at random. A Choice lock rules the other moves out (invalid)."""
+    forced = forced_choice(u)
+    if forced is not None:
+        return forced
+    record_last_move(t)
+    sw = should_switch(b, _side(b, u), u, t)
+    if sw is not None:
+        return "switch", sw
+    fixed = fixed_move(b, u)
+    if fixed is not None:
+        return fixed
+    scores = score_moves(b, u, t, b.ai_flags)
+    top = max(scores)
+    picks = [i for i, sc in enumerate(scores) if sc == top]
+    return "move", u.moves[b.rng.choice(picks)]
+
+
+def forced_choice(u):
+    """The action a locked, charging or recharging Pokemon takes without a
+    choice (Battler_CanPickCommand), else None."""
     if u.lock:
         return "move", u.lock[0]
     if u.charging is not None:
         return "move", u.charging
     if u.recharge:
         return "move", u.moves[0]
-    record_last_move(t)
-    sw = should_switch(b, _side(b, u), u, t)
-    if sw is not None:
-        return "switch", sw
+    return None
+
+
+def fixed_move(b, u):
+    """Struggle when every move is ruled out, the Encore move under Encore;
+    None when the scores decide."""
     if all(invalid(b, u, m) for m in u.moves):
         return "move", fs.move("Struggle")
     enc = getattr(u, "encore", None)
     if enc is not None:
         return "move", next(m for m in u.moves if m.name == enc)
-    scores = score_moves(b, u, t, b.ai_flags)
-    top = max(scores)
-    picks = [i for i, sc in enumerate(scores) if sc == top]
-    return "move", u.moves[b.rng.choice(picks)]
+    return None
 
 
 def skip_odds(n):
@@ -3437,9 +3466,24 @@ CHART_ORDER = {
 }
 
 
+_FLAGS = {}
+_CHARTS = {}
+
+
 def type_flags(b, mtype, types, scrappy=False):
     """(no effect, super effective, not very effective) as the engine's
-    flags read for a move of this type into these types."""
+    flags read for a move of this type into these types; kept by the chart,
+    the move's type, the target's types and Scrappy, all it depends on."""
+    chart = b.st["chart"]
+    _CHARTS[id(chart)] = chart          # held, so its id is never reused
+    k = (id(chart), mtype, tuple(types), scrappy)
+    got = _FLAGS.get(k)
+    if got is None:
+        got = _FLAGS[k] = _type_flags(b, mtype, types, scrappy)
+    return got
+
+
+def _type_flags(b, mtype, types, scrappy=False):
     def mul(ty):
         # Scrappy stops the chart before Normal and Fighting meet Ghost.
         if scrappy and ty == "Ghost" and mtype in ("Normal", "Fighting"):

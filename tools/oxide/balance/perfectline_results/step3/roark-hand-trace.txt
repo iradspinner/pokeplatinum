@@ -1,0 +1,37 @@
+roark (hand), seed 30: lead Onix; answers Nosepass->Onix, Geodude->Nidorino, Lileep->Steenee, Cranidos->Onix; switch losing; setup at 5+ safe turns at full HP; bait locks; screens; hazards; Defense setup; stat drops; sleep opener
+start: you Onix 46/46 | foe Nosepass 38/38
+T1 [Sand] Onix: Harden (Defense setup) | Nosepass: Block -> you Onix 46/46 {'def': 1} | foe Nosepass 38/38
+T2 [Sand] Onix: Harden (Defense setup) | Nosepass: Stealth Rock -> you Onix 46/46 {'def': 2} | foe Nosepass 38/38
+T3 [Sand] Onix: Harden (Defense setup) | Nosepass: Rock Throw -> you Onix 45/46 {'def': 3} | foe Nosepass 38/38
+T4 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 44/46 {'def': 3} | foe Nosepass 29/38
+T5 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 43/46 {'def': 3} | foe Nosepass 22/38
+T6 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 42/46 {'def': 3} | foe Nosepass 15/38
+T7 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 41/46 {'def': 3} | foe Nosepass 8/38 {'spd': 1}
+T8 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 41/46 {'def': 3} | foe Lileep 49/49
+T9 [Sand] Onix: switch to Steenee (this foe's answer comes in) | Lileep: Mega Drain -> you Steenee 32/45 | foe Lileep 49/49
+T10 [Sand] Steenee: Play Nice (a stat drop on the foe) | Lileep: Rock Tomb -> you Steenee 20/45 {'spe': -1} | foe Lileep 49/49 {'atk': -1}
+T11 [Sand] Steenee: Razor Leaf (the strongest attack) | Lileep: Ingrain -> you Steenee 18/45 {'spe': -1} | foe Lileep 42/49 {'atk': -1}
+T12 [Sand] Steenee: Razor Leaf (the strongest attack) | Lileep: Rock Tomb -> you Steenee 6/45 {'spe': -2} | foe Lileep 35/49 {'atk': -1}
+T13 [Sand] Steenee: Razor Leaf (the strongest attack) | Lileep: Mega Drain -> you Prinplup 42/48 | foe Lileep 30/49 {'atk': -1}
+T14 [Sand] Prinplup: Growl (a stat drop on the foe) | Lileep: Rock Tomb -> you Prinplup 33/48 {'spe': -1} | foe Lileep 33/49 {'atk': -2}
+T15 [Sand] Prinplup: Metal Claw (the strongest attack) | Lileep: Mega Drain -> you Prinplup 16/48 {'spe': -1} | foe Lileep 45/49 {'atk': -2}
+T16 [Sand] Prinplup: Metal Claw (the strongest attack) | Lileep: Mega Drain -> you Nidorino 42/47 | foe Lileep 49/49 {'atk': -2}
+T17 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Rock Tomb -> you Nidorino 34/47 {'spe': -1} | foe Lileep 38/49 {'atk': -2}
+T18 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Constrict -> you Nidorino 31/47 {'spe': -1} | foe Lileep 27/49 {'atk': -2}
+T19 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Constrict -> you Nidorino 28/47 {'spe': -1} | foe Lileep 16/49 {'atk': -2}
+T20 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Constrict -> you Nidorino 25/47 {'spe': -1} | foe Lileep 5/49 {'atk': -2}
+T21 [Sand] Nidorino: Double Kick (a knockout it cannot answer first) | Lileep: Constrict -> you Nidorino 22/47 {'spe': -1} | foe Geodude 41/41
+T22 [Sand] Nidorino: switch to Barboach (leaving a losing exchange) | Geodude: Thunder Punch -> you Barboach 42/44 | foe Geodude 41/41
+T23 [Sand] Barboach: Mud Bomb (the strongest attack) | Geodude: Rock Throw -> you Barboach 32/44 | foe Geodude 17/41
+T24 [Sand] Barboach: Mud Bomb (a knockout it cannot answer first) | Geodude: Rock Throw -> you Barboach 32/44 | foe Cranidos 51/51
+T25 [Sand] Barboach: switch to Onix (this foe's answer comes in) | Cranidos: Leer -> you Onix 39/46 {'def': -1} | foe Cranidos 51/51
+T26 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 30/46 {'def': -1} | foe Cranidos 36/51
+T27 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 17/46 {'def': -1} | foe Cranidos 33/51
+T28 [Sand] Onix: switch to Geodude (leaving a losing exchange) | Cranidos: Pursuit -> you Geodude 39/41 | foe Cranidos 33/51
+T29 [Sand] Geodude: Defense Curl (Defense setup) | Cranidos: Pursuit -> you Geodude 30/41 {'def': 1} | foe Cranidos 33/51
+T30 [Sand] Geodude: Defense Curl (Defense setup) | Cranidos: Pursuit -> you Geodude 25/41 {'def': 2} | foe Cranidos 33/51
+T31 [Sand] Geodude: Defense Curl (Defense setup) | Cranidos: Pursuit -> you Geodude 21/41 {'def': 3} | foe Cranidos 33/51
+T32 [Sand] Geodude: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Geodude 18/41 {'def': 3} | foe Cranidos 18/51
+T33 [Sand] Geodude: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Geodude 15/41 {'def': 3} | foe Cranidos 2/51
+T34 [Sand] Geodude: Rock Throw (a knockout it cannot answer first) | Cranidos: Pursuit -> you Geodude 12/41 {'def': 3} | foe Cranidos 0/51
+won; fainted: Onix, Prinplup, Steenee

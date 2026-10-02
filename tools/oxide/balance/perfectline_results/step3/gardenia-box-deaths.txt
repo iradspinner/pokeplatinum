@@ -1,0 +1,23 @@
+gardenia (box): faints over 200 runs, as (fainted, foe out): total, first death
+  Charmeleon   to Lumineon      170   170
+  Tsareena     to Roserade      121     2
+  Golbat       to Shiftry       118    19
+  Graveler     to Roserade      110     0
+  Wartortle    to Roserade      104     0
+  Corvisquire  to Roserade       89     0
+  Tsareena     to Lumineon       59     0
+  Corvisquire  to Lumineon       27     0
+  Golbat       to Roserade       25     5
+  Corvisquire  to Shiftry        25     0
+  Charmeleon   to Roserade       23     0
+  Wartortle    to Lumineon       22     1
+  Graveler     to Breloom        21     0
+  Golbat       to Lumineon       19     0
+  Wartortle    to Breloom        17     0
+  Corvisquire  to Breloom        11     0
+  Golbat       to Breloom        10     0
+  Graveler     to Lumineon        9     0
+  Graveler     to Shiftry         6     0
+  Wartortle    to Shiftry         6     0
+  Tsareena     to Breloom         2     0
+  Charmeleon   to Breloom         1     0

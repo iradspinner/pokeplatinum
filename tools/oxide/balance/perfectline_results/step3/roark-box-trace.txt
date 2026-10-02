@@ -1,0 +1,27 @@
+roark (box), seed 30: lead Onix; answers Nosepass->Onix, Geodude->Onix, Lileep->Nidorino, Cranidos->Onix; switch losing; setup at 3+ safe turns at full HP; free pivots; screens; hazards; Defense setup; stat drops; sleep opener
+start: you Onix 46/46 | foe Nosepass 38/38
+T1 [Sand] Onix: Harden (Defense setup) | Nosepass: Block -> you Onix 46/46 {'def': 1} | foe Nosepass 38/38
+T2 [Sand] Onix: Harden (Defense setup) | Nosepass: Stealth Rock -> you Onix 46/46 {'def': 2} | foe Nosepass 38/38
+T3 [Sand] Onix: Harden (Defense setup) | Nosepass: Rock Throw -> you Onix 45/46 {'def': 3} | foe Nosepass 38/38
+T4 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 44/46 {'def': 3} | foe Nosepass 29/38
+T5 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 43/46 {'def': 3} | foe Nosepass 22/38
+T6 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 42/46 {'def': 3} | foe Nosepass 15/38
+T7 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 41/46 {'def': 3} | foe Nosepass 8/38 {'spd': 1}
+T8 [Sand] Onix: Rock Throw (the strongest attack) | Nosepass: Rock Throw -> you Onix 41/46 {'def': 3} | foe Lileep 49/49
+T9 [Sand] Onix: switch to Nidorino (this foe's answer comes in) | Lileep: Mega Drain -> you Nidorino 35/47 | foe Lileep 49/49
+T10 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Rock Tomb -> you Nidorino 21/47 {'spe': -1} | foe Lileep 35/49
+T11 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Ingrain -> you Nidorino 19/47 {'spe': -1} | foe Lileep 24/49
+T12 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Constrict -> you Nidorino 15/47 {'spe': -2} | foe Lileep 13/49
+T13 [Sand] Nidorino: Double Kick (the strongest attack) | Lileep: Rock Tomb -> you Nidorino 1/47 {'spe': -3} | foe Geodude 41/41
+T14 [Sand] Nidorino: switch to Onix (this foe's answer comes in) | Geodude: Rollout -> you Onix 37/46 | foe Geodude 41/41
+T15 [Sand] Onix: Rock Throw (the strongest attack) | Geodude: Rollout -> you Onix 33/46 | foe Geodude 35/41
+T16 [Sand] Onix: switch to Barboach (leaving a losing exchange) | Geodude: Rollout -> you Barboach 18/44 | foe Geodude 35/41
+T17 [Sand] Barboach: Mud Bomb (the strongest attack) | Geodude: Rollout -> you Finneon 39/44 | foe Geodude 11/41
+T18 [Sand] Finneon: Water Gun (a knockout it cannot answer first) | Geodude: Thunder Punch -> you Finneon 37/44 | foe Cranidos 51/51
+T19 [Sand] Finneon: switch to Onix (this foe's answer comes in) | Cranidos: Pursuit -> you Onix 31/46 | foe Cranidos 51/51
+T20 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 25/46 | foe Cranidos 36/51
+T21 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 19/46 | foe Cranidos 33/51
+T22 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 12/46 | foe Cranidos 18/51
+T23 [Sand] Onix: Rock Throw (the strongest attack) | Cranidos: Pursuit -> you Onix 6/46 | foe Cranidos 3/51
+T24 [Sand] Onix: Rock Throw (a knockout it cannot answer first) | Cranidos: Headbutt -> you Onix 6/46 | foe Cranidos 0/51
+won; fainted: Barboach

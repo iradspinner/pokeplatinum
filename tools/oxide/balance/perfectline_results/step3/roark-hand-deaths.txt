@@ -1,0 +1,10 @@
+roark (hand): faints over 200 runs, as (fainted, foe out): total, first death
+  Steenee      to Lileep        136   136
+  Prinplup     to Lileep         39     0
+  Onix         to Cranidos       39     6
+  Barboach     to Cranidos       11     2
+  Nidorino     to Geodude         2     0
+  Nidorino     to Lileep          1     0
+  Geodude      to Lileep          1     0
+  Onix         to Lileep          1     0
+  Barboach     to Lileep          1     0

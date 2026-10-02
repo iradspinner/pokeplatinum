@@ -1,0 +1,17 @@
+gardenia (hand), seed 32: lead Popplio; answers Cherrim->Tsareena, Lumineon->Vikavolt, Shiftry->Golbat, Breloom->Golbat; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Golbat for Breloom; screens; hazards; sleep opener
+start: you Popplio 67/67 | foe Cherrim 77/77
+T1 [Sun] Popplio: switch to Tsareena (this foe's answer comes in) | Cherrim: Sunny Day -> you Tsareena 77/77 | foe Cherrim 77/77
+T2 [Sun] Tsareena: Stomp (the strongest attack) | Cherrim: Weather Ball -> you Tsareena 7/77 | foe Cherrim 54/77
+T3 [Sun] Tsareena: switch to Charmeleon (leaving a losing exchange) | Cherrim: Weather Ball -> you Charmeleon 44/70 | foe Cherrim 54/77
+T4 [Sun] Charmeleon: Fire Fang (a knockout it cannot answer first) | Cherrim: Leech Seed -> you Charmeleon 44/70 | foe Lumineon 77/77
+T5 [Sun] Charmeleon: switch to Vikavolt (this foe's answer comes in) | Lumineon: Aqua Tail -> you Vikavolt 64/79 | foe Lumineon 77/77
+T6 [Sun] Vikavolt: Spark (the strongest attack) | Lumineon: Swagger -> you Vikavolt 49/79 {'atk': 2} | foe Lumineon 77/77
+T7 [Sun] Vikavolt: Spark (the strongest attack) | Lumineon: Natural Gift -> you Tsareena 7/77 | foe Lumineon 77/77
+T8 [clear] Tsareena: Magical Leaf (the strongest attack) | Lumineon: Silver Wind -> you Golbat 78/78 | foe Lumineon 77/77
+T9 [clear] Golbat: Wing Attack (the strongest attack) | Lumineon: Swagger -> you Golbat 78/78 {'atk': 2} | foe Lumineon 56/77
+T10 [clear] Golbat: Wing Attack (the strongest attack) | Lumineon: Aqua Tail -> you Golbat 33/78 {'atk': 2} | foe Lumineon 12/77
+T11 [clear] Golbat: Wing Attack (a knockout it cannot answer first) | Lumineon: Aqua Tail -> you Golbat 33/78 {'atk': 2} | foe Shiftry 87/87
+T12 [clear] Golbat: Wing Attack (a knockout it cannot answer first) | Shiftry: Rock Tomb -> you Golbat 33/78 {'atk': 2} | foe Breloom 72/72
+T13 [clear] Golbat: Wing Attack (a knockout it cannot answer first) | Breloom: Rock Tomb -> you Golbat 33/78 {'atk': 2} | foe Roserade 74/74
+T14 [clear] Golbat: Wing Attack (the strongest attack) | Roserade: Sludge Bomb -> you Golbat 5/78 {'atk': 2} | foe Roserade 0/74
+won; fainted: Vikavolt, Tsareena

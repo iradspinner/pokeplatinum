@@ -1,0 +1,452 @@
+{
+ "fight": "gardenia",
+ "mode": "box",
+ "bar": [
+  29,
+  116,
+  3.325
+ ],
+ "names": [
+  "Prinplup",
+  "Dubwool",
+  "Vulpix",
+  "Bibarel",
+  "Corvisquire",
+  "Vullaby",
+  "Starly",
+  "Barboach",
+  "Wartortle",
+  "Krabby",
+  "Popplio",
+  "Nidorino",
+  "Onix",
+  "Charmeleon",
+  "Tsareena",
+  "Graveler",
+  "Skiploom",
+  "Mareep",
+  "Pawmo",
+  "Vikavolt",
+  "Breloom",
+  "Snover",
+  "Golbat"
+ ],
+ "items": null,
+ "rows": [
+  {
+   "team": [
+    "Charmeleon",
+    "Tsareena",
+    "Graveler",
+    "Golbat",
+    "Corvisquire",
+    "Wartortle"
+   ],
+   "line": "lead Golbat; answers Cherrim->Charmeleon, Lumineon->Charmeleon, Shiftry->Golbat, Breloom->Golbat; switch hp below 0.5; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Charmeleon for Lumineon; screens; hazards; Defense setup; sleep opener",
+   "clean": 3,
+   "won": 58,
+   "deaths": 4.975,
+   "search_rate": 0.007,
+   "candidates": 300,
+   "seed": 20261030,
+   "keys": [
+    "p13",
+    "p14",
+    "p15",
+    "p22",
+    "p4",
+    "p8"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 0,
+     "b0.1": 0,
+     "b0.2": 3,
+     "b0.3": 3,
+     "b0.4": null
+    },
+    "switch_rule": "hp",
+    "hp_floor": 0.5403468431812665,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 1,
+    "reserved": {
+     "0": "b0.1"
+    },
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": false,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Prinplup",
+    "Dubwool",
+    "Popplio",
+    "Vulpix",
+    "Golbat",
+    "Starly"
+   ],
+   "line": "lead Vulpix; answers Cherrim->Vulpix, Lumineon->Dubwool, Shiftry->Golbat, Roserade->Dubwool; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Dubwool for Roserade; screens; stat drops; sleep opener",
+   "clean": 0,
+   "won": 78,
+   "deaths": 4.26,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261031,
+   "keys": [
+    "p0",
+    "p1",
+    "p10",
+    "p2",
+    "p22",
+    "p6"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 3,
+     "b0.1": 1,
+     "b0.2": 4,
+     "b0.3": null,
+     "b0.4": 1
+    },
+    "switch_rule": "never",
+    "hp_floor": 0.38861419630342786,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": true,
+    "free_pivot": false,
+    "stall": 1,
+    "reserved": {
+     "1": "b0.4"
+    },
+    "screens": true,
+    "hazards": false,
+    "pairs": {},
+    "def_setup": false,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Onix",
+    "Charmeleon",
+    "Skiploom",
+    "Breloom",
+    "Corvisquire",
+    "Barboach"
+   ],
+   "line": "lead Barboach; answers Cherrim->Charmeleon, Breloom->Corvisquire; switch losing; setup at 3+ safe turns at full HP; screens; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 2,
+   "deaths": 5.96,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261032,
+   "keys": [
+    "p12",
+    "p13",
+    "p16",
+    "p20",
+    "p4",
+    "p7"
+   ],
+   "policy": {
+    "lead": 5,
+    "answers": {
+     "b0.0": 1,
+     "b0.1": null,
+     "b0.2": null,
+     "b0.3": 4,
+     "b0.4": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": false,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Onix",
+    "Charmeleon",
+    "Mareep",
+    "Breloom",
+    "Snover",
+    "Starly"
+   ],
+   "line": "lead Charmeleon; answers Cherrim->Charmeleon; switch losing; setup at 3+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 1,
+   "deaths": 5.98,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261033,
+   "keys": [
+    "p12",
+    "p13",
+    "p17",
+    "p20",
+    "p21",
+    "p6"
+   ],
+   "policy": {
+    "lead": 1,
+    "answers": {
+     "b0.0": 1,
+     "b0.1": null,
+     "b0.2": null,
+     "b0.3": null,
+     "b0.4": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Charmeleon",
+    "Tsareena",
+    "Graveler",
+    "Skiploom",
+    "Mareep",
+    "Golbat"
+   ],
+   "line": "lead Charmeleon; answers Cherrim->Mareep, Shiftry->Charmeleon, Breloom->Golbat, Roserade->Tsareena; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; save Tsareena for Roserade; screens; hazards; Defense setup",
+   "clean": 0,
+   "won": 23,
+   "deaths": 5.625,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261034,
+   "keys": [
+    "p13",
+    "p14",
+    "p15",
+    "p16",
+    "p17",
+    "p22"
+   ],
+   "policy": {
+    "lead": 0,
+    "answers": {
+     "b0.0": 4,
+     "b0.1": null,
+     "b0.2": 0,
+     "b0.3": 5,
+     "b0.4": 1
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.41365463640186184,
+    "setup_turns": 5,
+    "setup_full": true,
+    "use_status": false,
+    "seed": 0,
+    "bait_lock": true,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {
+     "1": "b0.4"
+    },
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": false,
+    "sleep_open": false
+   }
+  },
+  {
+   "team": [
+    "Prinplup",
+    "Tsareena",
+    "Vulpix",
+    "Golbat",
+    "Bibarel",
+    "Wartortle"
+   ],
+   "line": "lead Golbat; answers Cherrim->Golbat, Shiftry->Vulpix, Breloom->Golbat; switch losing; setup at 3+ safe turns at full HP; bait locks; screens; hazards; Defense setup; sleep opener",
+   "clean": 3,
+   "won": 54,
+   "deaths": 4.81,
+   "search_rate": 0.033,
+   "candidates": 300,
+   "seed": 20261035,
+   "keys": [
+    "p0",
+    "p14",
+    "p2",
+    "p22",
+    "p3",
+    "p8"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 3,
+     "b0.1": null,
+     "b0.2": 2,
+     "b0.3": 3,
+     "b0.4": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": true,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": false,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Tsareena",
+    "Graveler",
+    "Vulpix",
+    "Golbat",
+    "Corvisquire",
+    "Vullaby"
+   ],
+   "line": "lead Golbat; answers Cherrim->Golbat, Shiftry->Golbat; switch losing; setup at 4+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 13,
+   "deaths": 5.825,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261036,
+   "keys": [
+    "p14",
+    "p15",
+    "p2",
+    "p22",
+    "p4",
+    "p5"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 3,
+     "b0.1": null,
+     "b0.2": 3,
+     "b0.3": null,
+     "b0.4": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 4,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Prinplup",
+    "Dubwool",
+    "Graveler",
+    "Pawmo",
+    "Corvisquire",
+    "Starly"
+   ],
+   "line": "lead Corvisquire; answers Breloom->Corvisquire; switch losing; setup at 3+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 0,
+   "deaths": 6.0,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261037,
+   "keys": [
+    "p0",
+    "p1",
+    "p15",
+    "p18",
+    "p4",
+    "p6"
+   ],
+   "policy": {
+    "lead": 4,
+    "answers": {
+     "b0.0": null,
+     "b0.1": null,
+     "b0.2": null,
+     "b0.3": 4,
+     "b0.4": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  }
+ ],
+ "best": 0
+}
