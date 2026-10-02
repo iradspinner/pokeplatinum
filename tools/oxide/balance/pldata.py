@@ -214,6 +214,62 @@ def selfplay_job(args):
     return meta
 
 
+def distill_job(args):
+    """One fight and six played by the play-out planner itself (no network),
+    keeping every position its play-outs valued (plplan.Planner.keep): the
+    leaves of each turn's look-ahead, each labelled by the mean of its
+    play-outs and the number of them. A leaf with a hundred play-outs is a
+    label about ten times as precise as one with one, so plnet weights each
+    label by its count. These are exactly the values the network stands in
+    for, at the positions where the planner needs them."""
+    fight, six, positions, seed, out_dir = args
+    from . import plstep3
+    t0 = time.perf_counter()
+    f = plstep3.FIGHTS[fight]
+    items = f["items"] if list(six) == list(f["six"]) else None
+    prep = plstep3.prepare(f, list(six), items)
+    st = prep["st"]
+    boss_keys, flags, _s = prep["variants"][0]
+    team = [f"p{i}" for i in range(len(six))]
+    rng = random.Random(seed)
+    xs, ids, vals, counts, sds, future, lost = [], [], [], [], [], [], []
+    games = 0
+    while len(vals) < positions:
+        b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
+        run = random.Random(rng.getrandbits(32))
+        b.dice, b.rng = pl.RunDice(run, luck="real"), run
+        plplan.reset()
+        planner = plplan.Planner(rng.getrandbits(32))
+        planner.record = []
+        plplan._REAL.update(b=b, planner=planner)
+        try:
+            while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
+                pl.play_turn(b, planner.decide(b), run)
+        finally:
+            plplan._REAL.update(b=None, planner=None)
+        games += 1
+        for x, i, v, e, before in planner.record:
+            xs.append(x.astype(np.float16))
+            ids.append(i)
+            vals.append(sum(v) / len(v))
+            counts.append(len(v))
+            sds.append(float(np.std(v)))
+            future.append(sum(k for k, _l in e) / len(e) - before)
+            lost.append(sum(1 for _k, l in e if l) / len(e))
+    os.makedirs(out_dir, exist_ok=True)
+    name = f"{fight}-{seed}"
+    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
+                        value=np.asarray(vals, np.float32), n=np.asarray(counts, np.int16),
+                        sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
+                        lost=np.asarray(lost, np.float32))
+    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "games": games,
+            "playouts": int(sum(counts)), "seconds": round(time.perf_counter() - t0, 1),
+            "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
+    with open(os.path.join(out_dir, name + ".json"), "w") as fh:
+        json.dump(meta, fh)
+    return meta
+
+
 def eval_job(args):
     """One fight and six: positions reached as job() reaches them, each
     valued by `k` play-outs of its own (the plain policy to the end, each on
@@ -280,7 +336,28 @@ def main(argv=None):
     ap.add_argument("--of", type=int, default=30, help="with --eval: the sixes drawn per fight in training")
     ap.add_argument("--selfplay", metavar="MODEL",
                     help="positions from fights played by the planner guided by MODEL, labelled by how they ended")
+    ap.add_argument("--distill", action="store_true",
+                    help="the positions the play-out planner values in its own fights, labelled by their play-outs")
     args = ap.parse_args(argv)
+    if args.distill:
+        jobs = []
+        for fight in args.fights:
+            for six in sixes(fight, 1 if args.hand else args.sixes, args.seed):
+                for _r in range(args.repeat):
+                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out))
+        procs = args.procs or plplan.pool_size()
+        t0 = time.perf_counter()
+        done = games = 0
+        with plplan.fork_pool(procs) as pool:
+            for meta in pool.imap_unordered(distill_job, jobs, chunksize=1):
+                done += meta["positions"]
+                games += meta["games"]
+                print(f"distill {meta['fight']} {','.join(meta['six'])}: {meta['positions']} positions "
+                      f"({meta['playouts']} play-outs) from {meta['games']} fights in {meta['seconds']} s, "
+                      f"{meta['private_mb']} MB", flush=True)
+        wall = time.perf_counter() - t0
+        print(f"{done} positions from {games} fights in {wall:.0f} s on {procs} workers", flush=True)
+        return 0
     if args.selfplay:
         jobs = []
         for fight in args.fights:
