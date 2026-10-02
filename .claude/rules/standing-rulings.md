@@ -136,7 +136,9 @@ read, so they are written here too. Each is a standing instruction.
   team in the game. The planning ideas of the three-gym run are its exam,
   not its rules.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
-  attempts, at a boss or anywhere. Every fight is scored and designed as a
+  attempts, at a boss or anywhere. The one exception is the first battle with
+  Barry on Route 201 (Ian, 2026-10-02): it does not count for deaths or
+  wiping, and can be ignored, as the game itself lets it be lost. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
   in advance, never from an earlier loss.
 - Every Pokemon in the game should have an important niche at the point the
