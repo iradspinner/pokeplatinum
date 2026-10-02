@@ -221,8 +221,15 @@ def distill_job(args):
     play-outs and the number of them. A leaf with a hundred play-outs is a
     label about ten times as precise as one with one, so plnet weights each
     label by its count. These are exactly the values the network stands in
-    for, at the positions where the planner needs them."""
-    fight, six, positions, seed, out_dir = args
+    for, at the positions where the planner needs them.
+
+    With `model`, the planner guided by that network plays the fights and
+    the play-out planner only labels: at each of the network planner's
+    decisions it weighs the same options by play-outs and keeps the
+    positions. The network then learns the positions its own play reaches,
+    which the play-out planner's fights may never visit (the remedy known as
+    DAgger)."""
+    fight, six, positions, seed, out_dir, model = args
     from . import plstep3
     t0 = time.perf_counter()
     f = plstep3.FIGHTS[fight]
@@ -239,16 +246,22 @@ def distill_job(args):
         run = random.Random(rng.getrandbits(32))
         b.dice, b.rng = pl.RunDice(run, luck="real"), run
         plplan.reset()
-        planner = plplan.Planner(rng.getrandbits(32))
-        planner.record = []
+        labeller = plplan.Planner(rng.getrandbits(32))
+        labeller.record = []
+        planner = plplan.Planner(rng.getrandbits(32), value=model) if model else labeller
         plplan._REAL.update(b=b, planner=planner)
         try:
             while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
+                if planner is not labeller:
+                    acts = plplan.options(b)
+                    if len(acts) > 1:
+                        labeller.decisions += 1
+                        labeller.weigh(b, acts, plplan._mix(labeller.seed, "turn", labeller.decisions))
                 pl.play_turn(b, planner.decide(b), run)
         finally:
             plplan._REAL.update(b=None, planner=None)
         games += 1
-        for x, i, v, e, before in planner.record:
+        for x, i, v, e, before in labeller.record:
             xs.append(x.astype(np.float16))
             ids.append(i)
             vals.append(sum(v) / len(v))
@@ -263,7 +276,7 @@ def distill_job(args):
                         sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
                         lost=np.asarray(lost, np.float32))
     meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "games": games,
-            "playouts": int(sum(counts)), "seconds": round(time.perf_counter() - t0, 1),
+            "playouts": int(sum(counts)), "model": model, "seconds": round(time.perf_counter() - t0, 1),
             "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
     with open(os.path.join(out_dir, name + ".json"), "w") as fh:
         json.dump(meta, fh)
@@ -336,15 +349,17 @@ def main(argv=None):
     ap.add_argument("--of", type=int, default=30, help="with --eval: the sixes drawn per fight in training")
     ap.add_argument("--selfplay", metavar="MODEL",
                     help="positions from fights played by the planner guided by MODEL, labelled by how they ended")
-    ap.add_argument("--distill", action="store_true",
-                    help="the positions the play-out planner values in its own fights, labelled by their play-outs")
+    ap.add_argument("--distill", nargs="?", const="", metavar="MODEL",
+                    help="the positions the play-out planner values, labelled by their play-outs: in its own "
+                         "fights, or with MODEL in the fights of the planner that network guides")
     args = ap.parse_args(argv)
-    if args.distill:
+    if args.distill is not None:
         jobs = []
         for fight in args.fights:
             for six in sixes(fight, 1 if args.hand else args.sixes, args.seed):
                 for _r in range(args.repeat):
-                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out))
+                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out,
+                                 args.distill or None))
         procs = args.procs or plplan.pool_size()
         t0 = time.perf_counter()
         done = games = 0

@@ -167,6 +167,15 @@ plays. Its cost is legibility, so the planner still shows each turn's options
 with their values, the network is spot-checked against full play-outs on the
 showcase seeds, and the three-gym run stays the exam.
 
+Measured on 2026-10-02 (the handoff doc's "Stage 2" has the readings): the
+network planner costs 2.3 to 3.4 seconds of one core a fight, against 113 to
+210 with play-outs, so the whole game's 459 fights at 100 simulated fights
+each take about an hour and a half on 29 workers. Step 1's labels work best
+taken from the play-out planner's own look-ahead (distillation): its best
+network so far matches the play-out planner at Roark and Gardenia and trails
+it at Mars 1. Step 4, self-play labelled by fight outcomes, made the network
+worse in two rounds and is set aside.
+
 ## Hardware (2026-10-02)
 
 - CPU: Intel i9-14900K, 8 performance and 16 efficiency cores, 32 threads.

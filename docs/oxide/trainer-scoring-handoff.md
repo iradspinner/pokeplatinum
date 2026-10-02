@@ -60,8 +60,11 @@ Ian is comfortable with the line for now ("The planner's Roark, for Ian's
 check", below). Stage 1 of
 the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
 memory bounded after the WSL crash, the same fights move for move by
-`plspeed.py`, PyPy no gain), and stage 2, a learned position value on the
-GPU, has started at Ian's word. Every reading is now 75 fights at real odds
+`plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
+started at Ian's word: its best network (d1b, learned from the play-out
+planner's own values) plays Roark and Gardenia nearly as well as the
+play-out planner at about a fiftieth of the cost, and trails it at Mars 1,
+which the next round of data addresses ("Stage 2", below). Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -711,10 +714,12 @@ reach, in one batch. The pieces are:
 
 - `plfeat.py`: a position as 1,201 numbers and 144 ids (the field, the twelve
   Pokemon, and a matchup grid from the fight's calculator rows);
-- `pldata.py`: labelled positions, either from plain play-outs (the value the
-  play-out planner averages) or from self-play (`--selfplay MODEL`: the
-  network-guided planner's own fights, labelled by how they ended), and
-  evaluation sets valued by many play-outs each (`--eval K`);
+- `pldata.py`: labelled positions, from plain play-outs (the value the
+  play-out planner averages), from the play-out planner's own look-ahead
+  (`--distill`, or `--distill MODEL` with the network planner choosing), or
+  from self-play (`--selfplay MODEL`: the network-guided planner's own
+  fights, labelled by how they ended), and evaluation sets valued by many
+  play-outs each (`--eval K`);
 - `plnet.py`: training on the GPU in `~/venvs/oxide-ml`, with a check that the
   numpy export matches;
 - `plvalue.py`: the network run with numpy in the planner's workers, and a
@@ -742,8 +747,56 @@ play-outs give, against 0.2 for the planner's 192. Choosing with it, the
 planner reads Roark at 45 of 75 clean, every fight won, 0.413 faints, against
 the play-out planner's 70 of 75 and 0.067: it inherits the plain policy's
 misreading of Lileep. It is fast: 2.7 seconds of one core a fight against
-113, once numpy is held to one thread per worker. Self-play, the speed
-plan's step 4, retrains the network on the planner's own fights.
+113, once numpy is held to one thread per worker.
+
+**Self-play made it worse (2026-10-02).** Self-play, the speed plan's step
+4, retrains the network on the network planner's own fights, each position
+labelled by how its fight ended. Two rounds each played Roark worse than v2:
+the first, exploring with any option, read 40 of 75 clean and lost 10 fights;
+the second, exploring only among options near the best and continuing from
+v2, read 3 of 75 clean and lost 25. A label that is one fight's outcome errs
+by about 2.8, and the network learned that noise. Self-play is set aside.
+
+**Distillation worked (2026-10-02).** The play-out planner already values
+every position its look-ahead reaches, with up to a hundred play-outs each,
+and those values are exactly what the network stands in for. `pldata
+--distill` plays fights with the play-out planner and keeps every such
+position, labelled by the mean of its play-outs; plnet weights each label by
+how many there were, up to about five times a single play-out. The first set
+(d1) is 1.2 million positions from 609 fights over ten sixes of each fight,
+ours among them, and took 70 minutes on 29 workers. Trained from v2 on d1
+together with the earlier plain play-out data, the network d1b plays as
+follows on our sixes (clean, won, faints a fight; 75 fights at real odds, 25
+very unlucky):
+
+| Fight | Dice | Play-out planner | v2 | d1b |
+|---|---|---|---|---|
+| Roark | real odds | 70/75, 75/75, 0.067 | 45/75, 75/75, 0.413 | 69/75, 75/75, 0.093 |
+| Roark | very unlucky | 21/25, 25/25, 0.160 | | 20/25, 25/25, 0.240 |
+| Mars 1 | real odds | 73/75, 75/75, 0.027 | 49/75, 72/75, 0.733 | 64/75, 75/75, 0.293 |
+| Mars 1 | very unlucky | 23/25, 25/25, 0.080 | | 16/25, 25/25, 0.520 |
+| Gardenia | real odds | 1/75, 66/75, 2.880 | 0/75, 40/75, 5.013 | 1/75, 63/75, 3.227 |
+| Gardenia | very unlucky | 0/25, 17/25, 3.800 | | 0/25, 16/25, 4.080 |
+
+A fight costs d1b 2.4 seconds of one core at Roark, 3.4 at Mars 1 and 2.3 at
+Gardenia, against 113, 210 and 160 for the play-out planner. At that speed
+the whole game's 459 fights, 100 simulated fights each, take about an hour and
+a half on 29 workers, before the spread of boxes for each boss. Its spot
+check on one Roark fight (`plplan roark --compare d1b`): it chooses as the
+play-outs do at 14 of 29 decisions (v2: 10), and its choices give up 0.039 a
+decision by the play-outs' values (v2: 0.061), 0.22 at most. Trained on d1
+alone (d1a) it reads Roark at 36 of 75, so the broad plain data still helps.
+
+Mars 1 is the gap. There d1b leads Starly and plays lines the play-out
+planner never chose, so d1 never labelled the positions it reaches. Round d2
+lets d1b play the fights while play-outs label every position it looks at
+(`--distill d1b`, the remedy known as DAgger), and trains d2 from d1b on all
+of it. The commands that rebuild d1b:
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill --sixes 10 --repeat 3 --positions 12000 --seed 1 --out ~/oxide-trials/scorer-stage2/data-d1
+PYTHONPATH=. tools/oxide/capped --max 20G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d1b --from v2 --data ~/oxide-trials/scorer-stage2/data-d1 ~/oxide-trials/scorer-stage2/data ~/oxide-trials/scorer-stage2/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+```
 
 ## The harness
 
