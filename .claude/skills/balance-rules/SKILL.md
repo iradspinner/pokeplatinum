@@ -170,7 +170,8 @@ is listed for Ian.
   options and lack many modern moves (his reading of Gardenia's 28 percent).
   The scorer reads the first three splits under interim soft caps at their
   mini-bosses (Ian, 2026-10-02): Barry 2's ace (11) until he is beaten, Mars
-  1's Purugly (19), Jupiter 1's Skuntank (27); a stand-in for more caps Ian
+  1's Purugly (19), Jupiter 1's Skuntank (27), and each Lucas and Dawn fight
+  in those splits at its own ace's level; a stand-in for more caps Ian
   may add to the game.
   Lines are ranked by win rate first and average faints second (Ian,
   2026-10-02): always winning with one sacrifice beats winning cleanly nine
