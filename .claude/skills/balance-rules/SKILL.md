@@ -168,7 +168,10 @@ is listed for Ian.
   player's Pokemon that faint per simulated fight), which separates the
   hardest fights, Gardenia, Wake, Cyrus 3 and Cynthia among them. The order
   ahead: the Scoring Agent's step 3, then the Kaizo study's broad comb of the
-  trainers, then the full rescore (the tracker's Scheduled list).
+  trainers, then the full rescore (the tracker's Scheduled list). The
+  scorer's good play must arise on its own from turn-by-turn search over the
+  real simulator and the known trainer AI, never from named behaviours
+  (Ian, 2026-10-01); a missed play is fixed in the general machinery.
 - **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
   ROM no trainer keeps default moves, so default movesets carry no weight in
   any argument about learnsets or level-1 order.
