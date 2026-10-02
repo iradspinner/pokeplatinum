@@ -55,8 +55,9 @@ on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
 order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
 as a planner (`plplan.py`) that decides turn by turn by simulating its options
 at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Its Roark
-waits on Ian's check ("The planner's Roark, for Ian's check", below): 93%
-clean against our 98.5%, every fight won, every loss to Lileep. Stage 1 of
+reads 93% clean against our 98.5%, every fight won, every loss to Lileep, and
+Ian is comfortable with the line for now ("The planner's Roark, for Ian's
+check", below). Stage 1 of
 the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
 memory bounded after the WSL crash, the same fights move for move by
 `plspeed.py`, PyPy no gain), and stage 2, a learned position value on the
@@ -583,7 +584,8 @@ further is built until he has checked it.
 
 ## The planner's Roark, for Ian's check (2026-10-02)
 
-This is a draft until Ian has checked it. The planner (`plplan.py`) played
+Ian checked it the same day: he is comfortable with the line for now, and
+stage 2 of the speed plan starts (2026-10-02). The planner (`plplan.py`) played
 Roark with our hand-played six and items (Barboach, Nidorino, Geodude with the
 Quick Claw, Onix, Prinplup, Steenee, all at 16). It falls a little short of
 our line: about 93% clean against our 98.5%, every fight won, and every Pokemon
@@ -664,6 +666,13 @@ Its Lileep losses come from the same root: the play-outs that value a position
 are played by a plain policy that judges Lileep poorly, and a single play-out
 is noisy. Stage 2's learned value is the general machinery that should help
 both, since it replaces those play-outs with a smoother estimate.
+
+Ian's answer on the wasted turns (2026-10-02, relayed by the Overseer): no
+cost per turn goes into the position value for now. It would curb the wasted
+turns but would also discourage stalling (a PP stall, waiting out a timed
+effect), which wins fights; it stays an option for later. The value stays
+faints, a loss, and survivors' HP. If stage 2's smoother value still leaves
+the planner wasting turns, the evidence goes to Ian.
 
 **Cost.** About 113 seconds of one core per fight and 24 decisions, so the 75
 fights took 342 seconds on 29 workers (about 790 fights an hour). Each worker

@@ -33,6 +33,8 @@ import sys
 import time
 import zlib
 
+import numpy as np
+
 from . import fightai
 from . import fightsim as fs
 from . import perfectline as pl
@@ -723,10 +725,14 @@ def _name(a, b):
     return "switch to " + b.p.mons[a[1]].species
 
 
+_NETS = {}       # trained networks by name, loaded once per process
+_TABLES = {}     # plfeat's tables for the fight in hand
+
+
 class Planner:
     """One run's player."""
 
-    def __init__(self, seed, playouts=PLAYOUTS, budget=BUDGET):
+    def __init__(self, seed, playouts=PLAYOUTS, budget=BUDGET, value=None):
         self.seed = seed
         self.playouts = playouts
         # With a budget, each option's turn against each trainer pick gets
@@ -734,8 +740,33 @@ class Planner:
         # their probability (at least one each), rather than `playouts` for
         # every outcome however unlikely.
         self.budget = budget
+        # With `value`, a trained network's name (plvalue), the positions the
+        # turn can reach are valued by the network instead of by play-outs.
+        self.net = None
+        if value:
+            from . import plvalue
+            self.net = _NETS.get(value) or _NETS.setdefault(value, plvalue.Value(value))
         self.decisions = 0
         self.notes = []          # per decision: what was weighed and chosen
+
+    def tables(self, b):
+        """plfeat's per-fight tables for b's fight, made once per fight."""
+        from . import plfeat
+        k = id(b.st)
+        got = _TABLES.get(k)
+        if got is None or got[0] is not b.st:
+            _TABLES.clear()
+            got = _TABLES[k] = (b.st, plfeat.Fight(b.st, [m.key for m in b.p.mons], [m.key for m in b.b.mons]))
+        return got[1]
+
+    def net_values(self, positions):
+        """The network's value of each position, in one batch."""
+        from . import plfeat
+        if not positions:
+            return []
+        fight = self.tables(positions[0])
+        feats = [plfeat.features(c, fight) for c in positions]
+        return list(self.net.predict(np.stack([f for f, _i in feats]), np.stack([i for _f, i in feats])))
 
     def q(self, b, acts, key):
         """Each option's expected value: over the turn's Quick Claw rolls,
@@ -761,6 +792,13 @@ class Planner:
                         done = not c.p.alive() or not c.b.alive()
                         cells[i].append({"w": pq * pa * p, "p": p, "c": c,
                                          "v": [value(c)] if done else [], "done": done})
+        if self.net is not None:
+            # Every position the turn can reach, valued by the network in one
+            # batch; a finished fight keeps its own value.
+            open_cells = [cell for cs in cells for cell in cs if not cell["done"]]
+            for cell, v in zip(open_cells, self.net_values([cell["c"] for cell in open_cells])):
+                cell["v"] = [float(v)]
+            return [sum(cell["w"] * cell["v"][0] for cell in cs) for cs in cells], list(range(len(acts)))
         alive = list(range(len(acts)))
         stages = [s for s in STAGES if self.budget and s < self.budget] + [self.budget]
         est = {}
@@ -1039,6 +1077,53 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     return out
 
 
+def compare(fight, value, seed=None, log=sys.stdout):
+    """A spot check of a trained network (Ian's legibility condition for
+    stage 2): one fight played by the play-out planner, and at each of its
+    decisions the same options valued by the network too, side by side, with
+    whether the two would choose alike. (agreements, decisions)."""
+    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {})
+    seed = f["trace_seed"] if seed is None else seed
+    netp = Planner(seed, value=value)
+    rng = random.Random(seed)
+    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    b.dice = pl.RunDice(rng, luck="real")
+    b.rng = rng
+    planner = Planner(seed)
+    _REAL.update(b=b, planner=planner)
+    agree = total = 0
+    regret = 0.0
+    try:
+        while b.turn < TURN_CAP and b.p.alive() and b.b.alive():
+            acts = options(b)
+            if len(acts) > 1:
+                key = _mix(seed, "compare", b.turn)
+                q, alive = planner.weigh(b, acts, key)
+                qn, _all = netp.weigh(b, acts, key)
+                best = max(alive, key=lambda i: q[i])
+                best_n = max(range(len(acts)), key=lambda i: qn[i])
+                total += 1
+                agree += best == best_n
+                # Regret: what the network's choice gives up by the play-outs' own values.
+                lost = q[best] - q[best_n]
+                regret += lost
+                print(f"T{b.turn + 1} {b.p.cur().species} {b.p.cur().hp}/{b.p.cur().maxhp} against "
+                      f"{b.b.cur().species} {b.b.cur().hp}/{b.b.cur().maxhp}: play-outs choose "
+                      f"{_name(acts[best], b)}, the network {_name(acts[best_n], b)}"
+                      f"{'' if best == best_n else f'  (differs; gives up {lost:.2f})'}", file=log)
+                print("      " + ", ".join(f"{_name(a, b)} {q[i]:+.2f}/{qn[i]:+.2f}" for i, a in enumerate(acts)),
+                      file=log)
+                a = acts[best]
+            else:
+                a = acts[0]
+            real_turn(b, a, rng)
+    finally:
+        _REAL.update(b=None, planner=None)
+    print(f"{agree} of {total} decisions alike (values shown as play-outs/network); the network's choices "
+          f"give up {regret:.2f} in all by the play-outs' values, {regret / max(1, total):.3f} a decision", file=log)
+    return agree, total, regret
+
+
 def trace(fight, seed=None, cfg=None, luck="real", log=sys.stdout):
     cfg = dict(cfg or {})
     f, st, team, boss_keys, flags, lead, vals, _s = setup(fight, cfg)
@@ -1059,15 +1144,21 @@ def main(argv=None):
     ap.add_argument("fight")
     ap.add_argument("--runs", type=int, default=200)
     ap.add_argument("--trace", action="store_true")
+    ap.add_argument("--compare", metavar="MODEL",
+                    help="a spot check: the play-out planner's fight, each decision also valued by MODEL")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--playouts", type=int, default=PLAYOUTS)
+    ap.add_argument("--value", help="a trained network (plvalue) to value positions instead of play-outs")
     ap.add_argument("--budget", type=int, default=BUDGET,
                     help="play-outs per option and trainer pick, shared by probability (0: none)")
     ap.add_argument("--luck", default="real", choices=("real", "unlucky"))
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     args = ap.parse_args(argv)
-    cfg = dict(playouts=args.playouts, budget=args.budget or None)
+    cfg = dict(playouts=args.playouts, budget=args.budget or None, value=args.value)
+    if args.compare:
+        compare(args.fight, args.compare, args.seed)
+        return 0
     if args.trace:
         trace(args.fight, args.seed, cfg, args.luck)
         return 0
