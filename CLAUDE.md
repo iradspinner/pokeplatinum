@@ -185,5 +185,5 @@ byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a GitHub build
 of the merged tree, the gate on that ROM, and a push only on a pass.
 `tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
-complains about any file it has no mapping for. The full restart check-list
-is at the top of the tracker.
+complains about any file it has no mapping for. The full restart check-list,
+with what a clean gate looks like, is `docs/oxide/restart-checks.md`.

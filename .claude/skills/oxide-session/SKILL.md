@@ -122,7 +122,7 @@ Run these in order; skipping one is how the next session starts confused.
 
 ## Verification, the short list
 
-The full restart check-list is at the top of the tracker, and
+The full restart check-list is `docs/oxide/restart-checks.md`, and
 `bash tools/oxide/integrate.sh --verify-only` builds the ROM and runs all of
 it without merging anything (`--rom <ROM>` checks a ROM built already). The minimum before calling a data or engine change
 done is a built ROM plus the verify tool that covers what changed, and the
