@@ -69,9 +69,9 @@ often than our line but almost never cleanly, as the play-out planner does
 ("Stage 2", below). Goal 2 has begun with the rival fights of Roark's split
 (Barry 1 cannot be won with a Piplup) and a mechanical roll of the box
 through Fantina for Ian and the Overseer to choose from. A test on 100
-ordinary trainers showed that networks trained broadly judge trainers they
-never saw nearly as well as play-outs, which makes the whole game a matter
-of hours. Every reading is now 75 fights at real odds
+ordinary trainers showed that networks trained broadly judge easy trainers
+they never saw nearly as well as play-outs, but a held-out boss (Gardenia)
+not at all, so every boss needs labelled positions of its own. Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -1034,11 +1034,30 @@ Having seen the held-out trainers made no difference: the networks' misses
 fall on different trainers from one network to the next (Aroma Lady Hannah
 19 clean of 40 under one, 35 under another), so they are each network's own
 noise, and averaging two networks that never saw these trainers comes within
-about a point of the play-out planner. For the whole game this means one
-labelling pass over every trainer, which for ordinary trainers is minutes
-rather than hours, then a network average; bosses, where small misjudgements
-cost more, still want their own rounds of labels from the network's play, as
-Mars 1 did.
+about a point of the play-out planner.
+
+These were easy fights, though (the Overseer's caution): the ordinary
+trainers of the first three splits read nearly all clean at the cap, under
+play-outs 800 of 800. The harder test is a held-out boss. Two networks
+trained from scratch on everything except Gardenia's positions (the 100
+ordinary trainers, and Roark's and Mars 1's three distillation rounds;
+`plnet --without gardenia`) were read at Gardenia on our six, 500 fights at
+real odds:
+
+| Network, without Gardenia's positions | Clean | Won | Faints a fight |
+|---|---|---|---|
+| seed 1 | 2 of 500 | 7 | 5.950 |
+| seed 2 | 0 | 11 | 5.934 |
+| the average of the two | 0 | 8 | 5.960 |
+
+against 413 won for the networks that saw her (d1b+d2+d3 won 423) and 66 of
+75 for the play-out planner. A boss brings what the early ordinary trainers
+never show (sun with Chlorophyll, Natural Gift and its berries, a six built
+to work together), and without positions from her fight the networks
+misjudge it from the lead on (they lead Golbat). So for the whole game,
+ordinary trainers can lean on broad data and one labelling pass, but every
+boss needs labelled positions of its own, with rounds from the network's own
+play as Mars 1 needed.
 
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to

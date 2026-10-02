@@ -206,11 +206,17 @@ without a trainer's positions cannot play that trainer (Gardenia, 2 won of
 A test on the 100 ordinary trainers of the first three splits answered
 whether one network then judges trainers well: trained on 80 of them, two
 networks averaged read the 20 they never saw at 789 clean of 800, every
-fight won, against the play-out planner's 800, so seeing a trainer is not
-needed once the data is broad. Ordinary trainers label fast (1.65 million
-positions from 80 trainers in ten minutes), so the whole game's labelling is
-about an hour, the bosses' extra rounds a few more, and a full reading about
-an hour and a half.
+fight won, against the play-out planner's 800, so for ordinary trainers
+seeing a trainer is not needed once the data is broad. Those were easy
+fights, though. A held-out boss is not judged: trained on everything but
+Gardenia's positions, networks won 8 Gardenia fights of 500, against about
+420 once they had seen her. So every boss needs labelled positions of its
+own, with rounds from the network's own play. Ordinary trainers label fast
+(1.65 million positions from 80 trainers in ten minutes), so their pass is
+about an hour; a boss's three rounds took about 25 minutes each per fight on
+29 workers in the gyms' runs, so the bosses, rivals, named Galactic fights
+and Ace Trainers are the larger share, several hours more, and a full
+reading about an hour and a half.
 
 ## Hardware (2026-10-02)
 
