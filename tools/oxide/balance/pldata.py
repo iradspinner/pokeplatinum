@@ -37,6 +37,29 @@ EXPLORE_TURNS = 25        # explore up to this many turns before the play-out
 RANDOM_SHARE = 0.5        # the share of exploring turns spent on a random option
 
 
+def parts(b):
+    """A finished position's value in its parts (plplan.value is their
+    weighted sum), stored beside the value so another weighting, of a loss
+    against a faint for instance, can be applied later without generating
+    the data again: the player's faints, whether the fight was lost, the
+    survivors' HP shares summed, and when a play-out stopped unfinished the
+    trainer's HP share left (averaged over its party)."""
+    alive = [m for m in b.p.mons if m.alive()]
+    unfinished = bool(alive) and b.b.alive()
+    foe = sum(m.hp / m.maxhp for m in b.b.mons if m.alive()) / len(b.b.mons) if unfinished else 0.0
+    return (len(b.p.mons) - len(alive), not alive, sum(m.hp / m.maxhp for m in alive), foe)
+
+
+def save(out_dir, name, xs, ids, vals, future, lost, ends):
+    """A shard: the positions, their labels, and each label's parts."""
+    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
+                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
+                        lost=np.asarray(lost, np.int8),
+                        end_faints=np.asarray([e[0] for e in ends], np.int8),
+                        end_hp=np.asarray([e[2] for e in ends], np.float32),
+                        end_foe_left=np.asarray([e[3] for e in ends], np.float32))
+
+
 def sixes(fight, n, seed):
     """Our hand-played six first, then n - 1 distinct random sixes from the
     run's box at this fight."""
@@ -67,7 +90,7 @@ def job(args):
     team = [f"p{i}" for i in range(len(six))]
     tables = plfeat.Fight(st, team, boss_keys)
     rng = random.Random(seed)
-    xs, ids, vals, future, lost = [], [], [], [], []
+    xs, ids, vals, future, lost, ends = [], [], [], [], [], []
     playouts = 0
     while len(vals) < positions:
         b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
@@ -96,18 +119,17 @@ def job(args):
             pl.play_turn(b, plplan.plain(b), run)
         playouts += 1
         v = plplan.value(b)
-        faints = sum(1 for m in b.p.mons if not m.alive())
+        end = parts(b)
         for x, i, before in seen:
             xs.append(x.astype(np.float16))
             ids.append(i)
             vals.append(v)
-            future.append(faints - before)
-            lost.append(not b.p.alive())
+            future.append(end[0] - before)
+            lost.append(end[1])
+            ends.append(end)
     os.makedirs(out_dir, exist_ok=True)
     name = f"{fight}-{seed}"
-    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
-                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
-                        lost=np.asarray(lost, np.int8))
+    save(out_dir, name, xs, ids, vals, future, lost, ends)
     meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": playouts,
             "seconds": round(time.perf_counter() - t0, 1), "private_mb": plplan.memory()[1],
             "floats": plfeat.FLOATS, "ids": plfeat.IDS}
@@ -138,7 +160,7 @@ def selfplay_job(args):
     team = [f"p{i}" for i in range(len(six))]
     tables = plfeat.Fight(st, team, boss_keys)
     rng = random.Random(seed)
-    xs, ids, vals, future, lost = [], [], [], [], []
+    xs, ids, vals, future, lost, ends = [], [], [], [], [], []
     games = 0
     while len(vals) < positions:
         b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
@@ -159,18 +181,17 @@ def selfplay_job(args):
             plplan._REAL.update(b=None, planner=None)
         games += 1
         v = plplan.value(b)
-        faints = sum(1 for m in b.p.mons if not m.alive())
+        end = parts(b)
         for x, i, before in seen:
             xs.append(x.astype(np.float16))
             ids.append(i)
             vals.append(v)
-            future.append(faints - before)
-            lost.append(not b.p.alive())
+            future.append(end[0] - before)
+            lost.append(end[1])
+            ends.append(end)
     os.makedirs(out_dir, exist_ok=True)
     name = f"{fight}-{seed}"
-    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
-                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
-                        lost=np.asarray(lost, np.int8))
+    save(out_dir, name, xs, ids, vals, future, lost, ends)
     meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": games,
             "games": games, "model": model, "seconds": round(time.perf_counter() - t0, 1),
             "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
