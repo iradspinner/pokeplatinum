@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Run a heavy job under a memory cap, so that a job which runs out of memory
+# is killed on its own instead of taking the whole WSL machine down with it.
+#
+# Why: on 2026-10-02 a planner reading of Roark in 30 worker processes ran WSL
+# out of its 31 GB (one worker peaked at about 3.6 GB on two fights), WSL
+# crashed, and every Claude session on the machine died with it. Under a cap,
+# systemd kills only the capped job, and the sessions and the machine carry on.
+#
+# Usage:
+#   tools/oxide/capped COMMAND [ARGS...]            # capped at 22G
+#   tools/oxide/capped --max 12G COMMAND [ARGS...]
+#
+# The default leaves about 9 GB of WSL's 31 GB for the Claude sessions and the
+# rest of the machine. Swap is not offered to the job (MemorySwapMax=0), so it
+# is stopped promptly instead of grinding the machine through the swap file.
+# The exit code is the job's own; 137 means the cap stopped it.
+set -uo pipefail
+
+MAX=22G
+if [ "${1:-}" = "--max" ]; then
+    MAX="$2"
+    shift 2
+fi
+[ $# -gt 0 ] || { sed -n '2,/^set -uo/p' "$0" | sed '$d'; exit 2; }
+
+systemd-run --user --scope --quiet -p MemoryMax="$MAX" -p MemorySwapMax=0 "$@"
+rc=$?
+if [ $rc -eq 137 ]; then
+    echo "capped: the job was stopped at its memory cap of $MAX (exit 137)" >&2
+fi
+exit $rc
