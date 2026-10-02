@@ -110,7 +110,15 @@ read, so they are written here too. Each is a standing instruction.
   simulated fights won with no Pokemon fainting; the win rate, the share won
   at all (no wipe); and the death count, the average number of the player's
   Pokemon that faint per simulated fight, which separates the hardest fights
-  (Gardenia, Wake, Cyrus 3, Cynthia) where few runs win cleanly.
+  (Gardenia, Wake, Cyrus 3, Cynthia) where few runs win cleanly. The
+  scorer's good play must arise on its own (Ian, 2026-10-01): it decides
+  turn by turn by simulating its options in the real simulator against the
+  exactly known trainer AI, and values a position by its state (HP,
+  survivors, items, weather turns, PP, stat stages). A play it misses is
+  fixed in that general machinery, never by adding a named behaviour, since
+  a scorer that plays only what its rules name would need a rule for every
+  team in the game. The planning ideas of the three-gym run are its exam,
+  not its rules.
 - A loss of any kind ends the whole run (Ian, 2026-09-28): there are no second
   attempts, at a boss or anywhere. Every fight is scored and designed as a
   first and only attempt; a boss's planned team comes from knowing the fight
