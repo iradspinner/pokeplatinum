@@ -55,7 +55,7 @@ Inside a fight, by the profile:
 |---|---|---|---|---|
 | 1 | Store repeated lookups, the AI's odds per position, and the setup's file checks, instead of recomputing them | 2 to 3 times | a day or two | approved tentatively (Ian, 2026-10-02) |
 | 1 | Run under PyPy, a faster engine for the same Python code, installed portably in the home folder | 3 to 5 times | hours to test | measured 2026-10-02: no real gain, not used (below) |
-| 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | started (Ian, 2026-10-02) |
+| 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | working (2026-10-02): about a fiftieth of the cost per fight, play close to the play-out planner except at Mars 1 (below) |
 | 3 | The simulator and AI rewritten in a compiled language | 30 to 100 times on the hot loop | weeks | in reserve |
 | any | Stop running a fight once its three numbers are known to a set margin | up to half the runs | small | not chosen: Ian set a fixed 100 runs a trainer, 75 real and 25 very unlucky (2026-10-02) |
 | 2, paired | The opponent AI made cheaper with identical results (below) | up to about 1.5 times now, more once play-outs shrink | days | an idea from Ian's brainstorm, not yet work |
@@ -105,6 +105,31 @@ which replaces most play-outs. Ian started stage 2 the same night, and cut
 each trainer's reading to 100 simulated fights, 75 at real odds and 25 very
 unlucky, which takes the whole game from about 450 hours to about 113 at
 today's speed before stage 2.
+
+## What stage 2 measured (2026-10-02)
+
+The Scoring Agent's full account, with the commands that rebuild every network,
+is in its doc's "Stage 2" section; the data and weights live outside git in
+`~/oxide-trials/scorer-stage2/` and are rebuilt from the code.
+
+- Networks trained on plain play-outs (v2) played fast but badly, as they
+  learned the play-out policy's misreadings: Roark 45 of 75 clean against the
+  play-out planner's 70.
+- Self-play, retraining on the network planner's own fights labelled by how
+  each ended, made it worse twice (Roark 40, then 3, of 75 clean): one
+  fight's outcome is too noisy a label. It is set aside.
+- Distillation worked: the network learns the play-out planner's own
+  look-ahead values (1.2 million positions from 609 fights, 70 minutes on 29
+  workers). The network d1b, on our sixes at real odds (clean, won, faints a
+  fight, 75 fights): Roark 69/75, 75/75, 0.093 against the play-out planner's
+  70/75, 75/75, 0.067; Gardenia 1/75, 63/75, 3.227 against 1/75, 66/75, 2.880;
+  Mars 1 64/75, 75/75, 0.293 against 73/75, 75/75, 0.027, the gap, which the
+  next round (training on the positions the network's own play reaches) aims at.
+- Cost: about 2.3 to 3.4 seconds of one core a fight, against 113 to 210 for
+  the play-out planner. The whole game's 459 fights at 100 simulated fights
+  each would take about an hour and a half on 29 workers, before the spread
+  of boxes for each boss: Ian's "matter of hours" is in reach once the
+  network's play matches the play-out planner's.
 
 ## The opponent AI, cheaper with identical results (Ian's brainstorm, 2026-10-02)
 
