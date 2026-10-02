@@ -1,0 +1,39 @@
+{
+ "fight": "mars",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1b+d2+d3"
+ },
+ "luck": "real",
+ "lead": "Vullaby",
+ "lead_values": {
+  "Geodude": 0.277,
+  "Vullaby": 0.277,
+  "Starly": 0.277,
+  "Onix": 0.277,
+  "Charjabug": 0.277,
+  "Nidorino": 0.277
+ },
+ "clean": 74,
+ "won": 75,
+ "deaths": 0.013,
+ "runs": 75,
+ "faints": [
+  [
+   "Geodude",
+   "Purugly",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 3.84,
+ "decisions_per_run": 48.6,
+ "turns_per_run": 48.6,
+ "lead_seconds": 0.1,
+ "wall_seconds": 11.7,
+ "procs": 29,
+ "fights_per_hour": 22990.9,
+ "worker_private_mb_max": 82,
+ "parent_mb": 80,
+ "lost_seeds": []
+}

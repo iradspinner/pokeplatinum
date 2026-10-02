@@ -62,11 +62,11 @@ the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
 memory bounded after the WSL crash, the same fights move for move by
 `plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
 started at Ian's word: networks learned from the play-out planner's own
-values now choose for it at about a fiftieth of the cost. The average of the
-two best (d1b+d2) reads Roark better than the play-out planner, Gardenia
-about the same, and Mars 1 nearly as well, though it still loses 3 Mars 1
-fights in 500 by misjudgement; each round of labels from its own play mends
-some of that ("Stage 2", below). Every reading is now 75 fights at real odds
+values now choose for it at about a fortieth of the cost. The average of
+three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
+reads better than the play-out planner at both, and at Gardenia wins more
+often than our line but almost never cleanly, as the play-out planner does
+("Stage 2", below). Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -815,9 +815,39 @@ is the third: Meowth has 19 HP left and Vullaby's Pluck did 28 the turn
 before, yet the network values switching to Geodude (+0.24) above Pluck
 (+0.17). Meowth then lives five more turns of Bite, Bronzor gets time to
 stack Calm Mind behind Hypnosis, and Purugly sweeps a worn, sleeping team.
-The play-out planner Plucks, and wins with no faint. Each round of labels
-from the network's own play has mended what the last one misjudged, so round
-d3 does the same with the average driving.
+The play-out planner Plucks, and wins with no faint.
+
+Round d3 did the same with the average d1b+d2 driving: 1.2 million more
+positions from 790 fights (86 minutes), and d3 trained from d2 on all 5.9
+million. Alone, d3 reads Mars 1 well (479 clean of 500) and Gardenia badly
+(279 won, leading Vullaby). Averaged with the other two it is the best
+planner so far, over 500 fights of each six at real odds:
+
+| Network | Roark | Mars 1 | Gardenia |
+|---|---|---|---|
+| d3 | 456 clean, 500 won, 0.094 | 479 clean, 499 won, 0.084 | 0 clean, 279 won, 4.444 |
+| d2+d3 | 432 clean, 499 won, 0.152 | 488 clean, 497 won, 0.060 | 0 clean, 293 won, 4.446 |
+| d1b+d2+d3 | 491 clean, 500 won, 0.020 | 490 clean, 498 won, 0.044 | 11 clean, 423 won, 3.254 |
+
+Its readings as Ian ruled them (75 fights at real odds and 25 very unlucky,
+`planner-net-d1b+d2+d3-*` in the results folder), beside our hand-played
+lines over 2,000 fights and the play-out planner:
+
+| Fight | Dice | d1b+d2+d3 | Our line | Play-out planner |
+|---|---|---|---|---|
+| Roark | real odds | 74/75, 75/75, 0.013 | 98.5%, 100%, 0.015 | 70/75, 75/75, 0.067 |
+| Roark | very unlucky | 23/25, 25/25, 0.080 | 96.4%, 99.95%, 0.043 | 21/25, 25/25, 0.160 |
+| Mars 1 | real odds | 74/75, 75/75, 0.013 | 96.4%, 100%, 0.037 | 73/75, 75/75, 0.027 |
+| Mars 1 | very unlucky | 24/25, 25/25, 0.080 | 91.3%, 100%, 0.089 | 23/25, 25/25, 0.080 |
+| Gardenia | real odds | 0/75, 62/75, 3.360 | 15.1%, 59.9%, 3.212 | 1/75, 66/75, 2.880 |
+| Gardenia | very unlucky | 0/25, 14/25, 4.480 | 4.8%, 30.1%, 4.680 | 0/25, 17/25, 3.800 |
+
+It meets the Roark and Mars 1 bars, with the very unlucky Roark at 23 of 25
+where ours is 96.4% (25 fights cannot tell those apart). At Gardenia it
+behaves as the play-out planner does: it wins more often than our line and
+almost never cleanly, which is the open question in the tracker of how a
+loss should weigh against a faint. A fight costs it 2.6 to 3.8 seconds of
+one core, three network passes a decision.
 
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to
@@ -827,6 +857,16 @@ position. The commands that rebuild d1b:
 ```
 PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill --sixes 10 --repeat 3 --positions 12000 --seed 1 --out ~/oxide-trials/scorer-stage2/data-d1
 PYTHONPATH=. tools/oxide/capped --max 20G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d1b --from v2 --data ~/oxide-trials/scorer-stage2/data-d1 ~/oxide-trials/scorer-stage2/data ~/oxide-trials/scorer-stage2/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+```
+
+And d2 and d3 after it (each round's labels come from the planner the last
+round made; `S` is `~/oxide-trials/scorer-stage2`):
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b --sixes 10 --repeat 3 --positions 12000 --seed 2 --out $S/data-d2
+PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d2 --from d1b --data $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b+d2 --sixes 10 --repeat 3 --positions 12000 --seed 3 --out $S/data-d3
+PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d3 --from d2 --data $S/data-d3 $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
 ```
 
 ## The harness
