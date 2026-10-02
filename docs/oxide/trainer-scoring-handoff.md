@@ -683,6 +683,105 @@ the planner wasting turns, the evidence goes to Ian.
 fights took 342 seconds on 29 workers (about 790 fights an hour). Each worker
 holds at most about 190 MB.
 
+## The network planner's Roark, for Ian's check (2026-10-02)
+
+Goal 1, read again with stage 2's planner. It decides as the play-out planner
+does, with the same exact look-ahead of one turn, but values each position
+the turn can reach with the average of three networks (d1b+d2+d3, "Stage 2"
+below) instead of playing the fight on from it. The networks learned their
+values from the play-out planner's own play-outs. It played our hand-played
+six and items (Barboach, Nidorino, Geodude with the Quick Claw, Onix,
+Prinplup, Steenee, all at 16), and it meets our line's numbers.
+
+**The numbers**, as in the play-out planner's write-up above (seeds from
+2000; the planners' rows are 75 fights at real odds and 25 very unlucky, ours
+2,000):
+
+| Line | Dice | Clean | Won | Faints |
+|---|---|---|---|---|
+| Ours (the hand-played S12) | real odds | 98.5% | 100% | 0.015 |
+| The network planner | real odds | 98.7% (74 of 75) | 100% | 0.013 |
+| The play-out planner | real odds | 93.3% (70 of 75) | 100% | 0.067 |
+| Ours | very unlucky | 96.4% | 99.95% | 0.043 |
+| The network planner | very unlucky | 92% (23 of 25) | 100% | 0.080 |
+| The play-out planner | very unlucky | 84% (21 of 25) | 100% | 0.160 |
+
+Over 500 fights at real odds it reads 98.2% clean, every fight won, 0.020
+faints, so its real-odds clean rate matches ours within a point. Its one
+faint at real odds was Onix to Cranidos; very unlucky, Onix to Cranidos and
+Nidorino to Lileep. Twenty-five very unlucky fights cannot tell 92% from our
+96.4% (two fights in 25 against one).
+
+**How it chooses.** Before each turn it lists its options and works out the
+trainer's choice exactly from the AI's own code, then weighs every chance in
+the coming turn at its real odds, as before. Each position the turn can reach
+is then valued by the networks in one batch, where the play-out planner
+played the fight on from it about a hundred times. The value means the same:
+minus one for each faint to come, minus ten more for a loss, plus a tenth of
+each survivor's HP share. A fight costs about 3 seconds of one core, against
+113.
+
+**The line on the showcase seed (30)**, which it won cleanly
+(`perfectline_results/step3/planner-net-roark-trace-seed30.txt` has every
+turn and every option's value):
+
+1. Geodude leads into Nosepass (-0.82, against -0.86 to -0.88 for the
+   others), sets up Rock Polish while Nosepass Blocks, Defense Curls twice,
+   and Magnitudes and Rock Throws it down.
+2. Lileep comes in on Geodude, which is four times weak to Grass. It switches
+   to Steenee (-0.70) rather than Prinplup (-0.75) or staying in (-0.82 at
+   best). Steenee takes the Mega Drain resisted.
+3. Steenee uses Play Nice (-0.57) rather than Razor Leaf (-0.71).
+4. At 20 of 45 HP Steenee hands over to Nidorino (+0.25, against -0.52 at
+   best for everything else). Nidorino Leers three times and Focus Energies
+   once while Lileep Ingrains, then Double Kicks it out, ending on 18 of 47.
+5. Roark's Geodude comes in on Nidorino. It brings Barboach in on the Thunder
+   Punch it expects (+0.23, against -0.06 at best), and Mud Bombs Geodude to
+   5 HP.
+6. With Geodude on 5 HP, Barboach switches to Onix (+0.49) rather than
+   finishing it with Water Gun (+0.25), so Onix makes the knockout and meets
+   Cranidos. Onix spends seven turns on Geodude, now at +2 Defense (Rock
+   Throw does 2 a hit), with Harden and Screech, then Screeches Cranidos to
+   -6, Binds it three times and Rock Throws it out on 9 of 46 HP.
+
+That is the play-out planner's line almost turn for turn, and close to ours
+(we led Barboach into Nosepass).
+
+**Checked against the play-outs.** The same fight was played again with the
+network choosing and the play-out planner valuing every decision beside it
+(`plplan roark --compare d1b+d2+d3 --drive network`;
+`planner-net-roark-compare-driven-seed30.txt`). The two choose alike at 18 of
+33 decisions, including every choice above (Steenee, Play Nice, Nidorino,
+Barboach, Onix), and by the play-outs' own values the network's choices give
+up 0.40 in all, 0.012 a decision. Where they differ, the options are within
+about 0.05 of each other under the play-outs too, as close as play-outs can
+measure.
+
+**The nine ideas, as an exam.** Arose on its own, as with the play-out
+planner: the free switch on a predictable pick (Steenee on Mega Drain,
+Barboach on Thunder Punch), speed and status control (Play Nice, Leer,
+Screech), the coverage hole (a Ground type against Thunder Punch), and the
+hand-off at an HP that survives the next hit. Bait by knockout ownership
+looks present but is not proven: in step 6 both planners pass up a sure
+knockout so that Onix makes it and meets Cranidos, but the play-outs prefer
+that by only 0.03 (+0.40 against +0.37), within their own noise, so I do not
+count it. Did not apply at Roark: the PP stall, a timed effect, taking an
+item, a sacrifice, and building the box.
+
+**What it still does badly: the wasted turns.** Stage 2 did not cure them.
+Rock Polish and two Defense Curls on turns 1 to 3, Focus Energy against
+Lileep, seven turns on a 3-HP Geodude, and three Binds into a Cranidos at -6
+Defense, where Rock Throw does more than twice the damage. These are not the
+network's errors: under the play-outs those options read within 0.01 to 0.05
+of attacking (the Binds exactly level with Rock Throw at +0.40). The value
+has no cost for time, so a turn spent is free whenever the fight is safe.
+Ian ruled (2026-10-02) that no cost per turn goes in for now, since it would
+also discourage stalls that win fights, and that the evidence comes to him if
+the smoother value still left the planner wasting turns; this is that
+evidence. A cost per turn would cure it. A narrower option would only break
+ties, preferring the option that ends the fight sooner among those the value
+cannot tell apart, which leaves every stall that the value prefers.
+
 ## The play-out planner on Mars 1 and Gardenia (2026-10-02)
 
 A baseline for goals 1 and 2 before stage 2 changes anything: the play-out

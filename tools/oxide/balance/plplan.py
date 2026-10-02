@@ -1110,12 +1110,14 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     return out
 
 
-def compare(fight, value, seed=None, log=sys.stdout):
+def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     """A spot check of a trained network (Ian's legibility condition for
     stage 2): one fight played by the play-out planner, and at each of its
     decisions the same options valued by the network too, side by side, with
-    whether the two would choose alike. (agreements, decisions)."""
-    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {})
+    whether the two would choose alike. With drive="network" the network's
+    planner plays the fight instead, so its own line is checked against the
+    play-outs' values. (agreements, decisions)."""
+    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {"value": value} if drive == "network" else {})
     seed = f["trace_seed"] if seed is None else seed
     netp = Planner(seed, value=value)
     rng = random.Random(seed)
@@ -1123,7 +1125,7 @@ def compare(fight, value, seed=None, log=sys.stdout):
     b.dice = pl.RunDice(rng, luck="real")
     b.rng = rng
     planner = Planner(seed)
-    _REAL.update(b=b, planner=planner)
+    _REAL.update(b=b, planner=netp if drive == "network" else planner)
     agree = total = 0
     regret = 0.0
     try:
@@ -1146,7 +1148,7 @@ def compare(fight, value, seed=None, log=sys.stdout):
                       f"{'' if best == best_n else f'  (differs; gives up {lost:.2f})'}", file=log)
                 print("      " + ", ".join(f"{_name(a, b)} {q[i]:+.2f}/{qn[i]:+.2f}" for i, a in enumerate(acts)),
                       file=log)
-                a = acts[best]
+                a = acts[best_n if drive == "network" else best]
             else:
                 a = acts[0]
             real_turn(b, a, rng)
@@ -1179,6 +1181,8 @@ def main(argv=None):
     ap.add_argument("--trace", action="store_true")
     ap.add_argument("--compare", metavar="MODEL",
                     help="a spot check: the play-out planner's fight, each decision also valued by MODEL")
+    ap.add_argument("--drive", choices=("playouts", "network"), default="playouts",
+                    help="with --compare: whose choices play the fight")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--playouts", type=int, default=PLAYOUTS)
     ap.add_argument("--value", help="a trained network (plvalue) to value positions instead of play-outs")
@@ -1190,7 +1194,7 @@ def main(argv=None):
     args = ap.parse_args(argv)
     cfg = dict(playouts=args.playouts, budget=args.budget or None, value=args.value)
     if args.compare:
-        compare(args.fight, args.compare, args.seed)
+        compare(args.fight, args.compare, args.seed, drive=args.drive)
         return 0
     if args.trace:
         trace(args.fight, args.seed, cfg, args.luck)
