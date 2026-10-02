@@ -130,7 +130,9 @@ is listed for Ian.
   2026-09-30, replacing "the worst pick where it could choose"). The luck
   budget is retired (Ian, 2026-10-02): fights are simulated at the game's
   real odds, the planner's caution comes from how heavily it values a faint,
-  and the budget survives only as a stress-test replay of the chosen line. Ian's step
+  and the stress test replays the chosen line with every status and crit
+  check, on both sides, rolled twice and the result worse for the player
+  kept (Ian, 2026-10-02). Ian's step
   2 (2026-09-30): search candidate lines (policies with responses), take the
   best, and read its clean-win rate over fresh runs, with its mean deaths
   and wipe chance beside it so the hardest fights, where no line wins
