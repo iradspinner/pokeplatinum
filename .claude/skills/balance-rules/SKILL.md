@@ -127,7 +127,10 @@ is listed for Ian.
   with no deaths within his luck budget (every secondary status chance
   against the player happens, one crit may, never two in a row; the trainer
   uses Oxide's AI, with ties between equal picks broken at random, Ian,
-  2026-09-30, replacing "the worst pick where it could choose"). Ian's step
+  2026-09-30, replacing "the worst pick where it could choose"). The luck
+  budget is retired (Ian, 2026-10-02): fights are simulated at the game's
+  real odds, the planner's caution comes from how heavily it values a faint,
+  and the budget survives only as a stress-test replay of the chosen line. Ian's step
   2 (2026-09-30): search candidate lines (policies with responses), take the
   best, and read its clean-win rate over fresh runs, with its mean deaths
   and wipe chance beside it so the hardest fights, where no line wins
