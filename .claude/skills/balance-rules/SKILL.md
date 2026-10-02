@@ -132,7 +132,8 @@ is listed for Ian.
   real odds, the planner's caution comes from how heavily it values a faint,
   and the stress test replays the chosen line with every status and crit
   check, on both sides, rolled twice and the result worse for the player
-  kept (Ian, 2026-10-02). Ian's step
+  kept (Ian, 2026-10-02). Each trainer is read on 100 simulated fights, 75 at
+  real odds and 25 very unlucky (Ian, 2026-10-02). Ian's step
   2 (2026-09-30): search candidate lines (policies with responses), take the
   best, and read its clean-win rate over fresh runs, with its mean deaths
   and wipe chance beside it so the hardest fights, where no line wins

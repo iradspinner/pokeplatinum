@@ -112,7 +112,9 @@ read, so they are written here too. Each is a standing instruction.
   player (the trainer's 1-in-24 crit lands about 1 in 12 and a 10% status
   about 19%; the player's own crits and secondary effects land less often,
   and its full-paralysis and confusion checks go against it). Its three
-  numbers are reported beside the real-odds ones, as a very unlucky fight. When a fight reads too hard, the player's move pools are the first
+  numbers are reported beside the real-odds ones, as a very unlucky fight.
+  Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
+  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). When a fight reads too hard, the player's move pools are the first
   candidate for change, since they are sparse in interesting options and lack
   many modern moves. A fight is judged on three numbers read together, never
   the clean rate alone (Ian, 2026-10-01): the clean rate, the share of

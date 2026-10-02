@@ -55,9 +55,10 @@ Inside a fight, by the profile:
 |---|---|---|---|---|
 | 1 | Store repeated lookups, the AI's odds per position, and the setup's file checks, instead of recomputing them | 2 to 3 times | a day or two | approved tentatively (Ian, 2026-10-02) |
 | 1 | Run under PyPy, a faster engine for the same Python code, installed portably in the home folder | 3 to 5 times | hours to test | measured 2026-10-02: no real gain, not used (below) |
-| 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | waits on Ian, after stage 1 and the Roark check |
+| 2 | A learned position value on the GPU in place of play-outs | 10 to 50 times per decision | one to two weeks | started (Ian, 2026-10-02) |
 | 3 | The simulator and AI rewritten in a compiled language | 30 to 100 times on the hot loop | weeks | in reserve |
-| any | Stop running a fight once its three numbers are known to a set margin | up to half the runs | small | not yet put to Ian |
+| any | Stop running a fight once its three numbers are known to a set margin | up to half the runs | small | not chosen: Ian set a fixed 100 runs a trainer, 75 real and 25 very unlucky (2026-10-02) |
+| 2, paired | The opponent AI made cheaper with identical results (below) | up to about 1.5 times now, more once play-outs shrink | days | an idea from Ian's brainstorm, not yet work |
 
 Stages 1 and 2 together should bring a full-game reading to a matter of
 hours. Stage 1 alone was expected to bring the 500 hours to roughly 50 to
@@ -100,7 +101,38 @@ unlucky takes:
 | 4. Everything, 459 fights | about 184,000 | about 450 hours |
 
 So stage 1's levers are spent, and hours for the whole game need stage 2,
-which replaces most play-outs, with stopping early by margin beside it.
+which replaces most play-outs. Ian started stage 2 the same night, and cut
+each trainer's reading to 100 simulated fights, 75 at real odds and 25 very
+unlucky, which takes the whole game from about 450 hours to about 113 at
+today's speed before stage 2.
+
+## The opponent AI, cheaper with identical results (Ian's brainstorm, 2026-10-02)
+
+The trainer AI is about a third of a decision's time on the stage 1 code (the
+simulator's turns and the exchange simulations take most of the rest), so an
+AI that cost nothing would speed decisions about 1.5 times. Once stage 2
+replaces most play-outs, the AI's exact look-ahead becomes the larger share,
+and these pay off more. Three ways, which stack:
+
+1. Specialise it to each fight. The trainer's six, their moves and the
+   player's six are fixed for a fight, so much of what the AI checks each turn
+   has the same answer every turn: each move's effect routine, its type
+   effectiveness into each player Pokemon, immunities, the ability guess,
+   which routines can apply. Work those out once per fight; each turn checks
+   only what changes (HP, stages, status, weather, the last move, the dice).
+2. Compute its odds directly. The planner now reruns the whole AI scoring
+   once for every combination of its random rolls. Most rolls only add or
+   subtract points from one move's score, so score each move once, note each
+   random bonus as "+N with chance p", and combine them into the chance each
+   move ends highest with the game's tie-break, branching only where a roll
+   changes which checks run.
+3. Generate the AI from the decomp's script rather than a hand translation,
+   one function per routine, which matches the game by construction and is
+   the cheap route to a compiled AI later.
+
+Identical is proven, not assumed: the old and new AI run side by side on
+millions of positions and must give the same odds every time, beside the 365
+existing AI checks.
 
 Stage 1 must not change any answer. The dice are keyed by seed, so the same
 seeds must give the same fights, move for move, before and after: a run of
