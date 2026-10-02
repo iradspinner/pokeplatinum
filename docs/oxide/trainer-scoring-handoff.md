@@ -61,10 +61,12 @@ check", below). Stage 1 of
 the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
 memory bounded after the WSL crash, the same fights move for move by
 `plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
-started at Ian's word: its best network (d1b, learned from the play-out
-planner's own values) plays Roark and Gardenia nearly as well as the
-play-out planner at about a fiftieth of the cost, and trails it at Mars 1,
-which the next round of data addresses ("Stage 2", below). Every reading is now 75 fights at real odds
+started at Ian's word: networks learned from the play-out planner's own
+values now choose for it at about a fiftieth of the cost. The average of the
+two best (d1b+d2) reads Roark better than the play-out planner, Gardenia
+about the same, and Mars 1 nearly as well, though it still loses 3 Mars 1
+fights in 500 by misjudgement; each round of labels from its own play mends
+some of that ("Stage 2", below). Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -787,11 +789,40 @@ play-outs do at 14 of 29 decisions (v2: 10), and its choices give up 0.039 a
 decision by the play-outs' values (v2: 0.061), 0.22 at most. Trained on d1
 alone (d1a) it reads Roark at 36 of 75, so the broad plain data still helps.
 
-Mars 1 is the gap. There d1b leads Starly and plays lines the play-out
-planner never chose, so d1 never labelled the positions it reaches. Round d2
-lets d1b play the fights while play-outs label every position it looks at
-(`--distill d1b`, the remedy known as DAgger), and trains d2 from d1b on all
-of it. The commands that rebuild d1b:
+Mars 1 was the gap. There d1b plays lines the play-out planner never chose,
+so d1 never labelled the positions it reaches. Round d2 let d1b play the
+fights while play-outs labelled every position it looked at (`--distill
+d1b`, the remedy known as DAgger), 1.2 million more positions, and d2 trained
+from d1b on all of it. Seventy-five fights could not tell d1b and d2 apart, so
+they were compared on 500 fights of each six at real odds, and so was their
+average (`--value d1b+d2`, the mean of the two networks' values):
+
+| Network | Roark | Mars 1 | Gardenia |
+|---|---|---|---|
+| d1b | 462 clean, 500 won, 0.088 | 398 clean, 496 won, 0.350 | 6 clean, 408 won, 3.490 |
+| d2 | 417 clean, 500 won, 0.178 | 475 clean, 498 won, 0.088 | 8 clean, 407 won, 3.404 |
+| d1b+d2 | 478 clean, 500 won, 0.050 | 483 clean, 497 won, 0.074 | 11 clean, 413 won, 3.436 |
+
+d2 mended Mars 1 and lost ground at Roark; the average is better than either
+everywhere, and at Roark better than the play-out planner (95.6% clean
+against 93.3% on 75 fights). It costs 2.7 seconds of one core a fight at
+Roark, 4.3 at Mars 1 and 2.7 at Gardenia.
+
+Mars 1 still loses 3 fights in 500, where our line lost none in 2,000. The
+play-out planner wins all three of those seeds cleanly, so the losses are the
+network's misjudgements, not the dice. On seed 7307 the turn that starts it
+is the third: Meowth has 19 HP left and Vullaby's Pluck did 28 the turn
+before, yet the network values switching to Geodude (+0.24) above Pluck
+(+0.17). Meowth then lives five more turns of Bite, Bronzor gets time to
+stack Calm Mind behind Hypnosis, and Purugly sweeps a worn, sleeping team.
+The play-out planner Plucks, and wins with no faint. Each round of labels
+from the network's own play has mended what the last one misjudged, so round
+d3 does the same with the average driving.
+
+The Mars 1 lead values are all equal, under play-outs and networks alike,
+and that is the fight, not a fault: from any lead the best first move is to
+switch to Vullaby into Meowth's Fake Out, so every lead reaches the same
+position. The commands that rebuild d1b:
 
 ```
 PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill --sixes 10 --repeat 3 --positions 12000 --seed 1 --out ~/oxide-trials/scorer-stage2/data-d1

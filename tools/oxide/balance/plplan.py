@@ -1096,12 +1096,17 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
            "lead_seconds": round(lead_s, 1), "wall_seconds": round(wall, 1), "procs": procs,
            "fights_per_hour": round(runs / wall * 3600, 1),
            "worker_private_mb_max": max(r["private_mb"] for r in rows),
-           "parent_mb": memory()[0]}
+           "parent_mb": memory()[0],
+           # The seeds of the fights lost, so any of them can be replayed
+           # turn by turn (--trace --seed).
+           "lost_seeds": [s for s, r in zip(seeds, rows) if not r["won"]]}
     print(f"{fight} ({luck} odds): clean {clean}/{runs}, won {won}/{runs}, deaths {deaths:.3f}; "
           f"lead {out['lead']}; {out['cpu_seconds_per_run']} s of one core per run, "
           f"{out['decisions_per_run']} decisions, {wall:.0f} s wall", file=log)
     for a, b, n in out["faints"]:
         print(f"  {a:12} fainted to {b:12} {n}", file=log)
+    if out["lost_seeds"]:
+        print(f"  lost: seeds {', '.join(map(str, out['lost_seeds']))}", file=log)
     return out
 
 
