@@ -3,7 +3,21 @@
 Ian's goal (2026-10-02): a reading of the whole game by the fight scorer's
 planner in a matter of hours, including the spread of boxes for each boss and
 the very unlucky stress test, rather than the 500 hours he estimated from the
-first timings. This doc keeps the plan and the evidence behind it. The Scoring
+first timings. This doc keeps the plan and the evidence behind it.
+
+The speed matters most at the end of the scorer's goals, which come in this
+order (Ian, 2026-10-02):
+
+1. A relatively quick Roark reading that passes its tests.
+2. The three-gym split, through Fantina at cap 33, under the three-gym run's
+   rules, with every major fight passing. Roark, Mars 1 and Gardenia are held
+   to their hand-played bars; the fights with no hand-played bar (the rival
+   fights, Jupiter 1, Fantina) pass when Ian has read the scorer's line and
+   reasoning and accepts it.
+3. Every major boss, rival, named Galactic fight and Ace Trainer, after the
+   Kaizo study's broad comb of the trainers.
+4. Everything, the full rescore: the reading this plan aims to bring down to
+   hours. The Scoring
 Agent owns the work and records its progress in its status home,
 `docs/oxide/trainer-scoring-handoff.md`; the steps that wait on Ian are in the
 tracker's Scheduled list.
