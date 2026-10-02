@@ -147,6 +147,9 @@ def job(args):
 EXPLORE = 0.15
 EXPLORE_MARGIN = 0.25
 MAX_GAMES = 400       # distillation: fights per shard at most
+# distillation: the labeller's play-outs per option and trainer pick (the
+# planner's own budget by default; --label-budget measures a cheaper one)
+LABEL_BUDGET = plplan.BUDGET
 
 
 def selfplay_job(args):
@@ -255,7 +258,7 @@ def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=No
         run = random.Random(rng.getrandbits(32))
         b.dice, b.rng = pl.RunDice(run, luck="real"), run
         plplan.reset()
-        labeller = plplan.Planner(rng.getrandbits(32))
+        labeller = plplan.Planner(rng.getrandbits(32), budget=LABEL_BUDGET)
         labeller.record = []
         planner = plplan.Planner(rng.getrandbits(32), value=model) if model else labeller
         plplan._REAL.update(b=b, planner=planner)
@@ -288,6 +291,7 @@ def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=No
                         sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
                         lost=np.asarray(lost, np.float32))
     meta = dict(meta, seed=seed, positions=len(vals), games=games, playouts=int(sum(counts)), model=model,
+                label_budget=LABEL_BUDGET,
                 seconds=round(time.perf_counter() - t0, 1), private_mb=plplan.memory()[1],
                 floats=plfeat.FLOATS, ids=plfeat.IDS)
     with open(os.path.join(out_dir, name + ".json"), "w") as fh:
@@ -364,7 +368,11 @@ def main(argv=None):
     ap.add_argument("--distill", nargs="?", const="", metavar="MODEL",
                     help="the positions the play-out planner values, labelled by their play-outs: in its own "
                          "fights, or with MODEL in the fights of the planner that network guides")
+    ap.add_argument("--label-budget", type=int, default=plplan.BUDGET,
+                    help="with --distill: the labeller's play-outs per option and trainer pick")
     args = ap.parse_args(argv)
+    global LABEL_BUDGET
+    LABEL_BUDGET = args.label_budget
     if args.distill is not None:
         jobs = []
         for fight in args.fights:
