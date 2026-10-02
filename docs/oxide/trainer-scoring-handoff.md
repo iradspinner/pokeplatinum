@@ -849,6 +849,25 @@ almost never cleanly, which is the open question in the tracker of how a
 loss should weigh against a faint. A fight costs it 2.6 to 3.8 seconds of
 one core, three network passes a decision.
 
+**A network cannot yet judge a trainer it has not seen.** Two networks were
+trained from scratch by one recipe on every shard so far, one with
+Gardenia's and one with Roark's and Mars 1's only (`plnet --fights`), and
+both were read on 500 fights of each six at real odds:
+
+| Network | Gardenia | Mars 1 |
+|---|---|---|
+| with Gardenia's data | 0 clean, 362 won, 3.854 | 475 clean, 500 won, 0.060 |
+| without it | 0 clean, 2 won, 5.994 | 487 clean, 500 won, 0.028 |
+
+Without Gardenia's positions it loses almost every Gardenia fight. Trained
+on three trainers, it has never met most of the game's species and moves,
+so its ids for them mean nothing. Every new fight therefore needs labelled
+positions of its own before the network can play it: for goal 2, a round of
+distillation for the rival fights, Jupiter 1 and Fantina. For the whole
+game, the hope is that a network trained on positions from many trainers
+judges a new one well, since it will have met most species and moves by
+then; that is untested.
+
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to
 switch to Vullaby into Meowth's Fake Out, so every lead reaches the same

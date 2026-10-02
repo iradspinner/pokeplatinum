@@ -174,7 +174,14 @@ each take about an hour and a half on 29 workers. Step 1's labels work best
 taken from the play-out planner's own look-ahead (distillation): its best
 network so far matches the play-out planner at Roark and Gardenia and trails
 it at Mars 1. Step 4, self-play labelled by fight outcomes, made the network
-worse in two rounds and is set aside.
+worse in two rounds and is set aside. Later the same day, the average of
+three distilled networks met the Roark and Mars 1 bars. A network trained
+without a trainer's positions cannot play that trainer (Gardenia, 2 won of
+500), so the whole game first needs labelled positions from every trainer.
+At the rate of the rounds so far (about 400 positions a second on 29
+workers), a few play-out fights for each of the 459 trainers is a one-off
+job of several hours, after which a full reading takes about an hour and a
+half; whether one network then judges trainers well enough is untested.
 
 ## Hardware (2026-10-02)
 
