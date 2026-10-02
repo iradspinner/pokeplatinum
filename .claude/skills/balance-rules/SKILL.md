@@ -168,6 +168,9 @@ is listed for Ian.
   boxes, so its answers do not narrow to one Pokemon. When a fight reads too
   hard, change the player's move pools first: they are sparse in interesting
   options and lack many modern moves (his reading of Gardenia's 28 percent).
+  Lines are ranked by win rate first and average faints second (Ian,
+  2026-10-02): always winning with one sacrifice beats winning cleanly nine
+  times in ten; the clean rate is reported, not optimised.
   A fight is judged on three numbers together, never the clean rate alone
   (Ian, 2026-10-01): the clean rate (won with no Pokemon fainting), the win
   rate (won at all, no wipe), and the death count (the average number of the

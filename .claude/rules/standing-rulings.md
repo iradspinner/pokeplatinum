@@ -97,8 +97,13 @@ read, so they are written here too. Each is a standing instruction.
   the same commit.
 - How the fight scorer reads a fight (Ian, 2026-09-30, on the trainer-scoring
   handoff). The aim is to beat the game: a win that loses a Pokemon is still a
-  win, but each loss takes away later team-building options, so clean wins
-  come first and a planned sacrifice is a cost, not a failure. A boss is read
+  win, but each loss takes away later team-building options. Lines are ranked
+  by win rate first and average faints second (Ian, 2026-10-02, refining
+  "clean wins come first"): a line that always wins with one sacrifice beats
+  one that wins cleanly nine times in ten and loses the tenth, since one
+  unlucky turn there ends the run. Options that win about equally often (within
+  the estimate's noise) are then ranked by fewest faints; the clean rate is
+  reported, not optimised. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
   Pokemon. Ties between equal AI picks break at random. Every fight is
   simulated at the game's real odds, with no luck budget (Ian, 2026-10-02,
