@@ -75,8 +75,9 @@ read, so they are written here too. Each is a standing instruction.
 - Move numbers follow the later games (Ian, 2026-09-26, the staples survey's
   answer 1), priority included (2026-09-27), and the base ROM's own values
   stay. Setup stays expensive: every stat-raising setup move is at 1 to 3 PP,
-  and the stat-lowering status moves at 3 to 6 (Sweet Scent 2), which applies
-  to any move added later too. Sleep moves, powders, Thunder Wave, Dark Void
+  and the stat-lowering status moves at 3 to 6 (Sweet Scent 2, Defog 1,
+  Memento left as it is; Ian, 2026-10-02), which applies to any move added
+  later too. Sleep moves, powders, Thunder Wave, Dark Void
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
