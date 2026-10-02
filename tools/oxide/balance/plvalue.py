@@ -9,7 +9,8 @@ hundred positions takes a few milliseconds on one core.
 import json
 import os
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import plfeat
 
@@ -21,9 +22,16 @@ def _relu(a):
 
 
 class Value:
-    """A trained network's position value: predict(floats, ids) for a batch."""
+    """A trained network's position value: predict(floats, ids) for a batch.
+    A name joining several with "+" (d1b+d2) is their average: networks
+    trained on different data err differently, so the mean errs less than
+    either."""
 
     def __init__(self, name, models=MODELS):
+        self.name = name
+        self.parts = [Value(n, models) for n in name.split("+")] if "+" in name else None
+        if self.parts:
+            return
         with open(os.path.join(models, name + ".json")) as fh:
             self.meta = json.load(fh)
         if self.meta["floats"] != plfeat.FLOATS or self.meta["ids"] != plfeat.IDS:
@@ -31,11 +39,12 @@ class Value:
         w = np.load(os.path.join(models, name + ".npz"))
         self.w = {k: w[k].astype(np.float32) for k in w.files}
         self.scale = self.meta["value_scale"]
-        self.name = name
 
     def predict(self, x, ids):
         """Values for n positions: x [n, FLOATS] floats, ids [n, IDS] ints.
         The floats pass through float16 first, as the training data did."""
+        if self.parts:
+            return sum(p.predict(x, ids) for p in self.parts) / len(self.parts)
         w = self.w
         x = np.asarray(x, dtype=np.float16).astype(np.float32)
         n = x.shape[0]

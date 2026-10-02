@@ -1,0 +1,83 @@
+{
+ "fight": "roark",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "sp1"
+ },
+ "luck": "real",
+ "lead": "Onix",
+ "lead_values": {
+  "Barboach": -1.866,
+  "Nidorino": -1.794,
+  "Geodude": -1.755,
+  "Onix": -1.643,
+  "Prinplup": -1.794,
+  "Steenee": -1.794
+ },
+ "clean": 40,
+ "won": 65,
+ "deaths": 1.573,
+ "runs": 75,
+ "faints": [
+  [
+   "Nidorino",
+   "Lileep",
+   29
+  ],
+  [
+   "Steenee",
+   "Lileep",
+   20
+  ],
+  [
+   "Prinplup",
+   "Lileep",
+   18
+  ],
+  [
+   "Barboach",
+   "Lileep",
+   14
+  ],
+  [
+   "Onix",
+   "Lileep",
+   14
+  ],
+  [
+   "Geodude",
+   "Lileep",
+   10
+  ],
+  [
+   "Onix",
+   "Cranidos",
+   7
+  ],
+  [
+   "Geodude",
+   "Cranidos",
+   4
+  ],
+  [
+   "Barboach",
+   "Cranidos",
+   1
+  ],
+  [
+   "Onix",
+   "Geodude",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 1.6,
+ "decisions_per_run": 28.7,
+ "turns_per_run": 27.4,
+ "lead_seconds": 0.2,
+ "wall_seconds": 5.1,
+ "procs": 29,
+ "fights_per_hour": 53027.2,
+ "worker_private_mb_max": 20,
+ "parent_mb": 73
+}

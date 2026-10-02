@@ -26,7 +26,8 @@ import random
 import sys
 import time
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import perfectline as pl
 from . import plfeat
@@ -35,6 +36,29 @@ from . import plplan
 OUT = os.path.expanduser("~/oxide-trials/scorer-stage2/data")
 EXPLORE_TURNS = 25        # explore up to this many turns before the play-out
 RANDOM_SHARE = 0.5        # the share of exploring turns spent on a random option
+
+
+def parts(b):
+    """A finished position's value in its parts (plplan.value is their
+    weighted sum), stored beside the value so another weighting, of a loss
+    against a faint for instance, can be applied later without generating
+    the data again: the player's faints, whether the fight was lost, the
+    survivors' HP shares summed, and when a play-out stopped unfinished the
+    trainer's HP share left (averaged over its party)."""
+    alive = [m for m in b.p.mons if m.alive()]
+    unfinished = bool(alive) and b.b.alive()
+    foe = sum(m.hp / m.maxhp for m in b.b.mons if m.alive()) / len(b.b.mons) if unfinished else 0.0
+    return (len(b.p.mons) - len(alive), not alive, sum(m.hp / m.maxhp for m in alive), foe)
+
+
+def save(out_dir, name, xs, ids, vals, future, lost, ends):
+    """A shard: the positions, their labels, and each label's parts."""
+    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
+                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
+                        lost=np.asarray(lost, np.int8),
+                        end_faints=np.asarray([e[0] for e in ends], np.int8),
+                        end_hp=np.asarray([e[2] for e in ends], np.float32),
+                        end_foe_left=np.asarray([e[3] for e in ends], np.float32))
 
 
 def sixes(fight, n, seed):
@@ -67,7 +91,7 @@ def job(args):
     team = [f"p{i}" for i in range(len(six))]
     tables = plfeat.Fight(st, team, boss_keys)
     rng = random.Random(seed)
-    xs, ids, vals, future, lost = [], [], [], [], []
+    xs, ids, vals, future, lost, ends = [], [], [], [], [], []
     playouts = 0
     while len(vals) < positions:
         b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
@@ -96,18 +120,17 @@ def job(args):
             pl.play_turn(b, plplan.plain(b), run)
         playouts += 1
         v = plplan.value(b)
-        faints = sum(1 for m in b.p.mons if not m.alive())
+        end = parts(b)
         for x, i, before in seen:
             xs.append(x.astype(np.float16))
             ids.append(i)
             vals.append(v)
-            future.append(faints - before)
-            lost.append(not b.p.alive())
+            future.append(end[0] - before)
+            lost.append(end[1])
+            ends.append(end)
     os.makedirs(out_dir, exist_ok=True)
     name = f"{fight}-{seed}"
-    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
-                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
-                        lost=np.asarray(lost, np.int8))
+    save(out_dir, name, xs, ids, vals, future, lost, ends)
     meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": playouts,
             "seconds": round(time.perf_counter() - t0, 1), "private_mb": plplan.memory()[1],
             "floats": plfeat.FLOATS, "ids": plfeat.IDS}
@@ -116,7 +139,13 @@ def job(args):
     return meta
 
 
-EXPLORE = 0.15        # self-play: the share of turns spent on a random option
+# Self-play explores on this share of turns, and then only among the options
+# whose value is within EXPLORE_MARGIN of the best, so the fights stay close to
+# the planner's own play and their outcomes label positions it reaches. (Round
+# 1 of 2026-10-02 explored with any option at all, and the network trained on
+# those fights played worse.)
+EXPLORE = 0.15
+EXPLORE_MARGIN = 0.25
 
 
 def selfplay_job(args):
@@ -138,7 +167,7 @@ def selfplay_job(args):
     team = [f"p{i}" for i in range(len(six))]
     tables = plfeat.Fight(st, team, boss_keys)
     rng = random.Random(seed)
-    xs, ids, vals, future, lost = [], [], [], [], []
+    xs, ids, vals, future, lost, ends = [], [], [], [], [], []
     games = 0
     while len(vals) < positions:
         b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
@@ -153,26 +182,101 @@ def selfplay_job(args):
                 x, i = plfeat.features(b, tables)
                 seen.append((x, i, sum(1 for m in b.p.mons if not m.alive())))
                 acts = plplan.options(b)
-                a = acts[rng.randrange(len(acts))] if rng.random() < EXPLORE else planner.decide(b)
+                n = len(planner.notes)
+                a = planner.decide(b)
+                if rng.random() < EXPLORE and len(planner.notes) > n and len(acts) > 1:
+                    qs = [q for _o, q in planner.notes[n]["options"]]
+                    if len(qs) == len(acts) and None not in qs:
+                        top = max(qs)
+                        near = [k for k, q in enumerate(qs) if q >= top - EXPLORE_MARGIN]
+                        a = acts[near[rng.randrange(len(near))]]
                 pl.play_turn(b, a, run)
         finally:
             plplan._REAL.update(b=None, planner=None)
         games += 1
         v = plplan.value(b)
-        faints = sum(1 for m in b.p.mons if not m.alive())
+        end = parts(b)
         for x, i, before in seen:
             xs.append(x.astype(np.float16))
             ids.append(i)
             vals.append(v)
-            future.append(faints - before)
-            lost.append(not b.p.alive())
+            future.append(end[0] - before)
+            lost.append(end[1])
+            ends.append(end)
+    os.makedirs(out_dir, exist_ok=True)
+    name = f"{fight}-{seed}"
+    save(out_dir, name, xs, ids, vals, future, lost, ends)
+    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": games,
+            "games": games, "model": model, "seconds": round(time.perf_counter() - t0, 1),
+            "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
+    with open(os.path.join(out_dir, name + ".json"), "w") as fh:
+        json.dump(meta, fh)
+    return meta
+
+
+def distill_job(args):
+    """One fight and six played by the play-out planner itself (no network),
+    keeping every position its play-outs valued (plplan.Planner.keep): the
+    leaves of each turn's look-ahead, each labelled by the mean of its
+    play-outs and the number of them. A leaf with a hundred play-outs is a
+    label about ten times as precise as one with one, so plnet weights each
+    label by its count. These are exactly the values the network stands in
+    for, at the positions where the planner needs them.
+
+    With `model`, the planner guided by that network plays the fights and
+    the play-out planner only labels: at each of the network planner's
+    decisions it weighs the same options by play-outs and keeps the
+    positions. The network then learns the positions its own play reaches,
+    which the play-out planner's fights may never visit (the remedy known as
+    DAgger)."""
+    fight, six, positions, seed, out_dir, model = args
+    from . import plstep3
+    t0 = time.perf_counter()
+    f = plstep3.FIGHTS[fight]
+    items = f["items"] if list(six) == list(f["six"]) else None
+    prep = plstep3.prepare(f, list(six), items)
+    st = prep["st"]
+    boss_keys, flags, _s = prep["variants"][0]
+    team = [f"p{i}" for i in range(len(six))]
+    rng = random.Random(seed)
+    xs, ids, vals, counts, sds, future, lost = [], [], [], [], [], [], []
+    games = 0
+    while len(vals) < positions:
+        b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
+        run = random.Random(rng.getrandbits(32))
+        b.dice, b.rng = pl.RunDice(run, luck="real"), run
+        plplan.reset()
+        labeller = plplan.Planner(rng.getrandbits(32))
+        labeller.record = []
+        planner = plplan.Planner(rng.getrandbits(32), value=model) if model else labeller
+        plplan._REAL.update(b=b, planner=planner)
+        try:
+            while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
+                if planner is not labeller:
+                    acts = plplan.options(b)
+                    if len(acts) > 1:
+                        labeller.decisions += 1
+                        labeller.weigh(b, acts, plplan._mix(labeller.seed, "turn", labeller.decisions))
+                pl.play_turn(b, planner.decide(b), run)
+        finally:
+            plplan._REAL.update(b=None, planner=None)
+        games += 1
+        for x, i, v, e, before in labeller.record:
+            xs.append(x.astype(np.float16))
+            ids.append(i)
+            vals.append(sum(v) / len(v))
+            counts.append(len(v))
+            sds.append(float(np.std(v)))
+            future.append(sum(k for k, _l in e) / len(e) - before)
+            lost.append(sum(1 for _k, l in e if l) / len(e))
     os.makedirs(out_dir, exist_ok=True)
     name = f"{fight}-{seed}"
     np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
-                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
-                        lost=np.asarray(lost, np.int8))
-    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": games,
-            "games": games, "model": model, "seconds": round(time.perf_counter() - t0, 1),
+                        value=np.asarray(vals, np.float32), n=np.asarray(counts, np.int16),
+                        sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
+                        lost=np.asarray(lost, np.float32))
+    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "games": games,
+            "playouts": int(sum(counts)), "model": model, "seconds": round(time.perf_counter() - t0, 1),
             "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
     with open(os.path.join(out_dir, name + ".json"), "w") as fh:
         json.dump(meta, fh)
@@ -245,7 +349,30 @@ def main(argv=None):
     ap.add_argument("--of", type=int, default=30, help="with --eval: the sixes drawn per fight in training")
     ap.add_argument("--selfplay", metavar="MODEL",
                     help="positions from fights played by the planner guided by MODEL, labelled by how they ended")
+    ap.add_argument("--distill", nargs="?", const="", metavar="MODEL",
+                    help="the positions the play-out planner values, labelled by their play-outs: in its own "
+                         "fights, or with MODEL in the fights of the planner that network guides")
     args = ap.parse_args(argv)
+    if args.distill is not None:
+        jobs = []
+        for fight in args.fights:
+            for six in sixes(fight, 1 if args.hand else args.sixes, args.seed):
+                for _r in range(args.repeat):
+                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out,
+                                 args.distill or None))
+        procs = args.procs or plplan.pool_size()
+        t0 = time.perf_counter()
+        done = games = 0
+        with plplan.fork_pool(procs) as pool:
+            for meta in pool.imap_unordered(distill_job, jobs, chunksize=1):
+                done += meta["positions"]
+                games += meta["games"]
+                print(f"distill {meta['fight']} {','.join(meta['six'])}: {meta['positions']} positions "
+                      f"({meta['playouts']} play-outs) from {meta['games']} fights in {meta['seconds']} s, "
+                      f"{meta['private_mb']} MB", flush=True)
+        wall = time.perf_counter() - t0
+        print(f"{done} positions from {games} fights in {wall:.0f} s on {procs} workers", flush=True)
+        return 0
     if args.selfplay:
         jobs = []
         for fight in args.fights:

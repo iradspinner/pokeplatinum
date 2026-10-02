@@ -28,7 +28,8 @@ position, with their stat stages, screens and burn.
 import math
 import zlib
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import fightsim as fs
 

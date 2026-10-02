@@ -38,6 +38,11 @@ MODELS = os.path.expanduser("~/oxide-trials/scorer-stage2/models")
 TYPE_DIM, NAME_DIM, EFFECT_DIM = 8, 16, 16
 MON_DIM, TRUNK = 128, (512, 256)
 VALUE_SCALE = 4.0             # values run from about -16 to +0.6; trained divided by this
+# A label that is the mean of n play-outs (pldata's distilled shards) is
+# weighted 1 / (LABEL_VAR / n + MODEL_VAR), scaled so a single play-out weighs
+# 1: more play-outs make a label more trustworthy, but no label is worth more
+# than the network's own error allows (about five single ones at most).
+LABEL_VAR, MODEL_VAR = 4.0, 1.0
 
 
 class ValueNet(nn.Module):
@@ -69,14 +74,18 @@ class ValueNet(nn.Module):
         return self.head(h)
 
 
-def load(data_dirs, held_out):
+def load(data_dirs, held_out, fights=None):
     """(train, validation) as dicts of tensors, the last `held_out` sixes of
-    each fight kept for validation (with none held out, every tenth shard)."""
+    each fight kept for validation (with none held out, every tenth shard).
+    With `fights`, only those fights' shards are read, so a network can be
+    trained without a fight and then judged on it."""
     shards = []
     for data_dir in data_dirs:
         for p in glob.glob(os.path.join(data_dir, "*.json")):
             with open(p) as fh:
-                shards.append(json.load(fh) | {"path": p[:-5] + ".npz"})
+                s = json.load(fh)
+            if fights is None or s["fight"] in fights:
+                shards.append(s | {"path": p[:-5] + ".npz"})
     by_fight = {}
     for s in sorted(shards, key=lambda s: s["seed"]):
         by_fight.setdefault(s["fight"], []).append(s)
@@ -91,17 +100,36 @@ def load(data_dirs, held_out):
             val = tuple(s["six"]) in held if held_out else k % 10 == 9
             parts["val" if val else "train"].append(s)
 
+    def weight(a):
+        if "n" not in a:
+            return np.ones(len(a["value"]), np.float32)
+        return ((LABEL_VAR + MODEL_VAR) / (LABEL_VAR / a["n"].astype(np.float32) + MODEL_VAR)).astype(np.float32)
+
     def cat(group):
-        arrays = [np.load(s["path"]) for s in group]
-        return {k: torch.from_numpy(np.concatenate([a[k] for a in arrays])) for k in ("x", "ids", "value", "future", "lost")}
+        # Each array is allocated at its full size once and filled shard by
+        # shard, so loading never holds two copies of the positions (millions
+        # of them run to several GB).
+        sizes = [len(np.load(s["path"])["value"]) for s in group]
+        ends = np.cumsum([0] + sizes)
+        out = {}
+        for s, lo, hi in zip(group, ends[:-1], ends[1:]):
+            a = np.load(s["path"])
+            for k in ("x", "ids", "value", "future", "lost", "weight"):
+                arr = weight(a) if k == "weight" else a[k]
+                if k not in out:
+                    dtype = np.float32 if k in ("future", "lost", "weight") else arr.dtype
+                    out[k] = np.empty((ends[-1],) + arr.shape[1:], dtype)
+                out[k][lo:hi] = arr
+        return {k: torch.from_numpy(v) for k, v in out.items()}
     return cat(parts["train"]), cat(parts["val"]), parts
 
 
 def losses(out, batch):
+    w = batch["weight"]
     v = batch["value"] / VALUE_SCALE
-    lv = F.huber_loss(out[:, 0], v)
-    lf = F.mse_loss(out[:, 1], batch["future"].float()) / 4
-    ll = F.binary_cross_entropy_with_logits(out[:, 2], batch["lost"].float())
+    lv = (F.huber_loss(out[:, 0], v, reduction="none") * w).sum() / w.sum()
+    lf = (F.mse_loss(out[:, 1], batch["future"], reduction="none") * w).sum() / w.sum() / 4
+    ll = (F.binary_cross_entropy_with_logits(out[:, 2], batch["lost"], reduction="none") * w).sum() / w.sum()
     return lv + 0.25 * lf + 0.25 * ll, lv
 
 
@@ -122,7 +150,8 @@ def evaluate(net, data, device):
     net.train()
     p = torch.cat(preds)
     y = data["value"].float()
-    rmse = math.sqrt(float(((p - y) ** 2).mean()))
+    w = data["weight"]
+    rmse = math.sqrt(float((((p - y) ** 2) * w).sum() / w.sum()))
     corr = float(torch.corrcoef(torch.stack([p, y]))[0, 1])
     return rmse, corr, float(y.std())
 
@@ -142,11 +171,12 @@ def main(argv=None):
     ap.add_argument("--batch", type=int, default=4096)
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--fights", nargs="+", help="train on these fights' shards only")
     args = ap.parse_args(argv)
     torch.manual_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     t0 = time.time()
-    train, val, parts = load(args.data, args.held_out)
+    train, val, parts = load(args.data, args.held_out, args.fights)
     print(f"{train['value'].shape[0]} training and {val['value'].shape[0]} held-out positions "
           f"({len(parts['train'])} and {len(parts['val'])} sixes), loaded in {time.time() - t0:.0f} s", flush=True)
     net = ValueNet().to(device)

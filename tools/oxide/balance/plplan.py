@@ -33,13 +33,7 @@ import sys
 import time
 import zlib
 
-# One thread per process for numpy's matrix library: the planner runs one
-# process per core, and a library thread per core in each of them thrashed
-# the machine (a fight took 77 seconds in a pool, 5 alone). It must be set
-# before numpy first loads.
-for _var in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
-    os.environ.setdefault(_var, "1")
-
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
 import numpy as np  # noqa: E402
 
 from . import fightai
@@ -755,6 +749,10 @@ class Planner:
             self.net = _NETS.get(value) or _NETS.setdefault(value, plvalue.Value(value))
         self.decisions = 0
         self.notes = []          # per decision: what was weighed and chosen
+        # With `record` set to a list, every position the play-outs value is
+        # kept in it with their results, as training labels (keep).
+        self.record = None
+        self.last_end = None     # the last play-out's final position
 
     def tables(self, b):
         """plfeat's per-fight tables for b's fight, made once per fight."""
@@ -817,6 +815,10 @@ class Planner:
                     n = self.playouts if s is None else max(1, round(s * cell["p"]))
                     while len(cell["v"]) < n:
                         cell["v"].append(self.playout(clone(cell["c"]), _mix(key, len(cell["v"]))))
+                        if self.record is not None:
+                            end = self.last_end
+                            cell.setdefault("e", []).append(
+                                (sum(1 for m in end.p.mons if not m.alive()), not end.p.alive()))
             spreads = [_var(cell["v"]) for i in alive for cell in cells[i] if len(cell["v"]) > 1]
             pooled = sum(spreads) / len(spreads) if spreads else 1.0
             for i in alive:
@@ -830,7 +832,25 @@ class Planner:
             lead = max(alive, key=lambda i: est[i][0])
             alive = [i for i in alive
                      if est[lead][0] - est[i][0] <= RACE_Z * (est[lead][1] + est[i][1]) ** 0.5]
+        if self.record is not None:
+            self.keep(cells)
         return [est[i][0] for i in range(len(acts))], alive
+
+    def keep(self, cells):
+        """For stage 2's training (pldata.distill_job): every unfinished
+        position the turn reached, as the network reads it, with what its
+        play-outs found (their values, and each one's faints and loss)."""
+        from . import plfeat
+        fight = None
+        for cs in cells:
+            for cell in cs:
+                if cell["done"] or not cell["v"]:
+                    continue
+                c = cell["c"]
+                fight = fight or self.tables(c)
+                x, i = plfeat.features(c, fight)
+                before = sum(1 for m in c.p.mons if not m.alive())
+                self.record.append((x, i, cell["v"], cell["e"], before))
 
     def leaf(self, c, key, n=None):
         if not c.p.alive() or not c.b.alive():
@@ -847,6 +867,7 @@ class Planner:
         stop = c.turn + PLAYOUT_TURNS
         while c.turn < stop and c.p.alive() and c.b.alive():
             pl.play_turn(c, plain(c), rng)
+        self.last_end = c
         return value(c)
 
     def decide(self, b):
@@ -1075,12 +1096,17 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
            "lead_seconds": round(lead_s, 1), "wall_seconds": round(wall, 1), "procs": procs,
            "fights_per_hour": round(runs / wall * 3600, 1),
            "worker_private_mb_max": max(r["private_mb"] for r in rows),
-           "parent_mb": memory()[0]}
+           "parent_mb": memory()[0],
+           # The seeds of the fights lost, so any of them can be replayed
+           # turn by turn (--trace --seed).
+           "lost_seeds": [s for s, r in zip(seeds, rows) if not r["won"]]}
     print(f"{fight} ({luck} odds): clean {clean}/{runs}, won {won}/{runs}, deaths {deaths:.3f}; "
           f"lead {out['lead']}; {out['cpu_seconds_per_run']} s of one core per run, "
           f"{out['decisions_per_run']} decisions, {wall:.0f} s wall", file=log)
     for a, b, n in out["faints"]:
         print(f"  {a:12} fainted to {b:12} {n}", file=log)
+    if out["lost_seeds"]:
+        print(f"  lost: seeds {', '.join(map(str, out['lost_seeds']))}", file=log)
     return out
 
 

@@ -60,8 +60,13 @@ Ian is comfortable with the line for now ("The planner's Roark, for Ian's
 check", below). Stage 1 of
 the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
 memory bounded after the WSL crash, the same fights move for move by
-`plspeed.py`, PyPy no gain), and stage 2, a learned position value on the
-GPU, has started at Ian's word. Every reading is now 75 fights at real odds
+`plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
+started at Ian's word: networks learned from the play-out planner's own
+values now choose for it at about a fortieth of the cost. The average of
+three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
+reads better than the play-out planner at both, and at Gardenia wins more
+often than our line but almost never cleanly, as the play-out planner does
+("Stage 2", below). Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -677,6 +682,211 @@ the planner wasting turns, the evidence goes to Ian.
 **Cost.** About 113 seconds of one core per fight and 24 decisions, so the 75
 fights took 342 seconds on 29 workers (about 790 fights an hour). Each worker
 holds at most about 190 MB.
+
+## The play-out planner on Mars 1 and Gardenia (2026-10-02)
+
+A baseline for goals 1 and 2 before stage 2 changes anything: the play-out
+planner (budget 192 with racing) on our hand-played sixes, 75 fights at real
+odds and 25 very unlucky, beside our lines over 2,000.
+
+| Fight | Line | Dice | Clean | Won | Faints |
+|---|---|---|---|---|---|
+| Mars 1 | ours | real odds | 96.4% | 100% | 0.037 |
+| Mars 1 | the planner | real odds | 97.3% (73/75) | 100% | 0.027 |
+| Mars 1 | ours | very unlucky | 91.3% | 100% | 0.089 |
+| Mars 1 | the planner | very unlucky | 92% (23/25) | 100% | 0.080 |
+| Gardenia | ours | real odds | 15.1% | 59.9% | 3.212 |
+| Gardenia | the planner | real odds | 1.3% (1/75) | 88% | 2.880 |
+| Gardenia | ours | very unlucky | 4.8% | 30.1% | 4.680 |
+| Gardenia | the planner | very unlucky | 0% (0/25) | 68% | 3.800 |
+
+The planner meets Mars 1's bar. At Gardenia it is mixed: it almost never
+wins cleanly, but it wins far more often than our line and loses fewer
+Pokemon. Lumineon takes most of its losses (Charmeleon 32 times, Tsareena 16,
+Vikavolt 14), and it leads Vullaby where we led Charmeleon. A fight costs
+about 210 seconds of one core at Mars 1 and 160 at Gardenia.
+
+## Stage 2: the learned position value (from 2026-10-02)
+
+Stage 2 of the speed plan replaces the planner's play-outs with a network
+that values a position. The planner keeps its exact look-ahead of one turn
+(the trainer's choice computed from its AI, every chance in the turn at its
+real odds) and asks the network for the value of each position the turn can
+reach, in one batch. The pieces are:
+
+- `plfeat.py`: a position as 1,201 numbers and 144 ids (the field, the twelve
+  Pokemon, and a matchup grid from the fight's calculator rows);
+- `pldata.py`: labelled positions, from plain play-outs (the value the
+  play-out planner averages), from the play-out planner's own look-ahead
+  (`--distill`, or `--distill MODEL` with the network planner choosing), or
+  from self-play (`--selfplay MODEL`: the network-guided planner's own
+  fights, labelled by how they ended), and evaluation sets valued by many
+  play-outs each (`--eval K`);
+- `plnet.py`: training on the GPU in `~/venvs/oxide-ml`, with a check that the
+  numpy export matches;
+- `plvalue.py`: the network run with numpy in the planner's workers, and a
+  check of its error against an evaluation set;
+- `plplan.py --value MODEL` plays with the network, and `--compare MODEL`
+  sets its values beside the play-outs' at each decision of a fight, with the
+  regret of its choices.
+
+**The data and weights live only outside git**, in
+`~/oxide-trials/scorer-stage2/` (`data*/` shards, `models/`), and are rebuilt
+from the code rather than kept. Each step is seeded, so it repeats:
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --sixes 30 --positions 20000
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --fights roark --hand --repeat 30 --positions 20000 --out ~/oxide-trials/scorer-stage2/data-roark-hand
+PYTHONPATH=. tools/oxide/capped ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name v2 --data ~/oxide-trials/scorer-stage2/data ~/oxide-trials/scorer-stage2/data-roark-hand --held-out 3 --epochs 10
+```
+
+Training on the GPU is not bit-for-bit repeatable, so a retrained network
+differs slightly from the one measured; its readings are measured again.
+
+**First results (2026-10-02).** The first networks learned plain play-outs:
+on our Roark six the best (v2) is off the true value by 1.45, about what three
+play-outs give, against 0.2 for the planner's 192. Choosing with it, the
+planner reads Roark at 45 of 75 clean, every fight won, 0.413 faints, against
+the play-out planner's 70 of 75 and 0.067: it inherits the plain policy's
+misreading of Lileep. It is fast: 2.7 seconds of one core a fight against
+113, once numpy is held to one thread per worker.
+
+**Self-play made it worse (2026-10-02).** Self-play, the speed plan's step
+4, retrains the network on the network planner's own fights, each position
+labelled by how its fight ended. Two rounds each played Roark worse than v2:
+the first, exploring with any option, read 40 of 75 clean and lost 10 fights;
+the second, exploring only among options near the best and continuing from
+v2, read 3 of 75 clean and lost 25. A label that is one fight's outcome errs
+by about 2.8, and the network learned that noise. Self-play is set aside.
+
+**Distillation worked (2026-10-02).** The play-out planner already values
+every position its look-ahead reaches, with up to a hundred play-outs each,
+and those values are exactly what the network stands in for. `pldata
+--distill` plays fights with the play-out planner and keeps every such
+position, labelled by the mean of its play-outs; plnet weights each label by
+how many there were, up to about five times a single play-out. The first set
+(d1) is 1.2 million positions from 609 fights over ten sixes of each fight,
+ours among them, and took 70 minutes on 29 workers. Trained from v2 on d1
+together with the earlier plain play-out data, the network d1b plays as
+follows on our sixes (clean, won, faints a fight; 75 fights at real odds, 25
+very unlucky):
+
+| Fight | Dice | Play-out planner | v2 | d1b |
+|---|---|---|---|---|
+| Roark | real odds | 70/75, 75/75, 0.067 | 45/75, 75/75, 0.413 | 69/75, 75/75, 0.093 |
+| Roark | very unlucky | 21/25, 25/25, 0.160 | | 20/25, 25/25, 0.240 |
+| Mars 1 | real odds | 73/75, 75/75, 0.027 | 49/75, 72/75, 0.733 | 64/75, 75/75, 0.293 |
+| Mars 1 | very unlucky | 23/25, 25/25, 0.080 | | 16/25, 25/25, 0.520 |
+| Gardenia | real odds | 1/75, 66/75, 2.880 | 0/75, 40/75, 5.013 | 1/75, 63/75, 3.227 |
+| Gardenia | very unlucky | 0/25, 17/25, 3.800 | | 0/25, 16/25, 4.080 |
+
+A fight costs d1b 2.4 seconds of one core at Roark, 3.4 at Mars 1 and 2.3 at
+Gardenia, against 113, 210 and 160 for the play-out planner. At that speed
+the whole game's 459 fights, 100 simulated fights each, take about an hour and
+a half on 29 workers, before the spread of boxes for each boss. Its spot
+check on one Roark fight (`plplan roark --compare d1b`): it chooses as the
+play-outs do at 14 of 29 decisions (v2: 10), and its choices give up 0.039 a
+decision by the play-outs' values (v2: 0.061), 0.22 at most. Trained on d1
+alone (d1a) it reads Roark at 36 of 75, so the broad plain data still helps.
+
+Mars 1 was the gap. There d1b plays lines the play-out planner never chose,
+so d1 never labelled the positions it reaches. Round d2 let d1b play the
+fights while play-outs labelled every position it looked at (`--distill
+d1b`, the remedy known as DAgger), 1.2 million more positions, and d2 trained
+from d1b on all of it. Seventy-five fights could not tell d1b and d2 apart, so
+they were compared on 500 fights of each six at real odds, and so was their
+average (`--value d1b+d2`, the mean of the two networks' values):
+
+| Network | Roark | Mars 1 | Gardenia |
+|---|---|---|---|
+| d1b | 462 clean, 500 won, 0.088 | 398 clean, 496 won, 0.350 | 6 clean, 408 won, 3.490 |
+| d2 | 417 clean, 500 won, 0.178 | 475 clean, 498 won, 0.088 | 8 clean, 407 won, 3.404 |
+| d1b+d2 | 478 clean, 500 won, 0.050 | 483 clean, 497 won, 0.074 | 11 clean, 413 won, 3.436 |
+
+d2 mended Mars 1 and lost ground at Roark; the average is better than either
+everywhere, and at Roark better than the play-out planner (95.6% clean
+against 93.3% on 75 fights). It costs 2.7 seconds of one core a fight at
+Roark, 4.3 at Mars 1 and 2.7 at Gardenia.
+
+Mars 1 still loses 3 fights in 500, where our line lost none in 2,000. The
+play-out planner wins all three of those seeds cleanly, so the losses are the
+network's misjudgements, not the dice. On seed 7307 the turn that starts it
+is the third: Meowth has 19 HP left and Vullaby's Pluck did 28 the turn
+before, yet the network values switching to Geodude (+0.24) above Pluck
+(+0.17). Meowth then lives five more turns of Bite, Bronzor gets time to
+stack Calm Mind behind Hypnosis, and Purugly sweeps a worn, sleeping team.
+The play-out planner Plucks, and wins with no faint.
+
+Round d3 did the same with the average d1b+d2 driving: 1.2 million more
+positions from 790 fights (86 minutes), and d3 trained from d2 on all 5.9
+million. Alone, d3 reads Mars 1 well (479 clean of 500) and Gardenia badly
+(279 won, leading Vullaby). Averaged with the other two it is the best
+planner so far, over 500 fights of each six at real odds:
+
+| Network | Roark | Mars 1 | Gardenia |
+|---|---|---|---|
+| d3 | 456 clean, 500 won, 0.094 | 479 clean, 499 won, 0.084 | 0 clean, 279 won, 4.444 |
+| d2+d3 | 432 clean, 499 won, 0.152 | 488 clean, 497 won, 0.060 | 0 clean, 293 won, 4.446 |
+| d1b+d2+d3 | 491 clean, 500 won, 0.020 | 490 clean, 498 won, 0.044 | 11 clean, 423 won, 3.254 |
+
+Its readings as Ian ruled them (75 fights at real odds and 25 very unlucky,
+`planner-net-d1b+d2+d3-*` in the results folder), beside our hand-played
+lines over 2,000 fights and the play-out planner:
+
+| Fight | Dice | d1b+d2+d3 | Our line | Play-out planner |
+|---|---|---|---|---|
+| Roark | real odds | 74/75, 75/75, 0.013 | 98.5%, 100%, 0.015 | 70/75, 75/75, 0.067 |
+| Roark | very unlucky | 23/25, 25/25, 0.080 | 96.4%, 99.95%, 0.043 | 21/25, 25/25, 0.160 |
+| Mars 1 | real odds | 74/75, 75/75, 0.013 | 96.4%, 100%, 0.037 | 73/75, 75/75, 0.027 |
+| Mars 1 | very unlucky | 24/25, 25/25, 0.080 | 91.3%, 100%, 0.089 | 23/25, 25/25, 0.080 |
+| Gardenia | real odds | 0/75, 62/75, 3.360 | 15.1%, 59.9%, 3.212 | 1/75, 66/75, 2.880 |
+| Gardenia | very unlucky | 0/25, 14/25, 4.480 | 4.8%, 30.1%, 4.680 | 0/25, 17/25, 3.800 |
+
+It meets the Roark and Mars 1 bars, with the very unlucky Roark at 23 of 25
+where ours is 96.4% (25 fights cannot tell those apart). At Gardenia it
+behaves as the play-out planner does: it wins more often than our line and
+almost never cleanly, which is the open question in the tracker of how a
+loss should weigh against a faint. A fight costs it 2.6 to 3.8 seconds of
+one core, three network passes a decision.
+
+**A network cannot yet judge a trainer it has not seen.** Two networks were
+trained from scratch by one recipe on every shard so far, one with
+Gardenia's and one with Roark's and Mars 1's only (`plnet --fights`), and
+both were read on 500 fights of each six at real odds:
+
+| Network | Gardenia | Mars 1 |
+|---|---|---|
+| with Gardenia's data | 0 clean, 362 won, 3.854 | 475 clean, 500 won, 0.060 |
+| without it | 0 clean, 2 won, 5.994 | 487 clean, 500 won, 0.028 |
+
+Without Gardenia's positions it loses almost every Gardenia fight. Trained
+on three trainers, it has never met most of the game's species and moves,
+so its ids for them mean nothing. Every new fight therefore needs labelled
+positions of its own before the network can play it: for goal 2, a round of
+distillation for the rival fights, Jupiter 1 and Fantina. For the whole
+game, the hope is that a network trained on positions from many trainers
+judges a new one well, since it will have met most species and moves by
+then; that is untested.
+
+The Mars 1 lead values are all equal, under play-outs and networks alike,
+and that is the fight, not a fault: from any lead the best first move is to
+switch to Vullaby into Meowth's Fake Out, so every lead reaches the same
+position. The commands that rebuild d1b:
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill --sixes 10 --repeat 3 --positions 12000 --seed 1 --out ~/oxide-trials/scorer-stage2/data-d1
+PYTHONPATH=. tools/oxide/capped --max 20G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d1b --from v2 --data ~/oxide-trials/scorer-stage2/data-d1 ~/oxide-trials/scorer-stage2/data ~/oxide-trials/scorer-stage2/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+```
+
+And d2 and d3 after it (each round's labels come from the planner the last
+round made; `S` is `~/oxide-trials/scorer-stage2`):
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b --sixes 10 --repeat 3 --positions 12000 --seed 2 --out $S/data-d2
+PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d2 --from d1b --data $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b+d2 --sixes 10 --repeat 3 --positions 12000 --seed 3 --out $S/data-d3
+PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d3 --from d2 --data $S/data-d3 $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
+```
 
 ## The harness
 

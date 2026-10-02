@@ -1,0 +1,148 @@
+{
+ "fight": "gardenia",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1a"
+ },
+ "luck": "real",
+ "lead": "Tsareena",
+ "lead_values": {
+  "Charmeleon": -11.056,
+  "Popplio": -11.056,
+  "Vikavolt": -11.056,
+  "Vullaby": -10.95,
+  "Golbat": -11.056,
+  "Tsareena": -10.687
+ },
+ "clean": 3,
+ "won": 64,
+ "deaths": 2.653,
+ "runs": 75,
+ "faints": [
+  [
+   "Charmeleon",
+   "Lumineon",
+   32
+  ],
+  [
+   "Popplio",
+   "Lumineon",
+   17
+  ],
+  [
+   "Popplio",
+   "Shiftry",
+   17
+  ],
+  [
+   "Tsareena",
+   "Shiftry",
+   16
+  ],
+  [
+   "Vikavolt",
+   "Lumineon",
+   14
+  ],
+  [
+   "Golbat",
+   "Roserade",
+   14
+  ],
+  [
+   "Vikavolt",
+   "Shiftry",
+   12
+  ],
+  [
+   "Popplio",
+   "Breloom",
+   12
+  ],
+  [
+   "Vullaby",
+   "Shiftry",
+   11
+  ],
+  [
+   "Vikavolt",
+   "Roserade",
+   7
+  ],
+  [
+   "Tsareena",
+   "Lumineon",
+   7
+  ],
+  [
+   "Popplio",
+   "Roserade",
+   6
+  ],
+  [
+   "Golbat",
+   "Lumineon",
+   6
+  ],
+  [
+   "Charmeleon",
+   "Cherrim",
+   5
+  ],
+  [
+   "Vullaby",
+   "Roserade",
+   5
+  ],
+  [
+   "Vullaby",
+   "Breloom",
+   3
+  ],
+  [
+   "Vullaby",
+   "Lumineon",
+   3
+  ],
+  [
+   "Charmeleon",
+   "Shiftry",
+   3
+  ],
+  [
+   "Tsareena",
+   "Roserade",
+   3
+  ],
+  [
+   "Charmeleon",
+   "Roserade",
+   2
+  ],
+  [
+   "Charmeleon",
+   "Breloom",
+   2
+  ],
+  [
+   "Golbat",
+   "Shiftry",
+   1
+  ],
+  [
+   "Popplio",
+   "Cherrim",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 2.43,
+ "decisions_per_run": 24.5,
+ "turns_per_run": 22.2,
+ "lead_seconds": 0.1,
+ "wall_seconds": 7.3,
+ "procs": 29,
+ "fights_per_hour": 36746.8,
+ "worker_private_mb_max": 32,
+ "parent_mb": 72
+}

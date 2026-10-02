@@ -1,0 +1,138 @@
+{
+ "fight": "roark",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "sx1"
+ },
+ "luck": "real",
+ "lead": "Steenee",
+ "lead_values": {
+  "Barboach": -0.273,
+  "Nidorino": -0.162,
+  "Geodude": -0.273,
+  "Onix": -0.273,
+  "Prinplup": -0.149,
+  "Steenee": -0.09
+ },
+ "clean": 3,
+ "won": 50,
+ "deaths": 3.827,
+ "runs": 75,
+ "faints": [
+  [
+   "Onix",
+   "Lileep",
+   43
+  ],
+  [
+   "Steenee",
+   "Nosepass",
+   39
+  ],
+  [
+   "Nidorino",
+   "Lileep",
+   25
+  ],
+  [
+   "Barboach",
+   "Lileep",
+   24
+  ],
+  [
+   "Prinplup",
+   "Lileep",
+   22
+  ],
+  [
+   "Geodude",
+   "Lileep",
+   22
+  ],
+  [
+   "Geodude",
+   "Cranidos",
+   18
+  ],
+  [
+   "Steenee",
+   "Lileep",
+   17
+  ],
+  [
+   "Nidorino",
+   "Nosepass",
+   17
+  ],
+  [
+   "Prinplup",
+   "Cranidos",
+   14
+  ],
+  [
+   "Barboach",
+   "Cranidos",
+   11
+  ],
+  [
+   "Steenee",
+   "Geodude",
+   9
+  ],
+  [
+   "Nidorino",
+   "Cranidos",
+   7
+  ],
+  [
+   "Onix",
+   "Cranidos",
+   5
+  ],
+  [
+   "Nidorino",
+   "Geodude",
+   3
+  ],
+  [
+   "Steenee",
+   "Cranidos",
+   3
+  ],
+  [
+   "Barboach",
+   "Geodude",
+   2
+  ],
+  [
+   "Prinplup",
+   "Geodude",
+   2
+  ],
+  [
+   "Onix",
+   "Geodude",
+   2
+  ],
+  [
+   "Geodude",
+   "Geodude",
+   1
+  ],
+  [
+   "Prinplup",
+   "Nosepass",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 2.32,
+ "decisions_per_run": 34.9,
+ "turns_per_run": 31.8,
+ "lead_seconds": 0.2,
+ "wall_seconds": 6.9,
+ "procs": 29,
+ "fights_per_hour": 39344.3,
+ "worker_private_mb_max": 26,
+ "parent_mb": 73
+}
