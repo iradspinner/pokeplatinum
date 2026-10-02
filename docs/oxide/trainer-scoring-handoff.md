@@ -678,6 +678,73 @@ the planner wasting turns, the evidence goes to Ian.
 fights took 342 seconds on 29 workers (about 790 fights an hour). Each worker
 holds at most about 190 MB.
 
+## The play-out planner on Mars 1 and Gardenia (2026-10-02)
+
+A baseline for goals 1 and 2 before stage 2 changes anything: the play-out
+planner (budget 192 with racing) on our hand-played sixes, 75 fights at real
+odds and 25 very unlucky, beside our lines over 2,000.
+
+| Fight | Line | Dice | Clean | Won | Faints |
+|---|---|---|---|---|---|
+| Mars 1 | ours | real odds | 96.4% | 100% | 0.037 |
+| Mars 1 | the planner | real odds | 97.3% (73/75) | 100% | 0.027 |
+| Mars 1 | ours | very unlucky | 91.3% | 100% | 0.089 |
+| Mars 1 | the planner | very unlucky | 92% (23/25) | 100% | 0.080 |
+| Gardenia | ours | real odds | 15.1% | 59.9% | 3.212 |
+| Gardenia | the planner | real odds | 1.3% (1/75) | 88% | 2.880 |
+| Gardenia | ours | very unlucky | 4.8% | 30.1% | 4.680 |
+| Gardenia | the planner | very unlucky | 0% (0/25) | 68% | 3.800 |
+
+The planner meets Mars 1's bar. At Gardenia it is mixed: it almost never
+wins cleanly, but it wins far more often than our line and loses fewer
+Pokemon. Lumineon takes most of its losses (Charmeleon 32 times, Tsareena 16,
+Vikavolt 14), and it leads Vullaby where we led Charmeleon. A fight costs
+about 210 seconds of one core at Mars 1 and 160 at Gardenia.
+
+## Stage 2: the learned position value (from 2026-10-02)
+
+Stage 2 of the speed plan replaces the planner's play-outs with a network
+that values a position. The planner keeps its exact look-ahead of one turn
+(the trainer's choice computed from its AI, every chance in the turn at its
+real odds) and asks the network for the value of each position the turn can
+reach, in one batch. The pieces are:
+
+- `plfeat.py`: a position as 1,201 numbers and 144 ids (the field, the twelve
+  Pokemon, and a matchup grid from the fight's calculator rows);
+- `pldata.py`: labelled positions, either from plain play-outs (the value the
+  play-out planner averages) or from self-play (`--selfplay MODEL`: the
+  network-guided planner's own fights, labelled by how they ended), and
+  evaluation sets valued by many play-outs each (`--eval K`);
+- `plnet.py`: training on the GPU in `~/venvs/oxide-ml`, with a check that the
+  numpy export matches;
+- `plvalue.py`: the network run with numpy in the planner's workers, and a
+  check of its error against an evaluation set;
+- `plplan.py --value MODEL` plays with the network, and `--compare MODEL`
+  sets its values beside the play-outs' at each decision of a fight, with the
+  regret of its choices.
+
+**The data and weights live only outside git**, in
+`~/oxide-trials/scorer-stage2/` (`data*/` shards, `models/`), and are rebuilt
+from the code rather than kept. Each step is seeded, so it repeats:
+
+```
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --sixes 30 --positions 20000
+PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --fights roark --hand --repeat 30 --positions 20000 --out ~/oxide-trials/scorer-stage2/data-roark-hand
+PYTHONPATH=. tools/oxide/capped ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name v2 --data ~/oxide-trials/scorer-stage2/data ~/oxide-trials/scorer-stage2/data-roark-hand --held-out 3 --epochs 10
+```
+
+Training on the GPU is not bit-for-bit repeatable, so a retrained network
+differs slightly from the one measured; its readings are measured again.
+
+**First results (2026-10-02).** The first networks learned plain play-outs:
+on our Roark six the best (v2) is off the true value by 1.45, about what three
+play-outs give, against 0.2 for the planner's 192. Choosing with it, the
+planner reads Roark at 45 of 75 clean, every fight won, 0.413 faints, against
+the play-out planner's 70 of 75 and 0.067: it inherits the plain policy's
+misreading of Lileep. It is fast: 2.7 seconds of one core a fight against
+113, once numpy is held to one thread per worker. Self-play, the speed
+plan's step 4, retrains the network on the planner's own fights.
+
 ## The harness
 
 The working scripts are in `~/oxide-trials/three-gym-run/`, with a README:
