@@ -88,4 +88,7 @@ def check(name, eval_dir=os.path.expanduser("~/oxide-trials/scorer-stage2/data-e
 
 if __name__ == "__main__":
     import sys
-    check(sys.argv[1])
+    if len(sys.argv) > 2:
+        check(sys.argv[1], os.path.expanduser(sys.argv[2]))
+    else:
+        check(sys.argv[1])

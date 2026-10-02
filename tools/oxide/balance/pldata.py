@@ -116,6 +116,69 @@ def job(args):
     return meta
 
 
+EXPLORE = 0.15        # self-play: the share of turns spent on a random option
+
+
+def selfplay_job(args):
+    """One fight and six played many times by the planner guided by a trained
+    network (the speed plan's step 4, the loop that made AlphaZero strong):
+    each position where the planner chose is recorded with how the fight
+    ended, so the next network learns the value of positions under the
+    planner's own play rather than the plain play-out policy's. A random
+    lead, and on EXPLORE of the turns a random option, keep the positions
+    from narrowing to one line."""
+    fight, six, positions, seed, out_dir, model = args
+    from . import plstep3
+    t0 = time.perf_counter()
+    f = plstep3.FIGHTS[fight]
+    items = f["items"] if list(six) == list(f["six"]) else None
+    prep = plstep3.prepare(f, list(six), items)
+    st = prep["st"]
+    boss_keys, flags, _s = prep["variants"][0]
+    team = [f"p{i}" for i in range(len(six))]
+    tables = plfeat.Fight(st, team, boss_keys)
+    rng = random.Random(seed)
+    xs, ids, vals, future, lost = [], [], [], [], []
+    games = 0
+    while len(vals) < positions:
+        b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
+        run = random.Random(rng.getrandbits(32))
+        b.dice, b.rng = pl.RunDice(run, luck="real"), run
+        plplan.reset()
+        planner = plplan.Planner(rng.getrandbits(32), value=model)
+        plplan._REAL.update(b=b, planner=planner)
+        seen = []
+        try:
+            while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
+                x, i = plfeat.features(b, tables)
+                seen.append((x, i, sum(1 for m in b.p.mons if not m.alive())))
+                acts = plplan.options(b)
+                a = acts[rng.randrange(len(acts))] if rng.random() < EXPLORE else planner.decide(b)
+                pl.play_turn(b, a, run)
+        finally:
+            plplan._REAL.update(b=None, planner=None)
+        games += 1
+        v = plplan.value(b)
+        faints = sum(1 for m in b.p.mons if not m.alive())
+        for x, i, before in seen:
+            xs.append(x.astype(np.float16))
+            ids.append(i)
+            vals.append(v)
+            future.append(faints - before)
+            lost.append(not b.p.alive())
+    os.makedirs(out_dir, exist_ok=True)
+    name = f"{fight}-{seed}"
+    np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
+                        value=np.asarray(vals, np.float32), future=np.asarray(future, np.int8),
+                        lost=np.asarray(lost, np.int8))
+    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "playouts": games,
+            "games": games, "model": model, "seconds": round(time.perf_counter() - t0, 1),
+            "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
+    with open(os.path.join(out_dir, name + ".json"), "w") as fh:
+        json.dump(meta, fh)
+    return meta
+
+
 def eval_job(args):
     """One fight and six: positions reached as job() reaches them, each
     valued by `k` play-outs of its own (the plain policy to the end, each on
@@ -180,7 +243,28 @@ def main(argv=None):
                     help="an evaluation set instead: the last --sixes held-out sixes of each fight, "
                          "--positions positions each, each valued by K play-outs")
     ap.add_argument("--of", type=int, default=30, help="with --eval: the sixes drawn per fight in training")
+    ap.add_argument("--selfplay", metavar="MODEL",
+                    help="positions from fights played by the planner guided by MODEL, labelled by how they ended")
     args = ap.parse_args(argv)
+    if args.selfplay:
+        jobs = []
+        for fight in args.fights:
+            for six in sixes(fight, 1 if args.hand else args.sixes, args.seed):
+                for _r in range(args.repeat):
+                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out,
+                                 args.selfplay))
+        procs = args.procs or plplan.pool_size()
+        t0 = time.perf_counter()
+        done = games = 0
+        with plplan.fork_pool(procs) as pool:
+            for meta in pool.imap_unordered(selfplay_job, jobs, chunksize=1):
+                done += meta["positions"]
+                games += meta["games"]
+                print(f"selfplay {meta['fight']} {','.join(meta['six'])}: {meta['positions']} positions from "
+                      f"{meta['games']} fights in {meta['seconds']} s", flush=True)
+        wall = time.perf_counter() - t0
+        print(f"{done} positions from {games} fights in {wall:.0f} s on {procs} workers", flush=True)
+        return 0
     if args.eval:
         jobs = []
         for fight in args.fights:
