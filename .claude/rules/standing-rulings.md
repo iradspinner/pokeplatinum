@@ -100,10 +100,19 @@ read, so they are written here too. Each is a standing instruction.
   win, but each loss takes away later team-building options, so clean wins
   come first and a planned sacrifice is a cost, not a failure. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
-  Pokemon. Ties between equal AI picks break at random. Within Ian's luck
-  budget, every secondary status against the player lands and one crit
-  against the player may, never two in a row; the rest rolls at the game's
-  odds. When a fight reads too hard, the player's move pools are the first
+  Pokemon. Ties between equal AI picks break at random. Every fight is
+  simulated at the game's real odds, with no luck budget (Ian, 2026-10-02,
+  replacing the budget of 2026-09-30, under which every secondary status
+  against the player landed and one crit could): the three numbers are then
+  true frequencies with bad luck inside them, and the planner's caution
+  comes from how heavily a position values a faint, weighing each chance at
+  its true odds. The stress test that replaces the budget (Ian, 2026-10-02)
+  replays the chosen line at disadvantage: every status and crit check, the
+  trainer's and the player's, rolls twice and keeps the result worse for the
+  player (the trainer's 1-in-24 crit lands about 1 in 12 and a 10% status
+  about 19%; the player's own crits and secondary effects land less often,
+  and its full-paralysis and confusion checks go against it). Its three
+  numbers are reported beside the real-odds ones, as a very unlucky fight. When a fight reads too hard, the player's move pools are the first
   candidate for change, since they are sparse in interesting options and lack
   many modern moves. A fight is judged on three numbers read together, never
   the clean rate alone (Ian, 2026-10-01): the clean rate, the share of

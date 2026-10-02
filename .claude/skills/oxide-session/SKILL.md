@@ -71,6 +71,18 @@ the facts they point at live in the docs, not here.
 - Ian's writing rules are in `~/.claude/CLAUDE.md`, which every session and
   subagent loads. A hook refuses a dash or a banned phrase in Markdown and in
   commit messages; the rest is on you.
+- Run any heavy or parallel job (a planner reading, a rescore, a worker pool)
+  under `tools/oxide/capped`, which stops the job at a memory cap instead of
+  letting it run WSL out of memory. On 2026-10-02 a 30-process planner run did
+  that, WSL crashed, and every session on the machine died. Size a worker pool
+  by the memory each worker needs, not only by the core count.
+- In a session started inside a worktree, edit files with the Edit and Write
+  tools and run plain commands; do not feed a script to Python or the shell as
+  inline text (a heredoc or `python3 -c`). Claude Code's worktree guard refuses
+  any command it cannot prove keeps git inside the worktree, and inline text
+  that merely mentions git, or is long enough to be "too complex", trips it.
+  The guard stays: it keeps a worktree session's git off the shared main
+  checkout, where the Overseer lands every branch (Ian, 2026-10-02).
 
 ## Ending
 

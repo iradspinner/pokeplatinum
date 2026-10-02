@@ -55,6 +55,7 @@ copy "reviews/encounter-review/principles.md" "notes/reviews/encounter-review/pr
 copy "save-layout.md" "notes/save-layout.md"
 copy "battle-log.md" "notes/battle-log.md"
 copy "trainer-scoring-handoff.md" "notes/trainer-scoring-handoff.md"
+copy "scorer-speed-plan.md" "notes/scorer-speed-plan.md"
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "species-id-scheme.md" "notes/species-id-scheme.md"
