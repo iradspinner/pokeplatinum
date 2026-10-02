@@ -150,6 +150,7 @@ MAX_GAMES = 400       # distillation: fights per shard at most
 # distillation: the labeller's play-outs per option and trainer pick (the
 # planner's own budget by default; --label-budget measures a cheaper one)
 LABEL_BUDGET = plplan.BUDGET
+LABEL_SHARE = 1.0     # distillation with a model: the share of its decisions labelled
 
 
 def selfplay_job(args):
@@ -264,7 +265,11 @@ def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=No
         plplan._REAL.update(b=b, planner=planner)
         try:
             while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
-                if planner is not labeller:
+                # With a network choosing, only LABEL_SHARE of its decisions
+                # are labelled, so a round's cost covers more fights (the
+                # dice draw is skipped at the default share of one, which
+                # keeps earlier rounds repeatable).
+                if planner is not labeller and (LABEL_SHARE >= 1 or rng.random() < LABEL_SHARE):
                     acts = plplan.options(b)
                     if len(acts) > 1:
                         labeller.decisions += 1
@@ -291,7 +296,7 @@ def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=No
                         sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
                         lost=np.asarray(lost, np.float32))
     meta = dict(meta, seed=seed, positions=len(vals), games=games, playouts=int(sum(counts)), model=model,
-                label_budget=LABEL_BUDGET,
+                label_budget=LABEL_BUDGET, label_share=LABEL_SHARE,
                 seconds=round(time.perf_counter() - t0, 1), private_mb=plplan.memory()[1],
                 floats=plfeat.FLOATS, ids=plfeat.IDS)
     with open(os.path.join(out_dir, name + ".json"), "w") as fh:
@@ -370,9 +375,11 @@ def main(argv=None):
                          "fights, or with MODEL in the fights of the planner that network guides")
     ap.add_argument("--label-budget", type=int, default=plplan.BUDGET,
                     help="with --distill: the labeller's play-outs per option and trainer pick")
+    ap.add_argument("--label-share", type=float, default=1.0,
+                    help="with --distill MODEL: the share of the network's decisions labelled")
     args = ap.parse_args(argv)
-    global LABEL_BUDGET
-    LABEL_BUDGET = args.label_budget
+    global LABEL_BUDGET, LABEL_SHARE
+    LABEL_BUDGET, LABEL_SHARE = args.label_budget, args.label_share
     if args.distill is not None:
         jobs = []
         for fight in args.fights:
