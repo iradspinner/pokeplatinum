@@ -182,7 +182,7 @@ with dated pins `~/roms/base-2026-08-31.nds` (the same file) and
 byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
 `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
-`tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a GitHub build
+`tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a local build
 of the merged tree, the gate on that ROM, and a push only on a pass.
 `tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
 complains about any file it has no mapping for. The full restart check-list,
