@@ -1298,7 +1298,9 @@ class Search:
 
 def make_battle(st, team, boss_keys, flags, lead):
     pm = [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "p") for k in team]
-    held = fs.assign_items(st, team) if "split" in st else {}
+    # Held items by the scorer's own rule, unless the state names them (a
+    # hand-played line's items, plstep3).
+    held = st["held"] if "held" in st else fs.assign_items(st, team) if "split" in st else {}
     for m in pm:
         m.item = held.get(m.key)
     bm = [fs.Mon(k, st["pokemon"][k], st["info"][k], st["moves"][k], "b") for k in boss_keys]

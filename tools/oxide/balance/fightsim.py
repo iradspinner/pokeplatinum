@@ -1850,8 +1850,10 @@ def player_items(split):
 def assign_items(st, team):
     """{key: item} for a team: a booster for a member's main same-type
     attack when that type's booster is in reach and not yet given, else
-    Leftovers, else a Sitrus Berry, while copies last; strongest first."""
-    stock = player_items(st["split"])
+    Leftovers, else a Sitrus Berry, while copies last; strongest first. A
+    state may name its own stock (st["item_stock"], in player_items' form),
+    as a real run's items (plstep3)."""
+    stock = st.get("item_stock") or player_items(st["split"])
     boosters = dict(stock["boosters"])
     left = {"Leftovers": stock["Leftovers"], "Sitrus Berry": stock["Sitrus Berry"]}
     out = {}

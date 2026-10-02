@@ -187,15 +187,22 @@ def _strongest(b):
     return max(b.b.mons, key=lambda m: (m.level, m.maxhp)).key
 
 
+def _why(b, rule, act):
+    """The action, with the rule that chose it kept on the battle for a
+    traced run to print (plstep3)."""
+    b.why = rule
+    return act
+
+
 def decide(b, line):
     """('move', Move) or ('switch', index) for the player under this line."""
     me, foe = b.p.cur(), b.b.cur()
     if me.lock:
-        return "move", me.lock[0]
+        return _why(b, "locked into a move", ("move", me.lock[0]))
     if me.charging is not None:
-        return "move", me.charging
+        return _why(b, "charging", ("move", me.charging))
     if me.recharge:
-        return "move", me.moves[0]
+        return _why(b, "recharging", ("move", me.moves[0]))
     moves = [mv for mv in me.moves if usable(b, me, foe, mv)]
     attacks = [mv for mv in moves if mv.damaging()]
     can_switch = not me.bound and fs.can_switch(me) and b.p.bench()
@@ -205,7 +212,7 @@ def decide(b, line):
     for mv in sorted(attacks, key=lambda m: -m.pri):
         if (mv.acc == 0 or mv.acc >= 100) and pl.dmg_low(b, me, foe, mv) >= foe.hp \
                 and (mv.pri > 0 or first or t_foe > 1):
-            return "move", mv
+            return _why(b, "a knockout it cannot answer first", ("move", mv))
     # Baiting a lock: the foe is locked into one Choice move; switch to a
     # Pokemon that move cannot touch, so its turns are spent for nothing.
     if line.bait_lock and can_switch and foe.choice:
@@ -213,7 +220,7 @@ def decide(b, line):
         if locked is not None and locked.damaging() and pl.dmg_top(b, foe, me, locked) > 0:
             free = [i for i in _free_against(b, foe, [locked.type]) if not _held(line, i, foe)]
             if free:
-                return "switch", free[0]
+                return _why(b, "baiting a Choice lock", ("switch", free[0]))
     # The answer to this foe comes in when it appears; with no single
     # answer, the first of a pair (the chipper).
     if can_switch and foe.turns_in == 0:
@@ -221,14 +228,14 @@ def decide(b, line):
         if ans is None and foe.key in line.pairs:
             ans = line.pairs[foe.key][0]
         if ans is not None and ans != b.p.active and b.p.mons[ans].alive():
-            return "switch", ans
+            return _why(b, "this foe's answer comes in", ("switch", ans))
     # A pair: the chipper leaves for the finisher while it can still take
     # the foe's hardest hit, crit included.
     pair = line.pairs.get(foe.key)
     if pair and can_switch and b.p.active == pair[0] and b.p.mons[pair[1]].alive():
         _w, _tm, _tf, _plain, crit_hit = exchange(b)
         if me.hp <= crit_hit * 2:
-            return "switch", pair[1]
+            return _why(b, "the pair's chipper hands over", ("switch", pair[1]))
     # Screens: Reflect against a foe whose hits are physical, Light Screen
     # against special, while ours is down and this Pokemon lives the turn.
     if line.screens and t_foe >= 2:
@@ -239,20 +246,20 @@ def decide(b, line):
             if not b.p.screens[want]:
                 mv = next((m for m in moves if m.effect == eff), None)
                 if mv is not None:
-                    return "move", mv
+                    return _why(b, "a screen against its kind of hit", ("move", mv))
     phys = sum(1 for mv in foe.moves if mv.damaging() and mv.cat == "Physical")
     spec = sum(1 for mv in foe.moves if mv.damaging() and mv.cat == "Special")
     # Sleep as the opening against the foe's strongest Pokemon.
     if line.sleep_open and t_foe >= 2 and foe.status is None and foe.key == _strongest(b):
         mv = next((m for m in moves if m.effect == "STATUS_SLEEP" and fs.can_status(b, foe, "slp")), None)
         if mv is not None:
-            return "move", mv
+            return _why(b, "sleep against its strongest", ("move", mv))
     # Defense setup against a physical foe, to +4 (Simple doubles each use).
     if line.def_setup and phys and phys >= spec and t_foe >= 2 and me.stages["def"] < 4:
         mv = next((m for m in moves if m.effect in fs.SELF_STAGES
                    and fs.SELF_STAGES[m.effect].get("def", 0) > 0), None)
         if mv is not None:
-            return "move", mv
+            return _why(b, "Defense setup", ("move", mv))
     # A drop on the foe's attacking stat, else its accuracy, to -2.
     if line.foe_drop and t_foe >= 2 and t_me >= 2 and (phys or spec):
         for stat in ("atk" if phys >= spec else "spa", "acc"):
@@ -261,7 +268,7 @@ def decide(b, line):
             mv = next((m for m in moves if m.effect in fs.FOE_STAGES
                        and fs.FOE_STAGES[m.effect].get(stat, 0) < 0), None)
             if mv is not None:
-                return "move", mv
+                return _why(b, "a stat drop on the foe", ("move", mv))
     # Hazards, with two or more of the foe's Pokemon still to come.
     if line.hazards and t_foe >= 2 and sum(1 for m in b.b.mons if m.alive()) >= 3:
         hz = b.b.hazards
@@ -269,7 +276,7 @@ def decide(b, line):
             if (mv.effect == "STEALTH_ROCK" and not hz["rocks"]) or \
                     (mv.effect == "SET_SPIKES" and hz["spikes"] < 3) or \
                     (mv.effect == "TOXIC_SPIKES" and hz["tspikes"] < 2):
-                return "move", mv
+                return _why(b, "hazards", ("move", mv))
     # Stalling a timed effect: with none of our hits a knockout, wait out the
     # foe's screens, tailwind or Trick Room behind Protect when it is nearly
     # over, or through a free switch.
@@ -278,12 +285,12 @@ def decide(b, line):
         guard = next((mv for mv in moves if mv.effect == "PROTECT" and not me.protect_streak), None) \
             if hasattr(me, "protect_streak") else next((mv for mv in moves if mv.effect == "PROTECT"), None)
         if guard is not None:
-            return "move", guard
+            return _why(b, "Protect while a timed effect runs out", ("move", guard))
         if can_switch:
             hits = [mv.type for mv in foe.moves if mv.damaging()]
             free = [i for i in _free_against(b, foe, hits) if not _held(line, i, foe)]
             if free:
-                return "switch", free[0]
+                return _why(b, "a free switch while a timed effect runs out", ("switch", free[0]))
     # Leaving a losing exchange.
     if can_switch and not win and line.switch_rule != "never":
         if line.switch_rule == "losing" or me.hp / me.maxhp < line.hp_floor:
@@ -298,9 +305,9 @@ def decide(b, line):
                 if hard is not None:
                     free = [i for i in _free_against(b, foe, [hard.type]) if not _held(line, i, foe)]
                     if free:
-                        return "switch", free[0]
+                        return _why(b, "a free pivot out of a losing exchange", ("switch", free[0]))
             if idx is not None:
-                return "switch", idx
+                return _why(b, "leaving a losing exchange", ("switch", idx))
     # A status or setup move when there is time for it.
     safe = t_foe - (0 if first else 1)
     if line.use_status and safe >= line.setup_turns:
@@ -309,20 +316,20 @@ def decide(b, line):
                 continue
             e = mv.effect
             if e in fs.STATUS_OF and fs.can_status(b, foe, fs.STATUS_OF[e]) and t_me >= 2:
-                return "move", mv
+                return _why(b, "a status move with time for it", ("move", mv))
             if e in fs.SELF_STAGES and (me.hp == me.maxhp or not line.setup_full):
                 stat = "atk" if any(m.cat == "Physical" for m in attacks) else "spa"
                 if me.stages.get(stat, 0) < 2 and fs.SELF_STAGES[e].get(stat, 0) > 0:
-                    return "move", mv
+                    return _why(b, "setup with time for it", ("move", mv))
             if e in fs.HEAL_HALF and me.hp * 2 < me.maxhp:
-                return "move", mv
+                return _why(b, "healing below half", ("move", mv))
     if attacks:
-        return "move", max(attacks, key=lambda m: expected_damage(b, me, foe, m))
+        return _why(b, "the strongest attack", ("move", max(attacks, key=lambda m: expected_damage(b, me, foe, m))))
     if moves:
-        return "move", moves[0]
+        return _why(b, "its only usable move", ("move", moves[0]))
     if can_switch:
-        return "switch", next(i for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive())
-    return "move", me.moves[0]
+        return _why(b, "no usable move, so a switch", ("switch", next(i for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive())))
+    return _why(b, "nothing usable", ("move", me.moves[0]))
 
 
 # ---- runs ----------------------------------------------------------------------------------------------
@@ -460,10 +467,11 @@ def greedy_line(st, team, boss_keys, flags, rng, jitter=0.0):
 
 
 def search(st, team, boss_keys, flags, candidates=50, screen_runs=20, keep=3, confirm_runs=300,
-           seed=0, one_crit=True):
+           seed=0, one_crit=True, keep_line=False):
     """The best line's clean-win rate for this six: {"rate", "screen"
     (the best screening rate after 10, 20, ... candidates), "line",
-    "candidates", "runs"}."""
+    "candidates", "runs"}, and with `keep_line` the Line itself under
+    "policy", for replaying it (plstep3)."""
     rng = random.Random(seed)
     scored = []
     curve = {}
@@ -499,7 +507,10 @@ def search(st, team, boss_keys, flags, candidates=50, screen_runs=20, keep=3, co
         if best is None or (rate, -deaths) > (best[0], -best[3]):
             best = (rate, r, line, deaths, wipe)
     rate, screened, line, deaths, wipe = best
-    return {"rate": round(rate, 3), "deaths": round(deaths, 3), "wipe": round(wipe, 3),
-            "screened": round(screened, 3), "screen": curve,
-            "line": line.describe(st, team), "candidates": len(scored), "converged": converged,
-            "runs": len(scored) * screen_runs + min(keep, len(scored)) * confirm_runs}
+    out = {"rate": round(rate, 3), "deaths": round(deaths, 3), "wipe": round(wipe, 3),
+           "screened": round(screened, 3), "screen": curve,
+           "line": line.describe(st, team), "candidates": len(scored), "converged": converged,
+           "runs": len(scored) * screen_runs + min(keep, len(scored)) * confirm_runs}
+    if keep_line:
+        out["policy"] = line
+    return out

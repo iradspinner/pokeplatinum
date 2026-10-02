@@ -1,0 +1,25 @@
+gardenia (hand): faints over 200 runs, as (fainted, foe out): total, first death
+  Vikavolt     to Lumineon      112    69
+  Popplio      to Roserade       98     0
+  Golbat       to Shiftry        90    49
+  Charmeleon   to Roserade       79     0
+  Vullaby      to Breloom        71     0
+  Tsareena     to Roserade       68     1
+  Vullaby      to Roserade       60     0
+  Tsareena     to Lumineon       53     0
+  Vikavolt     to Roserade       47     5
+  Tsareena     to Cherrim        45    45
+  Charmeleon   to Breloom        44     0
+  Popplio      to Breloom        34     0
+  Golbat       to Lumineon       33     0
+  Golbat       to Breloom        32    12
+  Charmeleon   to Lumineon       32     0
+  Vullaby      to Lumineon       30     0
+  Vikavolt     to Breloom        22     0
+  Popplio      to Lumineon       21     1
+  Golbat       to Roserade       19     4
+  Tsareena     to Breloom        12     0
+  Charmeleon   to Shiftry         8     0
+  Popplio      to Shiftry         5     0
+  Vullaby      to Shiftry         5     0
+  Vikavolt     to Shiftry         2     2

@@ -1,0 +1,19 @@
+gardenia (box), seed 32: lead Golbat; answers Cherrim->Charmeleon, Lumineon->Charmeleon, Shiftry->Golbat, Breloom->Golbat; switch hp below 0.5; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Charmeleon for Lumineon; screens; hazards; Defense setup; sleep opener
+start: you Golbat 78/78 | foe Cherrim 77/77
+T1 [Sun] Golbat: switch to Charmeleon (this foe's answer comes in) | Cherrim: Sunny Day -> you Charmeleon 70/70 | foe Cherrim 77/77
+T2 [Sun] Charmeleon: Fire Fang (the strongest attack) | Cherrim: Leech Seed -> you Charmeleon 62/70 | foe Cherrim 11/77
+T3 [Sun] Charmeleon: Fire Fang (a knockout it cannot answer first) | Cherrim: Weather Ball -> you Charmeleon 54/70 | foe Lumineon 77/77
+T4 [Sun] Charmeleon: Fire Fang (the strongest attack) | Lumineon: Aqua Tail -> you Tsareena 77/77 | foe Lumineon 67/77
+T5 [Sun] Tsareena: Magical Leaf (the strongest attack) | Lumineon: Swagger -> you Tsareena 77/77 {'atk': 2} | foe Lumineon 36/77
+T6 [Sun] Tsareena: Stomp (the strongest attack) | Lumineon: Natural Gift -> you Tsareena 27/77 {'atk': 2} | foe Roserade 74/74
+T7 [Sun] Tsareena: Stomp (the strongest attack) | Roserade: Sludge Bomb -> you Golbat 78/78 | foe Roserade 74/74
+T8 [clear] Golbat: Wing Attack (the strongest attack) | Roserade: Weather Ball -> you Golbat 27/78 | foe Roserade 20/74
+T9 [clear] Golbat: Wing Attack (the strongest attack) | Roserade: Sludge Bomb -> you Graveler 73/73 | foe Roserade 20/74
+T10 [clear] Graveler: Rock Throw (the strongest attack) | Roserade: Stun Spore -> you Graveler 73/73 par | foe Roserade 20/74
+T11 [clear] Graveler: Rock Throw (the strongest attack) | Roserade: Mega Drain -> you Graveler 1/73 par | foe Roserade 31/74
+T12 [clear] Graveler: Rock Throw (the strongest attack) | Roserade: Sludge Bomb -> you Corvisquire 75/75 | foe Roserade 31/74
+T13 [clear] Corvisquire: Drill Peck (the strongest attack) | Roserade: Sludge Bomb -> you Wartortle 70/70 | foe Roserade 31/74
+T14 [clear] Wartortle: Bite (the strongest attack) | Roserade: Sludge Bomb -> you Wartortle 11/70 psn | foe Roserade 16/74
+T15 [clear] Wartortle: Bite (the strongest attack) | Roserade: switch to Shiftry -> you Wartortle 3/70 psn | foe Shiftry 81/87
+T16 [clear] Wartortle: Rapid Spin (the strongest attack) | Shiftry: Natural Gift -> you Wartortle 0/70 psn | foe Shiftry 81/87
+lost; fainted: Charmeleon, Tsareena, Graveler, Golbat, Corvisquire, Wartortle

@@ -21,8 +21,9 @@ It owns the fight simulator, its trainer AI and the perfect-line scorer in
 
 - `fightsim.py` and `fightai.py`
 - `perfectline.py`, `perfectline.json` and `perfectline_results/`
-- `plscore.py`, `plines.py`, `plkaizo.py`, `plrescore.py`, `ppairs.py`,
-  `pboxes.py` and `pdoubles.py`
+- `plscore.py`, `plines.py`, `plkaizo.py`, `plrescore.py`, `plstep3.py`
+  (step 3's runner, added 2026-10-01), `ppairs.py`, `pboxes.py` and
+  `pdoubles.py`
 - their tests: `test_fightsim.py`, `test_plfixes.py`, `test_pline.py` and
   `test_fightai.py` (the AI routine by routine, added 2026-10-01)
 
@@ -33,11 +34,12 @@ files.
 
 **Ian checks this agent's reasoning** until he is reasonably sure it picks up
 the trends the three-gym run found (2026-09-30). Until he says so, every fight
-line the agent reaches and every planning idea it adds to the search goes to
-him with its reasoning before the agent builds on it. That means the line
-turn by turn, why each choice was made, and which of the nine ideas below it
-used. A finding he has not checked stays a draft. When the agent pauses for
-his check, it tells the Overseer first, in one line.
+line the agent reaches, and every change to how the planner judges or
+searches, goes to him with its reasoning before the agent builds on it. That
+means the line turn by turn, the value behind each key choice, and which of
+the nine ideas below arose on their own. A finding he has not checked stays a
+draft. When the agent pauses for his check, it tells the Overseer first, in
+one line.
 
 **Starting the session.** Ian starts it with this prompt:
 
@@ -48,14 +50,17 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-01).** Steps 1 and 2 of the order of work are on
-`oxide` (6ce38e1e26): the trainer AI follows `script.s` and `trainer_ai.c`
-at HEAD routine by routine, with 365 checks in `test_fightai.py`, and the
-simulator's known gaps are filled ("The fightai audit", below). Ian answered
-the two questions it raised (his answers of 2026-10-01, below), and step 3
-has begun on branch `scoring-step3-bar`, measured against the hand-played
-lines rerun on the corrected AI by all three of Ian's numbers (the table
-under "The job"). The perfect-line store has been stale since the simulator
+**Where it stands (2026-10-01, evening).** Steps 1 and 2 of the order of
+work are on `oxide` (6ce38e1e26): the trainer AI follows `script.s` and
+`trainer_ai.c` at HEAD routine by routine, with 365 checks in
+`test_fightai.py`, and the simulator's known gaps are filled ("The fightai
+audit", below). Step 3's first reading is on branch `scoring-step3-bar`
+("Step 3, the first reading", below): the rule-based line search matches our
+line at Mars 1 and falls well short at Roark and Gardenia. Ian read it and
+redirected step 3 the same evening ("Ian's ruling on step 3", below): no
+named rules are added, and the scorer is rebuilt as a planner that decides
+turn by turn by simulating its options forward. The planner plays Roark
+first, and that work goes to Ian before anything further is built. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -71,9 +76,10 @@ team, ordinary trainers blind. The boss target waits until the scorer reads
 Roark sensibly. These three fights are the first bosses with hand-checked
 answers.
 
-Make the scorer's line search find lines at least as good as the hand-played
-ones, on the same box, and say which planning ideas it needed to get there.
-Then use it on the bosses.
+Make the scorer find lines at least as good as the hand-played ones, on the
+same box, by planning in the simulator rather than by rules written for these
+fights (Ian, 2026-10-01). The nine planning ideas below are its exam: it must
+rediscover each without being told. Then use it on the bosses.
 
 The first acceptance check is the three fights below. A line is judged on
 three numbers together, never the clean rate alone (Ian, 2026-10-01): the
@@ -212,8 +218,12 @@ decided a fight:
 
 ### The planning ideas that won fights
 
-These are the moves a scorer's search has to be able to make. A one-turn
-heuristic does not find them.
+These are the scorer's exam (Ian, 2026-10-01). A planner that simulates its
+options forward and values the position it reaches must rediscover each one
+in the three fights without being told. When it misses one, the fix goes into
+the general machinery (how far it looks, what the position's value counts),
+never into a behaviour named for the idea. A one-turn heuristic does not find
+them.
 
 1. **Bait by knockout ownership.** Choose who makes each knockout so the
    trainer's next Pokemon meets an answer. This decided Roark and the Gardenia
@@ -261,9 +271,11 @@ Dubwool and Charmeleon pivot lost Charmeleon to Aqua Tail in about a
 third of runs. When Dubwool made the knockout, the order also changed to Breloom
 before Shiftry, which our later stages were not built for.
 
-The lesson is that the scorer needs the planning ideas above as moves in its
-search, and fight-level planning (chains of stages through the replacement
-map), more than it needs more rollouts.
+The lesson first drawn here was that the scorer needs the planning ideas as
+moves in its search. Ian ruled against that on 2026-10-01 ("Ian's ruling on
+step 3", below). The look-ahead failed for two reasons a planner can avoid:
+it scored only clean wins, so nearly every rollout said the same thing, and
+it looked one decision ahead.
 
 ## The simulator
 
@@ -404,6 +416,134 @@ two-to-five-hit move as three hits.
    rescore of the 459 fights comes after that comb. Both wait in the
    tracker's Scheduled list.
 
+## Step 3, the first reading (2026-10-01)
+
+This is a draft until Ian has checked it. The scorer's line search
+(`plines.py` at the planned budget: 300 candidate lines, each screened on 20
+runs, the best three confirmed on 300) read each fight two ways. With our six
+and our held items, four independent searches ran, so a shortfall is the
+search's own. With the run's whole box at the fight (16 Pokemon at Roark, 20
+at Mars 1, 23 at Gardenia), the scorer chose its eight planned sixes and held
+items by its own rule from the run's stock. Each reading's best line was then
+replayed on the harness's 200 seeds and judged on Ian's three numbers. The
+runner is `tools/oxide/balance/plstep3.py`; the readings, a trace of each best
+line on the hand line's showcase seed, and a tally of where each line loses
+Pokemon are in `tools/oxide/balance/perfectline_results/step3/`. The tally
+script that reproduces the bar is `~/oxide-trials/three-gym-run/three_numbers.py`,
+and it gave the table under "The job" exactly.
+
+| Fight | Line | Clean | Won | Deaths per fight |
+|---|---|---|---|---|
+| Roark | ours | 199 | 200 | 0.005 |
+| Roark | search, our six | 56 | 199 | 1.155 |
+| Roark | search, whole box | 27 | 100 | 3.590 |
+| Mars 1 | ours | 191 | 200 | 0.045 |
+| Mars 1 | search, our six | 198 | 200 | 0.010 |
+| Mars 1 | search, whole box | 197 | 200 | 0.020 |
+| Gardenia | ours | 29 | 116 | 3.325 |
+| Gardenia | search, our six | 12 | 42 | 5.110 |
+| Gardenia | search, whole box | 3 | 58 | 4.975 |
+
+**Mars 1 passes.** With our six, Starly leads and switches to Nidorino on
+turn one, so Nidorino takes the Fake Out Meowth aimed at Starly. Nidorino's
+Double Kick knocks Meowth out and Bronzor comes in. Vullaby comes in on it and
+Plucks it down over about twenty turns: on the corrected AI Bronzor never aims
+Confusion at a Dark type, so it spends its turns on Calm Mind, Hypnosis and
+Confuse Ray. Vullaby then takes Zubat, ending near a fifth of its HP, and
+Onix's Rock Tomb takes Purugly. It used ideas 7 (Bronzor's coverage hole) and
+2 (Nidorino takes a hit chosen against Starly). It did not need the PP stall
+(idea 3), which answered picks the old AI made. The whole-box line reaches
+the same answer with Onix, Bibarel and Vullaby, but plays one stretch badly:
+Bibarel keeps choosing Defense Curl while asleep and falls to 3 HP before
+Onix returns. The three numbers do not show that.
+
+**Roark falls short.** With our six, the first death is Steenee to Lileep in
+136 of 200 runs. The search reads each exchange without the foe's healing, so
+it scores Steenee as beating Lileep and gives Lileep a single answer rather
+than a hand-off. Steenee stays in after its Play Nice until it faints, and
+Prinplup cannot then outpace Ingrain and Mega Drain. Our line hands Steenee
+over to Nidorino after one Play Nice, at a HP that survives a crit. Two
+smaller gaps: Onix spends its first turns on Harden while Nosepass Blocks and
+lays Stealth Rock, and Onix never Screeches Cranidos (39 of Onix's deaths),
+since the line's stat-drop rule lowers only an attacking stat or accuracy.
+From the whole box the six-picking reads Lileep the same way and leaves
+Steenee out, and Lileep takes Nidorino first in 110 runs.
+
+**Gardenia falls short.** The search sets its answers from the opening state,
+before the sun, so it sends Tsareena into Cherrim's Weather Ball in sun (77 HP
+to 7 in one hit) and Vikavolt into Lumineon's sun turns. The first deaths are
+Vikavolt to Lumineon (69 runs), Golbat to Shiftry (49) and Tsareena to
+Cherrim (45). None of the line's rules can play our line's ideas. Its sleep
+rule aims only at the foe's strongest Pokemon, so Popplio never Sings
+Lumineon. Its stall rule waits out screens, Tailwind and Trick Room but not
+the sun (idea 4). Nothing removes Shiftry's Occa Berry (idea 5). Its free
+pivot only leaves a losing exchange, so Golbat never walks in on a
+predictable Solar Beam charge (idea 2).
+
+**Withdrawn: the proposed rules.** This reading proposed three new rules for
+Roark (the foe's healing read into who wins an exchange, a hand-off after one
+stat drop, and Screech) and four for Gardenia (answers read in the sun, sleep
+on any foe, taking a berry, a switch-in on a charge turn). Ian ruled none of
+them is built ("Ian's ruling on step 3", below). They stay here as a record
+of what the rule-based search missed, which the planner must find on its own.
+
+**Notes on the reading.**
+
+- The item census counts a Hard Stone on the third floor of Oreburgh's
+  northwest house, which pret marks unused, so a player most likely cannot
+  reach it. The box readings use the run's own stock instead (Flame Plate;
+  then Miracle Seed; then Draco Plate). The census is the balance track's to
+  check.
+- The scorer's item rule never hands out a Quick Claw, so the whole-box lines
+  play without one; the our-six lines hold ours.
+- The bar plays the harness's turn order, where the trainer's AI never sees
+  the player's Quick Claw roll. The scorer plays the engine's order, where it
+  does. The two differ only on turns Geodude's or Golbat's Quick Claw fires.
+- The harness has no moves for eight of the box's Pokemon (Corvisquire,
+  Finneon, Charmander, Mareep, Graveler, Breloom, Snover, and Krabby after
+  Roark), nor for Wooloo, Vulpix, Steenee and Skiploom at Mars 1. Theirs are their level-up moves
+  alone, from the run's catch levels through its evolutions and holds, as
+  `plstep3.py` lists.
+
+## Ian's ruling on step 3 (2026-10-01)
+
+Ian read the first reading of Roark, where the search missed Lileep's
+healing, the hand-off after one Play Nice and Onix's Screech. His words:
+
+> We need the scorer to be able to adapt to things, otherwise we will have
+> to programatically include every team possibility ever... need to then
+> organically arise otherwise this is a doomed project.
+
+So no rule named for a plan is added to the search, and the order of work's
+old instruction (find which planning idea the search lacked and add it as a
+move) is withdrawn. The nine planning ideas become the scorer's exam.
+
+The direction he approved, relayed by the Overseer:
+
+- The scorer becomes a planner that decides turn by turn, replacements after
+  a faint included, by simulating its options forward in the real simulator.
+- The trainer's AI is known exactly, so the planner computes the AI's choice
+  distribution at each turn from the AI itself rather than sampling it. The
+  only other uncertainty is the dice, under Ian's luck budget: every
+  secondary status against the player lands, one crit against the player may
+  land at its worst moment and never two, and ties between equal AI picks
+  break at random.
+- A position is valued by its state, not only by the fight's result: each of
+  the player's Pokemon's HP and whether it survives (a faint costs heavily,
+  since every loss narrows later team-building), the foe's HP, items, the
+  weather's turns left, PP, stat stages and status. Long-range plays (taking
+  Shiftry's Occa Berry, waiting out the sun) may appear through how far the
+  planner looks or what the value counts, since those describe the position.
+- Choosing a six from the whole box uses the same planner as its judge.
+- The computing cost per fight is measured and reported, since the rescore
+  of 459 fights depends on it.
+
+What Ian checks first: the planner's play of Roark, turn by turn on a
+showcase seed, the value behind each key choice, which of the nine ideas
+arose on their own and which did not, and the three numbers beside ours
+(199, 200, 0.005) and the rule-based search's (56, 199, 1.155). Nothing
+further is built until he has checked it.
+
 ## The harness
 
 The working scripts are in `~/oxide-trials/three-gym-run/`, with a README:
@@ -422,10 +562,12 @@ of `oxide` at 153d11de2 or later.
 1. Finish the fightai audit against the battle-ai docs and the decomp, with a
    test per routine.
 2. Fill the known gaps above.
-3. Reproduce the three fights. Give the scorer the run's box, and require
-   lines at least as good as the table's. Where it falls short, find which
-   planning idea it lacked and add it as a move in its search. Each line and
-   each new idea goes to Ian for checking before the next step.
+3. Reproduce the three fights with a planner (Ian's ruling of 2026-10-01,
+   above). Give it the run's box, and require lines at least as good as the
+   table's on the three numbers. Where it falls short, find what in its
+   general machinery missed the idea (its depth, its position value, its
+   reading of the AI) and fix that, never adding a behaviour named for the
+   idea. Roark first; each fight's work goes to Ian before the next.
 4. Play the next bosses with Ian the same way (Jupiter and Fantina, at 33) to
    widen the ground truth before trusting the scorer on bosses it has never
    met.
