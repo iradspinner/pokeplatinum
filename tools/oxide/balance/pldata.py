@@ -146,6 +146,7 @@ def job(args):
 # those fights played worse.)
 EXPLORE = 0.15
 EXPLORE_MARGIN = 0.25
+MAX_GAMES = 400       # distillation: fights per shard at most
 
 
 def selfplay_job(args):
@@ -231,17 +232,25 @@ def distill_job(args):
     DAgger)."""
     fight, six, positions, seed, out_dir, model = args
     from . import plstep3
-    t0 = time.perf_counter()
     f = plstep3.FIGHTS[fight]
     items = f["items"] if list(six) == list(f["six"]) else None
     prep = plstep3.prepare(f, list(six), items)
-    st = prep["st"]
     boss_keys, flags, _s = prep["variants"][0]
     team = [f"p{i}" for i in range(len(six))]
+    return distill(prep["st"], team, boss_keys, flags, positions, seed, out_dir,
+                   {"fight": fight, "six": list(six)}, model)
+
+
+def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=None):
+    """distill_job's fights and shard for any prepared fight: `meta` names it
+    (its "fight" and "six" at least) and is written beside the shard."""
+    t0 = time.perf_counter()
     rng = random.Random(seed)
     xs, ids, vals, counts, sds, future, lost = [], [], [], [], [], [], []
     games = 0
-    while len(vals) < positions:
+    # A short, one-sided fight can leave few positions open to label (every
+    # turn ends it), so the fights are capped as well as the positions.
+    while len(vals) < positions and games < MAX_GAMES:
         b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
         run = random.Random(rng.getrandbits(32))
         b.dice, b.rng = pl.RunDice(run, luck="real"), run
@@ -270,14 +279,17 @@ def distill_job(args):
             future.append(sum(k for k, _l in e) / len(e) - before)
             lost.append(sum(1 for _k, l in e if l) / len(e))
     os.makedirs(out_dir, exist_ok=True)
-    name = f"{fight}-{seed}"
+    name = f"{meta['fight'].replace(':', '')}-{seed}"
+    if not vals:
+        return dict(meta, seed=seed, positions=0, games=games, playouts=0, model=model,
+                    seconds=round(time.perf_counter() - t0, 1), private_mb=plplan.memory()[1])
     np.savez_compressed(os.path.join(out_dir, name + ".npz"), x=np.stack(xs), ids=np.stack(ids),
                         value=np.asarray(vals, np.float32), n=np.asarray(counts, np.int16),
                         sd=np.asarray(sds, np.float32), future=np.asarray(future, np.float32),
                         lost=np.asarray(lost, np.float32))
-    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(vals), "games": games,
-            "playouts": int(sum(counts)), "model": model, "seconds": round(time.perf_counter() - t0, 1),
-            "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
+    meta = dict(meta, seed=seed, positions=len(vals), games=games, playouts=int(sum(counts)), model=model,
+                seconds=round(time.perf_counter() - t0, 1), private_mb=plplan.memory()[1],
+                floats=plfeat.FLOATS, ids=plfeat.IDS)
     with open(os.path.join(out_dir, name + ".json"), "w") as fh:
         json.dump(meta, fh)
     return meta

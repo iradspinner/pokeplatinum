@@ -1,0 +1,44 @@
+{
+ "fight": "barry_1",
+ "six": [
+  "Chimchar"
+ ],
+ "variant": 2,
+ "foes": [
+  "Piplup 5"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": null
+ },
+ "luck": "real",
+ "lead": "Chimchar",
+ "lead_values": {
+  "Chimchar": -7.037
+ },
+ "clean": 73,
+ "won": 73,
+ "deaths": 0.027,
+ "runs": 75,
+ "faints": [
+  [
+   "Chimchar",
+   "Piplup",
+   2
+  ]
+ ],
+ "cpu_seconds_per_run": 0.84,
+ "decisions_per_run": 10.0,
+ "turns_per_run": 10.0,
+ "lead_seconds": 0.1,
+ "wall_seconds": 2.7,
+ "procs": 29,
+ "fights_per_hour": 98415.0,
+ "worker_private_mb_max": 5,
+ "parent_mb": 61,
+ "lost_seeds": [
+  11054,
+  11060
+ ]
+}

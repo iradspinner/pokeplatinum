@@ -1055,14 +1055,25 @@ def _run(seed):
     return r
 
 
+# Another six from the fight's box than its hand-played one, and another of
+# the trainer's variants than the first (a rival has one per starter), when
+# set (--six, --variant): a reading of a fight with no hand-played line, or a
+# spread of sixes from one box.
+_PICK = {"six": None, "variant": None}
+
+
 def setup(fight, cfg):
     """The hand-played six of one of the three gyms (plstep3.FIGHTS) with
     its items, and the planner's lead for it."""
     from . import plstep3
-    f = plstep3.FIGHTS[fight]
+    f = dict(plstep3.FIGHTS[fight])
+    if _PICK["six"]:
+        f["items"] = {n: it for n, it in f["items"].items() if n in _PICK["six"]}
+        f["six"] = list(_PICK["six"])
+    f["variant"] = _PICK["variant"] or 0
     prep = plstep3.prepare(f, f["six"], f["items"])
     st = prep["st"]
-    boss_keys, flags, _s = prep["variants"][0]
+    boss_keys, flags, _s = prep["variants"][f["variant"]]
     team = [f"p{i}" for i in range(len(f["six"]))]
     t0 = time.perf_counter()
     lead, vals = Planner(0, **cfg).lead(st, team, boss_keys, flags)
@@ -1086,7 +1097,9 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     deaths = sum(r["deaths"] for r in rows) / runs
     tally = collections.Counter(tuple(x) for r in rows for x in r["faints"])
     cpu = sum(r["seconds"] for r in rows)
-    out = {"fight": fight, "cfg": cfg, "luck": luck, "lead": f["six"][lead],
+    out = {"fight": fight, "six": f["six"], "variant": f["variant"],
+           "foes": [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys],
+           "cfg": cfg, "luck": luck, "lead": f["six"][lead],
            "lead_values": {n: round(v, 3) for n, v in zip(f["six"], lead_vals)},
            "clean": clean, "won": won, "deaths": round(deaths, 3), "runs": runs,
            "faints": [[a, b, n] for (a, b), n in tally.most_common()],
@@ -1110,12 +1123,14 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     return out
 
 
-def compare(fight, value, seed=None, log=sys.stdout):
+def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     """A spot check of a trained network (Ian's legibility condition for
     stage 2): one fight played by the play-out planner, and at each of its
     decisions the same options valued by the network too, side by side, with
-    whether the two would choose alike. (agreements, decisions)."""
-    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {})
+    whether the two would choose alike. With drive="network" the network's
+    planner plays the fight instead, so its own line is checked against the
+    play-outs' values. (agreements, decisions)."""
+    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {"value": value} if drive == "network" else {})
     seed = f["trace_seed"] if seed is None else seed
     netp = Planner(seed, value=value)
     rng = random.Random(seed)
@@ -1123,7 +1138,7 @@ def compare(fight, value, seed=None, log=sys.stdout):
     b.dice = pl.RunDice(rng, luck="real")
     b.rng = rng
     planner = Planner(seed)
-    _REAL.update(b=b, planner=planner)
+    _REAL.update(b=b, planner=netp if drive == "network" else planner)
     agree = total = 0
     regret = 0.0
     try:
@@ -1146,7 +1161,7 @@ def compare(fight, value, seed=None, log=sys.stdout):
                       f"{'' if best == best_n else f'  (differs; gives up {lost:.2f})'}", file=log)
                 print("      " + ", ".join(f"{_name(a, b)} {q[i]:+.2f}/{qn[i]:+.2f}" for i, a in enumerate(acts)),
                       file=log)
-                a = acts[best]
+                a = acts[best_n if drive == "network" else best]
             else:
                 a = acts[0]
             real_turn(b, a, rng)
@@ -1179,6 +1194,8 @@ def main(argv=None):
     ap.add_argument("--trace", action="store_true")
     ap.add_argument("--compare", metavar="MODEL",
                     help="a spot check: the play-out planner's fight, each decision also valued by MODEL")
+    ap.add_argument("--drive", choices=("playouts", "network"), default="playouts",
+                    help="with --compare: whose choices play the fight")
     ap.add_argument("--seed", type=int)
     ap.add_argument("--playouts", type=int, default=PLAYOUTS)
     ap.add_argument("--value", help="a trained network (plvalue) to value positions instead of play-outs")
@@ -1187,10 +1204,13 @@ def main(argv=None):
     ap.add_argument("--luck", default="real", choices=("real", "unlucky"))
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
+    ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
+    ap.add_argument("--variant", type=int, help="another of the trainer's variants (a rival's, by starter)")
     args = ap.parse_args(argv)
     cfg = dict(playouts=args.playouts, budget=args.budget or None, value=args.value)
+    _PICK.update(six=args.six, variant=args.variant)
     if args.compare:
-        compare(args.fight, args.compare, args.seed)
+        compare(args.fight, args.compare, args.seed, drive=args.drive)
         return 0
     if args.trace:
         trace(args.fight, args.seed, cfg, args.luck)

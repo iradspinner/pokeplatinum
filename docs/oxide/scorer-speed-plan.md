@@ -203,10 +203,14 @@ worse in two rounds and is set aside. Later the same day, the average of
 three distilled networks met the Roark and Mars 1 bars. A network trained
 without a trainer's positions cannot play that trainer (Gardenia, 2 won of
 500), so the whole game first needs labelled positions from every trainer.
-At the rate of the rounds so far (about 400 positions a second on 29
-workers), a few play-out fights for each of the 459 trainers is a one-off
-job of several hours, after which a full reading takes about an hour and a
-half; whether one network then judges trainers well enough is untested.
+A test on the 100 ordinary trainers of the first three splits answered
+whether one network then judges trainers well: trained on 80 of them, two
+networks averaged read the 20 they never saw at 789 clean of 800, every
+fight won, against the play-out planner's 800, so seeing a trainer is not
+needed once the data is broad. Ordinary trainers label fast (1.65 million
+positions from 80 trainers in ten minutes), so the whole game's labelling is
+about an hour, the bosses' extra rounds a few more, and a full reading about
+an hour and a half.
 
 ## Hardware (2026-10-02)
 

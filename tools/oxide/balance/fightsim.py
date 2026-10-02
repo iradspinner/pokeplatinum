@@ -62,6 +62,12 @@ MAX_TURNS = 80
 # (src/battle/battle_lib.c sCriticalStageRates, battle_script.c
 # ApplyCriticalMul), not Platinum's 1 in 16 and double damage.
 CRIT_RATE = {0: 1 / 24, 1: 1 / 8, 2: 1 / 2, 3: 1.0, 4: 1.0}
+# The trainers of the game's first battle, which the Route 201 script starts
+# with StartFirstBattle (Encounter_NewVsFirstBattle sets
+# BATTLE_STATUS_FIRST_BATTLE): no critical hits on either side in it. A
+# prepared fight against one carries st["first_battle"].
+FIRST_BATTLE = frozenset({"TRAINER_RIVAL_ROUTE_201_PIPLUP", "TRAINER_RIVAL_ROUTE_201_TURTWIG",
+                          "TRAINER_RIVAL_ROUTE_201_CHIMCHAR"})
 CRIT_MUL = 1.5
 # The rock that stretches each weather a move sets from five turns to eight.
 WEATHER_ROCK = {"Sun": "Heat Rock", "Rain": "Damp Rock", "Sand": "Smooth Rock", "Hail": "Icy Rock"}
@@ -813,7 +819,8 @@ def attack(b, att, mv, dfn, first):
     if dmg is None:
         stage = att.crit_stage + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                   mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
-        crit = b.rng.random() < CRIT_RATE[min(stage, 4)] and dfn.ability not in ("Battle Armor", "Shell Armor")
+        crit = (b.rng.random() < CRIT_RATE[min(stage, 4)] and dfn.ability not in ("Battle Armor", "Shell Armor")
+                and not b.st.get("first_battle"))
         dmg = b.damage(att, dfn, mv, crit=crit)
         if dmg is None:
             return

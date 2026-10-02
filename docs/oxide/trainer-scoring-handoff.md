@@ -66,7 +66,12 @@ values now choose for it at about a fortieth of the cost. The average of
 three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
 reads better than the play-out planner at both, and at Gardenia wins more
 often than our line but almost never cleanly, as the play-out planner does
-("Stage 2", below). Every reading is now 75 fights at real odds
+("Stage 2", below). Goal 2 has begun with the rival fights of Roark's split
+(Barry 1 cannot be won with a Piplup) and a mechanical roll of the box
+through Fantina for Ian and the Overseer to choose from. A test on 100
+ordinary trainers showed that networks trained broadly judge trainers they
+never saw nearly as well as play-outs, which makes the whole game a matter
+of hours. Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -683,6 +688,105 @@ the planner wasting turns, the evidence goes to Ian.
 fights took 342 seconds on 29 workers (about 790 fights an hour). Each worker
 holds at most about 190 MB.
 
+## The network planner's Roark, for Ian's check (2026-10-02)
+
+Goal 1, read again with stage 2's planner. It decides as the play-out planner
+does, with the same exact look-ahead of one turn, but values each position
+the turn can reach with the average of three networks (d1b+d2+d3, "Stage 2"
+below) instead of playing the fight on from it. The networks learned their
+values from the play-out planner's own play-outs. It played our hand-played
+six and items (Barboach, Nidorino, Geodude with the Quick Claw, Onix,
+Prinplup, Steenee, all at 16), and it meets our line's numbers.
+
+**The numbers**, as in the play-out planner's write-up above (seeds from
+2000; the planners' rows are 75 fights at real odds and 25 very unlucky, ours
+2,000):
+
+| Line | Dice | Clean | Won | Faints |
+|---|---|---|---|---|
+| Ours (the hand-played S12) | real odds | 98.5% | 100% | 0.015 |
+| The network planner | real odds | 98.7% (74 of 75) | 100% | 0.013 |
+| The play-out planner | real odds | 93.3% (70 of 75) | 100% | 0.067 |
+| Ours | very unlucky | 96.4% | 99.95% | 0.043 |
+| The network planner | very unlucky | 92% (23 of 25) | 100% | 0.080 |
+| The play-out planner | very unlucky | 84% (21 of 25) | 100% | 0.160 |
+
+Over 500 fights at real odds it reads 98.2% clean, every fight won, 0.020
+faints, so its real-odds clean rate matches ours within a point. Its one
+faint at real odds was Onix to Cranidos; very unlucky, Onix to Cranidos and
+Nidorino to Lileep. Twenty-five very unlucky fights cannot tell 92% from our
+96.4% (two fights in 25 against one).
+
+**How it chooses.** Before each turn it lists its options and works out the
+trainer's choice exactly from the AI's own code, then weighs every chance in
+the coming turn at its real odds, as before. Each position the turn can reach
+is then valued by the networks in one batch, where the play-out planner
+played the fight on from it about a hundred times. The value means the same:
+minus one for each faint to come, minus ten more for a loss, plus a tenth of
+each survivor's HP share. A fight costs about 3 seconds of one core, against
+113.
+
+**The line on the showcase seed (30)**, which it won cleanly
+(`perfectline_results/step3/planner-net-roark-trace-seed30.txt` has every
+turn and every option's value):
+
+1. Geodude leads into Nosepass (-0.82, against -0.86 to -0.88 for the
+   others), sets up Rock Polish while Nosepass Blocks, Defense Curls twice,
+   and Magnitudes and Rock Throws it down.
+2. Lileep comes in on Geodude, which is four times weak to Grass. It switches
+   to Steenee (-0.70) rather than Prinplup (-0.75) or staying in (-0.82 at
+   best). Steenee takes the Mega Drain resisted.
+3. Steenee uses Play Nice (-0.57) rather than Razor Leaf (-0.71).
+4. At 20 of 45 HP Steenee hands over to Nidorino (+0.25, against -0.52 at
+   best for everything else). Nidorino Leers three times and Focus Energies
+   once while Lileep Ingrains, then Double Kicks it out, ending on 18 of 47.
+5. Roark's Geodude comes in on Nidorino. It brings Barboach in on the Thunder
+   Punch it expects (+0.23, against -0.06 at best), and Mud Bombs Geodude to
+   5 HP.
+6. With Geodude on 5 HP, Barboach switches to Onix (+0.49) rather than
+   finishing it with Water Gun (+0.25), so Onix makes the knockout and meets
+   Cranidos. Onix spends seven turns on Geodude, now at +2 Defense (Rock
+   Throw does 2 a hit), with Harden and Screech, then Screeches Cranidos to
+   -6, Binds it three times and Rock Throws it out on 9 of 46 HP.
+
+That is the play-out planner's line almost turn for turn, and close to ours
+(we led Barboach into Nosepass).
+
+**Checked against the play-outs.** The same fight was played again with the
+network choosing and the play-out planner valuing every decision beside it
+(`plplan roark --compare d1b+d2+d3 --drive network`;
+`planner-net-roark-compare-driven-seed30.txt`). The two choose alike at 18 of
+33 decisions, including every choice above (Steenee, Play Nice, Nidorino,
+Barboach, Onix), and by the play-outs' own values the network's choices give
+up 0.40 in all, 0.012 a decision. Where they differ, the options are within
+about 0.05 of each other under the play-outs too, as close as play-outs can
+measure.
+
+**The nine ideas, as an exam.** Arose on its own, as with the play-out
+planner: the free switch on a predictable pick (Steenee on Mega Drain,
+Barboach on Thunder Punch), speed and status control (Play Nice, Leer,
+Screech), the coverage hole (a Ground type against Thunder Punch), and the
+hand-off at an HP that survives the next hit. Bait by knockout ownership
+looks present but is not proven: in step 6 both planners pass up a sure
+knockout so that Onix makes it and meets Cranidos, but the play-outs prefer
+that by only 0.03 (+0.40 against +0.37), within their own noise, so I do not
+count it. Did not apply at Roark: the PP stall, a timed effect, taking an
+item, a sacrifice, and building the box.
+
+**What it still does badly: the wasted turns.** Stage 2 did not cure them.
+Rock Polish and two Defense Curls on turns 1 to 3, Focus Energy against
+Lileep, seven turns on a 3-HP Geodude, and three Binds into a Cranidos at -6
+Defense, where Rock Throw does more than twice the damage. These are not the
+network's errors: under the play-outs those options read within 0.01 to 0.05
+of attacking (the Binds exactly level with Rock Throw at +0.40). The value
+has no cost for time, so a turn spent is free whenever the fight is safe.
+Ian ruled (2026-10-02) that no cost per turn goes in for now, since it would
+also discourage stalls that win fights, and that the evidence comes to him if
+the smoother value still left the planner wasting turns; this is that
+evidence. A cost per turn would cure it. A narrower option would only break
+ties, preferring the option that ends the fight sooner among those the value
+cannot tell apart, which leaves every stall that the value prefers.
+
 ## The play-out planner on Mars 1 and Gardenia (2026-10-02)
 
 A baseline for goals 1 and 2 before stage 2 changes anything: the play-out
@@ -705,6 +809,49 @@ wins cleanly, but it wins far more often than our line and loses fewer
 Pokemon. Lumineon takes most of its losses (Charmeleon 32 times, Tsareena 16,
 Vikavolt 14), and it leads Vullaby where we led Charmeleon. A fight costs
 about 210 seconds of one core at Mars 1 and 160 at Gardenia.
+
+## Goal 2: the rival fights of Roark's split (2026-10-02)
+
+The first three of goal 2's new fights, read by the play-out planner (they
+are short enough to need no network). Their boxes follow the Overseer's
+provisional rule, until Ian confirms it: the captures from the areas reached
+by each fight, every member at the split's cap of 16 as the run had it at
+Roark, since the Pocket PC's Rare Candies make the cap reachable from Sandgem
+on; Barry 1, before Sandgem, meets the starter alone at level 5. Lucas and
+Dawn 1 (Route 202) is read without the Route 202 catch, which may come after
+the fight; Barry 2 (the start of Route 203) after the Old Rod spots of
+Twinleaf, Route 218 and Route 219 but before Route 203's own. No held items.
+
+| Fight | Box | Real odds (75) | Very unlucky (25) |
+|---|---|---|---|
+| Barry 1 | Piplup at 5 (the run's, Gentle; Pound, Growl) against Turtwig | 0 clean, 0 won | 0 clean, 0 won |
+| Barry 1 | Turtwig at 5 (Hardy; Tackle, Withdraw) against Chimchar | 75 clean | 25 clean |
+| Barry 1 | Chimchar at 5 (Hardy; Scratch, Leer) against Piplup | 73 clean, 73 won | 25 clean |
+| Lucas and Dawn 1 | Prinplup, Wooloo, Vulpix, Bibarel, Corvisquire at 16, each of the six variants | 75 clean each | 25 clean each |
+| Barry 2 | five random sixes from the ten caught by then, at 16 | 75 clean each | 25 clean each |
+
+Barry 1 is the game's first battle, and the engine gives it no critical hits
+on either side: the Route 201 script starts it with StartFirstBattle, which
+sets BATTLE_STATUS_FIRST_BATTLE, and BtlCmd_CalcCrit then sets the critical
+multiplier to 1 (the Overseer, from the decomp, 2026-10-02). The simulator
+now knows this (`fightsim.FIRST_BATTLE`, checked in `test_plfixes`), and the
+readings above have it. The flag's other uses only change the touch screen's
+background and route the move choice through the trainer AI, as in any
+trainer battle. Losing it costs nothing in the game either: the script's lost
+branch returns to the field with a different message, with no blackout.
+Whether a loss there ends a nuzlocke run is Ian's rule to make.
+
+With a Piplup it cannot be won. Turtwig Withdraws, so Pound does 1 to 3 a
+hit, and its Tackle, at the later games' 40 power and full accuracy (Oxide's
+move numbers; Generation 4 had 35 and 95%), takes 5 of Piplup's 21 HP; the
+look-ahead values every option, Growl included, as a certain loss from the
+first turn. A neutral Piplup (Hardy) wins 1 of 75, so the run's Gentle
+nature is not the cause. The other two starters win almost always. Lucas and
+Dawn 1 and Barry 2 are over in a turn or two, as the cap makes them; that is
+a true reading of Oxide as it stands, and flags them for the trainer pass.
+Readings: `planner-barry_1-*`, `planner-lucas_dawn_1-v*` and
+`planner-barry_2-six*` in the results folder (`plplan --six` and `--variant`
+choose a six from the box and a rival's variant).
 
 ## Stage 2: the learned position value (from 2026-10-02)
 
@@ -863,10 +1010,35 @@ Without Gardenia's positions it loses almost every Gardenia fight. Trained
 on three trainers, it has never met most of the game's species and moves,
 so its ids for them mean nothing. Every new fight therefore needs labelled
 positions of its own before the network can play it: for goal 2, a round of
-distillation for the rival fights, Jupiter 1 and Fantina. For the whole
-game, the hope is that a network trained on positions from many trainers
-judges a new one well, since it will have met most species and moves by
-then; that is untested.
+distillation for the rival fights, Jupiter 1 and Fantina.
+
+**Trained on many trainers, it does judge unseen ones (2026-10-02).** The
+test (`plgen.py`) took the 100 ordinary singles trainers of Roark's,
+Gardenia's and Fantina's splits (gym leaders' rematch teams left out), held
+out every fifth, and labelled the other 80 with the play-out planner on four
+random boxes each (`fightsim.random_box`, the blind reading's boxes), 1.65
+million positions in ten minutes on 29 workers. Networks trained from
+scratch on those and the gyms' three distillation rounds were read on the 20
+held-out trainers, on a box none of the data used, 40 fights each at real
+odds:
+
+| Planner | Clean | Won | Faints a fight |
+|---|---|---|---|
+| the play-out planner | 800 of 800 | 800 | 0.000 |
+| a network without the held-out trainers (seed 1) | 767 | 799 | 0.065 |
+| the same with them (seed 1) | 768 | 793 | 0.110 |
+| a network without them (seed 2) | 787 | 800 | 0.020 |
+| the average of the two without them | 789 | 800 | 0.015 |
+
+Having seen the held-out trainers made no difference: the networks' misses
+fall on different trainers from one network to the next (Aroma Lady Hannah
+19 clean of 40 under one, 35 under another), so they are each network's own
+noise, and averaging two networks that never saw these trainers comes within
+about a point of the play-out planner. For the whole game this means one
+labelling pass over every trainer, which for ordinary trainers is minutes
+rather than hours, then a network average; bosses, where small misjudgements
+cost more, still want their own rounds of labels from the network's play, as
+Mars 1 did.
 
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to

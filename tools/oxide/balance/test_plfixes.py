@@ -56,6 +56,30 @@ def _hits(b, attack, att, name, dfn, tries=30, hp=None):
     return out
 
 
+def first_battle_checks():
+    """The game's first battle, Barry on Route 201, has no critical hits on
+    either side (the Overseer, 2026-10-02: BtlCmd_CalcCrit sets the
+    multiplier to 1 under BATTLE_STATUS_FIRST_BATTLE). Barry's Turtwig uses
+    Tackle on a level-5 Piplup 400 times with the mark and 400 without: with
+    it the top damage stays the plain roll's, without it a crit shows."""
+    rec = [{"constant": "SPECIES_PIPLUP", "species": "Piplup", "how": "test", "level": 5, "nature": "Hardy",
+            "ivs": IV, "evs": EV, "ability": "Torrent", "moves": ["Pound", "Growl"], "fill": False}]
+    prep = plscore.prepare(plscore.parse_fight("barry_1"), given_side=rec)
+    st = prep["st"]
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(st, ["p0"], boss_keys, flags, 0)
+    turtwig, piplup = b.b.cur(), b.p.cur()
+    marked = st["first_battle"]
+    with_mark = _hits(b, pl.attack, turtwig, "Tackle", piplup, tries=400)
+    st["first_battle"] = False
+    without = _hits(b, pl.attack, turtwig, "Tackle", piplup, tries=400)
+    st["first_battle"] = marked
+    return [("the first battle is marked, Roark is not", marked and not battle().st.get("first_battle"),
+             f"Barry 1 {marked}"),
+            ("no critical hit in the first battle: Tackle's top damage stays below a crit's",
+             max(with_mark) < max(without), f"top {max(with_mark)} with the mark, {max(without)} without")]
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -492,6 +516,7 @@ def main():
     results += explosion_checks()
     results += sleep_checks()
     results += sleep_talk_and_aqua_ring_checks()
+    results += first_battle_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

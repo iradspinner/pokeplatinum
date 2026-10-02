@@ -1,0 +1,67 @@
+T1 Geodude 41/41 against Nosepass 38/38: play-outs choose Rock Polish, the network Rock Polish
+      Magnitude -0.90/-0.88, Rock Polish -0.86/-0.82, Rock Throw -0.81/-0.88, Defense Curl -0.74/-0.88, switch to Barboach -1.77/-1.80, switch to Nidorino -11.24/-12.44, switch to Onix -1.90/-1.91, switch to Prinplup -2.11/-2.04, switch to Steenee -2.08/-2.24
+T2 Geodude 41/41 against Nosepass 38/38: play-outs choose Defense Curl, the network Defense Curl
+      Magnitude -0.92/-0.88, Rock Throw -1.00/-0.87, Defense Curl -0.90/-0.86
+T3 Geodude 41/41 against Nosepass 38/38: play-outs choose Rock Throw, the network Defense Curl  (differs; gives up 0.01)
+      Magnitude -0.92/-0.87, Rock Throw -0.84/-0.88, Defense Curl -0.85/-0.87
+T4 Geodude 40/41 against Nosepass 38/38: play-outs choose Defense Curl, the network Magnitude  (differs; gives up 0.20)
+      Magnitude -1.01/-0.87, Rock Throw -0.94/-0.88, Defense Curl -0.81/-0.90
+T5 Geodude 39/41 against Nosepass 28/38: play-outs choose Defense Curl, the network Magnitude  (differs; gives up 0.05)
+      Magnitude -0.89/-0.85, Rock Throw -0.89/-0.87, Defense Curl -0.84/-0.89
+T6 Geodude 38/41 against Nosepass 13/38: play-outs choose Rock Throw, the network Rock Throw
+      Magnitude -0.90/-0.85, Rock Throw -0.86/-0.80, Defense Curl -0.87/-0.86
+T7 Geodude 37/41 against Nosepass 6/38: play-outs choose Magnitude, the network Magnitude
+      Magnitude -0.82/-0.82, Rock Throw -0.84/-0.82, Defense Curl -0.86/-0.83
+T8 Geodude 37/41 against Lileep 49/49: play-outs choose switch to Steenee, the network switch to Steenee
+      Magnitude -0.87/-0.84, Rock Throw -0.87/-0.85, Defense Curl -0.87/-0.82, switch to Barboach -1.75/-1.85, switch to Nidorino -0.90/-0.96, switch to Onix -2.08/-1.99, switch to Prinplup -0.78/-0.75, switch to Steenee -0.73/-0.70
+T9 Steenee 32/45 against Lileep 49/49: play-outs choose Play Nice, the network Play Nice
+      Razor Leaf -0.87/-0.71, Rapid Spin -0.98/-0.78, Play Nice -0.68/-0.57, Splash -0.74/-0.79, switch to Barboach -1.87/-1.67, switch to Nidorino -0.85/-0.78, switch to Geodude -0.89/-0.89, switch to Onix -2.26/-2.00, switch to Prinplup -0.99/-0.92
+T10 Steenee 20/45 against Lileep 49/49: play-outs choose switch to Nidorino, the network switch to Nidorino
+      Razor Leaf -0.64/-0.68, Rapid Spin -0.65/-0.68, Play Nice -0.67/-0.63, Splash -0.69/-0.66, switch to Barboach -0.66/-1.17, switch to Nidorino +0.17/+0.25, switch to Geodude -0.65/-0.55, switch to Onix -0.65/-1.37, switch to Prinplup -0.67/-0.52
+T11 Nidorino 32/47 against Lileep 49/49: play-outs choose Leer, the network Leer
+      Double Kick +0.32/+0.37, Poison Sting +0.33/+0.33, Leer +0.37/+0.42, Focus Energy +0.33/+0.27, switch to Barboach -4.45/-3.32, switch to Geodude -5.66/-4.81, switch to Onix -3.40/-4.37, switch to Prinplup -2.52/-2.52, switch to Steenee -2.22/-2.43
+T12 Nidorino 30/47 against Lileep 49/49: play-outs choose Leer, the network Focus Energy  (differs; gives up 0.02)
+      Double Kick +0.36/+0.34, Poison Sting +0.35/+0.37, Leer +0.36/+0.39, Focus Energy +0.34/+0.47, switch to Barboach -3.60/-2.59, switch to Geodude -1.45/-3.04, switch to Onix -2.21/-2.94, switch to Prinplup -1.09/-1.36, switch to Steenee -1.18/-1.21
+T13 Nidorino 27/47 against Lileep 49/49: play-outs choose Leer, the network Leer
+      Double Kick +0.32/+0.37, Poison Sting +0.32/+0.38, Leer +0.32/+0.41, switch to Barboach -3.11/-3.09, switch to Geodude -3.31/-4.03, switch to Onix -3.27/-3.64, switch to Prinplup -1.08/-1.85, switch to Steenee -1.45/-1.49
+T14 Nidorino 24/47 against Lileep 49/49: play-outs choose Poison Sting, the network Double Kick  (differs; gives up 0.01)
+      Double Kick +0.34/+0.36, Poison Sting +0.35/+0.34, Leer +0.32/+0.32, switch to Barboach -2.94/-2.86, switch to Geodude -2.17/-3.43, switch to Onix -2.53/-3.06, switch to Prinplup -1.99/-1.39, switch to Steenee -1.18/-1.42
+T15 Nidorino 21/47 against Lileep 24/49: play-outs choose Double Kick, the network Leer  (differs; gives up 0.06)
+      Double Kick +0.35/+0.17, Poison Sting +0.34/+0.19, Leer +0.29/+0.28, switch to Barboach -3.09/-2.30, switch to Geodude -5.54/-2.93, switch to Onix -1.62/-1.77, switch to Prinplup -1.05/-0.69, switch to Steenee -1.24/-0.98
+T16 Nidorino 18/47 against Lileep 27/49: play-outs choose Double Kick, the network Double Kick
+      Double Kick +0.32/+0.11, Poison Sting +0.31/-0.00, switch to Barboach -1.00/-1.95, switch to Geodude -1.16/-1.71, switch to Onix -0.80/-0.95, switch to Prinplup -0.13/-0.27, switch to Steenee -1.14/-0.72
+T17 Nidorino 11/47 against Geodude 41/41: play-outs choose switch to Barboach, the network switch to Barboach
+      Double Kick -0.63/-0.65, Poison Sting -0.63/-0.66, switch to Barboach +0.32/+0.23, switch to Geodude -0.69/-0.48, switch to Onix -0.67/-0.75, switch to Prinplup -0.27/-0.06, switch to Steenee -0.61/-0.66
+T18 Barboach 42/44 against Geodude 41/41: play-outs choose Mud Bomb, the network Mud Bomb
+      Mud Bomb +0.36/+0.33, Water Gun +0.32/+0.28, Mud-Slap +0.32/+0.28, Water Sport +0.30/+0.22, switch to Nidorino -0.37/-0.19, switch to Geodude -0.71/-0.52, switch to Onix -1.21/-0.92, switch to Prinplup +0.31/+0.22, switch to Steenee -0.38/-0.40
+T19 Barboach 42/44 against Geodude 5/41: play-outs choose switch to Onix, the network switch to Onix
+      Mud Bomb +0.37/+0.24, Water Gun +0.37/+0.25, Mud-Slap +0.37/+0.25, Water Sport +0.30/+0.35, switch to Nidorino -0.62/-0.38, switch to Geodude +0.28/+0.26, switch to Onix +0.40/+0.49, switch to Prinplup +0.26/+0.33, switch to Steenee -0.63/-0.48
+T20 Onix 44/46 against Geodude 5/41: play-outs choose Harden, the network Rock Throw  (differs; gives up 0.01)
+      Rock Throw +0.40/+0.54, Screech +0.40/+0.48, Harden +0.41/+0.45, Bind +0.40/+0.51, switch to Barboach +0.34/+0.36, switch to Nidorino -0.62/-0.30, switch to Geodude +0.24/+0.17, switch to Prinplup +0.24/+0.34, switch to Steenee -0.64/-0.48
+T21 Onix 41/46 against Geodude 3/41: play-outs choose Harden, the network Harden
+      Rock Throw +0.40/+0.39, Screech +0.39/+0.49, Harden +0.41/+0.50, Bind +0.39/+0.37, switch to Barboach +0.32/+0.33, switch to Nidorino -0.66/-0.43, switch to Geodude +0.30/+0.23, switch to Prinplup +0.29/+0.30, switch to Steenee -0.68/-0.58
+T22 Onix 39/46 against Geodude 3/41: play-outs choose Harden, the network Screech  (differs; gives up 0.01)
+      Rock Throw +0.41/+0.39, Screech +0.41/+0.48, Harden +0.41/+0.47, Bind +0.41/+0.37, switch to Barboach +0.31/+0.27, switch to Nidorino -0.65/-0.51, switch to Geodude +0.06/+0.04, switch to Prinplup +0.19/+0.19, switch to Steenee -0.67/-0.62
+T23 Onix 39/46 against Geodude 3/41: play-outs choose Harden, the network Harden
+      Rock Throw +0.41/+0.35, Screech +0.41/+0.46, Harden +0.41/+0.48, Bind +0.40/+0.37, switch to Barboach +0.22/+0.22, switch to Nidorino -0.82/-0.64, switch to Geodude -0.11/+0.03, switch to Prinplup +0.25/+0.05, switch to Steenee -0.84/-0.70
+T24 Onix 37/46 against Geodude 3/41: play-outs choose Rock Throw, the network Harden  (differs; gives up 0.00)
+      Rock Throw +0.41/+0.35, Screech +0.41/+0.45, Harden +0.41/+0.50, Bind +0.41/+0.36, switch to Barboach -0.60/-0.31, switch to Nidorino -0.66/-0.68, switch to Geodude -0.18/-0.43, switch to Prinplup -0.63/-0.56, switch to Steenee -0.68/-0.72
+T25 Onix 34/46 against Geodude 3/41: play-outs choose Rock Throw, the network Screech  (differs; gives up 0.02)
+      Rock Throw +0.41/+0.36, Screech +0.39/+0.39, Bind +0.39/+0.34, switch to Barboach -1.08/-0.85, switch to Nidorino -0.88/-0.78, switch to Geodude -0.86/-0.78, switch to Prinplup -0.96/-0.66, switch to Steenee -0.90/-0.81
+T26 Onix 28/46 against Geodude 3/41: play-outs choose Rock Throw, the network Rock Throw
+      Rock Throw +0.40/+0.34, Screech +0.29/+0.22, Bind +0.30/+0.23, switch to Barboach -1.27/-1.01, switch to Nidorino -1.07/-0.77, switch to Geodude -1.05/-1.02, switch to Prinplup -1.09/-0.80, switch to Steenee -1.04/-0.94
+T27 Onix 28/46 against Cranidos 51/51: play-outs choose Screech, the network Screech
+      Rock Throw +0.40/+0.36, Screech +0.40/+0.40, Bind +0.40/+0.36, switch to Barboach -0.63/-0.15, switch to Nidorino -1.04/-0.50, switch to Geodude -0.24/-0.04, switch to Prinplup -0.62/-0.12, switch to Steenee -0.79/-0.75
+T28 Onix 26/46 against Cranidos 51/51: play-outs choose Rock Throw, the network Screech  (differs; gives up 0.00)
+      Rock Throw +0.40/+0.39, Screech +0.40/+0.41, Bind +0.40/+0.39, switch to Barboach +0.13/+0.11, switch to Nidorino -0.48/-0.49, switch to Geodude +0.27/+0.22, switch to Prinplup +0.19/+0.13, switch to Steenee -0.50/-0.50
+T29 Onix 24/46 against Cranidos 51/51: play-outs choose Rock Throw, the network Screech  (differs; gives up 0.00)
+      Rock Throw +0.40/+0.44, Screech +0.40/+0.46, Bind +0.40/+0.42, switch to Barboach +0.19/+0.18, switch to Nidorino -0.61/-0.43, switch to Geodude +0.36/+0.34, switch to Prinplup +0.15/+0.20, switch to Steenee -0.63/-0.42
+T30 Onix 22/46 against Cranidos 51/51: play-outs choose Rock Throw, the network Bind  (differs; gives up 0.00)
+      Rock Throw +0.40/+0.40, Bind +0.40/+0.45, switch to Barboach +0.08/+0.23, switch to Nidorino -0.41/-0.40, switch to Geodude +0.36/+0.39, switch to Prinplup +0.23/+0.26, switch to Steenee -0.43/-0.37
+T31 Onix 13/46 against Cranidos 40/51: play-outs choose Rock Throw, the network Bind  (differs; gives up 0.00)
+      Rock Throw +0.38/+0.38, Bind +0.38/+0.40, switch to Barboach +0.17/+0.16, switch to Nidorino -0.49/-0.46, switch to Geodude +0.33/+0.34, switch to Prinplup +0.21/+0.22, switch to Steenee -0.51/-0.44
+T32 Onix 11/46 against Cranidos 37/51: play-outs choose Rock Throw, the network Bind  (differs; gives up 0.00)
+      Rock Throw +0.38/+0.38, Bind +0.37/+0.39, switch to Barboach +0.05/+0.14, switch to Nidorino -0.46/-0.50, switch to Geodude +0.33/+0.32, switch to Prinplup +0.16/+0.19, switch to Steenee -0.48/-0.46
+T33 Onix 9/46 against Cranidos 26/51: play-outs choose Rock Throw, the network Rock Throw
+      Rock Throw +0.37/+0.37, Bind +0.34/+0.36, switch to Barboach +0.14/+0.14, switch to Nidorino -0.44/-0.51, switch to Geodude +0.32/+0.32, switch to Prinplup +0.18/+0.13, switch to Steenee -0.46/-0.49
+18 of 33 decisions alike (values shown as play-outs/network); the network's choices give up 0.40 in all by the play-outs' values, 0.012 a decision
