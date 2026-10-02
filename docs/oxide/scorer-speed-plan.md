@@ -83,8 +83,7 @@ to the end.
 2. Train a network that reads a position (each Pokemon's species, HP, status,
    stat stages, moves and item, and the field: weather and its turns, screens,
    hazards) and predicts those outcomes. It runs on the PC's RTX 4070 Ti SUPER
-   (16 GB, visible from WSL); PyTorch is not yet installed (about 3 GB with
-   pip).
+   (16 GB, visible from WSL); PyTorch is installed (see Hardware).
 3. Each decision then needs one batch on the GPU in place of about 100
    play-outs.
 4. Retrain on the improved planner's own games, the loop that made AlphaZero
@@ -101,4 +100,14 @@ showcase seeds, and the three-gym run stays the exam.
 - CPU: Intel i9-14900K, 8 performance and 16 efficiency cores, 32 threads.
 - Memory: 31 GB visible in WSL.
 - GPU: NVIDIA RTX 4070 Ti SUPER, 16 GB, CUDA visible in WSL.
-- Python 3.14 with numpy; no PyTorch, no scikit-learn, no PyPy yet.
+- Python 3.14 with numpy; no scikit-learn, and no PyPy yet (stage 1 installs
+  it).
+- PyTorch 2.14.1, built for CUDA 13.0, installed on 2026-10-02 at Ian's word
+  in its own environment, `~/venvs/oxide-ml` (made with `uv`, seeing the
+  system's packages too; 5.2 GB, removed by deleting the folder). Run it as
+  `~/venvs/oxide-ml/bin/python`. Checked the same day: it sees the GPU, a
+  matrix product matches the CPU's, the card reaches about 30 TFLOP/s in
+  float32, and a small three-layer network of the kind stage 2 would train
+  judges about 5.9 million positions a second, against roughly a hundred
+  play-outs a second on one CPU core. Installing it does not start stage 2,
+  which still waits on Ian's word.
