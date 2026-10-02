@@ -33,13 +33,7 @@ import sys
 import time
 import zlib
 
-# One thread per process for numpy's matrix library: the planner runs one
-# process per core, and a library thread per core in each of them thrashed
-# the machine (a fight took 77 seconds in a pool, 5 alone). It must be set
-# before numpy first loads.
-for _var in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
-    os.environ.setdefault(_var, "1")
-
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
 import numpy as np  # noqa: E402
 
 from . import fightai

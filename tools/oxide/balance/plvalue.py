@@ -9,7 +9,8 @@ hundred positions takes a few milliseconds on one core.
 import json
 import os
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import plfeat
 

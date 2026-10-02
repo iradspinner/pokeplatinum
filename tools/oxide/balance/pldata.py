@@ -26,7 +26,8 @@ import random
 import sys
 import time
 
-import numpy as np
+from . import plthreads  # noqa: F401  (one numpy thread per process, before numpy loads)
+import numpy as np  # noqa: E402
 
 from . import perfectline as pl
 from . import plfeat
