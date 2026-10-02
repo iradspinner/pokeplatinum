@@ -404,18 +404,22 @@ def score_moves(b, u, t, flags):
     floored at 0, and past 127 the signed byte wraps and is floored to 0."""
     figs = [figure(b, u, t, m) for m in u.moves]
     best = max((f for f in figs if f is not None), default=None)
-    out = []
-    for i, mv in enumerate(u.moves):
-        if u.pp.get(mv.name, 1) <= 0:
-            out.append(0)
-            continue
-        s = 0 if invalid(b, u, mv) else 100
-        for bit in range(11):
-            if flags >> bit & 1:
-                s += flag_score(bit, b, u, t, mv, figs[i], best)
-                s = 0 if s < 0 or s > 127 else s
-        out.append(s)
-    return out
+    return [score_slot(b, u, t, i, figs, best, flags) for i in range(len(u.moves))]
+
+
+def score_slot(b, u, t, i, figs, best, flags):
+    """One slot's score in score_moves, given every slot's damage figure and
+    the best of them. A slot's rolls are its own, so the planner (plplan)
+    can enumerate them slot by slot."""
+    mv = u.moves[i]
+    if u.pp.get(mv.name, 1) <= 0:
+        return 0
+    s = 0 if invalid(b, u, mv) else 100
+    for bit in range(11):
+        if flags >> bit & 1:
+            s += flag_score(bit, b, u, t, mv, figs[i], best)
+            s = 0 if s < 0 or s > 127 else s
+    return s
 
 
 def flag_score(bit, b, u, t, mv, f, best):
@@ -2991,25 +2995,43 @@ def choose(b, u, t):
     rules; the command input gives Struggle when every move is ruled out and
     the Encore move under Encore; then the scores, the highest winning and
     ties at random. A Choice lock rules the other moves out (invalid)."""
+    forced = forced_choice(u)
+    if forced is not None:
+        return forced
+    record_last_move(t)
+    sw = should_switch(b, _side(b, u), u, t)
+    if sw is not None:
+        return "switch", sw
+    fixed = fixed_move(b, u)
+    if fixed is not None:
+        return fixed
+    scores = score_moves(b, u, t, b.ai_flags)
+    top = max(scores)
+    picks = [i for i, sc in enumerate(scores) if sc == top]
+    return "move", u.moves[b.rng.choice(picks)]
+
+
+def forced_choice(u):
+    """The action a locked, charging or recharging Pokemon takes without a
+    choice (Battler_CanPickCommand), else None."""
     if u.lock:
         return "move", u.lock[0]
     if u.charging is not None:
         return "move", u.charging
     if u.recharge:
         return "move", u.moves[0]
-    record_last_move(t)
-    sw = should_switch(b, _side(b, u), u, t)
-    if sw is not None:
-        return "switch", sw
+    return None
+
+
+def fixed_move(b, u):
+    """Struggle when every move is ruled out, the Encore move under Encore;
+    None when the scores decide."""
     if all(invalid(b, u, m) for m in u.moves):
         return "move", fs.move("Struggle")
     enc = getattr(u, "encore", None)
     if enc is not None:
         return "move", next(m for m in u.moves if m.name == enc)
-    scores = score_moves(b, u, t, b.ai_flags)
-    top = max(scores)
-    picks = [i for i, sc in enumerate(scores) if sc == top]
-    return "move", u.moves[b.rng.choice(picks)]
+    return None
 
 
 def skip_odds(n):

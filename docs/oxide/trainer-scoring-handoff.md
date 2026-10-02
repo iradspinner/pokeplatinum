@@ -50,17 +50,15 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-01, evening).** Steps 1 and 2 of the order of
-work are on `oxide` (6ce38e1e26): the trainer AI follows `script.s` and
-`trainer_ai.c` at HEAD routine by routine, with 365 checks in
-`test_fightai.py`, and the simulator's known gaps are filled ("The fightai
-audit", below). Step 3's first reading is on branch `scoring-step3-bar`
-("Step 3, the first reading", below): the rule-based line search matches our
-line at Mars 1 and falls well short at Roark and Gardenia. Ian read it and
-redirected step 3 the same evening ("Ian's ruling on step 3", below): no
-named rules are added, and the scorer is rebuilt as a planner that decides
-turn by turn by simulating its options forward. The planner plays Roark
-first, and that work goes to Ian before anything further is built. The perfect-line store has been stale since the simulator
+**Where it stands (2026-10-02).** Steps 1 and 2 of the order of work are on
+`oxide` (6ce38e1e26). Step 3 runs on branch `scoring-step3-bar` under Ian's
+rulings of 2026-10-01 and 2026-10-02 (below): the scorer is being rebuilt as
+a planner (`plplan.py`) that decides turn by turn by simulating its options
+at real odds, and the bar is re-measured at real odds. On 30 Roark seeds the
+planner now loses a Pokemon in 1 run of 30 (ours: about 1 in 70), but it
+costs about 133 seconds of one core per fight, which Ian judged far too long
+(2026-10-02): the whole game would take hundreds of hours. Cutting that cost
+is the open question with him before the Roark check goes to him. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -86,23 +84,37 @@ three numbers together, never the clean rate alone (Ian, 2026-10-01): the
 clean rate (won with no Pokemon fainting), the win rate (won at all) and the
 death count (the mean number of the player's Pokemon that faint per fight,
 over every fight played). The death count is what separates the gnarliest
-fights. The bar is our hand-played lines rerun on the corrected AI, 200 runs
-each on the harness's own seeds; the scorer's line must match or beat ours on
-the whole of the three, and every report to Ian shows all three side by side.
+fights. The bar is our hand-played lines rerun on the corrected AI at real
+odds (Ian, 2026-10-02), 2,000 runs each on seeds from the harness's own
+start; the scorer's line must match or beat ours on the whole of the three,
+and every report to Ian shows all three side by side, with the very unlucky
+fight beside them.
 
-| Fight | Our line | Clean | Won | Deaths per fight |
-|---|---|---|---|---|
-| Roark | S12 | 199/200 | 200/200 | 0.005 |
-| Mars 1 | S1, the PP stall | 191/200 | 200/200 | 0.045 |
-| Gardenia | L1 | 29/200 | 116/200 | 3.325 |
+| Fight | Our line | Dice | Clean | Won | Deaths per fight |
+|---|---|---|---|---|---|
+| Roark | S12 | real odds | 1970/2000 | 2000/2000 | 0.015 |
+| Roark | S12 | very unlucky | 1928/2000 | 1999/2000 | 0.043 |
+| Roark | S12 | old budget | 1979/2000 | 2000/2000 | 0.011 |
+| Mars 1 | S1, the PP stall | real odds | 1927/2000 | 2000/2000 | 0.037 |
+| Mars 1 | S1, the PP stall | very unlucky | 1825/2000 | 2000/2000 | 0.089 |
+| Mars 1 | S1, the PP stall | old budget | 1929/2000 | 2000/2000 | 0.036 |
+| Gardenia | L1 | real odds | 301/2000 | 1197/2000 | 3.212 |
+| Gardenia | L1 | very unlucky | 96/2000 | 602/2000 | 4.680 |
+| Gardenia | L1 | old budget | 296/2000 | 1188/2000 | 3.284 |
 
-Each figure comes from the harness script's own rows (`compare3.py`,
-`mars2.py` and `gardenia4.py` in `~/oxide-trials/three-gym-run/`, whose
-`run()` plays every fight to its end and returns whether it was won and how
-many of the player's Pokemon fainted), with the variant and seeds the
-script's `main()` uses, so the clean rates match the scripts' own output. The
-figures before the audit (Roark 199, Mars 1 198, Gardenia 57 clean) were
-measured on an AI that got many picks wrong, and no longer count.
+Each figure comes from the harness script's own `run()` (`compare3.py`,
+`mars2.py` and `gardenia4.py` in `~/oxide-trials/three-gym-run/`), which plays
+every fight to its end and returns whether it was won and how many of the
+player's Pokemon fainted, with the variant each script's `main()` uses, on
+seeds counting up from its own start (2000, 7000, 9000). The tally script
+beside them, `three_numbers.py`, takes the run count and the dice. Two
+thousand runs, rather than the 200 of the first bar, because a rare wipe of
+about 2% shows only about four times in 200 runs, with a standard error near
+one percentage point, and about forty times in 2,000. The old-budget rows
+match the first bar of 200 runs (199, 191 and 29 clean) on their first 200
+seeds. The figures before the audit (Roark 199, Mars 1 198, Gardenia 57
+clean) were measured on an AI that got many picks wrong, and no longer
+count.
 
 Beating our Gardenia line is welcome. Our planning there was not optimal: the
 run that lost Vikavolt had a better play at turn 12 than our rules found
@@ -203,18 +215,40 @@ decided a fight:
 - **Confusion** hits its holder half the time (`RandNext & 1`), using its
   boosted Attack.
 
-### Ian's luck budget, and what it does to plans
+### Luck: real odds, and a very unlucky fight (Ian, 2026-10-02)
 
-- **Secondary statuses against the player always land.** Sludge Bomb always
-  poisons, Thunder Punch always paralyses, and Confusion always confuses. Plans
-  must not rely on dodging them.
-- **One crit against the player.** Any plan must survive one crit at its worst
-  moment. That is why Steenee hands over after one Play Nice.
-- **Everything else rolls at the game's odds**, as the six approved
-  assumptions in the balance plan list them.
-- **Ties between equal AI picks break at random,** as the simulator does
-  (Ian, 2026-09-30). This replaces the earlier wording of the budget, which
-  assumed the pick worst for the player.
+Ian retired the luck budget from measurement on 2026-10-02. Every fight is
+simulated at the game's real odds: a secondary status against the player
+lands at its chance, crits land 1 in 24 with no cap on how many, and ties
+between equal AI picks break at random as before. The three numbers are then
+true frequencies with bad luck already inside them. His reason: under the
+budget every run assumed Sludge Bomb poisons, which never happens, while two
+crits, which land in about one long fight in five, were ruled out, so Wake
+and Cynthia would read easier than they play. The planner's caution comes
+from its position value: a faint costs heavily, so it avoids a play with a
+real chance of a chain into a faint, at that play's true odds, with each
+chance in its look-ahead weighed exactly where it can be.
+
+Beside the real-odds numbers, each line is replayed as a very unlucky fight,
+the stress test. Every status check and every crit check, the trainer's and
+the player's alike, rolls twice and keeps the result worse for the player:
+the trainer's crit lands about 1 in 12, a 10% secondary status on the player
+about 19%, and the player's own crits and secondary effects need both rolls.
+The player's full-paralysis and confusion self-hit checks also take the
+worse roll. Damage rolls and accuracy stay at the game's odds. Ian suspects
+disadvantage on both sides may be too harsh: if the stress readings stop
+telling lines apart (most lines near zero clean, or their order collapsing),
+the numbers go to him first, with the same lines under disadvantage on the
+trainer's checks only, so he can choose. His first targets for an ordinary
+trainer and a gauntlet were set under the budget, so they are provisional
+until his first run's ratings recalibrate them.
+
+The old budget, for the record (2026-09-30 to 2026-10-01): every secondary
+status against the player landed, at most one crit landed on the player,
+and plans were built to survive that crit at its worst moment, which is why
+our Steenee hands over after one Play Nice. `perfectline.LUCK` keeps all
+three settings ("real", the default; "unlucky"; "budget"), so the old bar
+can be re-measured.
 
 ### The planning ideas that won fights
 

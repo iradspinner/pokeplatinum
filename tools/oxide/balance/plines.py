@@ -10,9 +10,10 @@ lines around the greedy defaults, screens each on a few random runs,
 re-tests the best on fresh runs, and reports that rate with how the best
 screening rate grew with X (the convergence check).
 
-Runs use RunDice: Ian's luck rules inside them (a secondary status against
-the player always lands, at most one critical hit on the player), real
-dice for the rest. The trainer plays its own AI with real dice.
+Runs use RunDice at perfectline.LUCK: the game's own odds since Ian's
+ruling of 2026-10-02 (until then his luck budget: a secondary status
+against the player always lands, at most one critical hit on the player).
+The trainer plays its own AI with real dice.
 """
 import random
 
@@ -78,7 +79,7 @@ class Line:
 def crit_possible(b):
     d = getattr(b, "dice", None)
     if isinstance(d, pl.RunDice):
-        return not d.crit_used
+        return not (d.one_crit and d.crit_used)
     return b.luck_spent * pl.CRIT_RATE[0] >= pl.BUDGET - 1e-12
 
 

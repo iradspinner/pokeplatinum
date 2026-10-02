@@ -58,6 +58,18 @@ OUTRAGE_TURNS = {"p": 2, "b": 3}
 
 FREE = 1.0
 
+# How a random run's dice fall (Ian, 2026-10-02). "real": the game's own odds
+# for everything, crits at 1 in 24 with no cap, which is how fights are
+# measured. "unlucky": the stress test, a very unlucky fight, where every
+# status and crit check, the trainer's and the player's alike, rolls twice and
+# keeps the result worse for the player (STRESS names them; damage rolls and
+# accuracy stay at the game's odds). "budget": Ian's earlier luck budget of
+# 2026-09-30 (a secondary status against the player always lands, at most one
+# crit lands on the player), kept so the old bar can be re-measured.
+LUCK = "real"
+STRESS = frozenset({"crit", "status", "confusehit", "flinch", "statdrop", "statup", "kingsrock",
+                    "paralysis", "confusion", "thaw"})
+
 
 class Luck:
     """The dice of one turn, as a script. Each chance point asks for an
@@ -109,8 +121,11 @@ class SearchDice:
     def bad(self, kind, p):
         return self.luck.bad(kind, p)
 
-    def good(self, p):
+    def good(self, p, kind=None):
         return False
+
+    def lands_on_player(self, kind, p):
+        return True
 
     def roll(self, top):
         return 15 if top else 0
@@ -144,26 +159,37 @@ class SearchDice:
 
 
 class RunDice:
-    """Real dice for a random run, under Ian's rules of 2026-09-30: a
-    secondary status against the player always lands (the turn code never
-    asks the dice for it), and at most one critical hit lands on the
-    player in a fight. Everything else rolls at the game's odds."""
-    def __init__(self, rng, one_crit=True):
+    """Real dice for a random run, as LUCK (or `luck`) sets them: the game's
+    odds, the stress test's doubled checks, or the old luck budget, where
+    `one_crit` caps the crits on the player at one. `bad` is a chance that
+    hurts the player, `good` one that helps it; `kind` names the check."""
+    def __init__(self, rng, one_crit=True, luck=None):
         self.rng = rng
         self.mode = "run"
-        self.one_crit = one_crit
+        self.luck = luck or LUCK
+        self.one_crit = one_crit and self.luck == "budget"
         self.crit_used = False
 
     def bad(self, kind, p):
         if kind == "crit" and self.one_crit and self.crit_used:
             return False
         hit = self.rng.random() < p
+        if not hit and self.luck == "unlucky" and kind in STRESS:
+            hit = self.rng.random() < p          # either of two rolls lands
         if hit and kind == "crit":
             self.crit_used = True
         return hit
 
-    def good(self, p):
-        return self.rng.random() < p
+    def good(self, p, kind=None):
+        hit = self.rng.random() < p
+        if hit and self.luck == "unlucky" and kind in STRESS:
+            hit = self.rng.random() < p          # both rolls must land
+        return hit
+
+    def lands_on_player(self, kind, p):
+        """A secondary effect of the trainer's move on the player: always
+        under the old budget, else at its chance."""
+        return True if self.luck == "budget" else self.bad(kind, p)
 
     def roll(self, top):
         return self.rng.randrange(16)
@@ -184,7 +210,7 @@ class RunDice:
         return self.rng.randint(2, 3)
 
     def thaws(self, mon):
-        return self.rng.random() < 0.2
+        return self.good(0.2, "thaw") if player(mon) else self.bad("thaw", 0.2)
 
     def tie_player_first(self):
         return self.rng.random() < 0.5
@@ -309,10 +335,10 @@ def use_move(b, att, mv, dfn, first):
         return fs.could_not_act(b, att, mv, dfn)
     if att.confused:
         att.confused -= 1
-        if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5)):
+        if att.confused and (b.dice.bad("confusion", 0.5) if player(att) else b.dice.good(0.5, "confusion")):
             fs.hurt(b, att, confusion_damage(att, b.dice.confusion_roll()))
             return fs.could_not_act(b, att, mv, dfn)
-    if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25)):
+    if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25, "paralysis")):
         return fs.could_not_act(b, att, mv, dfn)
     if att.taunt and mv.cat == "Status":
         return fs.could_not_act(b, att, mv, dfn)
@@ -421,7 +447,7 @@ def attack(b, att, mv, dfn, first):
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
             rate = CRIT_RATE[min(stage, 4)]
-            crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate)
+            crit = b.dice.bad("crit", rate) if trainer else b.dice.good(rate, "crit")
         key = att.key
         if mv.name == "Magnitude":
             # The power is rolled first, at the game's odds for either side
@@ -430,12 +456,19 @@ def attack(b, att, mv, dfn, first):
             powers = list(fs.MAGNITUDE_POWERS)
             weights = [fs.MAGNITUDE_POWERS[p] for p in powers]
             rng = getattr(b, "rng", None)
-            p = rng.choices(powers, weights)[0] if rng is not None else 70
+            pick = getattr(b.dice, "pick_weighted", None)
+            p = pick(powers, weights) if pick else (rng.choices(powers, weights)[0] if rng is not None else 70)
             att.key = f"{key}#m{p}"
             b.last_magnitude = p
         try:
-            dmg = damage_of(b, att, dfn, mv, crit, top=trainer,
-                            roll=b.dice.roll(trainer) if b.dice.mode == "run" else None)
+            roll = None
+            if b.dice.mode == "run":
+                # Dice that enumerate a turn's outcomes (plplan) take the
+                # damage of every roll, so rolls that land alike count as one.
+                grouped = getattr(b.dice, "roll_grouped", None)
+                roll = grouped(lambda r: damage_of(b, att, dfn, mv, crit, top=trainer, roll=r) or 0, dfn.hp) \
+                    if grouped else b.dice.roll(trainer)
+            dmg = damage_of(b, att, dfn, mv, crit, top=trainer, roll=roll)
         finally:
             att.key = key
         if dmg is None:
@@ -514,9 +547,9 @@ def attack(b, att, mv, dfn, first):
         side = b.p if player(dfn) else b.b
         side.screens = dict.fromkeys(side.screens, 0)
     def secondary(kind, p):
-        """A secondary effect that is luck: against the player at its
-        chance from the budget, for the player at its chance as luck."""
-        return b.dice.bad(kind, p) if trainer else b.dice.good(p)
+        """A secondary effect at its chance: bad luck against the player,
+        good luck for it."""
+        return b.dice.bad(kind, p) if trainer else b.dice.good(p, kind)
     if e in fs.HIT_SELF_STAGES:
         ch, certain = fs.HIT_SELF_STAGES[e]
         if certain or secondary("statup", (mv.chance or 10) / 100):
@@ -528,11 +561,14 @@ def attack(b, att, mv, dfn, first):
         chance = 0
     if att.ability == "Serene Grace":
         chance = min(100, chance * 2)
-    # A secondary status on the player always lands (Ian, 2026-09-30); the
-    # player's own lands at its chance in a run and never in the search.
-    if e in fs.HIT_STATUS and chance and (trainer or b.dice.good(chance / 100)):
+    # A secondary status lands at its chance (Ian, 2026-10-02); under the
+    # old luck budget, and in the strict search, one on the player always
+    # lands, and the player's own never does in the search.
+    def status_lands(kind):
+        return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
+    if e in fs.HIT_STATUS and chance and status_lands("status"):
         give_status(b, dfn, fs.HIT_STATUS[e])
-    if e == "TRI_ATTACK" and chance and (trainer or b.dice.good(chance / 100)):
+    if e == "TRI_ATTACK" and chance and status_lands("status"):
         order = ("frz", "par", "brn")
         if b.dice.mode == "run":
             order = (order[b.dice.choice("tri", 3)],)
@@ -549,7 +585,7 @@ def attack(b, att, mv, dfn, first):
     if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
-    if e == "CONFUSE_HIT" and chance and not dfn.confused and (trainer or b.dice.good(chance / 100)):
+    if e == "CONFUSE_HIT" and chance and not dfn.confused and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
             and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):

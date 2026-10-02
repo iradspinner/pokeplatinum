@@ -1,0 +1,42 @@
+roark, seed 30, real odds; lead Geodude (lead values: Barboach -0.91, Nidorino -0.90, Geodude -0.87, Onix -0.91, Prinplup -0.90, Steenee -0.90)
+T1 [Sand] Geodude: Magnitude | Nosepass: Block -> you Geodude 41/41 | foe Lileep 49/49
+      options: Magnitude -0.83, Rock Polish -0.83, Rock Throw -0.87, Defense Curl -0.85, switch to Barboach -1.78, switch to Nidorino -13.11, switch to Onix -1.94, switch to Prinplup -2.07, switch to Steenee -2.12
+T2 [Sand] Geodude: switch to Nidorino | Lileep: Mega Drain -> you Nidorino 41/47 | foe Lileep 49/49
+      options: Magnitude -0.70, Rock Polish -0.72, Rock Throw -0.77, Defense Curl -0.72, switch to Barboach -1.46, switch to Nidorino +0.16, switch to Onix -1.49, switch to Prinplup -0.82, switch to Steenee -0.72
+T3 [Sand] Nidorino: Leer | Lileep: Rock Tomb -> you Nidorino 27/47 {'spe': -1} | foe Lileep 49/49 {'def': -1}
+      options: Double Kick +0.20, Poison Sting +0.20, Leer +0.37, Focus Energy -0.02, switch to Barboach -1.80, switch to Geodude -0.92, switch to Onix -2.08, switch to Prinplup -1.05, switch to Steenee -0.72
+T4 [Sand] Nidorino: Double Kick | Lileep: Ingrain -> you Nidorino 25/47 {'spe': -1} | foe Lileep 31/49 {'def': -1}
+      options: Double Kick +0.41, Poison Sting +0.38, Leer +0.41, Focus Energy +0.30, switch to Barboach -3.31, switch to Geodude -2.23, switch to Onix -3.31, switch to Prinplup -2.15, switch to Steenee -1.96
+T5 [Sand] Nidorino: Double Kick | Lileep: Constrict -> you Nidorino 21/47 {'spe': -2} | foe Lileep 13/49 {'def': -1}
+      options: Double Kick +0.42, Poison Sting +0.37, Leer +0.20, Focus Energy +0.19, switch to Barboach -3.40, switch to Geodude -2.81, switch to Onix -2.70, switch to Prinplup -1.42, switch to Steenee -1.03
+T6 [Sand] Nidorino: Double Kick | Lileep: Constrict -> you Nidorino 17/47 {'spe': -2} | foe Geodude 41/41
+      options: Double Kick +0.42, Poison Sting +0.41, Leer +0.38, Focus Energy +0.31, switch to Barboach -0.83, switch to Geodude -0.77, switch to Onix -0.43, switch to Prinplup +0.18, switch to Steenee +0.30
+T7 [Sand] Nidorino: switch to Barboach | Geodude: Thunder Punch -> you Barboach 44/44 | foe Geodude 41/41
+      options: Double Kick -0.60, Poison Sting -0.61, Leer -0.61, Focus Energy -0.61, switch to Barboach +0.42, switch to Geodude -0.63, switch to Onix -0.34, switch to Prinplup +0.34, switch to Steenee +0.15
+T8 [Sand] Barboach: Mud Bomb | Geodude: Rock Throw -> you Barboach 33/44 | foe Geodude 21/41
+      options: Mud Bomb +0.46, Water Gun +0.43, Mud-Slap +0.43, Water Sport +0.42, switch to Nidorino -0.10, switch to Geodude -0.64, switch to Onix -0.66, switch to Prinplup +0.42, switch to Steenee +0.09
+T9 [Sand] Barboach: switch to Onix | Geodude: Rock Throw -> you Onix 43/46 | foe Geodude 21/41
+      options: Mud Bomb +0.38, Water Gun +0.38, Mud-Slap +0.37, Water Sport +0.33, switch to Nidorino -0.12, switch to Geodude -0.39, switch to Onix +0.42, switch to Prinplup +0.41, switch to Steenee -0.12
+T10 [Sand] Onix: Screech | Geodude: Defense Curl -> you Onix 43/46 | foe Geodude 21/41 {'def': -1}
+      options: Rock Throw +0.44, Screech +0.45, Harden +0.35, Bind +0.44, switch to Barboach +0.33, switch to Nidorino -0.13, switch to Geodude -0.30, switch to Prinplup +0.35, switch to Steenee -0.12
+T11 [Sand] Onix: Screech | Geodude: Rock Throw -> you Onix 40/46 | foe Geodude 21/41 {'def': -3}
+      options: Rock Throw +0.45, Screech +0.45, Harden +0.42, Bind +0.45, switch to Barboach +0.34, switch to Nidorino -0.14, switch to Geodude +0.11, switch to Prinplup +0.32, switch to Steenee -0.10
+T12 [Sand] Onix: Harden | Geodude: Defense Curl -> you Onix 40/46 {'def': 1} | foe Geodude 21/41 {'def': -2}
+      options: Rock Throw +0.45, Screech +0.45, Harden +0.46, Bind +0.45, switch to Barboach +0.31, switch to Nidorino -0.72, switch to Geodude +0.34, switch to Prinplup +0.34, switch to Steenee -0.11
+T13 [Sand] Onix: Harden | Geodude: Rollout -> you Onix 38/46 {'def': 2} | foe Geodude 21/41 {'def': -2}
+      options: Rock Throw +0.47, Screech +0.46, Harden +0.47, Bind +0.46, switch to Barboach +0.28, switch to Nidorino -0.61, switch to Geodude +0.10, switch to Prinplup +0.35, switch to Steenee -0.25
+T14 [Sand] Onix: Rock Throw | Geodude: Rollout -> you Onix 34/46 {'def': 2} | foe Geodude 11/41 {'def': -2}
+      options: Rock Throw +0.46, Screech +0.44, Harden +0.45, Bind +0.45, switch to Barboach -0.57, switch to Nidorino -0.66, switch to Geodude -0.55, switch to Prinplup -0.58, switch to Steenee -0.74
+T15 [Sand] Onix: Rock Throw | Geodude: Rollout -> you Onix 26/46 {'def': 2} | foe Geodude 1/41 {'def': -2}
+      options: Rock Throw +0.46, Screech +0.44, Harden +0.40, Bind +0.42, switch to Barboach -0.70, switch to Nidorino -0.75, switch to Geodude -1.75, switch to Prinplup -0.74, switch to Steenee -0.81
+T16 [Sand] Onix: Rock Throw | Geodude: Rollout -> you Onix 26/46 {'def': 2} | foe Cranidos 51/51
+      options: Rock Throw +0.45, Screech -0.13, Harden +0.31, Bind +0.38, switch to Barboach -0.96, switch to Nidorino -0.98, switch to Geodude -1.13, switch to Prinplup -0.98, switch to Steenee -0.98
+T17 [Sand] Onix: Screech | Cranidos: Pursuit -> you Onix 23/46 {'def': 2} | foe Cranidos 51/51 {'def': -2}
+      options: Rock Throw +0.45, Screech +0.45, Harden +0.45, Bind +0.44, switch to Barboach -0.58, switch to Nidorino -0.89, switch to Geodude -0.13, switch to Prinplup -0.52, switch to Steenee -0.56
+T18 [Sand] Onix: Rock Throw | Cranidos: Rock Throw -> you Onix 21/46 {'def': 2} | foe Cranidos 33/51 {'def': -2}
+      options: Rock Throw +0.45, Screech +0.45, Harden +0.45, Bind +0.45, switch to Barboach +0.20, switch to Nidorino -0.37, switch to Geodude +0.39, switch to Prinplup +0.17, switch to Steenee +0.15
+T19 [Sand] Onix: Rock Throw | Cranidos: Pursuit -> you Onix 18/46 {'def': 2} | foe Cranidos 1/51 {'def': -2}
+      options: Rock Throw +0.45, Screech +0.45, Harden +0.45, Bind +0.45, switch to Barboach +0.24, switch to Nidorino -0.39, switch to Geodude +0.41, switch to Prinplup +0.33, switch to Steenee +0.15
+T20 [Sand] Onix: Rock Throw | Cranidos: Rock Throw -> you Onix 18/46 {'def': 2} | foe Cranidos 0/51 {'def': -2}
+      options: Rock Throw +0.45, Screech +0.44, Harden +0.45, Bind +0.45, switch to Barboach +0.16, switch to Nidorino -0.41, switch to Geodude +0.41, switch to Prinplup +0.33, switch to Steenee +0.06
+won; fainted: none; 192.69 s
