@@ -139,7 +139,13 @@ def job(args):
     return meta
 
 
-EXPLORE = 0.15        # self-play: the share of turns spent on a random option
+# Self-play explores on this share of turns, and then only among the options
+# whose value is within EXPLORE_MARGIN of the best, so the fights stay close to
+# the planner's own play and their outcomes label positions it reaches. (Round
+# 1 of 2026-10-02 explored with any option at all, and the network trained on
+# those fights played worse.)
+EXPLORE = 0.15
+EXPLORE_MARGIN = 0.25
 
 
 def selfplay_job(args):
@@ -176,7 +182,14 @@ def selfplay_job(args):
                 x, i = plfeat.features(b, tables)
                 seen.append((x, i, sum(1 for m in b.p.mons if not m.alive())))
                 acts = plplan.options(b)
-                a = acts[rng.randrange(len(acts))] if rng.random() < EXPLORE else planner.decide(b)
+                n = len(planner.notes)
+                a = planner.decide(b)
+                if rng.random() < EXPLORE and len(planner.notes) > n and len(acts) > 1:
+                    qs = [q for _o, q in planner.notes[n]["options"]]
+                    if len(qs) == len(acts) and None not in qs:
+                        top = max(qs)
+                        near = [k for k, q in enumerate(qs) if q >= top - EXPLORE_MARGIN]
+                        a = acts[near[rng.randrange(len(near))]]
                 pl.play_turn(b, a, run)
         finally:
             plplan._REAL.update(b=None, planner=None)
