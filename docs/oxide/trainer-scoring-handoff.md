@@ -66,7 +66,12 @@ values now choose for it at about a fortieth of the cost. The average of
 three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
 reads better than the play-out planner at both, and at Gardenia wins more
 often than our line but almost never cleanly, as the play-out planner does
-("Stage 2", below). Every reading is now 75 fights at real odds
+("Stage 2", below). Goal 2 has begun with the rival fights of Roark's split
+(Barry 1 cannot be won with a Piplup) and a mechanical roll of the box
+through Fantina for Ian and the Overseer to choose from. A test on 100
+ordinary trainers showed that networks trained broadly judge trainers they
+never saw nearly as well as play-outs, which makes the whole game a matter
+of hours. Every reading is now 75 fights at real odds
 and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -1005,10 +1010,35 @@ Without Gardenia's positions it loses almost every Gardenia fight. Trained
 on three trainers, it has never met most of the game's species and moves,
 so its ids for them mean nothing. Every new fight therefore needs labelled
 positions of its own before the network can play it: for goal 2, a round of
-distillation for the rival fights, Jupiter 1 and Fantina. For the whole
-game, the hope is that a network trained on positions from many trainers
-judges a new one well, since it will have met most species and moves by
-then; that is untested.
+distillation for the rival fights, Jupiter 1 and Fantina.
+
+**Trained on many trainers, it does judge unseen ones (2026-10-02).** The
+test (`plgen.py`) took the 100 ordinary singles trainers of Roark's,
+Gardenia's and Fantina's splits (gym leaders' rematch teams left out), held
+out every fifth, and labelled the other 80 with the play-out planner on four
+random boxes each (`fightsim.random_box`, the blind reading's boxes), 1.65
+million positions in ten minutes on 29 workers. Networks trained from
+scratch on those and the gyms' three distillation rounds were read on the 20
+held-out trainers, on a box none of the data used, 40 fights each at real
+odds:
+
+| Planner | Clean | Won | Faints a fight |
+|---|---|---|---|
+| the play-out planner | 800 of 800 | 800 | 0.000 |
+| a network without the held-out trainers (seed 1) | 767 | 799 | 0.065 |
+| the same with them (seed 1) | 768 | 793 | 0.110 |
+| a network without them (seed 2) | 787 | 800 | 0.020 |
+| the average of the two without them | 789 | 800 | 0.015 |
+
+Having seen the held-out trainers made no difference: the networks' misses
+fall on different trainers from one network to the next (Aroma Lady Hannah
+19 clean of 40 under one, 35 under another), so they are each network's own
+noise, and averaging two networks that never saw these trainers comes within
+about a point of the play-out planner. For the whole game this means one
+labelling pass over every trainer, which for ordinary trainers is minutes
+rather than hours, then a network average; bosses, where small misjudgements
+cost more, still want their own rounds of labels from the network's play, as
+Mars 1 did.
 
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to
