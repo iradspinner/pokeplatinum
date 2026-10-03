@@ -90,14 +90,16 @@ def fight_label(f):
     return data.oxide_trainers()[key]["name"]
 
 
-def with_genders(t):
+def with_genders(t, tr=None):
     """A copy of a trainer's party with each member's gender as the game
     builds it (fightsim.trainer_gender), from the trainer's file in
-    res/trainers/data: its class, and each member's own gender and ability
-    fields. The balance track's trainer data does not carry them."""
-    path = os.path.join(data.ROOT, "res", "trainers", "data", t["stem"] + ".json")
-    with open(path) as fh:
-        tr = json.load(fh)
+    res/trainers/data (or `tr`, a trainer file read from elsewhere): its
+    class, and each member's own gender and ability fields. The balance
+    track's trainer data does not carry them."""
+    if tr is None:
+        path = os.path.join(data.ROOT, "res", "trainers", "data", t["stem"] + ".json")
+        with open(path) as fh:
+            tr = json.load(fh)
     out = []
     for j, m in enumerate(t["party"]):
         fm = tr["party"][m.get("sub_index", j)]

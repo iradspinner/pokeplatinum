@@ -503,7 +503,7 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
 
 # ---- the whole search on one box ----------------------------------------------------------------------
 
-def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25):
+def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25, prepared=None):
     """The five stages on one box, with a log and result.json in `out_dir`.
     `key` is the story fight (fights.json), `recs` the box's records with
     their whole move pools, `stock` the items the run has by then (in
@@ -530,7 +530,9 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         logf.flush()
 
     t0 = time.time()
-    st, keys, boss_keys, flags = prepare(key, recs, stock, variant)
+    # `prepared`: a fight already made (st, keys, boss_keys, flags), as plstudy
+    # makes one from a trainer file outside res/.
+    st, keys, boss_keys, flags = prepared or prepare(key, recs, stock, variant)
     names = {k: st["pokemon"][k]["species"] for k in keys}
     foes = [f"{st['pokemon'][k]['species']} {st['pokemon'][k]['level']}" for k in boss_keys]
     log(f"== {fight}: {', '.join(foes)}; box of {len(keys)}: {', '.join(names[k] for k in keys)}; "

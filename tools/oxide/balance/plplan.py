@@ -1074,10 +1074,13 @@ class Planner:
 
     def lead(self, st, team, boss_keys, flags):
         """The lead: each candidate's best first option, on the same dice;
-        (the lead, each candidate's value)."""
+        (the lead, each candidate's value). In a section (CARRY), only a
+        member still standing can lead."""
         key = _mix(self.seed, "lead")
-        vals = [self.position(pl.make_battle(st, team, boss_keys, flags, i), key) for i in range(len(team))]
-        best = choose([v[2] for v in vals], [v[:2] for v in vals], range(len(team)))
+        up = [i for i in range(len(team)) if CARRY is None or CARRY[i][0] > 0]
+        vals = [self.position(make_battle(st, team, boss_keys, flags, i), key) if i in up else (1.0, 9.0, -99.0)
+                for i in range(len(team))]
+        best = choose([v[2] for v in vals], [v[:2] for v in vals], up)
         return best, [v[2] for v in vals]
 
 
@@ -1118,7 +1121,7 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
     seed-for-seed comparison."""
     reset()                  # each fight starts with empty caches, so memory stays bounded
     rng = random.Random(seed)
-    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    b = make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck=luck)
     b.rng = rng
     planner = Planner(seed, **cfg)
@@ -1164,7 +1167,25 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
     won = not b.b.alive()
     return {"clean": won and deaths == 0, "won": won, "deaths": deaths, "faints": faints,
             "seconds": round(time.perf_counter() - t0, 2), "decisions": planner.decisions,
-            "turns": b.turn, "notes": planner.notes}
+            "turns": b.turn, "notes": planner.notes,
+            # What the player's side carries into a section's next fight.
+            "carry": [[m.hp, m.status, m.sleep, m.toxic, dict(m.pp), m.item] for m in b.p.mons]}
+
+
+# A gauntlet section's carried state (plstudy.section): each team member's
+# [hp, status, sleep, toxic, pp, item] going into the next fight, or None
+# for a fight from full health.
+CARRY = None
+
+
+def make_battle(st, team, boss_keys, flags, lead):
+    """perfectline's battle, with a section's carried state applied."""
+    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    if CARRY is not None:
+        for m, (hp, status, sleep, toxic, pp, item) in zip(b.p.mons, CARRY):
+            m.hp, m.status, m.sleep, m.toxic, m.pp, m.item = hp, status, sleep, toxic, dict(pp), item
+            m.had_item = bool(item)
+    return b
 
 
 # ---- reading a fight -------------------------------------------------------------------------------
@@ -1295,7 +1316,7 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     seed = f["trace_seed"] if seed is None else seed
     netp = Planner(seed, value=value)
     rng = random.Random(seed)
-    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    b = make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck="real")
     b.rng = rng
     planner = Planner(seed)
@@ -1357,7 +1378,7 @@ def _budget_job(seed):
     the full planner's own estimates; and the full planner's seconds."""
     j = _JOB
     rng = random.Random(seed)
-    b = pl.make_battle(j["st"], j["team"], j["boss_keys"], j["flags"], j["lead"])
+    b = make_battle(j["st"], j["team"], j["boss_keys"], j["flags"], j["lead"])
     b.dice, b.rng = pl.RunDice(rng, luck="real"), rng
     full = Planner(seed)
     small = [Planner(seed, budget=budget, standin=standin) for _label, budget, standin in j["small"]]
