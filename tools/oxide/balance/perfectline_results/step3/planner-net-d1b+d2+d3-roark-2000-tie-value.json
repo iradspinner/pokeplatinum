@@ -1,0 +1,86 @@
+{
+ "fight": "roark",
+ "six": [
+  "Barboach",
+  "Nidorino",
+  "Geodude",
+  "Onix",
+  "Prinplup",
+  "Steenee"
+ ],
+ "variant": 0,
+ "foes": [
+  "Nosepass 15",
+  "Geodude 15",
+  "Lileep 15",
+  "Cranidos 16"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1b+d2+d3"
+ },
+ "luck": "real",
+ "rank": "win",
+ "fast_tie": false,
+ "lead": "Geodude",
+ "lead_values": {
+  "Barboach": -0.88,
+  "Nidorino": -0.864,
+  "Geodude": -0.824,
+  "Onix": -0.88,
+  "Prinplup": -0.864,
+  "Steenee": -0.864
+ },
+ "clean": 1958,
+ "won": 2000,
+ "deaths": 0.022,
+ "runs": 2000,
+ "faints": [
+  [
+   "Nidorino",
+   "Lileep",
+   20
+  ],
+  [
+   "Onix",
+   "Cranidos",
+   7
+  ],
+  [
+   "Barboach",
+   "Geodude",
+   7
+  ],
+  [
+   "Prinplup",
+   "Cranidos",
+   6
+  ],
+  [
+   "Steenee",
+   "Lileep",
+   3
+  ],
+  [
+   "Prinplup",
+   "Lileep",
+   1
+  ],
+  [
+   "Barboach",
+   "Cranidos",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 5.15,
+ "decisions_per_run": 33.2,
+ "turns_per_run": 33.2,
+ "lead_seconds": 0.5,
+ "wall_seconds": 357.3,
+ "procs": 29,
+ "fights_per_hour": 20148.6,
+ "worker_private_mb_max": 32,
+ "parent_mb": 87,
+ "lost_seeds": []
+}

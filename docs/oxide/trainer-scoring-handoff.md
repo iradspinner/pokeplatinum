@@ -1150,6 +1150,88 @@ Ian's order wins as often or a little more (the Gardenia differences are
 within the noise of 500 fights) and loses fewer Pokemon at all three. The
 readings before this section used the old value.
 
+## The team search: plan and costs (for Ian, 2026-10-02)
+
+Ian ruled that the scorer's job is to order every fight correctly by
+difficulty, close enough, and that for a boss it chooses its own six and
+moves: a screen with no simulated fights, a race among the screen's top
+twenty or so, and the full reading of two or three finalists; his idea for
+the race rates each box member by how the sixes it is drawn into fare (the
+cross-entropy method over members); and his loop, with the Overseer's
+additions, sends what the finalist reading learns back to the race. This is
+the plan, with every cost from a measurement of the same day.
+
+**What the costs rest on.** One simulated fight costs the play-out planner
+113 seconds of one core at Roark, 210 at Mars 1 and 212 at Gardenia (300 very
+unlucky); the network planner, 2.5 to 4. A boss's labels cost about 1.7
+core-hours by the cheap recipe where it holds (Mars 1) and about 28 for three
+full rounds (Gardenia, where the cheap recipe failed: 334 won of 500 after
+one spread round and 299 after two, against 429 for the full rounds and 69
+of 75 for the play-out planner). And labels carry between sixes of one fight:
+networks that saw Mars 1's labels from nine other sixes but never ours read
+our six at 463 clean of 500, every fight won, 0.084 faints, against 490, 499
+and 0.032 for networks that saw it. Wins hold; the clean rate drops five
+points. That is close enough to rank sixes in a race, so the race can run on
+the network.
+
+**The stages.**
+
+1. *Screen, no simulated fights.* The damage calculator's rows for every box
+   member's whole learned move pool against every enemy, both ways, with
+   speed: for each pair, the hits each side needs and who moves first. Each
+   member's four moves are picked against this fight from its pool (three
+   attacks of different types and the best status move, by the scorer's
+   rule, weighted to the enemies it answers). Sixes are built to answer
+   every enemy (a member that knocks it out in fewer hits than it needs, or
+   that outspeeds it and survives), with the least overlap, by a greedy
+   build and swaps, and the top twenty go on. About a core-minute per boss
+   and box, mostly the calculator.
+2. *Labels for the fight.* The screen's top sixes, from every box to be
+   read, are labelled together: the cheap recipe spread over them (a tenth
+   of a round across about ten sixes, then one spread round from the
+   network's own play over the twenty), about 1.7 core-hours a boss.
+3. *Race, on the network.* Ian's member ratings: sixes are drawn by member
+   weights, each read on four fights, and the weights move toward the
+   members of the best sixes, five rounds of sixteen sixes (320 fights,
+   about 0.3 core-hours); then the best five full sixes race by halving
+   (about 0.2) to settle pairs that work only together.
+4. *Finalists.* Two or three sixes, 100 fights each (75 real, 25 very
+   unlucky) on the network, about 0.3 core-hours.
+5. *Diagnose and loop.* The winner is also read by the play-out planner on
+   25 fights (about 1.4 core-hours). If the network falls short of it on the
+   same six, the gap is training: one more spread round on that six (0.7),
+   then read again. If both fall short together, the six is the problem: the
+   enemies that cause its faints and losses raise the ratings of members
+   that answer them, the full reading weighs more than a race fight, and the
+   race runs again. Stop when a loop no longer improves the best six beyond
+   noise, or after three loops.
+
+**Totals.** Per boss and box, stages 1, 3 and 4 cost about 0.5 core-hours;
+per boss, the labels about 1.7 and the diagnosis about 1.4. For goal 3's 38
+kept bosses (its 79 rows less the 41 Ace Trainers) on five boxes each, that
+is about 38 x (1.7 + 1.4 + 5 x 0.5), some 210 core-hours, about 7 hours on
+29 workers, if the cheap recipe holds everywhere. Where it fails as at
+Gardenia, the fallback is not three full rounds (28 core-hours) but the
+play-out planner's own 100-fight reading of the finalist (about 5.6): if a
+quarter of the bosses need it on each box, add about 38 x 0.25 x 5 x 5.6,
+some 270 core-hours, about 9 hours more. The Ace Trainers, read blind on
+random sixes, add about an hour of labelling and reading.
+
+**Which planner where.** The network wherever there is a race, since a race
+on the play-out planner alone costs about 13 core-hours per boss and box
+(some 240 fights at 200 seconds) and the whole of goal 3 that way would take
+weeks. For a single fixed six read once, the network still pays (1.8
+core-hours with its labels against 5.6 for play-outs) where the cheap recipe
+holds; where it does not, the play-out planner reads the finalist.
+
+**The first test (the Overseer's).** The search on the hand run's own boxes
+at Roark, Mars 1 (at 19) and Gardenia, to see whether it finds our sixes or
+ones that read as well by wins and then faints. Roark and Gardenia have
+labels across ten sixes already; Mars 1 at 19 needs its own. A miss at Mars
+1, which our six wins by a PP stall, would show the screen undervaluing stall
+plans. **Building it** is the screen (the largest piece), the race with
+member ratings, and the loop; the first test runs on what is there.
+
 ## The cost of labelling every boss (2026-10-02)
 
 The Overseer counted about 110 fights in goal 3 that need labelled positions
