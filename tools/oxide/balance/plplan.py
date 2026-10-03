@@ -1458,17 +1458,19 @@ def main(argv=None):
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
     ap.add_argument("--variant", type=int, help="another of the trainer's variants (a rival's, by starter)")
-    ap.add_argument("--budget-check", type=int, metavar="BUDGET",
-                    help="does this smaller budget (plain, and with --standin) choose as the full one does?")
+    ap.add_argument("--budget-check", metavar="BUDGET[,BUDGET...]",
+                    help="do these smaller budgets (plain, and the first with --standin) choose as the full one "
+                         "does?")
     ap.add_argument("--check-fights", type=int, default=12, help="with --budget-check: fights to play")
     args = ap.parse_args(argv)
     if args.budget_check:
         # The full planner and the ceiling play out with the plain policy;
         # only the small planner named for it uses the stand-in.
-        small = [(f"budget {BUDGET} again", BUDGET, None), (f"budget {args.budget_check}", args.budget_check, None)]
+        budgets = [int(x) for x in args.budget_check.split(",")]
+        small = [(f"budget {BUDGET} again", BUDGET, None)] + [(f"budget {n}", n, None) for n in budgets]
         for name in (args.standin or "").split(","):
             if name:
-                small.append((f"budget {args.budget_check} with {name}", args.budget_check, name))
+                small.append((f"budget {budgets[0]} with {name}", budgets[0], name))
         _PICK.update(six=args.six, variant=args.variant)
         RANK = args.rank
         out = budget_check(args.fight, small, args.check_fights, args.procs)

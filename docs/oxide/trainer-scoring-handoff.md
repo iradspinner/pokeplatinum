@@ -1508,13 +1508,13 @@ about 70 core-hours for the Ace Trainers. The levers, none yet measured:
    the five boxes, in place of ten sixes per box: about 1,050 core-hours, and
    3 GPU hours.
 2. The play-out check on the top two finalists, not three: about 770.
-3. The learned stand-in player, if a budget of 24 with it chooses as well as
-   192 without (its test is next): a stand-in turn costs about 1.7 plain
-   turns (380 microseconds against 225, measured), so the check and the
-   labels would cost about a quarter, bringing the total to about 350.
-4. Budget 64 for the check, about half the check's cost; its effect on the
-   reading is unmeasured, and the budget check (`plplan --budget-check`)
-   can measure it.
+3. A smaller play-out budget. The learned stand-in player failed its test,
+   but at Roark budget 24 with the plain policy chose almost as well as 192
+   at a quarter of the cost ("The learned stand-in player, and smaller
+   budgets", below). If it holds at Mars 1 and Gardenia, the check and the
+   labels cost about a quarter, bringing the total to about 350.
+4. Budget 64, about half the cost, if 24 does not hold; the same check
+   measures both.
 
 **Held items are not searched.** The simulator's item rule knows only type
 boosters, Leftovers and Sitrus Berries, so a six never holds the run's
@@ -1522,6 +1522,57 @@ Quick Claw, and goal 3's bosses will come after element 7's held items
 (Eviolite, Assault Vest and the rest) are placed behind optional fights. A
 proposed later step: the finalists try the box's held items, each read
 by the network, before the play-out check.
+
+## The learned stand-in player, and smaller budgets (2026-10-03)
+
+The stand-in failed its test, and the plain policy at a smaller budget
+nearly passed it. The stand-in was meant to make the play-out planner
+cheaper: play-outs played more like the planner would value positions more
+truly, so a budget of 24 might choose as well as 192. A small budget with
+the plain policy is the obvious thing to compare it with, and that
+comparison decided it.
+
+**The stand-in.** Its data is the play-out planner's own decisions at the
+three gyms (`pldata --choices`). The recording was slower than estimated
+beside the team search, and stopped after 27 of its 90 jobs, about 16,500
+decisions; the early networks were trained on those. Their agreement with
+the planner's choices on held-out decisions, where a random legal pick
+agrees 17% of the time and two full-budget planners about 74 to 86%:
+
+| Stand-in | Agreement | Its pick, per turn |
+|---|---|---|
+| compact (the field, the two active Pokemon, the matchup grid) | 50% | about 230 microseconds |
+| full (the value network's body, started from d1b) | 64% | about 11,000 microseconds |
+
+A whole simulated turn with the plain policy costs about 150 to 225
+microseconds, so the full stand-in cannot play play-outs at any useful
+speed, and the compact one makes a turn two to three times dearer.
+
+**The budget check** (`plplan --budget-check`): fights played by the full
+planner (budget 192); at each decision, a second full-budget planner on dice
+of its own, budget 24 with the plain policy, and budget 24 with the compact
+stand-in choose too, and their choices are scored by the full planner's own
+estimates. At Roark, 12 fights, 265 decisions:
+
+| Planner | Same choice | Chance of losing added | Faints added | Seconds a decision |
+|---|---|---|---|---|
+| budget 192 again (the ceiling) | 74.0% | +0.005 | +2.4 | 4.1 |
+| budget 24, plain | 70.6% | +0.046 | +3.6 | 1.2 |
+| budget 24, the compact stand-in | 55.1% | +0.008 | +23.2 | 2.9 |
+
+The added chances and faints are totals over all 265 decisions. Two full
+planners disagree on a quarter of decisions at almost no cost, since many
+options are near equal. Budget 24 with the plain policy chooses almost as
+well, at a quarter of the cost. The stand-in's play-outs judge positions
+worse than the plain policy's, adding 23 faints, and cost two and a half
+times as much as the plain ones at the same budget, so even a perfect
+stand-in at 24 would cost about what the plain policy does at 60. More of
+its data might lift its agreement a few points, but not across a gap this
+size, so the recording is stopped (its shards are kept in `data-choices`).
+Budgets 24 and 64 with the plain policy are being checked at Mars 1 and
+Gardenia, which are harder than Roark; if 24 holds there, it is the lever
+the stand-in was meant to be, and it cuts the play-out check and the labels
+to about a quarter.
 
 ## The cost of labelling every boss (2026-10-02)
 
