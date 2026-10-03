@@ -867,6 +867,27 @@ Readings: `planner-barry_1-*`, `planner-lucas_dawn_1-v*` and
 `planner-barry_2-six*` in the results folder (`plplan --six` and `--variant`
 choose a six from the box and a rival's variant).
 
+**Goal 2's fights and their caps (Ian, 2026-10-02).** Barry 1 and Lucas and
+Dawn 1 are dropped (the first does not count, the second is trivial). The
+interim soft caps sit at each mini-boss's ace until it is beaten: Barry 2 at
+11, then Roark's split at 16, Mars 1 at 19, Gardenia's split at 26, Jupiter
+1 at 27, Lucas and Dawn 2 at 30, Fantina's split at 33. Lucas and Dawn 2
+cannot be fought before the Bicycle, so the order holds: its trigger
+(Route 207, x 340, z 712 to 714, beside the Mt. Coronet entrance, live from
+a new game until the scene sets `VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE`)
+lies above the route's bicycle slope (x 306, z 718 and 719). A flood fill of
+Route 207's two map blocks (MAP_025 and MAP_026) from Oreburgh's edge,
+counting only collision and the slope as walls, reaches the lower west
+pocket alone; the trigger, the Mt. Coronet warp and Route 206's edge are out
+of reach on foot, and the Bicycle comes after Jupiter 1. The Lucas and Dawn
+files of Jubilife (ace 13) and Veilstone (ace 36) are battled by no map.
+
+For the balance track (`splits.py` is theirs): it places Route 207's trainers
+in Roark's split by the route's lower part, but all six (Camper Anthony,
+Picnicker Lauren, Youngster Austin, Hikers Justin and Kevin, Battle Girl
+Helen) stand above the bicycle slope too, as does Lucas and Dawn 2, so their
+split should be the one after the Bicycle, Fantina's.
+
 ## Stage 2: the learned position value (from 2026-10-02)
 
 Stage 2 of the speed plan replaces the planner's play-outs with a network
@@ -1300,3 +1321,207 @@ enough for the last of them.
    and lack many of the more interesting modern moves. This goes to the
    balance track's learnset work, not to this track.
 5. **AI ties:** break at random, as the simulator does now.
+
+## Goal 3's fights, for Ian to prune (2026-10-02)
+
+One row per fight goal 3 could label: the 33 story fights of `fights.json`,
+every other trainer of a leader, Elite Four, Champion, rival, commander or
+Galactic boss class, every Galactic Officer, and every trainer named or
+classed Ace Trainer. A rival's three starter teams and Lucas and Dawn's six
+slots are one row; two Ace Trainers met only together are one row, since a
+double against two trainers is one fight (Ian, 2026-09-28). The split is
+`fights.json`'s for a story fight and the scorer's own rule for the rest
+(`plscore.SPLIT_OVERRIDE`, then `b6.placements`, then
+`splits.trainer_split`). Post-game means every map that battles it is in
+the Post split (Route 224, Victory Road's back room, the Battleground) or
+its ace is above the League cap of 78. Rematch means a team whose file is
+named a rematch, or Barry's Battleground teams. Double means the trainer's
+own double flag, a tag fight in `fights.json`, or a map whose script gives
+the player a partner (Riley on Iron Island B2F, Buck in Stark Mountain's
+second room, Marley in Victory Road's back room), where the engine makes
+every trainer battle a tag battle; the planner plays one Pokemon a side and
+`pdoubles` is a separate first-version search, so none of these can be
+labelled yet. Unreachable means no map battles it; not placed means it has
+no split. Optional comes from the reach model behind `b6.placements` and
+from the docs, which call the Battle Zone and Iron Island optional; gyms
+and dungeons are not modelled, so their trainers read "path unknown".
+
+Uncertain. The three tag story fights (Somnu and Moira, Mars and Jupiter at
+Spear Pillar, Flint and Volkner) are major bosses proposed for a drop only
+because the planner cannot read doubles; covering them means doubles
+support first. Two Ace pairs face each other with no partner: Dennis and
+Maya on Route 215 (both on the path) and Felix and Dana on Route 229. Seen
+together they are one double, but each can be fought alone by talking to it
+from outside both sight lines, so they are kept as singles. Barry 1 is
+proposed for a drop on Ian's ruling that it does not count, and Lucas and
+Dawn 1 on his ruling to ignore it as trivial. The eight officer rows
+(Somnu, Moira, Hesperid and Argo, twice each) and Mars and Jupiter at
+Stark Mountain are probably not in the Overseer's count of about 12
+Galactic fights; they are kept as named Galactic fights. The rematches'
+post-game reading comes from their levels (82 to 90), not from their
+scripts' gates. Goal 3's wording does not name the Frontier Brains (optional
+bosses since 2026-09-27, still drafts) or the partners' own fights (Cheryl,
+Riley, Marley, Buck, Mira), so they have no rows.
+
+Rows: 121. Kept: 79. Proposed drops: 42 (27 rematch, 8 double, 4 post-game, 1 does not count, 1 trivial, 1 unreachable; a row with several reasons is counted under its first).
+
+Rows by kind:
+
+| kind | kept | dropped |
+|---|---|---|
+| gym leaders, Elite Four and Champion | 13 | 1 |
+| Barry | 5 | 2 |
+| Lucas and Dawn | 2 | 1 |
+| named Galactic fights | 18 | 2 |
+| Ace Trainers | 41 | 21 |
+| rematches and re-fights | 0 | 15 |
+
+| fight | ids | split | maps | flags | proposed | reason |
+|---|---|---|---|---|---|---|
+| Barry 1 | 850, 851, 852 | Roark | route 201 | Ian ruled it does not count for deaths or a wipe (2026-10-02) | drop | does not count |
+| Lucas and Dawn 1 | 787, 788, 789, 790, 791, 792 | Roark | route 202 | Ian ruled to ignore it as trivial (2026-10-02) | drop | trivial |
+| Barry 2 | 247, 248, 249 | Roark | route 203 |  | keep |  |
+| Roark | 246 | Roark | oreburgh city gym |  | keep |  |
+| Mars 1 | 295 | Gardenia | valley windworks building |  | keep |  |
+| Gardenia | 315 | Gardenia | eterna city gym |  | keep |  |
+| Jupiter 1 | 406 | Fantina | team galactic eterna building 4f |  | keep |  |
+| Lucas and Dawn 2 | 793, 794, 799, 800, 801, 802 | Fantina | route 207 | map first reached earlier; fought on a return visit | keep |  |
+| Fantina | 318 | Fantina | hearthome city dp gym leader room, hearthome city gym leader room |  | keep |  |
+| Barry 3 | 470, 471, 472 | Maylene | route 209 gate to hearthome city |  | keep |  |
+| Maylene | 317 | Maylene | veilstone city gym |  | keep |  |
+| Barry 4 | 473, 474, 475 | Wake | pastoria city |  | keep |  |
+| Wake | 316 | Wake | pastoria city gym |  | keep |  |
+| Cyrus 1 | 913 | Byron | celestic town cave |  | keep |  |
+| Barry 5 | 476, 477, 478 | Byron | canalave city |  | keep |  |
+| Byron | 250 | Byron | canalave city gym |  | keep |  |
+| Saturn 1 | 408 | Candice | valor cavern |  | keep |  |
+| Somnu and Moira | 420, 427 | Candice | lake verity | double against two trainers (fights.json: tag); map first reached earlier; fought on a return visit | drop | double |
+| Mars 2 | 405 | Candice | lake verity | map first reached earlier; fought on a return visit | keep |  |
+| Candice | 319 | Candice | snowpoint city gym |  | keep |  |
+| Cyrus 2 | 403 | HQ | galactic hq 4f |  | keep |  |
+| Saturn 2 | 409 | HQ | galactic hq control room | whole fight under Trick Room | keep |  |
+| Mars and Jupiter | 528, 407 | Galactic | spear pillar | double against two trainers (fights.json: tag); Barry beside the player | drop | double |
+| Cyrus 3 | 404 | Galactic | distortion world b7f |  | keep |  |
+| Volkner | 320 | Volkner | sunyshore city gym room 3 |  | keep |  |
+| Flint and Volkner | 921, 922 | Barry | fight area | double against two trainers (fights.json: tag); Barry beside the player; map first reached earlier; fought on a return visit | drop | double |
+| Lucas and Dawn 3 | 779, 780, 781, 782, 783, 784 | Barry | battleground, victory road 1f | the same six slots are fought again at the Battleground after the League | keep |  |
+| Barry 6 | 479, 480, 481 | Barry | pokemon league north pokecenter 1f |  | keep |  |
+| Aaron | 261 | League | pokemon league aaron room |  | keep |  |
+| Bertha | 262 | League | pokemon league bertha room |  | keep |  |
+| Flint | 263 | League | pokemon league flint room |  | keep |  |
+| Lucian | 264 | League | pokemon league lucian room |  | keep |  |
+| Cynthia | 267 | League | pokemon league champion room |  | keep |  |
+| Galactic Officer Somnu (galactic_grunt_valley_windworks_3) | 299 | Gardenia | valley windworks building | on the path (reach model: required) | keep |  |
+| Galactic Officer Moira (galactic_grunt_team_galactic_eterna_building_3f) | 423 | Fantina | team galactic eterna building 3f | optional (reach model: avoidable) | keep |  |
+| Galactic Officer Argo (galactic_grunt_celestic_town) | 416 | Byron | celestic town | path unknown (scripted, not on a crossing) | keep |  |
+| Galactic Officer Hesperid (galactic_grunt_lake_valor_2) | 418 | Candice | lake valor drained | on the path (reach model: required) | keep |  |
+| Galactic Officer Moira (galactic_grunt_mt_coronet_5f_1) | 520 | Galactic | mt coronet 5f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Somnu (galactic_grunt_mt_coronet_5f_2) | 525 | Galactic | mt coronet 5f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Hesperid (galactic_grunt_mt_coronet_6f) | 526 | Galactic | mt coronet 6f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Argo (dummy_834) | 834 | Galactic | mt coronet 6f | path unknown (dungeon not modelled) | keep |  |
+| Commander Mars (commander_mars_stark_mountain) | 926 | Galactic | stark mountain room 1 | the Battle Zone, optional; Jupiter (927) follows straight after, no heal between; path unknown (scripted, not on a crossing) | keep |  |
+| Commander Jupiter (commander_jupiter_stark_mountain) | 927 | Galactic | stark mountain room 1 | the Battle Zone, optional; fought straight after Mars (926), no heal between; path unknown (scripted, not on a crossing) | keep |  |
+| Ace Trainer Allen (ace 29) | 280 | Fantina | hearthome city dp gym trainer room 5, hearthome city gym trainer room 2 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Catherine (ace 29) | 284 | Fantina | hearthome city dp gym trainer room 6, hearthome city gym trainer room 2 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Dennis (ace 35) | 278 | Maylene | route 215 | sight crosses Ace Trainer Maya (287) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; on the path (reach model: required) | keep |  |
+| Ace Trainer Maya (ace 35) | 287 | Maylene | route 215 | sight crosses Ace Trainer Dennis (278) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; on the path (reach model: required) | keep |  |
+| Ace Trainer Krystal (ace 44) | 795 | Wake | route 214 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Ernest (ace 41) | 66 | Byron | route 210 north | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Alyssa (ace 42) | 67 | Byron | route 210 north | on the path (reach model: required) | keep |  |
+| Ace Trainer Jake (ace 46) | 170 | Byron | route 221 | optional (off the story path) | keep |  |
+| Ace Trainer Shannon (ace 45) | 171 | Byron | route 221 | optional (off the story path) | keep |  |
+| Ace Trainer Cesar (ace 51) | 279 | Byron | canalave city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Breanna (ace 50) | 283 | Byron | canalave city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Jonah and Brenda (ace 47) | 388, 392 | Byron | iron island b2f left room | tag battle beside Pkmn Trainer Riley (IRON_ISLAND_B2F_LEFT_ROOM's partner); Iron Island, an optional gauntlet; sight lines cross: met together as one tag battle; on the path (reach model: required) | drop | double |
+| Ace Trainer Blake (ace 48) | 132 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Garrett (ace 47) | 133 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Laura (ace 50) | 134 | Candice | route 216 | on the path (reach model: required) | keep |  |
+| Ace Trainer Maria (ace 47) | 135 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Dalton (ace 52) | 140 | Candice | route 217 | on the path (reach model: required) | keep |  |
+| Ace Trainer Olivia (ace 52) | 141 | Candice | route 217 | on the path (reach model: required) | keep |  |
+| Ace Trainer Sergio (ace 54) | 268 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Isaiah (ace 55) | 269 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Savannah (ace 54) | 270 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Alicia (ace 55) | 271 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Anton (ace 54) | 827 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Brenna (ace 54) | 828 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Rodolfo (ace 55) | 563 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Saul (ace 60) | 564 | Galactic | route 227 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Jose (ace 58) | 565 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Felix (ace 58) | 566 | Galactic | route 229 | the Battle Zone, optional; sight crosses Ace Trainer Dana (575) on 4 of its 8 sight tiles: a double against both when both see the player, a single when talked to from outside both lines; optional (off the story path) | keep |  |
+| Ace Trainer Quinn (ace 55) | 567 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Graham (ace 56) | 568 | Galactic | route 226 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Keenan and Kassandra (ace 60) | 569, 579 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Stefan and Jasmin (ace 60) | 570, 580 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Skylar and Natasha (ace 60) | 571, 581 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Abel and Monique (ace 60) | 572, 582 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Deanna (ace 55) | 573 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Moira (ace 58) | 574 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Dana (ace 57) | 575 | Galactic | route 229 | the Battle Zone, optional; sight crosses Ace Trainer Felix (566) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; optional (off the story path) | keep |  |
+| Ace Trainer Mikayla (ace 58) | 576 | Galactic | route 227 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Meagan (ace 59) | 577 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Sandra (ace 56) | 578 | Galactic | route 229 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Zachery (ace 60) | 281 | Volkner | sunyshore city gym room 3 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Destiny (ace 60) | 285 | Volkner | sunyshore city gym room 3 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Omar (ace 63) | 224 | Barry | victory road 2f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Henry (ace 63) | 225 | Barry | victory road b1f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Mariah (ace 63) | 226 | Barry | victory road 1f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Sydney (ace 63) | 227 | Barry | victory road 2f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Ruben (ace 80) | 282 | Post | route 224 | route_224 is post-game; ace 80, above the League cap of 78 | drop | post-game |
+| Ace Trainer Jamie (ace 84) | 286 | Post | route 224 | route_224 is post-game; ace 84, above the League cap of 78 | drop | post-game |
+| Ace Trainer Micah and Brandi (ace 78) | 389, 393 | Post | victory road 1f room 2 | victory_road_1f_room_2 is post-game; tag battle beside Pkmn Trainer Marley (VICTORY_ROAD_1F_ROOM_2's partner); sight lines cross: met together as one tag battle | drop | post-game; double |
+| Ace Trainer Arthur and Clarice (ace 78) | 390, 394 | Post | victory road 1f room 2 | victory_road_1f_room_2 is post-game; tag battle beside Pkmn Trainer Marley (VICTORY_ROAD_1F_ROOM_2's partner); sight lines cross: met together as one tag battle | drop | post-game; double |
+| Ace Trainer Dalton (ace 54) | 648 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Olivia (ace 56) | 649 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Jake (ace 55) | 663 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Dennis (ace 45) | 664 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Dennis (ace 61) | 665 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Rodolfo (ace 62) | 666 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Saul (ace 63) | 667 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Shannon (ace 56) | 668 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Maya (ace 45) | 669 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Maya (ace 61) | 670 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Deanna (ace 62) | 671 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Moira (ace 60) | 672 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Leader Roark (leader_roark_rematch) | 858 | Roark | oreburgh city gym | ace 82, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Gardenia (leader_gardenia_rematch) | 857 | Gardenia | eterna city gym | ace 83, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Fantina (leader_fantina_rematch) | 860 | Fantina | hearthome city gym leader room | ace 84, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Maylene (leader_maylene_rematch) | 854 | Maylene | veilstone city gym | ace 85, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Wake (leader_wake_rematch) | 859 | Wake | pastoria city gym | ace 86, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Byron (leader_byron_rematch) | 856 | Byron | canalave city gym | ace 87, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Candice (leader_candice_rematch) | 853 | Candice | snowpoint city gym | ace 88, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Volkner (leader_volkner_rematch) | 855 | Volkner | sunyshore city gym room 3 | ace 89, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Aaron (elite_four_aaron_rematch) | 866 | League | pokemon league aaron room | ace 84, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Bertha (elite_four_bertha_rematch) | 867 | League | pokemon league bertha room | ace 85, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Flint (elite_four_flint_rematch) | 868 | League | pokemon league flint room | ace 86, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Lucian (elite_four_lucian_rematch) | 869 | League | pokemon league lucian room | ace 87, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Champion Cynthia (champion_cynthia_rematch) | 870 | League | pokemon league champion room | ace 90, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_1) | 837, 838, 839 | Post | battleground | battleground is post-game; a Battleground re-fight of Barry | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_2) | 871, 872, 873 | Post | battleground | battleground is post-game; ace 85, above the League cap of 78; a Battleground re-fight of Barry | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_unused) | 840, 841, 842 | none | none | no map battles it; no split; an unused slot, by its name | drop | unreachable; not placed |
+
+Left out of the table, each with why:
+
+- Pkmn Trainer Barry (607): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Lucas (613): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (614): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (615): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (616): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (617): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (618): a tag partner beside the player against two grunts.
+- Pkmn Trainer Barry (619): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (620): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Lucas (621): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (622): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (623): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (624): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (625): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (626): a tag partner beside the player against two grunts.
+- Pkmn Trainer Barry (923): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (924): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (925): a tag fight's partner beside the player (fights.json partners).
+- Ace Trainer Mickey (dummy_062): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_063): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_251): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Mickey (dummy_387): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_391): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
