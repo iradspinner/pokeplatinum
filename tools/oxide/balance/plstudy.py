@@ -206,7 +206,17 @@ def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11):
     a = plteam.read(st, boss_keys, flags, draw(rng, keys, real), 1, {}, "real", seed0=seed, procs=procs)
     b = plteam.read(st, boss_keys, flags, draw(rng, keys, unlucky), 1, {}, "unlucky", seed0=seed + 1, procs=procs)
     rows = [r for rs in a.rows.values() for r in rs]
-    return pooled(a), pooled(b), plteam.losing_enemies(rows)
+    return pooled(a), pooled(b), plteam.losing_enemies(rows), fainted(rows)
+
+
+def fainted(rows):
+    """Which of the player's Pokemon fainted, most first, over a reading's
+    rows' (fainted, enemy out) pairs."""
+    tally = {}
+    for _w, _d, _c, faints in rows:
+        for mine, _foe in faints:
+            tally[mine] = tally.get(mine, 0) + 1
+    return sorted(tally.items(), key=lambda kv: -kv[1])
 
 
 _JOB = {}
@@ -248,6 +258,7 @@ def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
                      "faints": sum(r[1] for r in rows) / len(rows), "clean": sum(r[2] for r in rows) / len(rows)}
         if luck == "real":
             out["faints_to"] = plteam.losing_enemies([(w, d, c, f) for w, d, c, f in rows])
+            out["fainted"] = fainted(rows)
     return out
 
 
@@ -263,14 +274,14 @@ def run(name, procs=12):
         result["trainers"] = [[st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in bk]
                               for bk, _f in fights]
         out = section(st, keys, fights, procs=procs)
-        result.update(real=out["real"], unlucky=out["unlucky"], faints_to=out["faints_to"])
+        result.update(real=out["real"], unlucky=out["unlucky"], faints_to=out["faints_to"], fainted=out["fainted"])
     else:
         st, keys, fights = (kaizo_prepare(*path[:2], split, cap, recs, stk, *path[2:]) if kind == "kaizo"
                             else prepare([path], split, cap, recs, stk))
         boss_keys, flags = fights[0]
         result["trainer"] = [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys]
         if kind == "blind":
-            real, unlucky, faints_to = blind(st, keys, boss_keys, flags, procs=procs)
+            real, unlucky, faints_to, result["fainted"] = blind(st, keys, boss_keys, flags, procs=procs)
         else:
             out_dir = os.path.join(OUT, name)
             summary = plteam.search(f"study_{name}", None, recs, stk, out_dir, procs=procs,
