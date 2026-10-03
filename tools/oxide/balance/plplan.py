@@ -1452,7 +1452,8 @@ def main(argv=None):
                     help="break genuine ties on losing and faints toward the faster finish (off by default)")
     ap.add_argument("--fast-eps", type=float, default=FAST_EPS,
                     help="with --fast-tie: how close in value a tie must be")
-    ap.add_argument("--standin", help="a learned stand-in player (plpolicy) to play the play-outs")
+    ap.add_argument("--standin", help="a learned stand-in player (plpolicy) to play the play-outs; with "
+                                      "--budget-check, several may be given, joined by commas")
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
@@ -1465,8 +1466,9 @@ def main(argv=None):
         # The full planner and the ceiling play out with the plain policy;
         # only the small planner named for it uses the stand-in.
         small = [(f"budget {BUDGET} again", BUDGET, None), (f"budget {args.budget_check}", args.budget_check, None)]
-        if args.standin:
-            small.append((f"budget {args.budget_check} with {args.standin}", args.budget_check, args.standin))
+        for name in (args.standin or "").split(","):
+            if name:
+                small.append((f"budget {args.budget_check} with {name}", args.budget_check, name))
         _PICK.update(six=args.six, variant=args.variant)
         RANK = args.rank
         out = budget_check(args.fight, small, args.check_fights, args.procs)

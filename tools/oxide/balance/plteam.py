@@ -9,21 +9,23 @@ search: plan and costs").
    well it answers every enemy (a member that needs fewer hits to knock an
    enemy out than the enemy needs for it, with who moves first), with the
    least overlap. The top sixes, kept apart from one another, go on.
-2. Labels. The play-out planner labels the screen's top sixes (a tenth of a
-   round, budget 64; the spread round from the network's own play helped
-   once and hurt twice, at Gardenia and at Mars 1 at 19, so it is left out),
-   and two networks train from scratch on everything but this fight's old
-   labels plus these.
+2. Labels. The play-out planner labels the screen's top five sixes and five
+   drawn at random from the box (a tenth of a round, budget 64; the spread
+   round from the network's own play helped once and hurt twice, at
+   Gardenia and at Mars 1 at 19, so it is left out), and two networks train
+   from scratch on everything but this fight's old labels plus these.
 3. Race, on the network planner, by Ian's member ratings: sixes are drawn by
    member weights, each read on a few fights, and the weights move toward
    the members of the best sixes (the cross-entropy method); then the best
    full sixes race by halving, which settles pairs that work only together.
 4. Finalists: two or three sixes, 75 fights at real odds and 25 very unlucky.
-5. Diagnosis: the play-out planner reads the winner on 25 fights. If the
-   network falls short of it on the same six, the gap is training: more
-   labels on that six, and read again. If the gap stays, the network is not
-   trusted for this fight: the play-out planner reads the top three on 25
-   fights each and the best of them in full.
+5. The play-out check: the play-out planner reads every finalist on 25
+   fights, and the winner is the one it ranks best by Ian's order. The
+   network erred both ways in the first test (too kind at Roark, too harsh
+   at Gardenia), so its race gives a shortlist, not a verdict.
+
+search() runs all five on one box; plteam_test (the hand run's boxes) and
+plgoal2 (goal 2's fights) call it.
 
 A six's score in the race is Ian's order made one number: its win share
 first, its faints second (a win outweighs any number of faints the race can
@@ -123,14 +125,15 @@ def record(sp, level, nature, ability, ivs, moves, label=None):
 
 # ---- 1. the screen ---------------------------------------------------------------------------------------
 
-def prepare(fight_key, records, item_stock):
+def prepare(fight_key, records, item_stock, variant=0):
     """The fight against the whole box, every member with its whole pool:
-    (st, the members' keys, the boss variant's (keys, flags))."""
+    (st, the members' keys, the boss variant's (keys, flags)). `variant`
+    picks the trainer's team where it depends on the player's starter."""
     prep = plscore.prepare(plscore.parse_fight(fight_key), given_side=records)
     st = prep["st"]
     st["item_stock"] = dict(item_stock)
     keys = [f"p{i}" for i in range(len(records))]
-    boss_keys, flags, _s = prep["variants"][0]
+    boss_keys, flags, _s = prep["variants"][variant]
     return st, keys, boss_keys, flags
 
 
@@ -437,3 +440,129 @@ def losing_enemies(rows):
 def ian_order(n):
     """A reading's place in Ian's order: wins first, then fewer faints."""
     return (round(n["won"], 3), -n["faints"])
+
+
+# ---- the whole search on one box ----------------------------------------------------------------------
+
+def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25):
+    """The five stages on one box, with a log and result.json in `out_dir`.
+    `key` is the story fight (fights.json), `recs` the box's records with
+    their whole move pools, `stock` the items the run has by then (in
+    fightsim.player_items' form), `variant` the trainer's team a run with
+    this starter meets. `ours`, a hand-played six's species names, is read
+    beside the finalists where one exists, against `bar`.
+
+    The labels are the screen's top five sixes and five drawn at random from
+    the box (labelled on the top sixes alone, which share a core, the first
+    Roark test's networks read our six at 52% won and misled the race). The
+    play-out planner then reads every finalist on `check` fights and the
+    winner is the one it ranks best by Ian's order: the network erred both
+    ways in that test, too kind at Roark and too harsh at Gardenia, so its
+    race is a shortlist and not a verdict. Last, the winner's fight on the
+    trace seed is written out turn by turn (line.txt), for Ian to read."""
+    import time
+    os.makedirs(out_dir, exist_ok=True)
+    logf = open(os.path.join(out_dir, "log.txt"), "a")
+
+    def log(*a):
+        line = " ".join(str(x) for x in a)
+        print(line, flush=True)
+        logf.write(line + "\n")
+        logf.flush()
+
+    t0 = time.time()
+    st, keys, boss_keys, flags = prepare(key, recs, stock, variant)
+    names = {k: st["pokemon"][k]["species"] for k in keys}
+    foes = [f"{st['pokemon'][k]['species']} {st['pokemon'][k]['level']}" for k in boss_keys]
+    log(f"== {fight}: {', '.join(foes)}; box of {len(keys)}: {', '.join(names[k] for k in keys)}; "
+        f"items {stock}; prepared in {time.time() - t0:.0f} s")
+    sixes, scores, M, moves = screen(st, keys, boss_keys)
+    log("screen, top sixes:")
+    for s, sc in list(zip(sixes, scores))[:10]:
+        log(f"  {sc:6.2f}  {', '.join(names[k] for k in s)}")
+    mine = [k for k in keys if names[k] in ours] if ours else None
+    rank = None
+    if mine:
+        all_scores = score_sixes(M)
+        rank = next((i for i, (_s, idx) in enumerate(all_scores) if {keys[j] for j in idx} == set(mine)), None)
+        log(f"our six ({', '.join(names[k] for k in mine)}): screen rank {rank} of {len(all_scores)}")
+    log("moves picked: " + "; ".join(f"{names[k]} {', '.join(moves[k])}" for k in keys))
+
+    t1 = time.time()
+    rng = random.Random(fight)
+    spread = []
+    while len(spread) < 5 and len(keys) > 6:
+        s = sorted(rng.sample(keys, 6), key=keys.index)
+        if s not in sixes[:5] and s not in spread:
+            spread.append(s)
+    lab_dir = os.path.join(out_dir, "labels")
+    metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
+    log(f"labels: {sum(m['positions'] for m in metas)} positions from {sum(m['games'] for m in metas)} fights "
+        f"in {time.time() - t1:.0f} s")
+    t1 = time.time()
+    base = without([fight], os.path.join(ROOT, "subsets", f"no-{fight}-team"))
+    model = train(f"team-{fight}", [base, lab_dir])
+    log(f"networks {model} trained in {time.time() - t1:.0f} s")
+    cfg = {"value": model}
+
+    t1 = time.time()
+    finalists, tally, w = race(st, keys, boss_keys, flags, sixes, cfg, log=log)
+    log(f"race in {time.time() - t1:.0f} s; finalists: " +
+        "; ".join(f"{', '.join(names[k] for k in t)} ({tally.score(t):.2f} on {tally.numbers(t)['fights']})"
+                  for t in finalists))
+    log("member weights: " + ", ".join(f"{names[k]} {w[k]:.3f}" for k in sorted(keys, key=lambda k: -w[k])))
+    results = []
+    for t in finalists:
+        real, unlucky, _rows = full_reading(st, boss_keys, flags, list(t), cfg, procs=procs)
+        results.append((t, real, unlucky))
+        log(f"finalist {', '.join(names[k] for k in t)}: real {real['won']:.1%} won, {real['faints']:.3f} faints, "
+            f"{real['clean']:.1%} clean; very unlucky {unlucky['won']:.1%} won, {unlucky['faints']:.3f} faints")
+    ours_net = None
+    if mine:
+        real, unlucky, _rows = full_reading(st, boss_keys, flags, mine, cfg, procs=procs)
+        ours_net = {"real": real, "unlucky": unlucky}
+        log(f"our six read the same way (its members with the screen's moves): real {real['won']:.1%} won, "
+            f"{real['faints']:.3f} faints, {real['clean']:.1%} clean; the bar: {bar}")
+
+    t1 = time.time()
+    teams = [t for t, *_x in results] + ([tuple(mine)] if mine else [])
+    po = read(st, boss_keys, flags, teams, check, {}, procs=procs, seed0=77)
+    for t, real, _u in results:
+        n = po.numbers(t)
+        log(f"play-outs on {', '.join(names[k] for k in t)}: {n['won']:.1%} won, {n['faints']:.3f} faints, "
+            f"{n['clean']:.1%} clean (the network: {real['won']:.1%}, {real['faints']:.3f})")
+    ours_po = po.numbers(tuple(mine)) if mine else None
+    if mine:
+        log(f"play-outs on our six: {ours_po['won']:.1%} won, {ours_po['faints']:.3f} faints, "
+            f"{ours_po['clean']:.1%} clean")
+    log(f"play-out check in {time.time() - t1:.0f} s")
+    best = max(results, key=lambda r: ian_order(po.numbers(r[0])))
+    win = list(best[0])
+    log(f"winner by the play-outs: {', '.join(names[k] for k in win)}; its faints fell to: "
+        + str(losing_enemies(po.rows[tuple(win)])[:4]))
+
+    # The winner's line: one fight on the trace seed by the play-out
+    # planner, turn by turn, with the lead it chose and why.
+    lead, vals = plplan.Planner(0).lead(st, win, boss_keys, flags)
+    with open(os.path.join(out_dir, "line.txt"), "w") as fh:
+        print(f"{fight}: {', '.join(names[k] for k in win)} with "
+              + "; ".join(f"{names[k]} {', '.join(st['moves'][k])}" for k in win), file=fh)
+        print("items: " + ", ".join(f"{names[k]} {it}" for k, it in fs.assign_items(st, win).items() if it), file=fh)
+        print(f"lead {names[win[lead]]} (lead values: "
+              + ", ".join(f"{names[k]} {v:+.2f}" for k, v in zip(win, vals)) + ")", file=fh)
+        r = plplan.play(st, win, boss_keys, flags, lead, 30, {}, "real", log=fh)
+        print(f"{'won' if r['won'] else 'lost'}; fainted: {', '.join(a for a, _b in r['faints']) or 'none'}",
+              file=fh)
+    summary = {"fight": fight, "key": key, "variant": variant, "foes": foes, "box": [names[k] for k in keys],
+               "items": stock, "screen": [[names[k] for k in s] for s in sixes], "our_rank": rank,
+               "moves": {names[k]: moves[k] for k in keys},
+               "finalists": [{"six": [names[k] for k in t], "real": r, "unlucky": u, "playouts": po.numbers(t)}
+                             for t, r, u in results],
+               "ours": {"network": ours_net, "playouts": ours_po} if mine else None, "bar": bar,
+               "winner": [names[k] for k in win], "playouts_on_winner": po.numbers(tuple(win)),
+               "winner_faints_to": losing_enemies(po.rows[tuple(win)]),
+               "minutes": round((time.time() - t0) / 60, 1)}
+    with open(os.path.join(out_dir, "result.json"), "w") as fh:
+        json.dump(summary, fh, indent=1)
+    log(f"== {fight} done in {(time.time() - t0) / 60:.0f} minutes")
+    return summary
