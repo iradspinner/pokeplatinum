@@ -69,12 +69,19 @@ are built from Ian's accepted choices. A network judges easy trainers it
 never saw nearly as well as play-outs, but not a held-out boss or Ace
 Trainer, so goal 3's fights each need labels of their own ("The cost of
 labelling every boss"). For bosses the scorer now chooses its own six: the
-team search is built, and its first test found sixes as good as ours or
-better at Mars 1 and Gardenia but fell short at Roark ("The team search's
-first test"); with its two fixes, Roark runs again. The learned stand-in
-player's data is being recorded on idle cores. Goal 2's readings wait for
-the team search. Every reading is 75 fights at real odds and 25 very
-unlucky. The perfect-line store has been stale since the simulator
+team search, with its two fixes, found our six's equal at Roark and sixes
+better than ours at Mars 1 at 19 and Gardenia ("The team search's first
+test"), and it now ends with Ian's diagnose-and-loop. The learned stand-in
+player failed its test, and budget 64 chooses as well as 192 ("The learned
+stand-in player, and smaller budgets"). Goal 2's four fights with no
+hand-played line are read, on a simulator that now has Magnet Rise,
+Torment, Pain Split and Destiny Bond ("Moves the simulator ignored"):
+Barry 2, Jupiter 1 and Lucas and Dawn 2 are easy, and Fantina is won about
+19 times in 20 at two or three faints ("Goal 2's readings"). Waiting on
+Ian: his reading of goal 2's lines; budget 64 and a tolerance on wins for
+the play-out check; the player's genders, for Attract; and the loop's one
+departure from his plan. Every reading is 75 fights at real odds and 25
+very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -1631,8 +1638,9 @@ equal, then the fewest faints. That brings the check from about 4.5
 core-hours per boss and box to about 1.3, and goal 3 from about 1,230
 core-hours to about 630 before the Ace Trainers, some 22 hours on 29
 workers, or about 450 with one label set per boss (lever 1). It changes how
-the scorer reads a fight, so it waits on Ian's word; goal 2's readings run
-at 192 meanwhile.
+the scorer reads a fight, so it waits on Ian's word; goal 2's readings ran
+at 192. The loop added later (below) adds up to six 25-fight readings
+where the winner loses Pokemon, about 6 core-hours at Fantina.
 
 ## Moves the simulator ignored (2026-10-03)
 
@@ -1694,7 +1702,7 @@ with its whole move pool from its catch, the trainer's team a Piplup player
 meets, and the boosters reachable by then. Each fight passes when Ian has
 read its line and accepts it. Barry 2 and Lucas and Dawn 2 are won cleanly
 every time, Jupiter 1 nearly so, and Fantina is by far the hardest fight
-read yet.
+read yet: won about 19 times in 20, losing two or three Pokemon a fight.
 
 Ian's standard reading of each winner, by the play-out planner (75 fights
 at real odds, 25 very unlucky):
@@ -1704,6 +1712,7 @@ at real odds, 25 very unlucky):
 | Barry 2 | 11 | Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby | 100% won, 0.00 faints, 100% clean | 100%, 0.00, 100% | 12 |
 | Jupiter 1 | 27 | Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover | 100%, 0.07, 93% | 100%, 0.32, 72% | 59 |
 | Lucas and Dawn 2 | 30 | Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena | 100%, 0.00, 100% | 100%, 0.00, 100% | 21 |
+| Fantina | 33 | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 94.7%, 2.21, 12% | 88%, 3.32, 4% | 57, then the loop |
 
 **Barry 2** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-barry_2-line.txt)):
 Vulpix leads and Embers Starly and then Turtwig through its Withdraw, four
@@ -1733,6 +1742,51 @@ Kiss; its Magnitude takes Monferno; against Jolteon, Magnet Rise now makes
 Magnitude fail, and Whiscash finishes it with Water Pulse. The first reading,
 on the simulator without Magnet Rise and Torment, also won every fight
 cleanly.
+
+**Fantina** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-fantina-line.txt)),
+on the simulator with Pain Split: the hardest fight read yet. The search's
+own winner (Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos) won
+24 of 25 check fights but lost 4.2 Pokemon a fight. Its race had run on a
+network that read the finalists at 24 to 43% won against the play-outs' 80
+to 96%, and had settled on a core with Prinplup and Kingler, whose screen
+margins against Mismagius, Rotom and Sableye, the enemies that caused the
+faints, were among the box's worst. Two sixes built by hand from those
+margins won every fight with 2.8 faints, so the search now has a loop
+(below) that does this itself. On Fantina it read four sixes:
+
+| Six | Won | Faints | Clean |
+|---|---|---|---|
+| the search's winner: Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos | 96% | 4.20 | 0% |
+| round 1, the six answering the faint-causers best: Tsareena, Graveler, Ampharos, Vikavolt, Rotom, Rampardos | 100% | 2.80 | 0% |
+| round 1, the winner with Prinplup and Kingler swapped for Graveler and Vikavolt | 100% | 2.40 | 4% |
+| round 2: Tsareena, Ampharos, Golbat, Vikavolt, Rotom, Rampardos | 96% | 2.40 | 0% |
+
+The loop's winner, Vulpix, Tsareena, Graveler, Ampharos, Vikavolt,
+Rampardos, is the table's above. Its faints fall to Mismagius (76 of 166 in
+the 75 real fights), Rotom (46), Sableye (27) and Drifblim (17). In the line
+Vulpix burns Duskull and Flamethrowers it to its last HP; Ampharos
+paralyses Drifblim and Discharges through its Calm Minds; against
+Mismagius the planner paralyses it, then switches through Graveler,
+Ampharos, Vikavolt and Rampardos to spread its Shadow Balls until
+Rampardos's Assurance takes it in one hit; Rampardos and Tsareena wear
+Sableye down through its Recovers; Tsareena's Trop Kick ends Rotom. That
+seed is a lucky one (nothing faints); 2.2 faints is the average. Fantina
+at 33 is a fight goal 2's box wins almost always but rarely without
+losses, harder than Gardenia; whether that is the difficulty Ian wants for
+his third gym is his call and the trainer pass's.
+
+**The loop.** `plteam.improve` is Ian's diagnose-and-loop, with one
+departure for his check: the enemies the best six's faints fell to,
+weighted by count, pick the members that answer them by the screen's
+margins, and two sixes built from those (the six answering them best, and
+the best six with its two weakest answerers swapped for the two strongest
+it lacks) go straight to the play-out check, rather than raising the race's
+member weights and racing again on a network that misreads hard fights.
+The best by Ian's order is kept, up to three rounds, stopping when nothing
+beats it. It costs nothing where the winner loses no Pokemon, and at most
+six more 25-fight readings where it does; at Fantina it read three more
+sixes, about 6 core-hours. It ran here on the finished search; from now on
+`plteam.search` runs it after the check.
 
 ## The cost of labelling every boss (2026-10-02)
 
