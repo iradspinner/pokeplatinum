@@ -74,17 +74,18 @@ class ValueNet(nn.Module):
         return self.head(h)
 
 
-def load(data_dirs, held_out, fights=None):
+def load(data_dirs, held_out, fights=None, without=None):
     """(train, validation) as dicts of tensors, the last `held_out` sixes of
     each fight kept for validation (with none held out, every tenth shard).
-    With `fights`, only those fights' shards are read, so a network can be
-    trained without a fight and then judged on it."""
+    With `fights`, only those fights' shards are read, and with `without`,
+    those fights' shards are left out, so a network can be trained without a
+    fight and then judged on it."""
     shards = []
     for data_dir in data_dirs:
         for p in glob.glob(os.path.join(data_dir, "*.json")):
             with open(p) as fh:
                 s = json.load(fh)
-            if fights is None or s["fight"] in fights:
+            if (fights is None or s["fight"] in fights) and s["fight"] not in (without or ()):
                 shards.append(s | {"path": p[:-5] + ".npz"})
     by_fight = {}
     for s in sorted(shards, key=lambda s: s["seed"]):
@@ -172,11 +173,12 @@ def main(argv=None):
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--fights", nargs="+", help="train on these fights' shards only")
+    ap.add_argument("--without", nargs="+", help="leave these fights' shards out")
     args = ap.parse_args(argv)
     torch.manual_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
     t0 = time.time()
-    train, val, parts = load(args.data, args.held_out, args.fights)
+    train, val, parts = load(args.data, args.held_out, args.fights, args.without)
     print(f"{train['value'].shape[0]} training and {val['value'].shape[0]} held-out positions "
           f"({len(parts['train'])} and {len(parts['val'])} sixes), loaded in {time.time() - t0:.0f} s", flush=True)
     net = ValueNet().to(device)

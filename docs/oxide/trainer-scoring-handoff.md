@@ -54,25 +54,25 @@ before you build on it. Start with step 1 of its order of work.
 on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
 order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
 as a planner (`plplan.py`) that decides turn by turn by simulating its options
-at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Its Roark
-reads 93% clean against our 98.5%, every fight won, every loss to Lileep, and
-Ian is comfortable with the line for now ("The planner's Roark, for Ian's
-check", below). Stage 1 of
-the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
-memory bounded after the WSL crash, the same fights move for move by
-`plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
-started at Ian's word: networks learned from the play-out planner's own
-values now choose for it at about a fortieth of the cost. The average of
-three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
-reads better than the play-out planner at both, and at Gardenia wins more
-often than our line but almost never cleanly, as the play-out planner does
-("Stage 2", below). Goal 2 has begun with the rival fights of Roark's split
-(Barry 1 cannot be won with a Piplup) and a mechanical roll of the box
-through Fantina for Ian and the Overseer to choose from. A test on 100
-ordinary trainers showed that networks trained broadly judge trainers they
-never saw nearly as well as play-outs, which makes the whole game a matter
-of hours. Every reading is now 75 fights at real odds
-and 25 very unlucky. The perfect-line store has been stale since the simulator
+at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Stage 1 of
+the speed plan is closed (`docs/oxide/scorer-speed-plan.md`), and stage 2's
+networks, learned from the play-out planner's own values, choose for it at
+about a fortieth of the cost. **Goal 1 is passed** (Ian, 2026-10-02, "close
+enough, pass"): the average of three networks (d1b+d2+d3) reads Roark at
+97.7% clean, 100% won, 0.025 faints over 2,000 fights, against our line's
+98.5%, 100%, 0.015 ("The network planner's Roark, for Ian's check"). It also
+meets the Mars 1 bar; at Gardenia it wins more often than our line but almost
+never cleanly. Goal 2 has begun: the rival fights of Roark's split are read
+(Barry 1, ruled not to count, cannot be won with a Piplup), and the box
+through Fantina waits on Ian's choices from the mechanical roll. A network
+judges easy trainers it never saw nearly as well as play-outs, but not a
+held-out boss or Ace Trainer, so each of goal 3's roughly 110 fights needs
+labels of its own; the cheapest recipe measured costs about 1.7 core-hours a
+fight ("The cost of labelling every boss"). Next: Ian's ruling that a fight
+ranks by its win rate first and its average faints second, the clean rate
+reported but not optimised, goes into the planner's choice in place of the
+loss weight of ten. Every reading is 75 fights at real odds and 25 very
+unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -712,7 +712,14 @@ Prinplup, Steenee, all at 16), and it meets our line's numbers.
 | The play-out planner | very unlucky | 84% (21 of 25) | 100% | 0.160 |
 
 Over 500 fights at real odds it reads 98.2% clean, every fight won, 0.020
-faints, so its real-odds clean rate matches ours within a point. Its one
+faints, so its real-odds clean rate matches ours within a point. At the
+bar's own size (for Ian's check, the same evening), 2,000 fights at real odds
+read 97.7% clean, 100% won, 0.025 faints, and 500 very unlucky read 93.4%
+clean, 100% won, 0.076 faints (`planner-net-d1b+d2+d3-roark-2000` and
+`-unlucky-500`). By Ian's ruling of 2026-10-02, wins first and faints second,
+it ties our line at real odds and beats it very unlucky (100% against
+99.95%), with 0.010 and 0.033 more faints a fight. **Ian passed goal 1 on
+this reading (2026-10-02): "close enough, pass".** Its one
 faint at real odds was Onix to Cranidos; very unlucky, Onix to Cranidos and
 Nidorino to Lileep. Twenty-five very unlucky fights cannot tell 92% from our
 96.4% (two fights in 25 against one).
@@ -787,6 +794,95 @@ evidence. A cost per turn would cure it. A narrower option would only break
 ties, preferring the option that ends the fight sooner among those the value
 cannot tell apart, which leaves every stall that the value prefers.
 
+Ian approved the narrower option (2026-10-02) on condition that it touch only
+genuine ties and cost little. Built (`plplan --fast-tie`): among options tied
+on the chance of losing and on faints, the one that takes most of the
+trainer's HP this turn, a figure the look-ahead already has. Measured on
+Roark over 2,000 fights at real odds with the network planner:
+
+| Tie window | Clean | Won | Faints | Decisions | Core seconds a fight |
+|---|---|---|---|---|---|
+| off | 97.9% | 100% | 0.022 | 33.2 | 5.15 |
+| the ranking's own tolerances | 89.5% | 99.95% | 0.115 | 21.7 | 2.47 |
+| within 0.1 of the best value | 91.3% | 99.95% | 0.095 | 22.2 | 2.58 |
+| within 0.02 of the best value | (wasted turns remain on the showcase seed) | | | | |
+
+Any window wide enough to clear the showcase seed's wasted turns also costs
+6 to 8 points of clean wins and four times the faints (in the 0.1 window,
+Barboach falls to Cranidos 80 times, attacking where the default switches to
+Onix), because the network's values differ by about 0.1 where the play-outs
+call the options equal, so its ties are not genuine ones. It is therefore off
+by default. It halves every reading's cost and turns, and since it shifts
+every fight the same way it may keep their order; whether that trade is worth
+it, against Ian's condition, is his call.
+
+## The network planner's Gardenia, for Ian's check (2026-10-02)
+
+A sanity check in the form of the Roark write-up above, read with the
+network planner (d1b+d2+d3) under Ian's win-first ranking (`plplan` from
+dfb60ab465 on, the faster-finish tie-break off), on our hand-played six and
+items (Charmeleon, Popplio, Vikavolt, Kazza's Vullaby, Golbat with the Quick
+Claw, Tsareena, all at 26).
+
+**The numbers, ranked as Ian ranks them, wins first and faints second**
+(network 500 fights at real odds and 200 very unlucky; play-out planner 75
+and 25; ours 2,000):
+
+| Line | Dice | Won | Faints | Clean |
+|---|---|---|---|---|
+| the play-out planner | real odds | 92% (69 of 75) | 2.787 | 1 of 75 |
+| the network planner | real odds | 85.8% | 2.880 | 0.2% |
+| ours (L1) | real odds | 59.9% | 3.212 | 15.1% |
+| the play-out planner | very unlucky | 72% (18 of 25) | 3.560 | 0 |
+| the network planner | very unlucky | 60% | 3.910 | 0.5% |
+| ours | very unlucky | 30.1% | 4.680 | 4.8% |
+
+By his order both planners beat our line on both dice, and the network
+trails the play-out planner by about six points of wins. For ordering fights
+it puts Gardenia where she belongs, far above Roark (100% won, 0.02 faints)
+and Mars 1 (100%, 0.03).
+
+**The line on the showcase seed (32)**, which it won with four faints
+(`perfectline_results/step3/planner-net-gardenia-trace-seed32.txt`):
+
+1. Vikavolt leads and Bug Bites Cherrim as the sun goes up; it switches to
+   Charmeleon, which Scary Faces then Fire Fangs Cherrim out.
+2. Lumineon comes in. Popplio takes the Aqua Tail and Sings it asleep (the
+   play-outs' choice too: their chance of losing 0.24, the lowest), uses the
+   sun's last turns on the sleeping Lumineon, and Icy Winds it as the sun
+   ends; Lumineon gives way to Roserade.
+3. Against Roserade the network sends Vullaby into Sludge Bomb, which leaves
+   it at 2 HP and poisoned, where the play-outs send Golbat (their chance of
+   losing 0.03 against 0.31). Popplio returns and faints; Charmeleon's Fire
+   Fang takes Roserade.
+4. Lumineon again: Charmeleon falls to Aqua Tail, and Vikavolt Sparks it out
+   now that the sun is down (the play-outs agree, 0.11, their lowest).
+5. Shiftry: Tsareena uses Magical Leaf twice, Teeter Dance and Play Nice
+   where the play-outs would Stomp each turn, then the network switches a
+   25-HP Vikavolt into Rock Tomb (their chance of losing 0.67 against 0.19
+   for Stomp), losing it. Tsareena Stomps and falls; Golbat's Wing Attacks
+   finish Shiftry and Breloom.
+
+**The nine ideas, as an exam.** Arose: Charmeleon takes Cherrim, Popplio
+Sings Lumineon, the sun's last turns spent on a sleeping foe, Vikavolt
+Sparks Lumineon out after the sun, and Golbat closes out Shiftry and Breloom.
+Not seen: Kazza's Pluck on Shiftry's Occa Berry, and Golbat walking in on
+the Solar Beam charge.
+
+**Checked against the play-outs** (`--compare d1b+d2+d3 --drive network`,
+`planner-net-gardenia-compare-driven-seed32.txt`): the network chooses as
+they would at 10 of 25 decisions, and by their estimates its other choices
+add 1.735 to the chance of losing and 8.67 faints in all, the largest the
+Vikavolt switch (+0.47), Spark into Lumineon with Vikavolt at full HP where
+they would switch to Tsareena (+0.33), and Vullaby into Sludge Bomb (+0.28).
+Those estimates come from the plain play-out policy, which loses Gardenia
+far more often than either planner (its chances of losing run from 0.2 to
+0.7 where the planners lose 8 to 14% of fights), so they show where the
+network errs, not how much each error costs. Gardenia is where the network's
+judgement is roughest, and the cheap labelling recipe did not mend it (two
+spread rounds made it worse); the play-out planner is the better reader of
+her for now.
+
 ## The play-out planner on Mars 1 and Gardenia (2026-10-02)
 
 A baseline for goals 1 and 2 before stage 2 changes anything: the play-out
@@ -838,20 +934,48 @@ now knows this (`fightsim.FIRST_BATTLE`, checked in `test_plfixes`), and the
 readings above have it. The flag's other uses only change the touch screen's
 background and route the move choice through the trainer AI, as in any
 trainer battle. Losing it costs nothing in the game either: the script's lost
-branch returns to the field with a different message, with no blackout.
-Whether a loss there ends a nuzlocke run is Ian's rule to make.
+branch returns to the field with a different message, with no blackout. Ian
+ruled (2026-10-02) that this first battle is the only fight in the game that
+does not count for deaths or a wipe, so it is dropped from goal 2's fights
+and its reading below is information only.
 
 With a Piplup it cannot be won. Turtwig Withdraws, so Pound does 1 to 3 a
 hit, and its Tackle, at the later games' 40 power and full accuracy (Oxide's
 move numbers; Generation 4 had 35 and 95%), takes 5 of Piplup's 21 HP; the
 look-ahead values every option, Growl included, as a certain loss from the
 first turn. A neutral Piplup (Hardy) wins 1 of 75, so the run's Gentle
-nature is not the cause. The other two starters win almost always. Lucas and
+nature is not the cause. The cause is the base ROM's trainer data: Ian's
+edit gives the Turtwig a Piplup player meets an IV scale of 144, IVs of 17,
+where vanilla has 0. In-memory what-ifs (no data written) read Piplup's wins
+out of 75 as 0 with Oxide's Tackle and Generation 4's alike, 1 with vanilla's
+IVs alone, and 22 with vanilla's IVs and Tackle together: at level 5 the two
+Tackles round to the same 5 damage. The other two starters win almost always. Lucas and
 Dawn 1 and Barry 2 are over in a turn or two, as the cap makes them; that is
 a true reading of Oxide as it stands, and flags them for the trainer pass.
 Readings: `planner-barry_1-*`, `planner-lucas_dawn_1-v*` and
 `planner-barry_2-six*` in the results folder (`plplan --six` and `--variant`
 choose a six from the box and a rival's variant).
+
+**Goal 2's fights and their caps (Ian, 2026-10-02).** Barry 1 and Lucas and
+Dawn 1 are dropped (the first does not count, the second is trivial). The
+interim soft caps sit at each mini-boss's ace until it is beaten: Barry 2 at
+11, then Roark's split at 16, Mars 1 at 19, Gardenia's split at 26, Jupiter
+1 at 27, Lucas and Dawn 2 at 30, Fantina's split at 33. Lucas and Dawn 2
+cannot be fought before the Bicycle, so the order holds: its trigger
+(Route 207, x 340, z 712 to 714, beside the Mt. Coronet entrance, live from
+a new game until the scene sets `VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE`)
+lies above the route's bicycle slope (x 306, z 718 and 719). A flood fill of
+Route 207's two map blocks (MAP_025 and MAP_026) from Oreburgh's edge,
+counting only collision and the slope as walls, reaches the lower west
+pocket alone; the trigger, the Mt. Coronet warp and Route 206's edge are out
+of reach on foot, and the Bicycle comes after Jupiter 1. The Lucas and Dawn
+files of Jubilife (ace 13) and Veilstone (ace 36) are battled by no map.
+
+For the balance track (`splits.py` is theirs): it places Route 207's trainers
+in Roark's split by the route's lower part, but all six (Camper Anthony,
+Picnicker Lauren, Youngster Austin, Hikers Justin and Kevin, Battle Girl
+Helen) stand above the bicycle slope too, as does Lucas and Dawn 2, so their
+split should be the one after the Bicycle, Fantina's.
 
 ## Stage 2: the learned position value (from 2026-10-02)
 
@@ -1034,11 +1158,30 @@ Having seen the held-out trainers made no difference: the networks' misses
 fall on different trainers from one network to the next (Aroma Lady Hannah
 19 clean of 40 under one, 35 under another), so they are each network's own
 noise, and averaging two networks that never saw these trainers comes within
-about a point of the play-out planner. For the whole game this means one
-labelling pass over every trainer, which for ordinary trainers is minutes
-rather than hours, then a network average; bosses, where small misjudgements
-cost more, still want their own rounds of labels from the network's play, as
-Mars 1 did.
+about a point of the play-out planner.
+
+These were easy fights, though (the Overseer's caution): the ordinary
+trainers of the first three splits read nearly all clean at the cap, under
+play-outs 800 of 800. The harder test is a held-out boss. Two networks
+trained from scratch on everything except Gardenia's positions (the 100
+ordinary trainers, and Roark's and Mars 1's three distillation rounds;
+`plnet --without gardenia`) were read at Gardenia on our six, 500 fights at
+real odds:
+
+| Network, without Gardenia's positions | Clean | Won | Faints a fight |
+|---|---|---|---|
+| seed 1 | 2 of 500 | 7 | 5.950 |
+| seed 2 | 0 | 11 | 5.934 |
+| the average of the two | 0 | 8 | 5.960 |
+
+against 413 won for the networks that saw her (d1b+d2+d3 won 423) and 66 of
+75 for the play-out planner. A boss brings what the early ordinary trainers
+never show (sun with Chlorophyll, Natural Gift and its berries, a six built
+to work together), and without positions from her fight the networks
+misjudge it from the lead on (they lead Golbat). So for the whole game,
+ordinary trainers can lean on broad data and one labelling pass, but every
+boss needs labelled positions of its own, with rounds from the network's own
+play as Mars 1 needed.
 
 The Mars 1 lead values are all equal, under play-outs and networks alike,
 and that is the fight, not a fault: from any lead the best first move is to
@@ -1059,6 +1202,271 @@ PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.o
 PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill d1b+d2 --sixes 10 --repeat 3 --positions 12000 --seed 3 --out $S/data-d3
 PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d3 --from d2 --data $S/data-d3 $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
 ```
+
+## Wins first, then faints (Ian, 2026-10-02)
+
+Ian ruled that a fight ranks by its win rate first and its average faints
+second, the clean rate reported but not optimised: "a fight with 0% clean,
+100% win, and 1.00 average faints means that a single sac wins the fight
+every time, and I would take that every time over a 90% clean, 90% win
+chance with 0.60 average deaths". The old value's loss weight of ten let a
+point of win rate trade for a tenth of a faint, which his order forbids. The
+same order judges a line against a bar.
+
+The planner now ranks its options that way (`plplan.choose`). Each option's
+chance of losing and faints expected come from its play-outs' ends, or with
+a network from its loss and faints heads (which the labels already trained,
+from the parts they keep). Options within 0.05 of the lowest chance of
+losing count as tied on it, since on positions they never trained on the
+networks' estimate of that chance errs by 0.051 at Gardenia and 0.080 at
+Mars 1 (labels' own error about 0.016); among those, options within 0.1 of
+the fewest faints count as tied on faints, and the old value, which carries
+the survivors' HP, decides the rest. `--rank value` restores the old ranking.
+The network planner (d1b+d2+d3), 500 fights at real odds each:
+
+| Fight | Ranking | Clean | Won | Faints |
+|---|---|---|---|---|
+| Gardenia | the old value | 11 | 423 | 3.254 |
+| Gardenia | Ian's order | 1 | 429 | 2.880 |
+| Gardenia, very unlucky (200) | the old value | 0 | 125 | 4.205 |
+| Gardenia, very unlucky (200) | Ian's order | 1 | 120 | 3.910 |
+| Roark | the old value | 491 | 500 | 0.020 |
+| Roark | Ian's order | 492 | 500 | 0.016 |
+| Mars 1 | the old value | 490 | 498 | 0.044 |
+| Mars 1 | Ian's order | 492 | 500 | 0.020 |
+
+Ian's order wins as often or a little more (the Gardenia differences are
+within the noise of 500 fights) and loses fewer Pokemon at all three. The
+readings before this section used the old value.
+
+## The team search: plan and costs (for Ian, 2026-10-02)
+
+Ian ruled that the scorer's job is to order every fight correctly by
+difficulty, close enough, and that for a boss it chooses its own six and
+moves: a screen with no simulated fights, a race among the screen's top
+twenty or so, and the full reading of two or three finalists; his idea for
+the race rates each box member by how the sixes it is drawn into fare (the
+cross-entropy method over members); and his loop, with the Overseer's
+additions, sends what the finalist reading learns back to the race. This is
+the plan, with every cost from a measurement of the same day.
+
+**What the costs rest on.** One simulated fight costs the play-out planner
+113 seconds of one core at Roark, 210 at Mars 1 and 212 at Gardenia (300 very
+unlucky); the network planner, 2.5 to 4. A boss's labels cost about 1.7
+core-hours by the cheap recipe where it holds (Mars 1) and about 28 for three
+full rounds (Gardenia, where the cheap recipe failed: 334 won of 500 after
+one spread round and 299 after two, against 429 for the full rounds and 69
+of 75 for the play-out planner). And labels carry between sixes of one fight:
+networks that saw Mars 1's labels from nine other sixes but never ours read
+our six at 463 clean of 500, every fight won, 0.084 faints, against 490, 499
+and 0.032 for networks that saw it. Wins hold; the clean rate drops five
+points. That is close enough to rank sixes in a race, so the race can run on
+the network.
+
+**The stages.**
+
+1. *Screen, no simulated fights.* The damage calculator's rows for every box
+   member's whole learned move pool against every enemy, both ways, with
+   speed: for each pair, the hits each side needs and who moves first. Each
+   member's four moves are picked against this fight from its pool (three
+   attacks of different types and the best status move, by the scorer's
+   rule, weighted to the enemies it answers). Sixes are built to answer
+   every enemy (a member that knocks it out in fewer hits than it needs, or
+   that outspeeds it and survives), with the least overlap, by a greedy
+   build and swaps, and the top twenty go on. About a core-minute per boss
+   and box, mostly the calculator.
+2. *Labels for the fight.* The screen's top sixes, from every box to be
+   read, are labelled together: the cheap recipe spread over them (a tenth
+   of a round across about ten sixes, then one spread round from the
+   network's own play over the twenty), about 1.7 core-hours a boss.
+3. *Race, on the network.* Ian's member ratings: sixes are drawn by member
+   weights, each read on four fights, and the weights move toward the
+   members of the best sixes, five rounds of sixteen sixes (320 fights,
+   about 0.3 core-hours); then the best five full sixes race by halving
+   (about 0.2) to settle pairs that work only together.
+4. *Finalists.* Two or three sixes, 100 fights each (75 real, 25 very
+   unlucky) on the network, about 0.3 core-hours.
+5. *Diagnose and loop.* The winner is also read by the play-out planner on
+   25 fights (about 1.4 core-hours). If the network falls short of it on the
+   same six, the gap is training: one more spread round on that six (0.7),
+   then read again. If both fall short together, the six is the problem: the
+   enemies that cause its faints and losses raise the ratings of members
+   that answer them, the full reading weighs more than a race fight, and the
+   race runs again. Stop when a loop no longer improves the best six beyond
+   noise, or after three loops.
+
+**Totals.** Per boss and box, stages 1, 3 and 4 cost about 0.5 core-hours;
+per boss, the labels about 1.7 and the diagnosis about 1.4. For goal 3's 38
+kept bosses (its 79 rows less the 41 Ace Trainers) on five boxes each, that
+is about 38 x (1.7 + 1.4 + 5 x 0.5), some 210 core-hours, about 7 hours on
+29 workers, if the cheap recipe holds everywhere. Where it fails as at
+Gardenia, the race itself ran on a weak network, so its ranking is suspect
+as well as the finalist's reading (the Overseer's check): there the play-out
+planner reads the race's top three on 25 fights each (about 4.2 core-hours)
+and then the best of them in full (about 5.6), some 10 core-hours per boss
+and box, rather than three full rounds of labels (28 a boss). If a quarter
+of the bosses need it on each box, add about 38 x 0.25 x 5 x 10, some 470
+core-hours, about 16 hours more; reading those bosses on fewer boxes cuts it
+in proportion. The Ace Trainers take the whole cheap recipe each (1.7
+core-hours: at Fantina's split, Allen still read 80 clean of 100 against the
+play-out planner's 99 after about 106,000 of his own positions, so a tenth
+of a round alone is not enough), about 70 core-hours, some two and a half
+hours more.
+
+**Which planner where.** The network wherever there is a race, since a race
+on the play-out planner alone costs about 13 core-hours per boss and box
+(some 240 fights at 200 seconds) and the whole of goal 3 that way would take
+weeks. For a single fixed six read once, the network still pays (1.8
+core-hours with its labels against 5.6 for play-outs) where the cheap recipe
+holds; where it does not, the play-out planner reads the finalist.
+
+**Two further options, costed, not started (Ian's brainstorm, relayed).**
+
+*A general boss network.* One value network trained on many varied boss-like
+fights, so that it reads a boss it has never seen and a boss needs no labels
+of its own: the game's own bosses across many sixes, the Kaizo study's
+trainer sheets, and boss-like teams built from the trainer palette, perhaps
+300 fights in all. At a tenth of a round each at budget 64 (about 40,000
+positions, 0.6 core-hours), the one-off labelling is about 180 core-hours,
+some 6 hours on 29 workers; the pile, about 12 million positions, needs a
+loader that streams it rather than holding it in memory (the present one
+holds about 6 million). The test is held out: train without Gardenia and
+Mars 1 at 19 and read both. If they read close enough, it saves every boss's
+own labels (about 2 hours for goal 3's 38, plus the play-out fallback where
+the cheap recipe fails, about 9 more) and the 4 minutes per fight at every
+trainer-pass change after, and the race and the reading run at about 3
+seconds a fight. The risk is the same test failing as it did today: trained
+on 100 easy trainers and two bosses, the network won 8 Gardenia fights of
+500. Hundreds of hard, varied fights may be what it lacked, and only the test
+will say.
+
+*A learned stand-in for the play-outs.* A small policy network that picks
+each turn's move as the play-out planner would, trained on its own choices,
+to replace the plain policy inside the play-outs. Play-outs that play more
+like the planner value positions more truly, so fewer of them would do: if a
+budget of 24 then chose as well as 64 or 192 does now, the play-out planner
+gets about three times cheaper, which brings a finalist's 100-fight reading
+from about 5.6 core-hours to about 2 and a boss's labels from about 1.7 to
+about 0.6. Its labels are the planner's decisions, which the shards do not
+yet keep: recording them over about 2,000 play-out fights of the bosses is
+about 80 core-hours (3 hours), and training is minutes. A stand-in costs
+about as much per turn as the plain policy (one small forward pass), and
+whether it makes a smaller budget choose as well is a measurement, the
+choices agreeing at the showcase seeds as the spot check counts them.
+
+**The first test (the Overseer's).** The search on the hand run's own boxes
+at Roark, Mars 1 (at 19) and Gardenia, to see whether it finds our sixes or
+ones that read as well by wins and then faints. Roark and Gardenia have
+labels across ten sixes already; Mars 1 at 19 needs its own. A miss at Mars
+1, which our six wins by a PP stall, would show the screen undervaluing stall
+plans. **Building it** is the screen (the largest piece), the race with
+member ratings, and the loop; the first test runs on what is there.
+
+## The cost of labelling every boss (2026-10-02)
+
+The Overseer counted about 110 fights in goal 3 that need labelled positions
+of their own (8 leaders, the Elite Four and the Champion, about 11 rival and
+6 Lucas and Dawn fights, 12 Galactic fights and about 68 Ace Trainers): at
+the three full rounds the gyms had, roughly 90 hours of labelling, repeated
+for every fight the trainer pass changes. Four levers were measured that
+afternoon. Every network below is the average of two trained from scratch
+by one recipe, and every reading is at real odds.
+
+**What labelling costs.** From the shards' own records:
+
+| Labelling | Core seconds per 1,000 positions |
+|---|---|
+| a boss by the play-out planner, budget 192 (the full rounds) | 72 to 122 |
+| a boss at budget 64 | 54 |
+| a round from the network's own play, one decision in five labelled | 52 |
+| the Ace Trainers of Fantina's split, budget 192 | 51 |
+| ordinary trainers of the first three splits | 8 |
+
+A full round for one boss is about 10 core-hours (some 20 minutes on 29
+workers); a tenth of a round, about 43,000 positions, is about one.
+
+**1. Ace Trainers do not generalise like ordinary trainers.** The two Ace
+Trainers of Fantina's split, Allen (280) and Catherine (284), were read on a
+box no labels used, 100 fights each:
+
+| Planner | Allen | Catherine |
+|---|---|---|
+| the play-out planner | 99 clean, 100 won, 0.01 faints | 100, 100, 0.00 |
+| networks that never saw them | 22, 79, 2.96 | 73, 96, 0.49 |
+| networks with 20,000 of their positions each | 67, 91, 0.90 | 81, 97, 0.45 |
+| networks with about 106,000 each | 80, 94, 0.60 | 86, 100, 0.16 |
+
+They belong with the bosses: unseen they read far worse than play-outs, and
+even 106,000 positions of their own leave a gap. Those positions came from
+the play-out planner's own fights, about nine fights per box, which lever 4
+below suggests is the weak point.
+
+**2. Fewer positions per boss.** Networks trained on everything except one
+boss's positions, plus that boss's labels in four amounts, 500 fights each:
+
+| The boss's labels | Positions | Mars 1 | Gardenia |
+|---|---|---|---|
+| none | 0 | 151 clean, 412 won, 2.30 faints | 0, 9, 5.96 |
+| a tenth of a round | about 42,000 | 465, 500, 0.09 | 2, 379, 2.99 (seeds 3 and 4: 82, 364, 2.83) |
+| a third of a round | about 138,000 | 462, 489, 0.20 | 1, 269, 4.33 (seeds 3 and 4: 12, 265, 4.10) |
+| one round | about 414,000 | 452, 500, 0.13 | 1, 383, 3.71 |
+| all three rounds | about 1.2 million | 480, 500, 0.06 | 1, 402, 3.70 |
+
+At Mars 1, where the clean rate shows quality, a tenth of a round already
+reads 93% clean with every fight won; the three rounds reach 96%, and the
+last two of them were labelled from the network's own play, which lever 4
+separates. Gardenia's column is not a curve of amount. A third reads worse
+than a tenth with both pairs of seeds, yet the networks' value error on her
+held-out positions is the same for both (2.0 to 2.2 on our six). The gap is
+one matchup: the third's networks lose Charmeleon to Lumineon in 260 fights
+of 500, against 110 for the tenth's, so which few positions a subset happens
+to judge well decides her reading more than how many positions it holds.
+
+**3. Fewer play-outs per label.** A third of a round of Gardenia labelled at
+budget 64 instead of 192 cost 54 core seconds per 1,000 positions against
+105, and read 0 clean, 351 won, 3.86 faints, against the budget-192 third's
+269 won (which carries the Charmeleon misjudgement). On this one comparison
+budget 64 halves the cost with no measured loss.
+
+**4. Rounds from the network's own play: spread, not deep.** At Mars 1,
+starting from the tenth's networks, a small round in which they played and
+play-outs labelled every decision gave 70,000 positions from only 21 fights
+(0.81 core-hours) and made the planner worse: 403 clean, 465 won, 0.58
+faints. The same cost spread over more fights, labelling one decision in
+five (`pldata --label-share 0.2`), gave 48,000 positions from 75 fights
+(0.70 core-hours) and made it better than all three full rounds: 486 clean,
+500 won, 0.028 faints. So the tenth of a round and one spread round, 1.67
+core-hours, read Mars 1 as well as the 28 core-hours of the full rounds.
+
+**5. A team change does not reuse its old labels.** On an in-memory change
+to Gardenia's team (no game data written: Lumineon given Icy Wind and Attract
+for Natural Gift and Swagger, Breloom Seed Bomb and Headbutt for Bullet Seed
+and Stun Spore, both holding a Sitrus Berry), which made her much easier,
+500 fights each:
+
+| Labels | Clean | Won | Faints |
+|---|---|---|---|
+| the play-out planner (75 fights) | 39 of 75 | 75 of 75 | 0.71 |
+| her old team's labels only | 1 | 348 | 4.10 |
+| a third of a round on the new team | 133 | 463 | 1.90 |
+| both | 124 | 433 | 2.21 |
+| none | 0 | 9 | 5.96 |
+
+The old labels keep the network playing the old fight, and adding them to new
+ones helps nothing. A changed fight needs new labels, at the same cost as a
+new one.
+
+**The estimate for goal 3.** With the recipe that matched the full rounds at
+Mars 1, a tenth of a round by the play-out planner and one spread round from
+the network's own play, a fight costs about 1.7 core-hours of labelling.
+For about 110 fights that is about 185 core-hours, some 6 to 7 hours on 29
+workers, and about 5 with budget 64 in the first stage. Training is minutes,
+and reading every fight on 100 simulated fights about half an hour. Each
+fight the trainer pass changes costs its 1.7 core-hours again, about 4
+minutes of the machine. Two cautions: the recipe has been measured on one
+boss so far (Mars 1; its check at Gardenia is the next reading), and the
+Ace Trainers, read over random boxes, may need their labels spread over more
+boxes than a boss read on one planned six.
 
 ## The harness
 
@@ -1081,7 +1489,8 @@ at 6ce38e1e26). Ian set the goals from here in order (2026-10-02); the speed
 plan (`docs/oxide/scorer-speed-plan.md`) holds how the planner is made fast
 enough for the last of them.
 
-1. **Roark, relatively quickly, passing its tests.** The planner plays our
+1. **Roark, relatively quickly, passing its tests** (passed 2026-10-02: the
+   network planner over 2,000 fights, Ian's "close enough, pass"). The planner plays our
    six and must meet the bar on the three numbers at real odds (the table
    under "The job"), and Ian checks its reasoning: the line turn by turn, the
    value behind each key choice, and which of the nine ideas arose on their
@@ -1124,3 +1533,207 @@ enough for the last of them.
    and lack many of the more interesting modern moves. This goes to the
    balance track's learnset work, not to this track.
 5. **AI ties:** break at random, as the simulator does now.
+
+## Goal 3's fights, for Ian to prune (2026-10-02)
+
+One row per fight goal 3 could label: the 33 story fights of `fights.json`,
+every other trainer of a leader, Elite Four, Champion, rival, commander or
+Galactic boss class, every Galactic Officer, and every trainer named or
+classed Ace Trainer. A rival's three starter teams and Lucas and Dawn's six
+slots are one row; two Ace Trainers met only together are one row, since a
+double against two trainers is one fight (Ian, 2026-09-28). The split is
+`fights.json`'s for a story fight and the scorer's own rule for the rest
+(`plscore.SPLIT_OVERRIDE`, then `b6.placements`, then
+`splits.trainer_split`). Post-game means every map that battles it is in
+the Post split (Route 224, Victory Road's back room, the Battleground) or
+its ace is above the League cap of 78. Rematch means a team whose file is
+named a rematch, or Barry's Battleground teams. Double means the trainer's
+own double flag, a tag fight in `fights.json`, or a map whose script gives
+the player a partner (Riley on Iron Island B2F, Buck in Stark Mountain's
+second room, Marley in Victory Road's back room), where the engine makes
+every trainer battle a tag battle; the planner plays one Pokemon a side and
+`pdoubles` is a separate first-version search, so none of these can be
+labelled yet. Unreachable means no map battles it; not placed means it has
+no split. Optional comes from the reach model behind `b6.placements` and
+from the docs, which call the Battle Zone and Iron Island optional; gyms
+and dungeons are not modelled, so their trainers read "path unknown".
+
+Uncertain. The three tag story fights (Somnu and Moira, Mars and Jupiter at
+Spear Pillar, Flint and Volkner) are major bosses proposed for a drop only
+because the planner cannot read doubles; covering them means doubles
+support first. Two Ace pairs face each other with no partner: Dennis and
+Maya on Route 215 (both on the path) and Felix and Dana on Route 229. Seen
+together they are one double, but each can be fought alone by talking to it
+from outside both sight lines, so they are kept as singles. Barry 1 is
+proposed for a drop on Ian's ruling that it does not count, and Lucas and
+Dawn 1 on his ruling to ignore it as trivial. The eight officer rows
+(Somnu, Moira, Hesperid and Argo, twice each) and Mars and Jupiter at
+Stark Mountain are probably not in the Overseer's count of about 12
+Galactic fights; they are kept as named Galactic fights. The rematches'
+post-game reading comes from their levels (82 to 90), not from their
+scripts' gates. Goal 3's wording does not name the Frontier Brains (optional
+bosses since 2026-09-27, still drafts) or the partners' own fights (Cheryl,
+Riley, Marley, Buck, Mira), so they have no rows.
+
+Rows: 121. Kept: 79. Proposed drops: 42 (27 rematch, 8 double, 4 post-game, 1 does not count, 1 trivial, 1 unreachable; a row with several reasons is counted under its first).
+
+Rows by kind:
+
+| kind | kept | dropped |
+|---|---|---|
+| gym leaders, Elite Four and Champion | 13 | 1 |
+| Barry | 5 | 2 |
+| Lucas and Dawn | 2 | 1 |
+| named Galactic fights | 18 | 2 |
+| Ace Trainers | 41 | 21 |
+| rematches and re-fights | 0 | 15 |
+
+| fight | ids | split | maps | flags | proposed | reason |
+|---|---|---|---|---|---|---|
+| Barry 1 | 850, 851, 852 | Roark | route 201 | Ian ruled it does not count for deaths or a wipe (2026-10-02) | drop | does not count |
+| Lucas and Dawn 1 | 787, 788, 789, 790, 791, 792 | Roark | route 202 | Ian ruled to ignore it as trivial (2026-10-02) | drop | trivial |
+| Barry 2 | 247, 248, 249 | Roark | route 203 |  | keep |  |
+| Roark | 246 | Roark | oreburgh city gym |  | keep |  |
+| Mars 1 | 295 | Gardenia | valley windworks building |  | keep |  |
+| Gardenia | 315 | Gardenia | eterna city gym |  | keep |  |
+| Jupiter 1 | 406 | Fantina | team galactic eterna building 4f |  | keep |  |
+| Lucas and Dawn 2 | 793, 794, 799, 800, 801, 802 | Fantina | route 207 | map first reached earlier; fought on a return visit | keep |  |
+| Fantina | 318 | Fantina | hearthome city dp gym leader room, hearthome city gym leader room |  | keep |  |
+| Barry 3 | 470, 471, 472 | Maylene | route 209 gate to hearthome city |  | keep |  |
+| Maylene | 317 | Maylene | veilstone city gym |  | keep |  |
+| Barry 4 | 473, 474, 475 | Wake | pastoria city |  | keep |  |
+| Wake | 316 | Wake | pastoria city gym |  | keep |  |
+| Cyrus 1 | 913 | Byron | celestic town cave |  | keep |  |
+| Barry 5 | 476, 477, 478 | Byron | canalave city |  | keep |  |
+| Byron | 250 | Byron | canalave city gym |  | keep |  |
+| Saturn 1 | 408 | Candice | valor cavern |  | keep |  |
+| Somnu and Moira | 420, 427 | Candice | lake verity | double against two trainers (fights.json: tag); map first reached earlier; fought on a return visit | drop | double |
+| Mars 2 | 405 | Candice | lake verity | map first reached earlier; fought on a return visit | keep |  |
+| Candice | 319 | Candice | snowpoint city gym |  | keep |  |
+| Cyrus 2 | 403 | HQ | galactic hq 4f |  | keep |  |
+| Saturn 2 | 409 | HQ | galactic hq control room | whole fight under Trick Room | keep |  |
+| Mars and Jupiter | 528, 407 | Galactic | spear pillar | double against two trainers (fights.json: tag); Barry beside the player | drop | double |
+| Cyrus 3 | 404 | Galactic | distortion world b7f |  | keep |  |
+| Volkner | 320 | Volkner | sunyshore city gym room 3 |  | keep |  |
+| Flint and Volkner | 921, 922 | Barry | fight area | double against two trainers (fights.json: tag); Barry beside the player; map first reached earlier; fought on a return visit | drop | double |
+| Lucas and Dawn 3 | 779, 780, 781, 782, 783, 784 | Barry | battleground, victory road 1f | the same six slots are fought again at the Battleground after the League | keep |  |
+| Barry 6 | 479, 480, 481 | Barry | pokemon league north pokecenter 1f |  | keep |  |
+| Aaron | 261 | League | pokemon league aaron room |  | keep |  |
+| Bertha | 262 | League | pokemon league bertha room |  | keep |  |
+| Flint | 263 | League | pokemon league flint room |  | keep |  |
+| Lucian | 264 | League | pokemon league lucian room |  | keep |  |
+| Cynthia | 267 | League | pokemon league champion room |  | keep |  |
+| Galactic Officer Somnu (galactic_grunt_valley_windworks_3) | 299 | Gardenia | valley windworks building | on the path (reach model: required) | keep |  |
+| Galactic Officer Moira (galactic_grunt_team_galactic_eterna_building_3f) | 423 | Fantina | team galactic eterna building 3f | optional (reach model: avoidable) | keep |  |
+| Galactic Officer Argo (galactic_grunt_celestic_town) | 416 | Byron | celestic town | path unknown (scripted, not on a crossing) | keep |  |
+| Galactic Officer Hesperid (galactic_grunt_lake_valor_2) | 418 | Candice | lake valor drained | on the path (reach model: required) | keep |  |
+| Galactic Officer Moira (galactic_grunt_mt_coronet_5f_1) | 520 | Galactic | mt coronet 5f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Somnu (galactic_grunt_mt_coronet_5f_2) | 525 | Galactic | mt coronet 5f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Hesperid (galactic_grunt_mt_coronet_6f) | 526 | Galactic | mt coronet 6f | path unknown (dungeon not modelled) | keep |  |
+| Galactic Officer Argo (dummy_834) | 834 | Galactic | mt coronet 6f | path unknown (dungeon not modelled) | keep |  |
+| Commander Mars (commander_mars_stark_mountain) | 926 | Galactic | stark mountain room 1 | the Battle Zone, optional; Jupiter (927) follows straight after, no heal between; path unknown (scripted, not on a crossing) | keep |  |
+| Commander Jupiter (commander_jupiter_stark_mountain) | 927 | Galactic | stark mountain room 1 | the Battle Zone, optional; fought straight after Mars (926), no heal between; path unknown (scripted, not on a crossing) | keep |  |
+| Ace Trainer Allen (ace 29) | 280 | Fantina | hearthome city dp gym trainer room 5, hearthome city gym trainer room 2 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Catherine (ace 29) | 284 | Fantina | hearthome city dp gym trainer room 6, hearthome city gym trainer room 2 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Dennis (ace 35) | 278 | Maylene | route 215 | sight crosses Ace Trainer Maya (287) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; on the path (reach model: required) | keep |  |
+| Ace Trainer Maya (ace 35) | 287 | Maylene | route 215 | sight crosses Ace Trainer Dennis (278) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; on the path (reach model: required) | keep |  |
+| Ace Trainer Krystal (ace 44) | 795 | Wake | route 214 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Ernest (ace 41) | 66 | Byron | route 210 north | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Alyssa (ace 42) | 67 | Byron | route 210 north | on the path (reach model: required) | keep |  |
+| Ace Trainer Jake (ace 46) | 170 | Byron | route 221 | optional (off the story path) | keep |  |
+| Ace Trainer Shannon (ace 45) | 171 | Byron | route 221 | optional (off the story path) | keep |  |
+| Ace Trainer Cesar (ace 51) | 279 | Byron | canalave city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Breanna (ace 50) | 283 | Byron | canalave city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Jonah and Brenda (ace 47) | 388, 392 | Byron | iron island b2f left room | tag battle beside Pkmn Trainer Riley (IRON_ISLAND_B2F_LEFT_ROOM's partner); Iron Island, an optional gauntlet; sight lines cross: met together as one tag battle; on the path (reach model: required) | drop | double |
+| Ace Trainer Blake (ace 48) | 132 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Garrett (ace 47) | 133 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Laura (ace 50) | 134 | Candice | route 216 | on the path (reach model: required) | keep |  |
+| Ace Trainer Maria (ace 47) | 135 | Candice | route 216 | optional (reach model: avoidable) | keep |  |
+| Ace Trainer Dalton (ace 52) | 140 | Candice | route 217 | on the path (reach model: required) | keep |  |
+| Ace Trainer Olivia (ace 52) | 141 | Candice | route 217 | on the path (reach model: required) | keep |  |
+| Ace Trainer Sergio (ace 54) | 268 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Isaiah (ace 55) | 269 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Savannah (ace 54) | 270 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Alicia (ace 55) | 271 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Anton (ace 54) | 827 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Brenna (ace 54) | 828 | Candice | snowpoint city gym | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Rodolfo (ace 55) | 563 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Saul (ace 60) | 564 | Galactic | route 227 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Jose (ace 58) | 565 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Felix (ace 58) | 566 | Galactic | route 229 | the Battle Zone, optional; sight crosses Ace Trainer Dana (575) on 4 of its 8 sight tiles: a double against both when both see the player, a single when talked to from outside both lines; optional (off the story path) | keep |  |
+| Ace Trainer Quinn (ace 55) | 567 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Graham (ace 56) | 568 | Galactic | route 226 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Keenan and Kassandra (ace 60) | 569, 579 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Stefan and Jasmin (ace 60) | 570, 580 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Skylar and Natasha (ace 60) | 571, 581 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Abel and Monique (ace 60) | 572, 582 | Galactic | stark mountain room 2 | tag battle beside Pkmn Trainer Buck (STARK_MOUNTAIN_ROOM_2's partner); the Battle Zone, optional; sight lines cross: met together as one tag battle; path unknown (dungeon not modelled) | drop | double |
+| Ace Trainer Deanna (ace 55) | 573 | Galactic | route 225 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Moira (ace 58) | 574 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Dana (ace 57) | 575 | Galactic | route 229 | the Battle Zone, optional; sight crosses Ace Trainer Felix (566) on every tile it sees: a double against both when both see the player, a single when talked to from outside both lines; optional (off the story path) | keep |  |
+| Ace Trainer Mikayla (ace 58) | 576 | Galactic | route 227 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Meagan (ace 59) | 577 | Galactic | route 228 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Sandra (ace 56) | 578 | Galactic | route 229 | the Battle Zone, optional; optional (off the story path) | keep |  |
+| Ace Trainer Zachery (ace 60) | 281 | Volkner | sunyshore city gym room 3 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Destiny (ace 60) | 285 | Volkner | sunyshore city gym room 3 | path unknown (gym not modelled) | keep |  |
+| Ace Trainer Omar (ace 63) | 224 | Barry | victory road 2f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Henry (ace 63) | 225 | Barry | victory road b1f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Mariah (ace 63) | 226 | Barry | victory road 1f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Sydney (ace 63) | 227 | Barry | victory road 2f | path unknown (dungeon not modelled) | keep |  |
+| Ace Trainer Ruben (ace 80) | 282 | Post | route 224 | route_224 is post-game; ace 80, above the League cap of 78 | drop | post-game |
+| Ace Trainer Jamie (ace 84) | 286 | Post | route 224 | route_224 is post-game; ace 84, above the League cap of 78 | drop | post-game |
+| Ace Trainer Micah and Brandi (ace 78) | 389, 393 | Post | victory road 1f room 2 | victory_road_1f_room_2 is post-game; tag battle beside Pkmn Trainer Marley (VICTORY_ROAD_1F_ROOM_2's partner); sight lines cross: met together as one tag battle | drop | post-game; double |
+| Ace Trainer Arthur and Clarice (ace 78) | 390, 394 | Post | victory road 1f room 2 | victory_road_1f_room_2 is post-game; tag battle beside Pkmn Trainer Marley (VICTORY_ROAD_1F_ROOM_2's partner); sight lines cross: met together as one tag battle | drop | post-game; double |
+| Ace Trainer Dalton (ace 54) | 648 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Olivia (ace 56) | 649 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Jake (ace 55) | 663 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Dennis (ace 45) | 664 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Dennis (ace 61) | 665 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Rodolfo (ace 62) | 666 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Saul (ace 63) | 667 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Shannon (ace 56) | 668 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Maya (ace 45) | 669 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Maya (ace 61) | 670 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Deanna (ace 62) | 671 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Ace Trainer Moira (ace 60) | 672 | none | none | no map battles it; no split; Vs. Seeker rematch team | drop | rematch; unreachable; not placed |
+| Leader Roark (leader_roark_rematch) | 858 | Roark | oreburgh city gym | ace 82, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Gardenia (leader_gardenia_rematch) | 857 | Gardenia | eterna city gym | ace 83, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Fantina (leader_fantina_rematch) | 860 | Fantina | hearthome city gym leader room | ace 84, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Maylene (leader_maylene_rematch) | 854 | Maylene | veilstone city gym | ace 85, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Wake (leader_wake_rematch) | 859 | Wake | pastoria city gym | ace 86, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Byron (leader_byron_rematch) | 856 | Byron | canalave city gym | ace 87, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Candice (leader_candice_rematch) | 853 | Candice | snowpoint city gym | ace 88, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Leader Volkner (leader_volkner_rematch) | 855 | Volkner | sunyshore city gym room 3 | ace 89, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Aaron (elite_four_aaron_rematch) | 866 | League | pokemon league aaron room | ace 84, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Bertha (elite_four_bertha_rematch) | 867 | League | pokemon league bertha room | ace 85, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Flint (elite_four_flint_rematch) | 868 | League | pokemon league flint room | ace 86, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Elite Four Lucian (elite_four_lucian_rematch) | 869 | League | pokemon league lucian room | ace 87, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Champion Cynthia (champion_cynthia_rematch) | 870 | League | pokemon league champion room | ace 90, above the League cap of 78; rematch team | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_1) | 837, 838, 839 | Post | battleground | battleground is post-game; a Battleground re-fight of Barry | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_2) | 871, 872, 873 | Post | battleground | battleground is post-game; ace 85, above the League cap of 78; a Battleground re-fight of Barry | drop | rematch; post-game |
+| Pkmn Trainer Barry (rival_survival_area_unused) | 840, 841, 842 | none | none | no map battles it; no split; an unused slot, by its name | drop | unreachable; not placed |
+
+Left out of the table, each with why:
+
+- Pkmn Trainer Barry (607): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Lucas (613): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (614): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (615): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (616): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (617): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (618): a tag partner beside the player against two grunts.
+- Pkmn Trainer Barry (619): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (620): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Lucas (621): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (622): a tag partner beside the player against two grunts.
+- Pkmn Trainer Lucas (623): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (624): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (625): a tag partner beside the player against two grunts.
+- Pkmn Trainer Dawn (626): a tag partner beside the player against two grunts.
+- Pkmn Trainer Barry (923): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (924): a tag fight's partner beside the player (fights.json partners).
+- Pkmn Trainer Barry (925): a tag fight's partner beside the player (fights.json partners).
+- Ace Trainer Mickey (dummy_062): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_063): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_251): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Mickey (dummy_387): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.
+- Ace Trainer Angelica (dummy_391): an unused dummy_ slot no map battles, which data.oxide_trainers() skips.

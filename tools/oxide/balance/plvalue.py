@@ -43,8 +43,15 @@ class Value:
     def predict(self, x, ids):
         """Values for n positions: x [n, FLOATS] floats, ids [n, IDS] ints.
         The floats pass through float16 first, as the training data did."""
+        return self.heads(x, ids)[0]
+
+    def heads(self, x, ids):
+        """All three outputs for n positions: (the value, the faints still
+        to come, the chance the fight is lost), each averaged over the parts
+        of an average of networks."""
         if self.parts:
-            return sum(p.predict(x, ids) for p in self.parts) / len(self.parts)
+            outs = [p.heads(x, ids) for p in self.parts]
+            return tuple(sum(o[k] for o in outs) / len(outs) for k in range(3))
         w = self.w
         x = np.asarray(x, dtype=np.float16).astype(np.float32)
         n = x.shape[0]
@@ -62,7 +69,7 @@ class Value:
         h = _relu(h @ w["t1.weight"].T + w["t1.bias"])
         h = _relu(h @ w["t2.weight"].T + w["t2.bias"])
         out = h @ w["head.weight"].T + w["head.bias"]
-        return out[:, 0] * self.scale
+        return out[:, 0] * self.scale, out[:, 1], 1.0 / (1.0 + np.exp(-out[:, 2]))
 
 
 def check(name, eval_dir=os.path.expanduser("~/oxide-trials/scorer-stage2/data-eval")):

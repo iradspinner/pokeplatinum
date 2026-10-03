@@ -1,0 +1,179 @@
+{
+ "fight": "gardenia",
+ "six": [
+  "Charmeleon",
+  "Popplio",
+  "Vikavolt",
+  "Vullaby",
+  "Golbat",
+  "Tsareena"
+ ],
+ "variant": 0,
+ "foes": [
+  "Cherrim 25",
+  "Lumineon 25",
+  "Shiftry 25",
+  "Breloom 25",
+  "Roserade 26"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": null
+ },
+ "luck": "unlucky",
+ "rank": "win",
+ "lead": "Vullaby",
+ "lead_values": {
+  "Charmeleon": -9.817,
+  "Popplio": -9.817,
+  "Vikavolt": -9.348,
+  "Vullaby": -8.742,
+  "Golbat": -9.817,
+  "Tsareena": -8.794
+ },
+ "clean": 0,
+ "won": 18,
+ "deaths": 3.56,
+ "runs": 25,
+ "faints": [
+  [
+   "Charmeleon",
+   "Lumineon",
+   13
+  ],
+  [
+   "Vikavolt",
+   "Lumineon",
+   7
+  ],
+  [
+   "Tsareena",
+   "Lumineon",
+   6
+  ],
+  [
+   "Golbat",
+   "Lumineon",
+   6
+  ],
+  [
+   "Vullaby",
+   "Roserade",
+   5
+  ],
+  [
+   "Golbat",
+   "Roserade",
+   5
+  ],
+  [
+   "Tsareena",
+   "Cherrim",
+   5
+  ],
+  [
+   "Vullaby",
+   "Cherrim",
+   5
+  ],
+  [
+   "Charmeleon",
+   "Roserade",
+   4
+  ],
+  [
+   "Tsareena",
+   "Roserade",
+   4
+  ],
+  [
+   "Popplio",
+   "Roserade",
+   4
+  ],
+  [
+   "Vullaby",
+   "Breloom",
+   4
+  ],
+  [
+   "Vullaby",
+   "Lumineon",
+   3
+  ],
+  [
+   "Popplio",
+   "Lumineon",
+   3
+  ],
+  [
+   "Vikavolt",
+   "Shiftry",
+   2
+  ],
+  [
+   "Golbat",
+   "Shiftry",
+   2
+  ],
+  [
+   "Vullaby",
+   "Shiftry",
+   2
+  ],
+  [
+   "Vikavolt",
+   "Breloom",
+   2
+  ],
+  [
+   "Popplio",
+   "Shiftry",
+   2
+  ],
+  [
+   "Vikavolt",
+   "Roserade",
+   1
+  ],
+  [
+   "Popplio",
+   "Cherrim",
+   1
+  ],
+  [
+   "Popplio",
+   "Breloom",
+   1
+  ],
+  [
+   "Tsareena",
+   "Breloom",
+   1
+  ],
+  [
+   "Charmeleon",
+   "Cherrim",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 301.94,
+ "decisions_per_run": 26.5,
+ "turns_per_run": 23.5,
+ "lead_seconds": 25.7,
+ "wall_seconds": 411.1,
+ "procs": 29,
+ "fights_per_hour": 218.9,
+ "worker_private_mb_max": 140,
+ "parent_mb": 120,
+ "lost_seeds": [
+  9001,
+  9002,
+  9008,
+  9013,
+  9015,
+  9017,
+  9022
+ ]
+}

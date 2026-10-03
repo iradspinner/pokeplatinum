@@ -52,6 +52,67 @@ LOSS = 10.0
 HP_SHARE = 0.1
 UNFINISHED = 2.0
 
+# How the planner ranks its options (Ian, 2026-10-02): the chance of losing
+# the fight first, then the faints expected, then the value above (which
+# carries the survivors' HP). "A fight with 0% clean, 100% win and 1.00
+# average faints means a single sacrifice wins every time, and I would take
+# that every time over 90% clean, 90% win and 0.60 average deaths", since one
+# unlucky turn there ends the run; a fixed weight of ten let a point of win
+# rate trade for a tenth of a faint, which his order forbids. Options whose
+# chance of losing is within LOSS_TOL of the lowest count as tied on it (the
+# networks' estimate of that chance errs by 0.05 at Gardenia and 0.08 at
+# Mars 1 on positions they never trained on), and among those, options
+# within FAINT_TOL of the fewest faints count as tied on faints. RANK
+# "value" restores the old ranking by the value alone, for comparison.
+RANK = "win"
+LOSS_TOL = 0.05
+FAINT_TOL = 0.1
+# Among options tied on both (within the tolerances), the faster finish
+# first (Ian, 2026-10-02, to stop wasted turns): the one that takes the most
+# of the trainer's HP this turn, read from the turn's outcomes the planner
+# has already enumerated, so it costs no search. A stall that helps is never
+# touched, since it would win more or lose fewer Pokemon than the tolerance.
+# Only options whose value is also within FAST_EPS of the best of the tied
+# count as genuine ties: with the tolerances alone, Roark over 2,000 fights
+# fell from 97.9% clean and 0.022 faints to 89.5% and 0.115, because taking
+# the most damage within them, turn after turn, gave up real safety. With
+# FAST_EPS at 0.02 the showcase seed still wastes its turns (the network's
+# values there differ by about 0.1 where play-outs call them equal), so the
+# tie-break stays off by default (--fast-tie turns it on) until a setting
+# keeps Roark's numbers at the bar's size. A window of 0.1 clears the
+# showcase seed's wasted turns but reads Roark at 91.3% clean and 0.095
+# faints over 2,000 fights (Barboach kept attacking into Cranidos), at half
+# the turns and core time, so it does not pass Ian's condition either.
+FAST_TIE = False
+FAST_EPS = 0.02
+
+
+def choose(q, parts, among):
+    """The best of the options `among`, by Ian's order: parts[i] is option
+    i's (chance of losing, faints expected[, the trainer's HP share taken
+    this turn]), q[i] its value."""
+    if RANK == "value" or parts is None:
+        return max(among, key=lambda i: q[i])
+    low = min(parts[i][0] for i in among)
+    safe = [i for i in among if parts[i][0] <= low + LOSS_TOL]
+    few = min(parts[i][1] for i in safe)
+    tied = [i for i in safe if parts[i][1] <= few + FAINT_TOL]
+    best = max(tied, key=lambda i: q[i])
+    if FAST_TIE and len(parts[best]) > 2:
+        even = [i for i in tied if q[i] >= q[best] - FAST_EPS]
+        return max(even, key=lambda i: (round(parts[i][2], 3), q[i]))
+    return best
+
+
+def foe_left(b):
+    """The trainer's HP left, as a share of its whole party's."""
+    return sum(m.hp / m.maxhp for m in b.b.mons if m.alive()) / len(b.b.mons)
+
+
+def ends(b):
+    """A finished or stopped position's (faints, lost)."""
+    return sum(1 for m in b.p.mons if not m.alive()), not b.p.alive()
+
 
 def value(b):
     """The position's worth to the player at the end of a play-out."""
@@ -753,6 +814,7 @@ class Planner:
         # kept in it with their results, as training labels (keep).
         self.record = None
         self.last_end = None     # the last play-out's final position
+        self.last_parts = None   # the last weighing's (chance of losing, faints) per option
 
     def tables(self, b):
         """plfeat's per-fight tables for b's fight, made once per fight."""
@@ -766,12 +828,18 @@ class Planner:
 
     def net_values(self, positions):
         """The network's value of each position, in one batch."""
+        return [v for v, _f, _p in self.net_heads(positions)]
+
+    def net_heads(self, positions):
+        """The network's (value, faints still to come, chance of losing) for
+        each position, in one batch."""
         from . import plfeat
         if not positions:
             return []
         fight = self.tables(positions[0])
         feats = [plfeat.features(c, fight) for c in positions]
-        return list(self.net.predict(np.stack([f for f, _i in feats]), np.stack([i for _f, i in feats])))
+        v, f, p = self.net.heads(np.stack([f for f, _i in feats]), np.stack([i for _f, i in feats]))
+        return list(zip(v, f, p))
 
     def q(self, b, acts, key):
         """Each option's expected value: over the turn's Quick Claw rolls,
@@ -795,14 +863,17 @@ class Planner:
                 for i, a in enumerate(acts):
                     for c, p in turn_outcomes(c0, a, aa, key):
                         done = not c.p.alive() or not c.b.alive()
-                        cells[i].append({"w": pq * pa * p, "p": p, "c": c,
-                                         "v": [value(c)] if done else [], "done": done})
+                        cells[i].append({"w": pq * pa * p, "p": p, "c": c, "done": done,
+                                         "v": [value(c)] if done else [], "e": [ends(c)] if done else []})
         if self.net is not None:
             # Every position the turn can reach, valued by the network in one
-            # batch; a finished fight keeps its own value.
+            # batch (its value, the faints still to come and the chance of
+            # losing); a finished fight keeps its own.
             open_cells = [cell for cs in cells for cell in cs if not cell["done"]]
-            for cell, v in zip(open_cells, self.net_values([cell["c"] for cell in open_cells])):
+            for cell, (v, f, pl_) in zip(open_cells, self.net_heads([cell["c"] for cell in open_cells])):
                 cell["v"] = [float(v)]
+                cell["e"] = [(ends(cell["c"])[0] + float(f), float(pl_))]
+            self.last_parts = self.parts(cells, foe_left(b))
             return [sum(cell["w"] * cell["v"][0] for cell in cs) for cs in cells], list(range(len(acts)))
         alive = list(range(len(acts)))
         stages = [s for s in STAGES if self.budget and s < self.budget] + [self.budget]
@@ -815,10 +886,7 @@ class Planner:
                     n = self.playouts if s is None else max(1, round(s * cell["p"]))
                     while len(cell["v"]) < n:
                         cell["v"].append(self.playout(clone(cell["c"]), _mix(key, len(cell["v"]))))
-                        if self.record is not None:
-                            end = self.last_end
-                            cell.setdefault("e", []).append(
-                                (sum(1 for m in end.p.mons if not m.alive()), not end.p.alive()))
+                        cell["e"].append(ends(self.last_end))
             spreads = [_var(cell["v"]) for i in alive for cell in cells[i] if len(cell["v"]) > 1]
             pooled = sum(spreads) / len(spreads) if spreads else 1.0
             for i in alive:
@@ -834,7 +902,31 @@ class Planner:
                      if est[lead][0] - est[i][0] <= RACE_Z * (est[lead][1] + est[i][1]) ** 0.5]
         if self.record is not None:
             self.keep(cells)
+        self.last_parts = self.parts(cells, foe_left(b))
         return [est[i][0] for i in range(len(acts))], alive
+
+    @staticmethod
+    def parts(cells, before=None):
+        """Each option's (chance of losing, faints expected, the trainer's HP
+        share taken this turn), over the turn's outcomes by their weight:
+        from the play-outs' ends, the network's heads, or a finished fight's
+        own result. An option dropped before any play-out of an outcome
+        counts that outcome's mean over the rest. `before` is the trainer's
+        HP share before the turn (foe_left)."""
+        out = []
+        for cs in cells:
+            w = sum(cell["w"] for cell in cs if cell["e"])
+            if not w:
+                out.append((1.0, 6.0, 0.0))
+                continue
+            lost = sum(cell["w"] * sum(float(e[1]) for e in cell["e"]) / len(cell["e"]) for cell in cs if cell["e"])
+            faints = sum(cell["w"] * sum(e[0] for e in cell["e"]) / len(cell["e"]) for cell in cs if cell["e"])
+            taken = 0.0
+            if before is not None:
+                total = sum(cell["w"] for cell in cs)
+                taken = sum(cell["w"] * (before - foe_left(cell["c"])) for cell in cs) / total
+            out.append((lost / w, faints / w, taken))
+        return out
 
     def keep(self, cells):
         """For stage 2's training (pldata.distill_job): every unfinished
@@ -880,16 +972,20 @@ class Planner:
             return acts[0]
         t0 = time.perf_counter()
         q, alive = self.weigh(b, acts, key)
-        best = max(alive, key=lambda i: q[i])
+        parts = self.last_parts
+        best = choose(q, parts, alive)
         self.notes.append({"turn": b.turn, "options": [(_name(a, b) + ("" if i in alive else " (dropped)"),
                                                         v) for i, (a, v) in enumerate(zip(acts, q))],
-                           "chose": best, "seconds": round(time.perf_counter() - t0, 2)})
+                           "parts": parts, "chose": best, "seconds": round(time.perf_counter() - t0, 2)})
         return acts[best]
 
     def position(self, c, key):
-        """A position's worth when the player is to choose: its best option."""
+        """A position's worth when the player is to choose, as its best
+        option's (chance of losing, faints expected, value)."""
         q, alive = self.weigh(c, options(c), key)
-        return max(q[i] for i in alive)
+        parts = self.last_parts
+        i = choose(q, parts, alive)
+        return (parts[i][0], parts[i][1], q[i]) if parts else (0.0, 0.0, q[i])
 
     def replacement(self, b):
         """The Pokemon sent in after a faint: each candidate's best option
@@ -907,17 +1003,19 @@ class Planner:
             fs.switch_in(c, c.p, i)
             c.dice = c.rng = None
             vals.append(self.position(c, key))
-        best = max(range(len(cands)), key=lambda j: vals[j])
+        best = choose([v[2] for v in vals], [v[:2] for v in vals], range(len(cands)))
         self.notes.append({"turn": b.turn, "replacement": True, "seconds": round(time.perf_counter() - t0, 2),
-                           "options": [(b.p.mons[i].species, v) for i, v in zip(cands, vals)],
-                           "chose": best})
+                           "options": [(b.p.mons[i].species, v[2]) for i, v in zip(cands, vals)],
+                           "parts": [v[:2] for v in vals], "chose": best})
         return cands[best]
 
     def lead(self, st, team, boss_keys, flags):
-        """The lead: each candidate's best first option, on the same dice."""
+        """The lead: each candidate's best first option, on the same dice;
+        (the lead, each candidate's value)."""
         key = _mix(self.seed, "lead")
         vals = [self.position(pl.make_battle(st, team, boss_keys, flags, i), key) for i in range(len(team))]
-        return max(range(len(team)), key=lambda i: vals[i]), vals
+        best = choose([v[2] for v in vals], [v[:2] for v in vals], range(len(team)))
+        return best, [v[2] for v in vals]
 
 
 # ---- the real run: the planner's replacements ---------------------------------------------------
@@ -1099,7 +1197,7 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     cpu = sum(r["seconds"] for r in rows)
     out = {"fight": fight, "six": f["six"], "variant": f["variant"],
            "foes": [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys],
-           "cfg": cfg, "luck": luck, "lead": f["six"][lead],
+           "cfg": cfg, "luck": luck, "rank": RANK, "fast_tie": FAST_TIE, "lead": f["six"][lead],
            "lead_values": {n: round(v, 3) for n, v in zip(f["six"], lead_vals)},
            "clean": clean, "won": won, "deaths": round(deaths, 3), "runs": runs,
            "faints": [[a, b, n] for (a, b), n in tally.most_common()],
@@ -1141,6 +1239,7 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     _REAL.update(b=b, planner=netp if drive == "network" else planner)
     agree = total = 0
     regret = 0.0
+    win_regret = [0.0, 0.0]      # chance of losing and faints added, where the choices differ
     try:
         while b.turn < TURN_CAP and b.p.alive() and b.b.alive():
             acts = options(b)
@@ -1148,19 +1247,31 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
                 key = _mix(seed, "compare", b.turn)
                 q, alive = planner.weigh(b, acts, key)
                 qn, _all = netp.weigh(b, acts, key)
-                best = max(alive, key=lambda i: q[i])
-                best_n = max(range(len(acts)), key=lambda i: qn[i])
+                best = choose(q, planner.last_parts, alive)
+                best_n = choose(qn, netp.last_parts, range(len(acts)))
                 total += 1
                 agree += best == best_n
                 # Regret: what the network's choice gives up by the play-outs' own values.
                 lost = q[best] - q[best_n]
                 regret += lost
+                # And by Ian's order: the chance of losing and the faints the
+                # network's choice adds, by the play-outs' own estimates.
+                pp = planner.last_parts
+                d_loss = pp[best_n][0] - pp[best][0] if pp else 0.0
+                d_faints = pp[best_n][1] - pp[best][1] if pp else 0.0
+                if best != best_n:
+                    win_regret[0] += d_loss
+                    win_regret[1] += d_faints
                 print(f"T{b.turn + 1} {b.p.cur().species} {b.p.cur().hp}/{b.p.cur().maxhp} against "
                       f"{b.b.cur().species} {b.b.cur().hp}/{b.b.cur().maxhp}: play-outs choose "
                       f"{_name(acts[best], b)}, the network {_name(acts[best_n], b)}"
-                      f"{'' if best == best_n else f'  (differs; gives up {lost:.2f})'}", file=log)
+                      f"{'' if best == best_n else f'  (differs; gives up {lost:.2f}, chance of losing {d_loss:+.3f}, faints {d_faints:+.2f})'}",
+                      file=log)
                 print("      " + ", ".join(f"{_name(a, b)} {q[i]:+.2f}/{qn[i]:+.2f}" for i, a in enumerate(acts)),
                       file=log)
+                if pp:
+                    print("      by play-outs (chance of losing, faints): " + ", ".join(
+                        f"{_name(a, b)} {pp[i][0]:.2f} {pp[i][1]:.2f}" for i, a in enumerate(acts)), file=log)
                 a = acts[best_n if drive == "network" else best]
             else:
                 a = acts[0]
@@ -1168,7 +1279,9 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     finally:
         _REAL.update(b=None, planner=None)
     print(f"{agree} of {total} decisions alike (values shown as play-outs/network); the network's choices "
-          f"give up {regret:.2f} in all by the play-outs' values, {regret / max(1, total):.3f} a decision", file=log)
+          f"give up {regret:.2f} in all by the play-outs' values, {regret / max(1, total):.3f} a decision; "
+          f"by Ian's order they add {win_regret[0]:+.3f} to the chance of losing and {win_regret[1]:+.2f} "
+          f"faints in all, by the play-outs' estimates", file=log)
     return agree, total, regret
 
 
@@ -1188,6 +1301,7 @@ OUT = os.path.join(os.path.dirname(__file__), "perfectline_results", "step3")
 
 
 def main(argv=None):
+    global RANK, FAST_TIE, FAST_EPS
     ap = argparse.ArgumentParser()
     ap.add_argument("fight")
     ap.add_argument("--runs", type=int, default=200)
@@ -1202,6 +1316,12 @@ def main(argv=None):
     ap.add_argument("--budget", type=int, default=BUDGET,
                     help="play-outs per option and trainer pick, shared by probability (0: none)")
     ap.add_argument("--luck", default="real", choices=("real", "unlucky"))
+    ap.add_argument("--rank", default=RANK, choices=("win", "value"),
+                    help="Ian's order (the chance of losing, then faints) or the old value alone")
+    ap.add_argument("--fast-tie", action="store_true",
+                    help="break genuine ties on losing and faints toward the faster finish (off by default)")
+    ap.add_argument("--fast-eps", type=float, default=FAST_EPS,
+                    help="with --fast-tie: how close in value a tie must be")
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
@@ -1209,6 +1329,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
     cfg = dict(playouts=args.playouts, budget=args.budget or None, value=args.value)
     _PICK.update(six=args.six, variant=args.variant)
+    RANK = args.rank
+    FAST_TIE, FAST_EPS = args.fast_tie, args.fast_eps
     if args.compare:
         compare(args.fight, args.compare, args.seed, drive=args.drive)
         return 0

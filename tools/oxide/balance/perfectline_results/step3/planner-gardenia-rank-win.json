@@ -1,0 +1,198 @@
+{
+ "fight": "gardenia",
+ "six": [
+  "Charmeleon",
+  "Popplio",
+  "Vikavolt",
+  "Vullaby",
+  "Golbat",
+  "Tsareena"
+ ],
+ "variant": 0,
+ "foes": [
+  "Cherrim 25",
+  "Lumineon 25",
+  "Shiftry 25",
+  "Breloom 25",
+  "Roserade 26"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": null
+ },
+ "luck": "real",
+ "rank": "win",
+ "lead": "Vullaby",
+ "lead_values": {
+  "Charmeleon": -9.817,
+  "Popplio": -9.817,
+  "Vikavolt": -9.348,
+  "Vullaby": -8.742,
+  "Golbat": -9.817,
+  "Tsareena": -8.794
+ },
+ "clean": 1,
+ "won": 69,
+ "deaths": 2.787,
+ "runs": 75,
+ "faints": [
+  [
+   "Charmeleon",
+   "Lumineon",
+   31
+  ],
+  [
+   "Tsareena",
+   "Lumineon",
+   18
+  ],
+  [
+   "Vullaby",
+   "Breloom",
+   15
+  ],
+  [
+   "Popplio",
+   "Roserade",
+   15
+  ],
+  [
+   "Vullaby",
+   "Cherrim",
+   14
+  ],
+  [
+   "Tsareena",
+   "Roserade",
+   13
+  ],
+  [
+   "Golbat",
+   "Roserade",
+   10
+  ],
+  [
+   "Vullaby",
+   "Roserade",
+   10
+  ],
+  [
+   "Vikavolt",
+   "Lumineon",
+   9
+  ],
+  [
+   "Golbat",
+   "Lumineon",
+   9
+  ],
+  [
+   "Popplio",
+   "Cherrim",
+   7
+  ],
+  [
+   "Vullaby",
+   "Lumineon",
+   7
+  ],
+  [
+   "Vikavolt",
+   "Breloom",
+   6
+  ],
+  [
+   "Tsareena",
+   "Cherrim",
+   6
+  ],
+  [
+   "Charmeleon",
+   "Roserade",
+   5
+  ],
+  [
+   "Vikavolt",
+   "Shiftry",
+   5
+  ],
+  [
+   "Charmeleon",
+   "Shiftry",
+   5
+  ],
+  [
+   "Vikavolt",
+   "Roserade",
+   4
+  ],
+  [
+   "Popplio",
+   "Lumineon",
+   4
+  ],
+  [
+   "Golbat",
+   "Shiftry",
+   3
+  ],
+  [
+   "Popplio",
+   "Shiftry",
+   3
+  ],
+  [
+   "Charmeleon",
+   "Cherrim",
+   3
+  ],
+  [
+   "Vullaby",
+   "Shiftry",
+   2
+  ],
+  [
+   "Golbat",
+   "Breloom",
+   1
+  ],
+  [
+   "Popplio",
+   "Breloom",
+   1
+  ],
+  [
+   "Tsareena",
+   "Breloom",
+   1
+  ],
+  [
+   "Vikavolt",
+   "Cherrim",
+   1
+  ],
+  [
+   "Tsareena",
+   "Shiftry",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 212.33,
+ "decisions_per_run": 26.1,
+ "turns_per_run": 23.6,
+ "lead_seconds": 33.9,
+ "wall_seconds": 634.5,
+ "procs": 29,
+ "fights_per_hour": 425.5,
+ "worker_private_mb_max": 145,
+ "parent_mb": 120,
+ "lost_seeds": [
+  9002,
+  9007,
+  9022,
+  9048,
+  9055,
+  9070
+ ]
+}

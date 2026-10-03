@@ -110,9 +110,12 @@ def main(argv=None):
     ap.add_argument("--luck", default="real", choices=("real", "unlucky"))
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="read: write the per-trainer results to ROOT/<name>.json")
+    ap.add_argument("--keys", nargs="+", type=int,
+                    help="these trainers instead of the held-out ones (read) or the training ones (data)")
+    ap.add_argument("--first-box", type=int, default=1, help="data: the first box seed (readings use 0)")
     args = ap.parse_args(argv)
     keys = trainers()
-    held = held_out(keys)
+    held = args.keys or held_out(keys)
     if args.what == "list":
         for k in keys:
             t = data.oxide_trainers()[k]
@@ -123,9 +126,13 @@ def main(argv=None):
     procs = args.procs or plplan.pool_size()
     t0 = time.perf_counter()
     if args.what == "data":
-        chosen = held if args.held else [k for k in keys if k not in held]
-        out_dir = os.path.join(ROOT, "data-gen-held" if args.held else "data-gen")
-        jobs = [(k, b, args.positions, 1000 * k + b, out_dir) for k in chosen for b in range(1, args.boxes + 1)]
+        if args.keys:
+            chosen, out_dir = args.keys, os.path.join(ROOT, "data-gen-" + "-".join(map(str, args.keys)))
+        else:
+            chosen = held if args.held else [k for k in keys if k not in held]
+            out_dir = os.path.join(ROOT, "data-gen-held" if args.held else "data-gen")
+        jobs = [(k, b, args.positions, 1000 * k + b, out_dir) for k in chosen
+                for b in range(args.first_box, args.first_box + args.boxes)]
         done = 0
         with plplan.fork_pool(procs) as pool:
             for meta in pool.imap_unordered(data_job, jobs, chunksize=1):
