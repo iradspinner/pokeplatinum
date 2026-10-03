@@ -133,7 +133,8 @@ is listed for Ian.
   rate and the average faints. Lines and the planner's options are ranked by
   win rate first and average faints second; the clean rate is reported, not
   optimised, since always winning with one sacrifice beats winning cleanly
-  nine times in ten. Exact ties break toward the faster finish. Bosses are
+  nine times in ten. A faster-finish tie-break was built and left off
+  (Ian, 2026-10-02): the network never sees exact ties. Bosses are
   read over a spread of boxes, so their answers do not narrow to one Pokemon.
   The scorer's job is to order every fight correctly by difficulty; close
   enough is good enough while that order is broadly right. For a boss it
