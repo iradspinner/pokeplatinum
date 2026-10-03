@@ -1204,6 +1204,7 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     _REAL.update(b=b, planner=netp if drive == "network" else planner)
     agree = total = 0
     regret = 0.0
+    win_regret = [0.0, 0.0]      # chance of losing and faints added, where the choices differ
     try:
         while b.turn < TURN_CAP and b.p.alive() and b.b.alive():
             acts = options(b)
@@ -1218,12 +1219,24 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
                 # Regret: what the network's choice gives up by the play-outs' own values.
                 lost = q[best] - q[best_n]
                 regret += lost
+                # And by Ian's order: the chance of losing and the faints the
+                # network's choice adds, by the play-outs' own estimates.
+                pp = planner.last_parts
+                d_loss = pp[best_n][0] - pp[best][0] if pp else 0.0
+                d_faints = pp[best_n][1] - pp[best][1] if pp else 0.0
+                if best != best_n:
+                    win_regret[0] += d_loss
+                    win_regret[1] += d_faints
                 print(f"T{b.turn + 1} {b.p.cur().species} {b.p.cur().hp}/{b.p.cur().maxhp} against "
                       f"{b.b.cur().species} {b.b.cur().hp}/{b.b.cur().maxhp}: play-outs choose "
                       f"{_name(acts[best], b)}, the network {_name(acts[best_n], b)}"
-                      f"{'' if best == best_n else f'  (differs; gives up {lost:.2f})'}", file=log)
+                      f"{'' if best == best_n else f'  (differs; gives up {lost:.2f}, chance of losing {d_loss:+.3f}, faints {d_faints:+.2f})'}",
+                      file=log)
                 print("      " + ", ".join(f"{_name(a, b)} {q[i]:+.2f}/{qn[i]:+.2f}" for i, a in enumerate(acts)),
                       file=log)
+                if pp:
+                    print("      by play-outs (chance of losing, faints): " + ", ".join(
+                        f"{_name(a, b)} {pp[i][0]:.2f} {pp[i][1]:.2f}" for i, a in enumerate(acts)), file=log)
                 a = acts[best_n if drive == "network" else best]
             else:
                 a = acts[0]
@@ -1231,7 +1244,9 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     finally:
         _REAL.update(b=None, planner=None)
     print(f"{agree} of {total} decisions alike (values shown as play-outs/network); the network's choices "
-          f"give up {regret:.2f} in all by the play-outs' values, {regret / max(1, total):.3f} a decision", file=log)
+          f"give up {regret:.2f} in all by the play-outs' values, {regret / max(1, total):.3f} a decision; "
+          f"by Ian's order they add {win_regret[0]:+.3f} to the chance of losing and {win_regret[1]:+.2f} "
+          f"faints in all, by the play-outs' estimates", file=log)
     return agree, total, regret
 
 

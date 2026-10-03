@@ -1,0 +1,56 @@
+gardenia, seed 32, real odds; lead Vikavolt (lead values: Charmeleon -10.83, Popplio -10.83, Vikavolt -10.95, Vullaby -10.66, Golbat -10.83, Tsareena -10.53)
+T1 [Sun] Vikavolt: Bug Bite | Cherrim: Sunny Day -> you Vikavolt 79/79 | foe Cherrim 45/77
+      options: Bug Bite -10.95, Spark -11.15, Bite -11.32, Mud-Slap -11.41, switch to Charmeleon -13.19, switch to Popplio -11.50, switch to Vullaby -10.83, switch to Golbat -13.25, switch to Tsareena -10.83
+T2 [Sun] Vikavolt: switch to Charmeleon | Cherrim: Weather Ball -> you Charmeleon 37/70 | foe Cherrim 45/77
+      options: Bug Bite -14.60, Spark -14.59, Bite -14.60, Mud-Slap -14.61, switch to Charmeleon -12.11, switch to Popplio -12.98, switch to Vullaby -14.84, switch to Golbat -13.98, switch to Tsareena -12.34
+T3 [Sun] Charmeleon: Scary Face | Cherrim: Leech Seed -> you Charmeleon 29/70 | foe Cherrim 53/77 {'spe': -2}
+      options: Fire Fang -12.08, Ember -11.24, Scary Face -11.14, Smokescreen -11.48, switch to Popplio -13.95, switch to Vikavolt -14.87, switch to Vullaby -14.66, switch to Golbat -15.11, switch to Tsareena -13.86
+T4 [Sun] Charmeleon: Fire Fang | Cherrim: Weather Ball -> you Charmeleon 21/70 | foe Lumineon 77/77
+      options: Fire Fang -10.58, Ember -12.87, Scary Face -14.52, Smokescreen -13.14, switch to Popplio -12.52, switch to Vikavolt -15.45, switch to Vullaby -14.23, switch to Golbat -15.45, switch to Tsareena -14.12
+T5 [Sun] Charmeleon: switch to Popplio | Lumineon: Aqua Tail -> you Popplio 57/67 | foe Lumineon 77/77
+      options: Fire Fang -7.26, Ember -9.94, Scary Face -9.66, Smokescreen -10.33, switch to Popplio -5.35, switch to Vikavolt -7.97, switch to Vullaby -10.52, switch to Golbat -13.96, switch to Tsareena -8.54
+T6 [Sun] Popplio: Sing | Lumineon: Silver Wind -> you Popplio 38/67 | foe Lumineon 77/77 slp
+      options: Sing -4.91, Icy Wind -5.18, Disarming Voice -5.23, Aqua Jet -5.29, switch to Charmeleon -9.79, switch to Vikavolt -7.77, switch to Vullaby -9.43, switch to Golbat -13.61, switch to Tsareena -9.45
+T7 [Sun] Popplio: Disarming Voice | Lumineon: Silver Wind -> you Popplio 38/67 | foe Lumineon 70/77 slp
+      options: Icy Wind -4.62, Disarming Voice -4.61, Aqua Jet -4.81, switch to Charmeleon -8.01, switch to Vikavolt -5.37, switch to Vullaby -7.86, switch to Golbat -12.47, switch to Tsareena -8.32
+T8 [clear] Popplio: Icy Wind | Lumineon: switch to Roserade -> you Popplio 38/67 | foe Roserade 54/74 {'spe': -1}
+      options: Icy Wind -4.03, Disarming Voice -4.76, Aqua Jet -4.82, switch to Charmeleon -6.23, switch to Vikavolt -5.22, switch to Vullaby -6.71, switch to Golbat -8.71, switch to Tsareena -11.12
+T9 [clear] Popplio: switch to Vullaby | Roserade: Sludge Bomb -> you Vullaby 2/77 psn | foe Roserade 54/74 {'spe': -1}
+      options: Sing -4.61, Icy Wind -4.61, Disarming Voice -4.61, Aqua Jet -4.30, switch to Charmeleon -4.79, switch to Vikavolt -5.02, switch to Vullaby -3.48, switch to Golbat -4.48, switch to Tsareena -12.02
+T10 [clear] Vullaby: switch to Popplio | Roserade: Weather Ball -> you Popplio 17/67 | foe Roserade 54/74 {'spe': -1}
+      options: Pluck -5.42, Knock Off -5.23, Tailwind -6.47, Feint Attack -5.97, switch to Charmeleon -8.12, switch to Popplio -5.53, switch to Vikavolt -10.82, switch to Golbat -8.71, switch to Tsareena -13.84
+T11 [clear] Popplio: Aqua Jet | Roserade: Sludge Bomb -> you Charmeleon 21/70 | foe Roserade 48/74 {'spe': -1}
+      options: Sing -6.76, Icy Wind -6.76, Disarming Voice -6.76, Aqua Jet -5.88, switch to Charmeleon -7.52, switch to Vikavolt -11.01, switch to Vullaby -7.33, switch to Golbat -8.39, switch to Tsareena -13.75
+      replacement: Charmeleon -5.10, Vikavolt -6.96, Vullaby -5.81, Golbat -6.96, Tsareena -6.96
+T12 [clear] Charmeleon: Fire Fang | Roserade: Sludge Bomb -> you Charmeleon 21/70 | foe Lumineon 70/77 slp
+      options: Fire Fang -5.10, Ember -7.81, Scary Face -7.58, Smokescreen -6.95, switch to Vikavolt -11.87, switch to Vullaby -6.96, switch to Golbat -7.58, switch to Tsareena -13.64
+T13 [clear] Charmeleon: Scary Face | Lumineon: Aqua Tail -> you Vikavolt 79/79 | foe Lumineon 70/77 {'spe': -2}
+      options: Fire Fang -4.47, Ember -4.51, Scary Face -3.64, Smokescreen -4.27, switch to Vikavolt -4.74, switch to Vullaby -4.36, switch to Golbat -11.50, switch to Tsareena -3.26
+      replacement: Vikavolt -3.30, Vullaby -4.45, Golbat -4.07, Tsareena -4.11
+T14 [clear] Vikavolt: Spark | Lumineon: Swagger -> you Vikavolt 79/79 {'atk': 2} | foe Lumineon 34/77 {'spe': -2}
+      options: Bug Bite -3.40, Spark -3.30, Bite -3.82, Mud-Slap -3.66, switch to Vullaby -4.53, switch to Golbat -10.89, switch to Tsareena -7.29
+T15 [clear] Vikavolt: Spark | Lumineon: Natural Gift -> you Vikavolt 25/79 {'atk': 2} | foe Lumineon 34/77 {'spe': -2}
+      options: Bug Bite -3.42, Spark -3.40, Bite -3.54, Mud-Slap -3.52, switch to Vullaby -3.62, switch to Golbat -6.76, switch to Tsareena -5.17
+T16 [clear] Vikavolt: Spark | Lumineon: Aqua Tail -> you Vikavolt 25/79 {'atk': 2} | foe Shiftry 87/87
+      options: Bug Bite -6.39, Spark -5.81, Bite -6.83, Mud-Slap -7.68, switch to Vullaby -8.26, switch to Golbat -11.62, switch to Tsareena -9.21
+T17 [clear] Vikavolt: switch to Tsareena | Shiftry: Feint Attack -> you Tsareena 65/77 | foe Shiftry 87/87
+      options: Bug Bite -3.16, Spark -3.45, Bite -3.47, Mud-Slap -3.45, switch to Vullaby -3.40, switch to Golbat -6.72, switch to Tsareena -2.79
+T18 [clear] Tsareena: Magical Leaf | Shiftry: Natural Gift -> you Tsareena 35/77 | foe Shiftry 77/87
+      options: Stomp -2.60, Magical Leaf -2.47, Play Nice -2.72, Teeter Dance -2.71, switch to Vikavolt -3.70, switch to Vullaby -3.28, switch to Golbat -6.60
+T19 [clear] Tsareena: Magical Leaf | Shiftry: Feint Attack -> you Tsareena 24/77 | foe Shiftry 68/87
+      options: Stomp -2.73, Magical Leaf -2.60, Play Nice -2.72, Teeter Dance -2.67, switch to Vikavolt -3.99, switch to Vullaby -5.61, switch to Golbat -9.21
+T20 [clear] Tsareena: Teeter Dance | Shiftry: Feint Attack -> you Tsareena 12/77 | foe Shiftry 68/87
+      options: Stomp -2.80, Magical Leaf -2.75, Play Nice -2.88, Teeter Dance -2.67, switch to Vikavolt -3.79, switch to Vullaby -4.74, switch to Golbat -8.60
+T21 [clear] Tsareena: Play Nice | Shiftry: Feint Attack -> you Tsareena 4/77 | foe Shiftry 68/87 {'atk': -1}
+      options: Stomp -3.24, Magical Leaf -5.44, Play Nice -3.13, Teeter Dance -7.46, switch to Vikavolt -3.98, switch to Vullaby -5.04, switch to Golbat -9.70
+T22 [clear] Tsareena: switch to Vikavolt | Shiftry: Rock Tomb -> you Tsareena 4/77 | foe Shiftry 68/87 {'atk': -1}
+      options: Stomp -3.30, Magical Leaf -4.49, Play Nice -4.32, Teeter Dance -6.27, switch to Vikavolt -3.21, switch to Vullaby -4.09, switch to Golbat -10.18
+      replacement: Vullaby -4.94, Golbat -4.95, Tsareena -4.17
+T23 [clear] Tsareena: Stomp | Shiftry: Feint Attack -> you Golbat 78/78 | foe Shiftry 45/87 {'atk': -1}
+      options: Stomp -4.17, Magical Leaf -5.22, Play Nice -5.07, Teeter Dance -6.32, switch to Vullaby -4.95, switch to Golbat -9.60
+      replacement: Vullaby -5.23, Golbat -3.22
+T24 [clear] Golbat: Wing Attack | Shiftry: Rock Tomb -> you Golbat 78/78 | foe Breloom 72/72
+      options: Wing Attack -3.22, Bite -8.70, Confuse Ray -8.26, Supersonic -9.68, switch to Vullaby -5.23
+T25 [clear] Golbat: Wing Attack | Breloom: Rock Tomb -> you Golbat 78/78 | foe Breloom 0/72
+      options: Wing Attack -3.90, Bite -12.05, Confuse Ray -9.54, Supersonic -12.37, switch to Vullaby -4.12
+won; fainted: Popplio, Charmeleon, Vikavolt, Tsareena; 2.62 s
