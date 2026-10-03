@@ -22,7 +22,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from . import plnet
+from . import plfeat, plnet
 
 DATA = os.path.expanduser("~/oxide-trials/scorer-stage2/data-choices")
 SLOTS = 10
@@ -34,9 +34,40 @@ class PolicyNet(plnet.ValueNet):
         self.head = nn.Linear(plnet.TRUNK[1], SLOTS)
 
 
-def load(folder):
+class CompactNet(nn.Module):
+    """The compact stand-in: the field, the two active Pokemon (each through
+    one small layer, their ids through learned tables as the value network
+    reads them) and the matchup grid, one hidden layer, ten slot scores. A
+    play-out turn needs only plfeat.compact, a fraction of the whole
+    features' cost."""
+
+    def __init__(self, mon_dim=64, hidden=128):
+        super().__init__()
+        self.types = nn.Embedding(len(plfeat.TYPES) + 1, plnet.TYPE_DIM)
+        self.names = nn.Embedding(plfeat.NAME_IDS, plnet.NAME_DIM)
+        self.effects = nn.Embedding(plfeat.EFFECT_IDS, plnet.EFFECT_DIM)
+        mon_in = (plfeat.MON_FLOATS + 2 * plnet.TYPE_DIM + 2 * plnet.NAME_DIM
+                  + plfeat.MOVES * (plnet.TYPE_DIM + plnet.EFFECT_DIM))
+        self.mon1 = nn.Linear(mon_in, mon_dim)
+        self.t1 = nn.Linear(plfeat.FIELD_FLOATS + 2 * mon_dim + plfeat.PAIR_FLOATS, hidden)
+        self.head = nn.Linear(hidden, SLOTS)
+
+    def forward(self, x, ids):
+        n = x.shape[0]
+        fe, mf = plfeat.FIELD_FLOATS, plfeat.MON_FLOATS
+        field, mons, pairs = x[:, :fe], x[:, fe:fe + 2 * mf].reshape(n, 2, mf), x[:, fe + 2 * mf:]
+        ids = ids.reshape(n, 2, plfeat.MON_IDS).long()
+        emb = [self.types(ids[:, :, 0:2]).flatten(2), self.names(ids[:, :, 2:4]).flatten(2),
+               self.types(ids[:, :, 4::2]).flatten(2), self.effects(ids[:, :, 5::2]).flatten(2)]
+        m = F.relu(self.mon1(torch.cat([mons] + emb, dim=2)))
+        h = F.relu(self.t1(torch.cat([field, m.flatten(1), pairs], dim=1)))
+        return self.head(h)
+
+
+def load(folder, compact=False):
     """(train, validation) tensors from the choice shards, every tenth shard
-    kept for validation."""
+    kept for validation; with `compact`, only the compact stand-in's part of
+    each position (plfeat.compact_of)."""
     paths = sorted(glob.glob(os.path.join(folder, "*.npz")))
     parts = {"train": [], "val": []}
     for i, p in enumerate(paths):
@@ -46,7 +77,10 @@ def load(folder):
 
     def cat(group):
         arrays = [np.load(p) for p in group]
-        return {k: torch.from_numpy(np.concatenate([a[k] for a in arrays])) for k in ("x", "ids", "legal", "chosen")}
+        out = {k: np.concatenate([a[k] for a in arrays]) for k in ("x", "ids", "legal", "chosen")}
+        if compact:
+            out["x"], out["ids"] = plfeat.compact_of(out["x"], out["ids"])
+        return {k: torch.from_numpy(np.ascontiguousarray(v)) for k, v in out.items()}
     return cat(parts["train"]), cat(parts["val"])
 
 
@@ -76,13 +110,14 @@ def main(argv=None):
     ap.add_argument("--batch", type=int, default=1024)
     ap.add_argument("--lr", type=float, default=5e-4)
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--compact", action="store_true", help="the compact stand-in (CompactNet)")
     args = ap.parse_args(argv)
     torch.manual_seed(args.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    train, val = load(args.data)
+    train, val = load(args.data, args.compact)
     print(f"{train['chosen'].shape[0]} training and {val['chosen'].shape[0]} held-out decisions", flush=True)
-    net = PolicyNet().to(device)
-    if args.start:
+    net = (CompactNet() if args.compact else PolicyNet()).to(device)
+    if args.start and not args.compact:
         body = torch.load(os.path.join(plnet.MODELS, args.start + ".pt"), map_location=device)
         net.load_state_dict({k: v for k, v in body.items() if not k.startswith("head.")}, strict=False)
     # How often a uniform pick among the legal options would agree, as a floor.
@@ -113,7 +148,8 @@ def main(argv=None):
     plnet.export(net, os.path.join(plnet.MODELS, args.name + ".npz"))
     acc = agreement(net, val, device)
     with open(os.path.join(plnet.MODELS, args.name + ".json"), "w") as fh:
-        json.dump({"name": args.name, "kind": "policy", "slots": SLOTS, "agreement": acc, "floor": floor,
+        json.dump({"name": args.name, "kind": "compact" if args.compact else "policy", "slots": SLOTS,
+                   "agreement": acc, "floor": floor,
                    "train_decisions": int(train["chosen"].shape[0]), "from": args.start}, fh, indent=1)
     # The planner reads the exported arrays with numpy (plvalue.Policy).
     from . import plvalue

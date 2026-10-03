@@ -68,8 +68,25 @@ class Policy:
         self.w = {k: w[k].astype(np.float32) for k in w.files}
         self.name = name
 
+        self.compact = self.meta.get("kind") == "compact"
+
     def logits(self, x, ids):
-        return hidden(self.w, x, ids) @ self.w["head.weight"].T + self.w["head.bias"]
+        """Slot scores for n positions: whole features, or for a compact
+        stand-in (plpolicy.CompactNet) its compact features."""
+        if not self.compact:
+            return hidden(self.w, x, ids) @ self.w["head.weight"].T + self.w["head.bias"]
+        w = self.w
+        x = np.asarray(x, dtype=np.float16).astype(np.float32)
+        n = x.shape[0]
+        fe, mf = plfeat.FIELD_FLOATS, plfeat.MON_FLOATS
+        field, mons, pairs = x[:, :fe], x[:, fe:fe + 2 * mf].reshape(n, 2, mf), x[:, fe + 2 * mf:]
+        ids = np.asarray(ids).reshape(n, 2, plfeat.MON_IDS).astype(np.int64)
+        types, names, effects = w["types.weight"], w["names.weight"], w["effects.weight"]
+        emb = [types[ids[:, :, 0:2]].reshape(n, 2, -1), names[ids[:, :, 2:4]].reshape(n, 2, -1),
+               types[ids[:, :, 4::2]].reshape(n, 2, -1), effects[ids[:, :, 5::2]].reshape(n, 2, -1)]
+        m = _relu(np.concatenate([mons] + emb, axis=2) @ w["mon1.weight"].T + w["mon1.bias"])
+        h = _relu(np.concatenate([field, m.reshape(n, -1), pairs], axis=1) @ w["t1.weight"].T + w["t1.bias"])
+        return h @ w["head.weight"].T + w["head.bias"]
 
 
 def hidden(w, x, ids):

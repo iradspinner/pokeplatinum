@@ -201,6 +201,61 @@ def features(b, fight):
     return f, i
 
 
+# The learned stand-in player reads a compact part of the features, enough to
+# choose a turn's option: the field, the two active Pokemon and the matchup
+# grid (every player Pokemon against every trainer Pokemon). These are the
+# columns of `features` it takes, so it trains on positions stored whole.
+ACTIVE_ME = slice(FIELD_FLOATS, FIELD_FLOATS + MON_FLOATS)
+ACTIVE_FOE = slice(FIELD_FLOATS + 6 * MON_FLOATS, FIELD_FLOATS + 7 * MON_FLOATS)
+PAIRS = slice(FIELD_FLOATS + SLOTS * MON_FLOATS, FLOATS)
+COMPACT_FLOATS = FIELD_FLOATS + 2 * MON_FLOATS + PAIR_FLOATS
+COMPACT_IDS = 2 * MON_IDS
+
+
+def compact_of(x, ids):
+    """The compact part of whole features (arrays of one position or many)."""
+    x = np.asarray(x)
+    ids = np.asarray(ids)
+    f = np.concatenate([x[..., :FIELD_FLOATS], x[..., ACTIVE_ME], x[..., ACTIVE_FOE], x[..., PAIRS]], axis=-1)
+    i = np.concatenate([ids[..., :MON_IDS], ids[..., 6 * MON_IDS:7 * MON_IDS]], axis=-1)
+    return f, i
+
+
+def compact(b, fight):
+    """The compact features of a position, computed directly: the same
+    numbers as compact_of(features(b, fight)) at a fraction of the cost."""
+    out, ids = [], []
+    out += [float(b.weather == w) for w in WEATHERS] + [(b.weather_turns or 0) / 8]
+    out += [float(b.trick_room > 0), min(b.trick_room, 5) / 5 if b.trick_room < 999 else 1.0]
+    for s in (b.p, b.b):
+        out += [s.screens["Reflect"] / 5, s.screens["Light Screen"] / 5, s.tailwind / 4, s.safeguard / 5]
+    for s in (b.p, b.b):
+        out += [float(bool(s.hazards["rocks"])), s.hazards["spikes"] / 3, s.hazards["tspikes"] / 2]
+    out += [min(b.turn, 100) / 50, len(b.p.alive()) / 6, len(b.b.alive()) / 6]
+    mons = slots(b)
+    _mon(mons[0], True, out, ids)
+    _mon(mons[6], True, out, ids)
+    dmg, speed = fight.table(b.weather)
+    me, foe = b.p.cur(), b.b.cur()
+    for m in mons[:6]:
+        for t in mons[6:]:
+            if m is None or t is None:
+                out.extend([0.0] * 5)
+                continue
+            if m is me and t is foe:
+                mine = max((fs.exp_damage(b, me, foe, mv) for mv in me.moves if mv.damaging()), default=0.0) / foe.maxhp
+                theirs = max((fs.exp_damage(b, foe, me, mv) for mv in foe.moves if mv.damaging()), default=0.0) / me.maxhp
+                sm, sf = b.speed(me), b.speed(foe)
+            else:
+                mine, theirs = dmg.get((m.key, t.key), 0.0), dmg.get((t.key, m.key), 0.0)
+                sm, sf = speed.get(m.key, 1), speed.get(t.key, 1)
+            if b.trick_room:
+                sm, sf = -sm, -sf
+            out += [mine, theirs, _turns(t.hp / t.maxhp, mine), _turns(m.hp / m.maxhp, theirs),
+                    float(sm > sf) - float(sm < sf)]
+    return np.asarray(out, dtype=np.float32), np.asarray(ids, dtype=np.int16)
+
+
 def _turns(left, per_turn):
     """Turns to take a HP share `left` at `per_turn` a turn, out of 8 (1.0 for
     never or eight or more)."""

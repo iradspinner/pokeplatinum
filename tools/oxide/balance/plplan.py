@@ -987,7 +987,7 @@ class Planner:
         acts = options(c)
         if len(acts) == 1:
             return acts[0]
-        x, ids = plfeat.features(c, self.tables(c))
+        x, ids = (plfeat.compact if pol.compact else plfeat.features)(c, self.tables(c))
         scores = pol.logits(x[None], ids[None])[0]
         return max(acts, key=lambda a: scores[option_slot(c, a)])
 
