@@ -61,17 +61,19 @@ about a fortieth of the cost. **Goal 1 is passed** (Ian, 2026-10-02, "close
 enough, pass"): the average of three networks (d1b+d2+d3) reads Roark at
 97.7% clean, 100% won, 0.025 faints over 2,000 fights, against our line's
 98.5%, 100%, 0.015 ("The network planner's Roark, for Ian's check"). It also
-meets the Mars 1 bar; at Gardenia it wins more often than our line but almost
-never cleanly. Goal 2 has begun: the rival fights of Roark's split are read
-(Barry 1, ruled not to count, cannot be won with a Piplup), and the box
-through Fantina waits on Ian's choices from the mechanical roll. A network
-judges easy trainers it never saw nearly as well as play-outs, but not a
-held-out boss or Ace Trainer, so each of goal 3's roughly 110 fights needs
-labels of its own; the cheapest recipe measured costs about 1.7 core-hours a
-fight ("The cost of labelling every boss"). Next: Ian's ruling that a fight
-ranks by its win rate first and its average faints second, the clean rate
-reported but not optimised, goes into the planner's choice in place of the
-loss weight of ten. Every reading is 75 fights at real odds and 25 very
+meets the Mars 1 bar, and Ian passed its Gardenia line as good enough for
+now. The planner ranks its options by Ian's order, wins first and faints
+second ("Wins first, then faints"). Goal 2 has begun: the rival fights of
+Roark's split are read (Barry 1 is ruled not to count), and goal 2's boxes
+are built from Ian's accepted choices. A network judges easy trainers it
+never saw nearly as well as play-outs, but not a held-out boss or Ace
+Trainer, so goal 3's fights each need labels of their own ("The cost of
+labelling every boss"). For bosses the scorer now chooses its own six: the
+team search is built, and its first test found sixes as good as ours or
+better at Mars 1 and Gardenia but fell short at Roark ("The team search's
+first test"); with its two fixes, Roark runs again. The learned stand-in
+player's data is being recorded on idle cores. Goal 2's readings wait for
+the team search. Every reading is 75 fights at real odds and 25 very
 unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
@@ -1362,6 +1364,66 @@ labels across ten sixes already; Mars 1 at 19 needs its own. A miss at Mars
 plans. **Building it** is the screen (the largest piece), the race with
 member ratings, and the loop; the first test runs on what is there.
 
+## The team search's first test (2026-10-02)
+
+The search is built (`plteam.py`, with its test runner `plteam_test.py`) and
+ran once on each of the hand run's boxes. At Gardenia it found a six that
+reads better than ours, and at Mars 1 one that reads about as well, but at
+Roark it chose a six that reads worse than ours, because its networks misread
+every six unlike the ones they were trained on. Two fixes follow, and Roark
+runs again.
+
+Each fight's box is the run's box at that fight, every member with its whole
+move pool by the capture rule. The screen picks each member's four moves
+against the fight, so the search's sixes and ours carry the screen's moves,
+not the hand line's. The labels were a tenth of a round at budget 64 over the
+screen's top ten sixes; the networks were trained from scratch on every
+earlier label except that fight's, plus the new ones. The play-out planner
+then read the race's winner on 25 fights.
+
+| Fight | The search's winner | Network, 75 real | Play-outs, 25 | Our six by play-outs | Minutes |
+|---|---|---|---|---|---|
+| Roark | Prinplup, Krabby, Nidorino, Onix, Charmander, Geodude | 100% won, 0.00 faints | 100% won, 0.60 faints, 40% clean | 100% won, 0.07 faints, 93% clean | 20 |
+| Mars 1 at 19 | Prinplup, Vullaby, Finneon, Nidorino, Onix, Geodude | 100% won, 0.20 faints | 96% won, 0.28 faints, 92% clean | the bar: 99.8% won, 0.42 faints | 44 |
+| Gardenia | Dubwool, Bibarel, Corvisquire, Wartortle, Tsareena, Golbat | 89% won, 2.01 faints | 100% won, 1.52 faints, 16% clean | 92% won, 2.79 faints | 18 |
+
+Our six by play-outs is the play-out planner's reading of 75 fights with the
+hand line's moves; at Mars 1 at 19 the bar is our line adjusted. The minutes
+are wall time on ten workers.
+
+**Roark.** The networks read our six (with the screen's moves) at 52% won and
+3.5 faints, and every one of the three finalists at 100% won. The play-outs
+read the winner at 0.60 faints against our six's 0.07. The cause is the
+labels: the screen's top ten sixes all share Onix and Geodude, and eight of
+them each carry Nidorino and Charmander, so the networks learned that core's
+fights well and had few labels from sixes without it. Our six (Prinplup, Barboach, Nidorino,
+Onix, Steenee, Geodude) ranked 162nd of 8,008 in the screen.
+
+**Mars 1 at 19.** The screen ranked our six 1,831st of 38,760, which confirms
+that it undervalues the PP stall our line wins by: it counts hits, and a stall
+wins on turns. The race recovered: Vullaby, the stall's centre, ended with the
+highest member weight, and the winner keeps Vullaby, Nidorino, Onix and
+Geodude from our six. Its faints fell mostly to Purugly (10 of 25 fights).
+
+**Gardenia.** The network read the winner at 89% won, the play-outs at 100%,
+so here it was too harsh. The winner beats our six by play-outs on both
+numbers (100% won against 92%, 1.52 faints against 2.79); its faints fell to
+Roserade and Cherrim. Our six ranked 1,644th of 100,947 in the screen.
+
+**The fixes.** The network erred both ways, too kind at Roark and too harsh at
+Gardenia, so its race is a shortlist and not a verdict.
+
+1. The labels now come from the screen's top five sixes and five sixes drawn
+   at random from the box, so the networks have seen fights unlike the
+   screen's favourite core.
+2. The play-out planner reads every finalist and our six on 25 fights as a
+   standard step, not only when the recipe fails, and the winner is the
+   finalist it ranks best by wins and then faints.
+
+The second adds about three finalist readings of 25 fights each, some 4
+core-hours per boss and box, which goal 3's totals must carry. The rerun at
+Roark tests both.
+
 ## The cost of labelling every boss (2026-10-02)
 
 The Overseer counted about 110 fights in goal 3 that need labelled positions
@@ -1456,7 +1518,18 @@ The old labels keep the network playing the old fight, and adding them to new
 ones helps nothing. A changed fight needs new labels, at the same cost as a
 new one.
 
-**The estimate for goal 3.** With the recipe that matched the full rounds at
+**6. The recipe failed its two checks.** At Gardenia, one spread round after
+the tenth gave 334 won of 500 and two gave 299, against 429 for the full
+rounds. At Mars 1 at its new cap of 19, the tenth of a round alone read our
+six at 49 clean of 75, every fight won, 0.44 faints, close to the bar (67.1%
+clean, 99.8% won, 0.42 faints); after one spread round it read 33 clean, 73
+won, 0.80 faints (and 271 clean, 481 won, 0.75 faints over 500). The spread
+round helped only at Mars 1 at its old level. The team search therefore
+labels with the play-out planner alone, a tenth of a round across ten sixes,
+and checks its finalists with play-outs ("The team search's first test").
+
+**The estimate for goal 3, now replaced** by the team search's costs, which
+the rerun at Roark revises. With the recipe that matched the full rounds at
 Mars 1, a tenth of a round by the play-out planner and one spread round from
 the network's own play, a fight costs about 1.7 core-hours of labelling.
 For about 110 fights that is about 185 core-hours, some 6 to 7 hours on 29
