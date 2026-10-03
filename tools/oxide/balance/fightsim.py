@@ -263,6 +263,8 @@ class Mon:
         self.revealed = None
         self.flash_fire = False          # lit by a Fire move it took
         self.aqua_ring = False           # a sixteenth back at each turn's end
+        self.magnet_rise = 0             # Magnet Rise's turns left: Ground moves fail on it
+        self.tormented = False           # Torment: it cannot pick the move it used last
 
     def alive(self):
         return self.hp > 0
@@ -716,7 +718,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
             return could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and b.rng.random() < 0.25:
         return could_not_act(b, att, mv, dfn, targets)
-    if att.taunt and mv.cat == "Status":
+    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -785,6 +787,8 @@ def attack(b, att, mv, dfn, first):
     if dfn.charging is not None and dfn.charging.effect in INVULNERABLE:
         return
     if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
+        return
+    if lifted(dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":        # Sucker Punch
         nxt = getattr(dfn, "chosen", None)
@@ -924,10 +928,52 @@ def sleep_talk_pick(b, att):
     return rng.choice(picks) if rng is not None else picks[0]
 
 
+def magnet_rise(att):
+    """Magnet Rise (effect script 252): five turns in which Ground moves fail
+    on its user, counted down at each turn's end and cleared by a switch. It
+    fails while one is running, on a Levitate user, and on one rooted by
+    Ingrain (Oxide adds Smack Down, which the simulator does not model)."""
+    if not att.magnet_rise and att.ability != "Levitate" and not att.ingrained:
+        att.magnet_rise = 5
+
+
+def tormented_out(mon, mv):
+    """Whether Torment rules this move out: a tormented Pokemon cannot pick
+    the move it used last (BattleSystem_CheckInvalidMoves'
+    CHECK_INVALID_TORMENTED), which a switch or a turn it could not act
+    clears."""
+    return mon.tormented and mon.last is not None and mon.last.name == mv.name
+
+
+def pain_split(b, att, dfn):
+    """Pain Split (subscript_pain_split): both Pokemon's HP become half
+    their sum, each capped at its maximum (a berry fires on the drop as on
+    any other); it fails on a Substitute."""
+    if dfn.sub:
+        return
+    avg = (att.hp + dfn.hp) // 2
+    for m in (att, dfn):
+        if avg < m.hp:
+            hurt(b, m, m.hp - avg)
+        else:
+            heal(m, avg - m.hp)
+
+
+def lifted(dfn, mv):
+    """Whether Magnet Rise makes this Ground move fail on dfn (the type
+    check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
+    holding an Iron Ball, and never for Thousand Arrows."""
+    return (mv.type == "Ground" and dfn.magnet_rise and not dfn.ingrained and dfn.item != "Iron Ball"
+            and mv.name != "Thousand Arrows")
+
+
 def status_move(b, att, mv, dfn, first):
     e = mv.effect
     if e == "RESTORE_HP_EVERY_TURN":
         att.aqua_ring = True             # Aqua Ring
+        return
+    if e == "GIVE_GROUND_IMMUNITY":
+        magnet_rise(att)
         return
     foe_side = b.p if dfn.side == "p" else b.b
     own_side = b.p if att.side == "p" else b.b
@@ -1034,6 +1080,10 @@ def status_move(b, att, mv, dfn, first):
     elif e == "TAUNT":
         if not dfn.taunt:
             dfn.taunt = b.rng.randint(3, 5)
+    elif e == "TORMENT":
+        dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "AVERAGE_HP":
+        pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
         if bench and not getattr(dfn, "ingrained", False):
@@ -1130,6 +1180,8 @@ def _end_of_turn_mon(b, side, m):
             heal(m, m.maxhp // 16)
         if m.aqua_ring:
             heal(m, m.maxhp // 16)
+        if m.magnet_rise:
+            m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
         if m.status in ("brn", "psn") and m.ability != "Magic Guard":
             hurt(b, m, m.maxhp // 8)
         if m.status == "tox" and m.ability != "Magic Guard":
@@ -1474,7 +1526,7 @@ def safe_attack(b, me, foe):
     """The player's best attack, leaving out any that could faint the user
     while one that cannot still does damage."""
     usable = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
-              and (not me.choice or m.name == me.choice)]
+              and (not me.choice or m.name == me.choice) and not tormented_out(me, m)]
     safe = [m for m in usable if not self_risk(b, me, foe, m)]
     pick = safe if any(exp_damage(b, me, foe, m) > 0 for m in safe) else usable
     if not pick:

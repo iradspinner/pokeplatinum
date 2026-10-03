@@ -80,6 +80,81 @@ def first_battle_checks():
              max(with_mark) < max(without), f"top {max(with_mark)} with the mark, {max(without)} without")]
 
 
+def magnet_rise_checks():
+    """Magnet Rise (effect script 252, found missing on 2026-10-03, when a
+    Magnitude knocked out a risen Jolteon in Lucas and Dawn 2's line): its
+    user takes nothing from Ground moves through five turn ends, a switch
+    clears it, and Ingrain stops it. Roark's lead rises; Barboach answers
+    with Mud Bomb."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.mons[0]
+    rise = fs.move("Magnet Rise")
+    before = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    pl.status_move(b, foe, rise, barboach, True)
+    risen = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    risen_fs = _hits(b, fs.attack, barboach, "Mud Bomb", foe, tries=5)
+    for _ in range(4):
+        fs.end_of_turn(b)
+    foe.hp = foe.maxhp
+    four = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    fs.end_of_turn(b)
+    foe.hp = foe.maxhp
+    five = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    pl.status_move(b, foe, rise, barboach, True)
+    fs.switch_in(b, b.b, 1)
+    fs.switch_in(b, b.b, 0)
+    cleared = b.b.cur().magnet_rise
+    foe = b.b.cur()
+    foe.ingrained = True
+    pl.status_move(b, foe, rise, barboach, True)
+    rooted = foe.magnet_rise
+    return [("Magnet Rise: Ground moves do nothing to its user, in both simulators",
+             max(before) > 0 and max(risen) == 0 and max(risen_fs) == 0,
+             f"Mud Bomb {max(before)} before, {max(risen)} and {max(risen_fs)} after"),
+            ("Magnet Rise lasts through four turn ends and is gone after the fifth",
+             max(four) == 0 and max(five) > 0, f"after four {max(four)}, after five {max(five)}"),
+            ("a switch clears Magnet Rise, and Ingrain stops it", cleared == 0 and rooted == 0,
+             f"after a switch {cleared}, rooted {rooted}")]
+
+
+def torment_and_pain_split_checks():
+    """Torment and Pain Split (found doing nothing on 2026-10-03, in Lucas
+    and Dawn 2's Monferno and Fantina's Rotom): a tormented Pokemon cannot
+    pick the move it used last, in the player's options or the trainer's
+    AI, until a switch; Pain Split sets both Pokemon's HP to half their sum,
+    and fails on a Substitute."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.moves = [fs.move("Mud Bomb"), fs.move("Water Gun")]
+    barboach.pp = {"Mud Bomb": 10, "Water Gun": 10}
+    pl.status_move(b, foe, fs.move("Torment"), barboach, True)
+    barboach.last = barboach.moves[0]
+    from . import plplan
+    names = [a[1].name for a in plplan.options(b) if a[0] == "move"]
+    foe_moves = list(foe.moves)
+    foe.tormented, foe.last = True, foe_moves[0]
+    ai_out = fightai.invalid(b, foe, foe_moves[0])
+    fs.switch_in(b, b.p, 1)
+    fs.switch_in(b, b.p, 0)
+    cleared = b.p.cur().tormented
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.hp, foe.hp = barboach.maxhp, 4
+    pl.status_move(b, foe, fs.move("Pain Split"), barboach, True)
+    avg = (barboach.maxhp + 4) // 2
+    split = (barboach.hp, foe.hp)
+    b2 = battle()
+    foe2, mon2 = b2.b.cur(), b2.p.cur()
+    mon2.sub, foe2.hp = 10, 4
+    fs.pain_split(b2, foe2, mon2)
+    return [("Torment: the move used last is no option, for the player or the trainer's AI, until a switch",
+             names == ["Water Gun"] and ai_out and not cleared, f"options {names}, AI rules it out {ai_out}, "
+             f"after a switch {cleared}"),
+            ("Pain Split: both HP become half their sum (capped), and it fails on a Substitute",
+             split == (avg, min(foe.maxhp, avg)) and foe2.hp == 4,
+             f"{split} against {avg}; through a Substitute the user stays at {foe2.hp}")]
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -517,6 +592,8 @@ def main():
     results += sleep_checks()
     results += sleep_talk_and_aqua_ring_checks()
     results += first_battle_checks()
+    results += magnet_rise_checks()
+    results += torment_and_pain_split_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

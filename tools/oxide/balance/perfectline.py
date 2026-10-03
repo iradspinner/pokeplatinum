@@ -340,7 +340,7 @@ def use_move(b, att, mv, dfn, first):
             return fs.could_not_act(b, att, mv, dfn)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25, "paralysis")):
         return fs.could_not_act(b, att, mv, dfn)
-    if att.taunt and mv.cat == "Status":
+    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -394,6 +394,8 @@ def attack(b, att, mv, dfn, first):
     if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE:
         return
     if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
+        return
+    if fs.lifted(dfn, mv):
         return
     if mv.effect == "HIT_FIRST_IF_TARGET_ATTACKING":
         nxt = getattr(dfn, "chosen", None)
@@ -606,6 +608,9 @@ def status_move(b, att, mv, dfn, first):
     if e == "RESTORE_HP_EVERY_TURN":
         att.aqua_ring = True             # Aqua Ring (fightsim heals it at the turn's end)
         return
+    if e == "GIVE_GROUND_IMMUNITY":
+        fs.magnet_rise(att)              # Magnet Rise (fightsim counts it down at the turn's end)
+        return
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -728,6 +733,10 @@ def status_move(b, att, mv, dfn, first):
     elif e == "TAUNT":
         if not dfn.taunt:
             dfn.taunt = b.dice.taunt(dfn.side)
+    elif e == "TORMENT":
+        dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "AVERAGE_HP":
+        fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
         bench = foe_side.bench()
         if bench and not getattr(dfn, "ingrained", False):
@@ -787,7 +796,7 @@ def mon_key(m):
             (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
-            m.enduring, m.protecting, m.ability)
+            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None)
 
 
 def side_key(s):
@@ -964,7 +973,7 @@ def player_actions(b):
     saved, b.rng = b.rng, b.rng if getattr(b, "rng", None) is not None else random.Random(0)
     try:
         for mv in me.moves:
-            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue

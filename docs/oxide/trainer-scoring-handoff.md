@@ -446,11 +446,13 @@ used when it is strongest, mostly in sun. The Golbat and Roserade finale
 alone is unchanged (279 of 300 at full HP); Golbat now reaches it hurt more
 often.
 
-Left open, none changing a pick in a fight Oxide has now: the AI partners
+Left open, none changing a pick in the three gyms: the AI partners
 beside the player and the switch rules in double battles were not ported;
 Me First and Copycat need calculator rows of a Pokemon on itself; Judgment's
-plate, Gravity, Magnet Rise, Foresight, Embargo and genders are not
-simulated, so the routines reading them stay off; in the strict search a
+plate, Gravity, Foresight, Embargo and genders are not simulated, so the
+routines reading them stay off (Magnet Rise, Torment and Pain Split were
+simulated on 2026-10-03, when goal 2's fights met them: "Moves the
+simulator ignored", below); in the strict search a
 trainer's Quick Claw is still a luck event its AI does not foresee, and
 Sleep Talk calls the first eligible move; the damage model counts a
 two-to-five-hit move as three hits.
@@ -1631,6 +1633,52 @@ core-hours to about 630 before the Ace Trainers, some 22 hours on 29
 workers, or about 450 with one label set per boss (lever 1). It changes how
 the scorer reads a fight, so it waits on Ian's word; goal 2's readings run
 at 192 meanwhile.
+
+## Moves the simulator ignored (2026-10-03)
+
+Lucas and Dawn 2's first winning line showed Whiscash's Magnitude knocking
+out a Jolteon that had used Magnet Rise four turns running: the simulator
+had no Magnet Rise, so the move did nothing and the AI, seeing no rise,
+chose it again. A sweep of every trainer move in the 33 story fights for
+effects the simulator never names found the rest. Those that do nothing in
+a fight read so far, now simulated as the engine has them, each with a check
+in `test_plfixes` (50 of 50 pass):
+
+- Magnet Rise (Lucas and Dawn 2's Jolteon): five turn ends in which Ground
+  moves fail on the user, cleared by a switch, failing while active, on a
+  Levitate user or under Ingrain (effect script 252, and the type check's
+  `MOVE_STATUS_MAGNET_RISE`).
+- Torment (Lucas and Dawn 2's Monferno): the target cannot pick the move it
+  used last until it switches, in the player's options, the play-out
+  policy and the trainer's AI alike (`CHECK_INVALID_TORMENTED`).
+- Pain Split (Fantina's Rotom): both Pokemon's HP become half their sum,
+  failing on a Substitute (`subscript_pain_split`).
+
+These make the trainers stronger, so Lucas and Dawn 2 and Fantina are read
+again on the fixed simulator; the earlier Lucas and Dawn 2 reading is kept
+as `team/lucas_dawn_2-oldsim`.
+
+Still not simulated: **Attract and Cute Charm** (Jupiter 1's Delcatty uses
+Attract, three times in the first winning line, to no effect), which need
+genders the simulator does not have, and, in fights not yet read, **Destiny
+Bond** (2 fights; one of the forced trades Ian's design rules allow a boss),
+**Wish**, **Spite**, **Recycle** and **Camouflage**. Destiny Bond and the
+others are rules with no choice in them and go in before goal 3. Attract
+needs one choice first, the player's genders (below). The damage model
+still counts a two-to-five-hit move as three hits, and Baton Pass passes
+nothing.
+
+**For Ian: the player's genders.** Attract and Cute Charm work only between
+Pokemon of opposite genders. A trainer's Pokemon have fixed genders in the
+game: each member's personality, which carries its gender, is built from
+its IV scale, level and species, the trainer's ID and class, and its
+ability field, and Oxide's trainer files may name a gender outright
+(`TrainerMon_Personality` in `src/trainer_data.c`), so those can be
+computed. The box's
+genders are not in goal 2's records. The proposal: roll each box member's
+gender once from a fixed seed by its species' ratio, as the box's natures
+were rolled, and keep it in the box's records. Jupiter 1 is read again once
+that is settled.
 
 ## The cost of labelling every boss (2026-10-02)
 
