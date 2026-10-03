@@ -20,9 +20,13 @@ search: plan and costs").
    full sixes race by halving, which settles pairs that work only together.
 4. Finalists: two or three sixes, 75 fights at real odds and 25 very unlucky.
 5. The play-out check: the play-out planner reads every finalist on 25
-   fights, and the winner is the one it ranks best by Ian's order. The
-   network erred both ways in the first test (too kind at Roark, too harsh
-   at Gardenia), so its race gives a shortlist, not a verdict.
+   fights, and the best by Ian's order goes on. The network erred both
+   ways in the first test (too kind at Roark, too harsh at Gardenia), so
+   its race gives a shortlist, not a verdict.
+6. The loop (improve): the enemies that caused the best six's faints pick
+   the members that answer them by the screen's margins, sixes built from
+   those are read on the same check, and the best is kept, up to three
+   rounds.
 
 search() runs all five on one box; plteam_test (the hand run's boxes) and
 plgoal2 (goal 2's fights) call it.
@@ -442,6 +446,48 @@ def ian_order(n):
     return (round(n["won"], 3), -n["faints"])
 
 
+def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, rounds=3, log=print):
+    """Ian's diagnose-and-loop, read by the play-outs: the enemies the best
+    six's faints fell to, weighted by how many, pick the box members whose
+    screen margins answer them best; two candidates built from those (the
+    six that answers them best, and the best six with its two weakest
+    answerers swapped for the two strongest it lacks) are read on the same
+    play-out check (`po`, a Tally), and the best by Ian's order is kept.
+    Up to `rounds` rounds, stopping when no candidate beats the best or no
+    faint is left to diagnose. Built after Fantina, where the race, run on
+    a network that read the finalists at 40% won against the play-outs' 92
+    to 96%, kept a core whose margins against Mismagius, Rotom and Sableye
+    were among the box's worst, and two sixes built this way won every
+    fight with 2.8 faints against the winner's 96% and 4.2. Returns the
+    best six (a tuple of keys)."""
+    names = {k: st["pokemon"][k]["species"] for k in keys}
+    foes = [st["pokemon"][k]["species"] for k in boss_keys]
+    for r in range(rounds):
+        lost = dict(losing_enemies(po.rows[tuple(best)]))
+        if not lost:
+            break
+        weight = [lost.get(f, 0) for f in foes]
+        answer = {k: sum(weight[j] * M[i][j] for j in range(len(foes))) for i, k in enumerate(keys)}
+        ranked = sorted(keys, key=lambda k: -answer[k])
+        weakest = sorted(best, key=lambda k: answer[k])[:2]
+        incoming = [k for k in ranked if k not in best][:2]
+        cands = [tuple(sorted(ranked[:6], key=keys.index)),
+                 tuple(sorted([k for k in best if k not in weakest] + incoming, key=keys.index))]
+        cands = [c for c in dict.fromkeys(cands) if c not in po.rows]
+        if not cands:
+            break
+        read(st, boss_keys, flags, cands, check, {}, procs=procs, seed0=77, tally=po)
+        for c in cands:
+            n = po.numbers(c)
+            log(f"  loop {r + 1}: {', '.join(names[k] for k in c)}: {n['won']:.1%} won, {n['faints']:.3f} faints, "
+                f"{n['clean']:.1%} clean")
+        new = max([tuple(best)] + cands, key=lambda t: ian_order(po.numbers(t)))
+        if new == tuple(best):
+            break
+        best = new
+    return tuple(best)
+
+
 # ---- the whole search on one box ----------------------------------------------------------------------
 
 def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25):
@@ -537,9 +583,12 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
             f"{ours_po['clean']:.1%} clean")
     log(f"play-out check in {time.time() - t1:.0f} s")
     best = max(results, key=lambda r: ian_order(po.numbers(r[0])))
-    win = list(best[0])
-    log(f"winner by the play-outs: {', '.join(names[k] for k in win)}; its faints fell to: "
-        + str(losing_enemies(po.rows[tuple(win)])[:4]))
+    log(f"best finalist by the play-outs: {', '.join(names[k] for k in best[0])}; its faints fell to: "
+        + str(losing_enemies(po.rows[tuple(best[0])])[:4]))
+    t1 = time.time()
+    win = list(improve(st, keys, boss_keys, flags, M, best[0], po, check, procs, log=log))
+    log(f"winner by the play-outs after the loop ({time.time() - t1:.0f} s): {', '.join(names[k] for k in win)}; "
+        f"{po.numbers(tuple(win))}; its faints fell to: " + str(losing_enemies(po.rows[tuple(win)])[:4]))
 
     # The winner's line: one fight on the trace seed by the play-out
     # planner, turn by turn, with the lead it chose and why.
@@ -561,6 +610,8 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
                "ours": {"network": ours_net, "playouts": ours_po} if mine else None, "bar": bar,
                "winner": [names[k] for k in win], "playouts_on_winner": po.numbers(tuple(win)),
                "winner_faints_to": losing_enemies(po.rows[tuple(win)]),
+               # Every six the play-out check read, the loop's included.
+               "checked": {", ".join(names[k] for k in t): po.numbers(t) for t in po.rows},
                "minutes": round((time.time() - t0) / 60, 1)}
     with open(os.path.join(out_dir, "result.json"), "w") as fh:
         json.dump(summary, fh, indent=1)

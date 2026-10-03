@@ -1,0 +1,12 @@
+barry_2: Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby with Piplup Pound, Bubble, Growl, Water Sport; Vulpix Ember, Quick Attack, Roar, Tail Whip; Rookidee Peck, Fury Attack, Leer; Dottler Struggle Bug, Confusion, Reflect, Light Screen; Starly Tackle, Growl, Quick Attack; Krabby Vise Grip, Bubble, Leer, Harden
+items: 
+lead Vulpix (lead values: Piplup +0.56, Vulpix +0.59, Rookidee +0.56, Dottler +0.56, Starly +0.51, Krabby +0.56)
+T1 [clear] Vulpix: Ember | Starly: Growl -> you Vulpix 31/31 {'atk': -1} | foe Starly 11/29
+      options: Ember +0.59, Quick Attack (dropped) +0.55, Roar (dropped) +0.55, Tail Whip (dropped) +0.57, switch to Piplup (dropped) +0.47, switch to Rookidee (dropped) +0.25, switch to Dottler (dropped) +0.14, switch to Starly (dropped) +0.43, switch to Krabby (dropped) +0.54
+T2 [clear] Vulpix: Ember | Starly: Wing Attack -> you Vulpix 31/31 {'atk': -1} | foe Turtwig 34/34
+      options: Ember +0.60, Quick Attack (dropped) +0.56, Roar (dropped) +0.56, Tail Whip (dropped) +0.56, switch to Piplup (dropped) +0.49, switch to Rookidee (dropped) +0.52, switch to Dottler (dropped) +0.50, switch to Starly (dropped) -0.01, switch to Krabby (dropped) +0.56
+T3 [clear] Vulpix: Ember | Turtwig: Withdraw -> you Vulpix 31/31 {'atk': -1} | foe Turtwig 10/34 {'def': 1}
+      options: Ember +0.60, Quick Attack (dropped) +0.59, Tail Whip (dropped) +0.59, switch to Piplup (dropped) +0.59, switch to Rookidee (dropped) +0.42, switch to Dottler (dropped) +0.59, switch to Starly (dropped) +0.59, switch to Krabby (dropped) +0.59
+T4 [clear] Vulpix: Ember | Turtwig: Tackle -> you Vulpix 31/31 {'atk': -1} | foe Turtwig 0/34 {'def': 1}
+      options: Ember +0.60, Quick Attack (dropped) +0.59, Tail Whip (dropped) +0.59, switch to Piplup (dropped) +0.58, switch to Rookidee (dropped) +0.57, switch to Dottler (dropped) +0.59, switch to Starly (dropped) +0.55, switch to Krabby (dropped) +0.38
+won; fainted: none

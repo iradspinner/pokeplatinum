@@ -1686,6 +1686,54 @@ gender once from a fixed seed by its species' ratio, as the box's natures
 were rolled, and keep it in the box's records. Jupiter 1 is read again once
 that is settled.
 
+## Goal 2's readings (2026-10-03, for Ian to read)
+
+The team search has read goal 2's four fights that have no hand-played
+line, on goal 2's boxes (`plgoal2.py`): every member at the fight's cap
+with its whole move pool from its catch, the trainer's team a Piplup player
+meets, and the boosters reachable by then. Each fight passes when Ian has
+read its line and accepts it. Barry 2 and Lucas and Dawn 2 are won cleanly
+every time, Jupiter 1 nearly so, and Fantina is by far the hardest fight
+read yet.
+
+Ian's standard reading of each winner, by the play-out planner (75 fights
+at real odds, 25 very unlucky):
+
+| Fight | Cap | The winner | Real odds | Very unlucky | Search, minutes |
+|---|---|---|---|---|---|
+| Barry 2 | 11 | Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby | 100% won, 0.00 faints, 100% clean | 100%, 0.00, 100% | 12 |
+| Jupiter 1 | 27 | Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover | 100%, 0.07, 93% | 100%, 0.32, 72% | 59 |
+| Lucas and Dawn 2 | 30 | Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena | 100%, 0.00, 100% | 100%, 0.00, 100% | 21 |
+
+**Barry 2** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-barry_2-line.txt)):
+Vulpix leads and Embers Starly and then Turtwig through its Withdraw, four
+turns, nothing hurt. At the cap of 11 the fight is a formality for any of
+the three finalists, as it was at 16.
+
+**Jupiter 1** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-jupiter_1-line.txt)):
+Graveler takes Delcatty's Fake Out and chips it; Onix, put to sleep by
+Sing as it switches in, gives way to Dubwool, whose Double Kick finishes
+Delcatty; the sleeping Onix comes back in to take Sableye's Fake Out, and
+again later to take Skuntank's Screech; Graveler's Rock Blast wears
+Sableye down through its Shadow Sneaks;
+Tsareena's Trop Kick and Stomp take Skuntank, with switches to Onix and
+Graveler to spread its Night Slashes; Snover's Icy Wind ends Tangela. No
+rule names any of this: switching a sleeping Pokemon in to absorb hits, and
+spreading damage by switching, arose from the search. The network read
+this six at 93% won and 0.69 faints, the play-outs at 100% and 0.07; it was
+third of three on the network and first on the check. **Caveat:**
+Delcatty's Attract and Cute Charm do nothing in the simulator (genders,
+above), and its Attract came three times in this line, so the reading is
+kinder than the fight. It is read again once the genders are settled.
+
+**Lucas and Dawn 2** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-lucas_dawn_2-line.txt)),
+read on the fixed simulator: Dubwool Growls Lopunny and wears it down;
+Whiscash takes over, sets Amnesia against Jynx and sleeps through Lovely
+Kiss; its Magnitude takes Monferno; against Jolteon, Magnet Rise now makes
+Magnitude fail, and Whiscash finishes it with Water Pulse. The first reading,
+on the simulator without Magnet Rise and Torment, also won every fight
+cleanly.
+
 ## The cost of labelling every boss (2026-10-02)
 
 The Overseer counted about 110 fights in goal 3 that need labelled positions

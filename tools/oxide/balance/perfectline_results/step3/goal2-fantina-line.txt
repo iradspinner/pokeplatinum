@@ -1,0 +1,48 @@
+fantina: Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos with Prinplup Bubble Beam, Metal Claw, Peck, Pound; Vulpix Flamethrower, Payback, Will-O-Wisp, Quick Attack; Kingler Metal Claw, Bubble Beam, Protect, Mud Shot; Tsareena Trop Kick, Rapid Spin, Low Sweep, Play Nice; Ampharos Discharge, Tackle, Thunder Wave, Cotton Spore; Rampardos Assurance, Ancient Power, Take Down, Focus Energy
+items: Tsareena Miracle Seed, Vulpix Flame Plate
+lead Prinplup (lead values: Prinplup -6.65, Vulpix -9.06, Kingler -9.98, Tsareena -10.25, Ampharos -10.29, Rampardos -10.28)
+T1 [clear] Prinplup: Bubble Beam | Duskull: Confuse Ray -> you Prinplup 90/90 | foe Duskull 54/76
+      options: Bubble Beam -7.10, Metal Claw -7.82, Peck (dropped) -9.00, switch to Vulpix (dropped) -9.77, switch to Kingler (dropped) -11.23, switch to Tsareena (dropped) -12.65, switch to Ampharos (dropped) -11.56, switch to Rampardos (dropped) -9.07
+T2 [clear] Prinplup: Bubble Beam | Duskull: Shadow Sneak -> you Prinplup 61/90 | foe Duskull 54/76
+      options: Bubble Beam -8.11, Metal Claw -8.71, Peck -8.86, switch to Vulpix -9.03, switch to Kingler -9.02, switch to Tsareena (dropped) -11.63, switch to Ampharos (dropped) -13.25, switch to Rampardos (dropped) -10.98
+T3 [clear] Prinplup: Bubble Beam | Duskull: Will-O-Wisp -> you Prinplup 50/90 brn | foe Duskull 30/76
+      options: Bubble Beam -8.44, Metal Claw -9.09, Peck -9.59, switch to Vulpix -9.00, switch to Kingler -9.12, switch to Tsareena (dropped) -12.53, switch to Ampharos (dropped) -12.21, switch to Rampardos (dropped) -11.12
+T4 [clear] Prinplup: switch to Kingler | Duskull: Shadow Sneak -> you Kingler 81/90 | foe Duskull 30/76
+      options: Bubble Beam -7.62, Metal Claw (dropped) -10.14, Peck (dropped) -10.35, switch to Vulpix (dropped) -11.81, switch to Kingler -6.42, switch to Tsareena (dropped) -11.30, switch to Ampharos (dropped) -11.82, switch to Rampardos (dropped) -12.63
+T5 [clear] Kingler: Bubble Beam | Duskull: Shadow Sneak -> you Kingler 72/90 | foe Duskull 14/76
+      options: Metal Claw -6.65, Bubble Beam -6.06, Protect -6.53, switch to Prinplup (dropped) -9.77, switch to Vulpix (dropped) -7.63, switch to Tsareena (dropped) -11.68, switch to Ampharos (dropped) -11.45, switch to Rampardos (dropped) -12.70
+T6 [clear] Kingler: Bubble Beam | Duskull: Shadow Sneak -> you Kingler 63/90 | foe Rotom 82/82
+      options: Metal Claw -5.13, Bubble Beam -4.82, Protect -5.24, switch to Prinplup (dropped) -6.17, switch to Vulpix (dropped) -10.60, switch to Tsareena (dropped) -11.70, switch to Ampharos (dropped) -8.49, switch to Rampardos (dropped) -11.12
+T7 [clear] Kingler: switch to Prinplup | Rotom: Shock Wave -> you Vulpix 73/73 | foe Rotom 74/82
+      options: Metal Claw -5.16, Bubble Beam -5.16, Protect -5.28, switch to Prinplup -4.44, switch to Vulpix (dropped) -11.75, switch to Tsareena -5.86, switch to Ampharos (dropped) -13.14, switch to Rampardos (dropped) -10.71
+      replacement: Vulpix -4.39, Kingler -6.62, Tsareena -5.21, Ampharos -8.22, Rampardos -7.42
+T8 [clear] Vulpix: Payback | Rotom: Ominous Wind -> you Vulpix 21/73 | foe Mismagius 91/91
+      options: Flamethrower (dropped) -12.69, Payback -4.65, Will-O-Wisp (dropped) -14.78, switch to Kingler (dropped) -10.72, switch to Tsareena (dropped) -8.65, switch to Ampharos (dropped) -13.18, switch to Rampardos (dropped) -9.55
+T9 [clear] Vulpix: Flamethrower | Mismagius: Power Gem -> you Ampharos 107/107 | foe Mismagius 91/91
+      options: Flamethrower -3.95, Payback -3.95, Will-O-Wisp -3.95, switch to Kingler (dropped) -4.85, switch to Tsareena (dropped) -9.89, switch to Ampharos (dropped) -13.10, switch to Rampardos (dropped) -12.23
+      replacement: Kingler -5.27, Tsareena -5.03, Ampharos -4.51, Rampardos -5.79
+T10 [clear] Ampharos: switch to Kingler | Mismagius: Shadow Ball -> you Kingler 3/90 {'spd': -1} | foe Mismagius 91/91
+      options: Discharge (dropped) -11.80, Thunder Wave -6.74, Cotton Spore (dropped) -11.11, switch to Kingler -5.50, switch to Tsareena (dropped) -11.76, switch to Rampardos (dropped) -12.77
+T11 [clear] Kingler: Metal Claw | Mismagius: Power Gem -> you Rampardos 111/111 | foe Mismagius 91/91
+      options: Metal Claw -5.14, Bubble Beam -5.14, Protect -5.20, switch to Tsareena (dropped) -11.14, switch to Ampharos (dropped) -13.08, switch to Rampardos (dropped) -10.83
+      replacement: Tsareena -8.32, Ampharos -10.00, Rampardos -6.85
+T12 [clear] Rampardos: Assurance | Mismagius: Magical Leaf -> you Rampardos 42/111 | foe Sableye 89/89
+      options: Assurance -6.48, Ancient Power (dropped) -11.03, Focus Energy (dropped) -14.47, switch to Tsareena -7.44, switch to Ampharos (dropped) -10.72
+T13 [clear] Rampardos: Ancient Power | Sableye: Payback -> you Rampardos 9/111 | foe Sableye 87/89
+      options: Assurance (dropped) -8.98, Ancient Power -4.62, Focus Energy -4.63, switch to Tsareena (dropped) -6.04, switch to Ampharos (dropped) -15.09
+T14 [clear] Rampardos: Assurance | Sableye: Shadow Sneak -> you Tsareena 95/95 | foe Sableye 89/89
+      options: Assurance -4.50, Ancient Power -4.50, Focus Energy -4.50, switch to Tsareena -5.16, switch to Ampharos (dropped) -15.45
+      replacement: Tsareena -4.67, Ampharos -9.66
+T15 [clear] Tsareena: Trop Kick | Sableye: Payback -> you Tsareena 41/95 | foe Sableye 46/89
+      options: Trop Kick -4.21, switch to Ampharos (dropped) -15.91
+T16 [clear] Tsareena: Trop Kick | Sableye: Recover -> you Tsareena 41/95 | foe Drifblim 146/146
+      options: Trop Kick -5.22, switch to Ampharos (dropped) -13.55
+T17 [clear] Tsareena: switch to Ampharos | Drifblim: Air Cutter -> you Ampharos 96/107 | foe Drifblim 146/146
+      options: Trop Kick -5.23, Play Nice -5.23, switch to Ampharos -4.55
+T18 [clear] Ampharos: Thunder Wave | Drifblim: Shadow Ball -> you Ampharos 66/107 | foe Drifblim 146/146 par
+      options: Discharge (dropped) -4.69, Thunder Wave -3.94, Cotton Spore (dropped) -6.75, switch to Tsareena (dropped) -8.17
+T19 [clear] Ampharos: Discharge | Drifblim: Calm Mind -> you Ampharos 66/107 | foe Drifblim 72/146 par {'spa': 1, 'spd': 1}
+      options: Discharge -3.90, Cotton Spore (dropped) -4.25, switch to Tsareena (dropped) -4.49
+T20 [clear] Ampharos: Discharge | Drifblim: Will-O-Wisp -> you Ampharos 66/107 | foe Drifblim 0/146 par {'spa': 1, 'spd': 1}
+      options: Discharge -3.90, Cotton Spore (dropped) -4.09, switch to Tsareena (dropped) -4.34
+won; fainted: Prinplup, Vulpix, Kingler, Rampardos
