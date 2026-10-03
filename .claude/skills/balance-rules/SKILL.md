@@ -141,6 +141,8 @@ is listed for Ian.
   chooses the six and their moves itself (a matchup screen, a race, then the
   full reading), and reports which encounters its sixes always and never
   take, as signs of encounter balance to work on (Ian, 2026-10-02).
+  The play-out planner runs at budget 64, and finalists within 5 points of
+  win rate count as equal before faints decide (Ian, 2026-10-03).
   The first three splits are read under interim soft caps at their
   mini-bosses (Barry 2's ace 11, Mars 1's Purugly 19, Jupiter 1's Skuntank 27,
   Lucas and Dawn 2 at 30). Ian's first targets (an ordinary trainer, read

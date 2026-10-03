@@ -123,7 +123,10 @@ read, so they are written here too. Each is a standing instruction.
   that order is broadly right (Ian, 2026-10-02). For a boss the scorer
   chooses the six and their moves itself, in three stages: a screen by
   matchups with no simulated fights, a race among the screen's best sixes,
-  and the full reading of the two or three left (Ian, 2026-10-02). Across
+  and the full reading of the two or three left (Ian, 2026-10-02). The
+  play-out planner runs at budget 64, and finalists whose win rates lie
+  within 5 points count as equal before faints decide (Ian, 2026-10-03).
+  Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
   2026-10-02). When a fight reads too hard, the player's move pools are the first
