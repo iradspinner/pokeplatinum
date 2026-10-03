@@ -1,0 +1,200 @@
+{
+ "roark": {
+  "rows": [
+   {
+    "six": "Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.2,
+     "clean": 0.8
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.12,
+     "clean": 0.88
+    }
+   },
+   {
+    "six": "Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.48,
+     "clean": 0.52
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.48,
+     "clean": 0.52
+    }
+   },
+   {
+    "six": "Corvisquire, Dottler, Nidorino, Onix, Charmander, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.44,
+     "clean": 0.6
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.32,
+     "clean": 0.68
+    }
+   },
+   {
+    "six": "our six",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.28,
+     "clean": 0.76
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.12,
+     "clean": 0.88
+    }
+   }
+  ],
+  "winner_64": "Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude",
+  "winner_192": "Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude"
+ },
+ "mars": {
+  "rows": [
+   {
+    "six": "Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    }
+   },
+   {
+    "six": "Wooloo, Vullaby, Barboach, Krabby, Onix, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.08,
+     "clean": 0.96
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    }
+   },
+   {
+    "six": "Prinplup, Vullaby, Wartortle, Krabby, Onix, Geodude",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.08,
+     "clean": 0.92
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    }
+   },
+   {
+    "six": "our six",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.24,
+     "clean": 0.8
+    },
+    "b192": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.32,
+     "clean": 0.8
+    }
+   }
+  ],
+  "winner_64": "Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude",
+  "winner_192": "Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude"
+ },
+ "gardenia": {
+  "rows": [
+   {
+    "six": "Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat",
+    "b64": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.8,
+     "clean": 0.28
+    },
+    "b192": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.52,
+     "clean": 0.16
+    }
+   },
+   {
+    "six": "Prinplup, Dubwool, Bibarel, Vullaby, Tsareena, Golbat",
+    "b64": {
+     "fights": 25,
+     "won": 0.84,
+     "faints": 2.2,
+     "clean": 0.12
+    },
+    "b192": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 2.28,
+     "clean": 0.0
+    }
+   },
+   {
+    "six": "Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat",
+    "b64": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 1.96,
+     "clean": 0.16
+    },
+    "b192": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.84,
+     "clean": 0.0
+    }
+   },
+   {
+    "six": "our six",
+    "b64": {
+     "fights": 25,
+     "won": 0.92,
+     "faints": 1.84,
+     "clean": 0.2
+    },
+    "b192": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.88,
+     "clean": 0.12
+    }
+   }
+  ],
+  "winner_64": "Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat",
+  "winner_192": "Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat"
+ }
+}

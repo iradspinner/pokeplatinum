@@ -1591,9 +1591,41 @@ doubles both. So budget 24 is good enough only where the fight is easy,
 and budget 64 chooses about as well as 192 at all three gyms, at a quarter
 to a third of the cost.
 
-**For Ian: budget 64 for the play-out check.** The team search's play-out
-check, and any play-out reading, would run at budget 64 in place of 192
-(the labels are already at 64). That brings the check from about 4.5
+**The check itself at budget 64.** The three gyms' finalists and our six,
+read again at budget 64 on the same 25 seeds as the reruns' budget-192
+check:
+
+| Fight | Six | Budget 64 | Budget 192 |
+|---|---|---|---|
+| Roark | Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude | 100% won, 0.20 faints | 100%, 0.12 |
+| | Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude | 100%, 0.48 | 100%, 0.48 |
+| | Corvisquire, Dottler, Nidorino, Onix, Charmander, Geodude | 100%, 0.44 | 100%, 0.32 |
+| | our six | 100%, 0.28 | 100%, 0.12 |
+| Mars 1 at 19 | Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude | 100%, 0.00 | 100%, 0.00 |
+| | Wooloo, Vullaby, Barboach, Krabby, Onix, Geodude | 100%, 0.08 | 100%, 0.00 |
+| | Prinplup, Vullaby, Wartortle, Krabby, Onix, Geodude | 100%, 0.08 | 100%, 0.00 |
+| | our six | 100%, 0.24 | 100%, 0.32 |
+| Gardenia | Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat | 96%, 1.80 | 96%, 1.52 |
+| | Prinplup, Dubwool, Bibarel, Vullaby, Tsareena, Golbat | 84%, 2.20 | 96%, 2.28 |
+| | Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat | 100%, 1.96 | 96%, 1.84 |
+| | our six | 92%, 1.84 | 96%, 1.88 |
+
+The two budgets pick the same winner at Roark and Mars 1. At Gardenia they
+do not, but the cause is the reading's size, not the budget: on 25 fights
+one loss moves the win rate four points, and the same six reads 84% at one
+budget and 96% at the other. The check ranks wins first with no tolerance,
+so one fight's luck (100% against 96%) chose the winner at 64. The planner's
+own choice among options already treats chances of losing within 0.05 as
+equal before it compares faints (`plplan.LOSS_TOL`); with the same
+tolerance for the finalists, both budgets pick the same winner at all three
+gyms (at 64, the Barboach six's 100% and the Vullaby six's 96% count as
+equal, and the Vullaby six wins on 1.80 faints against 1.96).
+
+**For Ian: budget 64 for the play-out check, and a tolerance on wins.** The
+team search's play-out check, and any play-out reading, would run at budget
+64 in place of 192 (the labels are already at 64), and its finalists would
+be ranked as the planner ranks options: win rates within 0.05 count as
+equal, then the fewest faints. That brings the check from about 4.5
 core-hours per boss and box to about 1.3, and goal 3 from about 1,230
 core-hours to about 630 before the Ace Trainers, some 22 hours on 29
 workers, or about 450 with one label set per boss (lever 1). It changes how
