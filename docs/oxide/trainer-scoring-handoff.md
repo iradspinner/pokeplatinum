@@ -1509,12 +1509,11 @@ about 70 core-hours for the Ace Trainers. The levers, none yet measured:
    3 GPU hours.
 2. The play-out check on the top two finalists, not three: about 770.
 3. A smaller play-out budget. The learned stand-in player failed its test,
-   but at Roark budget 24 with the plain policy chose almost as well as 192
-   at a quarter of the cost ("The learned stand-in player, and smaller
-   budgets", below). If it holds at Mars 1 and Gardenia, the check and the
-   labels cost about a quarter, bringing the total to about 350.
-4. Budget 64, about half the cost, if 24 does not hold; the same check
-   measures both.
+   and budget 24 with the plain policy holds only in easy fights, but
+   budget 64 chose about as well as 192 at all three gyms ("The learned
+   stand-in player, and smaller budgets", below). The check at 64 brings the
+   total to about 630 core-hours (before the Ace Trainers); this one waits
+   on Ian.
 
 **Held items are not searched.** The simulator's item rule knows only type
 boosters, Leftovers and Sitrus Berries, so a six never holds the run's
@@ -1569,10 +1568,37 @@ times as much as the plain ones at the same budget, so even a perfect
 stand-in at 24 would cost about what the plain policy does at 60. More of
 its data might lift its agreement a few points, but not across a gap this
 size, so the recording is stopped (its shards are kept in `data-choices`).
-Budgets 24 and 64 with the plain policy are being checked at Mars 1 and
-Gardenia, which are harder than Roark; if 24 holds there, it is the lever
-the stand-in was meant to be, and it cuts the play-out check and the labels
-to about a quarter.
+
+**Budgets 24 and 64 at Mars 1 and Gardenia,** with the plain policy, 12
+fights each, the same check:
+
+| Fight | Planner | Same choice | Chance of losing added | Faints added | Seconds a decision |
+|---|---|---|---|---|---|
+| Mars 1 (341 decisions) | budget 192 again | 59.5% | +0.009 | +9.4 | 3.4 |
+| | budget 64 | 56.6% | +0.017 | +8.5 | 1.0 |
+| | budget 24 | 48.4% | +0.023 | +11.7 | 0.6 |
+| Gardenia (280 decisions) | budget 192 again | 71.4% | +4.5 | +9.8 | 3.0 |
+| | budget 64 | 64.6% | +4.8 | +14.2 | 0.9 |
+| | budget 24 | 58.9% | +9.4 | +27.6 | 0.5 |
+
+At Mars 1 the PP stall leaves many options near equal, so even two full
+planners agree on only 60% of decisions; budget 64 matches the second full
+planner and 24 is a little worse. At Gardenia the full planner's own
+estimates of losing are noisy (the plain policy loses her often from many
+positions), so a second full planner "adds" 4.5 in all; budget 64 sits at
+that ceiling for losing and a little above it for faints, and budget 24
+doubles both. So budget 24 is good enough only where the fight is easy,
+and budget 64 chooses about as well as 192 at all three gyms, at a quarter
+to a third of the cost.
+
+**For Ian: budget 64 for the play-out check.** The team search's play-out
+check, and any play-out reading, would run at budget 64 in place of 192
+(the labels are already at 64). That brings the check from about 4.5
+core-hours per boss and box to about 1.3, and goal 3 from about 1,230
+core-hours to about 630 before the Ace Trainers, some 22 hours on 29
+workers, or about 450 with one label set per boss (lever 1). It changes how
+the scorer reads a fight, so it waits on Ian's word; goal 2's readings run
+at 192 meanwhile.
 
 ## The cost of labelling every boss (2026-10-02)
 
