@@ -61,9 +61,10 @@ say in one line that the tool's server is not running; Ian starts it with:
 PYTHONPATH=. python3 -m tools.oxide.encounters.server
 ```
 
-The server on 8765 runs from the encounter tool builder's worktree, so after
-a landing that changes `server.py` it keeps the old code until that session
-restarts it; ask it to.
+The server on 8765 runs from `.claude/worktrees/ian-tool` (branch
+`ian-saves`), so after a landing that changes `server.py` it keeps the old
+code until it is restarted with `bash tools/oxide/encounters/restart_server.sh`
+(the `land-branch` skill, "After it lands").
 
 ## 4. Other sessions
 

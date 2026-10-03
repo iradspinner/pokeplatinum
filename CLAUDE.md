@@ -103,13 +103,11 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-**The replacement CPU is in and passed its checks (2026-09-29).** The old
-i9-14900K was degraded: under all-core load, compilers and Python crashed or
-returned wrong answers (design doc findings log, 2026-09-22), and for a week
-every build ran on GitHub. The new chip ran the stress check that caught the
-old one with no failures, and built `oxide` from scratch twice on every core,
-matching GitHub's SHA-1 both times. Local builds and parallel jobs are back
-to normal, with no job limit.
+Builds run on this machine with no job limit, and a local ROM matches
+GitHub's build of the same commit byte for byte. Run any heavy or parallel
+job under `tools/oxide/capped`, which stops it at a memory cap rather than
+let it run WSL out of memory (the design doc's findings log has both
+histories: the degraded CPU of 2026-09-22 and the WSL crash of 2026-10-02).
 
 Hand Ian a ROM built here from a pushed commit whose ROM matches GitHub's
 SHA-1 for it, copied into `~/oxide-playtest` as

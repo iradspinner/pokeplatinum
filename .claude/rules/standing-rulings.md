@@ -92,10 +92,8 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
-- The replacement CPU is in and passed its stress and build checks
-  (2026-09-29), so the three-job limit of 2026-09-27 is lifted and local
-  builds are trusted: a ROM counts when its SHA-1 matches GitHub's build of
-  the same commit.
+- Local builds are trusted (2026-09-29): a ROM counts when its SHA-1
+  matches GitHub's build of the same commit.
 - How the fight scorer reads a fight (Ian, 2026-09-30, on the trainer-scoring
   handoff). The aim is to beat the game: a win that loses a Pokemon is still a
   win, but each loss takes away later team-building options. Lines are ranked
@@ -107,9 +105,8 @@ read, so they are written here too. Each is a standing instruction.
   reported, not optimised. A boss is read
   over a spread of rolled boxes, so that its answers do not narrow to one
   Pokemon. Ties between equal AI picks break at random. Every fight is
-  simulated at the game's real odds, with no luck budget (Ian, 2026-10-02,
-  replacing the budget of 2026-09-30, under which every secondary status
-  against the player landed and one crit could): the three numbers are then
+  simulated at the game's real odds, with no luck budget (Ian, 2026-10-02):
+  the three numbers are then
   true frequencies with bad luck inside them, and the planner's caution
   comes from how heavily a position values a faint, weighing each chance at
   its true odds. The stress test that replaces the budget (Ian, 2026-10-02)

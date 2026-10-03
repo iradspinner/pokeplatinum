@@ -57,7 +57,7 @@ then run `tools/scripts/make_script_bin.sh` from `build/` with the include and
 tool paths `ninja -t commands` prints for that script. Disassembling the output
 with `scriptdis.emit_source` and diffing it against the base ROM's member shows
 every change command by command, and catches a movement block pushed off
-alignment before GitHub builds the ROM.
+alignment before the ROM is built.
 
 For a script you cannot read, `python3 tools/oxide/scriptdis.py` disassembles
 any member of either ROM; `--roundtrip` proves the emitter, and

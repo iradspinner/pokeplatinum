@@ -32,6 +32,8 @@ the facts they point at live in the docs, not here.
      the top of the tracker. Nothing else in the tracker.
    - The balance track: `docs/oxide/balance-plan.md`, and nothing in the
      tracker.
+   - The scoring track: `docs/oxide/trainer-scoring-handoff.md`, and nothing
+     in the tracker.
 4. On a worktree branch, run `git merge oxide` before anything else, resolve
    any conflict in your own files, and run your own suites. A branch cut before
    a change on `oxide` otherwise finds out only at the integration gate: the
@@ -99,7 +101,8 @@ Run these in order; skipping one is how the next session starts confused.
    list with its "Why:" and "Unneeded if:". If this session changed something
    an entry rests on (hardware, a ruling, a dropped feature), update every
    entry, doc and memory resting on it in the same commit. If you are the encounter track, edit only your
-   one paragraph here; the balance track edits its plan instead.
+   one paragraph here; the balance and scoring tracks edit their own docs
+   instead.
 2. **Findings.** A durable fact learned this session (a correction, a defect, a
    measurement, a format detail) goes in the design doc's section 8 findings log,
    dated, and the design doc's version and date at the top are bumped. Status
@@ -137,8 +140,8 @@ own emulator.
 Delegate a task to a background general-purpose agent when it can run in
 parallel with other work, or when it is a long read (a catalogue, a survey, a
 batch of tables) whose detail this session does not need to hold; Ian has made
-that a standing preference. Do the rest inline. Ian's default model is Opus
-now, so a subagent no longer saves anything by being cheaper, and it starts
+that a standing preference. Do the rest inline. A subagent runs on the same
+model as this session, so it saves nothing by being cheaper, and it starts
 cold. Keep here anything that needs judgment across the project, anything in
 another track's files, and the report itself, since a subagent's report never
 reaches Ian. The brief has to carry everything:

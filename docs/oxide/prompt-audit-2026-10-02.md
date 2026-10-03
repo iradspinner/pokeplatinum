@@ -1,8 +1,9 @@
 # Prompt audit of the Claude Code configuration, 2026-10-02
 
 Run with `/doctor prompt-audit` on 2026-10-02, by the Oxide Overseer, against the
-bundled `claude-api` skill's prompt-audit guide. This is a report and a proposed
-diff only: no instruction file was changed.
+bundled `claude-api` skill's prompt-audit guide. Ian approved the diff on
+2026-10-02 and it was applied whole (H1 to H9, M1 to M7); the five low
+findings (L1 to L5) stay flagged for him, unchanged.
 
 ## Assumptions
 

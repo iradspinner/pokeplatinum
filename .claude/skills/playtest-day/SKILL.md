@@ -1,6 +1,6 @@
 ---
 name: playtest-day
-description: How to run a Platinum Oxide playtest session with Ian from docs/oxide/ingame-checklist.md, from fetching the right ROMs to recording each result as a tick or as an open bug. Use this whenever Ian says he is ready to play or test, the new CPU has arrived, a batch of in-game checks has piled up, or a session is asked to "go through the checks", even if he only names one check.
+description: How to run a Platinum Oxide playtest session with Ian from docs/oxide/ingame-checklist.md, from building the right ROMs to recording each result as a tick or as an open bug. Use this whenever Ian says he is ready to play or test, a batch of in-game checks has piled up, or a session is asked to "go through the checks", even if he only names one check.
 ---
 
 # A playtest day
