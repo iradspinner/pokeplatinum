@@ -262,11 +262,13 @@ def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
     return out
 
 
-def run(name, procs=12):
+def run(name, procs=12, without=()):
     path, split, cap, box_fn, stk, kind = examples()[name]
     os.makedirs(OUT, exist_ok=True)
     t0 = time.time()
-    recs = box_fn()
+    # `without`: members left out of the box (as a variant reading, saved
+    # under its own name), such as the run's level-6 Starly.
+    recs = [r for r in box_fn() if r["species"] not in without]
     result = {"example": name, "split": split, "cap": cap, "kind": kind, "box": [r["species"] for r in recs]}
     if kind == "section":
         paths = [os.path.join(EXAMPLES, SECTION[0] + ".json")] + [os.path.join(RES, s + ".json") for s in SECTION[1:]]
@@ -295,6 +297,9 @@ def run(name, procs=12):
         result.update(real=real, unlucky=unlucky, faints_to=faints_to)
     result["notes"] = sorted(set(NOTES))
     result["minutes"] = round((time.time() - t0) / 60, 1)
+    if without:
+        name = f"{name}-without-{'-'.join(without)}"
+        result["example"], result["without"] = name, list(without)
     with open(os.path.join(OUT, name + ".json"), "w") as fh:
         json.dump(result, fh, indent=1)
     r, u = result["real"], result["unlucky"]
@@ -306,4 +311,6 @@ def run(name, procs=12):
 
 if __name__ == "__main__":
     for example in sys.argv[1:]:
-        run(example)
+        # "taylor:Starly" reads Taylor with Starly left out of the box.
+        example, _sep, left = example.partition(":")
+        run(example, without=tuple(x for x in left.split(",") if x))
