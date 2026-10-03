@@ -15,9 +15,9 @@ TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Mud Bomb", "W
         ("SPECIES_GRUBBIN", "Grubbin", "Relaxed", "Swarm", ["Bug Bite", "Bite", "Mud-Slap"])]
 
 
-def battle(seed=1):
+def battle(seed=1, team=TEAM):
     recs = [{"constant": c, "species": s, "how": "test", "level": 16, "nature": n, "ivs": IV, "evs": EV,
-             "ability": a, "moves": mv, "fill": False} for c, s, n, a, mv in TEAM]
+             "ability": a, "moves": mv, "fill": False} for c, s, n, a, mv in team]
     prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
     boss_keys, flags, _ = prep["variants"][0]
     b = pl.make_battle(prep["st"], ["p0", "p1", "p2"], boss_keys, flags, 0)
@@ -417,6 +417,137 @@ def held_state_checks():
                 low == 200 and high == 20 and rage == 1 and early and not later and rain and reach and custap,
                 f"Flail {low}/{high}, Rage +{rage}, Last Resort fails {early} then {later}, rain {rain}, "
                 f"Dig {reach}, Custap {custap}"))
+    return out
+
+
+# The Kaizo study's worked examples brought these moves (2026-10-03).
+STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
+              ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
+              ("SPECIES_GRUBBIN", "Grubbin", "Relaxed", "Swarm", ["Bug Bite", "Bite", "Mud-Slap"])]
+
+
+def study_effect_checks():
+    """The effects the study's worked examples use that the simulator lacked
+    (2026-10-03), each as the decomp has it: Hex, Venoshock and Assurance
+    double by the target's state; Mortal Spin poisons and clears; Rapid Spin
+    clears and raises Speed; Corrosion poisons Poison and Steel types with a
+    move; Poison Touch poisons on contact; Thunder and kin reach a flier."""
+    out = []
+    b = battle(team=STUDY_TEAM)
+    foe, barboach = b.b.cur(), b.p.cur()
+    hex_ = mv(barboach, "Hex")
+
+    def hp_lost(status, n=40):
+        """Hex's average damage into the foe, its status as given."""
+        lost = []
+        for i in range(n):
+            b.dice = pl.RunDice(random.Random(100 + i), True)
+            foe.hp, foe.status, foe.sub = foe.maxhp, status, 0
+            pl.attack(b, barboach, hex_, foe, True)
+            lost.append(foe.maxhp - foe.hp)
+        return sum(lost) / n
+    plain, burnt = hp_lost(None), hp_lost("brn")
+    foe.status = None
+    venom = (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = "psn"
+    venom += (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = "par"
+    venom += (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = None
+    out.append(("Hex doubles on a status; Venoshock on poison only",
+                plain > 0 and 1.8 <= burnt / plain <= 2.2 and venom == (False, True, False),
+                f"Hex {plain:.1f} then {burnt:.1f} burnt; Venoshock clean/psn/par {venom}"))
+    # Assurance: HP lost while the turn runs counts; at a replacement after
+    # the turn's end it does not.
+    assurance = mv(barboach, "Assurance")
+    foe.hit_this_turn, foe.hurt_this_turn = None, False      # Hex's hits above were this turn's
+    b.mid_turn = True
+    fresh = fs.doubled(barboach, foe, assurance)
+    fs.hurt(b, foe, 1)
+    hurt = fs.doubled(barboach, foe, assurance)
+    fs.end_of_turn(b)
+    cleared = fs.doubled(barboach, foe, assurance)
+    fs.hurt(b, foe, 1)               # mid_turn is off: a replacement's hazard damage
+    replaced = fs.doubled(barboach, foe, assurance)
+    foe.hit_this_turn = ("Physical", 5)
+    struck = fs.doubled(barboach, foe, assurance)
+    foe.hit_this_turn = None
+    out.append(("Assurance doubles after HP lost this turn, not after a replacement's hazards",
+                not fresh and hurt and not cleared and not replaced and struck,
+                f"fresh {fresh}, hurt {hurt}, next turn {cleared}, replacement {replaced}, hit {struck}"))
+    # Mortal Spin: poisons, and frees its user and side; Corrosion reaches a
+    # Poison type with it and a Steel type with Toxic.
+    b = battle(team=STUDY_TEAM)
+    foe, barboach = b.b.cur(), b.p.cur()
+    spin = mv(barboach, "Mortal Spin")
+    b.p.hazards = {"rocks": 1, "spikes": 2, "tspikes": 1}
+    barboach.bound, barboach.seeded = 3, True
+    b.dice = pl.RunDice(random.Random(5), True)
+    foe.hp = foe.maxhp
+    pl.use_move(b, barboach, spin, foe, True)
+    mortal = (foe.status, dict(b.p.hazards), barboach.bound, barboach.seeded, barboach.stages["spe"])
+    corroded = []
+    for ability in (None, "Corrosion"):
+        foe.status, foe.types, barboach.ability = None, ["Poison"], ability
+        foe.hp = foe.maxhp
+        pl.use_move(b, barboach, spin, foe, True)
+        corroded.append(foe.status)
+    nacli = b.p.mons[1]
+    fs.switch_in(b, b.p, 1)
+    for ability in (None, "Corrosion"):
+        foe.status, foe.types, nacli.ability = None, ["Steel"], ability
+        pl.use_move(b, nacli, mv(nacli, "Toxic"), foe, True)
+        corroded.append(foe.status)
+    out.append(("Mortal Spin poisons and clears; Corrosion poisons Poison and Steel types",
+                mortal == ("psn", {"rocks": 0, "spikes": 0, "tspikes": 0}, 0, False, 0)
+                and corroded[0] is None and corroded[1] == "psn" and corroded[2] is None and corroded[3] == "tox",
+                f"Mortal Spin {mortal}; Corrosion {corroded}"))
+    # Rapid Spin: clears and raises Speed.
+    foe.types = ["Rock", "Ground"]
+    nacli.ability = "Sturdy"
+    b.p.hazards = {"rocks": 1, "spikes": 0, "tspikes": 2}
+    nacli.bound, nacli.seeded = 2, True
+    foe.hp = foe.maxhp
+    pl.use_move(b, nacli, mv(nacli, "Rapid Spin"), foe, True)
+    rapid = (dict(b.p.hazards), nacli.bound, nacli.seeded, nacli.stages["spe"])
+    out.append(("Rapid Spin clears its side and raises Speed a stage",
+                rapid == ({"rocks": 0, "spikes": 0, "tspikes": 0}, 0, False, 1), f"Rapid Spin {rapid}"))
+    # Gyro Ball: its power by the turn's Speeds, so a slowed user hits harder.
+    gyro = mv(nacli, "Gyro Ball")
+    nacli.stages["spe"] = 0
+    level = pl.damage_of(b, nacli, foe, gyro, False, True)
+    nacli.stages["spe"] = -2
+    slowed = pl.damage_of(b, nacli, foe, gyro, False, True)
+    want = fs.gyro_power(b.speed(foe), b.speed(nacli)) / fs.gyro_power(b.speed(foe), b.row_speed(nacli))
+    nacli.stages["spe"] = 0
+    out.append(("Gyro Ball's power follows the turn's Speeds",
+                level and slowed > level and abs(slowed / level - want) < 0.1,
+                f"Gyro Ball {level} then {slowed} slowed (power ratio {want:.2f})"))
+    # Poison Touch: on contact when the defender's ability did nothing; not
+    # through Rough Skin acting, nor on a Poison type.
+    yes = (lambda kind, p, victim: True)                                   # noqa: E731
+    first = (lambda kind, n: 0)                                            # noqa: E731
+    b = battle(team=STUDY_TEAM)
+    foe, grubbin = b.b.cur(), b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    bite = mv(grubbin, "Bite")
+    touched = []
+    for ability, types in ((None, ["Rock"]), ("Rough Skin", ["Rock"]), (None, ["Poison"])):
+        foe.status, foe.ability, foe.types = None, ability, types
+        grubbin.ability, grubbin.hp = "Poison Touch", grubbin.maxhp
+        fs.contact_ability(b, grubbin, foe, bite, 10, yes, first)
+        touched.append(foe.status)
+    out.append(("Poison Touch poisons on contact, not when Rough Skin acts or on a Poison type",
+                touched == ["psn", None, None], f"Poison Touch {touched}"))
+    # A Pokemon in the air: Gust doubles, Thunder and Sky Uppercut reach it,
+    # Earthquake and Thousand Arrows do not.
+    foe.charging = fs.move("Fly")
+    air = {n: fs.reach_mult(fs.move(n), foe) for n in ("Gust", "Thunder", "Sky Uppercut", "Earthquake",
+                                                         "Thousand Arrows")}
+    foe.charging = None
+    out.append(("Gust doubles into Fly; Thunder and Sky Uppercut reach it; Earthquake and Thousand Arrows do not",
+                air == {"Gust": 2, "Thunder": 1, "Sky Uppercut": 1, "Earthquake": 0, "Thousand Arrows": 0},
+                f"{air}"))
     return out
 
 
@@ -863,6 +994,7 @@ def main():
     results += gender_checks()
     results += wish_spite_recycle_checks()
     results += held_state_checks()
+    results += study_effect_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

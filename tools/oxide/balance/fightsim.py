@@ -142,7 +142,9 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               "BADLY_POISON_HIT": "tox", "THAW_AND_BURN_HIT": "brn", "HIGH_CRITICAL_POISON_HIT": "psn",
               "HIGH_CRITICAL_BURN_HIT": "brn", "RECOIL_BURN_HIT": "brn", "RECOIL_PARALYZE_HIT": "par",
               "FLINCH_BURN_HIT": "brn", "FLINCH_PARALYZE_HIT": "par", "FLINCH_FREEZE_HIT": "frz",
-              "BLIZZARD": "frz", "THUNDER": "par"}
+              "BLIZZARD": "frz", "THUNDER": "par",
+              # Infernal Parade and Barb Barrage (effect scripts 321, 322).
+              "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
               "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE"}
 # Stat changes: (on whom, {stat: stages}); a hit's change comes with its chance.
@@ -328,6 +330,7 @@ class Mon:
         self.last = None
         self.turns_in = 0
         self.hit_this_turn = None        # (category, damage) of the last hit taken this turn
+        self.hurt_this_turn = False      # HP lost to anything but a hit this turn (Assurance)
         self.last_hit_by = None          # the move last aimed at it since it last acted
         self.last_hit_type = None        # that move's type as the battle recorded it (Weather Ball)
         self.crit_stage = 0
@@ -429,7 +432,7 @@ class Battle:
         numbers: the calculator's figure (weather abilities and items in
         it) at the Speed stage (sStatStageBoosts, truncated), then Quick
         Feet's 1.5 with a status or else paralysis's quarter, then Tailwind."""
-        s = int(self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1)
+        s = self.row_speed(mon)
         st = mon.stages["spe"]
         s = s * (10 + 5 * st) // 10 if st >= 0 else s * 10 // (10 - 5 * st)
         if mon.ability == "Quick Feet" and mon.status:
@@ -442,6 +445,11 @@ class Battle:
         if side.tailwind:
             s *= 2
         return s
+
+    def row_speed(self, mon):
+        """The calculator's Speed for this Pokemon in this weather, as its
+        damage rows have it: no stages, no status."""
+        return int(self.st["speed"].get((self.weather, mon.key)) or self.st["speed"].get((None, mon.key)) or 1)
 
     def faster(self, a, b):
         """Whether a moves before b at equal priority; ties at random."""
@@ -526,7 +534,12 @@ def can_status(b, target, status):
     if side.safeguard:
         return False
     t = set(target.types)
-    if status in ("psn", "tox") and t & {"Poison", "Steel"}:
+    # Oxide's Corrosion: a poison its holder gives with a move, as a status
+    # move or a hit's effect, reaches Poison and Steel types (subscript_poison).
+    # status_src is the move's user then, and never a Corrosion holder for
+    # an ability's poison, a hazard's or an Orb's.
+    src = getattr(b, "status_src", None)
+    if status in ("psn", "tox") and t & {"Poison", "Steel"} and not (src is not None and src.ability == "Corrosion"):
         return False
     if status == "brn" and "Fire" in t:
         return False
@@ -704,6 +717,11 @@ def hurt(b, mon, amount):
     if amount <= 0 or not mon.alive():
         return
     mon.hp = max(0, mon.hp - amount)
+    # Assurance's mask (subscript_update_hp): set by HP lost while the turn
+    # runs, and cleared with the turn flags only after a knockout's
+    # replacement has come in, so hazards on that replacement do not count.
+    if getattr(b, "mid_turn", False):
+        mon.hurt_this_turn = True
     berry_check(mon)
 
 
@@ -961,6 +979,8 @@ def attack(b, att, mv, dfn, first):
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
+        if doubled(att, dfn, mv):
+            dmg *= 2
     if dmg <= 0:
         if dfn.ability in ZEROING and effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             reveal(dfn)              # an absorbing ability, Levitate or Wonder Guard took it
@@ -1009,6 +1029,8 @@ def attack(b, att, mv, dfn, first):
         ch, certain = HIT_SELF_STAGES[e]
         if certain or b.rng.random() * 100 < (mv.chance or 10):
             change_stages(att, ch)
+    if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
+        spin(b, att, dfn, e)
     if not dfn.alive() or dfn.sub:
         return
     chance = mv.chance or 0
@@ -1139,10 +1161,21 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
     Oxide's Iron Barbs an eighth of the attacker's HP), as battle_lib's
     on-hit switch has them: only when the move did damage (not to a
     Substitute) and its user still stands, a status only on an attacker with
-    none. `chance(kind, p, victim)` and `pick(kind, n)` are the battle's
-    dice."""
-    if not mv.contact or dealt <= 0 or not att.alive() or not dfn.ability:
+    none. When none of those acted, Oxide's Poison Touch poisons the target
+    3 times in 10 (battle_lib, after the switch). `chance(kind, p, victim)`
+    and `pick(kind, n)` are the battle's dice."""
+    if not mv.contact or dealt <= 0:
         return
+    if att.alive() and dfn.ability and _struck_back(b, att, dfn, chance, pick):
+        return
+    if att.ability == "Poison Touch" and dfn.alive() and not dfn.status and chance("status", 0.3, dfn):
+        b.status_src = att
+        if give_status(b, dfn, "psn"):
+            reveal(att)
+
+
+def _struck_back(b, att, dfn, chance, pick):
+    """The defender's on-hit ability; whether it acted."""
     a = dfn.ability
     b.status_src = dfn           # a status the ability gives comes from dfn (Synchronize)
     if a == "Aftermath":
@@ -1152,30 +1185,38 @@ def contact_ability(b, att, dfn, mv, dealt, chance, pick):
                 m.ability == "Damp" and m.alive() for m in b.p.on_field() + b.b.on_field()):
             reveal(dfn)
             hurt(b, att, max(1, att.maxhp // 4))
-        return
+            return True
+        return False
     if a in ("Rough Skin", "Iron Barbs"):
         if att.ability != "Magic Guard":
             reveal(dfn)
             hurt(b, att, max(1, att.maxhp // 8))
-        return
+            return True
+        return False
     if a == "Cute Charm":
-        if not att.infatuated and chance("status", 0.3, att) and infatuate(dfn, att):
-            reveal(dfn)
-        return
+        if not att.infatuated and chance("status", 0.3, att):
+            if infatuate(dfn, att):
+                reveal(dfn)
+            return True
+        return False
     if att.status:
-        return
+        return False
     if a == "Effect Spore":
         # Oxide: its spores are a powder, which misses Grass types, Overcoat
         # and Safety Goggles.
         if "Grass" in att.types or att.ability == "Overcoat" or att.item == "Safety Goggles":
-            return
+            return False
         if chance("status", 0.3, att):
             status = ("psn", "par", "slp")[pick("spore", 3)]
             if give_status(b, att, status):
                 reveal(dfn)
-        return
-    if a in CONTACT_STATUS and chance("status", 0.3, att) and give_status(b, att, CONTACT_STATUS[a]):
-        reveal(dfn)
+            return True
+        return False
+    if a in CONTACT_STATUS and chance("status", 0.3, att):
+        if give_status(b, att, CONTACT_STATUS[a]):
+            reveal(dfn)
+        return True
+    return False
 
 
 # ---- held items and abilities the calculator's rows cannot know (2026-10-03) ---------------------
@@ -1221,14 +1262,71 @@ def resist_berry(b, dfn, mv):
     return berry
 
 
-def reaches(mv, dfn):
-    """A move that strikes a Pokemon mid-Dig or mid-Dive, at double damage:
-    Earthquake and Magnitude underground, Surf and Whirlpool underwater."""
+# The moves that reach a Pokemon in the air from Fly or Bounce (their effect
+# scripts set SYSCTL_HIT_DURING_FLY), with their power there: Gust and
+# Twister double (scripts 149 and 146); Thunder, Sky Uppercut, Hurricane and
+# Smack Down hit at their power (152, 207, 341, 406). Smack Down's grounding,
+# which also ends the Fly, is not simulated.
+HIT_IN_AIR = {"DOUBLE_DAMAGE_FLY_OR_BOUNCE": 2, "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE": 2,
+              "THUNDER": 1, "HIT_FLY": 1, "HURRICANE": 1, "SMACK_DOWN": 1}
+
+
+def reach_mult(mv, dfn):
+    """How a move strikes a Pokemon on a two-turn move's hidden turn: 0 when
+    it cannot; Earthquake and Magnitude underground, and Surf and Whirlpool
+    underwater, at double damage; the moves of HIT_IN_AIR in the air. Thousand
+    Arrows shares Smack Down's effect but does not reach the air (Oxide)."""
     c = dfn.charging
     if c is None:
-        return False
-    return ((c.effect == "DIG" and (mv.effect == "DOUBLE_DAMAGE_DIG" or mv.name == "Magnitude"))
-            or (c.effect == "DIVE" and mv.effect in ("DOUBLE_DAMAGE_DIVE", "WHIRLPOOL")))
+        return 0
+    if c.effect == "DIG" and (mv.effect == "DOUBLE_DAMAGE_DIG" or mv.name == "Magnitude"):
+        return 2
+    if c.effect == "DIVE" and mv.effect in ("DOUBLE_DAMAGE_DIVE", "WHIRLPOOL"):
+        return 2
+    if c.effect in ("FLY", "BOUNCE") and mv.effect in HIT_IN_AIR and mv.name != "Thousand Arrows":
+        return HIT_IN_AIR[mv.effect]
+    return 0
+
+
+def reaches(mv, dfn):
+    """Whether a move strikes a Pokemon mid-Dig, mid-Dive or in the air."""
+    return reach_mult(mv, dfn) > 0
+
+
+def doubled(att, dfn, mv):
+    """A move whose effect script doubles its power by the target's state as
+    the hit lands, which the rows (made with no status) cannot know and the
+    trainer's AI does not reckon in its damage (it scores these through
+    Expert_Hex and kin): Hex and Infernal Parade on a target with a status
+    or Comatose (effect scripts 287 and 321); Venoshock and Barb Barrage on a
+    poisoned one (280, 322); Assurance on one that lost HP earlier this turn
+    (231, the turn flag subscript_update_hp sets)."""
+    e = mv.effect
+    if e in ("DOUBLE_DAMAGE_ON_STATUS", "BURN_HIT_DOUBLE_POWER_ON_STATUS"):
+        return bool(dfn.status) or dfn.ability == "Comatose"
+    if e in ("DOUBLE_POWER_ON_POISONED", "POISON_HIT_DOUBLE_POWER_ON_POISONED"):
+        return dfn.status in ("psn", "tox")
+    if e == "DOUBLE_POWER_IF_TARGET_HIT":
+        return bool(dfn.hit_this_turn) or dfn.hurt_this_turn
+    return False
+
+
+def spin(b, att, dfn, e):
+    """Rapid Spin and Mortal Spin on a hit (BtlCmd_RapidSpin): the user is
+    freed from a binding move and from Leech Seed, and every hazard on its
+    own side is cleared. Oxide's Rapid Spin then raises its user's Speed a
+    stage (subscript_rapid_spin); Mortal Spin first poisons its target
+    (subscript_mortal_spin) as a secondary effect, which a Substitute,
+    Shield Dust and Covert Cloak stop."""
+    if (e == "MORTAL_SPIN" and dfn.alive() and not dfn.sub and dfn.ability != "Shield Dust"
+            and dfn.item != "Covert Cloak"):
+        give_status(b, dfn, "psn")
+    att.bound = 0
+    att.seeded = False
+    side = b.p if att.side == "p" else b.b
+    side.hazards = dict.fromkeys(side.hazards, 0)
+    if e == "REMOVE_HAZARDS_AND_BINDING" and att.alive():
+        change_stages(att, {"spe": 1})
 
 
 def state_mult(b, att, dfn, mv):
@@ -1246,9 +1344,19 @@ def state_mult(b, att, dfn, mv):
         m *= flail_power(att) / 20
     if mv.effect == "DECREASE_POWER_WITH_LESS_USER_HP":
         m *= max(1, 150 * att.hp // att.maxhp) / 150
-    if reaches(mv, dfn):
-        m *= 2
+    if mv.effect == "POWER_BASED_ON_LOW_SPEED":
+        # Gyro Ball: the row has its power at both Pokemon's starting Speeds;
+        # the game takes the turn's, stages and paralysis in them, and so
+        # does the trainer's AI (TrainerAI_CalcDamage's MOVE_GYRO_BALL case).
+        m *= gyro_power(b.speed(dfn), b.speed(att)) / gyro_power(b.row_speed(dfn), b.row_speed(att))
+    m *= max(1, reach_mult(mv, dfn))
     return m
+
+
+def gyro_power(target_speed, user_speed):
+    """Gyro Ball's power (BtlCmd_CalcGyroBallPower): 1 + 25 times the
+    target's Speed over the user's, at most 150."""
+    return min(150, 1 + 25 * target_speed // max(1, user_speed))
 
 
 def after_hit(b, att, dfn, mv, dealt):
@@ -1644,6 +1752,7 @@ def _end_of_turn_mon(b, side, m):
         m.enduring = False
         m.flinch = False        # a flinch lasts only the turn it is dealt
         m.hit_this_turn = None
+        m.hurt_this_turn = False
         m.turns_in += 1
 
 

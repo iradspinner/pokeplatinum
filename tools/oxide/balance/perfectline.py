@@ -514,6 +514,8 @@ def attack(b, att, mv, dfn, first):
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_HEAL_SLEEP" and dfn.status == "slp":
             dmg *= 2
+        if fs.doubled(att, dfn, mv):
+            dmg *= 2
     if dmg <= 0:
         if dfn.ability in fs.ZEROING and fs.effectiveness(b.st["chart"], mv.type, dfn.types) > 0:
             fs.reveal(dfn)           # an absorbing ability, Levitate or Wonder Guard took it
@@ -584,6 +586,8 @@ def attack(b, att, mv, dfn, first):
         ch, certain = fs.HIT_SELF_STAGES[e]
         if certain or secondary("statup", (mv.chance or 10) / 100):
             fs.change_stages(att, ch)
+    if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
+        fs.spin(b, att, dfn, e)
     if not dfn.alive() or dfn.sub:
         return
     chance = mv.chance or 0
