@@ -1278,11 +1278,18 @@ per boss, the labels about 1.7 and the diagnosis about 1.4. For goal 3's 38
 kept bosses (its 79 rows less the 41 Ace Trainers) on five boxes each, that
 is about 38 x (1.7 + 1.4 + 5 x 0.5), some 210 core-hours, about 7 hours on
 29 workers, if the cheap recipe holds everywhere. Where it fails as at
-Gardenia, the fallback is not three full rounds (28 core-hours) but the
-play-out planner's own 100-fight reading of the finalist (about 5.6): if a
-quarter of the bosses need it on each box, add about 38 x 0.25 x 5 x 5.6,
-some 270 core-hours, about 9 hours more. The Ace Trainers, read blind on
-random sixes, add about an hour of labelling and reading.
+Gardenia, the race itself ran on a weak network, so its ranking is suspect
+as well as the finalist's reading (the Overseer's check): there the play-out
+planner reads the race's top three on 25 fights each (about 4.2 core-hours)
+and then the best of them in full (about 5.6), some 10 core-hours per boss
+and box, rather than three full rounds of labels (28 a boss). If a quarter
+of the bosses need it on each box, add about 38 x 0.25 x 5 x 10, some 470
+core-hours, about 16 hours more; reading those bosses on fewer boxes cuts it
+in proportion. The Ace Trainers take the whole cheap recipe each (1.7
+core-hours: at Fantina's split, Allen still read 80 clean of 100 against the
+play-out planner's 99 after about 106,000 of his own positions, so a tenth
+of a round alone is not enough), about 70 core-hours, some two and a half
+hours more.
 
 **Which planner where.** The network wherever there is a race, since a race
 on the play-out planner alone costs about 13 core-hours per boss and box
