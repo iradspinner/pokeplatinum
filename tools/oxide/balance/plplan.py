@@ -79,7 +79,10 @@ FAINT_TOL = 0.1
 # FAST_EPS at 0.02 the showcase seed still wastes its turns (the network's
 # values there differ by about 0.1 where play-outs call them equal), so the
 # tie-break stays off by default (--fast-tie turns it on) until a setting
-# keeps Roark's numbers at the bar's size.
+# keeps Roark's numbers at the bar's size. A window of 0.1 clears the
+# showcase seed's wasted turns but reads Roark at 91.3% clean and 0.095
+# faints over 2,000 fights (Barboach kept attacking into Cranidos), at half
+# the turns and core time, so it does not pass Ian's condition either.
 FAST_TIE = False
 FAST_EPS = 0.02
 

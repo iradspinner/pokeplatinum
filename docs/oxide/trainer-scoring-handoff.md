@@ -794,6 +794,28 @@ evidence. A cost per turn would cure it. A narrower option would only break
 ties, preferring the option that ends the fight sooner among those the value
 cannot tell apart, which leaves every stall that the value prefers.
 
+Ian approved the narrower option (2026-10-02) on condition that it touch only
+genuine ties and cost little. Built (`plplan --fast-tie`): among options tied
+on the chance of losing and on faints, the one that takes most of the
+trainer's HP this turn, a figure the look-ahead already has. Measured on
+Roark over 2,000 fights at real odds with the network planner:
+
+| Tie window | Clean | Won | Faints | Decisions | Core seconds a fight |
+|---|---|---|---|---|---|
+| off | 97.9% | 100% | 0.022 | 33.2 | 5.15 |
+| the ranking's own tolerances | 89.5% | 99.95% | 0.115 | 21.7 | 2.47 |
+| within 0.1 of the best value | 91.3% | 99.95% | 0.095 | 22.2 | 2.58 |
+| within 0.02 of the best value | (wasted turns remain on the showcase seed) | | | | |
+
+Any window wide enough to clear the showcase seed's wasted turns also costs
+6 to 8 points of clean wins and four times the faints (in the 0.1 window,
+Barboach falls to Cranidos 80 times, attacking where the default switches to
+Onix), because the network's values differ by about 0.1 where the play-outs
+call the options equal, so its ties are not genuine ones. It is therefore off
+by default. It halves every reading's cost and turns, and since it shifts
+every fight the same way it may keep their order; whether that trade is worth
+it, against Ian's condition, is his call.
+
 ## The network planner's Gardenia, for Ian's check (2026-10-02)
 
 A sanity check in the form of the Roark write-up above, read with the
