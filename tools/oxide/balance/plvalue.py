@@ -52,24 +52,45 @@ class Value:
         if self.parts:
             outs = [p.heads(x, ids) for p in self.parts]
             return tuple(sum(o[k] for o in outs) / len(outs) for k in range(3))
-        w = self.w
-        x = np.asarray(x, dtype=np.float16).astype(np.float32)
-        n = x.shape[0]
-        fe = plfeat.FIELD_FLOATS
-        me = fe + plfeat.SLOTS * plfeat.MON_FLOATS
-        field, mons, pairs = x[:, :fe], x[:, fe:me].reshape(n, plfeat.SLOTS, plfeat.MON_FLOATS), x[:, me:]
-        ids = np.asarray(ids).reshape(n, plfeat.SLOTS, plfeat.MON_IDS).astype(np.int64)
-        types, names, effects = w["types.weight"], w["names.weight"], w["effects.weight"]
-        emb = [types[ids[:, :, 0:2]].reshape(n, plfeat.SLOTS, -1), names[ids[:, :, 2:4]].reshape(n, plfeat.SLOTS, -1),
-               types[ids[:, :, 4::2]].reshape(n, plfeat.SLOTS, -1), effects[ids[:, :, 5::2]].reshape(n, plfeat.SLOTS, -1)]
-        m = np.concatenate([mons] + emb, axis=2)
-        m = _relu(m @ w["mon1.weight"].T + w["mon1.bias"])
-        m = _relu(m @ w["mon2.weight"].T + w["mon2.bias"])
-        h = np.concatenate([field, m.reshape(n, -1), pairs], axis=1)
-        h = _relu(h @ w["t1.weight"].T + w["t1.bias"])
-        h = _relu(h @ w["t2.weight"].T + w["t2.bias"])
-        out = h @ w["head.weight"].T + w["head.bias"]
+        out = hidden(self.w, x, ids) @ self.w["head.weight"].T + self.w["head.bias"]
         return out[:, 0] * self.scale, out[:, 1], 1.0 / (1.0 + np.exp(-out[:, 2]))
+
+
+class Policy:
+    """The learned stand-in player (plpolicy): scores for a batch of
+    positions over the ten option slots (the active Pokemon's four moves,
+    then a switch to each of the six party places)."""
+
+    def __init__(self, name, models=MODELS):
+        with open(os.path.join(models, name + ".json")) as fh:
+            self.meta = json.load(fh)
+        w = np.load(os.path.join(models, name + ".npz"))
+        self.w = {k: w[k].astype(np.float32) for k in w.files}
+        self.name = name
+
+    def logits(self, x, ids):
+        return hidden(self.w, x, ids) @ self.w["head.weight"].T + self.w["head.bias"]
+
+
+def hidden(w, x, ids):
+    """The shared body's last layer for n positions (plnet.ValueNet's, which
+    the policy network shares): x [n, FLOATS] floats, passed through float16
+    first as the training data was, and ids [n, IDS]."""
+    x = np.asarray(x, dtype=np.float16).astype(np.float32)
+    n = x.shape[0]
+    fe = plfeat.FIELD_FLOATS
+    me = fe + plfeat.SLOTS * plfeat.MON_FLOATS
+    field, mons, pairs = x[:, :fe], x[:, fe:me].reshape(n, plfeat.SLOTS, plfeat.MON_FLOATS), x[:, me:]
+    ids = np.asarray(ids).reshape(n, plfeat.SLOTS, plfeat.MON_IDS).astype(np.int64)
+    types, names, effects = w["types.weight"], w["names.weight"], w["effects.weight"]
+    emb = [types[ids[:, :, 0:2]].reshape(n, plfeat.SLOTS, -1), names[ids[:, :, 2:4]].reshape(n, plfeat.SLOTS, -1),
+           types[ids[:, :, 4::2]].reshape(n, plfeat.SLOTS, -1), effects[ids[:, :, 5::2]].reshape(n, plfeat.SLOTS, -1)]
+    m = np.concatenate([mons] + emb, axis=2)
+    m = _relu(m @ w["mon1.weight"].T + w["mon1.bias"])
+    m = _relu(m @ w["mon2.weight"].T + w["mon2.bias"])
+    h = np.concatenate([field, m.reshape(n, -1), pairs], axis=1)
+    h = _relu(h @ w["t1.weight"].T + w["t1.bias"])
+    return _relu(h @ w["t2.weight"].T + w["t2.bias"])
 
 
 def check(name, eval_dir=os.path.expanduser("~/oxide-trials/scorer-stage2/data-eval")):

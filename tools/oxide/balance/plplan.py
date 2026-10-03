@@ -85,6 +85,9 @@ FAINT_TOL = 0.1
 # the turns and core time, so it does not pass Ian's condition either.
 FAST_TIE = False
 FAST_EPS = 0.02
+# The learned stand-in player (plpolicy) that plays the play-outs in place of
+# the plain policy, by name, or None for the plain policy (--standin).
+STANDIN = None
 
 
 def choose(q, parts, among):
@@ -579,6 +582,18 @@ def options(b):
     return out
 
 
+def option_slot(b, a):
+    """An option's place among the stand-in player's ten slots: a move by its
+    place in the active Pokemon's set (0 to 3), a switch by its target's
+    place on the bench as plfeat lists it, the active Pokemon left out (4 to
+    8), so the slot means the same thing as the features it is read from."""
+    me = b.p.cur()
+    if a[0] == "move":
+        return next((k for k, m in enumerate(me.moves) if m is a[1] or m.name == a[1].name), 0)
+    bench = [i for i in range(len(b.p.mons)) if i != b.p.active]
+    return 4 + bench.index(a[1])
+
+
 class ModeDice:
     """Every chance at its likeliest outcome, for a duel: a check above even
     odds passes, one below fails, the middle damage roll, no crit."""
@@ -959,9 +974,22 @@ class Planner:
         c.plain_switches = 0
         stop = c.turn + PLAYOUT_TURNS
         while c.turn < stop and c.p.alive() and c.b.alive():
-            pl.play_turn(c, plain(c), rng)
+            pl.play_turn(c, self.standin_action(c) if STANDIN else plain(c), rng)
         self.last_end = c
         return value(c)
+
+    def standin_action(self, c):
+        """The learned stand-in player's option (STANDIN, a plpolicy
+        network): the legal option it scores highest, over the ten slots
+        record_choice uses."""
+        from . import plfeat, plvalue
+        pol = _NETS.get(("policy", STANDIN)) or _NETS.setdefault(("policy", STANDIN), plvalue.Policy(STANDIN))
+        acts = options(c)
+        if len(acts) == 1:
+            return acts[0]
+        x, ids = plfeat.features(c, self.tables(c))
+        scores = pol.logits(x[None], ids[None])[0]
+        return max(acts, key=lambda a: scores[option_slot(c, a)])
 
     def decide(self, b):
         """The turn's action."""
@@ -984,19 +1012,17 @@ class Planner:
 
     def record_choice(self, b, acts, q, alive, best):
         """For the learned stand-in player (pldata --choices): the position as
-        the network reads it, and over ten slots (the active Pokemon's four
-        moves, then a switch to each of the six party places) which were
-        options, the value of each option still in the running, and the
-        slot chosen."""
+        the network reads it, and over ten slots (option_slot: the active
+        Pokemon's four moves, then a switch to each bench place in the order
+        the network's features list them) which were options, the value of
+        each option still in the running, and the slot chosen."""
         from . import plfeat
         x, ids = plfeat.features(b, self.tables(b))
-        me = b.p.cur()
         legal = np.zeros(10, bool)
         values = np.full(10, np.nan, np.float32)
         chosen = 0
         for i, a in enumerate(acts):
-            slot = (next((k for k, m in enumerate(me.moves) if m is a[1] or m.name == a[1].name), 0)
-                    if a[0] == "move" else 4 + a[1])
+            slot = option_slot(b, a)
             legal[slot] = True
             if i in alive:
                 values[slot] = q[i]
@@ -1222,7 +1248,7 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     cpu = sum(r["seconds"] for r in rows)
     out = {"fight": fight, "six": f["six"], "variant": f["variant"],
            "foes": [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys],
-           "cfg": cfg, "luck": luck, "rank": RANK, "fast_tie": FAST_TIE, "lead": f["six"][lead],
+           "cfg": cfg, "luck": luck, "rank": RANK, "fast_tie": FAST_TIE, "standin": STANDIN, "lead": f["six"][lead],
            "lead_values": {n: round(v, 3) for n, v in zip(f["six"], lead_vals)},
            "clean": clean, "won": won, "deaths": round(deaths, 3), "runs": runs,
            "faints": [[a, b, n] for (a, b), n in tally.most_common()],
@@ -1326,7 +1352,7 @@ OUT = os.path.join(os.path.dirname(__file__), "perfectline_results", "step3")
 
 
 def main(argv=None):
-    global RANK, FAST_TIE, FAST_EPS
+    global RANK, FAST_TIE, FAST_EPS, STANDIN
     ap = argparse.ArgumentParser()
     ap.add_argument("fight")
     ap.add_argument("--runs", type=int, default=200)
@@ -1347,6 +1373,7 @@ def main(argv=None):
                     help="break genuine ties on losing and faints toward the faster finish (off by default)")
     ap.add_argument("--fast-eps", type=float, default=FAST_EPS,
                     help="with --fast-tie: how close in value a tie must be")
+    ap.add_argument("--standin", help="a learned stand-in player (plpolicy) to play the play-outs")
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
@@ -1356,6 +1383,7 @@ def main(argv=None):
     _PICK.update(six=args.six, variant=args.variant)
     RANK = args.rank
     FAST_TIE, FAST_EPS = args.fast_tie, args.fast_eps
+    STANDIN = args.standin
     if args.compare:
         compare(args.fight, args.compare, args.seed, drive=args.drive)
         return 0
