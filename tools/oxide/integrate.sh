@@ -455,13 +455,14 @@ esac
 
 # The tracker holds open work only and every main-track session reads it in
 # full, so it is kept short: finished blocks move to tracker-archive.md. This
-# warns rather than fails when it passes 6,000 words, so it cannot quietly
+# warns rather than fails when it passes 9,000 words (6,000 until Ian raised
+# it on 2026-10-03, after it was outgrown twice), so it cannot quietly
 # grow back to the 20,000 it reached before the 2026-09-23 cut.
 tracker_words="$(wc -w < docs/oxide/tracker.md)"
-if [ "$tracker_words" -gt 6000 ]; then
-    warn "tracker.md is $tracker_words words, over 6,000: move finished blocks to docs/oxide/tracker-archive.md"
+if [ "$tracker_words" -gt 9000 ]; then
+    warn "tracker.md is $tracker_words words, over 9,000: move finished blocks to docs/oxide/tracker-archive.md"
 else
-    echo "tracker.md is $tracker_words words (warns over 6,000)"
+    echo "tracker.md is $tracker_words words (warns over 9,000)"
 fi
 
 # Deferred instructions (Ian, 2026-10-01): each lives in the tracker's

@@ -73,7 +73,7 @@ Rules that bite:
   stop and ask in the report. Ian answers through the Overseer.
 - In-game checks go in `docs/oxide/ingame-checklist.md`, in the section
   where a playtest day meets them. Questions go under the tracker's "Waiting
-  on Ian". Tick the job's own tracker item. Keep the tracker under 6,000
+  on Ian". Tick the job's own tracker item. Keep the tracker under 9,000
   words by moving finished blocks to the archive verbatim.
 
 Gate with `bash tools/oxide/integrate.sh --verify-only`. The sync-docs
@@ -96,7 +96,7 @@ in game from a cloud session, and the report says so.
    pushes only on a pass. On a conflict it stops; resolve by hand, commit,
    and rerun with `--merged`.
    - The tracker conflicts most. Keep both sides' current entries, take the
-     job's ticks, and trim back under 6,000 words.
+     job's ticks, and trim back under 9,000 words.
    - A design doc conflict takes the higher version line and keeps both
      findings-log entries.
 3. Compare the gate's base-ROM counts with the ones the report predicted.

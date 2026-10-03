@@ -93,7 +93,7 @@ Run these in order; skipping one is how the next session starts confused.
 1. **Tracker.** Tick what finished, then move each finished block verbatim to
    `docs/oxide/tracker-archive.md` under the same heading, leaving a one-line
    pointer, so the tracker holds open work only (`integrate.sh` warns past
-   6,000 words). A trap still in force goes in a skill or the findings log
+   9,000 words). A trap still in force goes in a skill or the findings log
    first, because the archive is read only when pointed at. Add what changes
    what happens next, keep the "Where things stand" block true for `HEAD`, and
    keep entries short, pointing at the file that holds the detail. Anything
