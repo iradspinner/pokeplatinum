@@ -794,6 +794,73 @@ evidence. A cost per turn would cure it. A narrower option would only break
 ties, preferring the option that ends the fight sooner among those the value
 cannot tell apart, which leaves every stall that the value prefers.
 
+## The network planner's Gardenia, for Ian's check (2026-10-02)
+
+A sanity check in the form of the Roark write-up above, read with the
+network planner (d1b+d2+d3) under Ian's win-first ranking (`plplan` from
+dfb60ab465 on, the faster-finish tie-break off), on our hand-played six and
+items (Charmeleon, Popplio, Vikavolt, Kazza's Vullaby, Golbat with the Quick
+Claw, Tsareena, all at 26).
+
+**The numbers, ranked as Ian ranks them, wins first and faints second**
+(network 500 fights at real odds and 200 very unlucky; play-out planner 75
+and 25; ours 2,000):
+
+| Line | Dice | Won | Faints | Clean |
+|---|---|---|---|---|
+| the play-out planner | real odds | 92% (69 of 75) | 2.787 | 1 of 75 |
+| the network planner | real odds | 85.8% | 2.880 | 0.2% |
+| ours (L1) | real odds | 59.9% | 3.212 | 15.1% |
+| the play-out planner | very unlucky | 72% (18 of 25) | 3.560 | 0 |
+| the network planner | very unlucky | 60% | 3.910 | 0.5% |
+| ours | very unlucky | 30.1% | 4.680 | 4.8% |
+
+By his order both planners beat our line on both dice, and the network
+trails the play-out planner by about six points of wins. For ordering fights
+it puts Gardenia where she belongs, far above Roark (100% won, 0.02 faints)
+and Mars 1 (100%, 0.03).
+
+**The line on the showcase seed (32)**, which it won with four faints
+(`perfectline_results/step3/planner-net-gardenia-trace-seed32.txt`):
+
+1. Vikavolt leads and Bug Bites Cherrim as the sun goes up; it switches to
+   Charmeleon, which Scary Faces then Fire Fangs Cherrim out.
+2. Lumineon comes in. Popplio takes the Aqua Tail and Sings it asleep (the
+   play-outs' choice too: their chance of losing 0.24, the lowest), uses the
+   sun's last turns on the sleeping Lumineon, and Icy Winds it as the sun
+   ends; Lumineon gives way to Roserade.
+3. Against Roserade the network sends Vullaby into Sludge Bomb, which leaves
+   it at 2 HP and poisoned, where the play-outs send Golbat (their chance of
+   losing 0.03 against 0.31). Popplio returns and faints; Charmeleon's Fire
+   Fang takes Roserade.
+4. Lumineon again: Charmeleon falls to Aqua Tail, and Vikavolt Sparks it out
+   now that the sun is down (the play-outs agree, 0.11, their lowest).
+5. Shiftry: Tsareena uses Magical Leaf twice, Teeter Dance and Play Nice
+   where the play-outs would Stomp each turn, then the network switches a
+   25-HP Vikavolt into Rock Tomb (their chance of losing 0.67 against 0.19
+   for Stomp), losing it. Tsareena Stomps and falls; Golbat's Wing Attacks
+   finish Shiftry and Breloom.
+
+**The nine ideas, as an exam.** Arose: Charmeleon takes Cherrim, Popplio
+Sings Lumineon, the sun's last turns spent on a sleeping foe, Vikavolt
+Sparks Lumineon out after the sun, and Golbat closes out Shiftry and Breloom.
+Not seen: Kazza's Pluck on Shiftry's Occa Berry, and Golbat walking in on
+the Solar Beam charge.
+
+**Checked against the play-outs** (`--compare d1b+d2+d3 --drive network`,
+`planner-net-gardenia-compare-driven-seed32.txt`): the network chooses as
+they would at 10 of 25 decisions, and by their estimates its other choices
+add 1.735 to the chance of losing and 8.67 faints in all, the largest the
+Vikavolt switch (+0.47), Spark into Lumineon with Vikavolt at full HP where
+they would switch to Tsareena (+0.33), and Vullaby into Sludge Bomb (+0.28).
+Those estimates come from the plain play-out policy, which loses Gardenia
+far more often than either planner (its chances of losing run from 0.2 to
+0.7 where the planners lose 8 to 14% of fights), so they show where the
+network errs, not how much each error costs. Gardenia is where the network's
+judgement is roughest, and the cheap labelling recipe did not mend it (two
+spread rounds made it worse); the play-out planner is the better reader of
+her for now.
+
 ## The play-out planner on Mars 1 and Gardenia (2026-10-02)
 
 A baseline for goals 1 and 2 before stage 2 changes anything: the play-out
@@ -1223,6 +1290,40 @@ on the play-out planner alone costs about 13 core-hours per boss and box
 weeks. For a single fixed six read once, the network still pays (1.8
 core-hours with its labels against 5.6 for play-outs) where the cheap recipe
 holds; where it does not, the play-out planner reads the finalist.
+
+**Two further options, costed, not started (Ian's brainstorm, relayed).**
+
+*A general boss network.* One value network trained on many varied boss-like
+fights, so that it reads a boss it has never seen and a boss needs no labels
+of its own: the game's own bosses across many sixes, the Kaizo study's
+trainer sheets, and boss-like teams built from the trainer palette, perhaps
+300 fights in all. At a tenth of a round each at budget 64 (about 40,000
+positions, 0.6 core-hours), the one-off labelling is about 180 core-hours,
+some 6 hours on 29 workers; the pile, about 12 million positions, needs a
+loader that streams it rather than holding it in memory (the present one
+holds about 6 million). The test is held out: train without Gardenia and
+Mars 1 at 19 and read both. If they read close enough, it saves every boss's
+own labels (about 2 hours for goal 3's 38, plus the play-out fallback where
+the cheap recipe fails, about 9 more) and the 4 minutes per fight at every
+trainer-pass change after, and the race and the reading run at about 3
+seconds a fight. The risk is the same test failing as it did today: trained
+on 100 easy trainers and two bosses, the network won 8 Gardenia fights of
+500. Hundreds of hard, varied fights may be what it lacked, and only the test
+will say.
+
+*A learned stand-in for the play-outs.* A small policy network that picks
+each turn's move as the play-out planner would, trained on its own choices,
+to replace the plain policy inside the play-outs. Play-outs that play more
+like the planner value positions more truly, so fewer of them would do: if a
+budget of 24 then chose as well as 64 or 192 does now, the play-out planner
+gets about three times cheaper, which brings a finalist's 100-fight reading
+from about 5.6 core-hours to about 2 and a boss's labels from about 1.7 to
+about 0.6. Its labels are the planner's decisions, which the shards do not
+yet keep: recording them over about 2,000 play-out fights of the bosses is
+about 80 core-hours (3 hours), and training is minutes. A stand-in costs
+about as much per turn as the plain policy (one small forward pass), and
+whether it makes a smaller budget choose as well is a measurement, the
+choices agreeing at the showcase seeds as the spot check counts them.
 
 **The first test (the Overseer's).** The search on the hand run's own boxes
 at Roark, Mars 1 (at 19) and Gardenia, to see whether it finds our sixes or
