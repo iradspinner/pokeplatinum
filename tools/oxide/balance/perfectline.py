@@ -239,9 +239,13 @@ def damage_of(b, att, dfn, mv, crit, top, roll=None):
         return 0
     a_st, d_st = ("atk", "def") if mv.cat == "Physical" else ("spa", "spd")
     a, d = att.stages[a_st], dfn.stages[d_st]
+    if dfn.ability == "Unaware" and att.ability != "Mold Breaker":
+        a = 0                    # Unaware ignores the attacker's stages
+    if att.ability == "Unaware":
+        d = 0                    # and, on its own attack, the target's
     if crit:
         a, d = max(a, 0), min(d, 0)
-    mult = fs.stage_mult(a) / fs.stage_mult(d)
+    mult = fs.stage_mult(a) / fs.stage_mult(d) * fs.state_mult(b, att, dfn, mv)
     if mv.cat == "Physical" and att.status == "brn" and att.ability != "Guts":
         mult *= 0.5
     if att.ability == "Guts" and att.status:
@@ -278,6 +282,8 @@ def give_status(b, target, status):
         target.sleep = b.dice.sleep(target.side)
     if status == "tox":
         target.toxic = 0
+    fs.synchronize(b, target, status)
+    fs.cure_berry(target)
     return True
 
 
@@ -289,7 +295,7 @@ def accuracy_hits(b, att, dfn, mv):
     if mv.acc == 0 or mv.effect == "BYPASS_ACCURACY":
         return True
     acc = mv.acc
-    if mv.effect == "THUNDER":
+    if mv.effect in ("THUNDER", "HURRICANE"):               # Oxide: Hurricane as Thunder in weather
         acc = 100 if b.weather == "Rain" else 50 if b.weather == "Sun" else acc
     if mv.effect == "BLIZZARD" and b.weather == "Hail":
         return True
@@ -297,6 +303,8 @@ def accuracy_hits(b, att, dfn, mv):
     acc = acc * ((3 + s) / 3 if s >= 0 else 3 / (3 - s))
     if att.ability == "Compound Eyes":
         acc *= 1.3
+    if att.item == "Wide Lens":
+        acc *= 1.1
     if att.ability == "Hustle" and mv.cat == "Physical":
         acc *= 0.8
     if dfn.item in ("Bright Powder", "BrightPowder", "Lax Incense"):
@@ -317,8 +325,11 @@ def use_move(b, att, mv, dfn, first):
         return
     att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
     att.destiny_bond = False         # and its Destiny Bond with it
+    b.status_src = att               # a status this move gives comes from att (Synchronize)
     if att.recharge:
         att.recharge = False
+        return fs.could_not_act(b, att, mv, dfn)
+    if fs.loafs(att):
         return fs.could_not_act(b, att, mv, dfn)
     if att.status == "frz":
         # In the search the trainer thaws at once and the player stays
@@ -352,6 +363,8 @@ def use_move(b, att, mv, dfn, first):
     att.last = mv
     if att.item and att.item.startswith("Choice") and not att.choice:
         att.choice = mv.name
+    if fs.commit_move(att, mv):
+        return                       # Last Resort before every other move was used
     if mv.effect in fs.TWO_TURN and att.charging is None:
         if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
             pass
@@ -373,6 +386,7 @@ def use_move(b, att, mv, dfn, first):
     attack(b, att, mv, dfn, first)
     # A contact ability's chance hurts the player when the player's Pokemon
     # takes it, and helps it when the trainer's does.
+    fs.after_hit(b, att, dfn, mv, b.last_dealt)
     fs.contact_ability(b, att, dfn, mv, b.last_dealt,
                        lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
                        lambda kind, n: b.dice.choice(kind, n))
@@ -401,7 +415,7 @@ def attack(b, att, mv, dfn, first):
         return
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
         return
-    if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE:
+    if dfn.charging is not None and dfn.charging.effect in fs.INVULNERABLE and not fs.reaches(mv, dfn):
         return
     if dfn.protecting and mv.effect not in ("REMOVE_PROTECT",):
         return
@@ -457,7 +471,7 @@ def attack(b, att, mv, dfn, first):
         # side: BtlCmd_CalcCrit sets the multiplier to 1 under
         # BATTLE_STATUS_FIRST_BATTLE (src/battle/battle_script.c).
         if dfn.ability not in ("Battle Armor", "Shell Armor") and not b.st.get("first_battle"):
-            stage = att.crit_stage + (1 if mv.effect.startswith("HIGH_CRITICAL") or
+            stage = att.crit_stage + (att.ability == "Super Luck") + (1 if mv.effect.startswith("HIGH_CRITICAL") or
                                       mv.effect.startswith("CHARGE_TURN_HIGH_CRIT") else 0)
             if att.item in ("Scope Lens", "Razor Claw"):
                 stage += 1
@@ -601,7 +615,9 @@ def attack(b, att, mv, dfn, first):
     if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch \
             and secondary("kingsrock", 0.1):
         dfn.flinch = True
-    if e == "CONFUSE_HIT" and chance and not dfn.confused and status_lands("confusehit"):
+    if dfn.ability == "Inner Focus":
+        dfn.flinch = False       # Inner Focus: it never flinches
+    if e in ("CONFUSE_HIT", "HURRICANE") and chance and not dfn.confused and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
             and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
@@ -691,6 +707,7 @@ def status_move(b, att, mv, dfn, first):
     elif e == "REST":
         if att.hp < att.maxhp:
             att.hp, att.status, att.sleep, att.toxic = att.maxhp, "slp", 2, 0
+            fs.cure_berry(att)       # a Chesto or Lum Berry wakes it at once
     elif e == "SWALLOW":
         fs.heal(att, att.maxhp // 4)
     elif e == "SET_LIGHT_SCREEN":
@@ -1008,7 +1025,7 @@ def player_actions(b):
             out.append(("move", mv))
     finally:
         b.rng = saved
-    if not me.bound and fs.can_switch(me):
+    if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
         for i, m in enumerate(b.p.mons):
             if i != b.p.active and m.alive():
                 out.append(("switch", i))
@@ -1080,7 +1097,7 @@ def _turn(c, pa, aa):
     c.mid_turn = True
     quick = getattr(c, "quick", None)
     c.quick = None
-    if pa[0] == "switch" and not fs.can_switch(c.p.cur()):
+    if pa[0] == "switch" and (not fs.can_switch(c.p.cur()) or fs.ability_trapped(c, c.p.cur())):
         raise ValueError(f"{c.p.cur().species} is trapped and cannot switch")
     # Pursuit hits a Pokemon that is switching out before it leaves, at
     # double power, and is then spent for the turn.
@@ -1125,6 +1142,9 @@ def _turn(c, pa, aa):
                     order.reverse()
                 elif qp == qf and (sa < sd or (sa == sd and not c.dice.tie_player_first())):
                     order.reverse()
+                for mon in (me, foe):
+                    if quick.get(mon.key) and mon.item == "Custap Berry":
+                        fs.consume(mon)          # a Custap Berry that fired is eaten
             elif sa < sd or (sa == sd and not c.dice.tie_player_first()):
                 # The player is slower: its Quick Claw (one in five) keeps it
                 # first. Before this the check sat after this branch and could
@@ -1194,7 +1214,7 @@ def play_turn(b, pa, rng, one_crit=True):
     b.dice.rng = rng
     # Quick Claw is rolled before anyone chooses, and the trainer's AI reads
     # the roll (BattleSystem_CompareBattlerSpeed sees speedRand).
-    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2) if player(m) else b.dice.bad("quickclaw", 0.2))
+    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2) if player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     _turn(b, pa, aa)

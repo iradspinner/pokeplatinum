@@ -345,7 +345,9 @@ def quick_outcomes(b):
     field fires one time in five, drawn before anyone chooses."""
     out = [({}, 1.0)]
     for m in (b.p.cur(), b.b.cur()):
-        if m.item == "Quick Claw":
+        if fs.custap_fires(m):
+            out = [(dict(q, **{m.key: True}), p) for q, p in out]      # a Custap Berry that fires
+        elif m.item == "Quick Claw":
             out = [(dict(q, **{m.key: f}), p * (0.2 if f else 0.8)) for q, p in out for f in (False, True)]
         else:
             out = [(dict(q, **{m.key: False}), p) for q, p in out]
@@ -578,7 +580,7 @@ def options(b):
     if not out:
         left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)]
         out.append(("move", left[0] if left else fs.move("Struggle")))
-    if not me.bound and fs.can_switch(me):
+    if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
         out += [("switch", i) for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive()]
     return out
 
@@ -753,7 +755,7 @@ def plain(b):
     pair = (me.key, foe.key)
     if getattr(b, "pair", None) != pair:
         b.pair = pair
-        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not me.bound and fs.can_switch(me) \
+        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me) \
                 and b.p.bench():
             won, left, _t = duel(b)
             if not won and left < 0:
@@ -1099,7 +1101,7 @@ def real_turn(b, a, rng):
     """perfectline.play_turn, returning the trainer's choice as well."""
     b.rng = rng
     b.dice.rng = rng
-    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2) if pl.player(m) else b.dice.bad("quickclaw", 0.2))
+    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2) if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     pl._turn(b, a, aa)

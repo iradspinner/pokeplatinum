@@ -1710,6 +1710,43 @@ engine keeps the recyclable item per battle position, so a Pokemon could
 recycle what the one before it used; here each Pokemon keeps its own. Two
 checks in `test_plfixes` (58 of 58 pass).
 
+**Held items, abilities and move effects (2026-10-03, on Ian's word via
+the Overseer).** A sweep of every item, ability and move effect the
+trainers use in the 33 story fights and in Kaizo's bosses of its first
+three splits found those the simulator never applied. The ones acting
+only through damage (type boosters, Expert Belt, Muscle Band, Choice
+items, Technician, Thick Fat, Solid Rock and the like) are in the
+calculator's rows already; the ones that change a fight as it runs are now
+simulated as the decomp has them, in both simulators:
+
+- the calculator's rows are made once per fight at full HP with each
+  Pokemon's starting item, so `fightsim.state_mult` now adds what they
+  cannot know: Torrent, Blaze, Overgrow and Swarm at a third of HP or less;
+  a resist berry used up after the hit it halves (17 berries; the row's
+  halving is undone once it is gone); Flail and Reversal by the HP bar's
+  pixels; Water Spout by HP; Earthquake and Magnitude into Dig, Surf and
+  Whirlpool into Dive, at double damage;
+- berries: the status-curing ones (Pecha, Cheri, Chesto, Rawst, Aspear, and
+  Lum) cure at once, Rest included; Berry Juice heals 20; Custap puts its
+  holder first at a quarter of its HP (half with Gluttony); Gluttony eats a
+  pinch berry at half;
+- items: White Herb undoes lowered stages once; Wide Lens 1.1 accuracy;
+  Toxic and Flame Orb at the turn's end; Shell Bell an eighth of the damage
+  dealt;
+- abilities: Aftermath (a contact KO costs the attacker a quarter, unless
+  Damp); Unburden (Speed doubled once its item is gone, if it came in
+  holding one); Truant; Natural Cure and Oxide's Regenerator on the way
+  out; Speed Boost; Poison Heal; Heatproof's halved burn; Inner Focus;
+  Synchronize (Oxide passes bad poison on as bad poison); Magnet Pull,
+  Shadow Tag and Arena Trap in the player's options (the trainer's AI had
+  them); Unaware; Super Luck's crit stage;
+- moves: Rage; Last Resort; Hurricane as Thunder in rain and sun (Oxide),
+  with its confusion.
+
+Five grouped checks in `test_plfixes` (63 of 63 pass). Multi-hit moves
+still count as three hits, Secret Power's secondary effect needs the
+terrain as Camouflage does, and Baton Pass still passes nothing.
+
 Still not simulated: **Camouflage** (Barry 3's Staryu, the only user). It
 changes its user's types to the battle's terrain type, and the simulator's
 damage comes from calculator rows made once per fight with each Pokemon's

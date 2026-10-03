@@ -273,6 +273,153 @@ def wish_spite_recycle_checks():
              spited == 6 and eaten is None and back == "Sitrus Berry", f"PP {spited}, berry {eaten} then {back}")]
 
 
+def held_state_checks():
+    """The held items, abilities and move effects the calculator's rows
+    cannot know (2026-10-03), each as the decomp has it."""
+    out = []
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    gun = fs.move("Water Gun")
+
+    def dmg(att, dfn, mv):
+        return pl.damage_of(b, att, dfn, mv, False, True)
+
+    # A pinch ability at a third of its HP; a resist berry's halving, then gone.
+    barboach.ability = "Torrent"
+    full = dmg(barboach, foe, gun)
+    barboach.hp = barboach.maxhp // 3
+    pinch = dmg(barboach, foe, gun)
+    barboach.hp = barboach.maxhp
+    holder = next((m for m in b.b.mons if fs._row_item(b, m) == "Passho Berry"), None)
+    berry = None
+    if holder is not None:
+        fs.switch_in(b, b.b, b.b.mons.index(holder))
+        first = dmg(barboach, holder, gun)
+        fs.after_hit(b, barboach, holder, gun, first)
+        second = dmg(barboach, holder, gun)
+        berry = (holder.item, round(second / max(1, first), 2))
+    out.append(("a pinch ability's 1.5 at a third of HP; a resist berry halves one hit and is eaten",
+                1.4 <= pinch / full <= 1.6 and berry is not None and berry[0] is None and 1.8 <= berry[1] <= 2.2,
+                f"Torrent {full} then {pinch}; Passho Berry {berry}"))
+    # Status berries, Berry Juice, White Herb, a Toxic Orb, Shell Bell.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.item = "Pecha Berry"
+    b.status_src = None
+    pl.give_status(b, barboach, "psn")
+    pecha = (barboach.status, barboach.item)
+    barboach.item, barboach.hp = "Berry Juice", barboach.maxhp // 2
+    fs.berry_check(barboach)
+    juice = barboach.hp - barboach.maxhp // 2
+    barboach.item = "White Herb"
+    fs.change_stages(barboach, {"def": -1})
+    herb = (barboach.stages["def"], barboach.item)
+    barboach.item, barboach.status = "Toxic Orb", None
+    fs.end_of_turn(b)
+    orb = barboach.status
+    barboach.item, barboach.hp = "Shell Bell", barboach.maxhp // 2
+    fs.after_hit(b, barboach, foe, gun, 40)
+    bell = barboach.hp - barboach.maxhp // 2
+    out.append(("Pecha cures at once, Berry Juice heals 20, White Herb undoes a drop, Toxic Orb, Shell Bell",
+                pecha == (None, None) and juice == 20 and herb == (0, None) and orb == "tox" and bell == 5,
+                f"Pecha {pecha}, Juice +{juice}, Herb {herb}, Orb {orb}, Bell +{bell}"))
+    # Aftermath, Unburden, Truant, Natural Cure, Regenerator, Speed Boost, Poison Heal.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    grubbin = b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    foe.ability, foe.hp = "Aftermath", 1
+    b.dice = pl.RunDice(random.Random(2), True)
+    pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+    after = grubbin.maxhp - grubbin.hp if not foe.alive() else None
+    foe2 = b.b.mons[1]
+    foe2.ability, foe2.item, foe2.had_item = "Unburden", "Sitrus Berry", True
+    s1 = b.speed(foe2)
+    fs.consume(foe2)
+    s2 = b.speed(foe2)
+    grubbin.ability, grubbin.loafing = "Truant", False
+    acted = []
+    for _ in range(3):
+        before = foe2.hp = foe2.maxhp
+        pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe2, True)
+        acted.append(foe2.hp < before)
+    fs.switch_in(b, b.p, 0)
+    barboach.ability, barboach.status = "Natural Cure", "par"
+    nacli = b.p.mons[1]
+    nacli.ability, nacli.hp = "Regenerator", nacli.maxhp // 3
+    fs.switch_in(b, b.p, 1)         # Barboach leaves: Natural Cure
+    fs.switch_in(b, b.p, 0)         # Nacli leaves: Regenerator
+    cured, regen = barboach.status, nacli.hp
+    barboach.ability, barboach.turns_in, barboach.stages["spe"] = "Speed Boost", 1, 0
+    barboach.ability, barboach.status = "Poison Heal", "psn"
+    barboach.hp = barboach.maxhp // 2
+    fs.end_of_turn(b)
+    healed = barboach.hp - barboach.maxhp // 2
+    barboach.ability, barboach.status, barboach.turns_in = "Speed Boost", None, 1
+    fs.end_of_turn(b)
+    boosted = barboach.stages["spe"]
+    out.append(("Aftermath, Unburden, Truant, Natural Cure, Regenerator, Poison Heal, Speed Boost",
+                after == grubbin.maxhp // 4 and s2 == 2 * s1 and acted == [True, False, True]
+                and cured is None and regen == nacli.maxhp // 3 + nacli.maxhp // 3 and healed == barboach.maxhp // 8
+                and boosted == 1,
+                f"Aftermath {after}, speed {s1} then {s2}, Truant {acted}, cured {cured}, Regenerator {regen}, "
+                f"Poison Heal +{healed}, Speed Boost {boosted}"))
+    # Inner Focus, Synchronize, Magnet Pull, Unaware, Super Luck's stage.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.ability = "Inner Focus"
+    b.dice = pl.RunDice(random.Random(3), True)
+    foe.moves, foe.pp = [fs.move("Fake Out")], {"Fake Out": 10}
+    pl.use_move(b, foe, foe.moves[0], barboach, True)
+    focus = barboach.flinch
+    barboach.ability, barboach.status, foe.status = "Synchronize", None, None
+    b.status_src = foe
+    pl.give_status(b, barboach, "par")
+    synced = foe.status
+    foe.ability = "Magnet Pull"
+    barboach.types = ["Steel"]
+    from . import plplan
+    trapped = not any(a[0] == "switch" for a in plplan.options(b))
+    barboach.types = ["Water", "Ground"]
+    foe.ability = "Unaware"
+    plain_hit = dmg(barboach, foe, gun)
+    barboach.stages["spa"] = 2
+    unaware_hit = dmg(barboach, foe, gun)
+    barboach.stages["spa"] = 0
+    out.append(("Inner Focus, Synchronize, Magnet Pull, Unaware",
+                not focus and synced == "par" and trapped and unaware_hit == plain_hit,
+                f"flinched {focus}, synced {synced}, trapped {trapped}, Unaware {plain_hit} then {unaware_hit}"))
+    # Flail and Water Spout by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap.
+    m = fs.Mon.__new__(fs.Mon)
+    m.hp, m.maxhp = 1, 64
+    low = fs.flail_power(m)
+    m.hp = 64
+    high = fs.flail_power(m)
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    foe.raging = True
+    fs.after_hit(b, barboach, foe, gun, 10)
+    rage = foe.stages["atk"]
+    barboach.moves = [fs.move("Last Resort"), fs.move("Water Gun")]
+    barboach.pp = {"Last Resort": 5, "Water Gun": 10}
+    early = fs.commit_move(barboach, barboach.moves[0])
+    fs.commit_move(barboach, barboach.moves[1])
+    later = fs.commit_move(barboach, barboach.moves[0])
+    b.weather = "Rain"
+    rain = all(pl.accuracy_hits(b, barboach, foe, fs.move("Hurricane")) for _ in range(20))
+    b.weather = None
+    foe.charging = fs.move("Dig")
+    reach = fs.reaches(fs.move("Earthquake"), foe) and not fs.reaches(gun, foe)
+    foe.charging = None
+    foe.item, foe.hp = "Custap Berry", foe.maxhp // 4
+    custap = fs.custap_fires(foe)
+    out.append(("Flail by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap at a quarter",
+                low == 200 and high == 20 and rage == 1 and early and not later and rain and reach and custap,
+                f"Flail {low}/{high}, Rage +{rage}, Last Resort fails {early} then {later}, rain {rain}, "
+                f"Dig {reach}, Custap {custap}"))
+    return out
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -715,6 +862,7 @@ def main():
     results += destiny_bond_checks()
     results += gender_checks()
     results += wish_spite_recycle_checks()
+    results += held_state_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
