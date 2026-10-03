@@ -135,6 +135,11 @@ is listed for Ian.
   optimised, since always winning with one sacrifice beats winning cleanly
   nine times in ten. Exact ties break toward the faster finish. Bosses are
   read over a spread of boxes, so their answers do not narrow to one Pokemon.
+  The scorer's job is to order every fight correctly by difficulty; close
+  enough is good enough while that order is broadly right. For a boss it
+  chooses the six and their moves itself (a matchup screen, a race, then the
+  full reading), and reports which encounters its sixes always and never
+  take, as signs of encounter balance to work on (Ian, 2026-10-02).
   The first three splits are read under interim soft caps at their
   mini-bosses (Barry 2's ace 11, Mars 1's Purugly 19, Jupiter 1's Skuntank 27,
   Lucas and Dawn 2 at 30). Ian's first targets (an ordinary trainer, read

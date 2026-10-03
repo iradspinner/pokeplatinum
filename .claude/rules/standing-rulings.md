@@ -117,7 +117,16 @@ read, so they are written here too. Each is a standing instruction.
   and its full-paralysis and confusion checks go against it). Its three
   numbers are reported beside the real-odds ones, as a very unlucky fight.
   Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
-  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). When a fight reads too hard, the player's move pools are the first
+  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). The
+  scorer's job is to order every fight in the game correctly by difficulty;
+  it need not win as a person would, and close enough is good enough while
+  that order is broadly right (Ian, 2026-10-02). For a boss the scorer
+  chooses the six and their moves itself, in three stages: a screen by
+  matchups with no simulated fights, a race among the screen's best sixes,
+  and the full reading of the two or three left (Ian, 2026-10-02). Across
+  the spread of boxes it reports which encounters its sixes always take and
+  which they never take, since both mark encounter balance to work on (Ian,
+  2026-10-02). When a fight reads too hard, the player's move pools are the first
   candidate for change, since they are sparse in interesting options and lack
   many modern moves. A fight is judged on three numbers read together, never
   the clean rate alone (Ian, 2026-10-01): the clean rate, the share of
