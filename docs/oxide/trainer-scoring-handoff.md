@@ -50,7 +50,7 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-02).** The fightai audit and the known gaps are
+**Where it stands (2026-10-03).** The fightai audit and the known gaps are
 on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
 order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
 as a planner (`plplan.py`) that decides turn by turn by simulating its options
@@ -79,11 +79,20 @@ Torment, Pain Split and Destiny Bond ("Moves the simulator ignored"):
 Barry 2, Jupiter 1 and Lucas and Dawn 2 are easy, and Fantina is won about
 19 times in 20 at two or three faints ("Goal 2's readings"). **Goal 2 is
 passed** (Ian, 2026-10-03, "Ian's answers (2026-10-03)"): play-out readings
-now run at budget 64 with a five-point tolerance on wins, the loop stands as
-built, and genders, Attract and Cute Charm, and Wish, Spite, Recycle and
-Camouflage are going in, then Jupiter 1 is read again. Goal 3 waits on the
-Overseer's word about the Kaizo study. Every reading is 75 fights at real
-odds and 25 very unlucky. The perfect-line store has been stale since the simulator
+now run at budget 64 with a five-point tolerance on wins, and the loop
+stands as built. Since then genders, Attract and Cute Charm, Wish, Spite
+and Recycle, and two sweeps of battle-state items, abilities and move
+effects are in ("Moves the simulator ignored", and the second sweep under
+"The Kaizo study's worked examples"); Camouflage waits for Barry 3, in the
+tracker's Scheduled list. Goal 2's fights and the three gyms were read
+again on the fixed simulator, and only Fantina moved, harder by about 0.7
+faints a fight through Drifblim's Unburden ("Goal 2 read again"). The Kaizo
+study's five worked examples are read ("The Kaizo study's worked
+examples"), and so is the Kaizo anchor, Kaizo's six readable bosses of its
+first three splits on goal 2's boxes, which those boxes win 0 to 81 times
+in 100 but for Fantina's second team ("The Kaizo anchor"). Goal 3 is held
+until it follows the study's comb, by the tracker's Scheduled list. Every
+reading is 75 fights at real odds and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -1881,6 +1890,180 @@ beats it. It costs nothing where the winner loses no Pokemon, and at most
 six more 25-fight readings where it does; at Fantina it read three more
 sixes, about 6 core-hours. It ran here on the finished search; from now on
 `plteam.search` runs it after the check.
+
+## The Kaizo study's worked examples (2026-10-03, for the study)
+
+The Kaizo study rebuilt five of Oxide's trainers at 6/10 of Kaizo and asked
+for a reading of each (`~/oxide-trials/kaizo-teams/out/examples.md`).
+`plstudy.py` reads the files where they lie, without copying them into
+`res/`, and writes each reading to `~/oxide-trials/scorer-stage2/study/`.
+Numbers are won / faints / clean, over 75 fights at real odds and 25 very
+unlucky:
+
+| Example | Real odds | Very unlucky | The study expected |
+|---|---|---|---|
+| Taylor, blind at 19 | 97 / 0.48 / 80 | 96 / 0.56 / 80 | 100 / 0.05 / 95 |
+| Taylor, the box without its level-6 Starly | 100 / 0.13 / 91 | 92 / 0.72 / 72 | |
+| Catherine, blind at 33 | 95 / 0.89 / 63 | 88 / 1.68 / 36 | 100 / 0.15 / 85 |
+| Catherine, without the Starly | 99 / 0.55 / 67 | 92 / 1.52 / 52 | |
+| the Eterna 1F grunt alone, blind at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.03 / 97 |
+| Eterna 1F and 2F, four grunts as one section | 100 / 0.01 / 99 | 100 / 0.08 / 92 | 80 clean or better |
+| Gardenia, team search at 26 | 100 / 0.05 / 95 | 100 / 0.08 / 92 | 99 to 100 / 0.6 / 45 |
+| Maylene, team search at 38, on a stand-in box | 99 / 2.75 / 0 | 96 / 3.32 / 0 | 98 to 99 / 1.0 / 30 |
+
+A blind reading draws its own six at random from the whole box for each of
+its 100 fights, as a player meeting the trainer with no plan might bring any
+six they own. That is harsher than a settled six, and a box with fodder in
+it shows it. The hand run's box at 19 (Taylor's) and goal 2's Fantina box at
+33 (Catherine's) both keep a level-6 Starly, which three of Taylor's draws in
+eight carried and one of Catherine's in five, so each is read again without
+it. Taylor then sits in the study's band, her faints falling to Tangela.
+Catherine still reads harder than expected, her faints falling to Haunter
+(23 of 41), Drifblim and Litwick. The very unlucky column is 25 fights, each
+with its own six, so it moves several points from one draw to the next.
+
+The section carries one random six through all four grunts, with its HP,
+status, PP and items as each fight left them, and stops at a loss; a run is
+clean only when nothing faints in any of the four. The grunt and the section
+use goal 2's Jupiter 1 box at 27. Gardenia's search, on the hand run's
+Gardenia box at 26, chose Dubwool, Vullaby, Krabby, Charmeleon, Tsareena and
+Breloom, which lost a Pokemon in 4 fights of 75.
+
+Maylene's box is a stand-in: goal 2's Fantina box raised to 38, with the
+level evolutions that brings (Empoleon, Staraptor, Blastoise, Charizard,
+Primarina, Talonflame, Glimmora, Skuntank) and no moves beyond those its
+pools reach by 38. No run has reached Maylene, so it says what Fantina's box
+would face there, not what a player would bring. Its six, Staraptor,
+Tsareena, Graveler, Primarina, Rotom and Talonflame, loses its Pokemon to
+Medicham (92 of 206 faints), Hitmonchan (43), Lucario (28) and Toxicroak
+(23). In the search's matchup table, Pure Power Medicham and Iron Fist
+Hitmonchan with an Expert Belt each take 89 to 118 percent of the HP of every
+member of that six but Rotom in one hit; Medicham outspeeds four of the six,
+and its Coba Berry halves the Flying members' hits. The Twins are a double
+and are not read.
+
+The trainer file's ability field is read as the build reads it: 0 gives the
+first slot (the class's default personality byte is even), 1 and 2 the
+slots, and 3 the hidden one. Taylor's first member names no item, and the
+trainer packer keeps a party's items only when its first member names one,
+so the built game would drop Tangela's Sitrus Berry; the reading gives
+Cherubi "ITEM_NONE" so that the berry stays, as the study means it, and
+records the note.
+
+**A second effect sweep.** The examples brought moves and abilities the
+simulator did not apply, and a stricter pass over the 33 story fights and
+Kaizo's six, by effect alone (the first sweep had passed over any move whose
+name the source mentioned), found Gyro Ball in Mars 2, Mars and Jupiter, and
+Saturn 2. Each is now as the decomp has it, with a check in `test_plfixes`
+(70 of 70 pass). Hex and Infernal Parade double on a target with a status,
+and Venoshock and Barb Barrage on a poisoned one, in the hit and not in the
+trainer AI's figure, which scores them through Expert_Hex. Assurance doubles
+on a target that lost HP earlier in the turn, but not for hazards on a
+knockout's replacement, which the game counts after the turn's flags clear.
+Mortal Spin poisons its target, and Rapid Spin raises its user's Speed
+(Oxide); both free the user from binding and Leech Seed and clear its
+side's hazards. Corrosion poisons Poison and Steel types with its holder's
+moves, never through an ability, a hazard or an Orb. Poison Touch poisons 3
+times in 10 on a contact hit, when the defender's own on-hit ability did
+nothing. Gust and Twister reach a Pokemon in the air at double damage, and
+Thunder, Sky Uppercut, Hurricane and Smack Down at their power (Smack
+Down's grounding is not simulated). Gyro Ball's power follows the turn's
+Speeds, as the trainer's AI already reckoned it. Catherine (Hex), the
+section (Assurance) and Maylene (Mortal Spin, Venoshock, Corrosion, Poison
+Touch) were read again on the fixed simulator; their first readings stay
+beside them as `-oldsim`. Maylene's first, with a weaker six, was 91 / 3.03
+/ 7, very unlucky 84 / 3.92 / 0.
+
+## Goal 2 read again on the fixed simulator (2026-10-03)
+
+The simulator changed under goal 2's readings: genders, Attract and Cute
+Charm, the contact abilities, Wish, Spite and Recycle, the battle-state
+sweep, and the study's second sweep all went in on 2026-10-03. Each of goal
+2's four fights, and the three gyms of the team search's first test, was
+searched and read again: budget 64, the five-point tolerance, the loop, and
+Ian's standard reading of the winner. Jupiter 1's re-read and Fantina's
+search ran before the second sweep, which reaches them only through the
+box's Rapid Spin and Assurance; the rest ran after it. Numbers are won /
+faints / clean.
+
+| Fight | Before: six | Real | Very unlucky | After: six | Real | Very unlucky |
+|---|---|---|---|---|---|---|
+| Barry 2 | Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby | 100 / 0.00 / 100 | 100 / 0.00 / 100 | Wooloo, Vulpix, Rookidee, Dottler, Starly, Krabby | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| Jupiter 1 | Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover | 100 / 0.07 / 93 | 100 / 0.32 / 72 | Dubwool, Onix, Graveler, Breloom, Vikavolt, Rotom | 100 / 0.19 / 91 | 100 / 0.20 / 88 |
+| Lucas and Dawn 2 | Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena | 100 / 0.00 / 100 | 100 / 0.00 / 100 | Prinplup, Vulpix, Whiscash, Wartortle, Onix, Tsareena | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| Fantina | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 95 / 2.21 / 12 | 88 / 3.32 / 4 | Charmeleon, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 91 / 3.04 / 1 | 76 / 3.92 / 0 |
+| Fantina, the same six as before | | | | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 92 / 2.89 / 4 | 92 / 3.00 / 8 |
+| Roark, at 16 | Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude | 100 / 0.12 / 88 (25 play-outs) | | Barboach, Nidorino, Onix, Charmander, Steenee, Geodude | 100 / 0.05 / 95 | 100 / 0.16 / 84 |
+| Mars 1, at 19 | Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude | 100 / 0.00 / 100 (25 play-outs) | | Prinplup, Bibarel, Nidorino, Onix, Charmander, Geodude | 100 / 0.16 / 87 | 96 / 0.56 / 76 |
+| Gardenia, at 26 | Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat | 96 / 1.52 / 16 (25 play-outs) | | Dubwool, Bibarel, Nidorino, Onix, Tsareena, Golbat | 97 / 1.07 / 44 | 88 / 2.00 / 24 |
+
+Barry 2 and Lucas and Dawn 2 stay clean every time. Jupiter 1, now with
+Attract working, loses a Pokemon in about one fight in eleven, as before,
+its faints still falling to Skuntank. Fantina is the one the fixes moved: the
+same six loses 2.89 Pokemon a fight where it lost 2.21, and wins cleanly 4
+percent of the time where it did 12. Drifblim causes most of the difference: its
+faints rose from 17 to 41 in the 75 real fights, because Unburden now
+doubles its Speed once its Sitrus Berry is eaten. The re-read's search
+chose a six with Charmeleon for Vulpix that reads no better than the old
+one (its 25-fight check put it at 100 / 2.52 / 0); within the search's
+check, sixes this close are not told apart. The three gyms' "before" figures
+are their first test's 25-fight checks rather than full readings, so a 0.16
+average can show as none.
+
+Gardenia, at 97 / 1.07 / 44, reads kinder than its first test's 25-fight
+check of another six; Roserade still causes 60 of its 80 faints. The new
+lines are beside the old ones in `perfectline_results/step3/`
+(`goal2-<fight>-line-reread.txt`), and every number here is in
+`readings-2026-10-03.json` there. In Fantina's new line the planner brings
+Charmeleon in on Duskull's opening Will-O-Wisp, which cannot burn a Fire
+type; no rule names that.
+
+## The Kaizo anchor (2026-10-03, on Ian's yes)
+
+Kaizo's six readable bosses of its first three splits, read on goal 2's
+boxes with the team search at budget 64 and the loop, as goal 2's fights
+are (`plstudy.py`, `kaizo_*`). Mars is a double and is left out, as the
+Overseer agreed. Each Kaizo team is the variant a Piplup player meets, with
+its levels carried onto Oxide's split the same distance under the cap
+(Kaizo's caps of 16, 28 and 38 against Oxide's 16, 26 and 33). Barry 2 and
+Jupiter are mini-bosses with no cap of their own in Kaizo, so their ace
+goes to Oxide's interim cap at that fight (11 and 27) and the rest follow
+it; by Kaizo's split cap they would sit far under the box. Kaizo's weathers
+stay (Roark's sand, Gardenia's rain). Beside each is Oxide's own reading of
+the same fight on the same box, from goal 2's re-reads.
+
+| Kaizo boss | Cap | Kaizo's team on Oxide's levels | The search's six | Real odds | Very unlucky | Oxide's same fight, real odds |
+|---|---|---|---|---|---|---|
+| Barry 2 | 11 | Aipom 10, Taillow 10, Slakoth 10, Mankey 10, Elekid 10, Turtwig 11 | Piplup, Vulpix, Rookidee, Squirtle, Krabby, Finneon | 0 / 6.00 / 0 | 0 / 6.00 / 0 | 100 / 0.00 / 100 |
+| Roark | 16 | Bonsly 15, Lileep 13, Gible 14, Corsola 14, Shuckle 13, Cranidos 16 | Wartortle, Nidorino, Onix, Charmander, Steenee, Geodude | 81 / 4.31 / 0 | 68 / 4.72 / 0 | 100 / 0.05 / 95 |
+| Gardenia | 26 | Miltank 24, Rotom-Mow 23, Ludicolo 22, Milotic 23, Roserade 24, Torterra 26 | Dubwool, Tsareena, Graveler, Vikavolt, Breloom, Golbat | 24 / 5.36 / 1 | 24 / 5.48 / 0 | 97 / 1.07 / 44 |
+| Jupiter | 27 | Skuntank 27, Electrode 26, Gyarados 25, Medicham 25, Lunatone 25, Tangrowth 26 | Dubwool, Charmeleon, Tsareena, Graveler, Golbat, Rotom | 80 / 4.17 / 0 | 44 / 5.32 / 0 | 100 / 0.19 / 91 |
+| Fantina's second team | 33 | Dusclops 26, Drifblim 27, Shedinja 28, Sableye 27, Banette 27, Mismagius 29 | Graveler, Ampharos, Rotom, Carbink, Rampardos, Eevee | 100 / 0.11 / 92 | 100 / 0.36 / 72 | |
+| Fantina | 33 | Froslass 32, Drifblim 32, Gengar 31, Spiritomb 31, Rotom-Fan 32, Mismagius 33 | Tsareena, Graveler, Ampharos, Pawmo, Vikavolt, Rampardos | 40 / 4.56 / 11 | 40 / 4.56 / 0 | 91 / 3.04 / 1 |
+
+On the same boxes, Oxide's bosses are won 91 to 100 times in 100, and
+Kaizo's 0 to 81 times, its second Fantina team aside. Kaizo's cost four to
+six Pokemon a fight where Oxide's cost at most three. Barry 2 is the
+starkest. Each of Kaizo's six but Slakoth and Turtwig outspeeds every member
+of the box, and one of their hits takes 40 to 100 percent of a member's HP
+while the box's best take 10 to 56 percent of theirs. Elekid's Expert Belt
+Shock Wave knocks out Rookidee and Krabby in one hit, and the box is ten
+unevolved Pokemon still on Pound, Tackle and Bubble. Kaizo's second Fantina
+team, four to seven levels under the cap, is the one fight the box wins
+easily. The readings anchor the study's dial at Kaizo's full strength;
+Kaizo's teams were built against Kaizo's own encounters, and are read here
+against Oxide's box.
+
+The reader could not carry three things over. Kaizo's Mankey has Reckless,
+an ability Oxide's Mankey cannot have, so it was read with its own first
+ability. Kaizo's Gengar has Shadow Tag; it was read with Levitate.
+Gardenia's "Water Ball" names no move, and was dropped. Taillow's Secret
+Power deals its damage, but its secondary effect waits on the terrain, as
+Camouflage does (the list the Overseer had before the readings). Each
+reading took 52 to 98 minutes on twelve workers. Kaizo's Fantina first
+stopped partway: Sleep Talk drew its move outside the play-outs' dice, so
+two replays of one turn could differ. It now draws through them, and no
+earlier reading had a Pokemon talking in its sleep.
 
 ## The cost of labelling every boss (2026-10-02)
 
