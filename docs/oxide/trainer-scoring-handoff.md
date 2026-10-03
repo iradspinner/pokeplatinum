@@ -1697,9 +1697,25 @@ against the player, as it does full paralysis. Four checks in `test_plfixes`
 (56 of 56 pass); the AI's own Attract and Captivate checks, which read
 genders, are now live.
 
-Still not simulated: in fights not yet read, **Wish**, **Spite**,
-**Recycle** and **Camouflage**, rules with no choice in them that go in
-before goal 3. The damage model
+**Wish, Spite and Recycle (2026-10-03).** Wish (Lucas and Dawn 3's
+Umbreon) heals whoever stands in its side's slot by half that Pokemon's
+maximum HP at the second turn's end, and fails while one is pending
+(FIELD_COND_CHECK_STATE_WISH). Spite (Spiritomb at Spear Pillar) takes 4 PP
+from the target's last move, or what it has left (BtlCmd_TrySpite).
+Recycle (Bronzong at Spear Pillar) brings back the item its user last used
+up, if it holds nothing (BtlCmd_TryRecycle); every place the simulator
+uses up an item (berries, Focus Sash, Power Herb, Natural Gift and Fling)
+now keeps it for Recycle, while Knock Off and Thief take it for good. The
+engine keeps the recyclable item per battle position, so a Pokemon could
+recycle what the one before it used; here each Pokemon keeps its own. Two
+checks in `test_plfixes` (58 of 58 pass).
+
+Still not simulated: **Camouflage** (Barry 3's Staryu, the only user). It
+changes its user's types to the battle's terrain type, and the simulator's
+damage comes from calculator rows made once per fight with each Pokemon's
+own types, so it needs rows for the changed type (as Magnitude has rows per
+power) and the terrain of Barry 3's map. It matters first at Barry 3, in
+goal 3. The damage model
 still counts a two-to-five-hit move as three hits, and Baton Pass passes
 nothing.
 

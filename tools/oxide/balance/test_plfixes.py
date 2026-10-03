@@ -244,6 +244,35 @@ def gender_checks():
              f"{counts}, Rough Skin {rough} of {grubbin.maxhp}")]
 
 
+def wish_spite_recycle_checks():
+    """Wish, Spite and Recycle (2026-10-03): Wish heals its side's Pokemon by
+    half its maximum HP at the second turn's end; Spite takes 4 PP from the
+    target's last move; Recycle brings back the item its user used up."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    foe.hp = 10
+    pl.status_move(b, foe, fs.move("Wish"), barboach, True)
+    fs.end_of_turn(b)
+    after_one = foe.hp
+    fs.end_of_turn(b)
+    after_two = foe.hp
+    barboach.last, barboach.pp["Mud Bomb"] = mv(barboach, "Mud Bomb"), 10
+    b.dice = pl.RunDice(random.Random(1), True)
+    pl.status_move(b, foe, fs.move("Spite"), barboach, True)
+    spited = barboach.pp["Mud Bomb"]
+    foe.item = "Sitrus Berry"
+    foe.hp = foe.maxhp // 2 - 1
+    fs.berry_check(foe)
+    eaten = foe.item
+    pl.status_move(b, foe, fs.move("Recycle"), barboach, True)
+    back = foe.item
+    return [("Wish heals half the maximum HP at the second turn's end",
+             after_one == 10 and after_two == min(foe.maxhp, 10 + foe.maxhp // 2),
+             f"10 then {after_one} then {after_two} of {foe.maxhp}"),
+            ("Spite takes 4 PP; Recycle brings back a used-up berry",
+             spited == 6 and eaten is None and back == "Sitrus Berry", f"PP {spited}, berry {eaten} then {back}")]
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -685,6 +714,7 @@ def main():
     results += torment_and_pain_split_checks()
     results += destiny_bond_checks()
     results += gender_checks()
+    results += wish_spite_recycle_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

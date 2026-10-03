@@ -300,6 +300,7 @@ class Mon:
         self.pp = {m.name: m.pp for m in self.moves}
         self.ivs = rec.get("ivs") or {}
         self.gender = _gender_of(rec)    # "M", "F" or None (genderless): Attract, Cute Charm
+        self.recycle = None              # the item it last used up, for Recycle
         self.status, self.sleep, self.toxic = None, 0, 0
         self.reset_volatile()
 
@@ -374,6 +375,7 @@ class Side:
         self.tailwind = 0
         self.hazards = {"rocks": 0, "spikes": 0, "tspikes": 0}
         self.safeguard = 0
+        self.wish = 0                    # Wish's turn ends left: it heals at the second
 
     def cur(self):
         return self.mons[self.active]
@@ -699,13 +701,13 @@ def berry_check(mon):
         return
     if mon.item in PINCH_BERRIES and mon.hp * 4 <= mon.maxhp:
         change_stages(mon, {PINCH_BERRIES[mon.item]: 1})
-        mon.item = None
+        consume(mon)
     elif mon.item == "Sitrus Berry" and mon.hp * 2 <= mon.maxhp:
         heal(mon, mon.maxhp // 4)
-        mon.item = None
+        consume(mon)
     elif mon.item == "Oran Berry" and mon.hp * 2 <= mon.maxhp:
         heal(mon, 10)
-        mon.item = None
+        consume(mon)
 
 
 def can_switch(mon):
@@ -819,7 +821,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
         if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
             pass
         elif att.item == "Power Herb":
-            att.item = None
+            consume(att)
         else:
             att.charging = mv
             if mv.effect == "CHARGE_TURN_DEF_UP":
@@ -896,7 +898,7 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
-        att.item = None
+        consume(att)
     if not b.accuracy_hits(att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             hurt(b, att, att.maxhp // 2)
@@ -950,7 +952,7 @@ def attack(b, att, mv, dfn, first):
                 reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash":
-                dfn.item = None
+                consume(dfn)
         if dmg >= dfn.hp and getattr(dfn, "enduring", False):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
@@ -1039,6 +1041,36 @@ def tormented_out(mon, mv):
     CHECK_INVALID_TORMENTED), which a switch or a turn it could not act
     clears."""
     return mon.tormented and mon.last is not None and mon.last.name == mv.name
+
+
+def consume(mon):
+    """A held item used up (BtlCmd_RemoveItem): gone, and kept for Recycle.
+    The engine keeps one per battle position, so a Pokemon could recycle
+    what the one before it used; here each Pokemon keeps its own."""
+    mon.recycle, mon.item = mon.item, None
+
+
+def recycle(att):
+    """Recycle (effect script 184, BtlCmd_TryRecycle): the item its user
+    last used up comes back, if it now holds nothing."""
+    if not att.item and att.recycle:
+        att.item, att.recycle = att.recycle, None
+
+
+def spite(dfn):
+    """Spite (BtlCmd_TrySpite): the target's last move loses 4 PP, or what
+    it has left; it fails before the target has moved or with that move at 0."""
+    last = dfn.last
+    if last is not None and dfn.pp.get(last.name, 0) > 0:
+        dfn.pp[last.name] -= min(4, dfn.pp[last.name])
+
+
+def wish(side):
+    """Wish: its side's slot is healed at the second turn's end by half the
+    maximum HP of whoever then stands there (FIELD_COND_CHECK_STATE_WISH);
+    it fails while one is pending."""
+    if not side.wish:
+        side.wish = 2
 
 
 def pain_split(b, att, dfn):
@@ -1247,6 +1279,12 @@ def status_move(b, att, mv, dfn, first):
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
     elif e == "INFATUATE":
         infatuate(att, dfn, att.ability == "Mold Breaker")
+    elif e == "HEAL_IN_3_TURNS":
+        wish(own_side)
+    elif e == "DECREASE_LAST_MOVE_PP":
+        spite(dfn)
+    elif e == "RECYCLE":
+        recycle(att)
     elif e == "AVERAGE_HP":
         pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
@@ -1322,6 +1360,10 @@ def end_of_turn(b):
 
 def _end_of_turn(b):
     for side in (b.p, b.b):
+        if side.wish:
+            side.wish -= 1
+            if side.wish == 0 and side.cur().alive():
+                heal(side.cur(), side.cur().maxhp // 2)
         for m in side.on_field():
             _end_of_turn_mon(b, side, m)
         side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
@@ -1372,9 +1414,10 @@ def _end_of_turn_mon(b, side, m):
             heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
         if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
             heal(m, m.maxhp // 4)
-            m.item = None
+            consume(m)
         if m.item == "Lum Berry" and (m.status or m.confused):
-            m.status, m.confused, m.item = None, 0, None
+            m.status, m.confused = None, 0
+            consume(m)
         if m.taunt:
             m.taunt -= 1
         if m.cursed and m.ability != "Magic Guard":

@@ -356,7 +356,7 @@ def use_move(b, att, mv, dfn, first):
         if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
             pass
         elif att.item == "Power Herb":
-            att.item = None
+            fs.consume(att)
         else:
             att.charging = mv
             if mv.effect == "CHARGE_TURN_DEF_UP":
@@ -418,7 +418,7 @@ def attack(b, att, mv, dfn, first):
     if mv.name in ("Natural Gift", "Fling"):
         if not att.item or (mv.name == "Natural Gift" and "Berry" not in att.item):
             return
-        att.item = None
+        fs.consume(att)
     if not accuracy_hits(b, att, dfn, mv):
         if mv.effect == "CRASH_ON_MISS":
             fs.hurt(b, att, att.maxhp // 2)
@@ -517,7 +517,7 @@ def attack(b, att, mv, dfn, first):
                 fs.reveal(dfn)
             dmg = dfn.hp - 1
             if dfn.item == "Focus Sash" and not sturdy:
-                dfn.item = None
+                fs.consume(dfn)
         if dmg >= dfn.hp and getattr(dfn, "enduring", False):
             dmg = dfn.hp - 1
         # The trainer's Focus Band is an item proc, in the budget (question 8).
@@ -751,6 +751,12 @@ def status_move(b, att, mv, dfn, first):
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
     elif e == "INFATUATE":
         fs.infatuate(att, dfn, att.ability == "Mold Breaker")
+    elif e == "HEAL_IN_3_TURNS":
+        fs.wish(own_side)
+    elif e == "DECREASE_LAST_MOVE_PP":
+        fs.spite(dfn)
+    elif e == "RECYCLE":
+        fs.recycle(att)
     elif e == "AVERAGE_HP":
         fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
@@ -784,7 +790,7 @@ def clone_side(s):
     c.mons = [clone_mon(m) for m in s.mons]
     c.name, c.active, c.active2 = s.name, s.active, s.active2
     c.screens = dict(s.screens)
-    c.tailwind, c.safeguard = s.tailwind, s.safeguard
+    c.tailwind, c.safeguard, c.wish = s.tailwind, s.safeguard, getattr(s, "wish", 0)
     c.hazards = dict(s.hazards)
     return c
 
@@ -813,12 +819,12 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated)
+            m.destiny_bond, m.infatuated, m.recycle)
 
 
 def side_key(s):
     return (s.active, tuple(mon_key(m) for m in s.mons), tuple(s.screens.values()), s.tailwind,
-            tuple(s.hazards.values()), s.safeguard)
+            tuple(s.hazards.values()), s.safeguard, getattr(s, "wish", 0))
 
 
 def state_key(b):
@@ -830,7 +836,7 @@ def shape_key(b):
     """The state without its HP totals and luck: what `vector` leaves out."""
     def side(sd):
         return (sd.active, tuple(mon_key(m)[1:] for m in sd.mons), tuple(sd.screens.values()),
-                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard)
+                sd.tailwind, tuple(sd.hazards.values()), sd.safeguard, getattr(sd, "wish", 0))
     return (side(b.p), side(b.b), b.weather, b.weather_turns, b.trick_room,
             getattr(b, "declined", frozenset()))
 
