@@ -77,11 +77,13 @@ stand-in player, and smaller budgets"). Goal 2's four fights with no
 hand-played line are read, on a simulator that now has Magnet Rise,
 Torment, Pain Split and Destiny Bond ("Moves the simulator ignored"):
 Barry 2, Jupiter 1 and Lucas and Dawn 2 are easy, and Fantina is won about
-19 times in 20 at two or three faints ("Goal 2's readings"). Waiting on
-Ian: his reading of goal 2's lines; budget 64 and a tolerance on wins for
-the play-out check; the player's genders, for Attract; and the loop's one
-departure from his plan. Every reading is 75 fights at real odds and 25
-very unlucky. The perfect-line store has been stale since the simulator
+19 times in 20 at two or three faints ("Goal 2's readings"). **Goal 2 is
+passed** (Ian, 2026-10-03, "Ian's answers (2026-10-03)"): play-out readings
+now run at budget 64 with a five-point tolerance on wins, the loop stands as
+built, and genders, Attract and Cute Charm, and Wish, Spite, Recycle and
+Camouflage are going in, then Jupiter 1 is read again. Goal 3 waits on the
+Overseer's word about the Kaizo study. Every reading is 75 fights at real
+odds and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -1693,6 +1695,26 @@ genders are not in goal 2's records. The proposal: roll each box member's
 gender once from a fixed seed by its species' ratio, as the box's natures
 were rolled, and keep it in the box's records. Jupiter 1 is read again once
 that is settled.
+
+## Ian's answers (2026-10-03, relayed by the Overseer)
+
+1. Budget 64 for the play-out planner, in the check and every play-out
+   reading from now on, with finalists whose win rates lie within five
+   points counted as equal before faints decide (`plplan.BUDGET`,
+   `plteam.WIN_TOL`).
+2. Goal 2's four lines are good enough, and goal 2 is passed. Jupiter 1 is
+   read again once Attract works.
+3. Genders: each box member's rolled once from a fixed seed by its species'
+   ratio and kept in the box's records, the trainers' computed from their
+   personality, then Attract and Cute Charm; Wish, Spite, Recycle and
+   Camouflage go in too.
+4. The loop is approved as built: the rebuilt sixes go straight to the
+   play-out check.
+5. The boss-wide network is parked as a note in the tracker's Backlog.
+6. Goal 3 waits until the Overseer has settled with Ian how it runs beside
+   the Kaizo study, whose worked examples will want the scorer's readings.
+   For that study, `docs/oxide/how-a-fight-is-read.md` describes a reading
+   in plain words.
 
 ## Goal 2's readings (2026-10-03, for Ian to read)
 

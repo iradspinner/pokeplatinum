@@ -441,9 +441,19 @@ def losing_enemies(rows):
     return sorted(tally.items(), key=lambda kv: -kv[1])
 
 
-def ian_order(n):
-    """A reading's place in Ian's order: wins first, then fewer faints."""
-    return (round(n["won"], 3), -n["faints"])
+# Win rates this close count as equal before faints decide (Ian,
+# 2026-10-03): on a 25-fight check one fight moves the rate four points, and
+# with no tolerance one fight's luck chose Gardenia's winner at budget 64.
+WIN_TOL = 0.05
+
+
+def ian_best(teams, numbers):
+    """The best of these sixes by Ian's order: the highest win rate, any
+    within WIN_TOL of it counted as equal, then the fewest faints; a tie
+    keeps the given order. `numbers` gives a six's reading."""
+    top = max(numbers(t)["won"] for t in teams)
+    near = [t for t in teams if numbers(t)["won"] >= top - WIN_TOL - 1e-9]
+    return min(near, key=lambda t: numbers(t)["faints"])
 
 
 def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, rounds=3, log=print):
@@ -481,7 +491,7 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
             n = po.numbers(c)
             log(f"  loop {r + 1}: {', '.join(names[k] for k in c)}: {n['won']:.1%} won, {n['faints']:.3f} faints, "
                 f"{n['clean']:.1%} clean")
-        new = max([tuple(best)] + cands, key=lambda t: ian_order(po.numbers(t)))
+        new = ian_best([tuple(best)] + cands, po.numbers)
         if new == tuple(best):
             break
         best = new
@@ -582,7 +592,8 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         log(f"play-outs on our six: {ours_po['won']:.1%} won, {ours_po['faints']:.3f} faints, "
             f"{ours_po['clean']:.1%} clean")
     log(f"play-out check in {time.time() - t1:.0f} s")
-    best = max(results, key=lambda r: ian_order(po.numbers(r[0])))
+    top = ian_best([r[0] for r in results], po.numbers)
+    best = next(r for r in results if r[0] == top)
     log(f"best finalist by the play-outs: {', '.join(names[k] for k in best[0])}; its faints fell to: "
         + str(losing_enemies(po.rows[tuple(best[0])])[:4]))
     t1 = time.time()

@@ -787,7 +787,10 @@ PLAYOUTS = 1         # play-outs per position after the turn, without a budget
 # With a budget, options are weighed in stages: every option gets each of
 # these budgets in turn, and one trailing the leader by more than RACE_Z
 # standard errors of the difference is dropped before the next.
-BUDGET = 192
+# Budget 64 for every play-out reading (Ian, 2026-10-03): at Roark, Mars 1
+# and Gardenia it chose about as well as 192 at a quarter to a third of the
+# cost (the handoff's "The learned stand-in player, and smaller budgets").
+BUDGET = 64
 STAGES = (24, 64)
 RACE_Z = 2.0
 
