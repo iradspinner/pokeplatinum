@@ -119,6 +119,37 @@ def stock(boosters):
     return {"boosters": dict(boosters), "Leftovers": 0, "Sitrus Berry": 0}
 
 
+# ---- the Kaizo anchor (Ian's yes, 2026-10-03): Kaizo's bosses of its first
+# three splits on goal 2's boxes, a 10/10 reading in the scorer's numbers.
+# Kaizo's Mars is a double, which the team search cannot read, so it is left
+# out. Levels move from Kaizo's cap to the cap in force here as the Kaizo
+# reader moves them (kaizoteams.oxide_level); Kaizo's own weathers stay.
+# Kaizo's data gives no genders, so its Pokemon read as genderless, which
+# only Attract and Cute Charm notice (none of the six uses either).
+
+def kaizo_prepare(label, variant, split, cap, recs, stk, by_ace=False):
+    """(st, box keys, [(boss keys, flags)]) for one of Kaizo's bosses."""
+    from . import kaizoteams as K, plkaizo as P
+    tr = K.load_trainers()
+    caps = K.kaizo_caps(tr)
+    rec = {(t["ksplit"], t["trainer"]): t for t in reversed(tr)}
+    f = next(x for x in K.fights(tr, caps) if x["label"] == label and x.get("kind") == "boss")
+    members = [rec[(f["ksplit"], n)] for n in f["names"]]
+    notes = {k: set() for k in ("species", "moves", "abilities", "weather_kept")}
+    # A mini-boss (by_ace) maps its own ace to the cap in force, which is
+    # Oxide's interim cap at that fight's ace; Kaizo has no interim caps, so
+    # its split cap would leave Barry 2 and Jupiter far under the box.
+    kcap = max(m["level"] for m in members[variant]["team"]) if by_ace else caps[f["home"]]
+    ps, _doubles = P.parties(f, members, lambda lv: K.oxide_level(lv, kcap, cap), notes)
+    st = fs.prepare(split, [ps[variant]], f["weather"], f["trick_room"], cap=cap, given_side=recs)
+    st["item_stock"] = dict(stk)
+    for k, v in notes.items():
+        if v:
+            NOTES.append(f"Kaizo {label}: {k} {sorted(v)}")
+    keys = [f"p{i}" for i in range(len(recs))]
+    return st, keys, [(st["bosses"][0], P.flags_of(members))]
+
+
 # example: (trainer file, split, cap, box records, stock, kind)
 def examples():
     roark, gardenia = plstep3.FIGHTS["roark"], plstep3.FIGHTS["gardenia"]
@@ -136,6 +167,18 @@ def examples():
                      lambda: plteam_test.box(plstep3.GARDENIA, 26), stock(gardenia["boosters"]), "search"),
         "maylene": (path("leader_maylene"), "Maylene", 38,
                     lambda: raised("fantina", 38), stock(plgoal2.FIGHTS["fantina"][2]), "search"),
+        # The Kaizo anchor: (Kaizo's label, its variant a Piplup player meets).
+        "kaizo_barry_2": (("Barry #2", 1, True), "Roark", 11, lambda: plgoal2.box("barry_2"), stock({}), "kaizo"),
+        "kaizo_roark": (("Leader Roark", 0), "Roark", 16,
+                        lambda: plteam_test.box(plstep3.ROARK, 16), stock(roark["boosters"]), "kaizo"),
+        "kaizo_gardenia": (("Leader Gardenia", 0), "Gardenia", 26,
+                           lambda: plteam_test.box(plstep3.GARDENIA, 26), stock(gardenia["boosters"]), "kaizo"),
+        "kaizo_jupiter": (("Commander Jupiter", 0, True), "Fantina", 27,
+                          lambda: plgoal2.box("jupiter_1"), stock(plgoal2.FIGHTS["jupiter_1"][2]), "kaizo"),
+        "kaizo_fantina_gym": (("Leader Fantina ?", 0), "Fantina", 33,
+                              lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
+        "kaizo_fantina": (("Leader Fantina", 0), "Fantina", 33,
+                          lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
     }
 
 
@@ -222,7 +265,8 @@ def run(name, procs=12):
         out = section(st, keys, fights, procs=procs)
         result.update(real=out["real"], unlucky=out["unlucky"], faints_to=out["faints_to"])
     else:
-        st, keys, fights = prepare([path], split, cap, recs, stk)
+        st, keys, fights = (kaizo_prepare(*path[:2], split, cap, recs, stk, *path[2:]) if kind == "kaizo"
+                            else prepare([path], split, cap, recs, stk))
         boss_keys, flags = fights[0]
         result["trainer"] = [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys]
         if kind == "blind":

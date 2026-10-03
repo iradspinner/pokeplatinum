@@ -326,14 +326,19 @@ def without(fight_names, out):
 
 def train(name, data_dirs, seeds=(1, 2)):
     """Networks from scratch on these folders, one per seed, under the
-    memory cap; their average's name."""
-    for s in seeds:
-        subprocess.run([os.path.join(REPO, "tools/oxide/capped"), "--max", "22G",
-                        os.path.expanduser("~/venvs/oxide-ml/bin/python"), "-m", "tools.oxide.balance.plnet",
-                        "--name", f"{name}-s{s}", "--data", *data_dirs, "--held-out", "0", "--epochs", "10",
-                        "--lr", "1e-3", "--seed", str(s)],
-                       cwd=REPO, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-                       env=dict(os.environ, PYTHONPATH="."))
+    memory cap; their average's name. A lock file makes searches running
+    side by side train one at a time, since each training run loads every
+    labelled position and two at once would not fit in memory."""
+    import fcntl
+    with open(os.path.join(ROOT, "train.lock"), "w") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        for s in seeds:
+            subprocess.run([os.path.join(REPO, "tools/oxide/capped"), "--max", "22G",
+                            os.path.expanduser("~/venvs/oxide-ml/bin/python"), "-m", "tools.oxide.balance.plnet",
+                            "--name", f"{name}-s{s}", "--data", *data_dirs, "--held-out", "0", "--epochs", "10",
+                            "--lr", "1e-3", "--seed", str(s)],
+                           cwd=REPO, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                           env=dict(os.environ, PYTHONPATH="."))
     return "+".join(f"{name}-s{s}" for s in seeds)
 
 
