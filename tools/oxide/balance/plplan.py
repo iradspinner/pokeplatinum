@@ -815,6 +815,7 @@ class Planner:
         self.record = None
         self.last_end = None     # the last play-out's final position
         self.last_parts = None   # the last weighing's (chance of losing, faints) per option
+        self.choices = None      # with a list: every decision kept for the stand-in player (record_choice)
 
     def tables(self, b):
         """plfeat's per-fight tables for b's fight, made once per fight."""
@@ -977,7 +978,31 @@ class Planner:
         self.notes.append({"turn": b.turn, "options": [(_name(a, b) + ("" if i in alive else " (dropped)"),
                                                         v) for i, (a, v) in enumerate(zip(acts, q))],
                            "parts": parts, "chose": best, "seconds": round(time.perf_counter() - t0, 2)})
+        if self.choices is not None:
+            self.record_choice(b, acts, q, alive, best)
         return acts[best]
+
+    def record_choice(self, b, acts, q, alive, best):
+        """For the learned stand-in player (pldata --choices): the position as
+        the network reads it, and over ten slots (the active Pokemon's four
+        moves, then a switch to each of the six party places) which were
+        options, the value of each option still in the running, and the
+        slot chosen."""
+        from . import plfeat
+        x, ids = plfeat.features(b, self.tables(b))
+        me = b.p.cur()
+        legal = np.zeros(10, bool)
+        values = np.full(10, np.nan, np.float32)
+        chosen = 0
+        for i, a in enumerate(acts):
+            slot = (next((k for k, m in enumerate(me.moves) if m is a[1] or m.name == a[1].name), 0)
+                    if a[0] == "move" else 4 + a[1])
+            legal[slot] = True
+            if i in alive:
+                values[slot] = q[i]
+            if i == best:
+                chosen = slot
+        self.choices.append((x, ids, legal, values, chosen))
 
     def position(self, c, key):
         """A position's worth when the player is to choose, as its best

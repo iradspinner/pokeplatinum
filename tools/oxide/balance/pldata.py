@@ -304,6 +304,51 @@ def distill(st, team, boss_keys, flags, positions, seed, out_dir, meta, model=No
     return meta
 
 
+def choices_job(args):
+    """One fight and six played by the play-out planner, keeping each of its
+    decisions (plplan.Planner.record_choice) for the learned stand-in
+    player: the position, the options over ten slots, their values and the
+    choice. Stops at `positions` decisions."""
+    fight, six, positions, seed, out_dir = args
+    from . import plstep3
+    t0 = time.perf_counter()
+    f = plstep3.FIGHTS[fight]
+    items = f["items"] if list(six) == list(f["six"]) else None
+    prep = plstep3.prepare(f, list(six), items)
+    st = prep["st"]
+    boss_keys, flags, _s = prep["variants"][0]
+    team = [f"p{i}" for i in range(len(six))]
+    rng = random.Random(seed)
+    rows, games = [], 0
+    while len(rows) < positions and games < MAX_GAMES:
+        b = pl.make_battle(st, team, boss_keys, flags, rng.randrange(len(team)))
+        run = random.Random(rng.getrandbits(32))
+        b.dice, b.rng = pl.RunDice(run, luck="real"), run
+        plplan.reset()
+        planner = plplan.Planner(rng.getrandbits(32), budget=LABEL_BUDGET)
+        planner.choices = rows
+        plplan._REAL.update(b=b, planner=planner)
+        try:
+            while b.turn < plplan.TURN_CAP and b.p.alive() and b.b.alive():
+                pl.play_turn(b, planner.decide(b), run)
+        finally:
+            plplan._REAL.update(b=None, planner=None)
+        games += 1
+    os.makedirs(out_dir, exist_ok=True)
+    name = f"{fight}-{seed}"
+    meta = {"fight": fight, "six": list(six), "seed": seed, "positions": len(rows), "games": games,
+            "label_budget": LABEL_BUDGET, "seconds": round(time.perf_counter() - t0, 1),
+            "private_mb": plplan.memory()[1], "floats": plfeat.FLOATS, "ids": plfeat.IDS}
+    if rows:
+        np.savez_compressed(os.path.join(out_dir, name + ".npz"),
+                            x=np.stack([r[0].astype(np.float16) for r in rows]), ids=np.stack([r[1] for r in rows]),
+                            legal=np.stack([r[2] for r in rows]), values=np.stack([r[3] for r in rows]),
+                            chosen=np.asarray([r[4] for r in rows], np.int8))
+        with open(os.path.join(out_dir, name + ".json"), "w") as fh:
+            json.dump(meta, fh)
+    return meta
+
+
 def eval_job(args):
     """One fight and six: positions reached as job() reaches them, each
     valued by `k` play-outs of its own (the plain policy to the end, each on
@@ -377,9 +422,29 @@ def main(argv=None):
                     help="with --distill: the labeller's play-outs per option and trainer pick")
     ap.add_argument("--label-share", type=float, default=1.0,
                     help="with --distill MODEL: the share of the network's decisions labelled")
+    ap.add_argument("--choices", action="store_true",
+                    help="the play-out planner's own decisions, for the learned stand-in player")
     args = ap.parse_args(argv)
     global LABEL_BUDGET, LABEL_SHARE
     LABEL_BUDGET, LABEL_SHARE = args.label_budget, args.label_share
+    if args.choices:
+        jobs = []
+        for fight in args.fights:
+            for six in sixes(fight, 1 if args.hand else args.sixes, args.seed):
+                for _r in range(args.repeat):
+                    jobs.append((fight, six, args.positions, args.seed * 100000 + len(jobs), args.out))
+        procs = args.procs or plplan.pool_size()
+        t0 = time.perf_counter()
+        done = games = 0
+        with plplan.fork_pool(procs) as pool:
+            for meta in pool.imap_unordered(choices_job, jobs, chunksize=1):
+                done += meta["positions"]
+                games += meta["games"]
+                print(f"choices {meta['fight']} {','.join(meta['six'])}: {meta['positions']} decisions from "
+                      f"{meta['games']} fights in {meta['seconds']} s", flush=True)
+        print(f"{done} decisions from {games} fights in {time.perf_counter() - t0:.0f} s on {procs} workers",
+              flush=True)
+        return 0
     if args.distill is not None:
         jobs = []
         for fight in args.fights:
