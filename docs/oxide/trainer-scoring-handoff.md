@@ -1388,8 +1388,13 @@ then read the race's winner on 25 fights.
 | Gardenia | Dubwool, Bibarel, Corvisquire, Wartortle, Tsareena, Golbat | 89% won, 2.01 faints | 100% won, 1.52 faints, 16% clean | 92% won, 2.79 faints | 18 |
 
 Our six by play-outs is the play-out planner's reading of 75 fights with the
-hand line's moves; at Mars 1 at 19 the bar is our line adjusted. The minutes
-are wall time on ten workers.
+hand line's moves and items; at Mars 1 at 19 the bar is our line adjusted.
+The minutes are wall time on ten workers. That column is not like for like:
+the search gives every six the screen's moves and the simulator's item rule
+(a type booster, Leftovers or a Sitrus Berry while copies last), so at Roark
+our six plays with Pound, Peck, Tackle and Tackle in place of the hand line's
+Growl, Leer, Bind and Defense Curl, and without Geodude's Quick Claw. The
+fixed runner reads our six that way too.
 
 **Roark.** The networks read our six (with the screen's moves) at 52% won and
 3.5 faints, and every one of the three finalists at 100% won. The play-outs
@@ -1423,6 +1428,100 @@ Gardenia, so its race is a shortlist and not a verdict.
 The second adds about three finalist readings of 25 fights each, some 4
 core-hours per boss and box, which goal 3's totals must carry. The rerun at
 Roark tests both.
+
+**The rerun at Roark, with both fixes.** The search found a six that reads as
+well as ours. The play-out planner on 25 fights each:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude (the winner) | 100% | 0.12 | 88% | 100%, 0.17 |
+| Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude | 100% | 0.48 | 52% | 100%, 0.39 |
+| Corvisquire, Dottler, Nidorino, Onix, Charmander, Geodude | 100% | 0.32 | 68% | 100%, 0.45 |
+| our six, with the screen's moves | 100% | 0.12 | 88% | 83%, 1.76 |
+
+The winner's three faints in 25 fights all fell to Roark's Geodude. The
+networks now read the finalists close to the play-outs, but they still read
+our six far too harshly (83% won against 100%). Our six was not among the ten
+labelled sixes, so a race on the network can still pass over a good six it
+has no labels for; the play-out check corrects the finalists, not the race.
+Here the race found an equal six anyway. The run took 33 minutes on ten
+workers, 17 of them in the play-out check (100 fights, about 100 core
+seconds each).
+
+**The rerun at Mars 1 at 19.** The search found sixes better than ours. All
+three finalists keep Vullaby, the stall's centre, with Onix and Geodude, and
+the play-out planner won every one of their 25 fights each with nothing
+fainting:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude (the winner) | 100% | 0.00 | 100% | 100%, 0.23 |
+| Wooloo, Vullaby, Barboach, Krabby, Onix, Geodude | 100% | 0.00 | 100% | 97%, 0.40 |
+| Prinplup, Vullaby, Wartortle, Krabby, Onix, Geodude | 100% | 0.00 | 100% | 96%, 0.48 |
+| our six, with the screen's moves | 100% | 0.32 | 80% | 99%, 0.23 |
+
+Here the network was too harsh on the finalists rather than too kind, and it
+placed our six level with the best of them; only the play-outs separated
+them. The play-out check took 74 minutes on ten workers, about 440 core
+seconds a fight, twice the earlier measure (the stall makes long fights, and
+the machine was near full load beside the stand-in's recording).
+
+**The rerun at Gardenia.** The search found a six a little better than ours,
+keeping Vullaby, Charmeleon, Tsareena and Golbat from our six:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat (the winner) | 96% | 1.52 | 16% | 89%, 2.15 |
+| Prinplup, Dubwool, Bibarel, Vullaby, Tsareena, Golbat | 96% | 2.28 | 0% | 92%, 1.72 |
+| Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat | 96% | 1.84 | 0% | 88%, 2.24 |
+| our six, with the screen's moves | 96% | 1.88 | 12% | 87%, 2.40 |
+
+The winner's faints fell mostly to Roserade (27 of 38). On 25 fights the gap
+to our six is within noise; both are well above our hand line's bar (59.9%
+won, 3.21 faints), which is the bar of a person playing, not of the planner.
+
+**The answer to the first test.** With both fixes, the search found our six's
+equal at Roark and sixes better than ours at Mars 1 at 19 and at Gardenia,
+each judged by the play-out planner with every six on the same moves and
+items. Two cautions stand: the network still misreads sixes far from the
+labelled ones (our six at Roark), so the race can pass over a good six; and
+items are not searched.
+
+**What a boss costs now.** Measured on the reruns, per boss and box, on ten
+workers beside the recording:
+
+| Stage | Roark | Mars 1 at 19 | Gardenia |
+|---|---|---|---|
+| labels, ten sixes (core-hours) | 1.2 | 1.6 | 0.9 |
+| two networks (GPU minutes) | 5 | 5 | 5 |
+| race and finalists on the network (core-hours, about) | 0.8 | 0.8 | 0.8 |
+| play-out check of three finalists (core-hours) | 2.2 | 9.2 | 2.1 |
+| wall time of the whole run (minutes) | 33 | 94 | 30 |
+
+That is about 6.5 core-hours per boss and box, against the plan's 2.5, most
+of it the play-out check. For goal 3's 38 bosses on five boxes each it comes
+to about 1,230 core-hours, some 42 hours on 29 workers, plus about 17 hours
+of GPU for 190 pairs of networks (which can run beside the CPU work), and
+about 70 core-hours for the Ace Trainers. The levers, none yet measured:
+
+1. One label set and one pair of networks per boss, its ten sixes spread over
+   the five boxes, in place of ten sixes per box: about 1,050 core-hours, and
+   3 GPU hours.
+2. The play-out check on the top two finalists, not three: about 770.
+3. The learned stand-in player, if a budget of 24 with it chooses as well as
+   192 without (its test is next): a stand-in turn costs about 1.7 plain
+   turns (380 microseconds against 225, measured), so the check and the
+   labels would cost about a quarter, bringing the total to about 350.
+4. Budget 64 for the check, about half the check's cost; its effect on the
+   reading is unmeasured, and the budget check (`plplan --budget-check`)
+   can measure it.
+
+**Held items are not searched.** The simulator's item rule knows only type
+boosters, Leftovers and Sitrus Berries, so a six never holds the run's
+Quick Claw, and goal 3's bosses will come after element 7's held items
+(Eviolite, Assault Vest and the rest) are placed behind optional fights. A
+proposed later step: the finalists try the box's held items, each read
+by the network, before the play-out check.
 
 ## The cost of labelling every boss (2026-10-02)
 
