@@ -1,0 +1,80 @@
+{
+ "fight": "mars",
+ "six": [
+  "Geodude",
+  "Vullaby",
+  "Starly",
+  "Onix",
+  "Charjabug",
+  "Nidorino"
+ ],
+ "variant": 0,
+ "foes": [
+  "Meowth 18",
+  "Zubat 18",
+  "Bronzor 18",
+  "Purugly 19"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1b+d2+d3"
+ },
+ "luck": "real",
+ "rank": "win",
+ "lead": "Vullaby",
+ "lead_values": {
+  "Geodude": 0.277,
+  "Vullaby": 0.277,
+  "Starly": 0.277,
+  "Onix": 0.277,
+  "Charjabug": 0.277,
+  "Nidorino": 0.277
+ },
+ "clean": 492,
+ "won": 500,
+ "deaths": 0.02,
+ "runs": 500,
+ "faints": [
+  [
+   "Nidorino",
+   "Purugly",
+   4
+  ],
+  [
+   "Geodude",
+   "Purugly",
+   2
+  ],
+  [
+   "Vullaby",
+   "Bronzor",
+   1
+  ],
+  [
+   "Vullaby",
+   "Purugly",
+   1
+  ],
+  [
+   "Onix",
+   "Purugly",
+   1
+  ],
+  [
+   "Nidorino",
+   "Bronzor",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 4.51,
+ "decisions_per_run": 48.6,
+ "turns_per_run": 48.6,
+ "lead_seconds": 0.1,
+ "wall_seconds": 81.0,
+ "procs": 29,
+ "fights_per_hour": 22224.6,
+ "worker_private_mb_max": 89,
+ "parent_mb": 81,
+ "lost_seeds": []
+}

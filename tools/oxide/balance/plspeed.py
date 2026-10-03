@@ -31,7 +31,7 @@ def _lead_value(job):
     fight, i = job
     j = _FIGHTS[fight]
     b = plplan.pl.make_battle(j["st"], j["team"], j["boss_keys"], j["flags"], i)
-    return fight, i, plplan.Planner(0).position(b, plplan._mix(0, "lead"))
+    return fight, i, plplan.Planner(0).position(b, plplan._mix(0, "lead"))[2]
 
 
 def _play(job):

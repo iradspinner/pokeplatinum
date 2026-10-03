@@ -54,30 +54,25 @@ before you build on it. Start with step 1 of its order of work.
 on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
 order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
 as a planner (`plplan.py`) that decides turn by turn by simulating its options
-at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Its Roark
-reads 93% clean against our 98.5%, every fight won, every loss to Lileep, and
-Ian is comfortable with the line for now ("The planner's Roark, for Ian's
-check", below). Stage 1 of
-the speed plan is closed (`docs/oxide/scorer-speed-plan.md`: the planner's
-memory bounded after the WSL crash, the same fights move for move by
-`plspeed.py`, PyPy no gain). Stage 2, a learned position value on the GPU,
-started at Ian's word: networks learned from the play-out planner's own
-values now choose for it at about a fortieth of the cost. The average of
-three of them (d1b+d2+d3) meets our hand-played bars at Roark and Mars 1,
-reads better than the play-out planner at both, and at Gardenia wins more
-often than our line but almost never cleanly, as the play-out planner does
-("Stage 2", below). Goal 2 has begun with the rival fights of Roark's split
-(Barry 1 cannot be won with a Piplup) and a mechanical roll of the box
-through Fantina for Ian and the Overseer to choose from. A test on 100
-ordinary trainers showed that networks trained broadly judge easy trainers
-they never saw nearly as well as play-outs, but a held-out boss (Gardenia)
-not at all, so every boss needs labelled positions of its own; the cheapest
-recipe measured so far costs about 1.7 core-hours a fight ("The cost of
-labelling every boss", below). Ian ruled (2026-10-02) that a fight is
-ranked by its win rate first and its average faints second, the clean rate
-reported but not optimised; the planner's choice is to follow the same order
-in place of the loss weight of ten, which is the next change to make. Every reading is now 75 fights at real odds
-and 25 very unlucky. The perfect-line store has been stale since the simulator
+at real odds (his rulings of 2026-10-01 and 2026-10-02, below). Stage 1 of
+the speed plan is closed (`docs/oxide/scorer-speed-plan.md`), and stage 2's
+networks, learned from the play-out planner's own values, choose for it at
+about a fortieth of the cost. **Goal 1 is passed** (Ian, 2026-10-02, "close
+enough, pass"): the average of three networks (d1b+d2+d3) reads Roark at
+97.7% clean, 100% won, 0.025 faints over 2,000 fights, against our line's
+98.5%, 100%, 0.015 ("The network planner's Roark, for Ian's check"). It also
+meets the Mars 1 bar; at Gardenia it wins more often than our line but almost
+never cleanly. Goal 2 has begun: the rival fights of Roark's split are read
+(Barry 1, ruled not to count, cannot be won with a Piplup), and the box
+through Fantina waits on Ian's choices from the mechanical roll. A network
+judges easy trainers it never saw nearly as well as play-outs, but not a
+held-out boss or Ace Trainer, so each of goal 3's roughly 110 fights needs
+labels of its own; the cheapest recipe measured costs about 1.7 core-hours a
+fight ("The cost of labelling every boss"). Next: Ian's ruling that a fight
+ranks by its win rate first and its average faints second, the clean rate
+reported but not optimised, goes into the planner's choice in place of the
+loss weight of ten. Every reading is 75 fights at real odds and 25 very
+unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -723,7 +718,8 @@ read 97.7% clean, 100% won, 0.025 faints, and 500 very unlucky read 93.4%
 clean, 100% won, 0.076 faints (`planner-net-d1b+d2+d3-roark-2000` and
 `-unlucky-500`). By Ian's ruling of 2026-10-02, wins first and faints second,
 it ties our line at real odds and beats it very unlucky (100% against
-99.95%), with 0.010 and 0.033 more faints a fight. Its one
+99.95%), with 0.010 and 0.033 more faints a fight. **Ian passed goal 1 on
+this reading (2026-10-02): "close enough, pass".** Its one
 faint at real odds was Onix to Cranidos; very unlucky, Onix to Cranidos and
 Nidorino to Lileep. Twenty-five very unlucky fights cannot tell 92% from our
 96.4% (two fights in 25 against one).
@@ -1097,6 +1093,42 @@ PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.pldata --distill 
 PYTHONPATH=. tools/oxide/capped --max 22G ~/venvs/oxide-ml/bin/python -m tools.oxide.balance.plnet --name d3 --from d2 --data $S/data-d3 $S/data-d2 $S/data-d1 $S/data $S/data-roark-hand --held-out 1 --epochs 6 --lr 5e-4
 ```
 
+## Wins first, then faints (Ian, 2026-10-02)
+
+Ian ruled that a fight ranks by its win rate first and its average faints
+second, the clean rate reported but not optimised: "a fight with 0% clean,
+100% win, and 1.00 average faints means that a single sac wins the fight
+every time, and I would take that every time over a 90% clean, 90% win
+chance with 0.60 average deaths". The old value's loss weight of ten let a
+point of win rate trade for a tenth of a faint, which his order forbids. The
+same order judges a line against a bar.
+
+The planner now ranks its options that way (`plplan.choose`). Each option's
+chance of losing and faints expected come from its play-outs' ends, or with
+a network from its loss and faints heads (which the labels already trained,
+from the parts they keep). Options within 0.05 of the lowest chance of
+losing count as tied on it, since on positions they never trained on the
+networks' estimate of that chance errs by 0.051 at Gardenia and 0.080 at
+Mars 1 (labels' own error about 0.016); among those, options within 0.1 of
+the fewest faints count as tied on faints, and the old value, which carries
+the survivors' HP, decides the rest. `--rank value` restores the old ranking.
+The network planner (d1b+d2+d3), 500 fights at real odds each:
+
+| Fight | Ranking | Clean | Won | Faints |
+|---|---|---|---|---|
+| Gardenia | the old value | 11 | 423 | 3.254 |
+| Gardenia | Ian's order | 1 | 429 | 2.880 |
+| Gardenia, very unlucky (200) | the old value | 0 | 125 | 4.205 |
+| Gardenia, very unlucky (200) | Ian's order | 1 | 120 | 3.910 |
+| Roark | the old value | 491 | 500 | 0.020 |
+| Roark | Ian's order | 492 | 500 | 0.016 |
+| Mars 1 | the old value | 490 | 498 | 0.044 |
+| Mars 1 | Ian's order | 492 | 500 | 0.020 |
+
+Ian's order wins as often or a little more (the Gardenia differences are
+within the noise of 500 fights) and loses fewer Pokemon at all three. The
+readings before this section used the old value.
+
 ## The cost of labelling every boss (2026-10-02)
 
 The Overseer counted about 110 fights in goal 3 that need labelled positions
@@ -1224,7 +1256,8 @@ at 6ce38e1e26). Ian set the goals from here in order (2026-10-02); the speed
 plan (`docs/oxide/scorer-speed-plan.md`) holds how the planner is made fast
 enough for the last of them.
 
-1. **Roark, relatively quickly, passing its tests.** The planner plays our
+1. **Roark, relatively quickly, passing its tests** (passed 2026-10-02: the
+   network planner over 2,000 fights, Ian's "close enough, pass"). The planner plays our
    six and must meet the bar on the three numbers at real odds (the table
    under "The job"), and Ian checks its reasoning: the line turn by turn, the
    value behind each key choice, and which of the nine ideas arose on their

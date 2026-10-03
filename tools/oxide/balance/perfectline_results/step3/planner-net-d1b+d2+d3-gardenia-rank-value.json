@@ -1,0 +1,269 @@
+{
+ "fight": "gardenia",
+ "six": [
+  "Charmeleon",
+  "Popplio",
+  "Vikavolt",
+  "Vullaby",
+  "Golbat",
+  "Tsareena"
+ ],
+ "variant": 0,
+ "foes": [
+  "Cherrim 25",
+  "Lumineon 25",
+  "Shiftry 25",
+  "Breloom 25",
+  "Roserade 26"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1b+d2+d3"
+ },
+ "luck": "real",
+ "rank": "value",
+ "lead": "Tsareena",
+ "lead_values": {
+  "Charmeleon": -10.828,
+  "Popplio": -10.828,
+  "Vikavolt": -10.828,
+  "Vullaby": -10.658,
+  "Golbat": -10.828,
+  "Tsareena": -10.529
+ },
+ "clean": 11,
+ "won": 423,
+ "deaths": 3.254,
+ "runs": 500,
+ "faints": [
+  [
+   "Charmeleon",
+   "Lumineon",
+   210
+  ],
+  [
+   "Tsareena",
+   "Shiftry",
+   138
+  ],
+  [
+   "Tsareena",
+   "Lumineon",
+   137
+  ],
+  [
+   "Charmeleon",
+   "Cherrim",
+   124
+  ],
+  [
+   "Vullaby",
+   "Shiftry",
+   104
+  ],
+  [
+   "Vikavolt",
+   "Lumineon",
+   96
+  ],
+  [
+   "Vikavolt",
+   "Shiftry",
+   90
+  ],
+  [
+   "Popplio",
+   "Breloom",
+   89
+  ],
+  [
+   "Popplio",
+   "Cherrim",
+   80
+  ],
+  [
+   "Vullaby",
+   "Breloom",
+   71
+  ],
+  [
+   "Vikavolt",
+   "Breloom",
+   53
+  ],
+  [
+   "Charmeleon",
+   "Shiftry",
+   51
+  ],
+  [
+   "Golbat",
+   "Roserade",
+   45
+  ],
+  [
+   "Tsareena",
+   "Cherrim",
+   38
+  ],
+  [
+   "Vullaby",
+   "Lumineon",
+   37
+  ],
+  [
+   "Vullaby",
+   "Roserade",
+   34
+  ],
+  [
+   "Charmeleon",
+   "Breloom",
+   30
+  ],
+  [
+   "Popplio",
+   "Lumineon",
+   30
+  ],
+  [
+   "Golbat",
+   "Lumineon",
+   29
+  ],
+  [
+   "Vikavolt",
+   "Roserade",
+   28
+  ],
+  [
+   "Popplio",
+   "Roserade",
+   24
+  ],
+  [
+   "Popplio",
+   "Shiftry",
+   24
+  ],
+  [
+   "Tsareena",
+   "Breloom",
+   17
+  ],
+  [
+   "Tsareena",
+   "Roserade",
+   15
+  ],
+  [
+   "Golbat",
+   "Breloom",
+   13
+  ],
+  [
+   "Golbat",
+   "Shiftry",
+   11
+  ],
+  [
+   "Charmeleon",
+   "Roserade",
+   6
+  ],
+  [
+   "Vikavolt",
+   "Cherrim",
+   3
+  ]
+ ],
+ "cpu_seconds_per_run": 3.75,
+ "decisions_per_run": 23.7,
+ "turns_per_run": 20.9,
+ "lead_seconds": 0.1,
+ "wall_seconds": 66.5,
+ "procs": 29,
+ "fights_per_hour": 27053.8,
+ "worker_private_mb_max": 39,
+ "parent_mb": 81,
+ "lost_seeds": [
+  9000,
+  9002,
+  9006,
+  9007,
+  9012,
+  9014,
+  9017,
+  9022,
+  9028,
+  9030,
+  9032,
+  9034,
+  9036,
+  9085,
+  9091,
+  9095,
+  9115,
+  9120,
+  9122,
+  9124,
+  9128,
+  9134,
+  9142,
+  9149,
+  9150,
+  9159,
+  9166,
+  9167,
+  9181,
+  9184,
+  9185,
+  9189,
+  9192,
+  9199,
+  9201,
+  9204,
+  9206,
+  9225,
+  9240,
+  9254,
+  9260,
+  9269,
+  9282,
+  9297,
+  9302,
+  9307,
+  9315,
+  9317,
+  9318,
+  9335,
+  9342,
+  9349,
+  9357,
+  9373,
+  9374,
+  9377,
+  9387,
+  9391,
+  9394,
+  9400,
+  9401,
+  9404,
+  9413,
+  9424,
+  9427,
+  9439,
+  9444,
+  9458,
+  9460,
+  9463,
+  9465,
+  9478,
+  9480,
+  9489,
+  9493,
+  9497,
+  9498
+ ]
+}
