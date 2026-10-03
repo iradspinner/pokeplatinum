@@ -1,0 +1,529 @@
+{
+ "fight": "fantina",
+ "key": "fantina",
+ "variant": 0,
+ "foes": [
+  "Duskull 32",
+  "Drifblim 32",
+  "Rotom 32",
+  "Sableye 32",
+  "Mismagius 33"
+ ],
+ "box": [
+  "Prinplup",
+  "Dubwool",
+  "Vulpix",
+  "Bibarel",
+  "Corvisquire",
+  "Starly",
+  "Whiscash",
+  "Wartortle",
+  "Kingler",
+  "Nidorino",
+  "Onix",
+  "Charmeleon",
+  "Tsareena",
+  "Graveler",
+  "Jumpluff",
+  "Ampharos",
+  "Pawmo",
+  "Breloom",
+  "Snover",
+  "Golbat",
+  "Vullaby",
+  "Brionne",
+  "Vikavolt",
+  "Rotom",
+  "Togetic",
+  "Stunky",
+  "Carbink",
+  "Rampardos",
+  "Glimmet",
+  "Fletchinder",
+  "Eevee"
+ ],
+ "items": {
+  "boosters": {
+   "Fire": "Flame Plate",
+   "Grass": "Miracle Seed",
+   "Dragon": "Draco Plate",
+   "Bug": "Silver Powder",
+   "Dark": "Dread Plate",
+   "Poison": "Poison Barb",
+   "Ghost": "Spooky Plate"
+  },
+  "Leftovers": 0,
+  "Sitrus Berry": 0
+ },
+ "screen": [
+  [
+   "Prinplup",
+   "Dubwool",
+   "Vulpix",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Bibarel",
+   "Corvisquire",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Starly",
+   "Whiscash",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Wartortle",
+   "Kingler",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Nidorino",
+   "Onix",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Charmeleon",
+   "Tsareena",
+   "Graveler",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Jumpluff",
+   "Ampharos",
+   "Pawmo",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Breloom",
+   "Snover",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Golbat",
+   "Vullaby",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Brionne",
+   "Vikavolt",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Rotom",
+   "Togetic",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Stunky",
+   "Carbink",
+   "Rampardos"
+  ],
+  [
+   "Prinplup",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos",
+   "Glimmet",
+   "Fletchinder"
+  ],
+  [
+   "Dubwool",
+   "Bibarel",
+   "Starly",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Corvisquire",
+   "Whiscash",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Wartortle",
+   "Nidorino",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Kingler",
+   "Onix",
+   "Tsareena",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Charmeleon",
+   "Tsareena",
+   "Jumpluff",
+   "Ampharos",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Tsareena",
+   "Graveler",
+   "Ampharos",
+   "Pawmo",
+   "Rampardos"
+  ],
+  [
+   "Dubwool",
+   "Tsareena",
+   "Ampharos",
+   "Breloom",
+   "Golbat",
+   "Rampardos"
+  ]
+ ],
+ "our_rank": null,
+ "moves": {
+  "Prinplup": [
+   "Bubble Beam",
+   "Metal Claw",
+   "Peck",
+   "Pound"
+  ],
+  "Dubwool": [
+   "Tackle",
+   "Double Kick",
+   "Guard Split",
+   "Guard Swap"
+  ],
+  "Vulpix": [
+   "Flamethrower",
+   "Payback",
+   "Will-O-Wisp",
+   "Quick Attack"
+  ],
+  "Bibarel": [
+   "Water Gun",
+   "Rollout",
+   "Yawn",
+   "Tackle"
+  ],
+  "Corvisquire": [
+   "Drill Peck",
+   "Steel Wing",
+   "Fury Attack",
+   "Leer"
+  ],
+  "Starly": [
+   "Tackle",
+   "Growl",
+   "Quick Attack"
+  ],
+  "Whiscash": [
+   "Water Pulse",
+   "Magnitude",
+   "Snore",
+   "Rest"
+  ],
+  "Wartortle": [
+   "Aqua Tail",
+   "Protect",
+   "Bite",
+   "Tackle"
+  ],
+  "Kingler": [
+   "Metal Claw",
+   "Bubble Beam",
+   "Protect",
+   "Mud Shot"
+  ],
+  "Nidorino": [
+   "Peck",
+   "Poison Sting",
+   "Double Kick",
+   "Fury Attack"
+  ],
+  "Onix": [
+   "Rock Tomb",
+   "Dragon Breath",
+   "Tackle",
+   "Rock Polish"
+  ],
+  "Charmeleon": [
+   "Dragon Rage",
+   "Fire Fang",
+   "Scratch",
+   "Growl"
+  ],
+  "Tsareena": [
+   "Trop Kick",
+   "Rapid Spin",
+   "Low Sweep",
+   "Play Nice"
+  ],
+  "Graveler": [
+   "Rock Blast",
+   "Earthquake",
+   "Tackle",
+   "Rock Polish"
+  ],
+  "Jumpluff": [
+   "Bullet Seed",
+   "Synthesis",
+   "Tackle",
+   "Leech Seed"
+  ],
+  "Ampharos": [
+   "Discharge",
+   "Tackle",
+   "Thunder Wave",
+   "Cotton Spore"
+  ],
+  "Pawmo": [
+   "Bite",
+   "Play Rough",
+   "Spark",
+   "Scratch"
+  ],
+  "Breloom": [
+   "Mega Drain",
+   "Leech Seed",
+   "Tackle",
+   "Mach Punch"
+  ],
+  "Snover": [
+   "Razor Leaf",
+   "Ice Shard",
+   "Mist",
+   "Ingrain"
+  ],
+  "Golbat": [
+   "Bite",
+   "Wing Attack",
+   "Astonish",
+   "Leech Life"
+  ],
+  "Vullaby": [
+   "Knock Off",
+   "Tailwind",
+   "Pluck",
+   "Fury Attack"
+  ],
+  "Brionne": [
+   "Scald",
+   "Encore",
+   "Icy Wind",
+   "Sing"
+  ],
+  "Vikavolt": [
+   "Crunch",
+   "Spark",
+   "Bug Bite",
+   "Mud-Slap"
+  ],
+  "Rotom": [
+   "Ominous Wind",
+   "Shock Wave",
+   "Uproar",
+   "Double Team"
+  ],
+  "Togetic": [
+   "Ancient Power",
+   "Encore",
+   "Yawn",
+   "Wish"
+  ],
+  "Stunky": [
+   "Night Slash",
+   "Toxic",
+   "Fury Swipes",
+   "Poison Gas"
+  ],
+  "Carbink": [
+   "Ancient Power",
+   "Reflect",
+   "Flail",
+   "Rock Polish"
+  ],
+  "Rampardos": [
+   "Assurance",
+   "Ancient Power",
+   "Take Down",
+   "Focus Energy"
+  ],
+  "Glimmet": [
+   "Ancient Power",
+   "Venoshock",
+   "Self-Destruct",
+   "Rock Polish"
+  ],
+  "Fletchinder": [
+   "Aerial Ace",
+   "Flame Charge",
+   "Roost",
+   "Quick Attack"
+  ],
+  "Eevee": [
+   "Bite",
+   "Tackle",
+   "Sand Attack",
+   "Growl"
+  ]
+ },
+ "finalists": [
+  {
+   "six": [
+    "Prinplup",
+    "Wartortle",
+    "Kingler",
+    "Tsareena",
+    "Ampharos",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.4,
+    "faints": 4.946666666666666,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.36,
+    "faints": 5.4,
+    "clean": 0.0
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 3.04,
+    "clean": 0.0
+   }
+  },
+  {
+   "six": [
+    "Prinplup",
+    "Vulpix",
+    "Kingler",
+    "Tsareena",
+    "Ampharos",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.4266666666666667,
+    "faints": 4.773333333333333,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.36,
+    "faints": 5.2,
+    "clean": 0.0
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 0.96,
+    "faints": 4.2,
+    "clean": 0.0
+   }
+  },
+  {
+   "six": [
+    "Prinplup",
+    "Dubwool",
+    "Vulpix",
+    "Tsareena",
+    "Ampharos",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.24,
+    "faints": 5.48,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.16,
+    "faints": 5.68,
+    "clean": 0.0
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 0.8,
+    "faints": 3.88,
+    "clean": 0.0
+   }
+  }
+ ],
+ "ours": null,
+ "bar": null,
+ "winner": [
+  "Prinplup",
+  "Vulpix",
+  "Kingler",
+  "Tsareena",
+  "Ampharos",
+  "Rampardos"
+ ],
+ "playouts_on_winner": {
+  "fights": 25,
+  "won": 0.96,
+  "faints": 4.2,
+  "clean": 0.0
+ },
+ "winner_faints_to": [
+  [
+   "Mismagius",
+   40
+  ],
+  [
+   "Rotom",
+   35
+  ],
+  [
+   "Sableye",
+   22
+  ],
+  [
+   "Drifblim",
+   8
+  ]
+ ],
+ "minutes": 57.0
+}

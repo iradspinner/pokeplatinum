@@ -1,0 +1,53 @@
+fantina: Charmeleon, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos with Charmeleon Dragon Rage, Fire Fang, Scratch, Growl; Tsareena Trop Kick, Rapid Spin, Low Sweep, Play Nice; Graveler Rock Blast, Earthquake, Tackle, Rock Polish; Ampharos Discharge, Tackle, Thunder Wave, Cotton Spore; Vikavolt Crunch, Spark, Bug Bite, Mud-Slap; Rampardos Assurance, Ancient Power, Take Down, Focus Energy
+items: Tsareena Miracle Seed, Vikavolt Silver Powder, Charmeleon Flame Plate
+lead Rampardos (lead values: Charmeleon -5.57, Tsareena -5.50, Graveler -5.50, Ampharos -5.49, Vikavolt -5.49, Rampardos -5.49)
+T1 [clear] Rampardos: switch to Charmeleon | Duskull: Will-O-Wisp -> you Charmeleon 86/86 | foe Duskull 76/76
+      options: Assurance (dropped) -10.07, Ancient Power (dropped) -10.23, Focus Energy (dropped) -10.64, switch to Charmeleon -5.75, switch to Tsareena (dropped) -10.41, switch to Graveler (dropped) -12.12, switch to Ampharos (dropped) -8.84, switch to Vikavolt (dropped) -11.01
+T2 [clear] Charmeleon: Growl | Duskull: Shadow Sneak -> you Charmeleon 73/86 | foe Duskull 76/76 {'atk': -1}
+      options: Dragon Rage -5.58, Fire Fang -5.47, Growl -5.09, switch to Tsareena (dropped) -7.57, switch to Graveler (dropped) -9.74, switch to Ampharos (dropped) -7.91, switch to Vikavolt (dropped) -10.42, switch to Rampardos (dropped) -10.25
+T3 [clear] Charmeleon: Dragon Rage | Duskull: Shadow Sneak -> you Charmeleon 63/86 | foe Duskull 36/76 {'atk': -1}
+      options: Dragon Rage -5.43, Fire Fang -6.00, Growl -5.46, switch to Tsareena (dropped) -8.63, switch to Graveler (dropped) -8.66, switch to Ampharos (dropped) -10.01, switch to Vikavolt (dropped) -9.82, switch to Rampardos -8.23
+T4 [clear] Charmeleon: Fire Fang | Duskull: Shadow Sneak -> you Charmeleon 55/86 | foe Duskull 4/76 {'atk': -1}
+      options: Dragon Rage -5.68, Fire Fang -4.05, Growl -4.64, switch to Tsareena (dropped) -7.75, switch to Graveler -5.95, switch to Ampharos (dropped) -9.16, switch to Vikavolt (dropped) -9.23, switch to Rampardos (dropped) -8.32
+T5 [clear] Charmeleon: switch to Graveler | Duskull: Shadow Sneak -> you Graveler 86/90 | foe Duskull 4/76 {'atk': -1}
+      options: Dragon Rage -5.45, Fire Fang -5.45, Growl -5.09, switch to Tsareena (dropped) -10.26, switch to Graveler -4.29, switch to Ampharos (dropped) -8.37, switch to Vikavolt (dropped) -8.31, switch to Rampardos -6.93
+T6 [clear] Graveler: Rock Blast | Duskull: Will-O-Wisp -> you Graveler 86/90 | foe Sableye 89/89
+      options: Rock Blast -4.13, Rock Polish (dropped) -7.43, switch to Charmeleon -5.90, switch to Tsareena (dropped) -9.10, switch to Ampharos (dropped) -8.90, switch to Vikavolt -7.10, switch to Rampardos -7.13
+T7 [clear] Graveler: Earthquake | Sableye: Payback -> you Graveler 65/90 | foe Sableye 55/89
+      options: Rock Blast -6.22, Earthquake -5.53, Rock Polish -6.21, switch to Charmeleon -8.33, switch to Tsareena -6.87, switch to Ampharos (dropped) -10.09, switch to Vikavolt -6.88, switch to Rampardos -8.75
+T8 [clear] Graveler: Rock Blast | Sableye: Payback -> you Graveler 44/90 | foe Sableye 30/89
+      options: Rock Blast -4.18, Earthquake -4.44, Rock Polish (dropped) -6.67, switch to Charmeleon -6.00, switch to Tsareena (dropped) -6.60, switch to Ampharos (dropped) -6.47, switch to Vikavolt -5.36, switch to Rampardos (dropped) -8.14
+T9 [clear] Graveler: Rock Polish | Sableye: Payback -> you Graveler 23/90 {'spe': 2} | foe Sableye 35/89
+      options: Rock Blast -3.75, Earthquake -3.58, Rock Polish -3.54, switch to Charmeleon (dropped) -5.67, switch to Tsareena (dropped) -9.75, switch to Ampharos (dropped) -13.85, switch to Vikavolt (dropped) -12.31, switch to Rampardos (dropped) -14.20
+T10 [clear] Graveler: Earthquake | Sableye: Payback -> you Graveler 23/90 {'spe': 2} | foe Mismagius 91/91
+      options: Rock Blast (dropped) -7.52, Earthquake -3.11, switch to Charmeleon (dropped) -7.64, switch to Tsareena (dropped) -9.78, switch to Ampharos (dropped) -15.52, switch to Vikavolt (dropped) -12.85, switch to Rampardos (dropped) -14.36
+T11 [clear] Graveler: switch to Charmeleon | Mismagius: Psybeam -> you Charmeleon 18/86 | foe Mismagius 91/91
+      options: Rock Blast -4.26, switch to Charmeleon -3.89, switch to Tsareena -4.98, switch to Ampharos -4.44, switch to Vikavolt -5.07, switch to Rampardos (dropped) -6.95
+T12 [clear] Charmeleon: Fire Fang | Mismagius: Psybeam -> you Ampharos 107/107 | foe Mismagius 91/91
+      options: Dragon Rage -4.32, Fire Fang -4.29, Growl -4.34, switch to Tsareena -4.73, switch to Graveler -4.21, switch to Ampharos (dropped) -5.45, switch to Vikavolt -4.96, switch to Rampardos (dropped) -6.43
+      replacement: Tsareena -5.74, Graveler -5.74, Ampharos -2.79, Vikavolt -5.88, Rampardos -4.45
+T13 [clear] Ampharos: Thunder Wave | Mismagius: Shadow Ball -> you Ampharos 64/107 | foe Mismagius 91/91 par
+      options: Discharge -5.13, Thunder Wave -2.99, Cotton Spore (dropped) -5.16, switch to Tsareena (dropped) -7.30, switch to Graveler (dropped) -5.47, switch to Vikavolt (dropped) -4.51, switch to Rampardos (dropped) -8.41
+T14 [clear] Ampharos: Cotton Spore | Mismagius: Shadow Ball -> you Ampharos 19/107 {'spd': -1} | foe Mismagius 91/91 par {'spe': -2}
+      options: Discharge -3.20, Cotton Spore -3.07, switch to Tsareena (dropped) -5.68, switch to Graveler -3.55, switch to Vikavolt -3.32, switch to Rampardos -3.80
+T15 [clear] Ampharos: Discharge | Mismagius: Psybeam -> you Rampardos 111/111 | foe Mismagius 58/91 par {'spe': -2}
+      options: Discharge -3.36, Cotton Spore (dropped) -4.04, switch to Tsareena (dropped) -7.31, switch to Graveler -4.67, switch to Vikavolt (dropped) -7.15, switch to Rampardos (dropped) -4.18
+      replacement: Tsareena -3.25, Graveler -3.89, Vikavolt -3.23, Rampardos -2.85
+T16 [clear] Rampardos: Assurance | Mismagius: Magical Leaf -> you Rampardos 111/111 | foe Drifblim 146/146
+      options: Assurance -3.16, Ancient Power (dropped) -7.95, Focus Energy (dropped) -7.82, switch to Tsareena -5.80, switch to Graveler (dropped) -7.47, switch to Vikavolt (dropped) -5.98
+T17 [clear] Rampardos: Assurance | Drifblim: Calm Mind -> you Rampardos 111/111 | foe Drifblim 66/146 {'spa': 1, 'spd': 1}
+      options: Assurance -3.64, Ancient Power -4.02, Focus Energy -3.72, switch to Tsareena -4.68, switch to Graveler (dropped) -4.82, switch to Vikavolt (dropped) -7.20
+T18 [clear] Rampardos: Assurance | Drifblim: Shadow Ball -> you Rampardos 47/111 | foe Rotom 82/82
+      options: Assurance -3.48, Ancient Power -4.12, Focus Energy -4.08, switch to Tsareena (dropped) -5.58, switch to Graveler -4.00, switch to Vikavolt (dropped) -5.45
+T19 [clear] Rampardos: Assurance | Rotom: Ominous Wind -> you Rampardos 2/111 | foe Rotom 32/82 {'atk': 1, 'def': 1, 'spa': 1, 'spd': 1, 'spe': 1}
+      options: Assurance -2.75, Ancient Power -3.51, Focus Energy (dropped) -4.05, switch to Tsareena (dropped) -6.08, switch to Graveler (dropped) -5.40, switch to Vikavolt -3.85
+T20 [clear] Rampardos: switch to Tsareena | Rotom: Ominous Wind -> you Tsareena 41/95 | foe Rotom 24/82 {'atk': 1, 'def': 1, 'spa': 1, 'spd': 1, 'spe': 1}
+      options: Assurance (dropped) -3.85, Ancient Power (dropped) -3.85, Focus Energy (dropped) -3.85, switch to Tsareena -2.88, switch to Graveler (dropped) -4.42, switch to Vikavolt (dropped) -5.70
+T21 [clear] Tsareena: Trop Kick | Rotom: Ominous Wind -> you Rampardos 2/111 | foe Rotom 16/82 {'atk': 1, 'def': 1, 'spa': 1, 'spd': 1, 'spe': 1}
+      options: Trop Kick -3.95, Play Nice -3.95, switch to Graveler -3.97, switch to Vikavolt (dropped) -3.98, switch to Rampardos -3.96
+      replacement: Graveler -3.93, Vikavolt -3.94, Rampardos -3.74
+T22 [clear] Rampardos: switch to Vikavolt | Rotom: Shock Wave -> you Vikavolt 70/98 | foe Rotom 8/82 {'atk': 1, 'def': 1, 'spa': 1, 'spd': 1, 'spe': 1}
+      options: Assurance (dropped) -3.93, Ancient Power (dropped) -3.93, Focus Energy (dropped) -3.93, switch to Graveler (dropped) -3.95, switch to Vikavolt -3.72
+T23 [clear] Vikavolt: Crunch | Rotom: Ominous Wind -> you Vikavolt 3/98 | foe Rotom 0/82 {'atk': 1, 'def': 1, 'spa': 1, 'spd': 1, 'spe': 1}
+      options: Crunch -3.01, Spark -3.01, Bug Bite -3.01, switch to Graveler (dropped) -3.93, switch to Rampardos (dropped) -3.90
+won; fainted: Charmeleon, Ampharos, Tsareena

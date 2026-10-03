@@ -1,0 +1,32 @@
+{
+ "fight": "gardenia",
+ "fights": 12,
+ "decisions": 280,
+ "full_seconds": 921.6,
+ "small": {
+  "budget 192 again": {
+   "budget": 192,
+   "standin": null,
+   "alike": 200,
+   "loss_added": 4.549,
+   "faints_added": 9.83,
+   "seconds": 829.4
+  },
+  "budget 24": {
+   "budget": 24,
+   "standin": null,
+   "alike": 165,
+   "loss_added": 9.425,
+   "faints_added": 27.57,
+   "seconds": 149.0
+  },
+  "budget 64": {
+   "budget": 64,
+   "standin": null,
+   "alike": 181,
+   "loss_added": 4.772,
+   "faints_added": 14.18,
+   "seconds": 238.4
+  }
+ }
+}

@@ -90,6 +90,24 @@ def fight_label(f):
     return data.oxide_trainers()[key]["name"]
 
 
+def with_genders(t, tr=None):
+    """A copy of a trainer's party with each member's gender as the game
+    builds it (fightsim.trainer_gender), from the trainer's file in
+    res/trainers/data (or `tr`, a trainer file read from elsewhere): its
+    class, and each member's own gender and ability fields. The balance
+    track's trainer data does not carry them."""
+    if tr is None:
+        path = os.path.join(data.ROOT, "res", "trainers", "data", t["stem"] + ".json")
+        with open(path) as fh:
+            tr = json.load(fh)
+    out = []
+    for j, m in enumerate(t["party"]):
+        fm = tr["party"][m.get("sub_index", j)]
+        out.append(dict(m, gender=fs.trainer_gender(fm["species"], tr["class"], fm.get("gender"),
+                                                    fm.get("ability") or 0)))
+    return out
+
+
 def prepare(f, given_side=None):
     """The fight's state for the search: {"st", "flags", "variants": [(boss
     keys, flags, starter or None)], "split", "label"}, or None when the
@@ -105,7 +123,7 @@ def prepare(f, given_side=None):
             return {"st": st, "variants": [(flat, st["group_flags"][0], None)], "split": split,
                     "label": fight["label"], "key": key, "doubles": "tag"}
         trainers = data.fight_trainers("oxide", fight)
-        parties = [t["party"] for t in trainers]
+        parties = [with_genders(t) for t in trainers]
         weather = pressure.fight_weather([t["tr_id"] for t in trainers])
         split = fight["split"]
         cap = fs.fight_cap(split, key)
@@ -125,7 +143,7 @@ def prepare(f, given_side=None):
         st = pdoubles.prepare_trainer(t, split, fs.fight_cap(split))
         return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
                 "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
-    st = fs.prepare(split, [t["party"]], pressure.fight_weather([key]), cap=fs.fight_cap(split),
+    st = fs.prepare(split, [with_genders(t)], pressure.fight_weather([key]), cap=fs.fight_cap(split),
                     given_side=given_side)
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}

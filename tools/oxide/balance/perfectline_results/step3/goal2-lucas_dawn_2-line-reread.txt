@@ -1,0 +1,88 @@
+lucas_dawn_2: Prinplup, Vulpix, Whiscash, Wartortle, Onix, Tsareena with Prinplup Bubble Beam, Metal Claw, Fury Attack, Peck; Vulpix Flamethrower, Will-O-Wisp, Quick Attack, Roar; Whiscash Magnitude, Water Pulse, Amnesia, Mud Bomb; Wartortle Water Pulse, Bite, Protect, Rapid Spin; Onix Rock Tomb, Slam, Rock Polish, Harden; Tsareena Trop Kick, Stomp, Play Nice, Teeter Dance
+items: Tsareena Miracle Seed, Vulpix Flame Plate
+lead Onix (lead values: Prinplup +0.10, Vulpix +0.10, Whiscash +0.11, Wartortle +0.10, Onix +0.13, Tsareena +0.10)
+T1 [clear] Onix: switch to Tsareena | Lopunny: Mirror Coat -> you Tsareena 87/87 | foe Lopunny 82/82
+      options: Rock Tomb (dropped) -0.28, Slam (dropped) -0.74, Rock Polish (dropped) -0.42, Harden (dropped) -0.43, switch to Prinplup (dropped) -0.64, switch to Vulpix (dropped) -0.66, switch to Whiscash (dropped) -0.65, switch to Wartortle (dropped) -0.63, switch to Tsareena -0.01
+T2 [clear] Tsareena: Trop Kick | Lopunny: Jump Kick -> you Tsareena 64/87 | foe Lopunny 18/82 {'atk': -1}
+      options: Trop Kick +0.09, Stomp +0.07, Play Nice +0.03, Teeter Dance +0.01, switch to Prinplup (dropped) -0.77, switch to Vulpix (dropped) -0.69, switch to Whiscash (dropped) -0.84, switch to Wartortle (dropped) -0.75, switch to Onix (dropped) -0.93
+T3 [clear] Tsareena: switch to Whiscash | Lopunny: Jump Kick -> you Whiscash 92/110 | foe Lopunny 18/82 {'atk': -1}
+      options: Trop Kick +0.25, Stomp (dropped) +0.30, Play Nice (dropped) +0.26, Teeter Dance (dropped) +0.24, switch to Prinplup (dropped) -0.60, switch to Vulpix (dropped) +0.09, switch to Whiscash +0.43, switch to Wartortle (dropped) -0.64, switch to Onix (dropped) -0.22
+T4 [clear] Whiscash: Magnitude | Lopunny: Jump Kick -> you Whiscash 73/110 | foe Jynx 84/84
+      options: Magnitude +0.47, Water Pulse +0.34, Amnesia (dropped) -0.13, Mud Bomb +0.45, switch to Prinplup (dropped) -0.86, switch to Vulpix (dropped) -1.03, switch to Wartortle (dropped) -0.72, switch to Onix (dropped) -0.38, switch to Tsareena (dropped) +0.11
+T5 [clear] Whiscash: Magnitude | Jynx: Reflect -> you Whiscash 73/110 | foe Jynx 68/84
+      options: Magnitude +0.50, Water Pulse +0.50, Amnesia +0.50, Mud Bomb +0.49, switch to Prinplup (dropped) -0.55, switch to Vulpix (dropped) +0.11, switch to Wartortle (dropped) -0.15, switch to Onix (dropped) -1.14, switch to Tsareena (dropped) -0.90
+T6 [clear] Whiscash: Water Pulse | Jynx: Lovely Kiss -> you Whiscash 73/110 slp | foe Jynx 68/84
+      options: Magnitude +0.51, Water Pulse +0.51, Amnesia +0.51, Mud Bomb +0.50, switch to Prinplup (dropped) -0.23, switch to Vulpix (dropped) -0.51, switch to Wartortle (dropped) +0.27, switch to Onix (dropped) +0.23, switch to Tsareena (dropped) +0.23
+T7 [clear] Whiscash: Amnesia | Jynx: Copycat -> you Whiscash 73/110 {'spd': 2} | foe Jynx 68/84
+      options: Magnitude +0.50, Water Pulse +0.50, Amnesia +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) -0.07, switch to Vulpix (dropped) +0.40, switch to Wartortle (dropped) +0.29, switch to Onix (dropped) +0.29, switch to Tsareena (dropped) +0.29
+T8 [clear] Whiscash: Water Pulse | Jynx: Lovely Kiss -> you Whiscash 73/110 slp {'spd': 2} | foe Jynx 68/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) -0.30, switch to Vulpix (dropped) -0.18, switch to Wartortle (dropped) +0.26, switch to Onix (dropped) +0.34, switch to Tsareena (dropped) +0.34
+T9 [clear] Whiscash: Magnitude | Jynx: Copycat -> you Whiscash 73/110 slp {'spd': 2} | foe Jynx 68/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) -0.58, switch to Vulpix (dropped) +0.26, switch to Wartortle (dropped) +0.07, switch to Onix (dropped) +0.06, switch to Tsareena (dropped) -0.19
+T10 [clear] Whiscash: Magnitude | Jynx: Copycat -> you Whiscash 73/110 slp {'spd': 2} | foe Jynx 68/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) -0.57, switch to Vulpix (dropped) +0.08, switch to Wartortle (dropped) -0.00, switch to Onix (dropped) -0.07, switch to Tsareena (dropped) -0.33
+T11 [clear] Whiscash: Magnitude | Jynx: Copycat -> you Whiscash 73/110 {'spd': 2} | foe Jynx 31/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) -0.31, switch to Vulpix (dropped) +0.21, switch to Wartortle (dropped) +0.12, switch to Onix (dropped) -0.03, switch to Tsareena (dropped) +0.07
+T12 [clear] Whiscash: Mud Bomb | Jynx: Copycat -> you Whiscash 73/110 {'spd': 2} | foe Jynx 13/84 {'acc': -1}
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) +0.14, switch to Vulpix (dropped) +0.23, switch to Wartortle (dropped) +0.35, switch to Onix (dropped) +0.03, switch to Tsareena (dropped) +0.18
+T13 [clear] Whiscash: Water Pulse | Jynx: Lovely Kiss -> you Whiscash 73/110 {'spd': 2} | foe Monferno 84/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) +0.35, switch to Vulpix (dropped) +0.36, switch to Wartortle (dropped) +0.45, switch to Onix (dropped) +0.45, switch to Tsareena (dropped) +0.25
+T14 [clear] Whiscash: Magnitude | Monferno: Fake Out -> you Whiscash 59/110 {'spd': 2} | foe Monferno 84/84
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup (dropped) +0.47, switch to Vulpix (dropped) +0.46, switch to Wartortle +0.50, switch to Onix +0.46, switch to Tsareena (dropped) -0.25
+T15 [clear] Whiscash: Water Pulse | Monferno: Mach Punch -> you Whiscash 41/110 {'spd': 2} | foe Monferno 9/84
+      options: Magnitude +0.50, Water Pulse +0.51, Mud Bomb +0.50, switch to Prinplup (dropped) +0.44, switch to Vulpix (dropped) +0.45, switch to Wartortle (dropped) +0.48, switch to Onix (dropped) +0.45, switch to Tsareena (dropped) +0.28
+T16 [clear] Whiscash: Mud Bomb | Monferno: Flame Wheel -> you Whiscash 41/110 {'spd': 2} | foe Jolteon 82/82
+      options: Magnitude +0.50, Water Pulse +0.50, Mud Bomb +0.50, switch to Prinplup +0.50, switch to Vulpix (dropped) +0.31, switch to Wartortle +0.50, switch to Onix +0.50, switch to Tsareena (dropped) +0.16
+T17 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 41/110 {'spd': 2} | foe Jolteon 82/82
+      options: Magnitude +0.51, Water Pulse +0.51, Mud Bomb +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.15, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena +0.48
+T18 [clear] Whiscash: switch to Prinplup | Jolteon: Fake Tears -> you Prinplup 82/82 {'spd': -2} | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix +0.51, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena +0.47
+T19 [clear] Prinplup: switch to Whiscash | Jolteon: Shock Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) -0.59, Metal Claw (dropped) -0.59, Fury Attack (dropped) -0.59, Peck (dropped) -0.59, switch to Vulpix (dropped) +0.44, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.43, switch to Onix +0.51, switch to Tsareena (dropped) +0.48
+T20 [clear] Whiscash: switch to Prinplup | Jolteon: Fake Tears -> you Prinplup 82/82 {'spd': -2} | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix +0.51, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena +0.46
+T21 [clear] Prinplup: switch to Whiscash | Jolteon: Shock Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) -0.59, Metal Claw (dropped) -0.59, Fury Attack (dropped) -0.59, Peck (dropped) -0.59, switch to Vulpix (dropped) +0.44, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.43, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T22 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Magnitude +0.51, Water Pulse +0.51, Mud Bomb +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.37, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T23 [clear] Whiscash: switch to Prinplup | Jolteon: Fake Tears -> you Prinplup 82/82 {'spd': -2} | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix +0.51, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.33
+T24 [clear] Prinplup: switch to Whiscash | Jolteon: Shock Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) -0.59, Metal Claw (dropped) -0.59, Fury Attack (dropped) -0.59, Peck (dropped) -0.59, switch to Vulpix (dropped) +0.44, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.43, switch to Onix +0.51, switch to Tsareena (dropped) +0.47
+T25 [clear] Whiscash: switch to Prinplup | Jolteon: Magnet Rise -> you Prinplup 82/82 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.37, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T26 [clear] Prinplup: switch to Whiscash | Jolteon: Thunder Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) +0.45, Metal Claw (dropped) +0.45, Fury Attack (dropped) +0.45, Peck (dropped) +0.45, switch to Vulpix (dropped) +0.12, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T27 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Magnitude +0.51, Water Pulse +0.51, Mud Bomb +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.33, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T28 [clear] Whiscash: switch to Prinplup | Jolteon: Magnet Rise -> you Prinplup 82/82 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.24, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T29 [clear] Prinplup: switch to Whiscash | Jolteon: Thunder Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) +0.45, Metal Claw (dropped) +0.45, Fury Attack (dropped) +0.45, Peck (dropped) +0.45, switch to Vulpix (dropped) +0.47, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.48
+T30 [clear] Whiscash: switch to Prinplup | Jolteon: Magnet Rise -> you Prinplup 82/82 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.14, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.50
+T31 [clear] Prinplup: switch to Whiscash | Jolteon: Thunder Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) +0.45, Metal Claw (dropped) +0.45, Fury Attack (dropped) +0.45, Peck (dropped) +0.45, switch to Vulpix (dropped) +0.14, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T32 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Magnitude +0.51, Water Pulse +0.51, Mud Bomb +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.24, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T33 [clear] Whiscash: switch to Prinplup | Jolteon: Magnet Rise -> you Prinplup 82/82 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.33, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T34 [clear] Prinplup: switch to Whiscash | Jolteon: Thunder Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) +0.45, Metal Claw (dropped) +0.45, Fury Attack (dropped) +0.45, Peck (dropped) +0.45, switch to Vulpix (dropped) +0.47, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.48
+T35 [clear] Whiscash: switch to Prinplup | Jolteon: Magnet Rise -> you Prinplup 82/82 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.28, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.50
+T36 [clear] Prinplup: switch to Whiscash | Jolteon: Thunder Wave -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Bubble Beam (dropped) +0.45, Metal Claw (dropped) +0.45, Fury Attack (dropped) +0.45, Peck (dropped) +0.45, switch to Vulpix (dropped) +0.21, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T37 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 41/110 | foe Jolteon 82/82
+      options: Magnitude +0.51, Water Pulse +0.51, Mud Bomb +0.51, switch to Prinplup +0.51, switch to Vulpix (dropped) -0.33, switch to Wartortle +0.51, switch to Onix +0.51, switch to Tsareena (dropped) +0.49
+T38 [clear] Whiscash: switch to Onix | Jolteon: Shock Wave -> you Onix 77/77 | foe Jolteon 82/82
+      options: Water Pulse +0.51, switch to Prinplup (dropped) +0.45, switch to Vulpix (dropped) +0.47, switch to Wartortle (dropped) +0.47, switch to Onix +0.51, switch to Tsareena (dropped) +0.43
+T39 [clear] Onix: Rock Tomb | Jolteon: Shock Wave -> you Onix 77/77 | foe Jolteon 52/82 {'spe': -1}
+      options: Rock Tomb +0.51, Slam +0.51, Rock Polish +0.51, Harden +0.51, switch to Prinplup (dropped) +0.45, switch to Vulpix (dropped) +0.47, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.47, switch to Tsareena (dropped) +0.48
+T40 [clear] Onix: Rock Tomb | Jolteon: Shock Wave -> you Onix 77/77 | foe Jolteon 31/82 {'spe': -2}
+      options: Rock Tomb +0.51, Slam +0.51, Rock Polish (dropped) +0.51, Harden (dropped) +0.51, switch to Prinplup (dropped) +0.39, switch to Vulpix (dropped) +0.44, switch to Whiscash (dropped) +0.51, switch to Wartortle (dropped) +0.43, switch to Tsareena (dropped) +0.50
+T41 [clear] Onix: Rock Tomb | Jolteon: Thunder Wave -> you Onix 77/77 | foe Jolteon 1/82 {'spe': -3}
+      options: Rock Tomb +0.51, Slam +0.51, Rock Polish +0.51, Harden +0.51, switch to Prinplup (dropped) +0.19, switch to Vulpix (dropped) +0.07, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.51, switch to Tsareena (dropped) +0.49
+T42 [clear] Onix: Rock Tomb | Jolteon: Thunder Wave -> you Onix 77/77 | foe Jolteon 0/82 {'spe': -3}
+      options: Rock Tomb +0.51, Slam +0.51, Rock Polish +0.51, Harden +0.51, switch to Prinplup (dropped) +0.23, switch to Vulpix (dropped) +0.32, switch to Whiscash +0.51, switch to Wartortle (dropped) +0.18, switch to Tsareena (dropped) +0.49
+won; fainted: none

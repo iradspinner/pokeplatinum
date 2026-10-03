@@ -85,6 +85,9 @@ FAINT_TOL = 0.1
 # the turns and core time, so it does not pass Ian's condition either.
 FAST_TIE = False
 FAST_EPS = 0.02
+# The learned stand-in player (plpolicy) that plays the play-outs in place of
+# the plain policy, by name, or None for the plain policy (--standin).
+STANDIN = None
 
 
 def choose(q, parts, among):
@@ -332,7 +335,8 @@ def merge_key(c):
     def side(s):
         return (s.active, tuple(((m.hp * HP_BUCKETS + m.maxhp - 1) // m.maxhp,) + pl.mon_key(m)[1:]
                                 for m in s.mons),
-                tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard)
+                tuple(s.screens.values()), s.tailwind, tuple(s.hazards.values()), s.safeguard,
+                getattr(s, "wish", 0))
     return side(c.p), side(c.b), c.weather, c.weather_turns, c.trick_room
 
 
@@ -341,7 +345,9 @@ def quick_outcomes(b):
     field fires one time in five, drawn before anyone chooses."""
     out = [({}, 1.0)]
     for m in (b.p.cur(), b.b.cur()):
-        if m.item == "Quick Claw":
+        if fs.custap_fires(m):
+            out = [(dict(q, **{m.key: True}), p) for q, p in out]      # a Custap Berry that fires
+        elif m.item == "Quick Claw":
             out = [(dict(q, **{m.key: f}), p * (0.2 if f else 0.8)) for q, p in out for f in (False, True)]
         else:
             out = [(dict(q, **{m.key: False}), p) for q, p in out]
@@ -562,7 +568,7 @@ def options(b):
     b.rng = saved or random.Random(0)
     try:
         for mv in me.moves:
-            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status"):
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
@@ -572,11 +578,23 @@ def options(b):
     finally:
         b.rng = saved
     if not out:
-        left = [m for m in me.moves if me.pp.get(m.name, 1) > 0]
+        left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)]
         out.append(("move", left[0] if left else fs.move("Struggle")))
-    if not me.bound and fs.can_switch(me):
+    if not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me):
         out += [("switch", i) for i, m in enumerate(b.p.mons) if i != b.p.active and m.alive()]
     return out
+
+
+def option_slot(b, a):
+    """An option's place among the stand-in player's ten slots: a move by its
+    place in the active Pokemon's set (0 to 3), a switch by its target's
+    place on the bench as plfeat lists it, the active Pokemon left out (4 to
+    8), so the slot means the same thing as the features it is read from."""
+    me = b.p.cur()
+    if a[0] == "move":
+        return next((k for k, m in enumerate(me.moves) if m is a[1] or m.name == a[1].name), 0)
+    bench = [i for i in range(len(b.p.mons)) if i != b.p.active]
+    return 4 + bench.index(a[1])
 
 
 class ModeDice:
@@ -646,7 +664,7 @@ def strongest(b):
     mv, d = fs.safe_attack(b, me, foe)
     if mv is not None and d > 0:
         return "move", mv
-    left = [m for m in me.moves if me.pp.get(m.name, 1) > 0]
+    left = [m for m in me.moves if me.pp.get(m.name, 1) > 0 and not fs.tormented_out(me, m)]
     return "move", left[0] if left else fs.move("Struggle")
 
 
@@ -729,14 +747,15 @@ def plain(b):
         return forced
     first = fs.moves_first(b, me, foe)
     attacks = [m for m in me.moves if m.damaging() and me.pp.get(m.name, 1) > 0
-               and (not me.choice or m.name == me.choice) and m.effect not in fs.SELF_KO]
+               and (not me.choice or m.name == me.choice) and m.effect not in fs.SELF_KO
+               and not fs.tormented_out(me, m)]
     for m in sorted(attacks, key=lambda m: -m.pri):
         if (m.acc == 0 or m.acc >= 90) and pl.dmg_low(b, me, foe, m) >= foe.hp and (m.pri > 0 or first):
             return "move", m
     pair = (me.key, foe.key)
     if getattr(b, "pair", None) != pair:
         b.pair = pair
-        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not me.bound and fs.can_switch(me) \
+        if getattr(b, "plain_switches", 0) < PLAIN_SWITCHES and not me.bound and fs.can_switch(me) and not fs.ability_trapped(b, me) \
                 and b.p.bench():
             won, left, _t = duel(b)
             if not won and left < 0:
@@ -771,7 +790,10 @@ PLAYOUTS = 1         # play-outs per position after the turn, without a budget
 # With a budget, options are weighed in stages: every option gets each of
 # these budgets in turn, and one trailing the leader by more than RACE_Z
 # standard errors of the difference is dropped before the next.
-BUDGET = 192
+# Budget 64 for every play-out reading (Ian, 2026-10-03): at Roark, Mars 1
+# and Gardenia it chose about as well as 192 at a quarter to a third of the
+# cost (the handoff's "The learned stand-in player, and smaller budgets").
+BUDGET = 64
 STAGES = (24, 64)
 RACE_Z = 2.0
 
@@ -794,9 +816,13 @@ _TABLES = {}     # plfeat's tables for the fight in hand
 class Planner:
     """One run's player."""
 
-    def __init__(self, seed, playouts=PLAYOUTS, budget=BUDGET, value=None):
+    def __init__(self, seed, playouts=PLAYOUTS, budget=BUDGET, value=None, standin=None):
         self.seed = seed
         self.playouts = playouts
+        # The learned stand-in player that plays this planner's play-outs (a
+        # plpolicy network's name), or the module's STANDIN when not given,
+        # so a check can hold planners with and without one side by side.
+        self.standin = standin or STANDIN
         # With a budget, each option's turn against each trainer pick gets
         # this many play-outs in all, shared among the turn's outcomes by
         # their probability (at least one each), rather than `playouts` for
@@ -815,6 +841,7 @@ class Planner:
         self.record = None
         self.last_end = None     # the last play-out's final position
         self.last_parts = None   # the last weighing's (chance of losing, faints) per option
+        self.choices = None      # with a list: every decision kept for the stand-in player (record_choice)
 
     def tables(self, b):
         """plfeat's per-fight tables for b's fight, made once per fight."""
@@ -958,9 +985,23 @@ class Planner:
         c.plain_switches = 0
         stop = c.turn + PLAYOUT_TURNS
         while c.turn < stop and c.p.alive() and c.b.alive():
-            pl.play_turn(c, plain(c), rng)
+            pl.play_turn(c, self.standin_action(c) if self.standin else plain(c), rng)
         self.last_end = c
         return value(c)
+
+    def standin_action(self, c):
+        """The learned stand-in player's option (self.standin, a plpolicy
+        network): the legal option it scores highest, over the ten slots
+        record_choice uses."""
+        from . import plfeat, plvalue
+        name = self.standin
+        pol = _NETS.get(("policy", name)) or _NETS.setdefault(("policy", name), plvalue.Policy(name))
+        acts = options(c)
+        if len(acts) == 1:
+            return acts[0]
+        x, ids = (plfeat.compact if pol.compact else plfeat.features)(c, self.tables(c))
+        scores = pol.logits(x[None], ids[None])[0]
+        return max(acts, key=lambda a: scores[option_slot(c, a)])
 
     def decide(self, b):
         """The turn's action."""
@@ -977,7 +1018,29 @@ class Planner:
         self.notes.append({"turn": b.turn, "options": [(_name(a, b) + ("" if i in alive else " (dropped)"),
                                                         v) for i, (a, v) in enumerate(zip(acts, q))],
                            "parts": parts, "chose": best, "seconds": round(time.perf_counter() - t0, 2)})
+        if self.choices is not None:
+            self.record_choice(b, acts, q, alive, best)
         return acts[best]
+
+    def record_choice(self, b, acts, q, alive, best):
+        """For the learned stand-in player (pldata --choices): the position as
+        the network reads it, and over ten slots (option_slot: the active
+        Pokemon's four moves, then a switch to each bench place in the order
+        the network's features list them) which were options, the value of
+        each option still in the running, and the slot chosen."""
+        from . import plfeat
+        x, ids = plfeat.features(b, self.tables(b))
+        legal = np.zeros(10, bool)
+        values = np.full(10, np.nan, np.float32)
+        chosen = 0
+        for i, a in enumerate(acts):
+            slot = option_slot(b, a)
+            legal[slot] = True
+            if i in alive:
+                values[slot] = q[i]
+            if i == best:
+                chosen = slot
+        self.choices.append((x, ids, legal, values, chosen))
 
     def position(self, c, key):
         """A position's worth when the player is to choose, as its best
@@ -1011,10 +1074,13 @@ class Planner:
 
     def lead(self, st, team, boss_keys, flags):
         """The lead: each candidate's best first option, on the same dice;
-        (the lead, each candidate's value)."""
+        (the lead, each candidate's value). In a section (CARRY), only a
+        member still standing can lead."""
         key = _mix(self.seed, "lead")
-        vals = [self.position(pl.make_battle(st, team, boss_keys, flags, i), key) for i in range(len(team))]
-        best = choose([v[2] for v in vals], [v[:2] for v in vals], range(len(team)))
+        up = [i for i in range(len(team)) if CARRY is None or CARRY[i][0] > 0]
+        vals = [self.position(make_battle(st, team, boss_keys, flags, i), key) if i in up else (1.0, 9.0, -99.0)
+                for i in range(len(team))]
+        best = choose([v[2] for v in vals], [v[:2] for v in vals], up)
         return best, [v[2] for v in vals]
 
 
@@ -1038,7 +1104,7 @@ def real_turn(b, a, rng):
     """perfectline.play_turn, returning the trainer's choice as well."""
     b.rng = rng
     b.dice.rng = rng
-    b.quick = {m.key: m.item == "Quick Claw" and (b.dice.good(0.2) if pl.player(m) else b.dice.bad("quickclaw", 0.2))
+    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2) if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     pl._turn(b, a, aa)
@@ -1055,7 +1121,7 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
     seed-for-seed comparison."""
     reset()                  # each fight starts with empty caches, so memory stays bounded
     rng = random.Random(seed)
-    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    b = make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck=luck)
     b.rng = rng
     planner = Planner(seed, **cfg)
@@ -1101,7 +1167,25 @@ def play(st, team, boss_keys, flags, lead, seed, cfg, luck="real", log=None, rec
     won = not b.b.alive()
     return {"clean": won and deaths == 0, "won": won, "deaths": deaths, "faints": faints,
             "seconds": round(time.perf_counter() - t0, 2), "decisions": planner.decisions,
-            "turns": b.turn, "notes": planner.notes}
+            "turns": b.turn, "notes": planner.notes,
+            # What the player's side carries into a section's next fight.
+            "carry": [[m.hp, m.status, m.sleep, m.toxic, dict(m.pp), m.item] for m in b.p.mons]}
+
+
+# A gauntlet section's carried state (plstudy.section): each team member's
+# [hp, status, sleep, toxic, pp, item] going into the next fight, or None
+# for a fight from full health.
+CARRY = None
+
+
+def make_battle(st, team, boss_keys, flags, lead):
+    """perfectline's battle, with a section's carried state applied."""
+    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    if CARRY is not None:
+        for m, (hp, status, sleep, toxic, pp, item) in zip(b.p.mons, CARRY):
+            m.hp, m.status, m.sleep, m.toxic, m.pp, m.item = hp, status, sleep, toxic, dict(pp), item
+            m.had_item = bool(item)
+    return b
 
 
 # ---- reading a fight -------------------------------------------------------------------------------
@@ -1197,7 +1281,7 @@ def read(fight, runs=200, cfg=None, procs=None, luck="real", log=sys.stdout):
     cpu = sum(r["seconds"] for r in rows)
     out = {"fight": fight, "six": f["six"], "variant": f["variant"],
            "foes": [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys],
-           "cfg": cfg, "luck": luck, "rank": RANK, "fast_tie": FAST_TIE, "lead": f["six"][lead],
+           "cfg": cfg, "luck": luck, "rank": RANK, "fast_tie": FAST_TIE, "standin": STANDIN, "lead": f["six"][lead],
            "lead_values": {n: round(v, 3) for n, v in zip(f["six"], lead_vals)},
            "clean": clean, "won": won, "deaths": round(deaths, 3), "runs": runs,
            "faints": [[a, b, n] for (a, b), n in tally.most_common()],
@@ -1232,7 +1316,7 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     seed = f["trace_seed"] if seed is None else seed
     netp = Planner(seed, value=value)
     rng = random.Random(seed)
-    b = pl.make_battle(st, team, boss_keys, flags, lead)
+    b = make_battle(st, team, boss_keys, flags, lead)
     b.dice = pl.RunDice(rng, luck="real")
     b.rng = rng
     planner = Planner(seed)
@@ -1285,6 +1369,80 @@ def compare(fight, value, seed=None, log=sys.stdout, drive="playouts"):
     return agree, total, regret
 
 
+def _budget_job(seed):
+    """One fight played by the full play-out planner; at each of its
+    decisions every smaller planner of _JOB["small"] chooses too, on dice of
+    its own (shared dice would make a small reading a subset of the full
+    one's and flatter the agreement). Per small planner: [decisions alike,
+    decisions, chance of losing added, faints added, seconds weighing], by
+    the full planner's own estimates; and the full planner's seconds."""
+    j = _JOB
+    rng = random.Random(seed)
+    b = make_battle(j["st"], j["team"], j["boss_keys"], j["flags"], j["lead"])
+    b.dice, b.rng = pl.RunDice(rng, luck="real"), rng
+    full = Planner(seed)
+    small = [Planner(seed, budget=budget, standin=standin) for _label, budget, standin in j["small"]]
+    out = [[0, 0, 0.0, 0.0, 0.0] for _p in small]
+    full_s = 0.0
+    _REAL.update(b=b, planner=full)
+    try:
+        while b.turn < TURN_CAP and b.p.alive() and b.b.alive():
+            acts = options(b)
+            if len(acts) > 1:
+                t0 = time.perf_counter()
+                q, alive = full.weigh(b, acts, _mix(seed, "budget", b.turn))
+                full_s += time.perf_counter() - t0
+                pp = full.last_parts
+                best = choose(q, pp, alive)
+                for p, o in zip(small, out):
+                    t0 = time.perf_counter()
+                    qs, alive_s = p.weigh(b, acts, _mix(seed, "budget-small", b.turn))
+                    o[4] += time.perf_counter() - t0
+                    pick = choose(qs, p.last_parts, alive_s)
+                    o[0] += pick == best
+                    o[1] += 1
+                    if pick != best and pp:
+                        o[2] += pp[pick][0] - pp[best][0]
+                        o[3] += pp[pick][1] - pp[best][1]
+                a = acts[best]
+            else:
+                a = acts[0]
+            real_turn(b, a, rng)
+    finally:
+        _REAL.update(b=None, planner=None)
+    return out, full_s
+
+
+def budget_check(fight, small, fights=12, procs=None, log=sys.stdout):
+    """Does a smaller play-out budget, with or without the learned stand-in
+    player, choose as the full budget does? Fights played by the full
+    planner from the fight's trace seed on; at each decision every planner
+    in `small` ((label, budget, stand-in or None) each) chooses too. A second
+    full-budget planner on its own dice belongs in `small` as the ceiling:
+    two readings at the full budget do not always agree either."""
+    f, st, team, boss_keys, flags, lead, _vals, _s = setup(fight, {})
+    _JOB.update(st=st, team=team, boss_keys=boss_keys, flags=flags, lead=lead, small=small)
+    seeds = [f["trace_seed"] + i for i in range(fights)]
+    with fork_pool(procs or min(fights, pool_size())) as pool:
+        rows = pool.map(_budget_job, seeds, chunksize=1)
+    full_s = sum(r[1] for r in rows)
+    total = sum(r[0][0][1] for r in rows)
+    print(f"{fight}: {fights} fights played by the full planner (budget {BUDGET}), {total} decisions, "
+          f"{full_s / max(1, total):.2f} s of one core a decision", file=log)
+    out = {"fight": fight, "fights": fights, "decisions": total, "full_seconds": round(full_s, 1), "small": {}}
+    for i, (label, budget, standin) in enumerate(small):
+        agree = sum(r[0][i][0] for r in rows)
+        loss = sum(r[0][i][2] for r in rows)
+        faints = sum(r[0][i][3] for r in rows)
+        secs = sum(r[0][i][4] for r in rows)
+        print(f"  {label}: {agree} of {total} alike ({agree / max(1, total):.1%}); where they differ, "
+              f"{loss:+.3f} chance of losing and {faints:+.2f} faints in all by the full planner's estimates; "
+              f"{secs / max(1, total):.2f} s a decision", file=log)
+        out["small"][label] = {"budget": budget, "standin": standin, "alike": agree, "loss_added": round(loss, 3),
+                               "faints_added": round(faints, 2), "seconds": round(secs, 1)}
+    return out
+
+
 def trace(fight, seed=None, cfg=None, luck="real", log=sys.stdout):
     cfg = dict(cfg or {})
     f, st, team, boss_keys, flags, lead, vals, _s = setup(fight, cfg)
@@ -1301,7 +1459,7 @@ OUT = os.path.join(os.path.dirname(__file__), "perfectline_results", "step3")
 
 
 def main(argv=None):
-    global RANK, FAST_TIE, FAST_EPS
+    global RANK, FAST_TIE, FAST_EPS, STANDIN
     ap = argparse.ArgumentParser()
     ap.add_argument("fight")
     ap.add_argument("--runs", type=int, default=200)
@@ -1322,15 +1480,38 @@ def main(argv=None):
                     help="break genuine ties on losing and faints toward the faster finish (off by default)")
     ap.add_argument("--fast-eps", type=float, default=FAST_EPS,
                     help="with --fast-tie: how close in value a tie must be")
+    ap.add_argument("--standin", help="a learned stand-in player (plpolicy) to play the play-outs; with "
+                                      "--budget-check, several may be given, joined by commas")
     ap.add_argument("--procs", type=int)
     ap.add_argument("--save", help="write the reading to perfectline_results/step3/<name>.json")
     ap.add_argument("--six", nargs="+", metavar="NAME", help="another six from the fight's box")
     ap.add_argument("--variant", type=int, help="another of the trainer's variants (a rival's, by starter)")
+    ap.add_argument("--budget-check", metavar="BUDGET[,BUDGET...]",
+                    help="do these smaller budgets (plain, and the first with --standin) choose as the full one "
+                         "does?")
+    ap.add_argument("--check-fights", type=int, default=12, help="with --budget-check: fights to play")
     args = ap.parse_args(argv)
+    if args.budget_check:
+        # The full planner and the ceiling play out with the plain policy;
+        # only the small planner named for it uses the stand-in.
+        budgets = [int(x) for x in args.budget_check.split(",")]
+        small = [(f"budget {BUDGET} again", BUDGET, None)] + [(f"budget {n}", n, None) for n in budgets]
+        for name in (args.standin or "").split(","):
+            if name:
+                small.append((f"budget {budgets[0]} with {name}", budgets[0], name))
+        _PICK.update(six=args.six, variant=args.variant)
+        RANK = args.rank
+        out = budget_check(args.fight, small, args.check_fights, args.procs)
+        if args.save:
+            os.makedirs(OUT, exist_ok=True)
+            with open(os.path.join(OUT, args.save + ".json"), "w") as fh:
+                json.dump(out, fh, indent=1)
+        return 0
     cfg = dict(playouts=args.playouts, budget=args.budget or None, value=args.value)
     _PICK.update(six=args.six, variant=args.variant)
     RANK = args.rank
     FAST_TIE, FAST_EPS = args.fast_tie, args.fast_eps
+    STANDIN = args.standin
     if args.compare:
         compare(args.fight, args.compare, args.seed, drive=args.drive)
         return 0

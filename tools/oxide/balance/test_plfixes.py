@@ -15,9 +15,9 @@ TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Mud Bomb", "W
         ("SPECIES_GRUBBIN", "Grubbin", "Relaxed", "Swarm", ["Bug Bite", "Bite", "Mud-Slap"])]
 
 
-def battle(seed=1):
+def battle(seed=1, team=TEAM):
     recs = [{"constant": c, "species": s, "how": "test", "level": 16, "nature": n, "ivs": IV, "evs": EV,
-             "ability": a, "moves": mv, "fill": False} for c, s, n, a, mv in TEAM]
+             "ability": a, "moves": mv, "fill": False} for c, s, n, a, mv in team]
     prep = plscore.prepare(plscore.parse_fight("roark"), given_side=recs)
     boss_keys, flags, _ = prep["variants"][0]
     b = pl.make_battle(prep["st"], ["p0", "p1", "p2"], boss_keys, flags, 0)
@@ -78,6 +78,499 @@ def first_battle_checks():
              f"Barry 1 {marked}"),
             ("no critical hit in the first battle: Tackle's top damage stays below a crit's",
              max(with_mark) < max(without), f"top {max(with_mark)} with the mark, {max(without)} without")]
+
+
+def magnet_rise_checks():
+    """Magnet Rise (effect script 252, found missing on 2026-10-03, when a
+    Magnitude knocked out a risen Jolteon in Lucas and Dawn 2's line): its
+    user takes nothing from Ground moves through five turn ends, a switch
+    clears it, and Ingrain stops it. Roark's lead rises; Barboach answers
+    with Mud Bomb."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.mons[0]
+    rise = fs.move("Magnet Rise")
+    before = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    pl.status_move(b, foe, rise, barboach, True)
+    risen = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    risen_fs = _hits(b, fs.attack, barboach, "Mud Bomb", foe, tries=5)
+    for _ in range(4):
+        fs.end_of_turn(b)
+    foe.hp = foe.maxhp
+    four = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    fs.end_of_turn(b)
+    foe.hp = foe.maxhp
+    five = _hits(b, pl.attack, barboach, "Mud Bomb", foe, tries=5)
+    pl.status_move(b, foe, rise, barboach, True)
+    fs.switch_in(b, b.b, 1)
+    fs.switch_in(b, b.b, 0)
+    cleared = b.b.cur().magnet_rise
+    foe = b.b.cur()
+    foe.ingrained = True
+    pl.status_move(b, foe, rise, barboach, True)
+    rooted = foe.magnet_rise
+    return [("Magnet Rise: Ground moves do nothing to its user, in both simulators",
+             max(before) > 0 and max(risen) == 0 and max(risen_fs) == 0,
+             f"Mud Bomb {max(before)} before, {max(risen)} and {max(risen_fs)} after"),
+            ("Magnet Rise lasts through four turn ends and is gone after the fifth",
+             max(four) == 0 and max(five) > 0, f"after four {max(four)}, after five {max(five)}"),
+            ("a switch clears Magnet Rise, and Ingrain stops it", cleared == 0 and rooted == 0,
+             f"after a switch {cleared}, rooted {rooted}")]
+
+
+def torment_and_pain_split_checks():
+    """Torment and Pain Split (found doing nothing on 2026-10-03, in Lucas
+    and Dawn 2's Monferno and Fantina's Rotom): a tormented Pokemon cannot
+    pick the move it used last, in the player's options or the trainer's
+    AI, until a switch; Pain Split sets both Pokemon's HP to half their sum,
+    and fails on a Substitute."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.moves = [fs.move("Mud Bomb"), fs.move("Water Gun")]
+    barboach.pp = {"Mud Bomb": 10, "Water Gun": 10}
+    pl.status_move(b, foe, fs.move("Torment"), barboach, True)
+    barboach.last = barboach.moves[0]
+    from . import plplan
+    names = [a[1].name for a in plplan.options(b) if a[0] == "move"]
+    foe_moves = list(foe.moves)
+    foe.tormented, foe.last = True, foe_moves[0]
+    ai_out = fightai.invalid(b, foe, foe_moves[0])
+    fs.switch_in(b, b.p, 1)
+    fs.switch_in(b, b.p, 0)
+    cleared = b.p.cur().tormented
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.hp, foe.hp = barboach.maxhp, 4
+    pl.status_move(b, foe, fs.move("Pain Split"), barboach, True)
+    avg = (barboach.maxhp + 4) // 2
+    split = (barboach.hp, foe.hp)
+    b2 = battle()
+    foe2, mon2 = b2.b.cur(), b2.p.cur()
+    mon2.sub, foe2.hp = 10, 4
+    fs.pain_split(b2, foe2, mon2)
+    return [("Torment: the move used last is no option, for the player or the trainer's AI, until a switch",
+             names == ["Water Gun"] and ai_out and not cleared, f"options {names}, AI rules it out {ai_out}, "
+             f"after a switch {cleared}"),
+            ("Pain Split: both HP become half their sum (capped), and it fails on a Substitute",
+             split == (avg, min(foe.maxhp, avg)) and foe2.hp == 4,
+             f"{split} against {avg}; through a Substitute the user stays at {foe2.hp}")]
+
+
+def destiny_bond_checks():
+    """Destiny Bond (subscript_destiny_bond and
+    subscript_faint_check_destiny_bond): a Pokemon under it that a foe's
+    move faints takes the foe with it; the bond ends when its user next
+    tries to act. Roark's lead bonds; Barboach's Mud Bomb faints it."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    bond = fs.move("Destiny Bond")
+    pl.use_move(b, foe, bond, barboach, True)
+    set_ = foe.destiny_bond
+    foe.hp = 1
+    b.dice = pl.RunDice(random.Random(3), True)
+    pl.use_move(b, barboach, mv(barboach, "Mud Bomb"), foe, True)
+    took = not foe.alive() and not barboach.alive()
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    pl.use_move(b, foe, bond, barboach, True)
+    pl.use_move(b, foe, fs.move("Tackle"), barboach, True)     # it acts again: the bond ends
+    foe.hp = 1
+    pl.use_move(b, barboach, mv(barboach, "Mud Bomb"), foe, True)
+    ended = not foe.alive() and barboach.alive()
+    return [("Destiny Bond: the foe whose move faints its user faints too",
+             set_ and took, f"set {set_}, both fainted {took}"),
+            ("Destiny Bond ends when its user next acts", ended, f"only the bonded one fainted {ended}")]
+
+
+def gender_checks():
+    """Genders, Attract and the contact abilities (Ian, 2026-10-03): a
+    trainer's Pokemon get the gender their file gives (Jupiter 1's Delcatty
+    is female); Attract works only across genders, not on Oblivious; love
+    stops about half the moves and ends when its object leaves; Cute Charm
+    and Static take about 3 contact hits in 10, Rough Skin an eighth."""
+    prep = plscore.prepare(plscore.parse_fight("jupiter_1"), given_side=[])
+    st = prep["st"]
+    delcatty = next(k for k in prep["variants"][0][0] if st["pokemon"][k]["species"] == "Delcatty")
+    file_gender = st["pokemon"][delcatty]["gender"]
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    attract = fs.move("Attract")
+    foe.gender, barboach.gender = "F", "F"
+    pl.status_move(b, foe, attract, barboach, True)
+    same = barboach.infatuated
+    barboach.gender = None
+    pl.status_move(b, foe, attract, barboach, True)
+    genderless = barboach.infatuated
+    barboach.gender, barboach.ability = "M", "Oblivious"
+    pl.status_move(b, foe, attract, barboach, True)
+    oblivious = barboach.infatuated
+    barboach.ability = "Swift Swim"
+    pl.status_move(b, foe, attract, barboach, True)
+    took = barboach.infatuated == foe.key
+    stopped = 0
+    for i in range(400):
+        b.dice = pl.RunDice(random.Random(i), True)
+        barboach.last = None
+        before = foe.hp = foe.maxhp
+        pl.use_move(b, barboach, mv(barboach, "Water Gun"), foe, True)
+        stopped += foe.hp == before
+    fs.switch_in(b, b.b, 1)
+    ended = barboach.infatuated
+    # Cute Charm and Static on contact, Rough Skin's eighth.
+    b = battle()
+    foe, grubbin = b.b.cur(), b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    foe.gender, grubbin.gender = "F", "M"
+    counts = {}
+    for ability in ("Cute Charm", "Static"):
+        foe.ability, n = ability, 0
+        for i in range(400):
+            b.dice = pl.RunDice(random.Random(i), True)
+            grubbin.infatuated, grubbin.status, foe.hp = None, None, foe.maxhp
+            pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+            n += bool(grubbin.infatuated) if ability == "Cute Charm" else grubbin.status == "par"
+        counts[ability] = n
+    foe.ability, grubbin.hp, foe.hp = "Rough Skin", grubbin.maxhp, foe.maxhp
+    pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+    rough = grubbin.maxhp - grubbin.hp
+    return [("a trainer's Pokemon has the gender its file gives (Jupiter 1's Delcatty is female)",
+             file_gender == "F", f"Delcatty {file_gender}"),
+            ("Attract: not between equal genders, not on a genderless or Oblivious target, yes across",
+             not same and not genderless and not oblivious and took,
+             f"same {same}, genderless {genderless}, Oblivious {oblivious}, across {took}"),
+            ("love stops about half the moves, and ends when its object switches out",
+             150 <= stopped <= 250 and ended is None, f"{stopped} of 400 stopped, after the switch {ended}"),
+            ("Cute Charm and Static take about 3 contact hits in 10; Rough Skin takes an eighth",
+             all(80 <= c <= 160 for c in counts.values()) and rough == max(1, grubbin.maxhp // 8),
+             f"{counts}, Rough Skin {rough} of {grubbin.maxhp}")]
+
+
+def wish_spite_recycle_checks():
+    """Wish, Spite and Recycle (2026-10-03): Wish heals its side's Pokemon by
+    half its maximum HP at the second turn's end; Spite takes 4 PP from the
+    target's last move; Recycle brings back the item its user used up."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    foe.hp = 10
+    pl.status_move(b, foe, fs.move("Wish"), barboach, True)
+    fs.end_of_turn(b)
+    after_one = foe.hp
+    fs.end_of_turn(b)
+    after_two = foe.hp
+    barboach.last, barboach.pp["Mud Bomb"] = mv(barboach, "Mud Bomb"), 10
+    b.dice = pl.RunDice(random.Random(1), True)
+    pl.status_move(b, foe, fs.move("Spite"), barboach, True)
+    spited = barboach.pp["Mud Bomb"]
+    foe.item = "Sitrus Berry"
+    foe.hp = foe.maxhp // 2 - 1
+    fs.berry_check(foe)
+    eaten = foe.item
+    pl.status_move(b, foe, fs.move("Recycle"), barboach, True)
+    back = foe.item
+    return [("Wish heals half the maximum HP at the second turn's end",
+             after_one == 10 and after_two == min(foe.maxhp, 10 + foe.maxhp // 2),
+             f"10 then {after_one} then {after_two} of {foe.maxhp}"),
+            ("Spite takes 4 PP; Recycle brings back a used-up berry",
+             spited == 6 and eaten is None and back == "Sitrus Berry", f"PP {spited}, berry {eaten} then {back}")]
+
+
+def held_state_checks():
+    """The held items, abilities and move effects the calculator's rows
+    cannot know (2026-10-03), each as the decomp has it."""
+    out = []
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    gun = fs.move("Water Gun")
+
+    def dmg(att, dfn, mv):
+        return pl.damage_of(b, att, dfn, mv, False, True)
+
+    # A pinch ability at a third of its HP; a resist berry's halving, then gone.
+    barboach.ability = "Torrent"
+    full = dmg(barboach, foe, gun)
+    barboach.hp = barboach.maxhp // 3
+    pinch = dmg(barboach, foe, gun)
+    barboach.hp = barboach.maxhp
+    holder = next((m for m in b.b.mons if fs._row_item(b, m) == "Passho Berry"), None)
+    berry = None
+    if holder is not None:
+        fs.switch_in(b, b.b, b.b.mons.index(holder))
+        first = dmg(barboach, holder, gun)
+        fs.after_hit(b, barboach, holder, gun, first)
+        second = dmg(barboach, holder, gun)
+        berry = (holder.item, round(second / max(1, first), 2))
+    out.append(("a pinch ability's 1.5 at a third of HP; a resist berry halves one hit and is eaten",
+                1.4 <= pinch / full <= 1.6 and berry is not None and berry[0] is None and 1.8 <= berry[1] <= 2.2,
+                f"Torrent {full} then {pinch}; Passho Berry {berry}"))
+    # Status berries, Berry Juice, White Herb, a Toxic Orb, Shell Bell.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.item = "Pecha Berry"
+    b.status_src = None
+    pl.give_status(b, barboach, "psn")
+    pecha = (barboach.status, barboach.item)
+    barboach.item, barboach.hp = "Berry Juice", barboach.maxhp // 2
+    fs.berry_check(barboach)
+    juice = barboach.hp - barboach.maxhp // 2
+    barboach.item = "White Herb"
+    fs.change_stages(barboach, {"def": -1})
+    herb = (barboach.stages["def"], barboach.item)
+    barboach.item, barboach.status = "Toxic Orb", None
+    fs.end_of_turn(b)
+    orb = barboach.status
+    barboach.item, barboach.hp = "Shell Bell", barboach.maxhp // 2
+    fs.after_hit(b, barboach, foe, gun, 40)
+    bell = barboach.hp - barboach.maxhp // 2
+    out.append(("Pecha cures at once, Berry Juice heals 20, White Herb undoes a drop, Toxic Orb, Shell Bell",
+                pecha == (None, None) and juice == 20 and herb == (0, None) and orb == "tox" and bell == 5,
+                f"Pecha {pecha}, Juice +{juice}, Herb {herb}, Orb {orb}, Bell +{bell}"))
+    # Aftermath, Unburden, Truant, Natural Cure, Regenerator, Speed Boost, Poison Heal.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    grubbin = b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    foe.ability, foe.hp = "Aftermath", 1
+    b.dice = pl.RunDice(random.Random(2), True)
+    pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+    after = grubbin.maxhp - grubbin.hp if not foe.alive() else None
+    foe2 = b.b.mons[1]
+    foe2.ability, foe2.item, foe2.had_item = "Unburden", "Sitrus Berry", True
+    s1 = b.speed(foe2)
+    fs.consume(foe2)
+    s2 = b.speed(foe2)
+    grubbin.ability, grubbin.loafing = "Truant", False
+    acted = []
+    for _ in range(3):
+        before = foe2.hp = foe2.maxhp
+        pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe2, True)
+        acted.append(foe2.hp < before)
+    fs.switch_in(b, b.p, 0)
+    barboach.ability, barboach.status = "Natural Cure", "par"
+    nacli = b.p.mons[1]
+    nacli.ability, nacli.hp = "Regenerator", nacli.maxhp // 3
+    fs.switch_in(b, b.p, 1)         # Barboach leaves: Natural Cure
+    fs.switch_in(b, b.p, 0)         # Nacli leaves: Regenerator
+    cured, regen = barboach.status, nacli.hp
+    barboach.ability, barboach.turns_in, barboach.stages["spe"] = "Speed Boost", 1, 0
+    barboach.ability, barboach.status = "Poison Heal", "psn"
+    barboach.hp = barboach.maxhp // 2
+    fs.end_of_turn(b)
+    healed = barboach.hp - barboach.maxhp // 2
+    barboach.ability, barboach.status, barboach.turns_in = "Speed Boost", None, 1
+    fs.end_of_turn(b)
+    boosted = barboach.stages["spe"]
+    out.append(("Aftermath, Unburden, Truant, Natural Cure, Regenerator, Poison Heal, Speed Boost",
+                after == grubbin.maxhp // 4 and s2 == 2 * s1 and acted == [True, False, True]
+                and cured is None and regen == nacli.maxhp // 3 + nacli.maxhp // 3 and healed == barboach.maxhp // 8
+                and boosted == 1,
+                f"Aftermath {after}, speed {s1} then {s2}, Truant {acted}, cured {cured}, Regenerator {regen}, "
+                f"Poison Heal +{healed}, Speed Boost {boosted}"))
+    # Inner Focus, Synchronize, Magnet Pull, Unaware, Super Luck's stage.
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    barboach.ability = "Inner Focus"
+    b.dice = pl.RunDice(random.Random(3), True)
+    foe.moves, foe.pp = [fs.move("Fake Out")], {"Fake Out": 10}
+    pl.use_move(b, foe, foe.moves[0], barboach, True)
+    focus = barboach.flinch
+    barboach.ability, barboach.status, foe.status = "Synchronize", None, None
+    b.status_src = foe
+    pl.give_status(b, barboach, "par")
+    synced = foe.status
+    foe.ability = "Magnet Pull"
+    barboach.types = ["Steel"]
+    from . import plplan
+    trapped = not any(a[0] == "switch" for a in plplan.options(b))
+    barboach.types = ["Water", "Ground"]
+    foe.ability = "Unaware"
+    plain_hit = dmg(barboach, foe, gun)
+    barboach.stages["spa"] = 2
+    unaware_hit = dmg(barboach, foe, gun)
+    barboach.stages["spa"] = 0
+    out.append(("Inner Focus, Synchronize, Magnet Pull, Unaware",
+                not focus and synced == "par" and trapped and unaware_hit == plain_hit,
+                f"flinched {focus}, synced {synced}, trapped {trapped}, Unaware {plain_hit} then {unaware_hit}"))
+    # Flail and Water Spout by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap.
+    m = fs.Mon.__new__(fs.Mon)
+    m.hp, m.maxhp = 1, 64
+    low = fs.flail_power(m)
+    m.hp = 64
+    high = fs.flail_power(m)
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    foe.raging = True
+    fs.after_hit(b, barboach, foe, gun, 10)
+    rage = foe.stages["atk"]
+    barboach.moves = [fs.move("Last Resort"), fs.move("Water Gun")]
+    barboach.pp = {"Last Resort": 5, "Water Gun": 10}
+    early = fs.commit_move(barboach, barboach.moves[0])
+    fs.commit_move(barboach, barboach.moves[1])
+    later = fs.commit_move(barboach, barboach.moves[0])
+    b.weather = "Rain"
+    rain = all(pl.accuracy_hits(b, barboach, foe, fs.move("Hurricane")) for _ in range(20))
+    b.weather = None
+    foe.charging = fs.move("Dig")
+    reach = fs.reaches(fs.move("Earthquake"), foe) and not fs.reaches(gun, foe)
+    foe.charging = None
+    foe.item, foe.hp = "Custap Berry", foe.maxhp // 4
+    custap = fs.custap_fires(foe)
+    out.append(("Flail by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap at a quarter",
+                low == 200 and high == 20 and rage == 1 and early and not later and rain and reach and custap,
+                f"Flail {low}/{high}, Rage +{rage}, Last Resort fails {early} then {later}, rain {rain}, "
+                f"Dig {reach}, Custap {custap}"))
+    return out
+
+
+# The Kaizo study's worked examples brought these moves (2026-10-03).
+STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
+              ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
+              ("SPECIES_GRUBBIN", "Grubbin", "Relaxed", "Swarm", ["Bug Bite", "Bite", "Mud-Slap"])]
+
+
+def study_effect_checks():
+    """The effects the study's worked examples use that the simulator lacked
+    (2026-10-03), each as the decomp has it: Hex, Venoshock and Assurance
+    double by the target's state; Mortal Spin poisons and clears; Rapid Spin
+    clears and raises Speed; Corrosion poisons Poison and Steel types with a
+    move; Poison Touch poisons on contact; Thunder and kin reach a flier."""
+    out = []
+    b = battle(team=STUDY_TEAM)
+    foe, barboach = b.b.cur(), b.p.cur()
+    hex_ = mv(barboach, "Hex")
+
+    def hp_lost(status, n=40):
+        """Hex's average damage into the foe, its status as given."""
+        lost = []
+        for i in range(n):
+            b.dice = pl.RunDice(random.Random(100 + i), True)
+            foe.hp, foe.status, foe.sub = foe.maxhp, status, 0
+            pl.attack(b, barboach, hex_, foe, True)
+            lost.append(foe.maxhp - foe.hp)
+        return sum(lost) / n
+    plain, burnt = hp_lost(None), hp_lost("brn")
+    foe.status = None
+    venom = (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = "psn"
+    venom += (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = "par"
+    venom += (fs.doubled(barboach, foe, mv(barboach, "Venoshock")),)
+    foe.status = None
+    out.append(("Hex doubles on a status; Venoshock on poison only",
+                plain > 0 and 1.8 <= burnt / plain <= 2.2 and venom == (False, True, False),
+                f"Hex {plain:.1f} then {burnt:.1f} burnt; Venoshock clean/psn/par {venom}"))
+    # Assurance: HP lost while the turn runs counts; at a replacement after
+    # the turn's end it does not.
+    assurance = mv(barboach, "Assurance")
+    foe.hit_this_turn, foe.hurt_this_turn = None, False      # Hex's hits above were this turn's
+    b.mid_turn = True
+    fresh = fs.doubled(barboach, foe, assurance)
+    fs.hurt(b, foe, 1)
+    hurt = fs.doubled(barboach, foe, assurance)
+    fs.end_of_turn(b)
+    cleared = fs.doubled(barboach, foe, assurance)
+    fs.hurt(b, foe, 1)               # mid_turn is off: a replacement's hazard damage
+    replaced = fs.doubled(barboach, foe, assurance)
+    foe.hit_this_turn = ("Physical", 5)
+    struck = fs.doubled(barboach, foe, assurance)
+    foe.hit_this_turn = None
+    out.append(("Assurance doubles after HP lost this turn, not after a replacement's hazards",
+                not fresh and hurt and not cleared and not replaced and struck,
+                f"fresh {fresh}, hurt {hurt}, next turn {cleared}, replacement {replaced}, hit {struck}"))
+    # Mortal Spin: poisons, and frees its user and side; Corrosion reaches a
+    # Poison type with it and a Steel type with Toxic.
+    b = battle(team=STUDY_TEAM)
+    foe, barboach = b.b.cur(), b.p.cur()
+    spin = mv(barboach, "Mortal Spin")
+    b.p.hazards = {"rocks": 1, "spikes": 2, "tspikes": 1}
+    barboach.bound, barboach.seeded = 3, True
+    b.dice = pl.RunDice(random.Random(5), True)
+    foe.hp = foe.maxhp
+    pl.use_move(b, barboach, spin, foe, True)
+    mortal = (foe.status, dict(b.p.hazards), barboach.bound, barboach.seeded, barboach.stages["spe"])
+    corroded = []
+    for ability in (None, "Corrosion"):
+        foe.status, foe.types, barboach.ability = None, ["Poison"], ability
+        foe.hp = foe.maxhp
+        pl.use_move(b, barboach, spin, foe, True)
+        corroded.append(foe.status)
+    nacli = b.p.mons[1]
+    fs.switch_in(b, b.p, 1)
+    for ability in (None, "Corrosion"):
+        foe.status, foe.types, nacli.ability = None, ["Steel"], ability
+        pl.use_move(b, nacli, mv(nacli, "Toxic"), foe, True)
+        corroded.append(foe.status)
+    out.append(("Mortal Spin poisons and clears; Corrosion poisons Poison and Steel types",
+                mortal == ("psn", {"rocks": 0, "spikes": 0, "tspikes": 0}, 0, False, 0)
+                and corroded[0] is None and corroded[1] == "psn" and corroded[2] is None and corroded[3] == "tox",
+                f"Mortal Spin {mortal}; Corrosion {corroded}"))
+    # Rapid Spin: clears and raises Speed.
+    foe.types = ["Rock", "Ground"]
+    nacli.ability = "Sturdy"
+    b.p.hazards = {"rocks": 1, "spikes": 0, "tspikes": 2}
+    nacli.bound, nacli.seeded = 2, True
+    foe.hp = foe.maxhp
+    pl.use_move(b, nacli, mv(nacli, "Rapid Spin"), foe, True)
+    rapid = (dict(b.p.hazards), nacli.bound, nacli.seeded, nacli.stages["spe"])
+    out.append(("Rapid Spin clears its side and raises Speed a stage",
+                rapid == ({"rocks": 0, "spikes": 0, "tspikes": 0}, 0, False, 1), f"Rapid Spin {rapid}"))
+    # Gyro Ball: its power by the turn's Speeds, so a slowed user hits harder.
+    gyro = mv(nacli, "Gyro Ball")
+    nacli.stages["spe"] = 0
+    level = pl.damage_of(b, nacli, foe, gyro, False, True)
+    nacli.stages["spe"] = -2
+    slowed = pl.damage_of(b, nacli, foe, gyro, False, True)
+    want = fs.gyro_power(b.speed(foe), b.speed(nacli)) / fs.gyro_power(b.speed(foe), b.row_speed(nacli))
+    nacli.stages["spe"] = 0
+    out.append(("Gyro Ball's power follows the turn's Speeds",
+                level and slowed > level and abs(slowed / level - want) < 0.1,
+                f"Gyro Ball {level} then {slowed} slowed (power ratio {want:.2f})"))
+    # Poison Touch: on contact when the defender's ability did nothing; not
+    # through Rough Skin acting, nor on a Poison type.
+    yes = (lambda kind, p, victim: True)                                   # noqa: E731
+    first = (lambda kind, n: 0)                                            # noqa: E731
+    b = battle(team=STUDY_TEAM)
+    foe, grubbin = b.b.cur(), b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    bite = mv(grubbin, "Bite")
+    touched = []
+    for ability, types in ((None, ["Rock"]), ("Rough Skin", ["Rock"]), (None, ["Poison"])):
+        foe.status, foe.ability, foe.types = None, ability, types
+        grubbin.ability, grubbin.hp = "Poison Touch", grubbin.maxhp
+        fs.contact_ability(b, grubbin, foe, bite, 10, yes, first)
+        touched.append(foe.status)
+    out.append(("Poison Touch poisons on contact, not when Rough Skin acts or on a Poison type",
+                touched == ["psn", None, None], f"Poison Touch {touched}"))
+    # A Pokemon in the air: Gust doubles, Thunder and Sky Uppercut reach it,
+    # Earthquake and Thousand Arrows do not.
+    foe.charging = fs.move("Fly")
+    air = {n: fs.reach_mult(fs.move(n), foe) for n in ("Gust", "Thunder", "Sky Uppercut", "Earthquake",
+                                                         "Thousand Arrows")}
+    foe.charging = None
+    out.append(("Gust doubles into Fly; Thunder and Sky Uppercut reach it; Earthquake and Thousand Arrows do not",
+                air == {"Gust": 2, "Thunder": 1, "Sky Uppercut": 1, "Earthquake": 0, "Thousand Arrows": 0},
+                f"{air}"))
+    # Sleep Talk picks through the battle's dice, so a play-out's replays of
+    # a turn agree; the enumeration of a sleeping talker's turn completes.
+    from . import plplan
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    talk = fs.move("Sleep Talk")
+    own = list(foe.moves)
+    foe.moves = [talk] + own
+    foe.pp = {m.name: 10 for m in foe.moves}
+    second = [m for m in own if m.effect not in fs.SLEEP_TALK_SKIPS and m.effect not in fs.TWO_TURN][1]
+    foe.status, foe.sleep = "slp", 3
+
+    class Second:
+        def choice(self, kind, n):
+            return 1
+    b.dice = Second()
+    picked = fs.sleep_talk_pick(b, foe)
+    outcomes = plplan.turn_outcomes(b, ("move", mv(barboach, "Mud-Slap")), ("move", talk), 7)
+    total = sum(p for _c, p in outcomes)
+    out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
+                picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
+                f"picked {picked.name}, {len(outcomes)} outcomes"))
+    return out
 
 
 def fixed_damage_checks():
@@ -517,6 +1010,13 @@ def main():
     results += sleep_checks()
     results += sleep_talk_and_aqua_ring_checks()
     results += first_battle_checks()
+    results += magnet_rise_checks()
+    results += torment_and_pain_split_checks()
+    results += destiny_bond_checks()
+    results += gender_checks()
+    results += wish_spite_recycle_checks()
+    results += held_state_checks()
+    results += study_effect_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

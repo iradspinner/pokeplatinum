@@ -1,0 +1,32 @@
+{
+ "fight": "roark",
+ "fights": 12,
+ "decisions": 265,
+ "full_seconds": 1272.2,
+ "small": {
+  "budget 192 again": {
+   "budget": 192,
+   "standin": null,
+   "alike": 196,
+   "loss_added": 0.005,
+   "faints_added": 2.43,
+   "seconds": 1091.7
+  },
+  "budget 24": {
+   "budget": 24,
+   "standin": null,
+   "alike": 187,
+   "loss_added": 0.046,
+   "faints_added": 3.63,
+   "seconds": 308.3
+  },
+  "budget 24 with pi-c1": {
+   "budget": 24,
+   "standin": "pi-c1",
+   "alike": 146,
+   "loss_added": 0.008,
+   "faints_added": 23.24,
+   "seconds": 778.7
+  }
+ }
+}

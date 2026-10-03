@@ -50,7 +50,7 @@ home. Ian checks your reasoning on every line and every new planning idea
 before you build on it. Start with step 1 of its order of work.
 ```
 
-**Where it stands (2026-10-02).** The fightai audit and the known gaps are
+**Where it stands (2026-10-03).** The fightai audit and the known gaps are
 on `oxide` (6ce38e1e26). The work now follows Ian's four goals in order ("The
 order of work", below), on branch `scoring-step3-bar`: the scorer is rebuilt
 as a planner (`plplan.py`) that decides turn by turn by simulating its options
@@ -61,18 +61,38 @@ about a fortieth of the cost. **Goal 1 is passed** (Ian, 2026-10-02, "close
 enough, pass"): the average of three networks (d1b+d2+d3) reads Roark at
 97.7% clean, 100% won, 0.025 faints over 2,000 fights, against our line's
 98.5%, 100%, 0.015 ("The network planner's Roark, for Ian's check"). It also
-meets the Mars 1 bar; at Gardenia it wins more often than our line but almost
-never cleanly. Goal 2 has begun: the rival fights of Roark's split are read
-(Barry 1, ruled not to count, cannot be won with a Piplup), and the box
-through Fantina waits on Ian's choices from the mechanical roll. A network
-judges easy trainers it never saw nearly as well as play-outs, but not a
-held-out boss or Ace Trainer, so each of goal 3's roughly 110 fights needs
-labels of its own; the cheapest recipe measured costs about 1.7 core-hours a
-fight ("The cost of labelling every boss"). Next: Ian's ruling that a fight
-ranks by its win rate first and its average faints second, the clean rate
-reported but not optimised, goes into the planner's choice in place of the
-loss weight of ten. Every reading is 75 fights at real odds and 25 very
-unlucky. The perfect-line store has been stale since the simulator
+meets the Mars 1 bar, and Ian passed its Gardenia line as good enough for
+now. The planner ranks its options by Ian's order, wins first and faints
+second ("Wins first, then faints"). Goal 2 has begun: the rival fights of
+Roark's split are read (Barry 1 is ruled not to count), and goal 2's boxes
+are built from Ian's accepted choices. A network judges easy trainers it
+never saw nearly as well as play-outs, but not a held-out boss or Ace
+Trainer, so goal 3's fights each need labels of their own ("The cost of
+labelling every boss"). For bosses the scorer now chooses its own six: the
+team search, with its two fixes, found our six's equal at Roark and sixes
+better than ours at Mars 1 at 19 and Gardenia ("The team search's first
+test"), and it now ends with Ian's diagnose-and-loop. The learned stand-in
+player failed its test, and budget 64 chooses as well as 192 ("The learned
+stand-in player, and smaller budgets"). Goal 2's four fights with no
+hand-played line are read, on a simulator that now has Magnet Rise,
+Torment, Pain Split and Destiny Bond ("Moves the simulator ignored"):
+Barry 2, Jupiter 1 and Lucas and Dawn 2 are easy, and Fantina is won about
+19 times in 20 at two or three faints ("Goal 2's readings"). **Goal 2 is
+passed** (Ian, 2026-10-03, "Ian's answers (2026-10-03)"): play-out readings
+now run at budget 64 with a five-point tolerance on wins, and the loop
+stands as built. Since then genders, Attract and Cute Charm, Wish, Spite
+and Recycle, and two sweeps of battle-state items, abilities and move
+effects are in ("Moves the simulator ignored", and the second sweep under
+"The Kaizo study's worked examples"); Camouflage waits for Barry 3, in the
+tracker's Scheduled list. Goal 2's fights and the three gyms were read
+again on the fixed simulator, and only Fantina moved, harder by about 0.7
+faints a fight through Drifblim's Unburden ("Goal 2 read again"). The Kaizo
+study's five worked examples are read ("The Kaizo study's worked
+examples"), and so is the Kaizo anchor, Kaizo's six readable bosses of its
+first three splits on goal 2's boxes, which those boxes win 0 to 81 times
+in 100 but for Fantina's second team ("The Kaizo anchor"). Goal 3 is held
+until it follows the study's comb, by the tracker's Scheduled list. Every
+reading is 75 fights at real odds and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
 blind study before it, are entries in the tracker's Scheduled list. The
 Kaizo reader's `perfectline_results/kaizo.json` was never committed; rerun
@@ -444,11 +464,13 @@ used when it is strongest, mostly in sun. The Golbat and Roserade finale
 alone is unchanged (279 of 300 at full HP); Golbat now reaches it hurt more
 often.
 
-Left open, none changing a pick in a fight Oxide has now: the AI partners
+Left open, none changing a pick in the three gyms: the AI partners
 beside the player and the switch rules in double battles were not ported;
 Me First and Copycat need calculator rows of a Pokemon on itself; Judgment's
-plate, Gravity, Magnet Rise, Foresight, Embargo and genders are not
-simulated, so the routines reading them stay off; in the strict search a
+plate, Gravity, Foresight, Embargo and genders are not simulated, so the
+routines reading them stay off (Magnet Rise, Torment and Pain Split were
+simulated on 2026-10-03, when goal 2's fights met them: "Moves the
+simulator ignored", below); in the strict search a
 trainer's Quick Claw is still a luck event its AI does not foresee, and
 Sleep Talk calls the first eligible move; the damage model counts a
 two-to-five-hit move as three hits.
@@ -1362,6 +1384,687 @@ labels across ten sixes already; Mars 1 at 19 needs its own. A miss at Mars
 plans. **Building it** is the screen (the largest piece), the race with
 member ratings, and the loop; the first test runs on what is there.
 
+## The team search's first test (2026-10-02)
+
+The search is built (`plteam.py`, with its test runner `plteam_test.py`) and
+ran once on each of the hand run's boxes. At Gardenia it found a six that
+reads better than ours, and at Mars 1 one that reads about as well, but at
+Roark it chose a six that reads worse than ours, because its networks misread
+every six unlike the ones they were trained on. Two fixes follow, and Roark
+runs again.
+
+Each fight's box is the run's box at that fight, every member with its whole
+move pool by the capture rule. The screen picks each member's four moves
+against the fight, so the search's sixes and ours carry the screen's moves,
+not the hand line's. The labels were a tenth of a round at budget 64 over the
+screen's top ten sixes; the networks were trained from scratch on every
+earlier label except that fight's, plus the new ones. The play-out planner
+then read the race's winner on 25 fights.
+
+| Fight | The search's winner | Network, 75 real | Play-outs, 25 | Our six by play-outs | Minutes |
+|---|---|---|---|---|---|
+| Roark | Prinplup, Krabby, Nidorino, Onix, Charmander, Geodude | 100% won, 0.00 faints | 100% won, 0.60 faints, 40% clean | 100% won, 0.07 faints, 93% clean | 20 |
+| Mars 1 at 19 | Prinplup, Vullaby, Finneon, Nidorino, Onix, Geodude | 100% won, 0.20 faints | 96% won, 0.28 faints, 92% clean | the bar: 99.8% won, 0.42 faints | 44 |
+| Gardenia | Dubwool, Bibarel, Corvisquire, Wartortle, Tsareena, Golbat | 89% won, 2.01 faints | 100% won, 1.52 faints, 16% clean | 92% won, 2.79 faints | 18 |
+
+Our six by play-outs is the play-out planner's reading of 75 fights with the
+hand line's moves and items; at Mars 1 at 19 the bar is our line adjusted.
+The minutes are wall time on ten workers. That column is not like for like:
+the search gives every six the screen's moves and the simulator's item rule
+(a type booster, Leftovers or a Sitrus Berry while copies last), so at Roark
+our six plays with Pound, Peck, Tackle and Tackle in place of the hand line's
+Growl, Leer, Bind and Defense Curl, and without Geodude's Quick Claw. The
+fixed runner reads our six that way too.
+
+**Roark.** The networks read our six (with the screen's moves) at 52% won and
+3.5 faints, and every one of the three finalists at 100% won. The play-outs
+read the winner at 0.60 faints against our six's 0.07. The cause is the
+labels: the screen's top ten sixes all share Onix and Geodude, and eight of
+them each carry Nidorino and Charmander, so the networks learned that core's
+fights well and had few labels from sixes without it. Our six (Prinplup, Barboach, Nidorino,
+Onix, Steenee, Geodude) ranked 162nd of 8,008 in the screen.
+
+**Mars 1 at 19.** The screen ranked our six 1,831st of 38,760, which confirms
+that it undervalues the PP stall our line wins by: it counts hits, and a stall
+wins on turns. The race recovered: Vullaby, the stall's centre, ended with the
+highest member weight, and the winner keeps Vullaby, Nidorino, Onix and
+Geodude from our six. Its faints fell mostly to Purugly (10 of 25 fights).
+
+**Gardenia.** The network read the winner at 89% won, the play-outs at 100%,
+so here it was too harsh. The winner beats our six by play-outs on both
+numbers (100% won against 92%, 1.52 faints against 2.79); its faints fell to
+Roserade and Cherrim. Our six ranked 1,644th of 100,947 in the screen.
+
+**The fixes.** The network erred both ways, too kind at Roark and too harsh at
+Gardenia, so its race is a shortlist and not a verdict.
+
+1. The labels now come from the screen's top five sixes and five sixes drawn
+   at random from the box, so the networks have seen fights unlike the
+   screen's favourite core.
+2. The play-out planner reads every finalist and our six on 25 fights as a
+   standard step, not only when the recipe fails, and the winner is the
+   finalist it ranks best by wins and then faints.
+
+The second adds about three finalist readings of 25 fights each, some 4
+core-hours per boss and box, which goal 3's totals must carry. The rerun at
+Roark tests both.
+
+**The rerun at Roark, with both fixes.** The search found a six that reads as
+well as ours. The play-out planner on 25 fights each:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude (the winner) | 100% | 0.12 | 88% | 100%, 0.17 |
+| Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude | 100% | 0.48 | 52% | 100%, 0.39 |
+| Corvisquire, Dottler, Nidorino, Onix, Charmander, Geodude | 100% | 0.32 | 68% | 100%, 0.45 |
+| our six, with the screen's moves | 100% | 0.12 | 88% | 83%, 1.76 |
+
+The winner's three faints in 25 fights all fell to Roark's Geodude. The
+networks now read the finalists close to the play-outs, but they still read
+our six far too harshly (83% won against 100%). Our six was not among the ten
+labelled sixes, so a race on the network can still pass over a good six it
+has no labels for; the play-out check corrects the finalists, not the race.
+Here the race found an equal six anyway. The run took 33 minutes on ten
+workers, 17 of them in the play-out check (100 fights, about 100 core
+seconds each).
+
+**The rerun at Mars 1 at 19.** The search found sixes better than ours. All
+three finalists keep Vullaby, the stall's centre, with Onix and Geodude, and
+the play-out planner won every one of their 25 fights each with nothing
+fainting:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude (the winner) | 100% | 0.00 | 100% | 100%, 0.23 |
+| Wooloo, Vullaby, Barboach, Krabby, Onix, Geodude | 100% | 0.00 | 100% | 97%, 0.40 |
+| Prinplup, Vullaby, Wartortle, Krabby, Onix, Geodude | 100% | 0.00 | 100% | 96%, 0.48 |
+| our six, with the screen's moves | 100% | 0.32 | 80% | 99%, 0.23 |
+
+Here the network was too harsh on the finalists rather than too kind, and it
+placed our six level with the best of them; only the play-outs separated
+them. The play-out check took 74 minutes on ten workers, about 440 core
+seconds a fight, twice the earlier measure (the stall makes long fights, and
+the machine was near full load beside the stand-in's recording).
+
+**The rerun at Gardenia.** The search found a six a little better than ours,
+keeping Vullaby, Charmeleon, Tsareena and Golbat from our six:
+
+| Six | Won | Faints | Clean | The network, 75 real |
+|---|---|---|---|---|
+| Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat (the winner) | 96% | 1.52 | 16% | 89%, 2.15 |
+| Prinplup, Dubwool, Bibarel, Vullaby, Tsareena, Golbat | 96% | 2.28 | 0% | 92%, 1.72 |
+| Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat | 96% | 1.84 | 0% | 88%, 2.24 |
+| our six, with the screen's moves | 96% | 1.88 | 12% | 87%, 2.40 |
+
+The winner's faints fell mostly to Roserade (27 of 38). On 25 fights the gap
+to our six is within noise; both are well above our hand line's bar (59.9%
+won, 3.21 faints), which is the bar of a person playing, not of the planner.
+
+**The answer to the first test.** With both fixes, the search found our six's
+equal at Roark and sixes better than ours at Mars 1 at 19 and at Gardenia,
+each judged by the play-out planner with every six on the same moves and
+items. Two cautions stand: the network still misreads sixes far from the
+labelled ones (our six at Roark), so the race can pass over a good six; and
+items are not searched.
+
+**What a boss costs now.** Measured on the reruns, per boss and box, on ten
+workers beside the recording:
+
+| Stage | Roark | Mars 1 at 19 | Gardenia |
+|---|---|---|---|
+| labels, ten sixes (core-hours) | 1.2 | 1.6 | 0.9 |
+| two networks (GPU minutes) | 5 | 5 | 5 |
+| race and finalists on the network (core-hours, about) | 0.8 | 0.8 | 0.8 |
+| play-out check of three finalists (core-hours) | 2.2 | 9.2 | 2.1 |
+| wall time of the whole run (minutes) | 33 | 94 | 30 |
+
+That is about 6.5 core-hours per boss and box, against the plan's 2.5, most
+of it the play-out check. For goal 3's 38 bosses on five boxes each it comes
+to about 1,230 core-hours, some 42 hours on 29 workers, plus about 17 hours
+of GPU for 190 pairs of networks (which can run beside the CPU work), and
+about 70 core-hours for the Ace Trainers. The levers, none yet measured:
+
+1. One label set and one pair of networks per boss, its ten sixes spread over
+   the five boxes, in place of ten sixes per box: about 1,050 core-hours, and
+   3 GPU hours.
+2. The play-out check on the top two finalists, not three: about 770.
+3. A smaller play-out budget. The learned stand-in player failed its test,
+   and budget 24 with the plain policy holds only in easy fights, but
+   budget 64 chose about as well as 192 at all three gyms ("The learned
+   stand-in player, and smaller budgets", below). The check at 64 brings the
+   total to about 630 core-hours (before the Ace Trainers); this one waits
+   on Ian.
+
+**Held items are not searched.** The simulator's item rule knows only type
+boosters, Leftovers and Sitrus Berries, so a six never holds the run's
+Quick Claw, and goal 3's bosses will come after element 7's held items
+(Eviolite, Assault Vest and the rest) are placed behind optional fights. A
+proposed later step: the finalists try the box's held items, each read
+by the network, before the play-out check.
+
+## The learned stand-in player, and smaller budgets (2026-10-03)
+
+The stand-in failed its test, and the plain policy at a smaller budget
+nearly passed it. The stand-in was meant to make the play-out planner
+cheaper: play-outs played more like the planner would value positions more
+truly, so a budget of 24 might choose as well as 192. A small budget with
+the plain policy is the obvious thing to compare it with, and that
+comparison decided it.
+
+**The stand-in.** Its data is the play-out planner's own decisions at the
+three gyms (`pldata --choices`). The recording was slower than estimated
+beside the team search, and stopped after 27 of its 90 jobs, about 16,500
+decisions; the early networks were trained on those. Their agreement with
+the planner's choices on held-out decisions, where a random legal pick
+agrees 17% of the time and two full-budget planners about 74 to 86%:
+
+| Stand-in | Agreement | Its pick, per turn |
+|---|---|---|
+| compact (the field, the two active Pokemon, the matchup grid) | 50% | about 230 microseconds |
+| full (the value network's body, started from d1b) | 64% | about 11,000 microseconds |
+
+A whole simulated turn with the plain policy costs about 150 to 225
+microseconds, so the full stand-in cannot play play-outs at any useful
+speed, and the compact one makes a turn two to three times dearer.
+
+**The budget check** (`plplan --budget-check`): fights played by the full
+planner (budget 192); at each decision, a second full-budget planner on dice
+of its own, budget 24 with the plain policy, and budget 24 with the compact
+stand-in choose too, and their choices are scored by the full planner's own
+estimates. At Roark, 12 fights, 265 decisions:
+
+| Planner | Same choice | Chance of losing added | Faints added | Seconds a decision |
+|---|---|---|---|---|
+| budget 192 again (the ceiling) | 74.0% | +0.005 | +2.4 | 4.1 |
+| budget 24, plain | 70.6% | +0.046 | +3.6 | 1.2 |
+| budget 24, the compact stand-in | 55.1% | +0.008 | +23.2 | 2.9 |
+
+The added chances and faints are totals over all 265 decisions. Two full
+planners disagree on a quarter of decisions at almost no cost, since many
+options are near equal. Budget 24 with the plain policy chooses almost as
+well, at a quarter of the cost. The stand-in's play-outs judge positions
+worse than the plain policy's, adding 23 faints, and cost two and a half
+times as much as the plain ones at the same budget, so even a perfect
+stand-in at 24 would cost about what the plain policy does at 60. More of
+its data might lift its agreement a few points, but not across a gap this
+size, so the recording is stopped (its shards are kept in `data-choices`).
+
+**Budgets 24 and 64 at Mars 1 and Gardenia,** with the plain policy, 12
+fights each, the same check:
+
+| Fight | Planner | Same choice | Chance of losing added | Faints added | Seconds a decision |
+|---|---|---|---|---|---|
+| Mars 1 (341 decisions) | budget 192 again | 59.5% | +0.009 | +9.4 | 3.4 |
+| | budget 64 | 56.6% | +0.017 | +8.5 | 1.0 |
+| | budget 24 | 48.4% | +0.023 | +11.7 | 0.6 |
+| Gardenia (280 decisions) | budget 192 again | 71.4% | +4.5 | +9.8 | 3.0 |
+| | budget 64 | 64.6% | +4.8 | +14.2 | 0.9 |
+| | budget 24 | 58.9% | +9.4 | +27.6 | 0.5 |
+
+At Mars 1 the PP stall leaves many options near equal, so even two full
+planners agree on only 60% of decisions; budget 64 matches the second full
+planner and 24 is a little worse. At Gardenia the full planner's own
+estimates of losing are noisy (the plain policy loses her often from many
+positions), so a second full planner "adds" 4.5 in all; budget 64 sits at
+that ceiling for losing and a little above it for faints, and budget 24
+doubles both. So budget 24 is good enough only where the fight is easy,
+and budget 64 chooses about as well as 192 at all three gyms, at a quarter
+to a third of the cost.
+
+**The check itself at budget 64.** The three gyms' finalists and our six,
+read again at budget 64 on the same 25 seeds as the reruns' budget-192
+check:
+
+| Fight | Six | Budget 64 | Budget 192 |
+|---|---|---|---|
+| Roark | Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude | 100% won, 0.20 faints | 100%, 0.12 |
+| | Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude | 100%, 0.48 | 100%, 0.48 |
+| | Corvisquire, Dottler, Nidorino, Onix, Charmander, Geodude | 100%, 0.44 | 100%, 0.32 |
+| | our six | 100%, 0.28 | 100%, 0.12 |
+| Mars 1 at 19 | Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude | 100%, 0.00 | 100%, 0.00 |
+| | Wooloo, Vullaby, Barboach, Krabby, Onix, Geodude | 100%, 0.08 | 100%, 0.00 |
+| | Prinplup, Vullaby, Wartortle, Krabby, Onix, Geodude | 100%, 0.08 | 100%, 0.00 |
+| | our six | 100%, 0.24 | 100%, 0.32 |
+| Gardenia | Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat | 96%, 1.80 | 96%, 1.52 |
+| | Prinplup, Dubwool, Bibarel, Vullaby, Tsareena, Golbat | 84%, 2.20 | 96%, 2.28 |
+| | Dubwool, Bibarel, Barboach, Wartortle, Tsareena, Golbat | 100%, 1.96 | 96%, 1.84 |
+| | our six | 92%, 1.84 | 96%, 1.88 |
+
+The two budgets pick the same winner at Roark and Mars 1. At Gardenia they
+do not, but the cause is the reading's size, not the budget: on 25 fights
+one loss moves the win rate four points, and the same six reads 84% at one
+budget and 96% at the other. The check ranks wins first with no tolerance,
+so one fight's luck (100% against 96%) chose the winner at 64. The planner's
+own choice among options already treats chances of losing within 0.05 as
+equal before it compares faints (`plplan.LOSS_TOL`); with the same
+tolerance for the finalists, both budgets pick the same winner at all three
+gyms (at 64, the Barboach six's 100% and the Vullaby six's 96% count as
+equal, and the Vullaby six wins on 1.80 faints against 1.96).
+
+**For Ian: budget 64 for the play-out check, and a tolerance on wins.** The
+team search's play-out check, and any play-out reading, would run at budget
+64 in place of 192 (the labels are already at 64), and its finalists would
+be ranked as the planner ranks options: win rates within 0.05 count as
+equal, then the fewest faints. That brings the check from about 4.5
+core-hours per boss and box to about 1.3, and goal 3 from about 1,230
+core-hours to about 630 before the Ace Trainers, some 22 hours on 29
+workers, or about 450 with one label set per boss (lever 1). It changes how
+the scorer reads a fight, so it waits on Ian's word; goal 2's readings ran
+at 192. The loop added later (below) adds up to six 25-fight readings
+where the winner loses Pokemon, about 6 core-hours at Fantina.
+
+## Moves the simulator ignored (2026-10-03)
+
+Lucas and Dawn 2's first winning line showed Whiscash's Magnitude knocking
+out a Jolteon that had used Magnet Rise four turns running: the simulator
+had no Magnet Rise, so the move did nothing and the AI, seeing no rise,
+chose it again. A sweep of every trainer move in the 33 story fights for
+effects the simulator never names found the rest. These are now simulated
+as the engine has them, each with a check in `test_plfixes` (52 of 52
+pass):
+
+- Magnet Rise (Lucas and Dawn 2's Jolteon): five turn ends in which Ground
+  moves fail on the user, cleared by a switch, failing while active, on a
+  Levitate user or under Ingrain (effect script 252, and the type check's
+  `MOVE_STATUS_MAGNET_RISE`).
+- Torment (Lucas and Dawn 2's Monferno): the target cannot pick the move it
+  used last until it switches, in the player's options, the play-out
+  policy and the trainer's AI alike (`CHECK_INVALID_TORMENTED`).
+- Pain Split (Fantina's Rotom): both Pokemon's HP become half their sum,
+  failing on a Substitute (`subscript_pain_split`).
+
+- Destiny Bond (2 fights not yet read; one of the forced trades Ian's
+  design rules allow a boss): a foe whose move faints the bonded Pokemon
+  faints too, unless the move's recoil already felled it; the bond ends
+  when its user next tries to act or switches out (`subscript_destiny_bond`,
+  `subscript_faint_check_destiny_bond`).
+
+These make the trainers stronger, so Lucas and Dawn 2 and Fantina are read
+again on the fixed simulator; the earlier Lucas and Dawn 2 reading is kept
+as `team/lucas_dawn_2-oldsim`. (Destiny Bond went in after the reruns
+started; neither fight has it.)
+
+**Genders, Attract and the contact abilities (2026-10-03, on Ian's yes).**
+Every Pokemon now has a gender. A trainer's is the game's: the gender its
+trainer file names, or else the personality's low byte the engine builds
+(120 for a female trainer class, 136 for a male one, the lowest bit set by
+an ability-slot request) against the species' ratio
+(`fightsim.trainer_gender`, read from `res/trainers/data` by
+`plscore.with_genders`, since the balance track's trainer data does not
+carry it). A box member's is rolled once from a fixed seed by its catch and
+kept in goal 2's records, the species at the fight deciding it as the game
+does; a record without one is rolled from itself the same way. Attract
+infatuates only across genders, not on Oblivious (unless Mold Breaker) or a
+genderless Pokemon; love stops half the moves its holder tries and ends
+when its object leaves. Building Cute Charm showed that no ability striking
+back at a contact move was simulated at all, so Static, Poison Point, Flame
+Body, Effect Spore (not on Grass types, Overcoat or Safety Goggles) and Cute
+Charm now take 3 contact hits in 10, and Rough Skin and Oxide's Iron Barbs
+an eighth of the attacker's HP, each only when the move did damage, as the
+decomp's on-hit switch has them. The stress test rolls the love check twice
+against the player, as it does full paralysis. Four checks in `test_plfixes`
+(56 of 56 pass); the AI's own Attract and Captivate checks, which read
+genders, are now live.
+
+**Wish, Spite and Recycle (2026-10-03).** Wish (Lucas and Dawn 3's
+Umbreon) heals whoever stands in its side's slot by half that Pokemon's
+maximum HP at the second turn's end, and fails while one is pending
+(FIELD_COND_CHECK_STATE_WISH). Spite (Spiritomb at Spear Pillar) takes 4 PP
+from the target's last move, or what it has left (BtlCmd_TrySpite).
+Recycle (Bronzong at Spear Pillar) brings back the item its user last used
+up, if it holds nothing (BtlCmd_TryRecycle); every place the simulator
+uses up an item (berries, Focus Sash, Power Herb, Natural Gift and Fling)
+now keeps it for Recycle, while Knock Off and Thief take it for good. The
+engine keeps the recyclable item per battle position, so a Pokemon could
+recycle what the one before it used; here each Pokemon keeps its own. Two
+checks in `test_plfixes` (58 of 58 pass).
+
+**Held items, abilities and move effects (2026-10-03, on Ian's word via
+the Overseer).** A sweep of every item, ability and move effect the
+trainers use in the 33 story fights and in Kaizo's bosses of its first
+three splits found those the simulator never applied. The ones acting
+only through damage (type boosters, Expert Belt, Muscle Band, Choice
+items, Technician, Thick Fat, Solid Rock and the like) are in the
+calculator's rows already; the ones that change a fight as it runs are now
+simulated as the decomp has them, in both simulators:
+
+- the calculator's rows are made once per fight at full HP with each
+  Pokemon's starting item, so `fightsim.state_mult` now adds what they
+  cannot know: Torrent, Blaze, Overgrow and Swarm at a third of HP or less;
+  a resist berry used up after the hit it halves (17 berries; the row's
+  halving is undone once it is gone); Flail and Reversal by the HP bar's
+  pixels; Water Spout by HP; Earthquake and Magnitude into Dig, Surf and
+  Whirlpool into Dive, at double damage;
+- berries: the status-curing ones (Pecha, Cheri, Chesto, Rawst, Aspear, and
+  Lum) cure at once, Rest included; Berry Juice heals 20; Custap puts its
+  holder first at a quarter of its HP (half with Gluttony); Gluttony eats a
+  pinch berry at half;
+- items: White Herb undoes lowered stages once; Wide Lens 1.1 accuracy;
+  Toxic and Flame Orb at the turn's end; Shell Bell an eighth of the damage
+  dealt;
+- abilities: Aftermath (a contact KO costs the attacker a quarter, unless
+  Damp); Unburden (Speed doubled once its item is gone, if it came in
+  holding one); Truant; Natural Cure and Oxide's Regenerator on the way
+  out; Speed Boost; Poison Heal; Heatproof's halved burn; Inner Focus;
+  Synchronize (Oxide passes bad poison on as bad poison); Magnet Pull,
+  Shadow Tag and Arena Trap in the player's options (the trainer's AI had
+  them); Unaware; Super Luck's crit stage;
+- moves: Rage; Last Resort; Hurricane as Thunder in rain and sun (Oxide),
+  with its confusion.
+
+Five grouped checks in `test_plfixes` (63 of 63 pass). Multi-hit moves
+still count as three hits, Secret Power's secondary effect needs the
+terrain as Camouflage does, and Baton Pass still passes nothing.
+
+Still not simulated: **Camouflage** (Barry 3's Staryu, the only user). It
+changes its user's types to the battle's terrain type, and the simulator's
+damage comes from calculator rows made once per fight with each Pokemon's
+own types, so it needs rows for the changed type (as Magnitude has rows per
+power) and the terrain of Barry 3's map. It matters first at Barry 3, in
+goal 3. The damage model
+still counts a two-to-five-hit move as three hits, and Baton Pass passes
+nothing.
+
+**For Ian: the player's genders.** Attract and Cute Charm work only between
+Pokemon of opposite genders. A trainer's Pokemon have fixed genders in the
+game: each member's personality, which carries its gender, is built from
+its IV scale, level and species, the trainer's ID and class, and its
+ability field, and Oxide's trainer files may name a gender outright
+(`TrainerMon_Personality` in `src/trainer_data.c`), so those can be
+computed. The box's
+genders are not in goal 2's records. The proposal: roll each box member's
+gender once from a fixed seed by its species' ratio, as the box's natures
+were rolled, and keep it in the box's records. Jupiter 1 is read again once
+that is settled.
+
+## Ian's answers (2026-10-03, relayed by the Overseer)
+
+1. Budget 64 for the play-out planner, in the check and every play-out
+   reading from now on, with finalists whose win rates lie within five
+   points counted as equal before faints decide (`plplan.BUDGET`,
+   `plteam.WIN_TOL`).
+2. Goal 2's four lines are good enough, and goal 2 is passed. Jupiter 1 is
+   read again once Attract works.
+3. Genders: each box member's rolled once from a fixed seed by its species'
+   ratio and kept in the box's records, the trainers' computed from their
+   personality, then Attract and Cute Charm; Wish, Spite, Recycle and
+   Camouflage go in too.
+4. The loop is approved as built: the rebuilt sixes go straight to the
+   play-out check.
+5. The boss-wide network is parked as a note in the tracker's Backlog.
+6. Goal 3 waits until the Overseer has settled with Ian how it runs beside
+   the Kaizo study, whose worked examples will want the scorer's readings.
+   For that study, `docs/oxide/how-a-fight-is-read.md` describes a reading
+   in plain words.
+
+## Goal 2's readings (2026-10-03, for Ian to read)
+
+The team search has read goal 2's four fights that have no hand-played
+line, on goal 2's boxes (`plgoal2.py`): every member at the fight's cap
+with its whole move pool from its catch, the trainer's team a Piplup player
+meets, and the boosters reachable by then. Each fight passes when Ian has
+read its line and accepts it. Barry 2 and Lucas and Dawn 2 are won cleanly
+every time, Jupiter 1 nearly so, and Fantina is by far the hardest fight
+read yet: won about 19 times in 20, losing two or three Pokemon a fight.
+
+Ian's standard reading of each winner, by the play-out planner (75 fights
+at real odds, 25 very unlucky):
+
+| Fight | Cap | The winner | Real odds | Very unlucky | Search, minutes |
+|---|---|---|---|---|---|
+| Barry 2 | 11 | Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby | 100% won, 0.00 faints, 100% clean | 100%, 0.00, 100% | 12 |
+| Jupiter 1 | 27 | Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover | 100%, 0.07, 93% | 100%, 0.32, 72% | 59 |
+| Lucas and Dawn 2 | 30 | Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena | 100%, 0.00, 100% | 100%, 0.00, 100% | 21 |
+| Fantina | 33 | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 94.7%, 2.21, 12% | 88%, 3.32, 4% | 57, then the loop |
+
+**Barry 2** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-barry_2-line.txt)):
+Vulpix leads and Embers Starly and then Turtwig through its Withdraw, four
+turns, nothing hurt. At the cap of 11 the fight is a formality for any of
+the three finalists, as it was at 16.
+
+**Jupiter 1** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-jupiter_1-line.txt)):
+Graveler takes Delcatty's Fake Out and chips it; Onix, put to sleep by
+Sing as it switches in, gives way to Dubwool, whose Double Kick finishes
+Delcatty; the sleeping Onix comes back in to take Sableye's Fake Out, and
+again later to take Skuntank's Screech; Graveler's Rock Blast wears
+Sableye down through its Shadow Sneaks;
+Tsareena's Trop Kick and Stomp take Skuntank, with switches to Onix and
+Graveler to spread its Night Slashes; Snover's Icy Wind ends Tangela. No
+rule names any of this: switching a sleeping Pokemon in to absorb hits, and
+spreading damage by switching, arose from the search. The network read
+this six at 93% won and 0.69 faints, the play-outs at 100% and 0.07; it was
+third of three on the network and first on the check. **Caveat:**
+Delcatty's Attract and Cute Charm do nothing in the simulator (genders,
+above), and its Attract came three times in this line, so the reading is
+kinder than the fight. It is read again once the genders are settled.
+
+**Lucas and Dawn 2** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-lucas_dawn_2-line.txt)),
+read on the fixed simulator: Dubwool Growls Lopunny and wears it down;
+Whiscash takes over, sets Amnesia against Jynx and sleeps through Lovely
+Kiss; its Magnitude takes Monferno; against Jolteon, Magnet Rise now makes
+Magnitude fail, and Whiscash finishes it with Water Pulse. The first reading,
+on the simulator without Magnet Rise and Torment, also won every fight
+cleanly.
+
+**Fantina** ([line](../../tools/oxide/balance/perfectline_results/step3/goal2-fantina-line.txt)),
+on the simulator with Pain Split: the hardest fight read yet. The search's
+own winner (Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos) won
+24 of 25 check fights but lost 4.2 Pokemon a fight. Its race had run on a
+network that read the finalists at 24 to 43% won against the play-outs' 80
+to 96%, and had settled on a core with Prinplup and Kingler, whose screen
+margins against Mismagius, Rotom and Sableye, the enemies that caused the
+faints, were among the box's worst. Two sixes built by hand from those
+margins won every fight with 2.8 faints, so the search now has a loop
+(below) that does this itself. On Fantina it read four sixes:
+
+| Six | Won | Faints | Clean |
+|---|---|---|---|
+| the search's winner: Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos | 96% | 4.20 | 0% |
+| round 1, the six answering the faint-causers best: Tsareena, Graveler, Ampharos, Vikavolt, Rotom, Rampardos | 100% | 2.80 | 0% |
+| round 1, the winner with Prinplup and Kingler swapped for Graveler and Vikavolt | 100% | 2.40 | 4% |
+| round 2: Tsareena, Ampharos, Golbat, Vikavolt, Rotom, Rampardos | 96% | 2.40 | 0% |
+
+The loop's winner, Vulpix, Tsareena, Graveler, Ampharos, Vikavolt,
+Rampardos, is the table's above. Its faints fall to Mismagius (76 of 166 in
+the 75 real fights), Rotom (46), Sableye (27) and Drifblim (17). In the line
+Vulpix burns Duskull and Flamethrowers it to its last HP; Ampharos
+paralyses Drifblim and Discharges through its Calm Minds; against
+Mismagius the planner paralyses it, then switches through Graveler,
+Ampharos, Vikavolt and Rampardos to spread its Shadow Balls until
+Rampardos's Assurance takes it in one hit; Rampardos and Tsareena wear
+Sableye down through its Recovers; Tsareena's Trop Kick ends Rotom. That
+seed is a lucky one (nothing faints); 2.2 faints is the average. Fantina
+at 33 is a fight goal 2's box wins almost always but rarely without
+losses, harder than Gardenia; whether that is the difficulty Ian wants for
+his third gym is his call and the trainer pass's.
+
+**The loop.** `plteam.improve` is Ian's diagnose-and-loop, with one
+departure for his check: the enemies the best six's faints fell to,
+weighted by count, pick the members that answer them by the screen's
+margins, and two sixes built from those (the six answering them best, and
+the best six with its two weakest answerers swapped for the two strongest
+it lacks) go straight to the play-out check, rather than raising the race's
+member weights and racing again on a network that misreads hard fights.
+The best by Ian's order is kept, up to three rounds, stopping when nothing
+beats it. It costs nothing where the winner loses no Pokemon, and at most
+six more 25-fight readings where it does; at Fantina it read three more
+sixes, about 6 core-hours. It ran here on the finished search; from now on
+`plteam.search` runs it after the check.
+
+## The Kaizo study's worked examples (2026-10-03, for the study)
+
+The Kaizo study rebuilt five of Oxide's trainers at 6/10 of Kaizo and asked
+for a reading of each (`~/oxide-trials/kaizo-teams/out/examples.md`).
+`plstudy.py` reads the files where they lie, without copying them into
+`res/`, and writes each reading to `~/oxide-trials/scorer-stage2/study/`.
+Numbers are won / faints / clean, over 75 fights at real odds and 25 very
+unlucky:
+
+| Example | Real odds | Very unlucky | The study expected |
+|---|---|---|---|
+| Taylor, blind at 19 | 97 / 0.48 / 80 | 96 / 0.56 / 80 | 100 / 0.05 / 95 |
+| Taylor, the box without its level-6 Starly | 100 / 0.13 / 91 | 92 / 0.72 / 72 | |
+| Catherine, blind at 33 | 95 / 0.89 / 63 | 88 / 1.68 / 36 | 100 / 0.15 / 85 |
+| Catherine, without the Starly | 99 / 0.55 / 67 | 92 / 1.52 / 52 | |
+| the Eterna 1F grunt alone, blind at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.03 / 97 |
+| Eterna 1F and 2F, four grunts as one section | 100 / 0.01 / 99 | 100 / 0.08 / 92 | 80 clean or better |
+| Gardenia, team search at 26 | 100 / 0.05 / 95 | 100 / 0.08 / 92 | 99 to 100 / 0.6 / 45 |
+| Maylene, team search at 38, on a stand-in box | 99 / 2.75 / 0 | 96 / 3.32 / 0 | 98 to 99 / 1.0 / 30 |
+
+A blind reading draws its own six at random from the whole box for each of
+its 100 fights, as a player meeting the trainer with no plan might bring any
+six they own. That is harsher than a settled six, and a box with fodder in
+it shows it. The hand run's box at 19 (Taylor's) and goal 2's Fantina box at
+33 (Catherine's) both keep a level-6 Starly, which three of Taylor's draws in
+eight carried and one of Catherine's in five, so each is read again without
+it. Taylor then sits in the study's band, her faints falling to Tangela.
+Catherine still reads harder than expected, her faints falling to Haunter
+(23 of 41), Drifblim and Litwick. The very unlucky column is 25 fights, each
+with its own six, so it moves several points from one draw to the next.
+
+The section carries one random six through all four grunts, with its HP,
+status, PP and items as each fight left them, and stops at a loss; a run is
+clean only when nothing faints in any of the four. The grunt and the section
+use goal 2's Jupiter 1 box at 27. Gardenia's search, on the hand run's
+Gardenia box at 26, chose Dubwool, Vullaby, Krabby, Charmeleon, Tsareena and
+Breloom, which lost a Pokemon in 4 fights of 75.
+
+Maylene's box is a stand-in: goal 2's Fantina box raised to 38, with the
+level evolutions that brings (Empoleon, Staraptor, Blastoise, Charizard,
+Primarina, Talonflame, Glimmora, Skuntank) and no moves beyond those its
+pools reach by 38. No run has reached Maylene, so it says what Fantina's box
+would face there, not what a player would bring. Its six, Staraptor,
+Tsareena, Graveler, Primarina, Rotom and Talonflame, loses its Pokemon to
+Medicham (92 of 206 faints), Hitmonchan (43), Lucario (28) and Toxicroak
+(23). In the search's matchup table, Pure Power Medicham and Iron Fist
+Hitmonchan with an Expert Belt each take 89 to 118 percent of the HP of every
+member of that six but Rotom in one hit; Medicham outspeeds four of the six,
+and its Coba Berry halves the Flying members' hits. The Twins are a double
+and are not read.
+
+The trainer file's ability field is read as the build reads it: 0 gives the
+first slot (the class's default personality byte is even), 1 and 2 the
+slots, and 3 the hidden one. Taylor's first member names no item, and the
+trainer packer keeps a party's items only when its first member names one,
+so the built game would drop Tangela's Sitrus Berry; the reading gives
+Cherubi "ITEM_NONE" so that the berry stays, as the study means it, and
+records the note.
+
+**A second effect sweep.** The examples brought moves and abilities the
+simulator did not apply, and a stricter pass over the 33 story fights and
+Kaizo's six, by effect alone (the first sweep had passed over any move whose
+name the source mentioned), found Gyro Ball in Mars 2, Mars and Jupiter, and
+Saturn 2. Each is now as the decomp has it, with a check in `test_plfixes`
+(70 of 70 pass). Hex and Infernal Parade double on a target with a status,
+and Venoshock and Barb Barrage on a poisoned one, in the hit and not in the
+trainer AI's figure, which scores them through Expert_Hex. Assurance doubles
+on a target that lost HP earlier in the turn, but not for hazards on a
+knockout's replacement, which the game counts after the turn's flags clear.
+Mortal Spin poisons its target, and Rapid Spin raises its user's Speed
+(Oxide); both free the user from binding and Leech Seed and clear its
+side's hazards. Corrosion poisons Poison and Steel types with its holder's
+moves, never through an ability, a hazard or an Orb. Poison Touch poisons 3
+times in 10 on a contact hit, when the defender's own on-hit ability did
+nothing. Gust and Twister reach a Pokemon in the air at double damage, and
+Thunder, Sky Uppercut, Hurricane and Smack Down at their power (Smack
+Down's grounding is not simulated). Gyro Ball's power follows the turn's
+Speeds, as the trainer's AI already reckoned it. Catherine (Hex), the
+section (Assurance) and Maylene (Mortal Spin, Venoshock, Corrosion, Poison
+Touch) were read again on the fixed simulator; their first readings stay
+beside them as `-oldsim`. Maylene's first, with a weaker six, was 91 / 3.03
+/ 7, very unlucky 84 / 3.92 / 0.
+
+## Goal 2 read again on the fixed simulator (2026-10-03)
+
+The simulator changed under goal 2's readings: genders, Attract and Cute
+Charm, the contact abilities, Wish, Spite and Recycle, the battle-state
+sweep, and the study's second sweep all went in on 2026-10-03. Each of goal
+2's four fights, and the three gyms of the team search's first test, was
+searched and read again: budget 64, the five-point tolerance, the loop, and
+Ian's standard reading of the winner. Jupiter 1's re-read and Fantina's
+search ran before the second sweep, which reaches them only through the
+box's Rapid Spin and Assurance; the rest ran after it. Numbers are won /
+faints / clean.
+
+| Fight | Before: six | Real | Very unlucky | After: six | Real | Very unlucky |
+|---|---|---|---|---|---|---|
+| Barry 2 | Piplup, Vulpix, Rookidee, Dottler, Starly, Krabby | 100 / 0.00 / 100 | 100 / 0.00 / 100 | Wooloo, Vulpix, Rookidee, Dottler, Starly, Krabby | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| Jupiter 1 | Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover | 100 / 0.07 / 93 | 100 / 0.32 / 72 | Dubwool, Onix, Graveler, Breloom, Vikavolt, Rotom | 100 / 0.19 / 91 | 100 / 0.20 / 88 |
+| Lucas and Dawn 2 | Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena | 100 / 0.00 / 100 | 100 / 0.00 / 100 | Prinplup, Vulpix, Whiscash, Wartortle, Onix, Tsareena | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| Fantina | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 95 / 2.21 / 12 | 88 / 3.32 / 4 | Charmeleon, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 91 / 3.04 / 1 | 76 / 3.92 / 0 |
+| Fantina, the same six as before | | | | Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos | 92 / 2.89 / 4 | 92 / 3.00 / 8 |
+| Roark, at 16 | Wooloo, Barboach, Nidorino, Onix, Charmander, Geodude | 100 / 0.12 / 88 (25 play-outs) | | Barboach, Nidorino, Onix, Charmander, Steenee, Geodude | 100 / 0.05 / 95 | 100 / 0.16 / 84 |
+| Mars 1, at 19 | Prinplup, Bibarel, Vullaby, Onix, Charmander, Geodude | 100 / 0.00 / 100 (25 play-outs) | | Prinplup, Bibarel, Nidorino, Onix, Charmander, Geodude | 100 / 0.16 / 87 | 96 / 0.56 / 76 |
+| Gardenia, at 26 | Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat | 96 / 1.52 / 16 (25 play-outs) | | Dubwool, Bibarel, Nidorino, Onix, Tsareena, Golbat | 97 / 1.07 / 44 | 88 / 2.00 / 24 |
+
+Barry 2 and Lucas and Dawn 2 stay clean every time. Jupiter 1, now with
+Attract working, loses a Pokemon in about one fight in eleven, as before,
+its faints still falling to Skuntank. Fantina is the one the fixes moved: the
+same six loses 2.89 Pokemon a fight where it lost 2.21, and wins cleanly 4
+percent of the time where it did 12. Drifblim causes most of the difference: its
+faints rose from 17 to 41 in the 75 real fights, because Unburden now
+doubles its Speed once its Sitrus Berry is eaten. The re-read's search
+chose a six with Charmeleon for Vulpix that reads no better than the old
+one (its 25-fight check put it at 100 / 2.52 / 0); within the search's
+check, sixes this close are not told apart. The three gyms' "before" figures
+are their first test's 25-fight checks rather than full readings, so a 0.16
+average can show as none.
+
+Gardenia, at 97 / 1.07 / 44, reads kinder than its first test's 25-fight
+check of another six; Roserade still causes 60 of its 80 faints. The new
+lines are beside the old ones in `perfectline_results/step3/`
+(`goal2-<fight>-line-reread.txt`), and every number here is in
+`readings-2026-10-03.json` there. In Fantina's new line the planner brings
+Charmeleon in on Duskull's opening Will-O-Wisp, which cannot burn a Fire
+type; no rule names that.
+
+## The Kaizo anchor (2026-10-03, on Ian's yes)
+
+Kaizo's six readable bosses of its first three splits, read on goal 2's
+boxes with the team search at budget 64 and the loop, as goal 2's fights
+are (`plstudy.py`, `kaizo_*`). Mars is a double and is left out, as the
+Overseer agreed. Each Kaizo team is the variant a Piplup player meets, with
+its levels carried onto Oxide's split the same distance under the cap
+(Kaizo's caps of 16, 28 and 38 against Oxide's 16, 26 and 33). Barry 2 and
+Jupiter are mini-bosses with no cap of their own in Kaizo, so their ace
+goes to Oxide's interim cap at that fight (11 and 27) and the rest follow
+it; by Kaizo's split cap they would sit far under the box. Kaizo's weathers
+stay (Roark's sand, Gardenia's rain). Beside each is Oxide's own reading of
+the same fight on the same box, from goal 2's re-reads.
+
+| Kaizo boss | Cap | Kaizo's team on Oxide's levels | The search's six | Real odds | Very unlucky | Oxide's same fight, real odds |
+|---|---|---|---|---|---|---|
+| Barry 2 | 11 | Aipom 10, Taillow 10, Slakoth 10, Mankey 10, Elekid 10, Turtwig 11 | Piplup, Vulpix, Rookidee, Squirtle, Krabby, Finneon | 0 / 6.00 / 0 | 0 / 6.00 / 0 | 100 / 0.00 / 100 |
+| Roark | 16 | Bonsly 15, Lileep 13, Gible 14, Corsola 14, Shuckle 13, Cranidos 16 | Wartortle, Nidorino, Onix, Charmander, Steenee, Geodude | 81 / 4.31 / 0 | 68 / 4.72 / 0 | 100 / 0.05 / 95 |
+| Gardenia | 26 | Miltank 24, Rotom-Mow 23, Ludicolo 22, Milotic 23, Roserade 24, Torterra 26 | Dubwool, Tsareena, Graveler, Vikavolt, Breloom, Golbat | 24 / 5.36 / 1 | 24 / 5.48 / 0 | 97 / 1.07 / 44 |
+| Jupiter | 27 | Skuntank 27, Electrode 26, Gyarados 25, Medicham 25, Lunatone 25, Tangrowth 26 | Dubwool, Charmeleon, Tsareena, Graveler, Golbat, Rotom | 80 / 4.17 / 0 | 44 / 5.32 / 0 | 100 / 0.19 / 91 |
+| Fantina's second team | 33 | Dusclops 26, Drifblim 27, Shedinja 28, Sableye 27, Banette 27, Mismagius 29 | Graveler, Ampharos, Rotom, Carbink, Rampardos, Eevee | 100 / 0.11 / 92 | 100 / 0.36 / 72 | |
+| Fantina | 33 | Froslass 32, Drifblim 32, Gengar 31, Spiritomb 31, Rotom-Fan 32, Mismagius 33 | Tsareena, Graveler, Ampharos, Pawmo, Vikavolt, Rampardos | 40 / 4.56 / 11 | 40 / 4.56 / 0 | 91 / 3.04 / 1 |
+
+On the same boxes, Oxide's bosses are won 91 to 100 times in 100, and
+Kaizo's 0 to 81 times, its second Fantina team aside. Kaizo's cost four to
+six Pokemon a fight where Oxide's cost at most three. Barry 2 is the
+starkest. Each of Kaizo's six but Slakoth and Turtwig outspeeds every member
+of the box, and one of their hits takes 40 to 100 percent of a member's HP
+while the box's best take 10 to 56 percent of theirs. Elekid's Expert Belt
+Shock Wave knocks out Rookidee and Krabby in one hit, and the box is ten
+unevolved Pokemon still on Pound, Tackle and Bubble. Kaizo's second Fantina
+team, four to seven levels under the cap, is the one fight the box wins
+easily. The readings anchor the study's dial at Kaizo's full strength;
+Kaizo's teams were built against Kaizo's own encounters, and are read here
+against Oxide's box.
+
+The reader could not carry three things over. Kaizo's Mankey has Reckless,
+an ability Oxide's Mankey cannot have, so it was read with its own first
+ability. Kaizo's Gengar has Shadow Tag; it was read with Levitate.
+Gardenia's "Water Ball" names no move, and was dropped. Taillow's Secret
+Power deals its damage, but its secondary effect waits on the terrain, as
+Camouflage does (the list the Overseer had before the readings). Each
+reading took 52 to 98 minutes on twelve workers. Kaizo's Fantina first
+stopped partway: Sleep Talk drew its move outside the play-outs' dice, so
+two replays of one turn could differ. It now draws through them, and no
+earlier reading had a Pokemon talking in its sleep.
+
 ## The cost of labelling every boss (2026-10-02)
 
 The Overseer counted about 110 fights in goal 3 that need labelled positions
@@ -1456,7 +2159,18 @@ The old labels keep the network playing the old fight, and adding them to new
 ones helps nothing. A changed fight needs new labels, at the same cost as a
 new one.
 
-**The estimate for goal 3.** With the recipe that matched the full rounds at
+**6. The recipe failed its two checks.** At Gardenia, one spread round after
+the tenth gave 334 won of 500 and two gave 299, against 429 for the full
+rounds. At Mars 1 at its new cap of 19, the tenth of a round alone read our
+six at 49 clean of 75, every fight won, 0.44 faints, close to the bar (67.1%
+clean, 99.8% won, 0.42 faints); after one spread round it read 33 clean, 73
+won, 0.80 faints (and 271 clean, 481 won, 0.75 faints over 500). The spread
+round helped only at Mars 1 at its old level. The team search therefore
+labels with the play-out planner alone, a tenth of a round across ten sixes,
+and checks its finalists with play-outs ("The team search's first test").
+
+**The estimate for goal 3, now replaced** by the team search's costs, which
+the rerun at Roark revises. With the recipe that matched the full rounds at
 Mars 1, a tenth of a round by the play-out planner and one spread round from
 the network's own play, a fight costs about 1.7 core-hours of labelling.
 For about 110 fights that is about 185 core-hours, some 6 to 7 hours on 29
