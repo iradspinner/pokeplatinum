@@ -1068,10 +1068,17 @@ SLEEP_TALK_SKIPS = {"USE_RANDOM_LEARNED_MOVE_SLEEP", "HIT_LAST_WHIFF_IF_HIT", "B
 def sleep_talk_pick(b, att):
     """Sleep Talk: one of its user's other moves at random, never a move
     that needs a charge turn or one on Gen 4's list; with no dice (the strict
-    search) the first such move. None when there is none."""
+    search) the first such move. None when there is none. A battle playing
+    with dice picks through them, as every other chance in its turn does:
+    the play-outs replay a turn's chances by script, and a pick from the
+    battle's own generator differed between replays (it broke Kaizo
+    Fantina's labels, whose Spiritomb sleeps and talks)."""
     picks = [m for m in att.moves if m.effect not in SLEEP_TALK_SKIPS and m.effect not in TWO_TURN]
     if not picks:
         return None
+    dice = getattr(b, "dice", None)
+    if dice is not None:
+        return picks[dice.choice("sleeptalk", len(picks))]
     rng = getattr(b, "rng", None)
     return rng.choice(picks) if rng is not None else picks[0]
 

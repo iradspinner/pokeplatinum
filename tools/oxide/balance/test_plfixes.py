@@ -548,6 +548,28 @@ def study_effect_checks():
     out.append(("Gust doubles into Fly; Thunder and Sky Uppercut reach it; Earthquake and Thousand Arrows do not",
                 air == {"Gust": 2, "Thunder": 1, "Sky Uppercut": 1, "Earthquake": 0, "Thousand Arrows": 0},
                 f"{air}"))
+    # Sleep Talk picks through the battle's dice, so a play-out's replays of
+    # a turn agree; the enumeration of a sleeping talker's turn completes.
+    from . import plplan
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    talk = fs.move("Sleep Talk")
+    own = list(foe.moves)
+    foe.moves = [talk] + own
+    foe.pp = {m.name: 10 for m in foe.moves}
+    second = [m for m in own if m.effect not in fs.SLEEP_TALK_SKIPS and m.effect not in fs.TWO_TURN][1]
+    foe.status, foe.sleep = "slp", 3
+
+    class Second:
+        def choice(self, kind, n):
+            return 1
+    b.dice = Second()
+    picked = fs.sleep_talk_pick(b, foe)
+    outcomes = plplan.turn_outcomes(b, ("move", mv(barboach, "Mud-Slap")), ("move", talk), 7)
+    total = sum(p for _c, p in outcomes)
+    out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
+                picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
+                f"picked {picked.name}, {len(outcomes)} outcomes"))
     return out
 
 
