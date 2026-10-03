@@ -1675,12 +1675,31 @@ again on the fixed simulator; the earlier Lucas and Dawn 2 reading is kept
 as `team/lucas_dawn_2-oldsim`. (Destiny Bond went in after the reruns
 started; neither fight has it.)
 
-Still not simulated: **Attract and Cute Charm** (Jupiter 1's Delcatty uses
-Attract, three times in the first winning line, to no effect), which need
-genders the simulator does not have, and, in fights not yet read, **Wish**,
-**Spite**, **Recycle** and **Camouflage**, rules with no choice in them that
-go in before goal 3. Attract needs one choice first, the player's genders
-(below). The damage model
+**Genders, Attract and the contact abilities (2026-10-03, on Ian's yes).**
+Every Pokemon now has a gender. A trainer's is the game's: the gender its
+trainer file names, or else the personality's low byte the engine builds
+(120 for a female trainer class, 136 for a male one, the lowest bit set by
+an ability-slot request) against the species' ratio
+(`fightsim.trainer_gender`, read from `res/trainers/data` by
+`plscore.with_genders`, since the balance track's trainer data does not
+carry it). A box member's is rolled once from a fixed seed by its catch and
+kept in goal 2's records, the species at the fight deciding it as the game
+does; a record without one is rolled from itself the same way. Attract
+infatuates only across genders, not on Oblivious (unless Mold Breaker) or a
+genderless Pokemon; love stops half the moves its holder tries and ends
+when its object leaves. Building Cute Charm showed that no ability striking
+back at a contact move was simulated at all, so Static, Poison Point, Flame
+Body, Effect Spore (not on Grass types, Overcoat or Safety Goggles) and Cute
+Charm now take 3 contact hits in 10, and Rough Skin and Oxide's Iron Barbs
+an eighth of the attacker's HP, each only when the move did damage, as the
+decomp's on-hit switch has them. The stress test rolls the love check twice
+against the player, as it does full paralysis. Four checks in `test_plfixes`
+(56 of 56 pass); the AI's own Attract and Captivate checks, which read
+genders, are now live.
+
+Still not simulated: in fights not yet read, **Wish**, **Spite**,
+**Recycle** and **Camouflage**, rules with no choice in them that go in
+before goal 3. The damage model
 still counts a two-to-five-hit move as three hits, and Baton Pass passes
 nothing.
 

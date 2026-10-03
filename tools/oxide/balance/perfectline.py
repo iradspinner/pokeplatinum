@@ -67,7 +67,7 @@ FREE = 1.0
 # 2026-09-30 (a secondary status against the player always lands, at most one
 # crit lands on the player), kept so the old bar can be re-measured.
 LUCK = "real"
-STRESS = frozenset({"crit", "status", "confusehit", "flinch", "statdrop", "statup", "kingsrock",
+STRESS = frozenset({"crit", "status", "confusehit", "flinch", "statdrop", "statup", "kingsrock", "love",
                     "paralysis", "confusion", "thaw"})
 
 
@@ -341,6 +341,8 @@ def use_move(b, att, mv, dfn, first):
             return fs.could_not_act(b, att, mv, dfn)
     if att.status == "par" and (b.dice.bad("paralysis", 0.25) if player(att) else b.dice.good(0.25, "paralysis")):
         return fs.could_not_act(b, att, mv, dfn)
+    if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
+        return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
     if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
@@ -369,6 +371,11 @@ def use_move(b, att, mv, dfn, first):
         status_move(b, att, mv, dfn, first)
         return
     attack(b, att, mv, dfn, first)
+    # A contact ability's chance hurts the player when the player's Pokemon
+    # takes it, and helps it when the trainer's does.
+    fs.contact_ability(b, att, dfn, mv, b.last_dealt,
+                       lambda kind, p, victim: b.dice.bad(kind, p) if player(victim) else b.dice.good(p, kind),
+                       lambda kind, n: b.dice.choice(kind, n))
     fs.destiny_bond(att, dfn)
 
 
@@ -389,6 +396,7 @@ def confusion_damage(mon, roll):
 
 
 def attack(b, att, mv, dfn, first):
+    b.last_dealt = 0                     # the HP this move took, for the contact abilities
     if not dfn.alive():
         return
     if mv.effect in fs.SELF_KO and not fs.explode_first(b, att):
@@ -518,6 +526,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
+        b.last_dealt = dealt
         fs.berry_check(dfn)
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
@@ -740,6 +749,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.taunt = b.dice.taunt(dfn.side)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "INFATUATE":
+        fs.infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "AVERAGE_HP":
         fs.pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
@@ -802,7 +813,7 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond)
+            m.destiny_bond, m.infatuated)
 
 
 def side_key(s):

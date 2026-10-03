@@ -120,11 +120,14 @@ def move_pool(sp, caught, cap, holds=None, magnetic=False, known=None):
     return path[-1][0], [names[m] for m in dict.fromkeys(first + later) if m in names]
 
 
-def record(sp, level, nature, ability, ivs, moves, label=None):
+def record(sp, level, nature, ability, ivs, moves, label=None, **extra):
+    """A box member as the simulator reads it; `extra` carries its gender
+    where the box records one (else the simulator rolls it from the
+    record)."""
     iv = {k: ivs for k in ("hp", "at", "df", "sp", "sa", "sd")}
-    return {"constant": sp, "species": species_name(sp), "how": "plan", "level": level, "nature": nature,
-            "ivs": iv, "evs": {k: 0 for k in iv}, "ability": ability, "moves": list(moves), "fill": False,
-            "label": label or species_name(sp)}
+    return dict({"constant": sp, "species": species_name(sp), "how": "plan", "level": level, "nature": nature,
+                 "ivs": iv, "evs": {k: 0 for k in iv}, "ability": ability, "moves": list(moves), "fill": False,
+                 "label": label or species_name(sp)}, **extra)
 
 
 # ---- 1. the screen ---------------------------------------------------------------------------------------

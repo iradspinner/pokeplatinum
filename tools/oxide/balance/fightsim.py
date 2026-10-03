@@ -200,6 +200,87 @@ NO_WEATHER_ABILITY = set(ABILITY_WEATHER) | {"Cloud Nine", "Air Lock"}
 WEATHER_STAND_IN = "Pressure"
 
 
+# ---- genders (Ian, 2026-10-03) -------------------------------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def _ratio_values():
+    out = {}
+    with open(os.path.join(data.ROOT, "generated", "gender_ratios.txt")) as fh:
+        for line in fh:
+            name, _eq, val = line.partition("=")
+            if val.strip():
+                out[name.strip()] = int(val)
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def gender_ratio(constant):
+    """A species' gender ratio byte: 0 male only, 254 female only, 255
+    genderless, otherwise a personality whose low byte is below it is
+    female (SpeciesData_GetGenderOf)."""
+    path = os.path.join(data.ROOT, "res", "pokemon", constant[len("SPECIES_"):].lower(), "data.json")
+    with open(path) as fh:
+        return _ratio_values()[json.load(fh)["gender_ratio"]]
+
+
+def gender_from_byte(ratio, byte):
+    """The gender a personality's low byte gives a species: "M", "F", or None
+    for a genderless one."""
+    if ratio == 255:
+        return None
+    if ratio == 254:
+        return "F"
+    if ratio == 0:
+        return "M"
+    return "F" if ratio > byte else "M"
+
+
+def rolled_gender(constant, seed):
+    """A box member's gender, rolled once from a fixed seed by its species'
+    ratio, as the box's natures were rolled (Ian, 2026-10-03)."""
+    return gender_from_byte(gender_ratio(constant), random.Random(f"gender / {seed}").randrange(256))
+
+
+@functools.lru_cache(maxsize=None)
+def class_genders():
+    """{trainer class: "M" or "F"} from the game's own table
+    (include/data/trainer_class_genders.h)."""
+    out = {}
+    with open(os.path.join(data.ROOT, "include", "data", "trainer_class_genders.h")) as fh:
+        for line in fh:
+            m = re.match(r"\s*\[(TRAINER_CLASS_\w+)\]\s*=\s*GENDER_(MALE|FEMALE)", line)
+            if m:
+                out[m.group(1)] = "M" if m.group(2) == "MALE" else "F"
+    return out
+
+
+def trainer_gender(constant, trainer_class, gender, ability):
+    """A trainer's Pokemon's gender as TrainerData_BuildParty makes it: a
+    gender the trainer file names is kept (sub_02074128); otherwise the
+    personality's low byte is 120 for a female trainer class and 136 for a
+    male one, its lowest bit set by an ability-slot request, and compared
+    with the species' ratio (TrainerMon_PersonalityLowByte)."""
+    ratio = gender_ratio(constant)
+    if gender in ("male", "female"):
+        return gender_from_byte(ratio, 255 if gender == "male" else 0)
+    low = 120 if class_genders().get(trainer_class) == "F" else 136
+    if ability == 1:
+        low &= ~1
+    elif ability == 2:
+        low |= 1
+    return gender_from_byte(ratio, low)
+
+
+def _gender_of(rec):
+    """A record's gender: as it names it ("M", "F", "male", "female", or None
+    for a genderless species), else rolled once from the record itself."""
+    if "gender" in rec:
+        return {"male": "M", "female": "F", "M": "M", "F": "F"}.get(rec["gender"])
+    if rec.get("constant"):
+        return rolled_gender(rec["constant"], f"{rec['constant']} / {rec.get('label') or rec.get('species')}")
+    return None
+
+
 # ---- the Pokemon and the field -----------------------------------------------------------
 
 class Mon:
@@ -218,6 +299,7 @@ class Mon:
         self.moves = [move(m) for m in moves][:4]
         self.pp = {m.name: m.pp for m in self.moves}
         self.ivs = rec.get("ivs") or {}
+        self.gender = _gender_of(rec)    # "M", "F" or None (genderless): Attract, Cute Charm
         self.status, self.sleep, self.toxic = None, 0, 0
         self.reset_volatile()
 
@@ -266,6 +348,7 @@ class Mon:
         self.magnet_rise = 0             # Magnet Rise's turns left: Ground moves fail on it
         self.tormented = False           # Torment: it cannot pick the move it used last
         self.destiny_bond = False        # Destiny Bond: a foe whose move faints it faints too
+        self.infatuated = None           # the key of the Pokemon it is in love with (Attract, Cute Charm)
 
     def alive(self):
         return self.hp > 0
@@ -720,6 +803,8 @@ def use_move(b, att, mv, dfn, first, targets=None):
             return could_not_act(b, att, mv, dfn, targets)
     if att.status == "par" and b.rng.random() < 0.25:
         return could_not_act(b, att, mv, dfn, targets)
+    if att.infatuated and b.rng.random() < 0.5:
+        return could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
     if (att.taunt and mv.cat == "Status") or tormented_out(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
@@ -749,14 +834,18 @@ def use_move(b, att, mv, dfn, first, targets=None):
     if mv.cat == "Status":
         status_move(b, att, mv, dfn, first)
         return
+    chance = lambda kind, p, victim: b.rng.random() < p      # noqa: E731
+    pick = lambda kind, n: b.rng.randrange(n)               # noqa: E731
     if targets is None:
         attack(b, att, mv, dfn, first)
+        contact_ability(b, att, dfn, mv, b.last_dealt, chance, pick)
         destiny_bond(att, dfn)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
     for t in targets:
         attack(b, att, mv, t, t not in b.moved)
+        contact_ability(b, att, t, mv, b.last_dealt, chance, pick)
     b.spread = False
     for t in targets:
         destiny_bond(att, t)
@@ -785,6 +874,7 @@ def explode_first(b, att):
 
 
 def attack(b, att, mv, dfn, first):
+    b.last_dealt = 0                     # the HP this move took, for the contact abilities
     if not dfn.alive():
         return
     if mv.effect in SELF_KO and not explode_first(b, att):
@@ -865,6 +955,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
+        b.last_dealt = dealt
         dfn.hit_this_turn = (mv.cat, dealt)
         if dfn.status == "frz" and mv.type == "Fire":
             dfn.status = None
@@ -962,6 +1053,60 @@ def pain_split(b, att, dfn):
             hurt(b, m, m.hp - avg)
         else:
             heal(m, avg - m.hp)
+
+
+def infatuate(src, target, mold=False):
+    """Attract or Cute Charm on target, in love with src (subscript_infatuate,
+    BtlCmd_TryAttract): it fails on Oblivious (unless src has Mold Breaker),
+    on one already in love, and unless the two are of opposite genders.
+    Whether it took."""
+    if target.ability == "Oblivious" and not mold:
+        return False
+    if target.infatuated or not src.gender or not target.gender or src.gender == target.gender:
+        return False
+    target.infatuated = src.key
+    return True
+
+
+# The abilities that strike back at a contact move (battle_lib's on-hit
+# ability switch), each at three in ten but Rough Skin.
+CONTACT_STATUS = {"Static": "par", "Poison Point": "psn", "Flame Body": "brn"}
+
+
+def contact_ability(b, att, dfn, mv, dealt, chance, pick):
+    """The defender's ability after a contact move hurt it (Static, Poison
+    Point, Flame Body, Effect Spore, Cute Charm at 3 in 10; Rough Skin and
+    Oxide's Iron Barbs an eighth of the attacker's HP), as battle_lib's
+    on-hit switch has them: only when the move did damage (not to a
+    Substitute) and its user still stands, a status only on an attacker with
+    none. `chance(kind, p, victim)` and `pick(kind, n)` are the battle's
+    dice."""
+    if not mv.contact or dealt <= 0 or not att.alive() or not dfn.ability:
+        return
+    a = dfn.ability
+    if a in ("Rough Skin", "Iron Barbs"):
+        if att.ability != "Magic Guard":
+            reveal(dfn)
+            hurt(b, att, max(1, att.maxhp // 8))
+        return
+    if a == "Cute Charm":
+        if not att.infatuated and chance("status", 0.3, att) and infatuate(dfn, att):
+            reveal(dfn)
+        return
+    if att.status:
+        return
+    if a == "Effect Spore":
+        # Oxide: its spores are a powder, which misses Grass types, Overcoat
+        # and Safety Goggles.
+        if "Grass" in att.types or att.ability == "Overcoat" or att.item == "Safety Goggles":
+            return
+        if chance("status", 0.3, att):
+            status = ("psn", "par", "slp")[pick("spore", 3)]
+            if give_status(b, att, status):
+                reveal(dfn)
+        return
+    if a in CONTACT_STATUS and chance("status", 0.3, att) and give_status(b, att, CONTACT_STATUS[a]):
+        reveal(dfn)
 
 
 def destiny_bond(att, dfn):
@@ -1100,6 +1245,8 @@ def status_move(b, att, mv, dfn, first):
             dfn.taunt = b.rng.randint(3, 5)
     elif e == "TORMENT":
         dfn.tormented = True             # subscript_torment_start: fails if already tormented
+    elif e == "INFATUATE":
+        infatuate(att, dfn, att.ability == "Mold Breaker")
     elif e == "AVERAGE_HP":
         pain_split(b, att, dfn)
     elif e == "FORCE_SWITCH":
@@ -1129,6 +1276,8 @@ def switch_in(b, side, index, slot=0):
         for foe in (b.b if side is b.p else b.p).mons:
             if foe.trapped_by == leaving.key:
                 foe.trapped_by = None
+            if foe.infatuated == leaving.key:
+                foe.infatuated = None    # love ends when its object leaves (battle_lib's switch-out)
     if slot == 0:
         side.cur().reset_volatile()
         side.active = index

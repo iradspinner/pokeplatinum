@@ -61,7 +61,8 @@ def box(fight):
                                         magnetic=fight != "barry_2")
         if final != r["constant"]:
             raise ValueError(f"{fight}: {r['caught']} rebuilds as {final}, goal 2's box has {r['constant']}")
-        out.append(plteam.record(final, r["level"], r["nature"], r["ability"], r["ivs"], pool_))
+        extra = {"gender": r["gender"]} if "gender" in r else {}
+        out.append(plteam.record(final, r["level"], r["nature"], r["ability"], r["ivs"], pool_, **extra))
     return out
 
 

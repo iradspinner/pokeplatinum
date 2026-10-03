@@ -181,6 +181,69 @@ def destiny_bond_checks():
             ("Destiny Bond ends when its user next acts", ended, f"only the bonded one fainted {ended}")]
 
 
+def gender_checks():
+    """Genders, Attract and the contact abilities (Ian, 2026-10-03): a
+    trainer's Pokemon get the gender their file gives (Jupiter 1's Delcatty
+    is female); Attract works only across genders, not on Oblivious; love
+    stops about half the moves and ends when its object leaves; Cute Charm
+    and Static take about 3 contact hits in 10, Rough Skin an eighth."""
+    prep = plscore.prepare(plscore.parse_fight("jupiter_1"), given_side=[])
+    st = prep["st"]
+    delcatty = next(k for k in prep["variants"][0][0] if st["pokemon"][k]["species"] == "Delcatty")
+    file_gender = st["pokemon"][delcatty]["gender"]
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    attract = fs.move("Attract")
+    foe.gender, barboach.gender = "F", "F"
+    pl.status_move(b, foe, attract, barboach, True)
+    same = barboach.infatuated
+    barboach.gender = None
+    pl.status_move(b, foe, attract, barboach, True)
+    genderless = barboach.infatuated
+    barboach.gender, barboach.ability = "M", "Oblivious"
+    pl.status_move(b, foe, attract, barboach, True)
+    oblivious = barboach.infatuated
+    barboach.ability = "Swift Swim"
+    pl.status_move(b, foe, attract, barboach, True)
+    took = barboach.infatuated == foe.key
+    stopped = 0
+    for i in range(400):
+        b.dice = pl.RunDice(random.Random(i), True)
+        barboach.last = None
+        before = foe.hp = foe.maxhp
+        pl.use_move(b, barboach, mv(barboach, "Water Gun"), foe, True)
+        stopped += foe.hp == before
+    fs.switch_in(b, b.b, 1)
+    ended = barboach.infatuated
+    # Cute Charm and Static on contact, Rough Skin's eighth.
+    b = battle()
+    foe, grubbin = b.b.cur(), b.p.mons[2]
+    fs.switch_in(b, b.p, 2)
+    foe.gender, grubbin.gender = "F", "M"
+    counts = {}
+    for ability in ("Cute Charm", "Static"):
+        foe.ability, n = ability, 0
+        for i in range(400):
+            b.dice = pl.RunDice(random.Random(i), True)
+            grubbin.infatuated, grubbin.status, foe.hp = None, None, foe.maxhp
+            pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+            n += bool(grubbin.infatuated) if ability == "Cute Charm" else grubbin.status == "par"
+        counts[ability] = n
+    foe.ability, grubbin.hp, foe.hp = "Rough Skin", grubbin.maxhp, foe.maxhp
+    pl.use_move(b, grubbin, mv(grubbin, "Bite"), foe, True)
+    rough = grubbin.maxhp - grubbin.hp
+    return [("a trainer's Pokemon has the gender its file gives (Jupiter 1's Delcatty is female)",
+             file_gender == "F", f"Delcatty {file_gender}"),
+            ("Attract: not between equal genders, not on a genderless or Oblivious target, yes across",
+             not same and not genderless and not oblivious and took,
+             f"same {same}, genderless {genderless}, Oblivious {oblivious}, across {took}"),
+            ("love stops about half the moves, and ends when its object switches out",
+             150 <= stopped <= 250 and ended is None, f"{stopped} of 400 stopped, after the switch {ended}"),
+            ("Cute Charm and Static take about 3 contact hits in 10; Rough Skin takes an eighth",
+             all(80 <= c <= 160 for c in counts.values()) and rough == max(1, grubbin.maxhp // 8),
+             f"{counts}, Rough Skin {rough} of {grubbin.maxhp}")]
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -621,6 +684,7 @@ def main():
     results += magnet_rise_checks()
     results += torment_and_pain_split_checks()
     results += destiny_bond_checks()
+    results += gender_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:
