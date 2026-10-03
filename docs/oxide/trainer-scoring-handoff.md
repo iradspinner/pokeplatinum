@@ -1640,9 +1640,9 @@ Lucas and Dawn 2's first winning line showed Whiscash's Magnitude knocking
 out a Jolteon that had used Magnet Rise four turns running: the simulator
 had no Magnet Rise, so the move did nothing and the AI, seeing no rise,
 chose it again. A sweep of every trainer move in the 33 story fights for
-effects the simulator never names found the rest. Those that do nothing in
-a fight read so far, now simulated as the engine has them, each with a check
-in `test_plfixes` (50 of 50 pass):
+effects the simulator never names found the rest. These are now simulated
+as the engine has them, each with a check in `test_plfixes` (52 of 52
+pass):
 
 - Magnet Rise (Lucas and Dawn 2's Jolteon): five turn ends in which Ground
   moves fail on the user, cleared by a switch, failing while active, on a
@@ -1654,17 +1654,23 @@ in `test_plfixes` (50 of 50 pass):
 - Pain Split (Fantina's Rotom): both Pokemon's HP become half their sum,
   failing on a Substitute (`subscript_pain_split`).
 
+- Destiny Bond (2 fights not yet read; one of the forced trades Ian's
+  design rules allow a boss): a foe whose move faints the bonded Pokemon
+  faints too, unless the move's recoil already felled it; the bond ends
+  when its user next tries to act or switches out (`subscript_destiny_bond`,
+  `subscript_faint_check_destiny_bond`).
+
 These make the trainers stronger, so Lucas and Dawn 2 and Fantina are read
 again on the fixed simulator; the earlier Lucas and Dawn 2 reading is kept
-as `team/lucas_dawn_2-oldsim`.
+as `team/lucas_dawn_2-oldsim`. (Destiny Bond went in after the reruns
+started; neither fight has it.)
 
 Still not simulated: **Attract and Cute Charm** (Jupiter 1's Delcatty uses
 Attract, three times in the first winning line, to no effect), which need
-genders the simulator does not have, and, in fights not yet read, **Destiny
-Bond** (2 fights; one of the forced trades Ian's design rules allow a boss),
-**Wish**, **Spite**, **Recycle** and **Camouflage**. Destiny Bond and the
-others are rules with no choice in them and go in before goal 3. Attract
-needs one choice first, the player's genders (below). The damage model
+genders the simulator does not have, and, in fights not yet read, **Wish**,
+**Spite**, **Recycle** and **Camouflage**, rules with no choice in them that
+go in before goal 3. Attract needs one choice first, the player's genders
+(below). The damage model
 still counts a two-to-five-hit move as three hits, and Baton Pass passes
 nothing.
 

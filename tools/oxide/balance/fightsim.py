@@ -265,6 +265,7 @@ class Mon:
         self.aqua_ring = False           # a sixteenth back at each turn's end
         self.magnet_rise = 0             # Magnet Rise's turns left: Ground moves fail on it
         self.tormented = False           # Torment: it cannot pick the move it used last
+        self.destiny_bond = False        # Destiny Bond: a foe whose move faints it faints too
 
     def alive(self):
         return self.hp > 0
@@ -691,8 +692,9 @@ def use_move(b, att, mv, dfn, first, targets=None):
     if not att.alive():
         return
     # Its own record clears with its action, whatever happens
-    # (BattleControllerPlayer_ClearFlags).
+    # (BattleControllerPlayer_ClearFlags), and so does its Destiny Bond.
     att.last_hit_by = None
+    att.destiny_bond = False
     # The user's own state first.
     if att.recharge:
         att.recharge = False
@@ -749,12 +751,15 @@ def use_move(b, att, mv, dfn, first, targets=None):
         return
     if targets is None:
         attack(b, att, mv, dfn, first)
+        destiny_bond(att, dfn)
         return
     # A double battle: a spread move hits each target at three quarters.
     b.spread = len(targets) > 1
     for t in targets:
         attack(b, att, mv, t, t not in b.moved)
     b.spread = False
+    for t in targets:
+        destiny_bond(att, t)
 
 
 def confusion_damage(mon, rng):
@@ -959,6 +964,16 @@ def pain_split(b, att, dfn):
             heal(m, avg - m.hp)
 
 
+def destiny_bond(att, dfn):
+    """After a move: if it fainted a Pokemon under Destiny Bond and its user
+    still stands on the other side, the user faints too
+    (subscript_faint_check_destiny_bond). The bond is set by the move
+    (subscript_destiny_bond) and cleared when its user next tries to act
+    (BattleControllerPlayer_CheckStatusDisruption) or switches out."""
+    if dfn.destiny_bond and not dfn.alive() and att.alive() and att.side != dfn.side:
+        att.hp = 0
+
+
 def lifted(dfn, mv):
     """Whether Magnet Rise makes this Ground move fail on dfn (the type
     check's MOVE_STATUS_MAGNET_RISE): not on a Pokemon rooted by Ingrain or
@@ -974,6 +989,9 @@ def status_move(b, att, mv, dfn, first):
         return
     if e == "GIVE_GROUND_IMMUNITY":
         magnet_rise(att)
+        return
+    if e == "KO_MON_THAT_DEFEATED_USER":
+        att.destiny_bond = True
         return
     foe_side = b.p if dfn.side == "p" else b.b
     own_side = b.p if att.side == "p" else b.b

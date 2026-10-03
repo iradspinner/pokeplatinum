@@ -155,6 +155,32 @@ def torment_and_pain_split_checks():
              f"{split} against {avg}; through a Substitute the user stays at {foe2.hp}")]
 
 
+def destiny_bond_checks():
+    """Destiny Bond (subscript_destiny_bond and
+    subscript_faint_check_destiny_bond): a Pokemon under it that a foe's
+    move faints takes the foe with it; the bond ends when its user next
+    tries to act. Roark's lead bonds; Barboach's Mud Bomb faints it."""
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    bond = fs.move("Destiny Bond")
+    pl.use_move(b, foe, bond, barboach, True)
+    set_ = foe.destiny_bond
+    foe.hp = 1
+    b.dice = pl.RunDice(random.Random(3), True)
+    pl.use_move(b, barboach, mv(barboach, "Mud Bomb"), foe, True)
+    took = not foe.alive() and not barboach.alive()
+    b = battle()
+    foe, barboach = b.b.cur(), b.p.cur()
+    pl.use_move(b, foe, bond, barboach, True)
+    pl.use_move(b, foe, fs.move("Tackle"), barboach, True)     # it acts again: the bond ends
+    foe.hp = 1
+    pl.use_move(b, barboach, mv(barboach, "Mud Bomb"), foe, True)
+    ended = not foe.alive() and barboach.alive()
+    return [("Destiny Bond: the foe whose move faints its user faints too",
+             set_ and took, f"set {set_}, both fainted {took}"),
+            ("Destiny Bond ends when its user next acts", ended, f"only the bonded one fainted {ended}")]
+
+
 def fixed_damage_checks():
     """Handoff step 2, fixed damage (Scoring Agent, 2026-09-30): each effect
     script sets the damage itself, so stages, screens and crits never touch
@@ -594,6 +620,7 @@ def main():
     results += first_battle_checks()
     results += magnet_rise_checks()
     results += torment_and_pain_split_checks()
+    results += destiny_bond_checks()
 
     width = max(len(r[0]) for r in results)
     for name, ok, note in results:

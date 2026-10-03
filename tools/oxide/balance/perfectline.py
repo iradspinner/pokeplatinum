@@ -316,6 +316,7 @@ def use_move(b, att, mv, dfn, first):
     if not att.alive():
         return
     att.last_hit_by = None           # cleared with its own action (fightsim.use_move)
+    att.destiny_bond = False         # and its Destiny Bond with it
     if att.recharge:
         att.recharge = False
         return fs.could_not_act(b, att, mv, dfn)
@@ -368,6 +369,7 @@ def use_move(b, att, mv, dfn, first):
         status_move(b, att, mv, dfn, first)
         return
     attack(b, att, mv, dfn, first)
+    fs.destiny_bond(att, dfn)
 
 
 def struggle_damage(att, dfn, roll):
@@ -611,6 +613,9 @@ def status_move(b, att, mv, dfn, first):
     if e == "GIVE_GROUND_IMMUNITY":
         fs.magnet_rise(att)              # Magnet Rise (fightsim counts it down at the turn's end)
         return
+    if e == "KO_MON_THAT_DEFEATED_USER":
+        att.destiny_bond = True          # Destiny Bond (fs.destiny_bond after each attack)
+        return
     foe_side = b.p if player(dfn) else b.b
     own_side = b.p if player(att) else b.b
     targets_foe = mv.range not in ("USER", "USER_SIDE", "ALLY", "FIELD", "USER_OR_ALLY")
@@ -796,7 +801,8 @@ def mon_key(m):
             (m.lock[0].name, m.lock[1]) if m.lock else None, m.choice, m.taunt,
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
-            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None)
+            m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
+            m.destiny_bond)
 
 
 def side_key(s):
