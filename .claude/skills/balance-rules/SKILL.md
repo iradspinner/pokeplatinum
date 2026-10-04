@@ -145,10 +145,13 @@ is listed for Ian.
   win rate count as equal before faints decide (Ian, 2026-10-03).
   The first three splits are read under interim soft caps at their
   mini-bosses (Barry 2's ace 11, Mars 1's Purugly 19, Jupiter 1's Skuntank 27,
-  Lucas and Dawn 2 at 30). Ian's first targets (an ordinary trainer, read
-  blind, 70 to 80 percent clean with no wipe; a gauntlet section 60 percent or
-  more) were set before these rulings and are provisional until his first
-  run. When a fight reads too hard, change the player's move pools first: they
+  Lucas and Dawn 2 at 30). Targets (Ian, 2026-10-04): an ordinary trainer,
+  read blind from a random six of the box's stronger half, won cleanly 80 to
+  85 percent of the time; a gauntlet section 60 percent or more; no boss
+  above 95 percent won, spiking with the boss's importance, the hardest
+  topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
+  percent won). The numbers are ordinal, and Oxide is not meant to be beaten
+  on a first run. When a fight reads too hard, change the player's move pools first: they
   are sparse in interesting options and lack many modern moves. The scorer's
   goals, the Kaizo study's comb and the full rescore come in the order the
   tracker's Scoring Agent entry and Scheduled list give.
@@ -159,6 +162,9 @@ is listed for Ian.
   `.claude/rules/standing-rulings.md` has the whole ruling (no one-hit KO
   moves, rare evasion and trapping, at most one forced trade per boss and
   none before Fantina, no overlevelled optional trainers, some doubles).
+  Ordinary trainers carry 3 to 5 Pokemon (6 from Gardenia's split on is
+  fine), with sizes varied and real lethality, and any trainer may use TM
+  and tutor moves (Ian, 2026-10-04).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to

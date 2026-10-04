@@ -126,6 +126,15 @@ read, so they are written here too. Each is a standing instruction.
   and the full reading of the two or three left (Ian, 2026-10-02). The
   play-out planner runs at budget 64, and finalists whose win rates lie
   within 5 points count as equal before faints decide (Ian, 2026-10-03).
+  An ordinary trainer is read blind: each simulated fight draws a random six
+  from the stronger half of the box, never one held below the cap (Ian,
+  2026-10-04). Targets (Ian, 2026-10-04): an ordinary trainer is won cleanly
+  80 to 85 percent of the time (replacing the provisional 70 to 80); no boss
+  reads above 95 percent won; a boss's difficulty spikes or drops with how
+  important it is, and Oxide's hardest bosses top out around the easiest of
+  Kaizo's read on the same box (about 80 percent won). The numbers order
+  fights rather than measure them absolutely, and Oxide is not meant to be
+  beaten on a first run.
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
@@ -210,7 +219,11 @@ read, so they are written here too. Each is a standing instruction.
   boss carries at most one forced trade (Explosion, Self-Destruct, Destiny
   Bond), none before Fantina, never made certain by Custap or priority, and
   an ordinary trainer carries none. No level-1 Focus Sash and Endeavor sets.
-  No overlevelled optional trainers. Oxide adds some double battles. Teams
+  No overlevelled optional trainers. Oxide adds some double battles. An
+  ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
+  on), team sizes vary from fight to fight, and ordinary trainers are
+  genuinely dangerous: two-Pokemon teams are too trivial (Ian, 2026-10-04).
+  Trainers may use TM and tutor moves freely (Ian, 2026-10-04). Teams
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
