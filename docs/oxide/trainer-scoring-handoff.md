@@ -31,8 +31,14 @@ boss bands and the alpha's boss order (Ian, 2026-10-06; steps 15 and 16 of
 scorer reads an extracted copy of that commit with no code change; a
 planted edit to Roark's file showed up in its reading and not in this
 branch's (checked 2026-10-06). A boss team that lands after the QA ROM is
-re-read the same way before the alpha ROM is fixed. Until then nothing is
-queued but step 5's boss bands, when the balance track reaches them.
+re-read the same way before the alpha ROM is fixed. Nothing is queued
+until then: step 5's boss bands are folded into goal 3 (the Overseer,
+2026-10-06). Your ruling that luck items are fair on trainers (Quick Claw,
+Custap Berry, Focus Band, King's Rock, Razor Fang, and the evasion items
+when rare) needs no scorer work: the simulator already plays each at its
+odds. In the very unlucky fights King's Rock and Razor Fang's flinch rolls
+twice, with the other secondary effects; Quick Claw and Focus Band stay at
+their real odds, since your stress test doubles status and crit checks.
 
 | Step | Takes |
 |---|---|
