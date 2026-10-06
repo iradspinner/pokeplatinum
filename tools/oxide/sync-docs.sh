@@ -62,6 +62,7 @@ copy "prompt-audit-2026-10-02.md" "notes/prompt-audit-2026-10-02.md"
 copy "plugin-review-2026-10-06.md" "notes/plugin-review-2026-10-06.md"
 copy "learnset-checks.md" "notes/learnset-checks.md"
 copy "learnset-baseline.md" "notes/learnset-baseline.md"
+copy "learnset-insights.md" "notes/learnset-insights.md"
 for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
     copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
 done
