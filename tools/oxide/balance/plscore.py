@@ -36,8 +36,11 @@ SEED = 20260930
 # named by the player's starter (the data files are named that way too).
 # Trainers the placements leave to their map's split although the player
 # meets them later: Officer Somnu at Lake Verity is the return visit
-# before Mars 2 (docs/oxide/pairwise-candidates.md, pair 23).
-SPLIT_OVERRIDE = {420: "Candice"}
+# before Mars 2 (docs/oxide/pairwise-candidates.md, pair 23); the two
+# Jubilife grunts of the tag battle beside Lucas or Dawn come only after
+# Roark, since the Oreburgh Gym's win sets VAR_JUBILIFE_CITY_STATE to 3 and
+# Jubilife's script starts the battle at 3 (Ian, 2026-10-04).
+SPLIT_OVERRIDE = {420: "Candice", 414: "Gardenia", 415: "Gardenia"}
 STARTER_VARIANT = {"SPECIES_TURTWIG": "TURTWIG", "SPECIES_CHIMCHAR": "CHIMCHAR", "SPECIES_PIPLUP": "PIPLUP"}
 
 
