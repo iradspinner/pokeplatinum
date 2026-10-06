@@ -34,9 +34,11 @@ queued but step 5's boss bands, when the balance track reaches them.
 
 | Step | Takes |
 |---|---|
-| Goal 3, once: the bosses by the team search | about 1 to 2 hours a boss; about 22 hours for all 39, or 15 with one set of labels a boss |
+| Goal 3 in all (alpha-readiness step 15): its 80 single battles | about 35 hours of machine time |
+| of which the 39 bosses, by the team search over five boxes each | about 22 to 23 hours |
+| of which the 41 Ace Trainers, read blind as ordinary trainers | about 9 to 17 hours, 30 to 60 minutes each on 12 workers (scaled from Fantina's split, not yet measured late) |
 | Re-reading a boss whose team lands after the QA ROM | about 1 to 2 hours for one boss alone; about 35 minutes each when several run together |
-| Goal 3's ordinary trainers, read blind | 5 to 30 minutes each, several at once |
+| Goal 3's 8 tag battles | not in the total; they wait for the doubles planner below |
 | Double and tag battles, on the backlog: build and check the planner for them | about 3 to 4 working sessions, then your check of one hand-played double |
 | Then reading the 60 or so doubles | roughly 60 to 100 hours of machine time, if a double costs 2 to 3 times a single |
 
