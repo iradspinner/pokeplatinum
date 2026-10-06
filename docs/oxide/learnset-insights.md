@@ -363,3 +363,43 @@ The rules drawn from it:
   Captivate.
 - **R2 and R5 together.** A line can be short of attacks and of utility at
   once; both counts are checked.
+
+## 7. Popplio (2026-10-06)
+
+Shown: Popplio from Charap's trade in Eterna City, at the level of the
+Pokemon handed over, from a list of Pound, Water Gun, Disarming Voice 4,
+Baby-Doll Eyes 7, Life Dew 10 and Aqua Jet 14; Brionne at 16 learns Icy Wind
+19, Encore 24, Sing 28, Scald 34, Draining Kiss 39 and later; a Popplio held
+gets Scald at 31, a split earlier; Primarina (Water/Fairy) at 36 learns
+Sparkling Aria 36, Draining Kiss 40, Perish Song 46, Hyper Voice 51, Flip Turn
+56, Moonblast 64 and Hydro Pump 70.
+
+Ian's verdict, verbatim (his numbering, with two 4s):
+
+1. Icy wind, encore, sing, disarming voice, baby doll eyes, life dew means
+   this is at worst a great moveset early on. Even aqua jet is very useful
+   as priority is always a boon.
+2. The scald hold is fine, as you get to decide if you want the power
+   immediately in Gardenia split with Brionne or delay to Fantina with a
+   better water move.
+3. Sing=Okay, inacurate but good. Baby-doll eyes=good, priority is always
+   good. Life Dew = Good.
+4. Yes, encore on this is probably still fine.
+4. By far (and I really mean by a massive amount) this is the highest
+   quality moveset so far, sans coverage options.
+
+The rules drawn from it:
+
+- **R28, Popplio is the model early kit.** Many good utility moves (Icy
+  Wind, Encore, Sing, Baby-Doll Eyes, Life Dew), an attack of each type
+  (Water Gun, Disarming Voice) and a priority attack (Aqua Jet) make a great
+  moveset from the first split. It is the line to measure the others
+  against, its missing coverage aside.
+- **R29, priority is always a boon.** A priority attack is worth having even
+  at 40 power, and priority on a status move (Baby-Doll Eyes) raises it too.
+- **R8 again, a good hold.** Power now (Brionne's stats in Gardenia's split)
+  against a better move a split later (Popplio's Scald in Fantina's) is the
+  kind of cross-split choice a hold should offer.
+- **R7, more tiers.** Good: Baby-Doll Eyes, Life Dew. Okay: Sing (inaccurate
+  but good). Encore on Popplio is fine.
+- **R5 again.** Even the best kit so far lacks coverage.
