@@ -29,6 +29,7 @@ evolutions taken, no new captures (a real box at 38 would be stronger).
 
     PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.plstudy taylor catherine grunt section
 """
+import collections
 import json
 import os
 import random
@@ -180,7 +181,35 @@ def examples():
                               lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
         "kaizo_fantina": (("Leader Fantina", 0), "Fantina", 33,
                           lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
-    }
+    } | comb_roark(roark)
+
+
+# The study's comb of Roark's split (the Overseer, 2026-10-06), read from
+# out/comb/ as the examples are. Ordinary trainers blind at the cap in force
+# when met: 11 before Barry 2, on goal 2's Barry 2 box with its own moves,
+# and 16 from Route 203 on, on the hand run's Roark box with the scorer's
+# moves. Roark at 16 and Barry 2 at 11 (a Piplup player's file) by the team
+# search on the boxes goal 2 and the Kaizo anchor read them on. The Jubilife
+# tag pair, a double in Gardenia's split, waits for doubles.
+COMB = os.path.expanduser("~/oxide-trials/kaizo-teams/out/comb")
+COMB_BEFORE_BARRY_2 = ["youngster_tristan", "youngster_logan", "lass_natalie", "school_kid_harrison",
+                       "school_kid_christine"]
+COMB_AT_16 = ["youngster_michael", "lass_madeline", "lass_kaitlin", "youngster_dallas", "youngster_sebastian",
+              "camper_curtis", "picnicker_diana", "worker_colin", "worker_mason", "youngster_jonathon",
+              "youngster_darius"]
+
+
+def comb_roark(roark):
+    path = lambda stem: os.path.join(COMB, stem + ".json")    # noqa: E731
+    out = {f"comb_{s}": (path(s), "Roark", 11, lambda: goal2_records("barry_2"), stock({}), "blind")
+           for s in COMB_BEFORE_BARRY_2}
+    out |= {f"comb_{s}": (path(s), "Roark", 16, lambda: fixed(plteam_test.box(plstep3.ROARK, 16)),
+                          stock(roark["boosters"]), "blind") for s in COMB_AT_16}
+    out["comb_leader_roark"] = (path("leader_roark"), "Roark", 16, lambda: plteam_test.box(plstep3.ROARK, 16),
+                                stock(roark["boosters"]), "search")
+    out["comb_rival_route_203_piplup"] = (path("rival_route_203_piplup"), "Roark", 11,
+                                          lambda: plgoal2.box("barry_2"), stock({}), "search")
+    return out
 
 
 def pooled(tally):
@@ -192,13 +221,23 @@ def pooled(tally):
 
 
 def draw(rng, keys, n):
-    """n different sixes drawn at random from the box."""
-    out = []
-    while len(out) < n:
-        s = tuple(sorted(rng.sample(keys, min(6, len(keys))), key=keys.index))
-        if s not in out:
-            out.append(s)
-    return out
+    """n sixes drawn at random from the pool, one for each fight, each
+    draw on its own: a small pool repeats a six, as a player can. (Drawing
+    n different sixes looped forever once the stronger half of a box left
+    fewer than n of them: eight members make 28.)"""
+    return [tuple(sorted(rng.sample(keys, min(6, len(keys))), key=keys.index)) for _ in range(n)]
+
+
+def read_drawn(st, boss_keys, flags, sixes, luck, seed0, procs):
+    """The drawn sixes read one fight per draw: a six drawn k times is read
+    on k fights in one call, so that its fights take different seeds
+    (plteam.read seeds a six by its members and the fights it has had)."""
+    counts = collections.Counter(sixes)
+    tally = None
+    for k in sorted(set(counts.values())):
+        tally = plteam.read(st, boss_keys, flags, [s for s, c in counts.items() if c == k], k, {}, luck,
+                            seed0=seed0, procs=procs, tally=tally)
+    return tally
 
 
 def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11, cap=None, split=None,
@@ -208,8 +247,8 @@ def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11, 
     Ian, 2026-10-04)."""
     rng = random.Random(seed)
     keys = plteam.blind_pool(st, keys, split, cap, leave_out)
-    a = plteam.read(st, boss_keys, flags, draw(rng, keys, real), 1, {}, "real", seed0=seed, procs=procs)
-    b = plteam.read(st, boss_keys, flags, draw(rng, keys, unlucky), 1, {}, "unlucky", seed0=seed + 1, procs=procs)
+    a = read_drawn(st, boss_keys, flags, draw(rng, keys, real), "real", seed, procs)
+    b = read_drawn(st, boss_keys, flags, draw(rng, keys, unlucky), "unlucky", seed + 1, procs)
     rows = [r for rs in a.rows.values() for r in rs]
     return pooled(a), pooled(b), plteam.losing_enemies(rows), fainted(rows)
 
@@ -329,4 +368,4 @@ if __name__ == "__main__":
     for example in sys.argv[1:]:
         # "taylor:Starly" reads Taylor with Starly left out of the box.
         example, _sep, left = example.partition(":")
-        run(example, without=tuple(x for x in left.split(",") if x))
+        run(example, procs=int(os.environ.get("STUDY_PROCS", 12)), without=tuple(x for x in left.split(",") if x))

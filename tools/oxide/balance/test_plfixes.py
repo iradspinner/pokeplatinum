@@ -436,8 +436,13 @@ def blind_pool_checks():
     below = [st["pokemon"][k]["species"] for k in keys if k not in ready]
     ok = (len(pool_) == max(6, (len(ready) + 1) // 2) and not set(pool_) - set(ready)
           and min(power[k] for k in pool_) >= max(power[k] for k in dropped) and below)
-    return [("the blind pool is the stronger half at the cap, never one held below it",
-             ok, f"keeps {len(pool_)} of {len(keys)}; below the cap and out: {', '.join(below)}")]
+    # 75 fights from eight members, which make only 28 different sixes.
+    from . import plstudy
+    drawn = plstudy.draw(random.Random(1), pool_, 75)
+    ok = ok and len(drawn) == 75 and all(len(s) == 6 and set(s) <= set(pool_) for s in drawn)
+    return [("the blind pool is the stronger half at the cap, never one held below it; 75 draws from it",
+             ok, f"keeps {len(pool_)} of {len(keys)}; below the cap and out: {', '.join(below)}; "
+                 f"{len(set(drawn))} different sixes in 75 draws")]
 
 
 # The Kaizo study's worked examples brought these moves (2026-10-03).

@@ -2099,7 +2099,88 @@ Roark, so `splits.trainer_split` puts them in his split, but the Oreburgh
 Gym's win sets VAR_JUBILIFE_CITY_STATE to 3, at which Jubilife's script
 starts the battle; `trainers.csv` now has the pair first in Gardenia's
 split. No reader of this track checks a trainer's moves for legality, so
-TM and tutor moves already pass.
+TM and tutor moves already pass. Ian accepted this definition of the
+stronger half for now (2026-10-06, relayed by the Overseer), to be adjusted
+if it keeps landing on bad boxes.
+
+## The Kaizo study's comb of Roark's split (2026-10-06, for Ian's check)
+
+The study rebuilt Roark's split (`~/oxide-trials/kaizo-teams/out/comb/`,
+reported in its `roark.md`), and its expectations came from its own rough
+simulator, so the Overseer set three checks for the scorer's readings in
+their place: Roark, by the team search at 16 on the three-gym run's Roark
+box, 95 percent won or below; Barry 2, by the team search at 11 on goal 2's
+Barry 2 box (a Piplup player's file), 95 percent won or below; every other
+trainer but the Jubilife tag pair blind from the stronger half, at 11
+before Barry 2 and 16 after, 80 to 85 percent clean. `plstudy.py`'s
+`comb_*` entries read them from the study's files. Numbers are won /
+faints / clean; one of eighteen passes.
+
+| Trainer | Path | At | The study expected | Real odds | Very unlucky | Check |
+|---|---|---|---|---|---|---|
+| Youngster Tristan | required | 11 | 100 / 0.10 / 89 | 100 / 0.00 / 100 | 100 / 0.08 / 92 | fail, too easy |
+| Youngster Logan | required | 11 | 100 / 0.15 / 83 | 100 / 0.00 / 100 | 100 / 0.04 / 96 | fail, too easy |
+| Lass Natalie | required | 11 | 100 / 0.15 / 81 | 100 / 0.03 / 97 | 100 / 0.20 / 88 | fail, too easy |
+| School Kid Harrison | optional | 11 | 100 / 0.20 / 81 | 92 / 0.72 / 73 | 88 / 0.72 / 88 | fail, too hard |
+| School Kid Christine | optional | 11 | 100 / 0.15 / 85 | 100 / 0.01 / 99 | 100 / 0.00 / 100 | fail, too easy |
+| Barry 2 | required, boss | 11 | 93 / 3.0 / 0 | 100 / 2.72 / 0 | 92 / 2.76 / 0 | fail, over 95 won |
+| Youngster Michael | optional | 16 | 100 / 0.20 / 90 | 96 / 0.49 / 79 | 100 / 0.16 / 88 | fail, too hard |
+| Lass Madeline | optional | 16 | 100 / 0.15 / 84 | 100 / 0.20 / 87 | 96 / 0.60 / 72 | fail, too easy |
+| Lass Kaitlin | optional | 16 | 100 / 0.15 / 85 | 100 / 0.15 / 87 | 100 / 0.20 / 84 | fail, too easy |
+| Youngster Dallas | optional | 16 | 100 / 0.15 / 88 | 100 / 0.36 / 83 | 88 / 1.32 / 56 | pass |
+| Youngster Sebastian | optional | 16 | 100 / 0.10 / 87 | 100 / 0.01 / 99 | 100 / 0.00 / 100 | fail, too easy |
+| Camper Curtis | optional | 16 | 100 / 0.20 / 79 | 93 / 1.44 / 32 | 88 / 1.96 / 24 | fail, too hard |
+| Picnicker Diana | optional | 16 | 100 / 0.25 / 82 | 100 / 0.35 / 75 | 100 / 0.36 / 80 | fail, too hard |
+| Worker Colin | optional | 16 | 100 / 0.15 / 83 | 100 / 0.07 / 93 | 100 / 0.04 / 96 | fail, too easy |
+| Worker Mason | optional | 16 | 100 / 0.10 / 90 | 100 / 0.11 / 89 | 100 / 0.00 / 100 | fail, too easy |
+| Youngster Jonathon | optional | 16 | 100 / 0.15 / 77 | 100 / 0.15 / 87 | 100 / 0.36 / 84 | fail, too easy |
+| Youngster Darius | optional | 16 | 100 / 0.15 / 84 | 100 / 0.57 / 65 | 96 / 0.72 / 64 | fail, too hard |
+| Roark | required, boss | 16 | 90 / 2.3 / 5 | 99 / 1.91 / 4 | 92 / 2.48 / 0 | fail, over 95 won |
+
+The two bosses land on the study's faints (Barry 2's Munchlax wall takes
+146 of 204 Pokemon, Roark's Lileep 71 of 143) but are never lost at real odds;
+Barry 2's six is Piplup, Wooloo, Vulpix, Rookidee, Dottler and Krabby,
+Roark's Prinplup, Nidorino, Onix, Charmander, Steenee and Geodude.
+
+**For Ian: the blind pool leans on one weakness.** Ranked against Roark's
+split, whose trainers are mostly Rock types, the stronger half at 16 is
+Prinplup, Bibarel, Barboach, Wartortle, Krabby, Finneon, Onix and Geodude:
+all eight are weak to Grass, and Vulpix, Charmander, Corvisquire, Nidorino
+and Steenee are out. Curtis's Roselia at 14 (Mega Drain, Stun Spore,
+Growth) then makes 92 of his 108 faints, and Michael's Grass team and
+Darius's Kabuto read hard for the same reason. At 11 the box keeps nine
+members at the cap, so the half is the six-member floor, the same six in
+every fight, four of them Water types; Harrison's Abra, with Charge Beam,
+makes 45 of his 54 faints while the other four trainers there read
+trivial. Ian accepted the stronger half "to be adjusted if it keeps landing
+on bad boxes" (2026-10-06), and these are bad boxes. As a check: "a blind
+pool has no weakness shared by more than half its members", verified by
+the session on every reading's pool, fails today at both caps. One
+adjustment: keep the stronger half, but swap its weakest members for the
+strongest that resist the type most of the pool fears. His decision; a
+re-read of the sixteen blind trainers then takes about 1.5 hours.
+
+## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
+
+Ian's plan of learnsets by check and verify (`docs/oxide/learnset-checks.md`)
+gives this track checks 2 (a niche) and 3 (move use), both from the team
+search's matchup screen alone. `plniche.py` runs the screen on goal 3's 39
+kept boss fights (Ace Trainers and doubles left out), three rolled boxes
+each, once with oxide's level-up lists and once with learnset v3's, which
+live only in `docs/oxide/learnset-proposal.tsv` on `balance-learngen-v2`
+(`plteam.mon_data` reads another set of lists when `OXIDE_LEARNSETS` names
+one). The results, JSON and a summary, are in
+`~/oxide-trials/learnset-baseline/`; the balance job folds them into its
+report. The screen counts 38 lines taken by no boss of their window under
+either set, leads rather than verdicts with the support-like marked, and
+134 moves never picked under oxide's lists against 125 under v3's; v3
+changes the screen's picture for 13 lines only. Two limits the report
+names: a box over 30 members is cut first by summed margins (from
+Maylene's split on, 11 to 50 members a box), which drops walls and support
+lines before the screen sees them; and an early box is small enough that
+the top five sixes hold most of it, so "taken" says little there and the
+best six says more. Most never-picked attacks are outclassed in their
+pools, since the screen takes one attack a type.
 
 ## The cost of labelling every boss (2026-10-02)
 
