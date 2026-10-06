@@ -65,14 +65,41 @@ def move_names():
 # ---- a box member's moves -------------------------------------------------------------------------
 
 def mon_data(sp):
+    """A species' data as the tree has it; with OXIDE_LEARNSETS naming a file
+    of other level-up lists ({species: [[level, move], ...]}, such as a
+    learnset proposal's), its list there instead, the rest unchanged."""
     with open(os.path.join(REPO, "res/pokemon", sp[len("SPECIES_"):].lower(), "data.json")) as fh:
-        return json.load(fh)
+        d = json.load(fh)
+    other = _other_learnsets()
+    if sp in other:
+        d["learnset"] = dict(d.get("learnset") or {}, by_level=[list(e) for e in other[sp]])
+    return d
+
+
+_OTHER = {}
+
+
+def _other_learnsets():
+    path = os.environ.get("OXIDE_LEARNSETS")
+    if not path:
+        return {}
+    if path not in _OTHER:
+        with open(path) as fh:
+            _OTHER[path] = json.load(fh)
+    return _OTHER[path]
 
 
 def species_name(sp):
+    """A species constant as the calculator spells it."""
     blob = fs.teamscore._blob()
     n = sp[len("SPECIES_"):].replace("_", " ").title().replace(" ", "-")
-    return n if n in blob["poks"] else n.replace("-", "")
+    if n in blob["poks"] or n.replace("-", "") in blob["poks"]:
+        return n if n in blob["poks"] else n.replace("-", "")
+    # Regional forms and punctuated names (Ninetales-Alola, Mr. Rime), which
+    # the calculator fails on under the plain spelling.
+    from ..encounters import canon
+    alt = canon.showdown_name(sp)
+    return alt if alt in blob["poks"] else n.replace("-", "")
 
 
 def chain(sp, caught, cap, holds=None, magnetic=False):
