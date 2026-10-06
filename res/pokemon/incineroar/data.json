@@ -86,11 +86,11 @@
             ],
             [
                 38,
-                "MOVE_FLAMETHROWER"
+                "MOVE_LOW_SWEEP"
             ],
             [
-                41,
-                "MOVE_BULLDOZE"
+                40,
+                "MOVE_FLAMETHROWER"
             ],
             [
                 42,
@@ -105,8 +105,8 @@
                 "MOVE_KNOCK_OFF"
             ],
             [
-                54,
-                "MOVE_LEECH_LIFE"
+                50,
+                "MOVE_BULLDOZE"
             ],
             [
                 55,
@@ -114,31 +114,27 @@
             ],
             [
                 57,
+                "MOVE_LEECH_LIFE"
+            ],
+            [
+                59,
+                "MOVE_SWAGGER"
+            ],
+            [
+                64,
                 "MOVE_BULK_UP"
             ],
             [
-                60,
-                "MOVE_DRAIN_PUNCH"
-            ],
-            [
-                62,
-                "MOVE_U_TURN"
-            ],
-            [
-                65,
-                "MOVE_EARTHQUAKE"
-            ],
-            [
                 66,
-                "MOVE_SHADOW_CLAW"
-            ],
-            [
-                67,
-                "MOVE_CLOSE_COMBAT"
+                "MOVE_EARTHQUAKE"
             ],
             [
                 69,
                 "MOVE_OUTRAGE"
+            ],
+            [
+                72,
+                "MOVE_CLOSE_COMBAT"
             ]
         ],
         "by_tm": [],

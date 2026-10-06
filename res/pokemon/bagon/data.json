@@ -43,6 +43,10 @@
             [ 16, "MOVE_HEADBUTT" ],
             [ 20, "MOVE_FOCUS_ENERGY" ],
             [ 25, "MOVE_EMBER" ],
+            [ 31, "MOVE_DRAGON_BREATH" ],
+            [ 35, "MOVE_ZEN_HEADBUTT" ],
+            [ 40, "MOVE_SCARY_FACE" ],
+            [ 46, "MOVE_CRUNCH" ],
             [ 50, "MOVE_DRAGON_CLAW" ],
             [ 55, "MOVE_DOUBLE_EDGE" ]
         ],

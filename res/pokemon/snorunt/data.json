@@ -46,7 +46,7 @@
             [ 22, "MOVE_OMINOUS_WIND" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
-            [ 34, "MOVE_DRAINING_KISS" ],
+            [ 35, "MOVE_DRAINING_KISS" ],
             [ 37, "MOVE_ICE_SHARD" ],
             [ 46, "MOVE_ICE_BEAM" ]
         ],
@@ -87,7 +87,8 @@
             "MOVE_SPIKES",
             "MOVE_ROLLOUT",
             "MOVE_DISABLE",
-            "MOVE_BIDE"
+            "MOVE_BIDE",
+            "MOVE_DESTINY_BOND"
         ]
     },
     "evolutions": [

@@ -61,6 +61,10 @@
                 "MOVE_SUCKER_PUNCH"
             ],
             [
+                27,
+                "MOVE_STRENGTH_SAP"
+            ],
+            [
                 29,
                 "MOVE_HEX"
             ],
@@ -69,16 +73,8 @@
                 "MOVE_AROMATHERAPY"
             ],
             [
-                33,
-                "MOVE_STRENGTH_SAP"
-            ],
-            [
                 36,
                 "MOVE_GIGA_DRAIN"
-            ],
-            [
-                39,
-                "MOVE_SCALD"
             ],
             [
                 42,
@@ -95,7 +91,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [
         [

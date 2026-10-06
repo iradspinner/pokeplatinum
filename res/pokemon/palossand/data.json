@@ -97,7 +97,7 @@
                 "MOVE_SHADOW_BALL"
             ],
             [
-                47,
+                46,
                 "MOVE_SLUDGE_BOMB"
             ],
             [
@@ -105,24 +105,20 @@
                 "MOVE_EARTH_POWER"
             ],
             [
-                54,
+                53,
                 "MOVE_PSYCHIC"
-            ],
-            [
-                55,
-                "MOVE_FLASH_CANNON"
             ],
             [
                 57,
                 "MOVE_SHORE_UP"
             ],
             [
-                60,
-                "MOVE_ENERGY_BALL"
+                61,
+                "MOVE_FLASH_CANNON"
             ],
             [
-                65,
-                "MOVE_CONFUSE_RAY"
+                63,
+                "MOVE_ENERGY_BALL"
             ]
         ],
         "by_tm": [],

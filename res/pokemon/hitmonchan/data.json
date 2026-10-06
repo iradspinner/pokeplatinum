@@ -49,7 +49,7 @@
             [ 31, "MOVE_THUNDER_PUNCH" ],
             [ 32, "MOVE_FIRE_PUNCH" ],
             [ 36, "MOVE_SKY_UPPERCUT" ],
-            [ 41, "MOVE_BODY_SLAM" ],
+            [ 41, "MOVE_DOUBLE_EDGE" ],
             [ 51, "MOVE_COUNTER" ],
             [ 56, "MOVE_CLOSE_COMBAT" ]
         ],

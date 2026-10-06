@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_HEALING_WISH"
-            ],
-            [
-                1,
                 "MOVE_PSYCHO_CUT"
             ],
             [
@@ -106,14 +102,14 @@
             ],
             [
                 40,
-                "MOVE_OVERHEAT"
+                "MOVE_BLAZE_KICK"
             ],
             [
                 43,
                 "MOVE_TAKE_DOWN"
             ],
             [
-                46,
+                45,
                 "MOVE_DRILL_RUN"
             ],
             [
@@ -121,8 +117,8 @@
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
-                54,
-                "MOVE_JUMP_KICK"
+                51,
+                "MOVE_PSYCHO_CUT"
             ],
             [
                 56,
@@ -130,23 +126,19 @@
             ],
             [
                 58,
-                "MOVE_PLAY_ROUGH"
+                "MOVE_THROAT_CHOP"
             ],
             [
-                60,
-                "MOVE_POISON_JAB"
-            ],
-            [
-                63,
+                64,
                 "MOVE_FLARE_BLITZ"
             ],
             [
-                65,
-                "MOVE_HIGH_HORSEPOWER"
+                66,
+                "MOVE_PLAY_ROUGH"
             ],
             [
-                68,
-                "MOVE_ZEN_HEADBUTT"
+                72,
+                "MOVE_DOUBLE_EDGE"
             ]
         ],
         "by_tm": [],

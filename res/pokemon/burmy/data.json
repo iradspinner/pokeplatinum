@@ -42,10 +42,10 @@
     ],
     "learnset": {
         "by_level": [
+            [ 8, "MOVE_ROOST" ],
+            [ 9, "MOVE_CONFUSION" ],
             [ 10, "MOVE_TACKLE" ],
             [ 15, "MOVE_BUG_BITE" ],
-            [ 17, "MOVE_CONFUSION" ],
-            [ 18, "MOVE_ROOST" ],
             [ 20, "MOVE_HIDDEN_POWER" ]
         ],
         "by_tm": [  ],

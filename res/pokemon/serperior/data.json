@@ -93,7 +93,7 @@
                 "MOVE_GIGA_DRAIN"
             ],
             [
-                43,
+                42,
                 "MOVE_KNOCK_OFF"
             ],
             [
@@ -109,28 +109,32 @@
                 "MOVE_SYNTHESIS"
             ],
             [
-                54,
-                "MOVE_BODY_SLAM"
-            ],
-            [
                 55,
                 "MOVE_LEAF_STORM"
             ],
             [
                 57,
-                "MOVE_BREAKING_SWIPE"
+                "MOVE_SLAM"
             ],
             [
-                60,
+                59,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                61,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                64,
                 "MOVE_DRAGON_PULSE"
             ],
             [
-                62,
-                "MOVE_LEECH_SEED"
+                66,
+                "MOVE_BREAKING_SWIPE"
             ],
             [
-                65,
-                "MOVE_SLAM"
+                72,
+                "MOVE_LEECH_SEED"
             ]
         ],
         "by_tm": [],

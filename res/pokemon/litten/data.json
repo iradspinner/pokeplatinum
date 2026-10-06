@@ -53,12 +53,12 @@
                 "MOVE_EMBER"
             ],
             [
-                10,
-                "MOVE_LICK"
+                9,
+                "MOVE_PARTING_SHOT"
             ],
             [
-                12,
-                "MOVE_SWAGGER"
+                10,
+                "MOVE_LICK"
             ],
             [
                 14,
@@ -83,10 +83,6 @@
             [
                 38,
                 "MOVE_FLAMETHROWER"
-            ],
-            [
-                42,
-                "MOVE_PARTING_SHOT"
             ],
             [
                 45,

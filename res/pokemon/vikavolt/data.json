@@ -81,20 +81,20 @@
                 "MOVE_CRUNCH"
             ],
             [
+                33,
+                "MOVE_DISCHARGE"
+            ],
+            [
                 36,
                 "MOVE_SIGNAL_BEAM"
             ],
             [
+                38,
+                "MOVE_MUD_SHOT"
+            ],
+            [
                 40,
-                "MOVE_POLLEN_PUFF"
-            ],
-            [
-                48,
-                "MOVE_DISCHARGE"
-            ],
-            [
-                54,
-                "MOVE_ENERGY_BALL"
+                "MOVE_FLASH_CANNON"
             ],
             [
                 55,
@@ -102,11 +102,7 @@
             ],
             [
                 57,
-                "MOVE_AIR_SLASH"
-            ],
-            [
-                60,
-                "MOVE_FLASH_CANNON"
+                "MOVE_ENERGY_BALL"
             ],
             [
                 62,
@@ -117,12 +113,12 @@
                 "MOVE_THUNDERBOLT"
             ],
             [
-                66,
-                "MOVE_IRON_DEFENSE"
+                70,
+                "MOVE_VOLT_SWITCH"
             ],
             [
-                68,
-                "MOVE_VOLT_SWITCH"
+                72,
+                "MOVE_AIR_SLASH"
             ]
         ],
         "by_tm": [],

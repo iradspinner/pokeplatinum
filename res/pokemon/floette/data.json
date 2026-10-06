@@ -65,36 +65,32 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
-                30,
+                21,
                 "MOVE_DRAINING_KISS"
+            ],
+            [
+                24,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                26,
+                "MOVE_AROMATHERAPY"
             ],
             [
                 31,
                 "MOVE_GIGA_DRAIN"
             ],
             [
-                32,
-                "MOVE_MAGICAL_LEAF"
-            ],
-            [
-                33,
-                "MOVE_AROMATHERAPY"
+                34,
+                "MOVE_CHARM"
             ],
             [
                 36,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
-                38,
-                "MOVE_WISH"
-            ],
-            [
                 40,
                 "MOVE_HELPING_HAND"
-            ],
-            [
-                42,
-                "MOVE_PSYCHIC_NOISE"
             ],
             [
                 45,

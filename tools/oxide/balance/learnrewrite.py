@@ -61,6 +61,7 @@ BASE = "oxide"
 SPLITS = lc.SPLITS
 LOG = os.path.join(data.ROOT, "tools", "oxide", "balance", "learnrewrite_log.tsv")
 MAX_ENTRIES = 34                 # include/struct_defs/species.h, MAX_LEARNSET_ENTRIES
+MAX_EGG_MOVES = 16               # include/constants/daycare.h
 GEN4_LAST_ID = 467               # Shadow Force, the last move Platinum has
 
 
@@ -292,11 +293,22 @@ def canon_key(species):
     return canon_ls.showdown_id(data.ROOT, species)
 
 
-@functools.lru_cache(maxsize=None)
 def links(fam):
     """{MOVE_X: weight}: the moves the line is linked to by any of its
     members: Oxide's lists (level-up 1.0; TM, tutor and egg 0.85), the
     canon lists, and Kaizo's lists (1.0)."""
+    return links_of(frozenset(lc.families()[fam]))
+
+
+def branch_links(holder):
+    """The links of the holder's own branch (itself, what it evolves from and
+    into): one branch's Moonlight is no link for its sibling (the exam's
+    regressions, 2026-10-06: the same filler on every branch of a line)."""
+    return links_of(frozenset(lc.families()[lc.family(holder)]) & related(holder))
+
+
+@functools.lru_cache(maxsize=None)
+def links_of(members):
     per, _lv, _n = canon_index()
     kz = lc.learnstudy_kaizo()
     names = lc._by_compact_name()
@@ -306,8 +318,10 @@ def links(fam):
     def add(mv, w):
         if mv in M():
             out[mv] = max(out.get(mv, 0), w)
-    for sp in lc.families()[fam]:
-        rec = pokedex.load(data.ROOT, sp) or {}
+    for sp in sorted(members):
+        # Read from Oxide's lists before the rewrite, so a run's own egg-list
+        # changes never feed the next run.
+        rec = pokedex.load(data.ROOT, sp, ref=lc.BASE_REF) or {}
         for _lv, mv in lc.learnset(BASE, sp):
             add(mv, 1.0)
         for label in rec.get("by_tm") or []:
@@ -329,7 +343,7 @@ def species_links(species, const):
     per, _lv, _n = canon_index()
     if const in per.get(canon_key(species), {}):
         return True
-    rec = pokedex.load(data.ROOT, species) or {}
+    rec = pokedex.load(data.ROOT, species, ref=lc.BASE_REF) or {}
     machines = pokedex.machines(data.ROOT)
     return (any(m == const for _l, m in lc.learnset(BASE, species))
             or const in (rec.get("by_tutor") or []) or const in (rec.get("egg_moves") or [])
@@ -366,7 +380,7 @@ def plausibility(const, fam, holder):
     an attack, 0.35 for one of the holder's types and 0.25 for a coverage
     type the line reaches elsewhere; 0.15 for an unlinked status move. Any
     working move may come in (Ian, 2026-10-06), but a linked one comes first."""
-    w = links(fam).get(const)
+    w = branch_links(holder).get(const)
     if w:
         return w
     if signature(const, fam):
@@ -436,7 +450,9 @@ RAW_MARGIN = 15   # an off-stat attack may exceed the ceiling by its stat share,
 
 
 def within_ceiling(const, holder, split_idx):
-    cover = M()[const]["type"] not in lc.types_of(holder)
+    # Normal hits nothing hard, so it is no coverage (learncheck.coverage)
+    # and takes the plain ceiling.
+    cover = M()[const]["type"] not in lc.types_of(holder) and M()[const]["type"] != "NORMAL"
     cap = ceiling(holder, split_idx, cover)
     eff = lc.effective_power(const)
     return eff * ratio(const, holder) <= cap and eff <= cap + RAW_MARGIN
@@ -501,6 +517,13 @@ class Draft:
 
     def __init__(self):
         self.lists = {sp: [list(e) for e in lc.learnset(BASE, sp)] for sp in lc.species_set()}
+        # The egg lists as they were before the rewrite, so a second run
+        # starts from the same place as the first.
+        self.eggs = {sp: list((pokedex.load(data.ROOT, sp, ref=lc.BASE_REF) or {}).get("egg_moves") or [])
+                     for sp in lc.species_set()}
+        # {family: {MOVE_X: {species}}}: moves added only to fill a count, so
+        # one filler is not handed to every branch of a line (Ian, 2026-10-06).
+        self.filler = collections.defaultdict(lambda: collections.defaultdict(set))
         self.log = []
 
     def note(self, species, level, move, action, rule, detail=""):
@@ -533,18 +556,47 @@ class Draft:
         self.note(species, level, entry[1], f"moved from {old}", rule, detail)
 
     def to_palette(self, species, entry, rule, detail=""):
-        """Put an entry at level 1, first in the list, where a capture drops
-        it before any other (the trainers' palette, R26 and R18). A species
-        the player can catch knows its level-1 entries when caught low, so
-        there the entry goes instead; the trainers keep it through the egg
-        list and the evolved forms."""
+        """Take an entry off the level-up list for the trainers' palette. A
+        trainer-only move (R26) goes to the egg list of the line's first
+        stage, which trainers' teams draw on and no catch ever knows (Ian,
+        2026-10-06: a trainer's move never lands in a wild catch's four).
+        Anything else, or an R26 move with that list full, goes to level 1,
+        first in the list, where a capture drops it before any other (R18,
+        R7). A species the player can catch knows its level-1 entries when
+        caught low, so there the entry just goes."""
         self.lists[species].remove(entry)
-        if catchable(species) and rule != "R26":
-            self.note(species, entry[0], entry[1], "removed", rule, detail + "; a catch would know it at level 1")
+        mv = entry[1]
+        egg = lc.family(species)
+        if rule == "R26" and has_egg_list(egg):
+            if mv in self.eggs[egg]:
+                self.note(species, entry[0], mv, "removed", rule, f"{detail}; {lc.species_name(egg)}'s egg list has it")
+                return
+            if len(self.eggs[egg]) < MAX_EGG_MOVES:
+                self.eggs[egg].append(mv)
+                self.note(species, entry[0], mv, f"moved from {entry[0]} to {lc.species_name(egg)}'s egg list",
+                          rule, detail)
+                return
+        if catchable(species) and not (rule == "R26" and not _wild_knows_at_1(species, mv, self.lists[species])):
+            self.note(species, entry[0], mv, "removed", rule, detail + "; a catch would know it at level 1")
             return
-        if not any(m == entry[1] and lv == 1 for lv, m in self.lists[species]):
-            self.lists[species].insert(0, [1, entry[1]])
-        self.note(species, 1, entry[1], f"moved from {entry[0]} to level 1", rule, detail)
+        if not any(m == mv and lv == 1 for lv, m in self.lists[species]):
+            self.lists[species].insert(0, [1, mv])
+        self.note(species, 1, mv, f"moved from {entry[0]} to level 1", rule, detail)
+
+
+@functools.lru_cache(maxsize=None)
+def has_egg_list(species):
+    """Whether the species' file has an egg list (a legendary's or a form's may not)."""
+    path = os.path.join(data.ROOT, "res", "pokemon", pokedex.folder_of(species), "data.json")
+    with open(path, encoding="utf-8") as f:
+        return file_eggs(f.read()) is not None
+
+
+def _wild_knows_at_1(species, move, lst):
+    """Whether a wild catch would know the move with it put at level 1 of `lst`."""
+    trial = [[1, move]] + [list(e) for e in lst]
+    return any(sp == species and how in WILD and move in calc_trainers.default_moves(trial, lv)
+               for sp, _s, lv, how, _p in lc.catch_rows())
 
 
 @functools.lru_cache(maxsize=None)
@@ -580,7 +632,7 @@ def accurate_twin(const, species, fam):
         if mm["type"] != m["type"] or mm["class"] != m["class"] or never_added(c) \
                 or lc.effective_power(c) < want or c == const or plausibility(c, fam, species) <= 0:
             continue
-        key = (links(fam).get(c, 0), lc.effective_power(c))
+        key = (branch_links(species).get(c, 0), lc.effective_power(c))
         if best is None or key > best[0]:
             best = (key, c)
     return best[1] if best else None
@@ -622,11 +674,15 @@ def clean(d, species):
             d.remove(species, entry, "weather", "the player never controls weather")
         elif lc.not_working(mv):
             d.remove(species, entry, "engine", "its effect never happens")
+        elif mv in lc.UNCHECKED:
+            d.remove(species, entry, "engine", "its condition is not built yet (the move rework's cloud job)")
+        elif mv in lc.CATCH_ONLY and lv > caps()[lc.CATCH_ONLY_UNTIL]:
+            d.remove(species, entry, "catch-only", "it helps only to catch: early or not at all (Ian, 2026-10-06)")
         elif mv in DEAD_WEIGHT:
             d.remove(species, entry, "dead weight", "a weak attack that goes from every list (2026-09-27)")
         elif (species, mv) in RULED_OFF:
             d.remove(species, entry, "Ian's ruling", "Dragon Rage leaves the line's early list")
-        elif mv in TRAINER_PALETTE and lv != 1:
+        elif mv in TRAINER_PALETTE and (lv != 1 or _wild_knows(species, mv)):
             d.to_palette(species, entry, "R26", "bad for the player, good for a trainer's fight")
         elif mv in PHAZING and lv >= 2 and not _wild_knows(species, mv):
             d.to_palette(species, entry, "R18", "Roar's use is on a wild catch, which this list's level never is")
@@ -691,64 +747,73 @@ def fix_lost(d, species):
             split = lc.split_of_level(lv)
             lo, hi = lc.window(split)
             free = sorted((l for l in range(max(lo, parent_low + 1), min(hi, lowest) + 1)
-                           if l not in d.levels(parent)), key=lambda l: (abs(l - lv), l))
+                           if l not in d.levels(parent) and holds(parent, mv, l)), key=lambda l: (abs(l - lv), l))
             if free:
                 d.lists[species].remove(entry)
                 d.note(species, lv, mv, "removed", "R25", f"below {lowest}; onto {lc.species_name(parent)}'s list")
                 d.add(parent, free[0], mv, "R25", f"from {lc.species_name(species)}'s {lv}, below its {lowest}")
                 earlier.add(mv)
                 continue
-        free = next((l for l in range(lowest, top() + 1) if l not in d.levels(species)), None)
+        free = next((l for l in range(lowest, top() + 1) if l not in d.levels(species) and holds(species, mv, l)),
+                    None)
         if free is None:
             d.remove(species, entry, "R25", f"below {lowest}, the lowest level it is had at")
         else:
             d.move(species, entry, free, "R25", f"was below {lowest}, the lowest level it is had at")
 
 
-def fix_choices(d, pre, level, target):
-    """R8 for one evolution by level: a move both learn inside one split
-    goes to one level; a move the pre-evolution learns after evolving but
-    inside the evolution's split joins the evolved form at that level."""
-    split = lc.split_of_level(level)
-    if not split:
+def earliest_split(species, level):
+    """The earliest split index a player can have the stage at `level`, over
+    every way it is first had: the later of that way's split and the split
+    the level is reached in. A level below the stage's arrival counts as its
+    arrival, where a catch knows the move or the relearner offers it."""
+    best = None
+    for st, _row in lc.stage_routes(BASE).get(species, ()):
+        reached = lc.split_of_level(max(level, st.level, 1)) or SPLITS[-1]
+        x = max(si(st.split), si(reached))
+        best = x if best is None else min(best, x)
+    return best
+
+
+def holds(species, mv, level):
+    """Whether the ceilings hold a move placed or moved to `level` on the
+    species' list: an attack at the earliest split a player has it there."""
+    x = earliest_split(species, level)
+    if x is None:
+        return True
+    if is_attack(mv):
+        return within_ceiling(mv, species, x)
+    return M()[mv]["class"] != "STATUS" or utility_within(mv, species, x)
+
+
+def strong(mv):
+    """A move worth bringing within reach: an attack of WEAK_POWER or more,
+    or a status move Ian's scale rates good or better."""
+    return lc.counts(mv) and ((is_attack(mv) and lc.effective_power(mv) >= WEAK_POWER)
+                              or (M()[mv]["class"] == "STATUS" and rank(mv) >= lc.GOOD))
+
+
+def bring_up(d, species):
+    """Ian on a strong move at 6 that every catch at 29 misses (the exam,
+    2026-10-06): "a travesty with how good it is". On a line's first stage,
+    a strong move below the lowest level it is caught or hatched at, which
+    that catch does not know among its four, is lost but for the relearner;
+    where it would better that catch's kit (learncheck.move_worth), it moves
+    to that level or just after, where the ceilings hold it as for an added
+    move. An evolved stage's lost moves are fix_lost's (R25)."""
+    if pool.pre_evolutions().get(species) or species not in lowest_had():
         return
-    cap = caps()[split]
-    pre_lv = {}
-    for lv, m in d.lists[pre]:
-        if lv >= 2:
-            pre_lv.setdefault(m, lv)
-    wild_target = any(sp == target and how in WILD for sp, _s, _l, how, _p in lc.catch_rows())
-    for entry in list(d.lists[target]):
-        lv, m = entry
-        a = pre_lv.get(m)
-        if a is None or lv < level or a == lv or lc.split_of_level(a) != lc.split_of_level(lv):
-            continue
-        if a >= level:
-            # The pre-evolution's copy comes only by holding it past its
-            # evolution, and the evolved form has it in the same split: the
-            # later option always wins, so the hold goes.
-            pre_entry = next(e for e in d.lists[pre] if e[1] == m and e[0] == a)
-            d.remove(pre, pre_entry, "R8", f"{lc.species_name(target)} learns it at {lv}, in the same split")
-        elif not wild_target:
-            d.remove(target, entry, "R8", f"{lc.species_name(pre)} learns it at {a}, before evolving")
-        elif a not in d.levels(target):
-            d.move(target, entry, a, "R8", f"to {lc.species_name(pre)}'s level, inside one split")
-    by_cap = {m for lv, m in d.lists[target] if lv == 0 or level <= lv <= cap}
-    for entry in list(d.lists[pre]):
-        lv, m = entry
-        if level < lv <= cap and m not in by_cap and lc.counts(m):
-            at = lv if lv not in d.levels(target) else \
-                next((l for l in range(level, cap + 1) if l not in d.levels(target)), None)
-            if at is not None:
-                d.add(target, at, m, "R8", f"{lc.species_name(pre)} learns it at {lv}, after evolving "
-                                           f"at {level} in the same split: holding it is no choice")
-                continue
-            # No room on the evolved form in that split: the pre-evolution
-            # learns it before evolving instead, where it has a free level.
-            low = lowest_had().get(pre, 2)
-            before = next((l for l in range(level, max(low, 2) - 1, -1) if l not in d.levels(pre)), None)
-            if before is not None:
-                d.move(pre, entry, before, "R8", f"before evolving at {level}: a hold inside one split is no choice")
+    low = lowest_had()[species]
+    known = calc_trainers.default_moves(d.lists[species], low)
+    floor = min((lc.move_worth(m, species) for m in known), default=0) if len(known) >= 4 else 0
+    lost = [e for e in d.lists[species] if 2 <= e[0] < low and e[1] not in known and strong(e[1])
+            and not any(m == e[1] and lv >= low for lv, m in d.lists[species])
+            and lc.move_worth(e[1], species) > floor]
+    for entry in sorted(lost, key=lambda e: (-lc.move_worth(e[1], species), e[0])):
+        at = next((l for l in range(low, top() + 1) if l not in d.levels(species) and holds(species, entry[1], l)),
+                  None)
+        if at is not None:
+            d.move(species, entry, at, "R25", f"below {low}, the lowest catch, which would not know it")
 
 
 # ---- pass 3: fill ------------------------------------------------------------------------------------------
@@ -795,37 +860,50 @@ def stage_end(d, path, i):
     return caps()[SPLITS[min(si(nxt.split) + 1, len(SPLITS) - 1)]]
 
 
-Slot = collections.namedtuple("Slot", "path index split lo hi kind")
+Slot = collections.namedtuple("Slot", "path index split lo hi kind need")
+SPLIT_MOST = 3      # new moves a held stage learns in one split, at most (Ian, 2026-10-06)
 
 
 def windows(d, path, i):
-    """The slots a stage is planned in, each a split cut to the levels the
-    stage learns at there. "first": the path's first stage in its catch
-    split, from the catch level up (R1 and R2; a late catch or gift learns
-    everything up to the cap there, R20). "arrival": an evolved stage's own
-    split, for what the line needs by then, not for R2. "held": each split it
-    is held at the cap of (learncheck.held_splits), for R2; a final form
-    reached by an item keeps quiet for two splits (R10), but what is due by
-    then still comes in."""
+    """The slots a stage is planned in. "first": the path's first stage in
+    its catch split, from the catch level up (R1 and R2; a late catch or gift
+    learns everything up to the cap there, R20). "arrival": an evolved
+    stage's own split, for what the line needs by then, not for R2; a stage
+    reached by an item starts at the level it can first be evolved at (Ian's
+    exam verdicts, 2026-10-06). "held": each band of R2_BAND levels
+    it is held through (learncheck.held_bands), asking band_need new moves
+    (R2 by band, 2026-10-06); its split, for the ceilings, is that of the
+    band's first level. A final form reached by an item keeps quiet for two
+    splits (R10), but what is due by then still comes in."""
     st = path[i]
     a = si(st.split)
     start = st.level + 1 if i == 0 else max(st.level, 2)
     end = stage_end(d, path, i)
-    xs = [(a, "first" if i == 0 else "arrival")]
-    held = lc.held_splits(path, i)
-    if i + 1 == len(path) and st.via not in ("caught", "level"):
-        xs += [(x, "arrival") for x in range(a + 1, a + 3)]
-    xs += [(x, "held") for x in held]
+    by_item = i > 0 and st.via not in ("caught", "level")
     out = []
+    xs = [(a, "first" if i == 0 else "arrival")]
+    if i + 1 == len(path) and by_item and lc.family(st.species) not in lc.STONE_EXCEPTIONS:
+        xs += [(x, "arrival") for x in range(a + 1, a + 3)]
     for x, kind in xs:
         if x >= len(SPLITS):
             continue
         lo, hi = lc.window(SPLITS[x])
-        lo = start if kind == "first" else max(lo, start)
+        lo = start if kind == "first" or (by_item and x == a) else max(lo, start)
         hi = min(hi, end)
         if lo <= hi:
-            out.append(Slot(path, i, x, lo, hi, kind))
+            out.append(Slot(path, i, x, lo, hi, kind, 0))
+    for lo, hi in lc.held_bands(path, i):
+        need = lc.band_need(lo, hi)
+        lo, hi = max(lo, start), min(hi, end)
+        if lo <= hi:
+            out.append(Slot(path, i, si(lc.split_of_level(lo)), lo, hi, "held", need))
     return out
+
+
+def split_new(d, holder, x):
+    """How many counted moves the holder's list teaches in split x's levels."""
+    lo, hi = lc.window(SPLITS[x])
+    return len({m for lv, m in d.lists[holder] if lo <= lv <= hi and lc.counts(m)})
 
 
 class Needs:
@@ -889,8 +967,11 @@ class Needs:
         final_strong = self.strong and self.slot.index == len(self.slot.path) - 1
         # R16 is due from the line's third split: every line gets a newer move.
         later_due = self.later and self.slot.split >= self.first + 2
+        # R5's coverage over the game is due on the final form, now that the
+        # bands no longer ask a count of every split (2026-10-06).
+        final_cover = self.cover_more and self.slot.index == len(self.slot.path) - 1
         return bool(self.types or self.stab50 or self.cover_early or self.utility or self.late
-                    or final_strong or later_due)
+                    or final_strong or later_due or final_cover)
 
 
 @functools.lru_cache(maxsize=None)
@@ -916,12 +997,22 @@ def candidates(d, fam, holder, slot, needs):
     out = []
     holder_types = lc.types_of(holder)
     on_list = {m for lv, m in d.lists[holder] if lv >= 2}
-    # While R1 is short, a move the list teaches after the first split may
-    # come into it (fill_slot moves the entry), under the same ceilings.
-    later = {m for lv, m in d.lists[holder] if lv > slot.hi and not never_added(m)} if needs.r1 > 0 else set()
+    # A move the list teaches after the slot may come into it (fill_slot
+    # moves the entry), under the same ceilings: while R1 is short, or to
+    # answer something due (a form's first attack of its type, at 35).
+    later = {m for lv, m in d.lists[holder] if lv > slot.hi and not never_added(m)}
     held = set(needs.held)
+    # The line's recovery so far: one recovery move at most is added, and
+    # only to a path with none (Ian, 2026-10-06: few recovery moves a list).
+    path_moves = held | {m for st in slot.path for lv, m in d.lists[st.species] if lv >= 2}
+    line_heals = any(heals(m) for m in path_moves)
+    kin = related(holder)
     for c in family_pool(fam) + tuple(sorted(later - set(family_pool(fam)))):
         if c in held or (c in on_list and c not in later):
+            continue
+        if line_heals and heals(c):
+            continue
+        if c in lc.CATCH_ONLY and slot.split > si(lc.CATCH_ONLY_UNTIL):
             continue
         p = plausibility(c, fam, holder)
         if p <= 0:
@@ -938,10 +1029,12 @@ def candidates(d, fam, holder, slot, needs):
                                         (early_cover and lc.effective_power(c) * ratio(c, holder)
                                          <= CEILING[SPLITS[slot.split]] - 15)):
                 continue
-            # Coverage, and from Fantina's split any attack, uses a stat that
-            # fits (R15); an off-stat attack of the holder's type fills an
-            # early gap only (R3).
-            if (not stab or slot.split >= 2) and not lc.fits(c, holder):
+            # An attack uses a stat that fits (R15); an off-stat one of the
+            # holder's type fills only an early gap, a type with no attack
+            # (R11) or no usable same-type attack (check 1), in the first two
+            # splits (R3; Ian, 2026-10-06).
+            if not lc.fits(c, holder) and not (stab and slot.split <= 1 and
+                                               (m["type"] in needs.types or needs.stab50)):
                 continue
             value = attack_value(c, holder)
             if slot.split >= LATE_SPLIT and lc.effective_power(c) < LATE_POWER \
@@ -984,14 +1077,17 @@ def candidates(d, fam, holder, slot, needs):
                 why.append("R30")
             if needs.attacks < needs.utilities:
                 score += 10
+            if not stab and c in relearn_only(fam):
+                score += 30     # the line's own coverage, else only relearnt (Ian's exam verdicts, 2026-10-06)
+                why.append("relearner-only")
         else:
             listed = (lc.tier(c) or (0,))[0]    # Ian's tier or the list's, as the checks read it
             r = rank(c)                 # with the generator's reading of the unrated ones
-            if listed == lc.TIER_RANK["SSS"] and links(fam).get(c, 0) < 1.0:
+            if listed == lc.TIER_RANK["SSS"] and branch_links(holder).get(c, 0) < 1.0:
                 continue    # SSS is rationed: only with a strong link to the line
             if r < lc.TIER_RANK["Okay"]:
                 continue    # a bad, useless or terrible move is never added
-            if r < lc.GOOD and (links(fam).get(c, 0) < 1.0 or slot.split > 1):
+            if r < lc.GOOD and (branch_links(holder).get(c, 0) < 1.0 or slot.split > 1):
                 continue    # an okay one only early, and only with a strong link (Popplio's Sing)
             if not utility_within(c, holder, slot.split) or not utility_fits(d, c, holder, fam):
                 continue
@@ -1032,11 +1128,21 @@ def candidates(d, fam, holder, slot, needs):
             why.append("R16 due" if due else "R16")
         need = bool(set(why) & {"R11", "check 1", "R4", "R7", "R30", "late move", "R16 due"}) \
             or ("R5" in why and needs.cover_more)
-        link = links(fam).get(c, 0)
+        link = branch_links(holder).get(c, 0)
+        if c in later and not need and needs.r1 <= 0:
+            continue    # moving a move earlier only to fill a count is no change worth making
         if not need:
-            if m["class"] == "STATUS" and link < 1.0:
+            # A move that only fills a count must fit the line well (Ian,
+            # 2026-10-06): a status move it learns by level-up somewhere and
+            # Ian rates good or better; an attack on its better stat, linked
+            # to it or a stronger one of its own type; and never a filler a
+            # sibling branch got already, so branches do not share filler.
+            if m["class"] == "STATUS" and (link < 1.0 or rank(c) < lc.GOOD):
                 continue
-            if m["class"] != "STATUS" and link < 0.85 and not (m["type"] in holder_types and upgrade):
+            if m["class"] != "STATUS" and (not lc.fits(c, holder) or
+                                           (link < 0.85 and not (m["type"] in holder_types and upgrade))):
+                continue
+            if any(sp not in kin for sp in d.filler[fam].get(c, ())):
                 continue
         hints = level_hints(fam, c)
         if any(slot.lo - 5 <= h <= slot.hi + 5 for h in hints):
@@ -1044,6 +1150,42 @@ def candidates(d, fam, holder, slot, needs):
         out.append((score * p, c, tuple(why) or ("R2",)))
     out.sort(key=lambda e: (-e[0], e[1]))
     return out
+
+
+@functools.lru_cache(maxsize=None)
+def relearn_only(fam):
+    """The moves the line's lists teach only at level 1 of an evolved form:
+    the relearner's alone, worth almost nothing to the player (Ian,
+    2026-09-27), though they are the line's own. Ian in the exam
+    (2026-10-06): a line's "total move pool is very slim given no elemental
+    fang coverage", which its evolution had only at level 1."""
+    line = lc.families()[fam]
+    later = {m for sp in line for lv, m in lc.learnset(BASE, sp) if lv >= 2 or lv == 0}
+    return frozenset(m for sp in line if pool.pre_evolutions().get(sp)
+                     for lv, m in lc.learnset(BASE, sp) if lv == 1 and m not in later)
+
+
+@functools.lru_cache(maxsize=None)
+def related(species):
+    """The species on the holder's own branch: itself, what it evolves from
+    and what it can evolve into."""
+    up = set(pool.pre_evolutions().get(species) or [])
+    down, todo = set(), [species]
+    while todo:
+        for _n, _i, t in pool.evolutions(todo.pop()):
+            if t not in down:
+                down.add(t)
+                todo.append(t)
+    return frozenset(up | down | {species})
+
+
+def can_boost(d, holder):
+    """R21's test for Baton Pass: the holder itself has a boost to pass, on
+    its own list or one it carries from what it evolves from (the exam's
+    regressions, 2026-10-06: Baton Pass on a first stage with none of its own)."""
+    own = [holder] + list(pool.pre_evolutions().get(holder) or [])
+    setup = set(lc.setup_moves())       # check 15's reading
+    return any(mv in setup for s in own for lv, mv in d.lists[s] if lv >= 2)
 
 
 def utility_fits(d, c, holder, fam):
@@ -1061,24 +1203,40 @@ def utility_fits(d, c, holder, fam):
         if kind == "ELECTRIC" and "ELECTRIC" not in lc.types_of(holder):
             return False
     if c == "MOVE_BATON_PASS":
-        line = lc.families()[fam]
-        return any(lc.boosts(mv) for s in line for lv, mv in d.lists[s] if lv >= 2)
+        return can_boost(d, holder)
     if m["effect"] in DEFENSIVE_EFFECTS:
         s = lc.stats(holder)
         return max(s.get("defense", 0), s.get("special_defense", 0)) >= BULKY or abilities(holder) & CRIT_SHIELDS
     return True
 
 
-def pick_level(d, holder, fam, c, slot):
+def pick_level(d, holder, fam, c, slot, due=False):
     """A free level in the slot for the move: nearest a later game's or
-    Generation 4's level for it when one falls inside, else spread from the
-    moves already in the window, the earliest on a tie."""
+    Generation 4's level for it when one falls inside, else the earliest
+    free level (lists fill from the front). Outside a first split, none in a
+    split whose levels already teach SPLIT_MOST new moves, one more for a
+    move a rule makes due (`due`); a catch-only move only by Fantina's cap."""
     used = d.levels(holder)
     free = [l for l in range(slot.lo, slot.hi + 1) if l not in used]
     if flagged(holder) and lc.effective_power(c) >= 80:
         floor = kaizo_floor(fam, c)
         if floor:
             free = [l for l in free if l >= floor]
+    if slot.kind != "first":
+        free = [l for l in free if split_new(d, holder, si(lc.split_of_level(l))) < SPLIT_MOST + (1 if due else 0)]
+    else:
+        # A catch that would know fewer than KIT_AT_CATCH counted moves takes
+        # the move at or just below its level, so it knows it when caught (the
+        # exam's regressions, 2026-10-06: a line caught at 9 knew only Pound).
+        caught = slot.lo - 1
+        known = [m for m in calc_trainers.default_moves(d.lists[holder], caught) if lc.counts(m)]
+        floor = kaizo_floor(fam, c) if flagged(holder) and lc.effective_power(c) >= 80 else None
+        if len(known) < KIT_AT_CATCH and not (floor and floor > caught):
+            below = [l for l in range(caught, max(2, caught - 3) - 1, -1) if l not in used]
+            if below:
+                return below[0]
+    if c in lc.CATCH_ONLY:
+        free = [l for l in free if l <= caps()[lc.CATCH_ONLY_UNTIL]]
     if not free:
         return None
     # A late catch or gift learns its first split's moves all at once (R20),
@@ -1090,17 +1248,27 @@ def pick_level(d, holder, fam, c, slot):
     hints = [h for h in level_hints(fam, c) if slot.lo <= h <= slot.hi]
     if hints:
         return min(free, key=lambda l: (min(abs(l - h) for h in hints), l))
-    taken = sorted(l for l in used if slot.lo - 3 <= l <= slot.hi + 3)
-    return min(free, key=lambda l: (-min([abs(l - t) for t in taken] or [99]), l))
+    # Lists fill from the front (Ian, 2026-10-06): the earliest free level
+    # not next to another move, else the earliest free level.
+    return next((l for l in free if l - 1 not in used and l + 1 not in used), free[0])
 
 
 R1_EXTRA = 2      # the first split may take two moves more than R2's three (a catch may know none)
+KIT_AT_CATCH = 3  # counted moves a catch should know when caught, where the first split adds any
+
+
+DUE = {"R11", "check 1", "R4", "R7", "late move", "R30", "R16 due"}
+
+
+def count_only(why, needs):
+    """Whether an addition answers nothing the line lacks: it only fills a count (R1, R2)."""
+    return not set(why) & DUE and not ("R5" in why and needs.cover_more)
 
 
 def fill_slot(d, fam, slot, first):
-    """Add moves to one slot until it has two new moves (R2) and the line
-    lacks nothing due, at most three additions (R2's "two or three"), one
-    more in the first split (R1)."""
+    """Add moves to one slot until it has the new moves its band asks for
+    (R2) and the line lacks nothing due, at most three additions (R2's "two
+    or three"), two more in the first split (R1)."""
     path, i = slot.path, slot.index
     holder = path[i].species
     added = 0
@@ -1112,19 +1280,22 @@ def fill_slot(d, fam, slot, first):
         new = list(dict.fromkeys(new))
         r1 = _r1_short(d, path, first) if slot.kind == "first" else 0
         needs.r1 = r1
-        short = (slot.kind == "held" and len(new) < lc.R2_NEW) or r1 > 0
+        short = (slot.kind == "held" and len(new) < slot.need) or r1 > 0
         if not short and not needs.unmet():
             return
         cands = candidates(d, fam, holder, slot, needs)
         if not short:
             # Counts are met; only a move that answers something due may come in.
-            cands = [c for c in cands if set(c[2]) & {"R11", "check 1", "R4", "R7", "late move", "R30", "R16 due"}]
-        if not cands:
-            return
-        score, c, why = cands[0]
-        level = pick_level(d, holder, fam, c, slot)
+            cands = [c for c in cands if not count_only(c[2], needs)]
+        level = None
+        for score, c, why in cands:
+            level = pick_level(d, holder, fam, c, slot, due=not count_only(why, needs))
+            if level is not None:
+                break
         if level is None:
             return
+        if count_only(why, needs):
+            d.filler[fam][c].add(holder)
         rule = "R1" if r1 > 0 and "R2" in why else ", ".join(why)
         old = next((e for e in d.lists[holder] if e[1] == c and e[0] > slot.hi), None)
         if old:
@@ -1237,18 +1408,16 @@ def settle_family(d, fam):
     goes to the palette where the line has no boost to pass (R21); a setup
     move without a strong attack it boosts by the next split moves to where
     it has one (R32); a plain attack learnt after a stronger one of its type
-    and class goes (R6). R8 and R25 run first, over what the fill moved, so
-    nothing they bring back escapes the rest."""
+    and class goes (R6). R25 runs first, over what the fill moved, so
+    nothing it brings back escapes the rest. R8's choices inside one split
+    are left alone: they cost the player nothing (Ian, 2026-10-06)."""
     line = by_depth(fam)
-    for pre, level, target in lc.level_evolutions():
-        if lc.family(pre) == fam:
-            fix_choices(d, pre, level, target)
     for sp in line:
         fix_lost(d, sp)
-    if not any(lc.boosts(m) for s in line for lv, m in d.lists[s] if lv >= 2):
-        for s in line:
+    for s in line:
+        if not can_boost(d, s):
             for e in [e for e in d.lists[s] if e[1] == "MOVE_BATON_PASS" and e[0] >= 2]:
-                d.to_palette(s, e, "R21", "no boost on the line to pass")
+                d.to_palette(s, e, "R21", "no boost of its own to pass")
     last = len(SPLITS) - 1
     for path in lc.line_paths(BASE, fam):
         for lv, i, mv, how in gains(d, path):
@@ -1268,12 +1437,16 @@ def settle_family(d, fam):
         for lv, i, mv, how in gains(d, path):
             m = M()[mv]
             holder = path[i].species
-            if how in ("level-up", "evolving") and m["class"] != "STATUS" and m["effect"] in PLAIN \
-                    and not m["priority"]:
+            if how in ("level-up", "evolving") and m["class"] != "STATUS" and not m["priority"]:
+                # A plain attack, or one whose effect a stronger held attack
+                # brings as well (Mega Drain after Giga Drain), brings nothing.
                 stronger = next((n for n in held if n != mv and M()[n]["type"] == m["type"]
                                  and M()[n]["class"] == m["class"] and lc.reliable(n)
                                  and lc.effective_power(n) > lc.effective_power(mv)
-                                 and lc._acc(n) >= lc._acc(mv)), None)
+                                 and lc._acc(n) >= lc._acc(mv)
+                                 and (m["effect"] in PLAIN or (M()[n]["effect"] == m["effect"] and
+                                                               (M()[n]["effect_chance"] or 0) >= (m["effect_chance"] or 0)))),
+                                None)
                 entry = next((e for e in d.lists[holder] if e[1] == mv and e[0] == (0 if how == "evolving" else lv)),
                              None)
                 if stronger and entry:
@@ -1318,7 +1491,7 @@ def delay_demons(d, fam):
         # placed, and named as waiting on the engine change).
         power = lambda c: ONE_TURN.get(c, lc.effective_power(c) if is_attack(c) else 0)
         value = lambda c, sp: power(c) * (1.5 if M()[c]["type"] in lc.types_of(sp) else 1.0) * ratio(c, sp)
-        attacks = sorted((c for c in links(fam) if (c in ONE_TURN or (is_attack(c) and not never_added(c)))
+        attacks = sorted((c for c in branch_links(pre) if (c in ONE_TURN or (is_attack(c) and not never_added(c)))
                           and M()[c]["type"] in lc.types_of(pre) and lc.fits(c, pre)
                           and power(c) >= DEMON_POWER
                           and value(c, target) > final_best.get(M()[c]["type"], 0)
@@ -1326,10 +1499,10 @@ def delay_demons(d, fam):
                          key=lambda c: (-value(c, pre), c))
         if attacks:
             prizes.append((attacks[0], "R19", "payoff for holding past 66"))
-        setups = sorted((c for c in links(fam) if lc.boosts(c) and not never_added(c) and c not in on_pre
+        setups = sorted((c for c in branch_links(pre) if lc.boosts(c) and not never_added(c) and c not in on_pre
                          and (lc.tier(c) or (0,))[0] == lc.TIER_RANK["SSS"]
                          and utility_fits(d, c, pre, fam) and c not in final_has),
-                        key=lambda c: (-links(fam).get(c, 0), c))
+                        key=lambda c: (-branch_links(pre).get(c, 0), c))
         if setups:
             prizes.append((setups[0], "R19", "setup prize for holding past 66"))
         for (c, rule, why), want in zip(prizes, DEMON_LEVELS):
@@ -1338,14 +1511,110 @@ def delay_demons(d, fam):
                 d.add(pre, free, c, rule, f"{why}; {lc.species_name(target)} comes at {level}")
 
 
+def heals(const):
+    return const in M() and M()[const]["effect"] in lc.RECOVERY_EFFECTS
+
+
+def boost_branch(d, fam, path, j, cap, current):
+    """Add to stage j of a path the fitting move that adds most to its kit
+    by `cap` (learncheck.kit_worth), inside the ceilings and SPLIT_MOST, a
+    linked move first. Returns whether one went in."""
+    st = path[j]
+    holder = st.species
+    lo, hi = max(st.level, 2), min(cap, stage_end(d, path, j))
+    held = [m for lv, _i, m, _h in gains(d, path) if lv <= cap]
+    line_heals = any(heals(m) for m in held) or any(heals(m) for s in path for lv, m in d.lists[s.species]
+                                                    if lv >= 2)
+    best = None
+    for c in family_pool(fam):
+        if c in held or d.has(holder, c) or c in lc.CATCH_ONLY or (line_heals and heals(c)):
+            continue
+        p = plausibility(c, fam, holder)
+        if p <= 0:
+            continue
+        if M()[c]["class"] == "STATUS":
+            if branch_links(holder).get(c, 0) < 1.0 or rank(c) < lc.GOOD or not utility_fits(d, c, holder, fam):
+                continue
+            fits = lambda l: utility_within(c, holder, max(si(st.split), si(lc.split_of_level(l))))
+        else:
+            if not is_attack(c) or not lc.fits(c, holder):
+                continue
+            fits = lambda l: within_ceiling(c, holder, max(si(st.split), si(lc.split_of_level(l))))
+        gain = lc.kit_worth(held + [c], holder) - current
+        if gain <= 0:
+            continue
+        level = next((l for l in range(lo, hi + 1) if l not in d.levels(holder) and fits(l)
+                      and split_new(d, holder, si(lc.split_of_level(l))) < SPLIT_MOST), None)
+        if level is None:
+            continue
+        key = (gain * p, -level, c)
+        if best is None or key > best[0]:
+            best = (key, c, level, gain)
+    if best is None:
+        return False
+    _k, c, level, gain = best
+    d.add(holder, level, c, "check 24", f"branch parity by {lc.split_of_level(cap)}'s cap; adds {gain:.0f} to its kit")
+    return True
+
+
+def balance_branches(d, fam):
+    """Branches of one line close in worth by the split where the player
+    chooses between them (Ian's exam verdicts, 2026-10-06; check
+    24): while the weakest branch's kit is under BRANCH_PARITY of the
+    strongest's by that split's cap, the weakest branch that can take a move
+    gets one, at most three a branch."""
+    groups = collections.defaultdict(dict)
+    for path in lc.line_paths(BASE, fam):
+        for i in range(len(path) - 1):
+            groups[tuple(st.species for st in path[:i + 1])].setdefault(path[i + 1].species, (path, i + 1))
+    for key, branches in sorted(groups.items()):
+        if len(branches) < 2:
+            continue
+        cap = caps()[SPLITS[max(si(p[j].split) for p, j in branches.values())]]
+        given = collections.Counter()
+        while True:
+            ws = {t: lc.kit_worth([m for lv, _i, m, _h in gains(d, p) if lv <= cap], t)
+                  for t, (p, j) in branches.items()}
+            top_worth = max(ws.values())
+            weak = sorted((t for t in ws if ws[t] < lc.BRANCH_PARITY * top_worth and given[t] < 3),
+                          key=lambda t: ws[t])
+            if not weak:
+                break
+            for t in weak:
+                if boost_branch(d, fam, *branches[t], cap, ws[t]):
+                    given[t] += 1
+                    break
+                given[t] = 3        # nothing fits: this branch is done
+            else:
+                break
+
+
+def rework_stone_forms(d, fam):
+    """Ian's exception to R10 (learncheck.STONE_EXCEPTIONS): each stone form
+    gets a list of its own from the level it arrives at. The copies of the
+    first stage's list it carries that count for nothing or that Ian rates
+    below good go (the exam's regressions, 2026-10-06: Last Resort 50,
+    Sand-Attack and Baby-Doll Eyes on every stone form); the fill then
+    builds each form's list by its own links."""
+    if fam not in lc.STONE_EXCEPTIONS:
+        return
+    base = {m for lv, m in d.lists[fam] if lv >= 2}
+    for sp in lc.families()[fam]:
+        if sp == fam:
+            continue
+        for entry in [e for e in d.lists[sp] if e[0] >= 2 and e[1] in base]:
+            mv = entry[1]
+            if not lc.counts(mv) or (M()[mv]["class"] == "STATUS" and rank(mv) < lc.GOOD):
+                d.remove(sp, entry, "R10 exception", f"a copy of {lc.species_name(fam)}'s list; "
+                                                     "each form gets its own (Ian, 2026-10-06)")
+
+
 def plan_family(d, fam):
+    rework_stone_forms(d, fam)
     paths = lc.line_paths(BASE, fam)
     first = si(paths[0][0].split)
     for sp in by_depth(fam):
         fix_lost(d, sp)
-    for pre, level, target in lc.level_evolutions():
-        if lc.family(pre) == fam:
-            fix_choices(d, pre, level, target)
     known_move_evolutions(d, fam)
     for path in paths:
         trim_filler(d, path, first)
@@ -1368,7 +1637,15 @@ def plan_family(d, fam):
         for slot in windows(d, path, 0):
             if slot.kind == "first":
                 fill_slot(d, fam, slot, first)
+    balance_branches(d, fam)
     delay_demons(d, fam)
+    settle_family(d, fam)
+    # The settle can take an opener R1 counted (R6: Bubble after BubbleBeam),
+    # so the first split is filled once more, and settled again.
+    for path in paths:
+        for slot in windows(d, path, 0):
+            if slot.kind == "first":
+                fill_slot(d, fam, slot, first)
     settle_family(d, fam)
 
 
@@ -1423,19 +1700,19 @@ def _worth(mv, species):
     return (t[0] if t else 2) * 10
 
 
-def no_wild_self_ko(d, species):
+def no_wild_trainer_move(d, species):
     """A wild Pokemon knows its last four moves by its level, level-1
-    entries included when it is met low. A trainer-palette move that knocks
-    its user out (R26) would end the encounter, which no list may do at the
-    levels a species is met wild at (balance-rules), so where a wild catch
-    would know one, that entry goes."""
+    entries included when it is met low. A trainer-only move (R26) never
+    lands among them (Ian, 2026-10-06, on a wild catch that knew Destiny
+    Bond): where a wild catch would know one, the entry goes to the line's
+    egg list, the trainers' palette."""
     for sp, _s, lv, how, _p in lc.catch_rows():
         if sp != species or how not in WILD:
             continue
         for mv in calc_trainers.default_moves(d.lists[sp], lv):
-            if mv in lc.SELF_KO:
+            if mv in lc.TRAINER_ONLY:
                 entry = next(e for e in d.lists[sp] if e[1] == mv and e[0] <= lv)
-                d.remove(sp, entry, "R26", f"a wild catch at {lv} would know it and could end the encounter")
+                d.to_palette(sp, entry, "R26", f"a wild catch at {lv} would know it")
 
 
 def ensure_attack_at_capture(d, species):
@@ -1488,21 +1765,20 @@ def build():
     d = Draft()
     for sp in sorted(d.lists):
         clean(d, sp)
+        bring_up(d, sp)
     for fam in sorted(lc.line_catches()):
         plan_family(d, fam)
     for sp in sorted(d.lists):
         tidy(d, sp)
-    # The tidy can shift a level; the line rules run once more over the result.
-    for fam in sorted(lc.line_catches()):
-        settle_family(d, fam)
+    # The tidy can shift a level; the line rules run over the result twice,
+    # since R6 can take a pre-evolution's copy that R25 counted on.
+    for _pass in range(2):
+        for fam in sorted(lc.line_catches()):
+            settle_family(d, fam)
     for sp in sorted(d.lists):
         tidy(d, sp)
-        no_wild_self_ko(d, sp)
+        no_wild_trainer_move(d, sp)
         ensure_attack_at_capture(d, sp)
-    # A move the catch guarantee added can pair with the evolved form's copy
-    # inside one split (R8).
-    for pre, level, target in lc.level_evolutions():
-        fix_choices(d, pre, level, target)
     return d
 
 
@@ -1516,9 +1792,16 @@ def write(d):
             text = f.read()
         # Compared with the file as it is now, not with Oxide's list: a list a
         # former run changed must be rewritten even when it comes back to Oxide's.
-        if [tuple(e) for e in lst] == [tuple(e) for e in jsonstyle.get_value(text, ["learnset", "by_level"])]:
+        new = text
+        if [tuple(e) for e in lst] != [tuple(e) for e in jsonstyle.get_value(text, ["learnset", "by_level"])]:
+            new = render(new, lst)
+        eggs = file_eggs(text)
+        if eggs is None and d.eggs[sp]:
+            raise SystemExit(f"{sp} has no egg list to write {d.eggs[sp]} into")
+        if eggs is not None and d.eggs[sp] != eggs:
+            new = render_eggs(new, d.eggs[sp])
+        if new == text:
             continue
-        new = render(text, lst)
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             f.write(new)
         changed += 1
@@ -1538,8 +1821,23 @@ def render(text, lst):
     return text[:vs] + body + text[ve:]
 
 
+def file_eggs(text):
+    """The file's egg list, or None for a file with none (a form's)."""
+    try:
+        return jsonstyle.get_value(text, ["learnset", "egg_moves"])
+    except KeyError:
+        return None
+
+
+def render_eggs(text, eggs):
+    """The file's text with its egg list replaced, in the files' style: one
+    move a line, or [] when empty."""
+    vs, ve, indent = jsonstyle._find_key(text, ["learnset", "egg_moves"])
+    return text[:vs] + jsonstyle.dumps(list(eggs), indent, max_inline=0, empty_array="[]") + text[ve:]
+
+
 def round_trip():
-    """[species] whose file would change if its own list were written back:
+    """[species] whose file would change if its own lists were written back:
     the writer must reproduce every file byte for byte before it is trusted."""
     bad = []
     for sp in sorted(lc.species_set()):
@@ -1547,7 +1845,8 @@ def round_trip():
         with open(path, encoding="utf-8") as f:
             text = f.read()
         lst = jsonstyle.get_value(text, ["learnset", "by_level"])
-        if render(text, lst) != text:
+        eggs = file_eggs(text)
+        if render(text, lst) != text or (eggs is not None and render_eggs(text, eggs) != text):
             bad.append(sp)
     return bad
 

@@ -41,14 +41,14 @@
             [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_KNOCK_OFF" ],
             [ 12, "MOVE_PIN_MISSILE" ],
             [ 17, "MOVE_ACUPRESSURE" ],
             [ 23, "MOVE_SCARY_FACE" ],
             [ 28, "MOVE_TOXIC_SPIKES" ],
+            [ 29, "MOVE_KNOCK_OFF" ],
             [ 34, "MOVE_BUG_BITE" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 40, "MOVE_CRUNCH" ],
+            [ 45, "MOVE_CRUNCH" ],
             [ 50, "MOVE_CROSS_POISON" ]
         ],
         "by_tm": [

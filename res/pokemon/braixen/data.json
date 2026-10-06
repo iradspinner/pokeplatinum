@@ -66,7 +66,7 @@
             ],
             [
                 17,
-                "MOVE_CHARM"
+                "MOVE_WILL_O_WISP"
             ],
             [
                 19,
@@ -89,12 +89,20 @@
                 "MOVE_HYPNOSIS"
             ],
             [
-                43,
-                "MOVE_WILL_O_WISP"
+                50,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                54,
+                "MOVE_PSYCHIC"
             ],
             [
                 58,
                 "MOVE_MAGIC_ROOM"
+            ],
+            [
+                61,
+                "MOVE_FUTURE_SIGHT"
             ],
             [
                 65,

@@ -40,15 +40,17 @@
         "by_level": [
             [ 4, "MOVE_SYNTHESIS" ],
             [ 10, "MOVE_TACKLE" ],
-            [ 13, "MOVE_SILVER_WIND" ],
+            [ 12, "MOVE_GIGA_DRAIN" ],
             [ 14, "MOVE_STUN_SPORE" ],
             [ 16, "MOVE_SLEEP_POWDER" ],
-            [ 17, "MOVE_MAGICAL_LEAF" ],
-            [ 18, "MOVE_ACROBATICS" ],
+            [ 17, "MOVE_AERIAL_ACE" ],
+            [ 18, "MOVE_SILVER_WIND" ],
+            [ 19, "MOVE_BULLET_SEED" ],
+            [ 22, "MOVE_LEECH_SEED" ],
             [ 25, "MOVE_MEGA_DRAIN" ],
+            [ 28, "MOVE_COTTON_SPORE" ],
             [ 31, "MOVE_U_TURN" ],
             [ 34, "MOVE_WORRY_SEED" ],
-            [ 37, "MOVE_GIGA_DRAIN" ],
             [ 40, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
@@ -95,7 +97,8 @@
             "MOVE_HELPING_HAND",
             "MOVE_PSYCH_UP",
             "MOVE_AROMATHERAPY",
-            "MOVE_WORRY_SEED"
+            "MOVE_WORRY_SEED",
+            "MOVE_MEMENTO"
         ]
     },
     "evolutions": [

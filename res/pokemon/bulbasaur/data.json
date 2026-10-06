@@ -46,7 +46,9 @@
             [ 12, "MOVE_SLEEP_POWDER" ],
             [ 13, "MOVE_POISON_POWDER" ],
             [ 15, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_RAZOR_LEAF" ],
             [ 25, "MOVE_GROWTH" ],
+            [ 27, "MOVE_DOUBLE_EDGE" ],
             [ 31, "MOVE_WORRY_SEED" ],
             [ 33, "MOVE_SYNTHESIS" ],
             [ 37, "MOVE_SEED_BOMB" ]

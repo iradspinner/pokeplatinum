@@ -39,12 +39,11 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_IRON_DEFENSE" ],
-            [ 9, "MOVE_SMACK_DOWN" ],
-            [ 13, "MOVE_ROCK_THROW" ],
-            [ 16, "MOVE_ROCK_TOMB" ],
+            [ 3, "MOVE_SMACK_DOWN" ],
+            [ 4, "MOVE_TAUNT" ],
+            [ 6, "MOVE_ROCK_TOMB" ],
+            [ 17, "MOVE_BULLDOZE" ],
             [ 19, "MOVE_BLOCK" ],
-            [ 22, "MOVE_BULLDOZE" ],
             [ 25, "MOVE_THUNDER_WAVE" ],
             [ 31, "MOVE_ROCK_SLIDE" ],
             [ 43, "MOVE_REST" ],

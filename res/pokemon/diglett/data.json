@@ -47,6 +47,7 @@
             [ 18, "MOVE_DIG" ],
             [ 23, "MOVE_SUCKER_PUNCH" ],
             [ 26, "MOVE_EARTH_POWER" ],
+            [ 29, "MOVE_MUD_BOMB" ],
             [ 34, "MOVE_SLASH" ],
             [ 37, "MOVE_EARTHQUAKE" ]
         ],

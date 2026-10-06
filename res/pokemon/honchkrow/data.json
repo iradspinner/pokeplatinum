@@ -43,15 +43,15 @@
             [ 1, "MOVE_WING_ATTACK" ],
             [ 25, "MOVE_SWAGGER" ],
             [ 34, "MOVE_DRILL_PECK" ],
+            [ 40, "MOVE_U_TURN" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 46, "MOVE_NASTY_PLOT" ],
-            [ 54, "MOVE_HEAT_WAVE" ],
+            [ 53, "MOVE_HEAT_WAVE" ],
             [ 55, "MOVE_DARK_PULSE" ],
-            [ 57, "MOVE_FOUL_PLAY" ],
-            [ 60, "MOVE_U_TURN" ],
-            [ 62, "MOVE_SUCKER_PUNCH" ],
-            [ 65, "MOVE_BRAVE_BIRD" ],
-            [ 68, "MOVE_MEAN_LOOK" ]
+            [ 61, "MOVE_BRAVE_BIRD" ],
+            [ 63, "MOVE_FOUL_PLAY" ],
+            [ 69, "MOVE_ACROBATICS" ],
+            [ 71, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [
             "TM04",

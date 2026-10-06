@@ -45,14 +45,14 @@
             [ 33, "MOVE_SWAGGER" ],
             [ 35, "MOVE_SEED_BOMB" ],
             [ 37, "MOVE_CRUNCH" ],
-            [ 40, "MOVE_GIGA_DRAIN" ],
             [ 42, "MOVE_LEECH_LIFE" ],
             [ 47, "MOVE_PETAL_BLIZZARD" ],
-            [ 53, "MOVE_SECRET_POWER" ],
-            [ 54, "MOVE_SLUDGE_BOMB" ],
-            [ 56, "MOVE_FIRE_FANG" ],
-            [ 60, "MOVE_LEAF_STORM" ],
-            [ 65, "MOVE_SLAM" ]
+            [ 50, "MOVE_GIGA_DRAIN" ],
+            [ 52, "MOVE_SECRET_POWER" ],
+            [ 58, "MOVE_FIRE_FANG" ],
+            [ 60, "MOVE_SLUDGE_BOMB" ],
+            [ 66, "MOVE_SLAM" ],
+            [ 68, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
             "TM06",

@@ -85,24 +85,28 @@
                 "MOVE_SUPERPOWER"
             ],
             [
-                53,
+                47,
                 "MOVE_DRAIN_PUNCH"
             ],
             [
-                54,
+                53,
                 "MOVE_SUCKER_PUNCH"
             ],
             [
-                56,
-                "MOVE_LIQUIDATION"
+                55,
+                "MOVE_WATERFALL"
             ],
             [
-                60,
-                "MOVE_STOMPING_TANTRUM"
-            ],
-            [
-                65,
+                61,
                 "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                63,
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                69,
+                "MOVE_LIQUIDATION"
             ]
         ],
         "by_tm": [],

@@ -44,7 +44,7 @@
             [ 5, "MOVE_COVET" ],
             [ 6, "MOVE_ENDURE" ],
             [ 8, "MOVE_BABY_DOLL_EYES" ],
-            [ 9, "MOVE_POWER_UP_PUNCH" ],
+            [ 10, "MOVE_POWER_UP_PUNCH" ],
             [ 12, "MOVE_RETURN" ],
             [ 13, "MOVE_FRUSTRATION" ],
             [ 16, "MOVE_QUICK_ATTACK" ],
@@ -111,7 +111,8 @@
             "MOVE_SWITCHEROO",
             "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
-            "MOVE_FIRE_PUNCH"
+            "MOVE_FIRE_PUNCH",
+            "MOVE_HEALING_WISH"
         ]
     },
     "evolutions": [

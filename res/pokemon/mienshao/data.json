@@ -81,12 +81,8 @@
                 "MOVE_AURA_SPHERE"
             ],
             [
-                41,
-                "MOVE_U_TURN"
-            ],
-            [
-                43,
-                "MOVE_ROCK_TOMB"
+                40,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 45,
@@ -97,19 +93,19 @@
                 "MOVE_DUAL_CHOP"
             ],
             [
-                51,
-                "MOVE_POISON_JAB"
-            ],
-            [
-                54,
-                "MOVE_UPPER_HAND"
+                50,
+                "MOVE_U_TURN"
             ],
             [
                 55,
                 "MOVE_ACROBATICS"
             ],
             [
-                56,
+                57,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                59,
                 "MOVE_HAMMER_ARM"
             ],
             [

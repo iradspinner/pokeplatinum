@@ -51,14 +51,14 @@
             [ 28, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_AGILITY" ],
             [ 37, "MOVE_HEAT_WAVE" ],
+            [ 40, "MOVE_BLAZE_KICK" ],
+            [ 42, "MOVE_POISON_JAB" ],
             [ 45, "MOVE_OVERHEAT" ],
             [ 47, "MOVE_BOUNCE" ],
-            [ 51, "MOVE_PSYCHIC" ],
-            [ 54, "MOVE_JUMP_KICK" ],
+            [ 49, "MOVE_THROAT_CHOP" ],
+            [ 53, "MOVE_SMART_STRIKE" ],
             [ 56, "MOVE_FLARE_BLITZ" ],
-            [ 58, "MOVE_ZEN_HEADBUTT" ],
-            [ 60, "MOVE_POISON_JAB" ],
-            [ 65, "MOVE_MORNING_SUN" ]
+            [ 61, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM06",

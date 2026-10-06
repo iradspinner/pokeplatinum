@@ -42,12 +42,15 @@
             [ 1, "MOVE_DRAINING_KISS" ],
             [ 6, "MOVE_CONFUSION" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
-            [ 19, "MOVE_MAGICAL_LEAF" ],
-            [ 20, "MOVE_DAZZLING_GLEAM" ],
+            [ 19, "MOVE_DAZZLING_GLEAM" ],
+            [ 20, "MOVE_MAGICAL_LEAF" ],
+            [ 23, "MOVE_CALM_MIND" ],
             [ 28, "MOVE_PSYCHIC" ],
             [ 32, "MOVE_IMPRISON" ],
+            [ 34, "MOVE_FUTURE_SIGHT" ],
             [ 39, "MOVE_CHARM" ],
-            [ 43, "MOVE_HYPNOSIS" ]
+            [ 43, "MOVE_HYPNOSIS" ],
+            [ 45, "MOVE_DREAM_EATER" ]
         ],
         "by_tm": [
             "TM04",

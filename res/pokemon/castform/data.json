@@ -39,14 +39,13 @@
             [ 10, "MOVE_WATER_GUN" ],
             [ 11, "MOVE_POWDER_SNOW" ],
             [ 30, "MOVE_WEATHER_BALL" ],
-            [ 39, "MOVE_SWAGGER" ],
-            [ 41, "MOVE_SWIFT" ],
-            [ 44, "MOVE_CLEAR_SMOG" ],
-            [ 53, "MOVE_SCALD" ],
-            [ 54, "MOVE_FLAMETHROWER" ],
+            [ 34, "MOVE_SWAGGER" ],
+            [ 40, "MOVE_CLEAR_SMOG" ],
+            [ 42, "MOVE_SWIFT" ],
+            [ 48, "MOVE_SCALD" ],
             [ 56, "MOVE_HYPER_VOICE" ],
-            [ 60, "MOVE_ICE_BEAM" ],
-            [ 65, "MOVE_THUNDER_WAVE" ]
+            [ 58, "MOVE_FLAMETHROWER" ],
+            [ 64, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

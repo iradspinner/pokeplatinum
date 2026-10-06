@@ -85,15 +85,11 @@
                 "MOVE_SCREECH"
             ],
             [
-                32,
+                34,
                 "MOVE_DRILL_PECK"
             ],
             [
-                35,
-                "MOVE_SMACK_DOWN"
-            ],
-            [
-                37,
+                36,
                 "MOVE_FACADE"
             ],
             [
@@ -109,32 +105,32 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
-                47,
-                "MOVE_TAKE_DOWN"
-            ],
-            [
                 50,
                 "MOVE_HYPER_VOICE"
             ],
             [
-                54,
-                "MOVE_BRICK_BREAK"
+                52,
+                "MOVE_TAKE_DOWN"
             ],
             [
-                56,
-                "MOVE_TEMPER_FLARE"
+                58,
+                "MOVE_SEED_BOMB"
             ],
             [
                 60,
-                "MOVE_ROCK_CLIMB"
+                "MOVE_BRICK_BREAK"
             ],
             [
-                65,
-                "MOVE_BRAVE_BIRD"
+                66,
+                "MOVE_BEAK_BLAST"
             ],
             [
                 68,
-                "MOVE_BEAK_BLAST"
+                "MOVE_TEMPER_FLARE"
+            ],
+            [
+                74,
+                "MOVE_ROCK_CLIMB"
             ]
         ],
         "by_tm": [],

@@ -36,9 +36,11 @@
         "by_level": [
             [ 6, "MOVE_GROWL" ],
             [ 9, "MOVE_ASTONISH" ],
+            [ 13, "MOVE_YAWN" ],
             [ 14, "MOVE_CONFUSION" ],
             [ 17, "MOVE_UPROAR" ],
-            [ 18, "MOVE_SNARL" ]
+            [ 19, "MOVE_SNARL" ],
+            [ 22, "MOVE_LAST_RESORT" ]
         ],
         "by_tm": [
             "TM04",
@@ -97,7 +99,8 @@
             "MOVE_DREAM_EATER",
             "MOVE_WISH",
             "MOVE_FUTURE_SIGHT",
-            "MOVE_RECOVER"
+            "MOVE_RECOVER",
+            "MOVE_HEALING_WISH"
         ]
     },
     "evolutions": [

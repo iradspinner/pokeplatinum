@@ -57,10 +57,6 @@
                 "MOVE_QUICK_GUARD"
             ],
             [
-                15,
-                "MOVE_BUG_BITE"
-            ],
-            [
                 20,
                 "MOVE_LOW_KICK"
             ],
@@ -89,6 +85,10 @@
                 "MOVE_BOUNCE"
             ],
             [
+                51,
+                "MOVE_BUG_BITE"
+            ],
+            [
                 60,
                 "MOVE_BUG_BUZZ"
             ],
@@ -102,22 +102,14 @@
             ],
             [
                 67,
-                "MOVE_CLOSE_COMBAT"
+                "MOVE_HI_JUMP_KICK"
             ],
             [
                 69,
                 "MOVE_LOW_SWEEP"
             ],
             [
-                70,
-                "MOVE_HI_JUMP_KICK"
-            ],
-            [
-                74,
-                "MOVE_ICE_BEAM"
-            ],
-            [
-                78,
+                71,
                 "MOVE_SKITTER_SMACK"
             ]
         ],

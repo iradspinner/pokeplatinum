@@ -38,14 +38,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 9, "MOVE_BUG_BITE" ],
             [ 12, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_RAPID_SPIN" ],
             [ 23, "MOVE_NATURAL_GIFT" ],
             [ 28, "MOVE_SPIKES" ],
+            [ 31, "MOVE_PAYBACK" ],
             [ 39, "MOVE_IRON_DEFENSE" ],
             [ 42, "MOVE_GYRO_BALL" ],
             [ 45, "MOVE_DOUBLE_EDGE" ]
@@ -98,7 +97,9 @@
             "MOVE_SAND_TOMB",
             "MOVE_REVENGE",
             "MOVE_DOUBLE_EDGE",
-            "MOVE_TOXIC_SPIKES"
+            "MOVE_TOXIC_SPIKES",
+            "MOVE_SELFDESTRUCT",
+            "MOVE_EXPLOSION"
         ]
     },
     "evolutions": [

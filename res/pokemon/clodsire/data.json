@@ -85,10 +85,6 @@
                 "MOVE_POISON_JAB"
             ],
             [
-                34,
-                "MOVE_WATERFALL"
-            ],
-            [
                 36,
                 "MOVE_MEGAHORN"
             ],
@@ -97,27 +93,31 @@
                 "MOVE_TOXIC"
             ],
             [
-                44,
-                "MOVE_DRAIN_PUNCH"
+                42,
+                "MOVE_WATERFALL"
             ],
             [
                 48,
                 "MOVE_EARTHQUAKE"
             ],
             [
-                51,
-                "MOVE_AQUA_TAIL"
-            ],
-            [
-                54,
-                "MOVE_TOXIC_SPIKES"
+                50,
+                "MOVE_BODY_PRESS"
             ],
             [
                 55,
                 "MOVE_RECOVER"
             ],
             [
-                61,
+                58,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                60,
+                "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                66,
                 "MOVE_SWAGGER"
             ]
         ],

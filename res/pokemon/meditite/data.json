@@ -40,11 +40,10 @@
         "by_level": [
             [ 8, "MOVE_CONFUSION" ],
             [ 15, "MOVE_HIDDEN_POWER" ],
-            [ 17, "MOVE_FORCE_PALM" ],
+            [ 16, "MOVE_FORCE_PALM" ],
             [ 18, "MOVE_MIND_READER" ],
+            [ 20, "MOVE_ROCK_THROW" ],
             [ 22, "MOVE_SWAGGER" ],
-            [ 26, "MOVE_ROCK_THROW" ],
-            [ 29, "MOVE_LOW_SWEEP" ],
             [ 32, "MOVE_HI_JUMP_KICK" ],
             [ 36, "MOVE_PSYCH_UP" ],
             [ 39, "MOVE_POWER_TRICK" ],

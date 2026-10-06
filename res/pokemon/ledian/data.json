@@ -47,7 +47,6 @@
             [ 15, "MOVE_SAFEGUARD" ],
             [ 17, "MOVE_MACH_PUNCH" ],
             [ 24, "MOVE_BATON_PASS" ],
-            [ 25, "MOVE_SILVER_WIND" ],
             [ 29, "MOVE_SILVER_WIND" ],
             [ 36, "MOVE_AGILITY" ],
             [ 41, "MOVE_SWIFT" ],

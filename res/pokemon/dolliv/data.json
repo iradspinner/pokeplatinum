@@ -77,12 +77,12 @@
                 "MOVE_SEED_BOMB"
             ],
             [
-                31,
-                "MOVE_GIGA_DRAIN"
-            ],
-            [
                 34,
                 "MOVE_ENERGY_BALL"
+            ],
+            [
+                37,
+                "MOVE_LEECH_SEED"
             ],
             [
                 42,

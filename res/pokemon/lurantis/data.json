@@ -110,30 +110,30 @@
             ],
             [
                 40,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
-                44,
                 "MOVE_NIGHT_SLASH"
             ],
             [
-                49,
+                42,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                48,
                 "MOVE_POISON_JAB"
-            ],
-            [
-                52,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
-                54,
-                "MOVE_LEECH_LIFE"
             ],
             [
                 55,
                 "MOVE_SOLAR_BLADE"
             ],
             [
-                61,
+                57,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                59,
+                "MOVE_LEECH_LIFE"
+            ],
+            [
+                64,
                 "MOVE_SCARY_FACE"
             ]
         ],

@@ -43,6 +43,7 @@
             [ 5, "MOVE_LEER" ],
             [ 13, "MOVE_PURSUIT" ],
             [ 17, "MOVE_AERIAL_ACE" ],
+            [ 21, "MOVE_MIRROR_MOVE" ],
             [ 25, "MOVE_AGILITY" ],
             [ 29, "MOVE_ASSURANCE" ],
             [ 33, "MOVE_ROOST" ],

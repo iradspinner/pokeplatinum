@@ -39,16 +39,15 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PRESENT" ],
-            [ 34, "MOVE_SWAGGER" ],
-            [ 54, "MOVE_ICE_BEAM" ],
-            [ 55, "MOVE_DRILL_RUN" ],
-            [ 56, "MOVE_DRILL_PECK" ],
-            [ 58, "MOVE_ICE_PUNCH" ],
-            [ 60, "MOVE_BRAVE_BIRD" ],
-            [ 62, "MOVE_SEED_BOMB" ],
+            [ 32, "MOVE_DRILL_PECK" ],
+            [ 33, "MOVE_ICE_BEAM" ],
+            [ 54, "MOVE_DRILL_RUN" ],
+            [ 56, "MOVE_SWAGGER" ],
+            [ 58, "MOVE_ACROBATICS" ],
+            [ 60, "MOVE_ICE_PUNCH" ],
             [ 65, "MOVE_FOUL_PLAY" ],
-            [ 66, "MOVE_SIGNAL_BEAM" ],
-            [ 68, "MOVE_BRICK_BREAK" ]
+            [ 67, "MOVE_SEED_BOMB" ],
+            [ 73, "MOVE_BRICK_BREAK" ]
         ],
         "by_tm": [
             "TM01",

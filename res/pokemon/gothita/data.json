@@ -53,10 +53,6 @@
                 "MOVE_CONFUSION"
             ],
             [
-                3,
-                "MOVE_CONFUSION"
-            ],
-            [
                 5,
                 "MOVE_PLAY_NICE"
             ],
@@ -71,6 +67,10 @@
             [
                 14,
                 "MOVE_DOUBLE_SLAP"
+            ],
+            [
+                17,
+                "MOVE_CONFUSION"
             ],
             [
                 18,
@@ -93,7 +93,7 @@
                 "MOVE_HYPNOSIS"
             ],
             [
-                27,
+                26,
                 "MOVE_DARK_PULSE"
             ],
             [
@@ -101,8 +101,20 @@
                 "MOVE_CHARM"
             ],
             [
+                32,
+                "MOVE_HEAL_BLOCK"
+            ],
+            [
                 33,
                 "MOVE_PSYCH_UP"
+            ],
+            [
+                34,
+                "MOVE_FLATTER"
+            ],
+            [
+                36,
+                "MOVE_PSYCHIC"
             ],
             [
                 37,

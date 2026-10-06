@@ -81,36 +81,32 @@
                 "MOVE_SUPER_FANG"
             ],
             [
-                38,
+                40,
                 "MOVE_JUMP_KICK"
             ],
             [
-                41,
-                "MOVE_U_TURN"
-            ],
-            [
                 42,
-                "MOVE_FIRE_FANG"
+                "MOVE_U_TURN"
             ],
             [
                 45,
                 "MOVE_BOUNCE"
             ],
             [
-                47,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
-                50,
+                48,
                 "MOVE_IRON_HEAD"
-            ],
-            [
-                54,
-                "MOVE_AGILITY"
             ],
             [
                 55,
                 "MOVE_FLARE_BLITZ"
+            ],
+            [
+                57,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                59,
+                "MOVE_AGILITY"
             ],
             [
                 64,

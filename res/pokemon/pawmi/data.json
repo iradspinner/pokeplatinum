@@ -53,20 +53,20 @@
                 "MOVE_THUNDER_SHOCK"
             ],
             [
+                5,
+                "MOVE_ELECTROWEB"
+            ],
+            [
                 6,
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                9,
-                "MOVE_ELECTROWEB"
+                8,
+                "MOVE_MACH_PUNCH"
             ],
             [
                 12,
                 "MOVE_NUZZLE"
-            ],
-            [
-                15,
-                "MOVE_MACH_PUNCH"
             ],
             [
                 19,

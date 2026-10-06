@@ -53,12 +53,16 @@
                 "MOVE_GROWL"
             ],
             [
+                5,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
                 6,
                 "MOVE_QUICK_ATTACK"
             ],
             [
                 8,
-                "MOVE_FLAME_CHARGE"
+                "MOVE_TAUNT"
             ],
             [
                 11,
@@ -69,16 +73,28 @@
                 "MOVE_DOUBLE_KICK"
             ],
             [
-                16,
-                "MOVE_TAUNT"
+                20,
+                "MOVE_HEADBUTT"
             ],
             [
                 26,
                 "MOVE_BLAZE_KICK"
             ],
             [
+                29,
+                "MOVE_SUPER_FANG"
+            ],
+            [
+                34,
+                "MOVE_JUMP_KICK"
+            ],
+            [
                 39,
                 "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                45,
+                "MOVE_FLARE_BLITZ"
             ]
         ],
         "by_tm": [],

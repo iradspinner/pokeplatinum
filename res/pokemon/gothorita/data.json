@@ -101,11 +101,11 @@
                 "MOVE_CHARM"
             ],
             [
-                32,
+                34,
                 "MOVE_HEAL_BLOCK"
             ],
             [
-                33,
+                35,
                 "MOVE_PSYCH_UP"
             ],
             [
@@ -115,6 +115,10 @@
             [
                 39,
                 "MOVE_PSYCHIC"
+            ],
+            [
+                42,
+                "MOVE_FUTURE_SIGHT"
             ],
             [
                 55,

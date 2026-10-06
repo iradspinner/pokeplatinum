@@ -46,14 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_EXPLOSION"
-            ],
-            [
-                1,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
-                1,
                 "MOVE_HEAT_WAVE"
             ],
             [
@@ -73,6 +65,10 @@
                 "MOVE_CLEAR_SMOG"
             ],
             [
+                21,
+                "MOVE_STRANGE_STEAM"
+            ],
+            [
                 23,
                 "MOVE_PAYBACK"
             ],
@@ -83,10 +79,6 @@
             [
                 29,
                 "MOVE_TOXIC"
-            ],
-            [
-                34,
-                "MOVE_PLAY_ROUGH"
             ],
             [
                 38,
@@ -101,39 +93,27 @@
                 "MOVE_PAIN_SPLIT"
             ],
             [
-                48,
-                "MOVE_STRANGE_STEAM"
-            ],
-            [
                 54,
-                "MOVE_POISON_FANG"
-            ],
-            [
-                56,
                 "MOVE_HEAT_WAVE"
             ],
             [
-                58,
+                56,
                 "MOVE_THUNDERBOLT"
             ],
             [
-                60,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
                 62,
-                "MOVE_DOUBLE_EDGE"
+                "MOVE_POISON_FANG"
             ],
             [
-                65,
+                64,
                 "MOVE_OVERHEAT"
             ],
             [
-                66,
-                "MOVE_DARK_PULSE"
+                70,
+                "MOVE_DOUBLE_EDGE"
             ],
             [
-                68,
+                72,
                 "MOVE_BODY_SLAM"
             ]
         ],

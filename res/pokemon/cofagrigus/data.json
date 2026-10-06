@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_DESTINY_BOND"
-            ],
-            [
-                1,
                 "MOVE_GRUDGE"
             ],
             [
@@ -113,20 +109,12 @@
                 "MOVE_CURSE"
             ],
             [
-                34,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
                 38,
                 "MOVE_MEAN_LOOK"
             ],
             [
-                40,
-                "MOVE_SCARY_FACE"
-            ],
-            [
-                43,
-                "MOVE_ROUND"
+                41,
+                "MOVE_SHADOW_BALL"
             ],
             [
                 45,
@@ -149,11 +137,11 @@
                 "MOVE_PSYCHIC"
             ],
             [
-                60,
-                "MOVE_EARTH_POWER"
+                58,
+                "MOVE_SCARY_FACE"
             ],
             [
-                65,
+                64,
                 "MOVE_IRON_DEFENSE"
             ]
         ],

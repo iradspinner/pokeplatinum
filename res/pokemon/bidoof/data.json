@@ -39,14 +39,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_TAUNT" ],
-            [ 6, "MOVE_AQUA_JET" ],
-            [ 8, "MOVE_SWIFT" ],
+            [ 2, "MOVE_SWIFT" ],
+            [ 3, "MOVE_TAUNT" ],
+            [ 5, "MOVE_AQUA_JET" ],
             [ 13, "MOVE_ROLLOUT" ],
+            [ 17, "MOVE_HEADBUTT" ],
+            [ 21, "MOVE_HYPER_FANG" ],
             [ 25, "MOVE_YAWN" ],
+            [ 29, "MOVE_AMNESIA" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 37, "MOVE_SUPER_FANG" ],
-            [ 41, "MOVE_SUPERPOWER" ]
+            [ 41, "MOVE_SUPERPOWER" ],
+            [ 45, "MOVE_CURSE" ]
         ],
         "by_tm": [
             "TM06",

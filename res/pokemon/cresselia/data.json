@@ -44,10 +44,9 @@
             [ 57, "MOVE_MOONLIGHT" ],
             [ 66, "MOVE_PSYCHO_CUT" ],
             [ 68, "MOVE_CONFUSE_RAY" ],
-            [ 69, "MOVE_SIGNAL_BEAM" ],
-            [ 71, "MOVE_MOONBLAST" ],
+            [ 70, "MOVE_MOONBLAST" ],
             [ 75, "MOVE_PSYCHO_SHIFT" ],
-            [ 78, "MOVE_SWAGGER" ]
+            [ 77, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM04",

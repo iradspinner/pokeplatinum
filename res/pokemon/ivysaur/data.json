@@ -51,6 +51,7 @@
             [ 20, "MOVE_RAZOR_LEAF" ],
             [ 28, "MOVE_GROWTH" ],
             [ 31, "MOVE_DOUBLE_EDGE" ],
+            [ 36, "MOVE_WORRY_SEED" ],
             [ 39, "MOVE_SYNTHESIS" ],
             [ 44, "MOVE_SOLAR_BEAM" ]
         ],

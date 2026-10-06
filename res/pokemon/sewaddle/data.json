@@ -49,7 +49,11 @@
                 "MOVE_TACKLE"
             ],
             [
-                4,
+                2,
+                "MOVE_POUNCE"
+            ],
+            [
+                3,
                 "MOVE_STICKY_WEB"
             ],
             [
@@ -59,10 +63,6 @@
             [
                 12,
                 "MOVE_RAZOR_LEAF"
-            ],
-            [
-                16,
-                "MOVE_POUNCE"
             ],
             [
                 22,

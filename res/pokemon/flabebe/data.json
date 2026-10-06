@@ -65,6 +65,22 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
+                20,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                22,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                24,
+                "MOVE_AROMATHERAPY"
+            ],
+            [
+                28,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 33,
                 "MOVE_DAZZLING_GLEAM"
             ],
@@ -75,6 +91,14 @@
             [
                 41,
                 "MOVE_SYNTHESIS"
+            ],
+            [
+                45,
+                "MOVE_SOLAR_BEAM"
+            ],
+            [
+                48,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [],

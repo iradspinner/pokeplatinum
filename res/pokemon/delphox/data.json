@@ -93,6 +93,10 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
+                29,
+                "MOVE_FLAME_BURST"
+            ],
+            [
                 34,
                 "MOVE_PSYSHOCK"
             ],
@@ -101,12 +105,12 @@
                 "MOVE_MYSTICAL_FIRE"
             ],
             [
-                39,
-                "MOVE_HYPNOSIS"
+                38,
+                "MOVE_MUD_SHOT"
             ],
             [
-                41,
-                "MOVE_MUD_SHOT"
+                40,
+                "MOVE_HYPNOSIS"
             ],
             [
                 42,
@@ -121,20 +125,12 @@
                 "MOVE_FLAMETHROWER"
             ],
             [
-                54,
-                "MOVE_DAZZLING_GLEAM"
-            ],
-            [
                 55,
                 "MOVE_PSYCHIC"
             ],
             [
                 57,
-                "MOVE_SCORCHING_SANDS"
-            ],
-            [
-                58,
-                "MOVE_BURNING_JEALOUSY"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 61,
@@ -149,20 +145,8 @@
                 "MOVE_OVERHEAT"
             ],
             [
-                68,
-                "MOVE_HYPER_VOICE"
-            ],
-            [
-                69,
-                "MOVE_ENCORE"
-            ],
-            [
-                71,
+                72,
                 "MOVE_BURN_UP"
-            ],
-            [
-                78,
-                "MOVE_WISH"
             ]
         ],
         "by_tm": [],

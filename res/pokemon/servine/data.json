@@ -82,7 +82,7 @@
             ],
             [
                 33,
-                "MOVE_SYNTHESIS"
+                "MOVE_MEAN_LOOK"
             ],
             [
                 40,
@@ -95,6 +95,14 @@
             [
                 48,
                 "MOVE_GLARE"
+            ],
+            [
+                50,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                54,
+                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [],

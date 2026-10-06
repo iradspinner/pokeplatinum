@@ -94,27 +94,15 @@
             ],
             [
                 54,
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_BODY_SLAM"
             ],
             [
                 55,
                 "MOVE_IRON_HEAD"
             ],
             [
-                56,
-                "MOVE_BODY_SLAM"
-            ],
-            [
-                57,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
                 58,
                 "MOVE_DRAGON_PULSE"
-            ],
-            [
-                59,
-                "MOVE_ICE_BEAM"
             ],
             [
                 61,
@@ -122,23 +110,23 @@
             ],
             [
                 63,
-                "MOVE_DRACO_METEOR"
+                "MOVE_SLUDGE_WAVE"
             ],
             [
                 66,
                 "MOVE_OUTRAGE"
             ],
             [
-                67,
+                68,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                70,
                 "MOVE_SURF"
             ],
             [
-                68,
-                "MOVE_AQUA_TAIL"
-            ],
-            [
-                71,
-                "MOVE_SCALD"
+                72,
+                "MOVE_DRAGON_RUSH"
             ]
         ],
         "by_tm": [],

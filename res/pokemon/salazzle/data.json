@@ -85,12 +85,12 @@
                 "MOVE_VENOSHOCK"
             ],
             [
-                36,
-                "MOVE_FLAMETHROWER"
+                34,
+                "MOVE_SWAGGER"
             ],
             [
-                39,
-                "MOVE_BURNING_JEALOUSY"
+                36,
+                "MOVE_FLAMETHROWER"
             ],
             [
                 42,
@@ -101,24 +101,20 @@
                 "MOVE_ENCORE"
             ],
             [
-                47,
-                "MOVE_SWAGGER"
-            ],
-            [
                 50,
                 "MOVE_DRAGON_PULSE"
             ],
             [
-                54,
+                52,
                 "MOVE_NASTY_PLOT"
             ],
             [
-                61,
-                "MOVE_OVERHEAT"
+                58,
+                "MOVE_HYPER_VOICE"
             ],
             [
-                65,
-                "MOVE_HYPER_VOICE"
+                66,
+                "MOVE_OVERHEAT"
             ],
             [
                 68,

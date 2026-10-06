@@ -78,23 +78,15 @@
             ],
             [
                 45,
-                "MOVE_ROOST"
+                "MOVE_SCREECH"
+            ],
+            [
+                47,
+                "MOVE_POISON_JAB"
             ],
             [
                 50,
                 "MOVE_TAKE_DOWN"
-            ],
-            [
-                53,
-                "MOVE_POISON_JAB"
-            ],
-            [
-                54,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
-                56,
-                "MOVE_LUNGE"
             ],
             [
                 64,

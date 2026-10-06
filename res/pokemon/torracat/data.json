@@ -73,10 +73,6 @@
                 "MOVE_SCARY_FACE"
             ],
             [
-                28,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
                 32,
                 "MOVE_BLAZE_KICK"
             ],
@@ -87,6 +83,10 @@
             [
                 42,
                 "MOVE_PARTING_SHOT"
+            ],
+            [
+                45,
+                "MOVE_KNOCK_OFF"
             ],
             [
                 48,

@@ -53,6 +53,10 @@
                 "MOVE_ROCK_THROW"
             ],
             [
+                8,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
                 10,
                 "MOVE_SMACK_DOWN"
             ],
@@ -61,16 +65,12 @@
                 "MOVE_GUARD_SPLIT"
             ],
             [
-                17,
-                "MOVE_BULLDOZE"
-            ],
-            [
                 18,
                 "MOVE_REFLECT"
             ],
             [
-                21,
-                "MOVE_DRAINING_KISS"
+                20,
+                "MOVE_BULLDOZE"
             ],
             [
                 24,
@@ -86,11 +86,11 @@
             ],
             [
                 27,
-                "MOVE_DAZZLING_GLEAM"
+                "MOVE_ROCK_TOMB"
             ],
             [
-                30,
-                "MOVE_ROCK_TOMB"
+                29,
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 35,
@@ -118,14 +118,14 @@
             ],
             [
                 54,
-                "MOVE_IRON_HEAD"
-            ],
-            [
-                56,
                 "MOVE_PSYCHIC"
             ],
             [
-                60,
+                59,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                61,
                 "MOVE_BODY_PRESS"
             ],
             [

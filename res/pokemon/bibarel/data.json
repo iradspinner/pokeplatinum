@@ -48,16 +48,14 @@
             [ 28, "MOVE_YAWN" ],
             [ 30, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_AMNESIA" ],
-            [ 35, "MOVE_AQUA_TAIL" ],
             [ 38, "MOVE_TAKE_DOWN" ],
-            [ 40, "MOVE_ROCK_CLIMB" ],
             [ 43, "MOVE_SUPER_FANG" ],
             [ 48, "MOVE_SUPERPOWER" ],
+            [ 50, "MOVE_ICE_FANG" ],
             [ 53, "MOVE_CURSE" ],
-            [ 54, "MOVE_CRUNCH" ],
-            [ 56, "MOVE_ICE_FANG" ],
-            [ 60, "MOVE_DOUBLE_EDGE" ],
-            [ 65, "MOVE_SWAGGER" ]
+            [ 57, "MOVE_AQUA_TAIL" ],
+            [ 59, "MOVE_DOUBLE_EDGE" ],
+            [ 65, "MOVE_CRUNCH" ]
         ],
         "by_tm": [
             "TM01",

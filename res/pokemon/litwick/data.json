@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_MEMENTO"
-            ],
-            [
-                1,
                 "MOVE_EMBER"
             ],
             [
@@ -93,8 +89,20 @@
                 "MOVE_IMPRISON"
             ],
             [
-                36,
+                45,
+                "MOVE_MYSTICAL_FIRE"
+            ],
+            [
+                50,
+                "MOVE_PAIN_SPLIT"
+            ],
+            [
+                56,
                 "MOVE_SHADOW_BALL"
+            ],
+            [
+                62,
+                "MOVE_HEAT_WAVE"
             ],
             [
                 68,
@@ -103,7 +111,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [
         [

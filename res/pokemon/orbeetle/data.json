@@ -97,6 +97,10 @@
                 "MOVE_INFESTATION"
             ],
             [
+                42,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 44,
                 "MOVE_AFTER_YOU"
             ],
@@ -105,20 +109,12 @@
                 "MOVE_PSYCHIC"
             ],
             [
-                53,
+                50,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                54,
+                52,
                 "MOVE_GIGA_DRAIN"
-            ],
-            [
-                56,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                58,
-                "MOVE_RECOVER"
             ],
             [
                 60,
@@ -129,7 +125,7 @@
                 "MOVE_FUTURE_SIGHT"
             ],
             [
-                65,
+                66,
                 "MOVE_AGILITY"
             ],
             [

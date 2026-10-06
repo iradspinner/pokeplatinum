@@ -49,7 +49,7 @@
                 "MOVE_TACKLE"
             ],
             [
-                6,
+                5,
                 "MOVE_TERRAIN_PULSE"
             ],
             [
@@ -67,6 +67,10 @@
             [
                 20,
                 "MOVE_MEGA_DRAIN"
+            ],
+            [
+                27,
+                "MOVE_SEED_BOMB"
             ],
             [
                 30,

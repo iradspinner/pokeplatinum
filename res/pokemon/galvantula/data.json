@@ -85,7 +85,7 @@
                 "MOVE_DISCHARGE"
             ],
             [
-                32,
+                31,
                 "MOVE_SNARL"
             ],
             [
@@ -97,16 +97,12 @@
                 "MOVE_ENERGY_BALL"
             ],
             [
-                40,
-                "MOVE_SWIFT"
-            ],
-            [
-                41,
-                "MOVE_GIGA_DRAIN"
-            ],
-            [
                 43,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                45,
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 48,
@@ -118,23 +114,23 @@
             ],
             [
                 54,
-                "MOVE_SCREECH"
-            ],
-            [
-                56,
                 "MOVE_AGILITY"
             ],
             [
-                60,
-                "MOVE_STICKY_WEB"
-            ],
-            [
-                62,
-                "MOVE_SLUDGE_BOMB"
+                58,
+                "MOVE_SCREECH"
             ],
             [
                 65,
                 "MOVE_VOLT_SWITCH"
+            ],
+            [
+                67,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
+                69,
+                "MOVE_STICKY_WEB"
             ]
         ],
         "by_tm": [],

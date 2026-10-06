@@ -79,6 +79,14 @@
             [
                 31,
                 "MOVE_NATURAL_GIFT"
+            ],
+            [
+                37,
+                "MOVE_ACROBATICS"
+            ],
+            [
+                45,
+                "MOVE_TAILWIND"
             ]
         ],
         "by_tm": [],

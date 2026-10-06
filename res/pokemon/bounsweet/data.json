@@ -45,23 +45,15 @@
     "learnset": {
         "by_level": [
             [
-                4,
-                "MOVE_GRASSY_GLIDE"
-            ],
-            [
-                5,
-                "MOVE_TRAILBLAZE"
-            ],
-            [
-                6,
+                3,
                 "MOVE_MAGICAL_LEAF"
             ],
             [
-                7,
+                4,
                 "MOVE_TAUNT"
             ],
             [
-                8,
+                5,
                 "MOVE_PLAY_NICE"
             ],
             [

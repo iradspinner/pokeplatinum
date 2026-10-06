@@ -85,8 +85,8 @@
                 "MOVE_ROCK_BLAST"
             ],
             [
-                34,
-                "MOVE_ROCK_TOMB"
+                35,
+                "MOVE_ROCK_SLIDE"
             ],
             [
                 36,
@@ -101,10 +101,6 @@
                 "MOVE_ACROBATICS"
             ],
             [
-                48,
-                "MOVE_ROCK_SLIDE"
-            ],
-            [
                 51,
                 "MOVE_LEECH_LIFE"
             ],
@@ -113,28 +109,24 @@
                 "MOVE_CLOSE_COMBAT"
             ],
             [
-                54,
-                "MOVE_IRON_HEAD"
-            ],
-            [
                 55,
                 "MOVE_ACCELEROCK"
             ],
             [
                 57,
-                "MOVE_U_TURN"
-            ],
-            [
-                60,
-                "MOVE_LUNGE"
+                "MOVE_STEEL_WING"
             ],
             [
                 62,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_ROCK_TOMB"
             ],
             [
-                65,
-                "MOVE_IRON_DEFENSE"
+                64,
+                "MOVE_LUNGE"
+            ],
+            [
+                70,
+                "MOVE_NIGHT_SLASH"
             ]
         ],
         "by_tm": [],

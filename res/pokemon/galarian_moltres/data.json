@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_MEMENTO"
-            ],
-            [
-                1,
                 "MOVE_GUST"
             ],
             [
@@ -107,7 +103,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_GALARIAN_MOLTRES",

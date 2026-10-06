@@ -54,15 +54,15 @@
             [ 34, "MOVE_LOW_SWEEP" ],
             [ 36, "MOVE_FLING" ],
             [ 39, "MOVE_NASTY_PLOT" ],
-            [ 41, "MOVE_TAKE_DOWN" ],
             [ 43, "MOVE_LAST_RESORT" ],
-            [ 48, "MOVE_SECRET_POWER" ],
-            [ 53, "MOVE_HEADBUTT" ],
-            [ 54, "MOVE_SEED_BOMB" ],
-            [ 56, "MOVE_SLAM" ],
-            [ 58, "MOVE_THROAT_CHOP" ],
-            [ 60, "MOVE_U_TURN" ],
-            [ 65, "MOVE_UPPER_HAND" ]
+            [ 45, "MOVE_TAKE_DOWN" ],
+            [ 47, "MOVE_AERIAL_ACE" ],
+            [ 50, "MOVE_HEADBUTT" ],
+            [ 54, "MOVE_SECRET_POWER" ],
+            [ 58, "MOVE_SLAM" ],
+            [ 60, "MOVE_SEED_BOMB" ],
+            [ 66, "MOVE_ACROBATICS" ],
+            [ 68, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM01",

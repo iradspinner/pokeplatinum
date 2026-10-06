@@ -38,8 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_FOCUS_ENERGY" ],
             [ 1, "MOVE_POISON_GAS" ],
@@ -51,14 +49,13 @@
             [ 32, "MOVE_NIGHT_SLASH" ],
             [ 34, "MOVE_FLAMETHROWER" ],
             [ 40, "MOVE_SLUDGE_BOMB" ],
-            [ 44, "MOVE_THROAT_CHOP" ],
-            [ 48, "MOVE_POISON_JAB" ],
-            [ 53, "MOVE_SUCKER_PUNCH" ],
-            [ 54, "MOVE_SHADOW_BALL" ],
+            [ 42, "MOVE_THROAT_CHOP" ],
+            [ 48, "MOVE_SUCKER_PUNCH" ],
+            [ 50, "MOVE_POISON_JAB" ],
             [ 56, "MOVE_PLAY_ROUGH" ],
-            [ 58, "MOVE_BURNING_JEALOUSY" ],
-            [ 60, "MOVE_BODY_SLAM" ],
-            [ 65, "MOVE_DOUBLE_EDGE" ]
+            [ 58, "MOVE_SHADOW_BALL" ],
+            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 66, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [
             "TM05",

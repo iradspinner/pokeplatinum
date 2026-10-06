@@ -48,17 +48,17 @@
             [ 27, "MOVE_MEGA_DRAIN" ],
             [ 32, "MOVE_EARTHQUAKE" ],
             [ 33, "MOVE_LEECH_SEED" ],
-            [ 36, "MOVE_ROCK_TOMB" ],
+            [ 35, "MOVE_ROCK_TOMB" ],
             [ 39, "MOVE_SYNTHESIS" ],
-            [ 40, "MOVE_LEAF_BLADE" ],
             [ 42, "MOVE_IRON_HEAD" ],
             [ 45, "MOVE_CRUNCH" ],
-            [ 48, "MOVE_BULLDOZE" ],
             [ 51, "MOVE_GIGA_DRAIN" ],
-            [ 54, "MOVE_ZEN_HEADBUTT" ],
             [ 57, "MOVE_LEAF_STORM" ],
-            [ 61, "MOVE_WOOD_HAMMER" ],
-            [ 63, "MOVE_HEADLONG_RUSH" ]
+            [ 59, "MOVE_LEAF_BLADE" ],
+            [ 61, "MOVE_BULLDOZE" ],
+            [ 66, "MOVE_HEADLONG_RUSH" ],
+            [ 68, "MOVE_WOOD_HAMMER" ],
+            [ 74, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM05",

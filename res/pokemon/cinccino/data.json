@@ -109,16 +109,20 @@
                 "MOVE_ECHOED_VOICE"
             ],
             [
-                57,
+                39,
+                "MOVE_SEED_BOMB"
+            ],
+            [
+                54,
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                60,
+                57,
                 "MOVE_AQUA_TAIL"
             ],
             [
                 65,
-                "MOVE_SEED_BOMB"
+                "MOVE_THUNDER_WAVE"
             ]
         ],
         "by_tm": [],

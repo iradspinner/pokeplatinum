@@ -44,6 +44,7 @@
             [ 8, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_WING_ATTACK" ],
             [ 26, "MOVE_ENDEAVOR" ],
+            [ 34, "MOVE_AERIAL_ACE" ],
             [ 43, "MOVE_AGILITY" ],
             [ 53, "MOVE_AIR_SLASH" ]
         ],

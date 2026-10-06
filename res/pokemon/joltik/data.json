@@ -83,6 +83,22 @@
             [
                 29,
                 "MOVE_DISCHARGE"
+            ],
+            [
+                34,
+                "MOVE_SIGNAL_BEAM"
+            ],
+            [
+                37,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                45,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                48,
+                "MOVE_BUG_BUZZ"
             ]
         ],
         "by_tm": [],

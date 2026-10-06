@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BATON_PASS" ],
             [ 1, "MOVE_ME_FIRST" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_FORESIGHT" ],
@@ -47,21 +46,21 @@
             [ 4, "MOVE_DEFENSE_CURL" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_FURY_SWIPES" ],
-            [ 16, "MOVE_HELPING_HAND" ],
+            [ 17, "MOVE_HELPING_HAND" ],
+            [ 19, "MOVE_TRAILBLAZE" ],
             [ 21, "MOVE_FOLLOW_ME" ],
-            [ 24, "MOVE_TRAILBLAZE" ],
             [ 28, "MOVE_SLAM" ],
             [ 32, "MOVE_REST" ],
+            [ 34, "MOVE_AGILITY" ],
             [ 36, "MOVE_SUCKER_PUNCH" ],
-            [ 39, "MOVE_BODY_SLAM" ],
             [ 42, "MOVE_AMNESIA" ],
-            [ 44, "MOVE_ZEN_HEADBUTT" ],
-            [ 47, "MOVE_SEED_BOMB" ],
-            [ 50, "MOVE_PLAY_ROUGH" ],
-            [ 54, "MOVE_AGILITY" ],
+            [ 46, "MOVE_BATON_PASS" ],
+            [ 49, "MOVE_BODY_SLAM" ],
             [ 56, "MOVE_HYPER_VOICE" ],
-            [ 60, "MOVE_THUNDER_WAVE" ],
-            [ 65, "MOVE_CHARM" ]
+            [ 58, "MOVE_FIRE_PUNCH" ],
+            [ 60, "MOVE_ICE_PUNCH" ],
+            [ 65, "MOVE_SEED_BOMB" ],
+            [ 67, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM01",

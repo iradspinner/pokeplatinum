@@ -45,6 +45,7 @@
             [ 12, "MOVE_LUCKY_CHANT" ],
             [ 17, "MOVE_MIRACLE_EYE" ],
             [ 23, "MOVE_CONFUSE_RAY" ],
+            [ 28, "MOVE_WISH" ],
             [ 33, "MOVE_PSYCHO_SHIFT" ],
             [ 36, "MOVE_FUTURE_SIGHT" ],
             [ 39, "MOVE_OMINOUS_WIND" ],

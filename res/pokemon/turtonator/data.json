@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_EXPLOSION"
-            ],
-            [
-                1,
                 "MOVE_HEAD_SMASH"
             ],
             [
@@ -59,10 +55,6 @@
             [
                 1,
                 "MOVE_EMBER"
-            ],
-            [
-                6,
-                "MOVE_SMOG"
             ],
             [
                 11,
@@ -85,6 +77,10 @@
                 "MOVE_RAPID_SPIN"
             ],
             [
+                29,
+                "MOVE_SMOG"
+            ],
+            [
                 33,
                 "MOVE_BODY_SLAM"
             ],
@@ -105,24 +101,8 @@
                 "MOVE_FIRE_SPIN"
             ],
             [
-                53,
-                "MOVE_BODY_PRESS"
-            ],
-            [
                 54,
-                "MOVE_EARTHQUAKE"
-            ],
-            [
-                56,
-                "MOVE_BURNING_JEALOUSY"
-            ],
-            [
-                57,
-                "MOVE_FLASH_CANNON"
-            ],
-            [
-                58,
-                "MOVE_ROCK_TOMB"
+                "MOVE_BODY_PRESS"
             ],
             [
                 61,
@@ -130,32 +110,26 @@
             ],
             [
                 63,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_EARTHQUAKE"
             ],
             [
                 66,
                 "MOVE_DRACO_METEOR"
             ],
             [
-                68,
-                "MOVE_BULLDOZE"
+                70,
+                "MOVE_ROCK_TOMB"
             ],
             [
-                69,
-                "MOVE_SCORCHING_SANDS"
-            ],
-            [
-                71,
-                "MOVE_SHELL_TRAP"
-            ],
-            [
-                78,
-                "MOVE_IRON_HEAD"
+                72,
+                "MOVE_IRON_DEFENSE"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_EXPLOSION"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_TURTONATOR",

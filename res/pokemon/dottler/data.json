@@ -73,12 +73,12 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
-                20,
-                "MOVE_PSYBEAM"
+                17,
+                "MOVE_SNARL"
             ],
             [
-                26,
-                "MOVE_SNARL"
+                20,
+                "MOVE_PSYBEAM"
             ],
             [
                 36,

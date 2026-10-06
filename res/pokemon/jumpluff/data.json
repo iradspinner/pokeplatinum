@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_SYNTHESIS" ],
             [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_TACKLE" ],
@@ -48,23 +47,19 @@
             [ 16, "MOVE_SLEEP_POWDER" ],
             [ 20, "MOVE_BULLET_SEED" ],
             [ 24, "MOVE_LEECH_SEED" ],
-            [ 28, "MOVE_MEGA_DRAIN" ],
             [ 32, "MOVE_COTTON_SPORE" ],
-            [ 34, "MOVE_CONFUSION" ],
+            [ 34, "MOVE_SNARL" ],
             [ 36, "MOVE_U_TURN" ],
             [ 40, "MOVE_WORRY_SEED" ],
             [ 42, "MOVE_ENERGY_BALL" ],
             [ 44, "MOVE_GIGA_DRAIN" ],
-            [ 46, "MOVE_LUNGE" ],
+            [ 46, "MOVE_CONFUSION" ],
             [ 48, "MOVE_BOUNCE" ],
-            [ 53, "MOVE_DAZZLING_GLEAM" ],
-            [ 54, "MOVE_HEADBUTT" ],
-            [ 56, "MOVE_TAKE_DOWN" ],
+            [ 50, "MOVE_DAZZLING_GLEAM" ],
+            [ 52, "MOVE_LUNGE" ],
             [ 58, "MOVE_AIR_SLASH" ],
-            [ 60, "MOVE_SECRET_POWER" ],
-            [ 62, "MOVE_BRAVE_BIRD" ],
-            [ 65, "MOVE_LEAF_STORM" ],
-            [ 68, "MOVE_DOUBLE_EDGE" ]
+            [ 66, "MOVE_ACROBATICS" ],
+            [ 68, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
             "TM06",

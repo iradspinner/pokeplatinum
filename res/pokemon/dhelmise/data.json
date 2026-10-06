@@ -93,32 +93,24 @@
                 "MOVE_ANCHOR_SHOT"
             ],
             [
-                35,
-                "MOVE_SYNTHESIS"
-            ],
-            [
                 36,
-                "MOVE_SEED_BOMB"
-            ],
-            [
-                37,
-                "MOVE_ASTONISH"
-            ],
-            [
-                40,
                 "MOVE_SHADOW_CLAW"
             ],
             [
-                43,
+                38,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                40,
                 "MOVE_BULLDOZE"
+            ],
+            [
+                46,
+                "MOVE_GRASSY_GLIDE"
             ],
             [
                 51,
                 "MOVE_GIGA_DRAIN"
-            ],
-            [
-                54,
-                "MOVE_LIQUIDATION"
             ],
             [
                 55,
@@ -126,27 +118,27 @@
             ],
             [
                 57,
-                "MOVE_IRON_HEAD"
+                "MOVE_LIQUIDATION"
             ],
             [
-                60,
-                "MOVE_BODY_PRESS"
-            ],
-            [
-                61,
-                "MOVE_EARTHQUAKE"
-            ],
-            [
-                62,
-                "MOVE_POLTERGEIST"
+                59,
+                "MOVE_PETAL_BLIZZARD"
             ],
             [
                 65,
                 "MOVE_PHANTOM_FORCE"
             ],
             [
-                70,
-                "MOVE_PETAL_BLIZZARD"
+                67,
+                "MOVE_POLTERGEIST"
+            ],
+            [
+                69,
+                "MOVE_SLAM"
+            ],
+            [
+                72,
+                "MOVE_BODY_PRESS"
             ]
         ],
         "by_tm": [],

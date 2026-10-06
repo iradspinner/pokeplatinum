@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_DESTINY_BOND"
-            ],
-            [
-                1,
                 "MOVE_ASTONISH"
             ],
             [
@@ -59,6 +55,10 @@
             [
                 10,
                 "MOVE_NIGHT_SHADE"
+            ],
+            [
+                16,
+                "MOVE_MUD_SHOT"
             ],
             [
                 18,
@@ -77,16 +77,16 @@
                 "MOVE_OMINOUS_WIND"
             ],
             [
-                28,
+                32,
+                "MOVE_CURSE"
+            ],
+            [
+                35,
                 "MOVE_MEAN_LOOK"
             ],
             [
-                30,
-                "MOVE_MUD_SHOT"
-            ],
-            [
-                32,
-                "MOVE_CURSE"
+                38,
+                "MOVE_SHADOW_BALL"
             ],
             [
                 40,
@@ -103,7 +103,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_DESTINY_BOND"
+        ]
     },
     "evolutions": [
         [

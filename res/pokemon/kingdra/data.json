@@ -50,19 +50,14 @@
             [ 23, "MOVE_AGILITY" ],
             [ 26, "MOVE_TWISTER" ],
             [ 30, "MOVE_BRINE" ],
+            [ 32, "MOVE_AURORA_BEAM" ],
             [ 40, "MOVE_OCTAZOOKA" ],
-            [ 44, "MOVE_AURORA_BEAM" ],
             [ 54, "MOVE_SCALD" ],
             [ 57, "MOVE_DRAGON_PULSE" ],
-            [ 60, "MOVE_WAVE_CRASH" ],
-            [ 62, "MOVE_DRAGON_DANCE" ],
+            [ 59, "MOVE_WAVE_CRASH" ],
             [ 65, "MOVE_IRON_HEAD" ],
-            [ 66, "MOVE_DOUBLE_EDGE" ],
-            [ 68, "MOVE_DRACO_METEOR" ],
-            [ 69, "MOVE_ICE_BEAM" ],
-            [ 71, "MOVE_SIGNAL_BEAM" ],
-            [ 74, "MOVE_FLIP_TURN" ],
-            [ 78, "MOVE_BODY_SLAM" ]
+            [ 67, "MOVE_DRACO_METEOR" ],
+            [ 73, "MOVE_SIGNAL_BEAM" ]
         ],
         "by_tm": [
             "TM03",

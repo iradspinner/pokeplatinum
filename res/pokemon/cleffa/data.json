@@ -43,7 +43,8 @@
             [ 1, "MOVE_CHARM" ],
             [ 4, "MOVE_ENCORE" ],
             [ 7, "MOVE_SING" ],
-            [ 10, "MOVE_SWEET_KISS" ]
+            [ 10, "MOVE_SWEET_KISS" ],
+            [ 16, "MOVE_MAGICAL_LEAF" ]
         ],
         "by_tm": [
             "TM03",
@@ -107,7 +108,8 @@
             "MOVE_WISH",
             "MOVE_SUBSTITUTE",
             "MOVE_FAKE_TEARS",
-            "MOVE_COVET"
+            "MOVE_COVET",
+            "MOVE_HEALING_WISH"
         ]
     },
     "evolutions": [

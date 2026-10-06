@@ -46,9 +46,8 @@
             [ 19, "MOVE_BULLDOZE" ],
             [ 21, "MOVE_MIST" ],
             [ 26, "MOVE_ICE_SHARD" ],
-            [ 28, "MOVE_SEED_BOMB" ],
-            [ 31, "MOVE_ROCK_TOMB" ],
-            [ 34, "MOVE_BODY_PRESS" ],
+            [ 28, "MOVE_ROCK_TOMB" ],
+            [ 30, "MOVE_SEED_BOMB" ],
             [ 36, "MOVE_WOOD_HAMMER" ],
             [ 41, "MOVE_ICE_BEAM" ]
         ],

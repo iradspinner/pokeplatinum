@@ -38,7 +38,6 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_REVENGE" ],
             [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_LEER" ],
@@ -48,7 +47,6 @@
             [ 17, "MOVE_SAND_ATTACK" ],
             [ 21, "MOVE_PIN_MISSILE" ],
             [ 29, "MOVE_FAINT_ATTACK" ],
-            [ 33, "MOVE_SPIKES" ],
             [ 35, "MOVE_SPIKES" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
             [ 47, "MOVE_PAYBACK" ],

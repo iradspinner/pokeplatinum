@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_DESTINY_BOND"
-            ],
-            [
-                1,
                 "MOVE_SHADOW_CLAW"
             ],
             [
@@ -81,8 +77,16 @@
                 "MOVE_HEX"
             ],
             [
+                28,
+                "MOVE_MEAN_LOOK"
+            ],
+            [
                 38,
                 "MOVE_CURSE"
+            ],
+            [
+                44,
+                "MOVE_SHADOW_BALL"
             ],
             [
                 53,
@@ -101,23 +105,19 @@
                 "MOVE_POWER_SPLIT"
             ],
             [
-                61,
+                58,
                 "MOVE_ROCK_TOMB"
             ],
             [
-                66,
+                61,
                 "MOVE_ZEN_HEADBUTT"
             ],
             [
-                68,
+                66,
                 "MOVE_POLTERGEIST"
             ],
             [
-                69,
-                "MOVE_SCARY_FACE"
-            ],
-            [
-                71,
+                68,
                 "MOVE_BODY_PRESS"
             ]
         ],

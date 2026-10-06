@@ -105,10 +105,6 @@
                 "MOVE_LOW_SWEEP"
             ],
             [
-                40,
-                "MOVE_PETAL_BLIZZARD"
-            ],
-            [
                 42,
                 "MOVE_ENERGY_BALL"
             ],
@@ -125,20 +121,20 @@
                 "MOVE_KNOCK_OFF"
             ],
             [
-                54,
-                "MOVE_SUCKER_PUNCH"
-            ],
-            [
                 55,
                 "MOVE_U_TURN"
             ],
             [
-                58,
-                "MOVE_SHADOW_CLAW"
+                57,
+                "MOVE_SUCKER_PUNCH"
             ],
             [
                 61,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                64,
+                "MOVE_THUNDER_PUNCH"
             ]
         ],
         "by_tm": [],

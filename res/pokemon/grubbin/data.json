@@ -53,6 +53,10 @@
                 "MOVE_MUD_SLAP"
             ],
             [
+                4,
+                "MOVE_STICKY_WEB"
+            ],
+            [
                 5,
                 "MOVE_STRING_SHOT"
             ],
@@ -65,8 +69,8 @@
                 "MOVE_BITE"
             ],
             [
-                25,
-                "MOVE_STICKY_WEB"
+                21,
+                "MOVE_SPARK"
             ],
             [
                 30,

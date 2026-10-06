@@ -93,7 +93,7 @@
                 "MOVE_SUPER_FANG"
             ],
             [
-                36,
+                35,
                 "MOVE_BODY_PRESS"
             ],
             [
@@ -109,39 +109,31 @@
                 "MOVE_CLOSE_COMBAT"
             ],
             [
-                54,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
                 55,
                 "MOVE_MACH_PUNCH"
             ],
             [
-                56,
-                "MOVE_THUNDER_PUNCH"
-            ],
-            [
                 57,
-                "MOVE_AGILITY"
-            ],
-            [
-                58,
-                "MOVE_LOW_SWEEP"
+                "MOVE_ROCK_TOMB"
             ],
             [
                 61,
                 "MOVE_DOUBLE_SHOCK"
             ],
             [
+                63,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
                 65,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                70,
                 "MOVE_FIRE_PUNCH"
             ],
             [
-                66,
-                "MOVE_THUNDER_WAVE"
-            ],
-            [
-                68,
+                72,
                 "MOVE_THROAT_CHOP"
             ]
         ],

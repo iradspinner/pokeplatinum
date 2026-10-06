@@ -52,13 +52,14 @@
             [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_ZEN_HEADBUTT" ],
+            [ 45, "MOVE_STEEL_WING" ],
             [ 51, "MOVE_AIR_SLASH" ],
-            [ 54, "MOVE_U_TURN" ],
-            [ 56, "MOVE_CRUNCH" ],
-            [ 58, "MOVE_TAILWIND" ],
-            [ 60, "MOVE_TOXIC" ],
-            [ 65, "MOVE_BRAVE_BIRD" ]
+            [ 53, "MOVE_POISON_JAB" ],
+            [ 55, "MOVE_ZEN_HEADBUTT" ],
+            [ 61, "MOVE_BRAVE_BIRD" ],
+            [ 63, "MOVE_ACROBATICS" ],
+            [ 69, "MOVE_CRUNCH" ],
+            [ 71, "MOVE_U_TURN" ]
         ],
         "by_tm": [
             "TM06",

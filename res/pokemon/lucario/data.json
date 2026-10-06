@@ -51,17 +51,12 @@
             [ 47, "MOVE_DRAGON_PULSE" ],
             [ 48, "MOVE_METEOR_MASH" ],
             [ 51, "MOVE_EXTREME_SPEED" ],
-            [ 54, "MOVE_EXTRASENSORY" ],
-            [ 56, "MOVE_BULLDOZE" ],
-            [ 58, "MOVE_LOW_SWEEP" ],
-            [ 60, "MOVE_IRON_HEAD" ],
-            [ 62, "MOVE_DRAIN_PUNCH" ],
-            [ 65, "MOVE_ICE_PUNCH" ],
-            [ 66, "MOVE_EARTHQUAKE" ],
-            [ 68, "MOVE_UPPER_HAND" ],
-            [ 69, "MOVE_CALM_MIND" ],
-            [ 71, "MOVE_PSYCHIC" ],
-            [ 78, "MOVE_LIFE_DEW" ]
+            [ 54, "MOVE_BULLDOZE" ],
+            [ 56, "MOVE_EXTRASENSORY" ],
+            [ 62, "MOVE_ICE_PUNCH" ],
+            [ 64, "MOVE_IRON_HEAD" ],
+            [ 70, "MOVE_LOW_SWEEP" ],
+            [ 72, "MOVE_DRAIN_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

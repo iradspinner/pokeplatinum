@@ -38,7 +38,6 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HEALING_WISH" ],
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_GROWL" ],
             [ 9, "MOVE_REFRESH" ],
@@ -50,12 +49,10 @@
             [ 34, "MOVE_LIGHT_SCREEN" ],
             [ 38, "MOVE_EGG_BOMB" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
-            [ 53, "MOVE_HYPER_VOICE" ],
-            [ 54, "MOVE_ICE_BEAM" ],
-            [ 56, "MOVE_FLAMETHROWER" ],
-            [ 58, "MOVE_LIFE_DEW" ],
-            [ 60, "MOVE_PSYCHIC" ],
-            [ 65, "MOVE_BLOCK" ]
+            [ 48, "MOVE_HYPER_VOICE" ],
+            [ 53, "MOVE_FLAMETHROWER" ],
+            [ 55, "MOVE_ICE_BEAM" ],
+            [ 61, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM01",

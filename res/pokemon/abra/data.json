@@ -38,12 +38,9 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 4, "MOVE_PSYCHO_CUT" ],
-            [ 5, "MOVE_CONFUSION" ],
-            [ 7, "MOVE_ROLE_PLAY" ],
-            [ 10, "MOVE_REFLECT" ],
-            [ 13, "MOVE_DISABLE" ],
-            [ 16, "MOVE_CALM_MIND" ]
+            [ 2, "MOVE_ROUND" ],
+            [ 3, "MOVE_CALM_MIND" ],
+            [ 4, "MOVE_CONFUSION" ]
         ],
         "by_tm": [
             "TM01",

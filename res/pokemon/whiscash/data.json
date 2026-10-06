@@ -50,16 +50,15 @@
             [ 26, "MOVE_MAGNITUDE" ],
             [ 30, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_REST" ],
-            [ 36, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_ZEN_HEADBUTT" ],
             [ 39, "MOVE_AQUA_TAIL" ],
-            [ 40, "MOVE_EARTH_POWER" ],
             [ 42, "MOVE_WILD_CHARGE" ],
             [ 45, "MOVE_EARTHQUAKE" ],
             [ 51, "MOVE_FUTURE_SIGHT" ],
-            [ 54, "MOVE_SPARK" ],
-            [ 56, "MOVE_ICE_BEAM" ],
+            [ 53, "MOVE_ICE_BEAM" ],
+            [ 58, "MOVE_SPARK" ],
             [ 60, "MOVE_TICKLE" ],
-            [ 65, "MOVE_SWAGGER" ]
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM03",

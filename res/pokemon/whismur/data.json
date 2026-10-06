@@ -44,6 +44,7 @@
             [ 5, "MOVE_UPROAR" ],
             [ 11, "MOVE_ASTONISH" ],
             [ 15, "MOVE_HOWL" ],
+            [ 21, "MOVE_SUPERSONIC" ],
             [ 25, "MOVE_STOMP" ],
             [ 31, "MOVE_SCREECH" ],
             [ 41, "MOVE_REST" ],

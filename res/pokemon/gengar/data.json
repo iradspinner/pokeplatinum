@@ -34,7 +34,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_LICK" ],
             [ 1, "MOVE_SPITE" ],
@@ -49,13 +48,12 @@
             [ 33, "MOVE_SHADOW_BALL" ],
             [ 39, "MOVE_DREAM_EATER" ],
             [ 44, "MOVE_DARK_PULSE" ],
-            [ 49, "MOVE_SLUDGE_BOMB" ],
-            [ 52, "MOVE_GIGA_DRAIN" ],
-            [ 54, "MOVE_PSYCHIC" ],
+            [ 46, "MOVE_SLUDGE_BOMB" ],
+            [ 48, "MOVE_GIGA_DRAIN" ],
+            [ 53, "MOVE_DAZZLING_GLEAM" ],
             [ 55, "MOVE_NIGHTMARE" ],
-            [ 57, "MOVE_TOXIC" ],
-            [ 60, "MOVE_ENERGY_BALL" ],
-            [ 65, "MOVE_SWAGGER" ]
+            [ 61, "MOVE_ENERGY_BALL" ],
+            [ 63, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM01",

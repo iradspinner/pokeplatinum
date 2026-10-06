@@ -81,12 +81,12 @@
                 "MOVE_PURSUIT"
             ],
             [
-                17,
-                "MOVE_SNARL"
+                18,
+                "MOVE_TAUNT"
             ],
             [
-                19,
-                "MOVE_TAUNT"
+                20,
+                "MOVE_AIR_CUTTER"
             ],
             [
                 21,
@@ -98,14 +98,14 @@
             ],
             [
                 24,
-                "MOVE_AIR_CUTTER"
+                "MOVE_SNARL"
             ],
             [
                 27,
                 "MOVE_ACROBATICS"
             ],
             [
-                31,
+                29,
                 "MOVE_ELECTROWEB"
             ],
             [
@@ -121,10 +121,6 @@
                 "MOVE_VOLT_SWITCH"
             ],
             [
-                44,
-                "MOVE_THUNDERBOLT"
-            ],
-            [
                 49,
                 "MOVE_AGILITY"
             ],
@@ -133,19 +129,23 @@
                 "MOVE_DISCHARGE"
             ],
             [
-                54,
-                "MOVE_ENERGY_BALL"
+                52,
+                "MOVE_THUNDERBOLT"
             ],
             [
-                56,
+                54,
                 "MOVE_AIR_SLASH"
             ],
             [
-                60,
+                56,
                 "MOVE_SHADOW_BALL"
             ],
             [
-                65,
+                59,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                67,
                 "MOVE_CHARM"
             ]
         ],

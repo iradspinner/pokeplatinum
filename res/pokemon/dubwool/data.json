@@ -78,11 +78,11 @@
             ],
             [
                 25,
-                "MOVE_TAKE_DOWN"
+                "MOVE_SWAGGER"
             ],
             [
-                26,
-                "MOVE_SWAGGER"
+                27,
+                "MOVE_TAKE_DOWN"
             ],
             [
                 29,
@@ -101,20 +101,20 @@
                 "MOVE_REVERSAL"
             ],
             [
-                41,
-                "MOVE_ZEN_HEADBUTT"
-            ],
-            [
                 44,
                 "MOVE_COTTON_GUARD"
             ],
             [
-                47,
-                "MOVE_BODY_PRESS"
+                46,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 50,
                 "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                52,
+                "MOVE_BODY_PRESS"
             ],
             [
                 54,
@@ -125,7 +125,7 @@
                 "MOVE_LAST_RESORT"
             ],
             [
-                61,
+                67,
                 "MOVE_THUNDER_WAVE"
             ]
         ],

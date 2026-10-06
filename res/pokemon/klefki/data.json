@@ -113,7 +113,7 @@
                 "MOVE_MAGIC_ROOM"
             ],
             [
-                47,
+                48,
                 "MOVE_CALM_MIND"
             ],
             [
@@ -125,24 +125,20 @@
                 "MOVE_LAST_RESORT"
             ],
             [
-                54,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
                 56,
                 "MOVE_PSYCHIC"
             ],
             [
                 58,
-                "MOVE_MOONBLAST"
+                "MOVE_SKITTER_SMACK"
             ],
             [
-                60,
+                64,
                 "MOVE_FACADE"
             ],
             [
-                65,
-                "MOVE_THUNDER_WAVE"
+                66,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [],

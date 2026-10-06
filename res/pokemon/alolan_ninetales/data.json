@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                1,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                1,
                 "MOVE_NASTY_PLOT"
             ],
             [
@@ -117,67 +125,51 @@
                 "MOVE_INCINERATE"
             ],
             [
-                26,
+                20,
                 "MOVE_SPITE"
+            ],
+            [
+                27,
+                "MOVE_ICY_WIND"
             ],
             [
                 31,
                 "MOVE_PAYBACK"
             ],
             [
-                33,
-                "MOVE_ICY_WIND"
-            ],
-            [
-                36,
-                "MOVE_CHILLING_WATER"
-            ],
-            [
-                39,
+                35,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
-                43,
-                "MOVE_EXTRASENSORY"
+                37,
+                "MOVE_CHILLING_WATER"
             ],
             [
-                44,
+                43,
                 "MOVE_ICE_BEAM"
             ],
             [
-                48,
-                "MOVE_DARK_PULSE"
+                44,
+                "MOVE_EXTRASENSORY"
+            ],
+            [
+                51,
+                "MOVE_FOUL_PLAY"
             ],
             [
                 53,
-                "MOVE_MYSTICAL_FIRE"
-            ],
-            [
-                54,
-                "MOVE_BURNING_JEALOUSY"
-            ],
-            [
-                56,
-                "MOVE_MOONBLAST"
-            ],
-            [
-                58,
-                "MOVE_WILL_O_WISP"
-            ],
-            [
-                60,
                 "MOVE_CONFUSE_RAY"
             ],
             [
-                62,
-                "MOVE_NASTY_PLOT"
+                59,
+                "MOVE_FLAMETHROWER"
             ],
             [
-                65,
-                "MOVE_CHARM"
+                61,
+                "MOVE_WILL_O_WISP"
             ],
             [
-                68,
+                67,
                 "MOVE_OVERHEAT"
             ]
         ],

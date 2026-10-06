@@ -46,12 +46,13 @@
             [ 13, "MOVE_UPROAR" ],
             [ 17, "MOVE_REFLECT" ],
             [ 18, "MOVE_CONFUSION" ],
-            [ 19, "MOVE_ROOST" ],
-            [ 20, "MOVE_SWIFT" ],
-            [ 25, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_TAKE_DOWN" ],
+            [ 20, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_AIR_SLASH" ],
             [ 33, "MOVE_ZEN_HEADBUTT" ],
             [ 37, "MOVE_EXTRASENSORY" ],
             [ 41, "MOVE_PSYCHO_SHIFT" ],
+            [ 45, "MOVE_ROOST" ],
             [ 49, "MOVE_DREAM_EATER" ]
         ],
         "by_tm": [

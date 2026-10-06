@@ -46,14 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_EXPLOSION"
-            ],
-            [
-                1,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
-                1,
                 "MOVE_TACKLE"
             ],
             [
@@ -95,11 +87,22 @@
             [
                 40,
                 "MOVE_SEED_BOMB"
+            ],
+            [
+                43,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                52,
+                "MOVE_IRON_HEAD"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SELFDESTRUCT",
+            "MOVE_EXPLOSION"
+        ]
     },
     "evolutions": [
         [

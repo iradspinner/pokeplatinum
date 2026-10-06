@@ -40,11 +40,11 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_BUBBLE" ],
+            [ 8, "MOVE_ICY_WIND" ],
             [ 10, "MOVE_BUBBLE_BEAM" ],
             [ 13, "MOVE_HEADBUTT" ],
             [ 19, "MOVE_AGILITY" ],
             [ 22, "MOVE_WING_ATTACK" ],
-            [ 25, "MOVE_ICY_WIND" ],
             [ 28, "MOVE_WATER_PULSE" ],
             [ 31, "MOVE_TAKE_DOWN" ],
             [ 37, "MOVE_CONFUSE_RAY" ],

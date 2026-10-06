@@ -89,6 +89,10 @@
                 "MOVE_AURORA_VEIL"
             ],
             [
+                38,
+                "MOVE_PSYBEAM"
+            ],
+            [
                 40,
                 "MOVE_ICE_BEAM"
             ],
@@ -101,23 +105,23 @@
                 "MOVE_WIDE_GUARD"
             ],
             [
+                50,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 52,
                 "MOVE_QUIVER_DANCE"
             ],
             [
-                54,
+                58,
                 "MOVE_AIR_SLASH"
-            ],
-            [
-                56,
-                "MOVE_GIGA_DRAIN"
             ],
             [
                 60,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
-                65,
+                66,
                 "MOVE_CALM_MIND"
             ]
         ],

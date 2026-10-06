@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
             [ 1, "MOVE_TOXIC_SPIKES" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_SELFDESTRUCT" ],

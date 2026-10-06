@@ -51,8 +51,9 @@
             [ 49, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_MEGAHORN" ],
             [ 61, "MOVE_ROCK_WRECKER" ],
-            [ 65, "MOVE_CRUNCH" ],
-            [ 68, "MOVE_SUPERPOWER" ]
+            [ 63, "MOVE_CRUNCH" ],
+            [ 65, "MOVE_DRAGON_RUSH" ],
+            [ 69, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",

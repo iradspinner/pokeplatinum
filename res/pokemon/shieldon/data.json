@@ -44,12 +44,11 @@
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_IRON_DEFENSE" ],
             [ 24, "MOVE_SWAGGER" ],
-            [ 27, "MOVE_SMART_STRIKE" ],
+            [ 27, "MOVE_BULLDOZE" ],
             [ 28, "MOVE_ANCIENT_POWER" ],
-            [ 30, "MOVE_BULLDOZE" ],
+            [ 30, "MOVE_IRON_HEAD" ],
             [ 33, "MOVE_ENDURE" ],
-            [ 37, "MOVE_METAL_BURST" ],
-            [ 43, "MOVE_IRON_HEAD" ]
+            [ 37, "MOVE_METAL_BURST" ]
         ],
         "by_tm": [
             "TM05",

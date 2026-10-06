@@ -48,11 +48,11 @@
             [ 41, "MOVE_ROLLOUT" ],
             [ 44, "MOVE_CRUNCH" ],
             [ 49, "MOVE_GIGA_IMPACT" ],
-            [ 53, "MOVE_BODY_PRESS" ],
+            [ 51, "MOVE_BODY_PRESS" ],
             [ 56, "MOVE_SLAM" ],
-            [ 61, "MOVE_HAMMER_ARM" ],
-            [ 66, "MOVE_SUPERPOWER" ],
-            [ 68, "MOVE_EARTHQUAKE" ]
+            [ 64, "MOVE_HAMMER_ARM" ],
+            [ 68, "MOVE_EARTHQUAKE" ],
+            [ 72, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",

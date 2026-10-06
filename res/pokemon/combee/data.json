@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GUST" ],
-            [ 13, "MOVE_BUG_BITE" ],
-            [ 17, "MOVE_PURSUIT" ],
-            [ 21, "MOVE_ROOST" ]
+            [ 9, "MOVE_PURSUIT" ],
+            [ 10, "MOVE_SWAGGER" ],
+            [ 13, "MOVE_BUG_BITE" ]
         ],
         "by_tm": [  ],
         "by_tutor": [

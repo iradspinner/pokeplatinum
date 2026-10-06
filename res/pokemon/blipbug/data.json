@@ -49,12 +49,12 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
-                4,
-                "MOVE_CALM_MIND"
+                2,
+                "MOVE_TRAILBLAZE"
             ],
             [
-                10,
-                "MOVE_TRAILBLAZE"
+                3,
+                "MOVE_CALM_MIND"
             ]
         ],
         "by_tm": [],

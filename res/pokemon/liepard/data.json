@@ -89,20 +89,12 @@
                 "MOVE_FAKE_OUT"
             ],
             [
-                24,
-                "MOVE_HONE_CLAWS"
-            ],
-            [
                 26,
                 "MOVE_ASSURANCE"
             ],
             [
-                30,
-                "MOVE_DARK_PULSE"
-            ],
-            [
-                32,
-                "MOVE_NASTY_PLOT"
+                27,
+                "MOVE_HONE_CLAWS"
             ],
             [
                 34,
@@ -129,27 +121,27 @@
                 "MOVE_SNATCH"
             ],
             [
-                50,
+                49,
                 "MOVE_SKITTER_SMACK"
+            ],
+            [
+                51,
+                "MOVE_SHADOW_BALL"
             ],
             [
                 54,
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                56,
-                "MOVE_BURNING_JEALOUSY"
+                59,
+                "MOVE_PSYCHO_CUT"
             ],
             [
-                58,
+                61,
                 "MOVE_SEED_BOMB"
             ],
             [
-                60,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                65,
+                67,
                 "MOVE_U_TURN"
             ]
         ],

@@ -49,6 +49,7 @@
             [ 32, "MOVE_DRAGON_BREATH" ],
             [ 37, "MOVE_ZEN_HEADBUTT" ],
             [ 43, "MOVE_SCARY_FACE" ],
+            [ 50, "MOVE_CRUNCH" ],
             [ 55, "MOVE_DRAGON_CLAW" ],
             [ 61, "MOVE_DOUBLE_EDGE" ]
         ],

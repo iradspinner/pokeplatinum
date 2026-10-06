@@ -28,8 +28,8 @@ skipped, the oldest dropped once four are full). After capture it learns its
 entries above the catch level. It evolves on time: a level evolution at its
 level (or the next level-up when caught past it), in the first split whose cap
 allows it; an item evolution as soon as the item is in reach (pool's item
-census), at the catch level if that is the catch's split, else at the last
-split's cap. An evolved stage keeps what it had, learns its own level-0
+census), from the stage's own level, the earliest the player can evolve it
+at (a gift Eevee at 20 evolves from 20). An evolved stage keeps what it had, learns its own level-0
 entries on evolving (v3 has them; Oxide has none yet), and then its entries
 from the evolution level on. Anything else on its list, an evolved stage's
 level 1 and every entry below the level it is had at, is the relearner's and
@@ -114,6 +114,10 @@ def effective_power(const):
         return 0.0
     acc = m.get("accuracy")
     hit = min(acc, 100) / 100 if acc else 1.0
+    # Fights are read with no held items, so Acrobatics hits at double power
+    # (the exam's regressions, 2026-10-06: Raboot's 110-power Acrobatics at 17).
+    if m.get("effect") == "DOUBLE_DAMAGE_WITHOUT_ITEM":
+        per_turn *= 2
     return per_turn / hit * DOWNSIDE.get(m.get("effect"), 1.0)
 
 
@@ -155,6 +159,24 @@ REMOVED = {"MOVE_FURY_ATTACK", "MOVE_FEINT", "MOVE_TELEKINESIS", "MOVE_ALLY_SWIT
            "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN",
            "MOVE_MISTY_TERRAIN", "MOVE_PSYCHIC_TERRAIN", "MOVE_SPLASH", "MOVE_TELEPORT",
            "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER"}
+# Moves whose effect the engine does not run as designed, found after the
+# move-pool survey of 2026-09-27 (the exam's regressions, 2026-10-06): Upper
+# Hand is an unconditional +3 hit of 65, Shell Trap an unconditional -3 hit
+# of 150, Burning Jealousy always burns. They stay off player lists until the
+# move rework's cloud job fixes them (Ian approved that job taking them).
+UNCHECKED = {"MOVE_UPPER_HAND", "MOVE_SHELL_TRAP", "MOVE_BURNING_JEALOUSY"}
+# R26: moves for building a trainer's fight, bad for a player in a permadeath
+# run: Destiny Bond and every move that knocks its own user out.
+TRAINER_ONLY = SELF_KO | {"MOVE_DESTINY_BOND"}
+# Moves that only help catch (they leave the target at 1 HP): early or not at
+# all (Ian, 2026-10-06, on False Swipe).
+CATCH_ONLY = {"MOVE_FALSE_SWIPE", "MOVE_HOLD_BACK"}
+CATCH_ONLY_UNTIL = "Fantina"
+# The recovery moves, by effect: a list carries few (Ian, 2026-10-06).
+RECOVERY_EFFECTS = {"RESTORE_HALF_HP", "HEAL_HALF_MORE_IN_SUN", "HEAL_HALF_REMOVE_FLYING_TYPE",
+                    "LIFE_DEW", "HEAL_IN_3_TURNS", "REST", "STRENGTH_SAP", "LUNAR_BLESSING",
+                    "RESTORE_HP_EVERY_TURN", "SWALLOW"}
+RECOVERY_MOST = 2
 # R24: out of every player list (level-up, TM and tutor alike). Protect and
 # every move sharing its effect (Detect, King's Shield and the rest), Double
 # Team, Ingrain (too dangerous) and every one-hit KO move.
@@ -191,7 +213,7 @@ def reliable(const):
     damage move (check 4's run-enders)."""
     return (const in moves() and not rampage(const) and not pending(const)
             and not out_of_lists(const) and const not in REMOVED and not not_working(const)
-            and not run_ender(const))
+            and not run_ender(const) and const not in UNCHECKED)
 
 
 @functools.lru_cache(maxsize=None)
@@ -405,7 +427,14 @@ def _evolution(version, parent, target):
             if first not in SPLITS:
                 continue
             ti = max(pi, si(first))
-            level = parent.level if ti == pi else max(parent.level, caps()[SPLITS[ti - 1]])
+            # The player levels the stage while the item is out of reach, to
+            # the cap before the item's split, and evolves it there. A line
+            # in STONE_EXCEPTIONS is kept at its level until it evolves (Ian's
+            # exam verdict on Eevee, 2026-10-06), so it evolves from there.
+            if ti == pi or family(parent.species) in STONE_EXCEPTIONS:
+                level = parent.level
+            else:
+                level = max(parent.level, caps()[SPLITS[ti - 1]])
         else:
             level = max(need, parent.level + 1)
             ti = next((i for i in range(pi, len(SPLITS)) if caps()[SPLITS[i]] >= level), None)
@@ -1008,8 +1037,8 @@ def write_sheets():
 
 # R1: five or six moves by the first split's cap, at most one of them filler.
 R1_MOVES, R1_FILLER = 5, 1
-# R2: two or three new moves in each split a stage is held at the cap.
-R2_NEW = 2
+# R2: two new moves in each band of R2_BAND levels a stage is held through.
+R2_NEW, R2_BAND = 2, 8
 # R4: the first coverage move by the second split; a weak one counts early.
 COVER_EARLY = 40
 # R5: several coverage types over the game, judged on attacks of 50 or more;
@@ -1170,11 +1199,14 @@ def utility(const):
 
 def counts(const):
     """A move that counts as one of a Pokemon's moves for R1 and R2: one a
-    list may rely on, not rated useless or terrible, and not one for
-    trainers only (R26: Destiny Bond and the moves that knock their user out)."""
+    list may rely on, not rated useless or terrible, not one for trainers
+    only (R26: Destiny Bond and the moves that knock their user out), and
+    not an attack that works only on a condition the user rarely has (Last
+    Resort, Dream Eater: the exam's reviewer read Last Resort as filler,
+    2026-10-06)."""
     t = tier(const)
-    return reliable(const) and not (t and t[0] == 0) and const not in SELF_KO \
-        and const != "MOVE_DESTINY_BOND"
+    return (reliable(const) and not (t and t[0] == 0) and const not in TRAINER_ONLY
+            and ls.strength(ls.oxide_move(moves()[const]))[0] != "conditional")
 
 
 def filler(const, species):
@@ -1306,20 +1338,59 @@ def held_splits(path, i):
     st = path[i]
     a = si(st.split)
     last = len(SPLITS) - 1
+    exception = family(st.species) in STONE_EXCEPTIONS
     if i + 1 < len(path):
         if path[i + 1].via == "level":
             return list(range(a + 1, si(path[i + 1].split)))
+        if exception:
+            return []           # kept at its level until it evolves
         return list(range(a + 1, min(si(path[i + 1].split) + 1, last) + 1))
     if st.via not in ("caught", "level"):
-        return list(range(a + 3, last + 1))
+        return list(range(a, last + 1)) if exception else list(range(a + 3, last + 1))
     return list(range(a + 1, last + 1))
+
+
+# Ian's exception to R10 (the exam, 2026-10-06): "Eeveelutions should be the
+# major exception to the evolution stone rule of limited/no moves learned
+# after evolving via stone; eevee will almost certainly be kept at 20 until it
+# is ready to be evolved, so it will need complete moveset reworks for the
+# eeveelutions from 20-onwards." The line's first stage is held at its level,
+# and each stone form is held from the level it arrives at.
+STONE_EXCEPTIONS = {"SPECIES_EEVEE"}
+
+
+def held_bands(path, i):
+    """[(lowest, highest level)]: the levels stage i is held through (its
+    held splits, contiguous), cut into bands of R2_BAND levels from the first.
+    Ian, 2026-10-06, after reading the exam: count new moves by level band,
+    not by split, since the late splits are three to five levels each and a
+    count per split piled moves at the end of a list (Sceptile's twelve from
+    53 up)."""
+    xs = held_splits(path, i)
+    if not xs:
+        return []
+    lo, hi = window(SPLITS[xs[0]])[0], window(SPLITS[xs[-1]])[1]
+    if xs[0] == si(path[i].split):
+        lo = max(path[i].level, 2)      # held from its arrival (STONE_EXCEPTIONS)
+    out = []
+    while lo <= hi:
+        out.append((lo, min(lo + R2_BAND - 1, hi)))
+        lo += R2_BAND
+    return out
+
+
+def band_need(lo, hi):
+    """New moves a band asks for: R2_NEW in a full band, one in a band of at
+    least half its width at the end of a stage's hold, none in a shorter one."""
+    width = hi - lo + 1
+    return R2_NEW if width >= R2_BAND else (1 if width * 2 >= R2_BAND else 0)
 
 
 @functools.lru_cache(maxsize=None)
 def check8(version):
     """{species: result}: for each stage, the new moves (counts()) it learns
-    in each split it is held at the cap of; it fails when one such split
-    brings fewer than R2_NEW."""
+    in each band of levels it is held through (held_bands); it fails when a
+    band brings fewer than band_need asks."""
     out = {}
     for sp, (fam, path, i) in _stage_paths(version).items():
         st = path[i]
@@ -1327,17 +1398,16 @@ def check8(version):
         # window a stage waiting on an item is held for runs that far.
         brought = {m for m, _o in st.brought}
         per = {}
-        for x in held_splits(path, i):
-            lo, hi = window(SPLITS[x])
+        for lo, hi in held_bands(path, i):
             before = brought | {m for lv, m in st.own if lv < lo}
             new = []
             for lv, m in st.own:
                 if lo <= lv <= hi and counts(m) and m not in before and m not in new:
                     new.append(m)
-            per[SPLITS[x]] = tuple(new)
-        short = [s for s, ms in per.items() if len(ms) < R2_NEW]
-        out[sp] = {"species": sp, "family": fam, "splits": per, "short": tuple(short),
-                   "verdict": "fail" if short else "pass"}
+            per[f"{lo}-{hi}"] = (tuple(new), band_need(lo, hi))
+        short = [b for b, (ms, need) in per.items() if len(ms) < need]
+        out[sp] = {"species": sp, "family": fam, "bands": {b: ms for b, (ms, _n) in per.items()},
+                   "short": tuple(short), "verdict": "fail" if short else "pass"}
     return out
 
 
@@ -1575,15 +1645,17 @@ def families():
 
 @functools.lru_cache(maxsize=None)
 def check15(version):
-    """[species]: R21, Baton Pass on a list (above level 1) of a line that
-    learns no stat-raising move by level-up to pass on."""
+    """[species]: R21, Baton Pass on a list (above level 1) of a species that
+    learns no stat-raising move by level-up to pass on, on its own list or
+    one it carries from what it evolves from (the exam's regressions,
+    2026-10-06: Baton Pass on Eevee, which has no boost of its own)."""
     setup = set(setup_moves())
     out = []
     for sp in sorted(b6.obtainable()):
         if not any(m == "MOVE_BATON_PASS" and lv >= 2 for lv, m in learnset(version, sp)):
             continue
-        line = families()[family(sp)]
-        if not any(m in setup and lv >= 2 for s in line for lv, m in learnset(version, s)):
+        own = [sp] + list(pool.pre_evolutions().get(sp) or [])
+        if not any(m in setup and lv >= 2 for s in own for lv, m in learnset(version, s)):
             out.append(sp)
     return out
 
@@ -1606,6 +1678,8 @@ def check16(version):
                 out.append((sp, w, m, "R24"))
             elif m in REMOVED:
                 out.append((sp, w, m, "removed"))
+            elif m in UNCHECKED and w.startswith("level"):
+                out.append((sp, w, m, "not run as designed"))
     return out
 
 
@@ -1775,11 +1849,19 @@ def check21(version):
 
 @functools.lru_cache(maxsize=None)
 def check22(version):
-    """{rule: [(species, detail)]}: list hygiene. Two moves on one level (above
-    1), an entry past the League's cap, a move twice on one list above level
-    1, and the level-0 (on evolving) entries, which are used sparingly."""
+    """{rule: [(species, detail)]}: list hygiene and fit. Two moves on one
+    level (above 1), an entry past the League's cap, a move twice on one list
+    above level 1; a trainer-only move (R26) a wild catch would know among its
+    four; a catch-only move (False Swipe) after Fantina's split; more than
+    RECOVERY_MOST recovery moves on a list (Ian, 2026-10-06, the exam's
+    regressions); and, for information, the level-0 (on evolving) entries,
+    which are used sparingly."""
     top = caps()[SPLITS[-1]]
-    out = {"two on one level": [], "past the League": [], "twice on a list": [], "on evolving": []}
+    late = caps()[CATCH_ONLY_UNTIL]
+    out = {"two on one level": [], "past the League": [], "twice on a list": [],
+           "trainer-only move a wild catch knows": [], "catch-only move after Fantina's split": [],
+           "more than two recovery moves": [], "on evolving": []}
+    wild = {"wild", "surf", "old_rod", "good_rod", "super_rod", "honey"}
     for sp in sorted(b6.obtainable()):
         lst = learnset(version, sp)
         lv_count = collections.Counter(lv for lv, _m in lst if lv >= 2)
@@ -1788,6 +1870,68 @@ def check22(version):
         out["past the League"] += [(sp, f"{move_name(m)} {lv}") for lv, m in lst if lv > top]
         out["twice on a list"] += [(sp, move_name(m)) for m, n in sorted(mv_count.items()) if n > 1]
         out["on evolving"] += [(sp, move_name(m)) for lv, m in lst if lv == 0]
+        out["catch-only move after Fantina's split"] += [(sp, f"{move_name(m)} {lv}") for lv, m in lst
+                                                         if m in CATCH_ONLY and lv > late]
+        heal = sorted({m for lv, m in lst if lv >= 2 and m in moves() and moves()[m]["effect"] in RECOVERY_EFFECTS})
+        if len(heal) > RECOVERY_MOST:
+            out["more than two recovery moves"].append((sp, ", ".join(move_name(m) for m in heal)))
+    for sp, _s, lv, how, _p in catch_rows():
+        if how in wild and sp in species_set():
+            for m in at_capture(version, sp, lv):
+                if m in TRAINER_ONLY:
+                    out["trainer-only move a wild catch knows"].append((sp, f"{move_name(m)} at {lv}"))
+    out["trainer-only move a wild catch knows"] = sorted(set(out["trainer-only move a wild catch knows"]))
+    return out
+
+
+BRANCH_PARITY = 0.8     # the weakest branch's kit worth, as a share of the strongest's
+
+
+def move_worth(const, holder):
+    """A move's worth in one Pokemon's kit, for branch parity: an attack's
+    effective power with the same-type bonus and the share of the holder's
+    better attacking stat it uses; a utility move's tier rank times seven
+    (a good move 35, an incredible one 49)."""
+    if damaging(const) and effective_power(const) > 0:
+        m = moves()[const]
+        atk, spa = attack_stats(holder)
+        use = atk if m["class"] == "PHYSICAL" else spa
+        stab = 1.5 if m["type"] in types_of(holder) else 1.0
+        return effective_power(const) * stab * use / max(atk, spa, 1)
+    t = tier(const)
+    return t[0] * 7 if t and utility(const) else 0.0
+
+
+def kit_worth(held, holder):
+    """The worth of the best four moves a Pokemon holds."""
+    return sum(sorted((move_worth(m, holder) for m in set(held)), reverse=True)[:4])
+
+
+@functools.lru_cache(maxsize=None)
+def check24(version):
+    """[(stage, choice split, {branch: worth}, verdict)]: branch parity (Ian's
+    exam verdict on Koffing, 2026-10-06: branches of one line are close in
+    worth by the split where the player chooses between them). For each
+    stage the player can evolve two or more ways, at the cap of the split by
+    which every branch is open, each branch's kit (kit_worth of what its path
+    holds by then) is at least BRANCH_PARITY of the strongest branch's."""
+    out = []
+    for fam in sorted(line_catches()):
+        groups = collections.defaultdict(dict)
+        for path in line_paths(version, fam):
+            for i in range(len(path) - 1):
+                key = tuple(st.species for st in path[:i + 1])
+                groups[key].setdefault(path[i + 1].species, path)
+        for key, branches in sorted(groups.items()):
+            if len(branches) < 2:
+                continue
+            choice = max(si(p[len(key)].split) for p in branches.values())
+            cap = caps()[SPLITS[choice]]
+            worth = {t: round(kit_worth([m for _lv, _j, m, _h in path_events(p, cap)], t), 1)
+                     for t, p in branches.items()}
+            best = max(worth.values()) or 1
+            ok = min(worth.values()) >= BRANCH_PARITY * best
+            out.append((key[-1], SPLITS[choice], worth, "pass" if ok else "fail"))
     return out
 
 
@@ -1827,7 +1971,7 @@ def _fails(version):
         10: (sum(r["verdict"] == "fail" for r in c10.values()), len(c10), "branches"),
         11: (len(check11(version)), None, "entries"),
         12: (sum(r["verdict"] == "fail" for r in c12.values()), len(c12), "branches"),
-        13: (len(check13(version)), None, "pairs"),
+        13: (len(check13(version)), None, "pairs, for information"),
         14: (sum(r["verdict"] == "fail" for r in c14.values()), len(c14), "stages"),
         15: (len(check15(version)), None, "species"),
         16: (sum(1 for _sp, w, _m, _r in c16 if w.startswith("level")), None, "level-up entries"),
@@ -1838,16 +1982,17 @@ def _fails(version):
         21: (sum(1 for ms in c21.values() if not ms), len(c21), "final forms"),
         22: (sum(len(v) for k, v in c22.items() if k != "on evolving"), None, "entries"),
         23: (sum(1 for ms in check23(version).values() if not ms), len(check23(version)), "lines"),
+        24: (sum(1 for r in check24(version) if r[3] == "fail"), len(check24(version)), "choices of branch"),
     }
 
 
 RULES = {7: "R1, five or six moves by the first split's cap, at most one filler",
-         8: "R2, two new moves per split a stage is held at the cap",
+         8: "R2, two new moves per band of eight levels a stage is held through",
          9: "R4, the first coverage move by the second split",
          10: "R5, three coverage types over the game (two for a very strong line)",
          11: "R6, no move dominated by a stronger one already had",
          12: "R7, a good utility move by the second split (two over the game if less offensive)",
-         13: "R8, no evolution or learn-level choice inside one split",
+         13: "R8, choices inside one split (for information: Ian, 2026-10-06, they cost the player nothing)",
          14: "R11, an attack of each of the stage's types within a split",
          15: "R21, Baton Pass only with a boost to pass",
          16: "R24, Protect and kin, Double Team, Ingrain, one-hit KO moves and removed moves off the lists",
@@ -1857,7 +2002,8 @@ RULES = {7: "R1, five or six moves by the first split's cap, at most one filler"
          20: "Every evolution that needs a known move reachable by level-up",
          21: "A real level-up move from 61 on each final form",
          22: "List hygiene: one move a level, none past 78, no move twice",
-         23: "R16, a move from after Generation 4 on every line"}
+         23: "R16, a move from after Generation 4 on every line",
+         24: "Branches of one line close in worth where the player chooses (Ian, 2026-10-06)"}
 
 
 def _names(items, n=12):
@@ -1888,7 +2034,7 @@ def rules_report(out=sys.stdout, worst=12):
         c8 = check8(v)
         fails = sorted((r for r in c8.values() if r["verdict"] == "fail"),
                        key=lambda r: (-len(r["short"]), r["species"]))
-        p(f"\nCheck 8: " + _names(f"{_sp(r['species'])} ({', '.join(s + ' ' + str(len(r['splits'][s])) for s in r['short'])})"
+        p(f"\nCheck 8: " + _names(f"{_sp(r['species'])} ({', '.join(b + ': ' + str(len(r['bands'][b])) for b in r['short'])})"
                                  for r in fails[:worst * 3]) + ".")
         c9 = check9(v)
         fails = sorted((r for r in c9.values() if r["verdict"] == "fail"),
@@ -1929,6 +2075,9 @@ def rules_report(out=sys.stdout, worst=12):
         c22 = check22(v)
         p(f"\nCheck 22: " + "; ".join(f"{k} {len(rows)}" for k, rows in c22.items()) + ".")
         p(f"\nCheck 23: " + (_names(_sp(f) for f, ms in check23(v).items() if not ms) or "none") + ".")
+        p(f"\nCheck 24: " + (_names(
+            f"{_sp(st)} in {split}'s split ({', '.join(_sp(t) + ' ' + str(w) for t, w in sorted(ws.items()))})"
+            for st, split, ws, verdict in check24(v) if verdict == "fail") or "none") + ".")
     tm16 = [(sp, w, m) for sp, w, m, _r in check16(A) if not w.startswith("level")]
     p(f"\nCheck 16 on the TM and tutor lists, the same in both (for the TM pass): {len(tm16)} entries, "
       + _names(f"{_sp(sp)} {move_name(m)} ({w})" for sp, w, m in tm16) + ".")

@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_EXPLOSION"
-            ],
-            [
-                1,
                 "MOVE_HAMMER_ARM"
             ],
             [
@@ -121,24 +117,20 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
-                53,
+                51,
                 "MOVE_ZEN_HEADBUTT"
-            ],
-            [
-                54,
-                "MOVE_BLOCK"
             ],
             [
                 56,
                 "MOVE_BODY_PRESS"
             ],
             [
-                60,
-                "MOVE_HAMMER_ARM"
+                58,
+                "MOVE_BLOCK"
             ],
             [
-                65,
-                "MOVE_CURSE"
+                64,
+                "MOVE_HAMMER_ARM"
             ]
         ],
         "by_tm": [],

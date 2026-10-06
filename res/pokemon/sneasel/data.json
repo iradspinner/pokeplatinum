@@ -49,16 +49,13 @@
             [ 24, "MOVE_AGILITY" ],
             [ 28, "MOVE_ICY_WIND" ],
             [ 35, "MOVE_SLASH" ],
-            [ 38, "MOVE_LOW_SWEEP" ],
+            [ 37, "MOVE_REVENGE" ],
             [ 40, "MOVE_POISON_JAB" ],
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_ICE_SHARD" ],
-            [ 53, "MOVE_ICE_FANG" ],
-            [ 54, "MOVE_NIGHT_SLASH" ],
+            [ 51, "MOVE_THROAT_CHOP" ],
             [ 56, "MOVE_ICE_PUNCH" ],
-            [ 58, "MOVE_ICICLE_CRASH" ],
-            [ 60, "MOVE_THROAT_CHOP" ],
-            [ 62, "MOVE_UPPER_HAND" ]
+            [ 58, "MOVE_ICICLE_CRASH" ]
         ],
         "by_tm": [
             "TM01",

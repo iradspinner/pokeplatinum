@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
+            [ 4, "MOVE_FLIP_TURN" ],
             [ 5, "MOVE_VICE_GRIP" ],
             [ 9, "MOVE_LEER" ],
-            [ 12, "MOVE_WIDE_GUARD" ],
             [ 15, "MOVE_BUBBLE_BEAM" ],
             [ 19, "MOVE_MUD_SHOT" ],
             [ 21, "MOVE_METAL_CLAW" ],

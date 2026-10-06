@@ -80,14 +80,33 @@ def check_r1(results):
 
 
 def check_r2(results):
-    """Check 8: Charmeleon learns only Scary Face in Gardenia's split ("farcical");
-    Onix, waiting on a Metal Coat, is read past its on-time evolution."""
+    """Check 8, by bands of eight levels (2026-10-06): Charmeleon learns only
+    Scary Face from 17 to 24 ("farcical" in Gardenia's split); Onix, waiting
+    on a Metal Coat, is read past its on-time evolution, DragonBreath at 33
+    in the short band its hold ends with."""
     cm = lc.check8(O)["SPECIES_CHARMELEON"]
-    onix = lc.check8(O)["SPECIES_ONIX"]["splits"]
-    ok = (cm["verdict"] == "fail" and names(cm["splits"]["Gardenia"]) == ["Scary Face"]
-          and names(onix.get("Gardenia", ())) == ["Rock Tomb", "Slam"])
-    results.append(("check 8 (R2) reads Charmeleon's Gardenia split and Onix's hold", ok,
-                    f"Charmeleon {names(cm['splits'].get('Gardenia', ()))}, Onix {names(onix.get('Gardenia', ()))}"))
+    onix = lc.check8(O)["SPECIES_ONIX"]["bands"]
+    ok = (cm["verdict"] == "fail" and cm["short"] == ("17-24",) and names(cm["bands"]["17-24"]) == ["Scary Face"]
+          and names(onix.get("17-24", ())) == ["Rock Tomb"] and names(onix.get("33-33", ())) == ["DragonBreath"])
+    results.append(("check 8 (R2) reads Charmeleon's first band and Onix's hold", ok,
+                    f"Charmeleon {names(cm['bands'].get('17-24', ()))}, Onix {dict((b, names(m)) for b, m in onix.items())}"))
+
+
+def check_fit_rows(results):
+    """Check 22's rows from the exam's regressions (2026-10-06), on Oxide's
+    lists: Koffing's wild catches know Selfdestruct, a trainer-only move; Grovyle's
+    False Swipe at 53 is past Fantina's split. And check 24: Oxide's lists
+    leave the Eevee line's branches far apart, with Vaporeon among the weak."""
+    c22 = lc.check22(O)
+    koffing = [d for sp, d in c22["trainer-only move a wild catch knows"] if sp == "SPECIES_KOFFING"]
+    late = [sp for sp, _d in c22["catch-only move after Fantina's split"]]
+    eevee = next((r for r in lc.check24(O) if r[0] == "SPECIES_EEVEE"), None)
+    ok = (any(d.startswith("Selfdestruct") for d in koffing) and "SPECIES_GROVYLE" in late
+          and eevee is not None and eevee[3] == "fail"
+          and min(eevee[2], key=eevee[2].get) in ("SPECIES_VAPOREON", "SPECIES_GLACEON"))
+    results.append(("check 22's new rows and check 24 read the exam's cases", ok,
+                    f"Koffing {koffing}, late catch-only {late}, "
+                    f"Eevee {eevee[2] if eevee else None}"))
 
 
 def check_r4_r5(results):
@@ -276,7 +295,7 @@ def main():
     for check in (check_catches, check_at_capture, check_dragon_rage, check_setup_pp,
                   check_v3_reading, check_held_out, check_named_moves, check_r1, check_r2,
                   check_r4_r5, check_r6, check_r7, check_r8, check_r11, check_mechanical,
-                  check_evolutions_and_late):
+                  check_evolutions_and_late, check_fit_rows):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

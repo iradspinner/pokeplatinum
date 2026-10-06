@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_FINAL_GAMBIT"
-            ],
-            [
-                1,
                 "MOVE_SHADOW_PUNCH"
             ],
             [
@@ -101,48 +97,36 @@
                 "MOVE_LOW_KICK"
             ],
             [
-                53,
-                "MOVE_PUNISHMENT"
-            ],
-            [
                 54,
-                "MOVE_DRAIN_PUNCH"
-            ],
-            [
-                56,
                 "MOVE_SHADOW_PUNCH"
             ],
             [
-                58,
-                "MOVE_THROAT_CHOP"
+                56,
+                "MOVE_LOW_SWEEP"
             ],
             [
-                60,
-                "MOVE_POISON_JAB"
+                62,
+                "MOVE_FIRE_PUNCH"
             ],
             [
-                61,
-                "MOVE_BULLDOZE"
-            ],
-            [
-                63,
-                "MOVE_EARTHQUAKE"
+                64,
+                "MOVE_DRAIN_PUNCH"
             ],
             [
                 66,
                 "MOVE_THRASH"
             ],
             [
-                67,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
-                68,
-                "MOVE_SUPERPOWER"
-            ],
-            [
                 69,
                 "MOVE_OUTRAGE"
+            ],
+            [
+                71,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                73,
+                "MOVE_EARTHQUAKE"
             ]
         ],
         "by_tm": [],

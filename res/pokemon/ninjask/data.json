@@ -49,7 +49,6 @@
             [ 19, "MOVE_MIND_READER" ],
             [ 20, "MOVE_FURY_CUTTER" ],
             [ 21, "MOVE_SCREECH" ],
-            [ 22, "MOVE_FALSE_SWIPE" ],
             [ 25, "MOVE_SWORDS_DANCE" ],
             [ 31, "MOVE_SLASH" ],
             [ 38, "MOVE_AGILITY" ],

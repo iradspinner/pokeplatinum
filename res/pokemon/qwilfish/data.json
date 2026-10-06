@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_SPIKES" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_POISON_STING" ],
@@ -53,16 +52,14 @@
             [ 33, "MOVE_BRINE" ],
             [ 37, "MOVE_PIN_MISSILE" ],
             [ 41, "MOVE_TAKE_DOWN" ],
-            [ 43, "MOVE_THROAT_CHOP" ],
             [ 45, "MOVE_AQUA_TAIL" ],
             [ 49, "MOVE_POISON_JAB" ],
-            [ 54, "MOVE_FLIP_TURN" ],
-            [ 55, "MOVE_HEADBUTT" ],
+            [ 51, "MOVE_THROAT_CHOP" ],
             [ 57, "MOVE_SURF" ],
-            [ 60, "MOVE_SECRET_POWER" ],
-            [ 65, "MOVE_TOXIC" ],
-            [ 66, "MOVE_SKITTER_SMACK" ],
-            [ 68, "MOVE_DOUBLE_EDGE" ]
+            [ 59, "MOVE_FLIP_TURN" ],
+            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 66, "MOVE_TOXIC" ],
+            [ 72, "MOVE_SKITTER_SMACK" ]
         ],
         "by_tm": [
             "TM03",
@@ -114,7 +111,8 @@
             "MOVE_SUPERSONIC",
             "MOVE_ASTONISH",
             "MOVE_SIGNAL_BEAM",
-            "MOVE_POISON_JAB"
+            "MOVE_POISON_JAB",
+            "MOVE_DESTINY_BOND"
         ]
     },
     "evolutions": [  ],

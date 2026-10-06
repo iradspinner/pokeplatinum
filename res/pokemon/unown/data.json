@@ -65,9 +65,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HIDDEN_POWER" ],
-            [ 34, "MOVE_PSYCHIC_FANGS" ],
-            [ 39, "MOVE_PSYCHIC" ],
-            [ 61, "MOVE_DOUBLE_EDGE" ]
+            [ 19, "MOVE_PSYCHIC" ],
+            [ 20, "MOVE_PSYCHIC_FANGS" ],
+            [ 64, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [  ],
         "by_tutor": [  ]

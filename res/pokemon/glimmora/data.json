@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
-                1,
                 "MOVE_MORTAL_SPIN"
             ],
             [
@@ -105,7 +101,7 @@
                 "MOVE_ACID_ARMOR"
             ],
             [
-                47,
+                48,
                 "MOVE_FLASH_CANNON"
             ],
             [
@@ -113,20 +109,20 @@
                 "MOVE_SLUDGE_WAVE"
             ],
             [
-                54,
+                56,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                56,
+                58,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
-                60,
+                64,
                 "MOVE_EARTH_POWER"
             ],
             [
-                65,
-                "MOVE_CONFUSE_RAY"
+                66,
+                "MOVE_TOXIC_SPIKES"
             ]
         ],
         "by_tm": [],

@@ -38,8 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MEMENTO" ],
-            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_TACKLE" ],
             [ 6, "MOVE_SMOG" ],
             [ 15, "MOVE_ASSURANCE" ],
@@ -97,7 +95,10 @@
             "MOVE_WILL_O_WISP",
             "MOVE_GRUDGE",
             "MOVE_SPITE",
-            "MOVE_CURSE"
+            "MOVE_CURSE",
+            "MOVE_SELFDESTRUCT",
+            "MOVE_EXPLOSION",
+            "MOVE_MEMENTO"
         ]
     },
     "evolutions": [

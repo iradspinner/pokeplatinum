@@ -65,20 +65,24 @@
                 "MOVE_ROCK_BLAST"
             ],
             [
-                4,
+                13,
+                "MOVE_SUPERSONIC"
+            ],
+            [
+                16,
                 "MOVE_PLUCK"
             ],
             [
-                13,
-                "MOVE_SUPERSONIC"
+                18,
+                "MOVE_FLAME_CHARGE"
             ],
             [
                 21,
                 "MOVE_ROOST"
             ],
             [
-                26,
-                "MOVE_FLAME_CHARGE"
+                29,
+                "MOVE_SCREECH"
             ],
             [
                 32,
@@ -87,6 +91,14 @@
             [
                 37,
                 "MOVE_BULLET_SEED"
+            ],
+            [
+                40,
+                "MOVE_FEATHER_DANCE"
+            ],
+            [
+                45,
+                "MOVE_HYPER_VOICE"
             ]
         ],
         "by_tm": [],

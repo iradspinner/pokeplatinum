@@ -95,6 +95,10 @@
             [
                 42,
                 "MOVE_KNOCK_OFF"
+            ],
+            [
+                46,
+                "MOVE_LEECH_LIFE"
             ]
         ],
         "by_tm": [],

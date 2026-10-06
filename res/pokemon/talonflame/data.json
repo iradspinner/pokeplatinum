@@ -93,16 +93,8 @@
                 "MOVE_TAILWIND"
             ],
             [
-                48,
-                "MOVE_UPPER_HAND"
-            ],
-            [
                 51,
                 "MOVE_FLARE_BLITZ"
-            ],
-            [
-                54,
-                "MOVE_OVERHEAT"
             ],
             [
                 55,
@@ -110,15 +102,19 @@
             ],
             [
                 57,
-                "MOVE_AGILITY"
-            ],
-            [
-                60,
                 "MOVE_U_TURN"
             ],
             [
-                65,
-                "MOVE_BULK_UP"
+                59,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                64,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                66,
+                "MOVE_AGILITY"
             ]
         ],
         "by_tm": [],

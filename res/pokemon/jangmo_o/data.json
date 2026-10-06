@@ -70,11 +70,15 @@
             ],
             [
                 31,
-                "MOVE_SKY_UPPERCUT"
+                "MOVE_AURA_SPHERE"
             ],
             [
                 33,
                 "MOVE_DRAGON_CLAW"
+            ],
+            [
+                41,
+                "MOVE_NOBLE_ROAR"
             ],
             [
                 45,

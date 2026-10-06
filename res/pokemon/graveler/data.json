@@ -38,8 +38,6 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_DEFENSE_CURL" ],
             [ 1, "MOVE_ROCK_POLISH" ],
@@ -49,10 +47,9 @@
             [ 22, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_KARATE_CHOP" ],
             [ 27, "MOVE_ROCK_BLAST" ],
-            [ 30, "MOVE_ROCK_TOMB" ],
+            [ 29, "MOVE_ROCK_TOMB" ],
             [ 33, "MOVE_EARTHQUAKE" ],
-            [ 36, "MOVE_SUCKER_PUNCH" ],
-            [ 39, "MOVE_IRON_HEAD" ],
+            [ 35, "MOVE_IRON_HEAD" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
             [ 49, "MOVE_ROCK_SLIDE" ]
         ],

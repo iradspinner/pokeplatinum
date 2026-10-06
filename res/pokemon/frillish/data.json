@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_DESTINY_BOND"
-            ],
-            [
-                1,
                 "MOVE_BUBBLE"
             ],
             [
@@ -89,8 +85,16 @@
                 "MOVE_PAIN_SPLIT"
             ],
             [
+                48,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 55,
                 "MOVE_SCALD"
+            ],
+            [
+                61,
+                "MOVE_WATER_SPOUT"
             ],
             [
                 70,
@@ -99,7 +103,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_DESTINY_BOND"
+        ]
     },
     "evolutions": [
         [

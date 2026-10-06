@@ -44,7 +44,10 @@
             [ 15, "MOVE_DRAGON_RAGE" ],
             [ 21, "MOVE_SLAM" ],
             [ 25, "MOVE_AGILITY" ],
+            [ 31, "MOVE_AQUA_TAIL" ],
+            [ 35, "MOVE_DRAGON_RUSH" ],
             [ 41, "MOVE_SAFEGUARD" ],
+            [ 45, "MOVE_DRAGON_DANCE" ],
             [ 55, "MOVE_HYPER_BEAM" ],
             [ 61, "MOVE_OUTRAGE" ]
         ],

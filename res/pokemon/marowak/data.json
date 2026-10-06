@@ -49,7 +49,6 @@
             [ 17, "MOVE_FOCUS_ENERGY" ],
             [ 21, "MOVE_BONEMERANG" ],
             [ 27, "MOVE_FALSE_SWIPE" ],
-            [ 33, "MOVE_FLING" ],
             [ 37, "MOVE_FLING" ],
             [ 43, "MOVE_BONE_RUSH" ],
             [ 49, "MOVE_ENDEAVOR" ],

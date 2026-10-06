@@ -93,12 +93,12 @@
                 "MOVE_SPIKE_CANNON"
             ],
             [
-                36,
-                "MOVE_TOXIC"
-            ],
-            [
                 37,
                 "MOVE_PIN_MISSILE"
+            ],
+            [
+                39,
+                "MOVE_TOXIC"
             ],
             [
                 42,
@@ -113,19 +113,19 @@
                 "MOVE_LIQUIDATION"
             ],
             [
-                53,
+                48,
                 "MOVE_LUNGE"
             ],
             [
-                54,
-                "MOVE_ICE_BEAM"
-            ],
-            [
-                56,
+                50,
                 "MOVE_SLUDGE_BOMB"
             ],
             [
-                61,
+                56,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                64,
                 "MOVE_IRON_DEFENSE"
             ]
         ],

@@ -47,6 +47,7 @@
             [ 25, "MOVE_LIGHT_SCREEN" ],
             [ 28, "MOVE_THUNDER_PUNCH" ],
             [ 30, "MOVE_BULLDOZE" ],
+            [ 34, "MOVE_DISCHARGE" ],
             [ 37, "MOVE_THUNDERBOLT" ],
             [ 43, "MOVE_SCREECH" ]
         ],

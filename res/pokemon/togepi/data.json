@@ -42,7 +42,7 @@
             [ 1, "MOVE_CHARM" ],
             [ 1, "MOVE_FAIRY_WIND" ],
             [ 2, "MOVE_DAZZLING_GLEAM" ],
-            [ 6, "MOVE_MAGICAL_LEAF" ],
+            [ 4, "MOVE_MAGICAL_LEAF" ],
             [ 10, "MOVE_SWEET_KISS" ],
             [ 15, "MOVE_YAWN" ],
             [ 19, "MOVE_ENCORE" ],

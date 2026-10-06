@@ -45,7 +45,6 @@
             [ 15, "MOVE_STUN_SPORE" ],
             [ 17, "MOVE_SLEEP_POWDER" ],
             [ 23, "MOVE_MEGA_DRAIN" ],
-            [ 25, "MOVE_LUCKY_CHANT" ],
             [ 29, "MOVE_LUCKY_CHANT" ],
             [ 35, "MOVE_NATURAL_GIFT" ],
             [ 41, "MOVE_MOONLIGHT" ],

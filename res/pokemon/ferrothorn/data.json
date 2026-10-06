@@ -46,14 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_EXPLOSION"
-            ],
-            [
-                1,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
-                1,
                 "MOVE_TACKLE"
             ],
             [
@@ -106,14 +98,14 @@
             ],
             [
                 54,
-                "MOVE_BODY_PRESS"
-            ],
-            [
-                56,
                 "MOVE_POISON_JAB"
             ],
             [
-                60,
+                56,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                61,
                 "MOVE_CURSE"
             ],
             [

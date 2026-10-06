@@ -52,16 +52,14 @@
             [ 28, "MOVE_TOXIC_SPIKES" ],
             [ 34, "MOVE_BUG_BITE" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_AQUA_TAIL" ],
+            [ 45, "MOVE_FIRE_FANG" ],
             [ 49, "MOVE_CRUNCH" ],
-            [ 53, "MOVE_THROAT_CHOP" ],
-            [ 54, "MOVE_POISON_JAB" ],
-            [ 55, "MOVE_BRICK_BREAK" ],
+            [ 53, "MOVE_ICE_FANG" ],
             [ 58, "MOVE_CROSS_POISON" ],
-            [ 60, "MOVE_TOXIC" ],
-            [ 62, "MOVE_LEECH_LIFE" ],
-            [ 65, "MOVE_FIRE_FANG" ],
-            [ 68, "MOVE_SKITTER_SMACK" ]
+            [ 61, "MOVE_THROAT_CHOP" ],
+            [ 63, "MOVE_THUNDER_FANG" ],
+            [ 69, "MOVE_POISON_JAB" ],
+            [ 71, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM05",

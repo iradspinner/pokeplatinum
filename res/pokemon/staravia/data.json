@@ -45,9 +45,9 @@
             [ 5, "MOVE_QUICK_ATTACK" ],
             [ 9, "MOVE_WING_ATTACK" ],
             [ 18, "MOVE_ENDEAVOR" ],
-            [ 23, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_HEADBUTT" ],
+            [ 25, "MOVE_SECRET_POWER" ],
             [ 28, "MOVE_AERIAL_ACE" ],
-            [ 30, "MOVE_LOW_SWEEP" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 38, "MOVE_AGILITY" ],
             [ 43, "MOVE_BRAVE_BIRD" ]

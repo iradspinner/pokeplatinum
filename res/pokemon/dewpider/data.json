@@ -77,6 +77,14 @@
                 "MOVE_BUG_BITE"
             ],
             [
+                25,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                29,
+                "MOVE_SOAK"
+            ],
+            [
                 33,
                 "MOVE_DIVE"
             ],

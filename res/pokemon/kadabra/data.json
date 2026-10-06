@@ -40,17 +40,16 @@
         "by_level": [
             [ 1, "MOVE_KINESIS" ],
             [ 1, "MOVE_CONFUSION" ],
+            [ 16, "MOVE_CONFUSION" ],
             [ 18, "MOVE_DISABLE" ],
             [ 20, "MOVE_CHARGE_BEAM" ],
             [ 22, "MOVE_MIRACLE_EYE" ],
             [ 24, "MOVE_PSYBEAM" ],
             [ 28, "MOVE_REFLECT" ],
             [ 30, "MOVE_RECOVER" ],
-            [ 32, "MOVE_ROUND" ],
             [ 34, "MOVE_PSYCHO_CUT" ],
             [ 35, "MOVE_CALM_MIND" ],
             [ 36, "MOVE_ROLE_PLAY" ],
-            [ 38, "MOVE_PSYSHOCK" ],
             [ 40, "MOVE_PSYCHIC" ],
             [ 42, "MOVE_FUTURE_SIGHT" ],
             [ 46, "MOVE_TRICK" ]

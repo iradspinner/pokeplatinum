@@ -85,16 +85,20 @@
                 "MOVE_PIN_MISSILE"
             ],
             [
+                35,
+                "MOVE_LIQUIDATION"
+            ],
+            [
                 36,
                 "MOVE_TOXIC"
             ],
             [
-                38,
-                "MOVE_MUDDY_WATER"
+                40,
+                "MOVE_VENOM_DRENCH"
             ],
             [
                 41,
-                "MOVE_LIQUIDATION"
+                "MOVE_POISON_JAB"
             ]
         ],
         "by_tm": [],

@@ -46,6 +46,7 @@
             [ 21, "MOVE_TAKE_DOWN" ],
             [ 25, "MOVE_AMNESIA" ],
             [ 31, "MOVE_LAVA_PLUME" ],
+            [ 35, "MOVE_EARTH_POWER" ],
             [ 41, "MOVE_EARTHQUAKE" ],
             [ 45, "MOVE_FLAMETHROWER" ],
             [ 51, "MOVE_DOUBLE_EDGE" ]

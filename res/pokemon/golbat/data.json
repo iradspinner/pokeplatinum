@@ -47,10 +47,8 @@
             [ 13, "MOVE_BITE" ],
             [ 17, "MOVE_WING_ATTACK" ],
             [ 21, "MOVE_CONFUSE_RAY" ],
-            [ 25, "MOVE_AIR_CUTTER" ],
-            [ 30, "MOVE_POISON_JAB" ],
+            [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],
-            [ 36, "MOVE_STEEL_WING" ],
             [ 39, "MOVE_POISON_FANG" ],
             [ 51, "MOVE_AIR_SLASH" ]
         ],

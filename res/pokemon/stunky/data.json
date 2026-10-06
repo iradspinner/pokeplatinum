@@ -38,8 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_FOCUS_ENERGY" ],
             [ 7, "MOVE_SCREECH" ],
@@ -102,7 +100,9 @@
             "MOVE_CRUNCH",
             "MOVE_SCARY_FACE",
             "MOVE_ASTONISH",
-            "MOVE_PUNISHMENT"
+            "MOVE_PUNISHMENT",
+            "MOVE_MEMENTO",
+            "MOVE_EXPLOSION"
         ]
     },
     "evolutions": [

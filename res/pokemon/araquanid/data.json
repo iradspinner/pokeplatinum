@@ -89,24 +89,20 @@
                 "MOVE_SOAK"
             ],
             [
-                34,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
                 36,
                 "MOVE_DIVE"
             ],
             [
                 38,
-                "MOVE_WATERFALL"
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 41,
                 "MOVE_LUNGE"
             ],
             [
-                44,
-                "MOVE_POISON_JAB"
+                43,
+                "MOVE_WATERFALL"
             ],
             [
                 48,
@@ -114,23 +110,27 @@
             ],
             [
                 51,
-                "MOVE_CRUNCH"
-            ],
-            [
-                54,
-                "MOVE_BODY_SLAM"
+                "MOVE_POISON_JAB"
             ],
             [
                 55,
                 "MOVE_LIQUIDATION"
             ],
             [
-                58,
-                "MOVE_ICE_PUNCH"
+                59,
+                "MOVE_CRUNCH"
             ],
             [
                 61,
                 "MOVE_LEECH_LIFE"
+            ],
+            [
+                63,
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                67,
+                "MOVE_BODY_SLAM"
             ]
         ],
         "by_tm": [],

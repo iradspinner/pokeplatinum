@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_CURSE" ],
             [ 1, "MOVE_PURSUIT" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
@@ -51,17 +50,15 @@
             [ 31, "MOVE_SUCKER_PUNCH" ],
             [ 34, "MOVE_SILVER_WIND" ],
             [ 37, "MOVE_NASTY_PLOT" ],
-            [ 40, "MOVE_SHADOW_BALL" ],
-            [ 44, "MOVE_AURA_SPHERE" ],
+            [ 40, "MOVE_AURA_SPHERE" ],
+            [ 45, "MOVE_SHADOW_BALL" ],
             [ 49, "MOVE_DARK_PULSE" ],
-            [ 53, "MOVE_BURNING_JEALOUSY" ],
-            [ 54, "MOVE_FOUL_PLAY" ],
+            [ 51, "MOVE_PSYSHOCK" ],
             [ 56, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_ROCK_TOMB" ],
-            [ 60, "MOVE_CONFUSE_RAY" ],
-            [ 62, "MOVE_CURSE" ],
-            [ 65, "MOVE_POLTERGEIST" ],
-            [ 68, "MOVE_SPITE" ]
+            [ 58, "MOVE_FOUL_PLAY" ],
+            [ 64, "MOVE_CONFUSE_RAY" ],
+            [ 66, "MOVE_POLTERGEIST" ],
+            [ 72, "MOVE_ROCK_TOMB" ]
         ],
         "by_tm": [
             "TM03",
@@ -115,7 +112,8 @@
             "MOVE_SMOKE_SCREEN",
             "MOVE_IMPRISON",
             "MOVE_GRUDGE",
-            "MOVE_SHADOW_SNEAK"
+            "MOVE_SHADOW_SNEAK",
+            "MOVE_MEMENTO"
         ]
     },
     "evolutions": [  ],

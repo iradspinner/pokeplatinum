@@ -73,12 +73,28 @@
                 "MOVE_AQUA_JET"
             ],
             [
+                18,
+                "MOVE_ICY_WIND"
+            ],
+            [
+                22,
+                "MOVE_ENCORE"
+            ],
+            [
                 26,
                 "MOVE_SING"
             ],
             [
                 31,
                 "MOVE_SCALD"
+            ],
+            [
+                36,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                41,
+                "MOVE_PERISH_SONG"
             ],
             [
                 46,

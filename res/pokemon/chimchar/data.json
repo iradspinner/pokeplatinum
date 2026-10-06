@@ -42,6 +42,8 @@
             [ 1, "MOVE_LEER" ],
             [ 7, "MOVE_EMBER" ],
             [ 9, "MOVE_TAUNT" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 17, "MOVE_FLAME_WHEEL" ],
             [ 23, "MOVE_NASTY_PLOT" ],
             [ 25, "MOVE_TORMENT" ],
             [ 31, "MOVE_FACADE" ],

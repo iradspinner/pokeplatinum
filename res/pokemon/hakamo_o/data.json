@@ -89,12 +89,20 @@
                 "MOVE_THROAT_CHOP"
             ],
             [
+                50,
+                "MOVE_SCALE_SHOT"
+            ],
+            [
                 60,
                 "MOVE_CLOSE_COMBAT"
             ],
             [
                 61,
                 "MOVE_OUTRAGE"
+            ],
+            [
+                66,
+                "MOVE_DRAGON_DANCE"
             ]
         ],
         "by_tm": [],

@@ -61,6 +61,10 @@
                 "MOVE_PLUCK"
             ],
             [
+                17,
+                "MOVE_SWAGGER"
+            ],
+            [
                 20,
                 "MOVE_STEEL_WING"
             ],
@@ -69,16 +73,12 @@
                 "MOVE_DRILL_PECK"
             ],
             [
-                29,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
                 32,
                 "MOVE_FEATHER_DANCE"
             ],
             [
-                35,
-                "MOVE_U_TURN"
+                34,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 38,
@@ -87,6 +87,10 @@
             [
                 42,
                 "MOVE_DEFOG"
+            ],
+            [
+                48,
+                "MOVE_BRAVE_BIRD"
             ],
             [
                 55,

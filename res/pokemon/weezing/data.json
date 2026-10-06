@@ -38,10 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MEMENTO" ],
-            [ 1, "MOVE_DESTINY_BOND" ],
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_POISON_GAS" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_SMOG" ],
@@ -50,14 +46,13 @@
             [ 15, "MOVE_ASSURANCE" ],
             [ 24, "MOVE_SLUDGE" ],
             [ 40, "MOVE_SHADOW_BALL" ],
-            [ 44, "MOVE_PSYBEAM" ],
+            [ 42, "MOVE_PSYBEAM" ],
             [ 48, "MOVE_SLUDGE_BOMB" ],
-            [ 53, "MOVE_STRANGE_STEAM" ],
-            [ 54, "MOVE_FLAMETHROWER" ],
-            [ 56, "MOVE_POISON_FANG" ],
+            [ 50, "MOVE_POISON_FANG" ],
+            [ 52, "MOVE_PLAY_ROUGH" ],
+            [ 56, "MOVE_FLAMETHROWER" ],
             [ 58, "MOVE_DARK_PULSE" ],
-            [ 60, "MOVE_WILL_O_WISP" ],
-            [ 65, "MOVE_OVERHEAT" ]
+            [ 64, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM06",

@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
-                1,
                 "MOVE_ROCK_THROW"
             ],
             [
@@ -77,25 +73,35 @@
                 "MOVE_STEALTH_ROCK"
             ],
             [
+                20,
+                "MOVE_MUD_SHOT"
+            ],
+            [
                 22,
                 "MOVE_VENOSHOCK"
             ],
             [
-                26,
-                "MOVE_MUD_SHOT"
-            ],
-            [
-                29,
-                "MOVE_TOXIC_SPIKES"
-            ],
-            [
                 33,
                 "MOVE_ROCK_SLIDE"
+            ],
+            [
+                37,
+                "MOVE_POWER_GEM"
+            ],
+            [
+                41,
+                "MOVE_ACID_ARMOR"
+            ],
+            [
+                46,
+                "MOVE_SLUDGE_WAVE"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SELFDESTRUCT"
+        ]
     },
     "evolutions": [
         [

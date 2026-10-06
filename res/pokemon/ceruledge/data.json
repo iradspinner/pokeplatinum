@@ -109,24 +109,24 @@
                 "MOVE_NIGHT_SHADE"
             ],
             [
+                22,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
                 24,
                 "MOVE_FLAME_CHARGE"
             ],
             [
                 27,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_BULLDOZE"
             ],
             [
                 28,
                 "MOVE_INCINERATE"
             ],
             [
-                29,
-                "MOVE_BULLDOZE"
-            ],
-            [
                 30,
-                "MOVE_SHADOW_CLAW"
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 32,
@@ -137,15 +137,15 @@
                 "MOVE_SWORDS_DANCE"
             ],
             [
+                45,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
                 48,
                 "MOVE_BITTER_BLADE"
             ],
             [
-                52,
-                "MOVE_THROAT_CHOP"
-            ],
-            [
-                54,
+                53,
                 "MOVE_IRON_HEAD"
             ],
             [
@@ -157,8 +157,12 @@
                 "MOVE_FLARE_BLITZ"
             ],
             [
-                65,
+                64,
                 "MOVE_POLTERGEIST"
+            ],
+            [
+                69,
+                "MOVE_THROAT_CHOP"
             ]
         ],
         "by_tm": [],

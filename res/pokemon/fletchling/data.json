@@ -49,24 +49,32 @@
                 "MOVE_TACKLE"
             ],
             [
-                6,
-                "MOVE_QUICK_ATTACK"
+                3,
+                "MOVE_EMBER"
             ],
             [
-                10,
-                "MOVE_EMBER"
+                4,
+                "MOVE_TAILWIND"
+            ],
+            [
+                6,
+                "MOVE_QUICK_ATTACK"
             ],
             [
                 12,
                 "MOVE_AERIAL_ACE"
             ],
             [
-                16,
-                "MOVE_TAILWIND"
+                20,
+                "MOVE_ROOST"
             ],
             [
                 25,
                 "MOVE_WILL_O_WISP"
+            ],
+            [
+                29,
+                "MOVE_NATURAL_GIFT"
             ],
             [
                 32,

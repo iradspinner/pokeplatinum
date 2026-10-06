@@ -50,8 +50,7 @@
             [ 25, "MOVE_SWORDS_DANCE" ],
             [ 31, "MOVE_AGILITY" ],
             [ 33, "MOVE_NIGHT_SLASH" ],
-            [ 37, "MOVE_AIR_SLASH" ],
-            [ 45, "MOVE_FALSE_SWIPE" ]
+            [ 37, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [
             "TM06",

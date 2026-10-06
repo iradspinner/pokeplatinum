@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_FAKE_TEARS"
+            ],
+            [
+                1,
                 "MOVE_SLACK_OFF"
             ],
             [
@@ -150,35 +154,27 @@
             ],
             [
                 54,
-                "MOVE_ICE_BEAM"
-            ],
-            [
-                56,
                 "MOVE_ENCORE"
             ],
             [
-                58,
+                56,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                61,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                60,
+                63,
                 "MOVE_BLOCK"
             ],
             [
-                62,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                65,
+                69,
                 "MOVE_THUNDERBOLT"
             ],
             [
-                66,
-                "MOVE_TICKLE"
-            ],
-            [
-                68,
-                "MOVE_SLACK_OFF"
+                71,
+                "MOVE_SHADOW_BALL"
             ]
         ],
         "by_tm": [],

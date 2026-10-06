@@ -49,10 +49,10 @@
             [ 34, "MOVE_PSYCHO_CUT" ],
             [ 40, "MOVE_PSYCHIC" ],
             [ 42, "MOVE_FUTURE_SIGHT" ],
+            [ 44, "MOVE_SHADOW_BALL" ],
             [ 46, "MOVE_TRICK" ],
-            [ 53, "MOVE_SHADOW_BALL" ],
-            [ 54, "MOVE_DAZZLING_GLEAM" ],
-            [ 56, "MOVE_ENERGY_BALL" ],
+            [ 48, "MOVE_DAZZLING_GLEAM" ],
+            [ 53, "MOVE_SIGNAL_BEAM" ],
             [ 61, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

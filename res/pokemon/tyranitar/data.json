@@ -51,12 +51,13 @@
             [ 34, "MOVE_PAYBACK" ],
             [ 41, "MOVE_CRUNCH" ],
             [ 47, "MOVE_EARTHQUAKE" ],
-            [ 57, "MOVE_ROCK_TOMB" ],
-            [ 60, "MOVE_IRON_DEFENSE" ],
-            [ 63, "MOVE_BLOCK" ],
+            [ 57, "MOVE_FOUL_PLAY" ],
+            [ 59, "MOVE_ROCK_TOMB" ],
             [ 66, "MOVE_THRASH" ],
-            [ 68, "MOVE_SUPERPOWER" ],
-            [ 70, "MOVE_HYPER_BEAM" ]
+            [ 68, "MOVE_BULLDOZE" ],
+            [ 70, "MOVE_HYPER_BEAM" ],
+            [ 72, "MOVE_IRON_DEFENSE" ],
+            [ 74, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",

@@ -49,7 +49,7 @@
                 "MOVE_TACKLE"
             ],
             [
-                3,
+                2,
                 "MOVE_ROUND"
             ],
             [
@@ -67,6 +67,10 @@
             [
                 25,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                28,
+                "MOVE_GUARD_SWAP"
             ],
             [
                 32,

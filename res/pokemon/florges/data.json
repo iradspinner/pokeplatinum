@@ -117,16 +117,16 @@
                 "MOVE_MOONBLAST"
             ],
             [
-                60,
+                59,
                 "MOVE_PSYCHIC"
-            ],
-            [
-                62,
-                "MOVE_POLLEN_PUFF"
             ],
             [
                 65,
                 "MOVE_ENERGY_BALL"
+            ],
+            [
+                67,
+                "MOVE_POLLEN_PUFF"
             ]
         ],
         "by_tm": [],

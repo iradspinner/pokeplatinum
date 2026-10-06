@@ -58,12 +58,12 @@
             [ 43, "MOVE_ROLE_PLAY" ],
             [ 46, "MOVE_BATON_PASS" ],
             [ 50, "MOVE_SAFEGUARD" ],
-            [ 54, "MOVE_ENERGY_BALL" ],
-            [ 56, "MOVE_THUNDERBOLT" ],
-            [ 58, "MOVE_MOONBLAST" ],
-            [ 60, "MOVE_MYSTICAL_FIRE" ],
-            [ 62, "MOVE_TICKLE" ],
-            [ 65, "MOVE_CONFUSE_RAY" ]
+            [ 53, "MOVE_SIGNAL_BEAM" ],
+            [ 55, "MOVE_THUNDERBOLT" ],
+            [ 61, "MOVE_MYSTICAL_FIRE" ],
+            [ 63, "MOVE_ENERGY_BALL" ],
+            [ 69, "MOVE_MOONBLAST" ],
+            [ 71, "MOVE_TICKLE" ]
         ],
         "by_tm": [
             "TM01",

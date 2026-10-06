@@ -81,6 +81,10 @@
                 "MOVE_LOW_KICK"
             ],
             [
+                32,
+                "MOVE_WATERFALL"
+            ],
+            [
                 35,
                 "MOVE_FLING"
             ],

@@ -41,16 +41,14 @@
             [ 1, "MOVE_THUNDER_SHOCK" ],
             [ 5, "MOVE_TAIL_WHIP" ],
             [ 10, "MOVE_THUNDER_WAVE" ],
-            [ 12, "MOVE_SWEET_KISS" ],
             [ 13, "MOVE_QUICK_ATTACK" ],
             [ 17, "MOVE_TRAILBLAZE" ],
+            [ 20, "MOVE_CHARM" ],
             [ 21, "MOVE_SLAM" ],
             [ 26, "MOVE_THUNDERBOLT" ],
-            [ 28, "MOVE_CHARM" ],
-            [ 30, "MOVE_UPPER_HAND" ],
+            [ 28, "MOVE_EXTREME_SPEED" ],
             [ 34, "MOVE_AGILITY" ],
             [ 37, "MOVE_DISCHARGE" ],
-            [ 40, "MOVE_EXTREME_SPEED" ],
             [ 42, "MOVE_LIGHT_SCREEN" ]
         ],
         "by_tm": [

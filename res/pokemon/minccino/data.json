@@ -53,6 +53,10 @@
                 "MOVE_BABY_DOLL_EYES"
             ],
             [
+                2,
+                "MOVE_SWIFT"
+            ],
+            [
                 3,
                 "MOVE_BABY_DOLL_EYES"
             ],
@@ -63,10 +67,6 @@
             [
                 7,
                 "MOVE_CHILLING_WATER"
-            ],
-            [
-                9,
-                "MOVE_SWIFT"
             ],
             [
                 13,
@@ -90,7 +90,7 @@
             ],
             [
                 27,
-                "MOVE_STRENGTH"
+                "MOVE_FACADE"
             ],
             [
                 28,
@@ -99,10 +99,6 @@
             [
                 31,
                 "MOVE_WAKE_UP_SLAP"
-            ],
-            [
-                33,
-                "MOVE_FACADE"
             ],
             [
                 37,
@@ -129,7 +125,7 @@
                 "MOVE_LAST_RESORT"
             ],
             [
-                53,
+                49,
                 "MOVE_PLAY_ROUGH"
             ]
         ],

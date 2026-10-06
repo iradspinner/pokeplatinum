@@ -40,17 +40,18 @@
         "by_level": [
             [ 1, "MOVE_POUND" ],
             [ 5, "MOVE_LICK" ],
-            [ 8, "MOVE_SWEET_KISS" ],
             [ 11, "MOVE_POWDER_SNOW" ],
             [ 15, "MOVE_CONFUSION" ],
             [ 18, "MOVE_SING" ],
             [ 21, "MOVE_MEAN_LOOK" ],
-            [ 23, "MOVE_DRAINING_KISS" ],
+            [ 22, "MOVE_SWEET_KISS" ],
+            [ 23, "MOVE_ICE_BEAM" ],
+            [ 24, "MOVE_DRAINING_KISS" ],
             [ 25, "MOVE_FAKE_TEARS" ],
             [ 28, "MOVE_LUCKY_CHANT" ],
+            [ 31, "MOVE_AVALANCHE" ],
             [ 35, "MOVE_PSYCHIC" ],
-            [ 41, "MOVE_PERISH_SONG" ],
-            [ 45, "MOVE_ICE_BEAM" ]
+            [ 41, "MOVE_PERISH_SONG" ]
         ],
         "by_tm": [
             "TM03",

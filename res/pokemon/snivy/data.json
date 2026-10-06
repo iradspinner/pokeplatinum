@@ -53,7 +53,11 @@
                 "MOVE_VINE_WHIP"
             ],
             [
-                7,
+                6,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                8,
                 "MOVE_CALM_MIND"
             ],
             [
@@ -65,16 +69,24 @@
                 "MOVE_HOLD_BACK"
             ],
             [
-                16,
-                "MOVE_MAGICAL_LEAF"
+                22,
+                "MOVE_MEGA_DRAIN"
             ],
             [
                 25,
                 "MOVE_WORRY_SEED"
             ],
             [
+                28,
+                "MOVE_GRASS_KNOT"
+            ],
+            [
                 36,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                40,
+                "MOVE_LEAF_BLADE"
             ],
             [
                 48,

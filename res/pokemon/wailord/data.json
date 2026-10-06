@@ -52,13 +52,13 @@
             [ 34, "MOVE_WATER_SPOUT" ],
             [ 37, "MOVE_AMNESIA" ],
             [ 46, "MOVE_DIVE" ],
-            [ 48, "MOVE_IRON_HEAD" ],
-            [ 50, "MOVE_ROCK_TOMB" ],
+            [ 48, "MOVE_ROCK_TOMB" ],
+            [ 50, "MOVE_IRON_HEAD" ],
             [ 54, "MOVE_BOUNCE" ],
-            [ 55, "MOVE_ZEN_HEADBUTT" ],
-            [ 56, "MOVE_ICE_BEAM" ],
+            [ 56, "MOVE_ZEN_HEADBUTT" ],
+            [ 58, "MOVE_BODY_PRESS" ],
             [ 62, "MOVE_SURF" ],
-            [ 65, "MOVE_EARTHQUAKE" ]
+            [ 64, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM03",

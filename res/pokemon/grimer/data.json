@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_POISON_GAS" ],
             [ 1, "MOVE_POUND" ],
             [ 4, "MOVE_HARDEN" ],
@@ -111,7 +110,8 @@
             "MOVE_SHADOW_SNEAK",
             "MOVE_STOCKPILE",
             "MOVE_SWALLOW",
-            "MOVE_SPIT_UP"
+            "MOVE_SPIT_UP",
+            "MOVE_MEMENTO"
         ]
     },
     "evolutions": [

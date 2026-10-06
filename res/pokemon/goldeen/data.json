@@ -40,14 +40,13 @@
         "by_level": [
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_WATER_SPORT" ],
-            [ 4, "MOVE_FLIP_TURN" ],
-            [ 10, "MOVE_WATER_PULSE" ],
+            [ 3, "MOVE_WATER_PULSE" ],
+            [ 5, "MOVE_FLIP_TURN" ],
             [ 11, "MOVE_HORN_ATTACK" ],
-            [ 17, "MOVE_SWAGGER" ],
+            [ 20, "MOVE_AGILITY" ],
             [ 21, "MOVE_FLAIL" ],
             [ 27, "MOVE_AQUA_RING" ],
             [ 37, "MOVE_WATERFALL" ],
-            [ 47, "MOVE_AGILITY" ],
             [ 51, "MOVE_MEGAHORN" ]
         ],
         "by_tm": [

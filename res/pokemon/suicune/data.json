@@ -45,16 +45,12 @@
             [ 36, "MOVE_MIST" ],
             [ 43, "MOVE_MIRROR_COAT" ],
             [ 50, "MOVE_ICE_FANG" ],
-            [ 54, "MOVE_SWAGGER" ],
+            [ 54, "MOVE_CALM_MIND" ],
             [ 57, "MOVE_TAILWIND" ],
-            [ 60, "MOVE_SCALD" ],
-            [ 62, "MOVE_ICE_BEAM" ],
             [ 64, "MOVE_EXTRASENSORY" ],
-            [ 66, "MOVE_CRUNCH" ],
-            [ 67, "MOVE_AIR_SLASH" ],
-            [ 69, "MOVE_MUDDY_WATER" ],
+            [ 66, "MOVE_SCALD" ],
             [ 71, "MOVE_SURF" ],
-            [ 78, "MOVE_CALM_MIND" ]
+            [ 73, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

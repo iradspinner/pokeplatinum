@@ -48,6 +48,7 @@
             [ 23, "MOVE_STUN_SPORE" ],
             [ 25, "MOVE_PSYBEAM" ],
             [ 29, "MOVE_SLEEP_POWDER" ],
+            [ 35, "MOVE_SIGNAL_BEAM" ],
             [ 37, "MOVE_ZEN_HEADBUTT" ],
             [ 41, "MOVE_POISON_FANG" ],
             [ 47, "MOVE_PSYCHIC" ]

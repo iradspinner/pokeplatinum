@@ -55,9 +55,8 @@
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_DARK_PULSE" ],
             [ 61, "MOVE_X_SCISSOR" ],
-            [ 69, "MOVE_THROAT_CHOP" ],
-            [ 71, "MOVE_ICICLE_CRASH" ],
-            [ 78, "MOVE_UPPER_HAND" ]
+            [ 69, "MOVE_ICICLE_CRASH" ],
+            [ 71, "MOVE_LOW_SWEEP" ]
         ],
         "by_tm": [
             "TM01",

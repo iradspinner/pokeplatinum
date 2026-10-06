@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_MEMENTO"
-            ],
-            [
-                1,
                 "MOVE_MATCHA_GOTCHA"
             ],
             [
@@ -73,12 +69,12 @@
                 "MOVE_FOUL_PLAY"
             ],
             [
-                24,
-                "MOVE_MEGA_DRAIN"
+                20,
+                "MOVE_SNARL"
             ],
             [
-                27,
-                "MOVE_SNARL"
+                24,
+                "MOVE_MEGA_DRAIN"
             ],
             [
                 30,
@@ -93,23 +89,15 @@
                 "MOVE_STRENGTH_SAP"
             ],
             [
+                45,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 48,
                 "MOVE_SHADOW_BALL"
             ],
             [
                 53,
-                "MOVE_GIGA_DRAIN"
-            ],
-            [
-                54,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                56,
-                "MOVE_PSYCHIC"
-            ],
-            [
-                58,
                 "MOVE_SCALD"
             ],
             [
@@ -118,19 +106,19 @@
             ],
             [
                 62,
-                "MOVE_DARK_PULSE"
+                "MOVE_PSYCHIC"
             ],
             [
-                65,
+                64,
                 "MOVE_SHELL_SMASH"
             ],
             [
-                66,
-                "MOVE_STUN_SPORE"
+                69,
+                "MOVE_NASTY_PLOT"
             ],
             [
-                68,
-                "MOVE_NASTY_PLOT"
+                71,
+                "MOVE_STUN_SPORE"
             ]
         ],
         "by_tm": [],

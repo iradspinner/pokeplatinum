@@ -39,11 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_SCARY_FACE" ],
-            [ 6, "MOVE_PURSUIT" ],
+            [ 2, "MOVE_SCARY_FACE" ],
+            [ 4, "MOVE_PURSUIT" ],
             [ 9, "MOVE_CHARGE" ],
             [ 13, "MOVE_SPARK" ],
+            [ 17, "MOVE_BITE" ],
             [ 25, "MOVE_SWAGGER" ],
+            [ 29, "MOVE_THUNDER_FANG" ],
             [ 33, "MOVE_CRUNCH" ],
             [ 41, "MOVE_DISCHARGE" ]
         ],

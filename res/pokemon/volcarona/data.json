@@ -93,10 +93,6 @@
                 "MOVE_PSYCHIC"
             ],
             [
-                69,
-                "MOVE_QUIVER_DANCE"
-            ],
-            [
                 70,
                 "MOVE_GIGA_DRAIN"
             ],
@@ -105,12 +101,12 @@
                 "MOVE_POLLEN_PUFF"
             ],
             [
-                74,
-                "MOVE_AIR_SLASH"
-            ],
-            [
                 77,
                 "MOVE_ROOST"
+            ],
+            [
+                78,
+                "MOVE_AIR_SLASH"
             ]
         ],
         "by_tm": [],

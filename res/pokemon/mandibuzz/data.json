@@ -137,12 +137,20 @@
                 "MOVE_EMBARGO"
             ],
             [
-                57,
-                "MOVE_HEAT_WAVE"
+                54,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                56,
+                "MOVE_U_TURN"
+            ],
+            [
+                58,
+                "MOVE_ACROBATICS"
             ],
             [
                 60,
-                "MOVE_TOXIC"
+                "MOVE_HEAT_WAVE"
             ],
             [
                 70,
@@ -155,6 +163,10 @@
             [
                 73,
                 "MOVE_BRAVE_BIRD"
+            ],
+            [
+                74,
+                "MOVE_TOXIC"
             ]
         ],
         "by_tm": [],

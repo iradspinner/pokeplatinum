@@ -38,8 +38,6 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_DEFENSE_CURL" ],
             [ 1, "MOVE_ROCK_POLISH" ],
@@ -50,12 +48,13 @@
             [ 27, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_EARTHQUAKE" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
+            [ 46, "MOVE_SUCKER_PUNCH" ],
             [ 49, "MOVE_ROCK_SLIDE" ],
-            [ 53, "MOVE_BODY_PRESS" ],
-            [ 56, "MOVE_BODY_SLAM" ],
+            [ 53, "MOVE_BODY_SLAM" ],
+            [ 55, "MOVE_BODY_PRESS" ],
             [ 61, "MOVE_FIRE_PUNCH" ],
-            [ 65, "MOVE_HAMMER_ARM" ],
-            [ 68, "MOVE_SUPERPOWER" ]
+            [ 63, "MOVE_HAMMER_ARM" ],
+            [ 69, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",

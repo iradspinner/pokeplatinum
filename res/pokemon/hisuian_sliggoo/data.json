@@ -95,6 +95,10 @@
             [
                 56,
                 "MOVE_MUDDY_WATER"
+            ],
+            [
+                66,
+                "MOVE_DRACO_METEOR"
             ]
         ],
         "by_tm": [],

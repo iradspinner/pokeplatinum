@@ -47,6 +47,7 @@
             [ 19, "MOVE_FURY_SWIPES" ],
             [ 21, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_FURY_CUTTER" ],
+            [ 27, "MOVE_SAND_TOMB" ],
             [ 31, "MOVE_SLASH" ],
             [ 33, "MOVE_GYRO_BALL" ]
         ],

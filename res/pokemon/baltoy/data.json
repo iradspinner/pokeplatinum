@@ -44,6 +44,7 @@
             [ 15, "MOVE_ROCK_TOMB" ],
             [ 25, "MOVE_ANCIENT_POWER" ],
             [ 31, "MOVE_POWER_TRICK" ],
+            [ 45, "MOVE_COSMIC_POWER" ],
             [ 53, "MOVE_EARTH_POWER" ],
             [ 61, "MOVE_HEAL_BLOCK" ]
         ],

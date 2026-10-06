@@ -48,7 +48,6 @@
             [ 27, "MOVE_EMBARGO" ],
             [ 31, "MOVE_CRUSH_CLAW" ],
             [ 35, "MOVE_TAUNT" ],
-            [ 44, "MOVE_FALSE_SWIPE" ],
             [ 48, "MOVE_X_SCISSOR" ],
             [ 53, "MOVE_CLOSE_COMBAT" ]
         ],

@@ -57,11 +57,10 @@
             [ 48, "MOVE_SIGNAL_BEAM" ],
             [ 50, "MOVE_MAGNET_RISE" ],
             [ 54, "MOVE_GYRO_BALL" ],
-            [ 56, "MOVE_VOLT_SWITCH" ],
-            [ 58, "MOVE_TRI_ATTACK" ],
             [ 60, "MOVE_THUNDERBOLT" ],
-            [ 65, "MOVE_CONFUSE_RAY" ],
-            [ 68, "MOVE_PSYCHIC" ]
+            [ 62, "MOVE_VOLT_SWITCH" ],
+            [ 64, "MOVE_TRI_ATTACK" ],
+            [ 70, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM06",

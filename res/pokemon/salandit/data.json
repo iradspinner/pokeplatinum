@@ -79,6 +79,18 @@
             [
                 29,
                 "MOVE_VENOSHOCK"
+            ],
+            [
+                34,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                40,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
+                48,
+                "MOVE_DRAGON_PULSE"
             ]
         ],
         "by_tm": [],
