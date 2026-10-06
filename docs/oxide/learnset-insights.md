@@ -555,3 +555,34 @@ The rules drawn from it:
   for battle.
 - **Move reworks** (the tracker, with Fury Attack's): Spite gets limited PP,
   and Psywave is reworked or removed.
+
+## 12. Trapinch (2026-10-06)
+
+Shown: Trapinch (Bug/Ground in Oxide) caught at 20 in Maylene's split knows
+Bite, Sand-Attack and Faint Attack; it learns Sand Tomb 25, Crunch 33, Dig
+41, Hyper Beam 57, Earth Power 65, Earthquake 73, Feint 81 and Fissure 89;
+Vibrava (Bug/Flying) at 35 learns Dragon Breath 35, Screech 41 and Hyper Beam
+57; Flygon (Bug/Dragon) at 45 learns Dragon Claw 45 and Hyper Beam 57, then
+nothing. No stage learns a Bug attack.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. Mixed attacker as a whole means it can have a very large learnset to
+   match with IVs/nature.
+2. Hyper beam (and any other 2-turn move that isn't a) setup or b)
+   extenuating circumstances like Solar Beam/Blade) should be reworked as
+   they are nearly useless except examples like Giga Impact on Slaking.
+3. Feint is useless, get rid of it.
+
+The rules drawn from it:
+
+- **R34, a mixed attacker gets a large list.** A line strong on both
+  attacking stats gets attacks of both kinds in quantity, so the player can
+  build to the IVs and nature they roll.
+- **Move reworks** (the tracker): Hyper Beam and every other two-turn move
+  that is neither setup nor made worthwhile by circumstance (Solar Beam and
+  Solar Blade in sun) are reworked, since they are nearly useless (Giga Impact
+  on Slaking, whose Truant wastes the turn anyway, is the exception). Feint
+  leaves the game.
