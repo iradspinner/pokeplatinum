@@ -310,3 +310,56 @@ The rules drawn from it:
   use, so a versatile line (Togekiss) may have broad coverage and many good
   utility moves, by level-up or TM: a richer list makes the choice harder
   without making the Pokemon proportionally stronger.
+
+## 6. Snorunt (2026-10-06)
+
+Shown: Snorunt caught at 14 in Mt. Coronet North knows Leer, Double Team,
+Bite and Icy Wind; it learns Headbutt 19, Protect 22, Ice Fang 28, Crunch 31,
+Ice Shard 37 and Blizzard 46. Glalie (Ice/Rock in Oxide) at 42 has Ice Beam
+at 37, below its evolution level, then Blizzard 51 and Sheer Cold 59, and no
+Rock attack. Froslass (Dawn Stone, Byron's split by the checker) loses
+nearly its whole list below its stone level, keeping Destiny Bond 59.
+
+Ian's verdict, verbatim:
+
+Outside of your what stands out callouts:
+
+1. Protect needs to go; it is too good of a move for the game.
+2. "Glalie's Ice Beam sits at 37, below the level it evolves at" must be
+   fixed.
+3. All one-hit moves should be either removed from all movesets or changed
+   to be something else.
+4. Destiny bond is very bad for a player but very useful for making trainer
+   fights.
+5. Double team should be removed from player-accessible learnsets as it can
+   trivialize fights too easily and introduces a bunch of randomness.
+6. This line has paradoxically both not enought attacking moves and not
+   enought utility moves; I will callout that Icy Wind is an incredible move
+   given that it slows speed guaranteed (similar to why rock tomb is so
+   good).
+7. Captivate is pretty solid, confuse ray is fantastic (better than sweet
+   kiss).
+8. You can move synthesis down to incredible in the status tier list.
+
+The rules drawn from it:
+
+- **R24, three moves leave the player's lists.** Protect (too strong for
+  the game), Double Team (it trivialises fights and adds randomness) and
+  every one-hit KO move leave every player-accessible list; the one-hit KO
+  moves leave every moveset or become other moves (standing rulings).
+- **R25, no move is lost to an evolution level.** A move an evolved form
+  learns below its evolution level, which its pre-evolution does not learn,
+  is unreachable except by the relearner. Every such move moves to the
+  evolution level or later, becomes an evolution move, or goes onto the
+  pre-evolution's list at the same point.
+- **R26, some moves are the trainers'.** A move bad for the player but good
+  for building a trainer fight (Destiny Bond) belongs on the trainers'
+  palette (level-1 and egg lists), not on a player's level-up list.
+- **R27, guaranteed speed control is prized.** An attack that always lowers
+  the target's Speed (Icy Wind, Rock Tomb) counts as incredible utility as
+  well as an attack.
+- **R7, the tiers move.** Fantastic: Confuse Ray (better than Sweet Kiss),
+  Wish. Incredible: Synthesis (down from fantastic). Pretty solid:
+  Captivate.
+- **R2 and R5 together.** A line can be short of attacks and of utility at
+  once; both counts are checked.
