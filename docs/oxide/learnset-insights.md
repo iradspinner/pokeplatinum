@@ -716,6 +716,8 @@ trainers' palette; R18 Roar belongs on wild Pokemon, where its risk is a
 feature; R24 Protect, Double Team and one-hit KO moves leave the player's
 lists; R6 no move weaker than one of the same type already learned.
 
+**Added during the exam, as whole-game rulings** (not counted in the exam): R37, an attack below 90 percent accuracy is very hard to justify on a player's list, since it makes fights random (Gunk Shot and the like); Detect leaves with Protect; Fury Cutter is reworked or removed; Memento and Haze are terrible.
+
 **The utility tiers.**
 
 | Tier | Moves |

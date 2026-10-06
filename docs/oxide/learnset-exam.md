@@ -112,3 +112,31 @@ Memento and Haze are terrible (`learnset-insights.md`'s tier table).
 What the rewrite must show for the line itself: real coverage, and the two
 branches close enough in worth that Weezing is a choice and not only the
 fallback without a Moon Stone, with the points shown as facts addressed.
+
+## 5. Skorupi (2026-10-06)
+
+Shown: Skorupi caught at 29 in Wake's split knows Pin Missile, Acupressure,
+Scary Face and Toxic Spikes (Knock Off at 6, Bite and Poison Sting lie below
+the catch level); it learns Bug Bite 34 and Poison Fang 39; Drapion
+(Poison/Dark) at 40 learns Crunch 49 and Cross Poison 58, then nothing, with
+the three elemental fangs at level 1 only. Poison Fang was shown at 50 power;
+Oxide's data has it at 75 (the base ROM's value), which the Overseer
+corrected afterwards.
+
+Ian's verdict, verbatim:
+
+Knock off being below the catch level is a travesty with how good it is;
+check poison fang's power as I believe it should be buffed. Agreed on the
+rest of the analysis, and its total move pool is very slim given no
+elemental fang coverage. One final note, gunk shot is a high inaccuracy
+move; anything below 90% accuracy is very difficult for me to justify given
+how random it can make fights.
+
+A whole-game ruling, applied at once and not counted in the exam: an attack
+below 90 percent accuracy is very hard to justify for the player, since it
+makes fights random (`learnset-insights.md`). Poison Fang's power is a move
+question put to Ian.
+
+What the rewrite must show for the line itself: Knock Off reachable at or
+after capture, a fuller pool with elemental fang coverage by level-up, and the
+points shown as facts addressed.
