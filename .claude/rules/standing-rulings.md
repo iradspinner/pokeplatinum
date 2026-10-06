@@ -136,7 +136,8 @@ read, so they are written here too. Each is a standing instruction.
   important it is, and Oxide's hardest bosses top out around the easiest of
   Kaizo's read on the same box (about 80 percent won). The numbers order
   fights rather than measure them absolutely, and Oxide is not meant to be
-  beaten on a first run.
+  beaten on a first run. A trainer that trends a little hard, or reads as an
+  outlier, is fine while it approximates its band (Ian, 2026-10-06).
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
