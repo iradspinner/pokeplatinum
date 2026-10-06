@@ -39,7 +39,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 - **Draft from `main-production`** (2026-09-30): the Mining Museum researcher's refusal before Cycling Road, in his own word order: "On the verge of a breakthrough, I am, to achieve extraction from Fossils. Parts for my machine, Eterna sends by way of Cycling Road. Come back after riding that road, and ready my machine will be!"
 
-- **Drafts from `main-meloetta`** (2026-09-27; Meloetta landed on 2026-09-29, 15091c091). Meloetta's Pokedex entry ("Its melodies sway the hearts of all who hear them. When it dances, its voice turns into a fighting spirit.") and the Meister's two lines that now name Meloetta. Ruled 2026-09-28: the stats and Relic Song stand, and the trade's nickname is Sera.
+- **Meloetta's two in-game checks** (2026-10-06). Ian approved the Pokedex entry and the Meister's two lines as drafted, and chose to have the trade put Relic Song in the traded Meloetta's first slot, since the default-moves rule pushed it out at every level (landed at ecc463fed). Left, both in `docs/oxide/ingame-checklist.md`: the Meister's trade on Route 226, read back field by field through the emulator's box export, and Relic Song's form change with the test kit's Meloetta. ROMs: `~/oxide-playtest/pokeplatinum-oxide-ecc463fed.nds` and its test kit.
 
 - **Element 6's changes of play** (2026-09-30): four ways the AI could play Oxide's new rules better, listed in Phase 4's element 6 entry under "For Ian"; each is his yes or no.
 

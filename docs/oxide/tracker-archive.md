@@ -91,6 +91,10 @@ Two entries done on 2026-10-06, when MSYS2 was installed with winget at Ian's wo
 - **Once MSYS2 is installed on Windows**: build the melonDS fork on this PC with its own workflow's steps (`.github/workflows/build-windows.yml` in `iradspinner/melonDS-oxide`: the ucrt64 packages, then `cmake` with Ninja and the DLL gathering), then extend the bridge for the battle recorder (Phase 5: Verify, item 10). Why: GitHub Actions in the private repos are off for good (Ian, 2026-10-01), so this PC is the only place left to build the emulator, and the recorder needs each battler's moves, PP, status and stages and each turn's chosen action. Unneeded if: Ian drops the recorder's move logging, or picks another way to build the emulator.
 - **MSYS2 on Windows** (2026-10-01): the melonDS fork is to be built on this PC rather than on GitHub (his choice of the day). It needs MSYS2 installed from msys2.org into `C:\msys64`; Ian installs it, or tells the Overseer it may install it with `winget`. The build steps then follow (the Scheduled list).
 
+A "Waiting on Ian" entry answered on 2026-10-06 (Ian approved the drafts as written), as it stood:
+
+- **Drafts from `main-meloetta`** (2026-09-27; Meloetta landed on 2026-09-29, 15091c091). Meloetta's Pokedex entry ("Its melodies sway the hearts of all who hear them. When it dances, its voice turns into a fighting spirit.") and the Meister's two lines that now name Meloetta. Ruled 2026-09-28: the stats and Relic Song stand, and the trade's nickname is Sera.
+
 ## Phase 0: Setup
 
 - [x] Working folder created, both ROMs and both DSPRE extractions in place
