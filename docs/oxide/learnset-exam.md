@@ -58,3 +58,29 @@ Cutter is reworked or removed (the tracker's move reworks). What the rewrite
 must show for the line itself: a Grass attack between Absorb and Leaf Blade
 in good time, False Swipe early if at all, and the points shown as facts
 addressed.
+
+## 3. Eevee (2026-10-06)
+
+Shown: Eevee, Bebe's gift at 20 in Fantina's split, knows Tackle, Helping
+Hand, Sand-Attack and Growl, and learns Quick Attack 22, Bite 29, Baton Pass
+36, Take Down 43, Last Resort 50 and Trump Card 57. Every evolution's first
+own-type attack sits at 15, below the gift's level, so it is lost; their
+strong own-type attacks mostly come around 71 (Vaporeon's first Water attack
+is Hydro Pump at 71). Sylveon needs Charm, which Eevee has only on its egg
+list, so the player can never have it. Shown as facts as well: Baton Pass
+with nothing to pass, the same filler on every list, and later-generation
+moves only on Sylveon.
+
+Ian's verdict, verbatim:
+
+Eeveelutions should be the major exception to the evolution stone rule of
+limited/no moves learned after evolving via stone; eevee will almost
+cerainly be kept at 20 until it is ready to be evolved, so it will need
+complete moveset reworks for the eeveelutions from 20-onwards. Otherwise,
+your analysis is correct.
+
+What the rewrite must show for it: each Eeveelution with a complete moveset
+from level 20 onward, as the exception to the stone rule (R10's late, sparse
+lists do not apply), Sylveon reachable, and the points shown as facts
+addressed. Sylveon's reachability is a defect for the whole game and is in the
+tracker now.
