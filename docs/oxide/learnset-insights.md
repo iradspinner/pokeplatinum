@@ -486,3 +486,39 @@ The rules drawn from it:
   as a whole are reviewed for consolidation (the tracker).
 - **A data fix.** The balance tools count Amity Square's table as a catch,
   though it has no map header and cannot be met.
+
+## 10. Totodile (2026-10-06)
+
+Shown: Totodile from the Old Rod at 9 in Fantina's split knows Scratch,
+Leer, Water Gun and Rage; by Fantina's cap it has Bite 13, Scary Face 15, as
+Croconaw (18) Ice Fang 21, Flail 24 and Crunch 30, and as Feraligatr (30)
+Agility 30 and Crunch 32; then Slash 37, Screech 45, Thrash 50, Aqua Tail 58,
+Superpower 63 and Hydro Pump 71. Water Gun (special) is its only Water attack
+until Aqua Tail in the HQ split, on a physical line with Sheer Force on
+offer.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. Prime candidate for getting dragon dance when delayed significantly.
+2. No good water move until HQ is quite rough.
+3. Sheer force also should dictate what moves it should learn
+4. Agility = Great, Dragon Dance = SSS tier (very hard to beat it as a
+   setup move, same with quiver dance, shell smash, and any other move that
+   buffs speed + offence)
+5. Flail is a very niche move that can lead to cool lines, its fine staying.
+
+The rules drawn from it:
+
+- **R19 again, a delay demon's prize can be setup.** A line held a long
+  time at an earlier stage may earn a top setup move (Dragon Dance for a
+  long-held Croconaw).
+- **R11 again, a strong own-type attack in good time.** Five splits on a
+  weak own-type attack of the wrong stat is far too long.
+- **R31 again, Sheer Force too.** Sheer Force, like Serene Grace, decides
+  which moves are good: moves with secondary effects gain from it.
+- **R7, the setup tiers.** SSS: Dragon Dance and every move that raises both
+  Speed and an attacking stat (Quiver Dance, Shell Smash and the like),
+  very hard to beat, so rationed like Encore. Great: Agility. Niche but
+  worth keeping: Flail, which can lead to good lines.
