@@ -272,9 +272,9 @@ beside Oxide's lists for reading by split.
 
 ## How the generator works
 
-`tools/oxide/balance/learngen.py` (`plan`, `write`, `show SPECIES`) starts
+`tools/oxide/balance/learnrewrite.py` (`plan`, `write`, `show SPECIES`) starts
 from each list as it was and changes only what a rule asks for, in four
-passes. Its log, `tools/oxide/balance/learngen_log.tsv`, has every change
+passes. Its log, `tools/oxide/balance/learnrewrite_log.tsv`, has every change
 with its rule.
 
 1. **Clean.** The moves leaving player lists or the game go (R24, Fury
@@ -315,7 +315,7 @@ with its rule.
    move that ends the encounter.
 
 A line the player cannot own (the post-game legendaries, the lines no
-table reaches) gets the clean and the tidy only. `test_learngen.py`
+table reaches) gets the clean and the tidy only. `test_learnrewrite.py`
 checks that the writer round-trips every species file, that the files are
 the generator's output, that every change names a rule, the limits, and
 that the generator's source names none of the five held-out lines.

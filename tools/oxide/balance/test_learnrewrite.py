@@ -1,6 +1,6 @@
-"""The learnset rewrite's generator (learngen.py) against what it must do.
+"""The learnset rewrite's generator (learnrewrite.py) against what it must do.
 
-    PYTHONPATH=. python3 -m tools.oxide.balance.test_learngen
+    PYTHONPATH=. python3 -m tools.oxide.balance.test_learnrewrite
 
 Builds every list in memory (about half a minute) and compares it with the
 species files. Nothing is written.
@@ -9,7 +9,7 @@ import os
 import re
 import sys
 
-from . import data, learncheck as lc, learngen as lg
+from . import data, learncheck as lc, learnrewrite as lg
 
 
 def check_writer(results):
@@ -51,7 +51,7 @@ def check_held_out(results):
     """The five held-out lines get no special treatment: the generator's
     source names none of their species, so no rule can be a patch for one
     (learnset-checks.md, step 4's brief)."""
-    with open(os.path.join(data.ROOT, "tools", "oxide", "balance", "learngen.py"), encoding="utf-8") as f:
+    with open(os.path.join(data.ROOT, "tools", "oxide", "balance", "learnrewrite.py"), encoding="utf-8") as f:
         source = f.read()
     named = []
     for fam in lc.held_out():

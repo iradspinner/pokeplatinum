@@ -10,7 +10,7 @@ the same day, and his answers are recorded below as decisions.
 
 **Outcome.** Step 4 of the learnset plan (`docs/oxide/learnset-checks.md`)
 is built on its own branch, `balance-learnset-rewrite`: seventeen new
-checks read the locked rules, and a generator (`learngen.py`) rewrote the
+checks read the locked rules, and a generator (`learnrewrite.py`) rewrote the
 level-up lists of 634 species by them, every change logged with its rule.
 On the rewrite every check passes but a handful of named cases and R2's
 two new moves a split late in the game. The report, with the summary and
