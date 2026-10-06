@@ -1605,6 +1605,11 @@ def main():
               362, 363, 364, 365, 420, 421, 422, 423, 437, 443, 444, 445, 456, 457, 467,
               470, 471, 473, 476, 478, 490):
         LEARNSETS_DIVERGED[i] = "loses its weather moves: the player never sets weather (Ian, 2026-09-30)"
+    # Since the learnset rewrite of 2026-10-06 Oxide authors every level-up
+    # list (tools/oxide/balance/learnrewrite.py, checked by learncheck.py and
+    # test_learnrewrite.py), so no re-import touches one.
+    LEARNSETS_AUTHORED = True
+    LEARNSETS_AUTHORED_WHY = "authored by the learnset rewrite of 2026-10-06"
 
     # The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm): a record whose
     # TM list carries none of them keeps none on a re-import, since no species
@@ -1761,11 +1766,12 @@ def main():
         if not current_tms & WEATHER_TMS:
             for dd in (new, old):
                 dd["learnset"]["by_tm"] = [m for m in dd["learnset"]["by_tm"] if m not in WEATHER_TMS]
-        if i in LEARNSETS_DIVERGED:
+        if LEARNSETS_AUTHORED or i in LEARNSETS_DIVERGED:
             new["learnset"].pop("by_level")
             old["learnset"].pop("by_level")
+            why = LEARNSETS_DIVERGED.get(i, LEARNSETS_AUTHORED_WHY)
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
-                        [f"learnset.by_level: diverged, left alone ({LEARNSETS_DIVERGED[i]})"]))
+                        [f"learnset.by_level: diverged, left alone ({why})"]))
         if i in BASE_STATS_DIVERGED:
             new.pop("base_stats")
             old.pop("base_stats")

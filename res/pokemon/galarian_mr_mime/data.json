@@ -58,10 +58,6 @@
             ],
             [
                 1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
                 "MOVE_RECYCLE"
             ],
             [
@@ -86,10 +82,6 @@
             ],
             [
                 1,
-                "MOVE_MISTY_TERRAIN"
-            ],
-            [
-                1,
                 "MOVE_POUND"
             ],
             [
@@ -107,10 +99,6 @@
             [
                 12,
                 "MOVE_CONFUSION"
-            ],
-            [
-                16,
-                "MOVE_ALLY_SWITCH"
             ],
             [
                 20,
@@ -135,6 +123,10 @@
             [
                 40,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                42,
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 44,

@@ -57,24 +57,16 @@
                 "MOVE_TACKLE"
             ],
             [
-                4,
-                "MOVE_SMOKE_SCREEN"
+                18,
+                "MOVE_BELCH"
             ],
             [
-                7,
-                "MOVE_GRUDGE"
-            ],
-            [
-                12,
-                "MOVE_HAZE"
-            ],
-            [
-                15,
+                19,
                 "MOVE_CLEAR_SMOG"
             ],
             [
-                18,
-                "MOVE_BELCH"
+                21,
+                "MOVE_STRANGE_STEAM"
             ],
             [
                 23,
@@ -89,10 +81,6 @@
                 "MOVE_TOXIC"
             ],
             [
-                34,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
                 38,
                 "MOVE_WILL_O_WISP"
             ],
@@ -105,12 +93,28 @@
                 "MOVE_PAIN_SPLIT"
             ],
             [
-                48,
-                "MOVE_STRANGE_STEAM"
+                54,
+                "MOVE_HEAT_WAVE"
             ],
             [
-                55,
-                "MOVE_EXPLOSION"
+                56,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                62,
+                "MOVE_POISON_FANG"
+            ],
+            [
+                64,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                70,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                72,
+                "MOVE_BODY_SLAM"
             ]
         ],
         "by_tm": [],

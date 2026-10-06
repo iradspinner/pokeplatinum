@@ -53,10 +53,6 @@
                 "MOVE_EMBER"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
                 10,
                 "MOVE_LICK"
             ],
@@ -97,7 +93,7 @@
                 "MOVE_FLARE_BLITZ"
             ],
             [
-                56,
+                66,
                 "MOVE_OUTRAGE"
             ]
         ],

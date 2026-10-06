@@ -40,17 +40,21 @@
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_MUD_SPORT" ],
-            [ 5, "MOVE_MUD_SPORT" ],
             [ 9, "MOVE_MUD_SHOT" ],
             [ 15, "MOVE_SLAM" ],
             [ 19, "MOVE_MUD_BOMB" ],
+            [ 21, "MOVE_ROCK_TOMB" ],
             [ 24, "MOVE_AMNESIA" ],
+            [ 27, "MOVE_BULLDOZE" ],
             [ 31, "MOVE_YAWN" ],
             [ 36, "MOVE_EARTHQUAKE" ],
+            [ 40, "MOVE_TOXIC" ],
+            [ 43, "MOVE_DRAIN_PUNCH" ],
             [ 48, "MOVE_MIST" ],
-            [ 48, "MOVE_HAZE" ],
-            [ 53, "MOVE_MUDDY_WATER" ]
+            [ 51, "MOVE_AQUA_TAIL" ],
+            [ 53, "MOVE_MUDDY_WATER" ],
+            [ 59, "MOVE_ICE_PUNCH" ],
+            [ 61, "MOVE_POISON_JAB" ]
         ],
         "by_tm": [
             "TM01",

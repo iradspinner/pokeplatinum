@@ -77,20 +77,12 @@
                 "MOVE_MUD_SHOT"
             ],
             [
-                10,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
                 13,
                 "MOVE_ROCK_POLISH"
             ],
             [
                 16,
                 "MOVE_HEADBUTT"
-            ],
-            [
-                24,
-                "MOVE_SALT_CURE"
             ],
             [
                 30,
@@ -101,8 +93,20 @@
                 "MOVE_ROCK_SLIDE"
             ],
             [
+                38,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                39,
+                "MOVE_SALT_CURE"
+            ],
+            [
                 40,
                 "MOVE_STEALTH_ROCK"
+            ],
+            [
+                42,
+                "MOVE_IRON_HEAD"
             ],
             [
                 44,
@@ -113,12 +117,20 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
-                54,
-                "MOVE_STONE_EDGE"
+                51,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
-                60,
-                "MOVE_EXPLOSION"
+                56,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                58,
+                "MOVE_BLOCK"
+            ],
+            [
+                64,
+                "MOVE_HAMMER_ARM"
             ]
         ],
         "by_tm": [],

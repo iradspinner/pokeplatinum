@@ -40,18 +40,23 @@
         "by_level": [
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_GUST" ],
-            [ 7, "MOVE_GROWTH" ],
             [ 11, "MOVE_RAZOR_LEAF" ],
             [ 17, "MOVE_STOMP" ],
-            [ 21, "MOVE_SWEET_SCENT" ],
+            [ 19, "MOVE_BULLDOZE" ],
             [ 27, "MOVE_WHIRLWIND" ],
             [ 31, "MOVE_MAGICAL_LEAF" ],
             [ 37, "MOVE_BODY_SLAM" ],
             [ 41, "MOVE_SYNTHESIS" ],
+            [ 43, "MOVE_LEAF_BLADE" ],
             [ 47, "MOVE_AIR_SLASH" ],
             [ 51, "MOVE_SOLAR_BEAM" ],
+            [ 53, "MOVE_DRAGON_PULSE" ],
             [ 57, "MOVE_NATURAL_GIFT" ],
-            [ 61, "MOVE_LEAF_STORM" ]
+            [ 59, "MOVE_ZEN_HEADBUTT" ],
+            [ 61, "MOVE_LEAF_STORM" ],
+            [ 67, "MOVE_GIGA_DRAIN" ],
+            [ 69, "MOVE_EARTHQUAKE" ],
+            [ 75, "MOVE_BODY_PRESS" ]
         ],
         "by_tm": [
             "TM05",

@@ -57,10 +57,6 @@
                 "MOVE_EMBER"
             ],
             [
-                8,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
                 13,
                 "MOVE_VENOM_DRENCH"
             ],
@@ -75,6 +71,10 @@
             [
                 24,
                 "MOVE_TOXIC"
+            ],
+            [
+                27,
+                "MOVE_MUD_SHOT"
             ],
             [
                 29,

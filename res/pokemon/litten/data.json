@@ -53,8 +53,8 @@
                 "MOVE_EMBER"
             ],
             [
-                7,
-                "MOVE_GROWL"
+                9,
+                "MOVE_PARTING_SHOT"
             ],
             [
                 10,
@@ -85,10 +85,6 @@
                 "MOVE_FLAMETHROWER"
             ],
             [
-                42,
-                "MOVE_PARTING_SHOT"
-            ],
-            [
                 45,
                 "MOVE_KNOCK_OFF"
             ],
@@ -97,7 +93,7 @@
                 "MOVE_FLARE_BLITZ"
             ],
             [
-                56,
+                66,
                 "MOVE_OUTRAGE"
             ]
         ],

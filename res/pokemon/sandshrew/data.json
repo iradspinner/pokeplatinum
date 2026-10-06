@@ -49,8 +49,7 @@
             [ 25, "MOVE_FURY_CUTTER" ],
             [ 27, "MOVE_SAND_TOMB" ],
             [ 31, "MOVE_SLASH" ],
-            [ 33, "MOVE_GYRO_BALL" ],
-            [ 37, "MOVE_SANDSTORM" ]
+            [ 33, "MOVE_GYRO_BALL" ]
         ],
         "by_tm": [
             "TM01",

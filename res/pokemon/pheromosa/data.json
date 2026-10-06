@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_FEINT"
-            ],
-            [
-                1,
                 "MOVE_RAPID_SPIN"
             ],
             [
@@ -59,10 +55,6 @@
             [
                 10,
                 "MOVE_QUICK_GUARD"
-            ],
-            [
-                15,
-                "MOVE_BUG_BITE"
             ],
             [
                 20,
@@ -93,8 +85,8 @@
                 "MOVE_BOUNCE"
             ],
             [
-                55,
-                "MOVE_SPEED_SWAP"
+                51,
+                "MOVE_BUG_BITE"
             ],
             [
                 60,
@@ -105,8 +97,20 @@
                 "MOVE_QUIVER_DANCE"
             ],
             [
-                70,
+                66,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                67,
                 "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                69,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                71,
+                "MOVE_SKITTER_SMACK"
             ]
         ],
         "by_tm": [],

@@ -113,12 +113,32 @@
                 "MOVE_LEECH_LIFE"
             ],
             [
-                54,
-                "MOVE_STONE_EDGE"
+                50,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                56,
+                "MOVE_SHELL_SMASH"
+            ],
+            [
+                58,
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 61,
                 "MOVE_ROCK_WRECKER"
+            ],
+            [
+                64,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                66,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                72,
+                "MOVE_BULLDOZE"
             ]
         ],
         "by_tm": [],

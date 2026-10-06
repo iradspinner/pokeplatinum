@@ -85,16 +85,16 @@
                 "MOVE_PIN_MISSILE"
             ],
             [
+                35,
+                "MOVE_LIQUIDATION"
+            ],
+            [
                 36,
                 "MOVE_TOXIC"
             ],
             [
                 40,
                 "MOVE_VENOM_DRENCH"
-            ],
-            [
-                41,
-                "MOVE_LIQUIDATION"
             ],
             [
                 41,

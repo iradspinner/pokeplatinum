@@ -49,12 +49,12 @@
                 "MOVE_SCRATCH"
             ],
             [
-                1,
-                "MOVE_TAIL_WHIP"
-            ],
-            [
                 5,
                 "MOVE_EMBER"
+            ],
+            [
+                8,
+                "MOVE_FLAME_CHARGE"
             ],
             [
                 9,

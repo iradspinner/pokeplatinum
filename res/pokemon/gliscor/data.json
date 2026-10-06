@@ -56,7 +56,12 @@
             [ 34, "MOVE_SWORDS_DANCE" ],
             [ 38, "MOVE_U_TURN" ],
             [ 42, "MOVE_X_SCISSOR" ],
-            [ 45, "MOVE_GUILLOTINE" ]
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 57, "MOVE_ACROBATICS" ],
+            [ 59, "MOVE_POISON_JAB" ],
+            [ 65, "MOVE_CRUNCH" ],
+            [ 67, "MOVE_LUNGE" ],
+            [ 73, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM06",

@@ -53,20 +53,40 @@
                 "MOVE_FIRE_SPIN"
             ],
             [
+                17,
+                "MOVE_LAVA_PLUME"
+            ],
+            [
                 20,
                 "MOVE_WILL_O_WISP"
+            ],
+            [
+                24,
+                "MOVE_FLAME_CHARGE"
             ],
             [
                 30,
                 "MOVE_NIGHT_SHADE"
             ],
             [
+                34,
+                "MOVE_PSYSHOCK"
+            ],
+            [
                 40,
                 "MOVE_INCINERATE"
             ],
             [
+                42,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                48,
+                "MOVE_BITTER_BLADE"
+            ],
+            [
                 50,
-                "MOVE_LAVA_PLUME"
+                "MOVE_SHADOW_CLAW"
             ]
         ],
         "by_tm": [],

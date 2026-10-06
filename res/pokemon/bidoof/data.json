@@ -39,8 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_GROWL" ],
-            [ 9, "MOVE_DEFENSE_CURL" ],
+            [ 2, "MOVE_SWIFT" ],
+            [ 3, "MOVE_TAUNT" ],
+            [ 5, "MOVE_AQUA_JET" ],
             [ 13, "MOVE_ROLLOUT" ],
             [ 17, "MOVE_HEADBUTT" ],
             [ 21, "MOVE_HYPER_FANG" ],

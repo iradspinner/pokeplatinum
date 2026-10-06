@@ -34,6 +34,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HEALING_WISH" ],
             [ 1, "MOVE_WISH" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 5, "MOVE_REST" ],
@@ -41,11 +42,9 @@
             [ 15, "MOVE_HELPING_HAND" ],
             [ 20, "MOVE_PSYCHIC" ],
             [ 25, "MOVE_REFRESH" ],
-            [ 30, "MOVE_REST" ],
             [ 35, "MOVE_ZEN_HEADBUTT" ],
             [ 40, "MOVE_DOUBLE_EDGE" ],
             [ 45, "MOVE_GRAVITY" ],
-            [ 50, "MOVE_HEALING_WISH" ],
             [ 55, "MOVE_FUTURE_SIGHT" ],
             [ 60, "MOVE_COSMIC_POWER" ],
             [ 65, "MOVE_LAST_RESORT" ],

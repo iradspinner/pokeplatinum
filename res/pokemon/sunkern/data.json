@@ -38,17 +38,14 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
             [ 1, "MOVE_GROWTH" ],
             [ 5, "MOVE_MEGA_DRAIN" ],
-            [ 9, "MOVE_INGRAIN" ],
             [ 13, "MOVE_GRASS_WHISTLE" ],
             [ 17, "MOVE_LEECH_SEED" ],
             [ 21, "MOVE_ENDEAVOR" ],
             [ 25, "MOVE_WORRY_SEED" ],
             [ 29, "MOVE_RAZOR_LEAF" ],
             [ 33, "MOVE_SYNTHESIS" ],
-            [ 37, "MOVE_SUNNY_DAY" ],
             [ 41, "MOVE_GIGA_DRAIN" ],
             [ 45, "MOVE_SEED_BOMB" ]
         ],

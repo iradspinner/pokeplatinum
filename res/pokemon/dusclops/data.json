@@ -55,8 +55,11 @@
             [ 30, "MOVE_CURSE" ],
             [ 33, "MOVE_WILL_O_WISP" ],
             [ 37, "MOVE_SHADOW_PUNCH" ],
+            [ 40, "MOVE_SKITTER_SMACK" ],
             [ 43, "MOVE_MEAN_LOOK" ],
+            [ 48, "MOVE_ZEN_HEADBUTT" ],
             [ 51, "MOVE_PAYBACK" ],
+            [ 56, "MOVE_ROCK_TOMB" ],
             [ 61, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [

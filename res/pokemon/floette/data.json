@@ -50,10 +50,6 @@
             ],
             [
                 1,
-                "MOVE_ABSORB"
-            ],
-            [
-                1,
                 "MOVE_LUCKY_CHANT"
             ],
             [
@@ -83,6 +79,10 @@
             [
                 31,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                34,
+                "MOVE_CHARM"
             ],
             [
                 36,

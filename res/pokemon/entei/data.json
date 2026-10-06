@@ -38,10 +38,10 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ROAR" ],
             [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_LEER" ],
             [ 8, "MOVE_EMBER" ],
-            [ 15, "MOVE_ROAR" ],
             [ 22, "MOVE_FIRE_SPIN" ],
             [ 29, "MOVE_STOMP" ],
             [ 36, "MOVE_FLAMETHROWER" ],
@@ -49,9 +49,7 @@
             [ 50, "MOVE_FIRE_FANG" ],
             [ 57, "MOVE_LAVA_PLUME" ],
             [ 64, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_FIRE_BLAST" ],
-            [ 78, "MOVE_CALM_MIND" ],
-            [ 85, "MOVE_ERUPTION" ]
+            [ 78, "MOVE_CALM_MIND" ]
         ],
         "by_tm": [
             "TM04",

@@ -42,8 +42,8 @@
             [ 1, "MOVE_TAKE_DOWN" ],
             [ 1, "MOVE_METAL_CLAW" ],
             [ 1, "MOVE_CONFUSION" ],
+            [ 19, "MOVE_CONFUSION" ],
             [ 20, "MOVE_METAL_CLAW" ],
-            [ 20, "MOVE_CONFUSION" ],
             [ 24, "MOVE_SCARY_FACE" ],
             [ 28, "MOVE_PURSUIT" ],
             [ 32, "MOVE_BULLET_PUNCH" ],
@@ -52,8 +52,13 @@
             [ 44, "MOVE_AGILITY" ],
             [ 45, "MOVE_HAMMER_ARM" ],
             [ 53, "MOVE_METEOR_MASH" ],
+            [ 55, "MOVE_ICE_FANG" ],
+            [ 57, "MOVE_PSYCHIC_FANGS" ],
             [ 62, "MOVE_ZEN_HEADBUTT" ],
-            [ 71, "MOVE_HYPER_BEAM" ]
+            [ 64, "MOVE_IRON_HEAD" ],
+            [ 71, "MOVE_HYPER_BEAM" ],
+            [ 73, "MOVE_ICE_PUNCH" ],
+            [ 75, "MOVE_CRUNCH" ]
         ],
         "by_tm": [
             "TM06",

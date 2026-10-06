@@ -46,14 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
                 "MOVE_GRASS_WHISTLE"
             ],
             [
@@ -71,6 +63,10 @@
             [
                 1,
                 "MOVE_RAZOR_LEAF"
+            ],
+            [
+                20,
+                "MOVE_BITE"
             ]
         ],
         "by_tm": [],

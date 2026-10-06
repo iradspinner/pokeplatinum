@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 5, "MOVE_ABSORB" ],
-            [ 7, "MOVE_NATURE_POWER" ],
+            [ 2, "MOVE_WATER_GUN" ],
+            [ 3, "MOVE_MAGICAL_LEAF" ],
+            [ 5, "MOVE_DISARMING_VOICE" ],
             [ 11, "MOVE_MIST" ],
             [ 15, "MOVE_NATURAL_GIFT" ],
             [ 19, "MOVE_MEGA_DRAIN" ],

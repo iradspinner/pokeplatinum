@@ -82,7 +82,7 @@
             ],
             [
                 40,
-                "MOVE_ME_FIRST"
+                "MOVE_LOW_SWEEP"
             ],
             [
                 45,
@@ -93,12 +93,20 @@
                 "MOVE_DUAL_CHOP"
             ],
             [
-                51,
-                "MOVE_FOCUS_BLAST"
+                50,
+                "MOVE_U_TURN"
             ],
             [
                 55,
                 "MOVE_ACROBATICS"
+            ],
+            [
+                57,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                59,
+                "MOVE_HAMMER_ARM"
             ],
             [
                 64,

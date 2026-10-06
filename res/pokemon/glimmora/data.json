@@ -54,10 +54,6 @@
             ],
             [
                 1,
-                "MOVE_SPIKY_SHIELD"
-            ],
-            [
-                1,
                 "MOVE_TOXIC_SPIKES"
             ],
             [
@@ -89,10 +85,6 @@
                 "MOVE_VENOSHOCK"
             ],
             [
-                29,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
                 33,
                 "MOVE_ROCK_SLIDE"
             ],
@@ -101,12 +93,36 @@
                 "MOVE_POWER_GEM"
             ],
             [
+                41,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
                 44,
                 "MOVE_ACID_ARMOR"
             ],
             [
+                48,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
                 50,
                 "MOVE_SLUDGE_WAVE"
+            ],
+            [
+                56,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                58,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                64,
+                "MOVE_EARTH_POWER"
+            ],
+            [
+                66,
+                "MOVE_TOXIC_SPIKES"
             ]
         ],
         "by_tm": [],

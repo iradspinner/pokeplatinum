@@ -51,10 +51,16 @@
             [ 28, "MOVE_BULK_UP" ],
             [ 32, "MOVE_QUICK_ATTACK" ],
             [ 36, "MOVE_BLAZE_KICK" ],
+            [ 38, "MOVE_BULLDOZE" ],
+            [ 40, "MOVE_POISON_JAB" ],
             [ 42, "MOVE_SLASH" ],
             [ 49, "MOVE_BRAVE_BIRD" ],
+            [ 51, "MOVE_NIGHT_SLASH" ],
+            [ 56, "MOVE_FIRE_PUNCH" ],
             [ 59, "MOVE_SKY_UPPERCUT" ],
-            [ 66, "MOVE_FLARE_BLITZ" ]
+            [ 64, "MOVE_THUNDER_PUNCH" ],
+            [ 66, "MOVE_FLARE_BLITZ" ],
+            [ 72, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [
             "TM01",

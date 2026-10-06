@@ -6,7 +6,63 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-29).** Every score is rescored on the combined
+## Summary (2026-10-06)
+
+**Outcome.** Step 4 of the learnset plan (`docs/oxide/learnset-checks.md`)
+is built on its own branch, `balance-learnset-rewrite`, and its second
+loop answers step 5's exam: eighteen checks read the locked rules and
+Ian's exam verdicts, and a generator (`learnrewrite.py`) rewrote the
+level-up lists of 617 species by them, every change logged with its rule.
+Every check passes or improves on the first loop; what still falls short
+is a few named cases and R2's band count late in the game. The report,
+with the summary and Ian's questions, is `docs/oxide/learnset-rewrite.md`.
+Poison Fang's rescore landed on `oxide` the same day: all 1,030 stored
+scores verified, nothing moved on Ian's fight scale.
+
+**Ian's action items.** The move reworks, the named cases and staple
+coverage stay open from the first loop, and he may accept R2's late
+shortfall; the report sets each out with its context and a
+recommendation.
+
+**Next steps.** The Overseer lands the branch; then the TM pass rerun on
+the new lists, with the reward table and the gauntlet list (2 to 3 hours,
+and 2 to 3 to write it in). No boss is read until the rewrite and the TM
+pass have both landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+
+**Ian's exam verdicts (2026-10-06, relayed by the Overseer)**, now rules
+of the generator and the checks: a strong move below a catch level moves
+to it; branches of one line are close in worth where the player chooses
+(check 24); a trainer-only move never lands in a wild catch's four (it
+goes to the egg list); the Eeveelutions are the exception to the stone
+rule and learn from 20; Haze and Memento are terrible; anything under 90%
+accuracy is hard to justify. The ceilings bind only the moves the
+generator adds or moves; Oxide's existing entries stay (the Overseer's
+correction, the same day).
+
+**Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
+come from the whole pool of moves Oxide has; later games' learnsets
+(hg-engine's, or looked up) are inspiration, not pick lists. For level-up
+lists it supersedes the rule of 2026-09-27 under which only later games'
+level-up moves came in and TM, tutor and egg moves waited for the TM pass.
+He accepted two narrowings for alpha 1 the same day (relayed by the
+Overseer): an added status move must already be linked to the line, and an
+unlinked attack only fills a gap a rule asks for; and added moves keep
+under a per-split ceiling, which sets aside his answer 8 of 2026-09-27 (no
+ceiling on coverage power) for this pass.
+
+**Facts the learnset rewrite met (2026-10-06).** A level-up list holds at
+most 34 entries, level-1 entries included (`MAX_LEARNSET_ENTRIES` in
+`include/struct_defs/species.h`; the build refuses a longer one), so a
+generator budgets each list. The pool still reads three catches wrongly,
+which `learncheck.py` corrects only for itself so the stored scores do not
+move: Amity Square's table has no map header, Cynthia's Togepi egg comes
+in Fantina's split, and the fossils, which the pool leaves out, come in
+Fantina's split too (Ian, 2026-09-30); the census owes all three at the
+next rescore. And `tools/oxide/balance/learngen.py` is the learnset
+study's part 3, imported by `learnwild.py` and `kaizoteams.py`; the
+rewrite's generator once overwrote it and is `learnrewrite.py`.
+
+**Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
 1,030. The census leaves out the test kit, the pool takes the encounter
 tool's scripted sources it lacked (the fossils in Fantina's split, Acuity

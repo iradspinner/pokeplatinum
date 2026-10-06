@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_STEEL_ROLLER"
-            ],
-            [
-                1,
                 "MOVE_U_TURN"
             ],
             [
@@ -61,20 +57,12 @@
                 "MOVE_NUZZLE"
             ],
             [
-                5,
-                "MOVE_METAL_CLAW"
-            ],
-            [
                 8,
                 "MOVE_TWINEEDLE"
             ],
             [
                 12,
                 "MOVE_FAKE_OUT"
-            ],
-            [
-                17,
-                "MOVE_SPARK"
             ],
             [
                 21,
@@ -93,6 +81,14 @@
                 "MOVE_SUPER_FANG"
             ],
             [
+                32,
+                "MOVE_SPARK"
+            ],
+            [
+                33,
+                "MOVE_METAL_CLAW"
+            ],
+            [
                 34,
                 "MOVE_ZING_ZAP"
             ],
@@ -105,12 +101,32 @@
                 "MOVE_ELECTROWEB"
             ],
             [
+                45,
+                "MOVE_U_TURN"
+            ],
+            [
                 48,
                 "MOVE_WILD_CHARGE"
             ],
             [
-                55,
-                "MOVE_SPIKY_SHIELD"
+                54,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                56,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                62,
+                "MOVE_TICKLE"
+            ],
+            [
+                64,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                70,
+                "MOVE_THUNDER_PUNCH"
             ]
         ],
         "by_tm": [],

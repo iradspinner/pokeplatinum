@@ -34,6 +34,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HEALING_WISH" ],
             [ 1, "MOVE_PSYWAVE" ],
             [ 5, "MOVE_WISH" ],
             [ 10, "MOVE_HELPING_HAND" ],
@@ -46,7 +47,6 @@
             [ 45, "MOVE_RECOVER" ],
             [ 50, "MOVE_PSYCHO_SHIFT" ],
             [ 55, "MOVE_CHARM" ],
-            [ 60, "MOVE_HEALING_WISH" ],
             [ 65, "MOVE_PSYCHIC" ],
             [ 70, "MOVE_DRAGON_PULSE" ]
         ],

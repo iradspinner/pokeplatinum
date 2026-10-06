@@ -39,18 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_CONSTRICT" ],
             [ 8, "MOVE_ACID" ],
-            [ 15, "MOVE_INGRAIN" ],
+            [ 20, "MOVE_GIGA_DRAIN" ],
             [ 22, "MOVE_CONFUSE_RAY" ],
+            [ 27, "MOVE_ANCIENT_POWER" ],
             [ 29, "MOVE_AMNESIA" ],
             [ 36, "MOVE_GASTRO_ACID" ],
-            [ 43, "MOVE_ANCIENT_POWER" ],
             [ 50, "MOVE_ENERGY_BALL" ],
             [ 57, "MOVE_STOCKPILE" ],
-            [ 57, "MOVE_SPIT_UP" ],
-            [ 57, "MOVE_SWALLOW" ],
-            [ 64, "MOVE_WRING_OUT" ]
+            [ 58, "MOVE_SPIT_UP" ],
+            [ 59, "MOVE_SWALLOW" ]
         ],
         "by_tm": [
             "TM06",

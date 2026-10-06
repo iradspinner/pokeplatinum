@@ -53,8 +53,16 @@
                 "MOVE_GROWL"
             ],
             [
+                5,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
                 6,
                 "MOVE_QUICK_ATTACK"
+            ],
+            [
+                8,
+                "MOVE_TAUNT"
             ],
             [
                 11,

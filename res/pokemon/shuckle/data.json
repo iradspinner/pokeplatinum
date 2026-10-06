@@ -39,11 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WITHDRAW" ],
-            [ 1, "MOVE_CONSTRICT" ],
-            [ 1, "MOVE_BIDE" ],
             [ 9, "MOVE_ENCORE" ],
             [ 14, "MOVE_SAFEGUARD" ],
-            [ 22, "MOVE_WRAP" ],
             [ 27, "MOVE_REST" ],
             [ 35, "MOVE_GASTRO_ACID" ],
             [ 40, "MOVE_BUG_BITE" ],

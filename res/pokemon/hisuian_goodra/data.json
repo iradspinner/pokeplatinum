@@ -73,10 +73,6 @@
                 "MOVE_LIFE_DEW"
             ],
             [
-                16,
-                "MOVE_SMART_STRIKE"
-            ],
-            [
                 23,
                 "MOVE_WATER_PULSE"
             ],
@@ -89,16 +85,20 @@
                 "MOVE_INFESTATION"
             ],
             [
-                42,
-                "MOVE_FLASH_CANNON"
-            ],
-            [
                 48,
                 "MOVE_MUDDY_WATER"
             ],
             [
+                50,
+                "MOVE_SMART_STRIKE"
+            ],
+            [
+                54,
+                "MOVE_BODY_SLAM"
+            ],
+            [
                 55,
-                "MOVE_IRON_TAIL"
+                "MOVE_IRON_HEAD"
             ],
             [
                 58,
@@ -109,8 +109,24 @@
                 "MOVE_POWER_WHIP"
             ],
             [
+                63,
+                "MOVE_SLUDGE_WAVE"
+            ],
+            [
                 66,
                 "MOVE_OUTRAGE"
+            ],
+            [
+                68,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                70,
+                "MOVE_SURF"
+            ],
+            [
+                72,
+                "MOVE_DRAGON_RUSH"
             ]
         ],
         "by_tm": [],

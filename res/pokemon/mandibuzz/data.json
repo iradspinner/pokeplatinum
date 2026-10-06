@@ -89,14 +89,6 @@
                 "MOVE_WHIRLWIND"
             ],
             [
-                1,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
-                5,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 10,
                 "MOVE_PLUCK"
             ],
@@ -133,10 +125,6 @@
                 "MOVE_AIR_SLASH"
             ],
             [
-                45,
-                "MOVE_WHIRLWIND"
-            ],
-            [
                 47,
                 "MOVE_DARK_PULSE"
             ],
@@ -149,6 +137,22 @@
                 "MOVE_EMBARGO"
             ],
             [
+                54,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                56,
+                "MOVE_U_TURN"
+            ],
+            [
+                58,
+                "MOVE_ACROBATICS"
+            ],
+            [
+                60,
+                "MOVE_HEAT_WAVE"
+            ],
+            [
                 70,
                 "MOVE_MIRROR_MOVE"
             ],
@@ -157,8 +161,12 @@
                 "MOVE_ATTRACT"
             ],
             [
-                72,
+                73,
                 "MOVE_BRAVE_BIRD"
+            ],
+            [
+                74,
+                "MOVE_TOXIC"
             ]
         ],
         "by_tm": [],

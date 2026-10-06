@@ -74,10 +74,6 @@
             ],
             [
                 1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
                 "MOVE_RECYCLE"
             ],
             [
@@ -102,10 +98,6 @@
             ],
             [
                 1,
-                "MOVE_MISTY_TERRAIN"
-            ],
-            [
-                1,
                 "MOVE_POUND"
             ],
             [
@@ -123,10 +115,6 @@
             [
                 12,
                 "MOVE_CONFUSION"
-            ],
-            [
-                16,
-                "MOVE_ALLY_SWITCH"
             ],
             [
                 20,
@@ -163,6 +151,30 @@
             [
                 52,
                 "MOVE_TEETER_DANCE"
+            ],
+            [
+                54,
+                "MOVE_ENCORE"
+            ],
+            [
+                56,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                61,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                63,
+                "MOVE_BLOCK"
+            ],
+            [
+                69,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                71,
+                "MOVE_SHADOW_BALL"
             ]
         ],
         "by_tm": [],

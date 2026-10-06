@@ -77,24 +77,24 @@
                 "MOVE_DOUBLE_SLAP"
             ],
             [
-                19,
-                "MOVE_FAKE_TEARS"
+                18,
+                "MOVE_EMBARGO"
             ],
             [
                 19,
-                "MOVE_EMBARGO"
+                "MOVE_FAKE_TEARS"
             ],
             [
                 22,
                 "MOVE_PSYSHOCK"
             ],
             [
-                24,
-                "MOVE_HYPNOSIS"
+                23,
+                "MOVE_FAINT_ATTACK"
             ],
             [
                 24,
-                "MOVE_FAINT_ATTACK"
+                "MOVE_HYPNOSIS"
             ],
             [
                 31,
@@ -119,10 +119,6 @@
             [
                 42,
                 "MOVE_FUTURE_SIGHT"
-            ],
-            [
-                43,
-                "MOVE_TELEKINESIS"
             ],
             [
                 55,

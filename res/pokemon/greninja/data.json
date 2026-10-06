@@ -85,28 +85,12 @@
                 "MOVE_WATER_GUN"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
-                10,
-                "MOVE_SHADOW_SNEAK"
-            ],
-            [
                 10,
                 "MOVE_QUICK_ATTACK"
             ],
             [
                 14,
                 "MOVE_WATER_PULSE"
-            ],
-            [
-                16,
-                "MOVE_BOUNCE"
-            ],
-            [
-                20,
-                "MOVE_THIEF"
             ],
             [
                 22,
@@ -125,6 +109,10 @@
                 "MOVE_FLING"
             ],
             [
+                36,
+                "MOVE_SHADOW_SNEAK"
+            ],
+            [
                 37,
                 "MOVE_SCALD"
             ],
@@ -141,16 +129,32 @@
                 "MOVE_SLUDGE_WAVE"
             ],
             [
+                49,
+                "MOVE_SURF"
+            ],
+            [
                 51,
                 "MOVE_GUNK_SHOT"
             ],
             [
-                55,
-                "MOVE_HYDRO_PUMP"
+                56,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                58,
+                "MOVE_MUDDY_WATER"
             ],
             [
                 65,
                 "MOVE_HYDRO_CANNON"
+            ],
+            [
+                67,
+                "MOVE_TAUNT"
+            ],
+            [
+                69,
+                "MOVE_THROAT_CHOP"
             ]
         ],
         "by_tm": [],

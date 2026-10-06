@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_HAZE"
+            ],
+            [
+                1,
                 "MOVE_DISARMING_VOICE"
             ],
             [
@@ -59,10 +63,6 @@
             [
                 10,
                 "MOVE_MIST"
-            ],
-            [
-                10,
-                "MOVE_HAZE"
             ],
             [
                 15,
@@ -105,16 +105,8 @@
                 "MOVE_MOONBLAST"
             ],
             [
-                65,
-                "MOVE_HYDRO_PUMP"
-            ],
-            [
                 70,
                 "MOVE_SOAK"
-            ],
-            [
-                75,
-                "MOVE_MISTY_TERRAIN"
             ]
         ],
         "by_tm": [],

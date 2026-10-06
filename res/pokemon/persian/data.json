@@ -54,8 +54,7 @@
             [ 44, "MOVE_NASTY_PLOT" ],
             [ 49, "MOVE_ASSURANCE" ],
             [ 56, "MOVE_CAPTIVATE" ],
-            [ 61, "MOVE_NIGHT_SLASH" ],
-            [ 68, "MOVE_FEINT" ]
+            [ 61, "MOVE_NIGHT_SLASH" ]
         ],
         "by_tm": [
             "TM03",

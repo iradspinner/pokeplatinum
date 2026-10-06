@@ -39,23 +39,23 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_FEINT" ],
             [ 4, "MOVE_LEER" ],
             [ 9, "MOVE_TAUNT" ],
             [ 12, "MOVE_QUICK_ATTACK" ],
-            [ 17, "MOVE_RAZOR_WIND" ],
             [ 20, "MOVE_PURSUIT" ],
             [ 25, "MOVE_SWORDS_DANCE" ],
             [ 28, "MOVE_BITE" ],
-            [ 33, "MOVE_DOUBLE_TEAM" ],
             [ 36, "MOVE_SLASH" ],
             [ 41, "MOVE_FUTURE_SIGHT" ],
             [ 44, "MOVE_SUCKER_PUNCH" ],
-            [ 49, "MOVE_DETECT" ],
+            [ 46, "MOVE_X_SCISSOR" ],
             [ 52, "MOVE_NIGHT_SLASH" ],
-            [ 57, "MOVE_ME_FIRST" ],
+            [ 54, "MOVE_THROAT_CHOP" ],
             [ 60, "MOVE_PSYCHO_CUT" ],
-            [ 65, "MOVE_PERISH_SONG" ]
+            [ 62, "MOVE_SHADOW_BALL" ],
+            [ 65, "MOVE_PERISH_SONG" ],
+            [ 69, "MOVE_SUPERPOWER" ],
+            [ 71, "MOVE_ROCK_SLIDE" ]
         ],
         "by_tm": [
             "TM03",

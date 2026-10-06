@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_WHIRLWIND"
+            ],
+            [
+                1,
                 "MOVE_EMBER"
             ],
             [
@@ -61,20 +65,8 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
-                20,
+                59,
                 "MOVE_MYSTICAL_FIRE"
-            ],
-            [
-                30,
-                "MOVE_U_TURN"
-            ],
-            [
-                40,
-                "MOVE_FIRE_SPIN"
-            ],
-            [
-                50,
-                "MOVE_RAGE_POWDER"
             ],
             [
                 60,
@@ -85,8 +77,8 @@
                 "MOVE_BUG_BUZZ"
             ],
             [
-                64,
-                "MOVE_WHIRLWIND"
+                62,
+                "MOVE_RAGE_POWDER"
             ],
             [
                 65,
@@ -97,6 +89,14 @@
                 "MOVE_HEAT_WAVE"
             ],
             [
+                68,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                70,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 72,
                 "MOVE_POLLEN_PUFF"
             ],
@@ -105,8 +105,8 @@
                 "MOVE_ROOST"
             ],
             [
-                82,
-                "MOVE_FIERY_DANCE"
+                78,
+                "MOVE_AIR_SLASH"
             ]
         ],
         "by_tm": [],

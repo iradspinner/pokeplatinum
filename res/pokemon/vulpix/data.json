@@ -39,8 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_EMBER" ],
+            [ 3, "MOVE_INCINERATE" ],
             [ 4, "MOVE_TAIL_WHIP" ],
-            [ 7, "MOVE_ROAR" ],
+            [ 6, "MOVE_POWDER_SNOW" ],
             [ 11, "MOVE_QUICK_ATTACK" ],
             [ 14, "MOVE_WILL_O_WISP" ],
             [ 17, "MOVE_CONFUSE_RAY" ],
@@ -51,9 +52,7 @@
             [ 34, "MOVE_FIRE_SPIN" ],
             [ 37, "MOVE_CAPTIVATE" ],
             [ 40, "MOVE_FLARE_BLITZ" ],
-            [ 41, "MOVE_GRUDGE" ],
-            [ 44, "MOVE_EXTRASENSORY" ],
-            [ 47, "MOVE_FIRE_BLAST" ]
+            [ 44, "MOVE_EXTRASENSORY" ]
         ],
         "by_tm": [
             "TM05",

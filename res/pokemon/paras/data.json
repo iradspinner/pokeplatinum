@@ -39,8 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
+            [ 5, "MOVE_POISON_POWDER" ],
             [ 6, "MOVE_STUN_SPORE" ],
-            [ 6, "MOVE_POISON_POWDER" ],
             [ 11, "MOVE_LEECH_LIFE" ],
             [ 17, "MOVE_SPORE" ],
             [ 22, "MOVE_SLASH" ],

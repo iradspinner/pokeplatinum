@@ -55,7 +55,7 @@
             [ 46, "MOVE_MIRROR_SHOT" ],
             [ 50, "MOVE_MAGNET_RISE" ],
             [ 54, "MOVE_GYRO_BALL" ],
-            [ 60, "MOVE_ZAP_CANNON" ]
+            [ 60, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM06",

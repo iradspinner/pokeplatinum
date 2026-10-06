@@ -38,7 +38,8 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
+            [ 3, "MOVE_MACH_PUNCH" ],
+            [ 4, "MOVE_MAGICAL_LEAF" ],
             [ 5, "MOVE_TACKLE" ],
             [ 9, "MOVE_STUN_SPORE" ],
             [ 13, "MOVE_LEECH_SEED" ],

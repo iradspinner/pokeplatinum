@@ -54,10 +54,6 @@
             ],
             [
                 1,
-                "MOVE_ABSORB"
-            ],
-            [
-                1,
                 "MOVE_ACID_ARMOR"
             ],
             [
@@ -73,10 +69,6 @@
                 "MOVE_WATER_GUN"
             ],
             [
-                15,
-                "MOVE_PROTECT"
-            ],
-            [
                 20,
                 "MOVE_FLAIL"
             ],
@@ -89,6 +81,10 @@
                 "MOVE_DRAGON_PULSE"
             ],
             [
+                42,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
                 43,
                 "MOVE_CURSE"
             ],
@@ -99,6 +95,10 @@
             [
                 56,
                 "MOVE_MUDDY_WATER"
+            ],
+            [
+                66,
+                "MOVE_DRACO_METEOR"
             ]
         ],
         "by_tm": [],

@@ -61,20 +61,12 @@
                 "MOVE_DOUBLE_SLAP"
             ],
             [
-                5,
-                "MOVE_SWAGGER"
-            ],
-            [
                 9,
                 "MOVE_RAPID_SPIN"
             ],
             [
                 12,
                 "MOVE_RAZOR_LEAF"
-            ],
-            [
-                17,
-                "MOVE_SWEET_SCENT"
             ],
             [
                 21,
@@ -85,16 +77,28 @@
                 "MOVE_TEETER_DANCE"
             ],
             [
-                25,
-                "MOVE_TROP_KICK"
-            ],
-            [
                 32,
                 "MOVE_LOW_SWEEP"
             ],
             [
+                33,
+                "MOVE_SWAGGER"
+            ],
+            [
+                35,
+                "MOVE_BITE"
+            ],
+            [
                 38,
                 "MOVE_AROMATHERAPY"
+            ],
+            [
+                40,
+                "MOVE_TROP_KICK"
+            ],
+            [
+                42,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 44,
@@ -102,11 +106,27 @@
             ],
             [
                 48,
-                "MOVE_POWER_WHIP"
+                "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                50,
+                "MOVE_U_TURN"
             ],
             [
                 55,
                 "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                58,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                60,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                66,
+                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

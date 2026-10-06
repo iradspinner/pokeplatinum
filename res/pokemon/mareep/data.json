@@ -39,8 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_GROWL" ],
             [ 10, "MOVE_THUNDER_SHOCK" ],
+            [ 11, "MOVE_SHOCK_WAVE" ],
+            [ 12, "MOVE_SWAGGER" ],
+            [ 13, "MOVE_ANCIENT_POWER" ],
             [ 14, "MOVE_THUNDER_WAVE" ],
             [ 19, "MOVE_COTTON_SPORE" ],
             [ 23, "MOVE_CHARGE" ],
@@ -48,7 +50,7 @@
             [ 32, "MOVE_SIGNAL_BEAM" ],
             [ 37, "MOVE_LIGHT_SCREEN" ],
             [ 41, "MOVE_POWER_GEM" ],
-            [ 46, "MOVE_THUNDER" ]
+            [ 46, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM06",

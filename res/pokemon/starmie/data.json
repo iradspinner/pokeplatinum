@@ -42,7 +42,16 @@
             [ 1, "MOVE_RAPID_SPIN" ],
             [ 1, "MOVE_RECOVER" ],
             [ 1, "MOVE_SWIFT" ],
-            [ 28, "MOVE_CONFUSE_RAY" ]
+            [ 17, "MOVE_ICY_WIND" ],
+            [ 24, "MOVE_PSYBEAM" ],
+            [ 28, "MOVE_CONFUSE_RAY" ],
+            [ 45, "MOVE_SCALD" ],
+            [ 54, "MOVE_POWER_GEM" ],
+            [ 56, "MOVE_SIGNAL_BEAM" ],
+            [ 62, "MOVE_PSYCHIC" ],
+            [ 64, "MOVE_SURF" ],
+            [ 70, "MOVE_THUNDERBOLT" ],
+            [ 72, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

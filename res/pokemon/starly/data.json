@@ -39,12 +39,11 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
+            [ 2, "MOVE_PURSUIT" ],
             [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 7, "MOVE_TAILWIND" ],
             [ 9, "MOVE_WING_ATTACK" ],
-            [ 13, "MOVE_DOUBLE_TEAM" ],
             [ 17, "MOVE_ENDEAVOR" ],
-            [ 21, "MOVE_WHIRLWIND" ],
             [ 25, "MOVE_AERIAL_ACE" ],
             [ 29, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_AGILITY" ],

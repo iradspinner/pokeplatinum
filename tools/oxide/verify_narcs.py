@@ -697,11 +697,15 @@ WEATHER_LEVEL_UP_REMOVED = {
 
 DIVERGED_MEMBERS = {
     "poketool/personal/wotbl.narc": {
+        # Every member: the learnset rewrite authors every level-up list, so
+        # no list is held to the base ROM's any more.
+        "all": True,
         "members": {215, 228, 229} | WEATHER_LEVEL_UP_REMOVED,
-        "why": "Beat Up leaves the game, so Sneasel, Houndour and Houndoom no "
-               "longer learn it by level (Ian, 2026-09-26); and 53 species the "
-               "player can own lose their weather moves (Ian, 2026-09-26 and "
-               "2026-09-30)",
+        "why": "the learnset rewrite of 2026-10-06 authors every level-up list "
+               "(tools/oxide/balance/learnrewrite.py, checked by learncheck.py "
+               "and test_learnrewrite.py); before it, Beat Up left the game "
+               "(Ian, 2026-09-26) and 53 species the player can own lost their "
+               "weather moves (Ian, 2026-09-26 and 2026-09-30)",
     },
     "poketool/personal/evo.narc": {
         "members": {57, 123, 130, 133, 194, 370, 428,
@@ -987,7 +991,7 @@ def check_species_archive(b, r, path):
             continue
         if learnsets:
             if learnset_entries(b[j], False) != learnset_entries(r[i], True):
-                (intended if i in allowed["members"] else bad).append(i)
+                (intended if allowed.get("all") or i in allowed["members"] else bad).append(i)
             continue
         if b[j] != r[i]:
             if i in allowed["members"]:

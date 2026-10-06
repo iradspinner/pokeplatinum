@@ -47,10 +47,7 @@
             [ 49, "MOVE_LAVA_PLUME" ],
             [ 57, "MOVE_FIRE_SPIN" ],
             [ 65, "MOVE_IRON_HEAD" ],
-            [ 73, "MOVE_EARTH_POWER" ],
-            [ 81, "MOVE_HEAT_WAVE" ],
-            [ 88, "MOVE_STONE_EDGE" ],
-            [ 96, "MOVE_MAGMA_STORM" ]
+            [ 73, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM05",

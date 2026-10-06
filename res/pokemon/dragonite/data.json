@@ -41,7 +41,6 @@
             [ 1, "MOVE_FIRE_PUNCH" ],
             [ 1, "MOVE_THUNDER_PUNCH" ],
             [ 1, "MOVE_ROOST" ],
-            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_THUNDER_WAVE" ],
             [ 1, "MOVE_TWISTER" ],
@@ -55,7 +54,7 @@
             [ 47, "MOVE_SAFEGUARD" ],
             [ 53, "MOVE_DRAGON_DANCE" ],
             [ 55, "MOVE_WING_ATTACK" ],
-            [ 64, "MOVE_OUTRAGE" ],
+            [ 66, "MOVE_OUTRAGE" ],
             [ 73, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [

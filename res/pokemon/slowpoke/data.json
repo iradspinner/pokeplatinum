@@ -48,6 +48,7 @@
             [ 25, "MOVE_HEADBUTT" ],
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
+            [ 36, "MOVE_BULLDOZE" ],
             [ 39, "MOVE_SLACK_OFF" ],
             [ 43, "MOVE_AMNESIA" ],
             [ 48, "MOVE_PSYCHIC" ],

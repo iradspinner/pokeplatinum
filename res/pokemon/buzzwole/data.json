@@ -78,7 +78,7 @@
             ],
             [
                 35,
-                "MOVE_MEGA_PUNCH"
+                "MOVE_BODY_SLAM"
             ],
             [
                 40,
@@ -87,10 +87,6 @@
             [
                 45,
                 "MOVE_FOCUS_ENERGY"
-            ],
-            [
-                50,
-                "MOVE_DYNAMIC_PUNCH"
             ],
             [
                 55,

@@ -93,16 +93,24 @@
                 "MOVE_WORRY_SEED"
             ],
             [
-                33,
-                "MOVE_NIGHT_SLASH"
-            ],
-            [
                 36,
                 "MOVE_FLOWER_TRICK"
             ],
             [
+                37,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                39,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
                 42,
                 "MOVE_ENERGY_BALL"
+            ],
+            [
+                44,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 47,
@@ -117,8 +125,16 @@
                 "MOVE_U_TURN"
             ],
             [
+                57,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
                 61,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                64,
+                "MOVE_THUNDER_PUNCH"
             ]
         ],
         "by_tm": [],

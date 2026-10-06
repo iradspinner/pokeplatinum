@@ -53,20 +53,20 @@
                 "MOVE_WITHDRAW"
             ],
             [
-                6,
-                "MOVE_AROMATIC_MIST"
-            ],
-            [
                 12,
                 "MOVE_MEGA_DRAIN"
             ],
             [
-                18,
-                "MOVE_PROTECT"
-            ],
-            [
                 24,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                27,
+                "MOVE_STRENGTH_SAP"
+            ],
+            [
+                29,
+                "MOVE_HEX"
             ],
             [
                 30,
@@ -85,17 +85,15 @@
                 "MOVE_SHADOW_BALL"
             ],
             [
-                54,
-                "MOVE_MEMENTO"
-            ],
-            [
                 60,
                 "MOVE_SHELL_SMASH"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [
         [

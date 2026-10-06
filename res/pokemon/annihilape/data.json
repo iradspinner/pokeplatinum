@@ -73,10 +73,6 @@
                 "MOVE_FURY_SWIPES"
             ],
             [
-                8,
-                "MOVE_LOW_KICK"
-            ],
-            [
                 12,
                 "MOVE_SEISMIC_TOSS"
             ],
@@ -85,20 +81,8 @@
                 "MOVE_SWAGGER"
             ],
             [
-                22,
-                "MOVE_CROSS_CHOP"
-            ],
-            [
                 26,
                 "MOVE_ASSURANCE"
-            ],
-            [
-                30,
-                "MOVE_THRASH"
-            ],
-            [
-                35,
-                "MOVE_RAGE_FIST"
             ],
             [
                 39,
@@ -109,16 +93,40 @@
                 "MOVE_SCREECH"
             ],
             [
-                48,
-                "MOVE_STOMPING_TANTRUM"
+                50,
+                "MOVE_LOW_KICK"
             ],
             [
-                53,
+                54,
+                "MOVE_SHADOW_PUNCH"
+            ],
+            [
+                56,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                62,
+                "MOVE_FIRE_PUNCH"
+            ],
+            [
+                64,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                66,
+                "MOVE_THRASH"
+            ],
+            [
+                69,
                 "MOVE_OUTRAGE"
             ],
             [
-                57,
-                "MOVE_FINAL_GAMBIT"
+                71,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                73,
+                "MOVE_EARTHQUAKE"
             ]
         ],
         "by_tm": [],

@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_HAZE"
+            ],
+            [
+                1,
                 "MOVE_THOUSAND_ARROWS"
             ],
             [
@@ -86,11 +90,7 @@
             ],
             [
                 18,
-                "MOVE_BIND"
-            ],
-            [
-                24,
-                "MOVE_HAZE"
+                "MOVE_BODY_SLAM"
             ],
             [
                 37,
@@ -103,10 +103,6 @@
             [
                 50,
                 "MOVE_DRAGON_PULSE"
-            ],
-            [
-                50,
-                "MOVE_SANDSTORM"
             ],
             [
                 56,
@@ -123,10 +119,6 @@
             [
                 72,
                 "MOVE_COIL"
-            ],
-            [
-                84,
-                "MOVE_OUTRAGE"
             ]
         ],
         "by_tm": [],

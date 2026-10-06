@@ -41,21 +41,25 @@
             [ 1, "MOVE_SPIKES" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_POISON_STING" ],
+            [ 8, "MOVE_MINIMIZE" ],
             [ 9, "MOVE_HARDEN" ],
-            [ 9, "MOVE_MINIMIZE" ],
             [ 13, "MOVE_WATER_GUN" ],
             [ 17, "MOVE_ROLLOUT" ],
             [ 21, "MOVE_TOXIC_SPIKES" ],
+            [ 24, "MOVE_SPIT_UP" ],
             [ 25, "MOVE_STOCKPILE" ],
-            [ 25, "MOVE_SPIT_UP" ],
             [ 29, "MOVE_REVENGE" ],
             [ 33, "MOVE_BRINE" ],
             [ 37, "MOVE_PIN_MISSILE" ],
             [ 41, "MOVE_TAKE_DOWN" ],
             [ 45, "MOVE_AQUA_TAIL" ],
             [ 49, "MOVE_POISON_JAB" ],
-            [ 53, "MOVE_DESTINY_BOND" ],
-            [ 57, "MOVE_HYDRO_PUMP" ]
+            [ 51, "MOVE_THROAT_CHOP" ],
+            [ 57, "MOVE_SURF" ],
+            [ 59, "MOVE_FLIP_TURN" ],
+            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 66, "MOVE_TOXIC" ],
+            [ 72, "MOVE_SKITTER_SMACK" ]
         ],
         "by_tm": [
             "TM03",
@@ -107,7 +111,8 @@
             "MOVE_SUPERSONIC",
             "MOVE_ASTONISH",
             "MOVE_SIGNAL_BEAM",
-            "MOVE_POISON_JAB"
+            "MOVE_POISON_JAB",
+            "MOVE_DESTINY_BOND"
         ]
     },
     "evolutions": [  ],

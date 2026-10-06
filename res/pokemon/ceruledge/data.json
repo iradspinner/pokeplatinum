@@ -93,44 +93,60 @@
                 "MOVE_ASTONISH"
             ],
             [
-                8,
+                16,
+                "MOVE_WILL_O_WISP"
+            ],
+            [
+                17,
                 "MOVE_CLEAR_SMOG"
             ],
             [
-                12,
+                18,
                 "MOVE_FIRE_SPIN"
-            ],
-            [
-                16,
-                "MOVE_WILL_O_WISP"
             ],
             [
                 20,
                 "MOVE_NIGHT_SHADE"
             ],
             [
+                22,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
                 24,
                 "MOVE_FLAME_CHARGE"
+            ],
+            [
+                27,
+                "MOVE_BULLDOZE"
             ],
             [
                 28,
                 "MOVE_INCINERATE"
             ],
             [
+                30,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
                 32,
                 "MOVE_LAVA_PLUME"
             ],
             [
-                37,
+                40,
                 "MOVE_SWORDS_DANCE"
             ],
             [
-                42,
-                "MOVE_ALLY_SWITCH"
+                45,
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 48,
                 "MOVE_BITTER_BLADE"
+            ],
+            [
+                53,
+                "MOVE_IRON_HEAD"
             ],
             [
                 56,
@@ -139,6 +155,14 @@
             [
                 62,
                 "MOVE_FLARE_BLITZ"
+            ],
+            [
+                64,
+                "MOVE_POLTERGEIST"
+            ],
+            [
+                69,
+                "MOVE_THROAT_CHOP"
             ]
         ],
         "by_tm": [],

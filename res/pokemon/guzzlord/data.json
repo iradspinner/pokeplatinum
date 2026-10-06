@@ -53,12 +53,12 @@
                 "MOVE_DRAGON_TAIL"
             ],
             [
-                5,
-                "MOVE_SWALLOW"
+                4,
+                "MOVE_STOCKPILE"
             ],
             [
                 5,
-                "MOVE_STOCKPILE"
+                "MOVE_SWALLOW"
             ],
             [
                 10,
@@ -105,7 +105,7 @@
                 "MOVE_BELCH"
             ],
             [
-                65,
+                66,
                 "MOVE_THRASH"
             ],
             [

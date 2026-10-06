@@ -39,7 +39,6 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 10, "MOVE_PROTECT" ],
             [ 15, "MOVE_BUG_BITE" ],
             [ 20, "MOVE_HIDDEN_POWER" ],
             [ 23, "MOVE_CONFUSION" ],
@@ -47,10 +46,18 @@
             [ 29, "MOVE_POISON_POWDER" ],
             [ 32, "MOVE_PSYBEAM" ],
             [ 35, "MOVE_CAMOUFLAGE" ],
+            [ 36, "MOVE_LUNGE" ],
             [ 38, "MOVE_SILVER_WIND" ],
             [ 41, "MOVE_AIR_SLASH" ],
             [ 44, "MOVE_PSYCHIC" ],
-            [ 47, "MOVE_BUG_BUZZ" ]
+            [ 47, "MOVE_BUG_BUZZ" ],
+            [ 51, "MOVE_GIGA_DRAIN" ],
+            [ 53, "MOVE_U_TURN" ],
+            [ 59, "MOVE_SHADOW_BALL" ],
+            [ 61, "MOVE_ENERGY_BALL" ],
+            [ 67, "MOVE_STUN_SPORE" ],
+            [ 69, "MOVE_SECRET_POWER" ],
+            [ 75, "MOVE_ACROBATICS" ]
         ],
         "by_tm": [
             "TM06",

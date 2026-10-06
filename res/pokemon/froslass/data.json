@@ -40,9 +40,7 @@
         "by_level": [
             [ 1, "MOVE_POWDER_SNOW" ],
             [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_DOUBLE_TEAM" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 4, "MOVE_DOUBLE_TEAM" ],
             [ 10, "MOVE_ASTONISH" ],
             [ 13, "MOVE_ICY_WIND" ],
             [ 19, "MOVE_CONFUSE_RAY" ],
@@ -50,8 +48,13 @@
             [ 28, "MOVE_WAKE_UP_SLAP" ],
             [ 31, "MOVE_CAPTIVATE" ],
             [ 37, "MOVE_ICE_SHARD" ],
-            [ 51, "MOVE_BLIZZARD" ],
-            [ 59, "MOVE_DESTINY_BOND" ]
+            [ 44, "MOVE_SIGNAL_BEAM" ],
+            [ 51, "MOVE_ICE_BEAM" ],
+            [ 57, "MOVE_AURA_SPHERE" ],
+            [ 61, "MOVE_SHADOW_BALL" ],
+            [ 63, "MOVE_PSYCHIC" ],
+            [ 69, "MOVE_SWEET_KISS" ],
+            [ 71, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [
             "TM03",

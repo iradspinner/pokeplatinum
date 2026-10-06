@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_LEER" ],
             [ 5, "MOVE_THUNDER_WAVE" ],
             [ 11, "MOVE_TWISTER" ],
@@ -49,8 +48,8 @@
             [ 35, "MOVE_DRAGON_RUSH" ],
             [ 41, "MOVE_SAFEGUARD" ],
             [ 45, "MOVE_DRAGON_DANCE" ],
-            [ 51, "MOVE_OUTRAGE" ],
-            [ 55, "MOVE_HYPER_BEAM" ]
+            [ 55, "MOVE_HYPER_BEAM" ],
+            [ 61, "MOVE_OUTRAGE" ]
         ],
         "by_tm": [
             "TM03",

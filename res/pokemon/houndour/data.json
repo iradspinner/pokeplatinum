@@ -38,12 +38,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_EMBER" ],
             [ 4, "MOVE_HOWL" ],
+            [ 6, "MOVE_BITE" ],
             [ 9, "MOVE_SMOG" ],
+            [ 11, "MOVE_SCARY_FACE" ],
             [ 14, "MOVE_ROAR" ],
-            [ 17, "MOVE_BITE" ],
+            [ 20, "MOVE_INCINERATE" ],
             [ 22, "MOVE_ODOR_SLEUTH" ],
             [ 30, "MOVE_FIRE_FANG" ],
             [ 35, "MOVE_FAINT_ATTACK" ],

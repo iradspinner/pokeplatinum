@@ -38,21 +38,25 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WRING_OUT" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_CONSTRICT" ],
             [ 1, "MOVE_ACID" ],
-            [ 1, "MOVE_INGRAIN" ],
             [ 8, "MOVE_ACID" ],
-            [ 15, "MOVE_INGRAIN" ],
             [ 22, "MOVE_CONFUSE_RAY" ],
             [ 29, "MOVE_AMNESIA" ],
             [ 36, "MOVE_ANCIENT_POWER" ],
+            [ 40, "MOVE_BULLDOZE" ],
             [ 46, "MOVE_GASTRO_ACID" ],
-            [ 56, "MOVE_ENERGY_BALL" ],
+            [ 48, "MOVE_ENERGY_BALL" ],
+            [ 50, "MOVE_ROCK_SLIDE" ],
+            [ 54, "MOVE_ROCK_TOMB" ],
+            [ 56, "MOVE_SLUDGE_BOMB" ],
+            [ 61, "MOVE_LIQUIDATION" ],
             [ 66, "MOVE_STOCKPILE" ],
-            [ 66, "MOVE_SPIT_UP" ],
-            [ 66, "MOVE_SWALLOW" ],
-            [ 76, "MOVE_WRING_OUT" ]
+            [ 67, "MOVE_SPIT_UP" ],
+            [ 68, "MOVE_SWALLOW" ],
+            [ 69, "MOVE_EARTHQUAKE" ],
+            [ 71, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [
             "TM06",

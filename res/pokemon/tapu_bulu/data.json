@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_WHIRLWIND"
+            ],
+            [
+                1,
                 "MOVE_LEAFAGE"
             ],
             [
@@ -67,10 +71,6 @@
             [
                 20,
                 "MOVE_MEGA_DRAIN"
-            ],
-            [
-                25,
-                "MOVE_WHIRLWIND"
             ],
             [
                 30,
@@ -107,10 +107,6 @@
             [
                 70,
                 "MOVE_SKULL_BASH"
-            ],
-            [
-                75,
-                "MOVE_GRASSY_TERRAIN"
             ]
         ],
         "by_tm": [],

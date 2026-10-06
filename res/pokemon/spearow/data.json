@@ -41,7 +41,6 @@
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_GROWL" ],
             [ 5, "MOVE_LEER" ],
-            [ 9, "MOVE_FURY_ATTACK" ],
             [ 13, "MOVE_PURSUIT" ],
             [ 17, "MOVE_AERIAL_ACE" ],
             [ 21, "MOVE_MIRROR_MOVE" ],

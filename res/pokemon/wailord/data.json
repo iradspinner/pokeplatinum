@@ -38,11 +38,9 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_ROLLOUT" ],
-            [ 4, "MOVE_GROWL" ],
             [ 7, "MOVE_WATER_GUN" ],
             [ 11, "MOVE_ROLLOUT" ],
             [ 14, "MOVE_WHIRLPOOL" ],
@@ -54,8 +52,13 @@
             [ 34, "MOVE_WATER_SPOUT" ],
             [ 37, "MOVE_AMNESIA" ],
             [ 46, "MOVE_DIVE" ],
+            [ 48, "MOVE_ROCK_TOMB" ],
+            [ 50, "MOVE_IRON_HEAD" ],
             [ 54, "MOVE_BOUNCE" ],
-            [ 62, "MOVE_HYDRO_PUMP" ]
+            [ 56, "MOVE_ZEN_HEADBUTT" ],
+            [ 58, "MOVE_BODY_PRESS" ],
+            [ 62, "MOVE_SURF" ],
+            [ 64, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM03",

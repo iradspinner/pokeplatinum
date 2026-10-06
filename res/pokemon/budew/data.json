@@ -38,12 +38,15 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
-            [ 4, "MOVE_GROWTH" ],
+            [ 2, "MOVE_MAGICAL_LEAF" ],
+            [ 3, "MOVE_ACID" ],
             [ 7, "MOVE_WATER_SPORT" ],
             [ 10, "MOVE_STUN_SPORE" ],
             [ 13, "MOVE_MEGA_DRAIN" ],
-            [ 16, "MOVE_WORRY_SEED" ]
+            [ 16, "MOVE_WORRY_SEED" ],
+            [ 18, "MOVE_VENOSHOCK" ],
+            [ 20, "MOVE_CONFUSION" ],
+            [ 25, "MOVE_GIGA_DRAIN" ]
         ],
         "by_tm": [
             "TM06",

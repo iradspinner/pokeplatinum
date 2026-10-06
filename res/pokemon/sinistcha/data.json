@@ -61,16 +61,16 @@
                 "MOVE_ASTONISH"
             ],
             [
-                6,
-                "MOVE_ABSORB"
-            ],
-            [
-                12,
+                15,
                 "MOVE_LIFE_DEW"
             ],
             [
                 18,
                 "MOVE_FOUL_PLAY"
+            ],
+            [
+                20,
+                "MOVE_SNARL"
             ],
             [
                 24,
@@ -89,16 +89,36 @@
                 "MOVE_STRENGTH_SAP"
             ],
             [
+                45,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 48,
                 "MOVE_SHADOW_BALL"
             ],
             [
-                54,
-                "MOVE_MEMENTO"
+                53,
+                "MOVE_SCALD"
             ],
             [
                 60,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                62,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                64,
+                "MOVE_SHELL_SMASH"
+            ],
+            [
+                69,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                71,
+                "MOVE_STUN_SPORE"
             ]
         ],
         "by_tm": [],

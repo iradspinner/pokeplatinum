@@ -58,10 +58,6 @@
             ],
             [
                 1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
                 "MOVE_HAZE"
             ],
             [
@@ -71,10 +67,6 @@
             [
                 12,
                 "MOVE_DISABLE"
-            ],
-            [
-                16,
-                "MOVE_BRUTAL_SWING"
             ],
             [
                 20,
@@ -89,10 +81,6 @@
                 "MOVE_MEAN_LOOK"
             ],
             [
-                32,
-                "MOVE_SLAM"
-            ],
-            [
                 38,
                 "MOVE_CURSE"
             ],
@@ -101,7 +89,15 @@
                 "MOVE_SHADOW_BALL"
             ],
             [
-                50,
+                53,
+                "MOVE_BRUTAL_SWING"
+            ],
+            [
+                54,
+                "MOVE_SLAM"
+            ],
+            [
+                55,
                 "MOVE_EARTHQUAKE"
             ],
             [
@@ -109,12 +105,20 @@
                 "MOVE_POWER_SPLIT"
             ],
             [
-                56,
-                "MOVE_GUARD_SPLIT"
+                58,
+                "MOVE_ROCK_TOMB"
             ],
             [
-                62,
-                "MOVE_DESTINY_BOND"
+                61,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                66,
+                "MOVE_POLTERGEIST"
+            ],
+            [
+                68,
+                "MOVE_BODY_PRESS"
             ]
         ],
         "by_tm": [],

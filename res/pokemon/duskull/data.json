@@ -46,6 +46,7 @@
             [ 17, "MOVE_CONFUSE_RAY" ],
             [ 22, "MOVE_SHADOW_SNEAK" ],
             [ 25, "MOVE_PURSUIT" ],
+            [ 27, "MOVE_SHADOW_CLAW" ],
             [ 30, "MOVE_CURSE" ],
             [ 33, "MOVE_WILL_O_WISP" ],
             [ 38, "MOVE_MEAN_LOOK" ],

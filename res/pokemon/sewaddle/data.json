@@ -49,8 +49,12 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_STRING_SHOT"
+                2,
+                "MOVE_POUNCE"
+            ],
+            [
+                3,
+                "MOVE_STICKY_WEB"
             ],
             [
                 8,
@@ -67,10 +71,6 @@
             [
                 29,
                 "MOVE_ENDURE"
-            ],
-            [
-                31,
-                "MOVE_STICKY_WEB"
             ],
             [
                 36,

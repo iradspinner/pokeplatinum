@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_THUNDER_WAVE" ],
             [ 1, "MOVE_TWISTER" ],

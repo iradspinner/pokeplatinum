@@ -69,6 +69,10 @@
                 "MOVE_SLAM"
             ],
             [
+                18,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
                 21,
                 "MOVE_YAWN"
             ],
@@ -89,12 +93,32 @@
                 "MOVE_TOXIC"
             ],
             [
+                42,
+                "MOVE_WATERFALL"
+            ],
+            [
                 48,
                 "MOVE_EARTHQUAKE"
             ],
             [
+                50,
+                "MOVE_BODY_PRESS"
+            ],
+            [
                 55,
                 "MOVE_RECOVER"
+            ],
+            [
+                58,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                60,
+                "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                66,
+                "MOVE_SWAGGER"
             ]
         ],
         "by_tm": [],

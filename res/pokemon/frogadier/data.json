@@ -65,10 +65,6 @@
                 "MOVE_WATER_GUN"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
                 10,
                 "MOVE_QUICK_ATTACK"
             ],
@@ -83,6 +79,10 @@
             [
                 16,
                 "MOVE_ICY_WIND"
+            ],
+            [
+                19,
+                "MOVE_THIEF"
             ],
             [
                 20,
@@ -110,7 +110,7 @@
             ],
             [
                 45,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_SCALD"
             ]
         ],
         "by_tm": [],

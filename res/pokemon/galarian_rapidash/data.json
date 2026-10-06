@@ -81,6 +81,10 @@
                 "MOVE_FAIRY_WIND"
             ],
             [
+                17,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
                 20,
                 "MOVE_AGILITY"
             ],
@@ -97,20 +101,44 @@
                 "MOVE_HEAL_PULSE"
             ],
             [
+                40,
+                "MOVE_BLAZE_KICK"
+            ],
+            [
                 43,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                45,
+                "MOVE_DRILL_RUN"
             ],
             [
                 49,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
+                51,
+                "MOVE_PSYCHO_CUT"
+            ],
+            [
                 56,
                 "MOVE_PSYCHIC"
             ],
             [
-                63,
-                "MOVE_HEALING_WISH"
+                58,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                64,
+                "MOVE_FLARE_BLITZ"
+            ],
+            [
+                66,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                72,
+                "MOVE_DOUBLE_EDGE"
             ]
         ],
         "by_tm": [],

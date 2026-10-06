@@ -53,10 +53,6 @@
                 "MOVE_STRING_SHOT"
             ],
             [
-                1,
-                "MOVE_ABSORB"
-            ],
-            [
                 4,
                 "MOVE_FURY_CUTTER"
             ],
@@ -89,6 +85,10 @@
                 "MOVE_DISCHARGE"
             ],
             [
+                31,
+                "MOVE_SNARL"
+            ],
+            [
                 35,
                 "MOVE_SIGNAL_BEAM"
             ],
@@ -101,6 +101,10 @@
                 "MOVE_SUCKER_PUNCH"
             ],
             [
+                45,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 48,
                 "MOVE_THUNDERBOLT"
             ],
@@ -109,12 +113,24 @@
                 "MOVE_BUG_BUZZ"
             ],
             [
-                55,
-                "MOVE_THUNDER"
+                54,
+                "MOVE_AGILITY"
+            ],
+            [
+                58,
+                "MOVE_SCREECH"
             ],
             [
                 65,
                 "MOVE_VOLT_SWITCH"
+            ],
+            [
+                67,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
+                69,
+                "MOVE_STICKY_WEB"
             ]
         ],
         "by_tm": [],

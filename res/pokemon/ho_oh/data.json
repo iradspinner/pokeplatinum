@@ -42,17 +42,12 @@
             [ 9, "MOVE_SAFEGUARD" ],
             [ 15, "MOVE_GUST" ],
             [ 23, "MOVE_RECOVER" ],
-            [ 29, "MOVE_FIRE_BLAST" ],
-            [ 37, "MOVE_SUNNY_DAY" ],
+            [ 29, "MOVE_OVERHEAT" ],
             [ 43, "MOVE_SWIFT" ],
             [ 51, "MOVE_NATURAL_GIFT" ],
             [ 57, "MOVE_ANCIENT_POWER" ],
             [ 65, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_PUNISHMENT" ],
-            [ 79, "MOVE_FUTURE_SIGHT" ],
-            [ 85, "MOVE_SACRED_FIRE" ],
-            [ 93, "MOVE_CALM_MIND" ],
-            [ 99, "MOVE_SKY_ATTACK" ]
+            [ 71, "MOVE_PUNISHMENT" ]
         ],
         "by_tm": [
             "TM04",

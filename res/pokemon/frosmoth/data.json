@@ -65,40 +65,36 @@
                 "MOVE_ATTRACT"
             ],
             [
-                4,
+                30,
                 "MOVE_STUN_SPORE"
             ],
             [
-                8,
+                31,
                 "MOVE_INFESTATION"
-            ],
-            [
-                12,
-                "MOVE_MIST"
-            ],
-            [
-                16,
-                "MOVE_DEFOG"
-            ],
-            [
-                21,
-                "MOVE_FEATHER_DANCE"
-            ],
-            [
-                24,
-                "MOVE_AURORA_BEAM"
             ],
             [
                 32,
                 "MOVE_BUG_BUZZ"
             ],
             [
+                33,
+                "MOVE_DEFOG"
+            ],
+            [
+                34,
+                "MOVE_AURORA_BEAM"
+            ],
+            [
                 36,
                 "MOVE_AURORA_VEIL"
             ],
             [
+                38,
+                "MOVE_PSYBEAM"
+            ],
+            [
                 40,
-                "MOVE_BLIZZARD"
+                "MOVE_ICE_BEAM"
             ],
             [
                 44,
@@ -109,8 +105,24 @@
                 "MOVE_WIDE_GUARD"
             ],
             [
+                50,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 52,
                 "MOVE_QUIVER_DANCE"
+            ],
+            [
+                58,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                60,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                66,
+                "MOVE_CALM_MIND"
             ]
         ],
         "by_tm": [],

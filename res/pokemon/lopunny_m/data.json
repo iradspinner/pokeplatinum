@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_COPYCAT"
+            ],
+            [
+                1,
                 "MOVE_U_TURN"
             ],
             [
@@ -55,10 +59,6 @@
             [
                 1,
                 "MOVE_MIRROR_COAT"
-            ],
-            [
-                1,
-                "MOVE_SPLASH"
             ],
             [
                 1,
@@ -101,10 +101,6 @@
                 "MOVE_FAKE_OUT"
             ],
             [
-                42,
-                "MOVE_COPYCAT"
-            ],
-            [
                 48,
                 "MOVE_DOUBLE_EDGE"
             ],
@@ -123,10 +119,6 @@
             [
                 72,
                 "MOVE_LAST_RESORT"
-            ],
-            [
-                83,
-                "MOVE_ENCORE"
             ]
         ],
         "by_tm": [],

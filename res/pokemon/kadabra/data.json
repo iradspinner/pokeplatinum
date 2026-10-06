@@ -38,16 +38,17 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TELEPORT" ],
             [ 1, "MOVE_KINESIS" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 16, "MOVE_CONFUSION" ],
             [ 18, "MOVE_DISABLE" ],
+            [ 20, "MOVE_CHARGE_BEAM" ],
             [ 22, "MOVE_MIRACLE_EYE" ],
             [ 24, "MOVE_PSYBEAM" ],
             [ 28, "MOVE_REFLECT" ],
             [ 30, "MOVE_RECOVER" ],
             [ 34, "MOVE_PSYCHO_CUT" ],
+            [ 35, "MOVE_CALM_MIND" ],
             [ 36, "MOVE_ROLE_PLAY" ],
             [ 40, "MOVE_PSYCHIC" ],
             [ 42, "MOVE_FUTURE_SIGHT" ],

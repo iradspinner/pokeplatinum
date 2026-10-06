@@ -49,10 +49,15 @@
             [ 25, "MOVE_AURORA_BEAM" ],
             [ 32, "MOVE_SWAGGER" ],
             [ 39, "MOVE_REST" ],
-            [ 39, "MOVE_SNORE" ],
             [ 44, "MOVE_ICE_FANG" ],
-            [ 52, "MOVE_BLIZZARD" ],
-            [ 65, "MOVE_SHEER_COLD" ]
+            [ 46, "MOVE_CRUNCH" ],
+            [ 52, "MOVE_ICE_BEAM" ],
+            [ 54, "MOVE_BODY_PRESS" ],
+            [ 56, "MOVE_SURF" ],
+            [ 61, "MOVE_CLOSE_COMBAT" ],
+            [ 63, "MOVE_EARTHQUAKE" ],
+            [ 69, "MOVE_ROCK_TOMB" ],
+            [ 71, "MOVE_YAWN" ]
         ],
         "by_tm": [
             "TM03",
