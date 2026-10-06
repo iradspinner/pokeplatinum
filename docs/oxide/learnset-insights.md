@@ -403,3 +403,41 @@ The rules drawn from it:
 - **R7, more tiers.** Good: Baby-Doll Eyes, Life Dew. Okay: Sing (inaccurate
   but good). Encore on Popplio is fine.
 - **R5 again.** Even the best kit so far lacks coverage.
+
+## 8. Gible (2026-10-06)
+
+Shown: Gible caught at 18 in Wayward Cave knows Tackle, Sand-Attack, Dragon
+Rage and Take Down; it learns Sand Tomb 19; Gabite at 24 learns Slash 28,
+Dragon Claw 33, Dig 40 and Dragon Rush 49 (a Gible held gets Slash 25,
+Dragon Claw 27 and Dig 31); Garchomp at 48 learns Crunch 48 and Dragon Rush
+55, with Fire Fang at level 1 only. Shown as lacking a real Ground attack
+before Dig, utility, coverage, a setup move and later-generation moves, with
+empty stretches between moves.
+
+Ian's verdict, verbatim:
+
+Outside of your what stands out:
+
+1. It is relatively fine for this to be only okay until it is a Garchomp;
+   what is not okay is that its learnset by garchomp is attrocious. No
+   earthquake, no significant coverage ouside crunch.
+2. This is a primary example of a pokemon that can be a delay demon, but
+   differently than shinx was: The player can choose to evolve to Garchomp
+   early to get its power for hard splits, but if they delay to 66+ (after
+   galactice) it should get some incredible payoff moves. Other than that,
+   your what stands out says it perfectly.
+3. Sand attack is okay (niche applications but good when its needed).
+
+The rules drawn from it:
+
+- **R30, the final form's kit is what counts most.** A strong line may be
+  only okay at its middle stage, but its final form's list must match its
+  power: a signature own-type attack (Earthquake for Garchomp) and real
+  coverage.
+- **R19 again, a second kind of delay demon.** Besides an earlier stage that
+  learns the big moves sooner (Luxio), a line can offer the opposite trade:
+  evolve early for raw power in the hard splits, or hold the middle stage
+  past a late level (66 and up, after the Galactic split) for incredible
+  payoff moves the early evolver never gets by level-up.
+- **R7, more tiers.** Okay: Sand-Attack (niche, but good when it is needed),
+  unlike Double Team, which leaves the player's lists.
