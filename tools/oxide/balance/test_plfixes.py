@@ -994,6 +994,53 @@ def main():
     results.append(("a slower Pokemon's Quick Claw moves it first about one time in five",
                     50 <= firsts <= 115, f"{firsts} of 400"))
 
+    # The very unlucky stress test (Ian, 2026-10-06): Quick Claw and Focus
+    # Band roll against the player, the trainer's firing if either of two
+    # rolls does and the player's only if both do. The player's claw above
+    # then fires about one time in twenty-five; the trainer's Focus Band
+    # saves a Bronzor at 1 HP about 19 times in 100 hits, against 10 at
+    # real odds. Each seed is played with and without the band, so a miss
+    # (Rock Throw is 90 percent) never counts as a save.
+    stressed = 0
+    for i in range(400):
+        c = pl.clone_battle(b)
+        c.rng = random.Random(i); c.dice = pl.RunDice(c.rng, True, luck="unlucky")
+        g, bz = c.p.cur(), c.b.cur()
+        g.hp, bz.hp = g.maxhp, bz.maxhp
+        log = []
+        orig = pl.use_move
+        pl.use_move = lambda bb, att, m, d, first, _o=orig, _l=log: (_l.append(att.side), _o(bb, att, m, d, first))
+        try:
+            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Calm Mind")))
+        finally:
+            pl.use_move = orig
+        stressed += bool(log) and log[0] == "p"
+    saves = {}
+    for luck in ("real", "unlucky"):
+        saves[luck] = 0
+        for i in range(1000):
+            alive = []
+            for band in ("Focus Band", None):
+                c = pl.clone_battle(b)
+                c.rng = random.Random(i); c.dice = pl.RunDice(c.rng, True, luck=luck)
+                g, bz = c.p.cur(), c.b.cur()
+                bz.item, bz.hp = band, 1
+                pl.attack(c, g, mv(g, "Rock Throw"), bz, True)
+                alive.append(bz.hp > 0)
+            saves[luck] += alive[0] and not alive[1]
+    dice = {}
+    for side in ("bad", "good"):
+        for kind, p in (("quickclaw", 0.2), ("focusband", 0.1)):
+            d = pl.RunDice(random.Random(7), True, luck="unlucky")
+            roll = (lambda: d.bad(kind, p)) if side == "bad" else (lambda: d.good(p, kind))
+            dice[f"{side} {kind}"] = round(sum(roll() for _ in range(20000)) / 20000, 3)
+    want = {"bad quickclaw": 0.36, "bad focusband": 0.19, "good quickclaw": 0.04, "good focusband": 0.01}
+    results.append(("the stress test rolls Quick Claw and Focus Band against the player",
+                    stressed <= 35 and 55 <= saves["real"] <= 130 and 130 <= saves["unlucky"] <= 220
+                    and all(abs(dice[k] - v) < 0.015 for k, v in want.items()),
+                    f"player's claw first {stressed} of 400; band saves {saves['real']} real, "
+                    f"{saves['unlucky']} unlucky of 1000; dice {dice}"))
+
     # Powder: Grass types are immune, and the AI knows; Leaf Guard stops
     # status in sun (the engine knows, the AI does not).
     recs = [{"constant": "SPECIES_TSAREENA", "species": "Tsareena", "how": "test", "level": 26, "nature": "Lonely",

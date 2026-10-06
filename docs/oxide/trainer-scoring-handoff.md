@@ -36,9 +36,11 @@ until then: step 5's boss bands are folded into goal 3 (the Overseer,
 2026-10-06). Your ruling that luck items are fair on trainers (Quick Claw,
 Custap Berry, Focus Band, King's Rock, Razor Fang, and the evasion items
 when rare) needs no scorer work: the simulator already plays each at its
-odds. In the very unlucky fights King's Rock and Razor Fang's flinch rolls
-twice, with the other secondary effects; Quick Claw and Focus Band stay at
-their real odds, since your stress test doubles status and crit checks.
+odds. In the very unlucky fights they roll against the player (your answer
+of 2026-10-06 for Quick Claw and Focus Band): King's Rock and Razor Fang's
+flinch, Quick Claw and Focus Band each fire for the trainer if either of
+two rolls does, and for the player only if both do. No reading is redone
+for it now.
 
 | Step | Takes |
 |---|---|
