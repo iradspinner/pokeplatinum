@@ -1691,7 +1691,11 @@ def _end_of_turn(b):
     if b.weather_turns:
         b.weather_turns -= 1
         if b.weather_turns == 0:
-            b.weather = b.st.get("base_weather")
+            # A weather move cleared the map's weather when it began
+            # (effect_script_0136 and its siblings clear every weather
+            # flag), and only the move's own flag clears now, so the
+            # field is left clear rather than returning to the map's.
+            b.weather = None
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
     b.turn += 1
@@ -1853,7 +1857,7 @@ def cleared(b):
             if b.trick_room < 999:
                 b.trick_room = 0
             if b.weather_turns:
-                b.weather, b.weather_turns = b.st.get("base_weather"), 0
+                b.weather, b.weather_turns = None, 0
             return b
 
         def __exit__(self, *exc):

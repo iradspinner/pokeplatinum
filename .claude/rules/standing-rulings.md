@@ -237,8 +237,17 @@ read, so they are written here too. Each is a standing instruction.
   on a trainer, and evasion setups are rare. Trapping (the abilities, Mean
   Look or Block with Perish Song, the binding moves) is allowed but rare. A
   boss carries at most one forced trade (Explosion, Self-Destruct, Destiny
-  Bond), none before Fantina, never made certain by Custap or priority, and
-  an ordinary trainer carries none. No level-1 Focus Sash and Endeavor sets.
+  Bond), none before Fantina, and an ordinary trainer carries none. Custap
+  Berry and enemy priority are fair tools beside a trade: the player plays
+  around Custap with their own priority, and enemy priority is part of
+  planning (Ian, 2026-10-06, dropping the earlier "never made certain by
+  Custap or priority"). The 90 percent accuracy bar of the learnset rules
+  (R37) is for the player's movesets only, since the player plans around
+  low accuracy; trainers are welcome to moves like Sing and Zap Cannon (Ian,
+  2026-10-06). Luck items are allowed on trainers: Quick Claw, Focus Band,
+  King's Rock, Razor Fang and the like, his own teams' Quick Claws included
+  (Ian, 2026-10-06); the evasion items (BrightPowder, Lax Incense) stay
+  under the evasion-is-rare rule. No level-1 Focus Sash and Endeavor sets.
   No overlevelled optional trainers. Oxide adds some double battles. An
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
