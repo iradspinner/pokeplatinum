@@ -441,3 +441,48 @@ The rules drawn from it:
   payoff moves the early evolver never gets by level-up.
 - **R7, more tiers.** Okay: Sand-Attack (niche, but good when it is needed),
   unlike Double Team, which leaves the player's lists.
+
+## 9. Swablu (2026-10-06)
+
+Shown: Swablu (Fairy/Flying in Oxide), first catchable on Route 210 at 19 to
+20 in Maylene's split (the checker's Amity Square catch has no map header, so
+no one can meet it in the game), knows Astonish, Sing, Fury Attack and
+Safeguard; it learns Mist 23, Take Down 28, Natural Gift 32, Mirror Move 36,
+Refresh 40, Dragon Pulse 45 and Perish Song 50; Altaria (Dragon/Fairy) at 35
+learns Dragon Breath 35, Dragon Dance 39, Refresh 46, Dragon Pulse 54, Perish
+Song 62 and Sky Attack 70. No Fairy attack on either stage.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. Utility: mirror move is inredible (niche but SSS when applicable),
+   refresh is bad.
+2. Serence grace should dictate what moves are good on a pokemon; any move
+   that has 20%/30% secondary effects gets massively buffed with serene
+   grace.
+3. Fury attack is a useless move, mark it for removal from the game.
+   Honestly, we should take a look at the multi-hit moves in general and see
+   how much they can get consolidated.
+4. Dragon Dance is fine on a mixed attacker like this, but you correctly
+   called out that it needs some decent physical moves to be able to make it
+   work.
+5. Natural gift is interesting but annoying for players; it should be
+   sparsely used.
+6. Mist is bad.
+
+The rules drawn from it:
+
+- **R31, abilities shape the list.** A line's abilities decide which moves
+  are good on it: with Serene Grace, every move with a 20 or 30 percent
+  secondary effect becomes far stronger, so such moves are placed for it.
+- **R32, setup needs something to boost.** A boosting move earns its place
+  only beside attacks it boosts (Dragon Dance on a mixed Altaria needs decent
+  physical attacks).
+- **R7, more tiers.** Incredible, SSS where it applies: Mirror Move (niche).
+  Sparse: Natural Gift (interesting, annoying for players). Bad: Refresh,
+  Mist. Useless, to be removed from the game: Fury Attack.
+- **A move-pool task.** Fury Attack leaves the game, and the multi-hit moves
+  as a whole are reviewed for consolidation (the tracker).
+- **A data fix.** The balance tools count Amity Square's table as a catch,
+  though it has no map header and cannot be met.
