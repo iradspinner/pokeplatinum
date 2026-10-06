@@ -13,19 +13,23 @@ split was read (one of eighteen checks passed; you approved the comb as
 built), learnset checks 2 and 3 went to the balance track, and the change
 to Poison Fang left no reading stale.
 
-**Your action items.** None today. The next ones come as the study writes
-each split: the fights its readings flag. When you want double and tag
-battles read (about 60 fights after Roark's split), say when; the estimate
-is below.
+**Your action items.** None today. When you want double and tag battles
+read (about 60 fights after Roark's split), say when; the estimate is
+below.
 
 **Next steps, and how long each takes on this machine.** The study's
 exports are done (`goal3.csv`, the boxes after Fantina's split, the blind
-pools at 19 to 33, in `~/oxide-trials/kaizo-teams/`).
+pools at 19 to 33, in `~/oxide-trials/kaizo-teams/`). Goal 3 waits until the
+learnset rewrite and the TM pass have landed, since both change the
+player's box; it then runs once, on the comb's teams as far as the comb has
+got, for the comb, step 5's boss bands and the alpha's boss order (Ian,
+2026-10-06; the tracker's Scheduled list). Until then nothing is queued but
+step 5's boss bands, when the balance track reaches them.
 
 | Step | Takes |
 |---|---|
-| Goal 3: each split's bosses, read by the team search as the study writes the split | about 1 to 2 hours a boss; about 22 hours for all 39, or 15 with one set of labels a boss |
-| Each split's ordinary trainers, read blind | 5 to 30 minutes each, several at once |
+| Goal 3, once: the bosses by the team search | about 1 to 2 hours a boss; about 22 hours for all 39, or 15 with one set of labels a boss |
+| Goal 3's ordinary trainers, read blind | 5 to 30 minutes each, several at once |
 | Double and tag battles, on the backlog: build and check the planner for them | about 3 to 4 working sessions, then your check of one hand-played double |
 | Then reading the 60 or so doubles | roughly 60 to 100 hours of machine time, if a double costs 2 to 3 times a single |
 
