@@ -54,12 +54,17 @@ be named in words after the link ("its 'Ian's answers' section").
 
 ## 3. When the viewer is down
 
-Check with `ss -ltn | grep 8765`. If nothing listens, use the GitHub form and
-say in one line that the tool's server is not running; Ian starts it with:
+Since 2026-10-06 a session-start hook (`.claude/hooks/oxidex_autostart.sh`)
+starts the server whenever a session opens and nothing listens on 8765 (Ian:
+"have it autostart when I open Overseer"). Check with `ss -ltn | grep 8765`.
+If nothing listens, start it the same way:
 
 ```
-PYTHONPATH=. python3 -m tools.oxide.encounters.server
+bash tools/oxide/encounters/restart_server.sh
 ```
+
+If it still will not start, use the GitHub form and say in one line that the
+tool's server is not running.
 
 The server on 8765 runs from `.claude/worktrees/ian-tool` (branch
 `ian-saves`), so after a landing that changes `server.py` it keeps the old
