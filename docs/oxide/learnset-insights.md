@@ -78,3 +78,68 @@ first cap (R1); new moves per stage per split (R2); coverage count and the
 split of the first coverage move (R4, R5); dominated moves (R6); utility
 quality against a tier list of status moves (R7); evolution and learn-level
 choices that stay inside one split (R8).
+
+## 2. Budew (2026-10-06)
+
+Shown: Budew caught at 3 to 5 on Route 204 knows Absorb (and Growth); it
+learns Growth 4, Water Sport 7, Stun Spore 10, Mega Drain 13 and Worry Seed
+16, then nothing. Roselia (by levelling beside Eterna Forest's Moss Rock)
+learns Poison Sting 7, Leech Seed 16, Magical Leaf 19, Grass Whistle 22, Giga
+Drain 25, Toxic Spikes 28, Sweet Scent 31, Ingrain 34, Toxic 37, Petal Dance
+40, Aromatherapy 43 and Synthesis 46, but none below the level it evolves
+at. Roserade (Shiny Stone) has only level-1 moves. The table shown left out
+Poison Sting and Synthesis, which Ian pointed out.
+
+Ian's verdict, verbatim:
+
+1. No poison move as buden is disappointing, but okay.
+2. Water sport, stun spore, worry seed, and growth are a fantastic set of
+   utility moves early: The line has 0 coverage moves ever; same feedback
+   from charmander.
+3. Giga Drain, Toxic Spikes, Stun Spore, (coverage move/poison move) seems
+   like a very good moveset for most of the game with Toxic and Petal Dance
+   as options as well; one thing to keep in mind with Petal
+   Dance/Outrage/Uproar/etc. is that they lock you in for 2 to 3 turns which
+   makes them extraordinarily dangerous to use in a nuzlocke with
+   permadeath. Kaizo changes them to one-turn-use moves for a reason. As it
+   stands, I would personally never ever use them in a run.
+4. Sweet scent is nearly useless, water sport is mostly useless, growth is
+   mostly useless (too slow), ingrain is too dangerous (can't be switched
+   out), aromatherapy is quite niche but usable, worry seed is very niche
+   and mostly not usable.
+5. Its fine to have roserade learn moves very late in the game (probably
+   3+splits after roselia) to make it not feel as bad evolving it early and
+   to make it not be as awful if you catch roserade later in the game with a
+   bad learnset.
+6. FYI you call out Synthesis and Poison Sting but they don't show up on
+   your table, so I don't know when they are learned; synthesis is fantastic
+   and poison sting should be in Roark split.
+
+Point 2's "fantastic" reads as ironic beside point 4, which rates three of
+its four moves as mostly useless; Stun Spore is the one of them in his good
+moveset in point 3.
+
+The rules drawn from it:
+
+- **R5 again, coverage.** No coverage ever is the same failure as
+  Charmander's.
+- **R7, the utility tiers so far.** Fantastic: Synthesis. Good: Scary Face,
+  Stun Spore, Toxic Spikes, Toxic. Niche but usable: Aromatherapy, Fire Spin.
+  Very niche, mostly unusable: Worry Seed. Mostly useless: Growth (too slow),
+  Water Sport, Growl, Smokescreen. Nearly useless: Sweet Scent. Too
+  dangerous: Ingrain (it stops the player switching out).
+- **R9, rampage moves are unusable as they stand.** Petal Dance, Outrage,
+  Thrash, Uproar and the like lock the user in for two or three turns, which
+  Ian would never risk in a permadeath run. Until he rules on Kaizo's
+  one-turn versions, they do not count as a usable attack in any check.
+- **R10, stone-evolved final forms keep learning, late.** A final form
+  reached by a stone (Roserade) learns new moves starting about three splits
+  after the previous stage's window, so using the stone early costs little
+  and a late catch of the final form is not stuck with a bad list.
+- **R11, both types get an attack early.** A dual-type line has an attack of
+  each type by its first split's cap where it can (Budew's Poison Sting in
+  Roark's split).
+- **R12, a good mid-game kit.** One strong own-type attack, a hazard or
+  status spreader, a second status move, and a coverage or second-type
+  attack (Giga Drain, Toxic Spikes, Stun Spore and a coverage move), with
+  more options beside them.
