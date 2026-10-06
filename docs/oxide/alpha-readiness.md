@@ -29,7 +29,7 @@ guess, and says which.
 | 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | 22 hours or more of machine time (its estimate) | 4, 8, 12 |
 | 16 | QA's hotfixes, then the alpha 1 ROM; any boss team landed after step 13 is read before the ROM is fixed | Overseer and the tracks, Scoring Agent | | depends on QA; about 15 to 20 minutes of machine time per re-read boss (Overseer's guess, from 22 hours for about 80 fights) | 14, 15 |
 
-The scorer reads only the teams in the ROM Ian plays, never the study's working files, so its boss order and Ian's ratings describe the same fights (a side agent's catch, 2026-10-06). The TM pass grows the Bag, so QA starts a fresh game on step 13's ROM, and the
+The scorer reads only the teams in the ROM Ian plays, never the study's working files, so its boss order and Ian's ratings describe the same fights (a side agent's catch, 2026-10-06). It does so on an extraction of the ROM's commit (`git archive`), with the boxes rebuilt on it; the Scoring Agent proved the route on a planted edit the same day, with no code change. The TM pass grows the Bag, so QA starts a fresh game on step 13's ROM, and the
 alpha starts another on step 16's. Doubles and tag battles stay unread in
 step 15 (the tracker's backlog), and the level-cap design pass is not in
 alpha 1.
