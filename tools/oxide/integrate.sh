@@ -407,6 +407,9 @@ git rev-parse --verify -q main >/dev/null || git fetch -q --depth=1 origin main:
 # The engine's level caps (element 8) against the balance track's fights.json,
 # so a cap moved in one and not the other fails here.
 CHECK_EXPECT="passed" check "level caps: engine table, fights.json and closing scripts agree" "$PY" tools/oxide/test_level_caps.py
+# The reward placer's own test (alpha readiness, step 9), so a change to the
+# placement tool or the scripts it hooks into fails here.
+CHECK_EXPECT="passed" check "reward placements: place_rewards.py's own test" "$PY" tools/oxide/test_place_rewards.py
 for t in tools/oxide/encounters/test_*.py; do
     name="$(basename "$t" .py)"
     CHECK_EXPECT="passed" check "encounter tool $name" "$PY" -m "tools.oxide.encounters.$name"
