@@ -69,8 +69,10 @@ Step 9, now, before the tables have rows:
 
 1. Write `tools/oxide/place_rewards.py`, with a test. It reads
    `reward-placements.tsv` and writes each row into the map's events and
-   scripts in the files' own style. A trainer reward is given once, when the
-   player talks to the trainer after beating them, under a spare flag. A
+   scripts in the files' own style. A trainer reward is given automatically
+   straight after the player wins, once, under its own spare flag (Ian,
+   2026-10-06, relayed by the main track); talking to the trainer again
+   retries only if the Bag was full the first time. A
    checker reads every placement back out of the built ROM with
    `scriptdis.py` and finds each table row exactly once. Use the TM pass
    draft's table (`docs/oxide/tm-pass.md` on `origin/balance-learngen-v2`,
