@@ -10,13 +10,14 @@ trainers blind from a realistic box; every reading 75 fights at real odds
 and 25 very unlucky, by the play-out planner at budget 64):
 
 - blind (taylor, catherine, grunt): each fight draws a six at random from
-  the box the run would have there, every member with four fixed moves by
-  the scorer's rule over its whole pool, as goal 2's records are made: the
-  player brings what it carries, not a six chosen for this trainer.
+  the stronger half of the box the run would have there, never a member
+  held below the cap (plteam.blind_pool, Ian, 2026-10-04), every member
+  with its own fixed moves: the player brings what it carries, not a six
+  chosen for this trainer.
 - section (the grunt's gauntlet): the four grunts of the Eterna building's
   1F and 2F in a row, the example first and the other three as res/ has
-  them, one random six from the box carrying its HP, status, PP and items
-  from fight to fight with no healing (plplan.CARRY).
+  them, one random six from the box's stronger half carrying its HP,
+  status, PP and items from fight to fight with no healing (plplan.CARRY).
 - search (gardenia, maylene): the team search (plteam.search) and Ian's
   standard reading of its winner.
 
@@ -200,9 +201,13 @@ def draw(rng, keys, n):
     return out
 
 
-def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11):
-    """The blind reading: each fight with its own random six."""
+def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11, cap=None, split=None,
+          leave_out=()):
+    """The blind reading: each fight with its own random six from the box's
+    stronger half, never a member held below the cap (plteam.blind_pool,
+    Ian, 2026-10-04)."""
     rng = random.Random(seed)
+    keys = plteam.blind_pool(st, keys, split, cap, leave_out)
     a = plteam.read(st, boss_keys, flags, draw(rng, keys, real), 1, {}, "real", seed0=seed, procs=procs)
     b = plteam.read(st, boss_keys, flags, draw(rng, keys, unlucky), 1, {}, "unlucky", seed0=seed + 1, procs=procs)
     rows = [r for rs in a.rows.values() for r in rs]
@@ -244,11 +249,13 @@ def _section_job(args):
     return won, deaths, won and deaths == 0, faints
 
 
-def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
-    """The gauntlet section read blind: each run one random six through
-    every fight in a row."""
+def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13, cap=None, split=None,
+            leave_out=()):
+    """The gauntlet section read blind: each run one random six from the
+    box's stronger half (as blind's) through every fight in a row."""
     _JOB.update(st=st, fights=fights)
     rng = random.Random(seed)
+    keys = plteam.blind_pool(st, keys, split, cap, leave_out)
     out = {}
     for luck, n, s0 in (("real", real, seed), ("unlucky", unlucky, seed + 1)):
         jobs = [(six, s0 * 1000 + i, luck) for i, six in enumerate(draw(rng, keys, n))]
@@ -260,6 +267,13 @@ def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
             out["faints_to"] = plteam.losing_enemies([(w, d, c, f) for w, d, c, f in rows])
             out["fainted"] = fainted(rows)
     return out
+
+
+def trainer_ids(stems):
+    """The res/ trainer ids of these file stems (an example keeps the stem
+    of the trainer it rebuilds), to keep them out of the blind draw's panel."""
+    by_stem = {t["stem"]: k for k, t in data.oxide_trainers().items()}
+    return [by_stem[s] for s in stems if s in by_stem]
 
 
 def run(name, procs=12, without=()):
@@ -275,7 +289,7 @@ def run(name, procs=12, without=()):
         st, keys, fights = prepare(paths, split, cap, recs, stk)
         result["trainers"] = [[st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in bk]
                               for bk, _f in fights]
-        out = section(st, keys, fights, procs=procs)
+        out = section(st, keys, fights, procs=procs, cap=cap, split=split, leave_out=trainer_ids(SECTION))
         result.update(real=out["real"], unlucky=out["unlucky"], faints_to=out["faints_to"], fainted=out["fainted"])
     else:
         st, keys, fights = (kaizo_prepare(*path[:2], split, cap, recs, stk, *path[2:]) if kind == "kaizo"
@@ -283,7 +297,9 @@ def run(name, procs=12, without=()):
         boss_keys, flags = fights[0]
         result["trainer"] = [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys]
         if kind == "blind":
-            real, unlucky, faints_to, result["fainted"] = blind(st, keys, boss_keys, flags, procs=procs)
+            real, unlucky, faints_to, result["fainted"] = blind(
+                st, keys, boss_keys, flags, procs=procs, cap=cap, split=split,
+                leave_out=trainer_ids([os.path.basename(path)[:-5]]))
         else:
             out_dir = os.path.join(OUT, name)
             summary = plteam.search(f"study_{name}", None, recs, stk, out_dir, procs=procs,

@@ -261,7 +261,12 @@ def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, se
         box = prep.get("save_box") or boxes.box_from(box_source, prep["split"], random.Random(seed * 100 + bi))
         keys = box_keys(st, box, rng)
         boss_keys, flags, _starter = variant_for(prep, box)
-        for j, team in enumerate(sixes(keys, blind, rng)):
+        # A blind six comes from the box's stronger half, never a member held
+        # below the cap (plteam.blind_pool, Ian, 2026-10-04).
+        from . import plteam
+        read = [int(prep["key"][2:])] if str(prep["key"]).startswith("tr") else []
+        pool_ = plteam.blind_pool(st, keys, prep["split"], leave_out=read)
+        for j, team in enumerate(sixes(pool_, blind, rng)):
             jobs.append((team, boss_keys, flags, f"blind:{bi}", budget, strict, seed + 1000 * bi + j))
         weights = pl.matchup_wins(st, keys, boss_keys, flags, budget)
         for j, team in enumerate(sixes(keys, planned, rng, weights)):

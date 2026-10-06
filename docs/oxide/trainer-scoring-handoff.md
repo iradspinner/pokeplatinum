@@ -90,7 +90,10 @@ faints a fight through Drifblim's Unburden ("Goal 2 read again"). The Kaizo
 study's five worked examples are read ("The Kaizo study's worked
 examples"), and so is the Kaizo anchor, Kaizo's six readable bosses of its
 first three splits on goal 2's boxes, which those boxes win 0 to 81 times
-in 100 but for Fantina's second team ("The Kaizo anchor"). Goal 3 is held
+in 100 but for Fantina's second team ("The Kaizo anchor"). By Ian's
+answers of 2026-10-04 a blind six now comes from the box's stronger half,
+never a member held below the cap, and the Jubilife grunts' tag battle is
+in Gardenia's split ("Ian's answers (2026-10-04)"). Goal 3 is held
 until it follows the study's comb, by the tracker's Scheduled list. Every
 reading is 75 fights at real odds and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
@@ -2064,6 +2067,39 @@ reading took 52 to 98 minutes on twelve workers. Kaizo's Fantina first
 stopped partway: Sleep Talk drew its move outside the play-outs' dice, so
 two replays of one turn could differ. It now draws through them, and no
 earlier reading had a Pokemon talking in its sleep.
+
+## Ian's answers (2026-10-04, relayed by the Overseer)
+
+1. An ordinary trainer is read blind from a random six of the box's
+   stronger half, never a member held below the cap. The targets: an
+   ordinary trainer won cleanly 80 to 85 percent of the time; no boss above
+   95 percent won; the hardest bosses near the easiest of Kaizo's on our box
+   (about 80 percent won). The numbers order fights; they do not measure
+   them absolutely.
+2. The Jubilife grunts' tag battle belongs to Gardenia's split, as the game
+   scripts it.
+3. Trainers may use TM and tutor moves freely.
+
+**What changed.** `plteam.blind_pool` gives the members a blind six is
+drawn from, in both the study's reader and the perfect-line scorer: the
+members at the cap, ranked by `plteam.split_strength`, and the top half of
+them, six at least. A member's strength is its mean margin against every
+Pokemon of the split's ordinary singles trainers, as the screen reckons
+margins (hits it needs against hits it takes, half a hit for moving first,
+clipped to 3 either way), with its own moves; the trainer being read is
+left out of that panel, so the reading stays blind. A first try ranked by
+stats and the best attack alone put Onix and Bibarel at the top of the hand
+run's box at 19 and left Vulpix and Charmander out, against a split of
+Grass trainers; the margins keep both, as a player would. Ranked so, the
+blind examples keep 8 of Taylor's 16, 15 of Catherine's 31 and 12 of the
+grunt's 24, and the level-6 Starly is out of all three; a check in
+`test_plfixes` (72 of 72) holds the rule. The Jubilife pair (trainers 414
+and 415) joins `plscore.SPLIT_OVERRIDE`: Jubilife is first reached before
+Roark, so `splits.trainer_split` puts them in his split, but the Oreburgh
+Gym's win sets VAR_JUBILIFE_CITY_STATE to 3, at which Jubilife's script
+starts the battle; `trainers.csv` now has the pair first in Gardenia's
+split. No reader of this track checks a trainer's moves for legality, so
+TM and tutor moves already pass.
 
 ## The cost of labelling every boss (2026-10-02)
 
