@@ -2103,6 +2103,21 @@ TM and tutor moves already pass. Ian accepted this definition of the
 stronger half for now (2026-10-06, relayed by the Overseer), to be adjusted
 if it keeps landing on bad boxes.
 
+The study's four blind examples read again with the stronger half (won /
+faints / clean; the earlier readings stay beside them as `-olddraw`):
+
+| Example | Real odds | Very unlucky | Before, real odds |
+|---|---|---|---|
+| Taylor, at 19 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 97 / 0.48 / 80 |
+| Catherine, at 33 | 100 / 0.27 / 83 | 100 / 0.28 / 84 | 95 / 0.89 / 63 |
+| the Eterna 1F grunt, at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| the Eterna section, at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.01 / 99 |
+
+Catherine now sits in Ian's 80 to 85 band; Taylor and the Eterna grunts
+read trivial. The first try at the new draw hung on Taylor: it asked for
+75 different sixes from a pool of eight, which makes 28, so each fight now
+draws its own six and may repeat one.
+
 ## The Kaizo study's comb of Roark's split (2026-10-06, for Ian's check)
 
 The study rebuilt Roark's split (`~/oxide-trials/kaizo-teams/out/comb/`,
