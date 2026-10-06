@@ -6,7 +6,32 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-**Where it stands (2026-09-29).** Every score is rescored on the combined
+## Summary (2026-10-06)
+
+**Outcome.** The track is on step 4 of the learnset plan
+(`docs/oxide/learnset-checks.md`), on its own branch
+`balance-learnset-rewrite`: sixteen new checks read the locked rules, and
+their run on Oxide's lists is the new baseline
+(`docs/oxide/learnset-rewrite.md`, which carries the step's own summary).
+Oxide's lists fail every rule somewhere, most of all on coverage, steady
+learning and late moves. Poison Fang's rescore landed on `oxide` the same
+day: all 1,030 stored scores verified, nothing moved on Ian's fight scale.
+
+**Ian's action items.** None open on this track today. The checks'
+thresholds come to him with the rewrite's report.
+
+**Next steps.** The generator and the 652 rewritten lists (most of a day's
+session), the moves under review alongside it, then the sheets, the gate
+and the report (an hour). Step 5 is the Overseer's and the Scoring Agent's.
+After step 4: the TM pass rerun on the new lists.
+
+**Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
+come from the whole pool of moves Oxide has; later games' learnsets
+(hg-engine's, or looked up) are inspiration, not pick lists. For level-up
+lists it supersedes the rule of 2026-09-27 under which only later games'
+level-up moves came in and TM, tutor and egg moves waited for the TM pass.
+
+**Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
 1,030. The census leaves out the test kit, the pool takes the encounter
 tool's scripted sources it lacked (the fossils in Fantina's split, Acuity

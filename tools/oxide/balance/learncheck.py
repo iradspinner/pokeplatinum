@@ -1,17 +1,23 @@
-"""The learnset baseline: checks 1, 4, 5 and 6 of docs/oxide/learnset-checks.md,
-run on Oxide's level-up lists and on learnset v3's, side by side.
+"""The learnset checks of docs/oxide/learnset-checks.md: checks 1, 4, 5 and 6
+of the baseline (step 1), and checks 7 to 22 from the locked rules of
+docs/oxide/learnset-insights.md (step 4), run on two versions of the
+level-up lists side by side.
 
     PYTHONPATH=. python3 -m tools.oxide.balance.learncheck summary   # headline numbers
-    PYTHONPATH=. python3 -m tools.oxide.balance.learncheck report    # the baseline's tables, Markdown
+    PYTHONPATH=. python3 -m tools.oxide.balance.learncheck report    # checks 1, 4 and 5, Markdown
+    PYTHONPATH=. python3 -m tools.oxide.balance.learncheck rules     # checks 7 to 22, Markdown
     PYTHONPATH=. python3 -m tools.oxide.balance.learncheck sheets    # writes docs/oxide/learnset-sheets/
     PYTHONPATH=. python3 -m tools.oxide.balance.learncheck lines     # the 20 insight lines, five held out
 
-It writes no game data. Only the level-up lists differ between the two
-versions: Oxide's are the tree's (res/pokemon/<species>/data.json), and v3's
-are the proposal's entries on origin/balance-learngen-v2
-(docs/oxide/learnset-proposal.tsv), read with git and never checked out.
+It writes no game data. Only the level-up lists differ between the
+versions. "oxide" is the lists as they were when the learnset rewrite began,
+read with git from BASE_REF (the commit balance-learnset-rewrite was cut
+from; OXIDE_LEARNSET_BASE overrides it), so the column stays put while the
+rewrite changes the tree. "rewrite" is the tree's (res/pokemon/<species>/
+data.json). "v3" is the old proposal's entries on origin/balance-learngen-v2
+(docs/oxide/learnset-proposal.tsv), kept readable for the baseline's record.
 Everything else, the catches, evolutions, moves, TMs and tutors, is the
-tree's, so a difference between the two columns is the lists' doing.
+tree's, so a difference between two columns is the lists' doing.
 
 How the player has a Pokemon (the capture rule, Ian, 2026-09-27). A catch is
 one row of pool.catches(): a species, the split it is first offered in, and
@@ -44,7 +50,11 @@ from ..encounters import audit, calc_trainers, locations, model, pokedex, progre
 from . import b6, data, learnstudy as ls, pool, weather_moves
 
 SPLITS = pool.SPLITS            # Roark to League; the post-game has no cap
-VERSIONS = ("oxide", "v3")
+VERSIONS = ("oxide", "rewrite")
+LABELS = {"oxide": "Oxide", "rewrite": "Rewrite", "v3": "v3"}
+# The commit balance-learnset-rewrite was cut from (2026-10-06): Oxide's lists
+# before step 4 touched them.
+BASE_REF = os.environ.get("OXIDE_LEARNSET_BASE", "da6b92496c")
 V3_REF = "origin/balance-learngen-v2"
 V3_TSV = "docs/oxide/learnset-proposal.tsv"
 V3_TM_SET = "docs/oxide/tm-pass-set.tsv"
@@ -109,9 +119,79 @@ def effective_power(const):
 
 def usable(const, types):
     """Check 1's attack: of one of the stage's types, 50 or more by effective
-    power, and not one that knocks the user out."""
+    power, not one that knocks the user out, and one a list may rely on
+    (reliable(): since 2026-10-06 the rampage moves and the moves waiting on
+    Ian's rework do not count)."""
     return (const in moves() and const not in SELF_KO and moves()[const]["type"] in types
-            and effective_power(const) >= USABLE_POWER)
+            and reliable(const) and effective_power(const) >= USABLE_POWER)
+
+
+# ---- the moves the rulings of 2026-10-06 single out ----------------------------------
+
+# The rampage moves lock the user in for two or three turns (R9): they count
+# for nothing until the engine makes them one-turn moves (the tracker), and
+# Uproar and Raging Fury wait on Ian's word on a one-turn version too.
+RAMPAGE_EFFECTS = {"CONTINUE_AND_CONFUSE_SELF", "UPROAR"}
+# Moves waiting on a rework Ian has not ruled on (the tracker's move reworks):
+# Fury Cutter, Psywave, every two-turn attack that is neither setup nor made
+# worthwhile by circumstance (Solar Beam and Solar Blade in sun; Skull Bash,
+# Meteor Beam and Electro Shot raise a stat on the charging turn), and every
+# multi-hit move, which the multi-hit review may merge or cut. A list may keep
+# one where it stands, but none counts toward a check, so no list relies on one.
+TWO_TURN_EFFECTS = {"RECHARGE_AFTER", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
+                    "CHARGE_TURN_PARALYZE_HIT", "CHARGE_TURN_BURN_HIT", "FLY", "DIG", "DIVE",
+                    "BOUNCE", "SHADOW_FORCE", "SKY_DROP"}
+MULTI_HIT_EFFECTS = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TIMES",
+                     "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
+                     "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH",
+                     "BEAT_UP"}
+PENDING_BY_NAME = {"MOVE_FURY_CUTTER", "MOVE_PSYWAVE"}
+# Moves leaving every player list or the game: Fury Attack and Feint (Ian,
+# 2026-10-06, "useless"), the first cut of the move pool (2026-09-27: twelve
+# moves, Splash and Teleport), and the terrain moves that stay dead with
+# terrain (2026-09-27: Steel Roller and Ice Spinner).
+REMOVED = {"MOVE_FURY_ATTACK", "MOVE_FEINT", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
+           "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
+           "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN",
+           "MOVE_MISTY_TERRAIN", "MOVE_PSYCHIC_TERRAIN", "MOVE_SPLASH", "MOVE_TELEPORT",
+           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER"}
+# R24: out of every player list (level-up, TM and tutor alike). Protect and
+# every move sharing its effect (Detect, King's Shield and the rest), Double
+# Team, Ingrain (too dangerous) and every one-hit KO move.
+OUT_BY_NAME = {"MOVE_DOUBLE_TEAM", "MOVE_INGRAIN"}
+OUT_EFFECTS = {"PROTECT", "ONE_HIT_KO"}
+
+
+def rampage(const):
+    return const in moves() and moves()[const]["effect"] in RAMPAGE_EFFECTS
+
+
+def pending(const):
+    """Waiting on Ian's rework ruling: counted by no check."""
+    m = moves().get(const)
+    return bool(m) and (const in PENDING_BY_NAME or m["effect"] in TWO_TURN_EFFECTS
+                        or m["effect"] in MULTI_HIT_EFFECTS)
+
+
+def out_of_lists(const):
+    """R24: a move no player list may hold."""
+    m = moves().get(const)
+    return bool(m) and (const in OUT_BY_NAME or m["effect"] in OUT_EFFECTS)
+
+
+def not_working(const):
+    """A move whose effect the engine does not carry out: a status move left
+    on the plain-hit script, or an effect still stubbed."""
+    m = moves().get(const)
+    return not m or m.get("stub") or (m["class"] == "STATUS" and m["effect"] == "HIT")
+
+
+def reliable(const):
+    """A move a list may rely on: none of the above, and not a fixed or level
+    damage move (check 4's run-enders)."""
+    return (const in moves() and not rampage(const) and not pending(const)
+            and not out_of_lists(const) and const not in REMOVED and not not_working(const)
+            and not run_ender(const))
 
 
 @functools.lru_cache(maxsize=None)
@@ -187,7 +267,8 @@ def learnset(version, species):
     """((level, MOVE_X), ...) in the game's order."""
     if version == "v3":
         return v3_lists().get(species, ())
-    return tuple(tuple(e) for e in (pokedex.load(data.ROOT, species) or {}).get("learnset", []))
+    ref = BASE_REF if version == "oxide" else None
+    return tuple(tuple(e) for e in (pokedex.load(data.ROOT, species, ref=ref) or {}).get("learnset", []))
 
 
 def at_capture(version, species, level):
@@ -197,12 +278,31 @@ def at_capture(version, species, level):
 
 # ---- where each Pokemon is caught ---------------------------------------------
 
+# Two corrections to pool's catches that Ian made in the insight sessions
+# (2026-10-06), kept here so the stored scores, which read pool, do not move.
+# Amity Square's table is read as a catch, but no map header uses it, so no
+# one can meet it (Swablu's session; the encounter track's open item). And
+# Cynthia's Togepi egg is received in Fantina's split, after the Eterna
+# building, not in Gardenia's, which Eterna City's location gives it
+# (Togepi's session, R20).
+UNMET_PLACES = {"Amity Square"}
+SPLIT_FIXES = {("SPECIES_TOGEPI", "egg gift", "Eterna City"): "Fantina"}
+
+
 @functools.lru_cache(maxsize=None)
 def catch_rows():
     """((species, split, level, how, place), ...): pool.catches() row for row,
     with the capture area each comes from (the encounter tool's location name,
-    "Honey trees", or a scripted source's location). test_learncheck checks
-    that the rows are pool's."""
+    "Honey trees", or a scripted source's location), less UNMET_PLACES and with
+    SPLIT_FIXES applied. test_learncheck checks that the rows are pool's but
+    for those."""
+    return tuple((sp, SPLIT_FIXES.get((sp, how, place), split), level, how, place)
+                 for sp, split, level, how, place in _pool_rows() if place not in UNMET_PLACES)
+
+
+@functools.lru_cache(maxsize=None)
+def _pool_rows():
+    """pool.catches() row for row, each with its capture area."""
     sidecar = model.load_sidecar() or {}
     area_split = progression.split_of(sidecar)
     entries = sidecar.get("areas") or {}
@@ -722,8 +822,9 @@ def lint_weather(version):
 @functools.lru_cache(maxsize=None)
 def lint_tms(version):
     """[(label, MOVE_X)] of Ian's removed TMs still on the TM list: the tree's
-    machines for Oxide, the TM pass draft's set on the v3 branch for v3."""
-    if version == "oxide":
+    machines for Oxide and the rewrite (which changes no TM), the TM pass
+    draft's set on the v3 branch for v3."""
+    if version != "v3":
         return sorted((label, mv) for label, mv in pokedex.machines(data.ROOT).items()
                       if mv in REMOVED_TMS)
     names = _by_compact_name()
@@ -829,6 +930,12 @@ def _cell(text):
     return text.replace("|", "/")
 
 
+# How each version is described in a sheet's header.
+SHEET_SECOND = {"oxide": f"Oxide's lists before the learnset rewrite (`{BASE_REF}`)",
+                "rewrite": "the learnset rewrite's lists (the tree's)",
+                "v3": f"learnset v3 (unlanded, `{V3_REF}`)"}
+
+
 def write_sheets():
     os.makedirs(SHEETS, exist_ok=True)
     written = []
@@ -843,9 +950,10 @@ def write_sheets():
                  f"gives by that level; \"learns by level-up\" is every entry it reaches after capture "
                  f"up to {cap}, evolving on time, with each later stage's moves under its name; "
                  f"\"at the cap\" is the stage it can be by then and the next one after. A row "
-                 f"marked v3 shows learnset v3 (unlanded, `{V3_REF}`) where it differs from "
-                 f"Oxide's lists; a row marked both is the same in each. Relearner-only moves and "
-                 f"egg moves are left out. Nothing here is in the game data.", ""]
+                 f"marked {LABELS[VERSIONS[1]]} shows {SHEET_SECOND[VERSIONS[1]]} where it differs "
+                 f"from the row marked {LABELS[VERSIONS[0]]}, {SHEET_SECOND[VERSIONS[0]]}; a row "
+                 f"marked both is the same in each. Relearner-only moves and egg moves are left "
+                 f"out.", ""]
         for place in sorted(rows, key=lambda p: (p == "Honey trees", p)):
             lines += [f"## {place}", "",
                       "| Pokemon | Found as | Level | Lists | Knows at capture | "
@@ -854,9 +962,9 @@ def write_sheets():
             for r in rows[place]:
                 lo, hi = r["levels"]
                 lv = str(lo) if lo == hi else f"{lo} to {hi}"
-                ox, v3 = r["cells"]["oxide"], r["cells"]["v3"]
-                variants = [("both", c) for c in ox] if ox == v3 else \
-                    [("Oxide", c) for c in ox] + [("v3", c) for c in v3]
+                a, b = (r["cells"][v] for v in VERSIONS)
+                variants = [("both", c) for c in a] if a == b else \
+                    [(LABELS[VERSIONS[0]], c) for c in a] + [(LABELS[VERSIONS[1]], c) for c in b]
                 for label, (cap_moves, learnt, stage) in variants:
                     lines.append(f"| {species_name(r['species'])} | {_cell(r['how'].replace('_', ' '))} | {lv} | {label} | "
                                  f"{_cell(cap_moves)} | {_cell(learnt)} | {_cell(stage)} |")
@@ -866,6 +974,928 @@ def write_sheets():
             f.write("\n".join(lines))
         written.append(path)
     return written
+
+
+# ---- checks 7 to 22: the locked rules (step 4) -----------------------------------------
+#
+# Each check reads one of the locked rules of docs/oxide/learnset-insights.md
+# (or a few of the mechanical ones) as the player meets the lists, by the
+# same capture rule and on-time evolution as checks 1 to 6. A line is walked
+# from its earliest catch (the first split any stage of it is offered in, at
+# the lowest level there), down every branch; a stage first had only from a
+# later catch is walked from that catch. The thresholds are the defaults the
+# rules state or imply, and Ian's to set.
+
+# R1: five or six moves by the first split's cap, at most one of them filler.
+R1_MOVES, R1_FILLER = 5, 1
+# R2: two or three new moves in each split a stage is held at the cap.
+R2_NEW = 2
+# R4: the first coverage move by the second split; a weak one counts early.
+COVER_EARLY = 40
+# R5: several coverage types over the game, judged on attacks of 50 or more;
+# a very strong line (R35) may have fewer, never almost none.
+COVER_LATE, R5_TYPES, R5_STRONG_TYPES, R5_STRONG_BST = 50, 3, 2, 580
+# R7: a good utility move by the second split; a less offensive line (its
+# final form's better attacking stat under this) needs two over the game.
+R7_LOW_OFFENSE, R7_LOW_GOOD = 85, 2
+# R32: a setup move needs an attack of the class it boosts, this strong by
+# effective power with same-type bonus, by the end of the next split.
+R32_POWER = 80
+# R37: an attack below this accuracy is very hard to justify on a list.
+R37_ACCURACY = 90
+# The late move (2026-09-28): each final stage learns a real move from here.
+LATE_FROM = 61
+# A move's stat fits the Pokemon when it is this share of its better attacking stat (R15).
+FIT_SHARE = 0.8
+# Effects of a damaging move with nothing beside the damage (R6's narrowing).
+PLAIN_EFFECTS = {"HIT", "BYPASS_ACCURACY"}
+
+
+def window(split):
+    """(lowest, highest) level of a split: one above the cap before it, to its own cap."""
+    i = si(split)
+    return (caps()[SPLITS[i - 1]] + 1 if i else 1), caps()[split]
+
+
+@functools.lru_cache(maxsize=None)
+def stats(species):
+    return (pokedex.load(data.ROOT, species) or {}).get("stats") or {}
+
+
+def attack_stats(species):
+    s = stats(species)
+    return s.get("attack", 0), s.get("special_attack", 0)
+
+
+def fits(const, species):
+    """R15: the stat the move uses is at least FIT_SHARE of the Pokemon's
+    better attacking stat, so a mixed attacker fits both kinds."""
+    atk, spa = attack_stats(species)
+    use = atk if moves()[const]["class"] == "PHYSICAL" else spa
+    return use >= FIT_SHARE * max(atk, spa, 1)
+
+
+def damaging(const):
+    """A damaging move a list may rely on (any power, variable ones included)."""
+    return const in moves() and moves()[const]["class"] != "STATUS" and reliable(const) \
+        and const not in SELF_KO
+
+
+def attack(const, floor):
+    """A damaging move a list may rely on, of `floor` effective power or more."""
+    return damaging(const) and effective_power(const) >= floor
+
+
+def coverage(const, species, floor):
+    """A coverage attack for a Pokemon: not of its types, not Normal (which
+    hits nothing hard), on a stat that fits it (R15)."""
+    return (attack(const, floor) and moves()[const]["type"] not in types_of(species)
+            and moves()[const]["type"] != "NORMAL" and fits(const, species))
+
+
+def _acc(const):
+    acc = moves()[const]["accuracy"]
+    return 101 if not acc else acc          # 0 means it never misses
+
+
+# ---- R7's utility tiers -------------------------------------------------------------------
+
+TIER_RANK = {"SSS": 9, "Fantastic": 8, "Incredible": 7, "Great": 6, "Good": 5, "Pretty solid": 4,
+             "Okay": 3, "Niche": 2, "Bad": 1, "Useless": 0, "Terrible": 0}
+GOOD = TIER_RANK["Good"]
+BAD = TIER_RANK["Bad"]
+# Ian's tiers (learnset-insights.md, "The utility tiers"), by move.
+IAN_TIERS = {
+    "SSS": ("ENCORE", "FOLLOW_ME", "TOXIC", "DRAGON_DANCE", "QUIVER_DANCE", "SHELL_SMASH",
+            "MIRROR_MOVE"),
+    "Fantastic": ("WISH", "CONFUSE_RAY", "MEAN_LOOK", "BLOCK", "SPIDER_WEB"),
+    "Incredible": ("CHARM", "SWEET_KISS", "SWAGGER", "YAWN", "SYNTHESIS", "ICY_WIND"),
+    "Great": ("AGILITY", "TICKLE", "IRON_DEFENSE"),
+    "Good": ("SCARY_FACE", "SCREECH", "STUN_SPORE", "TOXIC_SPIKES", "CURSE", "ROCK_POLISH",
+             "BABY_DOLL_EYES", "LIFE_DEW", "SPITE"),
+    "Pretty solid": ("SAFEGUARD", "CAPTIVATE"),
+    "Okay": ("CHARGE", "SING", "SAND_ATTACK", "LUCKY_CHANT", "FLAIL", "BATON_PASS"),
+    "Niche": ("AROMATHERAPY", "FIRE_SPIN", "NATURAL_GIFT", "WORRY_SEED"),
+    "Bad": ("GROWL", "LEER", "TACKLE", "BIND", "GROWTH", "WATER_SPORT", "SMOKE_SCREEN", "ROAR",
+            "REFRESH", "MIST", "PAIN_SPLIT"),
+    "Useless": ("METRONOME", "SWEET_SCENT", "MUD_SPORT", "RAGE", "GRUDGE", "WRING_OUT"),
+    "Terrible": ("MEMENTO", "HAZE"),
+}
+# Ian's classes of move: every move raising Speed and an attacking stat is
+# SSS like Dragon Dance; every blocking move is fantastic like Mean Look; an
+# attack that always lowers Speed is incredible like Icy Wind (R27).
+SSS_EFFECTS = {"ATK_SPD_UP", "SP_ATK_SP_DEF_SPEED_UP", "ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN",
+               "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP", "SPEED_UP_2_ATK_UP", "ATK_DEF_SPEED_UP",
+               "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2", "TIDY_UP", "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP"}
+BLOCK_EFFECTS = {"PREVENT_ESCAPE"}
+SPEED_CONTROL_EFFECTS = {"LOWER_SPEED_HIT"}
+# The Generation 9 list Ian agrees with almost entirely (status-move-tiers.md),
+# for the moves he has not rated. It rates competitive play, so its tiers come
+# down a step against his: its S is his good, its F his bad.
+GEN9_RANK = {"SSS": 6, "S": 5, "A": 4, "B": 3, "C": 2, "D": 2, "F": 1, "Useless": 0}
+TIERS_DOC = os.path.join(data.ROOT, "docs", "oxide", "status-move-tiers.md")
+
+
+@functools.lru_cache(maxsize=None)
+def _gen9_tiers():
+    """{MOVE_X: tier} from status-move-tiers.md's table, by compact name.
+    The moves Ian does not endorse there (the instant-death ones, the hazards
+    but Toxic Spikes and Sticky Web) are left unrated, as the doc says."""
+    unrated = {"revivalblessing", "destinybond", "healingwish", "lunardance", "memento",
+               "stealthrock", "spikes"}
+    names = _by_compact_name()
+    out = {}
+    with open(TIERS_DOC, encoding="utf-8") as f:
+        for line in f:
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if len(cells) != 2 or cells[0] not in GEN9_RANK:
+                continue
+            for name in cells[1].split(","):
+                key = _compact(name)
+                if key in names and key not in unrated:
+                    out[names[key]] = cells[0]
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def tier(const):
+    """(rank, source) of a utility move for R7: Ian's tier where he rated it
+    or its class, else the Generation 9 list's a step down, else None (an
+    unrated status move, or an attack that is no utility)."""
+    if const not in moves():
+        return None
+    short = const[len("MOVE_"):]
+    for name, members in IAN_TIERS.items():
+        if short in members:
+            return TIER_RANK[name], "Ian"
+    m = moves()[const]
+    if m["class"] == "STATUS" and m["effect"] in SSS_EFFECTS:
+        return TIER_RANK["SSS"], "Ian"
+    if m["class"] == "STATUS" and m["effect"] in BLOCK_EFFECTS:
+        return TIER_RANK["Fantastic"], "Ian"
+    if m["class"] != "STATUS" and m["effect"] in SPEED_CONTROL_EFFECTS and m["effect_chance"] == 100:
+        return TIER_RANK["Incredible"], "Ian"
+    if m["class"] == "STATUS" and const in _gen9_tiers():
+        return GEN9_RANK[_gen9_tiers()[const]], "Generation 9 list"
+    return None
+
+
+def utility(const):
+    """A utility move a list may rely on: a working status move, or an attack
+    Ian rates as utility (sure speed control, Flail, Fire Spin)."""
+    if not reliable(const):
+        return False
+    return moves()[const]["class"] == "STATUS" or tier(const) is not None
+
+
+def counts(const):
+    """A move that counts as one of a Pokemon's moves for R1 and R2: one a
+    list may rely on and not rated useless or terrible."""
+    t = tier(const)
+    return reliable(const) and not (t and t[0] == 0)
+
+
+def filler(const, species):
+    """A move that fills a slot without adding a choice (R1's "uninspired"):
+    a utility move Ian rates bad, or a weak plain Normal attack on a Pokemon
+    that is not Normal (Scratch, Pound). A weak attack of another type is
+    early coverage (Popplio's Disarming Voice), not filler."""
+    t = tier(const)
+    if t and t[0] <= BAD:
+        return True
+    m = moves()[const]
+    return (m["class"] != "STATUS" and m["type"] == "NORMAL" and "NORMAL" not in types_of(species)
+            and m["effect"] in PLAIN_EFFECTS and not m["priority"] and (m["power"] or 0) <= 40)
+
+
+# ---- walking a line ---------------------------------------------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def line_catches():
+    """{family: [(split, level, species)]}, every catch of every stage of an
+    obtainable line, earliest first."""
+    owned = b6.obtainable()
+    out = collections.defaultdict(set)
+    for sp, split, level, _how, _place in catch_rows():
+        if sp in species_set() and sp in owned:
+            out[family(sp)].add((split, level, sp))
+    return {f: sorted(rows, key=lambda r: (si(r[0]), r[1], r[2])) for f, rows in out.items()}
+
+
+@functools.lru_cache(maxsize=None)
+def line_paths(version, fam):
+    """The paths a line is walked on: every branch from its earliest catch,
+    then from the earliest catch of any stage those do not reach."""
+    paths, covered = [], set()
+    for split, level, sp in line_catches()[fam]:
+        if sp in covered:
+            continue
+        for path in branches(version, sp, split, level):
+            paths.append(path)
+            covered |= {st.species for st in path}
+    return tuple(paths)
+
+
+@functools.lru_cache(maxsize=None)
+def path_events(path, upto=None):
+    """((level, stage index, MOVE_X, how), ...): what the player gains along a
+    path, in order. how: "capture" (known when caught), "evolving" (a level-0
+    entry), or "level-up". A stage learns its own entries until it evolves
+    on time, the evolution level included."""
+    upto = caps()[SPLITS[-1]] if upto is None else upto
+    ev = [(path[0].level, 0, m, "capture") for m, _o in path[0].brought]
+    for i, st in enumerate(path):
+        nxt = path[i + 1].level if i + 1 < len(path) else None
+        if i:
+            ev += [(st.level, i, m, "evolving") for m, o in st.brought if o == "evolving"]
+        ev += [(lv, i, m, "level-up") for lv, m in st.own
+               if lv <= upto and (nxt is None or lv <= nxt)]
+    return tuple(sorted((e for e in ev if e[0] <= upto), key=lambda e: (e[0], e[1])))
+
+
+def event_split(path, i, level):
+    """The split index a stage gains a move in: never before the stage is had."""
+    s = split_of_level(level)
+    return max(si(path[i].split), si(s) if s else len(SPLITS))
+
+
+def _final_paths(version):
+    """{final species: (family, path)}: each branch's end once, from its first path."""
+    out = {}
+    for fam in sorted(line_catches()):
+        for path in line_paths(version, fam):
+            out.setdefault(path[-1].species, (fam, path))
+    return out
+
+
+def _stage_paths(version):
+    """{species: (family, path, index)}: each stage once, from the first path it is on."""
+    out = {}
+    for fam in sorted(line_catches()):
+        for path in line_paths(version, fam):
+            for i, st in enumerate(path):
+                out.setdefault(st.species, (fam, path, i))
+    return out
+
+
+# ---- check 7 (R1): a choice of moves from the first split ----------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def check7(version):
+    """{family: result}: the moves a line has by its first split's cap (known
+    at capture or learnt by level-up, evolving on time), counting only the
+    moves that count (counts()); the filler among them; and the verdict, pass
+    with R1_MOVES or more of which no more than R1_FILLER are filler. The best
+    catch and branch in that split is taken."""
+    out = {}
+    for fam, rows in line_catches().items():
+        split = rows[0][0]
+        cap = caps()[split]
+        best = None
+        for path in line_paths(version, fam):
+            if path[0].split != split:
+                continue
+            got, fill = [], []
+            for lv, i, mv, _how in path_events(path, cap):
+                if mv not in got and counts(mv):
+                    got.append(mv)
+                    if filler(mv, path[i].species):
+                        fill.append(mv)
+            ok = len(got) >= R1_MOVES and len(got) - len(fill) >= R1_MOVES - R1_FILLER
+            key = (ok, len(got) - len(fill), len(got))
+            if best is None or key > best[0]:
+                best = (key, path, got, fill)
+        key, path, got, fill = best
+        out[fam] = {"family": fam, "split": split, "species": path[0].species, "level": path[0].level,
+                    "moves": tuple(got), "filler": tuple(fill), "verdict": "pass" if key[0] else "fail"}
+    return out
+
+
+# ---- check 8 (R2): steady learning, split by split ------------------------------------------------
+
+def held_splits(path, i):
+    """The split indices R2 holds stage i of a path to: those it is held at
+    the cap of. A stage that evolves by level is held from the split after it
+    is had until the split it evolves in, which is not counted. One that
+    evolves by an item waits on the player, so it is held while its own list
+    still teaches. A final stage is held to the League's cap, except one
+    reached by an item, which keeps learning from about three splits on (R10)."""
+    st = path[i]
+    a = si(st.split)
+    last = len(SPLITS) - 1
+    if i + 1 < len(path):
+        if path[i + 1].via == "level":
+            return list(range(a + 1, si(path[i + 1].split)))
+        levels = [lv for lv, _m in st.own if lv <= caps()[SPLITS[-1]]]
+        end = si(split_of_level(max(levels))) if levels else a
+        return list(range(a + 1, end + 1))
+    if st.via not in ("caught", "level"):
+        return list(range(a + 3, last + 1))
+    return list(range(a + 1, last + 1))
+
+
+@functools.lru_cache(maxsize=None)
+def check8(version):
+    """{species: result}: for each stage, the new moves (counts()) it learns
+    in each split it is held at the cap of; it fails when one such split
+    brings fewer than R2_NEW."""
+    out = {}
+    for sp, (fam, path, i) in _stage_paths(version).items():
+        st = path[i]
+        # The stage's own list, read past an on-time item evolution: the
+        # window a stage waiting on an item is held for runs that far.
+        brought = {m for m, _o in st.brought}
+        per = {}
+        for x in held_splits(path, i):
+            lo, hi = window(SPLITS[x])
+            before = brought | {m for lv, m in st.own if lv < lo}
+            new = []
+            for lv, m in st.own:
+                if lo <= lv <= hi and counts(m) and m not in before and m not in new:
+                    new.append(m)
+            per[SPLITS[x]] = tuple(new)
+        short = [s for s, ms in per.items() if len(ms) < R2_NEW]
+        out[sp] = {"species": sp, "family": fam, "splits": per, "short": tuple(short),
+                   "verdict": "fail" if short else "pass"}
+    return out
+
+
+# ---- checks 9 and 10 (R4, R5): coverage early, and over the game ---------------------------------
+
+@functools.lru_cache(maxsize=None)
+def check9(version):
+    """{family: result}: the line's first coverage attack (COVER_EARLY or more,
+    on a stat that fits its holder), known or learnt, on the best branch from
+    its first split; it passes by the end of the second split (R4)."""
+    out = {}
+    for fam, rows in line_catches().items():
+        first = si(rows[0][0])
+        best = None
+        for path in line_paths(version, fam):
+            if si(path[0].split) != first:
+                continue
+            hit = None
+            for lv, i, mv, _how in path_events(path):
+                if coverage(mv, path[i].species, COVER_EARLY):
+                    cand = (event_split(path, i, lv), lv, mv, path[i].species)
+                    hit = cand if hit is None or cand < hit else hit
+            key = hit[0] if hit else 99
+            if best is None or key < best[0]:
+                best = (key, hit)
+        key, hit = best
+        out[fam] = {"family": fam, "split": SPLITS[first], "first": hit,
+                    "gap": None if hit is None else hit[0] - first,
+                    "verdict": "pass" if hit is not None and hit[0] - first <= 1 else "fail"}
+    return out
+
+
+def _kaizo_cover(path, final):
+    """The coverage types (against `final`'s Oxide types) of the attacks of 50
+    or more on Kaizo's lists for the path's species, at any level but 1: R5's
+    reference for which types a line should reach."""
+    kz = learnstudy_kaizo()
+    names = _by_compact_name()
+    out = set()
+    for st in path:
+        for lv, name in (kz.get(st.species) or {}).get("list", []):
+            mv = names.get(_compact(ls.SPELLING.get(name, name)))
+            if lv > 1 and mv and moves()[mv]["class"] != "STATUS" and effective_power(mv) >= COVER_LATE \
+                    and moves()[mv]["type"] not in types_of(final) and moves()[mv]["type"] != "NORMAL":
+                out.add(moves()[mv]["type"])
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def learnstudy_kaizo():
+    return ls.kaizo_lists()
+
+
+@functools.lru_cache(maxsize=None)
+def check10(version):
+    """{final species: result}: the coverage types a branch's final form has
+    by the League's cap (attacks of COVER_LATE or more on a stat that fits it,
+    known or learnt anywhere on the path), Kaizo's types for the line beside
+    them; it passes with R5_TYPES, or R5_STRONG_TYPES for a very strong line."""
+    out = {}
+    for final, (fam, path) in _final_paths(version).items():
+        types = {}
+        for lv, i, mv, _how in path_events(path):
+            if coverage(mv, final, COVER_LATE):
+                types.setdefault(moves()[mv]["type"], mv)
+        bst = sum(stats(final).values())
+        need = R5_STRONG_TYPES if bst >= R5_STRONG_BST else R5_TYPES
+        out[final] = {"species": final, "family": fam, "types": types, "need": need,
+                      "kaizo": tuple(sorted(_kaizo_cover(path, final))),
+                      "verdict": "pass" if len(types) >= need else "fail"}
+    return out
+
+
+# ---- check 11 (R6): dominated moves ---------------------------------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def check11(version):
+    """[(species, level, MOVE_X, the stronger MOVE_Y)]: an entry learnt while
+    the Pokemon already has a stronger move of the same type and class that is
+    at least as accurate, where the entry has no secondary effect and no
+    priority (R6 as narrowed, 2026-10-06)."""
+    found = {}
+    for fam in sorted(line_catches()):
+        for path in line_paths(version, fam):
+            held = []
+            for lv, i, mv, how in path_events(path):
+                m = moves()[mv]
+                if how != "capture" and m["class"] != "STATUS" and m["effect"] in PLAIN_EFFECTS \
+                        and not m["priority"]:
+                    for n in held:
+                        nm = moves()[n]
+                        if n != mv and nm["type"] == m["type"] and nm["class"] == m["class"] \
+                                and reliable(n) and effective_power(n) > effective_power(mv) \
+                                and _acc(n) >= _acc(mv):
+                            found.setdefault((path[i].species, lv, mv), n)
+                            break
+                if mv not in held:
+                    held.append(mv)
+    return sorted((sp, lv, mv, n) for (sp, lv, mv), n in found.items())
+
+
+# ---- check 12 (R7): utility quality -----------------------------------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def check12(version):
+    """{final species: result}: the good utility moves (Good or better) a
+    branch has by the end of its line's second split and by the League's cap,
+    and the bad ones (Bad or worse) it is given; it passes with one good move
+    by the second split, and R7_LOW_GOOD over the game for a less offensive
+    line."""
+    out = {}
+    for final, (fam, path) in _final_paths(version).items():
+        first = si(line_catches()[fam][0][0])
+        early_cap = caps()[SPLITS[min(first + 1, len(SPLITS) - 1)]]
+        early, total, bad = [], [], []
+        for lv, i, mv, _how in path_events(path):
+            if not utility(mv):
+                continue
+            rank = tier(mv)
+            if rank and rank[0] >= GOOD:
+                if mv not in total:
+                    total.append(mv)
+                if lv <= early_cap and mv not in early:
+                    early.append(mv)
+            elif rank and rank[0] <= BAD and mv not in bad:
+                bad.append(mv)
+        offense = max(attack_stats(final))
+        ok = bool(early) and (offense >= R7_LOW_OFFENSE or len(total) >= R7_LOW_GOOD)
+        out[final] = {"species": final, "family": fam, "early": tuple(early), "total": tuple(total),
+                      "bad": tuple(bad), "offense": offense, "verdict": "pass" if ok else "fail"}
+    return out
+
+
+# ---- check 13 (R8): choices that stay inside one split ----------------------------------------------
+
+LEVEL_METHODS = {"LEVEL", "LEVEL_MALE", "LEVEL_FEMALE", "LEVEL_ATK_GT_DEF", "LEVEL_ATK_EQ_DEF",
+                 "LEVEL_ATK_LT_DEF", "LEVEL_PID_LOW", "LEVEL_PID_HIGH", "LEVEL_NINJASK",
+                 "LEVEL_SHEDINJA", "LEVEL_DAY", "LEVEL_NIGHT"}
+
+
+@functools.lru_cache(maxsize=None)
+def level_evolutions():
+    """[(pre, level, target)]: every evolution by level alone, from the records."""
+    out = []
+    for sp in sorted(species_set()):
+        for evo in (pokedex.load(data.ROOT, sp) or {}).get("evolutions", []):
+            if evo["method"] in LEVEL_METHODS and evo["level"] and evo["into"]:
+                out.append((sp, evo["level"], evo["into"]))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check13(version):
+    """[(kind, pre, target, MOVE_X, level a, level b)] for each level
+    evolution the player can make. "free hold": the pre-evolution learns a
+    move between its evolution level and the cap of that split which the
+    evolved form does not have by the cap, so holding it costs nothing and
+    is no choice. "one split": the same move at two levels on the two lists,
+    both inside one split, where the later option always wins."""
+    owned = b6.obtainable()
+    out = []
+    for pre, level, target in level_evolutions():
+        if pre not in owned or target not in owned or not split_of_level(level):
+            continue
+        cap = caps()[split_of_level(level)]
+        tgt = learnset(version, target)
+        tgt_by_cap = {m for lv, m in tgt if lv == 0 or level <= lv <= cap}
+        pre_list = learnset(version, pre)
+        for lv, m in pre_list:
+            if level < lv <= cap and m not in tgt_by_cap and counts(m):
+                out.append(("free hold", pre, target, m, lv, None))
+        pre_lv = {}
+        for lv, m in pre_list:
+            if lv >= 2:
+                pre_lv.setdefault(m, lv)
+        for lv, m in tgt:
+            if lv >= level and m in pre_lv and pre_lv[m] != lv and counts(m) \
+                    and split_of_level(pre_lv[m]) == split_of_level(lv):
+                out.append(("one split", pre, target, m, pre_lv[m], lv))
+    return out
+
+
+# ---- check 14 (R11): an attack of each of the stage's types -----------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def check14(version):
+    """{species: result}: each stage's first attack of each of its types
+    (any power), known or learnt, on its best route in the split it is first
+    had in, as check 1 reads it; it passes when every type's comes in that
+    split or the next, and is exempt where check 1 exempts it."""
+    owned = b6.obtainable()
+    out = {}
+    for sp, routes in stage_routes(version).items():
+        if sp not in owned:
+            continue
+        first = min(si(st.split) for st, _row in routes)
+        best = None
+        for st, _row in routes:
+            if si(st.split) != first:
+                continue
+            per = {}
+            for t in sorted(types_of(sp)):
+                hit = None
+                for m, _origin in st.brought:
+                    if damaging(m) and moves()[m]["type"] == t:
+                        cand = (si(st.split), st.level, m)
+                        hit = cand if hit is None or cand < hit else hit
+                for lv, m in st.own:
+                    s = split_of_level(lv)
+                    if s and damaging(m) and moves()[m]["type"] == t:
+                        cand = (max(si(st.split), si(s)), lv, m)
+                        hit = cand if hit is None or cand < hit else hit
+                per[t] = hit
+            key = max(99 if h is None else h[0] - first for h in per.values())
+            if best is None or key < best[0]:
+                best = (key, per)
+        key, per = best
+        missing = tuple(t for t, h in per.items() if h is None or h[0] - first > 1)
+        verdict = "exempt" if missing and evolves_early(sp) else ("fail" if missing else "pass")
+        out[sp] = {"species": sp, "split": SPLITS[first], "types": per, "missing": missing,
+                   "verdict": verdict}
+    return out
+
+
+# ---- checks 15 to 22: the mechanical rules ----------------------------------------------------------
+
+@functools.lru_cache(maxsize=None)
+def families():
+    """{family: {its species}} over every species."""
+    out = collections.defaultdict(set)
+    for sp in species_set():
+        out[family(sp)].add(sp)
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check15(version):
+    """[species]: R21, Baton Pass on a list (above level 1) of a line that
+    learns no stat-raising move by level-up to pass on."""
+    setup = set(setup_moves())
+    out = []
+    for sp in sorted(b6.obtainable()):
+        if not any(m == "MOVE_BATON_PASS" and lv >= 2 for lv, m in learnset(version, sp)):
+            continue
+        line = families()[family(sp)]
+        if not any(m in setup and lv >= 2 for s in line for lv, m in learnset(version, s)):
+            out.append(sp)
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check16(version):
+    """[(species, where, MOVE_X, rule)]: R24's moves (Protect and its kin,
+    Double Team, Ingrain, the one-hit KO moves) and the moves leaving the game
+    on an obtainable species' level-up list at any level, and on its TM and
+    tutor lists (the same in every version, for the TM pass)."""
+    machines = pokedex.machines(data.ROOT)
+    out = []
+    for sp in sorted(b6.obtainable()):
+        rec = pokedex.load(data.ROOT, sp) or {}
+        where = [(f"level {lv}", m) for lv, m in learnset(version, sp)]
+        where += [(label, machines.get(label)) for label in rec.get("by_tm") or []]
+        where += [("tutor", m) for m in rec.get("by_tutor") or []]
+        for w, m in where:
+            if m and out_of_lists(m):
+                out.append((sp, w, m, "R24"))
+            elif m in REMOVED:
+                out.append((sp, w, m, "removed"))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check17(version):
+    """[(species, level, MOVE_X, lowest level it is had at)]: R25, an entry
+    above level 1 below the lowest level any player can have the stage at,
+    which no earlier stage learns and the stage does not learn again later:
+    a move only the relearner reaches."""
+    routes = stage_routes(version)
+    out = []
+    for sp in sorted(b6.obtainable()):
+        pres = pool.pre_evolutions().get(sp) or []
+        if not pres or sp not in routes:
+            continue
+        lowest = min(st.level for st, _row in routes[sp])
+        earlier = {m for p in pres for lv, m in learnset(version, p) if lv >= 2}
+        later = {m for lv, m in learnset(version, sp) if lv >= lowest or lv == 0}
+        for lv, m in learnset(version, sp):
+            if 2 <= lv < lowest and m not in earlier and m not in later:
+                out.append((sp, lv, m, lowest))
+    return out
+
+
+# What a setup move boosts, by effect (R32): a physical or special attack, an
+# attack of either kind, any attack (Speed alone), or Electric ones (Charge).
+# Defensive boosts need no attack and are not judged.
+BOOSTS = {
+    "ATK_UP": "PHYSICAL", "ATK_UP_2": "PHYSICAL", "ATK_DEF_UP": "PHYSICAL", "ATK_SPD_UP": "PHYSICAL",
+    "ATK_ACC_UP": "PHYSICAL", "ATK_DEF_ACC_UP": "PHYSICAL", "MAX_ATK_LOSE_HALF_MAX_HP": "PHYSICAL",
+    "SPEED_UP_2_ATK_UP": "PHYSICAL", "ATK_DEF_SPEED_UP": "PHYSICAL", "TIDY_UP": "PHYSICAL",
+    "CURSE": "PHYSICAL",
+    "SP_ATK_UP": "SPECIAL", "SP_ATK_UP_2": "SPECIAL", "SP_ATK_SP_DEF_UP": "SPECIAL",
+    "SP_ATK_SP_DEF_SPEED_UP": "SPECIAL",
+    "ATK_SP_ATK_UP": "EITHER", "ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN": "EITHER",
+    "ATK_SP_ATK_SPEED_UP_2_LOSE_HALF_MAX_HP": "EITHER", "CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2": "EITHER",
+    "RAISE_ALL_STATS_LOSE_THIRD_MAX_HP": "EITHER", "RANDOM_STAT_UP_2": "EITHER", "CRIT_UP_2": "EITHER",
+    "SPEED_UP_2": "ANY", "AUTOTOMIZE": "ANY",
+    "SP_DEF_UP_DOUBLE_ELECTRIC_POWER": "ELECTRIC",
+}
+BOOSTS_BY_NAME = {"MOVE_NO_RETREAT": "EITHER", "MOVE_TAKE_HEART": "SPECIAL"}
+
+
+def boosts(const):
+    m = moves().get(const)
+    if not m or m["class"] != "STATUS":
+        return None
+    return BOOSTS_BY_NAME.get(const) or BOOSTS.get(m["effect"])
+
+
+def _boosted(kind, const, holder):
+    """0 if an attack is not one the setup boosts strongly enough to be worth
+    it (R32_POWER by effective power, same-type attacks at one and a half),
+    2 if it is and is of the holder's type, else 1."""
+    m = moves()[const]
+    if not attack(const, 1):
+        return 0
+    if kind in ("PHYSICAL", "SPECIAL") and m["class"] != kind:
+        return 0
+    if kind == "ELECTRIC" and m["type"] != "ELECTRIC":
+        return 0
+    stab = m["type"] in types_of(holder)
+    if effective_power(const) * (1.5 if stab else 1.0) < R32_POWER:
+        return 0
+    return 2 if stab else 1
+
+
+@functools.lru_cache(maxsize=None)
+def check18(version):
+    """[(species, level, MOVE_X, kind)]: R32, a setup move gained on a branch
+    without a strong same-type attack it boosts, or two strong attacks it
+    boosts (_boosted: "decent physical attacks", Ian on Altaria's Dragon
+    Dance), held or gained by the end of the next split. A Ghost's Curse
+    costs HP instead and is not judged."""
+    found = {}
+    last = len(SPLITS) - 1
+    for fam in sorted(line_catches()):
+        for path in line_paths(version, fam):
+            evs = path_events(path)
+            for lv, i, mv, _how in evs:
+                kind = boosts(mv)
+                holder = path[i].species
+                if not kind or (mv == "MOVE_CURSE" and "GHOST" in types_of(holder)):
+                    continue
+                horizon = caps()[SPLITS[min(event_split(path, i, lv) + 1, last)]]
+                grades = {m2: _boosted(kind, m2, path[j].species) for lv2, j, m2, _h in evs if lv2 <= horizon}
+                ok = 2 in grades.values() or sum(1 for g in grades.values() if g) >= 2
+                if not ok:
+                    found.setdefault((holder, lv, mv), kind)
+    return sorted((sp, lv, mv, k) for (sp, lv, mv), k in found.items())
+
+
+@functools.lru_cache(maxsize=None)
+def check19(version):
+    """[(species, level, MOVE_X, accuracy)]: R37, an attack under
+    R37_ACCURACY accuracy on an obtainable species' list above level 1 (the
+    one-hit KO moves are check 16's)."""
+    out = []
+    for sp in sorted(b6.obtainable()):
+        for lv, m in learnset(version, sp):
+            mm = moves().get(m)
+            if lv >= 2 and mm and mm["class"] != "STATUS" and mm["accuracy"] \
+                    and mm["accuracy"] < R37_ACCURACY and not ohko(m):
+                out.append((sp, lv, m, mm["accuracy"]))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def know_move_evolutions():
+    """[(pre, MOVE_X, target)]: every evolution that needs a known move, from
+    the records (the dex's own reading drops the move)."""
+    out = []
+    for sp in sorted(species_set()):
+        raw = pokedex._read(data.ROOT, f"res/pokemon/{pokedex.folder_of(sp)}/data.json") or {}
+        for entry in raw.get("evolutions") or []:
+            if entry and entry[0] == "EVO_LEVEL_KNOW_MOVE":
+                mv = next((x for x in entry if isinstance(x, str) and x.startswith("MOVE_")), None)
+                into = [x for x in entry if isinstance(x, str) and x.startswith("SPECIES_")]
+                if mv and into:
+                    out.append((sp, mv, into[-1]))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check20(version):
+    """[(pre, MOVE_X, target, how)]: every evolution that needs a known move,
+    with how the player can first have the move: by level-up (the split), by
+    TM or tutor only, or not at all; it fails unless level-up reaches it or
+    the target has another way in from the same stage."""
+    owned = b6.obtainable()
+    machines = pokedex.machines(data.ROOT)
+    tutors = pool._tutor_splits()
+    out = []
+    for pre, mv, target in know_move_evolutions():
+        if pre not in owned:
+            continue
+        chain = [pre] + list(pool.pre_evolutions().get(pre) or [])
+        levels = [lv for s in chain for lv, m in learnset(version, s) if m == mv and 2 <= lv <= caps()[SPLITS[-1]]]
+        caught = [lv for s, _sp, lv, _h, _p in catch_rows() if s == pre and mv in at_capture(version, pre, lv)]
+        if levels or caught:
+            how = f"level-up, {split_of_level(min(levels + caught))}'s split"
+        else:
+            rec = pokedex.load(data.ROOT, pre) or {}
+            tm = [_machine_splits()[machines[l]][0] for l in rec.get("by_tm") or []
+                  if machines.get(l) == mv and mv in _machine_splits()]
+            tu = [tutors[mv]] if mv in (rec.get("by_tutor") or []) and mv in tutors else []
+            how = f"TM or tutor only, {min(tm + tu, key=si)}'s split" if tm or tu else "unreachable"
+        other = any(t == target for _n, _i, t in pool.evolutions(pre)) and \
+            any(e["into"] == target and e["method"] != "LEVEL_KNOW_MOVE"
+                for e in (pokedex.load(data.ROOT, pre) or {}).get("evolutions", []))
+        ok = how.startswith("level-up") or other
+        out.append((pre, mv, target, how + ("; another evolution reaches it" if other else ""),
+                    "pass" if ok else "fail"))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check21(version):
+    """{final species: [moves]}: the real moves (counts()) each branch's final
+    form learns by level-up from LATE_FROM to the League's cap (2026-09-28)."""
+    out = {}
+    for final, (_fam, path) in _final_paths(version).items():
+        out[final] = tuple(m for lv, i, m, how in path_events(path)
+                           if how == "level-up" and i == len(path) - 1 and lv >= LATE_FROM and counts(m))
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def check22(version):
+    """{rule: [(species, detail)]}: list hygiene. Two moves on one level (above
+    1), an entry past the League's cap, a move twice on one list above level
+    1, and the level-0 (on evolving) entries, which are used sparingly."""
+    top = caps()[SPLITS[-1]]
+    out = {"two on one level": [], "past the League": [], "twice on a list": [], "on evolving": []}
+    for sp in sorted(b6.obtainable()):
+        lst = learnset(version, sp)
+        lv_count = collections.Counter(lv for lv, _m in lst if lv >= 2)
+        mv_count = collections.Counter(m for lv, m in lst if lv >= 2)
+        out["two on one level"] += [(sp, lv) for lv, n in sorted(lv_count.items()) if n > 1]
+        out["past the League"] += [(sp, f"{move_name(m)} {lv}") for lv, m in lst if lv > top]
+        out["twice on a list"] += [(sp, move_name(m)) for m, n in sorted(mv_count.items()) if n > 1]
+        out["on evolving"] += [(sp, move_name(m)) for lv, m in lst if lv == 0]
+    return out
+
+
+# ---- the rules' report ----------------------------------------------------------------------------
+
+def _fails(version):
+    """{check number: (failing, judged, unit)} for checks 7 to 22."""
+    c7, c8, c9, c10, c12, c14 = (check7(version), check8(version), check9(version), check10(version),
+                                 check12(version), check14(version))
+    c20 = check20(version)
+    c21 = check21(version)
+    c16 = check16(version)
+    c22 = check22(version)
+    return {
+        7: (sum(r["verdict"] == "fail" for r in c7.values()), len(c7), "lines"),
+        8: (sum(r["verdict"] == "fail" for r in c8.values()), len(c8), "stages"),
+        9: (sum(r["verdict"] == "fail" for r in c9.values()), len(c9), "lines"),
+        10: (sum(r["verdict"] == "fail" for r in c10.values()), len(c10), "branches"),
+        11: (len(check11(version)), None, "entries"),
+        12: (sum(r["verdict"] == "fail" for r in c12.values()), len(c12), "branches"),
+        13: (len(check13(version)), None, "pairs"),
+        14: (sum(r["verdict"] == "fail" for r in c14.values()), len(c14), "stages"),
+        15: (len(check15(version)), None, "species"),
+        16: (sum(1 for _sp, w, _m, _r in c16 if w.startswith("level")), None, "level-up entries"),
+        17: (len(check17(version)), None, "entries"),
+        18: (len(check18(version)), None, "entries"),
+        19: (len(check19(version)), None, "entries"),
+        20: (sum(r[4] == "fail" for r in c20), len(c20), "evolutions"),
+        21: (sum(1 for ms in c21.values() if not ms), len(c21), "final forms"),
+        22: (sum(len(v) for k, v in c22.items() if k != "on evolving"), None, "entries"),
+    }
+
+
+RULES = {7: "R1, five or six moves by the first split's cap, at most one filler",
+         8: "R2, two new moves per split a stage is held at the cap",
+         9: "R4, the first coverage move by the second split",
+         10: "R5, three coverage types over the game (two for a very strong line)",
+         11: "R6, no move dominated by a stronger one already had",
+         12: "R7, a good utility move by the second split (two over the game if less offensive)",
+         13: "R8, no evolution or learn-level choice inside one split",
+         14: "R11, an attack of each of the stage's types within a split",
+         15: "R21, Baton Pass only with a boost to pass",
+         16: "R24, Protect and kin, Double Team, Ingrain, one-hit KO moves and removed moves off the lists",
+         17: "R25, no move lost below the level a stage is first had at",
+         18: "R32, a setup move only beside an attack it boosts",
+         19: "R37, no attack under 90% accuracy",
+         20: "Every evolution that needs a known move reachable by level-up",
+         21: "A real level-up move from 61 on each final form",
+         22: "List hygiene: one move a level, none past 78, no move twice"}
+
+
+def _names(items, n=12):
+    items = list(items)
+    more = f", and {len(items) - n} more" if len(items) > n else ""
+    return ", ".join(items[:n]) + more
+
+
+def rules_report(out=sys.stdout, worst=12):
+    """Checks 7 to 22 in Markdown: the counts side by side, then each
+    check's failures by name, the second version first."""
+    p = lambda *a: print(*a, file=out)
+    A, B = VERSIONS
+    fa, fb = _fails(A), _fails(B)
+    p(f"| Check | Rule | {LABELS[A]} | {LABELS[B]} |\n|---|---|---|---|")
+    for k in sorted(RULES):
+        cell = lambda f: f"{f[k][0]} of {f[k][1]} {f[k][2]} fail" if f[k][1] is not None \
+            else f"{f[k][0]} {f[k][2]}"
+        p(f"| {k} | {RULES[k]} | {cell(fa)} | {cell(fb)} |")
+    for v in (B, A):
+        L = LABELS[v]
+        p(f"\n### {L}: the failures by name\n")
+        c7 = check7(v)
+        fails = sorted((r for r in c7.values() if r["verdict"] == "fail"),
+                       key=lambda r: (si(r["split"]), len(r["moves"]) - len(r["filler"]), r["family"]))
+        p(f"Check 7: " + _names(f"{_sp(r['family'])} ({r['split']}, {len(r['moves'])} moves, "
+                                f"{len(r['filler'])} filler)" for r in fails[:worst * 3]) + ".")
+        c8 = check8(v)
+        fails = sorted((r for r in c8.values() if r["verdict"] == "fail"),
+                       key=lambda r: (-len(r["short"]), r["species"]))
+        p(f"\nCheck 8: " + _names(f"{_sp(r['species'])} ({', '.join(s + ' ' + str(len(r['splits'][s])) for s in r['short'])})"
+                                 for r in fails[:worst * 3]) + ".")
+        c9 = check9(v)
+        fails = sorted((r for r in c9.values() if r["verdict"] == "fail"),
+                       key=lambda r: (-(99 if r["gap"] is None else r["gap"]), r["family"]))
+        p(f"\nCheck 9: " + _names(
+            f"{_sp(r['family'])} ({'none by 78' if r['first'] is None else move_name(r['first'][2]) + ' at ' + str(r['first'][1])})"
+            for r in fails[:worst * 3]) + ".")
+        c10 = check10(v)
+        fails = sorted((r for r in c10.values() if r["verdict"] == "fail"),
+                       key=lambda r: (len(r["types"]), r["species"]))
+        p(f"\nCheck 10: " + _names(
+            f"{_sp(r['species'])} ({len(r['types'])}; Kaizo {len(r['kaizo'])})" for r in fails[:worst * 3]) + ".")
+        p(f"\nCheck 11: " + _names(f"{_sp(sp)}'s {move_name(mv)} {lv} (after {move_name(n)})"
+                                  for sp, lv, mv, n in check11(v)[:worst * 3]) + ".")
+        c12 = check12(v)
+        fails = sorted((r for r in c12.values() if r["verdict"] == "fail"), key=lambda r: r["species"])
+        p(f"\nCheck 12: " + _names(f"{_sp(r['species'])} ({len(r['early'])} early, {len(r['total'])} in all)"
+                                  for r in fails[:worst * 3]) + ".")
+        p(f"\nCheck 13: " + _names(
+            f"{_sp(pre)} to {_sp(t)}: {move_name(m)} {a}" + (f" and {b}" if b else "") + f" ({kind})"
+            for kind, pre, t, m, a, b in check13(v)[:worst * 3]) + ".")
+        c14 = check14(v)
+        fails = sorted((r for r in c14.values() if r["verdict"] == "fail"), key=lambda r: (si(r["split"]), r["species"]))
+        p(f"\nCheck 14: " + _names(f"{_sp(r['species'])} ({', '.join(t.title() for t in r['missing'])})"
+                                  for r in fails[:worst * 3]) + ".")
+        p(f"\nCheck 15: " + (_names(_sp(s) for s in check15(v)) or "none") + ".")
+        lv16 = [(sp, w, m) for sp, w, m, _r in check16(v) if w.startswith("level")]
+        p(f"\nCheck 16, level-up entries: " + (_names(f"{_sp(sp)} {move_name(m)} ({w})" for sp, w, m in lv16[:worst * 3]) or "none") + ".")
+        p(f"\nCheck 17: " + (_names(f"{_sp(sp)}'s {move_name(m)} {lv} (had from {lo})"
+                                    for sp, lv, m, lo in check17(v)[:worst * 3]) or "none") + ".")
+        p(f"\nCheck 18: " + (_names(f"{_sp(sp)}'s {move_name(m)} {lv}" for sp, lv, m, _k in check18(v)[:worst * 3]) or "none") + ".")
+        p(f"\nCheck 19: " + (_names(f"{_sp(sp)}'s {move_name(m)} {lv} ({a}%)"
+                                    for sp, lv, m, a in check19(v)[:worst * 3]) or "none") + ".")
+        p(f"\nCheck 20: " + "; ".join(f"{_sp(pre)} to {_sp(t)} by {move_name(m)}: {how} ({verdict})"
+                                     for pre, m, t, how, verdict in check20(v)) + ".")
+        c21 = check21(v)
+        p(f"\nCheck 21: " + (_names(_sp(s) for s, ms in sorted(c21.items()) if not ms) or "none") + ".")
+        c22 = check22(v)
+        p(f"\nCheck 22: " + "; ".join(f"{k} {len(rows)}" for k, rows in c22.items()) + ".")
+    tm16 = [(sp, w, m) for sp, w, m, _r in check16(A) if not w.startswith("level")]
+    p(f"\nCheck 16 on the TM and tutor lists, the same in both (for the TM pass): {len(tm16)} entries, "
+      + _names(f"{_sp(sp)} {move_name(m)} ({w})" for sp, w, m in tm16) + ".")
+
+
+def rules_summary(out=sys.stdout):
+    for v in VERSIONS:
+        f = _fails(v)
+        print(f"{LABELS[v]:8} " + "  ".join(f"{k}:{f[k][0]}" + (f"/{f[k][1]}" if f[k][1] is not None else "")
+                                           for k in sorted(f)), file=out)
 
 
 # ---- the 20 lines for Ian's insight sessions ------------------------------------------
@@ -924,10 +1954,12 @@ def _gap(r):
 
 
 def report(out=sys.stdout):
-    """The baseline's tables, in Markdown."""
+    """Checks 1, 4 and 5's tables, in Markdown, the two versions side by side."""
     p = lambda *a: print(*a, file=out)
+    A, B = VERSIONS
+    LA, LB = LABELS[A], LABELS[B]
     p("### Check 1 counts\n")
-    p("| | Oxide | v3 |\n|---|---|---|")
+    p(f"| | {LA} | {LB} |\n|---|---|---|")
     c = {v: check1_counts(v) for v in VERSIONS}
     for key, label in (("stages", "Stages the player can have by the League"),
                        ("pass", "Pass: an own-type attack within a split"),
@@ -936,9 +1968,9 @@ def report(out=sys.stdout):
                        ("exempt", "Exempt: can evolve by the end of Gardenia's split"),
                        ("lines", "Lines"), ("lines_failing", "Lines with a failing stage"),
                        ("tm_closes", "Failing stages a TM or tutor would close in time")):
-        p(f"| {label} | {c['oxide'][key]} | {c['v3'][key]} |")
+        p(f"| {label} | {c[A][key]} | {c[B][key]} |")
     p("\n### Check 1 by the split the stage is first had in\n")
-    p("| Split | Oxide pass | Oxide fail | v3 pass | v3 fail |\n|---|---|---|---|---|")
+    p(f"| Split | {LA} pass | {LA} fail | {LB} pass | {LB} fail |\n|---|---|---|---|---|")
     for split in SPLITS:
         cells = []
         for v in VERSIONS:
@@ -946,32 +1978,33 @@ def report(out=sys.stdout):
             cells += [sum(r["verdict"] == "pass" for r in rows), sum(r["verdict"] == "fail" for r in rows)]
         p(f"| {split} | " + " | ".join(str(x) for x in cells) + " |")
     p("\n### Check 1: every stage that fails in either version, worst first\n")
-    p("| Stage | First had | Route (Oxide's) | Oxide: first own-type attack | Gap | "
-      "v3: first own-type attack | Gap | Earliest TM or tutor |")
+    p(f"| Stage | First had | Route ({LA}'s) | {LA}: first own-type attack | Gap | "
+      f"{LB}: first own-type attack | Gap | Earliest TM or tutor |")
     p("|---|---|---|---|---|---|---|---|")
-    ox, v3 = check1("oxide"), check1("v3")
-    failing = {s for s, r in ox.items() if r["verdict"] == "fail"} | \
-        {s for s, r in v3.items() if r["verdict"] == "fail"}
-    worst = lambda r: 99 if r["gap"] is None else r["gap"]
-    for s in sorted(failing, key=lambda s: (-max(worst(ox[s]), worst(v3[s])), -worst(ox[s]),
-                                            si(ox[s]["split"]), s)):
-        r, w = ox[s], v3[s]
+    ra, rb = check1(A), check1(B)
+    failing = {s for s, r in ra.items() if r["verdict"] == "fail"} | \
+        {s for s, r in rb.items() if r["verdict"] == "fail"}
+    worst = lambda r: 99 if r is None or r["gap"] is None else r["gap"]
+    for s in sorted(failing, key=lambda s: (-max(worst(ra.get(s)), worst(rb.get(s))), -worst(ra.get(s)),
+                                            si((ra.get(s) or rb.get(s))["split"]), s)):
+        r, w = ra.get(s), rb.get(s)
         tm = tm_rescue(s)
         tm_text = f"{tm[1]} {move_name(tm[2])} ({tm[0]})" if tm else "none"
-        mark = lambda x: _gap(x) if x["verdict"] == "fail" else f"{_gap(x)}, passes"
-        p(f"| {_sp(s)} | {r['split']} | {_route(r)} | {_first(r)} | {mark(r)} | "
-          f"{_first(w)} | {mark(w)} | {tm_text} |")
-    fixed = [s for s, r in check1("oxide").items() if r["verdict"] == "fail" and v3.get(s, {}).get("verdict") != "fail"]
-    broke = [s for s, r in v3.items() if r["verdict"] == "fail" and check1("oxide").get(s, {}).get("verdict") != "fail"]
-    p(f"\nv3 mends {len(fixed)}: {', '.join(_sp(s) for s in sorted(fixed)) or 'none'}.")
-    p(f"\nv3 breaks {len(broke)}: {', '.join(_sp(s) for s in sorted(broke)) or 'none'}.")
+        mark = lambda x: "not had" if x is None else (_gap(x) if x["verdict"] == "fail" else f"{_gap(x)}, passes")
+        first = r or w
+        p(f"| {_sp(s)} | {first['split']} | {_route(first)} | {_first(r) if r else 'not had'} | {mark(r)} | "
+          f"{_first(w) if w else 'not had'} | {mark(w)} | {tm_text} |")
+    fixed = [s for s, r in ra.items() if r["verdict"] == "fail" and (rb.get(s) or {}).get("verdict") != "fail"]
+    broke = [s for s, r in rb.items() if r["verdict"] == "fail" and (ra.get(s) or {}).get("verdict") != "fail"]
+    p(f"\n{LB} mends {len(fixed)}: {', '.join(_sp(s) for s in sorted(fixed)) or 'none'}.")
+    p(f"\n{LB} breaks {len(broke)}: {', '.join(_sp(s) for s in sorted(broke)) or 'none'}.")
     p("\n### Catches that know no attack at capture\n")
     bare = {v: bare_captures(v) for v in VERSIONS}
     empty = {v: sum(1 for b in bare[v].values() if not b[3]) for v in VERSIONS}
-    p(f"Oxide: {len(bare['oxide'])} species, {empty['oxide']} of them with no move at all; "
-      f"v3: {len(bare['v3'])}, {empty['v3']} with no move at all.\n")
-    p("| Pokemon | Oxide | v3 |\n|---|---|---|")
-    for sp in sorted(set(bare["oxide"]) | set(bare["v3"]),
+    p(f"{LA}: {len(bare[A])} species, {empty[A]} of them with no move at all; "
+      f"{LB}: {len(bare[B])}, {empty[B]} with no move at all.\n")
+    p(f"| Pokemon | {LA} | {LB} |\n|---|---|---|")
+    for sp in sorted(set(bare[A]) | set(bare[B]),
                      key=lambda s: (min(si(bare[v][s][0]) for v in VERSIONS if s in bare[v]), s)):
         cells = []
         for v in VERSIONS:
@@ -981,11 +2014,11 @@ def report(out=sys.stdout):
         p(f"| {_sp(sp)} | {cells[0]} | {cells[1]} |")
     p("\n### Check 4: fixed and level damage by the end of Gardenia's split\n")
     early = {v: check4_early(v) for v in VERSIONS}
-    keys = sorted(set(early["oxide"]) | set(early["v3"]),
+    keys = sorted(set(early[A]) | set(early[B]),
                   key=lambda k: (min(si(early[v][k][0]) for v in VERSIONS if k in early[v]), k))
-    p(f"Oxide: {len(early['oxide'])} entries on {len({k[0] for k in early['oxide']})} species; "
-      f"v3: {len(early['v3'])} entries on {len({k[0] for k in early['v3']})} species.\n")
-    p("| Pokemon | Move | Oxide | v3 | Ruling |\n|---|---|---|---|---|")
+    p(f"{LA}: {len(early[A])} entries on {len({k[0] for k in early[A]})} species; "
+      f"{LB}: {len(early[B])} entries on {len({k[0] for k in early[B]})} species.\n")
+    p(f"| Pokemon | Move | {LA} | {LB} | Ruling |\n|---|---|---|---|---|")
     for k in keys:
         cells = []
         for v in VERSIONS:
@@ -996,7 +2029,7 @@ def report(out=sys.stdout):
             st = ruling_state(k[0], k[1], early[v][k][0]) if k in early[v] else \
                 ("met" if (k in RULED_OUT) else None)
             if st:
-                rule.append(f"{'Oxide' if v == 'oxide' else 'v3'} {st}")
+                rule.append(f"{LABELS[v]} {st}")
         p(f"| {_sp(k[0])} | {move_name(k[1])} | {cells[0]} | {cells[1]} | "
           f"{', '.join(rule) if rule else 'for Ian'} |")
     mach = check4_machines()
@@ -1007,17 +2040,17 @@ def report(out=sys.stdout):
     nxt = {v: {k: e for k, e in check4_early(v, "Fantina").items() if k not in early[v]}
            for v in VERSIONS}
     p(f"\nFor context, not part of the check: those first known or learnt in Fantina's split "
-      f"(Oxide {len(nxt['oxide'])}, v3 {len(nxt['v3'])}): " + "; ".join(
+      f"({LA} {len(nxt[A])}, {LB} {len(nxt[B])}): " + "; ".join(
           f"{_sp(k[0])} {move_name(k[1])} {e[2]} at {e[1]}"
-          + ("" if nxt["v3"].get(k) == e else
-             f" (v3: {nxt['v3'][k][2]} at {nxt['v3'][k][1]})" if k in nxt["v3"] else " (v3: not by then)")
-          for k, e in sorted(nxt["oxide"].items(), key=lambda kv: (kv[1][1], kv[0]))) + ".")
+          + ("" if nxt[B].get(k) == e else
+             f" ({LB}: {nxt[B][k][2]} at {nxt[B][k][1]})" if k in nxt[B] else f" ({LB}: not by then)")
+          for k, e in sorted(nxt[A].items(), key=lambda kv: (kv[1][1], kv[0]))) + ".")
     p("\n### Check 4: one-hit KO moves on a player list\n")
-    p("| Pokemon | Move | Oxide | v3 |\n|---|---|---|---|")
+    p(f"| Pokemon | Move | {LA} | {LB} |\n|---|---|---|---|")
     oh = {v: {(sp, mv): how for sp, mv, how in check4_ohko(v)} for v in VERSIONS}
-    for k in sorted(set(oh["oxide"]) | set(oh["v3"])):
-        p(f"| {_sp(k[0])} | {move_name(k[1])} | {oh['oxide'].get(k, 'not on its lists')} | "
-          f"{oh['v3'].get(k, 'not on its lists')} |")
+    for k in sorted(set(oh[A]) | set(oh[B])):
+        p(f"| {_sp(k[0])} | {move_name(k[1])} | {oh[A].get(k, 'not on its lists')} | "
+          f"{oh[B].get(k, 'not on its lists')} |")
     p("\n### Check 5: PP\n")
     pp = lint_pp()
     bad_setup = [(c, n) for c, n, ok in pp["setup"] if not ok]
@@ -1034,29 +2067,32 @@ def report(out=sys.stdout):
     p("\nRead but not judged (they raise or lower a stat beside something else): "
       + ", ".join(f"{move_name(c)} {n}" for c, n in pp["borderline"]) + ".")
     p("\n### Check 5: weather, accuracy and the TM list\n")
-    p("| Rule | Oxide | v3 |\n|---|---|---|")
+    p(f"| Rule | {LA} | {LB} |\n|---|---|---|")
     wx = {v: lint_weather(v) for v in VERSIONS}
     for kind, label in (("moves", "Weather moves on an obtainable line's lists"),
                         ("abilities", "Weather abilities in an obtainable line's regular slots")):
-        p(f"| {label} | {len(wx['oxide'][kind])} | {len(wx['v3'][kind])} |")
+        p(f"| {label} | {len(wx[A][kind])} | {len(wx[B][kind])} |")
     acc = lint_accuracy()
     bad_acc = [c for c, _n, _w, ok in acc if not ok]
     p(f"| Sleep moves, powders, Thunder Wave, Dark Void, Swagger off Generation 4 accuracy | "
       f"{len(bad_acc)} of {len(acc)} | {len(bad_acc)} of {len(acc)} |")
     tms = {v: lint_tms(v) for v in VERSIONS}
-    p(f"| Ian's removed TMs still on the TM list | {len(tms['oxide'])} of {len(REMOVED_TMS)} | "
-      f"{len(tms['v3'])} of {len(REMOVED_TMS)} |")
+    p(f"| Ian's removed TMs still on the TM list | {len(tms[A])} of {len(REMOVED_TMS)} | "
+      f"{len(tms[B])} of {len(REMOVED_TMS)} |")
     for v in VERSIONS:
         for kind in ("moves", "abilities"):
             if wx[v][kind]:
-                p(f"\n{v} weather {kind}: " + ", ".join(
+                p(f"\n{LABELS[v]} weather {kind}: " + ", ".join(
                     f"{_sp(sp)} {' '.join(str(x) for x in rest)}" for sp, *rest in wx[v][kind]))
     if bad_acc:
         p("\nOff Generation 4 accuracy: " + ", ".join(
             f"{move_name(c)} {n} (vanilla {w})" for c, n, w, ok in acc if not ok))
-    p("\nOxide's TM list carries: " + ", ".join(f"{label} {move_name(mv)}" for label, mv in tms["oxide"]) + ".")
-    p(f"\nv3's TM pass draft ({v3_tm_set_size()} in its set) carries: "
-      + (", ".join(move_name(mv) for _s, mv in tms["v3"]) if tms["v3"] else "none of them") + ".")
+    for v in VERSIONS:
+        if v == "v3":
+            p(f"\nv3's TM pass draft ({v3_tm_set_size()} in its set) carries: "
+              + (", ".join(move_name(mv) for _s, mv in tms[v]) if tms[v] else "none of them") + ".")
+    p(f"\nThe tree's TM list carries: " + (", ".join(f"{label} {move_name(mv)}" for label, mv in tms[A])
+                                           or "none of them") + ".")
 
 
 def summary(out=sys.stdout):
@@ -1090,12 +2126,16 @@ def lines_report(out=sys.stdout):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["summary", "report", "sheets", "lines"])
+    ap.add_argument("what", choices=["summary", "report", "rules", "rules-summary", "sheets", "lines"])
     args = ap.parse_args(argv)
     if args.what == "summary":
         summary()
     elif args.what == "report":
         report()
+    elif args.what == "rules":
+        rules_report()
+    elif args.what == "rules-summary":
+        rules_summary()
     elif args.what == "sheets":
         for path in write_sheets():
             print(f"wrote {os.path.relpath(path, data.ROOT)}")

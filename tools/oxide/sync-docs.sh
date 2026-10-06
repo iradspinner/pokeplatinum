@@ -64,6 +64,7 @@ copy "learnset-checks.md" "notes/learnset-checks.md"
 copy "learnset-baseline.md" "notes/learnset-baseline.md"
 copy "learnset-insights.md" "notes/learnset-insights.md"
 copy "learnset-exam.md" "notes/learnset-exam.md"
+copy "learnset-rewrite.md" "notes/learnset-rewrite.md"
 for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
     copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
 done
