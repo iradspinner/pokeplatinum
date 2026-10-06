@@ -5,7 +5,7 @@ in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
 Kaizo comb; the splits it has finished when the TM pass lands go in. The
 Overseer updates this page as each step finishes and tells Ian, step by step.
 
-**Status on 2026-10-06.** Step 1 is done. Steps 2 and 9 are under way. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
+**Status on 2026-10-06.** Steps 1 and 9 are done, and step 11 is built. Step 2 is under way. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
 two to three days, set mostly by Ian's three decision points (steps 3, 7 and
 14) and the TM pass. Every estimate is a session's own or the Overseer's
 guess, and says which.
@@ -20,9 +20,9 @@ guess, and says which.
 | 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
 | 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
 | 8 | Item data and the bigger Bag (the save break) | Balance Agent | | 2 to 3 hours, a build and a rescore (its estimate) | 7 |
-| 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | under way since 2026-10-06 | 3 to 4 hours (Overseer's guess) | |
+| 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | done: the tool landed (c82ffe884) and its test is in the gate; `main-gauntlets` is up to date (a82e550cb) and held for step 10 | 3 to 4 hours (Overseer's guess) | |
 | 10 | Rewards placed in the maps, gauntlet trainers filled in, both landed | main-track session | | 3 to 6 hours (Overseer's guess) | 7, 8, 9 |
-| 11 | The battle recorder logs Ian's moves (the melonDS bridge) | Overseer | under way since 2026-10-06 | about half a day (Overseer's guess) | |
+| 11 | The battle recorder logs Ian's moves (the melonDS bridge) | Overseer | built: game side landed (0a27a2b0d), the fork's `beacon-moves` (633a39c) and the recorder ready; Ian swaps in the new melonDS build, and the live check is in QA (checklist, section 1) | about half a day (Overseer's guess) | |
 | 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore | Overseer, Balance Agent | | a few hours | 8 |
 | 13 | The QA ROM and test kit, handed to Ian | Overseer | | an hour | 4, 5, 10, 12 |
 | 14 | Ian's QA pass, from `docs/oxide/ingame-checklist.md` | Ian | | a day or two | 13 |
@@ -93,8 +93,9 @@ Step 10, when Ian has approved the reward table and the gauntlet list:
 
 Rules that bite: stage files by name; never reformat a `res/` JSON file;
 never launch an emulator; edit only `res/field/`, `res/text/` where a reward
-needs a line, `tools/oxide/place_rewards.py` and its test, the two `DIVERGED`
-lists, the test kit and the checklist, and ask the Overseer before anything
+needs a line, `include/data/field/hidden_items.h` and `include/data/mart_items.h`
+for hidden-item and mart rows, `tools/oxide/place_rewards.py` and its test,
+the two `DIVERGED` lists, the test kit and the checklist, and ask the Overseer before anything
 else. A spare flag moves nothing in the save, but check it with the
 `save-change` skill.
 
