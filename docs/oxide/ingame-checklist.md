@@ -561,7 +561,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 - [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
   to him twice; the first time powers up the Pokedex): he asks for a Finneon
-  for his precious MELOETTA. The trade gives a Meloetta named MELOETTA, OT
+  for his precious MELOETTA. The trade gives a Meloetta nicknamed Sera, OT
   Meister, holding a Lum Berry, at the Finneon's level and knowing Relic
   Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
   "Its melodies sway the hearts of all who hear them..." with the Melody

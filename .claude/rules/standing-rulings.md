@@ -230,3 +230,10 @@ read, so they are written here too. Each is a standing instruction.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
+- Frame work as checks (Ian, 2026-10-06). AI work is best at tasks it can
+  verify and improve against that verification, and Ian's requests are often
+  not phrased that way. Before starting an open-ended request or project,
+  restate it to him as a short list of pass/fail checks, each saying how it
+  is verified (by the session alone, or by Ian in game with the session
+  reading the result), which pass today, and what he must decide; prompt him
+  to reword or rework the request into that form. Run the cheap checks first.
