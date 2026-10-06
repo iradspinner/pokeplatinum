@@ -15,8 +15,8 @@ guess, and says which.
 | 1 | Learnset rewrite: the 16 new checks and the new baseline | Balance Agent | done (8b05da09c1) | | |
 | 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | lists and report written (47503db009, `docs/oxide/learnset-rewrite.md` on its branch); its rescore, checks 2 and 3 and gate running | 2 to 4 hours (its estimate) | 1 |
 | 3 | Ian rules on the thresholds and the move reworks | Ian | | | 2 |
-| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); a second loop is Ian's call | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
-| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks), then their effects in the simulator | cloud job, then Scoring Agent | | about a day (Overseer's guess), then half a session (its estimate) | 3 |
+| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); the second loop runs (Ian, 2026-10-06), about 3.5 to 4 hours (the Balance Agent's estimate) | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
+| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | | about a day (Overseer's guess), then half a session (its estimate) | 3 |
 | 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
 | 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
 | 8 | Item data and the bigger Bag (the save break) | Balance Agent | | 2 to 3 hours, a build and a rescore (its estimate) | 7 |

@@ -7,6 +7,8 @@ writing learnsets must not read this file.** It is read only in step 5, to
 judge whether the rewritten learnsets satisfy what Ian said about lines whose
 verdicts never shaped the rules.
 
+**The seal is lifted** (Ian, 2026-10-06, after the exam was judged): the Balance Agent may read this file for the second loop, which turns its misses into rules. The five lines can no longer test rules drawn from them; the test on lines the rules were not built from is the alpha run.
+
 ## 1. Scorbunny (2026-10-06)
 
 Shown: Scorbunny, a starter at 5 in Roark's split, knows Ember and Growl and
