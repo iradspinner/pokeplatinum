@@ -116,8 +116,8 @@ same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
 **No GitHub Actions in the private repos, for good** (Ian, 2026-10-01): every
 ROM is built here, the private ROM builder and `fetch-rom` are retired, and
-Ian's melonDS fork is to be built on his PC with MSYS2 (the tracker's
-Scheduled list). The public repo's build on each push to `oxide` is free and
+Ian's melonDS fork is built on his PC with MSYS2
+(`C:\Users\Ian\src\build-melonds.sh`, since 2026-10-06). The public repo's build on each push to `oxide` is free and
 stays on.
 
 GitHub builds every push to `oxide` on its own machines

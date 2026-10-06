@@ -186,8 +186,8 @@ read, so they are written here too. Each is a standing instruction.
 - No GitHub Actions in the private repos (`oxide-rom-builder`,
   `melonDS-oxide`), for good (Ian, 2026-10-01, ending the pause of
   2026-09-29). Every ROM is built locally and landed with `merge-branch.sh`;
-  the private ROM builder and `fetch-rom` are retired; the melonDS fork is to
-  be built on Ian's PC with MSYS2. The public repo's build on a push to
+  the private ROM builder and `fetch-rom` are retired; the melonDS fork is
+  built on Ian's PC with MSYS2 (since 2026-10-06). The public repo's build on a push to
   `oxide` is free and stays on, and gives the SHA-1 to compare with.
 - An instruction to act on a later day, or once something happens (Ian,
   2026-10-01), lives only in the tracker's Scheduled list, with why it exists
