@@ -471,7 +471,8 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuTwoTMs, 18
     AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
-    AddListMenuEntry TestKit_Text_MenuItems, 18
+    AddListMenuEntry TestKit_Text_MenuItems, 19
+    AddListMenuEntry TestKit_Text_MenuMeisterTrade, 20
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -493,8 +494,24 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoToIfEq VAR_0x8004, 18, TestKit_TwoTMs
     GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
-    GoToIfEq VAR_0x8004, 18, TestKit_Items
+    GoToIfEq VAR_0x8004, 19, TestKit_Items
+    GoToIfEq VAR_0x8004, 20, TestKit_MeisterTrade
     GoTo TestKit_Close
+
+/* The Meister's trade (Route 226) for the in-game checklist: a level-50
+   Finneon, then a warp onto his house's door mat, as if walking in. Talk to
+   him twice; the first talk powers up the Pokedex. His script sets Relic
+   Song in the traded Meloetta's first slot. */
+TestKit_MeisterTrade:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    GivePokemon SPECIES_FINNEON, 50, ITEM_NONE, VAR_RESULT
+    Message TestKit_Text_MeisterTrade
+    WaitButton
+    CloseMessage
+    Warp MAP_HEADER_ROUTE_226_HOUSE, 4, 8, DIR_NORTH
+    ReleaseAll
+    End
 
 TestKit_RareCandies:
     AddItem ITEM_RARE_CANDY, 99, VAR_RESULT
