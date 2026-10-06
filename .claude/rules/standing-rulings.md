@@ -244,7 +244,10 @@ read, so they are written here too. Each is a standing instruction.
   Custap or priority"). The 90 percent accuracy bar of the learnset rules
   (R37) is for the player's movesets only, since the player plans around
   low accuracy; trainers are welcome to moves like Sing and Zap Cannon (Ian,
-  2026-10-06). No level-1 Focus Sash and Endeavor sets.
+  2026-10-06). Luck items are allowed on trainers: Quick Claw, Focus Band,
+  King's Rock, Razor Fang and the like, his own teams' Quick Claws included
+  (Ian, 2026-10-06); the evasion items (BrightPowder, Lax Incense) stay
+  under the evasion-is-rare rule. No level-1 Focus Sash and Endeavor sets.
   No overlevelled optional trainers. Oxide adds some double battles. An
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
