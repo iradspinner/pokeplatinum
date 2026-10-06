@@ -29,7 +29,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Qwilfish | old rod | 13 | Oxide | Poison Sting, Harden, Minimize, Water Gun | Rollout 17, Toxic Spikes 21, Stockpile 25, Spit Up 25, Revenge 29, Brine 33, Pin Missile 37, Take Down 41 | Qwilfish |
 | Qwilfish | old rod | 13 | Rewrite | Poison Sting, Minimize, Harden, Water Gun | Rollout 17, Toxic Spikes 21, Spit Up 24, Stockpile 25, Revenge 29, Brine 33, Pin Missile 37, Take Down 41, Throat Chop 43 | Qwilfish |
 | Froakie | old rod | 14 | Oxide | Growl, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
-| Froakie | old rod | 14 | Rewrite | Water Gun, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
+| Froakie | old rod | 14 | Rewrite | Water Gun, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
 | Psyduck | old rod | 14 | Oxide | Scratch, Tail Whip, Water Gun, Disable | Confusion 18, Water Pulse 22, Fury Swipes 27, Screech 31; as Golduck: Psych Up 37, Zen Headbutt 44 | Golduck (from 33) |
 | Psyduck | old rod | 14 | Rewrite | Trailblaze, Water Gun, Water Pulse, Disable | Confusion 18, Low Sweep 22, Fury Swipes 27; as Golduck: Surf 34, Psych Up 37, Aurora Beam 40, Zen Headbutt 44 | Golduck (from 33) |
 | Totodile | old rod | 14 | Oxide | Leer, Water Gun, Rage, Bite | Scary Face 15; as Croconaw: Ice Fang 21, Flail 24, Crunch 30; as Feraligatr: Agility 30, Crunch 32, Slash 37 | Feraligatr (from 30) |
@@ -57,7 +57,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Carvanha | good rod | 22 | Oxide | Scary Face, Ice Fang, Screech, Swagger | Assurance 26, Crunch 28; as Sharpedo: Slash 30, Aqua Jet 34, Taunt 40 | Sharpedo (from 30) |
 | Carvanha | good rod | 22 | Rewrite | Scary Face, Ice Fang, Screech, Swagger | Aqua Cutter 23, Assurance 26, Crunch 28; as Sharpedo: Slash 30, Aqua Jet 31, Bug Bite 35, Aerial Ace 37, Taunt 40, Liquidation 41 | Sharpedo (from 30) |
 | Frogadier | good rod | 22 to 24 | Oxide | Water Pulse, Icy Wind, Faint Attack, Acrobatics | Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
-| Frogadier | good rod | 22 to 24 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
+| Frogadier | good rod | 22 to 24 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
 | Lombre | good rod | 22 | Oxide | Nature Power, Fake Out, Fury Swipes, Water Sport | nothing | Ludicolo (from 22) |
 | Lombre | good rod | 22 | Rewrite | Fury Swipes, Natural Gift, Water Sport, Swagger | as Ludicolo: Energy Ball 34 | Ludicolo (from 22) |
 | Masquerain | good rod | 22 | Oxide | Quick Attack, Sweet Scent, Water Sport, Gust | Scary Face 26, Stun Spore 33, Silver Wind 40 | Masquerain |
@@ -144,7 +144,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Dwebble | wild | 22 | Oxide | Sand-Attack, Faint Attack, Slash, Rock Tomb | Bug Bite 24, Night Slash 27, X-Scissor 31, Rock Slide 34; as Crustle: Rock Slide 34, StompingTantrum 40 | Crustle (from 34) |
 | Dwebble | wild | 22 | Rewrite | Sand-Attack, Faint Attack, Slash, Rock Tomb | Bug Bite 24, Night Slash 27, X-Scissor 31, Rock Slide 34; as Crustle: Rock Slide 34, StompingTantrum 39, Body Press 42, Shell Smash 44 | Crustle (from 34) |
 | Geodude | wild | 22 | Oxide | Rock Throw, Magnitude, Selfdestruct, Rollout | Rock Blast 25; as Graveler: Rock Blast 27, Earthquake 33, Explosion 38; as Golem: Double-Edge 44 | Golem (from 40) |
-| Geodude | wild | 22 | Rewrite | Bulldoze, Magnitude, Rock Polish, Rollout | Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Slide 30, Earthquake 33, Iron Head 36, Rock Tomb 39; as Golem: Double-Edge 44 | Golem (from 40) |
+| Geodude | wild | 22 | Rewrite | Bulldoze, Magnitude, Rock Polish, Rollout | Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Tomb 30, Earthquake 33, Sucker Punch 36, Iron Head 39; as Golem: Double-Edge 44 | Golem (from 40) |
 | Golbat | wild | 22 | Oxide | Astonish, Bite, Wing Attack, Confuse Ray | Air Cutter 27, Mean Look 33, Poison Fang 39 | Crobat (from 40) |
 | Golbat | wild | 22 | Rewrite | Astonish, Bite, Wing Attack, Confuse Ray | Air Cutter 25, Poison Jab 30, Mean Look 33, Steel Wing 36, Poison Fang 39 | Crobat (from 40) |
 | Nosepass | wild | 22 | Oxide | Tackle, Harden, Rock Throw, Block | Thunder Wave 25, Rock Slide 31; as Probopass: Rest 43 | Probopass (from 32) |
@@ -197,7 +197,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Chinchou | old rod | 12 | Oxide | Supersonic, Thunder Wave, Flail, Water Gun | Confuse Ray 17, Spark 20, Take Down 23; as Lanturn: Stockpile 27, Swallow 27, Spit Up 27, BubbleBeam 30, Signal Beam 35, Discharge 40 | Lanturn (from 27) |
 | Chinchou | old rod | 12 | Rewrite | Shock Wave, Thunder Wave, Flail, Water Gun | Screech 14, Confuse Ray 17, Spark 20, Take Down 23, Icy Wind 26; as Lanturn: Stockpile 27, Swallow 28, Spit Up 29, BubbleBeam 30, Signal Beam 31, Scald 33, Surf 34, Thunderbolt 37, Discharge 40, Flash Cannon 43 | Lanturn (from 27) |
 | Horsea | old rod | 12 | Oxide | Bubble, SmokeScreen, Leer, Water Gun | Focus Energy 14, BubbleBeam 18, Agility 23, Twister 26, Brine 30; as Kingdra: Hydro Pump 40 | Kingdra (from 32) |
-| Horsea | old rod | 12 | Rewrite | Bubble, SmokeScreen, Water Gun | Focus Energy 14, BubbleBeam 18, Agility 23, Twister 26, Brine 30; as Kingdra: Muddy Water 40, Aurora Beam 44 | Kingdra (from 32) |
+| Horsea | old rod | 12 | Rewrite | Bubble, SmokeScreen, Water Gun | Focus Energy 14, BubbleBeam 18, Agility 23, Twister 26, Brine 30; as Kingdra: Octazooka 40, Aurora Beam 44 | Kingdra (from 32) |
 | Dewpider | old rod | 13 | Oxide | Bubble, Infestation, Bite, Aqua Ring | BubbleBeam 17, Bug Bite 21; as Araquanid: Headbutt 26, Soak 31, Dive 36, Lunge 41 | Araquanid (from 22) |
 | Dewpider | old rod | 13 | Rewrite | Bubble, Infestation, Bite, Aqua Ring | BubbleBeam 17, Sticky Web 19, Bug Bite 21; as Araquanid: Headbutt 26, Spider Web 28, Soak 31, Skitter Smack 34, Dive 36, Waterfall 38, Lunge 41, Poison Jab 44 | Araquanid (from 22) |
 | Qwilfish | old rod | 13 | Oxide | Poison Sting, Harden, Minimize, Water Gun | Rollout 17, Toxic Spikes 21, Stockpile 25, Spit Up 25, Revenge 29, Brine 33, Pin Missile 37, Take Down 41 | Qwilfish |
@@ -263,7 +263,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Budew | wild | 23 | Oxide | Water Sport, Stun Spore, Mega Drain, Worry Seed | nothing | Roserade (from 30) |
 | Budew | wild | 23 | Rewrite | Magical Leaf, Worry Seed, Confusion, Venoshock | Giga Drain 25; as Roselia: Poison Sting 30; as Roserade: Energy Ball 40 | Roserade (from 30) |
 | Frogadier | wild | 23 | Oxide | Water Pulse, Icy Wind, Faint Attack, Acrobatics | Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
-| Frogadier | wild | 23 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
+| Frogadier | wild | 23 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
 | Steenee | wild | 23 | Oxide | Razor Leaf, Sweet Scent, Magical Leaf, Teeter Dance | Stomp 25, Aromatic Mist 32; as Tsareena: Low Sweep 32, Aromatherapy 38, Leaf Storm 44 | Tsareena (from 32) |
 | Steenee | wild | 23 | Rewrite | Razor Leaf, Draining Kiss, Magical Leaf, Teeter Dance | Stomp 25; as Tsareena: Low Sweep 32, Swagger 33, Trop Kick 34, Aromatherapy 38, Zen Headbutt 41, Leaf Storm 44 | Tsareena (from 32) |
 | Tropius | wild | 23 | Oxide | Growth, Razor Leaf, Stomp, Sweet Scent | Whirlwind 27, Magical Leaf 31, Body Slam 37, Synthesis 41 | Tropius |
@@ -299,7 +299,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Tentacool | old rod | 12 | Oxide | Poison Sting, Supersonic, Constrict, Acid | Toxic Spikes 15, BubbleBeam 19, Wrap 22, Barrier 26, Water Pulse 29; as Tentacruel: Poison Jab 36, Screech 42 | Tentacruel (from 30) |
 | Tentacool | old rod | 12 | Rewrite | Poison Sting, Supersonic, Pounce, Acid | Toxic Spikes 15, Water Pulse 16, BubbleBeam 19, Barrier 26; as Tentacruel: Poison Jab 33, Aurora Beam 34, Sludge Bomb 39, Screech 42, Psybeam 44 | Tentacruel (from 30) |
 | Mantyke | old rod | 13 | Oxide | Bubble, Supersonic, BubbleBeam, Headbutt | Agility 19, Wing Attack 22, Water Pulse 28; as Mantine: Take Down 31, Confuse Ray 37, Bounce 40 | Mantine (from 30) |
-| Mantyke | old rod | 13 | Rewrite | Tackle, Bubble, BubbleBeam, Headbutt | Agility 19, Wing Attack 22, Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Scald 34, Confuse Ray 37, Bounce 40, Psybeam 41, Signal Beam 43 | Mantine (from 30) |
+| Mantyke | old rod | 13 | Rewrite | Tackle, Bubble, BubbleBeam, Headbutt | Agility 19, Wing Attack 22, Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Signal Beam 34, Round 35, Confuse Ray 37, Bounce 40, Psybeam 41, Surf 43 | Mantine (from 30) |
 | Poliwag | old rod | 13 | Oxide | Water Sport, Bubble, Hypnosis, Water Gun | DoubleSlap 15, Body Slam 21, BubbleBeam 25; as Poliwrath: DynamicPunch 43 | Poliwrath (from 25) |
 | Poliwag | old rod | 13 | Oxide | Water Sport, Bubble, Hypnosis, Water Gun | DoubleSlap 15, Body Slam 21, BubbleBeam 25; as Politoed: Swagger 27, Bounce 37 | Politoed (from 25) |
 | Poliwag | old rod | 13 | Rewrite | Bubble, Water Pulse, Hypnosis, Mud Shot | DoubleSlap 15, Body Slam 21, BubbleBeam 25; as Poliwhirl: Bulldoze 25; as Poliwrath: Liquidation 34, Brick Break 43 | Poliwrath (from 25) |
@@ -338,7 +338,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Dolliv | wild | 26 | Oxide | Helping Hand, Flail, Mega Drain, Grassy Terrain | Seed Bomb 29, Energy Ball 34; as Arboliva: Leech Seed 39 | Arboliva (from 35) |
 | Dolliv | wild | 26 | Rewrite | Flail, Mega Drain, Charm, Mud Shot | Seed Bomb 29, Giga Drain 31, Energy Ball 34; as Arboliva: Leech Seed 39, Alluring Voice 42, Swift 44 | Arboliva (from 35) |
 | Mantyke | wild | 26 | Oxide | BubbleBeam, Headbutt, Agility, Wing Attack | Water Pulse 28; as Mantine: Take Down 31, Confuse Ray 37, Bounce 40 | Mantine (from 30) |
-| Mantyke | wild | 26 | Rewrite | Headbutt, Agility, Wing Attack, Icy Wind | Water Pulse 28; as Mantine: Take Down 31, Scald 34, Confuse Ray 37, Bounce 40, Psybeam 41, Signal Beam 43 | Mantine (from 30) |
+| Mantyke | wild | 26 | Rewrite | Headbutt, Agility, Wing Attack, Icy Wind | Water Pulse 28; as Mantine: Take Down 31, Signal Beam 34, Round 35, Confuse Ray 37, Bounce 40, Psybeam 41, Surf 43 | Mantine (from 30) |
 | Quagsire | wild | 26 | Oxide | Mud Shot, Slam, Mud Bomb, Amnesia | Yawn 31, Earthquake 36 | Quagsire |
 | Quagsire | wild | 26 | Rewrite | Mud Shot, Slam, Mud Bomb, Amnesia | Trailblaze 27, Yawn 31, Earthquake 36, Rock Slide 39, Toxic 40, Drain Punch 44 | Quagsire |
 
@@ -355,7 +355,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Wailmer | old rod | 13 | Oxide | Splash, Growl, Water Gun, Rollout | Whirlpool 14, Astonish 17, Water Pulse 21, Mist 24, Rest 27, Brine 31, Water Spout 34, Amnesia 37 | Wailord (from 40) |
 | Wailmer | old rod | 13 | Rewrite | Water Gun, Rollout | Whirlpool 14, Astonish 17, Water Pulse 21, Mist 24, Rest 27, Bulldoze 29, Brine 31, Water Spout 34, Amnesia 37 | Wailord (from 40) |
 | Froakie | old rod | 14 | Oxide | Growl, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
-| Froakie | old rod | 14 | Rewrite | Water Gun, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
+| Froakie | old rod | 14 | Rewrite | Water Gun, Quick Attack, Lick, Water Pulse | Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
 | Lombre | good rod | 20 | Oxide | Nature Power, Fake Out, Fury Swipes, Water Sport | nothing | Ludicolo (from 20) |
 | Lombre | good rod | 20 | Rewrite | Fake Out, Fury Swipes, Natural Gift, Water Sport | as Ludicolo: Energy Ball 34 | Ludicolo (from 20) |
 | Wooper | good rod | 20 | Oxide | Mud Sport, Mud Shot, Slam, Mud Bomb | as Quagsire: Amnesia 24, Yawn 31, Earthquake 36 | Quagsire (from 21) |
@@ -363,13 +363,13 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Wooper | good rod | 20 | Rewrite | Poison Sting, Mud Shot, Slam, Mud Bomb | as Quagsire: Amnesia 24, Trailblaze 27, Yawn 31, Earthquake 36, Rock Slide 39, Toxic 40, Drain Punch 44 | Quagsire (from 21) |
 | Wooper | good rod | 20 | Rewrite | Poison Sting, Mud Shot, Slam, Mud Bomb | as Clodsire: Yawn 21, Bulldoze 24, Poison Jab 30, Waterfall 34, Megahorn 36, Toxic 40, Drain Punch 44 | Clodsire (from 20) |
 | Frogadier | good rod | 22 | Oxide | Water Pulse, Icy Wind, Faint Attack, Acrobatics | Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
-| Frogadier | good rod | 22 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
+| Frogadier | good rod | 22 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43 | Greninja (from 36) |
 | Surskit | good rod | 22 | Oxide | Bubble, Quick Attack, Sweet Scent, Water Sport | as Masquerain: Scary Face 26, Stun Spore 33, Silver Wind 40 | Masquerain (from 23) |
 | Surskit | good rod | 22 | Rewrite | Quick Attack, Gust, Silver Wind, Water Sport | as Masquerain: BubbleBeam 25, Scary Face 26, Mud Bomb 29, Stun Spore 33, Surf 36, Giga Drain 38, Silver Wind 40, Signal Beam 41, Icy Wind 43 | Masquerain (from 23) |
 | Psyduck | good rod | 24 | Oxide | Water Gun, Disable, Confusion, Water Pulse | Fury Swipes 27, Screech 31; as Golduck: Psych Up 37, Zen Headbutt 44 | Golduck (from 33) |
 | Psyduck | good rod | 24 | Rewrite | Water Pulse, Disable, Confusion, Low Sweep | Fury Swipes 27; as Golduck: Surf 34, Psych Up 37, Aurora Beam 40, Zen Headbutt 44 | Golduck (from 33) |
 | Rhyhorn | wild | 26 | Oxide | Stomp, Fury Attack, Scary Face, Rock Blast | Take Down 33, Horn Drill 37; as Rhydon: Hammer Arm 42 | Rhydon (from 42); Rhyperior in Byron |
-| Rhyhorn | wild | 26 | Rewrite | Smack Down, Bite, Scary Face, Rock Blast | Rock Slide 29, Take Down 33, Body Press 36, Poison Jab 39; as Rhydon: Hammer Arm 42 | Rhydon (from 42); Rhyperior in Byron |
+| Rhyhorn | wild | 26 | Rewrite | Smack Down, Bite, Scary Face, Rock Blast | Rock Tomb 29, Take Down 33, Body Press 36, Poison Jab 39; as Rhydon: Hammer Arm 42 | Rhydon (from 42); Rhyperior in Byron |
 | Braixen | wild | 27 | Oxide | Role Play, Psybeam, Lucky Chant, Light Screen | Flame Burst 29, Psyshock 34; as Delphox: Mystical Fire 36, Hypnosis 40 | Delphox (from 36) |
 | Braixen | wild | 27 | Rewrite | Charm, Lucky Chant, Light Screen, Mystical Fire | Psyshock 34; as Delphox: Mystical Fire 36, Hypnosis 39, Mud Shot 41, Shadow Ball 42 | Delphox (from 36) |
 | Houndoom | wild | 27 | Oxide | Smog, Roar, Bite, Odor Sleuth | Fire Fang 32, Faint Attack 38, Embargo 44 | Houndoom |
@@ -510,7 +510,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Scyther | honey | 23 | Oxide | Pursuit, False Swipe, Agility, Wing Attack | as Scizor: Fury Cutter 25, Slash 29, Razor Wind 33, Iron Defense 37, X-Scissor 41 | Scizor (from 23) |
 | Scyther | honey | 23 | Oxide | Pursuit, False Swipe, Agility, Wing Attack | as Kleavor: Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, X-Scissor 36, Superpower 40, Acrobatics 44 | Kleavor (from 23) |
 | Scyther | honey | 23 | Rewrite | Pursuit, False Swipe, Agility, Wing Attack | as Scizor: Fury Cutter 25, Slash 29, Skitter Smack 34, Iron Defense 37, X-Scissor 41 | Scizor (from 23) |
-| Scyther | honey | 23 | Rewrite | Pursuit, False Swipe, Agility, Wing Attack | as Kleavor: Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Slide 35, X-Scissor 36, Superpower 40, Acrobatics 44 | Kleavor (from 23) |
+| Scyther | honey | 23 | Rewrite | Pursuit, False Swipe, Agility, Wing Attack | as Kleavor: Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Tomb 34, X-Scissor 36, Superpower 40, Acrobatics 44 | Kleavor (from 23) |
 | Snom | honey | 23 | Oxide | Powder Snow, Struggle Bug | as Frosmoth: Bug Buzz 32, Aurora Veil 36, Blizzard 40, Tailwind 44 | Frosmoth (from 30) |
 | Snom | honey | 23 | Rewrite | Powder Snow, Struggle Bug | Stun Spore 27, Fairy Wind 30; as Frosmoth: Stun Spore 30, Infestation 31, Bug Buzz 32, Defog 33, Aurora Beam 34, Aurora Veil 36, Ice Beam 40, Tailwind 44 | Frosmoth (from 30) |
 | Swadloon | honey | 23 | Oxide | Tackle, String Shot, Bug Bite, Razor Leaf | as Leavanny: Helping Hand 32, Leaf Blade 36, X-Scissor 39, Entrainment 43 | Leavanny (from 30) |

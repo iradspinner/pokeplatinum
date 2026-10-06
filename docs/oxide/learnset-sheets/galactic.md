@@ -22,7 +22,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Hawlucha | wild | 37 | Oxide | Submission, Tailwind, Dual Wingbeat, Fly | Hi Jump Kick 42, Me First 48, Acrobatics 55, Close Combat 60 | Hawlucha |
 | Hawlucha | wild | 37 | Rewrite | Flying Press, Tailwind, Dual Wingbeat, Fly | Hi Jump Kick 42, Air Slash 45, Lunge 48, Throat Chop 54, Acrobatics 55, Low Sweep 57, Close Combat 60, Fire Punch 62, Brave Bird 65 | Hawlucha |
 | Mienshao | wild | 37 | Oxide | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, Me First 40, Jump Kick 45, Dual Chop 48, Focus Blast 51, Acrobatics 55, Hi Jump Kick 64 | Mienshao |
-| Mienshao | wild | 37 | Rewrite | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, U-turn 41, Rock Tomb 43, Jump Kick 45, Dual Chop 48, Focus Blast 51, Poison Jab 54, Acrobatics 55, Upper Hand 56, Hammer Arm 60, Hi Jump Kick 64 | Mienshao |
+| Mienshao | wild | 37 | Rewrite | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, U-turn 41, Rock Tomb 43, Jump Kick 45, Dual Chop 48, Poison Jab 51, Upper Hand 54, Acrobatics 55, Hammer Arm 56, Hi Jump Kick 64 | Mienshao |
 | Sneasel | wild | 37 to 38 | Oxide | Fury Swipes, Agility, Icy Wind, Slash | as Weavile: Fling 38, Metal Claw 42, Dark Pulse 49 | Weavile (from 37) |
 | Sneasel | wild | 37 to 38 | Rewrite | Nasty Plot, Agility, Icy Wind, Slash | as Weavile: Night Slash 37, Fling 38, Metal Claw 42, Dark Pulse 49, X-Scissor 61 | Weavile (from 37) |
 | Snorunt | wild | 37 to 39 | Oxide | Protect, Ice Fang, Crunch, Ice Shard | as Glalie: Blizzard 51, Sheer Cold 59 | Glalie (from 42) |
@@ -34,7 +34,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Delibird | wild | 38 | Oxide | Present | nothing | Delibird |
 | Delibird | wild | 38 | Rewrite | Present, Swagger | Ice Beam 54, Drill Run 55, Drill Peck 56, Ice Punch 58, Brave Bird 60, Seed Bomb 62, Foul Play 65 | Delibird |
 | Garganacl | wild | 38 | Oxide | Headbutt, Salt Cure, Recover, Rock Slide | Stealth Rock 40, Heavy Slam 44, Earthquake 49, Stone Edge 54, Explosion 60 | Garganacl |
-| Garganacl | wild | 38 | Rewrite | Headbutt, Recover, Rock Slide, Rock Tomb | Salt Cure 39, Stealth Rock 40, Iron Head 42, Heavy Slam 44, Zen Headbutt 46, Earthquake 49, Stone Edge 54, Body Press 56, Block 58, Hammer Arm 60, Curse 65 | Garganacl |
+| Garganacl | wild | 38 | Rewrite | Headbutt, Recover, Rock Slide, Rock Tomb | Salt Cure 39, Stealth Rock 40, Iron Head 42, Heavy Slam 44, Earthquake 49, Zen Headbutt 53, Block 54, Body Press 56, Hammer Arm 60, Curse 65 | Garganacl |
 | Donphan | wild | 39 | Oxide | Slam, Fury Attack, Assurance, Scary Face | Earthquake 46, Giga Impact 54 | Donphan |
 | Donphan | wild | 39 | Rewrite | Rock Tomb, Assurance, Trailblaze, Scary Face | Iron Head 42, Throat Chop 44, Earthquake 46, Seed Bomb 50, Giga Impact 54, Charm 56, Block 61 | Donphan |
 | Gliscor | wild | 39 | Oxide | Screech, Night Slash, Swords Dance, U-turn | X-Scissor 42, Guillotine 45 | Gliscor |
@@ -49,17 +49,17 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Golbat | wild | 37 | Oxide | Wing Attack, Confuse Ray, Air Cutter, Mean Look | Poison Fang 39; as Crobat: Haze 45, Air Slash 51 | Crobat (from 40) |
 | Golbat | wild | 37 | Rewrite | Air Cutter, Poison Jab, Mean Look, Steel Wing | Poison Fang 39; as Crobat: Zen Headbutt 45, Air Slash 51, U-turn 54, Crunch 56, Tailwind 58, Toxic 60, Brave Bird 65 | Crobat (from 40) |
 | Graveler | wild | 37 | Oxide | Selfdestruct, Rollout, Rock Blast, Earthquake | Explosion 38; as Golem: Double-Edge 44, Stone Edge 49 | Golem (from 40) |
-| Graveler | wild | 37 | Rewrite | Rock Blast, Rock Slide, Earthquake, Iron Head | Rock Tomb 39; as Golem: Double-Edge 44, Stone Edge 49, Sucker Punch 53, Body Press 54, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem (from 40) |
+| Graveler | wild | 37 | Rewrite | Rock Blast, Rock Tomb, Earthquake, Sucker Punch | Iron Head 39; as Golem: Double-Edge 44, Rock Slide 49, Body Press 53, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem (from 40) |
 | Hariyama | wild | 37 | Oxide | SmellingSalt, Belly Drum, Force Palm, Seismic Toss | Wake-Up Slap 42, Endure 47, Close Combat 52, Reversal 57 | Hariyama |
 | Hariyama | wild | 37 | Rewrite | Low Sweep, Force Palm, Bulldoze, Seismic Toss | Rock Tomb 39, Wake-Up Slap 42, Drain Punch 44, Endure 47, Close Combat 52, Upper Hand 54, Throat Chop 55, Reversal 57, Iron Head 60, Earthquake 65 | Hariyama |
 | Machoke | wild | 37 | Oxide | Revenge, Vital Throw, Submission, Wake-Up Slap | Cross Chop 40; as Machamp: Cross Chop 40, Scary Face 44, DynamicPunch 51 | Machamp (from 40) |
 | Machoke | wild | 37 | Rewrite | Vital Throw, Bulldoze, Throat Chop, Wake-Up Slap | Close Combat 40; as Machamp: Close Combat 40, Scary Face 44, Low Sweep 48, Rock Slide 53, Rock Tomb 54, Meteor Mash 56, Bulk Up 60, Earthquake 65 | Machamp (from 40) |
 | Mienshao | wild | 37 | Oxide | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, Me First 40, Jump Kick 45, Dual Chop 48, Focus Blast 51, Acrobatics 55, Hi Jump Kick 64 | Mienshao |
-| Mienshao | wild | 37 | Rewrite | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, U-turn 41, Rock Tomb 43, Jump Kick 45, Dual Chop 48, Focus Blast 51, Poison Jab 54, Acrobatics 55, Upper Hand 56, Hammer Arm 60, Hi Jump Kick 64 | Mienshao |
+| Mienshao | wild | 37 | Rewrite | Force Palm, Bounce, Drain Punch, Vacuum Wave | Aura Sphere 38, U-turn 41, Rock Tomb 43, Jump Kick 45, Dual Chop 48, Poison Jab 51, Upper Hand 54, Acrobatics 55, Hammer Arm 56, Hi Jump Kick 64 | Mienshao |
 | Naclstack | wild | 37 to 38 | Oxide | Headbutt, Iron Defense, Recover, Rock Slide | Stealth Rock 38; as Garganacl: Stealth Rock 40, Heavy Slam 44, Earthquake 49, Stone Edge 54, Explosion 60 | Garganacl (from 38) |
-| Naclstack | wild | 37 to 38 | Rewrite | Recover, Rock Polish, Rock Tomb, Rock Slide | Stealth Rock 38; as Garganacl: Rock Tomb 38, Salt Cure 39, Stealth Rock 40, Iron Head 42, Heavy Slam 44, Zen Headbutt 46, Earthquake 49, Stone Edge 54, Body Press 56, Block 58, Hammer Arm 60, Curse 65 | Garganacl (from 38) |
+| Naclstack | wild | 37 to 38 | Rewrite | Recover, Rock Polish, Rock Tomb, Rock Slide | Stealth Rock 38; as Garganacl: Rock Tomb 38, Salt Cure 39, Stealth Rock 40, Iron Head 42, Heavy Slam 44, Earthquake 49, Zen Headbutt 53, Block 54, Body Press 56, Hammer Arm 60, Curse 65 | Garganacl (from 38) |
 | Carbink | wild | 38 | Oxide | AncientPower, Rock Polish, Rock Slide, Stealth Rock | Skill Swap 40, Light Screen 44, Power Gem 45, Moonblast 52, Stone Edge 54 | Carbink |
-| Carbink | wild | 38 | Rewrite | Dazzling Gleam, Rock Tomb, Rock Slide, Stealth Rock | Skill Swap 40, Light Screen 44, Power Gem 45, Moonblast 52, Stone Edge 54, Psychic 56, Body Press 58, Iron Head 60 | Carbink |
+| Carbink | wild | 38 | Rewrite | Dazzling Gleam, Rock Tomb, Rock Slide, Stealth Rock | Skill Swap 40, Light Screen 44, Power Gem 45, Moonblast 52, Iron Head 54, Psychic 56, Body Press 60 | Carbink |
 | Glimmora | wild | 38 | Oxide | Stealth Rock, Venoshock, Selfdestruct, Rock Slide | Power Gem 39, Acid Armor 44, Sludge Wave 50 | Glimmora |
 | Glimmora | wild | 38 | Rewrite | Rock Polish, Stealth Rock, Venoshock, Rock Slide | Power Gem 39, Sludge Bomb 41, Acid Armor 44, Flash Cannon 47, Sludge Wave 50, Energy Ball 54, Dazzling Gleam 56, Earth Power 60, Confuse Ray 65 | Glimmora |
 | Gliscor | wild | 39 | Oxide | Screech, Night Slash, Swords Dance, U-turn | X-Scissor 42, Guillotine 45 | Gliscor |
@@ -76,7 +76,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Tentacool | old rod | 22 | Oxide | Acid, Toxic Spikes, BubbleBeam, Wrap | Barrier 26, Water Pulse 29; as Tentacruel: Poison Jab 36, Screech 42, Hydro Pump 49, Wring Out 55 | Tentacruel (from 30) |
 | Tentacool | old rod | 22 | Rewrite | Acid, Toxic Spikes, Water Pulse, BubbleBeam | Barrier 26; as Tentacruel: Poison Jab 33, Aurora Beam 34, Sludge Bomb 39, Screech 42, Psybeam 44, Surf 49, Muddy Water 53, Throat Chop 54, Power Gem 56, Flip Turn 58, Ice Beam 60, Toxic 62, Skitter Smack 65 | Tentacruel (from 30) |
 | Mantyke | old rod | 24 to 26 | Oxide | BubbleBeam, Headbutt, Agility, Wing Attack | Water Pulse 28; as Mantine: Take Down 31, Confuse Ray 37, Bounce 40, Aqua Ring 46, Hydro Pump 49 | Mantine (from 30) |
-| Mantyke | old rod | 24 to 26 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Scald 34, Confuse Ray 37, Bounce 40, Psybeam 41, Signal Beam 43, Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
+| Mantyke | old rod | 24 to 26 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Signal Beam 34, Round 35, Confuse Ray 37, Bounce 40, Psybeam 41, Surf 43, Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
 | Remoraid | old rod | 24 | Oxide | Psybeam, Aurora Beam, BubbleBeam, Focus Energy | as Octillery: Octazooka 25, Bullet Seed 29, Wring Out 36, Signal Beam 42, Ice Beam 48, Hyper Beam 55 | Octillery (from 25) |
 | Remoraid | old rod | 24 | Rewrite | Screech, Aurora Beam, BubbleBeam, Focus Energy | as Octillery: Octazooka 25, Mud Shot 27, Bullet Seed 29, Round 33, Charge Beam 35, Scald 37, Skitter Smack 40, Signal Beam 42, Ice Beam 48, Psychic 54, Hyper Beam 55, Swagger 61 | Octillery (from 25) |
 | Luvdisc | good rod | 35 | Oxide | Lucky Chant, Attract, Sweet Kiss, Water Pulse | as Alomomola: Wish 37, Brine 41, Safeguard 45, Whirlpool 49, Helping Hand 53, Healing Wish 57, Wide Guard 61, Hydro Pump 65 | Alomomola (from 36) |
@@ -84,17 +84,17 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Mareanie | good rod | 35 | Oxide | Toxic Spikes, Recover, Spike Cannon, Pin Missile | Toxic 36; as Toxapex: Toxic 39, Venom Drench 42, Poison Jab 43, Liquidation 45 | Toxapex (from 38) |
 | Mareanie | good rod | 35 | Rewrite | Toxic Spikes, Recover, Spike Cannon, Pin Missile | Toxic 36, Muddy Water 38; as Toxapex: Venom Drench 42, Poison Jab 43, Liquidation 45, Lunge 53, Ice Beam 54, Sludge Bomb 56, Iron Defense 61 | Toxapex (from 38) |
 | Mantyke | good rod | 37 | Oxide | Wing Attack, Water Pulse, Take Down, Confuse Ray | as Mantine: Bounce 40, Aqua Ring 46, Hydro Pump 49 | Mantine (from 38) |
-| Mantyke | good rod | 37 | Rewrite | Icy Wind, Water Pulse, Take Down, Confuse Ray | as Mantine: Bounce 40, Psybeam 41, Signal Beam 43, Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 38) |
+| Mantyke | good rod | 37 | Rewrite | Icy Wind, Water Pulse, Take Down, Confuse Ray | as Mantine: Bounce 40, Psybeam 41, Surf 43, Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 38) |
 | Shellos | good rod | 37 | Oxide | Mud Bomb, Hidden Power, Body Slam, Muddy Water | as Gastrodon: Muddy Water 41, Recover 54 | Gastrodon (from 38) |
 | Shellos | good rod | 37 | Rewrite | Hidden Power, Swagger, Body Slam, Muddy Water | as Gastrodon: Muddy Water 41, Bulldoze 44, Sludge Bomb 46, Ice Beam 49, Recover 54, Skitter Smack 56, Rock Tomb 60, Block 65 | Gastrodon (from 38) |
 | Greninja | good rod | 39 | Oxide | Low Kick, Waterfall, Fling, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | good rod | 39 | Rewrite | Waterfall, Fling, Shadow Sneak, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | good rod | 39 | Rewrite | Waterfall, Fling, Shadow Sneak, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 | Gastrodon | surf | 40 | Oxide | Water Pulse, Mud Bomb, Hidden Power, Body Slam | Muddy Water 41, Recover 54 | Gastrodon |
 | Gastrodon | surf | 40 | Rewrite | Body Slam, AncientPower, Earth Power, Clear Smog | Muddy Water 41, Bulldoze 44, Sludge Bomb 46, Ice Beam 49, Recover 54, Skitter Smack 56, Rock Tomb 60, Block 65 | Gastrodon |
 | Tentacool | surf | 40 | Oxide | Water Pulse, Poison Jab, Screech, Hydro Pump | as Tentacruel: Screech 42, Hydro Pump 49, Wring Out 55 | Tentacruel (from 41) |
 | Tentacool | surf | 40 | Rewrite | Barrier, Poison Jab, Screech, Surf | as Tentacruel: Screech 42, Psybeam 44, Surf 49, Muddy Water 53, Throat Chop 54, Power Gem 56, Flip Turn 58, Ice Beam 60, Toxic 62, Skitter Smack 65 | Tentacruel (from 41) |
 | Mantyke | surf | 43 | Oxide | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Hydro Pump 49 | Mantine (from 44) |
-| Mantyke | surf | 43 | Rewrite | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 44) |
+| Mantyke | surf | 43 | Rewrite | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 44) |
 | Shellos | surf | 43 | Oxide | Mud Bomb, Hidden Power, Body Slam, Muddy Water | as Gastrodon: Recover 54 | Gastrodon (from 44) |
 | Shellos | surf | 43 | Rewrite | Hidden Power, Swagger, Body Slam, Muddy Water | as Gastrodon: Bulldoze 44, Sludge Bomb 46, Ice Beam 49, Recover 54, Skitter Smack 56, Rock Tomb 60, Block 65 | Gastrodon (from 44) |
 | Jellicent | super rod | 45 | Oxide | Hex, Brine, Pain Split, Destiny Bond | Shadow Ball 51, Scald 55, Water Spout 65 | Jellicent |
@@ -102,13 +102,13 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Lanturn | super rod | 45 | Oxide | Spit Up, BubbleBeam, Signal Beam, Discharge | Aqua Ring 47, Hydro Pump 52, Charge 57 | Lanturn |
 | Lanturn | super rod | 45 | Rewrite | Surf, Thunderbolt, Discharge, Flash Cannon | Aqua Ring 47, Muddy Water 52, Volt Switch 54, Dazzling Gleam 55, Charge 57, Ice Beam 60, Swagger 65 | Lanturn |
 | Greninja | surf | 46 | Oxide | Fling, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | surf | 46 | Rewrite | Shadow Sneak, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | surf | 46 | Rewrite | Shadow Sneak, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 | Gorebyss | super rod | 48 | Oxide | Baton Pass, Dive, Psychic, Aqua Tail | Hydro Pump 51 | Gorebyss |
 | Gorebyss | super rod | 48 | Rewrite | Dive, Surf, Psychic, Aqua Tail | Muddy Water 51, Shadow Ball 54, Ice Beam 56, Shell Smash 58, Scald 60, Scary Face 62, Confuse Ray 65 | Gorebyss |
 | Lumineon | super rod | 48 | Oxide | Safeguard, Aqua Ring, Whirlpool, U-turn | Bounce 53, Silver Wind 59 | Lumineon |
 | Lumineon | super rod | 48 | Rewrite | Signal Beam, Whirlpool, Ice Fang, U-turn | Bounce 53, Air Slash 54, Crunch 56, Confuse Ray 57, Silver Wind 59, Charm 65 | Lumineon |
 | Kingdra | super rod | 51 | Oxide | Twister, Brine, Hydro Pump, Dragon Dance | Dragon Pulse 57 | Kingdra |
-| Kingdra | super rod | 51 | Rewrite | Twister, Brine, Muddy Water, Aurora Beam | Scald 54, Dragon Pulse 57, Wave Crash 60, Dragon Dance 62, Iron Head 65 | Kingdra |
+| Kingdra | super rod | 51 | Rewrite | Twister, Brine, Octazooka, Aurora Beam | Scald 54, Dragon Pulse 57, Wave Crash 60, Dragon Dance 62, Iron Head 65 | Kingdra |
 
 ## Route 225
 
@@ -155,7 +155,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Corviknight | wild | 48 | Oxide | FeatherDance, Revenge, Defog, Iron Head | Brave Bird 49, Body Press 55, Roost 65 | Corviknight |
 | Corviknight | wild | 48 | Rewrite | FeatherDance, Revenge, Defog, Iron Head | Brave Bird 49, Body Slam 52, Throat Chop 54, Body Press 55, Iron Defense 57, Swagger 60, Double-Edge 62, Roost 65 | Corviknight |
 | Garganacl | wild | 48 | Oxide | Recover, Rock Slide, Stealth Rock, Heavy Slam | Earthquake 49, Stone Edge 54, Explosion 60 | Garganacl |
-| Garganacl | wild | 48 | Rewrite | Stealth Rock, Iron Head, Heavy Slam, Zen Headbutt | Earthquake 49, Stone Edge 54, Body Press 56, Block 58, Hammer Arm 60, Curse 65 | Garganacl |
+| Garganacl | wild | 48 | Rewrite | Salt Cure, Stealth Rock, Iron Head, Heavy Slam | Earthquake 49, Zen Headbutt 53, Block 54, Body Press 56, Hammer Arm 60, Curse 65 | Garganacl |
 | Gastrodon | super rod | 48 | Oxide | Mud Bomb, Hidden Power, Body Slam, Muddy Water | Recover 54 | Gastrodon |
 | Gastrodon | super rod | 48 | Rewrite | Clear Smog, Muddy Water, Bulldoze, Sludge Bomb | Ice Beam 49, Recover 54, Skitter Smack 56, Rock Tomb 60, Block 65 | Gastrodon |
 | Houndoom | wild | 48 | Oxide | Fire Fang, Faint Attack, Embargo, Flamethrower | Crunch 54, Nasty Plot 60 | Houndoom |
@@ -163,7 +163,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Liepard | wild | 48 | Oxide | Sucker Punch, Nasty Plot, Night Slash, Snatch | Play Rough 54 | Liepard |
 | Liepard | wild | 48 | Rewrite | Taunt, Sucker Punch, Night Slash, Snatch | Skitter Smack 50, Play Rough 54, BurningJealousy 56, Seed Bomb 58, Shadow Ball 60, U-turn 65 | Liepard |
 | Mienshao | wild | 48 | Oxide | Aura Sphere, Me First, Jump Kick, Dual Chop | Focus Blast 51, Acrobatics 55, Hi Jump Kick 64 | Mienshao |
-| Mienshao | wild | 48 | Rewrite | U-turn, Rock Tomb, Jump Kick, Dual Chop | Focus Blast 51, Poison Jab 54, Acrobatics 55, Upper Hand 56, Hammer Arm 60, Hi Jump Kick 64 | Mienshao |
+| Mienshao | wild | 48 | Rewrite | U-turn, Rock Tomb, Jump Kick, Dual Chop | Poison Jab 51, Upper Hand 54, Acrobatics 55, Hammer Arm 56, Hi Jump Kick 64 | Mienshao |
 | Seaking | super rod | 48 | Oxide | Aqua Ring, Fury Attack, Waterfall, Horn Drill | Agility 56, Megahorn 63 | Seaking |
 | Seaking | super rod | 48 | Rewrite | Skull Bash, Waterfall, Poison Jab, Drill Run | Knock Off 50, Aqua Tail 54, Agility 56, Drill Peck 57, Throat Chop 59, Megahorn 63 | Seaking |
 | Talonflame | wild | 48 | Oxide | Natural Gift, Acrobatics, Me First, Tailwind | Flare Blitz 51, Brave Bird 55 | Talonflame |
@@ -175,7 +175,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Dubwool | wild | 49 | Oxide | Take Down, Guard Swap, Reversal, Cotton Guard | Double-Edge 50, Last Resort 56 | Dubwool |
 | Dubwool | wild | 49 | Rewrite | Reversal, Zen Headbutt, Cotton Guard, Body Press | Double-Edge 50, Wild Charge 54, Last Resort 56, Thunder Wave 61 | Dubwool |
 | Golem | wild | 49 | Oxide | Earthquake, Explosion, Double-Edge, Stone Edge | nothing | Golem |
-| Golem | wild | 49 | Rewrite | Rock Blast, Earthquake, Double-Edge, Stone Edge | Sucker Punch 53, Body Press 54, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem |
+| Golem | wild | 49 | Rewrite | Rock Blast, Earthquake, Double-Edge, Rock Slide | Body Press 53, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem |
 | Hawlucha | wild | 49 | Oxide | Dual Wingbeat, Fly, Hi Jump Kick, Me First | Acrobatics 55, Close Combat 60 | Hawlucha |
 | Hawlucha | wild | 49 | Rewrite | Fly, Hi Jump Kick, Air Slash, Lunge | Throat Chop 54, Acrobatics 55, Low Sweep 57, Close Combat 60, Fire Punch 62, Brave Bird 65 | Hawlucha |
 | Grapploct | wild | 50 | Oxide | Taunt, Reversal, Superpower, Topsy-Turvy | nothing | Grapploct |
@@ -185,7 +185,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Ninetales | wild | 50 | Oxide | Quick Attack, Confuse Ray, Safeguard, Flare Blitz | nothing | Ninetales |
 | Ninetales | wild | 50 | Rewrite | Confuse Ray, Safeguard, Dazzling Gleam, Flare Blitz | Energy Ball 54, Extrasensory 56, Moonblast 58, Mystical Fire 60, Ice Beam 62, Overheat 65 | Ninetales |
 | Greninja | super rod | 51 | Oxide | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | super rod | 51 | Rewrite | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | super rod | 51 | Rewrite | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 
 ## Route 226
 
@@ -194,7 +194,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Meloetta | in-game trade | 1 | Oxide | Round, Quick Attack, Confusion, Sing | Quick Attack 6, Confusion 11, Sing 16, Teeter Dance 21, Acrobatics 26, Psybeam 31, Echoed Voice 36, U-turn 43, Wake-Up Slap 50, Psychic 57, Hyper Voice 64 | Meloetta |
 | Meloetta | in-game trade | 1 | Rewrite | Round, Quick Attack, Confusion, Sing | Quick Attack 6, Confusion 11, Sing 16, Teeter Dance 21, Acrobatics 26, Psybeam 31, U-turn 43, Wake-Up Slap 50, Psychic 57, Energy Ball 61, Charm 62, Hyper Voice 64 | Meloetta |
 | Mantyke | old rod | 22 | Oxide | BubbleBeam, Headbutt, Agility, Wing Attack | Water Pulse 28; as Mantine: Take Down 31, Confuse Ray 37, Bounce 40, Aqua Ring 46, Hydro Pump 49 | Mantine (from 30) |
-| Mantyke | old rod | 22 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Scald 34, Confuse Ray 37, Bounce 40, Psybeam 41, Signal Beam 43, Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
+| Mantyke | old rod | 22 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Signal Beam 34, Round 35, Confuse Ray 37, Bounce 40, Psybeam 41, Surf 43, Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
 | Psyduck | old rod | 22 | Oxide | Water Gun, Disable, Confusion, Water Pulse | Fury Swipes 27, Screech 31; as Golduck: Psych Up 37, Zen Headbutt 44, Amnesia 50, Hydro Pump 56 | Golduck (from 33) |
 | Psyduck | old rod | 22 | Rewrite | Water Pulse, Disable, Confusion, Low Sweep | Fury Swipes 27; as Golduck: Surf 34, Psych Up 37, Aurora Beam 40, Zen Headbutt 44, Power Gem 47, Amnesia 50, Ice Beam 54, Muddy Water 56, Flip Turn 58, Psychic 60, Confuse Ray 65 | Golduck (from 33) |
 | Finneon | old rod | 24 | Oxide | Water Gun, Attract, Gust, Water Pulse | Captivate 26, Safeguard 29; as Lumineon: Aqua Ring 35, Whirlpool 42, U-turn 48, Bounce 53, Silver Wind 59 | Lumineon (from 31) |
@@ -212,21 +212,21 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Tentacool | good rod | 37 | Oxide | Barrier, Water Pulse, Poison Jab, Screech | as Tentacruel: Screech 42, Hydro Pump 49, Wring Out 55 | Tentacruel (from 38) |
 | Tentacool | good rod | 37 | Rewrite | BubbleBeam, Barrier, Poison Jab, Screech | as Tentacruel: Sludge Bomb 39, Screech 42, Psybeam 44, Surf 49, Muddy Water 53, Throat Chop 54, Power Gem 56, Flip Turn 58, Ice Beam 60, Toxic 62, Skitter Smack 65 | Tentacruel (from 38) |
 | Greninja | good rod | 39 | Oxide | Low Kick, Waterfall, Fling, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | good rod | 39 | Rewrite | Waterfall, Fling, Shadow Sneak, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | good rod | 39 | Rewrite | Waterfall, Fling, Shadow Sneak, Scald | Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 | Floatzel | surf | 40 | Oxide | Aqua Jet, Crunch, Agility, Whirlpool | Razor Wind 50 | Floatzel |
 | Floatzel | surf | 40 | Rewrite | Icy Wind, Flip Turn, Waterfall, Whirlpool | Liquidation 41, Low Sweep 44, Agility 51, Rock Tomb 53, Ice Fang 56, Wave Crash 62, Ice Punch 65 | Floatzel |
 | Mareanie | surf | 40 | Oxide | Spike Cannon, Pin Missile, Toxic, Venom Drench | Liquidation 41, Poison Jab 41; as Toxapex: Venom Drench 42, Poison Jab 43, Liquidation 45 | Toxapex (from 41) |
 | Mareanie | surf | 40 | Rewrite | Spike Cannon, Pin Missile, Toxic, Muddy Water | Liquidation 41; as Toxapex: Venom Drench 42, Poison Jab 43, Liquidation 45, Lunge 53, Ice Beam 54, Sludge Bomb 56, Iron Defense 61 | Toxapex (from 41) |
 | Mantine | surf | 43 | Oxide | Water Pulse, Take Down, Confuse Ray, Bounce | Aqua Ring 46, Hydro Pump 49 | Mantine |
-| Mantine | surf | 43 | Rewrite | Confuse Ray, Bounce, Psybeam, Signal Beam | Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine |
+| Mantine | surf | 43 | Rewrite | Confuse Ray, Bounce, Psybeam, Surf | Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine |
 | Tentacruel | surf | 43 | Oxide | Barrier, Water Pulse, Poison Jab, Screech | Hydro Pump 49, Wring Out 55 | Tentacruel |
 | Tentacruel | surf | 43 | Rewrite | Poison Jab, Aurora Beam, Sludge Bomb, Screech | Psybeam 44, Surf 49, Muddy Water 53, Throat Chop 54, Power Gem 56, Flip Turn 58, Ice Beam 60, Toxic 62, Skitter Smack 65 | Tentacruel |
 | Mantine | super rod | 45 | Oxide | Water Pulse, Take Down, Confuse Ray, Bounce | Aqua Ring 46, Hydro Pump 49 | Mantine |
-| Mantine | super rod | 45 | Rewrite | Confuse Ray, Bounce, Psybeam, Signal Beam | Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine |
+| Mantine | super rod | 45 | Rewrite | Confuse Ray, Bounce, Psybeam, Surf | Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine |
 | Toxapex | super rod | 45 | Oxide | Toxic, Venom Drench, Poison Jab, Liquidation | nothing | Toxapex |
 | Toxapex | super rod | 45 | Rewrite | Pin Missile, Venom Drench, Poison Jab, Liquidation | Lunge 53, Ice Beam 54, Sludge Bomb 56, Iron Defense 61 | Toxapex |
 | Greninja | surf | 46 | Oxide | Fling, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | surf | 46 | Rewrite | Shadow Sneak, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | surf | 46 | Rewrite | Shadow Sneak, Scald, Dark Pulse, Extrasensory | Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 | Corviknight | wild | 47 to 50 | Oxide | FeatherDance, Revenge, Defog, Iron Head | Brave Bird 49, Body Press 55, Roost 65 | Corviknight |
 | Corviknight | wild | 47 to 50 | Rewrite | FeatherDance, Revenge, Defog, Iron Head | Brave Bird 49, Body Slam 52, Throat Chop 54, Body Press 55, Iron Defense 57, Swagger 60, Double-Edge 62, Roost 65 | Corviknight |
 | Absol | wild | 48 | Oxide | Double Team, Slash, Future Sight, Sucker Punch | Detect 49, Night Slash 52, Me First 57, Psycho Cut 60, Perish Song 65 | Absol |
@@ -234,9 +234,9 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Altaria | wild | 48 | Oxide | Natural Gift, DragonBreath, Dragon Dance, Refresh | Dragon Pulse 54, Perish Song 62 | Altaria |
 | Altaria | wild | 48 | Rewrite | Mirror Move, Bulldoze, Breaking Swipe, Refresh | Moonblast 50, Dragon Pulse 54, Dragon Rush 56, Flamethrower 57, Draco Meteor 59, Perish Song 62, Ice Beam 65 | Altaria |
 | Araquanid | wild | 48 to 49 | Oxide | Soak, Dive, Lunge, Scald | Hydro Pump 51, Liquidation 55, Leech Life 61 | Araquanid |
-| Araquanid | wild | 48 to 49 | Rewrite | Waterfall, Lunge, Poison Jab, Scald | Surf 51, Crunch 54, Liquidation 55, Ice Punch 57, Body Slam 58, Leech Life 61 | Araquanid |
+| Araquanid | wild | 48 to 49 | Rewrite | Waterfall, Lunge, Poison Jab, Scald | Crunch 51, Body Slam 54, Liquidation 55, Ice Punch 58, Leech Life 61 | Araquanid |
 | Mienshao | wild | 48 | Oxide | Aura Sphere, Me First, Jump Kick, Dual Chop | Focus Blast 51, Acrobatics 55, Hi Jump Kick 64 | Mienshao |
-| Mienshao | wild | 48 | Rewrite | U-turn, Rock Tomb, Jump Kick, Dual Chop | Focus Blast 51, Poison Jab 54, Acrobatics 55, Upper Hand 56, Hammer Arm 60, Hi Jump Kick 64 | Mienshao |
+| Mienshao | wild | 48 | Rewrite | U-turn, Rock Tomb, Jump Kick, Dual Chop | Poison Jab 51, Upper Hand 54, Acrobatics 55, Hammer Arm 56, Hi Jump Kick 64 | Mienshao |
 | Poliwrath | super rod | 48 | Oxide | Hypnosis, DoubleSlap, Submission, DynamicPunch | Mind Reader 53 | Poliwrath |
 | Poliwrath | super rod | 48 | Rewrite | Hypnosis, DoubleSlap, Liquidation, Brick Break | Mind Reader 53, Rock Tomb 54, Throat Chop 56, Close Combat 58, Ice Punch 60, Upper Hand 62, Drain Punch 65 | Poliwrath |
 | Relicanth | super rod | 48 | Oxide | Yawn, Take Down, Mud Sport, AncientPower | Double-Edge 50, Dive 57, Rest 64 | Relicanth |
@@ -248,13 +248,13 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Toucannon | wild | 48 to 49 | Oxide | Screech, Drill Peck, Bullet Seed, FeatherDance | Hyper Voice 50 | Toucannon |
 | Toucannon | wild | 48 to 49 | Rewrite | Bullet Seed, Throat Chop, FeatherDance, Take Down | Hyper Voice 50, Brick Break 54, Temper Flare 56, Rock Climb 60, Brave Bird 65 | Toucannon |
 | Carbink | wild | 49 | Oxide | Stealth Rock, Skill Swap, Light Screen, Power Gem | Moonblast 52, Stone Edge 54 | Carbink |
-| Carbink | wild | 49 | Rewrite | Stealth Rock, Skill Swap, Light Screen, Power Gem | Moonblast 52, Stone Edge 54, Psychic 56, Body Press 58, Iron Head 60 | Carbink |
+| Carbink | wild | 49 | Rewrite | Stealth Rock, Skill Swap, Light Screen, Power Gem | Moonblast 52, Iron Head 54, Psychic 56, Body Press 60 | Carbink |
 | Floatzel | wild | 50 | Oxide | Crunch, Agility, Whirlpool, Razor Wind | nothing | Floatzel |
 | Floatzel | wild | 50 | Rewrite | Waterfall, Whirlpool, Liquidation, Low Sweep | Agility 51, Rock Tomb 53, Ice Fang 56, Wave Crash 62, Ice Punch 65 | Floatzel |
 | Shellos | wild | 50 | Oxide | Hidden Power, Body Slam, Muddy Water, Recover | as Gastrodon: Recover 54 | Gastrodon (from 51) |
 | Shellos | wild | 50 | Rewrite | Swagger, Body Slam, Muddy Water, Recover | as Gastrodon: Recover 54, Skitter Smack 56, Rock Tomb 60, Block 65 | Gastrodon (from 51) |
 | Kingdra | super rod | 51 | Oxide | Twister, Brine, Hydro Pump, Dragon Dance | Dragon Pulse 57 | Kingdra |
-| Kingdra | super rod | 51 | Rewrite | Twister, Brine, Muddy Water, Aurora Beam | Scald 54, Dragon Pulse 57, Wave Crash 60, Dragon Dance 62, Iron Head 65 | Kingdra |
+| Kingdra | super rod | 51 | Rewrite | Twister, Brine, Octazooka, Aurora Beam | Scald 54, Dragon Pulse 57, Wave Crash 60, Dragon Dance 62, Iron Head 65 | Kingdra |
 
 ## Route 227
 
@@ -269,7 +269,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Goldeen | old rod | 24 | Oxide | Supersonic, Horn Attack, Water Pulse, Flail | Aqua Ring 27, Fury Attack 31; as Seaking: Waterfall 40, Horn Drill 47, Agility 56, Megahorn 63 | Seaking (from 33) |
 | Goldeen | old rod | 24 | Rewrite | Water Pulse, Horn Attack, Swagger, Flail | Aqua Ring 27; as Seaking: Aqua Jet 34, Skull Bash 37, Waterfall 40, Poison Jab 44, Drill Run 47, Knock Off 50, Aqua Tail 54, Agility 56, Drill Peck 57, Throat Chop 59, Megahorn 63 | Seaking (from 33) |
 | Frogadier | old rod | 26 | Oxide | Icy Wind, Faint Attack, Acrobatics, Low Kick | Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja (from 36) |
-| Frogadier | old rod | 26 | Rewrite | Thief, Faint Attack, Acrobatics, Low Kick | Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja (from 36) |
+| Frogadier | old rod | 26 | Rewrite | Thief, Faint Attack, Acrobatics, Low Kick | Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja (from 36) |
 | Goldeen | good rod | 35 | Oxide | Water Pulse, Flail, Aqua Ring, Fury Attack | as Seaking: Waterfall 40, Horn Drill 47, Agility 56, Megahorn 63 | Seaking (from 36) |
 | Goldeen | good rod | 35 | Rewrite | Horn Attack, Swagger, Flail, Aqua Ring | as Seaking: Skull Bash 37, Waterfall 40, Poison Jab 44, Drill Run 47, Knock Off 50, Aqua Tail 54, Agility 56, Drill Peck 57, Throat Chop 59, Megahorn 63 | Seaking (from 36) |
 | Golduck | good rod | 35 | Oxide | Confusion, Water Pulse, Fury Swipes, Screech | Psych Up 37, Zen Headbutt 44, Amnesia 50, Hydro Pump 56 | Golduck |
@@ -309,9 +309,9 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Rapidash | wild | 52 | Oxide | Agility, Fire Blast, Fury Attack, Bounce | Flare Blitz 56 | Rapidash |
 | Rapidash | wild | 52 | Rewrite | Heat Wave, Overheat, Bounce, Psychic | Jump Kick 54, Flare Blitz 56, Zen Headbutt 58, Poison Jab 60, Morning Sun 65 | Rapidash |
 | Rhyperior | wild | 52 | Oxide | Horn Drill, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61 | Rhyperior |
-| Rhyperior | wild | 52 | Rewrite | Take Down, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 63, Rock Tomb 65 | Rhyperior |
+| Rhyperior | wild | 52 | Rewrite | Take Down, Hammer Arm, Rock Slide, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 65 | Rhyperior |
 | Salazzle | wild | 52 to 53 | Oxide | Venoshock, Flamethrower, Sludge Bomb, Dragon Pulse | Fire Blast 55 | Salazzle |
-| Salazzle | wild | 52 to 53 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 55, Hyper Voice 61, Energy Ball 65 | Salazzle |
+| Salazzle | wild | 52 to 53 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 61, Hyper Voice 65 | Salazzle |
 | Skarmory | wild | 52 | Oxide | Steel Wing, Air Slash, Slash, Night Slash | nothing | Skarmory |
 | Skarmory | wild | 52 | Rewrite | Air Slash, Slash, Night Slash, Iron Defense | Body Press 54, Drill Peck 56, Iron Head 58, Brave Bird 60, Rock Tomb 62, Double-Edge 65 | Skarmory |
 | Weezing | wild | 52 | Oxide | Haze, Double Hit, Explosion, Sludge Bomb | Destiny Bond 55, Memento 63 | Weezing |
@@ -323,7 +323,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Chatot | wild | 54 | Oxide | Roost, Uproar, FeatherDance, Hyper Voice | nothing | Chatot |
 | Chatot | wild | 54 | Rewrite | Air Slash, Hyper Voice, Steel Wing, Parting Shot | Brave Bird 56, Heat Wave 61 | Chatot |
 | Garganacl | wild | 54 | Oxide | Stealth Rock, Heavy Slam, Earthquake, Stone Edge | Explosion 60 | Garganacl |
-| Garganacl | wild | 54 | Rewrite | Heavy Slam, Zen Headbutt, Earthquake, Stone Edge | Body Press 56, Block 58, Hammer Arm 60, Curse 65 | Garganacl |
+| Garganacl | wild | 54 | Rewrite | Heavy Slam, Earthquake, Zen Headbutt, Block | Body Press 56, Hammer Arm 60, Curse 65 | Garganacl |
 | Honchkrow | wild | 54 | Oxide | Wing Attack, Swagger, Nasty Plot, Night Slash | Dark Pulse 55 | Honchkrow |
 | Honchkrow | wild | 54 | Rewrite | Drill Peck, Night Slash, Nasty Plot, Heat Wave | Dark Pulse 55, Foul Play 57, U-turn 60, Sucker Punch 62, Brave Bird 65 | Honchkrow |
 
@@ -374,13 +374,13 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Whiscash | wild | 49 | Oxide | Rest, Snore, Aqua Tail, Earthquake | Future Sight 51, Fissure 57 | Whiscash |
 | Whiscash | wild | 49 | Rewrite | Aqua Tail, Earth Power, Wild Charge, Earthquake | Future Sight 51, Spark 54, Ice Beam 56, Tickle 60, Swagger 65 | Whiscash |
 | Crustle | wild | 50 | Oxide | Rock Slide, StompingTantrum, Knock Off, Leech Life | Stone Edge 54, Rock Wrecker 61 | Crustle |
-| Crustle | wild | 50 | Rewrite | Body Press, Shell Smash, Knock Off, Leech Life | Stone Edge 54, Skitter Smack 56, Bulldoze 57, Poison Jab 58, Rock Wrecker 61, Rock Polish 63, Earthquake 65 | Crustle |
+| Crustle | wild | 50 | Rewrite | Body Press, Shell Smash, Knock Off, Leech Life | Skitter Smack 54, Poison Jab 56, Rock Polish 57, Bulldoze 58, Rock Wrecker 61, Lunge 63, Earthquake 65 | Crustle |
 | Donphan | wild | 50 to 51 | Oxide | Fury Attack, Assurance, Scary Face, Earthquake | Giga Impact 54 | Donphan |
 | Donphan | wild | 50 to 51 | Rewrite | Iron Head, Throat Chop, Earthquake, Seed Bomb | Giga Impact 54, Charm 56, Block 61 | Donphan |
 | Flygon | wild | 50 | Oxide | Supersonic, DragonBreath, Screech, Dragon Claw | Hyper Beam 57 | Flygon |
 | Flygon | wild | 50 | Rewrite | Sand Tomb, DragonBreath, Screech, Dragon Claw | Poison Fang 54, Dragon Rush 56, Hyper Beam 57, Bug Buzz 58, Fire Punch 60, FirstImpression 62, Draco Meteor 65 | Flygon |
 | Golem | wild | 50 | Oxide | Earthquake, Explosion, Double-Edge, Stone Edge | nothing | Golem |
-| Golem | wild | 50 | Rewrite | Rock Blast, Earthquake, Double-Edge, Stone Edge | Sucker Punch 53, Body Press 54, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem |
+| Golem | wild | 50 | Rewrite | Rock Blast, Earthquake, Double-Edge, Rock Slide | Body Press 53, Body Slam 56, Fire Punch 61, Hammer Arm 65 | Golem |
 | Houndoom | wild | 50 | Oxide | Fire Fang, Faint Attack, Embargo, Flamethrower | Crunch 54, Nasty Plot 60 | Houndoom |
 | Houndoom | wild | 50 | Rewrite | Faint Attack, Mud Shot, Embargo, Flamethrower | Dark Pulse 51, Crunch 54, Shadow Ball 56, BurningJealousy 58, Nasty Plot 60, Sludge Bomb 62, Overheat 65 | Houndoom |
 | Palossand | wild | 50 | Oxide | Giga Drain, Iron Defense, Shadow Ball, Earth Power | Shore Up 57 | Palossand |
@@ -390,15 +390,15 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Masquerain | super rod | 51 | Oxide | Scary Face, Stun Spore, Silver Wind, Air Slash | Whirlwind 54, Bug Buzz 61 | Masquerain |
 | Masquerain | super rod | 51 | Rewrite | Silver Wind, Signal Beam, Icy Wind, Air Slash | Lunge 53, Skitter Smack 54, Ice Beam 56, U-turn 57, Leech Life 58, Bug Buzz 61, Energy Ball 65 | Masquerain |
 | Rhyperior | wild | 51 | Oxide | Horn Drill, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61 | Rhyperior |
-| Rhyperior | wild | 51 | Rewrite | Take Down, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 63, Rock Tomb 65 | Rhyperior |
+| Rhyperior | wild | 51 | Rewrite | Take Down, Hammer Arm, Rock Slide, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 65 | Rhyperior |
 | Salazzle | wild | 51 | Oxide | Venoshock, Flamethrower, Sludge Bomb, Dragon Pulse | Fire Blast 55 | Salazzle |
-| Salazzle | wild | 51 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 55, Hyper Voice 61, Energy Ball 65 | Salazzle |
+| Salazzle | wild | 51 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 61, Hyper Voice 65 | Salazzle |
 | Carbink | wild | 52 | Oxide | Skill Swap, Light Screen, Power Gem, Moonblast | Stone Edge 54 | Carbink |
-| Carbink | wild | 52 | Rewrite | Skill Swap, Light Screen, Power Gem, Moonblast | Stone Edge 54, Psychic 56, Body Press 58, Iron Head 60 | Carbink |
+| Carbink | wild | 52 | Rewrite | Skill Swap, Light Screen, Power Gem, Moonblast | Iron Head 54, Psychic 56, Body Press 60 | Carbink |
 | Garganacl | wild | 52 | Oxide | Rock Slide, Stealth Rock, Heavy Slam, Earthquake | Stone Edge 54, Explosion 60 | Garganacl |
-| Garganacl | wild | 52 | Rewrite | Iron Head, Heavy Slam, Zen Headbutt, Earthquake | Stone Edge 54, Body Press 56, Block 58, Hammer Arm 60, Curse 65 | Garganacl |
+| Garganacl | wild | 52 | Rewrite | Stealth Rock, Iron Head, Heavy Slam, Earthquake | Zen Headbutt 53, Block 54, Body Press 56, Hammer Arm 60, Curse 65 | Garganacl |
 | Steelix | wild | 52 | Oxide | Curse, Iron Tail, Crunch, Double-Edge | Stone Edge 54 | Steelix |
-| Steelix | wild | 52 | Rewrite | Iron Head, Bite, Crunch, Double-Edge | Stone Edge 54, Aqua Tail 56, Fire Fang 58, Earthquake 60, Block 65 | Steelix |
+| Steelix | wild | 52 | Rewrite | Iron Head, Bite, Crunch, Double-Edge | Rock Slide 54, Aqua Tail 56, Fire Fang 58, Earthquake 60, Block 65 | Steelix |
 
 ## Route 229
 
@@ -465,17 +465,17 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Emolga | wild | 49 | Oxide | Acrobatics, Encore, Light Screen, Volt Switch | Discharge 50, Agility 50 | Emolga |
 | Emolga | wild | 49 | Rewrite | Light Screen, Volt Switch, Thunderbolt, Agility | Discharge 50, Energy Ball 54, Air Slash 56, Shadow Ball 60, Charm 65 | Emolga |
 | Tsareena | wild | 49 | Oxide | Low Sweep, Aromatherapy, Leaf Storm, Power Whip | Hi Jump Kick 55 | Tsareena |
-| Tsareena | wild | 49 | Rewrite | Aromatherapy, Zen Headbutt, Leaf Storm, U-turn | Knock Off 52, Play Rough 54, Hi Jump Kick 55, Charm 61 | Tsareena |
+| Tsareena | wild | 49 | Rewrite | Aromatherapy, Zen Headbutt, Leaf Storm, Petal Blizzard | U-turn 51, Play Rough 54, Hi Jump Kick 55, Knock Off 60, Charm 65 | Tsareena |
 | Vespiquen | wild | 49 | Oxide | Captivate, Attack Order, Swagger, Destiny Bond | nothing | Vespiquen |
 | Vespiquen | wild | 49 | Rewrite | Swagger, U-turn, Air Slash, Poison Jab | Psychic Noise 53, Take Down 54, Sludge Bomb 56, Secret Power 60, Brave Bird 65 | Vespiquen |
 | Cherrim | wild | 50 | Oxide | Worry Seed, Take Down, SolarBeam, Lucky Chant | nothing | Cherrim |
-| Cherrim | wild | 50 | Rewrite | Take Down, Rock Slide, SolarBeam, Lucky Chant | Giga Drain 53, Body Slam 54, Pollen Puff 56, Play Rough 58, Blaze Kick 60, Leaf Storm 62, Flare Blitz 65 | Cherrim |
+| Cherrim | wild | 50 | Rewrite | Rock Slide, SolarBeam, Petal Dance, Lucky Chant | Giga Drain 53, Body Slam 54, Pollen Puff 56, Play Rough 58, Blaze Kick 60, Leaf Storm 62, Flare Blitz 65 | Cherrim |
 | Jumpluff | wild | 50 | Oxide | U-turn, Worry Seed, Giga Drain, Bounce | Memento 52 | Jumpluff |
 | Jumpluff | wild | 50 | Rewrite | Energy Ball, Giga Drain, Lunge, Bounce | Dazzling Gleam 53, Headbutt 54, Take Down 56, Air Slash 58, Secret Power 60, Brave Bird 62, Leaf Storm 65 | Jumpluff |
 | Vikavolt | wild | 50 | Oxide | Bite, Spark, Signal Beam, Discharge | Bug Buzz 55, Thunderbolt 65 | Vikavolt |
 | Vikavolt | wild | 50 | Rewrite | Spark, Signal Beam, Pollen Puff, Discharge | Energy Ball 54, Bug Buzz 55, Air Slash 57, Flash Cannon 60, Agility 62, Thunderbolt 65 | Vikavolt |
 | Greninja | super rod | 51 | Oxide | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Hydro Pump 55, Hydro Cannon 65 | Greninja |
-| Greninja | super rod | 51 | Rewrite | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
+| Greninja | super rod | 51 | Rewrite | Dark Pulse, Extrasensory, Sludge Wave, Gunk Shot | Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja |
 
 ## Route 230
 
@@ -488,9 +488,9 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Barboach | old rod | 24 | Oxide | Water Gun, Mud Bomb, Amnesia, Water Pulse | Magnitude 26; as Whiscash: Rest 33, Snore 33, Aqua Tail 39, Earthquake 45, Future Sight 51, Fissure 57 | Whiscash (from 30) |
 | Barboach | old rod | 24 | Rewrite | Mud Bomb, Amnesia, Rock Tomb, Water Pulse | Magnitude 26; as Whiscash: Bulldoze 30, Rest 33, Zen Headbutt 36, Aqua Tail 39, Earth Power 40, Wild Charge 42, Earthquake 45, Future Sight 51, Spark 54, Ice Beam 56, Tickle 60, Swagger 65 | Whiscash (from 30) |
 | Mantyke | old rod | 24 | Oxide | BubbleBeam, Headbutt, Agility, Wing Attack | Water Pulse 28; as Mantine: Take Down 31, Confuse Ray 37, Bounce 40, Aqua Ring 46, Hydro Pump 49 | Mantine (from 30) |
-| Mantyke | old rod | 24 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Scald 34, Confuse Ray 37, Bounce 40, Psybeam 41, Signal Beam 43, Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
+| Mantyke | old rod | 24 | Rewrite | BubbleBeam, Headbutt, Agility, Wing Attack | Icy Wind 25, Water Pulse 28; as Mantine: Take Down 31, Signal Beam 34, Round 35, Confuse Ray 37, Bounce 40, Psybeam 41, Surf 43, Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 30) |
 | Frogadier | old rod | 26 | Oxide | Icy Wind, Faint Attack, Acrobatics, Low Kick | Waterfall 30, Fling 35; as Greninja: Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Hydro Pump 55, Hydro Cannon 65 | Greninja (from 36) |
-| Frogadier | old rod | 26 | Rewrite | Thief, Faint Attack, Acrobatics, Low Kick | Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 55, Throat Chop 57, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja (from 36) |
+| Frogadier | old rod | 26 | Rewrite | Thief, Faint Attack, Acrobatics, Low Kick | Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37, Dark Pulse 40, Extrasensory 43, Sludge Wave 47, Gunk Shot 51, Ice Beam 54, Surf 56, Throat Chop 58, Muddy Water 60, Taunt 62, Hydro Cannon 65 | Greninja (from 36) |
 | Alomomola | good rod | 35 | Oxide | Protect, Water Pulse, Wake-Up Slap, Soak | Wish 37, Brine 41, Safeguard 45, Whirlpool 49, Helping Hand 53, Healing Wish 57, Wide Guard 61, Hydro Pump 65 | Alomomola |
 | Alomomola | good rod | 35 | Rewrite | Wake-Up Slap, Water Pulse, Soak, Play Rough | Wish 37, Brine 41, Zen Headbutt 43, Safeguard 45, Whirlpool 49, Helping Hand 53, Flip Turn 54, Liquidation 56, Ice Punch 57, Body Slam 58, Wide Guard 61, Muddy Water 65 | Alomomola |
 | Tentacool | good rod | 35 | Oxide | Wrap, Barrier, Water Pulse, Poison Jab | Screech 36; as Tentacruel: Poison Jab 36, Screech 42, Hydro Pump 49, Wring Out 55 | Tentacruel (from 36) |
@@ -506,7 +506,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Toxapex | surf | 40 | Oxide | Recover, Spike Cannon, Pin Missile, Toxic | Venom Drench 42, Poison Jab 43, Liquidation 45 | Toxapex |
 | Toxapex | surf | 40 | Rewrite | Recover, Spike Cannon, Toxic, Pin Missile | Venom Drench 42, Poison Jab 43, Liquidation 45, Lunge 53, Ice Beam 54, Sludge Bomb 56, Iron Defense 61 | Toxapex |
 | Mantyke | surf | 43 | Oxide | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Hydro Pump 49 | Mantine (from 44) |
-| Mantyke | surf | 43 | Rewrite | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Surf 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 44) |
+| Mantyke | surf | 43 | Rewrite | Water Pulse, Take Down, Confuse Ray, Bounce | as Mantine: Aqua Ring 46, Scald 49, Air Slash 54, Roost 56, Muddy Water 58, Ice Beam 60, Swagger 65 | Mantine (from 44) |
 | Pelipper | surf | 43 | Oxide | Stockpile, Swallow, Spit Up, Fling | Tailwind 50, Hydro Pump 57 | Pelipper |
 | Pelipper | surf | 43 | Rewrite | Stockpile, Spit Up, Icy Wind, Fling | Air Slash 47, Tailwind 50, Brave Bird 53, Ice Beam 54, U-turn 55, Muddy Water 57, Bite 60, Agility 62, Knock Off 65 | Pelipper |
 | Lanturn | super rod | 45 | Oxide | Spit Up, BubbleBeam, Signal Beam, Discharge | Aqua Ring 47, Hydro Pump 52, Charge 57 | Lanturn |
@@ -534,7 +534,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Toucannon | wild | 48 to 49 | Oxide | Screech, Drill Peck, Bullet Seed, FeatherDance | Hyper Voice 50 | Toucannon |
 | Toucannon | wild | 48 to 49 | Rewrite | Bullet Seed, Throat Chop, FeatherDance, Take Down | Hyper Voice 50, Brick Break 54, Temper Flare 56, Rock Climb 60, Brave Bird 65 | Toucannon |
 | Tsareena | wild | 48 to 49 | Oxide | Low Sweep, Aromatherapy, Leaf Storm, Power Whip | Hi Jump Kick 55 | Tsareena |
-| Tsareena | wild | 48 to 49 | Rewrite | Trop Kick, Aromatherapy, Zen Headbutt, Leaf Storm | U-turn 49, Knock Off 52, Play Rough 54, Hi Jump Kick 55, Charm 61 | Tsareena |
+| Tsareena | wild | 48 to 49 | Rewrite | Aromatherapy, Zen Headbutt, Leaf Storm, Petal Blizzard | U-turn 51, Play Rough 54, Hi Jump Kick 55, Knock Off 60, Charm 65 | Tsareena |
 | Arboliva | wild | 49 | Oxide | Seed Bomb, Energy Ball, Leech Seed, Terrain Pulse | Petal Blizzard 52, Petal Dance 58 | Arboliva |
 | Arboliva | wild | 49 | Rewrite | Energy Ball, Leech Seed, Alluring Voice, Swift | Petal Blizzard 52, Hyper Voice 54, Pollen Puff 55, Petal Dance 58, Earth Power 60, Leaf Storm 65 | Arboliva |
 | Lurantis | wild | 49 | Oxide | Sweet Scent, X-Scissor, Synthesis, Leaf Blade | Solar Blade 55 | Lurantis |
@@ -559,9 +559,9 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Magmortar | wild | 52 to 54 | Oxide | Confuse Ray, Fire Punch, Lava Plume, Flamethrower | Fire Blast 58 | Magmortar |
 | Magmortar | wild | 52 to 54 | Rewrite | BurningJealousy, Lava Plume, Flamethrower, Milk Drink | Scorching Sands 53, Thunderbolt 54, Psychic 55, Overheat 58, Swagger 62 | Magmortar |
 | Rhyperior | wild | 52 | Oxide | Horn Drill, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61 | Rhyperior |
-| Rhyperior | wild | 52 | Rewrite | Take Down, Hammer Arm, Stone Edge, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 63, Rock Tomb 65 | Rhyperior |
+| Rhyperior | wild | 52 | Rewrite | Take Down, Hammer Arm, Rock Slide, Earthquake | Megahorn 57, Rock Wrecker 61, Crunch 65 | Rhyperior |
 | Salazzle | wild | 52 to 53 | Oxide | Venoshock, Flamethrower, Sludge Bomb, Dragon Pulse | Fire Blast 55 | Salazzle |
-| Salazzle | wild | 52 to 53 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 55, Hyper Voice 61, Energy Ball 65 | Salazzle |
+| Salazzle | wild | 52 to 53 | Rewrite | Sludge Bomb, Encore, Swagger, Dragon Pulse | Nasty Plot 54, Overheat 61, Hyper Voice 65 | Salazzle |
 | Turtonator | wild | 52 | Oxide | Body Slam, Flamethrower, Dragon Pulse, Fire Spin | Explosion 55, Overheat 61 | Turtonator |
 | Turtonator | wild | 52 | Rewrite | Flamethrower, Dragon Pulse, Shell Smash, Fire Spin | Body Press 53, Earthquake 54, BurningJealousy 56, Flash Cannon 57, Rock Tomb 58, Overheat 61, Iron Defense 63 | Turtonator |
 | Weezing | wild | 52 | Oxide | Haze, Double Hit, Explosion, Sludge Bomb | Destiny Bond 55, Memento 63 | Weezing |

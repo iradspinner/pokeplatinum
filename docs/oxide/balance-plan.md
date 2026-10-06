@@ -8,22 +8,24 @@ the same day, and his answers are recorded below as decisions.
 
 ## Summary (2026-10-06)
 
-**Outcome.** The track is on step 4 of the learnset plan
-(`docs/oxide/learnset-checks.md`), on its own branch
-`balance-learnset-rewrite`: sixteen new checks read the locked rules, and
-their run on Oxide's lists is the new baseline
-(`docs/oxide/learnset-rewrite.md`, which carries the step's own summary).
-Oxide's lists fail every rule somewhere, most of all on coverage, steady
-learning and late moves. Poison Fang's rescore landed on `oxide` the same
-day: all 1,030 stored scores verified, nothing moved on Ian's fight scale.
+**Outcome.** Step 4 of the learnset plan (`docs/oxide/learnset-checks.md`)
+is built on its own branch, `balance-learnset-rewrite`: seventeen new
+checks read the locked rules, and a generator (`learngen.py`) rewrote the
+level-up lists of 634 species by them, every change logged with its rule.
+On the rewrite every check passes but a handful of named cases and R2's
+two new moves a split late in the game. The report, with the summary and
+Ian's questions, is `docs/oxide/learnset-rewrite.md`. Poison Fang's rescore
+landed on `oxide` the same day: all 1,030 stored scores verified, nothing
+moved on Ian's fight scale.
 
-**Ian's action items.** None open on this track today. The checks'
-thresholds come to him with the rewrite's report.
+**Ian's action items.** Seven move reworks to rule on, R2's threshold late
+in the game, and a few named cases; the report sets each out with its
+context and a recommendation.
 
-**Next steps.** The generator and the 652 rewritten lists (most of a day's
-session), the moves under review alongside it, then the sheets, the gate
-and the report (an hour). Step 5 is the Overseer's and the Scoring Agent's.
-After step 4: the TM pass rerun on the new lists.
+**Next steps.** The rescore on the new lists, checks 2 and 3 and the gate
+(an hour or two of machine time); then step 5, the Overseer's and the
+Scoring Agent's; then the TM pass rerun on the new lists, with the reward
+table and the gauntlet list (2 to 3 hours, and 2 to 3 to write it in).
 
 **Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
 come from the whole pool of moves Oxide has; later games' learnsets

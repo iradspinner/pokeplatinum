@@ -59,7 +59,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Budew | wild | 11 | Oxide | Absorb, Growth, Water Sport, Stun Spore | Mega Drain 13, Worry Seed 16 | Budew; Roselia in Fantina |
 | Budew | wild | 11 | Rewrite | Razor Leaf, Acid, Water Sport, Stun Spore | Mega Drain 13, Magical Leaf 15, Worry Seed 16, Confusion 18, Venoshock 20, Giga Drain 25 | Budew; Roselia in Fantina |
 | Cherubi | wild | 11 | Oxide | Tackle, Growth, Leech Seed | Helping Hand 13, Magical Leaf 19; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
-| Cherubi | wild | 11 | Rewrite | Tackle, Leech Seed | Helping Hand 13, Magical Leaf 19, Stun Spore 22, Draining Kiss 25; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
+| Cherubi | wild | 11 | Rewrite | Tackle, Leech Seed | Helping Hand 13, Magical Leaf 19, Stun Spore 22, Draining Kiss 25 | Cherrim (from 25) |
 | Murkrow | wild | 11 | Oxide | Peck, Astonish, Pursuit, Haze | Wing Attack 15, Night Shade 21, Assurance 25 | Murkrow; Honchkrow in Fantina |
 | Murkrow | wild | 11 | Rewrite | Astonish, Pursuit, Twister, Taunt | Wing Attack 15, Chilling Water 18, Night Shade 21, Assurance 25 | Murkrow; Honchkrow in Fantina |
 | Aipom | wild | 12 | Oxide | Tail Whip, Sand-Attack, Astonish, Baton Pass | Tickle 15, Fury Swipes 18, Swift 22, Screech 25 | Aipom; Ambipom in Fantina |
@@ -227,7 +227,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Pikachu | wild | 12 | Oxide | ThunderShock, Growl, Tail Whip, Thunder Wave | Quick Attack 13, Double Team 18, Slam 21, Thunderbolt 26 | Pikachu; Raichu in Maylene |
 | Pikachu | wild | 12 | Rewrite | ThunderShock, Tail Whip, Thunder Wave, Sweet Kiss | Quick Attack 13, Trailblaze 17, Slam 21, Thunderbolt 26 | Pikachu; Raichu in Maylene |
 | Cherubi | wild | 13 | Oxide | Tackle, Growth, Leech Seed, Helping Hand | Magical Leaf 19; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
-| Cherubi | wild | 13 | Rewrite | Tackle, Leech Seed, Helping Hand | Magical Leaf 19, Stun Spore 22, Draining Kiss 25; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
+| Cherubi | wild | 13 | Rewrite | Tackle, Leech Seed, Helping Hand | Magical Leaf 19, Stun Spore 22, Draining Kiss 25 | Cherrim (from 25) |
 | Hoppip | wild | 13 | Oxide | Synthesis, Tail Whip, Tackle, PoisonPowder | Stun Spore 14, Sleep Powder 16; as Skiploom: Bullet Seed 20, Leech Seed 24 | Skiploom (from 18); Jumpluff in Fantina |
 | Hoppip | wild | 13 | Rewrite | Synthesis, Tackle, Silver Wind | Stun Spore 14, Sleep Powder 16, Magical Leaf 17, Acrobatics 18; as Skiploom: Bullet Seed 20, Leech Seed 24, Mega Drain 25 | Skiploom (from 18); Jumpluff in Fantina |
 | Squirtle | wild | 13 | Oxide | Tail Whip, Bubble, Withdraw, Water Gun | Bite 16; as Wartortle: Bite 16, Rapid Spin 20, Protect 24 | Wartortle (from 16); Blastoise in Maylene |
@@ -330,7 +330,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Burmy | honey | 10 | Rewrite | Tackle | Bug Bite 15, Confusion 17, Roost 18, Hidden Power 20; as Wormadam: Hidden Power 20, Razor Leaf 26 | Wormadam (from 20) |
 | Burmy | honey | 10 | Rewrite | Tackle | Bug Bite 15, Confusion 17, Roost 18, Hidden Power 20; as Mothim: Hidden Power 20, Gust 26 | Mothim (from 20) |
 | Cherubi | honey | 10 | Oxide | Tackle, Growth, Leech Seed | Helping Hand 13, Magical Leaf 19; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
-| Cherubi | honey | 10 | Rewrite | Tackle, Leech Seed | Helping Hand 13, Magical Leaf 19, Stun Spore 22, Draining Kiss 25; as Cherrim: Petal Dance 25 | Cherrim (from 25) |
+| Cherubi | honey | 10 | Rewrite | Tackle, Leech Seed | Helping Hand 13, Magical Leaf 19, Stun Spore 22, Draining Kiss 25 | Cherrim (from 25) |
 | Combee | honey | 10 | Oxide | Sweet Scent, Gust | Bug Bite 13; as Vespiquen: Power Gem 21, Heal Order 25 | Vespiquen (from 21) |
 | Combee | honey | 10 | Rewrite | Gust | Bug Bite 13, Pursuit 17, Roost 21; as Vespiquen: Power Gem 21, Poison Sting 22, Confuse Ray 23, Defend Order 24, Heal Order 25 | Vespiquen (from 21) |
 | Dottler | honey | 10 | Oxide | Reflect, Light Screen, Confusion, Struggle Bug | Psybeam 20 | Dottler; Orbeetle in Fantina |

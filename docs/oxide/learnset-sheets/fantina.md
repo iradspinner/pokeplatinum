@@ -127,7 +127,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Salandit | wild | 18 | Rewrite | Smog, Ember, Venom Drench, Flame Burst | Dragon Rage 21, Toxic 24, Mud Shot 27, Venoshock 29 | Salazzle (from 30) |
 | Dwebble | wild | 19 | both | Block, Sand-Attack, Faint Attack, Slash | Rock Tomb 21, Bug Bite 24, Night Slash 27, X-Scissor 31 | Dwebble; Crustle in Maylene |
 | Frogadier | wild | 19 | Oxide | Quick Attack, Lick, Water Pulse, Icy Wind | Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30 | Frogadier; Greninja in Maylene |
-| Frogadier | wild | 19 | Rewrite | Lick, Water Pulse, Icy Wind, Thief | Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30 | Frogadier; Greninja in Maylene |
+| Frogadier | wild | 19 | Rewrite | Lick, Water Pulse, Icy Wind, Thief | Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30 | Frogadier; Greninja in Maylene |
 | Nacli | wild | 19 | Oxide | Mud Shot, Smack Down, Rock Polish, Headbutt | Iron Defense 20; as Naclstack: Recover 30 | Naclstack (from 24); Garganacl in Maylene |
 | Nacli | wild | 19 | Rewrite | Rock Throw, Mud Shot, Smack Down, Headbutt | Iron Defense 20; as Naclstack: Bulldoze 24, Recover 25, Rock Polish 27, Rock Tomb 32 | Naclstack (from 24); Garganacl in Maylene |
 
@@ -144,7 +144,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Totodile | old rod | 9 | Oxide | Scratch, Leer, Water Gun, Rage | Bite 13, Scary Face 15; as Croconaw: Ice Fang 21, Flail 24, Crunch 30; as Feraligatr: Agility 30, Crunch 32 | Feraligatr (from 30) |
 | Totodile | old rod | 9 | Rewrite | Scratch, Water Gun | Flip Turn 10, Bite 13, Scary Face 15; as Croconaw: Ice Fang 21, Flail 24; as Feraligatr: Agility 30, Crunch 32, Slash 33 | Feraligatr (from 30) |
 | Froakie | old rod | 10 | Oxide | Pound, Water Gun, Growl, Quick Attack | Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16, Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30 | Frogadier (from 16); Greninja in Maylene |
-| Froakie | old rod | 10 | Rewrite | Pound, Water Gun, Quick Attack | Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30 | Frogadier (from 16); Greninja in Maylene |
+| Froakie | old rod | 10 | Rewrite | Pound, Water Gun, Quick Attack | Lick 13, Water Pulse 14, Icy Wind 16; as Frogadier: Icy Wind 16, Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30 | Frogadier (from 16); Greninja in Maylene |
 | Fomantis | wild | 17 | Oxide | Fury Cutter, Growth, Razor Leaf, Ingrain | Sweet Scent 27, Slash 28, X-Scissor 30, Synthesis 31, Leaf Blade 32 | Fomantis; Lurantis in Maylene |
 | Fomantis | wild | 17 | Rewrite | Leafage, Fury Cutter, Razor Leaf | Slash 28, X-Scissor 30, Synthesis 31, Leaf Blade 32 | Fomantis; Lurantis in Maylene |
 | Budew | wild | 18 | Oxide | Water Sport, Stun Spore, Mega Drain, Worry Seed | as Roselia: Sweet Scent 31 | Roselia (from 30); Roserade in Wake |
@@ -189,7 +189,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Bronzor | wild | 18 to 19 | Oxide | Confusion, Hypnosis, Imprison, Confuse Ray | Extrasensory 19, Iron Defense 26, Safeguard 30; as Bronzong: Block 33 | Bronzong (from 33) |
 | Bronzor | wild | 18 to 19 | Rewrite | Hypnosis, Imprison, Confuse Ray, Smart Strike | Extrasensory 19, Bulldoze 22, Iron Defense 26, Safeguard 30; as Bronzong: Block 33 | Bronzong (from 33) |
 | Geodude | wild | 18 | Oxide | Rock Polish, Rock Throw, Magnitude, Selfdestruct | Rollout 22, Rock Blast 25; as Graveler: Rock Blast 27, Earthquake 33 | Graveler (from 25); Golem in Wake |
-| Geodude | wild | 18 | Rewrite | Rock Throw, Bulldoze, Magnitude, Rock Polish | Rollout 22, Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Slide 30, Earthquake 33 | Graveler (from 25); Golem in Wake |
+| Geodude | wild | 18 | Rewrite | Rock Throw, Bulldoze, Magnitude, Rock Polish | Rollout 22, Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Tomb 30, Earthquake 33 | Graveler (from 25); Golem in Wake |
 | Gible | wild | 18 | Oxide | Tackle, Sand-Attack, Dragon Rage, Take Down | Sand Tomb 19; as Gabite: Slash 28, Dragon Claw 33 | Gabite (from 24); Garchomp in Byron |
 | Gible | wild | 18 | Rewrite | Tackle, Sand-Attack, Dragon Rage, Take Down | Sand Tomb 19, Bite 20, Block 21, Dragon Claw 22; as Gabite: Slash 25, Dragon Claw 33 | Gabite (from 24); Garchomp in Byron |
 | Glimmet | wild | 18 to 19 | Oxide | Acid Spray, AncientPower, Rock Polish, Stealth Rock | Venoshock 22, Selfdestruct 29, Rock Slide 33 | Glimmet; Glimmora in Maylene |
@@ -214,7 +214,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Stunky | wild | 19 | Rewrite | Focus Energy, Screech, Fury Swipes, SmokeScreen | Slash 22, Toxic 27, Venoshock 28, Metal Claw 30, Night Slash 32 | Stunky; Skuntank in Maylene |
 | Bonsly | wild | 20 | both | Flail, Low Kick, Rock Throw, Mimic | Block 22, Faint Attack 25, Rock Tomb 30; as Sudowoodo: Rock Slide 33 | Sudowoodo (from 32) |
 | Larvitar | wild | 20 | Oxide | Leer, Screech, Rock Slide, Scary Face | Thrash 23, Dark Pulse 28 | Pupitar (from 30); Tyranitar in Candice |
-| Larvitar | wild | 20 | Rewrite | Leer, Screech, Rock Slide, Scary Face | Thrash 23, Dark Pulse 28, StompingTantrum 30; as Pupitar: Payback 32 | Pupitar (from 30); Tyranitar in Candice |
+| Larvitar | wild | 20 | Rewrite | Leer, Screech, Rock Slide, Scary Face | Dark Pulse 28, StompingTantrum 30; as Pupitar: Payback 32 | Pupitar (from 30); Tyranitar in Candice |
 | Nacli | wild | 20 | Oxide | Smack Down, Rock Polish, Headbutt, Iron Defense | as Naclstack: Recover 30 | Naclstack (from 24); Garganacl in Maylene |
 | Nacli | wild | 20 | Rewrite | Mud Shot, Smack Down, Headbutt, Iron Defense | as Naclstack: Bulldoze 24, Recover 25, Rock Polish 27, Rock Tomb 32 | Naclstack (from 24); Garganacl in Maylene |
 

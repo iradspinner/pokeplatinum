@@ -86,7 +86,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Feebas | good rod | 17 | Oxide | Splash, Tackle | Flail 30; as Milotic: Hydro Pump 37 | Milotic (from 30) |
 | Feebas | good rod | 17 | Rewrite | Whirlpool, Water Gun, Water Pulse, Tackle | Recover 21, Dragon Tail 24, Captivate 25, Flail 30; as Milotic: Twister 30, Recover 31, Aqua Tail 32, Aurora Beam 33, Dragon Pulse 35, Surf 37 | Milotic (from 30) |
 | Frogadier | good rod | 19 | Oxide | Quick Attack, Lick, Water Pulse, Icy Wind | Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37 | Greninja (from 36) |
-| Frogadier | good rod | 19 | Rewrite | Lick, Water Pulse, Icy Wind, Thief | Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
+| Frogadier | good rod | 19 | Rewrite | Lick, Water Pulse, Icy Wind, Thief | Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
 
 ## Route 203
 
@@ -101,7 +101,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Chinchou | good rod | 16 | Oxide | Supersonic, Thunder Wave, Flail, Water Gun | Confuse Ray 17, Spark 20, Take Down 23; as Lanturn: Stockpile 27, Swallow 27, Spit Up 27, BubbleBeam 30, Signal Beam 35 | Lanturn (from 27) |
 | Chinchou | good rod | 16 | Rewrite | Thunder Wave, Flail, Water Gun, Screech | Confuse Ray 17, Spark 20, Take Down 23, Icy Wind 26; as Lanturn: Stockpile 27, Swallow 28, Spit Up 29, BubbleBeam 30, Signal Beam 31, Scald 33, Surf 34, Thunderbolt 37 | Lanturn (from 27) |
 | Froakie | good rod | 17 | Oxide | Quick Attack, Lick, Water Pulse, Icy Wind | as Frogadier: Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37 | Greninja (from 36) |
-| Froakie | good rod | 17 | Rewrite | Quick Attack, Lick, Water Pulse, Icy Wind | as Frogadier: Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
+| Froakie | good rod | 17 | Rewrite | Quick Attack, Lick, Water Pulse, Icy Wind | as Frogadier: Thief 19, Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
 
 ## Route 204
 
@@ -151,7 +151,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Surskit | good rod | 17 | Oxide | Bubble, Quick Attack, Sweet Scent | Water Sport 19; as Masquerain: Gust 22, Scary Face 26, Stun Spore 33 | Masquerain (from 22) |
 | Surskit | good rod | 17 | Rewrite | Sticky Web, Quick Attack, Gust, Silver Wind | Water Sport 19; as Masquerain: Gust 22, BubbleBeam 25, Scary Face 26, Mud Bomb 29, Stun Spore 33, Surf 36, Giga Drain 38 | Masquerain (from 22) |
 | Froakie | good rod | 19 | Oxide | Quick Attack, Lick, Water Pulse, Icy Wind | Faint Attack 20; as Frogadier: Faint Attack 20, Acrobatics 22, Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37 | Greninja (from 36) |
-| Froakie | good rod | 19 | Rewrite | Quick Attack, Lick, Water Pulse, Icy Wind | Faint Attack 20; as Frogadier: Faint Attack 20, Acrobatics 22, Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
+| Froakie | good rod | 19 | Rewrite | Quick Attack, Lick, Water Pulse, Icy Wind | Faint Attack 20; as Frogadier: Faint Attack 20, Acrobatics 22, Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
 | Psyduck | good rod | 19 | Oxide | Tail Whip, Water Gun, Disable, Confusion | Water Pulse 22, Fury Swipes 27, Screech 31; as Golduck: Psych Up 37 | Golduck (from 33) |
 | Psyduck | good rod | 19 | Rewrite | Water Gun, Water Pulse, Disable, Confusion | Low Sweep 22, Fury Swipes 27; as Golduck: Surf 34, Psych Up 37 | Golduck (from 33) |
 
@@ -254,7 +254,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Smoliv | wild | 20 | Oxide | Razor Leaf, Helping Hand, Flail, Mega Drain | Grassy Terrain 23; as Dolliv: Seed Bomb 29, Energy Ball 34; as Arboliva: Leech Seed 39 | Arboliva (from 35) |
 | Smoliv | wild | 20 | Rewrite | Razor Leaf, Helping Hand, Flail, Mega Drain | as Dolliv: Charm 25, Mud Shot 26, Seed Bomb 29, Giga Drain 31, Energy Ball 34; as Arboliva: Leech Seed 39 | Arboliva (from 35) |
 | Frogadier | good rod | 22 | Oxide | Water Pulse, Icy Wind, Faint Attack, Acrobatics | Low Kick 25, Waterfall 30, Fling 35; as Greninja: Scald 37 | Greninja (from 36) |
-| Frogadier | good rod | 22 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Scald 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
+| Frogadier | good rod | 22 | Rewrite | Icy Wind, Thief, Faint Attack, Acrobatics | Low Kick 25, Mud Shot 27, Waterfall 30, Fling 35; as Greninja: Shadow Sneak 36, Scald 37 | Greninja (from 36) |
 | Spiritomb | static battle | 25 | Oxide | Faint Attack, Hypnosis, Dream Eater, Ominous Wind | Sucker Punch 31, Nasty Plot 37 | Spiritomb |
 | Spiritomb | static battle | 25 | Rewrite | Faint Attack, Hypnosis, Dream Eater, Ominous Wind | Sucker Punch 31, Silver Wind 34, Nasty Plot 37 | Spiritomb |
 
@@ -265,7 +265,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Scyther | wild | 18 | Oxide | Focus Energy, Pursuit, False Swipe, Agility | as Scizor: Metal Claw 21, Fury Cutter 25, Slash 29, Razor Wind 33, Iron Defense 37 | Scizor (from 18) |
 | Scyther | wild | 18 | Oxide | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: False Swipe 18, Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, X-Scissor 36 | Kleavor (from 18) |
 | Scyther | wild | 18 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Scizor: Metal Claw 21, Fury Cutter 25, Slash 29, Skitter Smack 34, Iron Defense 37 | Scizor (from 18) |
-| Scyther | wild | 18 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: False Swipe 18, Bug Bite 19, Rock Smash 20, Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Slide 35, X-Scissor 36 | Kleavor (from 18) |
+| Scyther | wild | 18 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: False Swipe 18, Bug Bite 19, Rock Smash 20, Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Tomb 34, X-Scissor 36 | Kleavor (from 18) |
 | Corvisquire | wild | 19 | Oxide | Leer, Fury Attack, Sand-Attack, Pluck | Steel Wing 20, Drill Peck 26, FeatherDance 32, Revenge 38 | Corvisquire; Corviknight in Wake |
 | Corvisquire | wild | 19 | Rewrite | Peck, Leer, Sand-Attack, Pluck | Steel Wing 20, Drill Peck 26, Low Sweep 29, FeatherDance 32, U-turn 35, Revenge 38 | Corvisquire; Corviknight in Wake |
 | Fletchinder | wild | 19 | Oxide | Growl, Quick Attack, Aerial Ace, Flame Charge | Roost 22, Will-O-Wisp 27, Natural Gift 31; as Talonflame: Acrobatics 38 | Talonflame (from 36) |
@@ -356,7 +356,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Carbink | wild | 21 | Oxide | Sharpen, Smack Down, Guard Split, Reflect | Flail 24, AncientPower 25, Rock Polish 25, Rock Slide 35, Stealth Rock 36 | Carbink |
 | Carbink | wild | 21 | Rewrite | Guard Split, Bulldoze, Reflect, Draining Kiss | Flail 24, AncientPower 25, Rock Polish 26, Dazzling Gleam 27, Rock Tomb 30, Rock Slide 35, Stealth Rock 36 | Carbink |
 | Geodude | wild | 21 | Oxide | Rock Polish, Rock Throw, Magnitude, Selfdestruct | Rollout 22, Rock Blast 25; as Graveler: Rock Blast 27, Earthquake 33, Explosion 38 | Graveler (from 25); Golem in Wake |
-| Geodude | wild | 21 | Rewrite | Rock Throw, Bulldoze, Magnitude, Rock Polish | Rollout 22, Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Slide 30, Earthquake 33, Iron Head 36, Rock Tomb 39 | Graveler (from 25); Golem in Wake |
+| Geodude | wild | 21 | Rewrite | Rock Throw, Bulldoze, Magnitude, Rock Polish | Rollout 22, Rock Blast 25; as Graveler: Karate Chop 25, Rock Blast 27, Rock Tomb 30, Earthquake 33, Sucker Punch 36, Iron Head 39 | Graveler (from 25); Golem in Wake |
 | Gothita | wild | 21 | Oxide | Psybeam, DoubleSlap, Fake Tears, Embargo | Psyshock 22, Hypnosis 24, Faint Attack 24, Charm 30; as Gothorita: Heal Block 34, Psych Up 35, Flatter 37, Psychic 39 | Gothorita (from 32); Gothitelle in Wake |
 | Gothita | wild | 21 | Rewrite | Psybeam, DoubleSlap, Embargo, Fake Tears | Psyshock 22, Faint Attack 23, Hypnosis 24, Dark Pulse 27, Charm 30; as Gothorita: Heal Block 32, Psych Up 33, Flatter 37, Psychic 39 | Gothorita (from 32); Gothitelle in Wake |
 | Klefki | wild | 21 | Oxide | Metal Sound, Crafty Shield, Torment, Draining Kiss | Recycle 33, Imprison 33, Mirror Shot 34, Flash Cannon 36, Foul Play 38 | Klefki |
@@ -465,7 +465,7 @@ Written by `tools/oxide/balance/learncheck.py sheets` for check 6 of the learnse
 | Scyther | honey | 19 | Oxide | Focus Energy, Pursuit, False Swipe, Agility | as Scizor: Metal Claw 21, Fury Cutter 25, Slash 29, Razor Wind 33, Iron Defense 37 | Scizor (from 19) |
 | Scyther | honey | 19 | Oxide | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, X-Scissor 36 | Kleavor (from 19) |
 | Scyther | honey | 19 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Scizor: Metal Claw 21, Fury Cutter 25, Slash 29, Skitter Smack 34, Iron Defense 37 | Scizor (from 19) |
-| Scyther | honey | 19 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: Bug Bite 19, Rock Smash 20, Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Slide 35, X-Scissor 36 | Kleavor (from 19) |
+| Scyther | honey | 19 | Rewrite | Focus Energy, Pursuit, False Swipe, Agility | as Kleavor: Bug Bite 19, Rock Smash 20, Skitter Smack 22, Aerial Ace 25, Dual Wingbeat 28, Rock Blast 32, Rock Tomb 34, X-Scissor 36 | Kleavor (from 19) |
 | Sewaddle | honey | 19 | Oxide | Tackle, String Shot, Bug Bite, Razor Leaf | as Leavanny: Helping Hand 32, Leaf Blade 36, X-Scissor 39 | Leavanny (from 30) |
 | Sewaddle | honey | 19 | Rewrite | Sticky Web, Bug Bite, Razor Leaf, Pounce | as Swadloon: Struggle Bug 22, Bite 26; as Leavanny: Fell Stinger 30, Helping Hand 32, Leaf Blade 36, X-Scissor 39 | Leavanny (from 30) |
 | Steenee | honey | 19 | Oxide | Play Nice, Rapid Spin, Razor Leaf, Sweet Scent | Magical Leaf 21, Teeter Dance 23, Stomp 25, Aromatic Mist 32; as Tsareena: Low Sweep 32, Aromatherapy 38 | Tsareena (from 32) |
