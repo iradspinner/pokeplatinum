@@ -102,6 +102,22 @@ def check_weather_rock(results):
     results.append(("a weather move lasts eight turns with its rock", ok, f"{rock} and {b2.weather_turns}"))
 
 
+def check_map_weather_replaced(results):
+    """A weather move replaces a map's permanent weather for good: the
+    move's script clears every weather flag, the map's included, and when
+    its five turns end only its own flag clears, so the field is left
+    clear (effect_script_0136, subscript_raining_end)."""
+    b, p, foe = battle(["Rain Dance"], ["Tackle"], {})
+    b.st["base_weather"], b.weather = "Sand", "Sand"
+    fs.status_move(b, p, fs.move("Rain Dance"), foe, True)
+    during = b.weather
+    for _ in range(5):
+        fs.end_of_turn(b)
+    ok = (during, b.weather) == ("Rain", None)
+    results.append(("a weather move ends a map's weather, which does not come back", ok,
+                    f"during {during}, after five turns {b.weather}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -311,7 +327,7 @@ def check_sure(results):
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
-                  check_weather_rock, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
+                  check_weather_rock, check_map_weather_replaced, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):
         check(results)

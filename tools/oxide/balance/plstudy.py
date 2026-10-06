@@ -37,7 +37,7 @@ import sys
 import time
 
 from ..encounters import calc_trainers
-from . import data, fightsim as fs, plgoal2, plplan, plscore, plstep3, plteam, plteam_test
+from . import data, fightsim as fs, plgoal2, plplan, plscore, plstep3, plteam, plteam_test, pressure
 
 EXAMPLES = os.path.expanduser("~/oxide-trials/kaizo-teams/out/examples")
 OUT = os.path.join(plteam.ROOT, "study")
@@ -71,9 +71,12 @@ def trainer_party(path):
 
 def prepare(paths, split, cap, recs, stock):
     """(st, box keys, [(boss keys, flags)] per trainer) for these trainer
-    files against this box."""
+    files against this box. The field starts in the map weather of the
+    trainers the files rebuild, matched by file name, as a story fight's
+    does (the comb's Roark was read with no sand until 2026-10-06)."""
     parties = [trainer_party(p) for p in paths]
-    st = fs.prepare(split, [p for p, _f in parties], None, cap=cap, given_side=recs)
+    weather = pressure.fight_weather(trainer_ids([os.path.basename(p)[:-len(".json")] for p in paths]))
+    st = fs.prepare(split, [p for p, _f in parties], weather, cap=cap, given_side=recs)
     st["item_stock"] = dict(stock)
     keys = [f"p{i}" for i in range(len(recs))]
     return st, keys, [(st["bosses"][i], f) for i, (_p, f) in enumerate(parties)]
