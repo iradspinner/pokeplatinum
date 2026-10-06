@@ -206,3 +206,50 @@ The rules drawn from it:
 - **R17, a buffed line's kit follows its new stats.** Oxide's Steelix hits
   far harder than vanilla's, so its kit is an attacker's with good utility
   (later-generation utility moves among the candidates), not a pure wall's.
+
+## 4. Shinx (2026-10-06)
+
+Shown: the line chosen as passing every original check. Shinx caught at 2
+to 6 knows Tackle (and Leer); it learns Leer 5, Charge 9 and Spark 13; Luxio
+at 15 learns Bite 18, Roar 23, Swagger 28 and Thunder Fang 33; Luxray
+(Electric/Dark in Oxide) at 30 learns Thunder Fang 35, Crunch 42, Scary Face
+49, Discharge 56, Double-Edge 60 and Volt Tackle 64. Shown as failing Ian's
+rules: four moves by Roark's cap, one new move a split from Fantina's on, no
+coverage once Luxray is Dark, a special Discharge on a physical line, and no
+later-generation moves.
+
+Ian's verdict, verbatim (he corrected point 2 to "players" afterwards):
+
+1. Tackle Leer Charge Spark is very uninspired for first split, but with
+   leer ->something else and one more move it is fine.
+2. Roar is nearly useless for players, its biggest "boon" is having it be on
+   some catch learnsets to make certain encounters risky because they can
+   roar you.
+3. Gardenia split moveset is way, way too sparse.
+4. Swagger is incredible utility, but that is its only good utility move
+   (charge is okay).
+5. An idea for "delay-demons" (I.E., pokemon that you delay a very long time
+   for a very big payoff) would be something like moving double-edge and
+   volt tackle to 66+ (volkner split and later) then having luxio getting
+   volt tackle and double edge by Galactic/Battle Zone split as it
+   incentivizes hurting your box early for great moves in very difficult
+   splits.
+
+The rules drawn from it:
+
+- **R1 again, a first split with some flavour.** Four plain moves (an
+  attack, a stat drop, a weak setup, a STAB) are "uninspired"; one weak
+  filler swapped for something better and one move more makes it fine.
+- **R2 again.** A split with two new moves can still be far too sparse
+  (Gardenia's here).
+- **R7, more tiers.** Incredible: Swagger. Okay: Charge. Nearly useless for
+  the player: Roar. Weak filler: Leer.
+- **R18, Roar belongs on wild Pokemon.** A phazing move's real use is on a
+  wild catch's list, where it makes the encounter risky because it can end
+  it. This bears on v3's open question about the wild slots that can end an
+  encounter: Ian sees that risk as a feature where it is chosen.
+- **R19, delay demons.** A few lines are built for a long hold: the earlier
+  stage learns the line's big moves several splits before the evolved form
+  (Luxio: Volt Tackle and Double-Edge by the Galactic split; Luxray: at 66
+  and later), so a player can weaken the box early to carry great moves into
+  the hardest splits. The gap crosses splits, by R8.
