@@ -228,7 +228,9 @@ read, so they are written here too. Each is a standing instruction.
   spinner the player can choose to walk into, or another optional fight,
   rather than sold, even though a shop with a set price would be simpler.
   The item pass places them; the balance census counts each from its
-  fight's split.
+  fight's split. A trainer's reward, held item or TM, is given
+  automatically straight after the player wins, not on talking to the
+  trainer again (Ian, 2026-10-06, relayed by the main track).
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go
