@@ -121,7 +121,10 @@ Run these in order; skipping one is how the next session starts confused.
    happened). Commit messages explain why and record what was verified; the
    attribution trailer is in the session's system reminder.
 6. **Report** to Ian in a few sentences: what landed, what was verified and how,
-   what is waiting on him. Lead with anything that failed.
+   what is waiting on him. Lead with anything that failed. A report doc, a
+   reading or a plan meant for him opens with a one-page summary: the outcome,
+   his action items, the next steps and how long each takes (Ian, 2026-10-06);
+   the detail goes below it, since he does not read long docs in full.
 
 ## Verification, the short list
 

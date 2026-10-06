@@ -241,6 +241,13 @@ read, so they are written here too. Each is a standing instruction.
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
+- Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
+  study result or plan that comes to him starts with a one-page summary: the
+  outcome, the action items (what he decides or does), the next steps, and
+  how long each step will take. The detail goes below that summary or in the
+  track's own doc, which he does not read in full; the trainer-scoring
+  handoff, at its length, is unreadable for him. A track's status home may
+  stay long, as long as its summary is kept current at its top.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
