@@ -9,25 +9,35 @@ the same day, and his answers are recorded below as decisions.
 ## Summary (2026-10-06)
 
 **Outcome.** Step 4 of the learnset plan (`docs/oxide/learnset-checks.md`)
-is built on its own branch, `balance-learnset-rewrite`: seventeen new
-checks read the locked rules, and a generator (`learnrewrite.py`) rewrote the
-level-up lists of 634 species by them, every change logged with its rule.
-On the rewrite every check passes but a handful of named cases and R2's
-two new moves a split late in the game. The report, with the summary and
-Ian's questions, is `docs/oxide/learnset-rewrite.md`. Poison Fang's rescore
-landed on `oxide` the same day: all 1,030 stored scores verified, nothing
-moved on Ian's fight scale.
+is built on its own branch, `balance-learnset-rewrite`, and its second
+loop answers step 5's exam: eighteen checks read the locked rules and
+Ian's exam verdicts, and a generator (`learnrewrite.py`) rewrote the
+level-up lists of 617 species by them, every change logged with its rule.
+Every check passes or improves on the first loop; what still falls short
+is a few named cases and R2's band count late in the game. The report,
+with the summary and Ian's questions, is `docs/oxide/learnset-rewrite.md`.
+Poison Fang's rescore landed on `oxide` the same day: all 1,030 stored
+scores verified, nothing moved on Ian's fight scale.
 
-**Ian's action items.** Seven move reworks to rule on, R2's threshold late
-in the game, and a few named cases; the report sets each out with its
-context and a recommendation.
+**Ian's action items.** The move reworks, the named cases and staple
+coverage stay open from the first loop, and he may accept R2's late
+shortfall; the report sets each out with its context and a
+recommendation.
 
-**Next steps.** The rescore on the new lists, checks 2 and 3 and the gate
-(an hour or two of machine time); then step 5, the checks and the sealed
-exam, which the Overseer runs; then the TM pass rerun on the new lists,
-with the reward table and the gauntlet list (2 to 3 hours, and 2 to 3 to
-write it in). No boss is read until the rewrite and the TM pass have both
-landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+**Next steps.** The Overseer lands the branch; then the TM pass rerun on
+the new lists, with the reward table and the gauntlet list (2 to 3 hours,
+and 2 to 3 to write it in). No boss is read until the rewrite and the TM
+pass have both landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+
+**Ian's exam verdicts (2026-10-06, relayed by the Overseer)**, now rules
+of the generator and the checks: a strong move below a catch level moves
+to it; branches of one line are close in worth where the player chooses
+(check 24); a trainer-only move never lands in a wild catch's four (it
+goes to the egg list); the Eeveelutions are the exception to the stone
+rule and learn from 20; Haze and Memento are terrible; anything under 90%
+accuracy is hard to justify. The ceilings bind only the moves the
+generator adds or moves; Oxide's existing entries stay (the Overseer's
+correction, the same day).
 
 **Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
 come from the whole pool of moves Oxide has; later games' learnsets

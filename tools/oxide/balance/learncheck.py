@@ -2001,7 +2001,8 @@ RULES = {7: "R1, five or six moves by the first split's cap, at most one filler"
          19: "R37, no attack under 90% accuracy",
          20: "Every evolution that needs a known move reachable by level-up",
          21: "A real level-up move from 61 on each final form",
-         22: "List hygiene: one move a level, none past 78, no move twice",
+         22: "List hygiene and fit: one move a level, none past 78, no move twice, no trainer-only "
+             "move in a wild catch's four, False Swipe early, at most two recovery moves",
          23: "R16, a move from after Generation 4 on every line",
          24: "Branches of one line close in worth where the player chooses (Ian, 2026-10-06)"}
 

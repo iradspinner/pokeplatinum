@@ -89,7 +89,8 @@ def check_r2(results):
     ok = (cm["verdict"] == "fail" and cm["short"] == ("17-24",) and names(cm["bands"]["17-24"]) == ["Scary Face"]
           and names(onix.get("17-24", ())) == ["Rock Tomb"] and names(onix.get("33-33", ())) == ["DragonBreath"])
     results.append(("check 8 (R2) reads Charmeleon's first band and Onix's hold", ok,
-                    f"Charmeleon {names(cm['bands'].get('17-24', ()))}, Onix {dict((b, names(m)) for b, m in onix.items())}"))
+                    f"Charmeleon {names(cm['bands'].get('17-24', ()))}, "
+                    f"Onix {dict((b, names(m)) for b, m in onix.items())}"))
 
 
 def check_fit_rows(results):

@@ -1440,13 +1440,13 @@ def settle_family(d, fam):
             if how in ("level-up", "evolving") and m["class"] != "STATUS" and not m["priority"]:
                 # A plain attack, or one whose effect a stronger held attack
                 # brings as well (Mega Drain after Giga Drain), brings nothing.
+                same_effect = lambda n: (M()[n]["effect"] == m["effect"]
+                                         and (M()[n]["effect_chance"] or 0) >= (m["effect_chance"] or 0))
                 stronger = next((n for n in held if n != mv and M()[n]["type"] == m["type"]
                                  and M()[n]["class"] == m["class"] and lc.reliable(n)
                                  and lc.effective_power(n) > lc.effective_power(mv)
                                  and lc._acc(n) >= lc._acc(mv)
-                                 and (m["effect"] in PLAIN or (M()[n]["effect"] == m["effect"] and
-                                                               (M()[n]["effect_chance"] or 0) >= (m["effect_chance"] or 0)))),
-                                None)
+                                 and (m["effect"] in PLAIN or same_effect(n))), None)
                 entry = next((e for e in d.lists[holder] if e[1] == mv and e[0] == (0 if how == "evolving" else lv)),
                              None)
                 if stronger and entry:

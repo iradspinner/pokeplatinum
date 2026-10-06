@@ -89,12 +89,15 @@ def check_delta(results):
                     bool(d and d.get("evolutions")),
                     str((d or {}).get("evolutions"))))
     # Every native has a hidden ability since element 8 (357b3b855), which
-    # vanilla has none of, so Bulbasaur's numbers agree with vanilla and its
-    # delta is that ability alone.
-    unchanged = pokedex.delta(root, "SPECIES_BULBASAUR")
+    # vanilla has none of, so Ditto's numbers agree with vanilla and its delta
+    # is that ability alone. The sample was Bulbasaur until the learnset
+    # rewrite of 2026-10-06 changed its level-up list; Ditto learns only
+    # Transform, which the rewrite leaves alone (Ian's approval, relayed by
+    # the Overseer, to change the sample species only).
+    unchanged = pokedex.delta(root, "SPECIES_DITTO")
     results.append(("a species whose numbers vanilla still agrees with reports only its "
                     "hidden ability",
-                    unchanged == {"hidden_ability": "CHLOROPHYLL"}, str(unchanged)))
+                    unchanged == {"hidden_ability": "IMPOSTER"}, str(unchanged)))
 
 
 def check_chart(results):
