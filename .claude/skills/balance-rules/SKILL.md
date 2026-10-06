@@ -89,12 +89,14 @@ is listed for Ian.
   Comeuppance, vanilla Octazooka and Submission are the named ones.
 - No two moves on one level. Nothing that ends a wild encounter moves into
   the levels the species is met wild at. Fletchling keeps Will-O-Wisp at 25.
-- **Later-generation moves**: moves vanilla Platinum's species learn by level
-  up in later games come in through the same rules, as adds or as
-  replacements for a weaker Generation 4 move. The source is hg-engine's
-  per-game lists in `~/hg-engine` (a sparse clone, so read
-  `data/learnsets/base/*.json` with `git show HEAD:<path>`). Moves later
-  games give only by TM, tutor or egg wait for the TM pass. Judge a move by
+- **Later-generation moves**: a level-up list draws on Oxide's whole pool of
+  working moves, scored by fit to the line (its types, attacking stats,
+  abilities and role). Later games' learnsets, by any method (hg-engine's
+  per-game lists in `~/hg-engine`, a sparse clone read with `git show
+  HEAD:data/learnsets/base/<species>.json`, or looked up), are inspiration
+  that weighs in a move's favour, never the list to pick from (Ian,
+  2026-10-06, relayed by the balance track; it replaces the rule that moves
+  later games give only by TM, tutor or egg wait for the TM pass). Judge a move by
   what Oxide's engine does with it (the move-pool survey's `engine_status`),
   not by whether the survey lists it. A move missing only a doubles effect
   (Flame Burst) may be placed. Synchronoise and the other broken ones stay

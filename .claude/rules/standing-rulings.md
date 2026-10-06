@@ -100,6 +100,13 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
+- A level-up list may take any working move in Oxide that fits the line
+  (Ian, 2026-10-06, relayed by the balance track): "You should look at the
+  total pool of available moves for possible additions; future gen
+  learnsets (either via hg-engine or via looking them up) should be used as
+  inspiration, not as pick lists." A move a later game, Generation 4 or
+  Kaizo gives the line weighs in its favour; its absence there does not
+  rule it out.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
