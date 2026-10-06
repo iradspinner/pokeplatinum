@@ -612,3 +612,30 @@ The rules drawn from it:
 - **R7, more tiers.** SSS: Toxic (up from good). Great: Tickle. Fine:
   Poison Powder (strictly worse than Toxic). Terrible: Wring Out (worse than
   Slam).
+
+## 14. Beldum (2026-10-06)
+
+Shown: the line met only as a wild Metang at 31 on Iron Island in Byron's
+split (Beldum's list is Take Down alone), knowing Metal Claw, Confusion,
+Scary Face and Pursuit; it learns Bullet Punch 32, Psychic 36, Iron Defense
+40 and Agility 44, and Metagross at 45 learns Hammer Arm 45, Meteor Mash 53,
+Zen Headbutt 62 and Hyper Beam 71 (a Metang held gets Meteor Mash 48 and Zen
+Headbutt 52). Six new moves inside Byron's split, then nothing for two
+splits; coverage only Pursuit and Hammer Arm.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. With how good metagross is, its fine being limited on coverage moves, but
+   this is too limited.
+2. Iron defense = great (especially on shell armor/battle armor pkmn).
+
+The rules drawn from it:
+
+- **R35, coverage scales against power, within limits.** A very strong line
+  may be held to less coverage than a weak one, but never to almost none.
+- **R31 again, abilities shape the list.** A defensive boost is worth more
+  where an ability keeps it (Shell Armor and Battle Armor stop the critical
+  hits that ignore it).
+- **R7, more tiers.** Great: Iron Defense.
