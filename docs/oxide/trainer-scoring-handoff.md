@@ -2181,6 +2181,14 @@ biased/inaccurate with a skewed box here." No pool is adjusted for a shared
 weakness, and the comb's readings above stand, every blind one drawn from
 the stronger half.
 
+Ian approved the comb as built (2026-10-06, relayed by the Overseer): the
+teams are "all in the approximate right ballpark (barry and roark aren't
+perfect, but I want to move on from the first split as I think it can
+give funky data)". Roark's split is not read again; once he approves the
+study's combs of Gardenia's and Fantina's splits, the three go into the
+trainer files together and goal 3 reads those two splits' bosses (the
+tracker's Scheduled list).
+
 ## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
 
 Ian's plan of learnsets by check and verify (`docs/oxide/learnset-checks.md`)
