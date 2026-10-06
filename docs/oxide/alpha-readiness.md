@@ -5,8 +5,7 @@ in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
 Kaizo comb; the splits it has finished when the TM pass lands go in. The
 Overseer updates this page as each step finishes and tells Ian, step by step.
 
-**Status on 2026-10-06.** Step 1 is done. Steps 2 and 9 are under way or ready
-to start. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
+**Status on 2026-10-06.** Step 1 is done. Steps 2 and 9 are under way. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
 two to three days, set mostly by Ian's three decision points (steps 3, 7 and
 14) and the TM pass. Every estimate is a session's own or the Overseer's
 guess, and says which.
@@ -21,7 +20,7 @@ guess, and says which.
 | 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
 | 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
 | 8 | Item data and the bigger Bag (the save break) | Balance Agent | | 2 to 3 hours, a build and a rescore (its estimate) | 7 |
-| 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session | ready to start | 3 to 4 hours (Overseer's guess) | |
+| 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | under way since 2026-10-06 | 3 to 4 hours (Overseer's guess) | |
 | 10 | Rewards placed in the maps, gauntlet trainers filled in, both landed | main-track session | | 3 to 6 hours (Overseer's guess) | 7, 8, 9 |
 | 11 | The battle recorder logs Ian's moves (the melonDS bridge) | Overseer | not started | about half a day (Overseer's guess) | |
 | 12 | The comb's finished splits go into the game, with one rescore | Overseer, Balance Agent | | a few hours | 8 |
