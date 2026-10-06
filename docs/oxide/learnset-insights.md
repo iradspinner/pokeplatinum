@@ -586,3 +586,29 @@ The rules drawn from it:
   Solar Blade in sun) are reworked, since they are nearly useless (Giga Impact
   on Slaking, whose Truant wastes the turn anyway, is the exception). Feint
   leaves the game.
+
+## 13. Tangela (2026-10-06)
+
+Shown: Tangela caught at 19 in Maylene's split knows Absorb, Growth, Poison
+Powder and Vine Whip (Sleep Powder at 5 is lost to the capture rule); it
+learns Bind 22, Mega Drain 26, Stun Spore 29 and Ancient Power 33; Tangrowth
+(on knowing Ancient Power, or at 35) learns Knock Off 36, Natural Gift 40,
+Slam 43, Tickle 47, Wring Out 50, Power Whip 54 and Block 57. No Grass attack
+above 45 power before Power Whip.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. Pretty solid moveset all things considered, but it is very sparse on
+   special moves despite being a mixed attacker.
+2. Tickle is great, poison powder is fine (strictly worse than SSS-tier
+   toxic), wring out is a terrible move especially compared to slam.
+
+The rules drawn from it:
+
+- **R34 again.** A mixed attacker short of special attacks fails the same
+  rule as one short of physical ones.
+- **R7, more tiers.** SSS: Toxic (up from good). Great: Tickle. Fine:
+  Poison Powder (strictly worse than Toxic). Terrible: Wring Out (worse than
+  Slam).
