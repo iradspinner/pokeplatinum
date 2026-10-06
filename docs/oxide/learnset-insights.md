@@ -143,3 +143,66 @@ The rules drawn from it:
   status spreader, a second status move, and a coverage or second-type
   attack (Giga Drain, Toxic Spikes, Stun Spore and a coverage move), with
   more options beside them.
+
+## 3. Onix (2026-10-06)
+
+Shown: Onix caught at 5 to 7 in Oreburgh Gate or the Mine knows Tackle,
+Harden, Bind and Screech; it learns Rock Throw 9, Rage 14, Rock Tomb 17,
+Slam 25 (100 power in Oxide's data), Rock Polish 30, Dragon Breath 33,
+Curse 38, Iron Tail 41, Sand Tomb 46 (Steelix: Crunch), Double-Edge 49 and
+Stone Edge 54. Steelix comes from levelling with a Metal Coat, which the
+checker first finds in Gardenia's split; its Thunder, Ice and Fire Fang sit
+only at level 1.
+
+Ian's verdict, verbatim (his numbering, with two 4s):
+
+1. Tackle and bind are both pretty bad, really don't like having both here.
+   Rage is useless as well, its just a terrible move.
+2. Steelix is far, far too good to have in gardenia split; should probably
+   only be accessible by maylene/wake/byron split.
+3. Slam +rock tomb is pretty fantastic for gardenia split, especially with
+   screech which is quite good.
+4. You called it out, no ground moves is a travesty.
+4. Mud sport is terrible
+5. Other than what I brought up above, you mostly have the gist of it: more
+   coverage is needed, the timing on moves is not perfect and dragon breath
+   makes no sense, there's no ground move available, but its utility moves
+   are pretty okay with screech, curse, and rock polish.
+6. Regarding "a wall like Steelix may not need much offence, so what should
+   its kit be for instead?", Steelix gets a pretty massive offensive buff,
+   but other utility moves (especially ones from newer generations) could be
+   considered.
+7. On the newer generation point, all 3 pokemon so far have 0 newer gen
+   moves; we expanded the movepool for a reason, and its not just to give
+   gen5+ pokemon their intended movesets but also to expand the movesets of
+   existing pokemon as well. We can't look at Kaizo for these moves as they
+   are not present there, so we'll have to do the placement ourselves.
+
+He also approved Kaizo's one-turn versions of the rampage moves the same
+day (standing rulings), which lifts R9 once they land.
+
+The rules drawn from it:
+
+- **R7, more tiers.** Terrible: Mud Sport, Rage. Pretty bad: Tackle, Bind
+  (one weak opener or binder at most, not both). Quite good: Screech. Good:
+  Curse, Rock Polish.
+- **R11 again, every type gets an attack.** A line with no attack of one of
+  its types (Ground on Onix and Steelix) is a travesty.
+- **R13, a strong evolution is placed by its power.** An evolution that
+  makes a line far stronger (Steelix) is reachable only from a split that
+  suits the evolved form, here Maylene's to Byron's. Where an item opens it,
+  the item's first placement is part of the learnset's design, for the item
+  pass.
+- **R14, early neutral power is welcome.** A strong Normal attack beside an
+  own-type one and a good status move (Slam, Rock Tomb and Screech) is a
+  fine early kit.
+- **R15, coverage fits the line.** A coverage move uses the line's attacking
+  stat and makes sense for it; a special Dragon Breath on a physical Onix
+  makes none.
+- **R16, later-generation moves for every line.** The expanded move pool is
+  for old lines too, not only for the later species. Every line gets
+  suitable later-generation moves, attacks and utility alike, and since Kaizo
+  has none of them, Oxide places them itself.
+- **R17, a buffed line's kit follows its new stats.** Oxide's Steelix hits
+  far harder than vanilla's, so its kit is an attacker's with good utility
+  (later-generation utility moves among the candidates), not a pure wall's.

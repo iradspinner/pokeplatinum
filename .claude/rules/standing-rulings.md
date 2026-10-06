@@ -80,6 +80,12 @@ read, so they are written here too. Each is a standing instruction.
   later too. Sleep moves, powders, Thunder Wave, Dark Void
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
+  The rampage moves become one-turn moves, since a two- or three-turn lock
+  is too dangerous in a permadeath run (Ian, 2026-10-06): Thrash, Petal
+  Dance and Outrage take Kaizo's versions (Thrash 120 with a 20% paralysis
+  chance and a third of the damage as recoil; Petal Dance 100 with a 20%
+  confusion chance; Outrage 140 with half as recoil), and Uproar and Raging
+  Fury, which Kaizo lacks, get one-turn versions on the same pattern.
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
   browser, never a bare path (Ian, 2026-09-27): the OxiDex's viewer at
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
