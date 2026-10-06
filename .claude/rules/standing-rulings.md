@@ -112,6 +112,13 @@ read, so they are written here too. Each is a standing instruction.
   to fill a gap a rule asks for, and the attacks and utility moves it adds
   keep under per-split ceilings, his answer 8 of 2026-09-27 (no ceiling on
   coverage power) set aside for this pass.
+  From the learnset exam (Ian, 2026-10-06): a move meant only for trainers
+  never lands in a wild catch's four (it goes on the egg list, the trainers'
+  palette); two branches of one line are close in worth at the split where
+  the player chooses between them; a strong move below a line's catch level
+  moves to or after it; and Eevee's evolutions are the exception to the
+  stone rule's late, sparse lists, each learning a full moveset from 20, the
+  level Bebe's Eevee is held at.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
