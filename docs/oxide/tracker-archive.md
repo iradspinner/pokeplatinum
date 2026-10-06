@@ -86,6 +86,11 @@ A Scheduled entry acted on 2026-10-03, when Ian passed goal 2 and asked for part
 
 - **Once the scorer passes milestone 2** (the three-gym split through Fantina, every major fight passing; Ian, 2026-10-02, moving this from "once step 3 passes"): hand the Kaizo team study (`~/oxide-trials/kaizo-teams/`) the three-gym run's learnings and the trainer-scoring method, rewriting its brief to the fight-scoring rules in the standing rulings (no 1-to-10 scale and no `scores.md`; the three numbers; real odds with the very unlucky stress test; ties random; bosses over a spread of boxes). It then delivers a broad comb to shape Oxide's trainers quickly. Why: Ian, 2026-10-01: a fast, broad shaping of the trainers first, so the expensive full rescore measures teams already near their final shape. Unneeded if: Ian drops the Kaizo study or the comb, or milestone 2 does not pass.
 
+Two entries done on 2026-10-06, when MSYS2 was installed with winget at Ian's word and the fork built locally, as they stood:
+
+- **Once MSYS2 is installed on Windows**: build the melonDS fork on this PC with its own workflow's steps (`.github/workflows/build-windows.yml` in `iradspinner/melonDS-oxide`: the ucrt64 packages, then `cmake` with Ninja and the DLL gathering), then extend the bridge for the battle recorder (Phase 5: Verify, item 10). Why: GitHub Actions in the private repos are off for good (Ian, 2026-10-01), so this PC is the only place left to build the emulator, and the recorder needs each battler's moves, PP, status and stages and each turn's chosen action. Unneeded if: Ian drops the recorder's move logging, or picks another way to build the emulator.
+- **MSYS2 on Windows** (2026-10-01): the melonDS fork is to be built on this PC rather than on GitHub (his choice of the day). It needs MSYS2 installed from msys2.org into `C:\msys64`; Ian installs it, or tells the Overseer it may install it with `winget`. The build steps then follow (the Scheduled list).
+
 ## Phase 0: Setup
 
 - [x] Working folder created, both ROMs and both DSPRE extractions in place

@@ -186,8 +186,8 @@ read, so they are written here too. Each is a standing instruction.
 - No GitHub Actions in the private repos (`oxide-rom-builder`,
   `melonDS-oxide`), for good (Ian, 2026-10-01, ending the pause of
   2026-09-29). Every ROM is built locally and landed with `merge-branch.sh`;
-  the private ROM builder and `fetch-rom` are retired; the melonDS fork is to
-  be built on Ian's PC with MSYS2. The public repo's build on a push to
+  the private ROM builder and `fetch-rom` are retired; the melonDS fork is
+  built on Ian's PC with MSYS2 (since 2026-10-06). The public repo's build on a push to
   `oxide` is free and stays on, and gives the SHA-1 to compare with.
 - An instruction to act on a later day, or once something happens (Ian,
   2026-10-01), lives only in the tracker's Scheduled list, with why it exists
@@ -230,3 +230,10 @@ read, so they are written here too. Each is a standing instruction.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
+- Frame work as checks (Ian, 2026-10-06). AI work is best at tasks it can
+  verify and improve against that verification, and Ian's requests are often
+  not phrased that way. Before starting an open-ended request or project,
+  restate it to him as a short list of pass/fail checks, each saying how it
+  is verified (by the session alone, or by Ian in game with the session
+  reading the result), which pass today, and what he must decide; prompt him
+  to reword or rework the request into that form. Run the cheap checks first.
