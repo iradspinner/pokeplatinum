@@ -25,9 +25,9 @@ and the reading.
    commands.
 3. **Make sure the ROM Ian runs is the one your symbols come from.**
    `live_watch.py` resolves names in `build/main.nef` (or `--nef`), so a ROM
-   from another build puts every breakpoint in the wrong place. Build, check
-   the ROM's SHA-1 against GitHub's build of the same commit (CLAUDE.md,
-   Build), and give Ian the path and the hash. He loads that file.
+   from another build puts every breakpoint in the wrong place. Build, run
+   the gate (CLAUDE.md, Build), and give Ian the path and the hash. He loads
+   that file.
 4. Pick the breakpoints and work out what each will cost Ian. Warn him before
    arming one that an ordinary action trips (talking to any NPC, opening a
    menu, every frame of a wait), and say how to get past it.

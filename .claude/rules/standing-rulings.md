@@ -92,8 +92,10 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
-- Local builds are trusted (2026-09-29): a ROM counts when its SHA-1
-  matches GitHub's build of the same commit.
+- Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
+  local gate passes. Matching GitHub's SHA-1 first was a guard against the
+  degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
+  only if a build ever looks wrong.
 - How the fight scorer reads a fight (Ian, 2026-09-30, on the trainer-scoring
   handoff). The aim is to beat the game: a win that loses a Pokemon is still a
   win, but each loss takes away later team-building options. Lines are ranked

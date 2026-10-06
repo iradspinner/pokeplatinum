@@ -109,8 +109,10 @@ job under `tools/oxide/capped`, which stops it at a memory cap rather than
 let it run WSL out of memory (the design doc's findings log has both
 histories: the degraded CPU of 2026-09-22 and the WSL crash of 2026-10-02).
 
-Hand Ian a ROM built here from a pushed commit whose ROM matches GitHub's
-SHA-1 for it, copied into `~/oxide-playtest` as
+Hand Ian a ROM built here from a pushed commit as soon as the local gate
+passes (Ian, 2026-10-06: waiting for GitHub's SHA-1 was a guard against the
+old CPU, and comes back only if a build looks wrong), copied into
+`~/oxide-playtest` as
 `pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
 same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
