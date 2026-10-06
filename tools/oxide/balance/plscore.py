@@ -130,7 +130,8 @@ def prepare(f, given_side=None):
         weather = pressure.fight_weather([t["tr_id"] for t in trainers])
         split = fight["split"]
         cap = fs.fight_cap(split, key)
-        st = fs.prepare(split, parties, weather, bool(fight.get("trick_room")), cap=cap,
+        st = fs.prepare(split, parties, weather,
+                        fs.trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
                         given_side=given_side)
         variants = []
         for v, t in enumerate(trainers):
@@ -146,8 +147,8 @@ def prepare(f, given_side=None):
         st = pdoubles.prepare_trainer(t, split, fs.fight_cap(split))
         return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
                 "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
-    st = fs.prepare(split, [with_genders(t)], pressure.fight_weather([key]), cap=fs.fight_cap(split),
-                    given_side=given_side)
+    st = fs.prepare(split, [with_genders(t)], pressure.fight_weather([key]), fs.trick_room_for([t["constant"]]),
+                    cap=fs.fight_cap(split), given_side=given_side)
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}
 

@@ -1442,6 +1442,23 @@ def loafs(att):
     return False
 
 
+@functools.lru_cache(maxsize=None)
+def permanent_trick_room():
+    """The trainers whose battles open in a Trick Room that lasts the whole
+    fight, read from the game's own list (battle_lib.c,
+    sPermanentTrickRoomTrainers), so a reading follows the tree it runs in."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sPermanentTrickRoomTrainers\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    return frozenset(c for c in re.findall(r"TRAINER_\w+", body) if c != "TRAINER_NONE")
+
+
+def trick_room_for(constants, flag=False):
+    """Whether a fight against these trainers (their TRAINER_ constants)
+    opens in the permanent room: one of them is on the game's list, or the
+    fight's own trick_room flag in fights.json is set."""
+    return bool(flag) or any(c in permanent_trick_room() for c in constants)
+
+
 def custap_fires(mon):
     """A Custap Berry puts its holder first in its priority bracket, like a
     Quick Claw that always fires, at a quarter of its HP or less (half with
@@ -1553,7 +1570,8 @@ def status_move(b, att, mv, dfn, first):
             b.weather = WEATHER_OF[e]
             b.weather_turns = 8 if att.item == WEATHER_ROCK.get(b.weather) else 5
     elif e == "TRICK_ROOM":
-        b.trick_room = 0 if b.trick_room else 5
+        if b.trick_room < 999:               # a permanent room makes the move fail
+            b.trick_room = 0 if b.trick_room else 5
     elif e == "DOUBLE_SPEED_3_TURNS":
         if not own_side.tailwind:
             own_side.tailwind = 3
@@ -2999,13 +3017,15 @@ def story(key, runs=RUNS):
     cap = fight_cap(fight["split"], key)
     if fight.get("tag"):
         partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
-        st = prepare(fight["split"], parties, weather, bool(fight.get("trick_room")), cap=cap,
+        st = prepare(fight["split"], parties, weather,
+                     trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
                      partners=partners, doubles=True)
         st["battle"] = "tag"
         st["group_flags"] = [t["ai"] for t in trainers]
         st["partner_flags"] = ox[fight["partner_ids"][0]]["ai"] if fight.get("partner_ids") else 0
         return read_fight(st, [st["group_flags"][0]], runs)
-    st = prepare(fight["split"], parties, weather, bool(fight.get("trick_room")), cap=cap)
+    st = prepare(fight["split"], parties, weather,
+                 trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap)
     return read_fight(st, [t["ai"] for t in trainers], runs)
 
 
@@ -3015,8 +3035,8 @@ def trainer(tr_id, runs=RUNS, split=None):
     t = data.oxide_trainers()[tr_id]
     split = split or b6.placements()[tr_id]["split"]
     doubles = t.get("battle_type") == "Doubles" and PLAY_DOUBLES and len(t["party"]) > 1
-    st = prepare(split, [t["party"]], pressure.fight_weather([tr_id]), cap=fight_cap(split),
-                 doubles=doubles)
+    st = prepare(split, [t["party"]], pressure.fight_weather([tr_id]), trick_room_for([t["constant"]]),
+                 cap=fight_cap(split), doubles=doubles)
     if doubles:
         st["battle"] = "doubles"
     return read_fight(st, [t["ai"]], runs)

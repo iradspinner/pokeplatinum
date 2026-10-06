@@ -464,6 +464,33 @@ def map_weather_checks():
              f"{got}; the story fight's Roark {story}")]
 
 
+def trick_room_checks():
+    """Saturn 2 opens in the game's permanent Trick Room on every path, from
+    the game's own list (battle_lib.c, sPermanentTrickRoomTrainers): the
+    story fight, and the study's reader on his own file (which started clear
+    until 2026-10-06). In the planner's battle the room stays through a
+    Trick Room and ten turns' ends; Roark's file opens with none."""
+    from . import plstep3, plstudy, plteam_test
+    listed = fs.permanent_trick_room()
+    recs = plstudy.fixed(plteam_test.box(plstep3.ROARK, 16))
+    prep = plscore.prepare(plscore.parse_fight("saturn_2"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0", "p1", "p2"], boss_keys, flags, 0)
+    start = b.trick_room
+    pl.status_move(b, b.p.cur(), fs.move("Trick Room"), b.b.cur(), True)
+    for _ in range(10):
+        fs.end_of_turn(b)
+    study = {}
+    for stem in ("commander_saturn_galactic_hq", "leader_roark"):
+        st, _k, _f = plstudy.prepare([os.path.join(plstudy.RES, stem + ".json")], "HQ", 60, recs, plstudy.stock({}))
+        study[stem] = st["trick_room"]
+    ok = (listed == {"TRAINER_COMMANDER_SATURN_GALACTIC_HQ"} and prep["st"]["trick_room"] and start == 999
+          and b.trick_room == 999 and study == {"commander_saturn_galactic_hq": True, "leader_roark": False})
+    return [("Saturn 2 opens in the game's permanent Trick Room on the story and study paths", ok,
+             f"list {sorted(listed)}; story {prep['st']['trick_room']}, battle {start} then {b.trick_room}; "
+             f"study {study}")]
+
+
 # The Kaizo study's worked examples brought these moves (2026-10-03).
 STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
               ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
@@ -613,6 +640,7 @@ def study_effect_checks():
     total = sum(p for _c, p in outcomes)
     out += blind_pool_checks()
     out += map_weather_checks()
+    out += trick_room_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

@@ -118,6 +118,26 @@ def check_map_weather_replaced(results):
                     f"during {during}, after five turns {b.weather}"))
 
 
+def check_permanent_trick_room(results):
+    """A permanent Trick Room (Saturn 2's) never counts down, and the move
+    Trick Room fails under it (battle_lib.c, FIELD_CONDITION_TRICK_ROOM_PERM);
+    a move's own room still lasts five turns and ends."""
+    b, p, foe = battle(["Trick Room"], ["Tackle"], {})
+    b.trick_room = 999
+    fs.status_move(b, p, fs.move("Trick Room"), foe, True)
+    for _ in range(10):
+        fs.end_of_turn(b)
+    kept = b.trick_room
+    b2, p2, foe2 = battle(["Trick Room"], ["Tackle"], {})
+    fs.status_move(b2, p2, fs.move("Trick Room"), foe2, True)
+    set_to = b2.trick_room
+    for _ in range(5):
+        fs.end_of_turn(b2)
+    ok = (kept, set_to, b2.trick_room) == (999, 5, 0)
+    results.append(("a permanent Trick Room stays; a move's room lasts five turns", ok,
+                    f"permanent {kept}; a move's {set_to}, then {b2.trick_room}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -327,7 +347,8 @@ def check_sure(results):
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
-                  check_weather_rock, check_map_weather_replaced, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
+                  check_weather_rock, check_map_weather_replaced, check_permanent_trick_room, check_status,
+                  check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):
         check(results)
