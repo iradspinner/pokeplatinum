@@ -18,7 +18,13 @@ the facts they point at live in the docs, not here.
    hash on purpose.
 2. Run `git status` and `git log -1`. The tree should be clean and `HEAD` is the
    resume point. If the tree is dirty, another session is mid-work in this
-   checkout: do not touch its files and say so.
+   checkout: do not touch its files and say so. Then run
+   `python3 tools/oxide/deferred_check.py` and read the tracker's Scheduled
+   list. An entry that is due is checked against today's state before it is
+   done: if its "Why:" no longer holds, or its "Unneeded if:" has come true,
+   ask Ian instead of acting. A date is not an order; on 2026-10-01 a dated
+   note had two workflows switched back on that the new CPU had made
+   unnecessary.
 3. Work out which track you are on and where its status lives:
    - Phases 0 to 5 (the engine port and everything before it): the tracker.
    - The encounter tool and the encounter authoring pass:
@@ -26,6 +32,8 @@ the facts they point at live in the docs, not here.
      the top of the tracker. Nothing else in the tracker.
    - The balance track: `docs/oxide/balance-plan.md`, and nothing in the
      tracker.
+   - The scoring track: `docs/oxide/trainer-scoring-handoff.md`, and nothing
+     in the tracker.
 4. On a worktree branch, run `git merge oxide` before anything else, resolve
    any conflict in your own files, and run your own suites. A branch cut before
    a change on `oxide` otherwise finds out only at the integration gate: the
@@ -34,8 +42,8 @@ the facts they point at live in the docs, not here.
 6. Unless you are the Overseer, do the work on a worktree branch
    (`EnterWorktree` or `git worktree add`) and push that branch when its tests
    are green. The Oxide Overseer lands it on `oxide` with
-   `tools/oxide/merge-branch.sh`, which builds the merged tree on GitHub and
-   runs the gate on that ROM.
+   `tools/oxide/merge-branch.sh`, which builds the merged tree here and runs
+   the gate on that ROM.
 
 ## While working
 
@@ -65,6 +73,18 @@ the facts they point at live in the docs, not here.
 - Ian's writing rules are in `~/.claude/CLAUDE.md`, which every session and
   subagent loads. A hook refuses a dash or a banned phrase in Markdown and in
   commit messages; the rest is on you.
+- Run any heavy or parallel job (a planner reading, a rescore, a worker pool)
+  under `tools/oxide/capped`, which stops the job at a memory cap instead of
+  letting it run WSL out of memory. On 2026-10-02 a 30-process planner run did
+  that, WSL crashed, and every session on the machine died. Size a worker pool
+  by the memory each worker needs, not only by the core count.
+- In a session started inside a worktree, edit files with the Edit and Write
+  tools and run plain commands; do not feed a script to Python or the shell as
+  inline text (a heredoc or `python3 -c`). Claude Code's worktree guard refuses
+  any command it cannot prove keeps git inside the worktree, and inline text
+  that merely mentions git, or is long enough to be "too complex", trips it.
+  The guard stays: it keeps a worktree session's git off the shared main
+  checkout, where the Overseer lands every branch (Ian, 2026-10-02).
 
 ## Ending
 
@@ -73,11 +93,16 @@ Run these in order; skipping one is how the next session starts confused.
 1. **Tracker.** Tick what finished, then move each finished block verbatim to
    `docs/oxide/tracker-archive.md` under the same heading, leaving a one-line
    pointer, so the tracker holds open work only (`integrate.sh` warns past
-   6,000 words). A trap still in force goes in a skill or the findings log
+   9,000 words). A trap still in force goes in a skill or the findings log
    first, because the archive is read only when pointed at. Add what changes
    what happens next, keep the "Where things stand" block true for `HEAD`, and
-   keep entries short, pointing at the file that holds the detail. If you are the encounter track, edit only your
-   one paragraph here; the balance track edits its plan instead.
+   keep entries short, pointing at the file that holds the detail. Anything
+   to be done on a later day or once something happens goes in the Scheduled
+   list with its "Why:" and "Unneeded if:". If this session changed something
+   an entry rests on (hardware, a ruling, a dropped feature), update every
+   entry, doc and memory resting on it in the same commit. If you are the encounter track, edit only your
+   one paragraph here; the balance and scoring tracks edit their own docs
+   instead.
 2. **Findings.** A durable fact learned this session (a correction, a defect, a
    measurement, a format detail) goes in the design doc's section 8 findings log,
    dated, and the design doc's version and date at the top are bumped. Status
@@ -96,11 +121,14 @@ Run these in order; skipping one is how the next session starts confused.
    happened). Commit messages explain why and record what was verified; the
    attribution trailer is in the session's system reminder.
 6. **Report** to Ian in a few sentences: what landed, what was verified and how,
-   what is waiting on him. Lead with anything that failed.
+   what is waiting on him. Lead with anything that failed. A report doc, a
+   reading or a plan meant for him opens with a one-page summary: the outcome,
+   his action items, the next steps and how long each takes (Ian, 2026-10-06);
+   the detail goes below it, since he does not read long docs in full.
 
 ## Verification, the short list
 
-The full restart check-list is at the top of the tracker, and
+The full restart check-list is `docs/oxide/restart-checks.md`, and
 `bash tools/oxide/integrate.sh --verify-only` builds the ROM and runs all of
 it without merging anything (`--rom <ROM>` checks a ROM built already). The minimum before calling a data or engine change
 done is a built ROM plus the verify tool that covers what changed, and the
@@ -115,8 +143,8 @@ own emulator.
 Delegate a task to a background general-purpose agent when it can run in
 parallel with other work, or when it is a long read (a catalogue, a survey, a
 batch of tables) whose detail this session does not need to hold; Ian has made
-that a standing preference. Do the rest inline. Ian's default model is Opus
-now, so a subagent no longer saves anything by being cheaper, and it starts
+that a standing preference. Do the rest inline. A subagent runs on the same
+model as this session, so it saves nothing by being cheaper, and it starts
 cold. Keep here anything that needs judgment across the project, anything in
 another track's files, and the report itself, since a subagent's report never
 reaches Ian. The brief has to carry everything:

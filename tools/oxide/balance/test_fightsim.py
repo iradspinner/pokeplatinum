@@ -11,11 +11,12 @@ import sys
 from . import fightai, fightsim as fs
 
 CHART = {"Normal": {"Ghost": 0.0, "Rock": 0.5}, "Fire": {"Grass": 2.0, "Water": 0.5},
-         "Water": {"Fire": 2.0}, "Grass": {"Water": 2.0}, "Ghost": {"Normal": 0.0}}
+         "Water": {"Fire": 2.0}, "Grass": {"Water": 2.0}, "Ghost": {"Normal": 0.0},
+         "Electric": {"Ground": 0.0, "Water": 2.0}}
 
 
 def _chart():
-    types = ["Normal", "Fire", "Water", "Grass", "Ghost", "Rock"]
+    types = ["Normal", "Fire", "Water", "Grass", "Ghost", "Rock", "Electric", "Ground"]
     return {a: {d: CHART.get(a, {}).get(d, 1.0) for d in types} for a in types}
 
 
@@ -49,9 +50,56 @@ def check_damage(results):
     b.b.screens["Reflect"] = 5
     screened = b.damage(p, foe, t, roll=0)
     crit = b.damage(p, foe, t, crit=True, roll=0)
-    ok = (plain, boosted, burned, screened, crit) == (40, 80, 20, 20, 80)
-    results.append(("stages, burn, Reflect and critical hits scale damage", ok,
+    ok = (plain, boosted, burned, screened, crit) == (40, 80, 20, 20, 60)
+    results.append(("stages, burn, Reflect and Oxide's 1.5x critical hits scale damage", ok,
                     f"plain {plain}, +2 {boosted}, burned {burned}, Reflect {screened}, crit {crit}"))
+
+
+def check_crit_odds(results):
+    """Oxide's critical-hit odds: 1 in 24 at no stage, certain from +3."""
+    ok = fs.CRIT_RATE[0] == 1 / 24 and fs.CRIT_RATE[1] == 1 / 8 and fs.CRIT_RATE[2] == 1 / 2 \
+        and fs.CRIT_RATE[3] == 1.0 and fs.CRIT_MUL == 1.5
+    results.append(("critical hits at Oxide's Generation 7 odds", ok, str(fs.CRIT_RATE)))
+
+
+def check_status_immunity(results):
+    """Among status moves only Thunder Wave meets the type chart
+    (BattleControllerPlayer_CheckTypeChart runs it for moves with power and
+    for Thunder Wave): Thunder Wave fails on a Ground type, while Glare, a
+    Normal move with no power, still paralyses a Ghost."""
+    b, p, foe = battle(["Thunder Wave"], ["Tackle"], {}, b_types=("Ground",))
+    fs.status_move(b, p, fs.move("Thunder Wave"), foe, True)
+    ground = foe.status
+    b2, p2, foe2 = battle(["Glare"], ["Tackle"], {}, b_types=("Ghost",))
+    fs.status_move(b2, p2, fs.move("Glare"), foe2, True)
+    ok = ground is None and foe2.status == "par"
+    results.append(("only Thunder Wave among status moves is stopped by type", ok,
+                    f"Ground {ground}, Ghost {foe2.status}"))
+
+
+def check_item_moves(results):
+    """Natural Gift spends its berry, and fails without one."""
+    b, p, foe = battle(["Natural Gift"], ["Tackle"], {("p", "Natural Gift"): [30] * 16})
+    p.item = "Oran Berry"
+    ng = fs.move("Natural Gift")
+    fs.attack(b, p, ng, foe, True)
+    first, spent = foe.hp, p.item
+    fs.attack(b, p, ng, foe, True)
+    ok = first < 100 and spent is None and foe.hp == first
+    results.append(("Natural Gift and Fling spend the item and fail without one", ok,
+                    f"HP 100 to {first}, then {foe.hp}; item after {spent}"))
+
+
+def check_weather_rock(results):
+    """A weather move lasts eight turns with its rock, five without."""
+    b, p, foe = battle(["Rain Dance"], ["Tackle"], {})
+    p.item = "Damp Rock"
+    fs.status_move(b, p, fs.move("Rain Dance"), foe, True)
+    rock = b.weather_turns
+    b2, p2, foe2 = battle(["Rain Dance"], ["Tackle"], {})
+    fs.status_move(b2, p2, fs.move("Rain Dance"), foe2, True)
+    ok = (rock, b2.weather_turns) == (8, 5)
+    results.append(("a weather move lasts eight turns with its rock", ok, f"{rock} and {b2.weather_turns}"))
 
 
 def check_status(results):
@@ -262,7 +310,8 @@ def check_sure(results):
 
 def main():
     results = []
-    for check in (check_damage, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
+    for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
+                  check_weather_rock, check_status, check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):
         check(results)

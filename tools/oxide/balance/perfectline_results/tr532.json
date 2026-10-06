@@ -1,0 +1,3127 @@
+{
+ "blind_rate": 0.963,
+ "blind_clean_share": 0.96,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.082,
+ "blind_wipe": 0.006,
+ "convergence": {
+  "10": 0.978,
+  "50": 0.997,
+  "100": 0.998,
+  "300": 1.0
+ },
+ "runs": 138580,
+ "search_budget": 141,
+ "converged_share": 1.0,
+ "label": "Youngster Oliver",
+ "split": "Maylene",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 5.4,
+ "rows": [
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Cinderace; answers Mothim->Roselia, Crawdaunt->Primarina, Chatot->Graveler; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:0",
+   "team": [
+    "Graveler",
+    "Lumineon",
+    "Primarina",
+    "Roselia",
+    "Seaking",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Mothim->Probopass, Crawdaunt->Primarina, Chatot->Probopass; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Rapidash-Galar",
+    "Hariyama",
+    "Bibarel",
+    "Lumineon",
+    "Primarina",
+    "Probopass"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Tsareena, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Roselia",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Pawmot; answers Mothim->Floette, Crawdaunt->Pawmot, Chatot->Lumineon; switch losing; setup at 5+ safe turns; save Lumineon for Chatot",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Orbeetle",
+    "Pawmot",
+    "Vikavolt",
+    "Arboliva",
+    "Floette"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Donphan, Crawdaunt->Vikavolt, Chatot->Vikavolt; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Vikavolt for Chatot",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:0",
+   "team": [
+    "Haunter",
+    "Togetic",
+    "Tsareena",
+    "Vikavolt",
+    "Chansey",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Orbeetle, Crawdaunt->Vikavolt, Chatot->Noctowl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Bibarel",
+    "Masquerain",
+    "Noctowl",
+    "Orbeetle",
+    "Vikavolt"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Mothim->Electivire, Crawdaunt->Hariyama, Chatot->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Masquerain",
+    "Talonflame",
+    "Vikavolt",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Probopass; answers Crawdaunt->Orbeetle, Chatot->Seaking; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Orbeetle for Crawdaunt",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Liepard",
+    "Orbeetle",
+    "Probopass",
+    "Seaking",
+    "Vullaby"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kadabra; answers Mothim->Masquerain, Crawdaunt->Masquerain, Chatot->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Golbat",
+    "Graveler",
+    "Kadabra",
+    "Masquerain",
+    "Cofagrigus",
+    "Drifblim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Milotic; answers Mothim->Milotic, Crawdaunt->Pachirisu, Chatot->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Noctowl",
+    "Pachirisu",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kadabra; answers Mothim->Vaporeon, Crawdaunt->Primarina, Chatot->Vaporeon; switch losing; setup at 3+ safe turns at full HP; save Primarina for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Kadabra",
+    "Primarina",
+    "Vaporeon",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Tsareena, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Noctowl",
+    "Pachirisu",
+    "Togetic",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Mothim->Probopass, Crawdaunt->Electivire, Chatot->Probopass; switch never; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Golbat",
+    "Bibarel",
+    "Probopass",
+    "Drifblim",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Noctowl; answers Mothim->Noctowl, Crawdaunt->Kricketune, Chatot->Klefki; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Noctowl",
+    "Toucannon",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Dubwool, Chatot->Floatzel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Salazzle",
+    "Togetic",
+    "Vaporeon",
+    "Dubwool",
+    "Floatzel"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Masquerain, Chatot->Vaporeon; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Vaporeon for Chatot",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Vaporeon",
+    "Vikavolt",
+    "Floatzel"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Chansey; answers Mothim->Chansey, Crawdaunt->Torterra, Chatot->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Probopass",
+    "Togetic",
+    "Torterra",
+    "Chansey",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Mothim->Ninetales, Crawdaunt->Altaria, Chatot->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Garganacl",
+    "Kricketune",
+    "Ninetales",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Masquerain; answers Crawdaunt->Masquerain, Chatot->Bronzong; switch hp below 0.7; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Masquerain for Crawdaunt",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Klefki",
+    "Luxray",
+    "Masquerain",
+    "Bronzong",
+    "Altaria",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 0.75,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "136": 1.0
+   },
+   "line": "lead Tentacruel; answers Crawdaunt->Tentacruel, Chatot->Bastiodon; switch losing; setup at 4+ safe turns; save Tentacruel for Crawdaunt",
+   "candidates": 136,
+   "converged": true,
+   "runs": 3620,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Noctowl",
+    "Tentacruel",
+    "Toucannon",
+    "Vaporeon"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Luxray; answers Mothim->Houndoom, Crawdaunt->Masquerain, Chatot->Luxray; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Luxray for Chatot",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Bronzong",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Mothim->Probopass, Crawdaunt->Masquerain, Chatot->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Probopass",
+    "Tentacruel",
+    "Altaria",
+    "Floette"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Masquerain, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Kricketune",
+    "Lopunny",
+    "Masquerain",
+    "Toucannon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Lanturn, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Luxray",
+    "Vaporeon",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "96": 1.0
+   },
+   "line": "lead Salazzle; answers Mothim->Bronzong, Crawdaunt->Floatzel, Chatot->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:1",
+   "team": [
+    "Bronzong",
+    "Salazzle",
+    "Tentacruel",
+    "Combee",
+    "Dusclops",
+    "Floatzel"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Mothim->Rapidash-Galar, Crawdaunt->Lanturn, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Rapidash-Galar",
+    "Houndoom",
+    "Lanturn",
+    "Luxray",
+    "Masquerain",
+    "Carbink"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vullaby, Crawdaunt->Glimmora, Chatot->Glimmora; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Glimmora for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Mismagius",
+    "Noctowl",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mismagius; answers Mothim->Mismagius, Crawdaunt->Kricketune, Chatot->Mismagius; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mismagius",
+    "Sneasel",
+    "Staraptor",
+    "Talonflame",
+    "Vikavolt"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 1.0
+   },
+   "line": "lead Chansey; answers Mothim->Chansey, Crawdaunt->Masquerain, Chatot->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Masquerain",
+    "Whiscash",
+    "Chansey",
+    "Combee",
+    "Delphox"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Glimmora, Crawdaunt->Delphox; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Sharpedo",
+    "Whiscash",
+    "Delphox",
+    "Floette"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "18": 1.0
+   },
+   "line": "lead Honchkrow; answers Mothim->Clefable, Crawdaunt->Honchkrow, Chatot->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:2",
+   "team": [
+    "Honchkrow",
+    "Mightyena",
+    "Seaking",
+    "Clefable",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Rotom, Crawdaunt->Staraptor, Chatot->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Orbeetle",
+    "Rotom",
+    "Staraptor",
+    "Whiscash",
+    "Drifblim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Mothim->Rapidash-Galar, Crawdaunt->Masquerain, Chatot->Granbull; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Granbull",
+    "Masquerain",
+    "Mightyena",
+    "Talonflame",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Floette, Crawdaunt->Drifblim, Chatot->Staraptor; switch losing; setup at 4+ safe turns at full HP; save Staraptor for Chatot",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Glimmora",
+    "Leavanny",
+    "Staraptor",
+    "Vaporeon",
+    "Drifblim",
+    "Floette"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers Mothim->Floette, Crawdaunt->Leavanny, Chatot->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Lurantis",
+    "Mightyena",
+    "Vikavolt",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Orbeetle; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Orbeetle for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Honchkrow",
+    "Orbeetle",
+    "Vaporeon",
+    "Drifblim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Noctowl; answers Mothim->Noctowl, Crawdaunt->Masquerain, Chatot->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Kricketune",
+    "Masquerain",
+    "Noctowl",
+    "Rotom",
+    "Drifblim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Staraptor; answers Mothim->Noctowl, Crawdaunt->Staraptor, Chatot->Noctowl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Noctowl",
+    "Pelipper",
+    "Sharpedo",
+    "Snorunt",
+    "Staraptor"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Drifblim; answers Mothim->Drifblim; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mismagius",
+    "Staraptor",
+    "Chansey",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jynx; answers Crawdaunt->Jynx, Chatot->Gastrodon; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Gastrodon for Chatot",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Jynx",
+    "Seaking",
+    "Shiftry",
+    "Vikavolt",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.25,
+   "deaths": 2.435,
+   "wipe": 0.265,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Seaking; answers Mothim->Vullaby, Crawdaunt->Bastiodon, Chatot->Corvisquire; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Seaking",
+    "Vullaby",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Leavanny, Chatot->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Bronzong",
+    "Seaking",
+    "Carbink",
+    "Vaporeon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Honchkrow; answers Mothim->Honchkrow, Crawdaunt->Leavanny, Chatot->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Honchkrow",
+    "Leavanny",
+    "Liepard",
+    "Sneasel",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Leavanny, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Toucannon",
+    "Vaporeon",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Bronzong; answers Mothim->Bronzong, Crawdaunt->Orbeetle, Chatot->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:3",
+   "team": [
+    "Orbeetle",
+    "Bronzong",
+    "Vikavolt",
+    "Whiscash",
+    "Ambipom",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Orbeetle, Crawdaunt->Dubwool, Chatot->Lumineon; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Orbeetle",
+    "Shiftry",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Dubwool, Chatot->Carbink; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Leavanny",
+    "Carbink",
+    "Vaporeon",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ludicolo; answers Mothim->Ambipom, Crawdaunt->Ludicolo; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Ludicolo",
+    "Bronzong",
+    "Snover",
+    "Toucannon",
+    "Ambipom",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Jynx; answers Mothim->Empoleon, Crawdaunt->Breloom, Chatot->Empoleon; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Breloom for Crawdaunt",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Breloom",
+    "Ambipom",
+    "Dubwool",
+    "Empoleon",
+    "Floette"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Talonflame; answers Mothim->Talonflame, Crawdaunt->Garganacl, Chatot->Galvantula; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Garganacl for Crawdaunt",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Galvantula",
+    "Garganacl",
+    "Jynx",
+    "Shiftry",
+    "Talonflame",
+    "Empoleon"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Electivire; answers Mothim->Vikavolt, Crawdaunt->Vikavolt, Chatot->Vaporeon; switch hp below 0.5; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Vaporeon for Chatot",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Bronzong",
+    "Vaporeon",
+    "Vikavolt",
+    "Whiscash",
+    "Electivire",
+    "Empoleon"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Sinistcha; answers Crawdaunt->Ludicolo, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Ludicolo",
+    "Masquerain",
+    "Sinistcha",
+    "Chansey",
+    "Dubwool"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Mothim->Floette, Crawdaunt->Floette, Chatot->Vaporeon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Vaporeon for Chatot",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Ludicolo",
+    "Mienshao",
+    "Quagsire",
+    "Togetic",
+    "Vaporeon",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Masquerain, Crawdaunt->Masquerain, Chatot->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Galvantula",
+    "Masquerain",
+    "Mienshao",
+    "Quagsire",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Gastrodon, Crawdaunt->Luxray, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Luxray",
+    "Mightyena",
+    "Bronzong",
+    "Rotom"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Rotom, Crawdaunt->Tsareena, Chatot->Bastiodon; switch hp below 0.5; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Rotom",
+    "Tsareena",
+    "Combee",
+    "Floatzel"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Rotom, Chatot->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:4",
+   "team": [
+    "Bronzong",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Electivire; answers Crawdaunt->Dubwool, Chatot->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:4",
+   "team": [
+    "Masquerain",
+    "Quagsire",
+    "Bronzong",
+    "Dubwool",
+    "Electivire",
+    "Floatzel"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Togetic, Crawdaunt->Pawmot, Chatot->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Mienshao",
+    "Pawmot",
+    "Bronzong",
+    "Steelix",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Pawmot, Chatot->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Orbeetle",
+    "Pawmot",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Mothim->Galvantula, Crawdaunt->Kricketune, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Bastiodon",
+    "Kricketune",
+    "Quagsire",
+    "Rotom"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Steelix, Crawdaunt->Dubwool, Chatot->Lanturn; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns; save Lanturn for Chatot",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Lanturn",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Dubwool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Electivire, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Mienshao",
+    "Mismagius",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Mothim->Clefable, Crawdaunt->Clefable, Chatot->Steelix; switch losing; setup at 5+ safe turns at full HP; save Clefable for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Steelix",
+    "Tsareena",
+    "Whiscash",
+    "Clefable",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Cinderace; answers Mothim->Cinderace, Crawdaunt->Cinderace, Chatot->Dubwool; switch hp below 0.7; setup at 3+ safe turns at full HP; bait locks; free pivots; save Dubwool for Chatot",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:4",
+   "team": [
+    "Mightyena",
+    "Orbeetle",
+    "Seaking",
+    "Steelix",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Ludicolo; answers Mothim->Vaporeon, Crawdaunt->Ludicolo, Chatot->Vaporeon; switch losing; setup at 3+ safe turns at full HP; save Vaporeon for Chatot",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Octillery",
+    "Tentacruel",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Noctowl; answers Mothim->Noctowl, Crawdaunt->Electivire, Chatot->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Noctowl",
+    "Talonflame",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Primarina, Crawdaunt->Leavanny, Chatot->Glimmora; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Glimmora for Chatot",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Leavanny",
+    "Ludicolo",
+    "Primarina",
+    "Shiftry"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Leavanny, Chatot->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Leavanny",
+    "Noctowl",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Octillery; answers Mothim->Octillery, Crawdaunt->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:5",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Talonflame",
+    "Torterra",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Bronzong, Crawdaunt->Primarina, Chatot->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Ludicolo",
+    "Bronzong",
+    "Primarina",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.067,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Octillery; answers Mothim->Vullaby; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:5",
+   "team": [
+    "Lurantis",
+    "Octillery",
+    "Primarina",
+    "Vullaby",
+    "Whiscash",
+    "Floette"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Noctowl, Crawdaunt->Glimmora, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Bibarel",
+    "Noctowl",
+    "Talonflame",
+    "Castform",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Primarina, Chatot->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Primarina",
+    "Torterra",
+    "Vaporeon",
+    "Whiscash",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Primarina, Chatot->Vaporeon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Primarina",
+    "Torterra",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mismagius; answers Mothim->Mismagius, Crawdaunt->Haunter, Chatot->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Graveler",
+    "Haunter",
+    "Liepard",
+    "Mismagius",
+    "Orbeetle",
+    "Talonflame"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Haunter; answers Mothim->Lanturn; switch never; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Graveler",
+    "Haunter",
+    "Lanturn",
+    "Noctowl",
+    "Primarina",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Castform; answers Mothim->Noctowl, Crawdaunt->Lanturn, Chatot->Tentacruel; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Mightyena",
+    "Noctowl",
+    "Tentacruel",
+    "Castform",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Sandygast, Chatot->Cinderace; switch losing; setup at 3+ safe turns at full HP; save Cinderace for Chatot",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:6",
+   "team": [
+    "Leavanny",
+    "Litwick",
+    "Sandygast",
+    "Vaporeon",
+    "Cinderace",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Altaria, Chatot->Rhyhorn; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Garganacl",
+    "Kadabra",
+    "Orbeetle",
+    "Rhyhorn",
+    "Scizor",
+    "Altaria"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "42": 1.0
+   },
+   "line": "lead Gastrodon; answers Mothim->Gastrodon, Crawdaunt->Breloom, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1440,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Leavanny",
+    "Breloom",
+    "Scizor",
+    "Combee"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Floette, Crawdaunt->Dubwool, Chatot->Bibarel; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Bibarel for Chatot",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Mightyena",
+    "Scizor",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Mothim->Lanturn, Crawdaunt->Tsareena, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Clefable",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Glimmora, Crawdaunt->Masquerain, Chatot->Glimmora; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Bibarel",
+    "Masquerain",
+    "Orbeetle",
+    "Donphan",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Glimmora, Crawdaunt->Cherrim, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Mightyena",
+    "Vullaby",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Mothim->Cinderace, Crawdaunt->Scizor, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Scizor",
+    "Tentacruel",
+    "Wailmer",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.073,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Clefable; answers Mothim->Clefable, Crawdaunt->Glimmora; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Bibarel",
+    "Mightyena",
+    "Whiscash",
+    "Clefable",
+    "Floette"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Ambipom; answers Mothim->Bastiodon, Crawdaunt->Leavanny, Chatot->Ambipom; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Leavanny",
+    "Orbeetle",
+    "Ambipom",
+    "Combee"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Mothim->Cinderace, Crawdaunt->Breloom, Chatot->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lanturn; answers Mothim->Lanturn, Crawdaunt->Mightyena, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Kadabra",
+    "Lanturn",
+    "Mightyena",
+    "Cinderace",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "119": 1.0
+   },
+   "line": "lead Tsareena; answers Chatot->Vullaby; switch losing; setup at 3+ safe turns at full HP; save Vullaby for Chatot",
+   "candidates": 119,
+   "converged": true,
+   "runs": 3280,
+   "kind": "planned:6",
+   "team": [
+    "Gothorita",
+    "Tsareena",
+    "Vullaby",
+    "Whiscash",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Leavanny, Chatot->Vullaby; switch losing; setup at 3+ safe turns at full HP; save Leavanny for Crawdaunt",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1220,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Masquerain",
+    "Steelix",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Furret; answers Mothim->Furret, Crawdaunt->Azumarill, Chatot->Azumarill; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Hariyama",
+    "Meowscarada",
+    "Breloom",
+    "Crawdaunt",
+    "Azumarill"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Lanturn, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Machoke",
+    "Vaporeon",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Staraptor; answers Mothim->Masquerain, Crawdaunt->Cherrim, Chatot->Steelix; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Sharpedo",
+    "Staraptor",
+    "Steelix",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmora; answers Mothim->Chansey, Crawdaunt->Masquerain, Chatot->Glimmora; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Glimmora",
+    "Masquerain",
+    "Breloom",
+    "Vullaby",
+    "Chansey",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Staraptor; answers Mothim->Primarina, Crawdaunt->Staraptor, Chatot->Primarina; switch hp below 0.7; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Staraptor for Crawdaunt",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Lopunny",
+    "Primarina",
+    "Staraptor",
+    "Azumarill",
+    "Floette"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Mothim->Rapidash-Galar, Crawdaunt->Lanturn, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Lanturn",
+    "Meowscarada",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Mothim->Rapidash-Galar, Crawdaunt->Meowscarada, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Honchkrow",
+    "Meowscarada",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lanturn; answers Mothim->Lanturn, Crawdaunt->Primarina, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Golbat",
+    "Haunter",
+    "Bibarel",
+    "Kingler",
+    "Lanturn",
+    "Primarina"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Mothim->Lanturn, Crawdaunt->Primarina, Chatot->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Primarina",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Mothim->Rapidash-Galar, Crawdaunt->Breloom, Chatot->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Haunter",
+    "Lopunny",
+    "Breloom",
+    "Bronzong",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Haunter; answers Mothim->Honchkrow, Crawdaunt->Cherrim, Chatot->Crawdaunt; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Cherrim for Crawdaunt",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Haunter",
+    "Honchkrow",
+    "Lanturn",
+    "Breloom",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Chansey; answers Mothim->Steelix, Crawdaunt->Mienshao, Chatot->Tentacruel; switch losing; setup at 4+ safe turns; save Tentacruel for Chatot",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:7",
+   "team": [
+    "Incineroar",
+    "Mienshao",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash",
+    "Chansey"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pachirisu; answers Mothim->Pachirisu, Crawdaunt->Primarina, Chatot->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Lumineon",
+    "Pachirisu",
+    "Primarina",
+    "Floette"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Bastiodon; answers Mothim->Bastiodon, Crawdaunt->Shiftry, Chatot->Bastiodon; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Seaking",
+    "Shiftry",
+    "Whiscash",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mismagius; answers Mothim->Pachirisu, Crawdaunt->Mismagius; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Mismagius for Crawdaunt",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Masquerain",
+    "Mismagius",
+    "Pachirisu",
+    "Castform",
+    "Vullaby",
+    "Chimecho"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Altaria; answers Mothim->Altaria, Crawdaunt->Primarina, Chatot->Graveler; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Leavanny",
+    "Primarina",
+    "Altaria",
+    "Donphan",
+    "Floette"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Graveler, Crawdaunt->Masquerain, Chatot->Lopunny; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Masquerain for Crawdaunt",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Shiftry",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Pachirisu; answers Mothim->Pachirisu, Crawdaunt->Masquerain, Chatot->Cinderace; switch hp below 0.4; setup at 3+ safe turns; save Cinderace for Chatot",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Masquerain",
+    "Pachirisu",
+    "Primarina",
+    "Cinderace",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Mothim->Garganacl, Crawdaunt->Pachirisu, Chatot->Garganacl; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Pachirisu",
+    "Bronzong",
+    "Sharpedo",
+    "Chimecho",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Pawmot, Chatot->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Graveler",
+    "Pawmot",
+    "Steelix",
+    "Toucannon",
+    "Vaporeon",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Pawmot, Chatot->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Ninetales-Alola",
+    "Pawmot",
+    "Steelix",
+    "Togetic",
+    "Vaporeon",
+    "Cherrim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Masquerain; answers Mothim->Lopunny, Crawdaunt->Electivire, Chatot->Electivire; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Lopunny",
+    "Lumineon",
+    "Masquerain",
+    "Sharpedo",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pachirisu; answers Mothim->Pachirisu, Crawdaunt->Primarina, Chatot->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Lopunny",
+    "Pachirisu",
+    "Primarina",
+    "Vullaby",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pachirisu; answers Mothim->Pachirisu, Crawdaunt->Pachirisu, Chatot->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Pachirisu",
+    "Castform",
+    "Cinderace",
+    "Floette"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pachirisu; answers Mothim->Pachirisu, Crawdaunt->Pachirisu, Chatot->Pachirisu; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Pachirisu",
+    "Pelipper",
+    "Cherrim",
+    "Chimecho",
+    "Cofagrigus",
+    "Floette"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Vaporeon; answers Mothim->Vaporeon, Crawdaunt->Tsareena, Chatot->Empoleon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Seaking",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt",
+    "Empoleon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.695,
+   "wipe": 0.025,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.4,
+    "20": 0.6,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Floette; answers Mothim->Togetic, Crawdaunt->Floette, Chatot->Girafarig; switch losing; setup at 5+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Floette for Crawdaunt",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Girafarig",
+    "Bastiodon",
+    "Togetic",
+    "Vaporeon",
+    "Vullaby",
+    "Floette"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Mothim->Furret, Crawdaunt->Furret, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Girafarig",
+    "Glimmora",
+    "Ludicolo",
+    "Luxray",
+    "Whiscash"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Togetic, Crawdaunt->Furret, Chatot->Yanmega; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Breloom",
+    "Togetic",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Mothim->Rotom, Crawdaunt->Hariyama, Chatot->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Rotom",
+    "Scizor",
+    "Snover",
+    "Whiscash",
+    "Combee"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Ludicolo; answers Mothim->Charizard, Crawdaunt->Ludicolo, Chatot->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Ludicolo",
+    "Whiscash",
+    "Charizard",
+    "Donphan",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Charizard; answers Mothim->Charizard, Crawdaunt->Luxray, Chatot->Luxray; switch losing; setup at 4+ safe turns at full HP; no status moves",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Vullaby",
+    "Wailmer",
+    "Yanmega",
+    "Charizard",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Crustle; answers Mothim->Luxray, Crawdaunt->Luxray, Chatot->Luxray; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Scizor",
+    "Steelix",
+    "Tentacruel",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Togetic, Crawdaunt->Orbeetle, Chatot->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Orbeetle",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "141": 1.0
+   },
+   "line": "lead Tentacruel; answers Crawdaunt->Tentacruel, Chatot->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 141,
+   "converged": true,
+   "runs": 3720,
+   "kind": "planned:9",
+   "team": [
+    "Seaking",
+    "Sharpedo",
+    "Tentacruel",
+    "Vullaby",
+    "Combee",
+    "Empoleon"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Togetic, Crawdaunt->Hariyama, Chatot->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Hariyama",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Cherrim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Luxray; answers Mothim->Scizor, Crawdaunt->Kricketune, Chatot->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Kricketune",
+    "Luxray",
+    "Scizor",
+    "Tentacruel",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Togetic; answers Mothim->Togetic, Crawdaunt->Vikavolt, Chatot->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Togetic",
+    "Vikavolt",
+    "Vullaby",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 0.9
+  }
+ ],
+ "key": "tr532"
+}

@@ -1,0 +1,35 @@
+mars (hand), seed 31: lead Starly; answers Meowth->Nidorino, Bronzor->Vullaby, Purugly->Onix; switch hp below 0.7; setup at 5+ safe turns; bait locks; free pivots; hazards; sleep opener
+start: you Starly 21/21 | foe Meowth 47/47
+T1 [clear] Starly: switch to Nidorino (this foe's answer comes in) | Meowth: Fake Out -> you Nidorino 49/62 | foe Meowth 47/47
+T2 [clear] Nidorino: Double Kick (the strongest attack) | Meowth: Screech -> you Nidorino 49/62 {'def': -2} | foe Bronzor 53/53
+T3 [clear] Nidorino: switch to Vullaby (this foe's answer comes in) | Bronzor: Calm Mind -> you Vullaby 67/67 | foe Bronzor 53/53 {'spa': 1, 'spd': 1}
+T4 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Calm Mind -> you Vullaby 67/67 | foe Bronzor 45/53 {'spa': 2, 'spd': 2}
+T5 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Calm Mind -> you Vullaby 67/67 | foe Bronzor 36/53 {'spa': 3, 'spd': 3}
+T6 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 67/67 | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T7 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Hypnosis -> you Vullaby 59/67 slp | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T8 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 59/67 slp | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T9 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 59/67 slp | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T10 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 59/67 slp | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T11 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 53/67 | foe Bronzor 28/53 {'spa': 3, 'spd': 3}
+T12 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Hypnosis -> you Vullaby 53/67 | foe Bronzor 19/53 {'spa': 3, 'spd': 3}
+T13 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Hypnosis -> you Vullaby 53/67 slp | foe Bronzor 10/53 {'spa': 3, 'spd': 3}
+T14 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 53/67 slp | foe Bronzor 10/53 {'spa': 3, 'spd': 3}
+T15 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 53/67 slp | foe Bronzor 10/53 {'spa': 3, 'spd': 3}
+T16 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Confuse Ray -> you Vullaby 46/67 | foe Bronzor 10/53 {'spa': 3, 'spd': 3}
+T17 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Hypnosis -> you Vullaby 39/67 | foe Bronzor 10/53 {'spa': 3, 'spd': 3}
+T18 [clear] Vullaby: Pluck (the strongest attack) | Bronzor: Hypnosis -> you Vullaby 39/67 slp | foe Bronzor 2/53 {'spa': 3, 'spd': 3}
+T19 [clear] Vullaby: Pluck (a knockout it cannot answer first) | Bronzor: Confuse Ray -> you Vullaby 39/67 slp | foe Bronzor 2/53 {'spa': 3, 'spd': 3}
+T20 [clear] Vullaby: Pluck (a knockout it cannot answer first) | Bronzor: Confuse Ray -> you Vullaby 39/67 slp | foe Bronzor 2/53 {'spa': 3, 'spd': 3}
+T21 [clear] Vullaby: Pluck (a knockout it cannot answer first) | Bronzor: Hypnosis -> you Vullaby 39/67 slp | foe Bronzor 2/53 {'spa': 3, 'spd': 3}
+T22 [clear] Vullaby: Pluck (a knockout it cannot answer first) | Bronzor: Confusion -> you Vullaby 39/67 | foe Zubat 46/46
+T23 [clear] Vullaby: Pluck (the strongest attack) | Zubat: Wing Attack -> you Vullaby 23/67 | foe Zubat 46/46
+T24 [clear] Vullaby: Pluck (the strongest attack) | Zubat: Wing Attack -> you Vullaby 14/67 | foe Zubat 10/46
+T25 [clear] Vullaby: Pluck (a knockout it cannot answer first) | Zubat: Wing Attack -> you Vullaby 14/67 | foe Purugly 69/69
+T26 [clear] Vullaby: switch to Onix (this foe's answer comes in) | Purugly: Fake Out -> you Onix 56/59 | foe Purugly 69/69
+T27 [clear] Onix: Rock Tomb (the strongest attack) | Purugly: Feint Attack -> you Onix 49/59 | foe Purugly 50/69 {'spe': -1}
+T28 [clear] Onix: Rock Tomb (the strongest attack) | Purugly: Hypnosis -> you Onix 49/59 slp | foe Purugly 39/69 {'spe': -2}
+T29 [clear] Onix: Rock Tomb (the strongest attack) | Purugly: Feint Attack -> you Onix 42/59 slp | foe Purugly 39/69 {'spe': -2}
+T30 [clear] Onix: Rock Tomb (the strongest attack) | Purugly: Feint Attack -> you Onix 35/59 slp | foe Purugly 39/69 {'spe': -2}
+T31 [clear] Onix: Rock Tomb (the strongest attack) | Purugly: Feint Attack -> you Onix 29/59 | foe Purugly 18/69 {'spe': -3}
+T32 [clear] Onix: Rock Tomb (a knockout it cannot answer first) | Purugly: Feint Attack -> you Onix 29/59 | foe Purugly 0/69 {'spe': -3}
+won; fainted: none

@@ -5,8 +5,8 @@ description: How Platinum Oxide runs a job in a Claude Code cloud session, from 
 
 # A cloud job, end to end
 
-Cloud sessions run on healthy four-core VMs, so they take the work this box's
-CPU cannot: engine changes that need many builds. They cannot see the base
+Cloud sessions run on four-core VMs apart from this machine, so they take long
+jobs (engine changes that need many builds) without tying it up. They cannot see the base
 ROM, the vanilla ROM, the donor ROM or the balance references, and they cannot
 message the Overseer. So the job has three parts: a short prompt the Overseer
 writes and Ian pastes, the job itself under the rules below, and the
@@ -73,7 +73,7 @@ Rules that bite:
   stop and ask in the report. Ian answers through the Overseer.
 - In-game checks go in `docs/oxide/ingame-checklist.md`, in the section
   where a playtest day meets them. Questions go under the tracker's "Waiting
-  on Ian". Tick the job's own tracker item. Keep the tracker under 6,000
+  on Ian". Tick the job's own tracker item. Keep the tracker under 9,000
   words by moving finished blocks to the archive verbatim.
 
 Gate with `bash tools/oxide/integrate.sh --verify-only`. The sync-docs
@@ -92,11 +92,11 @@ in game from a cloud session, and the report says so.
    bits and padding used, the divergence registrations, anything touched
    outside the job.
 2. Run `tools/oxide/merge-branch.sh cloud/<track>-<topic>`. It merges,
-   builds the merged tree on GitHub, runs the full gate on that ROM, and
+   builds the merged tree here, runs the full gate on that ROM, and
    pushes only on a pass. On a conflict it stops; resolve by hand, commit,
    and rerun with `--merged`.
    - The tracker conflicts most. Keep both sides' current entries, take the
-     job's ticks, and trim back under 6,000 words.
+     job's ticks, and trim back under 9,000 words.
    - A design doc conflict takes the higher version line and keeps both
      findings-log entries.
 3. Compare the gate's base-ROM counts with the ones the report predicted.
@@ -106,5 +106,5 @@ in game from a cloud session, and the report says so.
    - Tell the balance track when scores go stale. A change to move data,
      the player's pool or the calculator needs a rescore before it merges,
      through a balance branch that carries both.
-   - Fetch a test-kit ROM if the job added kit entries, and update the
-     board.
+   - Build the test-kit ROM (`make testkit`) if the job added kit entries,
+     and update the board.

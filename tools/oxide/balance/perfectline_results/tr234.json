@@ -1,0 +1,3691 @@
+{
+ "blind_rate": 0.813,
+ "blind_clean_share": 0.54,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.242,
+ "blind_wipe": 0.001,
+ "convergence": {
+  "10": 0.889,
+  "50": 0.955,
+  "100": 0.97,
+  "300": 0.982
+ },
+ "runs": 253340,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Psychic Bryce",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 14.1,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Bronzong, Gengar->Hippowdon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vikavolt; answers Grumpig->Vikavolt, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Seaking; answers Grumpig->Seaking, Gardevoir->Ceruledge, Gengar->Articuno; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.395,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.35,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Snorlax; answers Grumpig->Snorlax, Gardevoir->Snorlax, Gengar->Toxapex; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Seaking; answers Grumpig->Seaking, Gardevoir->Ludicolo, Gengar->Blastoise; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gothitelle; answers Grumpig->Gothitelle, Gardevoir->Mandibuzz, Gengar->Bastiodon; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Electivire",
+    "Empoleon",
+    "Gothitelle",
+    "Bastiodon",
+    "Manaphy",
+    "Mandibuzz"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.267,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "194": 1.0
+   },
+   "line": "lead Starmie; answers Grumpig->Hippowdon, Gardevoir->Lopunny, Gengar->Frosmoth; switch hp below 0.7; setup at 4+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 194,
+   "converged": true,
+   "runs": 4780,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Hippowdon",
+    "Lopunny",
+    "Ninetales",
+    "Starmie",
+    "Talonflame"
+   ],
+   "seconds": 7.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Weavile; answers Grumpig->Liepard, Gardevoir->Gothitelle, Gengar->Crawdaunt; switch never; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Liepard",
+    "Lumineon",
+    "Weavile",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.333,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.55,
+    "120": 0.55,
+    "130": 0.55,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Octillery; answers Grumpig->Octillery, Gardevoir->Frosmoth, Gengar->Frosmoth; switch hp below 0.4; setup at 2+ safe turns; save Frosmoth for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Octillery",
+    "Palossand",
+    "Tsareena",
+    "Dewgong"
+   ],
+   "seconds": 9.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Grumpig->Quagsire, Gardevoir->Greninja, Gengar->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Greninja",
+    "Milotic",
+    "Ninetales",
+    "Quagsire",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Purugly; answers Grumpig->Purugly, Gardevoir->Bronzong, Gengar->Cinderace; switch losing; setup at 4+ safe turns at full HP; free pivots; save Bronzong for Gardevoir",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Klefki",
+    "Milotic",
+    "Bronzong",
+    "Purugly",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.757,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Snorlax; answers Grumpig->Snorlax, Gengar->Articuno; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Gliscor",
+    "Jumpluff",
+    "Manaphy",
+    "Snorlax",
+    "Cinderace"
+   ],
+   "seconds": 8.1
+  },
+  {
+   "rate": 0.747,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Palossand; answers Grumpig->Palossand, Gardevoir->Probopass, Gengar->Probopass; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Lumineon",
+    "Milotic",
+    "Palossand",
+    "Probopass",
+    "Altaria"
+   ],
+   "seconds": 10.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 1.0
+   },
+   "line": "lead Gothitelle; answers Grumpig->Dewgong, Gardevoir->Gothitelle, Gengar->Gothitelle; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Gothitelle for Gengar",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1600,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Houndoom; answers Grumpig->Vikavolt, Gengar->Houndoom; switch losing; setup at 5+ safe turns; no status moves; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Grumpig->Araquanid, Gengar->Greninja; switch losing; setup at 5+ safe turns; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.395,
+   "deaths": 0.63,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.45,
+    "20": 0.5,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Blissey; answers Grumpig->Blissey, Gardevoir->Rapidash, Gengar->Rapidash; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.3,
+   "deaths": 1.055,
+   "wipe": 0.01,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.1,
+    "20": 0.3,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Seaking; answers Grumpig->Seaking, Gardevoir->Rapidash, Gengar->Rapidash; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mandibuzz; answers Grumpig->Mandibuzz, Gardevoir->Electivire, Gengar->Liepard; switch losing; setup at 4+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Electivire",
+    "Liepard",
+    "Luxray",
+    "Mandibuzz",
+    "Corviknight",
+    "Drifblim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.217,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "148": 1.0
+   },
+   "line": "lead Crawdaunt; answers Grumpig->Glalie, Gardevoir->Crawdaunt, Gengar->Articuno; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 148,
+   "converged": true,
+   "runs": 3860,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Lumineon",
+    "Milotic",
+    "Tropius",
+    "Crawdaunt"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Grumpig->Lurantis, Gardevoir->Rapidash, Gengar->Greninja; switch losing; setup at 5+ safe turns at full HP; free pivots; save Rapidash for Gardevoir",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Liepard",
+    "Lurantis",
+    "Blissey",
+    "Rapidash"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "19": 1.0
+   },
+   "line": "lead Wailord; answers Grumpig->Wailord, Gardevoir->Mandibuzz, Gengar->Alakazam; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mandibuzz",
+    "Mantine",
+    "Rapidash",
+    "Wailord",
+    "Alakazam"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Drifblim; answers Grumpig->Drifblim, Gardevoir->Alakazam, Gengar->Alakazam; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Alakazam for Gengar",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Octillery",
+    "Salazzle",
+    "Weavile",
+    "Alakazam",
+    "Drifblim"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "129": 1.0
+   },
+   "line": "lead Seaking; answers Grumpig->Seaking, Gengar->Articuno; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 129,
+   "converged": true,
+   "runs": 3480,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Ninetales",
+    "Seaking",
+    "Togekiss"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Wailord; answers Grumpig->Wailord, Gardevoir->Gothitelle, Gengar->Wailord; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Gothitelle",
+    "Liepard",
+    "Luxray",
+    "Octillery",
+    "Torterra",
+    "Wailord"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.233,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.5,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Torterra; answers Grumpig->Torterra, Gardevoir->Vespiquen, Gengar->Araquanid; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Lumineon",
+    "Milotic",
+    "Torterra",
+    "Vespiquen",
+    "Altaria"
+   ],
+   "seconds": 12.3
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.315,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Vespiquen; answers Grumpig->Whiscash, Gardevoir->Vespiquen, Gengar->Lanturn; switch losing; setup at 4+ safe turns at full HP; bait locks; save Lanturn for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Snorlax; answers Grumpig->Feraligatr, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Wailord; answers Grumpig->Togedemaru, Gardevoir->Togedemaru, Gengar->Wailord; switch losing; setup at 3+ safe turns at full HP; free pivots; save Wailord for Gengar",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Grumpig->Electivire, Gardevoir->Wailord; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.695,
+   "deaths": 0.575,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.1,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Crobat; answers Grumpig->Milotic, Gardevoir->Mightyena, Gengar->Crobat; switch losing; setup at 4+ safe turns at full HP; bait locks; save Mightyena for Gardevoir",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Grumpig->Bronzong, Gardevoir->Cinderace, Gengar->Cinderace; switch never; setup at 3+ safe turns at full HP; save Cinderace for Gardevoir",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Manaphy",
+    "Bronzong",
+    "Wailord",
+    "Cinderace",
+    "Corviknight"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Grumpig->Luxray, Gardevoir->Mandibuzz, Gengar->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Luxray",
+    "Mandibuzz",
+    "Octillery",
+    "Starmie",
+    "Walrein"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.337,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Floatzel; answers Grumpig->Garganacl, Gardevoir->Crawdaunt, Gengar->Frosmoth; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 3 turns; save Frosmoth for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Garganacl",
+    "Octillery",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 8.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Grumpig->Jellicent, Gardevoir->Mandibuzz, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Jellicent",
+    "Lumineon",
+    "Mandibuzz",
+    "Pachirisu",
+    "Togedemaru"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crawdaunt; answers Grumpig->Crustle, Gardevoir->Togedemaru, Gengar->Wailord; switch never; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Golem",
+    "Togedemaru",
+    "Wailord",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Electivire; answers Grumpig->Palossand, Gardevoir->Electivire, Gengar->Electivire; switch never; setup at 2+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Luxray",
+    "Masquerain",
+    "Palossand",
+    "Purugly",
+    "Walrein"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weavile; answers Grumpig->Seaking, Gardevoir->Weavile, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Machamp",
+    "Mandibuzz",
+    "Mightyena",
+    "Seaking",
+    "Weavile"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lunatone; answers Grumpig->Feraligatr, Gardevoir->Greninja, Gengar->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Florges",
+    "Greninja",
+    "Absol",
+    "Lunatone",
+    "Purugly"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Golduck, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.235,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cresselia; answers Grumpig->Cresselia, Gardevoir->Orbeetle, Gengar->Cresselia; switch losing; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Magcargo; answers Grumpig->Corviknight, Gardevoir->Bibarel, Gengar->Corviknight; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Whiscash; answers Grumpig->Whiscash, Gardevoir->Rapidash, Gengar->Rapidash; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.6,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Relicanth; answers Grumpig->Relicanth, Gengar->Quagsire; switch hp below 0.4; setup at 5+ safe turns; stall timed effects at 1 turns; save Quagsire for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Grumpig->Wailord, Gardevoir->Greninja, Gengar->Wailord; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Greninja",
+    "Liepard",
+    "Wailord",
+    "Corviknight"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Grumpig->Wailord, Gardevoir->Greninja, Gengar->Wailord; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Greninja",
+    "Liepard",
+    "Rapidash",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Seaking; answers Grumpig->Seaking, Gardevoir->Ferrothorn, Gengar->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Gastrodon",
+    "Greninja",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Shiftry; answers Grumpig->Jellicent, Gardevoir->Cinderace, Gengar->Bastiodon; switch never; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Bastiodon",
+    "Palossand",
+    "Shiftry",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "113": 1.0
+   },
+   "line": "lead Mandibuzz; answers Grumpig->Mandibuzz, Gardevoir->Mandibuzz, Gengar->Steelix; switch hp below 0.3; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Mandibuzz for Gardevoir",
+   "candidates": 113,
+   "converged": true,
+   "runs": 3160,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Orbeetle",
+    "Steelix",
+    "Cinderace",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Mandibuzz, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Bronzong",
+    "Talonflame",
+    "Cresselia",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Grumpig->Empoleon, Gardevoir->Ferrothorn, Gengar->Ferrothorn; switch losing; setup at 3+ safe turns at full HP; save Ferrothorn for Gengar",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Greninja",
+    "Liepard",
+    "Sharpedo",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Vikavolt; answers Grumpig->Metagross, Gardevoir->Metagross, Gengar->Metagross; switch losing; setup at 3+ safe turns at full HP; bait locks; save Metagross for Gengar",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:3",
+   "team": [
+    "Kingdra",
+    "Metagross",
+    "Palossand",
+    "Rapidash",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.545,
+   "deaths": 0.66,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Golduck; answers Grumpig->Crustle, Gardevoir->Crustle; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Crustle for Gardevoir",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "23": 1.0
+   },
+   "line": "lead Ceruledge; answers Grumpig->Electivire, Gardevoir->Ceruledge, Gengar->Electivire; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.45,
+   "deaths": 0.64,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Masquerain; answers Grumpig->Lumineon, Gardevoir->Golduck, Gengar->Whiscash; switch hp below 0.5; setup at 3+ safe turns; bait locks; free pivots; save Whiscash for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Bronzong, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Corviknight; answers Grumpig->Arboliva, Gengar->Corviknight; switch losing; setup at 2+ safe turns at full HP; free pivots; save Corviknight for Gengar",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1280,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Grumpig->Corviknight, Gardevoir->Empoleon, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Greninja",
+    "Bastiodon",
+    "Rapidash",
+    "Cinderace",
+    "Corviknight"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.727,
+   "deaths": 0.34,
+   "wipe": 0.007,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.8,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Dewgong; answers Gardevoir->Octillery, Gengar->Wailord; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Wailord for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Mienshao",
+    "Octillery",
+    "Wailord",
+    "Crawdaunt",
+    "Dewgong"
+   ],
+   "seconds": 8.2
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "84": 1.0
+   },
+   "line": "lead Crawdaunt; answers Grumpig->Corviknight, Gardevoir->Corviknight, Gengar->Corviknight; switch never; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Corviknight for Gengar",
+   "candidates": 84,
+   "converged": true,
+   "runs": 2580,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Kingdra",
+    "Lopunny",
+    "Rapidash",
+    "Corviknight",
+    "Crawdaunt"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Grumpig->Electivire, Gardevoir->Salazzle, Gengar->Shiftry; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Salazzle for Gardevoir",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Garganacl",
+    "Rotom",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.65,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "153": 1.0
+   },
+   "line": "lead Talonflame; answers Grumpig->Dubwool, Gardevoir->Luxray, Gengar->Luxray; switch never; setup at 2+ safe turns at full HP; free pivots; save Luxray for Gardevoir",
+   "candidates": 153,
+   "converged": true,
+   "runs": 3960,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Kingdra",
+    "Luxray",
+    "Talonflame",
+    "Dubwool"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.8,
+    "70": 0.8,
+    "71": 1.0
+   },
+   "line": "lead Skuntank; answers Grumpig->Skuntank, Gardevoir->Skuntank; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 71,
+   "converged": true,
+   "runs": 2320,
+   "kind": "planned:4",
+   "team": [
+    "Golduck",
+    "Manaphy",
+    "Quagsire",
+    "Sharpedo",
+    "Skuntank",
+    "Cinderace"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.537,
+   "wipe": 0.003,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Vikavolt; answers Grumpig->Vikavolt, Gardevoir->Crawdaunt, Gengar->Vaporeon; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Crawdaunt for Gardevoir",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Orbeetle",
+    "Vaporeon",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 7.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lopunny; answers Grumpig->Lopunny, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Heracross",
+    "Lopunny",
+    "Pawmot",
+    "Tentacruel",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.515,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Walrein; answers Grumpig->Walrein, Gardevoir->Talonflame, Gengar->Magcargo; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Talonflame for Gardevoir",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.145,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Bronzong, Gengar->Bronzong; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.66,
+   "deaths": 0.405,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Crustle; answers Grumpig->Crustle, Gengar->Swampert; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.205,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Garganacl; answers Grumpig->Garganacl, Gardevoir->Articuno, Gengar->Bastiodon; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Bastiodon for Gengar",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.405,
+   "deaths": 0.715,
+   "wipe": 0.005,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.35,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Tsareena; answers Grumpig->Tsareena, Gardevoir->Noctowl, Gengar->Toxapex; switch losing; setup at 3+ safe turns at full HP; bait locks; save Toxapex for Gengar",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Electivire; answers Grumpig->Bronzong, Gardevoir->Bronzong, Gengar->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:5",
+   "team": [
+    "Electivire",
+    "Bastiodon",
+    "Manaphy",
+    "Mightyena",
+    "Bronzong",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rhyperior; answers Grumpig->Rhyperior, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Greninja for Gengar",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Greninja",
+    "Rhyperior",
+    "Talonflame",
+    "Tsareena",
+    "Walrein"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Jellicent; answers Grumpig->Jellicent, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Jellicent",
+    "Walrein",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Dhelmise; answers Grumpig->Dhelmise, Gengar->Weavile; switch losing; setup at 3+ safe turns at full HP; save Weavile for Gengar",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1800,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Hippowdon",
+    "Weavile",
+    "Whiscash",
+    "Dhelmise"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Grumpig->Crustle, Gardevoir->Ferrothorn, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "19": 1.0
+   },
+   "line": "lead Steelix; answers Grumpig->Steelix, Gardevoir->Steelix, Gengar->Steelix; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Pawmot",
+    "Steelix",
+    "Torterra",
+    "Cinderace",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.197,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.7,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "98": 1.0
+   },
+   "line": "lead Pawmot; answers Gardevoir->Pawmot; switch never; setup at 2+ safe turns at full HP; save Pawmot for Gardevoir",
+   "candidates": 98,
+   "converged": true,
+   "runs": 2860,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Mandibuzz",
+    "Mightyena",
+    "Pawmot",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Wailord; answers Grumpig->Wailord, Gardevoir->Cinderace, Gengar->Tentacruel; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns; save Tentacruel for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Hawlucha",
+    "Serperior",
+    "Tentacruel",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "17": 1.0
+   },
+   "line": "lead Scizor; answers Grumpig->Araquanid, Gardevoir->Ninetales, Gengar->Araquanid; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Plusle; answers Grumpig->Scizor, Gardevoir->Mightyena, Gengar->Seaking; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.145,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "22": 1.0
+   },
+   "line": "lead Scizor; answers Grumpig->Scizor, Gardevoir->Scizor, Gengar->Lanturn; switch losing; setup at 3+ safe turns at full HP; save Scizor for Gardevoir",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Dusknoir; answers Grumpig->Dusknoir, Gardevoir->Crawdaunt, Gengar->Dusknoir; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Grumpig->Togedemaru, Gardevoir->Milotic, Gengar->Electivire; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dusknoir; answers Grumpig->Dusknoir, Gardevoir->Corviknight, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Togedemaru",
+    "Corviknight",
+    "Cresselia",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togedemaru; answers Gardevoir->Houndoom, Gengar->Lurantis; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Lurantis for Gengar",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Houndoom",
+    "Lurantis",
+    "Togedemaru",
+    "Cresselia"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Cresselia; answers Grumpig->Cresselia, Gardevoir->Mightyena, Gengar->Cresselia; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Cresselia for Gengar",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Mightyena",
+    "Shiftry",
+    "Tentacruel",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.837,
+   "deaths": 0.197,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.4,
+    "20": 0.55,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Cresselia; answers Grumpig->Cresselia; switch hp below 0.7; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Plusle",
+    "Whiscash",
+    "Cresselia",
+    "Dewgong"
+   ],
+   "seconds": 9.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dusknoir; answers Grumpig->Dusknoir, Gardevoir->Dusknoir, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Floatzel",
+    "Bastiodon",
+    "Absol",
+    "Cresselia",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Corviknight; answers Grumpig->Drifblim, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP; save Corviknight for Gengar",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Jellicent",
+    "Palossand",
+    "Cinderace",
+    "Corviknight",
+    "Drifblim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Bronzong, Gengar->Empoleon; switch losing; setup at 3+ safe turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Milotic",
+    "Bronzong",
+    "Scizor",
+    "Vikavolt",
+    "Cresselia"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "87": 1.0
+   },
+   "line": "lead Cresselia; answers Grumpig->Drifblim, Gardevoir->Bastiodon, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 87,
+   "converged": true,
+   "runs": 2640,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Bastiodon",
+    "Rhyperior",
+    "Steelix",
+    "Cresselia",
+    "Drifblim"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 0.445,
+   "deaths": 0.815,
+   "wipe": 0.01,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.4,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Jellicent; answers Grumpig->Araquanid; switch hp below 0.3; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Grumpig->Steelix, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.19,
+   "deaths": 1.465,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Crawdaunt; answers Grumpig->Crawdaunt, Gardevoir->Crawdaunt, Gengar->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Crustle; answers Grumpig->Liepard, Gardevoir->Liepard, Gengar->Articuno; switch hp below 0.4; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Liepard for Gardevoir",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.545,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Araquanid; answers none; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Liepard; answers Grumpig->Empoleon, Gardevoir->Liepard, Gengar->Empoleon; switch hp below 0.7; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Liepard for Gardevoir",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Empoleon",
+    "Araquanid",
+    "Liepard",
+    "Manaphy",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Araquanid; answers Grumpig->Araquanid, Gardevoir->Houndoom, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Araquanid",
+    "Bastiodon",
+    "Houndoom",
+    "Liepard",
+    "Octillery"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gothitelle; answers Grumpig->Gothitelle, Gardevoir->Gothitelle, Gengar->Gothitelle; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Gothitelle for Gardevoir",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Gothitelle",
+    "Hariyama",
+    "Incineroar",
+    "Jellicent",
+    "Milotic",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Lumineon; answers Grumpig->Gastrodon, Gardevoir->Magnezone, Gengar->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Rotom",
+    "Tentacruel"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crustle; answers Grumpig->Crustle, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Liepard",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Grumpig->Garganacl, Gardevoir->Liepard, Gengar->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Houndoom",
+    "Kingdra",
+    "Liepard",
+    "Rotom",
+    "Toxapex"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Kingdra; answers Grumpig->Kingdra, Gardevoir->Steelix, Gengar->Bastiodon; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Goodra",
+    "Bastiodon",
+    "Kingdra",
+    "Magnezone",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 6.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "13": 1.0
+   },
+   "line": "lead Electivire; answers Gardevoir->Houndoom, Gengar->Abomasnow; switch hp below 0.4; setup at 3+ safe turns at full HP; save Abomasnow for Gengar",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Flygon",
+    "Houndoom",
+    "Palossand",
+    "Raichu"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Grumpig->Empoleon, Gardevoir->Liepard, Gengar->Ferrothorn; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Grumpig->Bastiodon, Gardevoir->Greninja, Gengar->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Seaking; answers Grumpig->Orbeetle, Gardevoir->Crawdaunt, Gengar->Araquanid; switch hp below 0.2; setup at 2+ safe turns at full HP; bait locks; free pivots; save Crawdaunt for Gardevoir",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Empoleon; answers Grumpig->Empoleon, Gardevoir->Florges, Gengar->Florges; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Florges for Gengar",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.575,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Lumineon; answers Grumpig->Cherrim, Gardevoir->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Electivire; answers Grumpig->Bronzong, Gardevoir->Bronzong, Gengar->Ferrothorn; switch never; setup at 3+ safe turns; free pivots; save Bronzong for Gardevoir",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Empoleon",
+    "Ferrothorn",
+    "Greninja",
+    "Bronzong",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Grumpig->Manaphy, Gardevoir->Greninja, Gengar->Electivire; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Articuno",
+    "Greninja",
+    "Lumineon",
+    "Manaphy",
+    "Sharpedo"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Lapras; answers Gardevoir->Houndoom, Gengar->Houndoom; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Houndoom",
+    "Jellicent",
+    "Lapras",
+    "Mandibuzz",
+    "Walrein",
+    "Delcatty"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Walrein; answers Grumpig->Walrein, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Milotic",
+    "Carbink",
+    "Walrein",
+    "Clefable",
+    "Drifblim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Absol; answers Grumpig->Florges, Gengar->Magcargo; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 2 turns; save Magcargo for Gengar",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Florges",
+    "Hippowdon",
+    "Absol",
+    "Magcargo",
+    "Milotic"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bronzong; answers Grumpig->Bronzong, Gardevoir->Houndoom, Gengar->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Pelipper",
+    "Bronzong",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Ferrothorn; answers Grumpig->Ferrothorn, Gardevoir->Ferrothorn, Gengar->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Manaphy",
+    "Palossand",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Grumpig->Empoleon, Gardevoir->Empoleon, Gengar->Drifblim; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Garganacl",
+    "Liepard",
+    "Donphan",
+    "Drifblim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Quagsire; answers Grumpig->Quagsire, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.535,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Mandibuzz; answers Grumpig->Pheromosa, Gardevoir->Manaphy, Gengar->Manaphy; switch losing; setup at 3+ safe turns at full HP; save Manaphy for Gardevoir",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Grumpig->Gastrodon, Gardevoir->Greninja, Gengar->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Crawdaunt; answers Grumpig->Crawdaunt, Gardevoir->Ceruledge, Gengar->Lucario; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lanturn; answers Grumpig->Lanturn, Gardevoir->Honchkrow, Gengar->Mantine; switch losing; setup at 3+ safe turns at full HP; no status moves; save Mantine for Gengar",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Grumpig->Metagross, Gardevoir->Mandibuzz, Gengar->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Greninja",
+    "Honchkrow",
+    "Luxray",
+    "Mandibuzz",
+    "Metagross",
+    "Corviknight"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Jellicent; answers Grumpig->Jellicent, Gardevoir->Luxray, Gengar->Jellicent; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Luxray for Gardevoir",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Lopunny",
+    "Luxray",
+    "Salazzle",
+    "Vaporeon"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.483,
+   "deaths": 0.677,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Rhyperior; answers Grumpig->Rhyperior, Gardevoir->Rhyperior, Gengar->Milotic; switch losing; setup at 3+ safe turns at full HP; save Milotic for Gengar",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Rhyperior",
+    "Sharpedo",
+    "Vikavolt",
+    "Cherrim"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "49": 1.0
+   },
+   "line": "lead Steelix; answers Grumpig->Steelix, Gardevoir->Luxray, Gengar->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:9",
+   "team": [
+    "Gliscor",
+    "Luxray",
+    "Rhyperior",
+    "Salazzle",
+    "Steelix",
+    "Delcatty"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Abomasnow; answers Grumpig->Abomasnow, Gardevoir->Weavile, Gengar->Lucario; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Lucario",
+    "Talonflame",
+    "Togekiss",
+    "Weavile"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Abomasnow; answers Gardevoir->Orbeetle, Gengar->Lucario; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Lucario for Gengar",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Lucario",
+    "Orbeetle",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Corviknight; answers Grumpig->Electivire, Gengar->Corviknight; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Jellicent",
+    "Lurantis",
+    "Vaporeon",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "59": 1.0
+   },
+   "line": "lead Metagross; answers Grumpig->Metagross, Gardevoir->Metagross, Gengar->Walrein; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 59,
+   "converged": true,
+   "runs": 2080,
+   "kind": "planned:9",
+   "team": [
+    "Jellicent",
+    "Kricketune",
+    "Metagross",
+    "Salazzle",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  }
+ ],
+ "key": "tr234"
+}

@@ -7,7 +7,7 @@ Audit every file under `docs/oxide/`, the skills in `.claude/skills/`, the comma
 
 ## 1. Find out who else is working
 
-Run `git worktree list`. For each worktree, check `git -C <path> status --porcelain` and `git rev-list --count oxide..<branch>`. A worktree with uncommitted changes or recent commits belongs to a live track. Its files are off limits for this pass: for the encounter track, that means `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/`, the `encounter-*.md` docs, `pokemon-sources.*`, and its one paragraph at the top of the tracker; for the balance track, `tools/oxide/balance/` and `docs/oxide/balance-plan.md`. Run `git diff oxide...<branch> --stat` to see which shared files the live branch touches, and keep your edits out of those hunks.
+Run `git worktree list`. For each worktree, check `git -C <path> status --porcelain` and `git rev-list --count oxide..<branch>`. A worktree with uncommitted changes or recent commits belongs to a live track. Its files are off limits for this pass: for the encounter track, that means `tools/oxide/encounters/`, `res/field/encounters/`, `docs/oxide/encounters/`, the `encounter-*.md` docs, `pokemon-sources.*`, and its one paragraph at the top of the tracker; for the balance track, `tools/oxide/balance/` and `docs/oxide/balance-plan.md`; for the scoring track, the simulator and scorer files in `tools/oxide/balance/` that `docs/oxide/trainer-scoring-handoff.md` lists, and that doc. Run `git diff oxide...<branch> --stat` to see which shared files the live branch touches, and keep your edits out of those hunks.
 
 ## 2. Classify each file
 
@@ -26,6 +26,8 @@ Then act on the classification:
 - **What stays is not restyled.** Rewrite only what is wrong, or what you are cutting to a pointer.
 
 Check claims against the tree rather than against other docs. Run the dry runs, count the files, and grep for the symbol.
+
+Check every deferred instruction. Run `python3 tools/oxide/deferred_check.py -v`. For each Scheduled entry, test its "Why:" against the tree and the latest rulings, and its "Unneeded if:" against what has happened since. An entry whose reason no longer holds goes to Ian; it is not carried out and not silently deleted. Any instruction elsewhere that waits on a day or a condition ("once X lands", "after the TM pass") moves into the Scheduled list with its reason, and the other place points at it.
 
 ## 3. The findings log
 

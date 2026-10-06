@@ -1,0 +1,1853 @@
+{
+ "study": {
+  "taylor": {
+   "example": "taylor",
+   "kind": "blind",
+   "split": "Gardenia",
+   "cap": 19,
+   "trainer": [
+    "Cherubi 13",
+    "Bellsprout 14",
+    "Tangela 15"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9733333333333334,
+    "faints": 0.48,
+    "clean": 0.8
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.96,
+    "faints": 0.56,
+    "clean": 0.8
+   },
+   "faints_to": [
+    [
+     "Tangela",
+     29
+    ],
+    [
+     "Bellsprout",
+     4
+    ],
+    [
+     "Cherubi",
+     3
+    ]
+   ],
+   "notes": [
+    "aroma_lady_taylor: its first member's item is null, so the built game would drop every item; read with ITEM_NONE there, as the study means it"
+   ],
+   "minutes": 14.8
+  },
+  "taylor-without-Starly": {
+   "example": "taylor-without-Starly",
+   "kind": "blind",
+   "split": "Gardenia",
+   "cap": 19,
+   "trainer": [
+    "Cherubi 13",
+    "Bellsprout 14",
+    "Tangela 15"
+   ],
+   "without": [
+    "Starly"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.13333333333333333,
+    "clean": 0.9066666666666666
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 0.72,
+    "clean": 0.72
+   },
+   "faints_to": [
+    [
+     "Tangela",
+     9
+    ],
+    [
+     "Cherubi",
+     1
+    ]
+   ],
+   "fainted": [
+    [
+     "Geodude",
+     3
+    ],
+    [
+     "Nidorino",
+     2
+    ],
+    [
+     "Steenee",
+     1
+    ],
+    [
+     "Bibarel",
+     1
+    ],
+    [
+     "Wooloo",
+     1
+    ],
+    [
+     "Barboach",
+     1
+    ],
+    [
+     "Prinplup",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 18.0
+  },
+  "catherine-oldsim": {
+   "example": "catherine",
+   "kind": "blind",
+   "split": "Fantina",
+   "cap": 33,
+   "trainer": [
+    "Litwick 30",
+    "Misdreavus 28",
+    "Drifblim 30",
+    "Haunter 30"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9333333333333333,
+    "faints": 0.9466666666666667,
+    "clean": 0.6133333333333333
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 1.52,
+    "clean": 0.36
+   },
+   "faints_to": [
+    [
+     "Haunter",
+     43
+    ],
+    [
+     "Misdreavus",
+     13
+    ],
+    [
+     "Drifblim",
+     12
+    ],
+    [
+     "Litwick",
+     3
+    ]
+   ],
+   "notes": [],
+   "minutes": 22.7
+  },
+  "catherine": {
+   "example": "catherine",
+   "kind": "blind",
+   "split": "Fantina",
+   "cap": 33,
+   "trainer": [
+    "Litwick 30",
+    "Misdreavus 28",
+    "Drifblim 30",
+    "Haunter 30"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9466666666666667,
+    "faints": 0.8933333333333333,
+    "clean": 0.6266666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.88,
+    "faints": 1.68,
+    "clean": 0.36
+   },
+   "faints_to": [
+    [
+     "Haunter",
+     34
+    ],
+    [
+     "Drifblim",
+     18
+    ],
+    [
+     "Misdreavus",
+     11
+    ],
+    [
+     "Litwick",
+     4
+    ]
+   ],
+   "fainted": [
+    [
+     "Prinplup",
+     6
+    ],
+    [
+     "Bibarel",
+     4
+    ],
+    [
+     "Onix",
+     4
+    ],
+    [
+     "Glimmet",
+     4
+    ],
+    [
+     "Pawmo",
+     4
+    ],
+    [
+     "Kingler",
+     3
+    ],
+    [
+     "Breloom",
+     3
+    ],
+    [
+     "Vullaby",
+     3
+    ],
+    [
+     "Dubwool",
+     3
+    ],
+    [
+     "Snover",
+     3
+    ],
+    [
+     "Whiscash",
+     3
+    ],
+    [
+     "Graveler",
+     3
+    ],
+    [
+     "Tsareena",
+     3
+    ],
+    [
+     "Wartortle",
+     2
+    ],
+    [
+     "Togetic",
+     2
+    ],
+    [
+     "Rotom",
+     2
+    ],
+    [
+     "Corvisquire",
+     2
+    ],
+    [
+     "Rampardos",
+     2
+    ],
+    [
+     "Eevee",
+     1
+    ],
+    [
+     "Stunky",
+     1
+    ],
+    [
+     "Vikavolt",
+     1
+    ],
+    [
+     "Brionne",
+     1
+    ],
+    [
+     "Golbat",
+     1
+    ],
+    [
+     "Starly",
+     1
+    ],
+    [
+     "Carbink",
+     1
+    ],
+    [
+     "Charmeleon",
+     1
+    ],
+    [
+     "Fletchinder",
+     1
+    ],
+    [
+     "Nidorino",
+     1
+    ],
+    [
+     "Ampharos",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 24.2
+  },
+  "catherine-without-Starly": {
+   "example": "catherine-without-Starly",
+   "kind": "blind",
+   "split": "Fantina",
+   "cap": 33,
+   "trainer": [
+    "Litwick 30",
+    "Misdreavus 28",
+    "Drifblim 30",
+    "Haunter 30"
+   ],
+   "without": [
+    "Starly"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9866666666666667,
+    "faints": 0.5466666666666666,
+    "clean": 0.6666666666666666
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 1.52,
+    "clean": 0.52
+   },
+   "faints_to": [
+    [
+     "Haunter",
+     23
+    ],
+    [
+     "Drifblim",
+     9
+    ],
+    [
+     "Litwick",
+     7
+    ],
+    [
+     "Misdreavus",
+     2
+    ]
+   ],
+   "fainted": [
+    [
+     "Kingler",
+     4
+    ],
+    [
+     "Prinplup",
+     4
+    ],
+    [
+     "Eevee",
+     4
+    ],
+    [
+     "Onix",
+     4
+    ],
+    [
+     "Fletchinder",
+     3
+    ],
+    [
+     "Pawmo",
+     2
+    ],
+    [
+     "Jumpluff",
+     2
+    ],
+    [
+     "Bibarel",
+     2
+    ],
+    [
+     "Nidorino",
+     2
+    ],
+    [
+     "Carbink",
+     2
+    ],
+    [
+     "Whiscash",
+     1
+    ],
+    [
+     "Vulpix",
+     1
+    ],
+    [
+     "Stunky",
+     1
+    ],
+    [
+     "Ampharos",
+     1
+    ],
+    [
+     "Dubwool",
+     1
+    ],
+    [
+     "Glimmet",
+     1
+    ],
+    [
+     "Togetic",
+     1
+    ],
+    [
+     "Charmeleon",
+     1
+    ],
+    [
+     "Tsareena",
+     1
+    ],
+    [
+     "Graveler",
+     1
+    ],
+    [
+     "Wartortle",
+     1
+    ],
+    [
+     "Rotom",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 20.9
+  },
+  "grunt": {
+   "example": "grunt",
+   "kind": "blind",
+   "split": "Fantina",
+   "cap": 27,
+   "trainer": [
+    "Stunky 21",
+    "Croagunk 21",
+    "Golbat 22"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "faints_to": [],
+   "fainted": [],
+   "notes": [],
+   "minutes": 6.2
+  },
+  "section-oldsim": {
+   "example": "section",
+   "kind": "section",
+   "split": "Fantina",
+   "cap": 27,
+   "trainers": [
+    [
+     "Stunky 21",
+     "Croagunk 21",
+     "Golbat 22"
+    ],
+    [
+     "Stunky 24",
+     "Koffing 24"
+    ],
+    [
+     "Croagunk 24"
+    ],
+    [
+     "Nidorina 24"
+    ]
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9866666666666667,
+    "faints": 0.08,
+    "clean": 0.9866666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.08,
+    "clean": 0.92
+   },
+   "faints_to": [
+    [
+     "Croagunk",
+     4
+    ],
+    [
+     "Stunky",
+     1
+    ],
+    [
+     "Koffing",
+     1
+    ]
+   ],
+   "fainted": [
+    [
+     "Corvisquire",
+     1
+    ],
+    [
+     "Nidorino",
+     1
+    ],
+    [
+     "Krabby",
+     1
+    ],
+    [
+     "Starly",
+     1
+    ],
+    [
+     "Wartortle",
+     1
+    ],
+    [
+     "Popplio",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 19.5
+  },
+  "section": {
+   "example": "section",
+   "kind": "section",
+   "split": "Fantina",
+   "cap": 27,
+   "trainers": [
+    [
+     "Stunky 21",
+     "Croagunk 21",
+     "Golbat 22"
+    ],
+    [
+     "Stunky 24",
+     "Koffing 24"
+    ],
+    [
+     "Croagunk 24"
+    ],
+    [
+     "Nidorina 24"
+    ]
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.013333333333333334,
+    "clean": 0.9866666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.08,
+    "clean": 0.92
+   },
+   "faints_to": [
+    [
+     "Koffing",
+     1
+    ]
+   ],
+   "fainted": [
+    [
+     "Krabby",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 19.1
+  },
+  "gardenia": {
+   "example": "gardenia",
+   "kind": "search",
+   "split": "Gardenia",
+   "cap": 26,
+   "trainer": [
+    "Roselia 25",
+    "Bellossom 24",
+    "Sudowoodo 25",
+    "Shiftry 25",
+    "Roserade 26"
+   ],
+   "winner": [
+    "Dubwool",
+    "Vullaby",
+    "Krabby",
+    "Charmeleon",
+    "Tsareena",
+    "Breloom"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.05333333333333334,
+    "clean": 0.9466666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.08,
+    "clean": 0.92
+   },
+   "faints_to": [
+    [
+     "Bellossom",
+     2
+    ],
+    [
+     "Roserade",
+     1
+    ],
+    [
+     "Roselia",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 38.5
+  },
+  "maylene-oldsim": {
+   "example": "maylene",
+   "kind": "search",
+   "split": "Maylene",
+   "cap": 38,
+   "trainer": [
+    "Glimmora 36",
+    "Hariyama 36",
+    "Medicham 37",
+    "Toxicroak 37",
+    "Hitmonchan 37",
+    "Lucario 38"
+   ],
+   "winner": [
+    "Staraptor",
+    "Charizard",
+    "Graveler",
+    "Primarina",
+    "Rotom",
+    "Talonflame"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9066666666666666,
+    "faints": 3.026666666666667,
+    "clean": 0.06666666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.84,
+    "faints": 3.92,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Medicham",
+     91
+    ],
+    [
+     "Hitmonchan",
+     66
+    ],
+    [
+     "Hariyama",
+     27
+    ],
+    [
+     "Lucario",
+     24
+    ],
+    [
+     "Toxicroak",
+     14
+    ],
+    [
+     "Glimmora",
+     5
+    ]
+   ],
+   "notes": [],
+   "minutes": 66.2
+  },
+  "maylene": {
+   "example": "maylene",
+   "kind": "search",
+   "split": "Maylene",
+   "cap": 38,
+   "trainer": [
+    "Glimmora 36",
+    "Hariyama 36",
+    "Medicham 37",
+    "Toxicroak 37",
+    "Hitmonchan 37",
+    "Lucario 38"
+   ],
+   "winner": [
+    "Staraptor",
+    "Tsareena",
+    "Graveler",
+    "Primarina",
+    "Rotom",
+    "Talonflame"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9866666666666667,
+    "faints": 2.7466666666666666,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.96,
+    "faints": 3.32,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Medicham",
+     92
+    ],
+    [
+     "Hitmonchan",
+     43
+    ],
+    [
+     "Lucario",
+     28
+    ],
+    [
+     "Toxicroak",
+     23
+    ],
+    [
+     "Hariyama",
+     19
+    ],
+    [
+     "Glimmora",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 66.7
+  }
+ },
+ "goal2_before": {
+  "barry_2": {
+   "fight": "barry_2",
+   "six": [
+    "Piplup",
+    "Vulpix",
+    "Rookidee",
+    "Dottler",
+    "Starly",
+    "Krabby"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "faints_to": []
+  },
+  "jupiter_1": {
+   "fight": "jupiter_1",
+   "six": [
+    "Dubwool",
+    "Vulpix",
+    "Onix",
+    "Tsareena",
+    "Graveler",
+    "Snover"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.06666666666666667,
+    "clean": 0.9333333333333333
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.32,
+    "clean": 0.72
+   },
+   "faints_to": [
+    [
+     "Skuntank",
+     4
+    ],
+    [
+     "Sableye",
+     1
+    ]
+   ]
+  },
+  "lucas_dawn_2": {
+   "fight": "lucas_dawn_2",
+   "six": [
+    "Prinplup",
+    "Dubwool",
+    "Vulpix",
+    "Whiscash",
+    "Kingler",
+    "Tsareena"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "faints_to": []
+  },
+  "fantina": {
+   "six": [
+    "Vulpix",
+    "Tsareena",
+    "Graveler",
+    "Ampharos",
+    "Vikavolt",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9466666666666667,
+    "faints": 2.2133333333333334,
+    "clean": 0.12
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.88,
+    "faints": 3.32,
+    "clean": 0.04
+   },
+   "faints_to": [
+    [
+     "Mismagius",
+     76
+    ],
+    [
+     "Rotom",
+     46
+    ],
+    [
+     "Sableye",
+     27
+    ],
+    [
+     "Drifblim",
+     17
+    ]
+   ]
+  },
+  "roark": {
+   "six": [
+    "Wooloo",
+    "Barboach",
+    "Nidorino",
+    "Onix",
+    "Charmander",
+    "Geodude"
+   ],
+   "check_25": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.12,
+    "clean": 0.88
+   }
+  },
+  "mars": {
+   "six": [
+    "Prinplup",
+    "Bibarel",
+    "Vullaby",
+    "Onix",
+    "Charmander",
+    "Geodude"
+   ],
+   "check_25": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   }
+  },
+  "gardenia": {
+   "six": [
+    "Dubwool",
+    "Bibarel",
+    "Vullaby",
+    "Charmeleon",
+    "Tsareena",
+    "Golbat"
+   ],
+   "check_25": {
+    "fights": 25,
+    "won": 0.96,
+    "faints": 1.52,
+    "clean": 0.16
+   }
+  }
+ },
+ "goal2_after": {
+  "barry_2": {
+   "fight": "barry_2",
+   "six": [
+    "Wooloo",
+    "Vulpix",
+    "Rookidee",
+    "Dottler",
+    "Starly",
+    "Krabby"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "faints_to": [],
+   "checked": {
+    "Wooloo, Vulpix, Rookidee, Dottler, Starly, Krabby": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    },
+    "Wooloo, Bidoof, Dottler, Squirtle, Krabby, Finneon": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    },
+    "Piplup, Vulpix, Rookidee, Dottler, Starly, Finneon": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    }
+   }
+  },
+  "jupiter_1": {
+   "fight": "jupiter_1",
+   "six": [
+    "Dubwool",
+    "Onix",
+    "Graveler",
+    "Breloom",
+    "Vikavolt",
+    "Rotom"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.18666666666666668,
+    "clean": 0.9066666666666666
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.2,
+    "clean": 0.88
+   },
+   "faints_to": [
+    [
+     "Skuntank",
+     10
+    ],
+    [
+     "Sableye",
+     2
+    ],
+    [
+     "Tangela",
+     2
+    ]
+   ],
+   "checked": {
+    "Dubwool, Charmeleon, Graveler, Breloom, Snover, Rotom": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.28,
+     "clean": 0.72
+    },
+    "Corvisquire, Onix, Graveler, Breloom, Snover, Rotom": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.36,
+     "clean": 0.64
+    },
+    "Prinplup, Onix, Breloom, Snover, Vikavolt, Rotom": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.16,
+     "clean": 0.84
+    },
+    "Dubwool, Vulpix, Bibarel, Tsareena, Graveler, Breloom": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 0.92,
+     "clean": 0.6
+    },
+    "Dubwool, Onix, Graveler, Breloom, Vikavolt, Rotom": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.04,
+     "clean": 0.96
+    },
+    "Dubwool, Vulpix, Onix, Tsareena, Graveler, Breloom": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.32,
+     "clean": 0.8
+    }
+   }
+  },
+  "lucas_dawn_2": {
+   "fight": "lucas_dawn_2",
+   "six": [
+    "Prinplup",
+    "Vulpix",
+    "Whiscash",
+    "Wartortle",
+    "Onix",
+    "Tsareena"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "faints_to": [],
+   "checked": {
+    "Prinplup, Vulpix, Whiscash, Wartortle, Onix, Tsareena": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    },
+    "Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    },
+    "Prinplup, Dubwool, Vulpix, Whiscash, Onix, Tsareena": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.0,
+     "clean": 1.0
+    }
+   }
+  },
+  "fantina": {
+   "fight": "fantina",
+   "six": [
+    "Charmeleon",
+    "Tsareena",
+    "Graveler",
+    "Ampharos",
+    "Vikavolt",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9066666666666666,
+    "faints": 3.04,
+    "clean": 0.013333333333333334
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.76,
+    "faints": 3.92,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Mismagius",
+     111
+    ],
+    [
+     "Rotom",
+     43
+    ],
+    [
+     "Drifblim",
+     37
+    ],
+    [
+     "Sableye",
+     36
+    ],
+    [
+     "Duskull",
+     1
+    ]
+   ],
+   "checked": {
+    "Prinplup, Wartortle, Charmeleon, Tsareena, Ampharos, Rampardos": {
+     "fights": 25,
+     "won": 0.8,
+     "faints": 4.0,
+     "clean": 0.0
+    },
+    "Prinplup, Tsareena, Ampharos, Golbat, Rotom, Rampardos": {
+     "fights": 25,
+     "won": 0.6,
+     "faints": 4.6,
+     "clean": 0.0
+    },
+    "Prinplup, Kingler, Onix, Tsareena, Ampharos, Rampardos": {
+     "fights": 25,
+     "won": 0.4,
+     "faints": 5.12,
+     "clean": 0.0
+    },
+    "Tsareena, Graveler, Ampharos, Vikavolt, Rotom, Rampardos": {
+     "fights": 25,
+     "won": 0.84,
+     "faints": 3.72,
+     "clean": 0.04
+    },
+    "Charmeleon, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 2.52,
+     "clean": 0.0
+    },
+    "Tsareena, Graveler, Ampharos, Golbat, Vikavolt, Rampardos": {
+     "fights": 25,
+     "won": 0.76,
+     "faints": 3.28,
+     "clean": 0.0
+    },
+    "Graveler, Ampharos, Golbat, Vikavolt, Stunky, Rampardos": {
+     "fights": 25,
+     "won": 0.88,
+     "faints": 4.04,
+     "clean": 0.0
+    }
+   }
+  },
+  "roark": {
+   "fight": "roark",
+   "six": [
+    "Barboach",
+    "Nidorino",
+    "Onix",
+    "Charmander",
+    "Steenee",
+    "Geodude"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.05333333333333334,
+    "clean": 0.9466666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.16,
+    "clean": 0.84
+   },
+   "faints_to": [
+    [
+     "Lileep",
+     3
+    ],
+    [
+     "Geodude",
+     1
+    ]
+   ],
+   "checked": {
+    "Vulpix, Corvisquire, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.24,
+     "clean": 0.76
+    },
+    "Bibarel, Finneon, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.16,
+     "clean": 0.84
+    },
+    "Vulpix, Bibarel, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.4,
+     "clean": 0.6
+    },
+    "Prinplup, Barboach, Nidorino, Onix, Steenee, Geodude": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 0.48,
+     "clean": 0.76
+    },
+    "Barboach, Nidorino, Onix, Charmander, Steenee, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.12,
+     "clean": 0.88
+    },
+    "Prinplup, Nidorino, Onix, Charmander, Steenee, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.16,
+     "clean": 0.84
+    },
+    "Prinplup, Wooloo, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.4,
+     "clean": 0.6
+    }
+   }
+  },
+  "mars": {
+   "fight": "mars",
+   "six": [
+    "Prinplup",
+    "Bibarel",
+    "Nidorino",
+    "Onix",
+    "Charmander",
+    "Geodude"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.16,
+    "clean": 0.8666666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.96,
+    "faints": 0.56,
+    "clean": 0.76
+   },
+   "faints_to": [
+    [
+     "Purugly",
+     7
+    ],
+    [
+     "Bronzor",
+     4
+    ],
+    [
+     "Meowth",
+     1
+    ]
+   ],
+   "checked": {
+    "Prinplup, Vullaby, Barboach, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.2,
+     "clean": 0.92
+    },
+    "Vullaby, Starly, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.16,
+     "clean": 0.88
+    },
+    "Prinplup, Vulpix, Corvisquire, Vullaby, Onix, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.16,
+     "clean": 0.88
+    },
+    "Vullaby, Starly, Nidorino, Onix, Geodude, Grubbin": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.08,
+     "clean": 0.92
+    },
+    "Prinplup, Bibarel, Nidorino, Onix, Charmander, Geodude": {
+     "fights": 25,
+     "won": 1.0,
+     "faints": 0.04,
+     "clean": 0.96
+    },
+    "Prinplup, Bibarel, Vullaby, Barboach, Wartortle, Charmander": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.24,
+     "clean": 0.44
+    },
+    "Prinplup, Bibarel, Vullaby, Barboach, Charmander, Geodude": {
+     "fights": 25,
+     "won": 0.92,
+     "faints": 1.4,
+     "clean": 0.48
+    }
+   }
+  },
+  "gardenia": {
+   "fight": "gardenia",
+   "six": [
+    "Dubwool",
+    "Bibarel",
+    "Nidorino",
+    "Onix",
+    "Tsareena",
+    "Golbat"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9733333333333334,
+    "faints": 1.0666666666666667,
+    "clean": 0.44
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.88,
+    "faints": 2.0,
+    "clean": 0.24
+   },
+   "faints_to": [
+    [
+     "Roserade",
+     60
+    ],
+    [
+     "Cherrim",
+     6
+    ],
+    [
+     "Breloom",
+     6
+    ],
+    [
+     "Lumineon",
+     5
+    ],
+    [
+     "Shiftry",
+     3
+    ]
+   ],
+   "checked": {
+    "Dubwool, Vulpix, Vullaby, Charmeleon, Tsareena, Golbat": {
+     "fights": 25,
+     "won": 0.92,
+     "faints": 2.6,
+     "clean": 0.12
+    },
+    "Dubwool, Bibarel, Nidorino, Onix, Tsareena, Golbat": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.44,
+     "clean": 0.36
+    },
+    "Prinplup, Dubwool, Bibarel, Corvisquire, Tsareena, Golbat": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 2.08,
+     "clean": 0.08
+    },
+    "Vullaby, Popplio, Charmeleon, Tsareena, Vikavolt, Golbat": {
+     "fights": 25,
+     "won": 0.96,
+     "faints": 1.68,
+     "clean": 0.2
+    },
+    "Dubwool, Corvisquire, Vullaby, Charmeleon, Graveler, Golbat": {
+     "fights": 25,
+     "won": 0.84,
+     "faints": 3.12,
+     "clean": 0.04
+    },
+    "Dubwool, Bibarel, Vullaby, Charmeleon, Tsareena, Golbat": {
+     "fights": 25,
+     "won": 0.92,
+     "faints": 1.48,
+     "clean": 0.32
+    }
+   }
+  },
+  "fantina_same_six": {
+   "fight": "fantina",
+   "six": [
+    "Vulpix",
+    "Tsareena",
+    "Graveler",
+    "Ampharos",
+    "Vikavolt",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.92,
+    "faints": 2.8933333333333335,
+    "clean": 0.04
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 3.0,
+    "clean": 0.08
+   },
+   "faints_to": [
+    [
+     "Mismagius",
+     99
+    ],
+    [
+     "Sableye",
+     42
+    ],
+    [
+     "Drifblim",
+     41
+    ],
+    [
+     "Rotom",
+     35
+    ]
+   ]
+  }
+ },
+ "kaizo": {
+  "kaizo_barry_2": {
+   "example": "kaizo_barry_2",
+   "kind": "kaizo",
+   "split": "Roark",
+   "cap": 11,
+   "trainer": [
+    "Aipom 10",
+    "Taillow 10",
+    "Slakoth 10",
+    "Mankey 10",
+    "Elekid 10",
+    "Turtwig 11"
+   ],
+   "winner": [
+    "Piplup",
+    "Vulpix",
+    "Rookidee",
+    "Squirtle",
+    "Krabby",
+    "Finneon"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.0,
+    "faints": 6.0,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.0,
+    "faints": 6.0,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Elekid",
+     249
+    ],
+    [
+     "Turtwig",
+     123
+    ],
+    [
+     "Slakoth",
+     72
+    ],
+    [
+     "Mankey",
+     4
+    ],
+    [
+     "Taillow",
+     2
+    ]
+   ],
+   "notes": [
+    "Kaizo Barry #2: abilities ['Mankey Reckless']"
+   ],
+   "minutes": 66.1
+  },
+  "kaizo_roark": {
+   "example": "kaizo_roark",
+   "kind": "kaizo",
+   "split": "Roark",
+   "cap": 16,
+   "trainer": [
+    "Bonsly 15",
+    "Lileep 13",
+    "Gible 14",
+    "Corsola 14",
+    "Shuckle 13",
+    "Cranidos 16"
+   ],
+   "winner": [
+    "Wartortle",
+    "Nidorino",
+    "Onix",
+    "Charmander",
+    "Steenee",
+    "Geodude"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.8133333333333334,
+    "faints": 4.306666666666667,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.68,
+    "faints": 4.72,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Gible",
+     88
+    ],
+    [
+     "Lileep",
+     74
+    ],
+    [
+     "Cranidos",
+     60
+    ],
+    [
+     "Corsola",
+     58
+    ],
+    [
+     "Bonsly",
+     28
+    ],
+    [
+     "Shuckle",
+     15
+    ]
+   ],
+   "notes": [],
+   "minutes": 79.4
+  },
+  "kaizo_gardenia": {
+   "example": "kaizo_gardenia",
+   "kind": "kaizo",
+   "split": "Gardenia",
+   "cap": 26,
+   "trainer": [
+    "Miltank 24",
+    "Rotom-Mow 23",
+    "Ludicolo 22",
+    "Milotic 23",
+    "Roserade 24",
+    "Torterra 26"
+   ],
+   "winner": [
+    "Dubwool",
+    "Tsareena",
+    "Graveler",
+    "Vikavolt",
+    "Breloom",
+    "Golbat"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.24,
+    "faints": 5.36,
+    "clean": 0.013333333333333334
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.24,
+    "faints": 5.48,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Roserade",
+     107
+    ],
+    [
+     "Milotic",
+     102
+    ],
+    [
+     "Rotom-Mow",
+     65
+    ],
+    [
+     "Torterra",
+     58
+    ],
+    [
+     "Ludicolo",
+     53
+    ],
+    [
+     "Miltank",
+     17
+    ]
+   ],
+   "notes": [
+    "Kaizo Leader Gardenia: moves ['Water Ball']"
+   ],
+   "minutes": 97.9
+  },
+  "kaizo_jupiter": {
+   "example": "kaizo_jupiter",
+   "kind": "kaizo",
+   "split": "Fantina",
+   "cap": 27,
+   "trainer": [
+    "Skuntank 27",
+    "Electrode 26",
+    "Gyarados 25",
+    "Medicham 25",
+    "Lunatone 25",
+    "Tangrowth 26"
+   ],
+   "winner": [
+    "Dubwool",
+    "Charmeleon",
+    "Tsareena",
+    "Graveler",
+    "Golbat",
+    "Rotom"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.8,
+    "faints": 4.173333333333333,
+    "clean": 0.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.44,
+    "faints": 5.32,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Gyarados",
+     89
+    ],
+    [
+     "Medicham",
+     68
+    ],
+    [
+     "Skuntank",
+     67
+    ],
+    [
+     "Tangrowth",
+     55
+    ],
+    [
+     "Electrode",
+     25
+    ],
+    [
+     "Lunatone",
+     9
+    ]
+   ],
+   "notes": [],
+   "minutes": 88.0
+  },
+  "kaizo_fantina_gym": {
+   "example": "kaizo_fantina_gym",
+   "kind": "kaizo",
+   "split": "Fantina",
+   "cap": 33,
+   "trainer": [
+    "Dusclops 26",
+    "Drifblim 27",
+    "Shedinja 28",
+    "Sableye 27",
+    "Banette 27",
+    "Mismagius 29"
+   ],
+   "winner": [
+    "Graveler",
+    "Ampharos",
+    "Rotom",
+    "Carbink",
+    "Rampardos",
+    "Eevee"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.10666666666666667,
+    "clean": 0.92
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.36,
+    "clean": 0.72
+   },
+   "faints_to": [
+    [
+     "Banette",
+     5
+    ],
+    [
+     "Sableye",
+     2
+    ],
+    [
+     "Shedinja",
+     1
+    ]
+   ],
+   "notes": [],
+   "minutes": 77.5
+  },
+  "kaizo_fantina": {
+   "example": "kaizo_fantina",
+   "kind": "kaizo",
+   "split": "Fantina",
+   "cap": 33,
+   "trainer": [
+    "Froslass 32",
+    "Drifblim 32",
+    "Gengar 31",
+    "Spiritomb 31",
+    "Rotom-Fan 32",
+    "Mismagius 33"
+   ],
+   "winner": [
+    "Tsareena",
+    "Graveler",
+    "Ampharos",
+    "Pawmo",
+    "Vikavolt",
+    "Rampardos"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.4,
+    "faints": 4.56,
+    "clean": 0.10666666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.4,
+    "faints": 4.56,
+    "clean": 0.0
+   },
+   "faints_to": [
+    [
+     "Gengar",
+     109
+    ],
+    [
+     "Drifblim",
+     90
+    ],
+    [
+     "Rotom-Fan",
+     49
+    ],
+    [
+     "Mismagius",
+     49
+    ],
+    [
+     "Froslass",
+     40
+    ],
+    [
+     "Spiritomb",
+     5
+    ]
+   ],
+   "notes": [
+    "Kaizo Leader Fantina: abilities ['Gengar Shadow Tag']"
+   ],
+   "minutes": 51.8
+  }
+ }
+}

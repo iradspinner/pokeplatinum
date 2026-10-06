@@ -20,6 +20,7 @@ Go one commit at a time: read the message, then the code. Correctness first. The
 - **A generated file that its generator no longer reproduces.** Rerun the generator and diff the result.
 - **A shared table that missed new entries,** such as the exclusion list Metronome, Assist, Sleep Talk and Copycat share. Also look for an enum value or range the engine has no branch for.
 - **Tool plumbing.** Summary text on stdout that another tool parses, and fail-open paths that hide a failure.
+- **A deferred instruction resting on a premise the range changed.** New hardware, a reversed ruling or a dropped feature can make a Scheduled entry pointless or harmful. On 2026-10-01 a note dated that day had two private workflows switched back on after the new CPU had made one of them unnecessary. Run `python3 tools/oxide/deferred_check.py -v` and read each entry's "Why:" against the range.
 
 ## 3. Re-check every claim
 

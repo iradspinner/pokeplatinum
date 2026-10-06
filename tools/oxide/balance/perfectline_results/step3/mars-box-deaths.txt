@@ -1,0 +1,4 @@
+mars (box): faints over 200 runs, as (fainted, foe out): total, first death
+  Onix         to Purugly         2     1
+  Geodude      to Purugly         1     1
+  Wooloo       to Purugly         1     1

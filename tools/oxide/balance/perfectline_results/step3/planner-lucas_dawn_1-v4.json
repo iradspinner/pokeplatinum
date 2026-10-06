@@ -1,0 +1,43 @@
+{
+ "fight": "lucas_dawn_1",
+ "six": [
+  "Prinplup",
+  "Wooloo",
+  "Vulpix",
+  "Bibarel",
+  "Corvisquire"
+ ],
+ "variant": 4,
+ "foes": [
+  "Turtwig 9"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": null
+ },
+ "luck": "real",
+ "lead": "Vulpix",
+ "lead_values": {
+  "Prinplup": 0.499,
+  "Wooloo": 0.498,
+  "Vulpix": 0.5,
+  "Bibarel": 0.499,
+  "Corvisquire": 0.5
+ },
+ "clean": 75,
+ "won": 75,
+ "deaths": 0.0,
+ "runs": 75,
+ "faints": [],
+ "cpu_seconds_per_run": 0.11,
+ "decisions_per_run": 1.0,
+ "turns_per_run": 1.0,
+ "lead_seconds": 0.6,
+ "wall_seconds": 0.4,
+ "procs": 29,
+ "fights_per_hour": 656096.9,
+ "worker_private_mb_max": 7,
+ "parent_mb": 84,
+ "lost_seeds": []
+}

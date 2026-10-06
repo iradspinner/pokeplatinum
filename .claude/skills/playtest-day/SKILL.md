@@ -1,6 +1,6 @@
 ---
 name: playtest-day
-description: How to run a Platinum Oxide playtest session with Ian from docs/oxide/ingame-checklist.md, from fetching the right ROMs to recording each result as a tick or as an open bug. Use this whenever Ian says he is ready to play or test, the new CPU has arrived, a batch of in-game checks has piled up, or a session is asked to "go through the checks", even if he only names one check.
+description: How to run a Platinum Oxide playtest session with Ian from docs/oxide/ingame-checklist.md, from building the right ROMs to recording each result as a tick or as an open bug. Use this whenever Ian says he is ready to play or test, a batch of in-game checks has piled up, or a session is asked to "go through the checks", even if he only names one check.
 ---
 
 # A playtest day
@@ -18,7 +18,6 @@ Never launch an emulator yourself.
    testkit`), check the ordinary one's SHA-1 against GitHub's build of the
    commit, and copy them into `~/oxide-playtest` as
    `pokeplatinum-oxide-<commit>.nds` and `pokeplatinum-oxide-testkit-<commit>.nds`.
-   `tools/oxide/fetch-rom <commit>` and `--testkit` do the same on GitHub.
    Give Ian the Windows paths (`\\wsl$\Ubuntu\home\ian\oxide-playtest\...`).
 3. Pick the sections he can reach today. A new game covers sections 2 and 3;
    sections 4 and 5 need a mid-game or post-game save. Ask him which saves he

@@ -41,15 +41,16 @@ replacement went in on 2026-09-29, and all of this was done that day:
   failed on Windows and 0 of 1,760 in WSL (the old chip: 1 and 16 of 160), no
   wedge, and no WHEA error or crash in Windows' logs.
 - [x] Build `oxide` locally once and compare its SHA-1 with GitHub's build of
-  the same commit. Until they match, keep using `tools/oxide/fetch-rom`.
+  the same commit.
   Passed 2026-09-29: two builds from an empty folder on every core, 17,816
   steps in 47 and 48 seconds, both `917eb9a5` like GitHub's build of
   252111fe3.
 
 ## 1. The ROMs and the save
 
-- [ ] Fetch the ordinary ROM and the test kit ROM of the current `oxide`:
-  `tools/oxide/fetch-rom <commit>` and `tools/oxide/fetch-rom --testkit <commit>`.
+- [ ] Build the ordinary ROM and the test kit ROM of the current, pushed
+  `oxide` here (`make rom` and `make testkit`), check the ordinary one's SHA-1
+  against GitHub's build of the commit, and copy both into `~/oxide-playtest`.
 - [ ] **Start a new game.** An old save reads every ability as NONE by design
   (element 2 moved the field) and is no valid test bed.
 - [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared
@@ -558,13 +559,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   An untouched Koffing still becomes ordinary Weezing at level 35, and a
   Ponyta ordinary Rapidash at 40.
 
-- [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
-  to him twice; the first time powers up the Pokedex): he asks for a Finneon
-  for his precious MELOETTA. The trade gives a Meloetta named MELOETTA, OT
-  Meister, holding a Lum Berry, at the Finneon's level and knowing Relic
-  Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
-  "Its melodies sway the hearts of all who hear them..." with the Melody
-  Pokemon category.
+- [ ] **The Meister's trade** on Route 226. In the test kit, the menu's
+  "Meister's trade" gives a level-50 Finneon and puts you at his door. Talk
+  to him twice (the first time powers up the Pokedex): he asks for a Finneon
+  for his precious MELOETTA. The trade gives a Meloetta nicknamed Sera, OT
+  Meister, holding a Lum Berry, at the Finneon's level, with Relic Song in
+  its first move slot at full PP (his script sets it after the trade), and
+  his thanks name it. Its other three moves are its last level-up moves at
+  that level, at 50 Echoed Voice, U-turn and Wake-Up Slap. Its cry plays,
+  and its Pokedex entry reads "Its melodies sway the hearts of all who hear
+  them..." with the Melody Pokemon category. With the emulator's bridge
+  running, the Overseer can check the received Meloetta field by field from
+  the box export.
 
 - [x] **Eight items the balance census cannot reach** (2026-09-29): its map
   flood finds no way to them, so no score counts them. For each, say whether

@@ -1,0 +1,13 @@
+roark (box): faints over 200 runs, as (fainted, foe out): total, first death
+  Nidorino     to Lileep        162   110
+  Onix         to Lileep        104    18
+  Charmander   to Lileep        103     0
+  Finneon      to Lileep        102    36
+  Geodude      to Lileep        100     0
+  Barboach     to Lileep         98     0
+  Onix         to Cranidos       32     3
+  Barboach     to Cranidos       11     5
+  Geodude      to Geodude         2     0
+  Barboach     to Geodude         2     1
+  Geodude      to Cranidos        1     0
+  Finneon      to Cranidos        1     0

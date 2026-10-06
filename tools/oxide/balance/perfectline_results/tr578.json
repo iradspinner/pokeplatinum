@@ -1,0 +1,3491 @@
+{
+ "blind_rate": 0.883,
+ "blind_clean_share": 0.68,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.142,
+ "blind_wipe": 0.001,
+ "convergence": {
+  "10": 0.925,
+  "50": 0.96,
+  "100": 0.97,
+  "300": 0.977
+ },
+ "runs": 213020,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Sandra",
+ "split": "Galactic",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 9.2,
+ "rows": [
+  {
+   "rate": 0.935,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Cacturne->Tsareena, Raichu->Tsareena, Ninetales->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Crobat",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Cacturne->Gliscor, Raichu->Gliscor, Ninetales->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Liepard",
+    "Corsola",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.395,
+   "deaths": 1.0,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Delibird; answers Raichu->Lopunny, Ninetales->Seaking; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; save Lopunny for Raichu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Bronzong",
+    "Quagsire",
+    "Seaking",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Golduck; answers Cacturne->Milotic, Raichu->Milotic, Ninetales->Golduck; switch losing; setup at 5+ safe turns; free pivots",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:0",
+   "team": [
+    "Golduck",
+    "Milotic",
+    "Pelipper",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Toxapex; answers Cacturne->Toxapex, Ninetales->Toxapex; switch losing; setup at 4+ safe turns; no status moves; save Toxapex for Ninetales",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1240,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Mandibuzz",
+    "Seaking",
+    "Snorlax",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Gliscor, Raichu->Gliscor, Ninetales->Snorlax; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Ninetales",
+    "Snorlax",
+    "Altaria",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Cacturne->Electivire, Raichu->Pawmot, Ninetales->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Gengar",
+    "Orbeetle",
+    "Pawmot",
+    "Salazzle",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vikavolt; answers Cacturne->Vikavolt, Raichu->Roserade, Ninetales->Seaking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Liepard",
+    "Manaphy",
+    "Roserade",
+    "Seaking",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales; answers Cacturne->Ninetales, Raichu->Ninetales, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP; no status moves; save Ninetales for Raichu",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Lanturn",
+    "Mr. Rime",
+    "Ninetales",
+    "Ceruledge",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "96": 1.0
+   },
+   "line": "lead Roserade; answers Cacturne->Florges, Raichu->Snorlax, Ninetales->Gengar; switch never; setup at 3+ safe turns at full HP; save Gengar for Ninetales",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Gengar",
+    "Glalie",
+    "Bibarel",
+    "Roserade",
+    "Snorlax"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gliscor; answers Cacturne->Gliscor, Raichu->Gliscor, Ninetales->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Abomasnow",
+    "Frosmoth",
+    "Galvantula",
+    "Gliscor",
+    "Mandibuzz",
+    "Purugly"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Electivire; answers Raichu->Bastiodon, Ninetales->Seaking; switch losing; setup at 4+ safe turns at full HP; save Seaking for Ninetales",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Orbeetle",
+    "Seaking",
+    "Crobat",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Crobat; answers Raichu->Gothitelle, Ninetales->Vaporeon; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 2 turns; save Gothitelle for Raichu",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lumineon",
+    "Milotic",
+    "Bronzong",
+    "Vaporeon",
+    "Crobat"
+   ],
+   "seconds": 8.2
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "41": 1.0
+   },
+   "line": "lead Floatzel; answers Cacturne->Gothitelle, Raichu->Floatzel, Ninetales->Turtonator; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 41,
+   "converged": true,
+   "runs": 1420,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Lumineon",
+    "Carbink",
+    "Turtonator",
+    "Whiscash"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.295,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Bastiodon; answers Cacturne->Bastiodon, Raichu->Cherrim, Ninetales->Bastiodon; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Kricketune",
+    "Roserade",
+    "Cherrim",
+    "Drifblim"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Abomasnow; answers Cacturne->Abomasnow, Raichu->Abomasnow, Ninetales->Houndoom; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Houndoom",
+    "Luxray",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Mamoswine; answers Raichu->Milotic; switch losing; setup at 2+ safe turns; save Milotic for Raichu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Corviknight"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Absol; answers Cacturne->Ninetales, Ninetales->Mantine; switch losing; setup at 3+ safe turns; no status moves; save Mantine for Ninetales",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Altaria, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Bastiodon",
+    "Mamoswine",
+    "Ninetales",
+    "Turtonator",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Turtonator; answers Cacturne->Turtonator, Raichu->Torterra, Ninetales->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Octillery",
+    "Bronzong",
+    "Carbink",
+    "Torterra",
+    "Turtonator"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Glalie; answers Cacturne->Florges, Raichu->Ninetales, Ninetales->Manaphy; switch losing; setup at 3+ safe turns at full HP; free pivots; save Manaphy for Ninetales",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Manaphy",
+    "Ninetales",
+    "Bronzong",
+    "Turtonator"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Turtonator; answers Cacturne->Turtonator, Raichu->Florges, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP; save Araquanid for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Florges",
+    "Turtonator",
+    "Wailord",
+    "Crawdaunt",
+    "Decidueye"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Purugly, Ninetales->Toxapex; switch losing; setup at 5+ safe turns at full HP; bait locks",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lopunny",
+    "Purugly",
+    "Toxapex",
+    "Corviknight",
+    "Altaria"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Raichu->Bronzong, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Liepard",
+    "Palossand",
+    "Bronzong",
+    "Togekiss",
+    "Alakazam"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Liepard, Ninetales->Altaria; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Liepard",
+    "Lumineon",
+    "Pelipper",
+    "Bronzong",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Purugly; answers Cacturne->Lurantis, Raichu->Lurantis, Ninetales->Lurantis; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Lurantis",
+    "Milotic",
+    "Pelipper",
+    "Purugly",
+    "Salazzle",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Breloom; answers Cacturne->Talonflame, Raichu->Hariyama, Ninetales->Delphox; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Delphox for Ninetales",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Mienshao",
+    "Breloom",
+    "Talonflame",
+    "Walrein",
+    "Delphox"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.245,
+   "deaths": 0.89,
+   "wipe": 0.015,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Toxicroak; answers Cacturne->Mienshao, Raichu->Magnezone, Ninetales->Pachirisu; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Magnezone",
+    "Mienshao",
+    "Pachirisu",
+    "Palossand",
+    "Toxicroak",
+    "Alomomola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vespiquen; answers Cacturne->Scizor, Raichu->Scizor, Ninetales->Scizor; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Scizor for Ninetales",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Girafarig",
+    "Gliscor",
+    "Golem",
+    "Scizor",
+    "Vespiquen"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Frosmoth; answers Cacturne->Octillery, Raichu->Houndoom, Ninetales->Octillery; switch losing; setup at 3+ safe turns at full HP; save Octillery for Ninetales",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Houndoom",
+    "Kricketune",
+    "Octillery",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.685,
+   "deaths": 0.345,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Magnezone; answers Cacturne->Magnezone, Raichu->Magnezone, Ninetales->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Girafarig",
+    "Magnezone",
+    "Masquerain",
+    "Starmie",
+    "Chandelure",
+    "Yanmega"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hariyama; answers Cacturne->Hariyama, Raichu->Electivire, Ninetales->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Luxray",
+    "Mamoswine",
+    "Cinderace",
+    "Delphox",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Leavanny; answers Cacturne->Jellicent, Raichu->Bastiodon, Ninetales->Jellicent; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Jellicent for Ninetales",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Jellicent",
+    "Leavanny",
+    "Milotic",
+    "Pachirisu",
+    "Whiscash"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crawdaunt; answers Cacturne->Electivire, Raichu->Electivire, Ninetales->Electivire; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Electivire for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Chandelure",
+    "Weavile",
+    "Cinderace",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Granbull; answers Cacturne->Granbull, Raichu->Leavanny, Ninetales->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Leavanny",
+    "Luxray",
+    "Mienshao",
+    "Octillery",
+    "Tentacruel"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Houndoom; answers Cacturne->Houndoom, Raichu->Milotic, Ninetales->Milotic; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Milotic for Ninetales",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Houndoom",
+    "Milotic",
+    "Poliwrath",
+    "Purugly",
+    "Weavile"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Breloom; answers Raichu->Leavanny; switch losing; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Leavanny for Raichu",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Houndoom",
+    "Leavanny",
+    "Luxray",
+    "Mamoswine",
+    "Breloom"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Glalie; answers Cacturne->Milotic, Raichu->Milotic, Ninetales->Togekiss; switch losing; setup at 5+ safe turns at full HP; free pivots; save Milotic for Raichu",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Milotic",
+    "Poliwrath",
+    "Togekiss",
+    "Ceruledge",
+    "Chandelure"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.73,
+   "deaths": 0.27,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Luxray; answers Cacturne->Florges, Raichu->Florges, Ninetales->Luxray; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Luxray for Ninetales",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Ludicolo",
+    "Luxray",
+    "Pachirisu"
+   ],
+   "seconds": 7.3
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.2,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.55,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8
+   },
+   "line": "lead Steelix; answers Cacturne->Altaria, Raichu->Ninetales-Alola, Ninetales->Altaria; switch hp below 0.4; setup at 4+ safe turns; free pivots; stall timed effects at 3 turns; save Ninetales-Alola for Raichu",
+   "candidates": 150,
+   "converged": true,
+   "runs": 3600,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Skarmory",
+    "Steelix",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Altaria"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hawlucha; answers Raichu->Rapidash, Ninetales->Mantine; switch hp below 0.6; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Rapidash for Raichu",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Magmortar",
+    "Mantine",
+    "Rapidash",
+    "Talonflame",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Bronzong; answers Cacturne->Delcatty, Ninetales->Delcatty; switch losing; setup at 3+ safe turns; bait locks; save Delcatty for Ninetales",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:3",
+   "team": [
+    "Glalie",
+    "Mienshao",
+    "Bronzong",
+    "Tentacruel",
+    "Chandelure",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Crustle, Raichu->Araquanid, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP; save Araquanid for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Bibarel",
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.765,
+   "deaths": 0.235,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Metagross; answers Cacturne->Gengar, Raichu->Metagross, Ninetales->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Metagross",
+    "Salazzle",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Raichu->Bastiodon, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP; save Araquanid for Ninetales",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Bastiodon",
+    "Milotic",
+    "Talonflame",
+    "Chandelure",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Abomasnow; answers Cacturne->Abomasnow, Raichu->Abomasnow, Ninetales->Magcargo; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; save Magcargo for Ninetales",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Golduck",
+    "Hawlucha",
+    "Magcargo",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Raichu->Bastiodon, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Gengar",
+    "Glimmora",
+    "Bastiodon",
+    "Leavanny",
+    "Raichu"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Altaria, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Bastiodon",
+    "Raichu",
+    "Talonflame",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ambipom; answers Cacturne->Bastiodon, Raichu->Whiscash, Ninetales->Tentacruel; switch losing; setup at 5+ safe turns at full HP; save Whiscash for Raichu",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Salazzle",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "29": 1.0
+   },
+   "line": "lead Garganacl; answers Cacturne->Magcargo, Ninetales->Magcargo; switch losing; setup at 3+ safe turns; save Magcargo for Ninetales",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Gengar",
+    "Liepard",
+    "Magcargo",
+    "Salazzle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "125": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Raichu->Heracross, Ninetales->Lumineon; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 125,
+   "converged": true,
+   "runs": 3400,
+   "kind": "planned:3",
+   "team": [
+    "Heracross",
+    "Liepard",
+    "Lumineon",
+    "Milotic",
+    "Yanmega",
+    "Dubwool"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.843,
+   "deaths": 0.157,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.7,
+    "30": 0.85,
+    "40": 1.0
+   },
+   "line": "lead Florges; answers Cacturne->Raichu, Raichu->Qwilfish, Ninetales->Qwilfish; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Qwilfish for Ninetales",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1700,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Bastiodon",
+    "Qwilfish",
+    "Raichu",
+    "Toucannon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Altaria, Ninetales->Salazzle; switch losing; setup at 3+ safe turns at full HP; free pivots; save Salazzle for Ninetales",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Machamp",
+    "Quagsire",
+    "Salazzle",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Raichu->Lurantis, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Absol",
+    "Lurantis",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Leavanny; answers Cacturne->Leavanny, Raichu->Charizard, Ninetales->Charizard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Pawmot",
+    "Quagsire",
+    "Sharpedo",
+    "Charizard"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corviknight; answers Cacturne->Corviknight, Raichu->Electivire, Ninetales->Mantine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Mantine",
+    "Corviknight",
+    "Crawdaunt",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Florges, Raichu->Altaria, Ninetales->Mantine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Mantine",
+    "Rapidash",
+    "Seaking",
+    "Sharpedo",
+    "Altaria"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Altaria; answers Raichu->Ceruledge, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Milotic",
+    "Rapidash",
+    "Ceruledge",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Cacturne->Bastiodon, Raichu->Bastiodon, Ninetales->Poliwrath; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Poliwrath",
+    "Rapidash",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Cacturne->Electivire, Raichu->Electivire, Ninetales->Electivire; switch losing; setup at 5+ safe turns; bait locks; free pivots; save Electivire for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Luxray",
+    "Octillery",
+    "Togekiss",
+    "Delcatty",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Glimmora, Raichu->Bronzong, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Luxray",
+    "Mienshao",
+    "Bronzong",
+    "Togekiss"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Raichu->Electivire, Ninetales->Seaking; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bronzong",
+    "Seaking",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Lurantis, Raichu->Lurantis, Ninetales->Rapidash; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Lurantis",
+    "Palossand",
+    "Rapidash",
+    "Salazzle",
+    "Skuntank",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Skuntank; answers Cacturne->Floatzel, Raichu->Leavanny; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Floatzel",
+    "Leavanny",
+    "Octillery",
+    "Palossand",
+    "Skuntank",
+    "Whiscash"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lumineon; answers Cacturne->Rotom, Raichu->Blissey, Ninetales->Lumineon; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Lumineon for Ninetales",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Blissey",
+    "Milotic",
+    "Rotom",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Pawmot; answers Cacturne->Pawmot, Raichu->Serperior, Ninetales->Floatzel; switch losing; setup at 5+ safe turns; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Manaphy",
+    "Pawmot",
+    "Serperior",
+    "Talonflame",
+    "Vaporeon"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gliscor; answers Cacturne->Gliscor, Raichu->Gliscor, Ninetales->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Gliscor",
+    "Bastiodon",
+    "Noctowl",
+    "Poliwrath",
+    "Torterra",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.51,
+   "deaths": 0.57,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Whiscash; answers Cacturne->Castform, Raichu->Whiscash; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 2 turns; save Whiscash for Raichu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Milotic",
+    "Carbink",
+    "Castform",
+    "Whiscash",
+    "Corsola",
+    "Alomomola"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Machamp; answers Cacturne->Machamp, Raichu->Machamp, Ninetales->Golduck; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Hippowdon",
+    "Machamp",
+    "Masquerain",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.64,
+   "wipe": 0.045,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.2,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Vespiquen; answers Cacturne->Gastrodon, Ninetales->Bastiodon; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Bastiodon",
+    "Bibarel",
+    "Swampert",
+    "Vespiquen"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Walrein; answers Cacturne->Altaria, Raichu->Snorlax, Ninetales->Talonflame; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Snorlax",
+    "Talonflame",
+    "Walrein",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lumineon; answers Cacturne->Altaria, Raichu->Heracross, Ninetales->Lumineon; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Lumineon for Ninetales",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Heracross",
+    "Jellicent",
+    "Leavanny",
+    "Lumineon",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Breloom; answers Cacturne->Breloom, Raichu->Leavanny, Ninetales->Manaphy; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Manaphy for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Glimmora",
+    "Golem",
+    "Leavanny",
+    "Manaphy",
+    "Breloom"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 1.0
+   },
+   "line": "lead Cherrim; answers Cacturne->Ferrothorn, Raichu->Bastiodon, Ninetales->Manaphy; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Bastiodon for Raichu",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Bastiodon",
+    "Liepard",
+    "Manaphy",
+    "Cherrim"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "133": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Raichu->Rotom, Ninetales->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 133,
+   "converged": true,
+   "runs": 3560,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Rotom",
+    "Seaking",
+    "Wailord",
+    "Ninetales-Alola",
+    "Cinccino"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.57,
+   "wipe": 0.02,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Grapploct; answers Cacturne->Grapploct, Raichu->Cherrim, Ninetales->Walrein; switch losing; setup at 3+ safe turns at full HP; save Walrein for Ninetales",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Rhyperior",
+    "Sinistcha",
+    "Walrein",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Tsareena; answers Cacturne->Manaphy, Raichu->Electivire, Ninetales->Magcargo; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Magcargo",
+    "Manaphy",
+    "Bronzong",
+    "Tsareena",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Rhyperior; answers Cacturne->Greninja, Raichu->Gliscor, Ninetales->Hippowdon; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Grapploct",
+    "Greninja",
+    "Hippowdon",
+    "Rhyperior",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Cacturne->Palossand, Ninetales->Altaria; switch losing; setup at 3+ safe turns at full HP; save Altaria for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Galvantula",
+    "Palossand",
+    "Tentacruel",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Jellicent, Raichu->Hippowdon, Ninetales->Mantine; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Hippowdon for Raichu",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:6",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Jellicent",
+    "Mandibuzz",
+    "Mantine",
+    "Vespiquen"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Araquanid, Ninetales->Araquanid; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Jellicent",
+    "Bibarel",
+    "Shiftry",
+    "Vespiquen",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "29": 1.0
+   },
+   "line": "lead Scizor; answers Cacturne->Scizor, Raichu->Ninetales, Ninetales->Ninetales; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Ninetales for Ninetales",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Ninetales",
+    "Quagsire",
+    "Scizor",
+    "Vaporeon"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Weezing-Galar; answers Cacturne->Weezing-Galar, Raichu->Lanturn, Ninetales->Ninetales; switch never; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:6",
+   "team": [
+    "Weezing-Galar",
+    "Huntail",
+    "Lanturn",
+    "Lumineon",
+    "Ninetales",
+    "Ambipom"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Salazzle, Raichu->Altaria; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots; save Altaria for Raichu",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Houndoom",
+    "Ninetales",
+    "Salazzle",
+    "Altaria",
+    "Dusknoir",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Glalie, Raichu->Araquanid, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP; no status moves; save Araquanid for Ninetales",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Houndoom",
+    "Manaphy",
+    "Chandelure",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Cacturne->Hariyama, Raichu->Hariyama, Ninetales->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Mandibuzz",
+    "Salazzle",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.35,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Tsareena; answers Cacturne->Tsareena, Raichu->Tsareena, Ninetales->Corsola; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Mightyena",
+    "Plusle",
+    "Toxapex",
+    "Tsareena",
+    "Corsola"
+   ],
+   "seconds": 6.0
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Lumineon; answers Raichu->Altaria, Ninetales->Altaria; switch hp below 0.6; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Lumineon",
+    "Tsareena",
+    "Vaporeon",
+    "Altaria",
+    "Crawdaunt"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hippowdon; answers Cacturne->Breloom, Raichu->Breloom, Ninetales->Hippowdon; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Hippowdon for Ninetales",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Araquanid",
+    "Hippowdon",
+    "Houndoom",
+    "Leavanny",
+    "Breloom"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.637,
+   "deaths": 0.437,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.45,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.45,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.65,
+    "270": 0.65,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65
+   },
+   "line": "lead Rhyperior; answers Cacturne->Rhyperior, Ninetales->Walrein; switch losing; setup at 4+ safe turns at full HP; bait locks; save Walrein for Ninetales",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Orbeetle",
+    "Rhyperior",
+    "Walrein",
+    "Ambipom",
+    "Dewgong"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Lurantis, Raichu->Lurantis, Ninetales->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Glalie",
+    "Absol",
+    "Lurantis",
+    "Manaphy",
+    "Mightyena",
+    "Tentacruel"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "13": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Frosmoth, Ninetales->Electivire; switch losing; setup at 3+ safe turns at full HP; save Frosmoth for Raichu",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Gothitelle",
+    "Seaking",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Cacturne->Heracross, Raichu->Heracross, Ninetales->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Gothitelle",
+    "Heracross",
+    "Lanturn",
+    "Mantine",
+    "Salazzle",
+    "Seaking"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.65,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lopunny; answers Cacturne->Glalie, Raichu->Lopunny, Ninetales->Kingdra; switch hp below 0.4; setup at 3+ safe turns at full HP; save Lopunny for Raichu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Glalie",
+    "Golem",
+    "Kingdra",
+    "Lopunny",
+    "Cherrim"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Magnezone; answers Cacturne->Magnezone, Raichu->Machamp, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Frosmoth",
+    "Glimmora",
+    "Machamp",
+    "Magnezone",
+    "Staraptor",
+    "Turtonator"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.26,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Glalie; answers none; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Mandibuzz",
+    "Palossand",
+    "Rapidash",
+    "Crobat"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Flygon; answers Cacturne->Flygon, Raichu->Gliscor, Ninetales->Houndoom; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; save Gliscor for Raichu",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Gliscor",
+    "Goodra",
+    "Hariyama",
+    "Houndoom",
+    "Mamoswine"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Turtonator; answers Cacturne->Turtonator, Raichu->Hariyama, Ninetales->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Hariyama",
+    "Houndoom",
+    "Turtonator",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Incineroar; answers Cacturne->Incineroar, Raichu->Incineroar, Ninetales->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Hawlucha",
+    "Incineroar",
+    "Pelipper",
+    "Turtonator"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Cacturne->Electivire, Raichu->Electivire, Ninetales->Seaking; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Hawlucha",
+    "Manaphy",
+    "Seaking",
+    "Electivire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Hariyama; answers Cacturne->Hariyama, Raichu->Hariyama, Ninetales->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Houndoom",
+    "Seaking",
+    "Togekiss",
+    "Toxapex",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Heracross; answers Cacturne->Heracross, Raichu->Vespiquen, Ninetales->Rapidash; switch hp below 0.2; setup at 4+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Golem",
+    "Heracross",
+    "Rapidash",
+    "Vespiquen",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Glimmora; answers Cacturne->Incineroar, Raichu->Flygon, Ninetales->Glimmora; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Glimmora",
+    "Incineroar",
+    "Mamoswine",
+    "Castform",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Electivire, Raichu->Electivire, Ninetales->Mantine; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Absol",
+    "Lurantis",
+    "Mamoswine",
+    "Mantine",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Toxapex; answers Raichu->Sinistcha, Ninetales->Clefable; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns; save Clefable for Ninetales",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Sinistcha",
+    "Toxapex",
+    "Vespiquen",
+    "Clefable"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "21": 1.0
+   },
+   "line": "lead Mandibuzz; answers Cacturne->Mandibuzz, Raichu->Ferrothorn, Ninetales->Carbink; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Mandibuzz",
+    "Carbink",
+    "Castform",
+    "Toxapex",
+    "Weezing"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.495,
+   "deaths": 0.565,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Floatzel; answers Cacturne->Clefable, Raichu->Floatzel, Ninetales->Floatzel; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Leavanny",
+    "Liepard",
+    "Seaking",
+    "Clefable"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.24,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Skarmory; answers Raichu->Whiscash, Ninetales->Walrein; switch hp below 0.3; setup at 4+ safe turns; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Hawlucha",
+    "Skarmory",
+    "Walrein",
+    "Whiscash",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "38": 1.0
+   },
+   "line": "lead Lapras; answers Cacturne->Delcatty, Raichu->Gastrodon, Ninetales->Lapras; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1360,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Lapras",
+    "Pelipper",
+    "Sharpedo",
+    "Whiscash",
+    "Delcatty"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Magcargo; answers Cacturne->Magcargo, Raichu->Electivire, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Kingdra",
+    "Magcargo",
+    "Pachirisu",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Beautifly; answers Cacturne->Leavanny, Raichu->Lanturn; switch never; setup at 2+ safe turns; no status moves; free pivots; save Lanturn for Raichu",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Beautifly",
+    "Lanturn",
+    "Leavanny",
+    "Seaking",
+    "Sudowoodo",
+    "Crustle"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "rate": 0.15,
+   "deaths": 2.22,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.05,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.25,
+    "130": 0.25,
+    "140": 0.25,
+    "150": 0.25,
+    "160": 0.25,
+    "170": 0.25,
+    "180": 0.25,
+    "190": 0.25,
+    "200": 0.25,
+    "210": 0.25,
+    "220": 0.25,
+    "230": 0.25,
+    "240": 0.25,
+    "250": 0.25,
+    "260": 0.25,
+    "270": 0.25,
+    "280": 0.25,
+    "290": 0.25,
+    "300": 0.25
+   },
+   "line": "lead Leavanny; answers Cacturne->Leavanny, Raichu->Leavanny, Ninetales->Gastrodon; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; save Leavanny for Raichu",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Leavanny",
+    "Sinistcha",
+    "Castform",
+    "Weavile",
+    "Cherrim"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Araquanid; answers Cacturne->Araquanid, Ninetales->Araquanid; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Manaphy",
+    "Orbeetle",
+    "Sudowoodo",
+    "Toxapex",
+    "Cherrim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 1.0
+   },
+   "line": "lead Skarmory; answers Cacturne->Carbink, Raichu->Walrein; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 120,
+   "converged": true,
+   "runs": 3300,
+   "kind": "planned:8",
+   "team": [
+    "Mantine",
+    "Pelipper",
+    "Skarmory",
+    "Carbink",
+    "Walrein",
+    "Drifblim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Machamp; answers Cacturne->Machamp, Raichu->Florges, Ninetales->Jellicent; switch never; setup at 3+ safe turns at full HP; no status moves; free pivots; save Jellicent for Ninetales",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "37": 1.0
+   },
+   "line": "lead Crawdaunt; answers Cacturne->Cinderace, Raichu->Sinistcha, Ninetales->Sudowoodo; switch losing; setup at 3+ safe turns",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1640,
+   "kind": "planned:8",
+   "team": [
+    "Ludicolo",
+    "Pelipper",
+    "Sinistcha",
+    "Sudowoodo",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Gastrodon; answers Cacturne->Masquerain, Raichu->Gastrodon, Ninetales->Kingdra; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Kingdra",
+    "Liepard",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Salazzle; answers Cacturne->Salazzle, Raichu->Ceruledge, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Salazzle",
+    "Ceruledge",
+    "Walrein",
+    "Ambipom"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Lurantis; answers Cacturne->Lurantis, Raichu->Lurantis, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Jellicent",
+    "Lurantis",
+    "Ceruledge",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Gliscor; answers Ninetales->Florges; switch losing; setup at 3+ safe turns at full HP; bait locks; save Florges for Ninetales",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Granbull",
+    "Honchkrow",
+    "Mandibuzz",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cherrim; answers Cacturne->Cherrim, Raichu->Furret, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Talonflame",
+    "Ceruledge",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "36": 1.0
+   },
+   "line": "lead Lucario; answers Cacturne->Seaking, Raichu->Whiscash, Ninetales->Seaking; switch never; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Seaking for Ninetales",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1320,
+   "kind": "blind:9",
+   "team": [
+    "Glalie",
+    "Lucario",
+    "Lumineon",
+    "Seaking",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Altaria; answers Cacturne->Altaria, Raichu->Altaria, Ninetales->Salazzle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Ninetales",
+    "Salazzle",
+    "Talonflame",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gastrodon; answers Cacturne->Gliscor, Raichu->Gliscor, Ninetales->Luxray; switch losing; setup at 2+ safe turns; stall timed effects at 2 turns; save Luxray for Ninetales",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Gastrodon",
+    "Gliscor",
+    "Luxray",
+    "Mantine",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Hariyama; answers Cacturne->Hariyama, Raichu->Luxray, Ninetales->Hippowdon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Ludicolo",
+    "Luxray",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Machamp; answers Cacturne->Machamp, Raichu->Machamp, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Machamp for Raichu",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Machamp",
+    "Mr. Rime",
+    "Talonflame",
+    "Tentacruel",
+    "Ceruledge"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glimmora; answers Raichu->Milotic, Ninetales->Crawdaunt; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 2 turns; save Crawdaunt for Ninetales",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Greninja",
+    "Hawlucha",
+    "Milotic",
+    "Crawdaunt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Cacturne->Kingler, Raichu->Whiscash, Ninetales->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Kingler",
+    "Masquerain",
+    "Ceruledge",
+    "Whiscash",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.623,
+   "deaths": 0.383,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Purugly; answers Cacturne->Granbull, Raichu->Machamp, Ninetales->Hippowdon; switch losing; setup at 3+ safe turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Granbull",
+    "Hippowdon",
+    "Lopunny",
+    "Machamp",
+    "Purugly",
+    "Relicanth"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Ludicolo; answers Cacturne->Weezing-Galar, Raichu->Ludicolo, Ninetales->Manaphy; switch losing; setup at 5+ safe turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:9",
+   "team": [
+    "Weezing-Galar",
+    "Ludicolo",
+    "Manaphy",
+    "Palossand",
+    "Purugly",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  }
+ ],
+ "key": "tr578"
+}

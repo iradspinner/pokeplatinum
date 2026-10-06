@@ -1,0 +1,24 @@
+{
+ "name": "stage1-mem",
+ "python": "3.14.4",
+ "implementation": "cpython",
+ "procs": 29,
+ "fights": 24,
+ "setup_seconds": 6.5,
+ "lead_seconds": 13.9,
+ "play_wall_seconds": 212.1,
+ "fights_per_hour": 407.3,
+ "seconds_per_fight": {
+  "roark": 103.2,
+  "mars": 144.0,
+  "gardenia": 126.0
+ },
+ "leads": {
+  "roark": 2,
+  "mars": 0,
+  "gardenia": 3
+ },
+ "parent_mb": 61,
+ "worker_private_mb_max": 138,
+ "worker_peak_rss_mb_max": 188
+}

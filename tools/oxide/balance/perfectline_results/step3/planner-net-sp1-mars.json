@@ -1,0 +1,58 @@
+{
+ "fight": "mars",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "sp1"
+ },
+ "luck": "real",
+ "lead": "Charjabug",
+ "lead_values": {
+  "Geodude": -1.081,
+  "Vullaby": -1.081,
+  "Starly": -1.081,
+  "Onix": -1.081,
+  "Charjabug": -1.081,
+  "Nidorino": -1.081
+ },
+ "clean": 59,
+ "won": 75,
+ "deaths": 0.213,
+ "runs": 75,
+ "faints": [
+  [
+   "Charjabug",
+   "Bronzor",
+   6
+  ],
+  [
+   "Charjabug",
+   "Purugly",
+   4
+  ],
+  [
+   "Onix",
+   "Bronzor",
+   3
+  ],
+  [
+   "Onix",
+   "Purugly",
+   2
+  ],
+  [
+   "Nidorino",
+   "Bronzor",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 3.28,
+ "decisions_per_run": 45.9,
+ "turns_per_run": 45.7,
+ "lead_seconds": 0.1,
+ "wall_seconds": 10.7,
+ "procs": 29,
+ "fights_per_hour": 25171.7,
+ "worker_private_mb_max": 71,
+ "parent_mb": 69
+}

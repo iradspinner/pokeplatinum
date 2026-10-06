@@ -117,6 +117,34 @@ def check_gauntlet(results):
     ]
     results.append(("the gauntlet reading's duel carries damage both ways", all(cases),
                     str(cases)))
+    # Oxide forces the Set battle style: swapping out a member still standing
+    # costs the incoming one a hit, and the pick counts it. Member a beats the
+    # boss losing a quarter; b would lose a fifth from a free start but two
+    # fifths after the swap's hit, so a player with a out keeps it; with a
+    # losing outright, b comes in even after the hit; and b at 15% would fall
+    # to the hit, so a stays.
+    st = {"info": {"a": {"hp": 100}, "b": {"hp": 100}}}
+    rate = {("a", "x"): (0.5, 0.25, True), ("b", "x"): (0.5, 0.2, True)}
+    full = {"a": 100, "b": 100}
+    losing = {**rate, ("a", "x"): (0.1, 0.6, False)}
+    picks = [
+        gauntlet._pick(st, rate, ["a", "b"], full, "x", 1.0) == "b",
+        gauntlet._pick(st, rate, ["a", "b"], full, "x", 1.0, active="a") == "a",
+        gauntlet._pick(st, losing, ["a", "b"], full, "x", 1.0, active="a") == "b",
+        gauntlet._pick(st, losing, ["a", "b"], {"a": 100, "b": 15}, "x", 1.0, active="a") == "a",
+    ]
+    results.append(("a gauntlet swap costs the incoming member a hit (Set style)", all(picks),
+                    str(picks)))
+    # Oxide's critical hits: one in 24 at 1.5 times, one in 8 for a
+    # high-critical move such as Slash, none against Shell Armor.
+    crits = [
+        gauntlet._crit_chance("Tackle", None) == 1 / 24,
+        gauntlet._crit_chance("Slash", None) == 1 / 8,
+        gauntlet._crit_chance("Stone Edge", None) == 1 / 8,
+        gauntlet._crit_chance("Slash", "Shell Armor") == 0.0,
+        gauntlet.CRIT_MUL == 1.5,
+    ]
+    results.append(("the gauntlet reading rolls Oxide's critical hits", all(crits), str(crits)))
     # The sections keep Ian's rulings: 2 to 5 trainers each, Victory Road 1F
     # halved from its entrance, and Mt. Coronet's bosses and hard officers out.
     sizes = {(area, s[0]): len(gauntlet.section_trainers(area, s))

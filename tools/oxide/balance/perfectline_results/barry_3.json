@@ -1,0 +1,3366 @@
+{
+ "blind_rate": 0.925,
+ "blind_clean_share": 0.78,
+ "planned_rate": 0.991,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.01,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.087,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.952,
+  "50": 0.993,
+  "100": 0.996,
+  "300": 0.999
+ },
+ "runs": 188420,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Barry 3",
+ "split": "Maylene",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 10.3,
+ "rows": [
+  {
+   "rate": 0.955,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Seaking; answers Staryu->Cinderace, Vulpix->Lumineon, Grotle->Cinderace; switch losing; setup at 3+ safe turns at full HP; bait locks; save Cinderace for Staryu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Graveler",
+    "Lumineon",
+    "Primarina",
+    "Roselia",
+    "Seaking",
+    "Cinderace"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Probopass, Staryu->Rapidash-Galar, Grotle->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1280,
+   "kind": "blind:0",
+   "team": [
+    "Rapidash-Galar",
+    "Hariyama",
+    "Bibarel",
+    "Lumineon",
+    "Primarina",
+    "Probopass"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Tsareena, Vulpix->Tsareena, Grotle->Vikavolt; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Roselia",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.265,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Pawmot; answers Staravia->Orbeetle, Staryu->Orbeetle, Vulpix->Pawmot, Grotle->Vikavolt; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Orbeetle",
+    "Pawmot",
+    "Vikavolt",
+    "Arboliva",
+    "Floette"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "26": 1.0
+   },
+   "line": "lead Donphan; answers Staravia->Donphan, Staryu->Chansey, Vulpix->Chansey, Grotle->Tsareena; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Chansey for Vulpix",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:0",
+   "team": [
+    "Haunter",
+    "Togetic",
+    "Tsareena",
+    "Vikavolt",
+    "Chansey",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Masquerain; answers Staravia->Probopass, Staryu->Orbeetle, Vulpix->Probopass, Grotle->Noctowl; switch losing; setup at 3+ safe turns at full HP; save Orbeetle for Staryu",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Noctowl",
+    "Orbeetle",
+    "Pawmot",
+    "Probopass"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Vikavolt; answers Staravia->Vikavolt, Staryu->Cofagrigus, Vulpix->Cinderace, Grotle->Cofagrigus; switch losing; setup at 3+ safe turns; save Cofagrigus for Grotle",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Talonflame",
+    "Vikavolt",
+    "Cinderace",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Orbeetle, Staryu->Orbeetle, Vulpix->Rapidash-Galar, Grotle->Rapidash-Galar; switch losing; setup at 4+ safe turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Liepard",
+    "Orbeetle",
+    "Probopass",
+    "Seaking",
+    "Vullaby"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "53": 1.0
+   },
+   "line": "lead Cofagrigus; answers Staravia->Cofagrigus, Staryu->Graveler, Vulpix->Graveler, Grotle->Kadabra; switch losing; setup at 5+ safe turns; no status moves; bait locks; stall timed effects at 2 turns; save Graveler for Vulpix",
+   "candidates": 53,
+   "converged": true,
+   "runs": 1960,
+   "kind": "planned:0",
+   "team": [
+    "Golbat",
+    "Graveler",
+    "Kadabra",
+    "Liepard",
+    "Cofagrigus",
+    "Drifblim"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "19": 1.0
+   },
+   "line": "lead Noctowl; answers Staravia->Talonflame, Staryu->Milotic, Vulpix->Noctowl, Grotle->Noctowl; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:0",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Noctowl",
+    "Talonflame",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.823,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 1.0
+   },
+   "line": "lead Donphan; answers Staravia->Hippowdon, Staryu->Primarina, Vulpix->Kadabra, Grotle->Vaporeon; switch hp below 0.4; setup at 5+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Kadabra",
+    "Primarina",
+    "Vaporeon",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Staravia->Bastiodon, Staryu->Tsareena, Vulpix->Rapidash-Galar, Grotle->Rapidash-Galar; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Bastiodon",
+    "Pachirisu",
+    "Togetic",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Probopass, Staryu->Vaporeon, Vulpix->Probopass, Grotle->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Golbat",
+    "Bibarel",
+    "Probopass",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.185,
+   "wipe": 0.005,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Toucannon; answers Staryu->Toucannon, Vulpix->Noctowl, Grotle->Kricketune; switch losing; setup at 4+ safe turns at full HP; bait locks; save Toucannon for Staryu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Noctowl",
+    "Toucannon",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Floatzel; answers Staravia->Togetic, Staryu->Dubwool, Vulpix->Dubwool, Grotle->Salazzle; switch hp below 0.3; setup at 4+ safe turns at full HP; no status moves; free pivots; save Dubwool for Staryu",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Salazzle",
+    "Togetic",
+    "Vaporeon",
+    "Dubwool",
+    "Floatzel"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.195,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Vikavolt; answers Staravia->Graveler, Vulpix->Lopunny, Grotle->Lopunny; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Vaporeon",
+    "Vikavolt",
+    "Floatzel"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Probopass, Staryu->Chansey, Vulpix->Cherrim, Grotle->Togetic; switch losing; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1220,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Probopass",
+    "Togetic",
+    "Torterra",
+    "Chansey",
+    "Cherrim"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.04,
+   "wipe": 0.005,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Garganacl; answers Staryu->Altaria, Vulpix->Altaria, Grotle->Toucannon; switch losing; setup at 2+ safe turns; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:1",
+   "team": [
+    "Garganacl",
+    "Kricketune",
+    "Ninetales",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Altaria, Vulpix->Torterra, Grotle->Bronzong; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Bronzong",
+    "Torterra",
+    "Altaria",
+    "Cherrim"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Lurantis; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Lurantis",
+    "Noctowl",
+    "Tentacruel",
+    "Vaporeon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Luxray; answers Staravia->Luxray, Staryu->Whiscash, Vulpix->Houndoom, Grotle->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Whiscash",
+    "Corvisquire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Probopass, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Kricketune; switch losing; setup at 3+ safe turns at full HP; save Kricketune for Grotle",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Probopass",
+    "Tentacruel",
+    "Altaria",
+    "Floette"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Lopunny, Vulpix->Garganacl, Grotle->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:1",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Kricketune",
+    "Lopunny",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Luxray, Staryu->Altaria, Vulpix->Lanturn, Grotle->Altaria; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Altaria for Staryu",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Luxray",
+    "Vaporeon",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Bronzong, Staryu->Dusclops, Vulpix->Tentacruel, Grotle->Salazzle; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns; save Salazzle for Grotle",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Bronzong",
+    "Salazzle",
+    "Tentacruel",
+    "Combee",
+    "Dusclops",
+    "Floatzel"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Carbink; answers Staravia->Carbink, Staryu->Lanturn, Vulpix->Houndoom, Grotle->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Rapidash-Galar",
+    "Houndoom",
+    "Lanturn",
+    "Masquerain",
+    "Carbink",
+    "Togetic"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Vaporeon; answers Staravia->Glimmora, Staryu->Vaporeon, Vulpix->Glimmora, Grotle->Glimmora; switch losing; setup at 3+ safe turns at full HP; bait locks; save Vaporeon for Staryu",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Mismagius",
+    "Noctowl",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Sneasel; answers Staravia->Talonflame, Staryu->Vikavolt, Vulpix->Talonflame, Grotle->Vikavolt; switch hp below 0.6; setup at 2+ safe turns at full HP",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1260,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mismagius",
+    "Sneasel",
+    "Staraptor",
+    "Talonflame",
+    "Vikavolt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Whiscash, Staryu->Gastrodon, Vulpix->Delphox, Grotle->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Masquerain",
+    "Whiscash",
+    "Chansey",
+    "Combee",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Floette; answers Staravia->Whiscash, Staryu->Whiscash, Vulpix->Glimmora, Grotle->Glimmora; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Sharpedo",
+    "Whiscash",
+    "Delphox",
+    "Floette"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Seaking; answers Staravia->Honchkrow, Staryu->Seaking, Vulpix->Honchkrow, Grotle->Honchkrow; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1460,
+   "kind": "blind:2",
+   "team": [
+    "Honchkrow",
+    "Mightyena",
+    "Seaking",
+    "Clefable",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Staravia->Rotom, Staryu->Clefable, Vulpix->Delphox, Grotle->Rapidash-Galar; switch hp below 0.4; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Gothorita",
+    "Granbull",
+    "Rotom",
+    "Clefable",
+    "Delphox"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Granbull; answers Staravia->Granbull, Staryu->Masquerain, Vulpix->Rapidash-Galar, Grotle->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Granbull",
+    "Masquerain",
+    "Mightyena",
+    "Talonflame",
+    "Corvisquire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "35": 1.0
+   },
+   "line": "lead Drifblim; answers Staravia->Glimmora, Staryu->Vaporeon, Vulpix->Glimmora, Grotle->Leavanny; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:2",
+   "team": [
+    "Glimmora",
+    "Leavanny",
+    "Pelipper",
+    "Vaporeon",
+    "Drifblim",
+    "Floette"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.083,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Mightyena; answers Staravia->Mightyena, Vulpix->Pelipper, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Lurantis",
+    "Mightyena",
+    "Pelipper",
+    "Electivire"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Bastiodon, Vulpix->Garganacl, Grotle->Orbeetle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Orbeetle for Grotle",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Orbeetle",
+    "Vaporeon",
+    "Combee",
+    "Drifblim"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Rotom; answers Staravia->Sneasel, Vulpix->Rotom; switch losing; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Rotom for Vulpix",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1580,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Masquerain",
+    "Rotom",
+    "Sneasel",
+    "Combee",
+    "Drifblim"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Granbull; answers Staravia->Granbull, Staryu->Vaporeon, Vulpix->Granbull; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Noctowl",
+    "Pelipper",
+    "Sharpedo",
+    "Staraptor",
+    "Vaporeon"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mismagius; answers Staravia->Staraptor, Vulpix->Delphox, Grotle->Staraptor; switch losing; setup at 3+ safe turns at full HP; bait locks; save Delphox for Vulpix",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mismagius",
+    "Staraptor",
+    "Chansey",
+    "Delphox"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Vikavolt; answers Staravia->Vikavolt, Staryu->Gastrodon, Vulpix->Seaking, Grotle->Seaking; switch losing; setup at 2+ safe turns at full HP; no status moves; save Seaking for Vulpix",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1220,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Jynx",
+    "Seaking",
+    "Shiftry",
+    "Vikavolt",
+    "Floette"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.295,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.6,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Combee; answers Staryu->Bastiodon, Vulpix->Bastiodon, Grotle->Seaking; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Seaking",
+    "Vullaby",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "25": 1.0
+   },
+   "line": "lead Carbink; answers Staravia->Carbink, Staryu->Vaporeon, Vulpix->Orbeetle; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1100,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Bronzong",
+    "Seaking",
+    "Carbink",
+    "Vaporeon"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Whiscash, Staryu->Whiscash, Vulpix->Honchkrow, Grotle->Honchkrow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:3",
+   "team": [
+    "Honchkrow",
+    "Leavanny",
+    "Liepard",
+    "Sneasel",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Whiscash; answers Staravia->Bastiodon, Staryu->Vaporeon, Vulpix->Bastiodon, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Toucannon",
+    "Vaporeon",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "202": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Dubwool, Grotle->Girafarig; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 202,
+   "converged": true,
+   "runs": 4940,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Girafarig",
+    "Orbeetle",
+    "Bronzong",
+    "Ambipom",
+    "Dubwool"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.233,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "100": 1.0,
+    "110": 1.0,
+    "120": 1.0,
+    "130": 1.0,
+    "140": 1.0,
+    "150": 1.0,
+    "160": 1.0,
+    "170": 1.0,
+    "180": 1.0,
+    "190": 1.0,
+    "200": 1.0,
+    "210": 1.0,
+    "220": 1.0,
+    "230": 1.0,
+    "240": 1.0,
+    "250": 1.0,
+    "260": 1.0,
+    "270": 1.0,
+    "277": 1.0
+   },
+   "line": "lead Dubwool; answers Staravia->Dubwool, Staryu->Dubwool, Vulpix->Lumineon, Grotle->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 277,
+   "converged": true,
+   "runs": 6440,
+   "kind": "planned:3",
+   "team": [
+    "Lumineon",
+    "Orbeetle",
+    "Shiftry",
+    "Togetic",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 6.9
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Carbink; answers Staravia->Carbink, Staryu->Vaporeon, Vulpix->Vaporeon, Grotle->Leavanny; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Leavanny",
+    "Liepard",
+    "Carbink",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Bronzong, Vulpix->Ludicolo, Grotle->Snover; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:3",
+   "team": [
+    "Ludicolo",
+    "Bronzong",
+    "Snover",
+    "Toucannon",
+    "Ambipom",
+    "Electivire"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.787,
+   "deaths": 0.303,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.95,
+    "60": 0.95,
+    "67": 1.0
+   },
+   "line": "lead Jynx; answers Staravia->Empoleon, Staryu->Empoleon, Vulpix->Ambipom, Grotle->Ambipom; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 67,
+   "converged": true,
+   "runs": 2240,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Breloom",
+    "Ambipom",
+    "Dubwool",
+    "Empoleon",
+    "Floette"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Garganacl; answers Staravia->Togetic, Staryu->Empoleon, Vulpix->Talonflame, Grotle->Shiftry; switch losing; setup at 3+ safe turns at full HP; save Talonflame for Vulpix",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Jynx",
+    "Shiftry",
+    "Talonflame",
+    "Togetic",
+    "Empoleon"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Bronzong, Staryu->Empoleon, Vulpix->Electivire, Grotle->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:3",
+   "team": [
+    "Bronzong",
+    "Vaporeon",
+    "Vikavolt",
+    "Corvisquire",
+    "Electivire",
+    "Empoleon"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Bastiodon; answers Staryu->Dubwool, Vulpix->Bastiodon, Grotle->Sinistcha; switch hp below 0.5; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Bastiodon for Vulpix",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Sinistcha",
+    "Snover",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 8.4
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Vaporeon; answers Staravia->Mienshao, Staryu->Floette, Vulpix->Ludicolo, Grotle->Floette; switch losing; setup at 2+ safe turns at full HP; free pivots; save Ludicolo for Vulpix",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:4",
+   "team": [
+    "Ludicolo",
+    "Mienshao",
+    "Quagsire",
+    "Togetic",
+    "Vaporeon",
+    "Floette"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Steelix; answers Staravia->Rotom, Staryu->Quagsire, Grotle->Galvantula; switch losing; setup at 4+ safe turns; bait locks; free pivots; save Quagsire for Staryu",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Galvantula",
+    "Masquerain",
+    "Mienshao",
+    "Quagsire",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Gastrodon; answers Staravia->Rotom, Staryu->Gastrodon, Vulpix->Mightyena, Grotle->Gastrodon; switch losing; setup at 4+ safe turns; save Gastrodon for Staryu",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:4",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Luxray",
+    "Mightyena",
+    "Bronzong",
+    "Rotom"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Tsareena, Vulpix->Bastiodon, Grotle->Kricketune; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Rotom",
+    "Tsareena",
+    "Combee",
+    "Floatzel"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Whiscash; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Bronzong",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Steelix, Staryu->Ludicolo, Vulpix->Bronzong, Grotle->Masquerain; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Bronzong for Vulpix",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Bronzong",
+    "Steelix",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "13": 1.0
+   },
+   "line": "lead Steelix; answers Staryu->Bronzong, Vulpix->Bronzong, Grotle->Pawmot; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:4",
+   "team": [
+    "Mienshao",
+    "Pawmot",
+    "Bronzong",
+    "Steelix",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Clefable, Vulpix->Garganacl, Grotle->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Orbeetle",
+    "Pawmot",
+    "Rotom",
+    "Clefable"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Staravia->Galvantula, Staryu->Quagsire, Grotle->Galvantula; switch never; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Bastiodon",
+    "Kricketune",
+    "Quagsire",
+    "Rotom"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Staryu->Lanturn, Vulpix->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Lanturn",
+    "Rotom",
+    "Steelix",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mismagius; answers Staravia->Electivire, Staryu->Bastiodon, Vulpix->Mienshao; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Bastiodon for Staryu",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Mienshao",
+    "Mismagius",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Gastrodon; answers Staravia->Steelix, Staryu->Whiscash, Vulpix->Garganacl, Grotle->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Steelix",
+    "Tsareena",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Dubwool, Vulpix->Cinderace, Grotle->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Mightyena",
+    "Orbeetle",
+    "Seaking",
+    "Steelix",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Crustle; answers Staravia->Crustle, Staryu->Tentacruel, Vulpix->Ludicolo, Grotle->Tentacruel; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Octillery",
+    "Tentacruel",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Bibarel; answers Staravia->Talonflame, Staryu->Noctowl, Grotle->Togetic; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Togetic for Grotle",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Noctowl",
+    "Talonflame",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Haunter; answers Staravia->Haunter, Staryu->Primarina, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Leavanny",
+    "Ludicolo",
+    "Primarina",
+    "Shiftry"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Garganacl; answers Staravia->Garganacl, Staryu->Noctowl, Vulpix->Glimmora, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Leavanny",
+    "Noctowl",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Bastiodon, Vulpix->Bastiodon, Grotle->Talonflame; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:5",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Talonflame",
+    "Torterra",
+    "Whiscash"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Bronzong, Staryu->Vaporeon, Vulpix->Talonflame, Grotle->Crustle; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Bronzong",
+    "Talonflame",
+    "Vaporeon",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Vullaby; answers Staravia->Vullaby, Staryu->Octillery, Vulpix->Octillery, Grotle->Lurantis; switch losing; setup at 5+ safe turns at full HP; save Octillery for Staryu",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Lurantis",
+    "Octillery",
+    "Vullaby",
+    "Whiscash",
+    "Cherrim",
+    "Floette"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "28": 1.0
+   },
+   "line": "lead Noctowl; answers Staravia->Talonflame, Staryu->Noctowl, Vulpix->Whiscash, Grotle->Noctowl; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Noctowl for Grotle",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Bibarel",
+    "Noctowl",
+    "Talonflame",
+    "Castform",
+    "Whiscash"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Bastiodon, Staryu->Vaporeon, Vulpix->Bastiodon, Grotle->Shiftry; switch losing; setup at 3+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Shiftry",
+    "Torterra",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.057,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "17": 1.0
+   },
+   "line": "lead Crustle; answers Staravia->Crustle, Staryu->Vaporeon, Vulpix->Torterra, Grotle->Ludicolo; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:5",
+   "team": [
+    "Ludicolo",
+    "Togetic",
+    "Torterra",
+    "Vaporeon",
+    "Vullaby",
+    "Crustle"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mismagius; answers Staravia->Haunter, Staryu->Mismagius, Vulpix->Talonflame, Grotle->Haunter; switch losing; setup at 3+ safe turns at full HP; free pivots; save Haunter for Grotle",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Liepard",
+    "Mismagius",
+    "Orbeetle",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Shiftry, Staryu->Primarina, Vulpix->Lanturn, Grotle->Noctowl; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Noctowl for Grotle",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Noctowl",
+    "Primarina",
+    "Shiftry",
+    "Togetic"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Lanturn, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Noctowl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Ludicolo",
+    "Mightyena",
+    "Noctowl",
+    "Tentacruel",
+    "Castform"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Sandygast; answers Staravia->Vaporeon, Staryu->Combee, Vulpix->Cinderace, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:6",
+   "team": [
+    "Leavanny",
+    "Litwick",
+    "Sandygast",
+    "Vaporeon",
+    "Cinderace",
+    "Combee"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Rhyhorn; answers Staravia->Garganacl, Staryu->Altaria, Vulpix->Orbeetle, Grotle->Scizor; switch losing; setup at 5+ safe turns at full HP; save Scizor for Grotle",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:6",
+   "team": [
+    "Garganacl",
+    "Kadabra",
+    "Orbeetle",
+    "Rhyhorn",
+    "Scizor",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Gastrodon; answers Staravia->Bastiodon, Staryu->Breloom, Vulpix->Bastiodon, Grotle->Gastrodon; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Leavanny",
+    "Breloom",
+    "Scizor",
+    "Combee"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.785,
+   "deaths": 0.305,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Dubwool; answers Staravia->Dubwool, Vulpix->Dubwool, Grotle->Masquerain; switch losing; setup at 5+ safe turns; save Masquerain for Grotle",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Mightyena",
+    "Scizor",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Lanturn, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Tsareena; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Clefable",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Garganacl; answers Staravia->Garganacl, Staryu->Masquerain, Vulpix->Glimmora, Grotle->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Gothorita",
+    "Masquerain",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.083,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Donphan; answers Staravia->Donphan, Staryu->Electivire, Vulpix->Electivire, Grotle->Vullaby; switch losing; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Electivire for Vulpix",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Shiftry",
+    "Vullaby",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "96": 1.0
+   },
+   "line": "lead Wailmer; answers Staravia->Tentacruel, Staryu->Tentacruel, Vulpix->Glimmora, Grotle->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Scizor for Grotle",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Scizor",
+    "Tentacruel",
+    "Wailmer",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Garganacl; answers Staravia->Whiscash, Staryu->Bibarel, Vulpix->Glimmora, Grotle->Glimmora; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:6",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Bibarel",
+    "Mightyena",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "44": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Orbeetle, Vulpix->Orbeetle, Grotle->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 44,
+   "converged": true,
+   "runs": 1780,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Leavanny",
+    "Orbeetle",
+    "Cherrim",
+    "Combee"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Bibarel, Staryu->Bibarel, Vulpix->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Dubwool, Staryu->Lanturn, Vulpix->Cinderace, Grotle->Cinderace; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Kadabra",
+    "Lanturn",
+    "Mightyena",
+    "Cinderace",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Floette, Vulpix->Bastiodon, Grotle->Tsareena; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Gothorita",
+    "Tsareena",
+    "Vullaby",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Vaporeon, Vulpix->Hariyama, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots; save Leavanny for Grotle",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Masquerain",
+    "Steelix",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Azumarill; answers Staravia->Azumarill, Staryu->Hariyama, Vulpix->Crawdaunt; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Hariyama for Staryu",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Hariyama",
+    "Meowscarada",
+    "Breloom",
+    "Crawdaunt",
+    "Azumarill"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Floette, Staryu->Lanturn, Vulpix->Lanturn, Grotle->Electivire; switch losing; setup at 3+ safe turns at full HP; save Lanturn for Staryu",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:7",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Machoke",
+    "Vaporeon",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Masquerain, Vulpix->Sharpedo, Grotle->Staraptor; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Sharpedo",
+    "Staraptor",
+    "Steelix",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crawdaunt; answers Staravia->Glimmora, Staryu->Breloom, Vulpix->Vullaby, Grotle->Breloom; switch losing; setup at 2+ safe turns; no status moves; bait locks; free pivots; save Breloom for Grotle",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Glimmora",
+    "Masquerain",
+    "Breloom",
+    "Vullaby",
+    "Chansey",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Probopass; answers Staravia->Probopass, Staryu->Azumarill, Vulpix->Probopass, Grotle->Honchkrow; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Honchkrow",
+    "Lopunny",
+    "Probopass",
+    "Staraptor",
+    "Togetic",
+    "Azumarill"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.213,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Rapidash-Galar, Staryu->Whiscash, Vulpix->Glimmora, Grotle->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Whiscash for Staryu",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Meowscarada",
+    "Whiscash",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Steelix, Vulpix->Glimmora, Grotle->Rapidash-Galar; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Honchkrow",
+    "Meowscarada",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Lanturn, Staryu->Lanturn, Vulpix->Lanturn, Grotle->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Golbat",
+    "Haunter",
+    "Bibarel",
+    "Kingler",
+    "Lanturn",
+    "Togetic"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Lanturn, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Primarina",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "18": 1.0
+   },
+   "line": "lead Bronzong; answers Staravia->Bronzong, Staryu->Lopunny, Vulpix->Lopunny, Grotle->Breloom; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Lopunny",
+    "Mienshao",
+    "Breloom",
+    "Bronzong",
+    "Floette"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lanturn; answers Staravia->Lanturn, Staryu->Lanturn, Vulpix->Hariyama, Grotle->Honchkrow; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Haunter",
+    "Honchkrow",
+    "Lanturn",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "38": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Incineroar; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 38,
+   "converged": true,
+   "runs": 1660,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Incineroar",
+    "Mienshao",
+    "Steelix",
+    "Tentacruel",
+    "Chansey"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.255,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Primarina; answers Staravia->Graveler, Staryu->Primarina, Vulpix->Primarina, Grotle->Lopunny; switch losing; setup at 3+ safe turns; free pivots; save Primarina for Vulpix",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Lumineon",
+    "Pachirisu",
+    "Primarina",
+    "Floette"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Whiscash, Vulpix->Whiscash, Grotle->Shiftry; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Whiscash for Vulpix",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Seaking",
+    "Shiftry",
+    "Whiscash",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Chimecho; answers Staravia->Chimecho, Staryu->Mismagius, Vulpix->Masquerain, Grotle->Castform; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Mismagius for Staryu",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:8",
+   "team": [
+    "Masquerain",
+    "Mismagius",
+    "Pachirisu",
+    "Castform",
+    "Vullaby",
+    "Chimecho"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "14": 1.0
+   },
+   "line": "lead Graveler; answers Staravia->Donphan, Staryu->Primarina, Vulpix->Altaria, Grotle->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Leavanny",
+    "Primarina",
+    "Altaria",
+    "Donphan",
+    "Floette"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.68,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Graveler; answers Staravia->Masquerain, Staryu->Dubwool, Vulpix->Altaria, Grotle->Lopunny; switch losing; setup at 3+ safe turns at full HP; save Altaria for Vulpix",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Shiftry",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "86": 1.0
+   },
+   "line": "lead Garganacl; answers Staravia->Garganacl, Staryu->Electivire, Vulpix->Masquerain, Grotle->Castform; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Masquerain for Vulpix",
+   "candidates": 86,
+   "converged": true,
+   "runs": 2620,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Masquerain",
+    "Castform",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 1.0
+   },
+   "line": "lead Chimecho; answers Staravia->Garganacl, Staryu->Bronzong, Vulpix->Garganacl, Grotle->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Bronzong",
+    "Sharpedo",
+    "Cherrim",
+    "Chimecho",
+    "Floette"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 1.0
+   },
+   "line": "lead Steelix; answers Staravia->Steelix, Staryu->Vaporeon, Vulpix->Toucannon, Grotle->Toucannon; switch losing; setup at 3+ safe turns at full HP; save Toucannon for Vulpix",
+   "candidates": 60,
+   "converged": true,
+   "runs": 2100,
+   "kind": "planned:8",
+   "team": [
+    "Graveler",
+    "Pawmot",
+    "Sharpedo",
+    "Steelix",
+    "Toucannon",
+    "Vaporeon"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "37": 1.0
+   },
+   "line": "lead Cherrim; answers Staravia->Steelix, Staryu->Cherrim, Grotle->Cherrim; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1640,
+   "kind": "planned:8",
+   "team": [
+    "Ninetales-Alola",
+    "Sharpedo",
+    "Steelix",
+    "Togetic",
+    "Vaporeon",
+    "Cherrim"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Staravia->Donphan, Staryu->Lopunny, Vulpix->Lopunny, Grotle->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Gligar",
+    "Lopunny",
+    "Lumineon",
+    "Masquerain",
+    "Sharpedo",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "175": 1.0
+   },
+   "line": "lead Donphan; answers Staravia->Donphan, Staryu->Lopunny, Vulpix->Liepard, Grotle->Lopunny; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 175,
+   "converged": true,
+   "runs": 4400,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Liepard",
+    "Lopunny",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Pachirisu, Vulpix->Cinderace, Grotle->Cinderace; switch losing; setup at 3+ safe turns; no status moves; save Pachirisu for Staryu",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Pachirisu",
+    "Castform",
+    "Cinderace",
+    "Floette"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Garganacl; answers Staryu->Pelipper, Vulpix->Pelipper, Grotle->Chimecho; switch hp below 0.4; setup at 5+ safe turns; no status moves; free pivots; stall timed effects at 2 turns; save Chimecho for Grotle",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Liepard",
+    "Pelipper",
+    "Cherrim",
+    "Chimecho",
+    "Cofagrigus"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Staravia->Empoleon, Staryu->Empoleon, Vulpix->Seaking, Grotle->Hariyama; switch losing; setup at 5+ safe turns at full HP; free pivots; save Hariyama for Grotle",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Seaking",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt",
+    "Empoleon"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Vullaby, Staryu->Vaporeon, Vulpix->Bastiodon, Grotle->Togetic; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1580,
+   "kind": "blind:9",
+   "team": [
+    "Girafarig",
+    "Bastiodon",
+    "Togetic",
+    "Vaporeon",
+    "Vullaby",
+    "Floette"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Glimmora, Staryu->Whiscash, Vulpix->Glimmora, Grotle->Glimmora; switch losing; setup at 3+ safe turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Girafarig",
+    "Glimmora",
+    "Ludicolo",
+    "Luxray",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Crustle; answers Staravia->Crustle, Staryu->Yanmega, Vulpix->Furret, Grotle->Yanmega; switch losing; setup at 3+ safe turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Breloom",
+    "Togetic",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "36": 1.0
+   },
+   "line": "lead Rotom; answers Staravia->Rotom, Staryu->Hariyama, Vulpix->Hariyama, Grotle->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1320,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Rotom",
+    "Scizor",
+    "Snover",
+    "Whiscash",
+    "Combee"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Staravia->Bastiodon, Staryu->Electivire, Vulpix->Charizard, Grotle->Charizard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Houndoom",
+    "Ludicolo",
+    "Charizard",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.233,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Luxray; answers Staryu->Wailmer, Vulpix->Charizard, Grotle->Charizard; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Vullaby",
+    "Wailmer",
+    "Yanmega",
+    "Charizard",
+    "Floette"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crustle; answers Staravia->Steelix, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Scizor; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Scizor",
+    "Steelix",
+    "Tentacruel",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Orbeetle; answers Staravia->Talonflame, Staryu->Orbeetle, Grotle->Talonflame; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:9",
+   "team": [
+    "Orbeetle",
+    "Snover",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.063,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Empoleon; answers Staravia->Empoleon, Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Lurantis; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Lurantis for Grotle",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:9",
+   "team": [
+    "Lurantis",
+    "Sharpedo",
+    "Tentacruel",
+    "Vullaby",
+    "Combee",
+    "Empoleon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "69": 1.0
+   },
+   "line": "lead Togetic; answers Staravia->Talonflame, Staryu->Wailmer, Grotle->Girafarig; switch losing; setup at 3+ safe turns at full HP; no status moves; save Girafarig for Grotle",
+   "candidates": 69,
+   "converged": true,
+   "runs": 2280,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Hariyama",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Cherrim"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Kricketune; answers Staryu->Tentacruel, Vulpix->Tentacruel, Grotle->Kricketune; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Hariyama",
+    "Kricketune",
+    "Luxray",
+    "Tentacruel",
+    "Floette"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Whiscash; answers Staravia->Vikavolt, Staryu->Houndoom, Vulpix->Houndoom, Grotle->Togetic; switch losing; setup at 2+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Houndoom for Vulpix",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Togetic",
+    "Vikavolt",
+    "Vullaby",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 1.5
+  }
+ ],
+ "key": "barry_3"
+}

@@ -1,0 +1,3767 @@
+{
+ "blind_rate": 0.792,
+ "blind_clean_share": 0.4,
+ "planned_rate": 0.982,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.018,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.267,
+ "blind_wipe": 0.001,
+ "convergence": {
+  "10": 0.897,
+  "50": 0.95,
+  "100": 0.964,
+  "300": 0.976
+ },
+ "runs": 269380,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Jupiter 1",
+ "split": "Fantina",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 24.3,
+ "rows": [
+  {
+   "rate": 0.93,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Litwick; answers Delcatty->Litwick, Sableye->Whiscash, Tangela->Brionne, Skuntank->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Rapidash-Galar for Skuntank",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:0",
+   "team": [
+    "Litwick",
+    "Brionne",
+    "Shiftry",
+    "Whiscash",
+    "Charjabug",
+    "Rapidash-Galar"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.175,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Naclstack; answers Delcatty->Naclstack, Sableye->Naclstack, Tangela->Raboot, Skuntank->Swablu; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Swablu",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Graveler; answers Delcatty->Tentacruel, Sableye->Graveler, Tangela->Golbat, Skuntank->Graveler; switch hp below 0.4; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:0",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Tentacruel",
+    "Charjabug",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Tsareena; answers Delcatty->Tentacruel, Sableye->Donphan, Tangela->Donphan, Skuntank->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:0",
+   "team": [
+    "Hariyama",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Dwebble; answers Delcatty->Dwebble, Sableye->Whiscash, Tangela->Breloom, Skuntank->Gligar; switch hp below 0.4; setup at 5+ safe turns at full HP; save Breloom for Tangela",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Swablu",
+    "Whiscash",
+    "Delcatty",
+    "Dwebble",
+    "Gligar"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Delcatty->Hariyama, Sableye->Gligar, Tangela->Gligar, Skuntank->Gligar; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Gligar for Sableye",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Orbeetle",
+    "Breloom",
+    "Tentacruel",
+    "Gligar"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "127": 1.0
+   },
+   "line": "lead Breloom; answers Delcatty->Graveler, Sableye->Graveler, Tangela->Golbat, Skuntank->Golbat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 127,
+   "converged": true,
+   "runs": 3440,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Togetic",
+    "Vullaby",
+    "Araquanid",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Graveler; answers Delcatty->Graveler, Sableye->Graveler, Skuntank->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Mightyena",
+    "Orbeetle",
+    "Brionne",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Donphan; answers Delcatty->Rapidash-Galar, Sableye->Donphan, Tangela->Orbeetle, Skuntank->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:0",
+   "team": [
+    "Orbeetle",
+    "Raboot",
+    "Charjabug",
+    "Combee",
+    "Donphan",
+    "Rapidash-Galar"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "100": 1.0,
+    "110": 1.0,
+    "120": 1.0,
+    "130": 1.0,
+    "140": 1.0,
+    "150": 1.0,
+    "160": 1.0,
+    "170": 1.0,
+    "180": 1.0,
+    "190": 1.0,
+    "200": 1.0,
+    "210": 1.0,
+    "220": 1.0,
+    "230": 1.0
+   },
+   "line": "lead Bibarel; answers Delcatty->Orbeetle, Sableye->Golbat, Tangela->Orbeetle, Skuntank->Whiscash; switch losing; setup at 2+ safe turns; free pivots",
+   "candidates": 230,
+   "converged": true,
+   "runs": 5500,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mienfoo",
+    "Orbeetle",
+    "Swablu",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 11.5
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.167,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Charjabug; answers Delcatty->Naclstack, Sableye->Bastiodon, Tangela->Brionne, Skuntank->Bastiodon; switch hp below 0.6; setup at 3+ safe turns at full HP; save Bastiodon for Skuntank",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Naclstack",
+    "Brionne",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 15.7
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Charjabug; answers Sableye->Naclstack, Tangela->Tsareena, Skuntank->Hariyama; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Hariyama for Skuntank",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Mienfoo",
+    "Naclstack",
+    "Tentacruel",
+    "Tsareena",
+    "Charjabug"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Graveler; answers Delcatty->Graveler, Sableye->Graveler, Tangela->Tentacruel, Skuntank->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Mightyena",
+    "Tentacruel",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Probopass; answers Delcatty->Probopass, Sableye->Togetic, Tangela->Floatzel, Skuntank->Probopass; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Probopass",
+    "Togetic",
+    "Floatzel",
+    "Fomantis"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Luxray; answers Delcatty->Luxray, Sableye->Brionne, Tangela->Clefable, Skuntank->Luxray; switch losing; setup at 3+ safe turns at full HP; save Clefable for Tangela",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Brionne",
+    "Togetic",
+    "Clefable"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Litwick; answers Delcatty->Litwick, Sableye->Lopunny, Tangela->Noctowl, Skuntank->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Lopunny",
+    "Masquerain",
+    "Noctowl",
+    "Brionne",
+    "Floatzel"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.45,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Luxray; answers Delcatty->Luxray, Sableye->Vullaby, Tangela->Kadabra, Skuntank->Brionne; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kadabra",
+    "Luxray",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Fomantis"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Carbink; answers Delcatty->Carbink, Sableye->Seaking, Tangela->Carbink; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Carbink for Tangela",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Salazzle",
+    "Seaking",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Salazzle, Skuntank->Bastiodon; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Masquerain",
+    "Salazzle",
+    "Torterra",
+    "Carbink"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Carbink; answers Delcatty->Carbink, Sableye->Luxray, Tangela->Jumpluff; switch losing; setup at 2+ safe turns; bait locks; save Jumpluff for Tangela",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Kricketune",
+    "Luxray",
+    "Carbink",
+    "Umbreon",
+    "Vullaby"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Toucannon; answers Delcatty->Seaking, Sableye->Luxray, Tangela->Salazzle, Skuntank->Bastiodon; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Salazzle for Tangela",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Salazzle",
+    "Seaking",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Lumineon, Sableye->Bastiodon, Tangela->Toucannon, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Kadabra",
+    "Lumineon",
+    "Luxray",
+    "Bronzong",
+    "Toucannon"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Masquerain; answers Delcatty->Probopass, Sableye->Probopass, Tangela->Umbreon, Skuntank->Probopass; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Probopass",
+    "Carbink",
+    "Umbreon",
+    "Vulpix",
+    "Whiscash"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Salazzle; answers Delcatty->Torterra, Sableye->Whiscash, Tangela->Salazzle, Skuntank->Whiscash; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Whiscash for Sableye",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Salazzle",
+    "Torterra",
+    "Vullaby",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Bronzong; answers Delcatty->Luxray, Sableye->Bronzong, Tangela->Jumpluff; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Luxray",
+    "Bronzong",
+    "Carbink",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Salazzle, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Noctowl",
+    "Brionne",
+    "Probopass",
+    "Salazzle"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Donphan; answers Delcatty->Donphan, Sableye->Whiscash, Tangela->Orbeetle, Skuntank->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:2",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.375,
+   "wipe": 0.005,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Tentacruel; answers Delcatty->Vullaby, Sableye->Huntail, Tangela->Tentacruel, Skuntank->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lumineon",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.805,
+   "deaths": 0.24,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Leavanny; answers Delcatty->Liepard, Sableye->Huntail, Tangela->Leavanny, Skuntank->Liepard; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Togetic",
+    "Combee"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Hariyama; answers Delcatty->Hariyama, Sableye->Kricketune, Tangela->Kricketune, Skuntank->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Kricketune",
+    "Seaking",
+    "Togetic",
+    "Fletchinder"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.305,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Shiftry; answers Delcatty->Mismagius, Sableye->Leavanny, Tangela->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Leavanny for Sableye",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Mismagius",
+    "Munchlax",
+    "Shiftry",
+    "Staravia"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Vullaby; answers Delcatty->Mightyena, Sableye->Kricketune, Skuntank->Kricketune; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Kricketune for Skuntank",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Liepard",
+    "Mightyena",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.65,
+   "deaths": 0.48,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.45,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Mightyena; answers Delcatty->Mightyena, Sableye->Prinplup, Tangela->Munchlax; switch hp below 0.4; setup at 5+ safe turns; free pivots; stall timed effects at 1 turns; save Munchlax for Tangela",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mightyena",
+    "Munchlax",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 16.0
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Orbeetle, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Orbeetle",
+    "Tentacruel",
+    "Clefable",
+    "Combee"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mismagius; answers Delcatty->Mismagius, Sableye->Crawdaunt, Tangela->Orbeetle, Skuntank->Donphan; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Orbeetle",
+    "Shiftry",
+    "Whiscash",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Brionne, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Whiscash"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.333,
+   "deaths": 1.257,
+   "wipe": 0.037,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.2,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35,
+    "70": 0.35,
+    "80": 0.35,
+    "90": 0.35,
+    "100": 0.35,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.45,
+    "140": 0.45,
+    "150": 0.45,
+    "160": 0.45,
+    "170": 0.45,
+    "180": 0.45,
+    "190": 0.45,
+    "200": 0.45,
+    "210": 0.45,
+    "220": 0.45,
+    "230": 0.45,
+    "240": 0.45,
+    "250": 0.45,
+    "260": 0.45,
+    "270": 0.45,
+    "280": 0.45,
+    "290": 0.45,
+    "300": 0.45
+   },
+   "line": "lead Whiscash; answers Delcatty->Brionne, Sableye->Whiscash, Tangela->Umbreon, Skuntank->Umbreon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Swablu",
+    "Togetic",
+    "Umbreon",
+    "Whiscash"
+   ],
+   "seconds": 16.5
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Hariyama; answers Delcatty->Hariyama, Sableye->Whiscash, Tangela->Orbeetle, Skuntank->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Orbeetle",
+    "Pachirisu",
+    "Roselia",
+    "Swablu",
+    "Whiscash"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Braixen, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Prinplup",
+    "Umbreon"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.34,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Shiftry; answers Delcatty->Shiftry, Sableye->Charjabug, Tangela->Golbat, Skuntank->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Charjabug",
+    "Ambipom",
+    "Golbat"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Leavanny; answers Delcatty->Kingler, Sableye->Leavanny, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Togetic",
+    "Dubwool"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.375,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.6,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Kingler; answers Delcatty->Seaking, Sableye->Pachirisu, Tangela->Bibarel, Skuntank->Toucannon; switch losing; setup at 2+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Pachirisu",
+    "Seaking",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.665,
+   "deaths": 0.48,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Whiscash; answers Delcatty->Shiftry, Tangela->Golbat, Skuntank->Whiscash; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Prinplup",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Litwick; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Litwick, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Tentacruel"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Tentacruel, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Orbeetle",
+    "Pachirisu",
+    "Tentacruel",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.837,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "245": 1.0
+   },
+   "line": "lead Golbat; answers Delcatty->Bastiodon, Tangela->Dubwool, Skuntank->Bastiodon; switch losing; setup at 2+ safe turns; free pivots; stall timed effects at 2 turns; save Dubwool for Tangela",
+   "candidates": 245,
+   "converged": true,
+   "runs": 5800,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Umbreon",
+    "Whiscash",
+    "Dubwool",
+    "Golbat"
+   ],
+   "seconds": 13.3
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.24,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Orbeetle; answers Delcatty->Shiftry, Sableye->Umbreon, Tangela->Golbat, Skuntank->Togetic; switch hp below 0.4; setup at 2+ safe turns; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Orbeetle",
+    "Shiftry",
+    "Togetic",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 14.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.85,
+    "37": 1.0
+   },
+   "line": "lead Combee; answers Delcatty->Bronzong, Sableye->Carbink, Tangela->Leavanny; switch losing; setup at 5+ safe turns at full HP; no status moves",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1640,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Leavanny",
+    "Bronzong",
+    "Carbink",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Toucannon, Tangela->Tentacruel, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Brionne",
+    "Tentacruel",
+    "Toucannon",
+    "Carbink"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.777,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.35,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Masquerain; answers Delcatty->Carbink, Sableye->Togetic, Tangela->Jynx, Skuntank->Snover; switch losing; setup at 2+ safe turns; bait locks; stall timed effects at 3 turns; save Jynx for Tangela",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Carbink"
+   ],
+   "seconds": 15.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Delcatty->Bastiodon, Sableye->Bibarel, Tangela->Liepard, Skuntank->Prinplup; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 3 turns; save Bibarel for Sableye",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Liepard",
+    "Prinplup",
+    "Toucannon",
+    "Donphan"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.287,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55,
+    "70": 0.55,
+    "80": 0.55,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.6,
+    "170": 0.6,
+    "180": 0.6,
+    "190": 0.6,
+    "200": 0.6,
+    "210": 0.6,
+    "220": 0.6,
+    "230": 0.6,
+    "240": 0.6,
+    "250": 0.6,
+    "260": 0.6,
+    "270": 0.6,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85,
+    "310": 0.85,
+    "320": 0.85,
+    "330": 0.85,
+    "340": 0.85,
+    "350": 0.85,
+    "360": 0.85,
+    "370": 0.85,
+    "380": 0.85,
+    "390": 0.85,
+    "400": 0.85,
+    "410": 0.85,
+    "420": 0.85,
+    "430": 0.85,
+    "440": 0.85,
+    "450": 0.85
+   },
+   "line": "lead Graveler; answers Delcatty->Graveler, Sableye->Carbink, Tangela->Brionne; switch hp below 0.6; setup at 3+ safe turns",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Brionne",
+    "Seaking",
+    "Carbink",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 17.7
+  },
+  {
+   "rate": 0.6,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Raboot; answers Delcatty->Masquerain, Sableye->Raboot, Tangela->Orbeetle, Skuntank->Pawmo; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Pawmo for Skuntank",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Pawmo",
+    "Raboot",
+    "Vulpix",
+    "Glameow"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Tsareena, Skuntank->Naclstack; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Seaking",
+    "Tsareena"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Combee; answers Delcatty->Mightyena, Sableye->Bronzong, Tangela->Huntail; switch hp below 0.5; setup at 5+ safe turns at full HP; no status moves; free pivots; save Bronzong for Sableye",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:4",
+   "team": [
+    "Huntail",
+    "Kricketune",
+    "Mightyena",
+    "Bronzong",
+    "Wormadam",
+    "Combee"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Tsareena; answers Delcatty->Tsareena, Sableye->Kricketune, Tangela->Orbeetle, Skuntank->Tsareena; switch losing; setup at 3+ safe turns; no status moves; free pivots; save Orbeetle for Tangela",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Orbeetle",
+    "Togetic",
+    "Tsareena",
+    "Frogadier"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.725,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Wormadam; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Kingler",
+    "Mienfoo",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Glameow"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Kricketune, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Lanturn",
+    "Probopass",
+    "Raboot",
+    "Tentacruel"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "25": 1.0
+   },
+   "line": "lead Huntail; answers Delcatty->Raboot, Sableye->Huntail, Tangela->Whiscash, Skuntank->Hariyama; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Raboot",
+    "Tentacruel",
+    "Vullaby",
+    "Whiscash"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Probopass; answers Delcatty->Probopass, Sableye->Probopass, Tangela->Leavanny, Skuntank->Probopass; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Leavanny",
+    "Probopass",
+    "Tsareena",
+    "Dubwool",
+    "Frogadier"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Raboot",
+    "Charjabug"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Probopass, Tangela->Probopass, Skuntank->Probopass; switch hp below 0.4; setup at 3+ safe turns; no status moves; bait locks; save Probopass for Skuntank",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Huntail",
+    "Luxray",
+    "Mightyena",
+    "Probopass",
+    "Rotom",
+    "Clefable"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Dubwool; answers Delcatty->Masquerain, Sableye->Kricketune, Tangela->Kricketune, Skuntank->Dubwool; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Vullaby",
+    "Charjabug",
+    "Clefable",
+    "Dubwool"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Tentacruel; answers Delcatty->Umbreon, Sableye->Kricketune, Tangela->Umbreon; switch hp below 0.7; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Mightyena",
+    "Seaking",
+    "Tentacruel",
+    "Umbreon",
+    "Clefable"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Hariyama; answers Delcatty->Umbreon, Sableye->Bronzong, Tangela->Umbreon, Skuntank->Hariyama; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Lanturn",
+    "Bronzong",
+    "Tentacruel",
+    "Umbreon",
+    "Clefable"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.5,
+   "deaths": 0.815,
+   "wipe": 0.02,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Orbeetle; answers Delcatty->Orbeetle, Sableye->Lanturn, Tangela->Orbeetle, Skuntank->Orbeetle; switch losing; setup at 5+ safe turns; bait locks; stall timed effects at 3 turns; save Orbeetle for Tangela",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Lanturn",
+    "Lombre",
+    "Orbeetle",
+    "Servine",
+    "Swablu",
+    "Cherrim"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.595,
+   "deaths": 0.485,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Haunter; answers Delcatty->Haunter, Sableye->Swablu, Skuntank->Swablu; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns; save Swablu for Sableye",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Stunky",
+    "Swablu",
+    "Tentacruel",
+    "Togetic",
+    "Vullaby"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.345,
+   "deaths": 0.735,
+   "wipe": 0.005,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Golbat; answers Delcatty->Haunter, Sableye->Naclstack, Tangela->Golbat, Skuntank->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Naclstack",
+    "Seaking",
+    "Swablu",
+    "Fomantis",
+    "Golbat"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.69,
+   "deaths": 0.53,
+   "wipe": 0.005,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Graveler; answers Delcatty->Graveler, Sableye->Fomantis, Tangela->Fletchinder, Skuntank->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Seaking",
+    "Whiscash",
+    "Donphan",
+    "Fletchinder",
+    "Fomantis",
+    "Graveler"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Steelix; answers Delcatty->Steelix, Tangela->Leavanny, Skuntank->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Bronzong",
+    "Steelix",
+    "Stunky",
+    "Fletchinder",
+    "Golbat"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 1.0
+   },
+   "line": "lead Orbeetle; answers Delcatty->Bronzong, Sableye->Torterra, Skuntank->Steelix; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 3 turns; save Steelix for Skuntank",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1700,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Steelix",
+    "Torterra"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "12": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Glimmet, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; save Bastiodon for Skuntank",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Pawmo",
+    "Togetic",
+    "Whiscash",
+    "Donphan",
+    "Glimmet"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "167": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Tentacruel, Skuntank->Bastiodon; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 167,
+   "converged": true,
+   "runs": 4240,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Bronzong",
+    "Swablu",
+    "Tentacruel",
+    "Togetic"
+   ],
+   "seconds": 9.4
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Naclstack; answers Delcatty->Naclstack, Sableye->Naclstack, Tangela->Leavanny, Skuntank->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Naclstack",
+    "Vullaby",
+    "Fomantis"
+   ],
+   "seconds": 14.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Torterra, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns; save Bastiodon for Sableye",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lumineon",
+    "Torterra",
+    "Fletchinder",
+    "Graveler"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Haunter; answers Delcatty->Haunter, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Haunter",
+    "Leavanny",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Liepard",
+    "Bronzong",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Delcatty->Tentacruel, Sableye->Shiftry, Skuntank->Steelix; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Shiftry",
+    "Steelix",
+    "Tentacruel",
+    "Graveler"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.045,
+   "deaths": 1.195,
+   "wipe": 0.0,
+   "screened": 0.05,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1
+   },
+   "line": "lead Tsareena; answers Delcatty->Combee, Tangela->Fomantis, Skuntank->Tsareena; switch losing; setup at 5+ safe turns at full HP; save Fomantis for Tangela",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Tsareena",
+    "Cherrim",
+    "Clefable",
+    "Combee",
+    "Fomantis"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.685,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Umbreon; answers Delcatty->Umbreon, Sableye->Raboot, Tangela->Raboot, Skuntank->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Bibarel",
+    "Raboot",
+    "Umbreon",
+    "Wailmer",
+    "Gastrodon"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 0.705,
+   "deaths": 0.35,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.7,
+    "60": 0.75,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Sandygast; answers Delcatty->Sandygast, Sableye->Bastiodon, Tangela->Umbreon, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Naclstack",
+    "Sandygast",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 5.7
+  },
+  {
+   "rate": 0.665,
+   "deaths": 0.405,
+   "wipe": 0.01,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Umbreon; answers Delcatty->Umbreon, Sableye->Bastiodon, Tangela->Bastiodon, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Sandygast",
+    "Umbreon",
+    "Wailmer",
+    "Charjabug",
+    "Crawdaunt"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Naclstack; answers Delcatty->Litwick, Sableye->Steelix, Tangela->Tsareena, Skuntank->Steelix; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Litwick",
+    "Naclstack",
+    "Steelix",
+    "Tsareena",
+    "Umbreon",
+    "Fomantis"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "106": 1.0
+   },
+   "line": "lead Orbeetle; answers Delcatty->Orbeetle, Sableye->Tentacruel, Tangela->Orbeetle, Skuntank->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 106,
+   "converged": true,
+   "runs": 3020,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Orbeetle",
+    "Tentacruel",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 6.4
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Orbeetle; answers Delcatty->Orbeetle, Sableye->Crawdaunt, Tangela->Orbeetle, Skuntank->Clefable; switch losing; setup at 3+ safe turns; save Clefable for Skuntank",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Togetic",
+    "Ambipom",
+    "Clefable",
+    "Crawdaunt"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Orbeetle, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Orbeetle",
+    "Tentacruel",
+    "Togetic",
+    "Ambipom"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sandygast; answers Delcatty->Sandygast, Sableye->Sandygast, Tangela->Tsareena, Skuntank->Steelix; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; save Tsareena for Tangela",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Sandygast",
+    "Steelix",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Litwick; answers Delcatty->Litwick, Sableye->Steelix, Tangela->Orbeetle, Skuntank->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Orbeetle",
+    "Raboot",
+    "Steelix",
+    "Charjabug"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.413,
+   "wipe": 0.03,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.9,
+    "94": 1.0
+   },
+   "line": "lead Liepard; answers Delcatty->Steelix, Sableye->Steelix, Tangela->Wailmer, Skuntank->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 94,
+   "converged": true,
+   "runs": 2780,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Bibarel",
+    "Steelix",
+    "Umbreon",
+    "Wailmer",
+    "Donphan"
+   ],
+   "seconds": 7.1
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Donphan; answers Delcatty->Donphan, Sableye->Gastrodon, Tangela->Breloom, Skuntank->Donphan; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Seaking",
+    "Tentacruel",
+    "Clefable",
+    "Donphan",
+    "Gastrodon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "62": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Tangela->Clefable, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 62,
+   "converged": true,
+   "runs": 2140,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Raboot",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "rate": 0.61,
+   "deaths": 0.465,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.5,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Hariyama; answers Delcatty->Charjabug, Sableye->Dwebble, Tangela->Mienfoo, Skuntank->Charjabug; switch losing; setup at 2+ safe turns; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Mienfoo",
+    "Seaking",
+    "Charjabug",
+    "Dwebble"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.27,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Umbreon; answers Delcatty->Umbreon, Sableye->Naclstack, Tangela->Umbreon, Skuntank->Naclstack; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Breloom",
+    "Swablu",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Umbreon; answers Delcatty->Umbreon, Sableye->Golbat, Tangela->Raboot, Skuntank->Umbreon; switch losing; setup at 2+ safe turns at full HP; save Golbat for Sableye",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swablu",
+    "Umbreon",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 4.1
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.27,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.5,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Seaking; answers Delcatty->Fletchinder, Sableye->Gligar, Skuntank->Furret; switch hp below 0.7; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 3 turns; save Gligar for Sableye",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Seaking",
+    "Fletchinder",
+    "Furret",
+    "Gligar"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "14": 1.0
+   },
+   "line": "lead Gligar; answers Delcatty->Masquerain, Sableye->Gligar, Tangela->Ninetales-Alola, Skuntank->Ninetales-Alola; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Mienfoo",
+    "Ninetales-Alola",
+    "Combee",
+    "Rapidash-Galar",
+    "Gligar"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "138": 1.0
+   },
+   "line": "lead Hariyama; answers Sableye->Tentacruel, Tangela->Torracat, Skuntank->Hariyama; switch never; setup at 2+ safe turns; bait locks",
+   "candidates": 138,
+   "converged": true,
+   "runs": 3660,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Tentacruel",
+    "Torracat",
+    "Umbreon",
+    "Vullaby",
+    "Charjabug"
+   ],
+   "seconds": 7.4
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Hariyama, Tangela->Leavanny, Skuntank->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Pawmo",
+    "Rotom",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "39": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Bibarel, Tangela->Furret, Skuntank->Furret; switch losing; setup at 3+ safe turns; save Furret for Tangela",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Rotom",
+    "Togetic",
+    "Furret"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Masquerain; answers Delcatty->Tentacruel, Sableye->Graveler; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Masquerain",
+    "Ninetales-Alola",
+    "Tentacruel",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Delcatty->Umbreon, Sableye->Naclstack, Tangela->Rotom, Skuntank->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 1 turns; save Naclstack for Sableye",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Ninetales-Alola",
+    "Rotom",
+    "Togetic",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.74,
+   "deaths": 0.26,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Leavanny; answers Delcatty->Leavanny, Sableye->Tentacruel, Tangela->Leavanny, Skuntank->Togetic; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Tentacruel",
+    "Togetic",
+    "Torracat",
+    "Combee"
+   ],
+   "seconds": 12.1
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.243,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Leavanny; answers Delcatty->Liepard, Sableye->Breloom, Tangela->Leavanny, Skuntank->Breloom; switch losing; setup at 5+ safe turns at full HP; free pivots; save Breloom for Sableye",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Liepard",
+    "Masquerain",
+    "Breloom",
+    "Staravia",
+    "Togetic"
+   ],
+   "seconds": 10.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Bastiodon, Skuntank->Nidoking; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Bastiodon for Sableye",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Bastiodon",
+    "Nidoking",
+    "Tentacruel",
+    "Umbreon",
+    "Dwebble",
+    "Furret"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cherrim; answers Delcatty->Liepard, Sableye->Toucannon, Tangela->Vulpix, Skuntank->Dubwool; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Mienfoo",
+    "Toucannon",
+    "Vulpix",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Toucannon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Toucannon, Skuntank->Bastiodon; switch hp below 0.3; setup at 3+ safe turns; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Toucannon",
+    "Whiscash",
+    "Charjabug",
+    "Cherrim"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Graveler; answers Delcatty->Nidoking, Sableye->Graveler, Tangela->Wormadam, Skuntank->Graveler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Mienfoo",
+    "Nidoking",
+    "Vullaby",
+    "Wormadam",
+    "Graveler"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lombre",
+    "Togetic",
+    "Charjabug",
+    "Golbat"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.145,
+   "deaths": 1.7,
+   "wipe": 0.005,
+   "screened": 0.15,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.2,
+    "70": 0.2,
+    "80": 0.2,
+    "90": 0.2
+   },
+   "line": "lead Dubwool; answers Delcatty->Vulpix, Sableye->Raboot, Tangela->Pawmo, Skuntank->Dubwool; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Dubwool for Skuntank",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:8",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Togetic",
+    "Vullaby",
+    "Vulpix",
+    "Dubwool"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Orbeetle, Skuntank->Charjabug; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns; save Charjabug for Skuntank",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Lopunny",
+    "Masquerain",
+    "Orbeetle",
+    "Raboot",
+    "Charjabug"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Naclstack, Tangela->Jumpluff, Skuntank->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Masquerain",
+    "Naclstack",
+    "Rotom",
+    "Golbat"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "67": 1.0
+   },
+   "line": "lead Lopunny; answers Sableye->Leavanny, Tangela->Raboot, Skuntank->Graveler; switch losing; setup at 4+ safe turns at full HP; no status moves; save Raboot for Tangela",
+   "candidates": 67,
+   "converged": true,
+   "runs": 2240,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Lopunny",
+    "Raboot",
+    "Toucannon",
+    "Graveler"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Bronzong; answers Delcatty->Bronzong, Sableye->Bronzong, Tangela->Golbat, Skuntank->Bronzong; switch losing; setup at 3+ safe turns",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "246": 1.0
+   },
+   "line": "lead Umbreon; answers Sableye->Golbat, Tangela->Umbreon, Skuntank->Masquerain; switch losing; setup at 3+ safe turns at full HP; save Golbat for Sableye",
+   "candidates": 246,
+   "converged": true,
+   "runs": 5820,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Mienfoo",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 10.0
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Graveler; answers Delcatty->Graveler, Sableye->Graveler, Tangela->Orbeetle, Skuntank->Vullaby; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Vullaby",
+    "Charjabug",
+    "Crawdaunt",
+    "Graveler"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.823,
+   "deaths": 0.233,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Whiscash; answers Delcatty->Liepard, Sableye->Shiftry, Skuntank->Whiscash; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots; save Whiscash for Skuntank",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Shiftry",
+    "Wailmer",
+    "Whiscash",
+    "Wormadam",
+    "Charjabug"
+   ],
+   "seconds": 10.7
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.097,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Bibarel; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Shiftry, Skuntank->Bastiodon; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Bibarel",
+    "Masquerain",
+    "Rotom",
+    "Shiftry"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Luxray, Tangela->Wormadam, Skuntank->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Lopunny",
+    "Luxray",
+    "Rotom",
+    "Umbreon",
+    "Wormadam",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Luxray; answers Delcatty->Graveler, Sableye->Donphan, Tangela->Leavanny, Skuntank->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Brionne",
+    "Ambipom",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Masquerain; answers Delcatty->Orbeetle, Tangela->Golbat, Skuntank->Snover; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Prinplup",
+    "Snover",
+    "Vullaby",
+    "Golbat"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.32,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.55,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Wailmer; answers Delcatty->Glimmet, Tangela->Snover, Skuntank->Ambipom; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Snover",
+    "Wailmer",
+    "Ambipom",
+    "Furret",
+    "Glimmet",
+    "Graveler"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.145,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Sandygast; answers Delcatty->Sandygast, Sableye->Brionne, Tangela->Leavanny, Skuntank->Furret; switch hp below 0.6; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns; save Furret for Skuntank",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Lopunny",
+    "Brionne",
+    "Sandygast",
+    "Sharpedo",
+    "Furret"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Kricketune, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Sharpedo",
+    "Galvantula"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Wormadam, Tangela->Wormadam, Skuntank->Donphan; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Wormadam for Tangela",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:9",
+   "team": [
+    "Leavanny",
+    "Rotom",
+    "Sharpedo",
+    "Wailmer",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.783,
+   "deaths": 0.217,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "28": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Wormadam, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Brionne",
+    "Probopass",
+    "Wormadam",
+    "Donphan",
+    "Galvantula"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Leavanny",
+    "Prinplup",
+    "Tentacruel",
+    "Umbreon"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Glimmet; answers Sableye->Golbat, Tangela->Glimmet, Skuntank->Togetic; switch losing; setup at 5+ safe turns; save Togetic for Skuntank",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Togetic",
+    "Vullaby",
+    "Wailmer",
+    "Whiscash",
+    "Glimmet",
+    "Golbat"
+   ],
+   "seconds": 9.6
+  },
+  {
+   "rate": 0.707,
+   "deaths": 0.293,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Prinplup; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Snover, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Lopunny",
+    "Brionne",
+    "Prinplup",
+    "Snover",
+    "Whiscash"
+   ],
+   "seconds": 9.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "31": 1.0
+   },
+   "line": "lead Rotom; answers Delcatty->Rotom, Sableye->Orbeetle, Tangela->Orbeetle, Skuntank->Masquerain; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:9",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Orbeetle",
+    "Rotom",
+    "Snover",
+    "Togetic"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "line": "lead Bastiodon; answers Delcatty->Bastiodon, Sableye->Bastiodon, Tangela->Leavanny, Skuntank->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Sharpedo",
+    "Snover",
+    "Cherrim",
+    "Furret"
+   ],
+   "seconds": 2.3
+  }
+ ],
+ "key": "jupiter_1"
+}

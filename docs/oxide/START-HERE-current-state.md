@@ -95,9 +95,7 @@ Ian's standing rulings, which every session follows, are in
    for the main track and the Overseer, `encounter-tool-build-plan.md` for the
    OxiDex, `balance-plan.md` for the balance track. Editing another track's file
    is how the merge conflicts happened.
-7. **The build machine's CPU is degraded** until its warranty replacement
-   arrives (2026-09-22), and there are no local builds until then (Ian,
-   2026-09-23). ROMs are built on GitHub: every push to `oxide` prints the
-   ROM's SHA-1, and `tools/oxide/fetch-rom` builds any pushed commit and
-   downloads the ROM for Ian. A result from the build machine that looks wrong
-   may be the hardware, so rerun it before chasing it.
+7. **Builds are local.** The replacement CPU passed its checks on 2026-09-29
+   and builds the same ROM as GitHub byte for byte. Every push to `oxide` is
+   also built on GitHub, for its SHA-1 to compare with; GitHub Actions in the
+   private repos are off for good (Ian, 2026-10-01).

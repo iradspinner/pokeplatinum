@@ -1,0 +1,335 @@
+{
+ "fight": "barry_2",
+ "key": "barry_2",
+ "variant": 0,
+ "foes": [
+  "Starly 10",
+  "Turtwig 11"
+ ],
+ "box": [
+  "Piplup",
+  "Wooloo",
+  "Vulpix",
+  "Bidoof",
+  "Rookidee",
+  "Dottler",
+  "Starly",
+  "Squirtle",
+  "Krabby",
+  "Finneon"
+ ],
+ "items": {
+  "boosters": {},
+  "Leftovers": 0,
+  "Sitrus Berry": 0
+ },
+ "screen": [
+  [
+   "Piplup",
+   "Wooloo",
+   "Vulpix",
+   "Bidoof",
+   "Dottler",
+   "Krabby"
+  ],
+  [
+   "Piplup",
+   "Vulpix",
+   "Rookidee",
+   "Dottler",
+   "Starly",
+   "Krabby"
+  ],
+  [
+   "Piplup",
+   "Vulpix",
+   "Dottler",
+   "Squirtle",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Wooloo",
+   "Vulpix",
+   "Rookidee",
+   "Dottler",
+   "Squirtle",
+   "Krabby"
+  ],
+  [
+   "Wooloo",
+   "Vulpix",
+   "Dottler",
+   "Starly",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Vulpix",
+   "Bidoof",
+   "Rookidee",
+   "Dottler",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Vulpix",
+   "Bidoof",
+   "Dottler",
+   "Starly",
+   "Squirtle",
+   "Krabby"
+  ],
+  [
+   "Piplup",
+   "Wooloo",
+   "Vulpix",
+   "Rookidee",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Piplup",
+   "Vulpix",
+   "Bidoof",
+   "Rookidee",
+   "Squirtle",
+   "Krabby"
+  ],
+  [
+   "Wooloo",
+   "Vulpix",
+   "Bidoof",
+   "Rookidee",
+   "Starly",
+   "Krabby"
+  ],
+  [
+   "Vulpix",
+   "Rookidee",
+   "Starly",
+   "Squirtle",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Piplup",
+   "Wooloo",
+   "Vulpix",
+   "Starly",
+   "Squirtle",
+   "Krabby"
+  ],
+  [
+   "Wooloo",
+   "Vulpix",
+   "Bidoof",
+   "Squirtle",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Piplup",
+   "Vulpix",
+   "Bidoof",
+   "Starly",
+   "Krabby",
+   "Finneon"
+  ],
+  [
+   "Piplup",
+   "Wooloo",
+   "Bidoof",
+   "Rookidee",
+   "Dottler",
+   "Squirtle"
+  ],
+  [
+   "Piplup",
+   "Wooloo",
+   "Rookidee",
+   "Dottler",
+   "Starly",
+   "Finneon"
+  ],
+  [
+   "Bidoof",
+   "Rookidee",
+   "Dottler",
+   "Starly",
+   "Squirtle",
+   "Finneon"
+  ],
+  [
+   "Piplup",
+   "Wooloo",
+   "Bidoof",
+   "Starly",
+   "Squirtle",
+   "Finneon"
+  ]
+ ],
+ "our_rank": null,
+ "moves": {
+  "Piplup": [
+   "Pound",
+   "Bubble",
+   "Growl",
+   "Water Sport"
+  ],
+  "Wooloo": [
+   "Tackle",
+   "Growl",
+   "Defense Curl",
+   "Copycat"
+  ],
+  "Vulpix": [
+   "Ember",
+   "Quick Attack",
+   "Roar",
+   "Tail Whip"
+  ],
+  "Bidoof": [
+   "Tackle",
+   "Growl",
+   "Defense Curl"
+  ],
+  "Rookidee": [
+   "Peck",
+   "Fury Attack",
+   "Leer"
+  ],
+  "Dottler": [
+   "Struggle Bug",
+   "Confusion",
+   "Reflect",
+   "Light Screen"
+  ],
+  "Starly": [
+   "Tackle",
+   "Growl",
+   "Quick Attack"
+  ],
+  "Squirtle": [
+   "Bubble",
+   "Tackle",
+   "Tail Whip",
+   "Withdraw"
+  ],
+  "Krabby": [
+   "Vise Grip",
+   "Bubble",
+   "Leer",
+   "Harden"
+  ],
+  "Finneon": [
+   "Water Gun",
+   "Pound",
+   "Attract"
+  ]
+ },
+ "finalists": [
+  {
+   "six": [
+    "Piplup",
+    "Vulpix",
+    "Rookidee",
+    "Dottler",
+    "Starly",
+    "Krabby"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.04,
+    "clean": 0.96
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   }
+  },
+  {
+   "six": [
+    "Wooloo",
+    "Vulpix",
+    "Rookidee",
+    "Dottler",
+    "Squirtle",
+    "Krabby"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   }
+  },
+  {
+   "six": [
+    "Piplup",
+    "Vulpix",
+    "Bidoof",
+    "Rookidee",
+    "Starly",
+    "Squirtle"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.12,
+    "clean": 0.88
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.12,
+    "clean": 0.88
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.0,
+    "clean": 1.0
+   }
+  }
+ ],
+ "ours": null,
+ "bar": null,
+ "winner": [
+  "Piplup",
+  "Vulpix",
+  "Rookidee",
+  "Dottler",
+  "Starly",
+  "Krabby"
+ ],
+ "playouts_on_winner": {
+  "fights": 25,
+  "won": 1.0,
+  "faints": 0.0,
+  "clean": 1.0
+ },
+ "winner_faints_to": [],
+ "minutes": 12.1
+}

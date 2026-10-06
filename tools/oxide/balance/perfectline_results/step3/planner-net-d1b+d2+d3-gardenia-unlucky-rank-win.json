@@ -1,0 +1,252 @@
+{
+ "fight": "gardenia",
+ "six": [
+  "Charmeleon",
+  "Popplio",
+  "Vikavolt",
+  "Vullaby",
+  "Golbat",
+  "Tsareena"
+ ],
+ "variant": 0,
+ "foes": [
+  "Cherrim 25",
+  "Lumineon 25",
+  "Shiftry 25",
+  "Breloom 25",
+  "Roserade 26"
+ ],
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1b+d2+d3"
+ },
+ "luck": "unlucky",
+ "rank": "win",
+ "lead": "Vikavolt",
+ "lead_values": {
+  "Charmeleon": -10.828,
+  "Popplio": -10.828,
+  "Vikavolt": -10.945,
+  "Vullaby": -10.658,
+  "Golbat": -10.828,
+  "Tsareena": -10.529
+ },
+ "clean": 1,
+ "won": 120,
+ "deaths": 3.91,
+ "runs": 200,
+ "faints": [
+  [
+   "Charmeleon",
+   "Cherrim",
+   190
+  ],
+  [
+   "Vikavolt",
+   "Lumineon",
+   69
+  ],
+  [
+   "Golbat",
+   "Lumineon",
+   50
+  ],
+  [
+   "Tsareena",
+   "Lumineon",
+   48
+  ],
+  [
+   "Vullaby",
+   "Lumineon",
+   48
+  ],
+  [
+   "Popplio",
+   "Lumineon",
+   45
+  ],
+  [
+   "Popplio",
+   "Breloom",
+   41
+  ],
+  [
+   "Tsareena",
+   "Shiftry",
+   40
+  ],
+  [
+   "Vikavolt",
+   "Roserade",
+   36
+  ],
+  [
+   "Popplio",
+   "Roserade",
+   31
+  ],
+  [
+   "Golbat",
+   "Roserade",
+   27
+  ],
+  [
+   "Vullaby",
+   "Shiftry",
+   23
+  ],
+  [
+   "Vikavolt",
+   "Shiftry",
+   20
+  ],
+  [
+   "Vullaby",
+   "Breloom",
+   17
+  ],
+  [
+   "Vikavolt",
+   "Breloom",
+   16
+  ],
+  [
+   "Tsareena",
+   "Roserade",
+   14
+  ],
+  [
+   "Vullaby",
+   "Roserade",
+   14
+  ],
+  [
+   "Golbat",
+   "Breloom",
+   12
+  ],
+  [
+   "Popplio",
+   "Shiftry",
+   11
+  ],
+  [
+   "Tsareena",
+   "Breloom",
+   9
+  ],
+  [
+   "Popplio",
+   "Cherrim",
+   7
+  ],
+  [
+   "Golbat",
+   "Shiftry",
+   7
+  ],
+  [
+   "Charmeleon",
+   "Lumineon",
+   6
+  ],
+  [
+   "Charmeleon",
+   "Breloom",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 3.81,
+ "decisions_per_run": 25.6,
+ "turns_per_run": 22.6,
+ "lead_seconds": 0.1,
+ "wall_seconds": 28.9,
+ "procs": 29,
+ "fights_per_hour": 24903.7,
+ "worker_private_mb_max": 37,
+ "parent_mb": 82,
+ "lost_seeds": [
+  9003,
+  9004,
+  9006,
+  9007,
+  9008,
+  9009,
+  9012,
+  9017,
+  9018,
+  9022,
+  9023,
+  9031,
+  9035,
+  9036,
+  9039,
+  9040,
+  9041,
+  9046,
+  9049,
+  9050,
+  9053,
+  9059,
+  9062,
+  9063,
+  9068,
+  9069,
+  9070,
+  9071,
+  9072,
+  9073,
+  9074,
+  9075,
+  9077,
+  9080,
+  9087,
+  9088,
+  9089,
+  9095,
+  9099,
+  9100,
+  9106,
+  9107,
+  9109,
+  9111,
+  9112,
+  9115,
+  9116,
+  9120,
+  9128,
+  9134,
+  9135,
+  9136,
+  9139,
+  9140,
+  9141,
+  9142,
+  9144,
+  9146,
+  9149,
+  9150,
+  9152,
+  9153,
+  9154,
+  9156,
+  9163,
+  9164,
+  9165,
+  9171,
+  9174,
+  9178,
+  9182,
+  9184,
+  9185,
+  9187,
+  9188,
+  9194,
+  9195,
+  9196,
+  9197,
+  9199
+ ]
+}

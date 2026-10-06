@@ -221,6 +221,16 @@ For learnsets, the ideas worth the balance track's learnset pass, in order:
 7. Strong moves may sit at level 1 on evolved stages, as Kaizo has them, which makes each a Heart Scale's worth at the Move Relearner.
 8. No split has a ceiling on coverage power; the rescore judges each move.
 
+Later answer (2026-10-06, from the learnset insight sessions): the rampage
+moves come in as one-turn moves. Thrash, Petal Dance and Outrage take Kaizo's
+versions from the short list above; Uproar and Raging Fury, which Kaizo
+lacks, get one-turn versions on the same pattern. A two- or three-turn lock is
+too dangerous in a permadeath run.
+
+Later answer (2026-10-06, from Skorupi's exam verdict): Poison Fang takes
+Kaizo's version, 90 power with a 40% chance to badly poison, over the base
+ROM's 75 and 30%. Its row in Appendix A predates this answer.
+
 ## Appendix A: every Kaizo move line
 
 One row per line of `kaizo-move-changes.md`, in its order. "Kaizo" gives the values Kaizo sets, "Oxide now" the same fields in Oxide's tree, and "Detail" each field's verdict. A ruling named "base ROM" means Oxide's value differs from vanilla and from every ruling list, so it is taken to be the base ROM's own. A "chance" change on a move whose effect reads no chance (Seed Bomb, Wake-Up Slap, Bulk Up) would do nothing in battle unless Kaizo also changed the effect.

@@ -1,0 +1,465 @@
+{
+ "fight": "jupiter_1",
+ "key": "jupiter_1",
+ "variant": 0,
+ "foes": [
+  "Delcatty 26",
+  "Sableye 26",
+  "Tangela 26",
+  "Skuntank 27"
+ ],
+ "box": [
+  "Prinplup",
+  "Dubwool",
+  "Vulpix",
+  "Bibarel",
+  "Corvisquire",
+  "Starly",
+  "Barboach",
+  "Wartortle",
+  "Krabby",
+  "Nidorino",
+  "Onix",
+  "Charmeleon",
+  "Tsareena",
+  "Graveler",
+  "Jumpluff",
+  "Mareep",
+  "Pawmo",
+  "Breloom",
+  "Snover",
+  "Golbat",
+  "Vullaby",
+  "Popplio",
+  "Vikavolt",
+  "Rotom"
+ ],
+ "items": {
+  "boosters": {
+   "Fire": "Flame Plate",
+   "Grass": "Miracle Seed",
+   "Dragon": "Draco Plate",
+   "Bug": "Silver Powder",
+   "Dark": "Dread Plate"
+  },
+  "Leftovers": 0,
+  "Sitrus Berry": 0
+ },
+ "screen": [
+  [
+   "Prinplup",
+   "Dubwool",
+   "Vulpix",
+   "Corvisquire",
+   "Onix",
+   "Graveler"
+  ],
+  [
+   "Prinplup",
+   "Dubwool",
+   "Onix",
+   "Charmeleon",
+   "Tsareena",
+   "Graveler"
+  ],
+  [
+   "Prinplup",
+   "Dubwool",
+   "Onix",
+   "Graveler",
+   "Jumpluff",
+   "Snover"
+  ],
+  [
+   "Prinplup",
+   "Dubwool",
+   "Onix",
+   "Graveler",
+   "Golbat",
+   "Vullaby"
+  ],
+  [
+   "Prinplup",
+   "Dubwool",
+   "Onix",
+   "Graveler",
+   "Vikavolt",
+   "Rotom"
+  ],
+  [
+   "Prinplup",
+   "Vulpix",
+   "Bibarel",
+   "Onix",
+   "Tsareena",
+   "Graveler"
+  ],
+  [
+   "Prinplup",
+   "Vulpix",
+   "Onix",
+   "Charmeleon",
+   "Graveler",
+   "Breloom"
+  ],
+  [
+   "Prinplup",
+   "Corvisquire",
+   "Starly",
+   "Onix",
+   "Tsareena",
+   "Graveler"
+  ],
+  [
+   "Prinplup",
+   "Corvisquire",
+   "Onix",
+   "Graveler",
+   "Jumpluff",
+   "Breloom"
+  ],
+  [
+   "Prinplup",
+   "Barboach",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Jumpluff"
+  ],
+  [
+   "Prinplup",
+   "Wartortle",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Snover"
+  ],
+  [
+   "Prinplup",
+   "Krabby",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Golbat"
+  ],
+  [
+   "Prinplup",
+   "Nidorino",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Vullaby"
+  ],
+  [
+   "Prinplup",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Mareep",
+   "Vikavolt"
+  ],
+  [
+   "Prinplup",
+   "Onix",
+   "Tsareena",
+   "Graveler",
+   "Pawmo",
+   "Rotom"
+  ],
+  [
+   "Prinplup",
+   "Onix",
+   "Graveler",
+   "Breloom",
+   "Snover",
+   "Golbat"
+  ],
+  [
+   "Prinplup",
+   "Onix",
+   "Graveler",
+   "Breloom",
+   "Vullaby",
+   "Vikavolt"
+  ],
+  [
+   "Dubwool",
+   "Vulpix",
+   "Bibarel",
+   "Onix",
+   "Charmeleon",
+   "Graveler"
+  ],
+  [
+   "Dubwool",
+   "Vulpix",
+   "Starly",
+   "Onix",
+   "Tsareena",
+   "Graveler"
+  ],
+  [
+   "Dubwool",
+   "Vulpix",
+   "Barboach",
+   "Onix",
+   "Graveler",
+   "Jumpluff"
+  ]
+ ],
+ "our_rank": null,
+ "moves": {
+  "Prinplup": [
+   "Bubble Beam",
+   "Peck",
+   "Metal Claw",
+   "Pound"
+  ],
+  "Dubwool": [
+   "Take Down",
+   "Double Kick",
+   "Guard Split",
+   "Growl"
+  ],
+  "Vulpix": [
+   "Flamethrower",
+   "Will-O-Wisp",
+   "Quick Attack",
+   "Roar"
+  ],
+  "Bibarel": [
+   "Hyper Fang",
+   "Water Gun",
+   "Rollout",
+   "Growl"
+  ],
+  "Corvisquire": [
+   "Drill Peck",
+   "Steel Wing",
+   "Fury Attack",
+   "Leer"
+  ],
+  "Starly": [
+   "Tackle",
+   "Growl",
+   "Quick Attack"
+  ],
+  "Barboach": [
+   "Magnitude",
+   "Water Pulse",
+   "Amnesia",
+   "Mud Bomb"
+  ],
+  "Wartortle": [
+   "Bubble",
+   "Protect",
+   "Bite",
+   "Rapid Spin"
+  ],
+  "Krabby": [
+   "Stomp",
+   "Metal Claw",
+   "Bubble Beam",
+   "Mud Shot"
+  ],
+  "Nidorino": [
+   "Double Kick",
+   "Poison Sting",
+   "Horn Attack",
+   "Peck"
+  ],
+  "Onix": [
+   "Rock Tomb",
+   "Slam",
+   "Harden",
+   "Screech"
+  ],
+  "Charmeleon": [
+   "Dragon Rage",
+   "Fire Fang",
+   "Scratch",
+   "Growl"
+  ],
+  "Tsareena": [
+   "Trop Kick",
+   "Stomp",
+   "Play Nice",
+   "Teeter Dance"
+  ],
+  "Graveler": [
+   "Rock Blast",
+   "Magnitude",
+   "Tackle",
+   "Rock Polish"
+  ],
+  "Jumpluff": [
+   "Bullet Seed",
+   "Synthesis",
+   "Tackle",
+   "Leech Seed"
+  ],
+  "Mareep": [
+   "Thunder Shock",
+   "Tackle",
+   "Thunder Wave",
+   "Cotton Spore"
+  ],
+  "Pawmo": [
+   "Spark",
+   "Arm Thrust",
+   "Bite",
+   "Scratch"
+  ],
+  "Breloom": [
+   "Mach Punch",
+   "Mega Drain",
+   "Headbutt",
+   "Leech Seed"
+  ],
+  "Snover": [
+   "Icy Wind",
+   "Razor Leaf",
+   "Mist",
+   "Grass Whistle"
+  ],
+  "Golbat": [
+   "Air Cutter",
+   "Leech Life",
+   "Bite",
+   "Astonish"
+  ],
+  "Vullaby": [
+   "Pluck",
+   "Knock Off",
+   "Tailwind",
+   "Fury Attack"
+  ],
+  "Popplio": [
+   "Icy Wind",
+   "Encore",
+   "Aqua Jet",
+   "Sing"
+  ],
+  "Vikavolt": [
+   "Bug Bite",
+   "Spark",
+   "Bite",
+   "Mud-Slap"
+  ],
+  "Rotom": [
+   "Shock Wave",
+   "Uproar",
+   "Double Team",
+   "Confuse Ray"
+  ]
+ },
+ "finalists": [
+  {
+   "six": [
+    "Dubwool",
+    "Charmeleon",
+    "Graveler",
+    "Breloom",
+    "Snover",
+    "Rotom"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.96,
+    "faints": 0.88,
+    "clean": 0.48
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.92,
+    "faints": 1.56,
+    "clean": 0.08
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.24,
+    "clean": 0.84
+   }
+  },
+  {
+   "six": [
+    "Starly",
+    "Onix",
+    "Graveler",
+    "Breloom",
+    "Snover",
+    "Rotom"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 1.0,
+    "faints": 0.7066666666666667,
+    "clean": 0.5066666666666667
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.68,
+    "clean": 0.4
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.2,
+    "clean": 0.8
+   }
+  },
+  {
+   "six": [
+    "Dubwool",
+    "Vulpix",
+    "Onix",
+    "Tsareena",
+    "Graveler",
+    "Snover"
+   ],
+   "real": {
+    "fights": 75,
+    "won": 0.9333333333333333,
+    "faints": 0.6933333333333334,
+    "clean": 0.72
+   },
+   "unlucky": {
+    "fights": 25,
+    "won": 0.68,
+    "faints": 2.2,
+    "clean": 0.44
+   },
+   "playouts": {
+    "fights": 25,
+    "won": 1.0,
+    "faints": 0.08,
+    "clean": 0.92
+   }
+  }
+ ],
+ "ours": null,
+ "bar": null,
+ "winner": [
+  "Dubwool",
+  "Vulpix",
+  "Onix",
+  "Tsareena",
+  "Graveler",
+  "Snover"
+ ],
+ "playouts_on_winner": {
+  "fights": 25,
+  "won": 1.0,
+  "faints": 0.08,
+  "clean": 0.92
+ },
+ "winner_faints_to": [
+  [
+   "Skuntank",
+   2
+  ]
+ ],
+ "minutes": 59.0
+}

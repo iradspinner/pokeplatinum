@@ -13,12 +13,12 @@
 #   3. integrate.sh --verify-only: `make rom`, then the base-ROM checks, the
 #      encounter and balance suites, the word limits. Any failure stops here.
 #      The ROM is copied to ~/oxide-playtest/pokeplatinum-oxide-<commit>.nds,
-#      the name fetch-rom gives, for Ian.
+#      the name Ian's saves follow.
 #   4. Push `oxide` and run sync-docs.sh. GitHub's free build of the public
 #      repo then prints the ROM's SHA-1, which should match the copy.
-# Until 2026-09-29 the build ran on GitHub (fetch-rom), because the old CPU
-# could not build; Ian ruled out Actions in the private repos until
-# 2026-10-01, and the new CPU builds the same ROM byte for byte.
+# From 2026-09-23 to 2026-09-29 the build ran on GitHub, because the old CPU
+# could not build. The new CPU builds the same ROM byte for byte, and GitHub
+# Actions in the private repos are off for good (Ian, 2026-10-01).
 #
 # Usage:
 #   tools/oxide/merge-branch.sh <branch>             # origin/<branch>, or any commit

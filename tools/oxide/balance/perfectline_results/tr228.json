@@ -1,0 +1,3824 @@
+{
+ "blind_rate": 0.903,
+ "blind_clean_share": 0.66,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.143,
+ "blind_wipe": 0.001,
+ "convergence": {
+  "10": 0.857,
+  "50": 0.94,
+  "100": 0.959,
+  "300": 0.977
+ },
+ "runs": 280720,
+ "search_budget": 600,
+ "converged_share": 1.0,
+ "label": "Veteran Edgar",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 12.8,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Electivire; answers Tangrowth->Bronzong, Empoleon->Hippowdon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 1.0
+   },
+   "line": "lead Lopunny; answers Porygon-Z->Lopunny, Tangrowth->Vikavolt; switch losing; setup at 3+ safe turns at full HP; no status moves; save Vikavolt for Tangrowth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.25,
+    "20": 0.75,
+    "30": 0.75,
+    "36": 1.0
+   },
+   "line": "lead Milotic; answers Porygon-Z->Milotic, Tangrowth->Articuno, Empoleon->Ceruledge; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Ceruledge for Empoleon",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1320,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Snorlax; answers Porygon-Z->Snorlax, Tangrowth->Weezing-Galar, Empoleon->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.3,
+    "40": 0.55,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "72": 1.0
+   },
+   "line": "lead Milotic; answers Tangrowth->Ludicolo, Empoleon->Blastoise; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 72,
+   "converged": true,
+   "runs": 2040,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 1.0
+   },
+   "line": "lead Probopass; answers Porygon-Z->Gliscor, Tangrowth->Bastiodon, Empoleon->Bastiodon; switch hp below 0.7; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Bastiodon for Tangrowth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 2100,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Bastiodon",
+    "Probopass",
+    "Tsareena",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "12": 1.0
+   },
+   "line": "lead Corsola; answers Porygon-Z->Corsola, Empoleon->Corsola; switch losing; setup at 5+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Corsola for Empoleon",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Hippowdon",
+    "Ninetales",
+    "Starmie",
+    "Corsola",
+    "Crobat"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Probopass; answers Porygon-Z->Probopass, Tangrowth->Cinderace, Empoleon->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Blastoise",
+    "Probopass",
+    "Cinderace",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Tsareena; answers Porygon-Z->Tsareena, Tangrowth->Frosmoth, Empoleon->Octillery; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Arboliva",
+    "Frosmoth",
+    "Octillery",
+    "Palossand",
+    "Tsareena"
+   ],
+   "seconds": 7.0
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "65": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Cinderace, Tangrowth->Ninetales, Empoleon->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 65,
+   "converged": true,
+   "runs": 2200,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Milotic",
+    "Ninetales",
+    "Breloom",
+    "Quagsire",
+    "Cinderace"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Snorlax, Tangrowth->Purugly; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Purugly",
+    "Snorlax",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "39": 1.0
+   },
+   "line": "lead Snorlax; answers Porygon-Z->Snorlax, Tangrowth->Cinderace, Empoleon->Tsareena; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Tsareena for Empoleon",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:0",
+   "team": [
+    "Gliscor",
+    "Jumpluff",
+    "Snorlax",
+    "Tsareena",
+    "Cinderace",
+    "Delibird"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Florges; answers Tangrowth->Probopass, Empoleon->Probopass; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Probopass for Empoleon",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Milotic",
+    "Probopass",
+    "Salazzle",
+    "Tsareena",
+    "Altaria"
+   ],
+   "seconds": 9.2
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Floatzel; answers Porygon-Z->Gastrodon, Tangrowth->Turtonator, Empoleon->Gothitelle; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 3 turns; save Gothitelle for Empoleon",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Houndoom; answers Porygon-Z->Houndoom, Tangrowth->Vikavolt, Empoleon->Vikavolt; switch losing; setup at 4+ safe turns at full HP; free pivots; save Vikavolt for Empoleon",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.385,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Glalie; answers Porygon-Z->Glalie, Tangrowth->Togekiss, Empoleon->Hippowdon; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.15,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Rapidash; answers Porygon-Z->Purugly, Empoleon->Kingdra; switch losing; setup at 2+ safe turns; bait locks; free pivots; save Kingdra for Empoleon",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.515,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7
+   },
+   "line": "lead Florges; answers Tangrowth->Ninetales, Empoleon->Seaking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Decidueye, Tangrowth->Rapidash, Empoleon->Chandelure; switch losing; setup at 2+ safe turns; bait locks; stall timed effects at 2 turns; save Rapidash for Tangrowth",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1580,
+   "kind": "planned:1",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Rapidash",
+    "Chandelure",
+    "Cinderace",
+    "Decidueye"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.837,
+   "deaths": 0.23,
+   "wipe": 0.003,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Chandelure; answers Porygon-Z->Chandelure, Tangrowth->Tropius, Empoleon->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; bait locks; save Tropius for Tangrowth",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Huntail",
+    "Tropius",
+    "Chandelure",
+    "Crawdaunt"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.4,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Rapidash; answers Tangrowth->Vespiquen, Empoleon->Lanturn; switch never; setup at 5+ safe turns; no status moves; stall timed effects at 2 turns; save Lanturn for Empoleon",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Lanturn",
+    "Liepard",
+    "Lurantis",
+    "Ninetales",
+    "Rapidash",
+    "Vespiquen"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Wailord; answers Porygon-Z->Wailord, Tangrowth->Mandibuzz, Empoleon->Mantine; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mandibuzz",
+    "Mantine",
+    "Rapidash",
+    "Tentacruel",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Glalie; answers Porygon-Z->Glalie, Tangrowth->Articuno, Empoleon->Octillery; switch losing; setup at 3+ safe turns at full HP; save Octillery for Empoleon",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Octillery",
+    "Salazzle",
+    "Weavile",
+    "Drifblim"
+   ],
+   "seconds": 7.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "178": 1.0
+   },
+   "line": "lead Ninetales; answers Empoleon->Vikavolt; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 178,
+   "converged": true,
+   "runs": 4460,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Ninetales",
+    "Togekiss",
+    "Vikavolt"
+   ],
+   "seconds": 4.9
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.497,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.5,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.75,
+    "160": 0.75,
+    "170": 0.75,
+    "180": 0.75,
+    "190": 0.75,
+    "200": 0.75,
+    "210": 0.75,
+    "220": 0.75,
+    "230": 0.75,
+    "240": 0.75,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.75
+   },
+   "line": "lead Wailord; answers Porygon-Z->Wailord, Tangrowth->Glalie, Empoleon->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Liepard",
+    "Luxray",
+    "Octillery",
+    "Torterra",
+    "Wailord"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.203,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "21": 1.0
+   },
+   "line": "lead Decidueye; answers Porygon-Z->Decidueye, Tangrowth->Vespiquen, Empoleon->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Milotic",
+    "Roserade",
+    "Vespiquen",
+    "Altaria",
+    "Decidueye"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Tentacruel; answers Porygon-Z->Whiscash, Tangrowth->Vespiquen, Empoleon->Crobat; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Crobat for Empoleon",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Snorlax; answers Porygon-Z->Snorlax, Tangrowth->Orbeetle, Empoleon->Feraligatr; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.745,
+   "deaths": 0.415,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Seaking; answers Porygon-Z->Wailord, Tangrowth->Togedemaru, Empoleon->Quagsire; switch never; setup at 5+ safe turns; save Togedemaru for Tangrowth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Wailord; answers Porygon-Z->Houndoom, Tangrowth->Talonflame, Empoleon->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Granbull; answers Tangrowth->Kricketune, Empoleon->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 1.0
+   },
+   "line": "lead Ceruledge; answers Porygon-Z->Ceruledge, Empoleon->Cinderace; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Cinderace for Empoleon",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Houndoom",
+    "Pheromosa",
+    "Ceruledge",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Luxray; answers Porygon-Z->Weezing, Tangrowth->Weezing, Empoleon->Luxray; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Luxray",
+    "Octillery",
+    "Staraptor",
+    "Weezing",
+    "Chandelure"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.38,
+   "deaths": 1.217,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15,
+    "70": 0.15,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.3,
+    "130": 0.3,
+    "140": 0.3,
+    "150": 0.3,
+    "160": 0.3,
+    "170": 0.3,
+    "180": 0.3,
+    "190": 0.3,
+    "200": 0.3,
+    "210": 0.3,
+    "220": 0.3,
+    "230": 0.3,
+    "240": 0.3,
+    "250": 0.3,
+    "260": 0.3,
+    "270": 0.4,
+    "280": 0.4,
+    "290": 0.4,
+    "300": 0.4,
+    "310": 0.4,
+    "320": 0.4,
+    "330": 0.4,
+    "340": 0.4,
+    "350": 0.4,
+    "360": 0.45,
+    "370": 0.45,
+    "380": 0.45,
+    "390": 0.45,
+    "400": 0.45,
+    "410": 0.45,
+    "420": 0.45,
+    "430": 0.45,
+    "440": 0.45,
+    "450": 0.45,
+    "460": 0.45,
+    "470": 0.45,
+    "480": 0.45,
+    "490": 0.45,
+    "500": 0.45,
+    "510": 0.45,
+    "520": 0.45,
+    "530": 0.45,
+    "540": 0.45,
+    "550": 0.45,
+    "560": 0.45,
+    "570": 0.45,
+    "580": 0.45,
+    "590": 0.45,
+    "600": 0.45
+   },
+   "line": "lead Vespiquen; answers Tangrowth->Masquerain, Empoleon->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Masquerain for Tangrowth",
+   "candidates": 600,
+   "converged": true,
+   "runs": 12900,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Masquerain",
+    "Octillery",
+    "Vespiquen",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 7.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Chandelure; answers Porygon-Z->Pachirisu, Tangrowth->Staraptor, Empoleon->Togedemaru; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Pachirisu",
+    "Pheromosa",
+    "Staraptor",
+    "Togedemaru",
+    "Chandelure"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Porygon-Z->Wailord, Tangrowth->Crustle, Empoleon->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Absol",
+    "Togedemaru",
+    "Wailord",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "13": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Chandelure, Tangrowth->Chandelure, Empoleon->Electivire; switch never; setup at 3+ safe turns; free pivots",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Masquerain",
+    "Palossand",
+    "Purugly",
+    "Chandelure",
+    "Wormadam"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.227,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.45,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Pheromosa; answers Porygon-Z->Pheromosa, Tangrowth->Machamp, Empoleon->Pelipper; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Machamp",
+    "Mightyena",
+    "Pelipper",
+    "Pheromosa",
+    "Seaking"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 0.403,
+   "deaths": 0.64,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Absol; answers Tangrowth->Absol, Empoleon->Purugly; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Absol",
+    "Machamp",
+    "Purugly",
+    "Carbink",
+    "Whiscash"
+   ],
+   "seconds": 5.8
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Galvantula; answers Porygon-Z->Galvantula, Tangrowth->Bronzong, Empoleon->Abomasnow; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Heracross; answers Tangrowth->Orbeetle, Empoleon->Cresselia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.41,
+   "wipe": 0.01,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Magcargo; answers Tangrowth->Corviknight, Empoleon->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Hawlucha, Tangrowth->Skarmory, Empoleon->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Wailord; answers Porygon-Z->Wailord, Tangrowth->Galvantula, Empoleon->Relicanth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Cinderace, Tangrowth->Heracross, Empoleon->Hawlucha; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:3",
+   "team": [
+    "Hawlucha",
+    "Heracross",
+    "Bastiodon",
+    "Rapidash",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 1.0
+   },
+   "line": "lead Frosmoth; answers Porygon-Z->Steelix, Tangrowth->Rapidash, Empoleon->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Wailord for Empoleon",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Rapidash",
+    "Steelix",
+    "Tentacruel",
+    "Wailord",
+    "Crobat"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.753,
+   "deaths": 0.287,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.35,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Gastrodon; answers Tangrowth->Crustle, Empoleon->Ferrothorn; switch losing; setup at 2+ safe turns; no status moves; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Greninja",
+    "Bibarel",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 7.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "46": 1.0
+   },
+   "line": "lead Bastiodon; answers Porygon-Z->Donphan, Tangrowth->Cinderace, Empoleon->Empoleon; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 46,
+   "converged": true,
+   "runs": 1820,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Bastiodon",
+    "Shiftry",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Steelix; answers Tangrowth->Orbeetle, Empoleon->Delcatty; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:3",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Steelix",
+    "Togekiss",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "71": 1.0
+   },
+   "line": "lead Chandelure; answers Porygon-Z->Chandelure, Tangrowth->Crustle, Empoleon->Chandelure; switch losing; setup at 3+ safe turns",
+   "candidates": 71,
+   "converged": true,
+   "runs": 2320,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Bronzong",
+    "Chandelure",
+    "Cresselia",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Cinderace, Tangrowth->Ferrothorn, Empoleon->Empoleon; switch losing; setup at 3+ safe turns at full HP; save Ferrothorn for Tangrowth",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Hariyama",
+    "Sharpedo",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rapidash; answers Porygon-Z->Rapidash, Tangrowth->Vikavolt, Empoleon->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Granbull",
+    "Kingdra",
+    "Metagross",
+    "Rapidash",
+    "Vikavolt",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Absol, Tangrowth->Pheromosa, Empoleon->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.55,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Blissey; answers Porygon-Z->Electivire, Tangrowth->Tentacruel, Empoleon->Tentacruel; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.765,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Quagsire; answers Porygon-Z->Quagsire, Tangrowth->Charizard, Empoleon->Golduck; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Luxray; answers Porygon-Z->Luxray, Tangrowth->Vespiquen, Empoleon->Luxray; switch losing; setup at 5+ safe turns; stall timed effects at 3 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pawmot; answers Porygon-Z->Pawmot, Tangrowth->Corviknight, Empoleon->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "23": 1.0
+   },
+   "line": "lead Ceruledge; answers Tangrowth->Rapidash, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:4",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Pheromosa",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Mienshao; answers Porygon-Z->Mienshao, Tangrowth->Charizard, Empoleon->Hippowdon; switch losing; setup at 2+ safe turns at full HP; no status moves; save Charizard for Tangrowth",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Machamp",
+    "Mienshao",
+    "Octillery",
+    "Poliwrath",
+    "Charizard"
+   ],
+   "seconds": 6.1
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Pheromosa; answers Porygon-Z->Pheromosa, Tangrowth->Corviknight, Empoleon->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Pheromosa",
+    "Bronzong",
+    "Rapidash",
+    "Corviknight",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "56": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Corsola, Tangrowth->Salazzle, Empoleon->Electivire; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 56,
+   "converged": true,
+   "runs": 2020,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Rotom",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge",
+    "Corsola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Porygon-Z->Luxray, Tangrowth->Vikavolt, Empoleon->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Luxray",
+    "Rapidash",
+    "Talonflame",
+    "Vikavolt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.917,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Cinderace, Tangrowth->Tentacruel, Empoleon->Quagsire; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:4",
+   "team": [
+    "Manaphy",
+    "Quagsire",
+    "Sharpedo",
+    "Tentacruel",
+    "Cinderace",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Hawlucha, Tangrowth->Vikavolt, Empoleon->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hawlucha",
+    "Masquerain",
+    "Orbeetle",
+    "Vaporeon",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pawmot; answers Porygon-Z->Delcatty, Tangrowth->Heracross, Empoleon->Tentacruel; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; save Tentacruel for Empoleon",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Machamp",
+    "Pawmot",
+    "Tentacruel",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.77,
+   "deaths": 0.485,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Magcargo; answers Tangrowth->Talonflame, Empoleon->Walrein; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Talonflame for Tangrowth",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "51": 1.0
+   },
+   "line": "lead Gliscor; answers Tangrowth->Rotom, Empoleon->Rotom; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Rotom for Empoleon",
+   "candidates": 51,
+   "converged": true,
+   "runs": 1620,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Swampert; answers Tangrowth->Crustle, Empoleon->Swampert; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Sinistcha; answers Porygon-Z->Sinistcha, Tangrowth->Articuno, Empoleon->Pawmot; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.675,
+   "deaths": 0.455,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Tsareena; answers Porygon-Z->Tsareena, Tangrowth->Tsareena, Empoleon->Machamp; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.863,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dhelmise; answers Porygon-Z->Dhelmise, Tangrowth->Tsareena, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Sinistcha",
+    "Tsareena",
+    "Cinderace",
+    "Dhelmise"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 1.0
+   },
+   "line": "lead Dhelmise; answers Porygon-Z->Dhelmise, Tangrowth->Tsareena, Empoleon->Walrein; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:5",
+   "team": [
+    "Rhyperior",
+    "Talonflame",
+    "Tsareena",
+    "Walrein",
+    "Altaria",
+    "Dhelmise"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.35,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 1.0
+   },
+   "line": "lead Heracross; answers Tangrowth->Steelix, Empoleon->Steelix; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 150,
+   "converged": true,
+   "runs": 3900,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Heracross",
+    "Jellicent",
+    "Mantine",
+    "Steelix",
+    "Walrein"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Dhelmise; answers Porygon-Z->Dhelmise, Tangrowth->Heracross, Empoleon->Hawlucha; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Hawlucha",
+    "Heracross",
+    "Hippowdon",
+    "Castform",
+    "Dhelmise"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Bastiodon, Tangrowth->Crustle; switch losing; setup at 5+ safe turns at full HP; save Crustle for Tangrowth",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Bibarel",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Pawmot; answers Porygon-Z->Castform, Tangrowth->Crustle, Empoleon->Pawmot; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Pawmot",
+    "Steelix",
+    "Castform",
+    "Cinderace",
+    "Altaria",
+    "Crustle"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Mandibuzz; answers Porygon-Z->Pawmot, Tangrowth->Mandibuzz; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Bastiodon",
+    "Mandibuzz",
+    "Pawmot",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Hawlucha, Tangrowth->Tentacruel, Empoleon->Hawlucha; switch losing; setup at 3+ safe turns at full HP; save Hawlucha for Empoleon",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Hawlucha",
+    "Breloom",
+    "Serperior",
+    "Sinistcha",
+    "Tentacruel",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Milotic; answers Tangrowth->Scizor, Empoleon->Scizor; switch hp below 0.3; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.565,
+   "deaths": 0.865,
+   "wipe": 0.04,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Seaking; answers Porygon-Z->Seaking, Tangrowth->Plusle, Empoleon->Mantine; switch losing; setup at 5+ safe turns; stall timed effects at 1 turns; save Plusle for Tangrowth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Lanturn; answers Porygon-Z->Lanturn, Empoleon->Lanturn; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.805,
+   "deaths": 0.355,
+   "wipe": 0.01,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Dusknoir; answers Tangrowth->Abomasnow, Empoleon->Mantine; switch losing; setup at 3+ safe turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Togedemaru, Tangrowth->Milotic, Empoleon->Electivire; switch losing; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "17": 1.0
+   },
+   "line": "lead Tsareena; answers Porygon-Z->Houndoom, Tangrowth->Chandelure, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Houndoom",
+    "Tsareena",
+    "Chandelure",
+    "Cinderace",
+    "Dusknoir"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 1.0
+   },
+   "line": "lead Tsareena; answers Porygon-Z->Tsareena, Tangrowth->Donphan, Empoleon->Galvantula; switch losing; setup at 5+ safe turns; bait locks; save Galvantula for Empoleon",
+   "candidates": 180,
+   "converged": true,
+   "runs": 4500,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Togedemaru",
+    "Tsareena",
+    "Cresselia",
+    "Donphan"
+   ],
+   "seconds": 4.8
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.3,
+   "wipe": 0.01,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "284": 1.0
+   },
+   "line": "lead Tsareena; answers Porygon-Z->Tsareena, Tangrowth->Tentacruel, Empoleon->Cresselia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 284,
+   "converged": true,
+   "runs": 6580,
+   "kind": "planned:6",
+   "team": [
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Vespiquen",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Absol, Tangrowth->Altaria, Empoleon->Whiscash; switch losing; setup at 4+ safe turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Plusle",
+    "Whiscash",
+    "Altaria",
+    "Cresselia"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Bastiodon, Tangrowth->Drifblim, Empoleon->Dusknoir; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Dusknoir for Empoleon",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Floatzel",
+    "Galvantula",
+    "Bastiodon",
+    "Absol",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.283,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "198": 1.0
+   },
+   "line": "lead Glalie; answers Porygon-Z->Glalie, Tangrowth->Vespiquen, Empoleon->Galvantula; switch never; setup at 2+ safe turns; no status moves; save Vespiquen for Tangrowth",
+   "candidates": 198,
+   "converged": true,
+   "runs": 4860,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Glalie",
+    "Breloom",
+    "Vespiquen",
+    "Drifblim"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hippowdon; answers Tangrowth->Scizor, Empoleon->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hippowdon",
+    "Milotic",
+    "Bronzong",
+    "Scizor",
+    "Vikavolt",
+    "Cresselia"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.797,
+   "deaths": 0.423,
+   "wipe": 0.003,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Tsareena; answers Tangrowth->Tsareena, Empoleon->Steelix; switch losing; setup at 3+ safe turns at full HP; free pivots; save Steelix for Empoleon",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Steelix",
+    "Tsareena",
+    "Whiscash",
+    "Cresselia",
+    "Drifblim"
+   ],
+   "seconds": 7.2
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Hariyama; answers Tangrowth->Glimmora, Empoleon->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Heracross; answers Porygon-Z->Heracross, Tangrowth->Steelix, Empoleon->Steelix; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 1.0
+   },
+   "line": "lead Flygon; answers Tangrowth->Abomasnow; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1200,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Goodra; answers Tangrowth->Crustle, Empoleon->Gastrodon; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Tangrowth->Araquanid, Empoleon->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "63": 1.0
+   },
+   "line": "lead Staraptor; answers Porygon-Z->Bastiodon, Tangrowth->Rapidash, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 63,
+   "converged": true,
+   "runs": 2160,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Houndoom",
+    "Rapidash",
+    "Staraptor",
+    "Cinderace"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Bastiodon, Tangrowth->Houndoom, Empoleon->Quagsire; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:7",
+   "team": [
+    "Electivire",
+    "Bastiodon",
+    "Houndoom",
+    "Octillery",
+    "Poliwrath",
+    "Quagsire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Milotic; answers Tangrowth->Incineroar, Empoleon->Jellicent; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Incineroar",
+    "Jellicent",
+    "Mantine",
+    "Milotic",
+    "Breloom"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Porygon-Z->Tentacruel, Tangrowth->Magnezone, Empoleon->Mantine; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Mantine for Empoleon",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Rotom",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Absol, Tangrowth->Staraptor, Empoleon->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Staraptor",
+    "Crustle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndoom; answers Porygon-Z->Houndoom, Tangrowth->Houndoom, Empoleon->Rotom; switch losing; setup at 5+ safe turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Azumarill",
+    "Gliscor",
+    "Houndoom",
+    "Breloom",
+    "Rotom",
+    "Toxapex"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Annihilape; answers Porygon-Z->Annihilape, Tangrowth->Magnezone, Empoleon->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Annihilape",
+    "Goodra",
+    "Magnezone",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Electivire, Tangrowth->Houndoom, Empoleon->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Flygon",
+    "Houndoom",
+    "Breloom",
+    "Tentacruel"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Rapidash-Galar; answers Tangrowth->Ferrothorn, Empoleon->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.75,
+   "deaths": 0.28,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Absol; answers Porygon-Z->Absol, Tangrowth->Bastiodon, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "37": 1.0
+   },
+   "line": "lead Mienshao; answers Tangrowth->Vikavolt, Empoleon->Vikavolt; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1340,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Houndoom; answers Porygon-Z->Houndoom, Tangrowth->Yanmega, Empoleon->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "22": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Rapidash-Galar, Tangrowth->Cherrim, Empoleon->Lumineon; switch losing; setup at 4+ safe turns at full HP; free pivots; save Lumineon for Empoleon",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Sinistcha, Tangrowth->Bronzong, Empoleon->Bronzong; switch never; setup at 3+ safe turns; free pivots; save Bronzong for Tangrowth",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Hawlucha",
+    "Bastiodon",
+    "Houndoom",
+    "Bronzong",
+    "Sinistcha",
+    "Cinderace"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Electivire, Tangrowth->Articuno, Empoleon->Electivire; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Rapidash-Galar",
+    "Articuno",
+    "Houndoom",
+    "Machamp",
+    "Mienshao"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Hawlucha, Tangrowth->Houndoom, Empoleon->Walrein; switch losing; setup at 3+ safe turns at full HP; save Houndoom for Tangrowth",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Hawlucha",
+    "Houndoom",
+    "Machamp",
+    "Mantine",
+    "Walrein"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Milotic; answers Tangrowth->Skarmory, Empoleon->Walrein; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Milotic",
+    "Skarmory",
+    "Carbink",
+    "Walrein",
+    "Clefable"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Absol; answers Porygon-Z->Absol, Tangrowth->Orbeetle, Empoleon->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Hippowdon",
+    "Absol",
+    "Magcargo",
+    "Milotic",
+    "Orbeetle",
+    "Castform"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "185": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Cinderace, Tangrowth->Magcargo, Empoleon->Pelipper; switch hp below 0.4; setup at 2+ safe turns at full HP; bait locks; free pivots; save Pelipper for Empoleon",
+   "candidates": 185,
+   "converged": true,
+   "runs": 4600,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Magcargo",
+    "Pelipper",
+    "Castform",
+    "Cinderace"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Cinderace; answers Porygon-Z->Cinderace, Tangrowth->Ferrothorn, Empoleon->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Manaphy",
+    "Palossand",
+    "Vespiquen",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.293,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 1.0
+   },
+   "line": "lead Sinistcha; answers Porygon-Z->Sinistcha, Tangrowth->Steelix, Empoleon->Steelix; switch losing; setup at 4+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Steelix for Tangrowth",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Pelipper",
+    "Sinistcha",
+    "Steelix",
+    "Donphan",
+    "Drifblim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Gliscor; answers Porygon-Z->Gliscor, Tangrowth->Talonflame, Empoleon->Quagsire; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.32,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Pheromosa; answers Porygon-Z->Pheromosa, Tangrowth->Masquerain, Empoleon->Manaphy; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Manaphy for Empoleon",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1160,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Empoleon->Gastrodon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Hariyama; answers Porygon-Z->Hariyama, Tangrowth->Ceruledge, Empoleon->Lucario; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Ceruledge for Tangrowth",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Machamp; answers Empoleon->Machamp; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Ceruledge, Tangrowth->Ceruledge, Empoleon->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Hawlucha",
+    "Honchkrow",
+    "Bastiodon",
+    "Pheromosa",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "112": 1.0
+   },
+   "line": "lead Donphan; answers Tangrowth->Glimmora, Empoleon->Galvantula; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 112,
+   "converged": true,
+   "runs": 3140,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Jellicent",
+    "Salazzle",
+    "Delphox",
+    "Donphan"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "36": 1.0
+   },
+   "line": "lead Lanturn; answers Empoleon->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:9",
+   "team": [
+    "Lanturn",
+    "Milotic",
+    "Rhyperior",
+    "Sharpedo",
+    "Vikavolt",
+    "Cherrim"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Steelix; answers Tangrowth->Steelix, Empoleon->Kricketune; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:9",
+   "team": [
+    "Gliscor",
+    "Kricketune",
+    "Ninetales",
+    "Salazzle",
+    "Steelix",
+    "Delphox"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Electivire, Tangrowth->Vikavolt, Empoleon->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Lucario",
+    "Talonflame",
+    "Togekiss",
+    "Vikavolt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Hawlucha; answers Porygon-Z->Kingler, Tangrowth->Abomasnow, Empoleon->Kingler; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Hawlucha",
+    "Kingler",
+    "Mantine",
+    "Sharpedo"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Electivire; answers Porygon-Z->Electivire, Tangrowth->Corviknight, Empoleon->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Kingler",
+    "Toucannon",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Tentacruel; answers Porygon-Z->Tentacruel, Tangrowth->Metagross, Empoleon->Walrein; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Metagross",
+    "Salazzle",
+    "Tentacruel",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 4.5
+  }
+ ],
+ "key": "tr228"
+}

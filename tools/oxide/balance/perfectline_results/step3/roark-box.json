@@ -1,0 +1,438 @@
+{
+ "fight": "roark",
+ "mode": "box",
+ "bar": [
+  199,
+  200,
+  0.005
+ ],
+ "names": [
+  "Prinplup",
+  "Wooloo",
+  "Vulpix",
+  "Bibarel",
+  "Corvisquire",
+  "Dottler",
+  "Starly",
+  "Barboach",
+  "Wartortle",
+  "Krabby",
+  "Finneon",
+  "Nidorino",
+  "Onix",
+  "Charmander",
+  "Steenee",
+  "Geodude"
+ ],
+ "items": null,
+ "rows": [
+  {
+   "team": [
+    "Onix",
+    "Steenee",
+    "Geodude",
+    "Vulpix",
+    "Barboach",
+    "Wartortle"
+   ],
+   "line": "lead Vulpix; answers Nosepass->Vulpix, Geodude->Barboach, Cranidos->Vulpix; switch losing; setup at 3+ safe turns at full HP; save Vulpix for Cranidos; screens; hazards; stat drops",
+   "clean": 0,
+   "won": 5,
+   "deaths": 5.94,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261030,
+   "keys": [
+    "p12",
+    "p14",
+    "p15",
+    "p2",
+    "p7",
+    "p8"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 3,
+     "b0.1": 4,
+     "b0.2": null,
+     "b0.3": 3
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.20245724788838643,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {
+     "3": "b0.3"
+    },
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": false,
+    "foe_drop": true,
+    "sleep_open": false
+   }
+  },
+  {
+   "team": [
+    "Prinplup",
+    "Charmander",
+    "Starly",
+    "Barboach",
+    "Wartortle",
+    "Krabby"
+   ],
+   "line": "lead Barboach; answers Nosepass->Barboach, Geodude->Barboach, Cranidos->Barboach; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; screens; hazards; stat drops; sleep opener",
+   "clean": 0,
+   "won": 0,
+   "deaths": 6.0,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261031,
+   "keys": [
+    "p0",
+    "p13",
+    "p6",
+    "p7",
+    "p8",
+    "p9"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 3,
+     "b0.1": 3,
+     "b0.2": null,
+     "b0.3": 3
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 1,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": false,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Wooloo",
+    "Onix",
+    "Charmander",
+    "Steenee",
+    "Geodude",
+    "Barboach"
+   ],
+   "line": "lead Steenee; answers Nosepass->Geodude, Geodude->Onix, Lileep->Charmander, Cranidos->Onix; switch hp below 0.3; setup at 3+ safe turns; screens; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 21,
+   "deaths": 5.7,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261032,
+   "keys": [
+    "p1",
+    "p12",
+    "p13",
+    "p14",
+    "p15",
+    "p7"
+   ],
+   "policy": {
+    "lead": 3,
+    "answers": {
+     "b0.0": 4,
+     "b0.1": 1,
+     "b0.2": 2,
+     "b0.3": 1
+    },
+    "switch_rule": "hp",
+    "hp_floor": 0.27277673169557426,
+    "setup_turns": 3,
+    "setup_full": false,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": false,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Finneon",
+    "Onix",
+    "Steenee",
+    "Geodude",
+    "Dottler",
+    "Wartortle"
+   ],
+   "line": "lead Onix; answers Nosepass->Onix, Geodude->Onix, Cranidos->Onix; switch losing; setup at 3+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 3,
+   "deaths": 5.965,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261033,
+   "keys": [
+    "p10",
+    "p12",
+    "p14",
+    "p15",
+    "p5",
+    "p8"
+   ],
+   "policy": {
+    "lead": 1,
+    "answers": {
+     "b0.0": 1,
+     "b0.1": 1,
+     "b0.2": null,
+     "b0.3": 1
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Wooloo",
+    "Finneon",
+    "Nidorino",
+    "Vulpix",
+    "Barboach",
+    "Wartortle"
+   ],
+   "line": "lead Barboach; answers Nosepass->Barboach, Geodude->Barboach; switch losing; setup at 3+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener; Wooloo then Nidorino on Lileep",
+   "clean": 0,
+   "won": 19,
+   "deaths": 5.815,
+   "search_rate": 0.003,
+   "candidates": 300,
+   "seed": 20261034,
+   "keys": [
+    "p1",
+    "p10",
+    "p11",
+    "p2",
+    "p7",
+    "p8"
+   ],
+   "policy": {
+    "lead": 4,
+    "answers": {
+     "b0.0": 4,
+     "b0.1": 4,
+     "b0.2": null,
+     "b0.3": null
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {
+     "b0.2": [
+      0,
+      2
+     ]
+    },
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Wooloo",
+    "Finneon",
+    "Onix",
+    "Steenee",
+    "Starly",
+    "Wartortle"
+   ],
+   "line": "lead Onix; answers Nosepass->Onix, Geodude->Onix, Cranidos->Onix; switch losing; setup at 3+ safe turns at full HP; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 0,
+   "won": 0,
+   "deaths": 6.0,
+   "search_rate": 0.0,
+   "candidates": 300,
+   "seed": 20261035,
+   "keys": [
+    "p1",
+    "p10",
+    "p12",
+    "p14",
+    "p6",
+    "p8"
+   ],
+   "policy": {
+    "lead": 2,
+    "answers": {
+     "b0.0": 2,
+     "b0.1": 2,
+     "b0.2": null,
+     "b0.3": 2
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Finneon",
+    "Nidorino",
+    "Onix",
+    "Charmander",
+    "Geodude",
+    "Barboach"
+   ],
+   "line": "lead Onix; answers Nosepass->Onix, Geodude->Onix, Lileep->Nidorino, Cranidos->Onix; switch losing; setup at 3+ safe turns at full HP; free pivots; screens; hazards; Defense setup; stat drops; sleep opener",
+   "clean": 27,
+   "won": 100,
+   "deaths": 3.59,
+   "search_rate": 0.147,
+   "candidates": 450,
+   "seed": 20261036,
+   "keys": [
+    "p10",
+    "p11",
+    "p12",
+    "p13",
+    "p15",
+    "p7"
+   ],
+   "policy": {
+    "lead": 2,
+    "answers": {
+     "b0.0": 2,
+     "b0.1": 2,
+     "b0.2": 1,
+     "b0.3": 2
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.6613119643809402,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": true,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": true,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  },
+  {
+   "team": [
+    "Nidorino",
+    "Onix",
+    "Steenee",
+    "Bibarel",
+    "Dottler",
+    "Wartortle"
+   ],
+   "line": "lead Onix; answers Nosepass->Onix, Geodude->Onix, Lileep->Steenee, Cranidos->Onix; switch losing; setup at 3+ safe turns at full HP; screens; Defense setup; stat drops; sleep opener",
+   "clean": 7,
+   "won": 147,
+   "deaths": 3.44,
+   "search_rate": 0.04,
+   "candidates": 300,
+   "seed": 20261037,
+   "keys": [
+    "p11",
+    "p12",
+    "p14",
+    "p3",
+    "p5",
+    "p8"
+   ],
+   "policy": {
+    "lead": 1,
+    "answers": {
+     "b0.0": 1,
+     "b0.1": 1,
+     "b0.2": 2,
+     "b0.3": 1
+    },
+    "switch_rule": "losing",
+    "hp_floor": 0.4,
+    "setup_turns": 3,
+    "setup_full": true,
+    "use_status": true,
+    "seed": 0,
+    "bait_lock": false,
+    "free_pivot": false,
+    "stall": 0,
+    "reserved": {},
+    "screens": true,
+    "hazards": false,
+    "pairs": {},
+    "def_setup": true,
+    "foe_drop": true,
+    "sleep_open": true
+   }
+  }
+ ],
+ "best": 6
+}

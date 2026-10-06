@@ -525,9 +525,9 @@
    "left_out": {},
    "calcs": 16960,
    "errors": [],
-   "node_seconds": 3.64,
-   "wall_seconds": 3.88,
-   "fingerprint": "0c1dba287f76200ae96d",
+   "node_seconds": 3.52,
+   "wall_seconds": 3.62,
+   "fingerprint": "bcdedfb8a060ba166370",
    "verified": true
   },
   "maylene": {
@@ -707,9 +707,9 @@
    "errors": [
     "b0.4 Pain Split: damage is not a number"
    ],
-   "node_seconds": 7.89,
-   "wall_seconds": 8.05,
-   "fingerprint": "f710687569a4a8d21b1a",
+   "node_seconds": 7.22,
+   "wall_seconds": 7.39,
+   "fingerprint": "d30be18aff509d8f1a8b",
    "verified": true
   },
   "wake": {
@@ -899,9 +899,9 @@
    "left_out": {},
    "calcs": 51005,
    "errors": [],
-   "node_seconds": 9.23,
-   "wall_seconds": 9.41,
-   "fingerprint": "c01dfb9da8030f69d404",
+   "node_seconds": 9.06,
+   "wall_seconds": 9.24,
+   "fingerprint": "81cee858ca1b73947b9b",
    "verified": true
   },
   "byron": {
@@ -1082,9 +1082,9 @@
    "left_out": {},
    "calcs": 52437,
    "errors": [],
-   "node_seconds": 9.71,
-   "wall_seconds": 10.0,
-   "fingerprint": "c572ef9cf17d2d887203",
+   "node_seconds": 9.13,
+   "wall_seconds": 9.38,
+   "fingerprint": "ef6f11e033d272196a2c",
    "verified": true
   },
   "candice": {
@@ -1297,9 +1297,9 @@
    "left_out": {},
    "calcs": 69495,
    "errors": [],
-   "node_seconds": 12.54,
-   "wall_seconds": 12.98,
-   "fingerprint": "12aee810e916030e6fd8",
+   "node_seconds": 11.22,
+   "wall_seconds": 11.5,
+   "fingerprint": "6ae3daae9c49241c2f30",
    "verified": true
   },
   "volkner": {
@@ -1486,9 +1486,9 @@
    "left_out": {},
    "calcs": 70008,
    "errors": [],
-   "node_seconds": 12.43,
-   "wall_seconds": 12.72,
-   "fingerprint": "69ce777ceafa8bf9fd9e",
+   "node_seconds": 11.59,
+   "wall_seconds": 12.0,
+   "fingerprint": "74fcb8e4a4296d13a7af",
    "verified": true
   },
   "aaron": {
@@ -1591,8 +1591,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.661,
-     "answers": 0.069,
-     "answers_lock": 0.069,
+     "answers": 0.074,
+     "answers_lock": 0.074,
      "threat_chance": 0.661,
      "answers_duel": 0.114,
      "answers_sure": 0.103,
@@ -1669,9 +1669,9 @@
    "left_out": {},
    "calcs": 70512,
    "errors": [],
-   "node_seconds": 12.64,
-   "wall_seconds": 13.02,
-   "fingerprint": "8f7dd7f43ce88b10f65d",
+   "node_seconds": 11.1,
+   "wall_seconds": 11.43,
+   "fingerprint": "594b6705a31f266cd7c4",
    "verified": true
   },
   "bertha": {
@@ -1850,9 +1850,9 @@
    "left_out": {},
    "calcs": 89708,
    "errors": [],
-   "node_seconds": 14.42,
-   "wall_seconds": 14.66,
-   "fingerprint": "13f0a8fee30555796003",
+   "node_seconds": 13.28,
+   "wall_seconds": 13.65,
+   "fingerprint": "d8860c51437460e4c870",
    "verified": true
   },
   "flint": {
@@ -1926,9 +1926,9 @@
      "answers": 0.0,
      "answers_lock": 0.0,
      "threat_chance": 0.929,
-     "answers_duel": 0.034,
-     "answers_sure": 0.031,
-     "answers_bait": 0.034,
+     "answers_duel": 0.036,
+     "answers_sure": 0.033,
+     "answers_bait": 0.036,
      "forced": [],
      "answers_branch": 0.002,
      "branches": [
@@ -2020,9 +2020,9 @@
    "left_out": {},
    "calcs": 72752,
    "errors": [],
-   "node_seconds": 13.08,
-   "wall_seconds": 13.31,
-   "fingerprint": "52bcb9decb1890040331",
+   "node_seconds": 11.5,
+   "wall_seconds": 11.86,
+   "fingerprint": "7ec87e1f2145329c7451",
    "verified": true
   },
   "lucian": {
@@ -2143,8 +2143,8 @@
      "choice": false,
      "locked_move": null,
      "threat": 0.761,
-     "answers": 0.067,
-     "answers_lock": 0.067,
+     "answers": 0.069,
+     "answers_lock": 0.069,
      "threat_chance": 0.761,
      "answers_duel": 0.02,
      "answers_sure": 0.02,
@@ -2200,9 +2200,9 @@
    "left_out": {},
    "calcs": 71856,
    "errors": [],
-   "node_seconds": 12.39,
-   "wall_seconds": 12.91,
-   "fingerprint": "215a0f2191bedddde547",
+   "node_seconds": 11.39,
+   "wall_seconds": 11.7,
+   "fingerprint": "68acca0838dbe919dffd",
    "verified": true
   },
   "cynthia": {
@@ -2375,9 +2375,9 @@
    "left_out": {},
    "calcs": 64274,
    "errors": [],
-   "node_seconds": 11.39,
-   "wall_seconds": 11.64,
-   "fingerprint": "e26a7d1a3fcfe01c03ad",
+   "node_seconds": 10.41,
+   "wall_seconds": 10.66,
+   "fingerprint": "8c4978297352df2f15f2",
    "verified": true
   }
  }

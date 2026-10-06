@@ -1,0 +1,76 @@
+T1 Vikavolt 79/79 against Cherrim 77/77: play-outs choose switch to Popplio, the network Bug Bite  (differs; gives up 0.23, chance of losing +0.031, faints -0.06)
+      Bug Bite -10.64/-10.95, Spark -11.01/-11.15, Bite -10.55/-11.32, Mud-Slap -11.75/-11.41, switch to Charmeleon -12.33/-13.19, switch to Popplio -10.41/-11.50, switch to Vullaby -10.81/-10.83, switch to Golbat -14.48/-13.25, switch to Tsareena -10.70/-10.83
+      by play-outs (chance of losing, faints): Bug Bite 0.64 4.42, Spark 0.65 4.62, Bite 0.61 4.52, Mud-Slap 0.70 4.86, switch to Charmeleon 0.73 5.05, switch to Popplio 0.60 4.48, switch to Vullaby 0.63 4.61, switch to Golbat 0.88 5.75, switch to Tsareena 0.62 4.56
+T2 Vikavolt 79/79 against Cherrim 45/77: play-outs choose switch to Charmeleon, the network switch to Charmeleon
+      Bug Bite -15.47/-14.60, Spark -15.50/-14.59, Bite -15.50/-14.60, Mud-Slap -15.50/-14.61, switch to Charmeleon -9.20/-12.11, switch to Popplio -15.50/-12.98, switch to Vullaby -16.00/-14.84, switch to Golbat -14.45/-13.98, switch to Tsareena -14.08/-12.34
+      by play-outs (chance of losing, faints): Bug Bite 0.96 5.91, Spark 0.96 5.92, Bite 0.96 5.92, Mud-Slap 0.96 5.92, switch to Charmeleon 0.51 4.18, switch to Popplio 0.96 5.92, switch to Vullaby 1.00 6.00, switch to Golbat 0.88 5.71, switch to Tsareena 0.87 5.37
+T3 Charmeleon 37/70 against Cherrim 45/77: play-outs choose Fire Fang, the network Scary Face  (differs; gives up 1.54, chance of losing +0.086, faints +0.63)
+      Fire Fang -10.08/-12.08, Ember -10.59/-11.24, Scary Face -11.62/-11.14, Smokescreen -11.43/-11.48, switch to Popplio -14.53/-13.95, switch to Vikavolt -15.66/-14.87, switch to Vullaby -15.31/-14.66, switch to Golbat -13.55/-15.11, switch to Tsareena -15.36/-13.86
+      by play-outs (chance of losing, faints): Fire Fang 0.59 4.27, Ember 0.61 4.54, Scary Face 0.68 4.89, Smokescreen 0.66 4.88, switch to Popplio 0.90 5.59, switch to Vikavolt 0.98 5.88, switch to Vullaby 0.95 5.78, switch to Golbat 0.81 5.44, switch to Tsareena 0.96 5.79
+T4 Charmeleon 29/70 against Cherrim 53/77: play-outs choose Fire Fang, the network Fire Fang
+      Fire Fang -10.31/-10.58, Ember -13.48/-12.87, Scary Face -15.41/-14.52, Smokescreen -14.80/-13.14, switch to Popplio -12.45/-12.52, switch to Vikavolt -15.29/-15.45, switch to Vullaby -13.37/-14.23, switch to Golbat -12.51/-15.45, switch to Tsareena -13.59/-14.12
+      by play-outs (chance of losing, faints): Fire Fang 0.59 4.51, Ember 0.81 5.40, Scary Face 0.96 5.83, Smokescreen 0.91 5.75, switch to Popplio 0.74 5.09, switch to Vikavolt 0.95 5.76, switch to Vullaby 0.84 5.07, switch to Golbat 0.73 5.23, switch to Tsareena 0.85 5.15
+T5 Charmeleon 21/70 against Lumineon 77/77: play-outs choose switch to Popplio, the network switch to Popplio
+      Fire Fang -8.38/-7.26, Ember -10.93/-9.94, Scary Face -10.57/-9.66, Smokescreen -9.65/-10.33, switch to Popplio -6.01/-5.35, switch to Vikavolt -7.19/-7.97, switch to Vullaby -8.71/-10.52, switch to Golbat -13.55/-13.96, switch to Tsareena -10.18/-8.54
+      by play-outs (chance of losing, faints): Fire Fang 0.43 4.19, Ember 0.62 4.79, Scary Face 0.59 4.80, Smokescreen 0.55 4.33, switch to Popplio 0.24 3.68, switch to Vikavolt 0.40 3.40, switch to Vullaby 0.49 3.93, switch to Golbat 0.81 5.46, switch to Tsareena 0.60 4.29
+T6 Popplio 57/67 against Lumineon 77/77: play-outs choose Sing, the network Sing
+      Sing -5.79/-4.91, Icy Wind -5.89/-5.18, Disarming Voice -7.94/-5.23, Aqua Jet -6.79/-5.29, switch to Charmeleon -8.30/-9.79, switch to Vikavolt -10.79/-7.77, switch to Vullaby -8.45/-9.43, switch to Golbat -14.79/-13.61, switch to Tsareena -9.95/-9.45
+      by play-outs (chance of losing, faints): Sing 0.24 3.48, Icy Wind 0.24 3.60, Disarming Voice 0.41 3.95, Aqua Jet 0.31 3.85, switch to Charmeleon 0.43 4.08, switch to Vikavolt 0.65 4.43, switch to Vullaby 0.46 3.96, switch to Golbat 0.92 5.66, switch to Tsareena 0.58 4.31
+T7 Popplio 38/67 against Lumineon 77/77: play-outs choose switch to Vikavolt, the network Disarming Voice  (differs; gives up 1.34, chance of losing +0.005, faints +1.21)
+      Icy Wind -4.69/-4.62, Disarming Voice -5.40/-4.61, Aqua Jet -4.70/-4.81, switch to Charmeleon -4.67/-8.01, switch to Vikavolt -4.06/-5.37, switch to Vullaby -9.32/-7.86, switch to Golbat -8.24/-12.47, switch to Tsareena -8.14/-8.32
+      by play-outs (chance of losing, faints): Icy Wind 0.15 3.36, Disarming Voice 0.20 3.55, Aqua Jet 0.15 3.37, switch to Charmeleon 0.19 2.95, switch to Vikavolt 0.19 2.34, switch to Vullaby 0.54 4.00, switch to Golbat 0.50 3.42, switch to Tsareena 0.42 4.08
+T8 Popplio 38/67 against Lumineon 70/77: play-outs choose Icy Wind, the network Icy Wind
+      Icy Wind -5.57/-4.03, Disarming Voice -6.51/-4.76, Aqua Jet -6.30/-4.82, switch to Charmeleon -6.38/-6.23, switch to Vikavolt -7.87/-5.22, switch to Vullaby -6.03/-6.71, switch to Golbat -8.08/-8.71, switch to Tsareena -9.87/-11.12
+      by play-outs (chance of losing, faints): Icy Wind 0.24 3.29, Disarming Voice 0.28 3.85, Aqua Jet 0.26 3.79, switch to Charmeleon 0.27 3.79, switch to Vikavolt 0.41 3.91, switch to Vullaby 0.29 3.28, switch to Golbat 0.45 3.71, switch to Tsareena 0.54 4.50
+T9 Popplio 38/67 against Roserade 54/74: play-outs choose switch to Golbat, the network switch to Vullaby  (differs; gives up 3.88, chance of losing +0.281, faints +0.98)
+      Sing -6.12/-4.61, Icy Wind -6.12/-4.61, Disarming Voice -6.12/-4.61, Aqua Jet -5.60/-4.30, switch to Charmeleon -5.22/-4.79, switch to Vikavolt -7.79/-5.02, switch to Vullaby -6.17/-3.48, switch to Golbat -2.29/-4.48, switch to Tsareena -7.28/-12.02
+      by play-outs (chance of losing, faints): Sing 0.23 3.94, Icy Wind 0.23 3.94, Disarming Voice 0.23 3.94, Aqua Jet 0.19 3.82, switch to Charmeleon 0.21 3.26, switch to Vikavolt 0.40 3.94, switch to Vullaby 0.31 3.17, switch to Golbat 0.03 2.19, switch to Tsareena 0.35 3.87
+T10 Vullaby 2/77 against Roserade 54/74: play-outs choose switch to Golbat, the network switch to Popplio  (differs; gives up 2.37, chance of losing +0.135, faints +0.97)
+      Pluck -5.66/-5.42, Knock Off -5.77/-5.23, Tailwind -5.51/-6.47, Feint Attack -5.47/-5.97, switch to Charmeleon -6.38/-8.12, switch to Popplio -6.51/-5.53, switch to Vikavolt -7.36/-10.82, switch to Golbat -4.14/-8.71, switch to Tsareena -12.40/-13.84
+      by play-outs (chance of losing, faints): Pluck 0.20 3.74, Knock Off 0.21 3.79, Tailwind 0.18 3.80, Feint Attack 0.18 3.74, switch to Charmeleon 0.28 3.66, switch to Popplio 0.31 3.51, switch to Vikavolt 0.40 3.48, switch to Golbat 0.17 2.54, switch to Tsareena 0.73 5.17
+T11 Popplio 17/67 against Roserade 54/74: play-outs choose switch to Golbat, the network Aqua Jet  (differs; gives up 3.59, chance of losing +0.205, faints +1.49)
+      Sing -9.58/-6.76, Icy Wind -9.58/-6.76, Disarming Voice -9.58/-6.76, Aqua Jet -8.65/-5.88, switch to Charmeleon -7.71/-7.52, switch to Vikavolt -9.00/-11.01, switch to Vullaby -9.04/-7.33, switch to Golbat -5.07/-8.39, switch to Tsareena -11.02/-13.75
+      by play-outs (chance of losing, faints): Sing 0.51 4.49, Icy Wind 0.51 4.49, Disarming Voice 0.51 4.49, Aqua Jet 0.44 4.31, switch to Charmeleon 0.39 3.87, switch to Vikavolt 0.50 4.04, switch to Vullaby 0.47 4.38, switch to Golbat 0.23 2.82, switch to Tsareena 0.64 4.64
+T12 Charmeleon 21/70 against Roserade 48/74: play-outs choose Fire Fang, the network Fire Fang
+      Fire Fang -5.02/-5.10, Ember -7.00/-7.81, Scary Face -7.14/-7.58, Smokescreen -6.87/-6.95, switch to Vikavolt -8.85/-11.87, switch to Vullaby -7.35/-6.96, switch to Golbat -5.00/-7.58, switch to Tsareena -12.27/-13.64
+      by play-outs (chance of losing, faints): Fire Fang 0.20 3.12, Ember 0.27 4.37, Scary Face 0.29 4.30, Smokescreen 0.29 4.05, switch to Vikavolt 0.46 4.25, switch to Vullaby 0.29 4.50, switch to Golbat 0.18 3.32, switch to Tsareena 0.71 5.19
+T13 Charmeleon 21/70 against Lumineon 70/77: play-outs choose Smokescreen, the network Scary Face  (differs; gives up 0.69, chance of losing +0.052, faints +0.16)
+      Fire Fang -4.68/-4.47, Ember -4.42/-4.51, Scary Face -4.57/-3.64, Smokescreen -3.87/-4.27, switch to Vikavolt -4.21/-4.74, switch to Vullaby -4.01/-4.36, switch to Golbat -5.07/-11.50, switch to Tsareena -4.70/-3.26
+      by play-outs (chance of losing, faints): Fire Fang 0.16 3.20, Ember 0.14 3.16, Scary Face 0.15 3.20, Smokescreen 0.10 3.04, switch to Vikavolt 0.18 2.56, switch to Vullaby 0.10 3.13, switch to Golbat 0.19 3.28, switch to Tsareena 0.17 3.12
+T14 Vikavolt 79/79 against Lumineon 70/77: play-outs choose Spark, the network Spark
+      Bug Bite -5.06/-3.40, Spark -4.01/-3.30, Bite -4.40/-3.82, Mud-Slap -4.21/-3.66, switch to Vullaby -5.81/-4.53, switch to Golbat -7.10/-10.89, switch to Tsareena -6.08/-7.29
+      by play-outs (chance of losing, faints): Bug Bite 0.19 3.32, Spark 0.11 3.08, Bite 0.13 3.30, Mud-Slap 0.12 3.16, switch to Vullaby 0.18 4.18, switch to Golbat 0.31 4.04, switch to Tsareena 0.21 4.04
+T15 Vikavolt 79/79 against Lumineon 34/77: play-outs choose switch to Tsareena, the network Spark  (differs; gives up 3.48, chance of losing +0.326, faints +0.20)
+      Bug Bite -7.09/-3.42, Spark -7.20/-3.40, Bite -7.17/-3.54, Mud-Slap -7.18/-3.52, switch to Vullaby -3.95/-3.62, switch to Golbat -6.32/-6.76, switch to Tsareena -3.73/-5.17
+      by play-outs (chance of losing, faints): Bug Bite 0.34 3.81, Spark 0.34 3.90, Bite 0.36 3.73, Mud-Slap 0.36 3.74, switch to Vullaby 0.02 3.99, switch to Golbat 0.24 4.03, switch to Tsareena 0.02 3.70
+T16 Vikavolt 25/79 against Lumineon 34/77: play-outs choose switch to Golbat, the network Spark  (differs; gives up 0.18, chance of losing +0.011, faints +0.10)
+      Bug Bite -7.80/-6.39, Spark -6.48/-5.81, Bite -7.95/-6.83, Mud-Slap -7.48/-7.68, switch to Vullaby -7.60/-8.26, switch to Golbat -6.31/-11.62, switch to Tsareena -6.72/-9.21
+      by play-outs (chance of losing, faints): Bug Bite 0.38 4.10, Spark 0.29 3.65, Bite 0.37 4.27, Mud-Slap 0.34 4.11, switch to Vullaby 0.34 4.25, switch to Golbat 0.28 3.55, switch to Tsareena 0.32 3.64
+T17 Vikavolt 25/79 against Shiftry 87/87: play-outs choose Bug Bite, the network switch to Tsareena  (differs; gives up 1.12, chance of losing +0.122, faints -0.13)
+      Bug Bite -4.05/-3.16, Spark -4.77/-3.45, Bite -4.82/-3.47, Mud-Slap -4.82/-3.45, switch to Vullaby -5.18/-3.40, switch to Golbat -5.04/-6.72, switch to Tsareena -5.17/-2.79
+      by play-outs (chance of losing, faints): Bug Bite 0.11 3.07, Spark 0.16 3.27, Bite 0.16 3.29, Mud-Slap 0.16 3.29, switch to Vullaby 0.17 3.57, switch to Golbat 0.21 3.06, switch to Tsareena 0.23 2.94
+T18 Tsareena 65/77 against Shiftry 87/87: play-outs choose Stomp, the network Magical Leaf  (differs; gives up 0.55, chance of losing +0.027, faints +0.27)
+      Stomp -4.61/-2.60, Magical Leaf -5.16/-2.47, Play Nice -5.77/-2.72, Teeter Dance -5.24/-2.71, switch to Vikavolt -6.37/-3.70, switch to Vullaby -6.34/-3.28, switch to Golbat -5.97/-6.60
+      by play-outs (chance of losing, faints): Stomp 0.19 2.82, Magical Leaf 0.22 3.09, Play Nice 0.27 3.13, Teeter Dance 0.22 3.18, switch to Vikavolt 0.27 3.81, switch to Vullaby 0.27 3.81, switch to Golbat 0.28 3.22
+T19 Tsareena 35/77 against Shiftry 77/87: play-outs choose Stomp, the network Magical Leaf  (differs; gives up 0.02, chance of losing -0.015, faints +0.17)
+      Stomp -5.06/-2.73, Magical Leaf -5.07/-2.60, Play Nice -7.35/-2.72, Teeter Dance -4.85/-2.67, switch to Vikavolt -12.88/-3.99, switch to Vullaby -13.36/-5.61, switch to Golbat -13.74/-9.21
+      by play-outs (chance of losing, faints): Stomp 0.21 3.09, Magical Leaf 0.19 3.26, Play Nice 0.39 3.57, Teeter Dance 0.17 3.29, switch to Vikavolt 0.75 5.38, switch to Vullaby 0.79 5.46, switch to Golbat 0.83 5.42
+T20 Tsareena 24/77 against Shiftry 68/87: play-outs choose Stomp, the network Teeter Dance  (differs; gives up 0.69, chance of losing -0.004, faints +0.75)
+      Stomp -3.27/-2.80, Magical Leaf -4.15/-2.75, Play Nice -5.65/-2.88, Teeter Dance -3.96/-2.67, switch to Vikavolt -16.00/-3.79, switch to Vullaby -15.45/-4.74, switch to Golbat -15.41/-8.60
+      by play-outs (chance of losing, faints): Stomp 0.10 2.39, Magical Leaf 0.11 3.18, Play Nice 0.25 3.24, Teeter Dance 0.09 3.14, switch to Vikavolt 1.00 6.00, switch to Vullaby 0.96 5.88, switch to Golbat 0.96 5.83
+T21 Tsareena 12/77 against Shiftry 68/87: play-outs choose Stomp, the network Play Nice  (differs; gives up 0.41, chance of losing +0.000, faints +0.42)
+      Stomp -2.46/-3.24, Magical Leaf -11.59/-5.44, Play Nice -2.87/-3.13, Teeter Dance -11.75/-7.46, switch to Vikavolt -14.95/-3.98, switch to Vullaby -14.91/-5.04, switch to Golbat -16.00/-9.70
+      by play-outs (chance of losing, faints): Stomp 0.00 2.58, Magical Leaf 0.66 4.99, Play Nice 0.00 3.00, Teeter Dance 0.68 5.03, switch to Vikavolt 0.92 5.76, switch to Vullaby 0.92 5.75, switch to Golbat 1.00 6.00
+T22 Tsareena 4/77 against Shiftry 68/87: play-outs choose Stomp, the network switch to Vikavolt  (differs; gives up 6.34, chance of losing +0.473, faints +1.53)
+      Stomp -5.31/-3.30, Magical Leaf -11.71/-4.49, Play Nice -11.31/-4.32, Teeter Dance -11.63/-6.27, switch to Vikavolt -11.66/-3.21, switch to Vullaby -11.63/-4.09, switch to Golbat -13.65/-10.18
+      by play-outs (chance of losing, faints): Stomp 0.19 3.48, Magical Leaf 0.67 5.02, Play Nice 0.65 4.88, Teeter Dance 0.67 5.00, switch to Vikavolt 0.67 5.00, switch to Vullaby 0.67 5.00, switch to Golbat 0.83 5.33
+T23 Tsareena 4/77 against Shiftry 68/87: play-outs choose Stomp, the network Stomp
+      Stomp -4.79/-4.17, Magical Leaf -13.81/-5.22, Play Nice -13.46/-5.07, Teeter Dance -13.99/-6.32, switch to Vullaby -13.53/-4.95, switch to Golbat -14.96/-9.60
+      by play-outs (chance of losing, faints): Stomp 0.09 3.97, Magical Leaf 0.82 5.64, Play Nice 0.79 5.54, Teeter Dance 0.83 5.67, switch to Vullaby 0.79 5.62, switch to Golbat 0.92 5.79
+T24 Golbat 78/78 against Shiftry 45/87: play-outs choose Wing Attack, the network Wing Attack
+      Wing Attack -3.90/-3.22, Bite -10.88/-8.70, Confuse Ray -9.95/-8.26, Supersonic -11.62/-9.68, switch to Vullaby -4.90/-5.23
+      by play-outs (chance of losing, faints): Wing Attack 0.00 4.00, Bite 0.58 5.15, Confuse Ray 0.50 5.00, Supersonic 0.64 5.28, switch to Vullaby 0.00 5.00
+T25 Golbat 78/78 against Breloom 72/72: play-outs choose Wing Attack, the network Wing Attack
+      Wing Attack -3.90/-3.90, Bite -12.37/-12.05, Confuse Ray -9.95/-9.54, Supersonic -12.67/-12.37, switch to Vullaby -4.90/-4.12
+      by play-outs (chance of losing, faints): Wing Attack 0.00 4.00, Bite 0.70 5.40, Confuse Ray 0.50 5.00, Supersonic 0.72 5.45, switch to Vullaby 0.00 5.00
+10 of 25 decisions alike (values shown as play-outs/network); the network's choices give up 26.42 in all by the play-outs' values, 1.057 a decision; by Ian's order they add +1.735 to the chance of losing and +8.67 faints in all, by the play-outs' estimates

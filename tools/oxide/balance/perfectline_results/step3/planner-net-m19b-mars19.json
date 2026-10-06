@@ -1,0 +1,107 @@
+{
+ "fight": "mars",
+ "six": [
+  "Geodude",
+  "Vullaby",
+  "Starly",
+  "Onix",
+  "Grubbin",
+  "Nidorino"
+ ],
+ "variant": 0,
+ "foes": [
+  "Meowth 18",
+  "Zubat 18",
+  "Bronzor 18",
+  "Purugly 19"
+ ],
+ "cfg": {
+  "value": "m19b-s1+m19b-s2"
+ },
+ "luck": "real",
+ "rank": "win",
+ "fast_tie": false,
+ "lead": "Nidorino",
+ "lead_values": {
+  "Geodude": -2.398,
+  "Vullaby": -2.398,
+  "Starly": -2.398,
+  "Onix": -2.398,
+  "Grubbin": -2.398,
+  "Nidorino": -2.398
+ },
+ "clean": 33,
+ "won": 73,
+ "deaths": 0.8,
+ "runs": 75,
+ "faints": [
+  [
+   "Geodude",
+   "Meowth",
+   22
+  ],
+  [
+   "Onix",
+   "Purugly",
+   11
+  ],
+  [
+   "Nidorino",
+   "Purugly",
+   6
+  ],
+  [
+   "Nidorino",
+   "Zubat",
+   4
+  ],
+  [
+   "Starly",
+   "Purugly",
+   4
+  ],
+  [
+   "Grubbin",
+   "Purugly",
+   4
+  ],
+  [
+   "Geodude",
+   "Purugly",
+   3
+  ],
+  [
+   "Grubbin",
+   "Bronzor",
+   2
+  ],
+  [
+   "Vullaby",
+   "Purugly",
+   2
+  ],
+  [
+   "Geodude",
+   "Bronzor",
+   1
+  ],
+  [
+   "Vullaby",
+   "Zubat",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 5.99,
+ "decisions_per_run": 73.4,
+ "turns_per_run": 72.7,
+ "lead_seconds": 0.1,
+ "wall_seconds": 17.9,
+ "procs": 29,
+ "fights_per_hour": 15087.0,
+ "worker_private_mb_max": 96,
+ "parent_mb": 74,
+ "lost_seeds": [
+  7059,
+  7072
+ ]
+}

@@ -1,0 +1,3304 @@
+{
+ "blind_rate": 0.894,
+ "blind_clean_share": 0.64,
+ "planned_rate": 0.995,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.005,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.122,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.957,
+  "50": 0.993,
+  "100": 0.996,
+  "300": 0.998
+ },
+ "runs": 175500,
+ "search_budget": 300,
+ "converged_share": 1.0,
+ "label": "Ace Trainer Breanna",
+ "split": "Byron",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 12.1,
+ "rows": [
+  {
+   "rate": 0.365,
+   "deaths": 0.855,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Vikavolt; answers Skarmory->Absol, Probopass->Araquanid, Bronzong->Vespiquen; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns; save Vespiquen for Bronzong",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Mantine",
+    "Orbeetle",
+    "Vespiquen",
+    "Vikavolt"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Skarmory->Manaphy, Probopass->Tsareena, Bronzong->Manaphy; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Arboliva",
+    "Garganacl",
+    "Gengar",
+    "Manaphy",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Tsareena, Bronzong->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Absol",
+    "Togekiss",
+    "Tsareena",
+    "Vikavolt",
+    "Wailord"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Bibarel",
+    "Steelix",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "52": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Quagsire, Bronzong->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 52,
+   "converged": true,
+   "runs": 1640,
+   "kind": "blind:0",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Orbeetle",
+    "Purugly",
+    "Quagsire",
+    "Vikavolt"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Lanturn",
+    "Manaphy",
+    "Rhyperior",
+    "Steelix",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "100": 1.0,
+    "110": 1.0,
+    "117": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 117,
+   "converged": true,
+   "runs": 3240,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Lanturn",
+    "Quagsire",
+    "Rapidash",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Empoleon; answers Probopass->Blissey, Bronzong->Empoleon; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Golem",
+    "Hariyama",
+    "Hippowdon",
+    "Blissey",
+    "Vikavolt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Togekiss; answers Skarmory->Manaphy, Probopass->Manaphy, Bronzong->Empoleon; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Manaphy",
+    "Togekiss",
+    "Vaporeon",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Talonflame, Probopass->Golem, Bronzong->Empoleon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Arboliva",
+    "Golem",
+    "Bastiodon",
+    "Talonflame"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "16": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Togekiss; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:0",
+   "team": [
+    "Ferrothorn",
+    "Lanturn",
+    "Lurantis",
+    "Steelix",
+    "Togekiss",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.25,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Cinderace; answers Skarmory->Cinderace, Bronzong->Araquanid; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Araquanid",
+    "Pawmot",
+    "Talonflame",
+    "Tsareena",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 7.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Gastrodon, Probopass->Gastrodon, Bronzong->Empoleon; switch losing; setup at 4+ safe turns at full HP; save Gastrodon for Probopass",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Gastrodon",
+    "Absol",
+    "Palossand",
+    "Rhyperior",
+    "Whiscash"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.865,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Absol; answers Skarmory->Absol, Probopass->Ferrothorn, Bronzong->Primarina; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Ferrothorn",
+    "Klefki",
+    "Absol",
+    "Mismagius",
+    "Primarina",
+    "Cherrim"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Absol; answers Skarmory->Absol, Probopass->Ferrothorn, Bronzong->Primarina; switch hp below 0.6; setup at 5+ safe turns; free pivots; save Ferrothorn for Probopass",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Ferrothorn",
+    "Glalie",
+    "Absol",
+    "Ludicolo",
+    "Primarina",
+    "Purugly"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Glalie, Bronzong->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:1",
+   "team": [
+    "Glalie",
+    "Jellicent",
+    "Kingdra",
+    "Lanturn",
+    "Ludicolo",
+    "Scizor"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Heracross; answers Skarmory->Glimmora, Probopass->Liepard, Bronzong->Primarina; switch hp below 0.4; setup at 4+ safe turns at full HP; bait locks; save Primarina for Bronzong",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Glimmora",
+    "Heracross",
+    "Liepard",
+    "Manaphy",
+    "Ninetales",
+    "Primarina"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Manaphy; answers Skarmory->Manaphy, Probopass->Breloom, Bronzong->Manaphy; switch hp below 0.2; setup at 3+ safe turns; stall timed effects at 3 turns; save Manaphy for Bronzong",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:1",
+   "team": [
+    "Glimmora",
+    "Manaphy",
+    "Blissey",
+    "Pachirisu",
+    "Breloom",
+    "Cinccino"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Milotic, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Luxray",
+    "Manaphy",
+    "Milotic",
+    "Steelix"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "12": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Kingdra",
+    "Manaphy",
+    "Breloom",
+    "Rapidash",
+    "Steelix"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.883,
+   "deaths": 0.133,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "48": 1.0
+   },
+   "line": "lead Corviknight; answers Skarmory->Corviknight, Probopass->Torterra, Bronzong->Absol; switch losing; setup at 2+ safe turns; save Absol for Bronzong",
+   "candidates": 48,
+   "converged": true,
+   "runs": 1860,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Absol",
+    "Liepard",
+    "Mismagius",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 9.9
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "61": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Torterra, Bronzong->Vikavolt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 61,
+   "converged": true,
+   "runs": 2120,
+   "kind": "planned:1",
+   "team": [
+    "Lucario",
+    "Manaphy",
+    "Tentacruel",
+    "Torterra",
+    "Vikavolt",
+    "Drifblim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "96": 1.0
+   },
+   "line": "lead Pachirisu; answers Skarmory->Pachirisu, Probopass->Hariyama, Bronzong->Milotic; switch losing; setup at 3+ safe turns at full HP; save Milotic for Bronzong",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:1",
+   "team": [
+    "Hariyama",
+    "Milotic",
+    "Orbeetle",
+    "Pachirisu",
+    "Togekiss",
+    "Cherrim"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.177,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.9,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "105": 1.0
+   },
+   "line": "lead Vullaby; answers Skarmory->Manaphy, Probopass->Electivire, Bronzong->Ninetales; switch hp below 0.4; setup at 4+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Ninetales for Bronzong",
+   "candidates": 105,
+   "converged": true,
+   "runs": 3000,
+   "kind": "planned:1",
+   "team": [
+    "Manaphy",
+    "Milotic",
+    "Ninetales",
+    "Togekiss",
+    "Vullaby",
+    "Electivire"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Steelix for Bronzong",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Kingdra",
+    "Luxray",
+    "Pachirisu",
+    "Steelix",
+    "Cherrim"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Luxray; answers Skarmory->Luxray, Probopass->Luxray, Bronzong->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Lopunny",
+    "Luxray",
+    "Scizor",
+    "Vullaby",
+    "Chandelure"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Rapidash, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Steelix for Bronzong",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:2",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Pachirisu",
+    "Rapidash",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Quagsire, Bronzong->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Quagsire",
+    "Tangrowth",
+    "Vullaby",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Golem, Bronzong->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Granbull",
+    "Rapidash",
+    "Rotom",
+    "Tentacruel",
+    "Togekiss"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Kingler; answers Skarmory->Kingler, Probopass->Quagsire, Bronzong->Quagsire; switch losing; setup at 3+ safe turns; free pivots; save Quagsire for Bronzong",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Kingler",
+    "Lopunny",
+    "Quagsire",
+    "Whiscash",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch hp below 0.4; setup at 3+ safe turns at full HP; save Steelix for Bronzong",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Florges",
+    "Golduck",
+    "Greninja",
+    "Lanturn",
+    "Milotic",
+    "Steelix"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Feraligatr",
+    "Greninja",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Gastrodon; answers Skarmory->Gastrodon, Probopass->Gastrodon, Bronzong->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Granbull",
+    "Mightyena",
+    "Mismagius",
+    "Orbeetle"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Togekiss; answers Skarmory->Togekiss, Bronzong->Delphox; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Delphox for Bronzong",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Staraptor",
+    "Talonflame",
+    "Togekiss",
+    "Delphox"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Magnezone; answers Skarmory->Magnezone, Probopass->Gastrodon, Bronzong->Magnezone; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Lanturn",
+    "Magnezone",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Probopass->Manaphy, Bronzong->Corviknight; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Corviknight for Bronzong",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Kingdra",
+    "Kingler",
+    "Manaphy",
+    "Vaporeon",
+    "Corviknight"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Gastrodon",
+    "Mightyena",
+    "Rotom",
+    "Steelix",
+    "Ninetales-Alola"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Manaphy; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Araquanid",
+    "Kingdra",
+    "Lanturn",
+    "Manaphy",
+    "Mantine",
+    "Talonflame"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Masquerain",
+    "Milotic",
+    "Poliwrath",
+    "Steelix",
+    "Vespiquen"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "21": 1.0
+   },
+   "line": "lead Magcargo; answers Skarmory->Wailord, Probopass->Tsareena, Bronzong->Magcargo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:3",
+   "team": [
+    "Lumineon",
+    "Magcargo",
+    "Togekiss",
+    "Tsareena",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Cinderace; answers Probopass->Grapploct, Bronzong->Bronzong; switch losing; setup at 2+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns; save Grapploct for Probopass",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:3",
+   "team": [
+    "Grapploct",
+    "Bronzong",
+    "Tentacruel",
+    "Toxicroak",
+    "Cinderace",
+    "Altaria"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.215,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Gastrodon; switch hp below 0.4; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Seaking",
+    "Tentacruel",
+    "Toucannon",
+    "Tsareena",
+    "Vikavolt"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.635,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.1,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Glimmora; answers Probopass->Altaria, Bronzong->Klefki; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Klefki",
+    "Toucannon",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Skarmory->Rapidash, Probopass->Togekiss, Bronzong->Chandelure; switch losing; setup at 3+ safe turns; bait locks; save Togekiss for Probopass",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Rapidash",
+    "Togekiss",
+    "Tsareena",
+    "Chandelure",
+    "Corviknight"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Bronzong, Bronzong->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Milotic",
+    "Bronzong",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Milotic, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Milotic",
+    "Primarina",
+    "Vikavolt",
+    "Vullaby"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Lumineon",
+    "Magcargo",
+    "Bronzong",
+    "Steelix",
+    "Vikavolt",
+    "Chandelure"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "96": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Togekiss; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 96,
+   "converged": true,
+   "runs": 2820,
+   "kind": "planned:3",
+   "team": [
+    "Golduck",
+    "Steelix",
+    "Tentacruel",
+    "Togekiss",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Bronzong, Bronzong->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Golduck",
+    "Bronzong",
+    "Wailord",
+    "Weezing"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tsareena; answers Skarmory->Tsareena, Probopass->Golduck, Bronzong->Gastrodon; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Golduck for Probopass",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Golduck",
+    "Lanturn",
+    "Steelix",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Skarmory->Chandelure, Probopass->Primarina, Bronzong->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Primarina",
+    "Talonflame",
+    "Vaporeon",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Magcargo",
+    "Steelix",
+    "Talonflame",
+    "Wailord"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.54,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Electivire; answers Skarmory->Electivire, Probopass->Florges; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Arboliva",
+    "Mr. Rime",
+    "Solrock",
+    "Electivire"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Nidoqueen",
+    "Poliwrath",
+    "Steelix",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Hippowdon, Bronzong->Mightyena; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Hippowdon",
+    "Lurantis",
+    "Mightyena",
+    "Carbink",
+    "Vikavolt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.6,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Tentacruel; answers Probopass->Solrock, Bronzong->Togekiss; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Togekiss for Bronzong",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Leavanny",
+    "Solrock",
+    "Tentacruel",
+    "Togekiss"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Tsareena, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; save Tsareena for Probopass",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Gardevoir",
+    "Rotom",
+    "Carbink",
+    "Tsareena",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Bronzong",
+    "Steelix",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Quagsire; answers Skarmory->Manaphy, Bronzong->Ludicolo; switch hp below 0.6; setup at 2+ safe turns; save Ludicolo for Bronzong",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Ludicolo",
+    "Manaphy",
+    "Orbeetle",
+    "Quagsire",
+    "Rotom",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Seaking, Bronzong->Bronzong; switch losing; setup at 3+ safe turns; no status moves; bait locks; save Seaking for Probopass",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Bronzong",
+    "Seaking",
+    "Solrock",
+    "Vespiquen",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Electivire, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Florges",
+    "Nidoqueen",
+    "Tentacruel",
+    "Vespiquen",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Lumineon",
+    "Poliwrath",
+    "Steelix",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Empoleon, Bronzong->Empoleon; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Grapploct",
+    "Lanturn",
+    "Mightyena",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Vaporeon, Bronzong->Empoleon; switch losing; setup at 5+ safe turns at full HP; save Vaporeon for Probopass",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Galvantula",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Nidoqueen, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:4",
+   "team": [
+    "Araquanid",
+    "Bastiodon",
+    "Lanturn",
+    "Nidoqueen",
+    "Bronzong",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.115,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Electivire, Bronzong->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1580,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Pawmot",
+    "Rotom",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "37": 1.0
+   },
+   "line": "lead Raichu; answers Skarmory->Lopunny, Probopass->Gastrodon, Bronzong->Orbeetle; switch losing; setup at 3+ safe turns at full HP; save Gastrodon for Probopass",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1340,
+   "kind": "blind:5",
+   "team": [
+    "Gastrodon",
+    "Lopunny",
+    "Orbeetle",
+    "Raichu",
+    "Carbink",
+    "Cherrim"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.185,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Crawdaunt; answers Probopass->Hippowdon; switch losing; setup at 3+ safe turns; save Hippowdon for Probopass",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Hippowdon",
+    "Ludicolo",
+    "Palossand",
+    "Breloom",
+    "Alakazam",
+    "Crawdaunt"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.895,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Manaphy; answers Probopass->Manaphy, Bronzong->Lurantis; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Manaphy for Probopass",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Ludicolo",
+    "Lurantis",
+    "Manaphy",
+    "Vullaby"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.175,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95
+   },
+   "line": "lead Electivire; answers Skarmory->Electivire, Probopass->Bastiodon, Bronzong->Togekiss; switch losing; setup at 3+ safe turns at full HP; bait locks; save Togekiss for Bronzong",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Bastiodon",
+    "Bibarel",
+    "Togekiss",
+    "Electivire"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Manaphy",
+    "Metagross",
+    "Milotic",
+    "Bronzong",
+    "Steelix",
+    "Vaporeon"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Golem, Bronzong->Rotom; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Rotom for Bronzong",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Galvantula",
+    "Golem",
+    "Lopunny",
+    "Orbeetle",
+    "Rotom",
+    "Vaporeon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.817,
+   "deaths": 0.243,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Garganacl; answers Probopass->Bastiodon, Bronzong->Orbeetle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Lurantis",
+    "Orbeetle",
+    "Seaking",
+    "Shiftry"
+   ],
+   "seconds": 7.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Araquanid",
+    "Arboliva",
+    "Orbeetle",
+    "Bronzong",
+    "Steelix",
+    "Electivire"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Skarmory->Manaphy, Probopass->Torterra, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:5",
+   "team": [
+    "Manaphy",
+    "Pelipper",
+    "Shiftry",
+    "Torterra",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.803,
+   "deaths": 0.217,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "51": 1.0
+   },
+   "line": "lead Vaporeon; answers Skarmory->Vaporeon, Probopass->Whiscash, Bronzong->Castform; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 51,
+   "converged": true,
+   "runs": 1920,
+   "kind": "planned:5",
+   "team": [
+    "Lurantis",
+    "Pawmot",
+    "Alakazam",
+    "Castform",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Glimmora; answers Skarmory->Golduck, Probopass->Gastrodon, Bronzong->Palossand; switch hp below 0.4; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:5",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Golduck",
+    "Bibarel",
+    "Metagross",
+    "Palossand"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Bastiodon, Bronzong->Metagross; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:5",
+   "team": [
+    "Araquanid",
+    "Golduck",
+    "Bastiodon",
+    "Metagross",
+    "Rotom",
+    "Cinderace"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Breloom, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Jellicent",
+    "Mantine",
+    "Breloom",
+    "Seaking"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Cinderace; answers Skarmory->Cinderace, Probopass->Hippowdon, Bronzong->Mightyena; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Hippowdon for Probopass",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Mightyena",
+    "Milotic",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "18": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Hippowdon, Bronzong->Hippowdon; switch losing; setup at 2+ safe turns; stall timed effects at 2 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:6",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gastrodon",
+    "Hippowdon",
+    "Liepard",
+    "Vikavolt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Pelipper; answers Skarmory->Pelipper, Probopass->Hariyama, Bronzong->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:6",
+   "team": [
+    "Hariyama",
+    "Breloom",
+    "Pelipper",
+    "Scizor",
+    "Sharpedo",
+    "Cherrim"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "28": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Donphan, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1160,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Garganacl",
+    "Orbeetle",
+    "Shiftry",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Rhyperior, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Rhyperior",
+    "Vaporeon"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Quagsire, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Glimmora",
+    "Kingdra",
+    "Lanturn",
+    "Quagsire",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Skarmory->Lanturn, Probopass->Lanturn, Bronzong->Orbeetle; switch losing; setup at 2+ safe turns at full HP; save Orbeetle for Bronzong",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Orbeetle",
+    "Rhyperior",
+    "Chandelure",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vikavolt; answers Skarmory->Vikavolt, Probopass->Altaria, Bronzong->Mightyena; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Mightyena",
+    "Ninetales",
+    "Scizor",
+    "Vikavolt",
+    "Cherrim",
+    "Altaria"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Skarmory->Manaphy, Probopass->Manaphy, Bronzong->Scizor; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Mantine",
+    "Scizor",
+    "Tentacruel",
+    "Togekiss",
+    "Vespiquen"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Skarmory->Chandelure, Probopass->Hippowdon, Bronzong->Rhyperior; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Hippowdon",
+    "Rhyperior",
+    "Vaporeon",
+    "Chandelure",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vaporeon; answers Skarmory->Vaporeon, Probopass->Vaporeon, Bronzong->Rhyperior; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Golem",
+    "Bibarel",
+    "Absol",
+    "Rhyperior",
+    "Vaporeon",
+    "Alakazam"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "178": 1.0
+   },
+   "line": "lead Vaporeon; answers Skarmory->Electivire, Bronzong->Vaporeon; switch losing; setup at 4+ safe turns; free pivots; save Vaporeon for Bronzong",
+   "candidates": 178,
+   "converged": true,
+   "runs": 4460,
+   "kind": "planned:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Breloom",
+    "Vaporeon",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 5.5
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.175,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "16": 1.0
+   },
+   "line": "lead Ninetales; answers Skarmory->Ninetales, Probopass->Wailord, Bronzong->Wailord; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Lumineon",
+    "Ninetales",
+    "Pelipper",
+    "Carbink",
+    "Wailord"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.78,
+   "deaths": 0.285,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Floatzel; answers Probopass->Whiscash; switch losing; setup at 5+ safe turns at full HP; bait locks; save Whiscash for Probopass",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:7",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gothitelle",
+    "Hariyama",
+    "Vullaby",
+    "Whiscash"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "34": 1.0
+   },
+   "line": "lead Hippowdon; answers Skarmory->Vikavolt, Probopass->Hippowdon; switch losing; setup at 3+ safe turns at full HP; save Hippowdon for Probopass",
+   "candidates": 34,
+   "converged": true,
+   "runs": 1280,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Golem",
+    "Hippowdon",
+    "Lurantis",
+    "Vikavolt",
+    "Cofagrigus"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Castform; answers Skarmory->Castform, Probopass->Quagsire, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:7",
+   "team": [
+    "Florges",
+    "Hariyama",
+    "Mantine",
+    "Quagsire",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Ninetales; answers Skarmory->Ninetales, Probopass->Golem, Bronzong->Skuntank; switch losing; setup at 3+ safe turns; free pivots; save Golem for Probopass",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Golem",
+    "Ninetales",
+    "Skuntank",
+    "Talonflame",
+    "Cofagrigus",
+    "Donphan"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Wailord, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Greninja",
+    "Lanturn",
+    "Manaphy",
+    "Vaporeon",
+    "Wailord"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "43": 1.0
+   },
+   "line": "lead Wailord; answers Skarmory->Wailord, Probopass->Annihilape, Bronzong->Wailord; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 43,
+   "converged": true,
+   "runs": 1760,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Hawlucha",
+    "Bastiodon",
+    "Raichu",
+    "Sharpedo",
+    "Wailord"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Raichu, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Raichu for Probopass",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Raichu",
+    "Scizor",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Hippowdon, Bronzong->Lanturn; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Lanturn for Bronzong",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Lanturn",
+    "Bibarel",
+    "Vespiquen",
+    "Cofagrigus"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Hippowdon, Probopass->Hippowdon, Bronzong->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Hippowdon",
+    "Lanturn",
+    "Lurantis",
+    "Rotom",
+    "Wailord",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "21": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Lanturn, Bronzong->Lanturn; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Bibarel",
+    "Raichu",
+    "Rapidash",
+    "Toxicroak"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Wailord, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Masquerain",
+    "Vikavolt",
+    "Wailord",
+    "Crawdaunt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Quagsire, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Arboliva",
+    "Quagsire",
+    "Raichu",
+    "Rotom",
+    "Vaporeon"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rapidash; answers Skarmory->Rapidash, Probopass->Electivire, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Cofagrigus",
+    "Crawdaunt",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Talonflame; answers Skarmory->Talonflame, Probopass->Quagsire, Bronzong->Mightyena; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Girafarig",
+    "Mightyena",
+    "Quagsire",
+    "Talonflame",
+    "Castform",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Lanturn, Probopass->Steelix, Bronzong->Vikavolt; switch hp below 0.2; setup at 5+ safe turns at full HP; bait locks; free pivots; save Vikavolt for Bronzong",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:8",
+   "team": [
+    "Lanturn",
+    "Manaphy",
+    "Mightyena",
+    "Steelix",
+    "Vikavolt",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1040,
+   "kind": "blind:8",
+   "team": [
+    "Garganacl",
+    "Golduck",
+    "Beautifly",
+    "Lanturn",
+    "Tropius",
+    "Ampharos"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Manaphy; answers Skarmory->Manaphy, Probopass->Garganacl, Bronzong->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Gardevoir",
+    "Garganacl",
+    "Gliscor",
+    "Manaphy",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Steelix",
+    "Vaporeon"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lanturn; answers Skarmory->Lanturn, Probopass->Bronzong, Bronzong->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Lanturn",
+    "Manaphy",
+    "Bronzong",
+    "Togekiss",
+    "Ampharos"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 1.0
+   },
+   "line": "lead Octillery; answers Skarmory->Vikavolt, Probopass->Altaria, Bronzong->Octillery; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:8",
+   "team": [
+    "Octillery",
+    "Pawmot",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "85": 1.0
+   },
+   "line": "lead Houndoom; answers Skarmory->Houndoom, Probopass->Girafarig, Bronzong->Houndoom; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 3 turns; save Girafarig for Probopass",
+   "candidates": 85,
+   "converged": true,
+   "runs": 2600,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Houndoom",
+    "Rapidash",
+    "Tentacruel",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Octillery, Probopass->Whiscash, Bronzong->Empoleon; switch hp below 0.5; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Empoleon for Bronzong",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Florges",
+    "Manaphy",
+    "Octillery",
+    "Shiftry",
+    "Whiscash"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Lanturn",
+    "Absol",
+    "Rapidash",
+    "Steelix",
+    "Turtonator",
+    "Crustle"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Empoleon, Probopass->Pawmot, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Girafarig",
+    "Mightyena",
+    "Pawmot",
+    "Rapidash",
+    "Vikavolt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Vaporeon; answers Skarmory->Vaporeon, Probopass->Golem, Bronzong->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:8",
+   "team": [
+    "Golem",
+    "Absol",
+    "Mantine",
+    "Shiftry",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Mantine; answers Skarmory->Mantine, Probopass->Quagsire, Bronzong->Crawdaunt; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:9",
+   "team": [
+    "Mantine",
+    "Mr. Rime",
+    "Quagsire",
+    "Whiscash",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Golem, Probopass->Rotom, Bronzong->Steelix; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Steelix for Bronzong",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:9",
+   "team": [
+    "Golem",
+    "Hippowdon",
+    "Quagsire",
+    "Rotom",
+    "Steelix",
+    "Crustle"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Golem; answers Skarmory->Raichu, Probopass->Kommo-o, Bronzong->Masquerain; switch losing; setup at 3+ safe turns; save Kommo-o for Probopass",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Golem",
+    "Kommo-o",
+    "Leavanny",
+    "Masquerain",
+    "Raichu",
+    "Tropius"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.585,
+   "deaths": 0.485,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Ninetales; answers Skarmory->Ninetales, Probopass->Florges, Bronzong->Starmie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Masquerain",
+    "Ninetales",
+    "Starmie",
+    "Cherrim"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Rotom; answers Skarmory->Rotom, Probopass->Rotom, Bronzong->Empoleon; switch hp below 0.4; setup at 5+ safe turns at full HP; save Rotom for Probopass",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1300,
+   "kind": "blind:9",
+   "team": [
+    "Empoleon",
+    "Absol",
+    "Pelipper",
+    "Rotom",
+    "Talonflame",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Luxray; answers Skarmory->Feraligatr, Probopass->Steelix, Bronzong->Feraligatr; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 3 turns; save Steelix for Probopass",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Feraligatr",
+    "Luxray",
+    "Manaphy",
+    "Steelix",
+    "Vaporeon"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Luxray; answers Skarmory->Luxray, Probopass->Grapploct, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Grapploct",
+    "Absol",
+    "Luxray",
+    "Breloom",
+    "Corsola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Absol; answers Skarmory->Absol, Bronzong->Hippowdon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Hippowdon",
+    "Absol",
+    "Mr. Rime",
+    "Seaking",
+    "Starmie"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Empoleon; answers Skarmory->Seaking, Probopass->Raichu, Bronzong->Empoleon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Empoleon for Bronzong",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Floatzel",
+    "Milotic",
+    "Raichu",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cinderace; answers Skarmory->Cinderace, Probopass->Kommo-o, Bronzong->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Houndoom",
+    "Kommo-o",
+    "Manaphy",
+    "Raichu",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Skarmory->Steelix, Probopass->Steelix, Bronzong->Houndoom; switch losing; setup at 2+ safe turns at full HP; bait locks; save Steelix for Probopass",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Kricketune",
+    "Mantine",
+    "Raichu",
+    "Steelix",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Feraligatr; answers Skarmory->Feraligatr, Probopass->Whiscash, Bronzong->Feraligatr; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Orbeetle",
+    "Sharpedo",
+    "Vaporeon",
+    "Whiscash"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Vaporeon; answers Skarmory->Vaporeon, Probopass->Golem, Bronzong->Vaporeon; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:9",
+   "team": [
+    "Golem",
+    "Leavanny",
+    "Lurantis",
+    "Starmie",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.3
+  }
+ ],
+ "key": "tr283"
+}

@@ -1,0 +1,93 @@
+{
+ "fight": "roark",
+ "cfg": {
+  "playouts": 1,
+  "budget": 192,
+  "value": "d1a"
+ },
+ "luck": "real",
+ "lead": "Geodude",
+ "lead_values": {
+  "Barboach": -0.97,
+  "Nidorino": -0.947,
+  "Geodude": -0.818,
+  "Onix": -0.97,
+  "Prinplup": -0.947,
+  "Steenee": -0.947
+ },
+ "clean": 36,
+ "won": 75,
+ "deaths": 0.733,
+ "runs": 75,
+ "faints": [
+  [
+   "Nidorino",
+   "Lileep",
+   14
+  ],
+  [
+   "Barboach",
+   "Cranidos",
+   10
+  ],
+  [
+   "Geodude",
+   "Lileep",
+   10
+  ],
+  [
+   "Steenee",
+   "Lileep",
+   5
+  ],
+  [
+   "Geodude",
+   "Cranidos",
+   3
+  ],
+  [
+   "Barboach",
+   "Geodude",
+   3
+  ],
+  [
+   "Onix",
+   "Cranidos",
+   3
+  ],
+  [
+   "Onix",
+   "Geodude",
+   2
+  ],
+  [
+   "Prinplup",
+   "Lileep",
+   2
+  ],
+  [
+   "Geodude",
+   "Geodude",
+   1
+  ],
+  [
+   "Steenee",
+   "Geodude",
+   1
+  ],
+  [
+   "Prinplup",
+   "Geodude",
+   1
+  ]
+ ],
+ "cpu_seconds_per_run": 2.63,
+ "decisions_per_run": 31.1,
+ "turns_per_run": 30.4,
+ "lead_seconds": 0.2,
+ "wall_seconds": 8.1,
+ "procs": 29,
+ "fights_per_hour": 33364.8,
+ "worker_private_mb_max": 23,
+ "parent_mb": 71
+}

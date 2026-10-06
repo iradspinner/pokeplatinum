@@ -1,0 +1,3307 @@
+{
+ "blind_rate": 0.906,
+ "blind_clean_share": 0.78,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.102,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.956,
+  "50": 0.987,
+  "100": 0.99,
+  "300": 0.994
+ },
+ "runs": 175520,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Galactic Grunt",
+ "split": "HQ",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 7.1,
+ "rows": [
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Orbeetle; answers Arbok->Gliscor; switch losing; setup at 3+ safe turns; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Bibarel",
+    "Lanturn",
+    "Mantine",
+    "Orbeetle",
+    "Alomomola"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glalie; answers Weezing->Glalie, Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Hippowdon",
+    "Mandibuzz",
+    "Pelipper",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:0",
+   "team": [
+    "Empoleon",
+    "Gliscor",
+    "Manaphy",
+    "Breloom",
+    "Sharpedo",
+    "Tsareena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Palossand; answers Weezing->Palossand, Arbok->Hippowdon; switch losing; setup at 3+ safe turns; bait locks; save Hippowdon for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Galvantula",
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Starmie; answers Weezing->Glalie, Arbok->Alakazam; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Alakazam for Arbok",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Mr. Rime",
+    "Palossand",
+    "Starmie",
+    "Alakazam"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Pelipper; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Pelipper for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Pelipper",
+    "Talonflame",
+    "Yanmega",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Weezing->Glalie, Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Glalie",
+    "Bibarel",
+    "Manaphy",
+    "Quagsire",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Starmie; answers Weezing->Starmie, Arbok->Starmie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Galvantula",
+    "Lopunny",
+    "Blastoise",
+    "Starmie",
+    "Alakazam"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:0",
+   "team": [
+    "Empoleon",
+    "Garganacl",
+    "Jellicent",
+    "Mantine",
+    "Blissey",
+    "Palossand"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Weezing->Probopass, Arbok->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Lopunny",
+    "Noctowl",
+    "Probopass",
+    "Alakazam",
+    "Crobat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Weezing->Probopass, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Glalie",
+    "Liepard",
+    "Manaphy",
+    "Probopass",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Weezing->Probopass, Arbok->Garganacl; switch losing; setup at 4+ safe turns; no status moves; free pivots; save Garganacl for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Garganacl",
+    "Golduck",
+    "Gothitelle",
+    "Lopunny",
+    "Probopass",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Feraligatr; answers Arbok->Torterra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Feraligatr",
+    "Lopunny",
+    "Torterra",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Relicanth; answers Weezing->Relicanth, Arbok->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Masquerain",
+    "Palossand",
+    "Relicanth",
+    "Carbink",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP; save Quagsire for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Manaphy",
+    "Milotic",
+    "Quagsire",
+    "Carbink"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Weezing->Glimmora, Arbok->Relicanth; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Araquanid",
+    "Glimmora",
+    "Relicanth",
+    "Sharpedo",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Solrock; answers Arbok->Solrock; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:1",
+   "team": [
+    "Lanturn",
+    "Leavanny",
+    "Lopunny",
+    "Luxray",
+    "Solrock",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Drifblim; answers Weezing->Drifblim, Arbok->Golem; switch losing; setup at 3+ safe turns at full HP; save Golem for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Golem",
+    "Houndoom",
+    "Palossand",
+    "Solrock",
+    "Alakazam",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Gothitelle; answers Weezing->Gothitelle, Arbok->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Gastrodon",
+    "Gothitelle",
+    "Ninetales",
+    "Pelipper",
+    "Rapidash",
+    "Relicanth"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Drifblim; answers Weezing->Drifblim, Arbok->Mamoswine; switch hp below 0.3; setup at 2+ safe turns at full HP; no status moves; save Mamoswine for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Mamoswine",
+    "Ninetales",
+    "Solrock",
+    "Crawdaunt",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Palossand; answers Weezing->Solrock, Arbok->Togekiss; switch losing; setup at 3+ safe turns; free pivots; save Togekiss for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Palossand",
+    "Solrock",
+    "Togekiss",
+    "Alakazam",
+    "Cinderace",
+    "Corviknight"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Chandelure; answers Weezing->Chandelure, Arbok->Pelipper; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:1",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pelipper",
+    "Vaporeon",
+    "Chandelure",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Chandelure; answers Arbok->Golem; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Garganacl",
+    "Glimmora",
+    "Golem",
+    "Mandibuzz",
+    "Chandelure"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Weezing->Palossand, Arbok->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Manaphy",
+    "Palossand",
+    "Quagsire",
+    "Torterra",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mamoswine; answers Weezing->Glimmora, Arbok->Golem; switch never; setup at 3+ safe turns at full HP; no status moves; save Golem for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Bastiodon",
+    "Mamoswine",
+    "Solrock",
+    "Tropius"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.145,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "47": 1.0
+   },
+   "line": "lead Greninja; answers Arbok->Crawdaunt; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 47,
+   "converged": true,
+   "runs": 1540,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Mamoswine",
+    "Scizor",
+    "Tentacruel",
+    "Crawdaunt"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "32": 1.0
+   },
+   "line": "lead Starmie; answers Arbok->Mamoswine; switch losing; setup at 2+ safe turns; bait locks; free pivots; save Mamoswine for Arbok",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1240,
+   "kind": "blind:2",
+   "team": [
+    "Golem",
+    "Mamoswine",
+    "Mandibuzz",
+    "Octillery",
+    "Breloom",
+    "Starmie"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.43,
+   "deaths": 0.715,
+   "wipe": 0.0,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Ludicolo; answers Arbok->Toxicroak; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Toxicroak for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Pachirisu",
+    "Seaking",
+    "Toxicroak",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Crobat, Arbok->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Jellicent",
+    "Staraptor",
+    "Crobat",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Starmie; answers Weezing->Starmie, Arbok->Starmie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Leavanny",
+    "Starmie",
+    "Vaporeon",
+    "Vespiquen"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Weezing->Lunatone, Arbok->Lunatone; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Lunatone for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Golem",
+    "Lunatone",
+    "Palossand",
+    "Starmie",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "85": 1.0
+   },
+   "line": "lead Luxray; answers Weezing->Luxray; switch losing; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 85,
+   "converged": true,
+   "runs": 2600,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Luxray",
+    "Masquerain",
+    "Orbeetle",
+    "Staraptor",
+    "Crustle"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Starmie; answers Weezing->Golem, Arbok->Bronzong; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Palossand",
+    "Bronzong",
+    "Starmie",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Starmie; answers Weezing->Starmie, Arbok->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Girafarig",
+    "Glalie",
+    "Manaphy",
+    "Starmie",
+    "Corviknight"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Manaphy; answers Weezing->Palossand, Arbok->Golem; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Golem",
+    "Manaphy",
+    "Palossand",
+    "Purugly",
+    "Dewgong"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Scizor; answers Weezing->Delphox, Arbok->Golem; switch hp below 0.3; setup at 3+ safe turns; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Golem",
+    "Lumineon",
+    "Manaphy",
+    "Scizor",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Delphox; answers Weezing->Golem, Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:2",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Golem",
+    "Bronzong",
+    "Scizor",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bronzong; answers Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Kricketune",
+    "Manaphy",
+    "Bronzong",
+    "Purugly",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Ninetales-Alola; answers Arbok->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Ludicolo",
+    "Ninetales-Alola",
+    "Alomomola",
+    "Crustle",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Wailord; answers Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP; free pivots; save Whiscash for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Lumineon",
+    "Shiftry",
+    "Wailord",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Vaporeon; answers Arbok->Gastrodon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 980,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Liepard",
+    "Vaporeon",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "27": 1.0
+   },
+   "line": "lead Orbeetle; answers Arbok->Yanmega; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:3",
+   "team": [
+    "Ludicolo",
+    "Orbeetle",
+    "Yanmega",
+    "Cinccino",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.805,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Toucannon; answers Arbok->Rapidash; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Rapidash",
+    "Skarmory",
+    "Toucannon",
+    "Vikavolt",
+    "Crustle"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Metagross; answers Weezing->Metagross, Arbok->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Girafarig",
+    "Glalie",
+    "Metagross",
+    "Palossand",
+    "Whiscash"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Metagross; answers Arbok->Metagross; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Metagross",
+    "Qwilfish",
+    "Cinccino",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.743,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.7,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Frosmoth; answers Weezing->Frosmoth, Arbok->Bastiodon; switch losing; setup at 4+ safe turns at full HP; bait locks; save Bastiodon for Arbok",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Bastiodon",
+    "Bibarel",
+    "Magmortar",
+    "Delcatty"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glalie; answers Weezing->Glalie, Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Glalie",
+    "Bastiodon",
+    "Kingdra",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 1.0
+   },
+   "line": "lead Orbeetle; answers Weezing->Orbeetle, Arbok->Lumineon; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Lumineon for Arbok",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Lumineon",
+    "Orbeetle",
+    "Bronzong",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Qwilfish; answers Arbok->Steelix; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Qwilfish",
+    "Sharpedo",
+    "Steelix",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Jellicent",
+    "Palossand",
+    "Whiscash",
+    "Yanmega",
+    "Ambipom",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Gastrodon; answers Weezing->Gastrodon, Arbok->Corviknight; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Magmortar",
+    "Seaking",
+    "Sharpedo",
+    "Corviknight",
+    "Crobat"
+   ],
+   "seconds": 4.4
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Ninetales-Alola; answers Arbok->Whiscash; switch losing; setup at 5+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Rapidash",
+    "Sharpedo",
+    "Whiscash",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.105,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.3,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Lanturn; answers Arbok->Kingdra; switch losing; setup at 3+ safe turns at full HP; bait locks; save Kingdra for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Kingdra",
+    "Lanturn",
+    "Milotic",
+    "Tentacruel",
+    "Charizard",
+    "Cinderace"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Jellicent",
+    "Kingdra",
+    "Mandibuzz",
+    "Masquerain",
+    "Crustle",
+    "Delcatty"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.95,
+    "42": 1.0
+   },
+   "line": "lead Greninja; answers Arbok->Greninja; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1440,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Heracross",
+    "Milotic",
+    "Shiftry",
+    "Dewgong"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Mandibuzz",
+    "Bronzong",
+    "Cinderace",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Weezing->Ceruledge, Arbok->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glalie",
+    "Palossand",
+    "Rotom",
+    "Ceruledge",
+    "Cinderace",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Weezing->Ceruledge, Arbok->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Ceruledge",
+    "Charizard",
+    "Ninetales-Alola",
+    "Corsola",
+    "Corviknight"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.133,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 70,
+   "converged": true,
+   "runs": 2300,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Luxray",
+    "Rapidash",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ceruledge; answers Weezing->Ceruledge, Arbok->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Glalie",
+    "Heracross",
+    "Manaphy",
+    "Rapidash",
+    "Ceruledge",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Golduck; answers Weezing->Golduck, Arbok->Donphan; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Golduck",
+    "Hippowdon",
+    "Corviknight",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Weezing->Ceruledge, Arbok->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Octillery",
+    "Tentacruel",
+    "Ceruledge",
+    "Cinderace",
+    "Corsola"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Jellicent",
+    "Manaphy",
+    "Seaking",
+    "Whiscash"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Weezing->Glimmora, Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Heracross",
+    "Hippowdon",
+    "Delcatty",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Weezing->Palossand, Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Palossand",
+    "Bronzong",
+    "Swampert",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.485,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.6,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Floatzel; answers Weezing->Floatzel, Arbok->Crustle; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Poliwrath",
+    "Whiscash",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Wailord; answers Arbok->Torterra; switch never; setup at 3+ safe turns; free pivots",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:5",
+   "team": [
+    "Grapploct",
+    "Bibarel",
+    "Tentacruel",
+    "Torterra",
+    "Wailord",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Arbok->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Gliscor",
+    "Milotic",
+    "Serperior",
+    "Castform",
+    "Wailord"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Quagsire",
+    "Rotom",
+    "Togekiss",
+    "Walrein",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Rhyperior; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Golem",
+    "Heracross",
+    "Palossand",
+    "Rhyperior",
+    "Rotom"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "157": 1.0
+   },
+   "line": "lead Garganacl; answers Weezing->Garganacl; switch losing; setup at 5+ safe turns; stall timed effects at 3 turns",
+   "candidates": 157,
+   "converged": true,
+   "runs": 4040,
+   "kind": "planned:5",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Heracross",
+    "Lumineon",
+    "Rhyperior",
+    "Wailord"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Golem; answers Weezing->Golem, Arbok->Bronzong; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:5",
+   "team": [
+    "Golem",
+    "Grapploct",
+    "Palossand",
+    "Poliwrath",
+    "Bronzong",
+    "Steelix"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Torterra; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Seaking",
+    "Swampert",
+    "Torterra",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Golduck",
+    "Golem",
+    "Heracross",
+    "Rotom",
+    "Snorlax"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "31": 1.0
+   },
+   "line": "lead Corsola; answers Weezing->Bronzong, Arbok->Bronzong; switch losing; setup at 3+ safe turns; bait locks; save Bronzong for Arbok",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:5",
+   "team": [
+    "Golduck",
+    "Palossand",
+    "Bronzong",
+    "Castform",
+    "Weavile",
+    "Corsola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "148": 1.0
+   },
+   "line": "lead Bronzong; answers Arbok->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 148,
+   "converged": true,
+   "runs": 3860,
+   "kind": "planned:5",
+   "team": [
+    "Bibarel",
+    "Lumineon",
+    "Bronzong",
+    "Seaking",
+    "Castform",
+    "Crustle"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Rhyperior; answers Weezing->Rhyperior, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Mightyena",
+    "Rhyperior",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Florges",
+    "Manaphy",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Seaking; answers Weezing->Golem, Arbok->Golem; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Golem for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Emolga",
+    "Frosmoth",
+    "Golem",
+    "Scizor",
+    "Seaking",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Mantine; answers Weezing->Chandelure, Arbok->Quagsire; switch losing; setup at 5+ safe turns; no status moves; bait locks; save Quagsire for Arbok",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Mantine",
+    "Quagsire",
+    "Alakazam",
+    "Togekiss",
+    "Chandelure",
+    "Whiscash"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.21,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Palossand; answers Weezing->Corsola, Arbok->Bibarel; switch hp below 0.4; setup at 2+ safe turns; no status moves; stall timed effects at 2 turns; save Bibarel for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Mantine",
+    "Palossand",
+    "Weavile",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Electivire; answers Weezing->Electivire, Arbok->Scizor; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Empoleon",
+    "Bibarel",
+    "Lumineon",
+    "Scizor",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Dusknoir; answers Weezing->Alakazam, Arbok->Rhyperior; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Glalie",
+    "Golem",
+    "Palossand",
+    "Rhyperior",
+    "Alakazam",
+    "Dusknoir"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "25": 1.0
+   },
+   "line": "lead Gardevoir; answers Weezing->Donphan, Arbok->Pelipper; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Pelipper for Arbok",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:6",
+   "team": [
+    "Gardevoir",
+    "Golem",
+    "Pelipper",
+    "Walrein",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glalie; answers Weezing->Glalie, Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Glalie",
+    "Glimmora",
+    "Mandibuzz",
+    "Quagsire",
+    "Scizor",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Rhyperior; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Lumineon",
+    "Manaphy",
+    "Rhyperior",
+    "Corsola"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alakazam; answers Weezing->Golem, Arbok->Golem; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Golem for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Golem",
+    "Absol",
+    "Alakazam",
+    "Walrein",
+    "Cinderace"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "171": 1.0
+   },
+   "line": "lead Lanturn; answers Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 171,
+   "converged": true,
+   "runs": 4320,
+   "kind": "planned:6",
+   "team": [
+    "Galvantula",
+    "Hippowdon",
+    "Lanturn",
+    "Liepard",
+    "Scizor",
+    "Whiscash"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Glimmora; answers Weezing->Glimmora, Arbok->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Hariyama",
+    "Manaphy",
+    "Mantine",
+    "Pelipper",
+    "Corsola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Golem; answers Weezing->Manaphy, Arbok->Donphan; switch losing; setup at 3+ safe turns at full HP; bait locks; save Donphan for Arbok",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Golem",
+    "Manaphy",
+    "Donphan",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.825,
+   "deaths": 0.18,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Toucannon; answers Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP; free pivots; save Quagsire for Arbok",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:7",
+   "team": [
+    "Huntail",
+    "Absol",
+    "Lumineon",
+    "Quagsire",
+    "Toucannon",
+    "Turtonator"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Glalie; answers Weezing->Glalie, Arbok->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Hawlucha",
+    "Octillery",
+    "Seaking",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Staraptor; switch losing; setup at 3+ safe turns; free pivots; save Staraptor for Arbok",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Jellicent",
+    "Absol",
+    "Staraptor",
+    "Castform",
+    "Togekiss"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.505,
+   "deaths": 0.51,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Cofagrigus; answers Weezing->Cofagrigus, Arbok->Lopunny; switch losing; setup at 3+ safe turns at full HP; save Lopunny for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Liepard",
+    "Lopunny",
+    "Mandibuzz",
+    "Raichu",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Garganacl; answers Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Liepard",
+    "Octillery",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gothitelle; answers Weezing->Annihilape, Arbok->Magnezone; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Gothitelle",
+    "Houndoom",
+    "Magnezone",
+    "Palossand",
+    "Cofagrigus"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Jellicent, Arbok->Cofagrigus; switch losing; setup at 3+ safe turns at full HP; save Cofagrigus for Arbok",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Jellicent",
+    "Absol",
+    "Rotom",
+    "Cherrim",
+    "Cofagrigus"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.473,
+   "deaths": 0.567,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65,
+    "100": 0.65,
+    "110": 0.65,
+    "120": 0.65,
+    "130": 0.65,
+    "140": 0.65,
+    "150": 0.65,
+    "160": 0.65,
+    "170": 0.65,
+    "180": 0.65,
+    "190": 0.65,
+    "200": 0.65,
+    "210": 0.65,
+    "220": 0.65,
+    "230": 0.65,
+    "240": 0.65,
+    "250": 0.65,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8,
+    "310": 0.8,
+    "320": 0.8,
+    "330": 0.8,
+    "340": 0.8,
+    "350": 0.8,
+    "360": 0.8,
+    "370": 0.8,
+    "380": 0.8,
+    "390": 0.8,
+    "400": 0.8,
+    "410": 0.8,
+    "420": 0.8,
+    "430": 0.8,
+    "440": 0.8,
+    "450": 0.8
+   },
+   "line": "lead Incineroar; answers Arbok->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:7",
+   "team": [
+    "Incineroar",
+    "Ludicolo",
+    "Breloom",
+    "Toucannon",
+    "Vaporeon",
+    "Weavile"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Gastrodon",
+    "Gliscor",
+    "Palossand",
+    "Rotom",
+    "Weavile",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Weezing->Rotom, Arbok->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Ludicolo",
+    "Lumineon",
+    "Rotom",
+    "Castform"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "23": 1.0
+   },
+   "line": "lead Annihilape; answers Weezing->Houndoom, Arbok->Steelix; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Houndoom",
+    "Magnezone",
+    "Steelix",
+    "Talonflame",
+    "Crobat"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Houndoom; answers Weezing->Houndoom, Arbok->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Seaking",
+    "Steelix",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Annihilape",
+    "Jellicent",
+    "Absol",
+    "Rotom",
+    "Whiscash",
+    "Crustle"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Walrein; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Jellicent",
+    "Ludicolo",
+    "Pelipper",
+    "Castform",
+    "Togekiss",
+    "Walrein"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Lapras; answers Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP; save Quagsire for Arbok",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Lanturn",
+    "Lapras",
+    "Quagsire",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.58,
+   "deaths": 0.425,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Araquanid; answers none; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Hawlucha",
+    "Sinistcha",
+    "Crawdaunt",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.385,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.6,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Cinderace; answers Arbok->Mandibuzz; switch losing; setup at 2+ safe turns; no status moves; bait locks; free pivots; save Mandibuzz for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Mandibuzz",
+    "Mantine",
+    "Masquerain",
+    "Cinderace",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingdra; answers Arbok->Walrein; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Walrein for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Kingdra",
+    "Leavanny",
+    "Mandibuzz",
+    "Quagsire",
+    "Walrein"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Drifblim; answers Arbok->Hippowdon; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Hippowdon for Arbok",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Hippowdon",
+    "Palossand",
+    "Weezing",
+    "Drifblim",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "42": 1.0
+   },
+   "line": "lead Garganacl; answers Arbok->Corsola; switch hp below 0.4; setup at 4+ safe turns at full HP; free pivots; save Corsola for Arbok",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1740,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Gastrodon",
+    "Kingdra",
+    "Palossand",
+    "Yanmega",
+    "Corsola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Palossand; answers Weezing->Palossand, Arbok->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Palossand",
+    "Delcatty",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Lapras; answers Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Hippowdon",
+    "Lapras",
+    "Quagsire",
+    "Walrein",
+    "Crustle",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Mantine; answers Weezing->Empoleon; switch losing; setup at 4+ safe turns; free pivots; stall timed effects at 3 turns",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Mantine",
+    "Steelix",
+    "Crawdaunt",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Drifblim; answers Weezing->Drifblim, Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Garganacl",
+    "Hippowdon",
+    "Masquerain",
+    "Orbeetle",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Lapras; answers Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Lapras",
+    "Liepard",
+    "Orbeetle",
+    "Whiscash",
+    "Crawdaunt",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Jellicent",
+    "Palossand",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.5,
+   "deaths": 0.57,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.25,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Purugly; answers Arbok->Kricketune; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Kricketune for Arbok",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Abomasnow",
+    "Gastrodon",
+    "Hariyama",
+    "Hippowdon",
+    "Kricketune",
+    "Purugly"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Weezing->Delphox, Arbok->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Arboliva",
+    "Honchkrow",
+    "Huntail",
+    "Crawdaunt",
+    "Delcatty",
+    "Delphox"
+   ],
+   "seconds": 0.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Weezing->Delphox, Arbok->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Ludicolo",
+    "Lumineon",
+    "Manaphy",
+    "Quagsire",
+    "Talonflame",
+    "Delphox"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Jellicent; answers Weezing->Jellicent, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Whiscash for Arbok",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:9",
+   "team": [
+    "Glimmora",
+    "Jellicent",
+    "Kingdra",
+    "Lopunny",
+    "Masquerain",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Orbeetle; answers Arbok->Palossand; switch losing; setup at 5+ safe turns; save Palossand for Arbok",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Arboliva",
+    "Glalie",
+    "Masquerain",
+    "Orbeetle",
+    "Palossand"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Weezing->Golem; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glalie",
+    "Golem",
+    "Mr. Rime",
+    "Palossand",
+    "Cofagrigus",
+    "Delphox"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Weezing->Metagross, Arbok->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glalie",
+    "Hippowdon",
+    "Bastiodon",
+    "Metagross",
+    "Mr. Rime",
+    "Walrein"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Glimmora; answers Weezing->Glimmora, Arbok->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Glimmora",
+    "Kingdra",
+    "Lurantis",
+    "Altaria",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ceruledge; answers Weezing->Ceruledge, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Lurantis",
+    "Mr. Rime",
+    "Ceruledge",
+    "Whiscash",
+    "Delphox"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Arbok->Metagross; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Metagross for Arbok",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Glalie",
+    "Metagross",
+    "Walrein",
+    "Corsola",
+    "Delphox",
+    "Dubwool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Manaphy; answers Arbok->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Huntail",
+    "Kingdra",
+    "Manaphy",
+    "Steelix",
+    "Whiscash",
+    "Corsola"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mr. Rime; answers Weezing->Palossand, Arbok->Whiscash; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Whiscash for Arbok",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Mr. Rime",
+    "Palossand",
+    "Whiscash",
+    "Cinderace"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crawdaunt; answers Weezing->Golem, Arbok->Steelix; switch losing; setup at 5+ safe turns; bait locks; stall timed effects at 1 turns; save Steelix for Arbok",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Golem",
+    "Steelix",
+    "Walrein",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  }
+ ],
+ "key": "tr507"
+}
