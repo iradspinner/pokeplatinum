@@ -2175,6 +2175,12 @@ adjustment: keep the stronger half, but swap its weakest members for the
 strongest that resist the type most of the pool fears. His decision; a
 re-read of the sixteen blind trainers then takes about 1.5 hours.
 
+Ian keeps the rule as it is (2026-10-06, relayed by the Overseer): "Given
+it's the first split of the game, I'm fine with it being a bit
+biased/inaccurate with a skewed box here." No pool is adjusted for a shared
+weakness, and the comb's readings above stand, every blind one drawn from
+the stronger half.
+
 ## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
 
 Ian's plan of learnsets by check and verify (`docs/oxide/learnset-checks.md`)
