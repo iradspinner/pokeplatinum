@@ -18,7 +18,9 @@ generator. Ian approved the plan and asked for the baseline on 2026-10-06.
    (`learnset-proposal-feedback` in memory, the standing rulings) are the
    starting rules.
 3. **Five held out.** Five of the 20, drawn by a fixed seed, are never shown
-   to the generator; they are the exam.
+   to the generator; they are the exam. Ian judges them last, after the rules
+   from the other fifteen are locked, so his verdicts on them cannot shape
+   the rules they test (a side agent's caution, kept by Ian, 2026-10-06).
 4. **Extrapolate.** Ian's reasons become general rules or weights in the
    generator, never patches for one species, and it rewrites the 652 lists.
 5. **Verify.** The generator reproduces Ian's verdicts on the five held-out

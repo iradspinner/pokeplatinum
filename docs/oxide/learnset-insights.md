@@ -3,9 +3,10 @@
 Step 2 of `docs/oxide/learnset-checks.md`. Each session shows Ian one line as
 a player meets it, and he says what is wrong and why. His words are kept
 verbatim. The rules drawn from them are general, for the generator and for
-new checks, never patches for one species. Lines held out as the exam
-(Scorbunny, Treecko, Eevee, Koffing, Skorupi) are recorded in a separate
-file the generator does not read, once they come up.
+new checks, never patches for one species. The fifteen other lines come
+first; then the rules are locked; only then does Ian judge the five held out
+as the exam (Scorbunny, Treecko, Eevee, Koffing, Skorupi), so his verdicts on
+them cannot shape the rules they test (Ian, 2026-10-06).
 
 ## 1. Charmander (2026-10-06)
 
