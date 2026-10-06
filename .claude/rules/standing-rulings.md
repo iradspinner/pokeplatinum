@@ -106,7 +106,12 @@ read, so they are written here too. Each is a standing instruction.
   learnsets (either via hg-engine or via looking them up) should be used as
   inspiration, not as pick lists." A move a later game, Generation 4 or
   Kaizo gives the line weighs in its favour; its absence there does not
-  rule it out.
+  rule it out. For alpha 1's rewrite Ian accepted two narrowings of the
+  generator (2026-10-06): a status move it adds must already be linked to
+  the line (canon, Kaizo or Oxide's lists), an unlinked attack comes in only
+  to fill a gap a rule asks for, and the attacks and utility moves it adds
+  keep under per-split ceilings, his answer 8 of 2026-09-27 (no ceiling on
+  coverage power) set aside for this pass.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
