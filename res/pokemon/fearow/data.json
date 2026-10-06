@@ -4,7 +4,7 @@
         "attack": 110,
         "defense": 75,
         "speed": 100,
-        "special_attack": 61,
+        "special_attack": 31,
         "special_defense": 61
     },
     "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],

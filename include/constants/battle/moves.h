@@ -66,6 +66,8 @@
 #define OXIDE_MON_FLAG_SKY_DROP_HELD (1 << 2) // Sky Drop: held in the air by the battler in the next two bits
 #define OXIDE_MON_SKY_DROP_HOLDER_SHIFT 3
 #define OXIDE_MON_SKY_DROP_HOLDER (3 << OXIDE_MON_SKY_DROP_HOLDER_SHIFT)
+#define OXIDE_MON_THROAT_CHOP_SHIFT 5 // Throat Chop: turns left without sound moves, 2 when it lands
+#define OXIDE_MON_THROAT_CHOP (3 << OXIDE_MON_THROAT_CHOP_SHIFT)
 
 // Oxide: the modes of the battle script command TryTeatime.
 #define TEATIME_CHECK 0

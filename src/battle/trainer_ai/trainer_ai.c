@@ -202,6 +202,8 @@ static void AICmd_IfMoveHasRaisedPriority(BattleSystem *battleSys, BattleContext
 static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfMoldBreakerIgnores(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2785,9 +2787,21 @@ static void AICmd_IfMoveCanBeDrawnIn(BattleSystem *battleSys, BattleContext *bat
     int jump = AIScript_Read(battleCtx);
     int ability = Battler_Ability(battleCtx, AI_CONTEXT.attacker);
 
+    // Oxide, element 7: an Ability Shield keeps Mold Breaker from ignoring its
+    // holder's Lightning Rod or Storm Drain (Battler_DrawsMoveIn), so with Mold
+    // Breaker the move can still be drawn in while another battler holds one.
+    BOOL shieldedHolder = FALSE;
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        if (i != AI_CONTEXT.attacker
+            && battleCtx->battleMons[i].curHP
+            && Battler_HasAbilityShield(battleCtx, i)) {
+            shieldedHolder = TRUE;
+        }
+    }
+
     if ((MOVE_DATA(AI_CONTEXT.move).range == RANGE_SINGLE_TARGET || MOVE_DATA(AI_CONTEXT.move).range == RANGE_RANDOM_OPPONENT)
         && ability != ABILITY_NORMALIZE
-        && ability != ABILITY_MOLD_BREAKER) {
+        && (ability != ABILITY_MOLD_BREAKER || shieldedHolder)) {
         AIScript_Iter(battleCtx, jump);
     }
 }
@@ -2867,6 +2881,59 @@ static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleCo
     }
 
     if (damage == expected) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the move being scored is one Magic Coat and Magic
+ * Bounce turn back on its user.
+ *
+ * The engine turns a move back when it carries MOVE_FLAG_CAN_MAGIC_COAT and is
+ * aimed at the holder (BattleControllerPlayer_MoveStolen). A move that works
+ * on its user or its user's side, or on the whole field, is left alone, as
+ * IfPranksterBlockedByDark leaves it; one aimed at the foe's side (Spikes and
+ * the like) counts, since the engine aims it at a foe.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int jump = AIScript_Read(battleCtx);
+    int range = MOVE_DATA(AI_CONTEXT.move).range;
+
+    if ((MOVE_DATA(AI_CONTEXT.move).flags & MOVE_FLAG_CAN_MAGIC_COAT)
+        && (range & (RANGE_USER | RANGE_USER_SIDE | RANGE_FIELD | RANGE_ALLY | RANGE_USER_OR_ALLY)) == FALSE) {
+        AIScript_Iter(battleCtx, jump);
+    }
+}
+
+/**
+ * @brief Oxide: jump if the attacker's Mold Breaker ignores the given
+ * battler's ability.
+ *
+ * Mold Breaker ignores an ability unless its holder has an Ability Shield
+ * (element 7, as Battler_IgnorableAbility has it), which the script's checks
+ * of the target's or partner's ability ask for through this command rather
+ * than testing the attacker's ability alone. The attacker's ability is its
+ * real one, suppression included, as LoadBattlerAbility gives it.
+ *
+ * @param battleSys
+ * @param battleCtx
+ */
+static void AICmd_IfMoldBreakerIgnores(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+
+    if (Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_MOLD_BREAKER
+        && Battler_HasAbilityShield(battleCtx, battler) == FALSE) {
         AIScript_Iter(battleCtx, jump);
     }
 }
@@ -3277,6 +3344,10 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
                 type = TYPE_DARK;
                 break;
 
+            case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+                type = TYPE_FAIRY;
+                break;
+
             default:
                 type = TYPE_NORMAL;
                 break;
@@ -3543,6 +3614,10 @@ static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx,
 
         case HOLD_EFFECT_ARCEUS_DARK:
             result = TYPE_DARK;
+            break;
+
+        case HOLD_EFFECT_ARCEUS_FAIRY: // Oxide, element 7: the Pixie Plate
+            result = TYPE_FAIRY;
             break;
 
         default:
@@ -4292,6 +4367,12 @@ static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battl
     // This definition is naive: the AI does not consider itself immune to Magnet Pull from an ally,
     // Shadow Tag if it also has Shadow Tag, Arena Trap if it is a Flying-type, or always able to switch
     // if it is holding a Shed Shell.
+    // Oxide: a battler held in the air by Sky Drop cannot switch, whatever its type, as
+    // Battler_IsTrapped has it.
+    if (Battler_SkyDropHeld(battleCtx, battler)) {
+        return FALSE;
+    }
+
     // Oxide: nothing traps a Ghost type (Generation 6), as Battler_IsTrapped has it.
     if (MON_IS_NOT_TYPE(battler, TYPE_GHOST)
         && ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)

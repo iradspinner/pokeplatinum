@@ -1,4 +1,4 @@
-# The encounter tool: a build plan
+# The Platinum OxiDex (the encounter tool): a build plan
 
 Written 2026-09-20, from `docs/oxide/encounter-tool-design.md` (v1.0) and the
 measurements in `docs/oxide/encounter-design-survey.md`, both of which are now
@@ -42,29 +42,37 @@ design doc needs its provenance.
 cd ~/pokeplatinum
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m1     # expect 13/13
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m2     # expect 23/23, ~1 min
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m3     # expect 25/25
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main report
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli report
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint   # 0 errors
-PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # errors: R12's 27 scripted lines only
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 51/51
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli --ref main lint --ignore R12   # 0 errors (R12 prices Oxide's sources, so vanilla fails it)
+PYTHONPATH=. python3 -m tools.oxide.encounters.cli lint              # 0 errors; warnings are aspirational or rulings
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m4     # expect 60/60
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m5     # expect 15/15
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli plan encounters_route_214 growlithe
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_m6     # expect 19/19
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 94/94, the dex, moves, calculator and trainer sets
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_m8     # expect 98/98, the dex, moves, calculator and trainer sets
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step0  # expect 35/35
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 21/21
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step1  # expect 23/23
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step2  # expect 19/19
 PYTHONPATH=. python3 -m tools.oxide.encounters.test_step3  # expect 36/36
-PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 19/19
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_step5  # expect 25/25
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_sim    # expect 19/19, the Box sim
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_trainers   # expect 38/38
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_saves      # expect 5/5
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_savefile   # expect 18/18
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_savewatch  # expect 8/8
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_battlelog  # expect 26/26
+PYTHONPATH=. python3 -m tools.oxide.encounters.test_docview    # expect 16/16
 PYTHONPATH=. python3 -m tools.oxide.encounters.calc_export # what the calculator cannot model
 PYTHONPATH=. python3 -m tools.oxide.encounters.cli generate --band early --dry-run
-python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --source   # M7, after make rom
+python3 tools/oxide/verify_narcs.py --built build/pokeplatinum.us.nds --encounters --source   # M7, after make rom
 PYTHONPATH=. python3 -m tools.oxide.encounters.server      # the UI, localhost:8765 (--port for a second checkout)
 ```
 
 The `--source` line is the one that closes the loop: it needs a built ROM and no
-reference ROM, and it must read "all 184 tables match their source JSON". It is the
+reference ROM, and it must read "all 190 tables match their source JSON" (the
+counts above are as of 2026-09-30). It is the
 only check here that looks at what the game actually runs.
 
 The `plan` line is the whole design in one command: it should take Growlithe from
@@ -229,9 +237,12 @@ that stay. None blocks anything.
    tables were authored in Step 4 as post-game content, and in their new split
    they pass every lint rule and the availability gate unchanged; what they
    offer before Volkner (Metagross at 10% on Route 228, the fully evolved
-   starters as 1% tails) is put to Ian rather than changed. Waiting on the
-   balance track, whose tool must learn the new split before this merges. The
+   starters as 1% tails) is put to Ian rather than changed. The
    whole plan, across the three tracks, is `docs/oxide/battle-zone-plan.md`.
+   **Closed 2026-09-30.** The balance tool learned the split on 2026-09-26,
+   and the question to Ian is moot: no HQ or Galactic table holds Metagross
+   (the scarcity pass moved it) or any member of the three starter lines.
+   The battle zone plan's line about it is the Overseer's to retire.
 9. **One-spot groups (Ian, 2026-09-26).** A place whose tables sit in one spot
    is now identical throughout or very different part to part, as the sidecar's
    `groups` table says and lint's R15 enforces; the `author-table` skill has the
@@ -1231,6 +1242,128 @@ that stay. None blocks anything.
    lines. The biome of every area is a draft for Ian, with today's counts
    beside it in `water-lint-draft.md` (854 warnings, 395 of them R19); he
    decides it as one question. `test_m3` checks each rule on made-up tables.
+
+46. **The layout redesign, one tab at a time (Ian approved it on
+   2026-09-29, with notes, through the Overseer).** The mockups are the
+   Overseer's design canvas (claude.ai/artifact/KUyThBaHkgLaQhARy5Mi5u):
+   Dex, Moves, Trainers, Box sim and three themes. Each tab is built on its
+   own branch, checked in headless Chrome in all three themes, and merged
+   into `ian-saves` before the next. Built from the theme's tokens, so every
+   colour follows the theme and `test_m4` still finds no literal.
+   - **Dex** (`encounter-redesign-dex`): a 300px list, the species in
+     cards down the centre (the hero with its sprite, base stats beside
+     abilities and the rest, damage taken with its weaknesses, resistances
+     and immunities in words over a nine-wide grid, and the line across the
+     page with how each stage is reached over the arrow, or on each card of
+     a branch), and its moves in a 400px rail behind Level-up, Machines,
+     Tutor and Egg tabs, the tab kept from species to species. Ian's notes:
+     no "where it is met" line on the cards, "No Wild Encounters" for a
+     member met nowhere, and "+N from vanilla" beside the base stat total.
+     The machine, tutor and egg lists now carry class, power and accuracy.
+   - **Themes** (`encounter-redesign-themes`, stacked on the Dex), with
+     Ian's answers (2026-09-29, through the Overseer). The dark surfaces
+     are a step brighter and more teal in Dark and Dim, the sunken wells
+     more teal only, so text in them keeps its contrast; `test_m4` now
+     measures Dark as it did Dim. The mockup's three faces ship in
+     `ui/fonts` with their OFL licences (`fonts/README.md`), replacing
+     Pixelify Sans: Atkinson Hyperlegible, JetBrains Mono and Silkscreen,
+     nothing from the network. The header's one cycling button, and the
+     doc viewer's, became four: Dark, Dim, Light and Auto, the one in force
+     marked. The calculator keeps its own type.
+   - **Moves** (`encounter-redesign-moves`, stacked on Themes): the list at
+     420px with Type, Move, Class, Pow, Acc and Who, and the move in cards
+     two wide, the right column gone: the hero with Power, Accuracy, PP and
+     Target tiles; what it does in Oxide (effect, chance, flags) beside
+     against vanilla; who learns it over the whole width, four across and
+     grouped by how (Ian's note: a larger box); and its type's moves of its
+     class by power, sixteen around it, this one marked, each opening its
+     move. Every card is a section, and sections scroll on their own, so
+     the cards are kept from scrolling (that had clipped the Dex's too).
+   - **Trainers** (`encounter-redesign-trainers`, stacked on Moves): the
+     list at 280px and the right panel gone. The trainer is a header line
+     with its split and cap, its file and the save bar; the team is a sheet,
+     paper in every theme with a slate header and legend, one column a
+     Pokemon: its sprite, level and species, types, nature and ability
+     (faint and italic when the game rolls them), item, and four moves
+     tinted by type and bold when they share a type with their user, every
+     cell edited in place. The form, IV scale, gender, move lists and
+     removal sit in each Pokemon's menu, the dots on its sprite. The three
+     move lists open in a card under the sheet while a move is edited.
+     Under that, the score, threat and answers as bars, and battle and AI.
+     A pair is two sheets, the one being worked on outlined. Ian's notes:
+     the trainer sprites work (`/api/trainer-sprite/<class>`, each class's
+     `front.png` from `res/trainers/classes` with its clear colour made
+     clear and the first frame shown), and the AI flags are a fixed grid
+     three wide, headed "AI Flags:", one icon per flag in its own cell, lit
+     when the trainer has it, Double battle the last cell. `test_m4` holds
+     the sheet's type tints and paper to WCAG's 4.5:1.
+   - **Box sim** (`encounter-redesign-boxsim`, stacked on Trainers): the
+     settings in a 290px rail (Regenerate, How sure is it?, the locks and
+     the seed), the box by worth in a 330px rail, and the run between.
+     Ian's note took room from box worth, living sum and best six, now one
+     slim strip, and gave it to two cards: **Next Non-Delay Zone**, the
+     next place the run catches in rather than saves (its pick, how, worth,
+     how sure and its lock; the starter is not a zone), and **Delay Zones**,
+     every place the run saves for later, what it waits for and until
+     when, and what it takes there in the end. Both are read from the run
+     itself, in this track's reading of the two names, which Ian
+     confirmed as built (2026-09-29, through the Overseer). Then the run split by split, each with its cap and how many areas
+     catch now or wait, a row per area: the pick and how, the lock, how
+     sure (from "How sure is it?", for the run it was asked for), and its
+     worth as a bar. The server now sends each split's cap with a run.
+   - For the zone-by-zone pass (Ian, 2026-09-29): the starter lines stay
+     wild, each with one home and at most one neighbour, and Froakie's 1%
+     is cut to a few water areas that fit it (R21 flags it); the late
+     game's few new lines, Fairy's absence from Wake's and Byron's land and
+     Starly's line never evolving in the wild come to Ian as proposals
+     there. The water tables are re-authored after that pass, so each
+     zone's land and water are judged together.
+47. **Two caught-list bugs Ian found while playing (2026-09-30), fixed on
+   `oxidex-bugs-0930`; Ian confirmed both in his browser the same day.** A
+   catch ticked on a Day or Night tab was stored as the Morning table's
+   species in that slot, because the row posted its morning species though
+   its icon showed the day or night one; the detail now carries a caught
+   view for each day and night species (`day_views`, `night_views`) and
+   the row ticks, strikes and highlights by the species it holds. The same
+   fault struck Sandgem's day Pikipek, whose row read Starly's state. Reset
+   caught left the open zone dimmed: the detail and the area list reload
+   in parallel and the pane dims by the list, so it now redraws once both
+   are back, as ticking already did. The Box sim reads only which places
+   are spent, never the species, so it was never affected. `test_m4` ticks
+   a day and a night species on Route 201 and checks the stored catch, the
+   list's label and the dupes on Sandgem's three tables. Verity Lakefront's
+   and Amity Square's "needs grass" notes were stale since `main-grass` and
+   are gone.
+48. **The Great Marsh lookout's daily Pokemon are cut (Ian, 2026-09-30).**
+   The engine no longer puts the daily species in grass slots 6 and 7
+   during a Safari Game (walking, Sweet Scent and the mud), and the
+   binoculars show a random slot of the area's own table. The lookout file
+   stays so the encdata_ex archive keeps its members; its sidecar intent
+   says it is unused. The sources catalogue excludes the rotation
+   (`EXCLUDED_METHODS`, 21 rows gone), the coverage audit no longer reads
+   the pools, and `availability.md` dropped the source from twelve lines,
+   none of which lost its last source (the gate's counts all stay 0). The
+   balance pool and the Box sim already skipped it. In-game check: a
+   Safari Game in any marsh area meets only that area's table.
+49. **The retype rerun (promised 2026-09-29, run 2026-09-30).** Lint,
+   coverage and the table report were run on the tree as it is and again
+   with Ian's seventeen retyped species given their types from before
+   ae486ec12a. Coverage and the report are identical. Lint lost five R23
+   warnings (Celestic Town's, Lake Acuity's, Lake Valor's and the Pokemon
+   League's Super Rods, Pastoria's Surf), all because Masquerain is now
+   Bug/Water. Nothing else in the tool reads types but the calculator and
+   the dex, which read `data.json` live. The pick-list's type columns are
+   the sheet's and read by nothing; they match the retypes but for
+   Charizard (Fire/Flying in the list, Fire/Dragon in the game).
+50. **The regional dex order for the 51 lines appended on 2026-09-26,
+   proposed to Ian (2026-09-30):**
+   `docs/oxide/encounters/regional-dex-proposal.md`. It places each line by
+   the rule the curated 360 already follow (lines together, in national dex
+   order of their earliest member), and names a Sinnoh-style order as the
+   alternative. Waiting on Ian; the choice goes in a new column, since
+   `dex_pos` is also the spreadsheet row `species_import.py` reads. On the
+   way, three wrong national dex numbers in the pick-list were corrected
+   (Rotom, Manaphy, Shaymin) and its doc's row count brought up to 499.
 
 ## Standing rules
 

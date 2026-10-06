@@ -1,0 +1,3022 @@
+{
+ "blind_rate": 1.0,
+ "blind_clean_share": 1.0,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.0,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 1.0,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 115140,
+ "search_budget": 7,
+ "converged_share": 1.0,
+ "label": "Lass Kaitlin",
+ "split": "Roark",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 2.7,
+ "rows": [
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Zubat, Taillow->Geodude, Spoink->Zubat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Purrloin",
+    "Steenee",
+    "Tentacool",
+    "Zubat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Raboot, Taillow->Phanpy, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Barboach",
+    "Kadabra",
+    "Bibarel",
+    "Makuhita",
+    "Phanpy",
+    "Raboot"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Vullaby, Taillow->Geodude, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Geodude",
+    "Krabby",
+    "Phanpy",
+    "Ponyta",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Dottler, Taillow->Geodude, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Dottler",
+    "Geodude",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Growlithe->Raboot, Sunkern->Raboot, Taillow->Phanpy, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Grubbin",
+    "Makuhita",
+    "Phanpy",
+    "Ponyta",
+    "Raboot",
+    "Steenee"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Zubat, Taillow->Geodude, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Bibarel",
+    "Makuhita",
+    "Ponyta",
+    "Zubat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Zubat, Taillow->Bibarel, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Krabby",
+    "Bibarel",
+    "Makuhita",
+    "Steenee",
+    "Surskit",
+    "Zubat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Ponyta, Taillow->Geodude, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Geodude",
+    "Grubbin",
+    "Krabby",
+    "Phanpy",
+    "Ponyta",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Dottler, Taillow->Geodude, Spoink->Dottler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Dottler",
+    "Geodude",
+    "Grubbin",
+    "Ponyta",
+    "Raboot",
+    "Surskit"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Growlithe->Raboot, Sunkern->Vullaby, Taillow->Raboot, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Grubbin",
+    "Makuhita",
+    "Ponyta",
+    "Raboot",
+    "Steenee",
+    "Vullaby"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Steenee, Taillow->Geodude, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Geodude",
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Purrloin",
+    "Steenee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vullaby; answers Growlithe->Vullaby, Sunkern->Zubat, Taillow->Phanpy, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Kadabra",
+    "Phanpy",
+    "Ponyta",
+    "Vullaby",
+    "Zubat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Zubat, Taillow->Ponyta, Spoink->Ponyta; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Barboach",
+    "Makuhita",
+    "Ponyta",
+    "Purrloin",
+    "Surskit",
+    "Zubat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Sunkern->Turtwig, Spoink->Kricketune; switch hp below 0.3; setup at 3+ safe turns at full HP; free pivots; save Turtwig for Sunkern",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Kricketune",
+    "Makuhita",
+    "Budew",
+    "Turtwig"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Kricketune, Taillow->Wooloo, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Ponyta",
+    "Surskit",
+    "Vullaby",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Corvisquire, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Corvisquire",
+    "Finneon",
+    "Nosepass",
+    "Ponyta",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Budew, Taillow->Nosepass, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Barboach",
+    "Kricketune",
+    "Nosepass",
+    "Budew",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Budew, Taillow->Nosepass, Spoink->Turtwig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Finneon",
+    "Luvdisc",
+    "Nosepass",
+    "Budew",
+    "Turtwig",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Kricketune, Taillow->Wooloo, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Corvisquire",
+    "Finneon",
+    "Goldeen",
+    "Kricketune",
+    "Surskit",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Corvisquire, Taillow->Wooloo, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Goldeen",
+    "Kadabra",
+    "Luvdisc",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Budew, Taillow->Corvisquire, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Luvdisc",
+    "Ponyta",
+    "Budew",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Budew, Taillow->Wooloo, Spoink->Makuhita; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Luvdisc",
+    "Makuhita",
+    "Budew",
+    "Surskit",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Budew, Taillow->Nosepass, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Corvisquire",
+    "Kricketune",
+    "Luxio",
+    "Nosepass",
+    "Budew",
+    "Turtwig"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Vullaby, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Barboach",
+    "Kadabra",
+    "Nosepass",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Ponyta, Taillow->Nosepass, Spoink->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Luvdisc",
+    "Luxio",
+    "Makuhita",
+    "Nosepass",
+    "Ponyta",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Budew, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Nosepass",
+    "Ponyta",
+    "Budew",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Vullaby; answers Growlithe->Staravia, Sunkern->Poochyena, Taillow->Vullaby; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Poochyena",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Dottler, Taillow->Nosepass, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Dottler",
+    "Kricketune",
+    "Magby",
+    "Nosepass",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Corvisquire, Taillow->Corvisquire, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Magby",
+    "Prinplup",
+    "Surskit",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Vullaby, Taillow->Vullaby, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Luvdisc",
+    "Surskit",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Dottler, Taillow->Nacli, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Corvisquire",
+    "Dottler",
+    "Finneon",
+    "Magby",
+    "Nacli",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Magby, Taillow->Nosepass, Spoink->Magby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Magby",
+    "Nacli",
+    "Nosepass",
+    "Poochyena"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Dottler, Taillow->Vullaby, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Kricketune",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Dottler, Taillow->Corvisquire, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Dottler",
+    "Luvdisc",
+    "Poochyena",
+    "Staravia"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Corvisquire, Taillow->Nosepass, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Goldeen",
+    "Lombre",
+    "Nosepass",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Kricketune, Taillow->Nosepass, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Kricketune",
+    "Nosepass",
+    "Prinplup",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Dottler, Taillow->Vullaby, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Goldeen",
+    "Magby",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luvdisc; answers Growlithe->Luvdisc, Sunkern->Kricketune, Taillow->Prinplup, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Luvdisc",
+    "Magby",
+    "Poochyena",
+    "Prinplup",
+    "Staravia"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Dottler, Taillow->Prinplup, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Dottler",
+    "Goldeen",
+    "Magby",
+    "Prinplup",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Trumbeak, Taillow->Bibarel, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Makuhita",
+    "Surskit",
+    "Tentacool",
+    "Trumbeak",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Sewaddle, Taillow->Corvisquire, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Prinplup",
+    "Sewaddle",
+    "Tentacool",
+    "Trumbeak"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Growlithe->Vullaby, Sunkern->Dottler, Taillow->Vullaby, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP; no status moves; save Vullaby for Taillow",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Makuhita",
+    "Sewaddle",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndour; answers Growlithe->Houndour, Sunkern->Dottler, Taillow->Phanpy, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Dottler",
+    "Houndour",
+    "Phanpy",
+    "Purrloin",
+    "Tentacool",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Sewaddle, Taillow->Bibarel, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Barboach",
+    "Corvisquire",
+    "Bibarel",
+    "Krabby",
+    "Purrloin",
+    "Sewaddle"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Dottler, Taillow->Trumbeak, Spoink->Trumbeak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Purrloin",
+    "Surskit",
+    "Trumbeak"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Krabby; answers Growlithe->Krabby, Sunkern->Sewaddle, Taillow->Phanpy, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Krabby",
+    "Makuhita",
+    "Phanpy",
+    "Purrloin",
+    "Sewaddle",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Corvisquire, Taillow->Corvisquire, Spoink->Corvisquire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Corvisquire",
+    "Krabby",
+    "Makuhita",
+    "Prinplup",
+    "Purrloin",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Houndour, Taillow->Bibarel, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Houndour",
+    "Makuhita",
+    "Purrloin",
+    "Surskit"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Dottler, Taillow->Phanpy, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Dottler",
+    "Bibarel",
+    "Phanpy",
+    "Sewaddle",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndour; answers Growlithe->Houndour, Sunkern->Corvisquire, Taillow->Phanpy, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Corvisquire",
+    "Goldeen",
+    "Houndour",
+    "Phanpy",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Corvisquire; answers Growlithe->Corvisquire, Sunkern->Corvisquire, Taillow->Phanpy, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Corvisquire",
+    "Phanpy",
+    "Purrloin",
+    "Tentacool",
+    "Trumbeak",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndour; answers Growlithe->Houndour, Sunkern->Sewaddle, Taillow->Goldeen, Spoink->Goldeen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Goldeen",
+    "Houndour",
+    "Makuhita",
+    "Sewaddle",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Dottler",
+    "Goldeen",
+    "Nacli",
+    "Onix",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Vullaby, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Goldeen",
+    "Krabby",
+    "Onix",
+    "Raboot",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Vulpix, Taillow->Nosepass, Spoink->Krabby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Barboach",
+    "Krabby",
+    "Nacli",
+    "Nosepass",
+    "Tentacool",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Vullaby, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Barboach",
+    "Nosepass",
+    "Pawmi",
+    "Raboot",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Kricketune, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Goldeen",
+    "Krabby",
+    "Kricketune",
+    "Nosepass",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Nosepass",
+    "Onix",
+    "Tentacool",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Goldeen",
+    "Nacli",
+    "Nosepass",
+    "Onix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Vullaby, Taillow->Pawmi, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Pawmi",
+    "Surskit",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nacli; answers Growlithe->Nacli, Sunkern->Raboot, Taillow->Nacli, Spoink->Nacli; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Lombre",
+    "Nacli",
+    "Pawmi",
+    "Raboot",
+    "Tentacool",
+    "Vulpix"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nacli; answers Growlithe->Nacli, Sunkern->Dottler, Taillow->Luxio, Spoink->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Dottler",
+    "Luxio",
+    "Nacli",
+    "Pawmi",
+    "Raboot",
+    "Wooloo"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Kricketune, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Krabby",
+    "Kricketune",
+    "Nosepass",
+    "Onix",
+    "Raboot",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Growlithe->Raboot, Sunkern->Kricketune, Taillow->Pawmi, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lombre",
+    "Pawmi",
+    "Raboot",
+    "Tentacool",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Vullaby, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Barboach",
+    "Lombre",
+    "Nacli",
+    "Nosepass",
+    "Onix",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Sewaddle, Taillow->Bibarel, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Houndour",
+    "Lombre",
+    "Sewaddle",
+    "Turtwig"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Dottler, Taillow->Nacli, Spoink->Dottler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Nacli",
+    "Pawmi",
+    "Sewaddle",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nacli; answers Growlithe->Nacli, Sunkern->Vullaby, Taillow->Nacli, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Lombre",
+    "Nacli",
+    "Phanpy",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Dottler, Taillow->Geodude, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Geodude",
+    "Bibarel",
+    "Kadabra",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Sewaddle, Taillow->Nacli, Spoink->Nacli; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Barboach",
+    "Geodude",
+    "Nacli",
+    "Pawmi",
+    "Sewaddle",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Dottler, Taillow->Geodude, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Dottler",
+    "Geodude",
+    "Bibarel",
+    "Houndour",
+    "Phanpy",
+    "Turtwig"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Tentacool, Taillow->Nacli, Spoink->Nacli; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Lombre",
+    "Nacli",
+    "Pawmi",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Vullaby, Taillow->Nacli, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Kadabra",
+    "Nacli",
+    "Purrloin",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndour; answers Growlithe->Houndour, Sunkern->Dottler, Taillow->Kadabra, Spoink->Turtwig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Dottler",
+    "Houndour",
+    "Kadabra",
+    "Lombre",
+    "Purrloin",
+    "Turtwig"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Sewaddle, Taillow->Pawmi, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Pawmi",
+    "Sewaddle",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Houndour, Taillow->Geodude, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Geodude",
+    "Bibarel",
+    "Houndour",
+    "Pawmi"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Barboach; answers Growlithe->Barboach, Sunkern->Dottler, Taillow->Pawmi, Spoink->Turtwig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Dottler",
+    "Lombre",
+    "Pawmi",
+    "Tentacool",
+    "Turtwig"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Houndour; answers Growlithe->Houndour, Sunkern->Sewaddle, Taillow->Phanpy, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Barboach",
+    "Houndour",
+    "Kadabra",
+    "Phanpy",
+    "Sewaddle",
+    "Tentacool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Bibarel",
+    "Lombre",
+    "Onix",
+    "Zubat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Growlithe->Raboot, Sunkern->Zubat, Taillow->Wooloo, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Purrloin",
+    "Raboot",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Vullaby, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Finneon",
+    "Onix",
+    "Purrloin",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Onix",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Dottler, Taillow->Wooloo, Spoink->Dottler; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Dottler",
+    "Raboot",
+    "Smoliv",
+    "Surskit",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Raboot, Taillow->Onix, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Bibarel",
+    "Onix",
+    "Raboot",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Dottler",
+    "Kadabra",
+    "Onix",
+    "Raboot",
+    "Smoliv",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Dottler, Taillow->Bibarel, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Dottler",
+    "Bibarel",
+    "Goldeen",
+    "Kadabra",
+    "Raboot",
+    "Tentacool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Vullaby, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Onix",
+    "Purrloin",
+    "Steenee",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Zubat, Taillow->Corphish, Spoink->Corphish; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Finneon",
+    "Lombre",
+    "Purrloin",
+    "Smoliv",
+    "Zubat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Vullaby, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bibarel",
+    "Onix",
+    "Steenee",
+    "Surskit",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Dottler, Taillow->Wooloo, Spoink->Corphish; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Dottler",
+    "Finneon",
+    "Smoliv",
+    "Tentacool",
+    "Wooloo"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Corphish",
+    "Dottler",
+    "Onix",
+    "Purrloin",
+    "Steenee",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Staravia, Taillow->Staravia, Spoink->Staravia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Finneon",
+    "Machop",
+    "Purrloin",
+    "Staravia",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Budew, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Geodude",
+    "Nosepass",
+    "Purrloin",
+    "Budew",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Furret, Taillow->Furret, Spoink->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Bibarel",
+    "Goldeen",
+    "Machop",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vullaby; answers Sunkern->Ponyta, Taillow->Makuhita, Spoink->Goldeen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:7",
+   "team": [
+    "Goldeen",
+    "Makuhita",
+    "Ponyta",
+    "Budew",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Budew, Taillow->Geodude, Spoink->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Geodude",
+    "Bibarel",
+    "Machop",
+    "Raboot",
+    "Budew"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Raboot; answers Growlithe->Raboot, Sunkern->Budew, Taillow->Raboot, Spoink->Staravia; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Goldeen",
+    "Machop",
+    "Raboot",
+    "Budew",
+    "Staravia",
+    "Tentacool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Vullaby, Taillow->Nidorino, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Machop",
+    "Nidorino",
+    "Staravia",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Budew, Taillow->Nosepass, Spoink->Goldeen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Goldeen",
+    "Nosepass",
+    "Ponyta",
+    "Purrloin",
+    "Budew",
+    "Surskit"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Vullaby, Taillow->Geodude, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Geodude",
+    "Goldeen",
+    "Nidorino",
+    "Staravia",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Staravia, Taillow->Geodude, Spoink->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Geodude",
+    "Goldeen",
+    "Makuhita",
+    "Staravia"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Budew, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Geodude",
+    "Nosepass",
+    "Budew",
+    "Surskit",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Geodude; answers Growlithe->Geodude, Sunkern->Vullaby, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Geodude",
+    "Bibarel",
+    "Makuhita",
+    "Nosepass",
+    "Raboot",
+    "Vullaby"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Furret, Taillow->Geodude, Spoink->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Geodude",
+    "Machop",
+    "Purrloin",
+    "Surskit"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Raboot, Taillow->Onix, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Bibarel",
+    "Onix",
+    "Raboot",
+    "Vulpix",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Vullaby, Taillow->Bibarel, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Bibarel",
+    "Purrloin",
+    "Surskit",
+    "Tentacool",
+    "Vullaby",
+    "Wooloo"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Zubat, Taillow->Pawmi, Spoink->Zubat; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Pawmi",
+    "Steenee",
+    "Vulpix",
+    "Zubat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Raboot, Taillow->Onix, Spoink->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Onix",
+    "Pawmi",
+    "Raboot",
+    "Steenee",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Zubat, Taillow->Nosepass, Spoink->Nosepass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Finneon",
+    "Nosepass",
+    "Pawmi",
+    "Steenee",
+    "Wooloo",
+    "Zubat"
+   ],
+   "seconds": 0.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Zubat, Taillow->Onix, Spoink->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Finneon",
+    "Onix",
+    "Raboot",
+    "Vulpix",
+    "Zubat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Raboot, Taillow->Pawmi, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Bibarel",
+    "Pawmi",
+    "Raboot",
+    "Tentacool",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Raboot, Taillow->Pawmi, Spoink->Trumbeak; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Finneon",
+    "Pawmi",
+    "Raboot",
+    "Surskit",
+    "Trumbeak",
+    "Wooloo"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Raboot, Taillow->Onix, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Bibarel",
+    "Nosepass",
+    "Onix",
+    "Pawmi",
+    "Raboot",
+    "Trumbeak"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Nosepass; answers Growlithe->Nosepass, Sunkern->Vullaby, Taillow->Nosepass, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Nosepass",
+    "Raboot",
+    "Trumbeak",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Vullaby, Taillow->Pawmi, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Finneon",
+    "Pawmi",
+    "Raboot",
+    "Tentacool",
+    "Vullaby",
+    "Vulpix"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Zubat, Taillow->Onix, Spoink->Onix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Barboach",
+    "Nosepass",
+    "Onix",
+    "Raboot",
+    "Trumbeak",
+    "Zubat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bibarel; answers Growlithe->Bibarel, Sunkern->Steenee, Taillow->Nosepass, Spoink->Bibarel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Corphish",
+    "Bibarel",
+    "Nosepass",
+    "Pawmi",
+    "Steenee",
+    "Tentacool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Dottler, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Dottler",
+    "Onix",
+    "Phanpy",
+    "Surskit",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Kricketune, Taillow->Luxio, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Finneon",
+    "Kricketune",
+    "Luxio",
+    "Nacli",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Sewaddle, Taillow->Nacli, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Goldeen",
+    "Nacli",
+    "Phanpy",
+    "Sewaddle",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Sewaddle, Taillow->Luxio, Spoink->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Finneon",
+    "Lombre",
+    "Luxio",
+    "Prinplup",
+    "Purrloin",
+    "Sewaddle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Tentacool, Taillow->Luxio, Spoink->Luxio; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Luxio",
+    "Makuhita",
+    "Nacli",
+    "Prinplup",
+    "Surskit",
+    "Tentacool"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Surskit, Taillow->Onix, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Goldeen",
+    "Makuhita",
+    "Onix",
+    "Phanpy",
+    "Surskit"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Sewaddle, Taillow->Furret, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Phanpy",
+    "Sewaddle",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Kricketune, Taillow->Onix, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Furret",
+    "Kricketune",
+    "Onix",
+    "Phanpy",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Finneon; answers Growlithe->Finneon, Sunkern->Vullaby, Taillow->Nacli, Spoink->Vullaby; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Goldeen",
+    "Makuhita",
+    "Nacli",
+    "Tentacool",
+    "Vullaby"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Surskit; answers Growlithe->Surskit, Sunkern->Dottler, Taillow->Finneon, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Kricketune",
+    "Lombre",
+    "Purrloin",
+    "Surskit"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Onix; answers Growlithe->Onix, Sunkern->Luxio, Taillow->Onix, Spoink->Phanpy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Goldeen",
+    "Lombre",
+    "Luxio",
+    "Nacli",
+    "Onix",
+    "Phanpy"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Furret; answers Growlithe->Furret, Sunkern->Dottler, Taillow->Nacli, Spoink->Furret; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Dottler",
+    "Finneon",
+    "Furret",
+    "Goldeen",
+    "Nacli",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Growlithe->Prinplup, Sunkern->Kricketune, Taillow->Nacli, Spoink->Kricketune; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Finneon",
+    "Kricketune",
+    "Lombre",
+    "Nacli",
+    "Prinplup",
+    "Tentacool"
+   ],
+   "seconds": 0.5
+  }
+ ],
+ "key": "tr323"
+}

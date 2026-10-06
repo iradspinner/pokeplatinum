@@ -9,15 +9,14 @@ kit its own form command rather than warping to Rotom's room.
 ## Getting the ROM
 
 ```
-tools/oxide/fetch-rom --testkit [commit]   # the playtest copy, built on GitHub
-make testkit                               # a local build, for development only
+make testkit                               # writes build-testkit/pokeplatinum.us.nds
 ```
 
-`fetch-rom --testkit` asks the private builder for `make testkit` instead of
-`make rom` and downloads `pokeplatinum-oxide-testkit-<commit>.nds`, checked
-against the builder's SHA-1, as it does for the ordinary ROM. Hand Ian that
-copy, not one built on this CPU. The local build writes
-`build-testkit/pokeplatinum.us.nds`.
+Build it from the same pushed commit as the ordinary ROM, and copy it into
+`~/oxide-playtest` as `pokeplatinum-oxide-testkit-<commit>.nds` for Ian. The
+ordinary ROM of that commit is the one checked against GitHub's SHA-1, since
+GitHub builds only the ordinary ROM. The private builder that once built the
+test kit on GitHub was retired on 2026-10-01.
 
 ## Why the ROM of record cannot change
 
@@ -60,7 +59,7 @@ The NPC stands in the bedroom's bottom-left corner. Its menu:
 | Sprite heights | four wild Pokemon at Lv. 5 in turn: Wooloo, Sinistea, Rookidee, Fletchling | the new species' placement: the first, third and fourth stand on their shadows, Sinistea hovers just above |
 | Level caps | puts the player in any of the thirteen level-cap splits, from Roark's (cap 16, where a new game starts) to none, including an earlier one than now (entries below) | element 8's level caps |
 | Element 7 items | one of each of the 46 new items and the Ice Stone, and a battle for each held item (entries below) | element 7's items and its follow-up |
-| Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone, and "Route 208, all badges", which gives all eight badges and lands facing west at Route 208's rocky wall, two tiles from the pond below its waterfall; then five gauntlet entries, each landing one step from a section's way in: Eterna City at the Galactic building's door, the Veilstone warehouse at its stairs down to HQ B2F, Mt. Coronet's Route 211 room beside the way south into the tunnel, Mt. Coronet 2F at its stairs up to 3F, and the League's gate at the way north into Victory Road | the Sandgem UNLOCK FPS crash, the nurse, Route 202's trainers, the Move Relearner, the TM shop, field moves by badge (Rock Climb, Surf, Waterfall up and down, and FLY, SURF and DEFOG in every Pokemon's menu), and the gauntlets (`docs/oxide/gauntlets.md`), which open only when the player walks through a way in, never on a script's warp |
+| Warp | Twinleaf, Sandgem, Sandgem's Pokemon Center, Jubilife, Pastoria, Veilstone, and "Route 208, all badges", which gives all eight badges and lands facing west at Route 208's rocky wall, two tiles from the pond below its waterfall; then five gauntlet entries, each landing one step from a section's way in: Eterna City at the Galactic building's door, the Veilstone warehouse at its stairs down to HQ B2F, Mt. Coronet's Route 211 room beside the way south into the tunnel, Mt. Coronet 2F at its stairs up to 3F, and the League's gate at the way north into Victory Road | the nurse, Route 202's trainers, the Move Relearner, the TM shop, field moves by badge (Rock Climb, Surf, Waterfall up and down, and FLY, SURF and DEFOG in every Pokemon's menu), and the gauntlets (`docs/oxide/gauntlets.md`), which open only when the player walks through a way in, never on a script's warp |
 
 Warps to a town land on its fly point, and the Pokemon Center warp lands where
 a whiteout does. A warp ahead of the story can meet story scripts in the
@@ -166,6 +165,9 @@ jumps to `TestKit_GiveMew`, or sets a species in `VAR_0x800A` and jumps to
 | 65 | Beak Blast, Recover, Splash, Tackle | Beak Blast's heat (2026-09-27); starts a battle with a wild Rattata that knows Tackle and Swift. On a turn Mew chooses Beak Blast, "MEW started heating up its beak!" comes before anyone moves, and a Tackle into Mew brings "The wild RATTATA was burned!" before Beak Blast strikes (it moves last). A Swift makes no contact and burns nothing, and neither does a Tackle on a turn Mew chooses something else. Before this Beak Blast was a plain hit |
 | 66 | Sky Drop, Recover, Splash, Protect | Sky Drop (2026-09-27); starts a battle with a wild Chansey that knows only Tackle, slower than Mew. The first turn brings "MEW took the wild CHANSEY into the sky!", both vanish, and Chansey does not tackle that turn; the next turn the drop hits before Chansey can move, both reappear, and Chansey tackles later that same turn. A target of 200 kg or more (Snorlax) makes it fail, as does Gravity. Before this Sky Drop was a plain hit |
 | 67 | Sky Drop, Recover, Splash, Protect | Sky Drop against a Flying type; starts a battle with a wild Skarmory that knows only Splash. Skarmory is lifted ("MEW took the wild SKARMORY into the sky!"), and on the second turn, once both have landed, "It doesn't affect the wild SKARMORY..." |
+| 68 | Freeze Shock, Ice Burn, Recover, Splash | Wonder Guard's charging moves (2026-09-30); starts a battle with a wild Shedinja that knows only Splash, whose Wonder Guard stops anything not super effective. Each move's first turn charges ("MEW became cloaked in a freezing light!", or "in freezing air!" for Ice Burn) with no "It doesn't affect" line, and the second turn says "It doesn't affect the wild SHEDINJA...". Before the fix Wonder Guard stopped each move on its first turn, so it never charged |
+| 69 | Lunar Blessing, Jungle Healing, Recover, Splash | Lunar Blessing and Jungle Healing (2026-09-30); starts a battle with a slower wild Chansey that knows Seismic Toss and Thunder Wave. On the first turn, at full HP with no status, either move says "But it failed!". Once Mew is hurt or paralysed, it prints "MEW regained health!" (a quarter of its HP) and "MEW's status returned to normal!" for whichever applies, and the paralysis icon goes. Before the change both did nothing |
+| 70 | Hyper Voice, Heal Bell, Protect, Recover | Throat Chop (2026-09-30); starts a battle with a wild Ninjask, always faster than Mew, that knows only Throat Chop. Choose Hyper Voice: after the chop, "MEW can't use HYPER VOICE because of THROAT CHOP!". Next turn the menu refuses Hyper Voice and Heal Bell with the same line; Protect keeps the next chop off, and the turn after Hyper Voice can be chosen again. Before the change Throat Chop was a plain hit |
 
 **When a batch of effect scripts lands, add its sets in the same commit**: a
 `TestKit_MoveSetN` block, an `AddListMenuEntry` line in `TestKit_MoveSets2`, and

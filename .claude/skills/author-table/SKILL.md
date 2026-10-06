@@ -131,7 +131,11 @@ to read it.
   rooms lead to Route 224 and are post-game.
 - Roark's split holds only starter-adjacent lines, lines with a scripted
   source, and 4% or 1% tails. Ravaged Path is in Roark's split.
-- A gate-tier starter is a cameo or a tail, never a home. A delay (a location
+- Each starter line stays wild with one home and at most one neighbour
+  (Ian, 2026-09-29); Froakie's 1% is cut to a few water areas that fit.
+- Capture levels end at about 60: no wild table goes past it, with Dialga
+  and Palkia at 70 the exception (Ian, 2026-09-26).
+- A delay (a location
   whose halves fall in different splits) must be worth delaying for: several
   starters or value lines at 10 to 20%, not a 5% tail.
 - A line fully evolved by level-up under a split's cap belongs in or before

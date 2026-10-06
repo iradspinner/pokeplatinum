@@ -10,6 +10,7 @@
 #include "savedata/save_table.h"
 
 #include "battle/battle_context.h"
+#include "battle/battle_controller_player.h"
 #include "battle/battle_mon.h"
 
 #include "heap.h"
@@ -57,6 +58,25 @@ typedef char OxideBeaconIs0x2CBytes[(sizeof(OxideBeacon) == 0x2C) ? 1 : -1];
 // SAVE_PAGE_MAX, so the log's sector has to come before them.
 typedef char BattleLogSectorBeforeExtraSaves[(BATTLE_LOG_SECTOR < SAVE_PAGE_MAX) ? 1 : -1];
 
+// The shapes the live export assumes when it reads the battle recorder's
+// entries (docs/oxide/battle-log.md, "The RAM beacon"): four moves with a PP
+// byte each, two status words, eight one-byte stat stages, and per battler
+// four u32 actions, a u16 move slot and a one-byte command flag. Any change
+// here has to go to the melonDS fork's reader too.
+#define BEACON_MEMBER_SIZE(type, member) sizeof(((type *)NULL)->member)
+typedef char BeaconFourMoves[(LEARNED_MOVES_MAX == 4 && BEACON_MEMBER_SIZE(BattleMon, moves[0]) == 2) ? 1 : -1];
+typedef char BeaconPPIsBytes[(BEACON_MEMBER_SIZE(BattleMon, ppCur) == LEARNED_MOVES_MAX) ? 1 : -1];
+typedef char BeaconStatusWords[(BEACON_MEMBER_SIZE(BattleMon, status) == 4 && BEACON_MEMBER_SIZE(BattleMon, statusVolatile) == 4) ? 1 : -1];
+typedef char BeaconEightStatStages[(NUM_BOOSTABLE_STATS == 8 && BEACON_MEMBER_SIZE(BattleMon, statBoosts) == 8) ? 1 : -1];
+typedef char BeaconFourActionsEach[(MAX_BATTLE_ACTIONS == 4 && BEACON_MEMBER_SIZE(BattleContext, battlerActions[0][0]) == 4) ? 1 : -1];
+typedef char BeaconActionOrder[(BATTLE_ACTION_PICK_COMMAND == 0 && BATTLE_ACTION_CHOOSE_TARGET == 1 && BATTLE_ACTION_TEMP_VALUE == 2 && BATTLE_ACTION_SELECTED_COMMAND == 3) ? 1 : -1];
+typedef char BeaconMoveSlotIsU16[(BEACON_MEMBER_SIZE(BattleContext, moveSlot[0]) == 2) ? 1 : -1];
+typedef char BeaconCommandFlagIsByte[(BEACON_MEMBER_SIZE(BattleContext, recordedCommandFlags[0]) == 1 && RECORDED_CMD_FLAG_ACTION == 1) ? 1 : -1];
+typedef char BeaconControlWords[(BEACON_MEMBER_SIZE(BattleContext, totalTurns) == 4 && BEACON_MEMBER_SIZE(BattleContext, command) == 4 && BEACON_MEMBER_SIZE(BattleContext, commandNext) == 4) ? 1 : -1];
+typedef char BeaconMenuInputs[(PLAYER_INPUT_FIGHT == 1 && PLAYER_INPUT_ITEM == 2 && PLAYER_INPUT_PARTY == 3 && PLAYER_INPUT_RUN == 4) ? 1 : -1];
+// Every layout entry is a u16, so every offset has to fit one.
+typedef char BeaconOffsetsFitU16[(sizeof(BattleContext) <= 0xFFFF) ? 1 : -1];
+
 // Found by the live export by its two magic words, so it needs no per-build
 // addresses (docs/oxide/battle-log.md, "The RAM beacon").
 static const u16 sBeaconLayout[BEACON_LAYOUT_COUNT] = {
@@ -69,6 +89,19 @@ static const u16 sBeaconLayout[BEACON_LAYOUT_COUNT] = {
     [BEACON_LAYOUT_BATTLE_MON_MAX_HP] = offsetof(BattleMon, maxHP),
     [BEACON_LAYOUT_PARTY_RECORD_SIZE] = sizeof(Pokemon),
     [BEACON_LAYOUT_BOX_RECORD_SIZE] = sizeof(BoxPokemon),
+    [BEACON_LAYOUT_BATTLE_MON_MOVES] = offsetof(BattleMon, moves),
+    [BEACON_LAYOUT_BATTLE_MON_CUR_PP] = offsetof(BattleMon, ppCur),
+    [BEACON_LAYOUT_BATTLE_MON_STATUS] = offsetof(BattleMon, status),
+    [BEACON_LAYOUT_BATTLE_MON_STATUS_VOLATILE] = offsetof(BattleMon, statusVolatile),
+    [BEACON_LAYOUT_BATTLE_MON_STAT_BOOSTS] = offsetof(BattleMon, statBoosts),
+    [BEACON_LAYOUT_BATTLER_ACTIONS] = offsetof(BattleContext, battlerActions),
+    [BEACON_LAYOUT_MOVE_SLOTS] = offsetof(BattleContext, moveSlot),
+    [BEACON_LAYOUT_RECORDED_COMMAND_FLAGS] = offsetof(BattleContext, recordedCommandFlags),
+    [BEACON_LAYOUT_TOTAL_TURNS] = offsetof(BattleContext, totalTurns),
+    [BEACON_LAYOUT_COMMAND] = offsetof(BattleContext, command),
+    [BEACON_LAYOUT_COMMAND_NEXT] = offsetof(BattleContext, commandNext),
+    [BEACON_LAYOUT_CONTROL_SELECTION_INPUT] = BATTLE_CONTROL_COMMAND_SELECTION_INPUT,
+    [BEACON_LAYOUT_CONTROL_EXEC_SCRIPT] = BATTLE_CONTROL_EXEC_SCRIPT,
 };
 
 OxideBeacon gOxideBeacon = {

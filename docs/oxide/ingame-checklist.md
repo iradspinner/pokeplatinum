@@ -41,19 +41,18 @@ replacement went in on 2026-09-29, and all of this was done that day:
   failed on Windows and 0 of 1,760 in WSL (the old chip: 1 and 16 of 160), no
   wedge, and no WHEA error or crash in Windows' logs.
 - [x] Build `oxide` locally once and compare its SHA-1 with GitHub's build of
-  the same commit. Until they match, keep using `tools/oxide/fetch-rom`.
+  the same commit.
   Passed 2026-09-29: two builds from an empty folder on every core, 17,816
   steps in 47 and 48 seconds, both `917eb9a5` like GitHub's build of
   252111fe3.
 
 ## 1. The ROMs and the save
 
-- [ ] Fetch the ordinary ROM and the test kit ROM of the current `oxide`:
-  `tools/oxide/fetch-rom <commit>` and `tools/oxide/fetch-rom --testkit <commit>`.
+- [ ] Build the ordinary ROM and the test kit ROM of the current, pushed
+  `oxide` here (`make rom` and `make testkit`), check the ordinary one's SHA-1
+  against GitHub's build of the commit, and copy both into `~/oxide-playtest`.
 - [ ] **Start a new game.** An old save reads every ability as NONE by design
   (element 2 moved the field) and is no valid test bed.
-- [ ] Known crash to avoid until the bug track fixes it: UNLOCK FPS set to
-  ALWAYS hard-crashes on entering Sandgem Town (tracker, Phase 5).
 - [ ] **The base ROM's visual overhaul** (`carry-over`, merged), compared
   with Ian's own base ROM where anything looks off: the title screen's logo;
   the new Pokemon sprites front and back in battle, sitting at the right
@@ -70,10 +69,24 @@ replacement went in on 2026-09-29, and all of this was done that day:
   Wormadam, Shellos or Gastrodon form shows the icon one place along; that is
   known and harmless (`save-layout.md`, the Meloetta section).
 
-- [ ] Once `main-battlelog` merges, **the battle log**: your current save
-  loads and plays as before. Fight two trainers, save, and the OxiDex's
-  Battle Log shows both, with who knocked out whom. Lose one fight on
-  purpose if convenient; it is logged too, as lost.
+- [x] **The battle log**: done 2026-09-28, three wins on Route 202 on
+  51fa6cdaa; the OxiDex's Battle Log listed all three, and Sync and the log
+  also work on melonDS-oxide's live feed. Still unseen: a lost fight logging
+  as lost.
+- [ ] **The battle recorder logs your moves** (alpha readiness step 11,
+  `overseer-beacon-moves` with the melonDS fork's `beacon-moves` build).
+  With the ROM from that branch, and that melonDS build swapped into your
+  playing folder while melonDS is closed, start `record.py` in
+  `~/oxide-playtest/battle-recordings/`. Fight one wild battle and one
+  trainer; in each, use one attacking move, one stat move such as Growl or
+  Leer if a Pokemon has one, and one switch. Afterwards, the recorder's file
+  for each battle, read with `analyze.py`, should show each Pokemon's four
+  moves, the PP of the move you used falling by one, a stat stage after the
+  stat move (Atk-1 on the target of Growl, Def-1 for Leer), and under
+  "actions by turn" your move, your switch, and the foe's move for every
+  turn. `http://127.0.0.1:31124/status` should report `"turnData":true`.
+  Note any turn missing from the list. Nothing of this shows during the
+  fight itself.
 
 ## 2. The test kit ROM
 
@@ -109,7 +122,13 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   turns (62), Teatime eating a Liechi Berry at full HP (63), Core Enforcer
   against a faster Volt Absorb Jolteon (64), Beak Blast burning a Tackle
   (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
-  affecting a Skarmory (67). A stub
+  affecting a Skarmory (67). Set 68 (2026-09-30, `main-production`): against
+  a wild Shedinja, Freeze Shock and Ice Burn each charge on the first turn,
+  and only the second turn says "It doesn't affect". Sets 69 and 70
+  (2026-09-30, `main-production`): Lunar Blessing and Jungle Healing fail at
+  full HP with no status, and otherwise heal a quarter and cure paralysis;
+  after a Ninjask's Throat Chop, Hyper Voice fails that turn and neither it
+  nor Heal Bell can be chosen the next, then both come back. A stub
   effect does its damage and skips its extra, or says "But
   nothing happened!"; that is expected. Autotomize prints no "became nimble!",
   as Ian ruled.
@@ -300,8 +319,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Lucas uses the Turtwig line. With Turtwig, Barry has Scorbunny; with Piplup,
   Turtwig. The Jubilife TV mask, the Veilstone Department Store socialite's
   mask and the Underground Man's doll are the fire starter's.
-- [ ] Once the battle log lands (main track): fight two trainers, save, and
-  both battles show in the OxiDex's Battle Log, with the right knockouts.
+- [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
@@ -309,8 +327,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.
-- [ ] The options menu reads UNLOCK FPS, with OFF, BATTLE and ALWAYS (see the
-  known crash above before choosing ALWAYS).
+- [ ] The options menu reads UNLOCK FPS, with OFF and BATTLE only
+  (`main-60fps`), and its description says "Unlock the frame rate in battle,
+  so / battles run at twice the speed." A save made with ALWAYS shows BATTLE,
+  and the overworld runs at normal speed.
 - [ ] Held items come back after battle (element 8): give a Pokemon an Oran or
   Sitrus Berry, let a trainer's Pokemon bring it below half so it eats the
   Berry, and after the battle its summary shows the Berry again. The same for
@@ -355,6 +375,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   exit are open, with no woman stepping in; talking to her gives the sealed
   tunnels line. In Oreburgh's Mining Museum the fossil researcher offers to
   revive a fossil without the kit (once a fossil can be had).
+- [ ] A trainer's hidden ability: in the Eterna Galactic building, 3F, the
+  grunt's level 24 Snover sets hail as it enters (Snow Warning, its hidden
+  slot, through the party's ability 3; 20 trainers use it since aa3bbc3356).
 - [ ] Route 207: after Mira is found in Wayward Cave, the woman who asked for
   her says thank you and gives no evolution stones; her first line no longer
   promises any.
@@ -390,6 +413,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Glalie Ice/Rock, Luxray Electric/Dark, and Uxie, Mesprit and Azelf
   Psychic/Fairy. The Pokedex's info page shows the NORMAL plate for Fairy, the
   known gap in Phase 4's Fairy entry.
+- [ ] The box deposit hang is gone (`main-box-hang`, 2026-09-30): at a
+  Pokemon Center PC and with the Pocket PC, open Deposit, back out with B and
+  again with the on-screen exit; each returns to the PC menu. Then Withdraw
+  and Move Pokemon the same way, and a Pokemon's ability shows in the storage
+  screen's preview as before.
+- [ ] Fossils wait for Cycling Road (`main-production`, Ian, 2026-09-30).
+  With a Root, Armor or Skull Fossil from Oreburgh Mine B2F, talk to the
+  researcher in the Mining Museum before riding Cycling Road: he greets you,
+  says his machine's parts come from Eterna by way of Cycling Road, and
+  revives nothing. Ride down Cycling Road into its south gate, come back, and
+  he offers to revive it as before (level 20, the next time you talk to him).
 
 ## 4. The ordinary ROM, mid-game
 
@@ -420,6 +454,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
   Zackary's.
 - [ ] Honey trees at five badges: check against table 5.
+- [ ] Element 6's fixes of 2026-09-30 (`main-element6`), whenever one comes up; none needs a
+  set-up of its own. A trainer never aims a status move Magic Coat would bounce at a Pokemon
+  of Ian's with Magic Bounce (Natu, Xatu or Espeon with its hidden ability) once it has shown
+  it; a trainer's Infiltrator Pokemon still uses sleep, poison or paralysis moves through
+  Ian's Safeguard; a trainer's Mold Breaker Pokemon treats one of Ian's holding an Ability
+  Shield as keeping its ability (an Earthquake is not aimed at a shielded Levitate holder).
 - [ ] Double battles, once a trainer uses these moves (none does yet;
   `cloud/element4-partial-moves`): Flame Burst hits its target's partner for
   a sixteenth of its HP with "The bursting flame hit ...!"; Teatime's target
@@ -483,6 +523,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Route 213, have no clown; everyone else in them talks as before, and
   Veilstone's Elekid gift still gives Elekid.
 - [ ] The new grass (rustle on stepping in it, everywhere): Amity Square's lawn north-east of the pond (x 33 to 43, z 27 to 29) and Verity Lakefront's fenced lawn (x 85 to 95, z 846 to 850) give wild encounters from their tables; in Amity Square a battle with the walking partner out behaves normally. Sandgem's lawn by the beach road, Jubilife's fountain garden, Floaroma's north bed and Solaceon's lawn by the Day Care give encounters from their towns' new tables. Walking the Verity Lakefront lawn before the starter gives no encounter.
+- [ ] The battle backdrop on the new grass (`main-production`, Ian's open bug
+  of 2026-09-30): a wild battle in Sandgem's, Jubilife's, Floaroma's or
+  Solaceon's grass shows the route backdrop over a grass platform, as on Route
+  201, not the town's indoor-looking arena; Amity Square and Verity Lakefront
+  look the same as ever. A trainer fight on a town's paved ground (the
+  Galactic pair in Jubilife with Dawn) keeps the town backdrop.
 - [ ] A Burmy in a Sandy or Trash cloak evolves into a Wormadam with Anticipation, not Snow Cloak.
 - [ ] Fuego Ironworks: inside the building the location reads Ironworks Hall (anything received there is met at
   Ironworks Hall, and the journal says "Departed from Ironworks Hall" on leaving); the yard still reads Fuego Ironworks.
@@ -563,13 +609,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   An untouched Koffing still becomes ordinary Weezing at level 35, and a
   Ponyta ordinary Rapidash at 40.
 
-- [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
-  to him twice; the first time powers up the Pokedex): he asks for a Finneon
-  for his precious MELOETTA. The trade gives a Meloetta named MELOETTA, OT
-  Meister, holding a Lum Berry, at the Finneon's level and knowing Relic
-  Song, and his thanks name it. Its cry plays, and its Pokedex entry reads
-  "Its melodies sway the hearts of all who hear them..." with the Melody
-  Pokemon category.
+- [ ] **The Meister's trade** on Route 226. In the test kit, the menu's
+  "Meister's trade" gives a level-50 Finneon and puts you at his door. Talk
+  to him twice (the first time powers up the Pokedex): he asks for a Finneon
+  for his precious MELOETTA. The trade gives a Meloetta nicknamed Sera, OT
+  Meister, holding a Lum Berry, at the Finneon's level, with Relic Song in
+  its first move slot at full PP (his script sets it after the trade), and
+  his thanks name it. Its other three moves are its last level-up moves at
+  that level, at 50 Echoed Voice, U-turn and Wake-Up Slap. Its cry plays,
+  and its Pokedex entry reads "Its melodies sway the hearts of all who hear
+  them..." with the Melody Pokemon category. With the emulator's bridge
+  running, the Overseer can check the received Meloetta field by field from
+  the box export.
 
 - [x] **Eight items the balance census cannot reach** (2026-09-29): its map
   flood finds no way to them, so no score counts them. For each, say whether
@@ -612,6 +663,7 @@ On a save with the National Dex and the game beaten:
   to twice.
 - [ ] Sinnoh Now, watched a few times, shows no swarm news flash.
 - [ ] The Great Marsh binoculars show only what the marsh can give.
+- [ ] With the lookout's daily Pokemon cut (2026-09-30, `oxidex-bugs-0930`): a Safari Game in any Great Marsh area meets only that area's own table, and the lookout's binoculars show a species from it.
 - [ ] If a GBA game can be put in melonDS's second slot, no route gains its
   species.
 

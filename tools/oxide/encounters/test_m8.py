@@ -541,14 +541,19 @@ def check_moves_view(results):
 
     gible = server.dex_detail("SPECIES_GIBLE")
     garchomp = server.dex_detail("SPECIES_GARCHOMP")
+    # Each carries its numbers too, for the moves rail's tabs (the redesign,
+    # 2026-09-29).
+    claw = garchomp["machine_moves"][0]
     results.append(("the species page lists its machine, tutor and egg moves, "
-                    "each naming the move it opens",
-                    garchomp["machine_moves"][0] == {
+                    "each naming the move it opens, with its power and accuracy",
+                    {k: claw.get(k) for k in ("machine", "move", "type", "label")} == {
                         "machine": "TM02", "move": "MOVE_DRAGON_CLAW",
                         "type": "DRAGON", "label": "Dragon Claw"}
+                    and claw.get("power") and claw.get("accuracy")
                     and garchomp["tutor_moves"]
+                    and all("power" in m for m in garchomp["tutor_moves"])
                     and any(m["move"] == "MOVE_OUTRAGE" for m in gible["egg_moves"]),
-                    ""))
+                    str(claw)))
 
 
 def check_calculator(results):
@@ -566,9 +571,10 @@ def check_calculator(results):
                                                "sa": 85, "sd": 85, "sp": 102}
                     and poks["Clefairy"]["types"] == ["Fairy"]
                     and poks["Ninetales-Alola"]["types"] == ["Ice", "Fairy"]
-                    # the two regular slots; Gible has a hidden one too since element 8
-                    and poks["Gible"]["abilities"].get("0") == "Sand Veil"
-                    and poks["Gible"]["abilities"].get("1") == "Rough Skin",
+                    # Gible's one regular ability and its hidden one: Rough Skin,
+                    # with Sand Veil hidden since the buff review (Ian, 2026-09-29)
+                    and poks["Gible"]["abilities"].get("0") == "Rough Skin"
+                    and poks["Gible"]["abilities"].get("H") == "Sand Veil",
                     f"{len(poks)} species"))
     moves = blob["moves"]
     results.append(("moves carry Oxide's type, category and power, and a coded "

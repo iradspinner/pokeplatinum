@@ -10,7 +10,21 @@
       "Bash(git fetch *)"
     ]
   },
+  "enabledPlugins": {
+    "superpowers@anthropic-plugin-directory": false
+  },
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR\"/.claude/hooks/oxidex_autostart.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PreToolUse": [
       {
         "matcher": "Bash",

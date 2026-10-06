@@ -30,10 +30,9 @@
 #   tools/oxide/integrate.sh --no-push    # do not push oxide at the end
 #   tools/oxide/integrate.sh --verify-only  # steps 4 and 5 on the tree as it is:
 #                                           # no fetch, no merge, no push (the QA pass)
-#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM from tools/oxide/fetch-rom,
-#                                         # instead of building one; only the build's small
-#                                         # helper files are made, on two jobs (for while
-#                                         # this CPU cannot take a full build)
+#   tools/oxide/integrate.sh --rom PATH   # check PATH, a ROM built elsewhere, instead of
+#                                         # building one; only the build's small helper
+#                                         # files are made, on two jobs
 set -uo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -456,14 +455,21 @@ esac
 
 # The tracker holds open work only and every main-track session reads it in
 # full, so it is kept short: finished blocks move to tracker-archive.md. This
-# warns rather than fails when it passes 6,000 words, so it cannot quietly
+# warns rather than fails when it passes 9,000 words (6,000 until Ian raised
+# it on 2026-10-03, after it was outgrown twice), so it cannot quietly
 # grow back to the 20,000 it reached before the 2026-09-23 cut.
 tracker_words="$(wc -w < docs/oxide/tracker.md)"
-if [ "$tracker_words" -gt 6000 ]; then
-    warn "tracker.md is $tracker_words words, over 6,000: move finished blocks to docs/oxide/tracker-archive.md"
+if [ "$tracker_words" -gt 9000 ]; then
+    warn "tracker.md is $tracker_words words, over 9,000: move finished blocks to docs/oxide/tracker-archive.md"
 else
-    echo "tracker.md is $tracker_words words (warns over 6,000)"
+    echo "tracker.md is $tracker_words words (warns over 9,000)"
 fi
+
+# Deferred instructions (Ian, 2026-10-01): each lives in the tracker's
+# Scheduled list with why it exists and what would make it unneeded, and is
+# checked against today's state before it is done. An entry without its
+# reason, one past due, or a dated deferral anywhere else fails here.
+check "deferred instructions (deferred_check.py)" "$PY" tools/oxide/deferred_check.py
 
 # ---------------------------------------------------------------- 5. docs mirror
 say "docs"

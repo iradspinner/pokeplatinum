@@ -1,11 +1,11 @@
 {
     "base_stats": {
         "hp": 50,
-        "attack": 50,
-        "defense": 77,
+        "attack": 65,
+        "defense": 107,
         "speed": 91,
-        "special_attack": 95,
-        "special_defense": 77
+        "special_attack": 105,
+        "special_defense": 107
     },
     "types": [ "TYPE_ELECTRIC", "TYPE_GHOST" ],
     "catch_rate": 45,
@@ -50,10 +50,8 @@
         "by_tm": [
             "TM06",
             "TM10",
-            "TM11",
             "TM16",
             "TM17",
-            "TM18",
             "TM21",
             "TM24",
             "TM25",

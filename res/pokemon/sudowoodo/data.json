@@ -1,11 +1,11 @@
 {
     "base_stats": {
-        "hp": 70,
-        "attack": 100,
+        "hp": 85,
+        "attack": 110,
         "defense": 115,
         "speed": 30,
         "special_attack": 30,
-        "special_defense": 65
+        "special_defense": 80
     },
     "types": [ "TYPE_ROCK", "TYPE_ROCK" ],
     "catch_rate": 65,
@@ -61,7 +61,6 @@
             "TM04",
             "TM06",
             "TM10",
-            "TM11",
             "TM12",
             "TM17",
             "TM21",
@@ -70,7 +69,6 @@
             "TM28",
             "TM31",
             "TM32",
-            "TM37",
             "TM39",
             "TM41",
             "TM42",

@@ -30,7 +30,7 @@
     "abilities": [
         "ABILITY_TECHNICIAN",
         "ABILITY_TECHNICIAN",
-        "ABILITY_TECHNICIAN"
+        "ABILITY_POISON_HEAL"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GREEN",
@@ -61,7 +61,6 @@
             "TM08",
             "TM09",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
             "TM19",

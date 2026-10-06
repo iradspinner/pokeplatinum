@@ -266,6 +266,8 @@ def name_effects(recs, enums):
 
     If the names file is missing, each effect falls back to the first move that
     uses it, which keeps the tool working without a clone of hg-engine on disk.
+    The second value returned is the set of effects named that way, so the
+    summary does not count them as named from hg-engine.
     """
     names = {}
     if os.path.exists(EFFECT_NAMES):
@@ -277,14 +279,16 @@ def name_effects(recs, enums):
         if e >= PLATINUM_EFFECTS and e not in first and i in enums:
             first[e] = enums[i][len("MOVE_"):]
     out = []
+    from_move = set()
     for e in range(PLATINUM_EFFECTS, LAST_EFFECT + 1):
         if e in names:
             out.append("BATTLE_EFFECT_" + names[e])
         elif e in first:
             out.append("BATTLE_EFFECT_" + first[e])
+            from_move.add(e)
         else:
             out.append("BATTLE_EFFECT_UNUSED_%d" % e)
-    return out
+    return out, from_move
 
 
 DAMAGE_STUB = """#include "macros/btlcmd.inc"
@@ -361,7 +365,7 @@ def main():
     effects = effects[:PLATINUM_EFFECTS]
 
     enums = assign_enums(names, recs)
-    effect_names = name_effects(recs, enums)
+    effect_names, named_from_move = name_effects(recs, enums)
     all_effects = effects + effect_names + [e for e, _ in OXIDE_EFFECTS]
     oxide_effect_of = {m: e for e, moves in OXIDE_EFFECTS for m in moves}
 
@@ -411,10 +415,11 @@ def main():
 
     print("new move directories: %d (ids %d..%d, of which %d are the retail tail)"
           % (len(written), FIRST_NEW, LAST_NEW, len(PLACEHOLDERS)))
-    print("new battle effect ids: %d (%d..%d), %d named from hg-engine, %d unnamed"
+    unnamed = sum(1 for n in effect_names if "_UNUSED_" in n)
+    print("new battle effect ids: %d (%d..%d), %d named from hg-engine, "
+          "%d after the first move that uses them, %d unnamed"
           % (len(effect_names), PLATINUM_EFFECTS, LAST_EFFECT,
-             sum(1 for n in effect_names if "_UNUSED_" not in n),
-             sum(1 for n in effect_names if "_UNUSED_" in n)))
+             len(effect_names) - len(named_from_move) - unnamed, len(named_from_move), unnamed))
     if fallback:
         print("moves with no animation in the map, taking the placeholder: %d %s"
               % (len(fallback), fallback[:10]))

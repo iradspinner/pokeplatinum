@@ -18,8 +18,8 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Items given | 167 | 131 | 35 | 1 | 0 | 5 |
 | Item balls | 332 | 327 | 0 | 5 | 0 | 2 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3234 | 2976 | 215 | 43 | 0 | 93 |
-| Variables | 1122 | 1082 | 31 | 9 | 0 | 32 |
+| Flags | 3236 | 2976 | 215 | 45 | 0 | 93 |
+| Variables | 1124 | 1082 | 31 | 11 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -31,11 +31,11 @@ What the tool could not read, counted rather than guessed:
 | Could not read | Count | Maps or files |
 |---|---:|---:|
 | raw data lines | 15 | 15 |
-| commands with no name | 257 | 37 |
+| commands with no name | 229 | 37 |
 | numbers no table holds | 0 | 0 |
 | variables set elsewhere | 36 | 11 |
 
-Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 67 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
+Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
 ### Maps by split
 
@@ -48,7 +48,7 @@ Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src
 - Candice's split: [Mt Coronet B1F](#mt-coronet-b1f), [Mt Coronet 1F North Room 2](#mt-coronet-1f-north-room-2), [Route 216](#route-216), [Route 217](#route-217), [Route 217 Northeast House](#route-217-northeast-house), [Route 217 West House](#route-217-west-house), [Acuity Lakefront](#acuity-lakefront), [Lake Acuity](#lake-acuity), [Lake Acuity Low Water](#lake-acuity-low-water), [Snowpoint City](#snowpoint-city), [Snowpoint City East House](#snowpoint-city-east-house), [Snowpoint City Gym](#snowpoint-city-gym), [Snowpoint City Mart](#snowpoint-city-mart), [Snowpoint City Pokecenter 1F](#snowpoint-city-pokecenter-1f), [Snowpoint City Pokecenter 2F](#snowpoint-city-pokecenter-2f), [Snowpoint City Pokecenter B1F](#snowpoint-city-pokecenter-b1f), [Snowpoint City West House](#snowpoint-city-west-house).
 - Galactic's split: [Route 225](#route-225), [Route 225 House](#route-225-house), [Route 226](#route-226), [Route 226 House](#route-226-house), [Route 227](#route-227), [Stark Mountain Outside](#stark-mountain-outside), [Stark Mountain Room 3](#stark-mountain-room-3), [Stark Mountain Room 1](#stark-mountain-room-1), [Stark Mountain Room 2](#stark-mountain-room-2), [Route 228](#route-228), [Route 228 North House](#route-228-north-house), [Route 228 Rock Peak Ruins](#route-228-rock-peak-ruins), [Route 229](#route-229), [Distortion World 1F](#distortion-world-1f), [Distortion World B1F](#distortion-world-b1f), [Distortion World B2F](#distortion-world-b2f), [Distortion World B3F](#distortion-world-b3f), [Distortion World B4F](#distortion-world-b4f), [Distortion World B5F](#distortion-world-b5f), [Distortion World B6F](#distortion-world-b6f), [Distortion World B7F](#distortion-world-b7f), [Distortion World Giratina Room](#distortion-world-giratina-room), [Distortion World Turnback Cave Room](#distortion-world-turnback-cave-room), [Resort Area](#resort-area), [Resort Area Pokecenter 1F](#resort-area-pokecenter-1f), [Resort Area Pokecenter 2F](#resort-area-pokecenter-2f), [Resort Area Pokecenter B1F](#resort-area-pokecenter-b1f), [Resort Area Ribbon Syndicate 1F](#resort-area-ribbon-syndicate-1f), [Resort Area Ribbon Syndicate 2F](#resort-area-ribbon-syndicate-2f), [Resort Area Ribbon Syndicate Elevator](#resort-area-ribbon-syndicate-elevator), [Unknown 578](#unknown-578), [Unused Resort Area Mart](#unused-resort-area-mart), [Route 230](#route-230), [Mt Coronet 1F Tunnel Room](#mt-coronet-1f-tunnel-room), [Mt Coronet 2F](#mt-coronet-2f), [Mt Coronet 3F](#mt-coronet-3f), [Mt Coronet Outside South](#mt-coronet-outside-south), [Mt Coronet 4F Rooms 1 And 2](#mt-coronet-4f-rooms-1-and-2), [Mt Coronet 4F Room 3](#mt-coronet-4f-room-3), [Mt Coronet Outside North](#mt-coronet-outside-north), [Mt Coronet 5F](#mt-coronet-5f), [Mt Coronet 6F](#mt-coronet-6f).
 - Volkner's split: [Acuity Cavern](#acuity-cavern), [Valor Cavern](#valor-cavern), [Route 222](#route-222), [Route 222 East House](#route-222-east-house), [Route 222 West House](#route-222-west-house), [Sunyshore City](#sunyshore-city), [Sunyshore City East House](#sunyshore-city-east-house), [Sunyshore City Gym Room 1](#sunyshore-city-gym-room-1), [Sunyshore City Gym Room 2](#sunyshore-city-gym-room-2), [Sunyshore City Gym Room 3](#sunyshore-city-gym-room-3), [Sunyshore City Mart](#sunyshore-city-mart), [Sunyshore City Northeast House](#sunyshore-city-northeast-house), [Sunyshore City Pokecenter 1F](#sunyshore-city-pokecenter-1f), [Sunyshore City Pokecenter 2F](#sunyshore-city-pokecenter-2f), [Sunyshore City Pokecenter B1F](#sunyshore-city-pokecenter-b1f), [Unused Sunyshore City House 1](#unused-sunyshore-city-house-1), [Unused Sunyshore City House 2](#unused-sunyshore-city-house-2).
-- League's split: [Sendoff Spring](#sendoff-spring), [Route 223](#route-223), [Victory Road 1F](#victory-road-1f), [Victory Road 2F](#victory-road-2f), [Victory Road B1F](#victory-road-b1f), [Pokemon League](#pokemon-league), [Pokemon League Aaron Room](#pokemon-league-aaron-room), [Pokemon League Bertha Room](#pokemon-league-bertha-room), [Pokemon League Champion Room](#pokemon-league-champion-room), [Pokemon League Elevator To Aaron Room](#pokemon-league-elevator-to-aaron-room), [Pokemon League Elevator To Bertha Room](#pokemon-league-elevator-to-bertha-room), [Pokemon League Elevator To Champion Room](#pokemon-league-elevator-to-champion-room), [Pokemon League Elevator To Flint Room](#pokemon-league-elevator-to-flint-room), [Pokemon League Elevator To Lucian Room](#pokemon-league-elevator-to-lucian-room), [Pokemon League Flint Room](#pokemon-league-flint-room), [Pokemon League Hall Of Fame](#pokemon-league-hall-of-fame), [Pokemon League Hallway To Hall Of Fame](#pokemon-league-hallway-to-hall-of-fame), [Pokemon League Lucian Room](#pokemon-league-lucian-room), [Pokemon League North Pokecenter 1F](#pokemon-league-north-pokecenter-1f), [Pokemon League North Pokecenter 2F](#pokemon-league-north-pokecenter-2f), [Pokemon League North Pokecenter B1F](#pokemon-league-north-pokecenter-b1f), [Pokemon League South Pokecenter 1F](#pokemon-league-south-pokecenter-1f), [Pokemon League South Pokecenter 2F](#pokemon-league-south-pokecenter-2f), [Pokemon League South Pokecenter B1F](#pokemon-league-south-pokecenter-b1f).
+- Barry's split: [Sendoff Spring](#sendoff-spring), [Route 223](#route-223), [Victory Road 1F](#victory-road-1f), [Victory Road 2F](#victory-road-2f), [Victory Road B1F](#victory-road-b1f), [Pokemon League](#pokemon-league), [Pokemon League Aaron Room](#pokemon-league-aaron-room), [Pokemon League Bertha Room](#pokemon-league-bertha-room), [Pokemon League Champion Room](#pokemon-league-champion-room), [Pokemon League Elevator To Aaron Room](#pokemon-league-elevator-to-aaron-room), [Pokemon League Elevator To Bertha Room](#pokemon-league-elevator-to-bertha-room), [Pokemon League Elevator To Champion Room](#pokemon-league-elevator-to-champion-room), [Pokemon League Elevator To Flint Room](#pokemon-league-elevator-to-flint-room), [Pokemon League Elevator To Lucian Room](#pokemon-league-elevator-to-lucian-room), [Pokemon League Flint Room](#pokemon-league-flint-room), [Pokemon League Hall Of Fame](#pokemon-league-hall-of-fame), [Pokemon League Hallway To Hall Of Fame](#pokemon-league-hallway-to-hall-of-fame), [Pokemon League Lucian Room](#pokemon-league-lucian-room), [Pokemon League North Pokecenter 1F](#pokemon-league-north-pokecenter-1f), [Pokemon League North Pokecenter 2F](#pokemon-league-north-pokecenter-2f), [Pokemon League North Pokecenter B1F](#pokemon-league-north-pokecenter-b1f), [Pokemon League South Pokecenter 1F](#pokemon-league-south-pokecenter-1f), [Pokemon League South Pokecenter 2F](#pokemon-league-south-pokecenter-2f), [Pokemon League South Pokecenter B1F](#pokemon-league-south-pokecenter-b1f).
 - Post's split: [Turnback Cave Entrance](#turnback-cave-entrance), [Turnback Cave Giratina Room](#turnback-cave-giratina-room), [Turnback Cave Pillar 1 Room 1](#turnback-cave-pillar-1-room-1), [Turnback Cave Pillar 3 Room 6](#turnback-cave-pillar-3-room-6), [Turnback Cave Pillar Room](#turnback-cave-pillar-room), [Turnback Cave Pillar 1 Room 2](#turnback-cave-pillar-1-room-2), [Turnback Cave Pillar 1 Room 3](#turnback-cave-pillar-1-room-3), [Turnback Cave Pillar 1 Room 4](#turnback-cave-pillar-1-room-4), [Turnback Cave Pillar 1 Room 5](#turnback-cave-pillar-1-room-5), [Turnback Cave Pillar 1 Room 6](#turnback-cave-pillar-1-room-6), [Turnback Cave Pillar 2 Room 1](#turnback-cave-pillar-2-room-1), [Turnback Cave Pillar 2 Room 2](#turnback-cave-pillar-2-room-2), [Turnback Cave Pillar 2 Room 3](#turnback-cave-pillar-2-room-3), [Turnback Cave Pillar 2 Room 4](#turnback-cave-pillar-2-room-4), [Turnback Cave Pillar 2 Room 5](#turnback-cave-pillar-2-room-5), [Turnback Cave Pillar 2 Room 6](#turnback-cave-pillar-2-room-6), [Turnback Cave Pillar 3 Room 1](#turnback-cave-pillar-3-room-1), [Turnback Cave Pillar 3 Room 2](#turnback-cave-pillar-3-room-2), [Turnback Cave Pillar 3 Room 3](#turnback-cave-pillar-3-room-3), [Turnback Cave Pillar 3 Room 4](#turnback-cave-pillar-3-room-4), [Turnback Cave Pillar 3 Room 5](#turnback-cave-pillar-3-room-5), [Victory Road 1F Room 2](#victory-road-1f-room-2), [Spear Pillar](#spear-pillar), [Spear Pillar Dialga](#spear-pillar-dialga), [Spear Pillar Distorted](#spear-pillar-distorted), [Spear Pillar Palkia](#spear-pillar-palkia), [Rock Peak Ruins](#rock-peak-ruins), [Route 224](#route-224), [Iceberg Ruins](#iceberg-ruins), [Iron Ruins](#iron-ruins), [Snowpoint Temple 1F](#snowpoint-temple-1f), [Snowpoint Temple B1F](#snowpoint-temple-b1f), [Snowpoint Temple B2F](#snowpoint-temple-b2f), [Snowpoint Temple B3F](#snowpoint-temple-b3f), [Snowpoint Temple B4F](#snowpoint-temple-b4f), [Snowpoint Temple B5F](#snowpoint-temple-b5f).
 - Not placed: [Battle Arcade](#battle-arcade), [Battle Castle](#battle-castle), [Battle Factory](#battle-factory), [Battle Frontier](#battle-frontier), [Battle Frontier Gate To Fight Area](#battle-frontier-gate-to-fight-area), [Battle Hall](#battle-hall), [Battle Tower](#battle-tower), [Battle Tower Battle Room](#battle-tower-battle-room), [Battle Tower Battle Salon](#battle-tower-battle-salon), [Battle Tower Corridor](#battle-tower-corridor), [Battle Tower Corridor Multi](#battle-tower-corridor-multi), [Battle Tower Elevator](#battle-tower-elevator), [Battle Tower Multi Battle Room](#battle-tower-multi-battle-room), [Battleground](#battleground), [Cafe](#cafe), [Canalave Library 1F](#canalave-library-1f), [Canalave Library 2F](#canalave-library-2f), [Canalave Library 3F](#canalave-library-3f), [Communication Club Colosseum 2P](#communication-club-colosseum-2p), [Communication Club Colosseum 4P](#communication-club-colosseum-4p), [Contest Hall Lobby](#contest-hall-lobby), [Contest Hall Stage Ongoing Contest](#contest-hall-stage-ongoing-contest), [Cycle Shop](#cycle-shop), [Fight Area](#fight-area), [Fight Area Mart](#fight-area-mart), [Fight Area Pokecenter 1F](#fight-area-pokecenter-1f), [Fight Area Pokecenter 2F](#fight-area-pokecenter-2f), [Fight Area Pokecenter B1F](#fight-area-pokecenter-b1f), [Floaroma Meadow](#floaroma-meadow), [Flower Paradise](#flower-paradise), [Flower Shop](#flower-shop), [Footstep House](#footstep-house), [Fullmoon Island](#fullmoon-island), [Fullmoon Island Forest](#fullmoon-island-forest), [Galactic HQ 1F](#galactic-hq-1f), [Galactic HQ 2F](#galactic-hq-2f), [Galactic HQ 3F](#galactic-hq-3f), [Galactic HQ 4F](#galactic-hq-4f), [Galactic HQ B1F](#galactic-hq-b1f), [Galactic HQ B2F](#galactic-hq-b2f), [Galactic HQ Control Room](#galactic-hq-control-room), [Galactic HQ Hall](#galactic-hq-hall), [Galactic HQ Laboratory](#galactic-hq-laboratory), [Game Corner](#game-corner), [Global Terminal 1F](#global-terminal-1f), [Global Terminal 2F](#global-terminal-2f), [Global Terminal 3F](#global-terminal-3f), [Grand Lake Route 213 Lobby](#grand-lake-route-213-lobby), [Grand Lake Route 213 Northeast House](#grand-lake-route-213-northeast-house), [Grand Lake Route 213 Northwest House](#grand-lake-route-213-northwest-house), [Grand Lake Valor Lakefront East House](#grand-lake-valor-lakefront-east-house), [Grand Lake Valor Lakefront West House](#grand-lake-valor-lakefront-west-house), [Hall Of Origin](#hall-of-origin), [Jubilife Tv 1F](#jubilife-tv-1f), [Jubilife Tv 2F](#jubilife-tv-2f), [Jubilife Tv 2F Gallery](#jubilife-tv-2f-gallery), [Jubilife Tv 3F Global Ranking Room](#jubilife-tv-3f-global-ranking-room), [Jubilife Tv 3F Group Ranking Room](#jubilife-tv-3f-group-ranking-room), [Jubilife Tv Elevator](#jubilife-tv-elevator), [Mt Coronet Iceberg Ruins](#mt-coronet-iceberg-ruins), [Newmoon Island](#newmoon-island), [Newmoon Island Forest](#newmoon-island-forest), [Pal Park](#pal-park), [Pal Park Lobby](#pal-park-lobby), [Poffin House](#poffin-house), [Pokemon Mansion](#pokemon-mansion), [Pokemon Mansion Maids Room](#pokemon-mansion-maids-room), [Poketch Co 1F](#poketch-co-1f), [Restaurant](#restaurant), [Rotoms Room](#rotoms-room), [Sunyshore Market](#sunyshore-market), [Survival Area](#survival-area), [Survival Area Mart](#survival-area-mart), [Survival Area Pokecenter 1F](#survival-area-pokecenter-1f), [Survival Area Pokecenter 2F](#survival-area-pokecenter-2f), [Survival Area Pokecenter B1F](#survival-area-pokecenter-b1f), [Survival Area South House](#survival-area-south-house), [Team Galactic Eterna Building 1F](#team-galactic-eterna-building-1f), [Team Galactic Eterna Building 2F](#team-galactic-eterna-building-2f), [Team Galactic Eterna Building 3F](#team-galactic-eterna-building-3f), [Team Galactic Eterna Building 4F](#team-galactic-eterna-building-4f), [Trainers School](#trainers-school), [Underground](#underground), [Union Room](#union-room), [Unused Battle Park](#unused-battle-park), [Unused Battle Park Exchange Service Corner](#unused-battle-park-exchange-service-corner), [Unused Battle Park Gate To Fight Area](#unused-battle-park-gate-to-fight-area), [Unused Gate Between Eterna City Route 206](#unused-gate-between-eterna-city-route-206), [Veilstone Store 1F](#veilstone-store-1f), [Veilstone Store 2F](#veilstone-store-2f), [Veilstone Store 5F](#veilstone-store-5f), [Veilstone Store B1F](#veilstone-store-b1f), [Veilstone Store Elevator](#veilstone-store-elevator), [Verity Cavern](#verity-cavern), [Villa](#villa), [Vista Lighthouse](#vista-lighthouse), [Vista Lighthouse Elevator](#vista-lighthouse-elevator).
 - Shared script files: [scripts_battle_frontier_records](#scripts_battle_frontier_records), [scripts_battles](#scripts_battles), [scripts_berry_tree_interaction](#scripts_berry_tree_interaction), [scripts_bg_events](#scripts_bg_events), [scripts_common](#scripts_common), [scripts_communication_club](#scripts_communication_club), [scripts_contests](#scripts_contests), [scripts_counterpart_talk](#scripts_counterpart_talk), [scripts_day_care_common](#scripts_day_care_common), [scripts_empty](#scripts_empty), [scripts_field_moves](#scripts_field_moves), [scripts_follower_partners](#scripts_follower_partners), [scripts_group_connection](#scripts_group_connection), [scripts_hidden_items](#scripts_hidden_items), [scripts_init_new_game](#scripts_init_new_game), [scripts_mystery_gift_deliveryman](#scripts_mystery_gift_deliveryman), [scripts_poffin_common](#scripts_poffin_common), [scripts_poke_radar](#scripts_poke_radar), [scripts_pokedex_ratings](#scripts_pokedex_ratings), [scripts_pokemon_center_2f_common](#scripts_pokemon_center_2f_common), [scripts_pokemon_center_b1f_common](#scripts_pokemon_center_b1f_common), [scripts_pokemon_center_daily_trainers](#scripts_pokemon_center_daily_trainers), [scripts_record_chatot_cry](#scripts_record_chatot_cry), [scripts_safari_game](#scripts_safari_game), [scripts_scratch_off_cards](#scripts_scratch_off_cards), [scripts_tv_broadcast](#scripts_tv_broadcast), [scripts_tv_reporter_interviews](#scripts_tv_reporter_interviews), [scripts_unused_0397](#scripts_unused_0397), [scripts_visible_items](#scripts_visible_items), [scripts_vs_seeker](#scripts_vs_seeker).
@@ -194,9 +194,9 @@ Pokemon given:
 
 Trainer battles:
 
-- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_TURTWIG (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:691`
-- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_CHIMCHAR (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:694`
-- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_PIPLUP (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:697`
+- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_TURTWIG (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:692`
+- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_CHIMCHAR (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:695`
+- StartFirstBattle: against TRAINER_RIVAL_ROUTE_201_PIPLUP (Barry, level 5, 1 Pokemon), by name. Vanilla. `scripts_route_201.s:698`
 
 Items given:
 
@@ -364,10 +364,10 @@ Scripts nothing reaches: script 1 `SandgemTownPokecenterB1F_Dummy1` (line 7).
 
 Items given:
 
-- ITEM_OAKS_LETTER x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:408`
-- ITEM_MEMBER_CARD x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:409`
-- ITEM_AZURE_FLUTE x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:410`
-- ITEM_POKE_RADAR x1. Vanilla. `scripts_sandgem_town_pokemon_research_lab.s:438`
+- ITEM_OAKS_LETTER x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:409`
+- ITEM_MEMBER_CARD x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:410`
+- ITEM_AZURE_FLUTE x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town_pokemon_research_lab.s:411`
+- ITEM_POKE_RADAR x1. Vanilla. `scripts_sandgem_town_pokemon_research_lab.s:439`
 
 Flags:
 
@@ -381,7 +381,7 @@ Variables:
 - Set: VAR_SANDGEM_TOWN_LAB_STATE, VAR_EXITED_DISTORTION_WORLD_STATE, VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE.
 - Checked: VAR_SANDGEM_TOWN_STATE, VAR_FIGHT_AREA_STATE, VAR_SANDGEM_TOWN_LAB_STATE, VAR_EXITED_DISTORTION_WORLD_STATE.
 
-Scripts nothing reaches: script 4 `SandgemTownPokemonResearchLab_Entry3` (line 60), script 7 `SandgemTownPokemonResearchLab_Entry6` (line 93), script 13 `SandgemTownPokemonResearchLab_Entry12` (line 136).
+Scripts nothing reaches: script 4 `SandgemTownPokemonResearchLab_Entry3` (line 61), script 7 `SandgemTownPokemonResearchLab_Entry6` (line 94), script 13 `SandgemTownPokemonResearchLab_Entry12` (line 137).
 
 ### Route 202
 
@@ -392,16 +392,16 @@ Trainer battles:
 - TRAINER_YOUNGSTER_TRISTAN (Tristan, level 7, 1 Pokemon), sees the player. Vanilla. `events_route_202.json:19`
 - TRAINER_LASS_NATALIE (Natalie, level 7, 1 Pokemon), sees the player. Vanilla. `events_route_202.json:34`
 - TRAINER_YOUNGSTER_LOGAN (Logan, level 7, 1 Pokemon), sees the player. Vanilla. `events_route_202.json:49`
-- StartTrainerBattle: against TRAINER_DUMMY_787 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:297`
-- StartTrainerBattle: against TRAINER_DUMMY_788 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:300`
-- StartTrainerBattle: against TRAINER_DUMMY_789 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:303`
-- StartTrainerBattle: against TRAINER_DUMMY_790 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:306`
-- StartTrainerBattle: against TRAINER_DUMMY_791 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:309`
-- StartTrainerBattle: against TRAINER_DUMMY_792 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:312`
+- StartTrainerBattle: against TRAINER_DUMMY_787 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:298`
+- StartTrainerBattle: against TRAINER_DUMMY_788 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:301`
+- StartTrainerBattle: against TRAINER_DUMMY_789 (Dawn, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:304`
+- StartTrainerBattle: against TRAINER_DUMMY_790 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:307`
+- StartTrainerBattle: against TRAINER_DUMMY_791 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:310`
+- StartTrainerBattle: against TRAINER_DUMMY_792 (Lucas, level 9, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_202.s:313`
 
 Items given:
 
-- ITEM_POKE_BALL x5. Vanilla. `scripts_route_202.s:388`
+- ITEM_POKE_BALL x5. Vanilla. `scripts_route_202.s:389`
 
 Item balls:
 
@@ -429,7 +429,7 @@ Variables:
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Grunt, level 13, 1 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Grunt, level 13, 1 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
+- StartTagBattle: partner TRAINER_LUCAS_JUBILIFE_CITY_CHIMCHAR (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_PIPLUP (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_JUBILIFE_CITY_TURTWIG (Lucas, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_JUBILIFE_CITY_CHIMCHAR (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_PIPLUP (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_JUBILIFE_CITY_TURTWIG (Dawn, level 13, 1 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_1 (Grunt, level 13, 1 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_JUBILIFE_CITY_2 (Grunt, level 13, 1 Pokemon), by number. Vanilla. `scripts_jubilife_city.s:1026`
 
 Items given:
 
@@ -437,7 +437,7 @@ Items given:
 - ITEM_COUPON_2 x1. Vanilla. `scripts_jubilife_city.s:528`
 - ITEM_COUPON_3 x1. Vanilla. `scripts_jubilife_city.s:560`
 - ITEM_VS_RECORDER x1. Vanilla. `scripts_jubilife_city.s:971`
-- ITEM_FASHION_CASE x1. Vanilla. `scripts_jubilife_city.s:1156`
+- ITEM_FASHION_CASE x1. Vanilla. `scripts_jubilife_city.s:1157`
 
 Item balls:
 
@@ -584,9 +584,9 @@ Trainer battles:
 - TRAINER_LASS_KAITLIN (Kaitlin, level 7, 4 Pokemon), sees the player. Vanilla. `events_route_203.json:44`
 - TRAINER_YOUNGSTER_DALLAS (Dallas, level 10, 1 Pokemon), sees the player. Vanilla. `events_route_203.json:61`
 - TRAINER_LASS_MADELINE (Madeline, level 10, 1 Pokemon), sees the player. Vanilla. `events_route_203.json:78`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_PIPLUP (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:77`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_TURTWIG (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:81`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_CHIMCHAR (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:85`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_PIPLUP (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:78`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_TURTWIG (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:82`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_203_CHIMCHAR (Barry, level 11, 2 Pokemon), by name. Vanilla. `scripts_route_203.s:86`
 
 Item balls:
 
@@ -808,16 +808,16 @@ Trainer battles:
 - TRAINER_HIKER_JUSTIN (Justin, level 25, 2 Pokemon), sees the player. Vanilla. `events_route_207.json:96`
 - TRAINER_HIKER_KEVIN (Kevin, level 24, 4 Pokemon), sees the player. Vanilla. `events_route_207.json:111`
 - TRAINER_BATTLE_GIRL_HELEN (Helen, level 26, 2 Pokemon), sees the player. Vanilla. `events_route_207.json:126`
-- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:217`
-- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:223`
-- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:229`
-- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:235`
-- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:241`
-- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:247`
+- StartTrainerBattle: against TRAINER_DUMMY_799 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:218`
+- StartTrainerBattle: against TRAINER_DUMMY_793 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:224`
+- StartTrainerBattle: against TRAINER_DUMMY_794 (Dawn, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:230`
+- StartTrainerBattle: against TRAINER_DUMMY_802 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:236`
+- StartTrainerBattle: against TRAINER_DUMMY_800 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:242`
+- StartTrainerBattle: against TRAINER_DUMMY_801 (Lucas, level 30, 4 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_route_207.s:248`
 
 Items given:
 
-- ITEM_LUCKY_EGG x1. Added from the base ROM (81d02e28e). `scripts_route_207.s:288`
+- ITEM_LUCKY_EGG x1. Added from the base ROM (81d02e28e). `scripts_route_207.s:289`
 
 Item balls:
 
@@ -1616,12 +1616,12 @@ Flags:
 
 Pokemon given:
 
-- GivePokemon: set elsewhere (this map's script stores SPECIES_NONE) at level 20. Vanilla. `scripts_mining_museum.s:229`
+- GivePokemon: set elsewhere (this map's script stores SPECIES_NONE) at level 20. Vanilla. `scripts_mining_museum.s:232`
 
 Flags:
 
 - Set: FLAG_MAP_LOCAL_0x01.
-- Checked: FLAG_MAP_LOCAL_0x01.
+- Checked: FLAG_MAP_LOCAL_0x01, FLAG_PASSED_CYCLING_ROAD (added, Oxide).
 
 Variables:
 
@@ -1629,8 +1629,6 @@ Variables:
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_MAP_LOCAL_0x04, VAR_MAP_LOCAL_0x05, VAR_MAP_LOCAL_0x06, VAR_MAP_LOCAL_0x07, VAR_REVIVED_POKEMON_SPECIES.
 
 Gone from vanilla: flag FLAG_RECEIVED_EXPLORER_KIT (check).
-
-Scripts nothing reaches: code at `MiningMuseum_NotYetReady` (line 274).
 
 Could not read: 1 variables set elsewhere.
 
@@ -1699,7 +1697,7 @@ Variables:
 
 Flags:
 
-- Set: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, FLAG_FORCE_BIKING_IN_GATE.
+- Set: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG, FLAG_PASSED_CYCLING_ROAD (added, Oxide), FLAG_FORCE_BIKING_IN_GATE.
 - Cleared: FLAG_FORCE_BIKING_IN_GATE.
 - Checked: FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_SOUTH_GATE_ACCESSORY_FLAG.
 
@@ -2263,9 +2261,9 @@ Could not read: 1 raw data lines.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:36`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:41`
-- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:46`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_PIPLUP (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:37`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_TURTWIG (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:42`
+- StartTrainerBattle: against TRAINER_RIVAL_ROUTE_209_CHIMCHAR (Barry, level 33, 4 Pokemon), by name. Vanilla. `scripts_route_209_gate_to_hearthome_city.s:47`
 
 Flags:
 
@@ -2577,7 +2575,7 @@ Hidden items:
 Trainer battles:
 
 - StartTrainerBattle: against TRAINER_DUMMY_211 (Experiencia, level 49, 1 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_veilstone_city.s:807`
-- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Grunt, level 35, 2 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Grunt, level 35, 2 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:860`
+- StartTagBattle: partner TRAINER_LUCAS_VEILSTONE_CITY_TURTWIG (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_CHIMCHAR (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 1, TRAINER_LUCAS_VEILSTONE_CITY_PIPLUP (Lucas, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 1, TRAINER_DAWN_VEILSTONE_CITY_TURTWIG (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_CHIMCHAR (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY; VAR_RESULT (GetPlayerGender) == 0, TRAINER_DAWN_VEILSTONE_CITY_PIPLUP (Dawn, level 36, 3 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_PIPLUP; VAR_RESULT (GetPlayerGender) == 0, through a variable; against TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_1 (Grunt, level 35, 2 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_VEILSTONE_CITY_2 (Grunt, level 35, 2 Pokemon), by number. Vanilla. `scripts_veilstone_city.s:860`
 
 Items given:
 
@@ -3086,10 +3084,10 @@ Variables:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_TURTWIG (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:488`
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:491`
-- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_PIPLUP (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:494`
-- StartTrainerBattle: against TRAINER_DUMMY_212 (Experiencia, level 50, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_pastoria_city.s:670`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_TURTWIG (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:490`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:493`
+- StartTrainerBattle: against TRAINER_RIVAL_PASTORIA_CITY_PIPLUP (Barry, level 42, 5 Pokemon), by number. Vanilla. `scripts_pastoria_city.s:496`
+- StartTrainerBattle: against TRAINER_DUMMY_212 (Experiencia, level 50, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_pastoria_city.s:672`
 
 Item balls:
 
@@ -3772,10 +3770,10 @@ Flags:
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:642`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:645`
-- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:648`
-- StartTrainerBattle: against TRAINER_DUMMY_213 (Experiencia, level 60, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city.s:675`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_TURTWIG (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:643`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:646`
+- StartTrainerBattle: against TRAINER_RIVAL_CANALAVE_CITY_PIPLUP (Barry, level 49, 5 Pokemon), by number. Vanilla. `scripts_canalave_city.s:649`
+- StartTrainerBattle: against TRAINER_DUMMY_213 (Experiencia, level 60, 2 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_canalave_city.s:676`
 
 Item balls:
 
@@ -4693,7 +4691,7 @@ Trades:
 
 Flags:
 
-- Set: FLAG_TRADED_FOR_FOPPA_MAGIKARP, FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION, FLAG_FIRST_ARRIVAL_THE_MEISTERS_HOUSE.
+- Set: FLAG_TRADED_FOR_FOPPA_MAGIKARP (unreached), FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION, FLAG_FIRST_ARRIVAL_THE_MEISTERS_HOUSE.
 - Checked: FLAG_TRADED_FOR_FOPPA_MAGIKARP, FLAG_ENABLED_POKEDEX_LANGUAGE_DETECTION.
 
 ### Route 227
@@ -5701,11 +5699,11 @@ Scripts nothing reaches: script 1 `SunyshoreCityUnknownHouse1_Dummy1` (line 7).
 
 Scripts nothing reaches: script 1 `SunyshoreCityUnknownHouse2_Dummy1` (line 7).
 
-## League's split
+## Barry's split
 
 ### Sendoff Spring
 
-`MAP_HEADER_SENDOFF_SPRING`: scripts `scripts_sendoff_spring`, events `events_sendoff_spring`, init scripts `scripts_init_sendoff_spring`. Location name Sendoff Spring. In League's split, placed by its encounter table.
+`MAP_HEADER_SENDOFF_SPRING`: scripts `scripts_sendoff_spring`, events `events_sendoff_spring`, init scripts `scripts_init_sendoff_spring`. Location name Sendoff Spring. In Barry's split, placed by its encounter table.
 
 Flags:
 
@@ -5723,7 +5721,7 @@ Could not read: 1 commands with no name.
 
 ### Route 223
 
-`MAP_HEADER_ROUTE_223`: scripts `scripts_empty`, events `events_route_223`. Location name Route 223. In League's split, placed by its encounter table.
+`MAP_HEADER_ROUTE_223`: scripts `scripts_empty`, events `events_route_223`. Location name Route 223. In Barry's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -5759,7 +5757,7 @@ Flags:
 
 ### Victory Road 1F
 
-`MAP_HEADER_VICTORY_ROAD_1F`: scripts `scripts_victory_road_1f`, events `events_victory_road_1f`, init scripts `scripts_init_victory_road_1f`. Location name Victory Road. In League's split, placed by its encounter table.
+`MAP_HEADER_VICTORY_ROAD_1F`: scripts `scripts_victory_road_1f`, events `events_victory_road_1f`, init scripts `scripts_init_victory_road_1f`. Location name Victory Road. In Barry's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -5769,12 +5767,12 @@ Trainer battles:
 - TRAINER_ACE_TRAINER_MARIAH (Mariah, level 63, 3 Pokemon), sees the player. Vanilla. `events_victory_road_1f.json:161`
 - TRAINER_VETERAN_EDGAR (Edgar, level 63, 3 Pokemon), sees the player. Vanilla. `events_victory_road_1f.json:178`
 - TRAINER_DRAGON_TAMER_CLINTON (Clinton, level 63, 3 Pokemon), sees the player. Vanilla. `events_victory_road_1f.json:195`
-- StartTrainerBattle: against TRAINER_DUMMY_779 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:126`
-- StartTrainerBattle: against TRAINER_DUMMY_780 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:131`
-- StartTrainerBattle: against TRAINER_DUMMY_781 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:136`
-- StartTrainerBattle: against TRAINER_DUMMY_782 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:157`
-- StartTrainerBattle: against TRAINER_DUMMY_783 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:162`
-- StartTrainerBattle: against TRAINER_DUMMY_784 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:167`
+- StartTrainerBattle: against TRAINER_DUMMY_779 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:127`
+- StartTrainerBattle: against TRAINER_DUMMY_780 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:132`
+- StartTrainerBattle: against TRAINER_DUMMY_781 (Dawn, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:137`
+- StartTrainerBattle: against TRAINER_DUMMY_782 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:159`
+- StartTrainerBattle: against TRAINER_DUMMY_783 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:164`
+- StartTrainerBattle: against TRAINER_DUMMY_784 (Lucas, level 71, 6 Pokemon), by name. Added by Oxide (3a3472432). `scripts_victory_road_1f.s:169`
 
 Item balls:
 
@@ -5803,7 +5801,7 @@ Variables:
 
 ### Victory Road 2F
 
-`MAP_HEADER_VICTORY_ROAD_2F`: scripts `scripts_empty`, events `events_victory_road_2f`. Location name Victory Road. In League's split, placed by its encounter table.
+`MAP_HEADER_VICTORY_ROAD_2F`: scripts `scripts_empty`, events `events_victory_road_2f`. Location name Victory Road. In Barry's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -5831,7 +5829,7 @@ Flags:
 
 ### Victory Road B1F
 
-`MAP_HEADER_VICTORY_ROAD_B1F`: scripts `scripts_empty`, events `events_victory_road_b1f`. Location name Victory Road. In League's split, placed by its encounter table.
+`MAP_HEADER_VICTORY_ROAD_B1F`: scripts `scripts_empty`, events `events_victory_road_b1f`. Location name Victory Road. In Barry's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -5858,7 +5856,7 @@ Flags:
 
 ### Pokemon League
 
-`MAP_HEADER_POKEMON_LEAGUE`: scripts `scripts_pokemon_league`, events `events_pokemon_league`, init scripts `scripts_init_pokemon_league`. Location name Pokémon League. In League's split, placed by its encounter table.
+`MAP_HEADER_POKEMON_LEAGUE`: scripts `scripts_pokemon_league`, events `events_pokemon_league`, init scripts `scripts_init_pokemon_league`. Location name Pokémon League. In Barry's split, placed by its encounter table.
 
 Trainer battles:
 
@@ -5876,7 +5874,7 @@ Flags:
 
 ### Pokemon League Aaron Room
 
-`MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM`: scripts `scripts_pokemon_league_aaron_room`, events `events_pokemon_league_aaron_room`, init scripts `scripts_init_pokemon_league_aaron_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_AARON_ROOM`: scripts `scripts_pokemon_league_aaron_room`, events `events_pokemon_league_aaron_room`, init scripts `scripts_init_pokemon_league_aaron_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
@@ -5892,12 +5890,12 @@ Flags:
 
 Variables:
 
-- Set: VAR_MAP_LOCAL_0x01.
+- Set: VAR_MAP_LOCAL_0x01 (unreached).
 - Checked: VAR_MAP_LOCAL_0x01.
 
 ### Pokemon League Bertha Room
 
-`MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM`: scripts `scripts_pokemon_league_bertha_room`, events `events_pokemon_league_bertha_room`, init scripts `scripts_init_pokemon_league_bertha_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_BERTHA_ROOM`: scripts `scripts_pokemon_league_bertha_room`, events `events_pokemon_league_bertha_room`, init scripts `scripts_init_pokemon_league_bertha_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
@@ -5918,7 +5916,7 @@ Variables:
 
 ### Pokemon League Champion Room
 
-`MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM`: scripts `scripts_pokemon_league_champion_room`, events `events_pokemon_league_champion_room`, init scripts `scripts_init_pokemon_league_champion_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_CHAMPION_ROOM`: scripts `scripts_pokemon_league_champion_room`, events `events_pokemon_league_champion_room`, init scripts `scripts_init_pokemon_league_champion_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
@@ -5938,7 +5936,7 @@ Variables:
 
 ### Pokemon League Elevator To Aaron Room
 
-`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM`: scripts `scripts_pokemon_league_elevator_to_aaron_room`, events `events_pokemon_league_elevator_to_aaron_room`, init scripts `scripts_init_pokemon_league_elevator_to_aaron_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_AARON_ROOM`: scripts `scripts_pokemon_league_elevator_to_aaron_room`, events `events_pokemon_league_elevator_to_aaron_room`, init scripts `scripts_init_pokemon_league_elevator_to_aaron_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -5947,7 +5945,7 @@ Variables:
 
 ### Pokemon League Elevator To Bertha Room
 
-`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM`: scripts `scripts_pokemon_league_elevator_to_bertha_room`, events `events_pokemon_league_elevator_to_bertha_room`, init scripts `scripts_init_pokemon_league_elevator_to_bertha_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_BERTHA_ROOM`: scripts `scripts_pokemon_league_elevator_to_bertha_room`, events `events_pokemon_league_elevator_to_bertha_room`, init scripts `scripts_init_pokemon_league_elevator_to_bertha_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -5956,7 +5954,7 @@ Variables:
 
 ### Pokemon League Elevator To Champion Room
 
-`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM`: scripts `scripts_pokemon_league_elevator_to_champion_room`, events `events_pokemon_league_elevator_to_champion_room`, init scripts `scripts_init_pokemon_league_elevator_to_champion_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_CHAMPION_ROOM`: scripts `scripts_pokemon_league_elevator_to_champion_room`, events `events_pokemon_league_elevator_to_champion_room`, init scripts `scripts_init_pokemon_league_elevator_to_champion_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -5965,7 +5963,7 @@ Variables:
 
 ### Pokemon League Elevator To Flint Room
 
-`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM`: scripts `scripts_pokemon_league_elevator_to_flint_room`, events `events_pokemon_league_elevator_to_flint_room`, init scripts `scripts_init_pokemon_league_elevator_to_flint_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_FLINT_ROOM`: scripts `scripts_pokemon_league_elevator_to_flint_room`, events `events_pokemon_league_elevator_to_flint_room`, init scripts `scripts_init_pokemon_league_elevator_to_flint_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -5974,7 +5972,7 @@ Variables:
 
 ### Pokemon League Elevator To Lucian Room
 
-`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM`: scripts `scripts_pokemon_league_elevator_to_lucian_room`, events `events_pokemon_league_elevator_to_lucian_room`, init scripts `scripts_init_pokemon_league_elevator_to_lucian_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_ELEVATOR_TO_LUCIAN_ROOM`: scripts `scripts_pokemon_league_elevator_to_lucian_room`, events `events_pokemon_league_elevator_to_lucian_room`, init scripts `scripts_init_pokemon_league_elevator_to_lucian_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -5983,7 +5981,7 @@ Variables:
 
 ### Pokemon League Flint Room
 
-`MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM`: scripts `scripts_pokemon_league_flint_room`, events `events_pokemon_league_flint_room`, init scripts `scripts_init_pokemon_league_flint_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_FLINT_ROOM`: scripts `scripts_pokemon_league_flint_room`, events `events_pokemon_league_flint_room`, init scripts `scripts_init_pokemon_league_flint_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
@@ -6004,7 +6002,7 @@ Variables:
 
 ### Pokemon League Hall Of Fame
 
-`MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME`: scripts `scripts_pokemon_league_hall_of_fame`, events `events_pokemon_league_hall_of_fame`, init scripts `scripts_init_pokemon_league_hall_of_fame`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_HALL_OF_FAME`: scripts `scripts_pokemon_league_hall_of_fame`, events `events_pokemon_league_hall_of_fame`, init scripts `scripts_init_pokemon_league_hall_of_fame`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Flags:
 
@@ -6019,7 +6017,7 @@ Variables:
 
 ### Pokemon League Hallway To Hall Of Fame
 
-`MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME`: scripts `scripts_pokemon_league_hallway_to_hall_of_fame`, events `events_pokemon_league_hallway_to_hall_of_fame`, init scripts `scripts_init_pokemon_league_hallway_to_hall_of_fame`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_HALLWAY_TO_HALL_OF_FAME`: scripts `scripts_pokemon_league_hallway_to_hall_of_fame`, events `events_pokemon_league_hallway_to_hall_of_fame`, init scripts `scripts_init_pokemon_league_hallway_to_hall_of_fame`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Flags:
 
@@ -6032,7 +6030,7 @@ Variables:
 
 ### Pokemon League Lucian Room
 
-`MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM`: scripts `scripts_pokemon_league_lucian_room`, events `events_pokemon_league_lucian_room`, init scripts `scripts_init_pokemon_league_lucian_room`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_LUCIAN_ROOM`: scripts `scripts_pokemon_league_lucian_room`, events `events_pokemon_league_lucian_room`, init scripts `scripts_init_pokemon_league_lucian_room`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
@@ -6053,13 +6051,13 @@ Variables:
 
 ### Pokemon League North Pokecenter 1F
 
-`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F`: scripts `scripts_pokemon_league_north_pokecenter_1f`, events `events_pokemon_league_north_pokecenter_1f`, init scripts `scripts_init_pokemon_league_north_pokecenter_1f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_1F`: scripts `scripts_pokemon_league_north_pokecenter_1f`, events `events_pokemon_league_north_pokecenter_1f`, init scripts `scripts_init_pokemon_league_north_pokecenter_1f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:146`
-- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:150`
-- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:154`
+- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:147`
+- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:151`
+- StartTrainerBattle: against TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR (Barry, level 71, 6 Pokemon), by name. Vanilla. `scripts_pokemon_league_north_pokecenter_1f.s:155`
 
 Flags:
 
@@ -6075,7 +6073,7 @@ Variables:
 
 ### Pokemon League North Pokecenter 2F
 
-`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F`: scripts `scripts_pokemon_league_north_pokecenter_2f`, events `events_pokemon_league_north_pokecenter_2f`, init scripts `scripts_init_pokemon_league_north_pokecenter_2f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_2F`: scripts `scripts_pokemon_league_north_pokecenter_2f`, events `events_pokemon_league_north_pokecenter_2f`, init scripts `scripts_init_pokemon_league_north_pokecenter_2f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -6085,7 +6083,7 @@ Scripts nothing reaches: script 1 `PokemonLeagueNorthPokecenter2F_Dummy1` (line 
 
 ### Pokemon League North Pokecenter B1F
 
-`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F`: scripts `scripts_pokemon_league_north_pokecenter_b1f`, events `events_pokemon_league_north_pokecenter_b1f`, init scripts `scripts_init_pokemon_league_north_pokecenter_b1f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_NORTH_POKECENTER_B1F`: scripts `scripts_pokemon_league_north_pokecenter_b1f`, events `events_pokemon_league_north_pokecenter_b1f`, init scripts `scripts_init_pokemon_league_north_pokecenter_b1f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -6095,7 +6093,7 @@ Scripts nothing reaches: script 1 `PokemonLeagueNorthPokecenterB1F_Dummy1` (line
 
 ### Pokemon League South Pokecenter 1F
 
-`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F`: scripts `scripts_pokemon_league_south_pokecenter_1f`, events `events_pokemon_league_south_pokecenter_1f`, init scripts `scripts_init_pokemon_league_south_pokecenter_1f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_1F`: scripts `scripts_pokemon_league_south_pokecenter_1f`, events `events_pokemon_league_south_pokecenter_1f`, init scripts `scripts_init_pokemon_league_south_pokecenter_1f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Flags:
 
@@ -6105,7 +6103,7 @@ Scripts nothing reaches: script 2 `PokemonLeagueSouthPokecenter1F_VendorCommon_U
 
 ### Pokemon League South Pokecenter 2F
 
-`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F`: scripts `scripts_pokemon_league_south_pokecenter_2f`, events `events_pokemon_league_south_pokecenter_2f`, init scripts `scripts_init_pokemon_league_south_pokecenter_2f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_2F`: scripts `scripts_pokemon_league_south_pokecenter_2f`, events `events_pokemon_league_south_pokecenter_2f`, init scripts `scripts_init_pokemon_league_south_pokecenter_2f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -6115,7 +6113,7 @@ Scripts nothing reaches: script 1 `PokemonLeagueSouthPokecenter2F_Dummy1` (line 
 
 ### Pokemon League South Pokecenter B1F
 
-`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F`: scripts `scripts_pokemon_league_south_pokecenter_b1f`, events `events_pokemon_league_south_pokecenter_b1f`, init scripts `scripts_init_pokemon_league_south_pokecenter_b1f`. Location name Pokémon League. In League's split, placed by its location name.
+`MAP_HEADER_POKEMON_LEAGUE_SOUTH_POKECENTER_B1F`: scripts `scripts_pokemon_league_south_pokecenter_b1f`, events `events_pokemon_league_south_pokecenter_b1f`, init scripts `scripts_init_pokemon_league_south_pokecenter_b1f`. Location name Pokémon League. In Barry's split, placed by its location name.
 
 Variables:
 
@@ -6468,8 +6466,8 @@ Variables:
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP (Barry, level 59, 6 Pokemon) otherwise, through a variable; against TRAINER_COMMANDER_MARS_SPEAR_PILLAR (Mars, level 59, 5 Pokemon), by number; and TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR (Jupiter, level 59, 5 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:72`
-- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1 (Grunt Tyche, level 56, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2 (Grunt Hermes, level 56, 3 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:265`
+- StartTagBattle: partner TRAINER_RIVAL_SPEAR_PILLAR_TURTWIG (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_SPEAR_PILLAR_CHIMCHAR (Barry, level 59, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_SPEAR_PILLAR_PIPLUP (Barry, level 59, 6 Pokemon) otherwise, through a variable; against TRAINER_COMMANDER_MARS_SPEAR_PILLAR (Mars, level 59, 5 Pokemon), by number; and TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR (Jupiter, level 59, 5 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:72`
+- StartTrainerBattle: against TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_1 (Grunt Tyche, level 56, 3 Pokemon), by number; and TRAINER_GALACTIC_GRUNT_SPEAR_PILLAR_2 (Grunt Hermes, level 56, 3 Pokemon), by number. Vanilla. `scripts_spear_pillar.s:266`
 
 Flags:
 
@@ -6916,36 +6914,36 @@ Trainer battles:
 - StartTrainerBattle: against TRAINER_RILEY_BATTLEGROUND (Riley, level 82, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:247`
 - StartTrainerBattle: against TRAINER_MARLEY_BATTLEGROUND (Marley, level 82, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:259`
 - StartTrainerBattle: against TRAINER_MIRA_BATTLEGROUND (Mira, level 75, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:271`
-- StartTrainerBattle: against TRAINER_TOWER_TYCOON_PALMER_DUMMY (Palmer, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:305`
-- StartTrainerBattle: against TRAINER_HALL_MATRON_ARGENTA_DUMMY (Argenta, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:317`
-- StartTrainerBattle: against TRAINER_FACTORY_HEAD_THORTON_DUMMY (Thorton, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:329`
-- StartTrainerBattle: against TRAINER_CASTLE_VALET_DARACH_DUMMY (Darach, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:341`
-- StartTrainerBattle: against TRAINER_ARCADE_STAR_DAHLIA_DUMMY (Dahlia, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:353`
-- StartTrainerBattle: against TRAINER_DUMMY_779 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:562`
-- StartTrainerBattle: against TRAINER_DUMMY_780 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:568`
-- StartTrainerBattle: against TRAINER_DUMMY_781 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:574`
-- StartTrainerBattle: against TRAINER_DUMMY_782 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:580`
-- StartTrainerBattle: against TRAINER_DUMMY_783 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:586`
-- StartTrainerBattle: against TRAINER_DUMMY_784 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:592`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:603`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:606`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:609`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:612`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:615`
-- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:618`
+- StartTrainerBattle: against TRAINER_TOWER_TYCOON_PALMER_DUMMY (Palmer, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:306`
+- StartTrainerBattle: against TRAINER_HALL_MATRON_ARGENTA_DUMMY (Argenta, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:318`
+- StartTrainerBattle: against TRAINER_FACTORY_HEAD_THORTON_DUMMY (Thorton, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:330`
+- StartTrainerBattle: against TRAINER_CASTLE_VALET_DARACH_DUMMY (Darach, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:342`
+- StartTrainerBattle: against TRAINER_ARCADE_STAR_DAHLIA_DUMMY (Dahlia, level 90, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:354`
+- StartTrainerBattle: against TRAINER_DUMMY_779 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:564`
+- StartTrainerBattle: against TRAINER_DUMMY_780 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:570`
+- StartTrainerBattle: against TRAINER_DUMMY_781 (Dawn, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:576`
+- StartTrainerBattle: against TRAINER_DUMMY_782 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:582`
+- StartTrainerBattle: against TRAINER_DUMMY_783 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:588`
+- StartTrainerBattle: against TRAINER_DUMMY_784 (Lucas, level 71, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:594`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_TURTWIG (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:605`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_TURTWIG (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:608`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_CHIMCHAR (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:611`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_CHIMCHAR (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:614`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_1_PIPLUP (Barry, level 65, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:617`
+- StartTrainerBattle: against TRAINER_RIVAL_SURVIVAL_AREA_2_PIPLUP (Barry, level 85, 6 Pokemon), by number. Added from the base ROM (81d02e28e). `scripts_battleground.s:620`
 
 Items given:
 
-- ITEM_IRON x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:393`
-- ITEM_HP_UP x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:407`
-- ITEM_PROTEIN x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:420`
-- ITEM_CARBOS x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:433`
-- ITEM_CALCIUM x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:446`
-- ITEM_RARE_CANDY x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:494`
-- ITEM_NUGGET x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:508`
-- ITEM_PP_MAX x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:522`
-- ITEM_MASTER_BALL x2. Added from the base ROM (81d02e28e). `scripts_battleground.s:536`
-- ITEM_ZINC x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:550`
+- ITEM_IRON x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:395`
+- ITEM_HP_UP x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:409`
+- ITEM_PROTEIN x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:422`
+- ITEM_CARBOS x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:435`
+- ITEM_CALCIUM x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:448`
+- ITEM_RARE_CANDY x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:496`
+- ITEM_NUGGET x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:510`
+- ITEM_PP_MAX x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:524`
+- ITEM_MASTER_BALL x2. Added from the base ROM (81d02e28e). `scripts_battleground.s:538`
+- ITEM_ZINC x50. Added from the base ROM (81d02e28e). `scripts_battleground.s:552`
 
 Flags:
 
@@ -7089,7 +7087,7 @@ Gone from vanilla: variable VAR_ETERNA_CITY_BLOCK_EXITS_STATE (set).
 
 Trainer battles:
 
-- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_CHIMCHAR, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 75, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 75, 3 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 75, 3 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
+- StartTagBattle: partner TRAINER_RIVAL_FIGHT_AREA_TURTWIG (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_TURTWIG, TRAINER_RIVAL_FIGHT_AREA_CHIMCHAR (Barry, level 75, 6 Pokemon) if VAR_RESULT (GetPlayerStarterSpecies) == SPECIES_SCORBUNNY, TRAINER_RIVAL_FIGHT_AREA_PIPLUP (Barry, level 75, 6 Pokemon) otherwise, through a variable; against TRAINER_LEADER_VOLKNER_FIGHT_AREA (Volkner, level 75, 3 Pokemon), by number; and TRAINER_ELITE_FOUR_FLINT_FIGHT_AREA (Flint, level 75, 3 Pokemon), by number. Vanilla. `scripts_fight_area.s:400`
 
 Items given:
 
@@ -8073,17 +8071,17 @@ Could not read: 2 commands with no name.
 
 Trainer battles:
 
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:156`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:161`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:166`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:249`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:254`
-- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:259`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:157`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:162`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_HARRISON (Harrison, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:167`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:251`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:256`
+- StartTrainerBattle: against TRAINER_SCHOOL_KID_CHRISTINE (Christine, level 8, 1 Pokemon), by name. Vanilla. `scripts_trainers_school.s:261`
 
 Items given:
 
 - ITEM_TOWN_MAP x1. Vanilla. `scripts_trainers_school.s:38`
-- ITEM_POTION x1. Vanilla. `scripts_trainers_school.s:190`
+- ITEM_POTION x1. Vanilla. `scripts_trainers_school.s:191`
 
 Item balls:
 
@@ -8438,9 +8436,9 @@ Variables:
 - Set: VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 - Checked: VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 
-Scripts nothing reaches: script 6 `FieldMoves_Entry5` (line 109), script 8 `FieldMoves_Entry7` (line 133).
+Scripts nothing reaches: script 6 `FieldMoves_Fog_Unused` (line 343), script 8 `FieldMoves_Dummy8` (line 462).
 
-Could not read: 30 commands with no name.
+Could not read: 2 commands with no name.
 
 ### scripts_follower_partners
 
@@ -8472,6 +8470,7 @@ Flags:
 Variables:
 
 - Set: VAR_CONSECUTIVE_BONUS_ROUND_WINS, VAR_LEGENDARY_POOL_ACUITY_SPECIES (added, Oxide), VAR_LEGENDARY_POOL_ROAMER_SPECIES (added, Oxide), VAR_TWINLEAF_TOWN_GUITARIST_TRIGGER_STATE, VAR_OREBURGH_GATE_1F_HIKER_STATE.
+- Checked: VAR_LEGENDARY_POOL_ACUITY_SPECIES (added, Oxide), VAR_LEGENDARY_POOL_ROAMER_SPECIES (added, Oxide).
 
 ### scripts_mystery_gift_deliveryman
 

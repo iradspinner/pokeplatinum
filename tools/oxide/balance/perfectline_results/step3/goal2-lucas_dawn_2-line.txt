@@ -1,0 +1,44 @@
+lucas_dawn_2: Prinplup, Dubwool, Vulpix, Whiscash, Kingler, Tsareena with Prinplup Bubble Beam, Metal Claw, Fury Attack, Peck; Dubwool Take Down, Double Kick, Guard Split, Growl; Vulpix Flamethrower, Will-O-Wisp, Quick Attack, Roar; Whiscash Magnitude, Water Pulse, Amnesia, Mud Bomb; Kingler Stomp, Metal Claw, Bubble Beam, Mud Shot; Tsareena Trop Kick, Stomp, Play Nice, Teeter Dance
+items: Tsareena Miracle Seed, Vulpix Flame Plate
+lead Dubwool (lead values: Prinplup -0.47, Dubwool -0.31, Vulpix -0.47, Whiscash -0.42, Kingler -0.47, Tsareena -0.32)
+T1 [clear] Dubwool: Growl | Lopunny: Mirror Coat -> you Dubwool 87/87 | foe Lopunny 82/82 {'atk': -1}
+      options: Take Down (dropped) -1.22, Double Kick (dropped) -1.14, Guard Split (dropped) -1.23, Growl -0.29, switch to Prinplup (dropped) -1.13, switch to Vulpix (dropped) -1.08, switch to Whiscash (dropped) -1.18, switch to Kingler (dropped) -0.77, switch to Tsareena -0.38
+T2 [clear] Dubwool: Take Down | Lopunny: Mirror Coat -> you Dubwool 78/87 | foe Lopunny 43/82 {'atk': -1}
+      options: Take Down +0.00, Double Kick -0.02, Guard Split (dropped) -0.47, Growl -0.11, switch to Prinplup (dropped) -1.26, switch to Vulpix (dropped) -1.05, switch to Whiscash (dropped) -1.17, switch to Kingler (dropped) -0.72, switch to Tsareena (dropped) -0.55
+T3 [clear] Dubwool: Double Kick | Lopunny: Jump Kick -> you Dubwool 48/87 | foe Lopunny 7/82 {'atk': -1}
+      options: Take Down +0.27, Double Kick +0.27, Guard Split (dropped) -0.23, Growl (dropped) -0.27, switch to Prinplup (dropped) -1.03, switch to Vulpix (dropped) -0.45, switch to Whiscash (dropped) -0.08, switch to Kingler (dropped) -0.64, switch to Tsareena (dropped) -0.36
+T4 [clear] Dubwool: switch to Whiscash | Lopunny: Jump Kick -> you Whiscash 90/110 | foe Lopunny 7/82 {'atk': -1}
+      options: Take Down (dropped) +0.33, Double Kick (dropped) +0.37, Guard Split (dropped) -0.90, Growl (dropped) -0.89, switch to Prinplup (dropped) -0.65, switch to Vulpix (dropped) +0.35, switch to Whiscash +0.48, switch to Kingler (dropped) -0.67, switch to Tsareena (dropped) -0.52
+T5 [clear] Whiscash: Water Pulse | Lopunny: Jump Kick -> you Whiscash 70/110 | foe Jynx 84/84
+      options: Magnitude (dropped) +0.48, Water Pulse +0.48, Amnesia (dropped) +0.15, Mud Bomb +0.48, switch to Prinplup (dropped) -0.49, switch to Dubwool (dropped) -1.13, switch to Vulpix (dropped) -0.49, switch to Kingler (dropped) -0.56, switch to Tsareena (dropped) -0.75
+T6 [clear] Whiscash: Magnitude | Jynx: Reflect -> you Whiscash 70/110 | foe Jynx 71/84
+      options: Magnitude +0.48, Water Pulse +0.48, Amnesia +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) -0.08, switch to Dubwool (dropped) -0.51, switch to Vulpix (dropped) -0.13, switch to Kingler (dropped) -0.49, switch to Tsareena (dropped) -1.15
+T7 [clear] Whiscash: Mud Bomb | Jynx: Copycat -> you Whiscash 70/110 | foe Jynx 53/84 {'acc': -1}
+      options: Magnitude +0.48, Water Pulse +0.48, Amnesia +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) -0.39, switch to Dubwool (dropped) -0.24, switch to Vulpix (dropped) -0.10, switch to Kingler (dropped) -0.34, switch to Tsareena (dropped) -0.64
+T8 [clear] Whiscash: Magnitude | Jynx: Lovely Kiss -> you Whiscash 70/110 | foe Jynx 29/84 {'acc': -1}
+      options: Magnitude +0.47, Water Pulse +0.47, Amnesia +0.47, Mud Bomb +0.47, switch to Prinplup (dropped) -0.04, switch to Dubwool (dropped) -0.00, switch to Vulpix (dropped) -0.34, switch to Kingler (dropped) +0.05, switch to Tsareena (dropped) -0.14
+T9 [clear] Whiscash: Magnitude | Jynx: Lovely Kiss -> you Whiscash 70/110 | foe Jynx 12/84 {'acc': -1}
+      options: Magnitude +0.48, Water Pulse +0.48, Amnesia +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) +0.28, switch to Dubwool (dropped) +0.44, switch to Vulpix (dropped) +0.19, switch to Kingler (dropped) +0.30, switch to Tsareena (dropped) +0.08
+T10 [clear] Whiscash: Amnesia | Jynx: Lovely Kiss -> you Whiscash 70/110 {'spd': 2} | foe Jynx 12/84 {'acc': -1}
+      options: Magnitude +0.48, Water Pulse +0.48, Amnesia +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) +0.24, switch to Dubwool (dropped) +0.45, switch to Vulpix (dropped) -0.04, switch to Kingler (dropped) +0.24, switch to Tsareena (dropped) -0.06
+T11 [clear] Whiscash: Magnitude | Jynx: Copycat -> you Whiscash 70/110 {'spd': 2} | foe Monferno 84/84
+      options: Magnitude +0.48, Water Pulse +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) -0.05, switch to Dubwool (dropped) +0.45, switch to Vulpix (dropped) +0.13, switch to Kingler (dropped) -0.00, switch to Tsareena (dropped) -0.06
+T12 [clear] Whiscash: Magnitude | Monferno: Fake Out -> you Whiscash 56/110 {'spd': 2} | foe Monferno 84/84
+      options: Magnitude +0.48, Water Pulse +0.48, Mud Bomb +0.48, switch to Prinplup (dropped) +0.45, switch to Dubwool (dropped) +0.44, switch to Vulpix (dropped) +0.42, switch to Kingler (dropped) +0.46, switch to Tsareena (dropped) +0.29
+T13 [clear] Whiscash: Magnitude | Monferno: Mach Punch -> you Whiscash 38/110 {'spd': 2} | foe Jolteon 82/82
+      options: Magnitude +0.49, Water Pulse (dropped) +0.49, Mud Bomb (dropped) +0.48, switch to Prinplup (dropped) +0.41, switch to Dubwool (dropped) +0.40, switch to Vulpix (dropped) +0.41, switch to Kingler (dropped) +0.44, switch to Tsareena (dropped) -0.18
+T14 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 38/110 {'spd': 2} | foe Jolteon 82/82
+      options: Magnitude +0.49, Water Pulse (dropped) +0.49, Mud Bomb +0.49, switch to Prinplup (dropped) +0.46, switch to Dubwool (dropped) +0.46, switch to Vulpix (dropped) -0.40, switch to Kingler (dropped) +0.46, switch to Tsareena (dropped) +0.48
+T15 [clear] Whiscash: Water Pulse | Jolteon: Fake Tears -> you Whiscash 38/110 | foe Jolteon 63/82
+      options: Water Pulse +0.49, switch to Prinplup (dropped) +0.46, switch to Dubwool (dropped) +0.46, switch to Vulpix (dropped) +0.46, switch to Kingler (dropped) +0.46, switch to Tsareena (dropped) +0.45
+T16 [clear] Whiscash: Water Pulse | Jolteon: Fake Tears -> you Whiscash 38/110 {'spd': -2} | foe Jolteon 42/82
+      options: Water Pulse +0.49, switch to Prinplup (dropped) +0.47, switch to Dubwool (dropped) +0.47, switch to Vulpix (dropped) +0.47, switch to Kingler (dropped) +0.47, switch to Tsareena (dropped) +0.48
+T17 [clear] Whiscash: Water Pulse | Jolteon: Fake Tears -> you Whiscash 38/110 {'spd': -4} | foe Jolteon 33/82
+      options: Water Pulse +0.49, switch to Prinplup (dropped) +0.47, switch to Dubwool (dropped) +0.47, switch to Vulpix (dropped) +0.47, switch to Kingler (dropped) +0.47, switch to Tsareena (dropped) +0.46
+T18 [clear] Whiscash: Water Pulse | Jolteon: Shock Wave -> you Whiscash 38/110 {'spd': -4} | foe Jolteon 14/82
+      options: Water Pulse +0.49, switch to Prinplup (dropped) +0.14, switch to Dubwool (dropped) +0.43, switch to Vulpix (dropped) +0.42, switch to Kingler (dropped) +0.32, switch to Tsareena (dropped) +0.48
+T19 [clear] Whiscash: Magnitude | Jolteon: Magnet Rise -> you Whiscash 38/110 {'spd': -4} | foe Jolteon 14/82
+      options: Magnitude +0.49, Water Pulse +0.49, Mud Bomb +0.49, switch to Prinplup (dropped) +0.37, switch to Dubwool (dropped) +0.39, switch to Vulpix (dropped) +0.34, switch to Kingler (dropped) +0.36, switch to Tsareena (dropped) +0.47
+T20 [clear] Whiscash: Water Pulse | Jolteon: Magnet Rise -> you Whiscash 38/110 {'spd': -4} | foe Jolteon 0/82
+      options: Water Pulse +0.49, switch to Prinplup (dropped) +0.38, switch to Dubwool (dropped) +0.42, switch to Vulpix (dropped) +0.38, switch to Kingler (dropped) +0.37, switch to Tsareena (dropped) +0.47
+won; fainted: none

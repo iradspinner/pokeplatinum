@@ -3,8 +3,8 @@
         "hp": 75,
         "attack": 90,
         "defense": 50,
-        "speed": 95,
-        "special_attack": 110,
+        "speed": 105,
+        "special_attack": 120,
         "special_defense": 80
     },
     "types": [ "TYPE_DARK", "TYPE_FIRE" ],
@@ -59,7 +59,6 @@
             "TM05",
             "TM06",
             "TM10",
-            "TM11",
             "TM12",
             "TM15",
             "TM17",

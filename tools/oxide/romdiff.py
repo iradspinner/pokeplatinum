@@ -2,8 +2,8 @@
 """Say exactly what differs between two ROMs, down to archive members.
 
 Used to prove a change touched only what it meant to: build the new ROM, then
-compare it with a verified ROM of the previous commit (one fetched with
-tools/oxide/fetch-rom, whose hash GitHub vouches for). Element 4's effect
+compare it with a verified ROM of the previous commit (one built here whose
+SHA-1 matches GitHub's build of that commit). Element 4's effect
 scripts, for instance, should change members of battle/skill/be_seq.narc and
 nothing else, not arm9, not an overlay, not another archive.
 

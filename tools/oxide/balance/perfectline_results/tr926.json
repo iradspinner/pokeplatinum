@@ -1,0 +1,3471 @@
+{
+ "blind_rate": 0.877,
+ "blind_clean_share": 0.62,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.15,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.943,
+  "50": 0.972,
+  "100": 0.986,
+  "300": 0.993
+ },
+ "runs": 209880,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Commander Mars",
+ "split": "Galactic",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 13.4,
+ "rows": [
+  {
+   "rate": 0.93,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "45": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Lumineon, Purugly->Manaphy; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 1 turns; save Manaphy for Purugly",
+   "candidates": 45,
+   "converged": true,
+   "runs": 1500,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Crobat",
+    "Dewgong"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.8,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "53": 1.0
+   },
+   "line": "lead Electivire; answers Solrock->Liepard, Persian->Hippowdon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 53,
+   "converged": true,
+   "runs": 1660,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Liepard",
+    "Corsola",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.875,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Bronzong, Persian->Seaking; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Bronzong",
+    "Quagsire",
+    "Seaking",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.68,
+   "deaths": 0.35,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Golduck; answers Persian->Pelipper, Purugly->Sharpedo; switch losing; setup at 3+ safe turns; no status moves; free pivots; save Pelipper for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Golduck",
+    "Milotic",
+    "Pelipper",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Seaking; answers Solrock->Seaking, Persian->Seaking, Purugly->Snorlax; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Seaking for Persian",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Mandibuzz",
+    "Seaking",
+    "Snorlax",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Arboliva, Persian->Arboliva, Purugly->Gliscor; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Gliscor",
+    "Manaphy",
+    "Seaking",
+    "Starmie",
+    "Alomomola"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.913,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Orbeetle; answers Solrock->Orbeetle, Persian->Alomomola, Purugly->Quagsire; switch losing; setup at 2+ safe turns; free pivots; save Alomomola for Persian",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Gengar",
+    "Orbeetle",
+    "Pawmot",
+    "Quagsire",
+    "Alomomola"
+   ],
+   "seconds": 10.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Vaporeon, Persian->Vespiquen, Purugly->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Blastoise",
+    "Manaphy",
+    "Seaking",
+    "Vaporeon",
+    "Vespiquen",
+    "Yanmega"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.163,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.75,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Lanturn; answers Solrock->Lanturn, Persian->Ceruledge, Purugly->Lanturn; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Lanturn",
+    "Mr. Rime",
+    "Ninetales",
+    "Ceruledge",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 8.2
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 1.0
+   },
+   "line": "lead Crawdaunt; answers Persian->Quagsire, Purugly->Glalie; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Bibarel",
+    "Masquerain",
+    "Quagsire",
+    "Crawdaunt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Frosmoth; answers Solrock->Frosmoth, Persian->Vaporeon, Purugly->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Gliscor",
+    "Lumineon",
+    "Mandibuzz",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Arboliva; answers Solrock->Bastiodon, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:0",
+   "team": [
+    "Arboliva",
+    "Bastiodon",
+    "Orbeetle",
+    "Seaking",
+    "Crobat",
+    "Electivire"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "56": 1.0
+   },
+   "line": "lead Vaporeon; answers Purugly->Crobat; switch hp below 0.5; setup at 5+ safe turns at full HP; no status moves; stall timed effects at 2 turns; save Crobat for Purugly",
+   "candidates": 56,
+   "converged": true,
+   "runs": 2020,
+   "kind": "planned:0",
+   "team": [
+    "Lumineon",
+    "Milotic",
+    "Bronzong",
+    "Vaporeon",
+    "Alomomola",
+    "Crobat"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Whiscash; answers Solrock->Whiscash, Persian->Carbink, Purugly->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Lumineon",
+    "Carbink",
+    "Turtonator",
+    "Whiscash"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Roserade; answers Solrock->Bastiodon, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Kricketune",
+    "Roserade",
+    "Cherrim",
+    "Drifblim"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.845,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Pelipper; answers Solrock->Pelipper, Persian->Drifblim; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Houndoom",
+    "Luxray",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Mamoswine, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; save Corviknight for Purugly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Corviknight"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.755,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Octillery; answers Solrock->Absol, Persian->Roserade, Purugly->Absol; switch losing; setup at 3+ safe turns; bait locks; save Absol for Purugly",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Electivire"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Solrock->Bastiodon, Persian->Relicanth, Purugly->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Bastiodon",
+    "Octillery",
+    "Pelipper",
+    "Relicanth",
+    "Crawdaunt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Bronzong, Persian->Carbink, Purugly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Octillery",
+    "Bronzong",
+    "Carbink",
+    "Torterra",
+    "Turtonator"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Bronzong, Persian->Bronzong, Purugly->Manaphy; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 2 turns; save Manaphy for Purugly",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Manaphy",
+    "Bronzong",
+    "Tentacruel",
+    "Turtonator"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Crawdaunt; answers Solrock->Wailord, Persian->Wailord, Purugly->Crawdaunt; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Mandibuzz",
+    "Wailord",
+    "Cherrim",
+    "Crawdaunt",
+    "Decidueye"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bastiodon; answers Solrock->Toxapex, Persian->Corviknight, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Purugly",
+    "Toxapex",
+    "Vespiquen",
+    "Cherrim",
+    "Corviknight"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Liepard; answers Solrock->Bronzong, Persian->Decidueye, Purugly->Bronzong; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Liepard",
+    "Palossand",
+    "Bronzong",
+    "Togekiss",
+    "Decidueye"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.087,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Vespiquen, Persian->Bronzong, Purugly->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:1",
+   "team": [
+    "Liepard",
+    "Lumineon",
+    "Pelipper",
+    "Bronzong",
+    "Vespiquen",
+    "Decidueye"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crawdaunt; answers Solrock->Crawdaunt, Persian->Corviknight, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Lurantis",
+    "Pelipper",
+    "Purugly",
+    "Salazzle",
+    "Corviknight",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.79,
+   "deaths": 0.225,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.15,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.55,
+    "50": 0.6,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Breloom; answers Solrock->Breloom, Persian->Talonflame, Purugly->Walrein; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Walrein for Purugly",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Mienshao",
+    "Breloom",
+    "Talonflame",
+    "Walrein",
+    "Delphox"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Magnezone; answers Solrock->Magnezone, Persian->Toxicroak, Purugly->Magnezone; switch hp below 0.5; setup at 5+ safe turns at full HP; free pivots; save Toxicroak for Persian",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:2",
+   "team": [
+    "Magnezone",
+    "Mienshao",
+    "Pachirisu",
+    "Palossand",
+    "Toxicroak",
+    "Alomomola"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Solrock->Empoleon, Persian->Golem, Purugly->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Girafarig",
+    "Gliscor",
+    "Golem",
+    "Scizor",
+    "Vespiquen"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.495,
+   "deaths": 0.62,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Frosmoth; answers Solrock->Frosmoth, Persian->Togekiss; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Houndoom",
+    "Kricketune",
+    "Octillery",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Magnezone, Persian->Chandelure, Purugly->Magnezone; switch hp below 0.5; setup at 4+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Girafarig",
+    "Magnezone",
+    "Masquerain",
+    "Starmie",
+    "Chandelure",
+    "Yanmega"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Empoleon, Purugly->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Luxray",
+    "Manaphy",
+    "Seaking",
+    "Starmie",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Whiscash, Persian->Jellicent, Purugly->Bastiodon; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Garganacl",
+    "Bastiodon",
+    "Jellicent",
+    "Mightyena",
+    "Carbink",
+    "Whiscash"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crawdaunt; answers Solrock->Crawdaunt, Persian->Palossand, Purugly->Palossand; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Palossand",
+    "Quagsire",
+    "Chandelure",
+    "Weavile",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Octillery; answers Solrock->Octillery, Persian->Corviknight, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Leavanny",
+    "Mienshao",
+    "Octillery",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "28": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Persian->Chandelure, Purugly->Girafarig; switch hp below 0.7; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; save Chandelure for Persian",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Milotic",
+    "Poliwrath",
+    "Purugly",
+    "Chandelure",
+    "Weavile"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Quagsire; answers Solrock->Quagsire, Persian->Granbull, Purugly->Mamoswine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Luxray",
+    "Mamoswine",
+    "Breloom",
+    "Quagsire",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Quagsire, Persian->Chandelure, Purugly->Poliwrath; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Milotic",
+    "Poliwrath",
+    "Quagsire",
+    "Togekiss",
+    "Chandelure"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Bastiodon; answers Solrock->Ludicolo, Persian->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Bastiodon",
+    "Ludicolo",
+    "Luxray",
+    "Octillery",
+    "Pelipper"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Solrock->Ninetales-Alola, Persian->Skarmory, Purugly->Steelix; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Skarmory",
+    "Steelix",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Altaria"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.73,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Whiscash; answers Persian->Mantine, Purugly->Hawlucha; switch hp below 0.3; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Mantine for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Magmortar",
+    "Mantine",
+    "Rapidash",
+    "Talonflame",
+    "Whiscash"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Tentacruel, Persian->Chandelure, Purugly->Bronzong; switch losing; setup at 2+ safe turns; no status moves; bait locks; stall timed effects at 3 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:3",
+   "team": [
+    "Glalie",
+    "Mienshao",
+    "Bronzong",
+    "Tentacruel",
+    "Chandelure",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Quagsire; answers Solrock->Quagsire, Persian->Rapidash, Purugly->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Bibarel",
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Metagross; answers Solrock->Metagross, Persian->Corviknight, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Metagross",
+    "Salazzle",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Metagross; answers Solrock->Metagross, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Metagross",
+    "Chandelure",
+    "Wailord",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Solrock->Donphan, Persian->Magcargo, Purugly->Magcargo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Golduck",
+    "Hawlucha",
+    "Magcargo",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Bastiodon; answers Solrock->Bastiodon, Purugly->Bastiodon; switch losing; setup at 4+ safe turns; bait locks; save Bastiodon for Purugly",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:3",
+   "team": [
+    "Gengar",
+    "Glimmora",
+    "Bastiodon",
+    "Jellicent",
+    "Quagsire",
+    "Sharpedo"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Solrock->Metagross, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Bastiodon",
+    "Manaphy",
+    "Metagross",
+    "Talonflame"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Steelix; answers Solrock->Steelix, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash",
+    "Alomomola"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.867,
+   "deaths": 0.137,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "16": 1.0
+   },
+   "line": "lead Araquanid; answers Persian->Magcargo, Purugly->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:3",
+   "team": [
+    "Araquanid",
+    "Garganacl",
+    "Liepard",
+    "Magcargo",
+    "Salazzle",
+    "Togekiss"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Yanmega; answers Solrock->Milotic, Persian->Dubwool, Purugly->Lumineon; switch hp below 0.5; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Lumineon for Purugly",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Liepard",
+    "Lumineon",
+    "Milotic",
+    "Bronzong",
+    "Yanmega",
+    "Dubwool"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ferrothorn; answers Solrock->Ferrothorn, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Bastiodon",
+    "Qwilfish",
+    "Raichu",
+    "Toucannon"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.5,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Persian->Toxapex, Purugly->Machamp; switch losing; setup at 4+ safe turns at full HP; bait locks; save Toxapex for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Machamp",
+    "Quagsire",
+    "Salazzle",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Donphan; answers Solrock->Donphan, Persian->Garganacl, Purugly->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:4",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Absol",
+    "Lurantis",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.3,
+   "deaths": 1.1,
+   "wipe": 0.005,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Quagsire; answers Solrock->Quagsire, Persian->Pawmot, Purugly->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Pawmot",
+    "Quagsire",
+    "Sharpedo",
+    "Charizard"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Electivire; answers Solrock->Greninja, Persian->Corviknight, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Mantine",
+    "Corviknight",
+    "Crawdaunt",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.43,
+   "deaths": 0.68,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.25,
+    "20": 0.3,
+    "30": 0.4,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Florges; answers Solrock->Florges, Persian->Rapidash, Purugly->Seaking; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Rapidash for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Mantine",
+    "Rapidash",
+    "Seaking",
+    "Sharpedo",
+    "Altaria"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Seaking; answers Persian->Quagsire, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Bronzong",
+    "Quagsire",
+    "Seaking",
+    "Corviknight"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "163": 1.0
+   },
+   "line": "lead Poliwrath; answers Solrock->Poliwrath, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Bastiodon for Purugly",
+   "candidates": 163,
+   "converged": true,
+   "runs": 4160,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Poliwrath",
+    "Rapidash",
+    "Delcatty"
+   ],
+   "seconds": 7.1
+  },
+  {
+   "rate": 0.717,
+   "deaths": 0.307,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Luxray; answers Solrock->Luxray, Persian->Electivire, Purugly->Delcatty; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Electivire for Persian",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Luxray",
+    "Octillery",
+    "Togekiss",
+    "Delcatty",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 8.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Bronzong, Persian->Glimmora, Purugly->Bronzong; switch hp below 0.4; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Luxray",
+    "Mienshao",
+    "Bronzong",
+    "Togekiss"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "26": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Seaking, Persian->Bronzong, Purugly->Ninetales-Alola; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:4",
+   "team": [
+    "Bronzong",
+    "Seaking",
+    "Vaporeon",
+    "Whiscash",
+    "Ninetales-Alola",
+    "Corsola"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.877,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Sharpedo; answers Solrock->Palossand, Persian->Palossand, Purugly->Salazzle; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; save Palossand for Persian",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:4",
+   "team": [
+    "Palossand",
+    "Quagsire",
+    "Rapidash",
+    "Salazzle",
+    "Sharpedo",
+    "Skuntank"
+   ],
+   "seconds": 10.0
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "184": 1.0
+   },
+   "line": "lead Octillery; answers Solrock->Floatzel, Purugly->Whiscash; switch hp below 0.4; setup at 3+ safe turns at full HP; free pivots; save Whiscash for Purugly",
+   "candidates": 184,
+   "converged": true,
+   "runs": 4580,
+   "kind": "planned:4",
+   "team": [
+    "Floatzel",
+    "Leavanny",
+    "Octillery",
+    "Palossand",
+    "Skuntank",
+    "Whiscash"
+   ],
+   "seconds": 6.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Lumineon; answers Persian->Milotic, Purugly->Dubwool; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:4",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Milotic",
+    "Octillery",
+    "Rotom",
+    "Dubwool"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.065,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Pawmot, Purugly->Manaphy; switch losing; setup at 3+ safe turns at full HP; save Manaphy for Purugly",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Manaphy",
+    "Pawmot",
+    "Serperior",
+    "Talonflame",
+    "Vaporeon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "14": 1.0
+   },
+   "line": "lead Gliscor; answers Solrock->Gliscor, Persian->Electivire, Purugly->Bastiodon; switch losing; setup at 2+ safe turns; bait locks; free pivots; stall timed effects at 2 turns; save Bastiodon for Purugly",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:5",
+   "team": [
+    "Gliscor",
+    "Bastiodon",
+    "Noctowl",
+    "Poliwrath",
+    "Torterra",
+    "Electivire"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Whiscash; answers Solrock->Whiscash, Persian->Carbink, Purugly->Alomomola; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1200,
+   "kind": "blind:5",
+   "team": [
+    "Milotic",
+    "Carbink",
+    "Castform",
+    "Whiscash",
+    "Corsola",
+    "Alomomola"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Alomomola; answers Solrock->Alomomola, Persian->Hippowdon, Purugly->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Hippowdon",
+    "Machamp",
+    "Masquerain",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ferrothorn; answers Solrock->Ferrothorn, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Bastiodon",
+    "Bibarel",
+    "Swampert",
+    "Vespiquen"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Ferrothorn, Persian->Serperior, Purugly->Ferrothorn; switch losing; setup at 5+ safe turns; no status moves; bait locks; stall timed effects at 2 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Manaphy",
+    "Palossand",
+    "Seaking",
+    "Serperior"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.073,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wailord; answers Solrock->Wailord, Persian->Lumineon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Heracross",
+    "Jellicent",
+    "Leavanny",
+    "Lumineon",
+    "Wailord"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Ferrothorn; answers Solrock->Ferrothorn, Persian->Golem, Purugly->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Glimmora",
+    "Golem",
+    "Manaphy",
+    "Mandibuzz",
+    "Swampert"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Ferrothorn, Persian->Bastiodon, Purugly->Bastiodon; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Floatzel",
+    "Bastiodon",
+    "Liepard",
+    "Manaphy",
+    "Cherrim"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Seaking; answers Persian->Vaporeon; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Lanturn",
+    "Seaking",
+    "Vaporeon",
+    "Wailord",
+    "Cinccino"
+   ],
+   "seconds": 8.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rhyperior; answers Solrock->Rhyperior, Persian->Grapploct, Purugly->Rhyperior; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Rhyperior",
+    "Sinistcha",
+    "Cherrim",
+    "Crawdaunt",
+    "Crustle"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Bronzong, Persian->Carbink, Purugly->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Manaphy",
+    "Bronzong",
+    "Carbink",
+    "Swampert",
+    "Tsareena"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Rhyperior; answers Solrock->Rhyperior, Persian->Castform, Purugly->Rhyperior; switch losing; setup at 3+ safe turns at full HP; save Rhyperior for Purugly",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Grapploct",
+    "Greninja",
+    "Hippowdon",
+    "Rhyperior",
+    "Castform",
+    "Vaporeon"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.135,
+   "wipe": 0.005,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Galvantula; answers Solrock->Electivire, Persian->Tentacruel; switch hp below 0.4; setup at 3+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Tentacruel for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Galvantula",
+    "Palossand",
+    "Tentacruel",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Persian->Glimmora, Purugly->Glimmora; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Jellicent",
+    "Mandibuzz",
+    "Mantine",
+    "Vespiquen"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Araquanid; answers Solrock->Araquanid, Persian->Crawdaunt, Purugly->Crawdaunt; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Crawdaunt for Purugly",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Jellicent",
+    "Bibarel",
+    "Shiftry",
+    "Vespiquen",
+    "Crawdaunt"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Quagsire; answers Solrock->Quagsire, Persian->Masquerain, Purugly->Scizor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 17,
+   "converged": true,
+   "runs": 940,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Ninetales",
+    "Quagsire",
+    "Scizor",
+    "Vaporeon"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.68,
+   "deaths": 0.385,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.45,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6
+   },
+   "line": "lead Weezing-Galar; answers Solrock->Huntail, Persian->Lumineon, Purugly->Lanturn; switch hp below 0.4; setup at 5+ safe turns at full HP; no status moves",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Weezing-Galar",
+    "Huntail",
+    "Lanturn",
+    "Lumineon",
+    "Ninetales",
+    "Ambipom"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Solrock->Bronzong, Persian->Rhyperior, Purugly->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Mightyena",
+    "Bronzong",
+    "Rhyperior",
+    "Seaking",
+    "Vespiquen",
+    "Corviknight"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Dubwool, Purugly->Manaphy; switch losing; setup at 2+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Houndoom",
+    "Huntail",
+    "Manaphy",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Vespiquen; answers Persian->Hippowdon, Purugly->Hariyama; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Hariyama for Purugly",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Mandibuzz",
+    "Salazzle",
+    "Vespiquen",
+    "Donphan"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bastiodon; answers Solrock->Bastiodon, Persian->Bibarel, Purugly->Bastiodon; switch losing; setup at 3+ safe turns at full HP; save Bastiodon for Purugly",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Bastiodon",
+    "Bibarel",
+    "Mightyena",
+    "Pelipper",
+    "Corsola"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.24,
+   "wipe": 0.003,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.75,
+    "160": 0.75,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Gastrodon; answers Solrock->Gastrodon, Persian->Arboliva, Purugly->Crawdaunt; switch losing; setup at 4+ safe turns; no status moves; stall timed effects at 2 turns; save Crawdaunt for Purugly",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Arboliva",
+    "Gastrodon",
+    "Lumineon",
+    "Tsareena",
+    "Vaporeon",
+    "Crawdaunt"
+   ],
+   "seconds": 7.4
+  },
+  {
+   "rate": 0.793,
+   "deaths": 0.273,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.15,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Huntail; answers Solrock->Huntail, Persian->Emolga, Purugly->Araquanid; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 2 turns; save Emolga for Persian",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Araquanid",
+    "Hippowdon",
+    "Houndoom",
+    "Huntail",
+    "Leavanny"
+   ],
+   "seconds": 6.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Orbeetle; answers Persian->Rhyperior, Purugly->Rhyperior; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns; save Rhyperior for Purugly",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Orbeetle",
+    "Quagsire",
+    "Rhyperior",
+    "Ambipom",
+    "Dewgong"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Absol, Purugly->Manaphy; switch losing; setup at 2+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Glalie",
+    "Absol",
+    "Manaphy",
+    "Mightyena",
+    "Tentacruel",
+    "Vaporeon"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.885,
+   "deaths": 0.125,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0
+   },
+   "line": "lead Frosmoth; answers Solrock->Empoleon, Persian->Empoleon, Purugly->Empoleon; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Empoleon for Purugly",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Gothitelle",
+    "Seaking",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Heracross; answers Solrock->Heracross, Purugly->Gothitelle; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Gothitelle for Purugly",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Gothitelle",
+    "Heracross",
+    "Lanturn",
+    "Mantine",
+    "Salazzle",
+    "Seaking"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Golem; answers none; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Glalie",
+    "Golem",
+    "Kingdra",
+    "Lopunny",
+    "Cherrim"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Frosmoth; answers Solrock->Magnezone, Persian->Magnezone, Purugly->Magnezone; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:7",
+   "team": [
+    "Frosmoth",
+    "Glimmora",
+    "Machamp",
+    "Magnezone",
+    "Staraptor",
+    "Turtonator"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.765,
+   "deaths": 0.235,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Persian->Palossand, Purugly->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Mandibuzz",
+    "Palossand",
+    "Rapidash",
+    "Crobat"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "37": 1.0
+   },
+   "line": "lead Steelix; answers Solrock->Gliscor, Persian->Goodra, Purugly->Pelipper; switch hp below 0.5; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1640,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Goodra",
+    "Bibarel",
+    "Pelipper",
+    "Seaking",
+    "Steelix"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Solrock->Empoleon, Persian->Garganacl, Purugly->Garganacl; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Empoleon",
+    "Garganacl",
+    "Houndoom",
+    "Sharpedo",
+    "Turtonator",
+    "Crustle"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Gastrodon; answers Solrock->Gastrodon, Persian->Quagsire, Purugly->Skarmory; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Florges",
+    "Gastrodon",
+    "Pelipper",
+    "Quagsire",
+    "Skarmory"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Hawlucha, Purugly->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Hawlucha",
+    "Manaphy",
+    "Quagsire",
+    "Seaking",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.813,
+   "deaths": 0.327,
+   "wipe": 0.01,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Seaking; answers Solrock->Seaking, Persian->Mandibuzz, Purugly->Hariyama; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Mandibuzz",
+    "Seaking",
+    "Castform",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Vespiquen; answers Persian->Golem, Purugly->Gliscor; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Gliscor for Purugly",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Golem",
+    "Pelipper",
+    "Rapidash",
+    "Vespiquen",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "14": 1.0
+   },
+   "line": "lead Ludicolo; answers Solrock->Ludicolo, Persian->Glimmora, Purugly->Mamoswine; switch losing; setup at 3+ safe turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:7",
+   "team": [
+    "Glimmora",
+    "Incineroar",
+    "Ludicolo",
+    "Mamoswine",
+    "Castform",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Golem; answers Solrock->Electivire, Persian->Golem, Purugly->Golem; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Golem",
+    "Absol",
+    "Mandibuzz",
+    "Mantine",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Persian->Glalie, Purugly->Glalie; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Sinistcha",
+    "Toxapex",
+    "Vespiquen",
+    "Clefable"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Ferrothorn; answers Solrock->Ferrothorn, Persian->Ferrothorn, Purugly->Ferrothorn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Mandibuzz",
+    "Carbink",
+    "Castform",
+    "Toxapex",
+    "Weezing"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.475,
+   "deaths": 0.67,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Floatzel; answers Persian->Leavanny, Purugly->Seaking; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Leavanny",
+    "Liepard",
+    "Seaking",
+    "Clefable"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Solrock->Whiscash, Persian->Skarmory, Purugly->Skarmory; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Hawlucha",
+    "Skarmory",
+    "Walrein",
+    "Whiscash",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Gastrodon; answers Persian->Whiscash, Purugly->Sharpedo; switch losing; setup at 2+ safe turns; free pivots; save Sharpedo for Purugly",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Lapras",
+    "Pelipper",
+    "Sharpedo",
+    "Whiscash",
+    "Delcatty"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Mightyena, Persian->Steelix, Purugly->Steelix; switch losing; setup at 5+ safe turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Kingdra",
+    "Mightyena",
+    "Sinistcha",
+    "Steelix",
+    "Vespiquen"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Persian->Sudowoodo, Purugly->Crustle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Beautifly",
+    "Lanturn",
+    "Leavanny",
+    "Seaking",
+    "Sudowoodo",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "39": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Persian->Sinistcha, Purugly->Huntail; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 39,
+   "converged": true,
+   "runs": 1680,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Huntail",
+    "Leavanny",
+    "Sinistcha",
+    "Castform",
+    "Weavile"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Orbeetle, Persian->Sudowoodo, Purugly->Sudowoodo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Manaphy",
+    "Orbeetle",
+    "Sudowoodo",
+    "Toxapex",
+    "Yanmega"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Walrein; answers Solrock->Walrein, Persian->Skarmory, Purugly->Skarmory; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:8",
+   "team": [
+    "Pelipper",
+    "Sharpedo",
+    "Skarmory",
+    "Carbink",
+    "Walrein",
+    "Drifblim"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "116": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Persian->Florges, Purugly->Machamp; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 116,
+   "converged": true,
+   "runs": 3220,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ludicolo; answers Solrock->Ludicolo, Persian->Sudowoodo, Purugly->Sudowoodo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Ludicolo",
+    "Pelipper",
+    "Sinistcha",
+    "Sudowoodo",
+    "Cinderace",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Gastrodon; answers Solrock->Gastrodon, Persian->Donphan, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Masquerain",
+    "Yanmega",
+    "Corsola",
+    "Donphan"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.84,
+   "deaths": 0.23,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Gastrodon; answers Solrock->Gastrodon, Persian->Ceruledge, Purugly->Glalie; switch losing; setup at 3+ safe turns at full HP; save Ceruledge for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Salazzle",
+    "Ceruledge",
+    "Walrein",
+    "Ambipom"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Persian->Ceruledge, Purugly->Corsola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Jellicent",
+    "Lurantis",
+    "Ceruledge",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "28": 1.0
+   },
+   "line": "lead Florges; answers Persian->Granbull, Purugly->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1160,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Granbull",
+    "Honchkrow",
+    "Mandibuzz",
+    "Donphan"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.815,
+   "deaths": 0.24,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Crawdaunt; answers Solrock->Crawdaunt, Persian->Ceruledge, Purugly->Florges; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Ceruledge for Persian",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Talonflame",
+    "Ceruledge",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Whiscash; answers Solrock->Crawdaunt, Purugly->Seaking; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1080,
+   "kind": "blind:9",
+   "team": [
+    "Glalie",
+    "Lucario",
+    "Lumineon",
+    "Seaking",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Arboliva; answers Solrock->Arboliva, Persian->Granbull, Purugly->Lucario; switch losing; setup at 3+ safe turns at full HP; save Granbull for Persian",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Arboliva",
+    "Granbull",
+    "Greninja",
+    "Lucario",
+    "Luxray",
+    "Quagsire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "49": 1.0
+   },
+   "line": "lead Arboliva; answers Solrock->Arboliva, Persian->Gliscor, Purugly->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1880,
+   "kind": "planned:9",
+   "team": [
+    "Arboliva",
+    "Gastrodon",
+    "Gliscor",
+    "Luxray",
+    "Mantine",
+    "Cinderace"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Ludicolo; answers Solrock->Ludicolo, Persian->Hippowdon, Purugly->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Hariyama",
+    "Hippowdon",
+    "Ludicolo",
+    "Luxray",
+    "Mandibuzz",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "98": 1.0
+   },
+   "line": "lead Quagsire; answers Persian->Tentacruel, Purugly->Machamp; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns; save Tentacruel for Persian",
+   "candidates": 98,
+   "converged": true,
+   "runs": 2860,
+   "kind": "planned:9",
+   "team": [
+    "Golem",
+    "Hippowdon",
+    "Machamp",
+    "Mr. Rime",
+    "Quagsire",
+    "Tentacruel"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Solrock->Empoleon, Persian->Empoleon, Purugly->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Empoleon",
+    "Gastrodon",
+    "Glimmora",
+    "Greninja",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Golem; answers Solrock->Golem, Persian->Whiscash, Purugly->Golem; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Golem",
+    "Kingler",
+    "Masquerain",
+    "Whiscash",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Relicanth; answers Solrock->Relicanth, Persian->Lopunny, Purugly->Relicanth; switch losing; setup at 3+ safe turns at full HP; bait locks; save Relicanth for Purugly",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Granbull",
+    "Hippowdon",
+    "Lopunny",
+    "Machamp",
+    "Relicanth",
+    "Crawdaunt"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Persian->Palossand, Purugly->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Weezing-Galar",
+    "Ludicolo",
+    "Manaphy",
+    "Palossand",
+    "Purugly",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  }
+ ],
+ "key": "tr926"
+}

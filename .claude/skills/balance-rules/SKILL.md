@@ -89,16 +89,18 @@ is listed for Ian.
   Comeuppance, vanilla Octazooka and Submission are the named ones.
 - No two moves on one level. Nothing that ends a wild encounter moves into
   the levels the species is met wild at. Fletchling keeps Will-O-Wisp at 25.
-- **Later-generation moves**: moves vanilla Platinum's species learn by level
-  up in later games come in through the same rules, as adds or as
-  replacements for a weaker Generation 4 move. The source is hg-engine's
-  per-game lists in `~/hg-engine` (a sparse clone, so read
-  `data/learnsets/base/*.json` with `git show HEAD:<path>`). Moves later
-  games give only by TM, tutor or egg wait for the TM pass. Judge a move by
+- **Later-generation moves**: a level-up list draws on Oxide's whole pool of
+  working moves, scored by fit to the line (its types, attacking stats,
+  abilities and role). Later games' learnsets, by any method (hg-engine's
+  per-game lists in `~/hg-engine`, a sparse clone read with `git show
+  HEAD:data/learnsets/base/<species>.json`, or looked up), are inspiration
+  that weighs in a move's favour, never the list to pick from (Ian,
+  2026-10-06, relayed by the balance track; it replaces the rule that moves
+  later games give only by TM, tutor or egg wait for the TM pass). Judge a move by
   what Oxide's engine does with it (the move-pool survey's `engine_status`),
   not by whether the survey lists it. A move missing only a doubles effect
-  (Flame Burst) may be placed. Lunar Blessing and Throat Chop wait for the
-  element 4 follow-up; Synchronoise and the other broken ones stay out.
+  (Flame Burst) may be placed. Synchronoise and the other broken ones stay
+  out.
 - Move numbers, setup PP and the no-weather rule for the player are in the
   standing rulings; they bind every learnset too.
 - **Every line learns something late** (2026-09-28): each final stage the
@@ -120,10 +122,51 @@ is listed for Ian.
   downsides, and plays with stalling, PP stalling, pivoting and safe setup.
 - **A loss of any kind ends the run** (2026-09-28), so every fight is a
   first and only attempt; nothing may assume a retry.
-- **The stored score is the guide.** The rebuilt simulator reached 9 of 15
-  held-out pairs against a bar of 13 and matched four of Ian's top ten
-  (2026-09-27), so it is a record, not the score. Ian's own list of the
-  hardest fights is the check any new scoring must keep.
+- **How a fight is scored** (Ian's rulings of 2026-09-30 to 2026-10-02; the
+  standing rulings hold them whole). The Scoring Agent owns the simulator,
+  its AI and the scorer (`docs/oxide/trainer-scoring-handoff.md`). The scorer
+  is a turn-by-turn planner whose good play arises from search over the real
+  simulator and the exactly known trainer AI, never from named behaviours; a
+  missed play is fixed in that general machinery. Fights run at the game's
+  real odds, with ties between equal AI picks at random. Each trainer is read
+  on 100 simulated fights, 75 at real odds and 25 very unlucky (every status
+  and crit check on both sides rolled twice, the result worse for the player
+  kept). A fight is judged on three numbers together: the clean rate, the win
+  rate and the average faints. Lines and the planner's options are ranked by
+  win rate first and average faints second; the clean rate is reported, not
+  optimised, since always winning with one sacrifice beats winning cleanly
+  nine times in ten. A faster-finish tie-break was built and left off
+  (Ian, 2026-10-02): the network never sees exact ties. Bosses are
+  read over a spread of boxes, so their answers do not narrow to one Pokemon.
+  The scorer's job is to order every fight correctly by difficulty; close
+  enough is good enough while that order is broadly right. For a boss it
+  chooses the six and their moves itself (a matchup screen, a race, then the
+  full reading), and reports which encounters its sixes always and never
+  take, as signs of encounter balance to work on (Ian, 2026-10-02).
+  The play-out planner runs at budget 64, and finalists within 5 points of
+  win rate count as equal before faints decide (Ian, 2026-10-03).
+  The first three splits are read under interim soft caps at their
+  mini-bosses (Barry 2's ace 11, Mars 1's Purugly 19, Jupiter 1's Skuntank 27,
+  Lucas and Dawn 2 at 30). Targets (Ian, 2026-10-04): an ordinary trainer,
+  read blind from a random six of the box's stronger half, won cleanly 80 to
+  85 percent of the time; a gauntlet section 60 percent or more; no boss
+  above 95 percent won, spiking with the boss's importance, the hardest
+  topping out near the easiest of Kaizo's bosses on Oxide's box (about 80
+  percent won). The numbers are ordinal, and Oxide is not meant to be beaten
+  on a first run. When a fight reads too hard, change the player's move pools first: they
+  are sparse in interesting options and lack many modern moves. The scorer's
+  goals, the Kaizo study's comb and the full rescore come in the order the
+  tracker's Scoring Agent entry and Scheduled list give.
+- **Every trainer team is set by hand** (Ian, 2026-09-27): in the finished
+  ROM no trainer keeps default moves, so default movesets carry no weight in
+  any argument about learnsets or level-1 order.
+- **Trainer design sits at about 6/10 of Platinum Kaizo** (2026-09-29):
+  `.claude/rules/standing-rulings.md` has the whole ruling (no one-hit KO
+  moves, rare evasion and trapping, at most one forced trade per boss and
+  none before Fantina, no overlevelled optional trainers, some doubles).
+  Ordinary trainers carry 3 to 5 Pokemon (6 from Gardenia's split on is
+  fine), with sizes varied and real lethality, and any trainer may use TM
+  and tutor moves (Ian, 2026-10-04).
 - **Gauntlets** hold the attrition: 2 to 5 mandatory trainers on the easier
   side of their split's average, counted without optional ones; bag items may
   heal between fights; bosses stay outside, with gauntlets leading up to
@@ -155,9 +198,8 @@ trainers' palette only.
 
 ## Running a pass on this machine
 
-- The replacement CPU is in and passed its checks (2026-09-29), so there is
-  no job limit. A rescore still runs its agreeing second pass, which is the
-  rescore's own design rather than a guard against the CPU.
+- There is no job limit; heavy or parallel jobs run under
+  `tools/oxide/capped`. A rescore runs its agreeing second pass by design.
 - The rescore's engine hash covers `calc_headless.js`, the calculator page's
   `./calc/` scripts and the two functions lifted from `initialize.js`
   (`applyExportedMoveData`, `toImportedBaseStats`). An edit to any of them

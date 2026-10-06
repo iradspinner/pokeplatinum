@@ -29,12 +29,8 @@ move_scripts_order = move_data[2]
 move_data_outputs = move_data.to_list()
 move_text_banks = move_data_outputs.slice(3, move_data_outputs.length())
 
-anim_script_srcs = files(
-    '.shared/anim_0468_0474.s',
-    '.shared/anim_0475_0500.s',
-)
-
-move_script_srcs = files('.shared/script_0468_0500.s')
+anim_script_srcs = []
+move_script_srcs = []
 move_script_srcdir = meson.current_source_dir()
 
 move_consts = fs.read(moves_txt).splitlines()

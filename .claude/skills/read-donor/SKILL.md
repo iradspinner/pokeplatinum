@@ -50,8 +50,7 @@ readers already exist; use them rather than reopening the ROM by hand.
   through `donor.py` and the ROM anyway.
 - Learnsets are 34 fixed slots of (u16 move, u16 level); level 0 means an
   evolution move, which Platinum has no concept of and which imports as level 1.
-  Oxide's entry has been (u16 level, u16 move) since element 4, so the move id
-  is no longer capped at 511.
+  Oxide's entry is (u16 level, u16 move), so move ids above 511 fit.
 - Move battle effects share Platinum's numbering: 0 to 276 are Platinum's
   `BATTLE_EFFECT_*` in order and hg-engine's own run 277 to 406. The effect
   scripts come from hg-engine's source, not the ROM:
@@ -69,8 +68,7 @@ readers already exist; use them rather than reopening the ROM by hand.
   (u16), 9 icon palettes (u8), 10 unidentified (u16, 26 non-zero; see the doc),
   11 form data (32 u16 per species, the personal indices of its forms), 12 and
   13 form-to-species and reversion. Hardlove's item table has 2,687 records;
-  element 7 brings a curated subset into Platinum's free slots, done on
-  `cloud/element7-items` and not yet merged.
+  element 7 brought a curated subset into Platinum's free slots (merged).
 - Encounter and trainer records encode forms as `(form << 11) | species`.
 - The form and alt-evolution slots on the pick-list (Alolan Ninetales 1132,
   Galarian Rapidash 1158, Gyarados M 1087, and the rest of that table) were

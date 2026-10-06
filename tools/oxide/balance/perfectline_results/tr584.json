@@ -1,0 +1,3531 @@
+{
+ "blind_rate": 0.7,
+ "blind_clean_share": 0.46,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.487,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.894,
+  "50": 0.959,
+  "100": 0.974,
+  "300": 0.989
+ },
+ "runs": 221680,
+ "search_budget": 376,
+ "converged_share": 1.0,
+ "label": "Psychic Sterling",
+ "split": "Galactic",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 10.2,
+ "rows": [
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Orbeetle, Chimecho->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Manaphy",
+    "Orbeetle",
+    "Tsareena",
+    "Crobat",
+    "Dewgong"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.83,
+   "deaths": 0.225,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Liepard; answers Gallade->Electivire, Chimecho->Electivire; switch hp below 0.5; setup at 3+ safe turns at full HP; save Electivire for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Gliscor",
+    "Hippowdon",
+    "Liepard",
+    "Corsola",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.3,
+   "deaths": 1.125,
+   "wipe": 0.0,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.25,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Vikavolt; answers Solrock->Bronzong, Gallade->Delibird, Chimecho->Seaking; switch hp below 0.3; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Lopunny",
+    "Bronzong",
+    "Quagsire",
+    "Seaking",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.765,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Sharpedo; answers Gallade->Ceruledge, Chimecho->Ceruledge; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 2 turns; save Ceruledge for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Golduck",
+    "Milotic",
+    "Pelipper",
+    "Sharpedo",
+    "Ceruledge",
+    "Whiscash"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.205,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.5,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Mandibuzz; answers Gallade->Seaking, Chimecho->Altaria; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Mandibuzz",
+    "Seaking",
+    "Snorlax",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Electivire; answers Solrock->Manaphy, Gallade->Yanmega, Chimecho->Yanmega; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Manaphy",
+    "Orbeetle",
+    "Pelipper",
+    "Sharpedo",
+    "Yanmega",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Orbeetle; answers Gallade->Ceruledge, Chimecho->Orbeetle; switch losing; setup at 3+ safe turns at full HP; save Orbeetle for Chimecho",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Galvantula",
+    "Gengar",
+    "Orbeetle",
+    "Pawmot",
+    "Ceruledge",
+    "Electivire"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Manaphy",
+    "Mandibuzz",
+    "Vespiquen",
+    "Vikavolt",
+    "Yanmega",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Ceruledge, Chimecho->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Manaphy",
+    "Mr. Rime",
+    "Ninetales",
+    "Ceruledge",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.54,
+   "deaths": 0.46,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.2,
+    "20": 0.3,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Sharpedo; answers Solrock->Roserade, Gallade->Masquerain, Chimecho->Snorlax; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; free pivots; save Masquerain for Gallade",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Bibarel",
+    "Masquerain",
+    "Roserade",
+    "Sharpedo",
+    "Snorlax"
+   ],
+   "seconds": 6.6
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Tsareena; answers Solrock->Tsareena, Gallade->Mandibuzz, Chimecho->Togekiss; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Gliscor",
+    "Mandibuzz",
+    "Togekiss",
+    "Tsareena"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Gallade->Talonflame, Chimecho->Gothitelle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Bastiodon",
+    "Orbeetle",
+    "Palossand",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Roserade; answers Solrock->Bronzong, Gallade->Bronzong, Chimecho->Gothitelle; switch losing; setup at 2+ safe turns at full HP; free pivots; save Gothitelle for Chimecho",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Milotic",
+    "Orbeetle",
+    "Bronzong",
+    "Roserade",
+    "Vaporeon"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.38,
+   "deaths": 0.955,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.45,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Floatzel; answers Chimecho->Turtonator; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Lumineon",
+    "Carbink",
+    "Turtonator",
+    "Whiscash"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "13": 1.0
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Gallade->Drifblim, Chimecho->Cherrim; switch hp below 0.6; setup at 5+ safe turns; free pivots; save Drifblim for Gallade",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Greninja",
+    "Bastiodon",
+    "Kricketune",
+    "Roserade",
+    "Cherrim",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pelipper; answers Solrock->Pelipper, Chimecho->Abomasnow; switch losing; setup at 5+ safe turns; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Abomasnow",
+    "Houndoom",
+    "Luxray",
+    "Pelipper",
+    "Togekiss",
+    "Drifblim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.715,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.45,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75
+   },
+   "line": "lead Manaphy; answers Solrock->Corviknight, Gallade->Manaphy, Chimecho->Corviknight; switch never; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Mamoswine",
+    "Manaphy",
+    "Milotic",
+    "Octillery",
+    "Quagsire",
+    "Corviknight"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "16": 1.0
+   },
+   "line": "lead Roserade; answers Solrock->Roserade, Gallade->Electivire, Chimecho->Absol; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:1",
+   "team": [
+    "Absol",
+    "Mantine",
+    "Ninetales",
+    "Octillery",
+    "Roserade",
+    "Electivire"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "122": 1.0
+   },
+   "line": "lead Decidueye; answers Solrock->Decidueye, Gallade->Pelipper; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 122,
+   "converged": true,
+   "runs": 3340,
+   "kind": "planned:1",
+   "team": [
+    "Feraligatr",
+    "Leavanny",
+    "Pelipper",
+    "Sharpedo",
+    "Vikavolt",
+    "Decidueye"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kingdra; answers Solrock->Kingdra, Chimecho->Carbink; switch losing; setup at 3+ safe turns; free pivots; save Carbink for Chimecho",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Kingdra",
+    "Luxray",
+    "Pelipper",
+    "Bronzong",
+    "Carbink"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Chimecho->Florges; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:1",
+   "team": [
+    "Florges",
+    "Glalie",
+    "Manaphy",
+    "Ninetales",
+    "Bronzong",
+    "Turtonator"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Decidueye; answers Solrock->Decidueye, Gallade->Florges, Chimecho->Araquanid; switch losing; setup at 3+ safe turns at full HP; save Araquanid for Chimecho",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Araquanid",
+    "Florges",
+    "Mandibuzz",
+    "Wailord",
+    "Cherrim",
+    "Decidueye"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Chimecho->Decidueye; switch losing; setup at 3+ safe turns; bait locks; save Decidueye for Chimecho",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Toxapex",
+    "Vespiquen",
+    "Chandelure",
+    "Cherrim",
+    "Corviknight",
+    "Decidueye"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "78": 1.0
+   },
+   "line": "lead Decidueye; answers Solrock->Decidueye, Gallade->Palossand, Chimecho->Decidueye; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 78,
+   "converged": true,
+   "runs": 2460,
+   "kind": "planned:1",
+   "team": [
+    "Glimmora",
+    "Liepard",
+    "Palossand",
+    "Bronzong",
+    "Togekiss",
+    "Decidueye"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.113,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Decidueye; answers Solrock->Decidueye, Gallade->Corviknight, Chimecho->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Gothitelle",
+    "Pelipper",
+    "Bronzong",
+    "Vespiquen",
+    "Corviknight",
+    "Decidueye"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.863,
+   "deaths": 0.24,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Milotic; answers Gallade->Pelipper, Chimecho->Milotic; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Milotic",
+    "Pelipper",
+    "Purugly",
+    "Salazzle",
+    "Corviknight",
+    "Dubwool"
+   ],
+   "seconds": 6.3
+  },
+  {
+   "rate": 0.36,
+   "deaths": 1.32,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25
+   },
+   "line": "lead Breloom; answers Solrock->Breloom, Gallade->Talonflame, Chimecho->Walrein; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Walrein for Chimecho",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Mienshao",
+    "Breloom",
+    "Talonflame",
+    "Walrein",
+    "Delphox"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.645,
+   "deaths": 0.41,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Palossand; answers Solrock->Magnezone, Gallade->Palossand, Chimecho->Pachirisu; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Magnezone",
+    "Mienshao",
+    "Pachirisu",
+    "Palossand",
+    "Toxicroak",
+    "Alomomola"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Empoleon; answers Gallade->Gliscor, Chimecho->Gliscor; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:2",
+   "team": [
+    "Empoleon",
+    "Girafarig",
+    "Gliscor",
+    "Golem",
+    "Scizor",
+    "Vespiquen"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.24,
+   "deaths": 1.955,
+   "wipe": 0.0,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.25,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25
+   },
+   "line": "lead Frosmoth; answers Solrock->Frosmoth, Gallade->Togekiss; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:2",
+   "team": [
+    "Frosmoth",
+    "Houndoom",
+    "Kricketune",
+    "Octillery",
+    "Togekiss",
+    "Vaporeon"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Gallade->Yanmega, Chimecho->Chandelure; switch hp below 0.4; setup at 3+ safe turns at full HP; save Chandelure for Chimecho",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Girafarig",
+    "Magnezone",
+    "Masquerain",
+    "Starmie",
+    "Chandelure",
+    "Yanmega"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Chimecho->Electivire; switch losing; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Electivire for Chimecho",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:2",
+   "team": [
+    "Luxray",
+    "Manaphy",
+    "Yanmega",
+    "Cinderace",
+    "Corviknight",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.717,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.1,
+    "20": 0.25,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3,
+    "70": 0.35,
+    "80": 0.35,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Gallade->Pachirisu, Chimecho->Jellicent; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Jellicent",
+    "Leavanny",
+    "Pachirisu",
+    "Carbink",
+    "Whiscash"
+   ],
+   "seconds": 6.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Yanmega; answers Solrock->Electivire, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Mandibuzz for Chimecho",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Houndoom",
+    "Mandibuzz",
+    "Palossand",
+    "Chandelure",
+    "Yanmega",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Gallade->Corviknight, Chimecho->Corviknight; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Mienshao",
+    "Octillery",
+    "Tentacruel",
+    "Corviknight"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Gallade->Chandelure, Chimecho->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Girafarig",
+    "Houndoom",
+    "Milotic",
+    "Orbeetle",
+    "Sharpedo",
+    "Chandelure"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Gallade->Mamoswine; switch losing; setup at 3+ safe turns; bait locks; save Mamoswine for Gallade",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Mamoswine",
+    "Breloom",
+    "Palossand",
+    "Quagsire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Glalie",
+    "Mandibuzz",
+    "Milotic",
+    "Togekiss",
+    "Ceruledge",
+    "Chandelure"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Yanmega; answers Solrock->Yanmega, Gallade->Yanmega, Chimecho->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Florges",
+    "Frosmoth",
+    "Ludicolo",
+    "Luxray",
+    "Pachirisu",
+    "Yanmega"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.4,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Ferrothorn; answers Gallade->Steelix, Chimecho->Skarmory; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1060,
+   "kind": "blind:3",
+   "team": [
+    "Ferrothorn",
+    "Skarmory",
+    "Steelix",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Altaria"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.08,
+   "deaths": 1.66,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.2,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Hawlucha; answers Gallade->Rapidash, Chimecho->Mantine; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Magmortar",
+    "Mantine",
+    "Rapidash",
+    "Talonflame",
+    "Whiscash"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Gallade->Chandelure, Chimecho->Chandelure; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Glalie",
+    "Mienshao",
+    "Bronzong",
+    "Tentacruel",
+    "Chandelure",
+    "Delcatty"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.525,
+   "deaths": 0.86,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.05,
+    "20": 0.2,
+    "30": 0.2,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Araquanid; answers Gallade->Crustle, Chimecho->Rapidash; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns; save Crustle for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Araquanid",
+    "Bibarel",
+    "Quagsire",
+    "Rapidash",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.725,
+   "deaths": 0.275,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Salazzle; answers Solrock->Metagross, Gallade->Corviknight, Chimecho->Empoleon; switch losing; setup at 3+ safe turns at full HP; save Corviknight for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Empoleon",
+    "Gengar",
+    "Metagross",
+    "Salazzle",
+    "Ninetales-Alola",
+    "Corviknight"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sharpedo; answers Solrock->Sharpedo, Gallade->Talonflame, Chimecho->Chandelure; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Sharpedo",
+    "Shiftry",
+    "Talonflame",
+    "Chandelure",
+    "Yanmega",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9,
+    "310": 0.9,
+    "320": 0.9,
+    "330": 0.9,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "376": 1.0
+   },
+   "line": "lead Heracross; answers Solrock->Heracross, Gallade->Donphan, Chimecho->Orbeetle; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 376,
+   "converged": true,
+   "runs": 8420,
+   "kind": "planned:3",
+   "team": [
+    "Abomasnow",
+    "Hawlucha",
+    "Heracross",
+    "Magcargo",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "81": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Gallade->Gengar, Chimecho->Metagross; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 81,
+   "converged": true,
+   "runs": 2520,
+   "kind": "planned:3",
+   "team": [
+    "Gengar",
+    "Jellicent",
+    "Leavanny",
+    "Metagross",
+    "Raichu",
+    "Sharpedo"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Talonflame, Chimecho->Metagross; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Granbull",
+    "Manaphy",
+    "Metagross",
+    "Raichu",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Yanmega; answers Solrock->Yanmega, Gallade->Steelix, Chimecho->Steelix; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Sharpedo",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash",
+    "Yanmega",
+    "Alomomola"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.847,
+   "deaths": 0.16,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "123": 1.0
+   },
+   "line": "lead Liepard; answers Solrock->Liepard, Gallade->Electivire, Chimecho->Heracross; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Electivire for Gallade",
+   "candidates": 123,
+   "converged": true,
+   "runs": 3360,
+   "kind": "planned:3",
+   "team": [
+    "Garganacl",
+    "Heracross",
+    "Liepard",
+    "Magcargo",
+    "Togekiss",
+    "Electivire"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Heracross; answers Solrock->Heracross, Gallade->Vespiquen, Chimecho->Vespiquen; switch losing; setup at 3+ safe turns at full HP; save Vespiquen for Gallade",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Heracross",
+    "Milotic",
+    "Vespiquen",
+    "Yanmega",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.4,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "92": 1.0
+   },
+   "line": "lead Orbeetle; answers Gallade->Corviknight, Chimecho->Florges; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Corviknight for Gallade",
+   "candidates": 92,
+   "converged": true,
+   "runs": 2740,
+   "kind": "planned:3",
+   "team": [
+    "Florges",
+    "Orbeetle",
+    "Raichu",
+    "Toucannon",
+    "Corviknight",
+    "Dubwool"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.58,
+   "deaths": 0.525,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.0,
+    "20": 0.05,
+    "30": 0.05,
+    "40": 0.05,
+    "50": 0.1,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Gallade->Toxapex; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 3 turns; save Toxapex for Gallade",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Machamp",
+    "Quagsire",
+    "Salazzle",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "27": 1.0
+   },
+   "line": "lead Glimmora; answers Solrock->Glimmora, Gallade->Lurantis, Chimecho->Absol; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Absol for Chimecho",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1140,
+   "kind": "blind:4",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Absol",
+    "Lurantis",
+    "Orbeetle",
+    "Donphan"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.36,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Gallade->Pawmot, Chimecho->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Pawmot",
+    "Quagsire",
+    "Sharpedo",
+    "Charizard"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "21": 1.0
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Gallade->Electivire, Chimecho->Electivire; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1020,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Mantine",
+    "Corviknight",
+    "Crawdaunt",
+    "Dewgong",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.38,
+   "deaths": 0.98,
+   "wipe": 0.0,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.15,
+    "20": 0.2,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Seaking; answers Gallade->Rapidash, Chimecho->Rapidash; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Florges",
+    "Mantine",
+    "Rapidash",
+    "Seaking",
+    "Sharpedo",
+    "Altaria"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Shiftry; answers Gallade->Rotom, Chimecho->Corviknight; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:4",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Rapidash",
+    "Rotom",
+    "Shiftry",
+    "Corviknight"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "14": 1.0
+   },
+   "line": "lead Kingdra; answers Solrock->Kingdra, Gallade->Kingdra, Chimecho->Rapidash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Orbeetle",
+    "Poliwrath",
+    "Rapidash",
+    "Shiftry",
+    "Delcatty"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Solrock->Rotom, Gallade->Luxray, Chimecho->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Luxray",
+    "Octillery",
+    "Rotom",
+    "Togekiss",
+    "Delcatty",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Bronzong, Gallade->Luxray, Chimecho->Glimmora; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Glimmora for Chimecho",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Glimmora",
+    "Jellicent",
+    "Luxray",
+    "Bronzong",
+    "Togekiss"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.107,
+   "wipe": 0.003,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Gallade->Electivire, Chimecho->Bronzong; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Bronzong",
+    "Vaporeon",
+    "Whiscash",
+    "Ninetales-Alola",
+    "Corsola",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 1.0
+   },
+   "line": "lead Sharpedo; answers Solrock->Delcatty, Gallade->Palossand, Chimecho->Rapidash; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Palossand for Gallade",
+   "candidates": 50,
+   "converged": true,
+   "runs": 1900,
+   "kind": "planned:4",
+   "team": [
+    "Palossand",
+    "Rapidash",
+    "Salazzle",
+    "Sharpedo",
+    "Skuntank",
+    "Delcatty"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Palossand; answers Gallade->Talonflame, Chimecho->Palossand; switch losing; setup at 4+ safe turns; no status moves; stall timed effects at 1 turns; save Palossand for Chimecho",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:4",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Palossand",
+    "Pawmot",
+    "Skuntank",
+    "Talonflame"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Solrock->Rotom, Gallade->Rotom, Chimecho->Absol; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Absol",
+    "Lumineon",
+    "Blissey",
+    "Milotic",
+    "Rotom",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Talonflame, Chimecho->Manaphy; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Manaphy",
+    "Pawmot",
+    "Serperior",
+    "Talonflame",
+    "Vaporeon"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.245,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Poliwrath; answers Gallade->Gliscor, Chimecho->Torterra; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Torterra for Chimecho",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Gliscor",
+    "Bastiodon",
+    "Noctowl",
+    "Poliwrath",
+    "Torterra",
+    "Electivire"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.25,
+   "deaths": 1.22,
+   "wipe": 0.0,
+   "screened": 0.2,
+   "screen": {
+    "10": 0.0,
+    "20": 0.1,
+    "30": 0.2,
+    "40": 0.2,
+    "50": 0.2,
+    "60": 0.2
+   },
+   "line": "lead Castform; answers Gallade->Whiscash, Chimecho->Carbink; switch hp below 0.6; setup at 4+ safe turns; stall timed effects at 2 turns; save Carbink for Chimecho",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Milotic",
+    "Carbink",
+    "Castform",
+    "Whiscash",
+    "Corsola",
+    "Alomomola"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.465,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Masquerain; answers Solrock->Masquerain, Gallade->Hippowdon, Chimecho->Cinderace; switch losing; setup at 4+ safe turns at full HP; no status moves; stall timed effects at 1 turns; save Hippowdon for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Golduck",
+    "Hippowdon",
+    "Machamp",
+    "Masquerain",
+    "Cinderace",
+    "Alomomola"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.965,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Ferrothorn; answers Gallade->Vespiquen, Chimecho->Swampert; switch never; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:5",
+   "team": [
+    "Ferrothorn",
+    "Gastrodon",
+    "Bastiodon",
+    "Bibarel",
+    "Swampert",
+    "Vespiquen"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.6,
+    "19": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Orbeetle, Gallade->Palossand, Chimecho->Manaphy; switch losing; setup at 3+ safe turns at full HP; free pivots; save Manaphy for Chimecho",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:5",
+   "team": [
+    "Manaphy",
+    "Orbeetle",
+    "Palossand",
+    "Rotom",
+    "Serperior",
+    "Sharpedo"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.957,
+   "deaths": 0.043,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Gallade->Gliscor, Chimecho->Wailord; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Heracross",
+    "Jellicent",
+    "Leavanny",
+    "Wailord",
+    "Cinderace"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Golem, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Mandibuzz for Chimecho",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Golem",
+    "Leavanny",
+    "Manaphy",
+    "Mandibuzz",
+    "Pelipper",
+    "Swampert"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Talonflame, Chimecho->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Manaphy",
+    "Milotic",
+    "Talonflame",
+    "Cherrim",
+    "Electivire"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Gallade->Rhyperior, Chimecho->Wailord; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Palossand",
+    "Rhyperior",
+    "Rotom",
+    "Wailord",
+    "Cinccino"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Gallade->Rhyperior, Chimecho->Crustle; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Rhyperior",
+    "Serperior",
+    "Sharpedo",
+    "Sinistcha",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "18": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Manaphy, Gallade->Electivire, Chimecho->Electivire; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Manaphy",
+    "Palossand",
+    "Tsareena",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Gallade->Rhyperior, Chimecho->Sharpedo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:5",
+   "team": [
+    "Gliscor",
+    "Grapploct",
+    "Greninja",
+    "Rhyperior",
+    "Sharpedo",
+    "Sinistcha"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Galvantula, Gallade->Palossand, Chimecho->Galvantula; switch losing; setup at 3+ safe turns at full HP; save Galvantula for Chimecho",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Arboliva",
+    "Galvantula",
+    "Palossand",
+    "Tentacruel",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Glimmora",
+    "Hippowdon",
+    "Jellicent",
+    "Mandibuzz",
+    "Mantine",
+    "Vespiquen"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Jellicent, Gallade->Vespiquen, Chimecho->Vespiquen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Jellicent",
+    "Bibarel",
+    "Shiftry",
+    "Vespiquen",
+    "Crawdaunt"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.36,
+   "deaths": 0.835,
+   "wipe": 0.0,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Masquerain; answers Solrock->Bibarel, Gallade->Ninetales, Chimecho->Scizor; switch hp below 0.4; setup at 5+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Ninetales for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Ninetales",
+    "Quagsire",
+    "Scizor",
+    "Vaporeon"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.05,
+   "deaths": 1.695,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.0,
+    "20": 0.05,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1
+   },
+   "line": "lead Huntail; answers Gallade->Ambipom, Chimecho->Ninetales; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Weezing-Galar",
+    "Huntail",
+    "Lanturn",
+    "Lumineon",
+    "Ninetales",
+    "Ambipom"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Dusknoir; answers Solrock->Dusknoir, Gallade->Dusknoir, Chimecho->Dusknoir; switch losing; setup at 4+ safe turns at full HP; save Dusknoir for Gallade",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Chandelure",
+    "Vespiquen",
+    "Vikavolt",
+    "Corviknight",
+    "Dusknoir",
+    "Electivire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Vespiquen, Chimecho->Houndoom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Araquanid",
+    "Houndoom",
+    "Manaphy",
+    "Chandelure",
+    "Vespiquen",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dusknoir; answers Solrock->Dusknoir, Gallade->Dusknoir, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Hariyama",
+    "Manaphy",
+    "Mandibuzz",
+    "Vespiquen",
+    "Cinderace",
+    "Dusknoir"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Dusknoir; answers Solrock->Dusknoir, Gallade->Pelipper, Chimecho->Dusknoir; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Mightyena",
+    "Pelipper",
+    "Tsareena",
+    "Corviknight",
+    "Dusknoir"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Gallade->Dusknoir, Chimecho->Dusknoir; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:6",
+   "team": [
+    "Lumineon",
+    "Palossand",
+    "Sharpedo",
+    "Vaporeon",
+    "Cinderace",
+    "Dusknoir"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.843,
+   "deaths": 0.237,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "297": 1.0
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Gallade->Houndoom, Chimecho->Leavanny; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 297,
+   "converged": true,
+   "runs": 6840,
+   "kind": "planned:6",
+   "team": [
+    "Emolga",
+    "Araquanid",
+    "Houndoom",
+    "Leavanny",
+    "Breloom",
+    "Tsareena"
+   ],
+   "seconds": 4.3
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Chandelure; answers Solrock->Chandelure, Gallade->Rhyperior, Chimecho->Frosmoth; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Orbeetle",
+    "Rhyperior",
+    "Chandelure",
+    "Ambipom",
+    "Dewgong"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Dusknoir; answers Gallade->Dusknoir, Chimecho->Dusknoir; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Dusknoir for Gallade",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Manaphy",
+    "Mightyena",
+    "Shiftry",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Empoleon; answers Gallade->Electivire, Chimecho->Frosmoth; switch losing; setup at 3+ safe turns; save Frosmoth for Chimecho",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Empoleon",
+    "Frosmoth",
+    "Gothitelle",
+    "Seaking",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.755,
+   "deaths": 0.325,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.3,
+    "20": 0.45,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "54": 1.0
+   },
+   "line": "lead Heracross; answers Solrock->Heracross, Gallade->Lanturn; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns",
+   "candidates": 54,
+   "converged": true,
+   "runs": 1680,
+   "kind": "blind:7",
+   "team": [
+    "Gothitelle",
+    "Heracross",
+    "Lanturn",
+    "Mantine",
+    "Salazzle",
+    "Seaking"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "44": 1.0
+   },
+   "line": "lead Kingdra; answers Solrock->Kingdra, Chimecho->Lopunny; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 44,
+   "converged": true,
+   "runs": 1480,
+   "kind": "blind:7",
+   "team": [
+    "Garganacl",
+    "Glalie",
+    "Golem",
+    "Kingdra",
+    "Lopunny",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.685,
+   "deaths": 0.33,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Frosmoth; answers Solrock->Magnezone, Gallade->Staraptor, Chimecho->Staraptor; switch losing; setup at 3+ safe turns at full HP; save Staraptor for Gallade",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Frosmoth",
+    "Glimmora",
+    "Machamp",
+    "Magnezone",
+    "Staraptor",
+    "Turtonator"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Palossand; answers Solrock->Palossand, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:7",
+   "team": [
+    "Glalie",
+    "Gothitelle",
+    "Mandibuzz",
+    "Palossand",
+    "Rapidash",
+    "Crobat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Pelipper; answers Solrock->Kingdra, Gallade->Vespiquen, Chimecho->Kingdra; switch never; setup at 5+ safe turns; no status moves; bait locks; stall timed effects at 1 turns; save Vespiquen for Gallade",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Kingdra",
+    "Pelipper",
+    "Rotom",
+    "Sharpedo",
+    "Vespiquen"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 1.0
+   },
+   "line": "lead Sharpedo; answers Solrock->Sharpedo, Gallade->Flygon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:7",
+   "team": [
+    "Araquanid",
+    "Flygon",
+    "Houndoom",
+    "Sharpedo",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Pelipper; answers Solrock->Pelipper, Gallade->Vespiquen, Chimecho->Skarmory; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Florges",
+    "Incineroar",
+    "Pelipper",
+    "Rotom",
+    "Skarmory",
+    "Vespiquen"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Floatzel",
+    "Gothitelle",
+    "Manaphy",
+    "Mandibuzz",
+    "Seaking",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cofagrigus; answers Solrock->Cofagrigus, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Heracross",
+    "Houndoom",
+    "Mandibuzz",
+    "Togekiss",
+    "Cofagrigus"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "122": 1.0
+   },
+   "line": "lead Heracross; answers Solrock->Heracross, Gallade->Vespiquen, Chimecho->Vespiquen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 122,
+   "converged": true,
+   "runs": 3340,
+   "kind": "planned:7",
+   "team": [
+    "Golem",
+    "Heracross",
+    "Pelipper",
+    "Rapidash",
+    "Vespiquen",
+    "Electivire"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "27": 1.0
+   },
+   "line": "lead Glimmora; answers Gallade->Flygon, Chimecho->Incineroar; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:7",
+   "team": [
+    "Flygon",
+    "Glimmora",
+    "Incineroar",
+    "Ludicolo",
+    "Castform",
+    "Ninetales-Alola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.863,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "243": 1.0
+   },
+   "line": "lead Mandibuzz; answers Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 243,
+   "converged": true,
+   "runs": 5760,
+   "kind": "planned:7",
+   "team": [
+    "Golem",
+    "Absol",
+    "Mandibuzz",
+    "Mantine",
+    "Vespiquen",
+    "Electivire"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "19": 1.0
+   },
+   "line": "lead Sinistcha; answers Gallade->Vespiquen, Chimecho->Frosmoth; switch losing; setup at 4+ safe turns at full HP; save Vespiquen for Gallade",
+   "candidates": 19,
+   "converged": true,
+   "runs": 980,
+   "kind": "blind:8",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Sinistcha",
+    "Toxapex",
+    "Vespiquen",
+    "Clefable"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Ferrothorn; answers Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 960,
+   "kind": "blind:8",
+   "team": [
+    "Ferrothorn",
+    "Mandibuzz",
+    "Carbink",
+    "Castform",
+    "Toxapex",
+    "Weezing"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.04,
+   "deaths": 1.96,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.1,
+    "20": 0.1,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Gallade->Liepard, Chimecho->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Leavanny",
+    "Liepard",
+    "Seaking",
+    "Clefable"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.15,
+   "deaths": 1.205,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.05,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1
+   },
+   "line": "lead Crawdaunt; answers Solrock->Whiscash, Gallade->Hawlucha, Chimecho->Crawdaunt; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns; save Crawdaunt for Chimecho",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Hawlucha",
+    "Skarmory",
+    "Walrein",
+    "Whiscash",
+    "Corsola",
+    "Crawdaunt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.52,
+   "deaths": 0.82,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Pelipper; answers Gallade->Pelipper, Chimecho->Sharpedo; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Gastrodon",
+    "Lapras",
+    "Pelipper",
+    "Sharpedo",
+    "Whiscash",
+    "Delcatty"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Kingdra; answers Solrock->Kingdra, Gallade->Vespiquen, Chimecho->Vespiquen; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:8",
+   "team": [
+    "Kingdra",
+    "Leavanny",
+    "Vespiquen",
+    "Yanmega",
+    "Drifblim",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "124": 1.0
+   },
+   "line": "lead Leavanny; answers Solrock->Leavanny, Gallade->Crustle, Chimecho->Houndoom; switch never; setup at 2+ safe turns at full HP; save Houndoom for Chimecho",
+   "candidates": 124,
+   "converged": true,
+   "runs": 3380,
+   "kind": "planned:8",
+   "team": [
+    "Houndoom",
+    "Lanturn",
+    "Leavanny",
+    "Seaking",
+    "Togekiss",
+    "Crustle"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Gallade->Sinistcha, Chimecho->Sinistcha; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Gastrodon",
+    "Leavanny",
+    "Pelipper",
+    "Sinistcha",
+    "Weavile",
+    "Cherrim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Manaphy; answers Gallade->Yanmega, Chimecho->Araquanid; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:8",
+   "team": [
+    "Araquanid",
+    "Manaphy",
+    "Orbeetle",
+    "Toxapex",
+    "Yanmega",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Pelipper; answers Solrock->Pelipper, Gallade->Vespiquen, Chimecho->Skarmory; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Pelipper",
+    "Sharpedo",
+    "Skarmory",
+    "Carbink",
+    "Vespiquen",
+    "Drifblim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.31,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.15,
+    "20": 0.6,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Jellicent; answers Gallade->Dubwool, Chimecho->Jellicent; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Florges",
+    "Jellicent",
+    "Absol",
+    "Machamp",
+    "Sharpedo",
+    "Dubwool"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Sinistcha; answers Solrock->Sinistcha, Gallade->Sinistcha, Chimecho->Sinistcha; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Ludicolo",
+    "Pelipper",
+    "Sinistcha",
+    "Sudowoodo",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Kingdra; answers Solrock->Kingdra, Gallade->Yanmega, Chimecho->Yanmega; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Kingdra",
+    "Masquerain",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.49,
+   "deaths": 0.605,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Gastrodon; answers Gallade->Ceruledge, Chimecho->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Glalie",
+    "Salazzle",
+    "Ceruledge",
+    "Walrein",
+    "Ambipom"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.045,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jellicent; answers Solrock->Corsola, Gallade->Ceruledge, Chimecho->Ceruledge; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:9",
+   "team": [
+    "Greninja",
+    "Jellicent",
+    "Lurantis",
+    "Ceruledge",
+    "Corsola",
+    "Ambipom"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Honchkrow; answers Solrock->Honchkrow, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Granbull",
+    "Honchkrow",
+    "Mandibuzz",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cherrim; answers Solrock->Cherrim, Gallade->Talonflame, Chimecho->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:9",
+   "team": [
+    "Florges",
+    "Furret",
+    "Talonflame",
+    "Ceruledge",
+    "Cherrim",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.06,
+   "deaths": 2.29,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.0,
+    "20": 0.0,
+    "30": 0.05,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1
+   },
+   "line": "lead Lucario; answers Solrock->Seaking, Gallade->Whiscash, Chimecho->Seaking; switch never; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Seaking for Chimecho",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Glalie",
+    "Lucario",
+    "Lumineon",
+    "Seaking",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Solrock->Galvantula, Gallade->Mandibuzz, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Honchkrow",
+    "Luxray",
+    "Manaphy",
+    "Mandibuzz",
+    "Talonflame"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Galvantula; answers Solrock->Galvantula, Gallade->Gliscor, Chimecho->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Galvantula",
+    "Gastrodon",
+    "Gliscor",
+    "Luxray",
+    "Mantine",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.067,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "69": 1.0
+   },
+   "line": "lead Ludicolo; answers Gallade->Hippowdon, Chimecho->Mandibuzz; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 69,
+   "converged": true,
+   "runs": 2280,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Ludicolo",
+    "Luxray",
+    "Mandibuzz",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Manaphy; answers Solrock->Manaphy, Gallade->Talonflame, Chimecho->Ceruledge; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Hippowdon",
+    "Manaphy",
+    "Mr. Rime",
+    "Talonflame",
+    "Tentacruel",
+    "Ceruledge"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Greninja; answers Solrock->Greninja, Gallade->Dubwool, Chimecho->Luxray; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Luxray",
+    "Milotic",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "66": 1.0
+   },
+   "line": "lead Cofagrigus; answers Solrock->Whiscash, Gallade->Cofagrigus, Chimecho->Sharpedo; switch losing; setup at 3+ safe turns at full HP; save Cofagrigus for Gallade",
+   "candidates": 66,
+   "converged": true,
+   "runs": 2220,
+   "kind": "planned:9",
+   "team": [
+    "Kingler",
+    "Masquerain",
+    "Sharpedo",
+    "Whiscash",
+    "Cofagrigus",
+    "Dubwool"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "17": 1.0
+   },
+   "line": "lead Honchkrow; answers Solrock->Honchkrow; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:9",
+   "team": [
+    "Granbull",
+    "Honchkrow",
+    "Lopunny",
+    "Relicanth",
+    "Sharpedo",
+    "Cinderace"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Cofagrigus; answers Solrock->Cofagrigus, Gallade->Palossand, Chimecho->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:9",
+   "team": [
+    "Ludicolo",
+    "Manaphy",
+    "Palossand",
+    "Purugly",
+    "Cofagrigus",
+    "Delcatty"
+   ],
+   "seconds": 1.0
+  }
+ ],
+ "key": "tr584"
+}

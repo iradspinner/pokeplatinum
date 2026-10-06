@@ -471,7 +471,8 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuTwoTMs, 18
     AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
-    AddListMenuEntry TestKit_Text_MenuItems, 18
+    AddListMenuEntry TestKit_Text_MenuItems, 19
+    AddListMenuEntry TestKit_Text_MenuMeisterTrade, 20
     AddListMenuEntry TestKit_Text_MenuWarp, 7
     AddListMenuEntry TestKit_Text_MenuNothing, 8
     ShowListMenu
@@ -493,8 +494,24 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoToIfEq VAR_0x8004, 18, TestKit_TwoTMs
     GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
-    GoToIfEq VAR_0x8004, 18, TestKit_Items
+    GoToIfEq VAR_0x8004, 19, TestKit_Items
+    GoToIfEq VAR_0x8004, 20, TestKit_MeisterTrade
     GoTo TestKit_Close
+
+/* The Meister's trade (Route 226) for the in-game checklist: a level-50
+   Finneon, then a warp onto his house's door mat, as if walking in. Talk to
+   him twice; the first talk powers up the Pokedex. His script sets Relic
+   Song in the traded Meloetta's first slot. */
+TestKit_MeisterTrade:
+    GetPartyCount VAR_0x8005
+    GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
+    GivePokemon SPECIES_FINNEON, 50, ITEM_NONE, VAR_RESULT
+    Message TestKit_Text_MeisterTrade
+    WaitButton
+    CloseMessage
+    Warp MAP_HEADER_ROUTE_226_HOUSE, 4, 8, DIR_NORTH
+    ReleaseAll
+    End
 
 TestKit_RareCandies:
     AddItem ITEM_RARE_CANDY, 99, VAR_RESULT
@@ -784,6 +801,9 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet65, 10
     AddListMenuEntry TestKit_Text_MenuSet66, 11
     AddListMenuEntry TestKit_Text_MenuSet67, 12
+    AddListMenuEntry TestKit_Text_MenuSet68, 13
+    AddListMenuEntry TestKit_Text_MenuSet69, 14
+    AddListMenuEntry TestKit_Text_MenuSet70, 15
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -798,6 +818,9 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 10, TestKit_MoveSet65
     GoToIfEq VAR_0x8004, 11, TestKit_MoveSet66
     GoToIfEq VAR_0x8004, 12, TestKit_MoveSet67
+    GoToIfEq VAR_0x8004, 13, TestKit_MoveSet68
+    GoToIfEq VAR_0x8004, 14, TestKit_MoveSet69
+    GoToIfEq VAR_0x8004, 15, TestKit_MoveSet70
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1613,6 +1636,57 @@ TestKit_MoveSet67:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveMew
+
+/* Set 68: Wonder Guard lets Freeze Shock and Ice Burn charge (2026-09-30).
+   Against a wild Shedinja that knows only Splash, whose Wonder Guard stops
+   anything not super effective: each move's first turn charges ("MEW became
+   cloaked in a freezing light!" or "MEW became cloaked in freezing air!")
+   with no "It doesn't affect" line, and the second turn says "It doesn't
+   affect the wild SHEDINJA...". Before the fix Wonder Guard stopped each
+   move on its first turn, so it never charged. */
+TestKit_MoveSet68:
+    SetVar VAR_0x8000, SPECIES_SHEDINJA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FREEZE_SHOCK
+    SetVar VAR_0x8007, MOVE_ICE_BURN
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 69: Lunar Blessing and Jungle Healing (2026-09-30) restore a quarter of
+   the user's maximum HP and cure its status. Against a slower wild Chansey
+   that knows Seismic Toss and Thunder Wave: on the first turn, at full HP
+   and with no status, either move says "But it failed!"; once Mew is hurt,
+   paralysed or both, it prints "MEW regained health!" and "MEW's status
+   returned to normal!" for whichever applies. */
+TestKit_MoveSet69:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SEISMIC_TOSS
+    SetVar VAR_0x8003, MOVE_THUNDER_WAVE
+    SetVar VAR_0x8006, MOVE_LUNAR_BLESSING
+    SetVar VAR_0x8007, MOVE_JUNGLE_HEALING
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 70: Throat Chop (2026-09-30) keeps its target from using sound moves
+   for the rest of the turn and all of the next. Against a wild Ninjask,
+   always faster than Mew, that knows only Throat Chop: choose Hyper Voice,
+   and after the chop "MEW can't use HYPER VOICE because of THROAT CHOP!".
+   Next turn the menu refuses Hyper Voice and Heal Bell with the same line;
+   use Protect, which keeps the chop off. The turn after, Hyper Voice can be
+   chosen again (and the Ninjask's next chop stops it once more). */
+TestKit_MoveSet70:
+    SetVar VAR_0x8000, SPECIES_NINJASK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_THROAT_CHOP
+    SetVar VAR_0x8006, MOVE_HYPER_VOICE
+    SetVar VAR_0x8007, MOVE_HEAL_BELL
+    SetVar VAR_0x8008, MOVE_PROTECT
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

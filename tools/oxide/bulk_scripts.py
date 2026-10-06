@@ -172,7 +172,10 @@ DIVERGED["scripts_eterna_city_underground_man_house"] = (
 DIVERGED["scripts_cycle_shop"] = (
     "the Bicycle no longer raises Eterna's exit blockade, which waited for the Explorer Kit")
 DIVERGED["scripts_mining_museum"] = (
-    "the fossil researcher revives without waiting for the Explorer Kit")
+    "the fossil researcher revives without waiting for the Explorer Kit, "
+    "and only once the player has come through Cycling Road (Ian, 2026-09-30)")
+DIVERGED["scripts_route_206_cycling_road_south_gate"] = (
+    "entering the gate sets the flag the Mining Museum's reviver waits for (Ian, 2026-09-30)")
 
 # The base ROM's free evolution stones are gone (Ian, 2026-09-27); the balance
 # track proposes where stones come from instead.

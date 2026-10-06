@@ -856,6 +856,18 @@
             "en_US": "Set 67"
         },
         {
+            "id": "TestKit_Text_MenuSet68",
+            "en_US": "Set 68"
+        },
+        {
+            "id": "TestKit_Text_MenuSet69",
+            "en_US": "Set 69"
+        },
+        {
+            "id": "TestKit_Text_MenuSet70",
+            "en_US": "Set 70"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },
@@ -978,6 +990,19 @@
         {
             "id": "TestKit_Text_MenuGauntletVictoryRoad",
             "en_US": "Gauntlet: Victory Road"
+        },
+        {
+            "id": "TestKit_Text_MenuMeisterTrade",
+            "en_US": "Meister’s trade"
+        },
+        {
+            "id": "TestKit_Text_MeisterTrade",
+            "en_US": [
+                "Here is a level 50 Finneon.\n",
+                "Now to the Meister’s house.\r",
+                "Talk to him twice: the first\n",
+                "time powers up the Pokédex."
+            ]
         },
         {
             "id": "TestKit_Text_PartyFull",

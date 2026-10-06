@@ -1,0 +1,3762 @@
+{
+ "blind_rate": 0.69,
+ "blind_clean_share": 0.38,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.418,
+ "blind_wipe": 0.001,
+ "convergence": {
+  "10": 0.896,
+  "50": 0.948,
+  "100": 0.965,
+  "300": 0.974
+ },
+ "runs": 269460,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Dragon Tamer Ondrej",
+ "split": "Barry",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 15.6,
+ "rows": [
+  {
+   "rate": 0.64,
+   "deaths": 0.365,
+   "wipe": 0.0,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Bronzong; answers Altaria->Bronzong, Salamence->Corsola, Kingdra->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Electivire",
+    "Gliscor",
+    "Hippowdon",
+    "Bronzong",
+    "Corsola",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.775,
+   "deaths": 0.3,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Greninja; answers Altaria->Greninja, Salamence->Lopunny, Kingdra->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Greninja",
+    "Liepard",
+    "Lopunny",
+    "Quagsire",
+    "Vikavolt",
+    "Delibird"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Articuno; answers Altaria->Articuno, Salamence->Articuno, Kingdra->Milotic; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Articuno",
+    "Milotic",
+    "Pelipper",
+    "Seaking",
+    "Sharpedo",
+    "Ceruledge"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weezing-Galar; answers Altaria->Weezing-Galar, Salamence->Altaria, Kingdra->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Weezing-Galar",
+    "Golduck",
+    "Snorlax",
+    "Toxapex",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.935,
+   "deaths": 0.085,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Blastoise; answers Altaria->Blastoise, Salamence->Milotic, Kingdra->Ludicolo; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Ludicolo",
+    "Blastoise",
+    "Mandibuzz",
+    "Milotic",
+    "Seaking",
+    "Delibird"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Articuno, Kingdra->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Lopunny",
+    "Manaphy",
+    "Starmie",
+    "Tentacruel",
+    "Weavile"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Crobat; answers Altaria->Crobat, Salamence->Carbink, Kingdra->Articuno; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Hippowdon",
+    "Lopunny",
+    "Carbink",
+    "Starmie",
+    "Crobat"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Probopass; answers Salamence->Probopass, Kingdra->Weavile; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Probopass for Salamence",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Gothitelle",
+    "Liepard",
+    "Blastoise",
+    "Probopass",
+    "Weavile",
+    "Corsola"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "25": 1.0
+   },
+   "line": "lead Dewgong; answers Altaria->Dewgong, Salamence->Tentacruel, Kingdra->Frosmoth; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Tentacruel for Salamence",
+   "candidates": 25,
+   "converged": true,
+   "runs": 1400,
+   "kind": "planned:0",
+   "team": [
+    "Floatzel",
+    "Frosmoth",
+    "Palossand",
+    "Tentacruel",
+    "Tsareena",
+    "Dewgong"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Glalie; answers Altaria->Glalie, Salamence->Ninetales, Kingdra->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:0",
+   "team": [
+    "Frosmoth",
+    "Glalie",
+    "Greninja",
+    "Milotic",
+    "Ninetales",
+    "Roserade"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Articuno; answers Altaria->Articuno, Kingdra->Milotic; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Gliscor",
+    "Klefki",
+    "Milotic",
+    "Bronzong",
+    "Purugly"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Articuno; answers Altaria->Articuno, Salamence->Articuno, Kingdra->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Articuno",
+    "Gliscor",
+    "Jumpluff",
+    "Manaphy",
+    "Snorlax",
+    "Delibird"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Probopass; answers Altaria->Probopass, Salamence->Tentacruel, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Florges",
+    "Milotic",
+    "Mr. Rime",
+    "Probopass",
+    "Tentacruel",
+    "Altaria"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.71,
+   "deaths": 0.49,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.35,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Floatzel; answers Altaria->Gothitelle, Salamence->Dewgong, Kingdra->Gastrodon; switch hp below 0.4; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Dewgong for Salamence",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Floatzel",
+    "Gastrodon",
+    "Gothitelle",
+    "Tropius",
+    "Turtonator",
+    "Dewgong"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.05,
+   "deaths": 1.725,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.05,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.1
+   },
+   "line": "lead Golduck; answers Kingdra->Turtonator; switch hp below 0.6; setup at 5+ safe turns; free pivots; save Turtonator for Kingdra",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Golduck",
+    "Houndoom",
+    "Kingdra",
+    "Lurantis",
+    "Turtonator",
+    "Vikavolt"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.12,
+   "wipe": 0.005,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Greninja; answers Altaria->Hippowdon, Salamence->Mandibuzz, Kingdra->Araquanid; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Araquanid for Kingdra",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Araquanid",
+    "Glalie",
+    "Greninja",
+    "Hippowdon",
+    "Mandibuzz",
+    "Togekiss"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 0.185,
+   "deaths": 0.905,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.0,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Rapidash; answers Altaria->Rapidash, Kingdra->Kingdra; switch losing; setup at 3+ safe turns; no status moves; stall timed effects at 1 turns; save Kingdra for Kingdra",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Kingdra",
+    "Blissey",
+    "Purugly",
+    "Rapidash",
+    "Salazzle",
+    "Cherrim"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Garganacl; answers Altaria->Garganacl, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Florges",
+    "Garganacl",
+    "Ninetales",
+    "Rapidash",
+    "Seaking",
+    "Dubwool"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Lopunny",
+    "Manaphy",
+    "Tentacruel",
+    "Wailord",
+    "Weavile"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "19": 1.0
+   },
+   "line": "lead Altaria; answers Altaria->Golem, Salamence->Glalie, Kingdra->Milotic; switch losing; setup at 5+ safe turns at full HP; bait locks; save Glalie for Salamence",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Golem",
+    "Huntail",
+    "Milotic",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.497,
+   "deaths": 0.883,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.35,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.6,
+    "100": 0.6,
+    "110": 0.6,
+    "120": 0.6,
+    "130": 0.6,
+    "140": 0.6,
+    "150": 0.6,
+    "160": 0.6,
+    "170": 0.6,
+    "180": 0.6,
+    "190": 0.6,
+    "200": 0.6,
+    "210": 0.6,
+    "220": 0.6,
+    "230": 0.6,
+    "240": 0.6,
+    "250": 0.6,
+    "260": 0.6,
+    "270": 0.6,
+    "280": 0.65,
+    "290": 0.65,
+    "300": 0.65,
+    "310": 0.65,
+    "320": 0.65,
+    "330": 0.65,
+    "340": 0.65,
+    "350": 0.65,
+    "360": 0.65,
+    "370": 0.65,
+    "380": 0.65,
+    "390": 0.65,
+    "400": 0.65,
+    "410": 0.65,
+    "420": 0.65,
+    "430": 0.65,
+    "440": 0.65,
+    "450": 0.65
+   },
+   "line": "lead Glalie; answers Altaria->Glalie, Salamence->Altaria, Kingdra->Glalie; switch never; setup at 3+ safe turns; stall timed effects at 3 turns; save Altaria for Salamence",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Greninja",
+    "Liepard",
+    "Lurantis",
+    "Pelipper",
+    "Altaria"
+   ],
+   "seconds": 11.5
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "27": 1.0
+   },
+   "line": "lead Toxapex; answers Altaria->Hippowdon, Salamence->Mantine, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 27,
+   "converged": true,
+   "runs": 1440,
+   "kind": "planned:1",
+   "team": [
+    "Hippowdon",
+    "Mandibuzz",
+    "Mantine",
+    "Tentacruel",
+    "Toxapex",
+    "Wailord"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Articuno, Kingdra->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Mamoswine",
+    "Salazzle",
+    "Weavile",
+    "Alakazam"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Carbink, Kingdra->Articuno; switch never; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Carbink for Salamence",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:1",
+   "team": [
+    "Articuno",
+    "Golduck",
+    "Bastiodon",
+    "Ninetales",
+    "Carbink",
+    "Togekiss"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0,
+    "100": 1.0,
+    "101": 1.0
+   },
+   "line": "lead Hippowdon; answers Altaria->Hippowdon, Salamence->Glalie, Kingdra->Wailord; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 101,
+   "converged": true,
+   "runs": 2920,
+   "kind": "planned:1",
+   "team": [
+    "Glalie",
+    "Hippowdon",
+    "Liepard",
+    "Luxray",
+    "Octillery",
+    "Wailord"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Altaria, Kingdra->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Milotic",
+    "Carbink",
+    "Tentacruel",
+    "Vespiquen",
+    "Altaria",
+    "Dewgong"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Vespiquen; answers Salamence->Tentacruel, Kingdra->Lanturn; switch losing; setup at 4+ safe turns; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Vespiquen",
+    "Whiscash",
+    "Yanmega",
+    "Crobat"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Weavile, Kingdra->Snorlax; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Feraligatr",
+    "Floatzel",
+    "Greninja",
+    "Orbeetle",
+    "Snorlax",
+    "Weavile"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Togedemaru; answers Altaria->Togedemaru, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:2",
+   "team": [
+    "Jellicent",
+    "Quagsire",
+    "Seaking",
+    "Togedemaru",
+    "Ceruledge",
+    "Wailord"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "49": 1.0
+   },
+   "line": "lead Wailord; answers Altaria->Wailord, Salamence->Dewgong, Kingdra->Dewgong; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1580,
+   "kind": "blind:2",
+   "team": [
+    "Electivire",
+    "Houndoom",
+    "Pheromosa",
+    "Talonflame",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.51,
+   "deaths": 0.575,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.25,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Granbull; answers Altaria->Granbull, Kingdra->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:2",
+   "team": [
+    "Granbull",
+    "Kricketune",
+    "Mightyena",
+    "Milotic",
+    "Sharpedo",
+    "Crobat"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Manaphy",
+    "Starmie",
+    "Tentacruel",
+    "Wailord",
+    "Walrein",
+    "Weavile"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Empoleon, Salamence->Walrein, Kingdra->Empoleon; switch losing; setup at 4+ safe turns at full HP; save Empoleon for Kingdra",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Luxray",
+    "Starmie",
+    "Walrein",
+    "Weavile",
+    "Weezing"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "24": 1.0
+   },
+   "line": "lead Garganacl; answers Altaria->Garganacl, Salamence->Weavile, Kingdra->Weavile; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:2",
+   "team": [
+    "Floatzel",
+    "Garganacl",
+    "Vespiquen",
+    "Weavile",
+    "Crawdaunt",
+    "Crobat"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.3,
+    "20": 0.9,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "206": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Staraptor, Kingdra->Weavile; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Staraptor for Salamence",
+   "candidates": 206,
+   "converged": true,
+   "runs": 5020,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Mandibuzz",
+    "Pachirisu",
+    "Staraptor",
+    "Togedemaru",
+    "Weavile"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Altaria->Empoleon, Salamence->Wailord; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Wailord for Salamence",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Empoleon",
+    "Golem",
+    "Togedemaru",
+    "Wailord",
+    "Crustle",
+    "Dewgong"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "29": 1.0
+   },
+   "line": "lead Tentacruel; answers Altaria->Tentacruel, Salamence->Walrein, Kingdra->Electivire; switch losing; setup at 2+ safe turns at full HP; no status moves; save Walrein for Salamence",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:2",
+   "team": [
+    "Electivire",
+    "Glalie",
+    "Masquerain",
+    "Palossand",
+    "Tentacruel",
+    "Walrein"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Bastiodon, Salamence->Weavile, Kingdra->Weavile; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Machamp",
+    "Pelipper",
+    "Seaking",
+    "Carbink",
+    "Weavile"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Carbink, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Feraligatr",
+    "Florges",
+    "Greninja",
+    "Manaphy",
+    "Carbink",
+    "Dewgong"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.595,
+   "deaths": 0.6,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.4,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6
+   },
+   "line": "lead Bronzong; answers Altaria->Bronzong, Salamence->Golduck, Kingdra->Abomasnow; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Abomasnow",
+    "Galvantula",
+    "Golduck",
+    "Ludicolo",
+    "Bronzong",
+    "Cinccino"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.88,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cresselia; answers Altaria->Cresselia, Salamence->Vaporeon, Kingdra->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Gorebyss",
+    "Heracross",
+    "Orbeetle",
+    "Salazzle",
+    "Vaporeon",
+    "Cresselia"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.215,
+   "deaths": 1.145,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.15,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.4
+   },
+   "line": "lead Corviknight; answers Altaria->Corviknight, Salamence->Magcargo, Kingdra->Liepard; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:3",
+   "team": [
+    "Bibarel",
+    "Liepard",
+    "Magcargo",
+    "Shiftry",
+    "Togekiss",
+    "Corviknight"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.435,
+   "deaths": 1.155,
+   "wipe": 0.005,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Skarmory; answers Altaria->Whiscash, Salamence->Lanturn, Kingdra->Whiscash; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Hawlucha",
+    "Lanturn",
+    "Rapidash",
+    "Shiftry",
+    "Skarmory",
+    "Whiscash"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Relicanth; answers Altaria->Relicanth, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Galvantula",
+    "Quagsire",
+    "Relicanth",
+    "Wailord",
+    "Ambipom",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Manaphy",
+    "Tentacruel",
+    "Wailord",
+    "Walrein",
+    "Weavile",
+    "Cresselia"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.107,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Wailord; answers Altaria->Wailord, Salamence->Wailord, Kingdra->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:3",
+   "team": [
+    "Frosmoth",
+    "Liepard",
+    "Tentacruel",
+    "Wailord",
+    "Crobat",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.347,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.4,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.45,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.5,
+    "80": 0.5,
+    "90": 0.5,
+    "100": 0.5,
+    "110": 0.5,
+    "120": 0.5,
+    "130": 0.5,
+    "140": 0.5,
+    "150": 0.5,
+    "160": 0.5,
+    "170": 0.5,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Greninja; answers Salamence->Empoleon; switch hp below 0.5; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Greninja",
+    "Seaking",
+    "Cinccino",
+    "Crustle"
+   ],
+   "seconds": 10.2
+  },
+  {
+   "rate": 0.637,
+   "deaths": 0.443,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.6,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Donphan; answers Altaria->Donphan, Salamence->Shiftry, Kingdra->Empoleon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Bastiodon",
+    "Palossand",
+    "Shiftry",
+    "Donphan"
+   ],
+   "seconds": 12.0
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.153,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Steelix; answers Salamence->Tentacruel, Kingdra->Orbeetle; switch losing; setup at 3+ safe turns at full HP; free pivots; save Orbeetle for Kingdra",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Orbeetle",
+    "Relicanth",
+    "Steelix",
+    "Tentacruel",
+    "Delcatty",
+    "Dubwool"
+   ],
+   "seconds": 9.1
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "68": 1.0
+   },
+   "line": "lead Bronzong; answers Altaria->Bronzong, Salamence->Cresselia, Kingdra->Walrein; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 68,
+   "converged": true,
+   "runs": 2260,
+   "kind": "planned:3",
+   "team": [
+    "Mandibuzz",
+    "Bronzong",
+    "Talonflame",
+    "Walrein",
+    "Cresselia",
+    "Delcatty"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.11,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Liepard, Salamence->Walrein, Kingdra->Ferrothorn; switch hp below 0.5; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns; save Ferrothorn for Kingdra",
+   "candidates": 40,
+   "converged": true,
+   "runs": 1700,
+   "kind": "planned:3",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Liepard",
+    "Walrein",
+    "Weavile",
+    "Ninetales-Alola"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.63,
+   "deaths": 0.37,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65,
+    "70": 0.65,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.75,
+    "230": 0.75,
+    "240": 0.75,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.75
+   },
+   "line": "lead Metagross; answers Altaria->Metagross, Salamence->Glalie, Kingdra->Kingdra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Glalie",
+    "Granbull",
+    "Kingdra",
+    "Metagross",
+    "Vikavolt",
+    "Ninetales-Alola"
+   ],
+   "seconds": 8.3
+  },
+  {
+   "rate": 0.625,
+   "deaths": 0.555,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.25,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Ninetales-Alola; answers Altaria->Golduck, Salamence->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Absol",
+    "Pheromosa",
+    "Ninetales-Alola",
+    "Corsola",
+    "Crustle"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.55,
+    "16": 1.0
+   },
+   "line": "lead Tentacruel; answers Altaria->Tentacruel, Salamence->Vaporeon, Kingdra->Blissey; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 920,
+   "kind": "blind:4",
+   "team": [
+    "Electivire",
+    "Kingdra",
+    "Blissey",
+    "Tentacruel",
+    "Ceruledge",
+    "Vaporeon"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.515,
+   "deaths": 0.5,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.45,
+    "70": 0.45,
+    "80": 0.45,
+    "90": 0.45
+   },
+   "line": "lead Golduck; answers Salamence->Whiscash, Kingdra->Quagsire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Golduck",
+    "Lumineon",
+    "Masquerain",
+    "Quagsire",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.13,
+   "deaths": 1.16,
+   "wipe": 0.0,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Bronzong; answers Altaria->Vespiquen, Kingdra->Luxray; switch losing; setup at 3+ safe turns at full HP; save Luxray for Kingdra",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Greninja",
+    "Kingdra",
+    "Luxray",
+    "Bronzong",
+    "Vespiquen",
+    "Delcatty"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.7,
+   "deaths": 0.495,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.05,
+    "40": 0.05,
+    "50": 0.5,
+    "60": 0.5,
+    "70": 0.65,
+    "80": 0.65,
+    "90": 0.65
+   },
+   "line": "lead Corviknight; answers Altaria->Sharpedo, Salamence->Lanturn, Kingdra->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:4",
+   "team": [
+    "Arboliva",
+    "Lanturn",
+    "Pawmot",
+    "Rotom",
+    "Sharpedo",
+    "Corviknight"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Empoleon; answers Altaria->Empoleon, Salamence->Wailord, Kingdra->Empoleon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Empoleon",
+    "Glalie",
+    "Lopunny",
+    "Manaphy",
+    "Tentacruel",
+    "Wailord"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 1.0
+   },
+   "line": "lead Hippowdon; answers Altaria->Hippowdon, Salamence->Dewgong, Kingdra->Wailord; switch losing; setup at 3+ safe turns; stall timed effects at 2 turns; save Dewgong for Salamence",
+   "candidates": 60,
+   "converged": true,
+   "runs": 2100,
+   "kind": "planned:4",
+   "team": [
+    "Hippowdon",
+    "Mienshao",
+    "Octillery",
+    "Poliwrath",
+    "Wailord",
+    "Dewgong"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.61,
+   "deaths": 0.417,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Corviknight; answers Altaria->Corviknight, Salamence->Lopunny, Kingdra->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:4",
+   "team": [
+    "Kingdra",
+    "Lopunny",
+    "Rapidash",
+    "Corviknight",
+    "Delcatty",
+    "Delibird"
+   ],
+   "seconds": 7.9
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "33": 1.0
+   },
+   "line": "lead Garganacl; answers Altaria->Garganacl, Salamence->Florges, Kingdra->Florges; switch hp below 0.4; setup at 4+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 33,
+   "converged": true,
+   "runs": 1560,
+   "kind": "planned:4",
+   "team": [
+    "Electivire",
+    "Florges",
+    "Garganacl",
+    "Salazzle",
+    "Shiftry",
+    "Ceruledge"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Luxray; answers Altaria->Luxray, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Kingdra",
+    "Luxray",
+    "Talonflame",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Manaphy; answers Altaria->Manaphy, Salamence->Altaria, Kingdra->Tentacruel; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Manaphy",
+    "Quagsire",
+    "Sharpedo",
+    "Tentacruel",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "35": 1.0
+   },
+   "line": "lead Vaporeon; answers Salamence->Orbeetle, Kingdra->Florges; switch hp below 0.6; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 35,
+   "converged": true,
+   "runs": 1600,
+   "kind": "planned:4",
+   "team": [
+    "Florges",
+    "Hawlucha",
+    "Orbeetle",
+    "Vaporeon",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.82,
+   "deaths": 0.187,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "42": 1.0
+   },
+   "line": "lead Lopunny; answers Altaria->Lopunny, Salamence->Altaria, Kingdra->Tentacruel; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 42,
+   "converged": true,
+   "runs": 1740,
+   "kind": "planned:4",
+   "team": [
+    "Heracross",
+    "Lopunny",
+    "Tentacruel",
+    "Ninetales-Alola",
+    "Altaria",
+    "Delcatty"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.655,
+   "deaths": 0.68,
+   "wipe": 0.01,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.55,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Walrein; answers Altaria->Walrein, Salamence->Walrein, Kingdra->Ninetales-Alola; switch losing; setup at 2+ safe turns at full HP; no status moves; save Ninetales-Alola for Kingdra",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Magcargo",
+    "Talonflame",
+    "Walrein",
+    "Ninetales-Alola",
+    "Cherrim"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.38,
+   "deaths": 0.725,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.25,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Glimmora; answers Altaria->Bronzong, Salamence->Togekiss; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Gliscor",
+    "Leavanny",
+    "Bronzong",
+    "Rotom",
+    "Togekiss"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "13": 1.0
+   },
+   "line": "lead Swampert; answers Altaria->Swampert, Salamence->Vaporeon, Kingdra->Vaporeon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:5",
+   "team": [
+    "Floatzel",
+    "Poliwrath",
+    "Swampert",
+    "Vaporeon",
+    "Ninetales-Alola",
+    "Crustle"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.81,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Bastiodon; answers Altaria->Bastiodon, Salamence->Garganacl, Kingdra->Articuno; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Articuno",
+    "Hippowdon",
+    "Bastiodon",
+    "Pawmot",
+    "Sinistcha"
+   ],
+   "seconds": 3.4
+  },
+  {
+   "rate": 0.375,
+   "deaths": 0.71,
+   "wipe": 0.0,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.3,
+    "60": 0.3
+   },
+   "line": "lead Milotic; answers Altaria->Toxapex, Salamence->Seaking, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Machamp",
+    "Milotic",
+    "Noctowl",
+    "Seaking",
+    "Toxapex",
+    "Tsareena"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Wailord, Kingdra->Wailord; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Manaphy",
+    "Tentacruel",
+    "Wailord",
+    "Walrein",
+    "Weavile"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "17": 1.0
+   },
+   "line": "lead Rhyperior; answers Altaria->Rhyperior, Salamence->Altaria, Kingdra->Walrein; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Walrein for Kingdra",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:5",
+   "team": [
+    "Rhyperior",
+    "Talonflame",
+    "Toxapex",
+    "Tsareena",
+    "Walrein",
+    "Altaria"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Walrein, Kingdra->Swampert; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Greninja",
+    "Mantine",
+    "Swampert",
+    "Walrein",
+    "Weavile",
+    "Dewgong"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.903,
+   "deaths": 0.133,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "17": 1.0
+   },
+   "line": "lead Heracross; answers Altaria->Floatzel, Salamence->Altaria, Kingdra->Weavile; switch losing; setup at 2+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Heracross",
+    "Hippowdon",
+    "Weavile",
+    "Altaria",
+    "Dhelmise"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.75,
+    "60": 0.85,
+    "70": 0.85,
+    "78": 1.0
+   },
+   "line": "lead Cherrim; answers Altaria->Cherrim, Salamence->Crustle; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Crustle for Salamence",
+   "candidates": 78,
+   "converged": true,
+   "runs": 2460,
+   "kind": "planned:5",
+   "team": [
+    "Ferrothorn",
+    "Florges",
+    "Hawlucha",
+    "Bastiodon",
+    "Cherrim",
+    "Crustle"
+   ],
+   "seconds": 4.2
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Steelix; answers Altaria->Steelix, Salamence->Altaria, Kingdra->Articuno; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:5",
+   "team": [
+    "Articuno",
+    "Glalie",
+    "Pawmot",
+    "Steelix",
+    "Castform",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.857,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Mandibuzz; answers Altaria->Crustle, Salamence->Glalie, Kingdra->Articuno; switch losing; setup at 4+ safe turns at full HP; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Floatzel",
+    "Articuno",
+    "Glalie",
+    "Mandibuzz",
+    "Pawmot",
+    "Crustle"
+   ],
+   "seconds": 6.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Carbink, Kingdra->Wailord; switch never; setup at 5+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glalie",
+    "Hawlucha",
+    "Serperior",
+    "Carbink",
+    "Tentacruel",
+    "Wailord"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Glimmora; answers Altaria->Glimmora, Salamence->Ninetales, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:6",
+   "team": [
+    "Araquanid",
+    "Glimmora",
+    "Milotic",
+    "Ninetales",
+    "Scizor",
+    "Toxapex"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.395,
+   "deaths": 0.845,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.2,
+    "20": 0.25,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Bastiodon; answers Altaria->Bastiodon, Salamence->Mightyena, Kingdra->Seaking; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Mantine",
+    "Mightyena",
+    "Plusle",
+    "Scizor",
+    "Seaking"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.945,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Toxapex; answers Altaria->Toxapex, Salamence->Tentacruel, Kingdra->Lanturn; switch losing; setup at 3+ safe turns at full HP; free pivots; save Lanturn for Kingdra",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Masquerain",
+    "Scizor",
+    "Tentacruel",
+    "Toxapex",
+    "Vespiquen"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.525,
+   "deaths": 0.67,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.2,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Dusknoir; answers Altaria->Dusknoir, Salamence->Mantine, Kingdra->Abomasnow; switch losing; setup at 3+ safe turns at full HP; save Mantine for Salamence",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Mantine",
+    "Shiftry",
+    "Crawdaunt",
+    "Drifblim",
+    "Dusknoir"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.43,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Electivire; answers Altaria->Togedemaru, Salamence->Electivire, Kingdra->Milotic; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Hippowdon",
+    "Milotic",
+    "Togedemaru",
+    "Dusknoir"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Lopunny, Kingdra->Tentacruel; switch losing; setup at 4+ safe turns at full HP; save Lopunny for Salamence",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Lopunny",
+    "Manaphy",
+    "Tentacruel",
+    "Walrein",
+    "Weavile",
+    "Cresselia"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Togedemaru; answers Altaria->Togedemaru, Salamence->Cresselia, Kingdra->Frosmoth; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Frosmoth",
+    "Galvantula",
+    "Glalie",
+    "Togedemaru",
+    "Cresselia",
+    "Donphan"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Altaria->Manaphy, Salamence->Manaphy, Kingdra->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Manaphy",
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.897,
+   "deaths": 0.103,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "59": 1.0
+   },
+   "line": "lead Dewgong; answers Altaria->Dewgong, Salamence->Plusle, Kingdra->Cresselia; switch losing; setup at 3+ safe turns at full HP; save Cresselia for Kingdra",
+   "candidates": 59,
+   "converged": true,
+   "runs": 2080,
+   "kind": "planned:6",
+   "team": [
+    "Absol",
+    "Milotic",
+    "Plusle",
+    "Altaria",
+    "Cresselia",
+    "Dewgong"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "23": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Bastiodon, Salamence->Bastiodon, Kingdra->Weavile; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 23,
+   "converged": true,
+   "runs": 1360,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Floatzel",
+    "Bastiodon",
+    "Absol",
+    "Weavile",
+    "Cresselia"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.19,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.6,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Crobat; answers Altaria->Glalie, Salamence->Cresselia, Kingdra->Abomasnow; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Abomasnow for Kingdra",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:6",
+   "team": [
+    "Abomasnow",
+    "Glalie",
+    "Breloom",
+    "Cresselia",
+    "Crobat",
+    "Drifblim"
+   ],
+   "seconds": 7.1
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Altaria->Bronzong, Salamence->Cresselia, Kingdra->Empoleon; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Cresselia for Salamence",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Empoleon",
+    "Hippowdon",
+    "Milotic",
+    "Bronzong",
+    "Cresselia",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Salamence->Cresselia, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Cresselia for Salamence",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Florges",
+    "Lopunny",
+    "Rhyperior",
+    "Carbink",
+    "Weavile",
+    "Cresselia"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.605,
+   "deaths": 0.405,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Glimmora; answers Altaria->Golem, Kingdra->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Glimmora",
+    "Golem",
+    "Hariyama",
+    "Jellicent"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.67,
+   "deaths": 0.385,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Steelix; answers Altaria->Steelix, Salamence->Dewgong, Kingdra->Greninja; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Greninja",
+    "Heracross",
+    "Steelix",
+    "Dewgong"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 0.545,
+   "deaths": 0.515,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Abomasnow; answers Salamence->Lanturn, Kingdra->Abomasnow; switch losing; setup at 5+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Abomasnow",
+    "Flygon",
+    "Lanturn",
+    "Poliwrath",
+    "Castform",
+    "Crawdaunt"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Articuno; answers Altaria->Articuno, Salamence->Articuno, Kingdra->Goodra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Gastrodon",
+    "Articuno",
+    "Goodra",
+    "Liepard",
+    "Vespiquen",
+    "Crustle"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.505,
+   "deaths": 0.605,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.3,
+    "40": 0.3,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Furret; answers Altaria->Furret, Salamence->Araquanid, Kingdra->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Araquanid",
+    "Furret",
+    "Hariyama",
+    "Pelipper",
+    "Rotom",
+    "Cherrim"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Articuno, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Articuno",
+    "Lopunny",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel",
+    "Weavile"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.837,
+   "deaths": 0.17,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.35,
+    "20": 0.4,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Liepard; answers Salamence->Poliwrath, Kingdra->Toxapex; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Furret",
+    "Bastiodon",
+    "Houndoom",
+    "Liepard",
+    "Poliwrath",
+    "Toxapex"
+   ],
+   "seconds": 7.7
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.253,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Frosmoth; answers Salamence->Milotic, Kingdra->Frosmoth; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:7",
+   "team": [
+    "Frosmoth",
+    "Azumarill",
+    "Hariyama",
+    "Jellicent",
+    "Milotic",
+    "Altaria"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.907,
+   "deaths": 0.093,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.95,
+    "32": 1.0
+   },
+   "line": "lead Magnezone; answers Altaria->Magnezone, Salamence->Altaria, Kingdra->Mantine; switch losing; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Mantine for Kingdra",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Magnezone",
+    "Mantine",
+    "Tentacruel",
+    "Ninetales-Alola",
+    "Altaria"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.563,
+   "deaths": 1.103,
+   "wipe": 0.0,
+   "screened": 0.6,
+   "screen": {
+    "10": 0.3,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4,
+    "70": 0.4,
+    "80": 0.4,
+    "90": 0.45,
+    "100": 0.45,
+    "110": 0.45,
+    "120": 0.45,
+    "130": 0.45,
+    "140": 0.55,
+    "150": 0.55,
+    "160": 0.55,
+    "170": 0.55,
+    "180": 0.55,
+    "190": 0.55,
+    "200": 0.55,
+    "210": 0.55,
+    "220": 0.55,
+    "230": 0.55,
+    "240": 0.55,
+    "250": 0.55,
+    "260": 0.55,
+    "270": 0.6,
+    "280": 0.6,
+    "290": 0.6,
+    "300": 0.6,
+    "310": 0.6,
+    "320": 0.6,
+    "330": 0.6,
+    "340": 0.6,
+    "350": 0.6,
+    "360": 0.6,
+    "370": 0.6,
+    "380": 0.6,
+    "390": 0.6,
+    "400": 0.6,
+    "410": 0.6,
+    "420": 0.6,
+    "430": 0.6,
+    "440": 0.6,
+    "450": 0.6
+   },
+   "line": "lead Greninja; answers Altaria->Gliscor, Salamence->Altaria, Kingdra->Kingdra; switch losing; setup at 4+ safe turns at full HP; save Kingdra for Kingdra",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:7",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Kingdra",
+    "Absol",
+    "Liepard",
+    "Altaria"
+   ],
+   "seconds": 8.8
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "21": 1.0
+   },
+   "line": "lead Garganacl; answers Altaria->Garganacl, Salamence->Altaria, Kingdra->Azumarill; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 21,
+   "converged": true,
+   "runs": 1320,
+   "kind": "planned:7",
+   "team": [
+    "Garganacl",
+    "Azumarill",
+    "Liepard",
+    "Lopunny",
+    "Toxapex",
+    "Altaria"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.66,
+   "deaths": 0.41,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.7,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8,
+    "100": 0.8,
+    "110": 0.8,
+    "120": 0.8,
+    "130": 0.8,
+    "140": 0.8,
+    "150": 0.8,
+    "160": 0.8,
+    "170": 0.8,
+    "180": 0.8,
+    "190": 0.8,
+    "200": 0.8,
+    "210": 0.8,
+    "220": 0.8,
+    "230": 0.8,
+    "240": 0.8,
+    "250": 0.8,
+    "260": 0.8,
+    "270": 0.8,
+    "280": 0.8,
+    "290": 0.8,
+    "300": 0.8
+   },
+   "line": "lead Magnezone; answers Salamence->Goodra, Kingdra->Goodra; switch hp below 0.6; setup at 2+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Goodra for Salamence",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Annihilape",
+    "Goodra",
+    "Magnezone",
+    "Pelipper",
+    "Steelix"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.223,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Abomasnow; answers Altaria->Crobat, Salamence->Tentacruel, Kingdra->Abomasnow; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Abomasnow for Kingdra",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:7",
+   "team": [
+    "Abomasnow",
+    "Electivire",
+    "Palossand",
+    "Breloom",
+    "Tentacruel",
+    "Crobat"
+   ],
+   "seconds": 8.4
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "14": 1.0
+   },
+   "line": "lead Empoleon; answers Altaria->Ferrothorn, Salamence->Jellicent; switch losing; setup at 3+ safe turns at full HP; bait locks; save Jellicent for Salamence",
+   "candidates": 14,
+   "converged": true,
+   "runs": 880,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Ferrothorn",
+    "Rapidash-Galar",
+    "Jellicent",
+    "Lapras",
+    "Liepard"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.075,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bastiodon; answers Altaria->Bastiodon, Salamence->Florges, Kingdra->Florges; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Florges",
+    "Greninja",
+    "Bastiodon",
+    "Absol",
+    "Togekiss",
+    "Whiscash"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.165,
+   "deaths": 1.19,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.25,
+    "20": 0.25,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25
+   },
+   "line": "lead Seaking; answers Salamence->Araquanid, Kingdra->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Araquanid",
+    "Mienshao",
+    "Orbeetle",
+    "Seaking",
+    "Vikavolt",
+    "Crawdaunt"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Yanmega; answers Altaria->Empoleon, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; stall timed effects at 3 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Empoleon",
+    "Araquanid",
+    "Florges",
+    "Houndoom",
+    "Masquerain",
+    "Yanmega"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.415,
+   "deaths": 0.65,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.45,
+    "60": 0.45
+   },
+   "line": "lead Rapidash-Galar; answers Salamence->Absol, Kingdra->Whiscash; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Whiscash for Kingdra",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Rapidash-Galar",
+    "Absol",
+    "Lumineon",
+    "Mienshao",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Articuno, Kingdra->Lapras; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Articuno",
+    "Lapras",
+    "Manaphy",
+    "Tentacruel",
+    "Walrein",
+    "Weavile"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Articuno; answers Altaria->Articuno, Salamence->Rapidash-Galar, Kingdra->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Electivire",
+    "Rapidash-Galar",
+    "Articuno",
+    "Greninja",
+    "Manaphy",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Carbink, Kingdra->Lapras; switch losing; setup at 3+ safe turns at full HP; save Carbink for Salamence",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Glalie",
+    "Lapras",
+    "Carbink",
+    "Walrein",
+    "Weavile",
+    "Delcatty"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Carbink; answers Altaria->Carbink, Salamence->Carbink, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Greninja",
+    "Milotic",
+    "Skarmory",
+    "Carbink",
+    "Walrein",
+    "Clefable"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Empoleon; answers Altaria->Empoleon, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Florges",
+    "Hippowdon",
+    "Magcargo",
+    "Milotic",
+    "Roserade"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.767,
+   "deaths": 0.243,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Bronzong; answers Altaria->Bronzong, Salamence->Milotic, Kingdra->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Floatzel",
+    "Houndoom",
+    "Milotic",
+    "Pelipper",
+    "Bronzong",
+    "Dubwool"
+   ],
+   "seconds": 5.9
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Palossand; answers Altaria->Ferrothorn, Salamence->Manaphy, Kingdra->Manaphy; switch losing; setup at 5+ safe turns; bait locks; stall timed effects at 2 turns; save Manaphy for Kingdra",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:8",
+   "team": [
+    "Ferrothorn",
+    "Articuno",
+    "Greninja",
+    "Manaphy",
+    "Palossand",
+    "Corsola"
+   ],
+   "seconds": 7.7
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Empoleon; answers Altaria->Liepard, Salamence->Walrein, Kingdra->Walrein; switch losing; setup at 4+ safe turns at full HP; bait locks",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Empoleon",
+    "Liepard",
+    "Pelipper",
+    "Walrein",
+    "Weavile",
+    "Donphan"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Gliscor, Salamence->Weavile, Kingdra->Weavile; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; save Weavile for Salamence",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Greninja",
+    "Quagsire",
+    "Talonflame",
+    "Weavile",
+    "Cinderace"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.735,
+   "deaths": 0.665,
+   "wipe": 0.005,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.1,
+    "20": 0.45,
+    "30": 0.45,
+    "40": 0.55,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Manaphy; answers Altaria->Manaphy, Salamence->Manaphy, Kingdra->Pheromosa; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Lurantis",
+    "Manaphy",
+    "Mandibuzz",
+    "Masquerain",
+    "Pheromosa",
+    "Toucannon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.86,
+   "deaths": 0.15,
+   "wipe": 0.0,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.45,
+    "20": 0.5,
+    "30": 0.6,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85
+   },
+   "line": "lead Greninja; answers Kingdra->Gastrodon; switch losing; setup at 3+ safe turns at full HP; bait locks; save Gastrodon for Kingdra",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:9",
+   "team": [
+    "Gastrodon",
+    "Greninja",
+    "Hariyama",
+    "Huntail",
+    "Ninetales",
+    "Whiscash"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.325,
+   "deaths": 0.775,
+   "wipe": 0.0,
+   "screened": 0.4,
+   "screen": {
+    "10": 0.4,
+    "20": 0.4,
+    "30": 0.4,
+    "40": 0.4,
+    "50": 0.4,
+    "60": 0.4
+   },
+   "line": "lead Gliscor; answers Salamence->Walrein, Kingdra->Lucario; switch hp below 0.4; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Gliscor",
+    "Hariyama",
+    "Lucario",
+    "Ceruledge",
+    "Walrein",
+    "Crawdaunt"
+   ],
+   "seconds": 2.3
+  },
+  {
+   "rate": 0.57,
+   "deaths": 0.52,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.35,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.65
+   },
+   "line": "lead Huntail; answers Altaria->Huntail, Salamence->Mantine, Kingdra->Lanturn; switch hp below 0.6; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Mantine for Salamence",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Honchkrow",
+    "Huntail",
+    "Lanturn",
+    "Machamp",
+    "Mantine",
+    "Salazzle"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Lopunny, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Manaphy",
+    "Milotic",
+    "Tentacruel",
+    "Walrein",
+    "Weavile"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.8,
+   "deaths": 0.2,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Donphan; answers Altaria->Donphan, Salamence->Lopunny, Kingdra->Mr. Rime; switch losing; setup at 4+ safe turns at full HP; no status moves",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Lopunny",
+    "Mr. Rime",
+    "Salazzle",
+    "Vaporeon",
+    "Donphan"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rhyperior; answers Altaria->Lucario, Salamence->Rhyperior, Kingdra->Milotic; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Lucario",
+    "Manaphy",
+    "Milotic",
+    "Rhyperior",
+    "Cherrim",
+    "Altaria"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Steelix; answers Altaria->Steelix, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:9",
+   "team": [
+    "Florges",
+    "Gliscor",
+    "Kricketune",
+    "Salazzle",
+    "Steelix",
+    "Delcatty"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Weavile; answers Altaria->Weavile, Salamence->Florges, Kingdra->Florges; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Florges",
+    "Lucario",
+    "Talonflame",
+    "Togekiss",
+    "Weavile"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.143,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0
+   },
+   "line": "lead Sharpedo; answers Altaria->Gliscor, Salamence->Tentacruel, Kingdra->Abomasnow; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:9",
+   "team": [
+    "Abomasnow",
+    "Gliscor",
+    "Lucario",
+    "Sharpedo",
+    "Tentacruel",
+    "Dubwool"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "47": 1.0
+   },
+   "line": "lead Vaporeon; answers Kingdra->Electivire; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 47,
+   "converged": true,
+   "runs": 1840,
+   "kind": "planned:9",
+   "team": [
+    "Electivire",
+    "Floatzel",
+    "Lopunny",
+    "Vaporeon",
+    "Corviknight",
+    "Delcatty"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Metagross; answers Altaria->Metagross, Salamence->Walrein, Kingdra->Tentacruel; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots; save Tentacruel for Kingdra",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Feraligatr",
+    "Kricketune",
+    "Metagross",
+    "Salazzle",
+    "Tentacruel",
+    "Walrein"
+   ],
+   "seconds": 1.0
+  }
+ ],
+ "key": "tr230"
+}

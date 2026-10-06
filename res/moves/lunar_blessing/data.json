@@ -12,10 +12,10 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_LUNAR_BLESSING",
         "chance": 0
     },
-    "range": "RANGE_ALLY",
+    "range": "RANGE_USER_SIDE",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

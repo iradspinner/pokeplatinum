@@ -1,0 +1,77 @@
+{
+ "fight": "fantina",
+ "search_winner": [
+  "Prinplup",
+  "Vulpix",
+  "Kingler",
+  "Tsareena",
+  "Ampharos",
+  "Rampardos"
+ ],
+ "winner": [
+  "Vulpix",
+  "Tsareena",
+  "Graveler",
+  "Ampharos",
+  "Vikavolt",
+  "Rampardos"
+ ],
+ "checked": {
+  "Prinplup, Vulpix, Kingler, Tsareena, Ampharos, Rampardos": {
+   "fights": 25,
+   "won": 0.96,
+   "faints": 4.2,
+   "clean": 0.0
+  },
+  "Tsareena, Graveler, Ampharos, Vikavolt, Rotom, Rampardos": {
+   "fights": 25,
+   "won": 1.0,
+   "faints": 2.8,
+   "clean": 0.0
+  },
+  "Vulpix, Tsareena, Graveler, Ampharos, Vikavolt, Rampardos": {
+   "fights": 25,
+   "won": 1.0,
+   "faints": 2.4,
+   "clean": 0.04
+  },
+  "Tsareena, Ampharos, Golbat, Vikavolt, Rotom, Rampardos": {
+   "fights": 25,
+   "won": 0.96,
+   "faints": 2.4,
+   "clean": 0.0
+  }
+ },
+ "full": {
+  "real": {
+   "fights": 75,
+   "won": 0.9466666666666667,
+   "faints": 2.2133333333333334,
+   "clean": 0.12
+  },
+  "unlucky": {
+   "fights": 25,
+   "won": 0.88,
+   "faints": 3.32,
+   "clean": 0.04
+  },
+  "faints_to": [
+   [
+    "Mismagius",
+    76
+   ],
+   [
+    "Rotom",
+    46
+   ],
+   [
+    "Sableye",
+    27
+   ],
+   [
+    "Drifblim",
+    17
+   ]
+  ]
+ }
+}

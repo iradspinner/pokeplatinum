@@ -56,7 +56,6 @@
             "TM05",
             "TM06",
             "TM10",
-            "TM11",
             "TM12",
             "TM17",
             "TM21",
@@ -115,7 +114,7 @@
     "evolutions": [
         [
             "EVO_LEVEL",
-            24,
+            27,
             "SPECIES_HOUNDOOM"
         ]
     ],

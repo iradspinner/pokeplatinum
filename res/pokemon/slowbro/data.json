@@ -28,9 +28,9 @@
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_WATER_1" ],
     "abilities": [
-        "ABILITY_OBLIVIOUS",
+        "ABILITY_REGENERATOR",
         "ABILITY_OWN_TEMPO",
-        "ABILITY_REGENERATOR"
+        "ABILITY_OBLIVIOUS"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
@@ -53,7 +53,6 @@
             [ 41, "MOVE_SLACK_OFF" ],
             [ 47, "MOVE_AMNESIA" ],
             [ 54, "MOVE_PSYCHIC" ],
-            [ 61, "MOVE_RAIN_DANCE" ],
             [ 67, "MOVE_PSYCH_UP" ]
         ],
         "by_tm": [
@@ -61,15 +60,12 @@
             "TM03",
             "TM04",
             "TM06",
-            "TM07",
             "TM10",
-            "TM11",
             "TM13",
             "TM14",
             "TM15",
             "TM16",
             "TM17",
-            "TM18",
             "TM20",
             "TM21",
             "TM23",

@@ -107,7 +107,7 @@ In:
 - 60 fps outside battle, matching the battle uncap already carried over.
   hg-engine flags the overworld version as less stable; if it misbehaves, drop it
   without asking.
-- Wild double battles. Needs per-area configuration (Phase 5 encounter design)
+- Wild double battles (dropped by Ian, 2026-09-29; the tracker's element 8 says why). Needs per-area configuration (Phase 5 encounter design)
   and the AI handling doubles well, which ties into the AI work below.
 - Restore single-use items after battle (berries, Focus Sash, Weakness Policy,
   seeds and the rest come back). Fits the timewaster principle.

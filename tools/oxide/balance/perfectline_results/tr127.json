@@ -1,0 +1,3806 @@
+{
+ "blind_rate": 0.804,
+ "blind_clean_share": 0.56,
+ "planned_rate": 1.0,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.0,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.323,
+ "blind_wipe": 0.002,
+ "convergence": {
+  "10": 0.876,
+  "50": 0.935,
+  "100": 0.956,
+  "300": 0.966
+ },
+ "runs": 277460,
+ "search_budget": 450,
+ "converged_share": 1.0,
+ "label": "Black Belt Gregory",
+ "split": "Maylene",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 15.0,
+ "rows": [
+  {
+   "rate": 0.15,
+   "deaths": 1.44,
+   "wipe": 0.04,
+   "screened": 0.25,
+   "screen": {
+    "10": 0.05,
+    "20": 0.05,
+    "30": 0.1,
+    "40": 0.1,
+    "50": 0.1,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25
+   },
+   "line": "lead Primarina; answers Machop->Primarina, Hitmonchan->Graveler; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Graveler for Hitmonchan",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Graveler",
+    "Lumineon",
+    "Primarina",
+    "Roselia",
+    "Seaking",
+    "Cinderace"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.585,
+   "deaths": 0.765,
+   "wipe": 0.025,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75
+   },
+   "line": "lead Primarina; answers Machop->Primarina, Breloom->Probopass, Hitmonchan->Hariyama; switch losing; setup at 3+ safe turns at full HP; free pivots; save Hariyama for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Rapidash-Galar",
+    "Hariyama",
+    "Bibarel",
+    "Lumineon",
+    "Primarina",
+    "Probopass"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.835,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Vikavolt; answers Machop->Vikavolt, Breloom->Vikavolt, Hitmonchan->Hippowdon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:0",
+   "team": [
+    "Bastiodon",
+    "Hippowdon",
+    "Roselia",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 3.3
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vikavolt; answers Machop->Vikavolt, Breloom->Vikavolt, Hitmonchan->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Lumineon",
+    "Orbeetle",
+    "Pawmot",
+    "Vikavolt",
+    "Arboliva",
+    "Floette"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.815,
+   "deaths": 0.285,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.4,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Vikavolt; answers Machop->Vikavolt, Breloom->Tsareena; switch losing; setup at 3+ safe turns; no status moves; bait locks; stall timed effects at 2 turns; save Tsareena for Breloom",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:0",
+   "team": [
+    "Haunter",
+    "Togetic",
+    "Tsareena",
+    "Vikavolt",
+    "Chansey",
+    "Donphan"
+   ],
+   "seconds": 3.2
+  },
+  {
+   "rate": 0.927,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "22": 1.0
+   },
+   "line": "lead Electivire; answers Machop->Rapidash-Galar, Breloom->Rapidash-Galar, Hitmonchan->Electivire; switch hp below 0.4; setup at 2+ safe turns; stall timed effects at 3 turns; save Rapidash-Galar for Breloom",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Milotic",
+    "Orbeetle",
+    "Pawmot",
+    "Tsareena",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "14": 1.0
+   },
+   "line": "lead Electivire; answers Machop->Vikavolt, Breloom->Talonflame, Hitmonchan->Electivire; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Talonflame",
+    "Vikavolt",
+    "Cinderace",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.823,
+   "deaths": 0.203,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "154": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Orbeetle, Hitmonchan->Milotic; switch losing; setup at 5+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 154,
+   "converged": true,
+   "runs": 3980,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Milotic",
+    "Orbeetle",
+    "Roselia",
+    "Seaking",
+    "Vullaby"
+   ],
+   "seconds": 5.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kadabra; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Kadabra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Golbat",
+    "Graveler",
+    "Kadabra",
+    "Leavanny",
+    "Cofagrigus",
+    "Drifblim"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "56": 1.0
+   },
+   "line": "lead Noctowl; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Lumineon; switch losing; setup at 4+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 56,
+   "converged": true,
+   "runs": 2020,
+   "kind": "planned:0",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Milotic",
+    "Noctowl",
+    "Talonflame",
+    "Electivire"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kadabra; answers Machop->Whiscash, Breloom->Kadabra, Hitmonchan->Hippowdon; switch losing; setup at 3+ safe turns at full HP; save Kadabra for Breloom",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hippowdon",
+    "Kadabra",
+    "Primarina",
+    "Vaporeon",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.677,
+   "deaths": 0.63,
+   "wipe": 0.01,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.55,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.75,
+    "100": 0.75,
+    "110": 0.75,
+    "120": 0.75,
+    "130": 0.75,
+    "140": 0.75,
+    "150": 0.75,
+    "160": 0.75,
+    "170": 0.75,
+    "180": 0.75,
+    "190": 0.75,
+    "200": 0.75,
+    "210": 0.75,
+    "220": 0.75,
+    "230": 0.75,
+    "240": 0.75,
+    "250": 0.75,
+    "260": 0.75,
+    "270": 0.75,
+    "280": 0.75,
+    "290": 0.75,
+    "300": 0.8,
+    "310": 0.8,
+    "320": 0.8,
+    "330": 0.8,
+    "340": 0.8,
+    "350": 0.8,
+    "360": 0.8,
+    "370": 0.8,
+    "380": 0.8,
+    "390": 0.8,
+    "400": 0.8,
+    "410": 0.8,
+    "420": 0.8,
+    "430": 0.8,
+    "440": 0.8,
+    "450": 0.8
+   },
+   "line": "lead Tsareena; answers Machop->Vaporeon, Breloom->Togetic, Hitmonchan->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Bastiodon",
+    "Noctowl",
+    "Togetic",
+    "Tsareena",
+    "Vaporeon"
+   ],
+   "seconds": 10.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "15": 1.0
+   },
+   "line": "lead Electivire; answers Breloom->Vaporeon, Hitmonchan->Electivire; switch hp below 0.2; setup at 3+ safe turns; save Electivire for Hitmonchan",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:0",
+   "team": [
+    "Rapidash-Galar",
+    "Galvantula",
+    "Golbat",
+    "Milotic",
+    "Vaporeon",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.35,
+   "deaths": 1.165,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.2,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Toucannon; answers Machop->Toucannon, Breloom->Noctowl; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Noctowl for Breloom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Noctowl",
+    "Toucannon",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.72,
+   "deaths": 0.49,
+   "wipe": 0.005,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.8,
+    "90": 0.8
+   },
+   "line": "lead Togetic; answers Machop->Togetic, Breloom->Graveler, Hitmonchan->Dubwool; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Salazzle",
+    "Togetic",
+    "Vaporeon",
+    "Dubwool",
+    "Floatzel"
+   ],
+   "seconds": 3.1
+  },
+  {
+   "rate": 0.365,
+   "deaths": 0.75,
+   "wipe": 0.005,
+   "screened": 0.55,
+   "screen": {
+    "10": 0.1,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Vaporeon; answers Machop->Graveler, Hitmonchan->Masquerain; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Masquerain for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Vaporeon",
+    "Vikavolt",
+    "Floatzel"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.87,
+   "deaths": 0.13,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Cherrim; answers Machop->Cherrim, Breloom->Litwick, Hitmonchan->Cherrim; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Probopass",
+    "Togetic",
+    "Torterra",
+    "Chansey",
+    "Cherrim"
+   ],
+   "seconds": 4.5
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.225,
+   "wipe": 0.01,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Vikavolt; answers Machop->Kricketune, Breloom->Toucannon, Hitmonchan->Ninetales; switch losing; setup at 4+ safe turns; bait locks; save Ninetales for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:1",
+   "team": [
+    "Garganacl",
+    "Kricketune",
+    "Ninetales",
+    "Toucannon",
+    "Vikavolt",
+    "Altaria"
+   ],
+   "seconds": 3.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bronzong; answers Machop->Bronzong, Breloom->Ninetales, Hitmonchan->Kricketune; switch losing; setup at 3+ safe turns at full HP; bait locks; save Kricketune for Hitmonchan",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Klefki",
+    "Kricketune",
+    "Ninetales",
+    "Bronzong",
+    "Altaria",
+    "Dusclops"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.553,
+   "deaths": 0.777,
+   "wipe": 0.017,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15,
+    "70": 0.25,
+    "80": 0.55,
+    "90": 0.55,
+    "100": 0.55,
+    "110": 0.55,
+    "120": 0.55,
+    "130": 0.55,
+    "140": 0.55,
+    "150": 0.55,
+    "160": 0.55,
+    "170": 0.55,
+    "180": 0.55,
+    "190": 0.55,
+    "200": 0.55,
+    "210": 0.55,
+    "220": 0.55,
+    "230": 0.55,
+    "240": 0.55,
+    "250": 0.55,
+    "260": 0.55,
+    "270": 0.55,
+    "280": 0.55,
+    "290": 0.55,
+    "300": 0.55
+   },
+   "line": "lead Noctowl; answers Machop->Lurantis; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Kricketune",
+    "Lurantis",
+    "Noctowl",
+    "Tentacruel",
+    "Vaporeon"
+   ],
+   "seconds": 8.0
+  },
+  {
+   "rate": 0.827,
+   "deaths": 0.437,
+   "wipe": 0.047,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.6,
+    "20": 0.6,
+    "30": 0.6,
+    "40": 0.6,
+    "50": 0.6,
+    "60": 0.6,
+    "70": 0.6,
+    "80": 0.6,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Dusclops; answers Machop->Luxray, Breloom->Dusclops, Hitmonchan->Masquerain; switch hp below 0.4; setup at 3+ safe turns; bait locks; stall timed effects at 3 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Whiscash",
+    "Dusclops"
+   ],
+   "seconds": 10.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Kadabra; answers Machop->Ninetales, Breloom->Ninetales, Hitmonchan->Kadabra; switch never; setup at 3+ safe turns; stall timed effects at 2 turns",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Kricketune",
+    "Ninetales",
+    "Tentacruel",
+    "Altaria",
+    "Floette"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.123,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "19": 1.0
+   },
+   "line": "lead Vikavolt; answers Machop->Lopunny, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Lopunny",
+    "Bronzong",
+    "Vaporeon",
+    "Vikavolt"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Luxray; answers Machop->Lanturn, Breloom->Ninetales, Hitmonchan->Electivire; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Lanturn",
+    "Luxray",
+    "Ninetales",
+    "Vaporeon",
+    "Altaria",
+    "Electivire"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.933,
+   "deaths": 0.13,
+   "wipe": 0.007,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "16": 1.0
+   },
+   "line": "lead Dusclops; answers Machop->Dusclops, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:1",
+   "team": [
+    "Houndoom",
+    "Bronzong",
+    "Salazzle",
+    "Tentacruel",
+    "Combee",
+    "Dusclops"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.63,
+   "deaths": 0.47,
+   "wipe": 0.0,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Dusclops; answers Machop->Dusclops, Breloom->Masquerain, Hitmonchan->Lanturn; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Masquerain for Breloom",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:1",
+   "team": [
+    "Rapidash-Galar",
+    "Houndoom",
+    "Lanturn",
+    "Masquerain",
+    "Carbink",
+    "Dusclops"
+   ],
+   "seconds": 10.7
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Granbull; answers Breloom->Glimmora, Hitmonchan->Granbull; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1180,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Granbull",
+    "Mismagius",
+    "Noctowl",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.45,
+    "20": 0.6,
+    "26": 1.0
+   },
+   "line": "lead Staraptor; answers Machop->Staraptor, Breloom->Sneasel, Hitmonchan->Vikavolt; switch never; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; save Vikavolt for Hitmonchan",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1120,
+   "kind": "blind:2",
+   "team": [
+    "Kricketune",
+    "Mismagius",
+    "Sneasel",
+    "Staraptor",
+    "Talonflame",
+    "Vikavolt"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Gastrodon; answers Machop->Gastrodon, Breloom->Delphox, Hitmonchan->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Gastrodon",
+    "Masquerain",
+    "Whiscash",
+    "Chansey",
+    "Combee",
+    "Delphox"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delphox; answers Machop->Delphox, Breloom->Glimmora, Hitmonchan->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Glimmora",
+    "Lumineon",
+    "Sharpedo",
+    "Whiscash",
+    "Delphox",
+    "Floette"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Clefable; answers Machop->Clefable, Breloom->Honchkrow, Hitmonchan->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:2",
+   "team": [
+    "Honchkrow",
+    "Mightyena",
+    "Seaking",
+    "Clefable",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "14": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Clefable, Hitmonchan->Gothorita; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns",
+   "candidates": 14,
+   "converged": true,
+   "runs": 1180,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Gothorita",
+    "Granbull",
+    "Rotom",
+    "Clefable",
+    "Delphox"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Clefable; answers Machop->Granbull, Breloom->Talonflame, Hitmonchan->Granbull; switch losing; setup at 4+ safe turns at full HP; save Granbull for Hitmonchan",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Granbull",
+    "Talonflame",
+    "Whiscash",
+    "Clefable",
+    "Corvisquire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.5,
+    "30": 0.5,
+    "36": 1.0
+   },
+   "line": "lead Staraptor; answers Machop->Staraptor, Hitmonchan->Leavanny; switch never; setup at 5+ safe turns at full HP; no status moves; bait locks; save Leavanny for Hitmonchan",
+   "candidates": 36,
+   "converged": true,
+   "runs": 1620,
+   "kind": "planned:2",
+   "team": [
+    "Glimmora",
+    "Leavanny",
+    "Staraptor",
+    "Vaporeon",
+    "Drifblim",
+    "Floette"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "62": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Granbull, Breloom->Leavanny, Hitmonchan->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 62,
+   "converged": true,
+   "runs": 2140,
+   "kind": "planned:2",
+   "team": [
+    "Granbull",
+    "Leavanny",
+    "Lurantis",
+    "Rotom",
+    "Vikavolt",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "22": 1.0
+   },
+   "line": "lead Gastrodon; answers Machop->Gastrodon, Breloom->Honchkrow, Hitmonchan->Gastrodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 22,
+   "converged": true,
+   "runs": 1340,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Gastrodon",
+    "Honchkrow",
+    "Orbeetle",
+    "Vaporeon",
+    "Combee"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "129": 1.0
+   },
+   "line": "lead Rotom; answers Breloom->Kricketune, Hitmonchan->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks; save Kricketune for Breloom",
+   "candidates": 129,
+   "converged": true,
+   "runs": 3480,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Hariyama",
+    "Kricketune",
+    "Rotom",
+    "Drifblim",
+    "Electivire"
+   ],
+   "seconds": 3.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Granbull; answers Machop->Granbull, Breloom->Staraptor, Hitmonchan->Granbull; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Rapidash-Galar",
+    "Granbull",
+    "Mismagius",
+    "Noctowl",
+    "Staraptor",
+    "Vaporeon"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Delphox; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Mismagius",
+    "Staraptor",
+    "Delphox"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Jynx; answers Breloom->Jynx, Hitmonchan->Jynx; switch losing; setup at 3+ safe turns; bait locks; stall timed effects at 1 turns; save Jynx for Hitmonchan",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Gastrodon",
+    "Jynx",
+    "Seaking",
+    "Shiftry",
+    "Vikavolt",
+    "Floette"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.225,
+   "deaths": 1.28,
+   "wipe": 0.0,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.3,
+    "20": 0.3,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Seaking; answers Machop->Seaking, Breloom->Corvisquire, Hitmonchan->Bastiodon; switch losing; setup at 4+ safe turns; no status moves; stall timed effects at 3 turns; save Bastiodon for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Seaking",
+    "Vullaby",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:3",
+   "team": [
+    "Leavanny",
+    "Orbeetle",
+    "Bronzong",
+    "Seaking",
+    "Carbink",
+    "Vaporeon"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Honchkrow; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Whiscash; switch losing; setup at 3+ safe turns at full HP; save Whiscash for Hitmonchan",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:3",
+   "team": [
+    "Honchkrow",
+    "Leavanny",
+    "Liepard",
+    "Sneasel",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.12,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.65,
+    "20": 0.65,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Whiscash; switch hp below 0.4; setup at 3+ safe turns; save Whiscash for Hitmonchan",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Toucannon",
+    "Vaporeon",
+    "Whiscash",
+    "Ambipom"
+   ],
+   "seconds": 3.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Bronzong, Breloom->Bronzong, Hitmonchan->Dubwool; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Girafarig",
+    "Honchkrow",
+    "Orbeetle",
+    "Bronzong",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.063,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.9,
+    "260": 0.9,
+    "270": 0.9,
+    "280": 0.9,
+    "290": 0.9,
+    "300": 0.9
+   },
+   "line": "lead Breloom; answers Machop->Gastrodon, Breloom->Orbeetle, Hitmonchan->Shiftry; switch hp below 0.4; setup at 3+ safe turns; no status moves",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Gastrodon",
+    "Breloom",
+    "Orbeetle",
+    "Shiftry",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 8.8
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Whiscash, Hitmonchan->Bibarel; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Bibarel for Hitmonchan",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Girafarig",
+    "Bibarel",
+    "Leavanny",
+    "Vaporeon",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.853,
+   "deaths": 0.147,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Ambipom; answers Machop->Toucannon, Breloom->Bronzong, Hitmonchan->Bronzong; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:3",
+   "team": [
+    "Ludicolo",
+    "Bronzong",
+    "Snover",
+    "Toucannon",
+    "Ambipom",
+    "Electivire"
+   ],
+   "seconds": 6.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "16": 1.0
+   },
+   "line": "lead Jynx; answers Machop->Milotic, Breloom->Jynx, Hitmonchan->Dubwool; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Jynx for Breloom",
+   "candidates": 16,
+   "converged": true,
+   "runs": 1220,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Milotic",
+    "Breloom",
+    "Dubwool",
+    "Empoleon",
+    "Floette"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Galvantula; answers Machop->Galvantula, Breloom->Girafarig, Hitmonchan->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Galvantula",
+    "Girafarig",
+    "Jynx",
+    "Shiftry",
+    "Talonflame",
+    "Empoleon"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Empoleon; answers Machop->Bronzong, Breloom->Orbeetle, Hitmonchan->Electivire; switch losing; setup at 3+ safe turns",
+   "candidates": 10,
+   "converged": true,
+   "runs": 1100,
+   "kind": "planned:3",
+   "team": [
+    "Orbeetle",
+    "Bronzong",
+    "Vaporeon",
+    "Vikavolt",
+    "Electivire",
+    "Empoleon"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Sinistcha; answers Machop->Sinistcha, Breloom->Sinistcha, Hitmonchan->Masquerain; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:3",
+   "team": [
+    "Ludicolo",
+    "Masquerain",
+    "Orbeetle",
+    "Sinistcha",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.415,
+   "deaths": 1.08,
+   "wipe": 0.005,
+   "screened": 0.5,
+   "screen": {
+    "10": 0.45,
+    "20": 0.5,
+    "30": 0.5,
+    "40": 0.5,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Togetic; answers Machop->Floette, Breloom->Togetic; switch hp below 0.3; setup at 5+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Ludicolo",
+    "Mienshao",
+    "Quagsire",
+    "Togetic",
+    "Vaporeon",
+    "Floette"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Masquerain; answers Machop->Masquerain, Breloom->Galvantula, Hitmonchan->Masquerain; switch losing; setup at 4+ safe turns; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:4",
+   "team": [
+    "Galvantula",
+    "Masquerain",
+    "Mienshao",
+    "Quagsire",
+    "Rotom",
+    "Steelix"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Gastrodon; answers Machop->Rotom, Breloom->Bronzong, Hitmonchan->Luxray; switch losing; setup at 3+ safe turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:4",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Luxray",
+    "Mightyena",
+    "Bronzong",
+    "Rotom"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.455,
+   "deaths": 0.795,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.15,
+    "20": 0.15,
+    "30": 0.15,
+    "40": 0.2,
+    "50": 0.5,
+    "60": 0.5
+   },
+   "line": "lead Rotom; answers Machop->Rotom, Breloom->Kricketune, Hitmonchan->Bastiodon; switch losing; setup at 5+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Rotom",
+    "Tsareena",
+    "Combee",
+    "Floatzel"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Rotom, Breloom->Bronzong, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Bronzong",
+    "Rotom",
+    "Seaking",
+    "Steelix",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Machop->Bronzong, Breloom->Magcargo, Hitmonchan->Bronzong; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Kricketune",
+    "Ludicolo",
+    "Magcargo",
+    "Bronzong",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Galvantula; answers Machop->Pawmot, Breloom->Bronzong, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Steelix for Hitmonchan",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Mienshao",
+    "Pawmot",
+    "Bronzong",
+    "Steelix",
+    "Electivire"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "32": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Clefable, Breloom->Rotom, Hitmonchan->Orbeetle; switch losing; setup at 3+ safe turns; no status moves; bait locks; free pivots; stall timed effects at 1 turns; save Orbeetle for Hitmonchan",
+   "candidates": 32,
+   "converged": true,
+   "runs": 1540,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Orbeetle",
+    "Pawmot",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.083,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "65": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Rotom, Breloom->Glimmora, Hitmonchan->Galvantula; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns",
+   "candidates": 65,
+   "converged": true,
+   "runs": 2200,
+   "kind": "planned:4",
+   "team": [
+    "Galvantula",
+    "Glimmora",
+    "Kricketune",
+    "Ludicolo",
+    "Quagsire",
+    "Rotom"
+   ],
+   "seconds": 3.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Vaporeon, Breloom->Dubwool, Hitmonchan->Steelix; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 2 turns; save Steelix for Hitmonchan",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Glimmora",
+    "Lanturn",
+    "Rotom",
+    "Steelix",
+    "Vaporeon",
+    "Dubwool"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "208": 1.0
+   },
+   "line": "lead Mismagius; answers Machop->Orbeetle, Hitmonchan->Bastiodon; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Bastiodon for Hitmonchan",
+   "candidates": 208,
+   "converged": true,
+   "runs": 5060,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Mienshao",
+    "Mismagius",
+    "Orbeetle",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 5.0
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.073,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "116": 1.0
+   },
+   "line": "lead Gastrodon; answers Machop->Gastrodon, Breloom->Tsareena, Hitmonchan->Cinderace; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 116,
+   "converged": true,
+   "runs": 3220,
+   "kind": "planned:4",
+   "team": [
+    "Gastrodon",
+    "Steelix",
+    "Tsareena",
+    "Whiscash",
+    "Cinderace",
+    "Clefable"
+   ],
+   "seconds": 4.6
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "82": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Orbeetle, Hitmonchan->Cinderace; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 82,
+   "converged": true,
+   "runs": 2540,
+   "kind": "planned:4",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Steelix",
+    "Cinderace",
+    "Dubwool",
+    "Electivire"
+   ],
+   "seconds": 3.0
+  },
+  {
+   "rate": 0.795,
+   "deaths": 0.25,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.8,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85
+   },
+   "line": "lead Tentacruel; answers Machop->Tentacruel, Breloom->Haunter, Hitmonchan->Haunter; switch hp below 0.4; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; save Haunter for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Octillery",
+    "Tentacruel",
+    "Vaporeon",
+    "Crustle"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.815,
+   "deaths": 0.275,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Electivire; answers Hitmonchan->Electivire; switch losing; setup at 3+ safe turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Noctowl",
+    "Talonflame",
+    "Togetic",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Shiftry; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Ludicolo; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Leavanny",
+    "Ludicolo",
+    "Primarina",
+    "Shiftry"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Hitmonchan->Talonflame; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Garganacl",
+    "Glimmora",
+    "Leavanny",
+    "Noctowl",
+    "Shiftry",
+    "Talonflame"
+   ],
+   "seconds": 2.5
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Octillery; answers Machop->Torterra, Breloom->Talonflame, Hitmonchan->Orbeetle; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:5",
+   "team": [
+    "Bastiodon",
+    "Octillery",
+    "Orbeetle",
+    "Talonflame",
+    "Torterra",
+    "Whiscash"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Haunter; answers Machop->Haunter, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Kadabra",
+    "Ludicolo",
+    "Bronzong",
+    "Crustle"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.363,
+   "deaths": 1.387,
+   "wipe": 0.047,
+   "screened": 0.3,
+   "screen": {
+    "10": 0.1,
+    "20": 0.15,
+    "30": 0.25,
+    "40": 0.25,
+    "50": 0.25,
+    "60": 0.25,
+    "70": 0.25,
+    "80": 0.25,
+    "90": 0.25,
+    "100": 0.25,
+    "110": 0.25,
+    "120": 0.25,
+    "130": 0.25,
+    "140": 0.3,
+    "150": 0.3,
+    "160": 0.3,
+    "170": 0.3,
+    "180": 0.3,
+    "190": 0.3,
+    "200": 0.3,
+    "210": 0.3,
+    "220": 0.3,
+    "230": 0.3,
+    "240": 0.3,
+    "250": 0.3,
+    "260": 0.3,
+    "270": 0.3,
+    "280": 0.3,
+    "290": 0.3,
+    "300": 0.3
+   },
+   "line": "lead Floette; answers Machop->Lurantis, Hitmonchan->Whiscash; switch hp below 0.4; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Lurantis",
+    "Octillery",
+    "Vullaby",
+    "Whiscash",
+    "Cherrim",
+    "Floette"
+   ],
+   "seconds": 8.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.9,
+    "28": 1.0
+   },
+   "line": "lead Glimmora; answers Machop->Glimmora, Breloom->Noctowl, Hitmonchan->Castform; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 2 turns",
+   "candidates": 28,
+   "converged": true,
+   "runs": 1460,
+   "kind": "planned:5",
+   "team": [
+    "Glimmora",
+    "Noctowl",
+    "Talonflame",
+    "Castform",
+    "Whiscash",
+    "Electivire"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Machop->Bronzong, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Ludicolo",
+    "Bronzong",
+    "Torterra",
+    "Vaporeon",
+    "Whiscash",
+    "Altaria"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.717,
+   "deaths": 0.313,
+   "wipe": 0.003,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.7,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Haunter; answers Machop->Haunter, Breloom->Haunter; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Ludicolo",
+    "Torterra",
+    "Vaporeon",
+    "Vullaby",
+    "Crustle"
+   ],
+   "seconds": 9.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Graveler, Hitmonchan->Orbeetle; switch losing; setup at 3+ safe turns; stall timed effects at 1 turns",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Graveler",
+    "Haunter",
+    "Mismagius",
+    "Orbeetle",
+    "Talonflame",
+    "Cherrim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Haunter; answers Machop->Haunter, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Graveler",
+    "Haunter",
+    "Lanturn",
+    "Noctowl",
+    "Bronzong",
+    "Primarina"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.053,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Tentacruel, Hitmonchan->Ludicolo; switch never; setup at 2+ safe turns at full HP; no status moves; bait locks; save Ludicolo for Hitmonchan",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:5",
+   "team": [
+    "Lanturn",
+    "Ludicolo",
+    "Noctowl",
+    "Orbeetle",
+    "Tentacruel",
+    "Castform"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.765,
+   "deaths": 0.365,
+   "wipe": 0.01,
+   "screened": 0.8,
+   "screen": {
+    "10": 0.65,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Cinderace; switch losing; setup at 3+ safe turns at full HP; bait locks; save Cinderace for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:6",
+   "team": [
+    "Leavanny",
+    "Litwick",
+    "Sandygast",
+    "Vaporeon",
+    "Cinderace",
+    "Combee"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Altaria, Hitmonchan->Kadabra; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Garganacl",
+    "Kadabra",
+    "Orbeetle",
+    "Rhyhorn",
+    "Scizor",
+    "Altaria"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.73,
+   "deaths": 0.325,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Gastrodon; switch losing; setup at 2+ safe turns at full HP",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2400,
+   "kind": "blind:6",
+   "team": [
+    "Gastrodon",
+    "Bastiodon",
+    "Leavanny",
+    "Breloom",
+    "Scizor",
+    "Combee"
+   ],
+   "seconds": 3.6
+  },
+  {
+   "rate": 0.89,
+   "deaths": 0.165,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "48": 1.0
+   },
+   "line": "lead Mightyena; answers Machop->Bibarel, Breloom->Scizor, Hitmonchan->Masquerain; switch losing; setup at 3+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 48,
+   "converged": true,
+   "runs": 1560,
+   "kind": "blind:6",
+   "team": [
+    "Bibarel",
+    "Masquerain",
+    "Mightyena",
+    "Scizor",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Clefable; answers Machop->Clefable, Breloom->Tentacruel, Hitmonchan->Lanturn; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:6",
+   "team": [
+    "Lanturn",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Clefable",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Machop->Dubwool, Breloom->Gothorita, Hitmonchan->Dubwool; switch losing; setup at 3+ safe turns; save Gothorita for Breloom",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Gothorita",
+    "Orbeetle",
+    "Tsareena",
+    "Cinderace",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "26": 1.0
+   },
+   "line": "lead Glimmora; answers Machop->Glimmora, Breloom->Electivire, Hitmonchan->Mightyena; switch losing; setup at 5+ safe turns; bait locks; save Mightyena for Hitmonchan",
+   "candidates": 26,
+   "converged": true,
+   "runs": 1420,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Mightyena",
+    "Vullaby",
+    "Cherrim",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "29": 1.0
+   },
+   "line": "lead Electivire; answers Machop->Scizor, Breloom->Tentacruel; switch losing; setup at 5+ safe turns at full HP; bait locks; free pivots; save Tentacruel for Breloom",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Scizor",
+    "Tentacruel",
+    "Cherrim",
+    "Cinderace",
+    "Electivire"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.85,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 1.0
+   },
+   "line": "lead Glimmora; answers Machop->Leavanny, Breloom->Donphan, Hitmonchan->Clefable; switch losing; setup at 2+ safe turns; no status moves; bait locks; free pivots; save Clefable for Hitmonchan",
+   "candidates": 100,
+   "converged": true,
+   "runs": 2900,
+   "kind": "planned:6",
+   "team": [
+    "Glimmora",
+    "Leavanny",
+    "Mightyena",
+    "Whiscash",
+    "Clefable",
+    "Donphan"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Cherrim, Hitmonchan->Orbeetle; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:6",
+   "team": [
+    "Graveler",
+    "Leavanny",
+    "Orbeetle",
+    "Cherrim",
+    "Cinderace",
+    "Combee"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.887,
+   "deaths": 0.117,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8,
+    "70": 0.8,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.9,
+    "180": 0.9,
+    "190": 0.9,
+    "200": 0.9,
+    "210": 0.9,
+    "220": 0.9,
+    "230": 0.9,
+    "240": 0.9,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95,
+    "310": 0.95,
+    "320": 0.95,
+    "330": 0.95,
+    "340": 0.95,
+    "350": 0.95,
+    "360": 0.95,
+    "370": 0.95,
+    "380": 0.95,
+    "390": 0.95,
+    "400": 0.95,
+    "410": 0.95,
+    "420": 0.95,
+    "430": 0.95,
+    "440": 0.95,
+    "450": 0.95
+   },
+   "line": "lead Breloom; answers Machop->Whiscash, Breloom->Drifblim, Hitmonchan->Breloom; switch hp below 0.7; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Breloom for Hitmonchan",
+   "candidates": 450,
+   "converged": true,
+   "runs": 9900,
+   "kind": "planned:6",
+   "team": [
+    "Graveler",
+    "Breloom",
+    "Scizor",
+    "Whiscash",
+    "Cinderace",
+    "Drifblim"
+   ],
+   "seconds": 9.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "15": 1.0
+   },
+   "line": "lead Lanturn; answers Machop->Cinderace, Breloom->Kadabra, Hitmonchan->Dubwool; switch losing; setup at 3+ safe turns; bait locks; free pivots; save Dubwool for Hitmonchan",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:6",
+   "team": [
+    "Kadabra",
+    "Lanturn",
+    "Mightyena",
+    "Cinderace",
+    "Donphan",
+    "Dubwool"
+   ],
+   "seconds": 1.5
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "29": 1.0
+   },
+   "line": "lead Breloom; answers Machop->Gothorita, Breloom->Gothorita, Hitmonchan->Dubwool; switch losing; setup at 3+ safe turns at full HP; no status moves; free pivots; save Dubwool for Hitmonchan",
+   "candidates": 29,
+   "converged": true,
+   "runs": 1480,
+   "kind": "planned:6",
+   "team": [
+    "Gothorita",
+    "Breloom",
+    "Tsareena",
+    "Whiscash",
+    "Dubwool",
+    "Floette"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Masquerain",
+    "Steelix",
+    "Vaporeon",
+    "Vullaby"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.85,
+   "deaths": 0.29,
+   "wipe": 0.0,
+   "screened": 0.75,
+   "screen": {
+    "10": 0.8,
+    "20": 0.8,
+    "30": 0.8,
+    "40": 0.8,
+    "50": 0.8,
+    "60": 0.8
+   },
+   "line": "lead Breloom; answers Machop->Breloom, Breloom->Breloom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Furret",
+    "Hariyama",
+    "Meowscarada",
+    "Breloom",
+    "Crawdaunt",
+    "Azumarill"
+   ],
+   "seconds": 1.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "49": 1.0
+   },
+   "line": "lead Haunter; answers Machop->Haunter, Breloom->Floette, Hitmonchan->Lanturn; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 49,
+   "converged": true,
+   "runs": 1580,
+   "kind": "blind:7",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Machoke",
+    "Vaporeon",
+    "Electivire",
+    "Floette"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Whiscash; answers Machop->Whiscash, Breloom->Staraptor, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Sharpedo",
+    "Staraptor",
+    "Steelix",
+    "Whiscash",
+    "Cherrim"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Breloom; answers Machop->Glimmora, Breloom->Glimmora; switch losing; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Glimmora for Breloom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:7",
+   "team": [
+    "Glimmora",
+    "Masquerain",
+    "Breloom",
+    "Vullaby",
+    "Chansey",
+    "Crawdaunt"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Haunter; answers Machop->Haunter, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Glimmora",
+    "Haunter",
+    "Honchkrow",
+    "Bronzong",
+    "Staraptor",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.5,
+    "20": 0.95,
+    "30": 0.95,
+    "31": 1.0
+   },
+   "line": "lead Glimmora; answers Machop->Cherrim, Breloom->Glimmora, Hitmonchan->Whiscash; switch losing; setup at 3+ safe turns",
+   "candidates": 31,
+   "converged": true,
+   "runs": 1520,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Meowscarada",
+    "Whiscash",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 0.94,
+   "deaths": 0.06,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Cinderace; answers Machop->Glimmora, Breloom->Glimmora, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Glimmora",
+    "Honchkrow",
+    "Steelix",
+    "Cherrim",
+    "Cinderace"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.833,
+   "deaths": 0.183,
+   "wipe": 0.003,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Hitmonchan->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Golbat",
+    "Haunter",
+    "Kingler",
+    "Lanturn",
+    "Leavanny"
+   ],
+   "seconds": 7.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.7,
+    "17": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Tentacruel; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Tentacruel for Hitmonchan",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:7",
+   "team": [
+    "Haunter",
+    "Leavanny",
+    "Masquerain",
+    "Primarina",
+    "Tentacruel",
+    "Electivire"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "11": 1.0
+   },
+   "line": "lead Breloom; answers Machop->Haunter, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 2+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Haunter",
+    "Mienshao",
+    "Breloom",
+    "Bronzong",
+    "Floette"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Honchkrow; answers Machop->Haunter, Breloom->Haunter, Hitmonchan->Hariyama; switch losing; setup at 3+ safe turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Haunter",
+    "Honchkrow",
+    "Lanturn",
+    "Breloom",
+    "Cherrim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Whiscash; answers Machop->Whiscash, Breloom->Tentacruel, Hitmonchan->Steelix; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Rapidash-Galar",
+    "Incineroar",
+    "Mienshao",
+    "Steelix",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.23,
+   "deaths": 1.555,
+   "wipe": 0.01,
+   "screened": 0.35,
+   "screen": {
+    "10": 0.1,
+    "20": 0.35,
+    "30": 0.35,
+    "40": 0.35,
+    "50": 0.35,
+    "60": 0.35
+   },
+   "line": "lead Primarina; answers Machop->Primarina, Hitmonchan->Floette; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns; save Floette for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Lumineon",
+    "Pachirisu",
+    "Primarina",
+    "Floette"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 0.085,
+   "deaths": 1.82,
+   "wipe": 0.0,
+   "screened": 0.1,
+   "screen": {
+    "10": 0.05,
+    "20": 0.1,
+    "30": 0.1,
+    "40": 0.15,
+    "50": 0.15,
+    "60": 0.15
+   },
+   "line": "lead Seaking; answers Machop->Seaking, Hitmonchan->Shiftry; switch losing; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 3 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Seaking",
+    "Shiftry",
+    "Whiscash",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 2.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Chimecho; answers Machop->Chimecho, Breloom->Chimecho, Hitmonchan->Chimecho; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:8",
+   "team": [
+    "Masquerain",
+    "Mismagius",
+    "Pachirisu",
+    "Castform",
+    "Vullaby",
+    "Chimecho"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.14,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.25,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Leavanny; answers Breloom->Altaria, Hitmonchan->Primarina; switch hp below 0.3; setup at 4+ safe turns; stall timed effects at 1 turns",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Leavanny",
+    "Primarina",
+    "Altaria",
+    "Donphan",
+    "Floette"
+   ],
+   "seconds": 2.4
+  },
+  {
+   "rate": 0.39,
+   "deaths": 1.04,
+   "wipe": 0.0,
+   "screened": 0.45,
+   "screen": {
+    "10": 0.0,
+    "20": 0.55,
+    "30": 0.55,
+    "40": 0.55,
+    "50": 0.55,
+    "60": 0.55
+   },
+   "line": "lead Altaria; answers Machop->Altaria, Breloom->Altaria, Hitmonchan->Masquerain; switch losing; setup at 3+ safe turns at full HP; save Masquerain for Hitmonchan",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:8",
+   "team": [
+    "Graveler",
+    "Lopunny",
+    "Masquerain",
+    "Shiftry",
+    "Altaria",
+    "Dubwool"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Cofagrigus, Breloom->Girafarig, Hitmonchan->Girafarig; switch never; setup at 3+ safe turns; free pivots; save Girafarig for Breloom",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Milotic",
+    "Chimecho",
+    "Cinderace",
+    "Cofagrigus",
+    "Electivire"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Mismagius; answers Machop->Mismagius, Breloom->Bronzong, Hitmonchan->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Mismagius",
+    "Bronzong",
+    "Sharpedo",
+    "Cherrim",
+    "Chimecho",
+    "Floette"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Cofagrigus; answers Machop->Steelix, Breloom->Cofagrigus, Hitmonchan->Steelix; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Graveler",
+    "Pawmot",
+    "Steelix",
+    "Toucannon",
+    "Vaporeon",
+    "Cofagrigus"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers Machop->Leavanny, Breloom->Leavanny, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Pawmot",
+    "Steelix",
+    "Togetic",
+    "Vaporeon",
+    "Cherrim"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.893,
+   "deaths": 0.313,
+   "wipe": 0.01,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.7,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "247": 1.0
+   },
+   "line": "lead Donphan; answers Machop->Donphan, Breloom->Masquerain, Hitmonchan->Electivire; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 247,
+   "converged": true,
+   "runs": 5840,
+   "kind": "planned:8",
+   "team": [
+    "Lopunny",
+    "Lumineon",
+    "Masquerain",
+    "Sharpedo",
+    "Donphan",
+    "Electivire"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Girafarig, Breloom->Girafarig, Hitmonchan->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Girafarig",
+    "Lopunny",
+    "Vullaby",
+    "Cherrim",
+    "Cinderace",
+    "Donphan"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.75,
+    "20": 0.75,
+    "30": 0.75,
+    "40": 0.75,
+    "50": 0.75,
+    "60": 0.75,
+    "70": 0.75,
+    "80": 0.75,
+    "90": 0.9,
+    "100": 0.95,
+    "108": 1.0
+   },
+   "line": "lead Pachirisu; answers Machop->Pachirisu, Breloom->Castform, Hitmonchan->Bastiodon; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Bastiodon for Hitmonchan",
+   "candidates": 108,
+   "converged": true,
+   "runs": 3060,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Graveler",
+    "Pachirisu",
+    "Castform",
+    "Cinderace",
+    "Floette"
+   ],
+   "seconds": 2.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Cherrim; answers Machop->Cherrim, Breloom->Chimecho, Hitmonchan->Chimecho; switch losing; setup at 4+ safe turns; free pivots; save Chimecho for Breloom",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Rapidash-Galar",
+    "Pelipper",
+    "Cherrim",
+    "Chimecho",
+    "Cofagrigus",
+    "Floette"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95
+   },
+   "line": "lead Vikavolt; answers Machop->Vikavolt, Breloom->Vikavolt, Hitmonchan->Empoleon; switch losing; setup at 3+ safe turns at full HP; save Vikavolt for Breloom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Seaking",
+    "Tsareena",
+    "Vaporeon",
+    "Vikavolt",
+    "Empoleon"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Girafarig, Breloom->Girafarig, Hitmonchan->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Girafarig",
+    "Bastiodon",
+    "Togetic",
+    "Vaporeon",
+    "Vullaby",
+    "Floette"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Girafarig, Breloom->Girafarig, Hitmonchan->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Girafarig",
+    "Glimmora",
+    "Ludicolo",
+    "Luxray",
+    "Whiscash"
+   ],
+   "seconds": 0.4
+  },
+  {
+   "rate": 0.925,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "10": 0.55,
+    "20": 0.9,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9
+   },
+   "line": "lead Breloom; answers Machop->Kricketune, Breloom->Crustle, Hitmonchan->Breloom; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Crustle for Breloom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Furret",
+    "Kricketune",
+    "Breloom",
+    "Togetic",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 2.1
+  },
+  {
+   "rate": 0.735,
+   "deaths": 0.48,
+   "wipe": 0.01,
+   "screened": 0.7,
+   "screen": {
+    "10": 0.65,
+    "20": 0.7,
+    "30": 0.7,
+    "40": 0.7,
+    "50": 0.7,
+    "60": 0.7
+   },
+   "line": "lead Combee; answers Machop->Rotom, Breloom->Scizor, Hitmonchan->Whiscash; switch losing; setup at 5+ safe turns; free pivots; stall timed effects at 3 turns; save Scizor for Breloom",
+   "candidates": 60,
+   "converged": true,
+   "runs": 1800,
+   "kind": "blind:9",
+   "team": [
+    "Hariyama",
+    "Rotom",
+    "Scizor",
+    "Snover",
+    "Whiscash",
+    "Combee"
+   ],
+   "seconds": 2.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "40": 1.0,
+    "50": 1.0,
+    "60": 1.0,
+    "70": 1.0,
+    "80": 1.0,
+    "90": 1.0
+   },
+   "line": "lead Rotom; answers Machop->Ludicolo, Breloom->Charizard, Hitmonchan->Ludicolo; switch losing; setup at 2+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 3 turns; save Charizard for Breloom",
+   "candidates": 90,
+   "converged": true,
+   "runs": 2700,
+   "kind": "planned:9",
+   "team": [
+    "Kricketune",
+    "Ludicolo",
+    "Rotom",
+    "Yanmega",
+    "Charizard",
+    "Electivire"
+   ],
+   "seconds": 2.8
+  },
+  {
+   "rate": 0.547,
+   "deaths": 0.47,
+   "wipe": 0.0,
+   "screened": 0.65,
+   "screen": {
+    "10": 0.4,
+    "20": 0.65,
+    "30": 0.65,
+    "40": 0.65,
+    "50": 0.65,
+    "60": 0.7,
+    "70": 0.7,
+    "80": 0.7,
+    "90": 0.7,
+    "100": 0.7,
+    "110": 0.7,
+    "120": 0.7,
+    "130": 0.7,
+    "140": 0.7,
+    "150": 0.7,
+    "160": 0.7,
+    "170": 0.7,
+    "180": 0.7,
+    "190": 0.7,
+    "200": 0.7,
+    "210": 0.7,
+    "220": 0.7,
+    "230": 0.7,
+    "240": 0.7,
+    "250": 0.7,
+    "260": 0.7,
+    "270": 0.7,
+    "280": 0.7,
+    "290": 0.7,
+    "300": 0.7
+   },
+   "line": "lead Yanmega; answers Machop->Charizard; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Luxray",
+    "Vullaby",
+    "Wailmer",
+    "Yanmega",
+    "Charizard",
+    "Floette"
+   ],
+   "seconds": 5.3
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Tentacruel; answers Breloom->Glimmora, Hitmonchan->Steelix; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1500,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Scizor",
+    "Steelix",
+    "Tentacruel",
+    "Yanmega",
+    "Crustle"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 0.743,
+   "deaths": 0.257,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.75,
+    "20": 0.85,
+    "30": 0.9,
+    "40": 0.9,
+    "50": 0.9,
+    "60": 0.9,
+    "70": 0.9,
+    "80": 0.9,
+    "90": 0.9,
+    "100": 0.9,
+    "110": 0.9,
+    "120": 0.9,
+    "130": 0.9,
+    "140": 0.9,
+    "150": 0.9,
+    "160": 0.9,
+    "170": 0.9,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Orbeetle; answers Machop->Orbeetle, Breloom->Orbeetle, Hitmonchan->Orbeetle; switch hp below 0.4; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Orbeetle",
+    "Talonflame",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Crawdaunt"
+   ],
+   "seconds": 4.7
+  },
+  {
+   "rate": 0.76,
+   "deaths": 0.443,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.85,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "100": 0.95,
+    "110": 0.95,
+    "120": 0.95,
+    "130": 0.95,
+    "140": 0.95,
+    "150": 0.95,
+    "160": 0.95,
+    "170": 0.95,
+    "180": 0.95,
+    "190": 0.95,
+    "200": 0.95,
+    "210": 0.95,
+    "220": 0.95,
+    "230": 0.95,
+    "240": 0.95,
+    "250": 0.95,
+    "260": 0.95,
+    "270": 0.95,
+    "280": 0.95,
+    "290": 0.95,
+    "300": 0.95
+   },
+   "line": "lead Empoleon; answers Machop->Empoleon, Breloom->Talonflame; switch never; setup at 3+ safe turns at full HP",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Sharpedo",
+    "Talonflame",
+    "Tentacruel",
+    "Vullaby",
+    "Combee",
+    "Empoleon"
+   ],
+   "seconds": 4.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Girafarig; answers Machop->Girafarig, Breloom->Girafarig, Hitmonchan->Girafarig; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Girafarig",
+    "Hariyama",
+    "Luxray",
+    "Talonflame",
+    "Togetic",
+    "Cherrim"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.873,
+   "deaths": 0.127,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.9,
+    "20": 0.95,
+    "30": 0.95,
+    "40": 0.95,
+    "50": 0.95,
+    "60": 0.95,
+    "70": 0.95,
+    "80": 0.95,
+    "90": 0.95,
+    "92": 1.0
+   },
+   "line": "lead Glimmora; answers Machop->Glimmora; switch hp below 0.4; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 92,
+   "converged": true,
+   "runs": 2740,
+   "kind": "planned:9",
+   "team": [
+    "Glimmora",
+    "Hariyama",
+    "Kricketune",
+    "Luxray",
+    "Scizor",
+    "Tentacruel"
+   ],
+   "seconds": 2.9
+  },
+  {
+   "rate": 0.863,
+   "deaths": 0.223,
+   "wipe": 0.01,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.85,
+    "20": 0.85,
+    "30": 0.85,
+    "40": 0.85,
+    "50": 0.85,
+    "60": 0.85,
+    "70": 0.85,
+    "80": 0.85,
+    "90": 0.85,
+    "100": 0.85,
+    "110": 0.85,
+    "120": 0.85,
+    "130": 0.85,
+    "140": 0.85,
+    "150": 0.85,
+    "160": 0.85,
+    "170": 0.85,
+    "180": 0.85,
+    "190": 0.85,
+    "200": 0.85,
+    "210": 0.85,
+    "220": 0.85,
+    "230": 0.85,
+    "240": 0.85,
+    "250": 0.85,
+    "260": 0.85,
+    "270": 0.85,
+    "280": 0.85,
+    "290": 0.85,
+    "300": 0.85
+   },
+   "line": "lead Vikavolt; answers Machop->Togetic, Breloom->Vikavolt, Hitmonchan->Whiscash; switch hp below 0.4; setup at 2+ safe turns; free pivots; stall timed effects at 2 turns",
+   "candidates": 300,
+   "converged": true,
+   "runs": 6900,
+   "kind": "planned:9",
+   "team": [
+    "Houndoom",
+    "Togetic",
+    "Vikavolt",
+    "Vullaby",
+    "Whiscash",
+    "Charizard"
+   ],
+   "seconds": 6.8
+  }
+ ],
+ "key": "tr127"
+}

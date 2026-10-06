@@ -29,7 +29,7 @@
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_DRAGON" ],
     "abilities": [
         "ABILITY_BLAZE",
-        "ABILITY_SOLAR_POWER",
+        "ABILITY_NONE",
         "ABILITY_SOLAR_POWER"
     ],
     "safari_flee_rate": 0,
@@ -63,7 +63,6 @@
             "TM05",
             "TM06",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
             "TM21",

@@ -36,7 +36,7 @@
     "abilities": [
         "ABILITY_LIMBER",
         "ABILITY_PRANKSTER",
-        "ABILITY_PRANKSTER"
+        "ABILITY_UNBURDEN"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",

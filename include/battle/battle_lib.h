@@ -980,6 +980,12 @@ BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, 
 BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 
 /**
+ * @brief Oxide: whether Throat Chop stops the given battler from using the
+ * given move, which it does to every sound move while its count runs.
+ */
+BOOL Move_ThroatChopped(BattleContext *battleCtx, int battler, int move);
+
+/**
  * @brief Update buffers for the attacking Pokemon related to Last Resort.
  *
  * @param battleSys

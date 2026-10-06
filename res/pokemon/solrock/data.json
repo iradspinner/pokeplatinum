@@ -1,8 +1,8 @@
 {
     "base_stats": {
         "hp": 90,
-        "attack": 95,
-        "defense": 85,
+        "attack": 110,
+        "defense": 95,
         "speed": 70,
         "special_attack": 55,
         "special_defense": 75
@@ -52,7 +52,6 @@
             "TM04",
             "TM06",
             "TM10",
-            "TM11",
             "TM15",
             "TM16",
             "TM17",
@@ -66,7 +65,6 @@
             "TM32",
             "TM33",
             "TM35",
-            "TM37",
             "TM38",
             "TM39",
             "TM42",

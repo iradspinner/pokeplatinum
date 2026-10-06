@@ -20,8 +20,20 @@ Ian's 17 retypes and three stat slips, field moves on their badge alone,
 and the last weather abilities moved to the hidden slot, all rescored and
 verified: Volkner's fight reads harder with the Electric/Fighting
 Electivire and Electric/Dark Luxray, and the rank correlation with Ian's
-ratings is -0.57. Next: the buff review's decisions, then learnset v3 and
-the TM pass.
+ratings is -0.57. Then (`balance-buffs`) the buff review's decisions:
+the sheet's slips, section A's junk-ability fixes, section B, and Ian's
+second answers (Wormadam's Overcoat, Armaldo's abilities, Donphan,
+Tangela, Politoed and Rotom's stats, and Kaizo's numbers for the species
+the player cannot catch). The variants were scored in
+[the review's scores](reviews/buff-review/scores.md) (no single change
+moved a story fight by more than 0.1), and Ian took sections C and D,
+Houndoom's line (Houndour evolving at 27) and Talonflame's Gale Wings,
+with Haunter and Emolga approved by name as flagged stages; Glaceon's Ice
+Scales waits for testing in play. His last answers: one fix each for the
+lines whose hidden ability repeated a regular one, Kaizo's Gallade,
+Drought hidden for the Slugma line, and halfway buffs for Articuno and
+Suicune. All of it is rescored and verified. Next: learnset v3 on these
+stats, then the TM pass.
 
 **Where it stood (2026-09-27).** Test.nds is Oxide's base ROM, with Ian's
 late boss updates and his sheet's testing teams as the baseline, merged.
@@ -1252,7 +1264,7 @@ names and type chart, so B1 reads it straight from the ROM. Its move table is
 not among the named anchors and has to be located. Because Odyssey is all
 double battles, it needs the doubles version of the pressure score (spread
 moves, two attackers at once). Oxide needs that anyway for its 34 double
-trainer battles and its wild doubles. Until the doubles score is checked,
+trainer battles (wild doubles are dropped, Ian, 2026-09-29). Until the doubles score is checked,
 Odyssey's weight in the fit is kept low. Insurgence is an RPG Maker game with
 no data here, and Ian last played it long ago, so it is left out unless a
 trainer list turns up.
@@ -1654,7 +1666,14 @@ lands, and each change is re-scored as it lands.
    offers, and how many TMs there are. Ian's standing rule (2026-09-26,
    staples survey): the player can never set, change or end weather, so
    TM07 Hail, TM11 Sunny Day, TM18 Rain Dance and TM37 Sandstorm go or
-   become other moves. The one Ability Patch in the game (for a hidden
+   become other moves. Until then no species the player can own learns
+   them, and none learns a weather move by level-up either
+   (`balance-weather-moves`, 2026-09-30, after Ian found 77 species and
+   forms still learning one): 53 natives and 8 new species lose their
+   level-up weather moves, 335 records lose the four TMs, and the 155
+   records the player cannot own keep theirs for trainers. No tutor teaches
+   a weather move. `weather_moves.py` keeps the census, and its test fails
+   when a species the player can newly own carries one. The one Ability Patch in the game (for a hidden
    ability) is the only exception, and Defog still clears fog. Choice
    items are to be nearly entirely gone from the game (Ian, 2026-09-25,
    after Volkner), up from "quite rare". When a confusion cure is first in
@@ -2235,52 +2254,81 @@ Generation 4 branch, as element 5's abilities will.
 
    The second reading (`gauntlet.py`, now its default) keeps a party of six
    from the strongest third of the split's side together through a
-   section and plays each fight out. A member keeps the field from one
-   boss Pokemon to the next unless another answers it better; swapping in
-   at a fight's start costs the incoming member a hit (after a faint and
-   between boss Pokemon the game's Shift mode swaps free); every hit rolls
-   its damage and its accuracy, and one in sixteen is critical. After each
-   trainer the survivors heal to full and the dead stay dead. The reading
-   is the share of parties that finish with no death, beside the split's
-   story fights read the same way from a healed party (a rival's fight team
-   by team). Two runs gave the same readings.
+   section and plays each fight out. Oxide forces the Set battle style
+   (element 8), so swapping out a member still standing, at a fight's
+   start or after it knocks out a boss Pokemon, costs the incoming member
+   a hit, and a fainted member's replacement comes in free. A member keeps
+   the field from one boss Pokemon to the next unless another answers it
+   better even after that hit. Every hit rolls its damage and its accuracy,
+   and a critical hit at Oxide's odds: one in 24 at 1.5 times, one in 8
+   for a high-critical move such as Slash or Stone Edge, none against
+   Battle Armor or Shell Armor. After each trainer the survivors heal to
+   full and the dead stay dead. The reading is the share of parties that
+   finish with no death, beside the split's story fights read the same way
+   from a healed party (a rival's fight team by team). Two runs gave the
+   same readings.
 
-   | Section | Split | Trainers | Clean clears | Deaths a run |
-   |---|---|---|---|---|
-   | Eterna building, 1F and 2F | Fantina | 4 | 0.94 | 0.06 |
-   | Eterna building, 3F | Fantina | 2 | 0.99 | 0.01 |
-   | Galactic HQ, 1F | HQ | 2 | 0.68 | 0.41 |
-   | Galactic HQ, 2F | HQ | 4 | 0.42 | 0.93 |
-   | Galactic HQ, 3F | HQ | 4 | 0.55 | 0.83 |
-   | Galactic HQ, B2F | HQ | 2 | 0.46 | 1.06 |
-   | Mt. Coronet, 1F's tunnel | Galactic | 3 | 0.78 | 0.26 |
-   | Mt. Coronet, 3F, 4F and Somnu on 5F | Galactic | 5 | 0.71 | 0.34 |
-   | Victory Road, 1F nearer the entrance | League | 3 | 0.86 | 0.16 |
-   | Victory Road, 1F's far half | League | 3 | 0.71 | 0.37 |
-   | Victory Road, 2F | League | 4 | 0.54 | 0.71 |
-   | Victory Road, B1F | League | 4 | 0.69 | 0.43 |
+   Two faults were fixed on 2026-09-30, both found by the Overseer. The
+   reader let the player swap free between boss Pokemon, as the Shift
+   style would, and charged the opening swap's hit without weighing it when
+   choosing; now every swap of a standing member costs a hit and the choice
+   weighs it (charging the hit alone, without weighing it, took Victory
+   Road 2F to 0.06 clean). It also rolled Platinum's critical hits, one in
+   sixteen at twice the damage, which read every fight harsher than Oxide
+   plays. The table gives the old reader, the Set-style fix that landed
+   first (`6492a1408`, still with Platinum's critical hits) and this
+   reading, all on the same trainers, as clean clears with deaths a run.
 
-   | Story fight, read the same way | Clean clears |
-   |---|---|
-   | Jupiter 1, Lucas and Dawn 2, Fantina | 0.98, 0.97, 0.32 |
-   | Cyrus 2, Saturn 2 | 0.60, 0.47 |
-   | Mars and Jupiter, Cyrus 3 | 0.52, 0.30 |
-   | Lucas and Dawn 3, Barry 6, Aaron, Bertha | 0.71, 0.48, 0.76, 0.64 |
-   | Flint, Lucian, Cynthia | 0.14, 0.39, 0.06 |
+   | Section | Split | Trainers | Old reader | Set swaps | This reading |
+   |---|---|---|---|---|---|
+   | Eterna building, 1F and 2F | Fantina | 4 | 0.98, 0.02 | 0.98, 0.02 | 0.99, 0.01 |
+   | Eterna building, 3F | Fantina | 2 | 0.99, 0.01 | 1.00, 0.00 | 1.00, 0.00 |
+   | Galactic HQ, 1F | HQ | 2 | 0.65, 0.45 | 0.81, 0.22 | 0.88, 0.14 |
+   | Galactic HQ, 2F | HQ | 4 | 0.44, 0.92 | 0.56, 0.67 | 0.63, 0.55 |
+   | Galactic HQ, 3F | HQ | 4 | 0.56, 0.78 | 0.71, 0.34 | 0.77, 0.26 |
+   | Galactic HQ, B2F | HQ | 2 | 0.49, 0.87 | 0.68, 0.37 | 0.69, 0.34 |
+   | Mt. Coronet, 1F's tunnel | Galactic | 3 | 0.77, 0.26 | 0.93, 0.08 | 0.94, 0.06 |
+   | Mt. Coronet, 3F, 4F and Somnu on 5F | Galactic | 5 | 0.72, 0.32 | 0.86, 0.15 | 0.89, 0.12 |
+   | Victory Road, 1F nearer the entrance | Barry | 3 | 0.72, 0.33 | 0.72, 0.36 | 0.79, 0.27 |
+   | Victory Road, 1F's far half | Barry | 3 | 0.51, 0.73 | 0.49, 0.81 | 0.55, 0.67 |
+   | Victory Road, 2F | Barry | 4 | 0.25, 1.75 | 0.30, 1.57 | 0.34, 1.37 |
+   | Victory Road, B1F | Barry | 4 | 0.42, 1.06 | 0.38, 1.24 | 0.45, 1.00 |
 
-   What it shows. The Eterna building's grunts cost nothing yet: its
-   trainers are at the bottom of the scale, so it is a gauntlet in name
-   until the trainer pass raises them, and as the first gauntlet it should
-   stay the lightest. The Galactic HQ's sections are as deadly as its
-   bosses, so they are not yet on the easier side: Scientist Fredrick (3.8
-   on Ian's scale, against the split's 2.8) and a B2F grunt (4.0) are the
-   ones to soften. Mt. Coronet takes two sections once its officers are
-   left out: Hesperid is a fight Ian rated, a boss, and Moira (4.9) and
-   Argo (5.2) are far above the split's 3.4; Somnu, at it, closes the
-   second section, and the climb leads up to Hesperid and Spear Pillar.
-   Victory Road's four sections sit on the easier side of the League's
-   fights, but six of its fourteen trainers are above the split's average
-   (Omar 4.7 and Henry 5.1 most), to soften or to leave optional.
+   | Story fight, read the same way | Old reader | Set swaps | This reading |
+   |---|---|---|---|
+   | Jupiter 1 | 0.99 | 0.98 | 0.98 |
+   | Lucas and Dawn 2 | 0.97 | 0.92 | 0.95 |
+   | Fantina | 0.25 | 0.02 | 0.03 |
+   | Cyrus 2 | 0.55 | 0.10 | 0.12 |
+   | Saturn 2 | 0.33 | 0.03 | 0.04 |
+   | Mars and Jupiter | 0.54 | 0.27 | 0.33 |
+   | Cyrus 3 | 0.31 | 0.05 | 0.04 |
+   | Flint and Volkner | 0.03 | 0.00 | 0.00 |
+   | Lucas and Dawn 3 | 0.49 | 0.12 | 0.12 |
+   | Barry 6 | 0.15 | 0.02 | 0.01 |
+
+   What it shows. Ian's first targets (2026-09-30) put a section at 60%
+   clean or more, and too hard below 50%; they were set in the
+   perfect-line scorer's numbers, and this reader is cruder (random strong
+   sixes, each duel its hardest hit), so the comparison is a guide. The
+   Eterna building's grunts still cost nothing: its trainers are at the
+   bottom of the scale, so it is a gauntlet in name until the trainer pass
+   raises them, and as the first gauntlet it should stay the lightest. The
+   Galactic HQ's four sections all meet the target now, 2F the closest at
+   0.63; Scientist Fredrick (3.9 on Ian's scale, against the split's 3.0)
+   and a B2F grunt (4.1) are still the ones to soften if they should be
+   lighter. Mt. Coronet takes two sections once its officers are left out,
+   both well on the easier side: Hesperid is a fight Ian rated, a boss, and
+   Moira and Argo read far above the split's average; Somnu, at it, closes
+   the second section, and the climb leads up to Hesperid and Spear
+   Pillar. Victory Road, now in Barry's split, is the problem: 2F (0.34)
+   and B1F (0.45) are below 50%, the far half of 1F (0.55) is under 60%,
+   and seven of its fourteen trainers read above the split's 3.4 (Ace
+   Trainers Omar 5.7 and Henry 5.9 most, then Clayton, Miles, Edgar,
+   Clinton and Jo and Pat), to soften or to leave optional. The story
+   fights from Fantina on read near zero here because random parties do
+   not plan; bosses are judged planned, by the scorer, so this column only
+   sizes sections against one another.
 
    How the reading could be truer still, in order of weight: a drafted team
    rather than random strong sixes (the species that answer the split's

@@ -2447,6 +2447,13 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Oxide: Throat Chop keeps its target from choosing a sound move
+        // until its count runs out (hg-engine's STRUGGLE_CHECK_THROAT_CHOPPED).
+        if ((opMask & CHECK_INVALID_THROAT_CHOP)
+            && Move_ThroatChopped(battleCtx, battler, battleCtx->battleMons[battler].moves[i])) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         // Oxide, element 7: an Assault Vest's holder cannot choose a status
         // move, Me First aside (hg-engine's STRUGGLE_CHECK_ASSAULT_VEST).
         if (itemEffect == HOLD_EFFECT_ASSAULT_VEST
@@ -2513,6 +2520,13 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove_Ally; // "{0} can't use {2} because of {1}!"
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = MOVE_HEAL_BLOCK;
+        msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_THROAT_CHOP) & FlagIndex(moveSlot)) { // Oxide
+        msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove_Ally; // "{0} can't use {2} because of {1}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = MOVE_THROAT_CHOP;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_BELCH) & FlagIndex(moveSlot)) { // Oxide
@@ -3781,6 +3795,8 @@ static const u16 sMovesAffectedByHealBlock[] = {
     MOVE_LUNAR_DANCE,
     MOVE_HEALING_WISH,
     MOVE_WISH,
+    MOVE_LUNAR_BLESSING, // Oxide: as hg-engine's HealBlockUnusableMoves, and Jungle Healing with it
+    MOVE_JUNGLE_HEALING,
 };
 
 BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
@@ -3863,6 +3879,38 @@ static u16 sSoundMoves[] = {
     MOVE_SPARKLING_ARIA,
     MOVE_TORCH_SONG,
 };
+
+// Oxide: the sound moves that aim at their user's side, which Soundproof
+// leaves alone (the list above) but Throat Chop stops as well.
+static const u16 sSelfAimedSoundMoves[] = {
+    MOVE_HEAL_BELL,
+    MOVE_HOWL,
+    MOVE_PERISH_SONG,
+    MOVE_CLANGOROUS_SOUL,
+};
+
+BOOL Move_ThroatChopped(BattleContext *battleCtx, int battler, int move)
+{
+    int i;
+
+    if ((battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_THROAT_CHOP) == 0) {
+        return FALSE;
+    }
+
+    for (i = 0; i < NELEMS(sSoundMoves); i++) {
+        if (sSoundMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    for (i = 0; i < NELEMS(sSelfAimedSoundMoves); i++) {
+        if (sSelfAimedSoundMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
 
 // Oxide: the moves Bulletproof stops, hg-engine's BallAndBombMoveList less the
 // ones Oxide does not have.
@@ -9393,9 +9441,13 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
     case BATTLE_EFFECT_SHADOW_FORCE: // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): Shadow Force, one before Fire Fang's effect, which was listed by mistake
-    // Oxide: Meteor Beam's and Electro Shot's charge turns are not hits, so Wonder Guard does not stop them
+    // Oxide: the new two-turn moves' charge turns are not hits, so Wonder Guard does not stop them
+    // (Meteor Beam, Electro Shot, Freeze Shock, Ice Burn and Geomancy)
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP:
     case BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS:
+    case BATTLE_EFFECT_CHARGE_TURN_PARALYZE_HIT:
+    case BATTLE_EFFECT_CHARGE_TURN_BURN_HIT:
+    case BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2:
     case BATTLE_EFFECT_SKY_DROP: // Oxide
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;

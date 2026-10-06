@@ -131,16 +131,9 @@ def hg_index(folder, prefix):
 
 
 def body_lines(path):
-    """A script's meaningful lines, with each project's own preamble dropped."""
-    out = []
-    for line in open(path, encoding="utf-8"):
-        line = line.split("//")[0].rstrip()
-        if not line.strip():
-            continue
-        if line.startswith(("#include", ".include")) or line.strip() == ".data":
-            continue
-        out.append(line.strip())
-    return out
+    """A script file's meaningful lines (body_lines_from_text)."""
+    with open(path, encoding="utf-8") as f:
+        return body_lines_from_text(f.read())
 
 
 def split_args(line):
@@ -664,6 +657,7 @@ def selftest(renames, skipped):
 
 
 def body_lines_from_text(text):
+    """A script's meaningful lines, with each project's own preamble dropped."""
     out = []
     for line in text.splitlines():
         line = line.split("//")[0].rstrip()

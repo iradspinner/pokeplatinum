@@ -54,7 +54,6 @@
             [ 32, "MOVE_AQUA_TAIL" ],
             [ 39, "MOVE_SKULL_BASH" ],
             [ 46, "MOVE_IRON_DEFENSE" ],
-            [ 53, "MOVE_RAIN_DANCE" ],
             [ 60, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
@@ -62,13 +61,11 @@
             "TM03",
             "TM05",
             "TM06",
-            "TM07",
             "TM10",
             "TM13",
             "TM14",
             "TM15",
             "TM17",
-            "TM18",
             "TM21",
             "TM23",
             "TM26",

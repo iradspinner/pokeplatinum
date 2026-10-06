@@ -1,0 +1,32 @@
+{
+ "fight": "mars",
+ "fights": 12,
+ "decisions": 341,
+ "full_seconds": 1281.4,
+ "small": {
+  "budget 192 again": {
+   "budget": 192,
+   "standin": null,
+   "alike": 203,
+   "loss_added": 0.009,
+   "faints_added": 9.38,
+   "seconds": 1162.0
+  },
+  "budget 24": {
+   "budget": 24,
+   "standin": null,
+   "alike": 165,
+   "loss_added": 0.023,
+   "faints_added": 11.65,
+   "seconds": 207.5
+  },
+  "budget 64": {
+   "budget": 64,
+   "standin": null,
+   "alike": 193,
+   "loss_added": 0.017,
+   "faints_added": 8.48,
+   "seconds": 356.0
+  }
+ }
+}

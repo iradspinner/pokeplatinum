@@ -1,0 +1,75 @@
+jupiter_1: Dubwool, Onix, Graveler, Breloom, Vikavolt, Rotom with Dubwool Take Down, Double Kick, Guard Split, Growl; Onix Rock Tomb, Slam, Harden, Screech; Graveler Rock Blast, Magnitude, Tackle, Rock Polish; Breloom Mach Punch, Mega Drain, Headbutt, Leech Seed; Vikavolt Bug Bite, Spark, Bite, Mud-Slap; Rotom Shock Wave, Uproar, Double Team, Confuse Ray
+items: Vikavolt Silver Powder, Breloom Miracle Seed
+lead Dubwool (lead values: Dubwool -1.56, Onix -1.56, Graveler -1.56, Breloom -1.56, Vikavolt -1.56, Rotom -1.71)
+T1 [clear] Dubwool: switch to Onix | Delcatty: Fake Out -> you Onix 66/70 | foe Delcatty 79/79
+      options: Take Down (dropped) -4.00, Double Kick (dropped) -4.00, Guard Split (dropped) -4.00, Growl (dropped) -4.00, switch to Onix -1.33, switch to Graveler (dropped) -2.15, switch to Breloom (dropped) -4.28, switch to Vikavolt (dropped) -3.01, switch to Rotom -2.11
+T2 [clear] Onix: Rock Tomb | Delcatty: Attract -> you Onix 66/70 | foe Delcatty 79/79
+      options: Rock Tomb -1.63, Slam -1.69, Harden -1.77, Screech -1.70, switch to Dubwool (dropped) -3.20, switch to Graveler (dropped) -2.54, switch to Breloom -2.18, switch to Vikavolt (dropped) -3.07, switch to Rotom (dropped) -2.21
+T3 [clear] Onix: Harden | Delcatty: Headbutt -> you Onix 59/70 | foe Delcatty 79/79
+      options: Rock Tomb -1.99, Slam -2.04, Harden -1.72, Screech -1.81, switch to Dubwool (dropped) -3.10, switch to Graveler -2.41, switch to Breloom -2.31, switch to Vikavolt (dropped) -3.10, switch to Rotom -1.82
+T4 [clear] Onix: Slam | Delcatty: Sing -> you Onix 59/70 slp | foe Delcatty 79/79
+      options: Rock Tomb -1.96, Slam -1.66, Harden -1.85, Screech -1.80, switch to Dubwool (dropped) -5.94, switch to Graveler (dropped) -2.62, switch to Breloom (dropped) -2.37, switch to Vikavolt (dropped) -4.67, switch to Rotom (dropped) -2.03
+T5 [clear] Onix: Rock Tomb | Delcatty: Headbutt -> you Onix 53/70 slp | foe Delcatty 79/79
+      options: Rock Tomb -2.61, Slam -2.61, Harden -2.61, Screech -2.61, switch to Dubwool (dropped) -8.47, switch to Graveler (dropped) -6.09, switch to Breloom -3.41, switch to Vikavolt (dropped) -6.66, switch to Rotom -2.75
+T6 [clear] Onix: Rock Tomb | Delcatty: Headbutt -> you Onix 47/70 slp | foe Delcatty 79/79
+      options: Rock Tomb -2.03, Slam -2.03, Harden -2.03, Screech -2.03, switch to Dubwool (dropped) -7.10, switch to Graveler (dropped) -5.60, switch to Breloom (dropped) -4.28, switch to Vikavolt (dropped) -6.00, switch to Rotom -2.47
+T7 [clear] Onix: switch to Rotom | Delcatty: Headbutt -> you Rotom 68/68 | foe Delcatty 79/79
+      options: Rock Tomb (dropped) -3.36, Slam (dropped) -3.36, Harden (dropped) -3.36, Screech (dropped) -3.36, switch to Dubwool -4.11, switch to Graveler (dropped) -2.84, switch to Breloom -3.92, switch to Vikavolt (dropped) -5.35, switch to Rotom -2.16
+T8 [clear] Rotom: Confuse Ray | Delcatty: switch to Sableye -> you Rotom 68/68 | foe Sableye 75/75
+      options: Shock Wave -2.09, Uproar -2.00, Double Team -2.01, Confuse Ray -1.69, switch to Dubwool -1.92, switch to Onix -1.95, switch to Graveler -1.93, switch to Breloom -1.90, switch to Vikavolt -1.92
+T9 [clear] Rotom: switch to Onix | Sableye: Shadow Sneak -> you Onix 38/70 slp | foe Sableye 75/75
+      options: Shock Wave (dropped) -2.52, Double Team -2.16, Confuse Ray -2.16, switch to Dubwool -1.97, switch to Onix -1.88, switch to Graveler -1.94, switch to Breloom (dropped) -2.46, switch to Vikavolt -2.00
+T10 [clear] Onix: switch to Vikavolt | Sableye: Shadow Sneak -> you Vikavolt 82/82 | foe Sableye 66/75
+      options: Rock Tomb -2.12, Harden -2.12, switch to Dubwool -1.93, switch to Graveler -2.02, switch to Breloom (dropped) -3.84, switch to Vikavolt -1.89, switch to Rotom -2.07
+T11 [clear] Vikavolt: Spark | Sableye: Poison Jab -> you Vikavolt 59/82 | foe Sableye 51/75 par
+      options: Bug Bite -1.71, Spark -1.62, Bite -2.09, Mud-Slap -1.87, switch to Dubwool -1.66, switch to Onix -1.79, switch to Graveler (dropped) -2.15, switch to Breloom (dropped) -3.59, switch to Rotom -1.63
+T12 [clear] Vikavolt: Mud-Slap | Sableye: Poison Jab -> you Vikavolt 59/82 | foe Sableye 36/75 par
+      options: Bug Bite -2.39, Spark -2.50, Bite -2.06, Mud-Slap -1.70, switch to Dubwool -2.20, switch to Onix -1.82, switch to Graveler -2.24, switch to Breloom -2.83, switch to Rotom -3.11
+T13 [clear] Vikavolt: switch to Dubwool | Sableye: Poison Jab -> you Dubwool 59/79 | foe Sableye 36/75 par
+      options: Bug Bite -2.52, Spark -2.65, Bite -2.31, Mud-Slap -2.22, switch to Dubwool -1.85, switch to Onix -2.07, switch to Graveler -1.86, switch to Breloom (dropped) -3.63, switch to Rotom -3.04
+T14 [clear] Dubwool: switch to Graveler | Sableye: Poison Jab -> you Graveler 73/76 | foe Sableye 36/75 par
+      options: Guard Split -1.83, switch to Onix -1.75, switch to Graveler -1.53, switch to Breloom (dropped) -3.63, switch to Vikavolt (dropped) -2.14, switch to Rotom (dropped) -3.08
+T15 [clear] Graveler: Magnitude | Sableye: Shadow Sneak -> you Graveler 73/76 | foe Sableye 14/75 par
+      options: Rock Blast -1.82, Magnitude -1.68, Rock Polish -1.93, switch to Dubwool -2.20, switch to Onix -1.97, switch to Breloom (dropped) -5.33, switch to Vikavolt -2.69, switch to Rotom (dropped) -2.29
+T16 [clear] Graveler: Rock Blast | Sableye: switch to Tangela -> you Graveler 73/76 | foe Tangela 46/76
+      options: Rock Blast -1.98, Magnitude (dropped) -2.67, Rock Polish -2.19, switch to Dubwool (dropped) -3.40, switch to Onix -2.29, switch to Breloom -2.85, switch to Vikavolt -2.67, switch to Rotom -2.66
+T17 [clear] Graveler: switch to Breloom | Tangela: Mega Drain -> you Breloom 62/73 | foe Tangela 51/76
+      options: Rock Blast (dropped) -5.66, Magnitude (dropped) -5.77, Tackle (dropped) -5.62, Rock Polish (dropped) -6.10, switch to Dubwool (dropped) -2.42, switch to Onix (dropped) -3.70, switch to Breloom -1.43, switch to Vikavolt (dropped) -3.20, switch to Rotom (dropped) -2.07
+T18 [clear] Breloom: Mega Drain | Tangela: Bind -> you Breloom 59/73 | foe Tangela 43/76
+      options: Mach Punch -1.63, Mega Drain -1.30, Headbutt -1.70, switch to Dubwool (dropped) -2.30, switch to Onix (dropped) -2.14, switch to Graveler (dropped) -3.89, switch to Vikavolt (dropped) -2.20, switch to Rotom (dropped) -2.06
+T19 [clear] Breloom: Mega Drain | Tangela: Mega Drain -> you Breloom 48/73 | foe Tangela 40/76
+      options: Mach Punch -1.60, Mega Drain -1.45, Headbutt -1.57
+T20 [clear] Breloom: Mach Punch | Tangela: Bind -> you Breloom 41/73 | foe Tangela 25/76
+      options: Mach Punch -1.69, Mega Drain -1.78, Headbutt -2.27
+T21 [clear] Breloom: Mach Punch | Tangela: Bind -> you Breloom 37/73 | foe Tangela 10/76
+      options: Mach Punch -1.19, Mega Drain (dropped) -2.25, Headbutt (dropped) -1.87
+T22 [clear] Breloom: Mach Punch | Tangela: Bind -> you Breloom 37/73 | foe Skuntank 100/100
+      options: Mach Punch -1.18, Mega Drain -1.39, Headbutt (dropped) -1.72, switch to Dubwool (dropped) -1.79, switch to Onix (dropped) -7.23, switch to Graveler (dropped) -6.04, switch to Vikavolt (dropped) -1.90, switch to Rotom (dropped) -2.58
+T23 [clear] Breloom: Leech Seed | Skuntank: Night Slash -> you Breloom 35/73 | foe Skuntank 88/100
+      options: Mach Punch (dropped) -1.13, Mega Drain (dropped) -1.29, Headbutt (dropped) -0.92, Leech Seed -0.66, switch to Dubwool (dropped) -2.58, switch to Onix (dropped) -2.24, switch to Graveler (dropped) -1.60, switch to Vikavolt (dropped) -1.60, switch to Rotom (dropped) -2.66
+T24 [clear] Breloom: Mega Drain | Skuntank: Night Slash -> you Breloom 31/73 | foe Skuntank 69/100
+      options: Mach Punch -0.48, Mega Drain -0.48, Headbutt -0.68, switch to Dubwool -0.74, switch to Onix -0.70, switch to Graveler (dropped) -1.06, switch to Vikavolt -0.77, switch to Rotom -0.67
+T25 [clear] Breloom: Mach Punch | Skuntank: Night Slash -> you Breloom 28/73 | foe Skuntank 60/100
+      options: Mach Punch -0.18, Mega Drain -0.27, Headbutt -0.39, switch to Dubwool (dropped) -0.79, switch to Onix (dropped) -1.07, switch to Graveler (dropped) -0.81, switch to Vikavolt (dropped) -1.07, switch to Rotom (dropped) -0.84
+T26 [clear] Breloom: Mach Punch | Skuntank: Night Slash -> you Breloom 25/73 | foe Skuntank 28/100
+      options: Mach Punch -0.10, Mega Drain -0.27, Headbutt -0.26, switch to Dubwool -0.32, switch to Onix (dropped) -0.46, switch to Graveler -0.43, switch to Vikavolt (dropped) -0.60, switch to Rotom -0.46
+T27 [clear] Breloom: Mega Drain | Skuntank: Night Slash -> you Breloom 25/73 | foe Skuntank 9/100
+      options: Mach Punch -0.10, Mega Drain -0.09, Headbutt -0.15, switch to Dubwool -0.20, switch to Onix (dropped) -0.57, switch to Graveler (dropped) -0.44, switch to Vikavolt (dropped) -0.50, switch to Rotom (dropped) -0.48
+T28 [clear] Breloom: switch to Rotom | Skuntank: Night Slash -> you Graveler 73/76 | foe Sableye 14/75 par
+      options: Mach Punch +0.02, Mega Drain -0.01, Headbutt (dropped) -0.61, switch to Dubwool +0.09, switch to Onix (dropped) -0.61, switch to Graveler (dropped) -0.03, switch to Vikavolt (dropped) -0.63, switch to Rotom +0.15
+      replacement: Dubwool -0.99, Onix -0.99, Graveler -0.96, Breloom -1.16, Vikavolt -0.99
+T29 [clear] Graveler: Rock Blast | Sableye: Fake Out -> you Graveler 73/76 | foe Delcatty 79/79
+      options: Rock Blast -0.99, Magnitude -0.99, Rock Polish -1.07, switch to Dubwool -1.53, switch to Onix (dropped) -1.71, switch to Breloom (dropped) -1.72, switch to Vikavolt (dropped) -1.83
+T30 [clear] Graveler: Rock Blast | Delcatty: Fake Out -> you Graveler 68/76 | foe Delcatty 79/79
+      options: Rock Blast -0.90, Magnitude -0.90, Tackle -0.90, Rock Polish -0.90, switch to Dubwool (dropped) -1.78, switch to Onix (dropped) -1.61, switch to Breloom (dropped) -1.73, switch to Vikavolt (dropped) -1.77
+T31 [clear] Graveler: Magnitude | Delcatty: Sing -> you Graveler 68/76 | foe Delcatty 48/79
+      options: Rock Blast -0.83, Magnitude -0.83, Tackle -0.87, Rock Polish -0.90, switch to Dubwool (dropped) -1.85, switch to Onix (dropped) -1.71, switch to Breloom (dropped) -1.74, switch to Vikavolt (dropped) -1.79
+T32 [clear] Graveler: Rock Blast | Delcatty: Sing -> you Graveler 68/76 slp | foe Delcatty 48/79
+      options: Rock Blast -0.74, Magnitude -0.75, Tackle -0.79, Rock Polish -0.79, switch to Dubwool (dropped) -0.78, switch to Onix (dropped) -1.06, switch to Breloom (dropped) -1.17, switch to Vikavolt -0.76
+T33 [clear] Graveler: Rock Blast | Delcatty: Headbutt -> you Graveler 59/76 | foe Delcatty 12/79
+      options: Rock Blast -0.73, Magnitude -0.73, Tackle -0.75, Rock Polish -0.75, switch to Dubwool -0.77, switch to Onix -0.74, switch to Breloom (dropped) -1.44, switch to Vikavolt -0.77
+T34 [clear] Graveler: Rock Blast | Delcatty: Sing -> you Graveler 59/76 slp | foe Delcatty 12/79
+      options: Rock Blast -0.71, Magnitude -0.71, Tackle -0.72, Rock Polish -0.73, switch to Dubwool (dropped) -0.82, switch to Onix (dropped) -0.86, switch to Breloom (dropped) -1.33, switch to Vikavolt (dropped) -1.22
+T35 [clear] Graveler: Rock Blast | Delcatty: Headbutt -> you Graveler 51/76 | foe Delcatty 0/79
+      options: Rock Blast -0.70, Magnitude -0.70, Tackle -0.70, Rock Polish -0.71, switch to Dubwool (dropped) -0.74, switch to Onix -0.84, switch to Breloom (dropped) -1.44, switch to Vikavolt (dropped) -0.94
+won; fainted: Rotom

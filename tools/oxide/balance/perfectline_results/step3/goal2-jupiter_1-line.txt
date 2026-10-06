@@ -1,0 +1,52 @@
+jupiter_1: Dubwool, Vulpix, Onix, Tsareena, Graveler, Snover with Dubwool Take Down, Double Kick, Guard Split, Growl; Vulpix Flamethrower, Will-O-Wisp, Quick Attack, Roar; Onix Rock Tomb, Slam, Harden, Screech; Tsareena Trop Kick, Stomp, Play Nice, Teeter Dance; Graveler Rock Blast, Magnitude, Tackle, Rock Polish; Snover Icy Wind, Razor Leaf, Mist, Grass Whistle
+items: Tsareena Miracle Seed, Vulpix Flame Plate
+lead Dubwool (lead values: Dubwool -0.52, Vulpix -0.52, Onix -0.52, Tsareena -0.55, Graveler -0.52, Snover -0.52)
+T1 [clear] Dubwool: switch to Graveler | Delcatty: Fake Out -> you Graveler 71/76 | foe Delcatty 79/79
+      options: Take Down (dropped) -0.84, Double Kick (dropped) -0.84, Guard Split (dropped) -0.84, Growl (dropped) -0.84, switch to Vulpix (dropped) -1.67, switch to Onix (dropped) -0.77, switch to Tsareena (dropped) -2.75, switch to Graveler -0.48, switch to Snover (dropped) -1.93
+T2 [clear] Graveler: Rock Blast | Delcatty: Attract -> you Graveler 71/76 | foe Delcatty 43/79
+      options: Rock Blast -0.54, Magnitude (dropped) -0.64, Tackle -0.61, Rock Polish (dropped) -0.76, switch to Dubwool (dropped) -1.36, switch to Vulpix (dropped) -1.45, switch to Onix -0.56, switch to Tsareena (dropped) -1.10, switch to Snover (dropped) -1.95
+T3 [clear] Graveler: Tackle | Delcatty: Attract -> you Graveler 71/76 | foe Delcatty 32/79
+      options: Rock Blast -0.40, Magnitude (dropped) -0.59, Tackle -0.39, Rock Polish (dropped) -0.63, switch to Dubwool (dropped) -0.63, switch to Vulpix (dropped) -1.15, switch to Onix (dropped) -0.61, switch to Tsareena (dropped) -1.46, switch to Snover (dropped) -1.65
+T4 [clear] Graveler: switch to Onix | Delcatty: Sing -> you Onix 70/70 slp | foe Delcatty 32/79
+      options: Rock Blast (dropped) -0.41, Magnitude (dropped) -0.57, Tackle (dropped) -0.51, Rock Polish (dropped) -0.44, switch to Dubwool (dropped) -0.59, switch to Vulpix (dropped) -0.77, switch to Onix -0.36, switch to Tsareena (dropped) -0.77, switch to Snover (dropped) -1.38
+T5 [clear] Onix: switch to Dubwool | Delcatty: Attract -> you Dubwool 79/79 | foe Delcatty 32/79
+      options: Rock Tomb (dropped) -0.68, Slam (dropped) -0.68, Harden (dropped) -0.68, Screech (dropped) -0.68, switch to Dubwool -0.50, switch to Vulpix (dropped) -0.97, switch to Tsareena (dropped) -1.58, switch to Graveler -0.78, switch to Snover (dropped) -1.53
+T6 [clear] Dubwool: Double Kick | Delcatty: Sing -> you Dubwool 79/79 | foe Sableye 75/75
+      options: Take Down -0.45, Double Kick -0.44, Guard Split -0.50, Growl -0.52, switch to Vulpix (dropped) -1.18, switch to Onix -0.62, switch to Tsareena (dropped) -0.89, switch to Graveler (dropped) -0.81, switch to Snover (dropped) -1.30
+T7 [clear] Dubwool: switch to Onix | Sableye: Fake Out -> you Onix 66/70 slp | foe Sableye 75/75
+      options: Guard Split (dropped) -1.01, switch to Vulpix (dropped) -1.22, switch to Onix -0.27, switch to Tsareena (dropped) -1.39, switch to Graveler -0.36, switch to Snover (dropped) -1.08
+T8 [clear] Onix: switch to Graveler | Sableye: Shadow Sneak -> you Graveler 58/76 | foe Sableye 75/75
+      options: Rock Tomb -0.37, Harden -0.37, switch to Dubwool (dropped) -1.05, switch to Vulpix -0.40, switch to Tsareena (dropped) -1.77, switch to Graveler -0.36, switch to Snover (dropped) -1.72
+T9 [clear] Graveler: Rock Blast | Sableye: Shadow Sneak -> you Graveler 45/76 | foe Sableye 48/75
+      options: Rock Blast -0.24, Magnitude (dropped) -0.67, Rock Polish (dropped) -0.62, switch to Dubwool (dropped) -1.06, switch to Vulpix (dropped) -0.67, switch to Onix (dropped) -0.63, switch to Tsareena (dropped) -1.51, switch to Snover (dropped) -1.01
+T10 [clear] Graveler: Rock Blast | Sableye: Shadow Sneak -> you Graveler 33/76 | foe Sableye 21/75
+      options: Rock Blast -0.38, Magnitude -0.57, Rock Polish (dropped) -0.68, switch to Dubwool (dropped) -0.88, switch to Vulpix -0.46, switch to Onix -0.49, switch to Tsareena (dropped) -1.79, switch to Snover (dropped) -1.02
+T11 [clear] Graveler: switch to Tsareena | Sableye: Shadow Sneak -> you Tsareena 61/79 | foe Sableye 21/75
+      options: Rock Blast -0.35, Magnitude (dropped) -0.68, Rock Polish -0.37, switch to Dubwool (dropped) -0.77, switch to Vulpix (dropped) -2.35, switch to Onix -0.46, switch to Tsareena -0.30, switch to Snover (dropped) -0.93
+T12 [clear] Tsareena: Trop Kick | Sableye: Poison Jab -> you Tsareena 61/79 | foe Skuntank 100/100
+      options: Trop Kick -0.43, Teeter Dance (dropped) -2.07, switch to Dubwool (dropped) -0.86, switch to Vulpix (dropped) -1.71, switch to Onix -0.73, switch to Graveler (dropped) -0.89, switch to Snover (dropped) -1.07
+T13 [clear] Tsareena: Stomp | Skuntank: Screech -> you Tsareena 61/79 {'def': -2} | foe Skuntank 79/100
+      options: Trop Kick (dropped) -0.46, Stomp -0.37, Play Nice (dropped) -0.49, Teeter Dance (dropped) -0.50, switch to Dubwool (dropped) -0.55, switch to Vulpix (dropped) -0.56, switch to Onix (dropped) -0.44, switch to Graveler (dropped) -0.45, switch to Snover (dropped) -0.53
+T14 [clear] Tsareena: switch to Onix | Skuntank: Screech -> you Onix 66/70 slp {'def': -2} | foe Skuntank 79/100
+      options: Trop Kick (dropped) -0.46, Stomp (dropped) -0.76, Play Nice (dropped) -0.53, Teeter Dance (dropped) -0.71, switch to Dubwool (dropped) -0.45, switch to Vulpix -0.38, switch to Onix -0.35, switch to Graveler -0.36, switch to Snover -0.40
+T15 [clear] Onix: switch to Graveler | Skuntank: Night Slash -> you Graveler 12/76 | foe Skuntank 79/100
+      options: Rock Tomb -0.38, Slam -0.38, Harden -0.38, Screech -0.38, switch to Dubwool (dropped) -0.60, switch to Vulpix (dropped) -0.51, switch to Tsareena -0.38, switch to Graveler -0.33, switch to Snover -0.38
+T16 [clear] Graveler: switch to Tsareena | Skuntank: Night Slash -> you Tsareena 48/79 | foe Skuntank 79/100
+      options: Rock Blast (dropped) -1.22, Magnitude (dropped) -1.22, Tackle (dropped) -1.22, Rock Polish (dropped) -1.22, switch to Dubwool (dropped) -0.82, switch to Vulpix -0.46, switch to Onix -0.38, switch to Tsareena -0.34, switch to Snover -0.35
+T17 [clear] Tsareena: Trop Kick | Skuntank: Night Slash -> you Tsareena 39/79 | foe Skuntank 52/100 {'atk': -1}
+      options: Trop Kick -0.30, Stomp -0.40, Play Nice (dropped) -0.54, Teeter Dance (dropped) -0.78, switch to Dubwool (dropped) -0.80, switch to Vulpix (dropped) -0.82, switch to Onix (dropped) -1.48, switch to Graveler (dropped) -1.40, switch to Snover (dropped) -1.59
+T18 [clear] Tsareena: Stomp | Skuntank: Night Slash -> you Tsareena 31/79 | foe Skuntank 53/100 {'atk': -1}
+      options: Trop Kick +0.01, Stomp +0.01, Play Nice -0.00, Teeter Dance -0.03, switch to Dubwool (dropped) -0.61, switch to Vulpix (dropped) -0.19, switch to Onix (dropped) -0.16, switch to Graveler (dropped) -0.90, switch to Snover (dropped) -0.48
+T19 [clear] Tsareena: Stomp | Skuntank: Night Slash -> you Tsareena 9/79 | foe Skuntank 29/100 {'atk': -1}
+      options: Trop Kick +0.08, Stomp +0.09, Play Nice (dropped) -0.19, Teeter Dance +0.03, switch to Dubwool +0.05, switch to Vulpix (dropped) -0.05, switch to Onix +0.05, switch to Graveler (dropped) -0.50, switch to Snover (dropped) -0.08
+T20 [clear] Tsareena: switch to Dubwool | Skuntank: Night Slash -> you Dubwool 42/79 | foe Skuntank 29/100 {'atk': -1}
+      options: Trop Kick (dropped) -0.07, Stomp (dropped) -0.23, Play Nice (dropped) -0.05, Teeter Dance (dropped) -0.42, switch to Dubwool +0.28, switch to Vulpix (dropped) +0.16, switch to Onix +0.24, switch to Graveler (dropped) -0.65, switch to Snover (dropped) +0.30
+T21 [clear] Dubwool: Take Down | Skuntank: Night Slash -> you Dubwool 2/79 | foe Tangela 76/76
+      options: Take Down +0.17, Double Kick +0.12, Guard Split (dropped) -0.09, Growl (dropped) -1.00, switch to Vulpix (dropped) -0.18, switch to Onix (dropped) -0.05, switch to Tsareena (dropped) -0.52, switch to Graveler (dropped) -0.79, switch to Snover (dropped) +0.02
+T22 [clear] Dubwool: switch to Snover | Tangela: Mega Drain -> you Snover 57/73 | foe Tangela 76/76
+      options: Take Down (dropped) -0.69, Double Kick (dropped) -0.63, Guard Split (dropped) -0.63, Growl (dropped) -0.63, switch to Vulpix (dropped) +0.18, switch to Onix (dropped) -0.72, switch to Tsareena (dropped) -0.19, switch to Graveler (dropped) -0.65, switch to Snover +0.29
+T23 [clear] Snover: Icy Wind | Tangela: Bind -> you Snover 49/73 | foe Tangela 16/76 {'spe': -1}
+      options: Icy Wind +0.28, Razor Leaf (dropped) +0.27, Mist (dropped) +0.27, Grass Whistle (dropped) +0.28, switch to Dubwool (dropped) -0.70, switch to Vulpix (dropped) +0.04, switch to Onix (dropped) -0.72, switch to Tsareena (dropped) -0.44, switch to Graveler (dropped) -0.65
+T24 [clear] Snover: Icy Wind | Tangela: Bind -> you Snover 45/73 | foe Tangela 0/76 {'spe': -1}
+      options: Icy Wind +0.28, Razor Leaf (dropped) +0.27, Mist (dropped) +0.27, Grass Whistle (dropped) +0.28
+won; fainted: none

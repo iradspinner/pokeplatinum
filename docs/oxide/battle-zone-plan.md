@@ -110,8 +110,9 @@ Encounter track (this one):
    availability gate, with no cap candidates, so nothing has to change. Their
    levels (land 47 to 55) are vanilla's and stay, as the authoring rules keep
    the level curve; they sit above the Mt. Coronet climb (36 to 39) the way
-   vanilla's Battle Zone sits above it. Two things they now offer before Volkner
-   are Ian's call: Metagross at 10% on Route 228, and the fully evolved starters
+   vanilla's Battle Zone sits above it. (Moot since 2026-09-30: no HQ or
+   Galactic table holds Metagross or a fully evolved starter; the OxiDex
+   Agent checked.) Two things they offered before Volkner were Ian's call: Metagross at 10% on Route 228, and the fully evolved starters
    as 1% tails (Blaziken, Incineroar, Charizard, Serperior and Meowscarada on
    land; Greninja, Primarina, Blastoise and Swampert on the Super Rod).
 3. The capture count before the League: 73 planned, 81 with the zone's eight

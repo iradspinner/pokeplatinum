@@ -1,0 +1,3060 @@
+{
+ "blind_rate": 0.981,
+ "blind_clean_share": 1.0,
+ "planned_rate": 0.997,
+ "planned_clean_share": 1.0,
+ "best_rate": 1.0,
+ "planned_deaths": 0.003,
+ "planned_wipe": 0.0,
+ "blind_deaths": 0.02,
+ "blind_wipe": 0.0,
+ "convergence": {
+  "10": 0.993,
+  "50": 1.0,
+  "100": 1.0,
+  "300": 1.0
+ },
+ "runs": 124780,
+ "search_budget": 37,
+ "converged_share": 1.0,
+ "label": "Galactic Officer Moira",
+ "split": "Fantina",
+ "boxes": 10,
+ "box_source": "random",
+ "blind": 5,
+ "planned": 8,
+ "budget": 0.041666666666666664,
+ "strict": false,
+ "seconds": 4.8,
+ "rows": [
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Snover->Rapidash-Galar, Slowpoke->Whiscash, Swinub->Whiscash, Kirlia->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:0",
+   "team": [
+    "Litwick",
+    "Brionne",
+    "Shiftry",
+    "Whiscash",
+    "Charjabug",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Tentacruel, Slowpoke->Tentacruel, Swinub->Tentacruel, Kirlia->Naclstack; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:0",
+   "team": [
+    "Naclstack",
+    "Raboot",
+    "Swablu",
+    "Tentacruel",
+    "Gligar",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Tentacruel, Slowpoke->Brionne, Swinub->Graveler, Kirlia->Orbeetle; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:0",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Tentacruel",
+    "Charjabug",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Tentacruel, Slowpoke->Tentacruel, Swinub->Donphan, Kirlia->Snover; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Hariyama",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Tsareena",
+    "Donphan"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Delcatty; answers Snover->Breloom, Slowpoke->Whiscash, Swinub->Dwebble, Kirlia->Whiscash; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:0",
+   "team": [
+    "Breloom",
+    "Swablu",
+    "Whiscash",
+    "Delcatty",
+    "Dwebble",
+    "Gligar"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.973,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Shiftry; answers Snover->Bibarel, Slowpoke->Golbat, Swinub->Golbat, Kirlia->Golbat; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; stall timed effects at 2 turns; save Golbat for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Orbeetle",
+    "Shiftry",
+    "Tentacruel",
+    "Tsareena",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Araquanid; answers Snover->Araquanid, Slowpoke->Araquanid, Kirlia->Golbat; switch hp below 0.4; setup at 4+ safe turns; stall timed effects at 1 turns; save Araquanid for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Breloom",
+    "Togetic",
+    "Vullaby",
+    "Araquanid",
+    "Golbat",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Mightyena; answers Snover->Bibarel, Slowpoke->Mightyena, Swinub->Brionne, Kirlia->Mightyena; switch losing; setup at 4+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Mightyena for Slowpoke",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mightyena",
+    "Brionne",
+    "Vullaby",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Donphan; answers Snover->Rapidash-Galar, Slowpoke->Rapidash-Galar, Swinub->Donphan, Kirlia->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP; no status moves; stall timed effects at 2 turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Kadabra",
+    "Raboot",
+    "Charjabug",
+    "Combee",
+    "Donphan",
+    "Rapidash-Galar"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Orbeetle; answers Snover->Golbat, Slowpoke->Swablu, Swinub->Bibarel, Kirlia->Orbeetle; switch hp below 0.5; setup at 5+ safe turns at full HP; stall timed effects at 2 turns; save Bibarel for Swinub",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:0",
+   "team": [
+    "Bibarel",
+    "Mienfoo",
+    "Orbeetle",
+    "Swablu",
+    "Whiscash",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Charjabug; answers Snover->Charjabug, Slowpoke->Umbreon, Swinub->Bibarel, Kirlia->Umbreon; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 2 turns; save Umbreon for Slowpoke",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:0",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Naclstack",
+    "Brionne",
+    "Umbreon",
+    "Charjabug"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tsareena; answers Slowpoke->Hariyama, Swinub->Hariyama, Kirlia->Hariyama; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Hariyama for Kirlia",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Mienfoo",
+    "Naclstack",
+    "Pawmo",
+    "Tsareena"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kadabra; answers Snover->Graveler, Slowpoke->Dwebble, Swinub->Hariyama, Kirlia->Hariyama; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns; save Hariyama for Swinub",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:0",
+   "team": [
+    "Hariyama",
+    "Kadabra",
+    "Bibarel",
+    "Mightyena",
+    "Dwebble",
+    "Graveler"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Snover->Probopass, Slowpoke->Probopass, Swinub->Kricketune, Kirlia->Probopass; switch losing; setup at 3+ safe turns; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Probopass",
+    "Togetic",
+    "Floatzel",
+    "Fomantis"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Snover->Masquerain, Slowpoke->Luxray, Swinub->Masquerain, Kirlia->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Luxray",
+    "Masquerain",
+    "Brionne",
+    "Togetic",
+    "Clefable"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "12": 1.0
+   },
+   "line": "lead Litwick; answers Snover->Floatzel, Slowpoke->Brionne, Swinub->Masquerain, Kirlia->Lopunny; switch losing; setup at 5+ safe turns; bait locks; free pivots; save Masquerain for Swinub",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:1",
+   "team": [
+    "Litwick",
+    "Lopunny",
+    "Masquerain",
+    "Noctowl",
+    "Brionne",
+    "Floatzel"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Brionne, Slowpoke->Luxray, Swinub->Brionne, Kirlia->Luxray; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:1",
+   "team": [
+    "Kadabra",
+    "Luxray",
+    "Brionne",
+    "Vullaby",
+    "Clefable",
+    "Fomantis"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.9,
+    "13": 1.0
+   },
+   "line": "lead Salazzle; answers Snover->Seaking, Slowpoke->Kricketune, Swinub->Kricketune, Kirlia->Carbink; switch hp below 0.5; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Carbink for Kirlia",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:1",
+   "team": [
+    "Kricketune",
+    "Lumineon",
+    "Salazzle",
+    "Seaking",
+    "Carbink",
+    "Combee"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Luxray; answers Snover->Torterra, Slowpoke->Luxray, Swinub->Masquerain, Kirlia->Noctowl; switch losing; setup at 5+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Masquerain",
+    "Noctowl",
+    "Torterra",
+    "Carbink"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Snover->Carbink, Slowpoke->Umbreon, Swinub->Kricketune, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Kricketune",
+    "Luxray",
+    "Carbink",
+    "Umbreon",
+    "Vullaby"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Vullaby; answers Snover->Salazzle, Slowpoke->Bastiodon, Swinub->Bastiodon, Kirlia->Luxray; switch losing; setup at 4+ safe turns at full HP; bait locks; save Bastiodon for Swinub",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Salazzle",
+    "Seaking",
+    "Toucannon",
+    "Vullaby"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Snover->Bronzong, Slowpoke->Luxray, Swinub->Lumineon, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:1",
+   "team": [
+    "Kadabra",
+    "Lumineon",
+    "Luxray",
+    "Bronzong",
+    "Swablu",
+    "Toucannon"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Carbink; answers Snover->Masquerain, Slowpoke->Umbreon, Swinub->Masquerain, Kirlia->Umbreon; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Masquerain",
+    "Swablu",
+    "Carbink",
+    "Umbreon",
+    "Vulpix",
+    "Whiscash"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.953,
+   "deaths": 0.047,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Salazzle; answers Snover->Kricketune, Slowpoke->Kricketune, Swinub->Kricketune, Kirlia->Torterra; switch losing; setup at 3+ safe turns; free pivots; stall timed effects at 3 turns; save Kricketune for Slowpoke",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:1",
+   "team": [
+    "Kricketune",
+    "Salazzle",
+    "Torterra",
+    "Vullaby",
+    "Whiscash",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Bronzong; answers Snover->Bronzong, Slowpoke->Luxray, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:1",
+   "team": [
+    "Jumpluff",
+    "Luxray",
+    "Bronzong",
+    "Combee",
+    "Corvisquire",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Salazzle; answers Snover->Luxray, Slowpoke->Bastiodon, Swinub->Bastiodon, Kirlia->Probopass; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Bastiodon for Slowpoke",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:1",
+   "team": [
+    "Bastiodon",
+    "Luxray",
+    "Noctowl",
+    "Probopass",
+    "Salazzle",
+    "Vulpix"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Donphan; answers Snover->Whiscash, Slowpoke->Togetic, Swinub->Donphan; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:2",
+   "team": [
+    "Orbeetle",
+    "Brionne",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Vullaby; answers Snover->Huntail, Slowpoke->Tentacruel, Swinub->Huntail, Kirlia->Lumineon; switch hp below 0.2; setup at 5+ safe turns at full HP; stall timed effects at 1 turns; save Huntail for Swinub",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lumineon",
+    "Pachirisu",
+    "Tentacruel",
+    "Vullaby",
+    "Combee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.055,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Huntail; answers Snover->Huntail, Slowpoke->Lanturn, Swinub->Huntail, Kirlia->Leavanny; switch losing; setup at 3+ safe turns at full HP; save Lanturn for Slowpoke",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:2",
+   "team": [
+    "Huntail",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Togetic",
+    "Combee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kricketune; answers Snover->Togetic, Slowpoke->Hariyama, Swinub->Kricketune, Kirlia->Huntail; switch losing; setup at 3+ safe turns at full HP; save Huntail for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:2",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Kricketune",
+    "Seaking",
+    "Togetic",
+    "Fletchinder"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.955,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Shiftry; answers Snover->Lumineon, Slowpoke->Munchlax, Swinub->Lumineon, Kirlia->Munchlax; switch losing; setup at 5+ safe turns; save Munchlax for Slowpoke",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:2",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Mismagius",
+    "Munchlax",
+    "Shiftry",
+    "Staravia"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crawdaunt; answers Snover->Crawdaunt, Slowpoke->Kricketune, Swinub->Kricketune, Kirlia->Clefable; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:2",
+   "team": [
+    "Kricketune",
+    "Liepard",
+    "Vullaby",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Mightyena; answers Snover->Masquerain, Swinub->Munchlax, Kirlia->Lumineon; switch losing; setup at 5+ safe turns at full HP; free pivots; save Lumineon for Kirlia",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:2",
+   "team": [
+    "Lumineon",
+    "Masquerain",
+    "Mightyena",
+    "Munchlax",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 2.0
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Huntail, Slowpoke->Tentacruel; switch hp below 0.4; setup at 2+ safe turns; no status moves; save Tentacruel for Slowpoke",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Tentacruel",
+    "Clefable",
+    "Combee",
+    "Donphan"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Crawdaunt; answers Snover->Crawdaunt, Slowpoke->Whiscash, Swinub->Donphan, Kirlia->Shiftry; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Mismagius",
+    "Shiftry",
+    "Whiscash",
+    "Combee",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.9,
+   "deaths": 0.1,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "19": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Whiscash, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 19,
+   "converged": true,
+   "runs": 1280,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Milotic",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Whiscash"
+   ],
+   "seconds": 1.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Prinplup; answers Snover->Togetic, Swinub->Swablu; switch losing; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns; save Swablu for Swinub",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:2",
+   "team": [
+    "Brionne",
+    "Prinplup",
+    "Swablu",
+    "Togetic",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Snover->Pachirisu, Slowpoke->Swablu, Swinub->Hariyama, Kirlia->Whiscash; switch losing; setup at 4+ safe turns; bait locks; free pivots; save Whiscash for Kirlia",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:2",
+   "team": [
+    "Hariyama",
+    "Orbeetle",
+    "Pachirisu",
+    "Roselia",
+    "Swablu",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Braixen; answers Snover->Bastiodon, Swinub->Brionne, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; save Brionne for Swinub",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:2",
+   "team": [
+    "Bastiodon",
+    "Munchlax",
+    "Braixen",
+    "Brionne",
+    "Prinplup",
+    "Swablu"
+   ],
+   "seconds": 1.7
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Charjabug; answers Snover->Seaking, Swinub->Charjabug, Kirlia->Seaking; switch losing; setup at 2+ safe turns at full HP; bait locks",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:3",
+   "team": [
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Charjabug",
+    "Ambipom",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Leavanny; answers Slowpoke->Kingler, Swinub->Bibarel, Kirlia->Togetic; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Kingler for Slowpoke",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Togetic",
+    "Dubwool"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Kingler; answers Snover->Kingler, Slowpoke->Pachirisu, Swinub->Kingler, Kirlia->Toucannon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Pachirisu",
+    "Seaking",
+    "Togetic",
+    "Toucannon"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Prinplup; answers Snover->Prinplup, Slowpoke->Whiscash, Swinub->Shiftry, Kirlia->Shiftry; switch losing; setup at 3+ safe turns at full HP; no status moves; save Shiftry for Kirlia",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Prinplup",
+    "Shiftry",
+    "Togetic",
+    "Whiscash",
+    "Combee",
+    "Golbat"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Shiftry, Slowpoke->Bastiodon, Swinub->Seaking; switch hp below 0.6; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Seaking for Swinub",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:3",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Brionne",
+    "Seaking",
+    "Shiftry",
+    "Tentacruel"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Tentacruel, Slowpoke->Tentacruel, Swinub->Leavanny, Kirlia->Tentacruel; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 1 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Leavanny",
+    "Milotic",
+    "Shiftry",
+    "Snover",
+    "Tentacruel",
+    "Whiscash"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kingler; answers Slowpoke->Umbreon, Swinub->Donphan, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Umbreon",
+    "Whiscash",
+    "Donphan",
+    "Dubwool",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Kingler; answers Snover->Shiftry, Slowpoke->Umbreon, Swinub->Umbreon, Kirlia->Umbreon; switch losing; setup at 4+ safe turns; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Orbeetle",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kingler; answers Snover->Combee, Slowpoke->Carbink, Kirlia->Leavanny; switch losing; setup at 4+ safe turns at full HP; save Carbink for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Kingler",
+    "Bibarel",
+    "Leavanny",
+    "Carbink",
+    "Combee",
+    "Corvisquire"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.93,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "18": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Jynx, Kirlia->Toucannon; switch hp below 0.4; setup at 5+ safe turns at full HP",
+   "candidates": 18,
+   "converged": true,
+   "runs": 1260,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Jynx",
+    "Masquerain",
+    "Brionne",
+    "Toucannon",
+    "Carbink"
+   ],
+   "seconds": 1.6
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Carbink; answers Snover->Masquerain, Slowpoke->Togetic, Swinub->Masquerain, Kirlia->Jynx; switch losing; setup at 3+ safe turns at full HP; save Togetic for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:3",
+   "team": [
+    "Jynx",
+    "Masquerain",
+    "Snover",
+    "Tentacruel",
+    "Togetic",
+    "Carbink"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.027,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Donphan; answers Snover->Prinplup, Slowpoke->Bastiodon, Swinub->Donphan, Kirlia->Bastiodon; switch losing; setup at 4+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:3",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Prinplup",
+    "Snover",
+    "Toucannon",
+    "Donphan"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.943,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "12": 1.0
+   },
+   "line": "lead Bibarel; answers Snover->Seaking, Swinub->Seaking, Kirlia->Brionne; switch losing; setup at 2+ safe turns at full HP; bait locks; free pivots; save Seaking for Swinub",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:3",
+   "team": [
+    "Bibarel",
+    "Brionne",
+    "Seaking",
+    "Tsareena",
+    "Dubwool",
+    "Graveler"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Orbeetle; answers Snover->Masquerain, Swinub->Masquerain, Kirlia->Pawmo; switch losing; setup at 4+ safe turns; no status moves; bait locks; stall timed effects at 3 turns; save Pawmo for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:4",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Pawmo",
+    "Raboot",
+    "Vulpix",
+    "Glameow"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Tsareena; answers Snover->Mightyena, Slowpoke->Huntail, Swinub->Mightyena, Kirlia->Naclstack; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Naclstack for Kirlia",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:4",
+   "team": [
+    "Bastiodon",
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Seaking",
+    "Tsareena"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bronzong; answers Snover->Bronzong, Slowpoke->Bronzong, Swinub->Kricketune, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Huntail",
+    "Kricketune",
+    "Mightyena",
+    "Bronzong",
+    "Wormadam",
+    "Combee"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Kricketune; answers Snover->Orbeetle, Swinub->Tsareena, Kirlia->Frogadier; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns; save Tsareena for Swinub",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1000,
+   "kind": "blind:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Orbeetle",
+    "Togetic",
+    "Tsareena",
+    "Frogadier"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Kingler; answers Snover->Kingler, Slowpoke->Tentacruel, Swinub->Rotom, Kirlia->Rotom; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:4",
+   "team": [
+    "Kingler",
+    "Mienfoo",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Glameow"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Wormadam; answers Snover->Lanturn, Slowpoke->Lanturn, Swinub->Kricketune, Kirlia->Clefable; switch losing; setup at 3+ safe turns at full HP; stall timed effects at 3 turns; save Kricketune for Swinub",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Lanturn",
+    "Rotom",
+    "Tentacruel",
+    "Wormadam",
+    "Clefable"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Snover->Huntail, Slowpoke->Tentacruel, Swinub->Tentacruel, Kirlia->Whiscash; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Huntail",
+    "Raboot",
+    "Tentacruel",
+    "Vullaby",
+    "Whiscash"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Probopass; answers Snover->Probopass, Slowpoke->Probopass, Swinub->Kingler, Kirlia->Probopass; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Kingler",
+    "Probopass",
+    "Tsareena",
+    "Dubwool",
+    "Frogadier",
+    "Glameow"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.963,
+   "deaths": 0.037,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Charjabug; answers Snover->Bastiodon, Slowpoke->Bastiodon, Kirlia->Bastiodon; switch never; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:4",
+   "team": [
+    "Bastiodon",
+    "Lanturn",
+    "Leavanny",
+    "Masquerain",
+    "Raboot",
+    "Charjabug"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Clefable, Slowpoke->Rotom, Swinub->Rotom, Kirlia->Mightyena; switch never; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; save Rotom for Swinub",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:4",
+   "team": [
+    "Huntail",
+    "Mightyena",
+    "Naclstack",
+    "Rotom",
+    "Whiscash",
+    "Clefable"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Charjabug; answers Snover->Charjabug, Slowpoke->Kricketune, Swinub->Kricketune, Kirlia->Masquerain; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks; free pivots; stall timed effects at 1 turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:4",
+   "team": [
+    "Kricketune",
+    "Masquerain",
+    "Vullaby",
+    "Charjabug",
+    "Clefable",
+    "Glameow"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Seaking, Slowpoke->Umbreon, Swinub->Tentacruel, Kirlia->Umbreon; switch never; setup at 3+ safe turns at full HP; free pivots; save Umbreon for Kirlia",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Lombre",
+    "Seaking",
+    "Tentacruel",
+    "Tsareena",
+    "Umbreon",
+    "Clefable"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Hariyama; answers Snover->Clefable, Slowpoke->Umbreon, Swinub->Clefable, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP; no status moves",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:4",
+   "team": [
+    "Hariyama",
+    "Bronzong",
+    "Tentacruel",
+    "Umbreon",
+    "Clefable",
+    "Combee"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "30": 1.0
+   },
+   "line": "lead Orbeetle; answers Snover->Cherrim, Slowpoke->Lombre, Swinub->Orbeetle, Kirlia->Orbeetle; switch never; setup at 4+ safe turns; no status moves; free pivots; stall timed effects at 1 turns",
+   "candidates": 30,
+   "converged": true,
+   "runs": 1200,
+   "kind": "blind:5",
+   "team": [
+    "Lanturn",
+    "Lombre",
+    "Orbeetle",
+    "Servine",
+    "Swablu",
+    "Cherrim"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Tentacruel, Slowpoke->Tentacruel, Swinub->Haunter, Kirlia->Tentacruel; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Stunky",
+    "Swablu",
+    "Tentacruel",
+    "Togetic",
+    "Vullaby"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.915,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0
+   },
+   "line": "lead Naclstack; answers Snover->Naclstack, Slowpoke->Haunter, Kirlia->Naclstack; switch losing; setup at 3+ safe turns at full HP; free pivots",
+   "candidates": 10,
+   "converged": true,
+   "runs": 800,
+   "kind": "blind:5",
+   "team": [
+    "Haunter",
+    "Naclstack",
+    "Seaking",
+    "Swablu",
+    "Fomantis",
+    "Golbat"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.905,
+   "deaths": 0.095,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Graveler; answers Snover->Seaking, Slowpoke->Whiscash, Swinub->Donphan, Kirlia->Fomantis; switch losing; setup at 3+ safe turns at full HP; save Whiscash for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:5",
+   "team": [
+    "Seaking",
+    "Whiscash",
+    "Donphan",
+    "Fletchinder",
+    "Fomantis",
+    "Graveler"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Steelix, Slowpoke->Steelix, Swinub->Steelix, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:5",
+   "team": [
+    "Leavanny",
+    "Bronzong",
+    "Steelix",
+    "Stunky",
+    "Fletchinder",
+    "Golbat"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Bastiodon, Slowpoke->Steelix, Swinub->Steelix, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 1 turns; save Steelix for Slowpoke",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Kadabra",
+    "Bronzong",
+    "Steelix",
+    "Torterra",
+    "Golbat"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "17": 1.0
+   },
+   "line": "lead Glimmet; answers Snover->Whiscash, Slowpoke->Togetic; switch losing; setup at 2+ safe turns at full HP; bait locks; save Togetic for Slowpoke",
+   "candidates": 17,
+   "converged": true,
+   "runs": 1240,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Lombre",
+    "Togetic",
+    "Whiscash",
+    "Donphan",
+    "Glimmet"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.923,
+   "deaths": 0.077,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Tentacruel, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Naclstack",
+    "Bronzong",
+    "Swablu",
+    "Tentacruel",
+    "Togetic"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 0.91,
+   "deaths": 0.09,
+   "wipe": 0.0,
+   "screened": 0.85,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Fomantis; answers Slowpoke->Haunter, Swinub->Naclstack, Kirlia->Naclstack; switch hp below 0.5; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:5",
+   "team": [
+    "Haunter",
+    "Lanturn",
+    "Leavanny",
+    "Liepard",
+    "Naclstack",
+    "Fomantis"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Kadabra; answers Snover->Graveler, Slowpoke->Kadabra, Swinub->Kadabra, Kirlia->Lumineon; switch losing; setup at 3+ safe turns; bait locks; free pivots",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Lumineon",
+    "Torterra",
+    "Fletchinder",
+    "Graveler"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.96,
+   "deaths": 0.04,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Donphan, Kirlia->Bastiodon; switch hp below 0.3; setup at 4+ safe turns at full HP; free pivots; save Bastiodon for Kirlia",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Haunter",
+    "Leavanny",
+    "Vullaby",
+    "Cherrim",
+    "Donphan"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Seaking, Slowpoke->Bastiodon, Swinub->Leavanny, Kirlia->Bastiodon; switch hp below 0.4; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Bastiodon for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Liepard",
+    "Bronzong",
+    "Seaking",
+    "Cherrim"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Steelix, Slowpoke->Steelix, Swinub->Steelix, Kirlia->Steelix; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:5",
+   "team": [
+    "Kadabra",
+    "Leavanny",
+    "Pawmo",
+    "Shiftry",
+    "Steelix",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Clefable, Slowpoke->Clefable, Swinub->Tsareena, Kirlia->Cherrim; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Tsareena",
+    "Cherrim",
+    "Clefable",
+    "Combee",
+    "Fomantis"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.92,
+   "deaths": 0.08,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Bibarel; answers Snover->Bibarel, Slowpoke->Umbreon, Swinub->Wailmer, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:6",
+   "team": [
+    "Kadabra",
+    "Bibarel",
+    "Raboot",
+    "Umbreon",
+    "Wailmer",
+    "Gastrodon"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Combee; answers Snover->Masquerain, Slowpoke->Naclstack, Swinub->Sandygast, Kirlia->Combee; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Naclstack",
+    "Sandygast",
+    "Umbreon",
+    "Combee"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Crawdaunt; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Wailmer, Kirlia->Crawdaunt; switch losing; setup at 4+ safe turns at full HP; bait locks; free pivots; save Bastiodon for Slowpoke",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:6",
+   "team": [
+    "Bastiodon",
+    "Sandygast",
+    "Umbreon",
+    "Wailmer",
+    "Charjabug",
+    "Crawdaunt"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Steelix, Slowpoke->Umbreon, Swinub->Steelix, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:6",
+   "team": [
+    "Litwick",
+    "Naclstack",
+    "Steelix",
+    "Tsareena",
+    "Umbreon",
+    "Fomantis"
+   ],
+   "seconds": 0.5
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charjabug; answers Slowpoke->Umbreon, Swinub->Seaking, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Seaking",
+    "Togetic",
+    "Umbreon",
+    "Charjabug",
+    "Crawdaunt",
+    "Dubwool"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Clefable; answers Snover->Crawdaunt, Slowpoke->Orbeetle, Swinub->Clefable, Kirlia->Orbeetle; switch losing; setup at 3+ safe turns at full HP; no status moves; bait locks",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Togetic",
+    "Ambipom",
+    "Clefable",
+    "Crawdaunt"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.997,
+   "deaths": 0.003,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Orbeetle; answers Snover->Seaking, Slowpoke->Togetic, Swinub->Togetic, Kirlia->Orbeetle; switch losing; setup at 5+ safe turns at full HP; save Togetic for Slowpoke",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:6",
+   "team": [
+    "Orbeetle",
+    "Seaking",
+    "Tentacruel",
+    "Togetic",
+    "Ambipom",
+    "Gastrodon"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Steelix, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Bibarel",
+    "Sandygast",
+    "Steelix",
+    "Tsareena",
+    "Dubwool"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Raboot; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Orbeetle, Kirlia->Bastiodon; switch hp below 0.4; setup at 4+ safe turns; bait locks; free pivots; stall timed effects at 1 turns; save Orbeetle for Swinub",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Litwick",
+    "Orbeetle",
+    "Raboot",
+    "Steelix",
+    "Charjabug"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Steelix; answers Snover->Liepard, Slowpoke->Umbreon, Swinub->Donphan; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:6",
+   "team": [
+    "Liepard",
+    "Bibarel",
+    "Steelix",
+    "Swablu",
+    "Umbreon",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Snover->Seaking, Slowpoke->Gastrodon, Swinub->Tentacruel, Kirlia->Gastrodon; switch hp below 0.4; setup at 5+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Gastrodon for Slowpoke",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:6",
+   "team": [
+    "Breloom",
+    "Seaking",
+    "Tentacruel",
+    "Clefable",
+    "Donphan",
+    "Gastrodon"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Masquerain, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 8,
+   "converged": true,
+   "runs": 1060,
+   "kind": "planned:6",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Masquerain",
+    "Clefable",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 1.3
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Charjabug; answers Snover->Seaking, Slowpoke->Seaking, Swinub->Hariyama, Kirlia->Seaking; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; stall timed effects at 3 turns; save Seaking for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Hariyama",
+    "Liepard",
+    "Mienfoo",
+    "Seaking",
+    "Charjabug",
+    "Dwebble"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.95,
+   "deaths": 0.05,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Bibarel; answers Snover->Bibarel, Slowpoke->Umbreon, Swinub->Breloom, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP; save Umbreon for Slowpoke",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Breloom",
+    "Swablu",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Snover->Golbat, Slowpoke->Umbreon, Swinub->Umbreon, Kirlia->Umbreon; switch never; setup at 3+ safe turns; no status moves; bait locks; free pivots; save Umbreon for Swinub",
+   "candidates": 9,
+   "converged": true,
+   "runs": 780,
+   "kind": "blind:7",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Swablu",
+    "Umbreon",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Fletchinder; answers Snover->Bibarel, Slowpoke->Seaking, Swinub->Fletchinder, Kirlia->Furret; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 1 turns; save Seaking for Slowpoke",
+   "candidates": 12,
+   "converged": true,
+   "runs": 840,
+   "kind": "blind:7",
+   "team": [
+    "Bibarel",
+    "Breloom",
+    "Seaking",
+    "Fletchinder",
+    "Furret",
+    "Gligar"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Snover->Ninetales-Alola, Slowpoke->Ninetales-Alola, Swinub->Masquerain, Kirlia->Rapidash-Galar; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 700,
+   "kind": "blind:7",
+   "team": [
+    "Masquerain",
+    "Mienfoo",
+    "Ninetales-Alola",
+    "Combee",
+    "Rapidash-Galar",
+    "Gligar"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Rapidash-Galar; answers Snover->Rapidash-Galar, Slowpoke->Umbreon, Swinub->Lumineon, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:7",
+   "team": [
+    "Lumineon",
+    "Umbreon",
+    "Vullaby",
+    "Charjabug",
+    "Rapidash-Galar",
+    "Golbat"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Hariyama; answers Snover->Combee, Slowpoke->Hariyama, Kirlia->Hariyama; switch never; setup at 3+ safe turns at full HP; bait locks; free pivots",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Hariyama",
+    "Leavanny",
+    "Pawmo",
+    "Rotom",
+    "Charjabug",
+    "Combee"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Furret; answers Slowpoke->Naclstack, Swinub->Pawmo, Kirlia->Togetic; switch losing; setup at 3+ safe turns at full HP; save Togetic for Kirlia",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Bibarel",
+    "Naclstack",
+    "Pawmo",
+    "Rotom",
+    "Togetic",
+    "Furret"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Snover->Ninetales-Alola, Slowpoke->Tentacruel, Swinub->Masquerain, Kirlia->Ninetales-Alola; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Masquerain",
+    "Ninetales-Alola",
+    "Tentacruel",
+    "Vullaby",
+    "Dwebble",
+    "Fletchinder"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Ninetales-Alola; answers Snover->Ninetales-Alola, Slowpoke->Umbreon, Swinub->Rotom, Kirlia->Umbreon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Naclstack",
+    "Ninetales-Alola",
+    "Rotom",
+    "Togetic",
+    "Umbreon",
+    "Fletchinder"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Tentacruel; answers Snover->Leavanny, Slowpoke->Tentacruel, Kirlia->Leavanny; switch losing; setup at 4+ safe turns at full HP; free pivots; save Leavanny for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Lombre",
+    "Lumineon",
+    "Tentacruel",
+    "Torracat",
+    "Combee"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "20": 0.95,
+    "24": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Leavanny, Slowpoke->Breloom, Kirlia->Masquerain; switch losing; setup at 4+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Masquerain for Kirlia",
+   "candidates": 24,
+   "converged": true,
+   "runs": 1380,
+   "kind": "planned:7",
+   "team": [
+    "Leavanny",
+    "Liepard",
+    "Masquerain",
+    "Breloom",
+    "Staravia",
+    "Togetic"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.967,
+   "deaths": 0.033,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Dwebble; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Nidoking, Kirlia->Combee; switch never; setup at 3+ safe turns",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:7",
+   "team": [
+    "Bastiodon",
+    "Nidoking",
+    "Tentacruel",
+    "Combee",
+    "Dwebble",
+    "Furret"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.035,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "8": 1.0
+   },
+   "line": "lead Mienfoo; answers Snover->Dubwool, Slowpoke->Liepard, Kirlia->Cherrim; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 3 turns; save Liepard for Slowpoke",
+   "candidates": 8,
+   "converged": true,
+   "runs": 760,
+   "kind": "blind:8",
+   "team": [
+    "Liepard",
+    "Mienfoo",
+    "Toucannon",
+    "Vulpix",
+    "Cherrim",
+    "Dubwool"
+   ],
+   "seconds": 0.6
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Toucannon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Masquerain, Kirlia->Bastiodon; switch hp below 0.3; setup at 3+ safe turns; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 720,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Masquerain",
+    "Toucannon",
+    "Whiscash",
+    "Charjabug",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.995,
+   "deaths": 0.005,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Lopunny; answers Snover->Lopunny, Slowpoke->Lopunny, Swinub->Wormadam, Kirlia->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:8",
+   "team": [
+    "Lopunny",
+    "Mienfoo",
+    "Nidoking",
+    "Vullaby",
+    "Wormadam",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.97,
+   "deaths": 0.03,
+   "wipe": 0.0,
+   "screened": 0.9,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Slowpoke->Bastiodon, Swinub->Leavanny, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks",
+   "candidates": 7,
+   "converged": true,
+   "runs": 740,
+   "kind": "blind:8",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Lombre",
+    "Togetic",
+    "Charjabug",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "20": 1.0,
+    "30": 1.0,
+    "37": 1.0
+   },
+   "line": "lead Raboot; answers Snover->Dubwool, Slowpoke->Raboot, Swinub->Vullaby, Kirlia->Dubwool; switch losing; setup at 3+ safe turns at full HP; free pivots; save Dubwool for Kirlia",
+   "candidates": 37,
+   "converged": true,
+   "runs": 1340,
+   "kind": "blind:8",
+   "team": [
+    "Pawmo",
+    "Raboot",
+    "Togetic",
+    "Vullaby",
+    "Vulpix",
+    "Dubwool"
+   ],
+   "seconds": 1.4
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Wormadam; answers Snover->Crawdaunt, Slowpoke->Donphan, Swinub->Shiftry, Kirlia->Shiftry; switch losing; setup at 4+ safe turns; free pivots; stall timed effects at 1 turns",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Lombre",
+    "Shiftry",
+    "Wormadam",
+    "Crawdaunt",
+    "Donphan"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "11": 1.0
+   },
+   "line": "lead Rotom; answers Snover->Masquerain, Slowpoke->Rotom, Swinub->Leavanny, Kirlia->Golbat; switch never; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 1 turns; save Rotom for Slowpoke",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Masquerain",
+    "Rotom",
+    "Wormadam",
+    "Golbat"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Raboot; answers Snover->Raboot, Slowpoke->Lopunny, Swinub->Leavanny, Kirlia->Lopunny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Lopunny",
+    "Raboot",
+    "Toucannon",
+    "Graveler"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Bronzong; answers Snover->Bronzong, Slowpoke->Umbreon, Swinub->Orbeetle, Kirlia->Bronzong; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:8",
+   "team": [
+    "Liepard",
+    "Orbeetle",
+    "Bronzong",
+    "Shiftry",
+    "Umbreon",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Masquerain, Slowpoke->Masquerain, Swinub->Vulpix, Kirlia->Leavanny; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 11,
+   "converged": true,
+   "runs": 1120,
+   "kind": "planned:8",
+   "team": [
+    "Leavanny",
+    "Lumineon",
+    "Masquerain",
+    "Mienfoo",
+    "Vulpix",
+    "Golbat"
+   ],
+   "seconds": 1.1
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Crawdaunt, Slowpoke->Charjabug, Swinub->Leavanny, Kirlia->Leavanny; switch losing; setup at 3+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Leavanny for Kirlia",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:8",
+   "team": [
+    "Jumpluff",
+    "Leavanny",
+    "Vullaby",
+    "Charjabug",
+    "Crawdaunt",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Wormadam; answers Snover->Wailmer, Slowpoke->Whiscash, Swinub->Wailmer, Kirlia->Shiftry; switch losing; setup at 4+ safe turns at full HP; stall timed effects at 3 turns; save Wailmer for Swinub",
+   "candidates": 15,
+   "converged": true,
+   "runs": 1200,
+   "kind": "planned:8",
+   "team": [
+    "Lombre",
+    "Shiftry",
+    "Wailmer",
+    "Whiscash",
+    "Wormadam",
+    "Charjabug"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.937,
+   "deaths": 0.07,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Masquerain, Kirlia->Shiftry; switch losing; setup at 3+ safe turns at full HP; bait locks; free pivots; save Bastiodon for Slowpoke",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:8",
+   "team": [
+    "Bastiodon",
+    "Liepard",
+    "Bibarel",
+    "Masquerain",
+    "Rotom",
+    "Shiftry"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 1.0,
+   "deaths": 0.0,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Wormadam; answers Snover->Lopunny, Slowpoke->Lopunny, Swinub->Wormadam, Kirlia->Luxray; switch losing; setup at 4+ safe turns; bait locks; free pivots",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:9",
+   "team": [
+    "Lopunny",
+    "Luxray",
+    "Rotom",
+    "Umbreon",
+    "Wormadam",
+    "Cherrim"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.985,
+   "deaths": 0.015,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "13": 1.0
+   },
+   "line": "lead Luxray; answers Snover->Brionne, Slowpoke->Luxray, Swinub->Donphan, Kirlia->Luxray; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 13,
+   "converged": true,
+   "runs": 860,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Luxray",
+    "Brionne",
+    "Ambipom",
+    "Donphan",
+    "Graveler"
+   ],
+   "seconds": 0.7
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "11": 1.0
+   },
+   "line": "lead Prinplup; answers Snover->Masquerain, Slowpoke->Golbat, Swinub->Masquerain, Kirlia->Orbeetle; switch never; setup at 3+ safe turns",
+   "candidates": 11,
+   "converged": true,
+   "runs": 820,
+   "kind": "blind:9",
+   "team": [
+    "Masquerain",
+    "Orbeetle",
+    "Prinplup",
+    "Snover",
+    "Vullaby",
+    "Golbat"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "15": 1.0
+   },
+   "line": "lead Glimmet; answers Snover->Wailmer, Slowpoke->Snover, Swinub->Wailmer, Kirlia->Snover; switch losing; setup at 3+ safe turns at full HP; save Snover for Slowpoke",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:9",
+   "team": [
+    "Snover",
+    "Wailmer",
+    "Ambipom",
+    "Furret",
+    "Glimmet",
+    "Graveler"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.975,
+   "deaths": 0.025,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "10": 0.95,
+    "15": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Brionne, Slowpoke->Lopunny, Swinub->Sandygast, Kirlia->Lopunny; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 3 turns",
+   "candidates": 15,
+   "converged": true,
+   "runs": 900,
+   "kind": "blind:9",
+   "team": [
+    "Leavanny",
+    "Lopunny",
+    "Brionne",
+    "Sandygast",
+    "Sharpedo",
+    "Furret"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.947,
+   "deaths": 0.057,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "7": 1.0
+   },
+   "line": "lead Bastiodon; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Kricketune, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP",
+   "candidates": 7,
+   "converged": true,
+   "runs": 1040,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Leavanny",
+    "Luxray",
+    "Seaking",
+    "Golbat"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "12": 1.0
+   },
+   "line": "lead Wormadam; answers Snover->Rotom, Slowpoke->Rotom, Swinub->Leavanny; switch hp below 0.5; setup at 5+ safe turns at full HP; no status moves; bait locks; free pivots; save Rotom for Slowpoke",
+   "candidates": 12,
+   "converged": true,
+   "runs": 1140,
+   "kind": "planned:9",
+   "team": [
+    "Leavanny",
+    "Rotom",
+    "Sharpedo",
+    "Wailmer",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.9
+  },
+  {
+   "rate": 0.977,
+   "deaths": 0.023,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Donphan; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Donphan, Kirlia->Bastiodon; switch losing; setup at 3+ safe turns at full HP; bait locks; stall timed effects at 2 turns",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Minun",
+    "Brionne",
+    "Probopass",
+    "Wormadam",
+    "Donphan"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.98,
+   "deaths": 0.02,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "6": 1.0
+   },
+   "line": "lead Kricketune; answers Snover->Bastiodon, Slowpoke->Bastiodon, Swinub->Kricketune, Kirlia->Tentacruel; switch losing; setup at 5+ safe turns at full HP; free pivots",
+   "candidates": 6,
+   "converged": true,
+   "runs": 1020,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Kricketune",
+    "Leavanny",
+    "Prinplup",
+    "Tentacruel",
+    "Umbreon"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.983,
+   "deaths": 0.017,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 0.95,
+    "20": 1.0
+   },
+   "line": "lead Glimmet; answers Snover->Wailmer, Slowpoke->Glimmet, Swinub->Wailmer, Kirlia->Wailmer; switch losing; setup at 3+ safe turns at full HP; free pivots; save Glimmet for Slowpoke",
+   "candidates": 20,
+   "converged": true,
+   "runs": 1300,
+   "kind": "planned:9",
+   "team": [
+    "Minun",
+    "Togetic",
+    "Wailmer",
+    "Whiscash",
+    "Glimmet",
+    "Golbat"
+   ],
+   "seconds": 1.2
+  },
+  {
+   "rate": 0.993,
+   "deaths": 0.007,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "10": 1.0,
+    "13": 1.0
+   },
+   "line": "lead Prinplup; answers Snover->Snover, Slowpoke->Seaking, Swinub->Brionne, Kirlia->Whiscash; switch losing; setup at 2+ safe turns at full HP; free pivots; stall timed effects at 1 turns; save Brionne for Swinub",
+   "candidates": 13,
+   "converged": true,
+   "runs": 1160,
+   "kind": "planned:9",
+   "team": [
+    "Lopunny",
+    "Brionne",
+    "Prinplup",
+    "Seaking",
+    "Snover",
+    "Whiscash"
+   ],
+   "seconds": 1.0
+  },
+  {
+   "rate": 0.99,
+   "deaths": 0.01,
+   "wipe": 0.0,
+   "screened": 0.95,
+   "screen": {
+    "9": 1.0
+   },
+   "line": "lead Rotom; answers Snover->Togetic, Swinub->Masquerain, Kirlia->Rotom; switch losing; setup at 5+ safe turns at full HP; no status moves; bait locks; stall timed effects at 1 turns; save Masquerain for Swinub",
+   "candidates": 9,
+   "converged": true,
+   "runs": 1080,
+   "kind": "planned:9",
+   "team": [
+    "Liepard",
+    "Masquerain",
+    "Prinplup",
+    "Rotom",
+    "Snover",
+    "Togetic"
+   ],
+   "seconds": 0.8
+  },
+  {
+   "rate": 0.987,
+   "deaths": 0.013,
+   "wipe": 0.0,
+   "screened": 1.0,
+   "screen": {
+    "5": 1.0
+   },
+   "line": "lead Leavanny; answers Snover->Snover, Slowpoke->Sharpedo, Swinub->Leavanny, Kirlia->Sharpedo; switch losing; setup at 3+ safe turns at full HP; bait locks; save Sharpedo for Slowpoke",
+   "candidates": 5,
+   "converged": true,
+   "runs": 1000,
+   "kind": "planned:9",
+   "team": [
+    "Bastiodon",
+    "Leavanny",
+    "Sharpedo",
+    "Snover",
+    "Cherrim",
+    "Furret"
+   ],
+   "seconds": 0.7
+  }
+ ],
+ "key": "tr423"
+}

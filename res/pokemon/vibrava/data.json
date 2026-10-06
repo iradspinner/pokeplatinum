@@ -44,13 +44,11 @@
             [ 33, "MOVE_SUPERSONIC" ],
             [ 35, "MOVE_DRAGON_BREATH" ],
             [ 41, "MOVE_SCREECH" ],
-            [ 49, "MOVE_SANDSTORM" ],
             [ 57, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM06",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
             "TM19",
@@ -60,7 +58,6 @@
             "TM27",
             "TM28",
             "TM32",
-            "TM37",
             "TM39",
             "TM42",
             "TM43",

@@ -34,9 +34,9 @@
         "EGG_GROUP_BUG"
     ],
     "abilities": [
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_SHIELD_DUST",
-        "ABILITY_ICE_SCALES"
+        "ABILITY_ICE_SCALES",
+        "ABILITY_ICE_SCALES",
+        "ABILITY_SHIELD_DUST"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_WHITE",
@@ -87,10 +87,6 @@
             [
                 24,
                 "MOVE_AURORA_BEAM"
-            ],
-            [
-                28,
-                "MOVE_HAIL"
             ],
             [
                 32,

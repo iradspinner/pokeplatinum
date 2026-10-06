@@ -25,11 +25,9 @@ and the reading.
    commands.
 3. **Make sure the ROM Ian runs is the one your symbols come from.**
    `live_watch.py` resolves names in `build/main.nef` (or `--nef`), so a ROM
-   from another build puts every breakpoint in the wrong place. Build, check
-   the ROM's SHA-1 against GitHub's build of the same commit (CLAUDE.md,
-   Build), and give Ian the path and the hash. He loads that file.
-   `tools/oxide/fetch-rom` brings only the ROM, with no `main.nef`, so build
-   locally for any session that plants breakpoints.
+   from another build puts every breakpoint in the wrong place. Build, run
+   the gate (CLAUDE.md, Build), and give Ian the path and the hash. He loads
+   that file.
 4. Pick the breakpoints and work out what each will cost Ian. Warn him before
    arming one that an ordinary action trips (talking to any NPC, opening a
    menu, every frame of a wait), and say how to get past it.
@@ -75,6 +73,24 @@ These were measured on 2026-09-21, and each one shapes the loop:
 - Single-stepping runs at about ten instructions a second, so `trace` is for a
   few thousand instructions at most. Find the frame with heartbeat and stage
   breakpoints first.
+
+Three more, from the box deposit trace (2026-09-30):
+
+- melonDS keeps a client's breakpoints after it leaves, through a reset or a
+  reloaded ROM. `live_watch.py` now removes its own at detach when it can (the
+  stop file detaches at the next stop), but when the game is wedged it cannot,
+  and Ian must quit melonDS, not reset it, before the next session.
+- Overlays share addresses: the field overlay and the PC boxes overlay both
+  load at 0x021D25A0, so a breakpoint on a boxes function fires in field code
+  while Ian walks. Break on arm9 symbols to reach the scene, and put overlay
+  breakpoints in `--plant-on-arm`; check `lr` on the first hit.
+- A black screen with the music still playing, 60 FPS in the title bar, and no
+  breakpoint firing ever again, the VBlank heartbeat included, is the shape of
+  a CPU exception: the ARM9 sits in the BIOS abort handler (0xFFFF0104) with
+  interrupts off while the ARM7 plays on. Hold just before the suspect call and
+  `trace` into it; a jump to 0xFFFF0010 is the data abort. The symbol map is
+  right, but `build/main.sbin` in a checkout rebuilt since may not be: read the
+  arm9 and overlays from the ROM Ian runs when disassembling.
 
 Struct offsets are quickest offline, with no emulator at all:
 `~/tools/gdb-nds/bin/arm-none-eabi-gdb -batch -ex "file build/main.nef" -ex "print/x &((BattleContext*)0)->battleMons[0].curHP"`.

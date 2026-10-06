@@ -74,8 +74,7 @@ Basic_CheckForImmunity:
     // Check for any immunity to the current move based on move type and what
     // we know the battler's ability to be (if we do at all).
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_NoImmunityAbility
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_NoImmunityAbility // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_VOLT_ABSORB, Basic_CheckElectricAbsorption
     IfLoadedEqualTo ABILITY_MOTOR_DRIVE, Basic_CheckElectricAbsorption
@@ -136,8 +135,7 @@ Basic_CheckSoundproof:
     // Check for immunity to sound-based moves
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedNotEqualTo ABILITY_SOUNDPROOF, Basic_CheckBulletproof
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_ScoreMoveEffect // Oxide: an Ability Shield holds against it
     IfMoveEqualTo MOVE_GROWL, ScoreMinus10
     IfMoveEqualTo MOVE_ROAR, ScoreMinus10
     IfMoveEqualTo MOVE_SING, ScoreMinus10
@@ -176,8 +174,7 @@ Basic_CheckBulletproof:
     // Breaker ignores it. The list is the engine's sBallAndBombMoves.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedNotEqualTo ABILITY_BULLETPROOF, Basic_CheckPrankster
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckPrankster
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckPrankster // Oxide: an Ability Shield holds against it
     IfMoveEqualTo MOVE_ACID_SPRAY, ScoreMinus10
     IfMoveEqualTo MOVE_AURA_SPHERE, ScoreMinus10
     IfMoveEqualTo MOVE_BARRAGE, ScoreMinus10
@@ -210,6 +207,15 @@ Basic_CheckPrankster:
     // affect a Dark-type target (element 5), so score -10.
     IfPranksterBlockedByDark ScoreMinus10
 
+Basic_CheckMagicBounce:
+    // Oxide: Magic Bounce, a hidden ability since element 8, turns a move Magic Coat would back
+    // on its user, unless Mold Breaker ignores it, so a reflectable move into a target the AI
+    // knows or guesses has it scores -10, as a sound move into Soundproof does.
+    CheckBattlerAbility AI_BATTLER_DEFENDER, ABILITY_MAGIC_BOUNCE
+    IfLoadedNotEqualTo AI_HAVE, Basic_CheckQueenlyMajesty
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckQueenlyMajesty // Oxide: an Ability Shield holds against it
+    IfMoveCanBeReflected ScoreMinus10
+
 Basic_CheckQueenlyMajesty:
     // Oxide: Queenly Majesty stops a move of raised priority aimed at its
     // holder or the holder's partner (element 5), unless Mold Breaker ignores
@@ -218,8 +224,7 @@ Basic_CheckQueenlyMajesty:
     GoTo Basic_ScoreMoveEffect
 
 Basic_CheckQueenlyMajesty_Priority:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffect
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_ScoreMoveEffect // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_QUEENLY_MAJESTY, ScoreMinus10
     LoadBattleType 
@@ -246,6 +251,7 @@ Basic_ScoreMoveEffect:
 Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STATUS_SLEEP, Basic_CheckCannotSleep
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, Basic_CheckCannotExplode
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIND_BLOWN, Basic_CheckMindBlown // Oxide
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOVER_DAMAGE_SLEEP, Basic_CheckDreamEater
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ATK_UP, Basic_CheckHighStatStage_Attack
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_UP, Basic_CheckHighStatStage_Defense
@@ -286,6 +292,7 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, Basic_CheckLowStatStage_Speed
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, Basic_CheckLowStatStage_SpAttack
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, Basic_CheckLowStatStage_SpDefense
+    // Vanilla pairs these two with the opposite stat, here and in Expert; no move uses either effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, Basic_CheckLowStatStage_Accuracy
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, Basic_CheckLowStatStage_Evasion
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, Basic_CheckAlreadyUnderReflect
@@ -393,6 +400,7 @@ Basic_ScoreMoveEffectByEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_GIVE_GROUND_IMMUNITY, Basic_CheckMagnetRise
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN, Basic_CheckDefog
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_TRICK_ROOM, Basic_CheckTrickRoom
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_WONDER_ROOM, Basic_CheckWonderRoom // Oxide
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
@@ -419,6 +427,9 @@ Basic_ScoreMoveEffectByEffect:
     // Oxide: Life Dew heals as Recover does; Strength Sap fails when the
     // target's Attack is already at -6.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Basic_CheckCanRecoverHP
+    // Oxide, change (Ian, 2026-09-27, the new moves' routing): Lunar Blessing and Jungle
+    // Healing heal and cure, and fail only with nothing to do (2026-09-30).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Basic_CheckLunarBlessing
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
     // Oxide: Sticky Web fails when the target's side already has one, and is
     // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
@@ -493,8 +504,7 @@ Basic_CheckRest_End:
 Basic_CheckTaunt:
     // Oxide, change (Ian, 2026-09-27). Oblivious stops Taunt (the staples rulings), unless
     // Mold Breaker ignores it, so score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckTaunt_End
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckTaunt_End // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
 
@@ -514,8 +524,7 @@ Basic_CheckPowderImmunity:
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GRASS, ScoreMinus10
     // Oxide: so is Overcoat (element 5), unless Mold Breaker ignores it.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_ScoreMoveEffectByEffect // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OVERCOAT, ScoreMinus10
 
@@ -524,8 +533,7 @@ Basic_CheckSapSipper:
     // Grass attack (element 5), unless Mold Breaker ignores it.
     LoadTypeFrom LOAD_MOVE_TYPE
     IfTempNotEqualTo TYPE_GRASS, Basic_ScoreMoveEffectByEffect
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_ScoreMoveEffectByEffect
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_ScoreMoveEffectByEffect // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_SAP_SIPPER, ScoreMinus10
     GoTo Basic_ScoreMoveEffectByEffect
@@ -533,14 +541,14 @@ Basic_CheckSapSipper:
 Basic_CheckCannotSleep:
     // If the target cannot be put to sleep for any reason, score -10.
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardSleep
+Basic_SafeguardSleep_Passed:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
     // Oxide: Purifying Salt keeps off every status (element 5), unless Mold
     // Breaker ignores it.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotSleep_End
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCannotSleep_End // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
     // Oxide: Sweet Veil keeps sleep off its holder and its partner.
@@ -554,13 +562,23 @@ Basic_CheckCannotSleep:
 Basic_CheckCannotSleep_End:
     PopOrEnd 
 
+Basic_CheckMindBlown:
+    // Oxide: Damp stops Mind Blown as it stops Explosion (effect 408 makes the same test), so
+    // score -10 with Explosion's check of the target. Mind Blown does not faint its user, so
+    // Explosion's last-Pokemon check is left out.
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckMindBlown_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_DAMP, ScoreMinus10
+
+Basic_CheckMindBlown_End:
+    PopOrEnd 
+
 Basic_CheckCannotExplode:
     // If the target is immune, score -10.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
 
     // If the target has Damp and we do not have Mold Breaker, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckLastMon
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckLastMon // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_DAMP, ScoreMinus10
 
@@ -708,8 +726,8 @@ Basic_CheckClearBodyEffect:
     // Oxide: Mirror Armor turns the drop back on the user (element 5), unless
     // Mold Breaker ignores it, so score -10.
     IfLoadedNotEqualTo ABILITY_MIRROR_ARMOR, Basic_CheckClearBodyEffect_FlowerVeil
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedNotEqualTo ABILITY_MOLD_BREAKER, ScoreMinus10
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckClearBodyEffect_FlowerVeil // Oxide: an Ability Shield holds against it
+    GoTo ScoreMinus10
 
 Basic_CheckClearBodyEffect_FlowerVeil:
     // Oxide: Flower Veil keeps stat drops off a Grass type that holds it or
@@ -721,8 +739,7 @@ Basic_CheckClearBodyEffect_FlowerVeil:
     PopOrEnd 
 
 Basic_CheckFlowerVeil:
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckFlowerVeil_End
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckFlowerVeil_End // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_FLOWER_VEIL, ScoreMinus10
     LoadBattleType 
@@ -762,8 +779,7 @@ Basic_CheckCanForceSwitch:
     // If the target cannot be forced out for any reason, score -10.
     CountAlivePartyBattlers AI_BATTLER_DEFENDER
     IfLoadedEqualTo 0, ScoreMinus10
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCanForceSwitch_Terminate
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCanForceSwitch_Terminate // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_SUCTION_CUPS, ScoreMinus10
 
@@ -777,6 +793,13 @@ Basic_CheckCanRecoverHP:
 
 Basic_CheckCanRecoverHP_Terminate:
     PopOrEnd 
+
+Basic_CheckLunarBlessing:
+    // Oxide: Lunar Blessing and Jungle Healing also cure a status, so at 100% HP they
+    // score -8 only when the attacker has no status either, where they fail (in a
+    // double battle the partner may still gain, which Life Dew's check ignores too).
+    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckCanRecoverHP_Terminate
+    GoTo Basic_CheckCanRecoverHP
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.
@@ -805,10 +828,10 @@ Basic_CheckCannotPoison_Hydration:
 
 Basic_CheckCannotPoison_StatusOrSafeguard:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardPoison
+Basic_SafeguardPoison_Passed:
     // Oxide: Purifying Salt, as for sleep.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotPoison_End
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCannotPoison_End // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
     // Oxide: Pastel Veil keeps poison off its holder and its partner.
@@ -830,8 +853,7 @@ Basic_CheckAlreadyUnderLightScreen:
 Basic_CheckOHKOWouldFail:
     // If the OHKO move would always fail for any reason, score -10.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckOHKOWouldFail_Levels
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckOHKOWouldFail_Levels // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_STURDY, ScoreMinus10
 
@@ -851,8 +873,7 @@ Basic_CheckNonStandardDamageOrChargeTurn:
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedNotEqualTo ABILITY_WONDER_GUARD, Basic_CheckNonStandardDamageOrChargeTurn_Terminate
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckNonStandardDamageOrChargeTurn_Terminate
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckNonStandardDamageOrChargeTurn_Terminate // Oxide: an Ability Shield holds against it
     IfMoveEffectivenessEquals TYPE_MULTI_DOUBLE_DAMAGE, Basic_CheckNonStandardDamageOrChargeTurn_Terminate
     IfMoveEffectivenessEquals TYPE_MULTI_QUADRUPLE_DAMAGE, Basic_CheckNonStandardDamageOrChargeTurn_Terminate
     GoTo ScoreMinus10
@@ -877,8 +898,37 @@ Basic_CheckCannotConfuse:
     // If the target otherwise cannot be confused, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OWN_TEMPO, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardConfuse
+Basic_SafeguardConfuse_Passed:
     PopOrEnd 
+
+// Oxide: an Infiltrator attacker's move passes Safeguard, as it does in the engine
+// (BattleSystem_InfiltratorPassesEffect), so each of Basic's Safeguard refusals below
+// holds only for an attacker without it and otherwise carries on with its checks.
+Basic_SafeguardSleep:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardSleep_Passed
+
+Basic_SafeguardPoison:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardPoison_Passed
+
+Basic_SafeguardConfuse:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardConfuse_Passed
+
+Basic_SafeguardParalyze:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardParalyze_Passed
+
+Basic_SafeguardBurn:
+    LoadBattlerAbility AI_BATTLER_ATTACKER
+    IfLoadedNotEqualTo ABILITY_INFILTRATOR, ScoreMinus10
+    GoTo Basic_SafeguardBurn_Passed
 
 Basic_CheckAlreadyUnderReflect:
     // If already under the effect of Reflect, score -8.
@@ -898,8 +948,7 @@ Basic_CheckCannotParalyze:
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus10
     // Oxide: Magic Guard no longer stops full paralysis (the staples
     // rulings), so paralysing its holder is worth doing again.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotParalyze_ImmuneToStatus
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCannotParalyze_ImmuneToStatus // Oxide: an Ability Shield holds against it
     // Oxide: Purifying Salt, as for sleep.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
@@ -914,7 +963,8 @@ Basic_CheckCannotParalyze_ThunderWave:
 
 Basic_CheckCannotParalyze_ImmuneToStatus:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardParalyze
+Basic_SafeguardParalyze_Passed:
     PopOrEnd 
 
 Basic_CheckCannotSubstitute:
@@ -1043,8 +1093,7 @@ Basic_CheckAlreadyUnderSafeguard:
 Basic_CheckMemento:
     // If the target's ability blocks the stat drop and the attacker does not have Mold Breaker,
     // score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckMemento_CheckStatStages
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckMemento_CheckStatStages // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
@@ -1172,10 +1221,10 @@ Basic_CheckCannotBurn:
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_FIRE, ScoreMinus10
-    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
+    IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Basic_SafeguardBurn
+Basic_SafeguardBurn_Passed:
     // Oxide: Purifying Salt, as for sleep.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotBurn_End
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCannotBurn_End // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10
     IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus10 // Oxide: it keeps burns off
@@ -1227,8 +1276,7 @@ Basic_CheckCanMudSport:
 Basic_CheckTickle:
     // If the target's ability is Clear Body or White Smoke and the attacker's ability is not
     // Mold Breaker, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckTickle_CheckStatStages
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckTickle_CheckStatStages // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
@@ -1491,6 +1539,7 @@ Basic_NaturalGiftBerries:
     TableEntry ITEM_CUSTAP_BERRY
     TableEntry ITEM_JABOCA_BERRY
     TableEntry ITEM_ROWAP_BERRY
+    TableEntry ITEM_ROSELI_BERRY // Oxide, element 7: Fairy, as the engine's Natural Gift has it
     TableEntry TABLE_END
 
 Basic_CheckTailwind:
@@ -1871,11 +1920,16 @@ Basic_CheckTrickRoom:
     IfSpeedCompareEqualTo COMPARE_SPEED_TIE, ScoreMinus10
     PopOrEnd 
 
+Basic_CheckWonderRoom:
+    // Oxide: under a boss fight's permanent Wonder Room the move fails, so score -10, as
+    // Trick Room does under its permanent room. The AI knows nothing else of Wonder Room.
+    IfFieldConditionsMask FIELD_CONDITION_WONDER_ROOM_PERM, ScoreMinus10
+    PopOrEnd 
+
 Basic_CheckCaptivate:
     // If the target's ability is any of Oblivious, Clear Body, or White Smoke and the attacker's
     // ability is not Mold Breaker, score -10.
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCaptivate_CheckGender
+    IfMoldBreakerIgnores AI_BATTLER_DEFENDER, Basic_CheckCaptivate_CheckGender // Oxide: an Ability Shield holds against it
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
@@ -2038,6 +2092,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SPEED_DOWN_2, Expert_StatusSpeedDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2, Expert_StatusSpAttackDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_DEF_DOWN_2, Expert_StatusSpDefenseDown
+    // Vanilla pairs these two with the opposite stat, as Basic does; no move uses either effect.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_EVA_DOWN_2, Expert_StatusAccuracyDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ACC_DOWN_2, Expert_StatusEvasionDown
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SET_REFLECT, Expert_Reflect
@@ -2200,6 +2255,7 @@ Expert_Main:
     // Oxide, change (Ian, 2026-09-27): the new recovery moves, as Recover.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Expert_Recovery // Oxide, change (Ian, 2026-09-27)
     // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
     // condition the damage estimate does not see, scored as Wake-Up Slap and
     // Smelling Salts are.
@@ -3992,6 +4048,7 @@ Expert_Thief_EncouragedItemEffects:
     TableEntry HOLD_EFFECT_WEAKEN_SE_DARK
     TableEntry HOLD_EFFECT_WEAKEN_SE_STEEL
     TableEntry HOLD_EFFECT_WEAKEN_NORMAL
+    TableEntry HOLD_EFFECT_WEAKEN_SE_FAIRY // Oxide, element 7: the Roseli Berry
     TableEntry HOLD_EFFECT_HP_RESTORE_PSN_TYPE
     TableEntry TABLE_END
 
@@ -4557,7 +4614,8 @@ Expert_ChargeTurnWithInvuln:
     //
     // If the opponent knows a Protect move, score -1.
     //
-    // If the opponent is immune to or would resist the move, score +1. (Bug?)
+    // If the opponent is immune to or would resist the move, score -1 (vanilla gave +1; the
+    // battle_edits fix, below at Expert_ChargeTurnWithInvuln_Resisted).
     //
     // If the opponent is under any of the following conditions, score +1:
     // - Toxic
@@ -4577,9 +4635,9 @@ Expert_ChargeTurnWithInvuln:
 Expert_ShadowForce:
     // Shadow Force is handled identically to ChargeTurnWithInvuln, but only gets score +1 for Power Herb
     // and does not consider if the opponent knows a Protect move (which it would bypass).
-    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ChargeTurnWithInvuln_ScorePlus1
-    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ChargeTurnWithInvuln_ScorePlus1
-    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ChargeTurnWithInvuln_ScorePlus1
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ChargeTurnWithInvuln_Resisted
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ChargeTurnWithInvuln_Resisted
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ChargeTurnWithInvuln_Resisted
     IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_POWER_HERB, Expert_ChargeTurnWithInvuln_ScorePlus1AndEnd
     GoTo Expert_ChargeTurnWithInvuln_CheckConditions
 
@@ -4624,7 +4682,7 @@ Expert_ChargeTurnWithInvuln_TryScorePlus1:
 Expert_ChargeTurnWithInvuln_End:
     PopOrEnd 
 
-Expert_ChargeTurnWithInvuln_ScorePlus1:
+Expert_ChargeTurnWithInvuln_Resisted:
     // Oxide, vanilla fix (battle_edits guide, approved by Ian 2026-09-15): reached only when the target is immune
     // or resists, which is a reason not to use the move, so -1 rather than +1
     AddToMoveScore -1
@@ -7898,8 +7956,7 @@ TagStrategy_Earthquake:
     IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
     // gets past the partner's ability, so it gives no protection
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Earthquake_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Earthquake_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
     IfLoadedEqualTo AI_HAVE, ScorePlus2
     // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage from its partner's
@@ -7944,8 +8001,7 @@ TagStrategy_Explosion:
     IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
     // Oxide, change (Ian, 2026-09-27): a Telepathy partner takes no damage, as a Ghost one,
     // unless the user's Mold Breaker gets past it
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_Explosion_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_Explosion_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
     IfLoadedEqualTo AI_HAVE, TagStrategy_Explosion_End
 
@@ -7974,8 +8030,7 @@ TagStrategy_SpreadMove:
     //  - Otherwise, score -3; Misty Explosion -10 unless the partner resists, as Explosion
     // The user's Mold Breaker gets past the partner's abilities, as in the routines below.
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadMove_End
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadMove_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadMove_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_TELEPATHY
     IfLoadedEqualTo AI_HAVE, TagStrategy_SpreadMove_PartnerUnharmed
     IfMoveEqualTo MOVE_BOOMBURST, TagStrategy_SpreadMove_CheckSoundproof
@@ -8114,8 +8169,7 @@ TagStrategy_SpreadElectricMove:
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckElectric_End
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
     // gets past the partner's ability, so it gives no protection
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadElectricMove_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadElectricMove_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
@@ -8173,8 +8227,7 @@ TagStrategy_SparklingAria:
     // sound move, so a Soundproof partner takes no damage: score +2, as Earthquake beside a
     // partner immune to it. Otherwise it is scored as Surf.
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadWaterMove
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadWaterMove // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_SOUNDPROOF
     IfLoadedEqualTo AI_HAVE, ScorePlus2
 
@@ -8189,8 +8242,7 @@ TagStrategy_SpreadWaterMove:
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckWater_End
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
     // gets past the partner's ability, so it gives no protection
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadWaterMove_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadWaterMove_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScorePlus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
@@ -8250,8 +8302,7 @@ TagStrategy_SpreadFireMove:
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_CheckFire_End
     // Oxide, vanilla fix (doubles review, approved by Ian 2026-09-22): the user's Mold Breaker
     // gets past the partner's ability, so it gives no protection
-    LoadBattlerAbility AI_BATTLER_ATTACKER
-    IfLoadedEqualTo ABILITY_MOLD_BREAKER, TagStrategy_SpreadFireMove_CheckTypes
+    IfMoldBreakerIgnores AI_BATTLER_ATTACKER_PARTNER, TagStrategy_SpreadFireMove_CheckTypes // Oxide: an Ability Shield holds against it
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
     IfLoadedEqualTo AI_HAVE, ScoreMinus3
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE

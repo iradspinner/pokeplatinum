@@ -7,7 +7,7 @@
         "special_attack": 115,
         "special_defense": 90
     },
-    "types": [ "TYPE_ELECTRIC", "TYPE_ELECTRIC" ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_DRAGON" ],
     "catch_rate": 45,
     "base_exp_reward": 194,
     "ev_yields": {
@@ -62,7 +62,6 @@
             "TM15",
             "TM16",
             "TM17",
-            "TM18",
             "TM21",
             "TM23",
             "TM24",

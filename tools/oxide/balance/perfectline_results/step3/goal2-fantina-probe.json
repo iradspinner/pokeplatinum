@@ -1,0 +1,54 @@
+{
+ "Tsareena, Rampardos, Vikavolt, Graveler, Ampharos, Rotom": {
+  "numbers": {
+   "fights": 25,
+   "won": 1.0,
+   "faints": 2.8,
+   "clean": 0.0
+  },
+  "faints_to": [
+   [
+    "Mismagius",
+    25
+   ],
+   [
+    "Sableye",
+    19
+   ],
+   [
+    "Drifblim",
+    13
+   ],
+   [
+    "Rotom",
+    13
+   ]
+  ]
+ },
+ "Tsareena, Rampardos, Vikavolt, Vulpix, Ampharos, Rotom": {
+  "numbers": {
+   "fights": 25,
+   "won": 1.0,
+   "faints": 2.8,
+   "clean": 0.04
+  },
+  "faints_to": [
+   [
+    "Mismagius",
+    27
+   ],
+   [
+    "Sableye",
+    26
+   ],
+   [
+    "Rotom",
+    12
+   ],
+   [
+    "Drifblim",
+    5
+   ]
+  ]
+ }
+}

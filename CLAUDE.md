@@ -28,6 +28,16 @@ Then say in one or two sentences what this session will do, and do it.
   commit messages. Paste its "Hard rules" into any subagent brief (the brief
   template is in the `oxide-session` skill).
 - Ask before doing anything expensive to redo or hard to reverse.
+- An instruction to act on a later day, or once something happens, lives only
+  in the tracker's Scheduled list, with why it exists and what would make it
+  unneeded. A date is not an order: before acting on an entry, check its
+  reason against today's state, and ask Ian if it no longer holds (Ian,
+  2026-10-01). `tools/oxide/deferred_check.py`, run by the gate, refuses an
+  entry without its reason, an entry past due, and a dated deferral anywhere
+  else.
+- When the permission check refuses an action a task needs, stop the task and
+  tell Ian what was refused and why it was needed. Never work around it (Ian,
+  2026-10-01).
 - Update your status home (below) at the end of every session and commit it;
   a finished tracker block moves verbatim to `docs/oxide/tracker-archive.md`.
   If any `docs/oxide/*.md` file changed this session, also run
@@ -47,11 +57,12 @@ Then say in one or two sentences what this session will do, and do it.
   sessions share this checkout and a sweep commits another session's
   in-progress files under your message.
 - Several sessions run in parallel: the Oxide Overseer, the main track, the
-  encounter track and the balance track, plus cloud sessions. Each edits only
-  its own status home: the tracker for the main track and the Overseer,
-  `docs/oxide/encounter-tool-build-plan.md` for the encounter tool (plus its
-  one paragraph at the top of the tracker), `docs/oxide/balance-plan.md` for
-  the balance track. Every track works on its own branch or worktree; the
+  encounter track, the balance track and the scoring track, plus cloud
+  sessions. Each edits only its own status home: the tracker for the main
+  track and the Overseer, `docs/oxide/encounter-tool-build-plan.md` for the
+  encounter tool (plus its one paragraph at the top of the tracker),
+  `docs/oxide/balance-plan.md` for the balance track, and
+  `docs/oxide/trainer-scoring-handoff.md` for the scoring track. Every track works on its own branch or worktree; the
   Overseer merges each into `oxide` with `tools/oxide/merge-branch.sh`.
 - Do not "improve" a carried-over map, script or table while a faithful
   carry-over is being verified; `checkmap.py` compares against the base ROM.
@@ -92,26 +103,24 @@ See `docs/oxide/setup-fork-and-wsl2.md`. `make` for a checked build of the
 unmodified tree; `make rom` for an unchecked rebuild after edits. Output:
 `build/pokeplatinum.us.nds`.
 
-**The replacement CPU is in and passed its checks (2026-09-29).** The old
-i9-14900K was degraded: under all-core load, compilers and Python crashed or
-returned wrong answers (design doc findings log, 2026-09-22), and for a week
-every build ran on GitHub. The new chip ran the stress check that caught the
-old one with no failures, and built `oxide` from scratch twice on every core,
-matching GitHub's SHA-1 both times. Local builds and parallel jobs are back
-to normal, with no job limit.
+Builds run on this machine with no job limit, and a local ROM matches
+GitHub's build of the same commit byte for byte. Run any heavy or parallel
+job under `tools/oxide/capped`, which stops it at a memory cap rather than
+let it run WSL out of memory (the design doc's findings log has both
+histories: the degraded CPU of 2026-09-22 and the WSL crash of 2026-10-02).
 
-Hand Ian a ROM built here from a pushed commit whose ROM matches GitHub's
-SHA-1 for it, copied into `~/oxide-playtest` as
+Hand Ian a ROM built here from a pushed commit as soon as the local gate
+passes (Ian, 2026-10-06: waiting for GitHub's SHA-1 was a guard against the
+old CPU, and comes back only if a build looks wrong), copied into
+`~/oxide-playtest` as
 `pokeplatinum-oxide-<commit>.nds` (the test kit, from `make testkit` on the
 same tree, as `pokeplatinum-oxide-testkit-<commit>.nds`), the names his saves
 follow.
-`tools/oxide/fetch-rom` builds a pushed commit in the private repo
-`iradspinner/oxide-rom-builder` instead, and it spends Actions minutes and
-storage. **No GitHub Actions in the private repos until 2026-10-01** (Ian,
-2026-09-29): the account's Actions storage is used up, and he will not be
-billed for more. Their workflows are switched off, so `fetch-rom` and a
-melonDS-oxide build fail until then. The public repo's build on each push to
-`oxide` is free and stays on.
+**No GitHub Actions in the private repos, for good** (Ian, 2026-10-01): every
+ROM is built here, the private ROM builder and `fetch-rom` are retired, and
+Ian's melonDS fork is built on his PC with MSYS2
+(`C:\Users\Ian\src\build-melonds.sh`, since 2026-10-06). The public repo's build on each push to `oxide` is free and
+stays on.
 
 GitHub builds every push to `oxide` on its own machines
 (`.github/workflows/oxide-rom.yml`) and prints the ROM's SHA-1 in the run's
@@ -173,8 +182,8 @@ with dated pins `~/roms/base-2026-08-31.nds` (the same file) and
 byte-exact vanilla Rev 1 build (built once from `main`) is pinned at
 `~/roms/vanilla.nds` for `import_base_rom.py --vanilla` and
 `verify_narcs.py --ref`; don't rebuild it, reuse the pinned copy.
-`tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a GitHub build
+`tools/oxide/merge-branch.sh <branch>` lands one branch: merge, a local build
 of the merged tree, the gate on that ROM, and a push only on a pass.
 `tools/oxide/sync-docs.sh` mirrors `docs/oxide/` to the project folder and
-complains about any file it has no mapping for. The full restart check-list
-is at the top of the tracker.
+complains about any file it has no mapping for. The full restart check-list,
+with what a clean gate looks like, is `docs/oxide/restart-checks.md`.

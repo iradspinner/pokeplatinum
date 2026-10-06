@@ -28,8 +28,8 @@
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_WATER_1", "EGG_GROUP_FIELD" ],
     "abilities": [
-        "ABILITY_DAMP",
         "ABILITY_WATER_ABSORB",
+        "ABILITY_UNAWARE",
         "ABILITY_UNAWARE"
     ],
     "safari_flee_rate": 120,
@@ -47,7 +47,6 @@
             [ 23, "MOVE_AMNESIA" ],
             [ 29, "MOVE_YAWN" ],
             [ 33, "MOVE_EARTHQUAKE" ],
-            [ 37, "MOVE_RAIN_DANCE" ],
             [ 43, "MOVE_MIST" ],
             [ 43, "MOVE_HAZE" ],
             [ 47, "MOVE_MUDDY_WATER" ]
@@ -55,12 +54,10 @@
         "by_tm": [
             "TM03",
             "TM06",
-            "TM07",
             "TM10",
             "TM13",
             "TM14",
             "TM17",
-            "TM18",
             "TM21",
             "TM23",
             "TM26",
@@ -68,7 +65,6 @@
             "TM28",
             "TM32",
             "TM36",
-            "TM37",
             "TM42",
             "TM43",
             "TM44",

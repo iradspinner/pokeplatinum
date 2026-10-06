@@ -44,7 +44,6 @@
             [ 25, "MOVE_SAND_TOMB" ],
             [ 33, "MOVE_CRUNCH" ],
             [ 41, "MOVE_DIG" ],
-            [ 49, "MOVE_SANDSTORM" ],
             [ 57, "MOVE_HYPER_BEAM" ],
             [ 65, "MOVE_EARTH_POWER" ],
             [ 73, "MOVE_EARTHQUAKE" ],
@@ -54,7 +53,6 @@
         "by_tm": [
             "TM06",
             "TM10",
-            "TM11",
             "TM15",
             "TM17",
             "TM19",
@@ -64,7 +62,6 @@
             "TM27",
             "TM28",
             "TM32",
-            "TM37",
             "TM39",
             "TM42",
             "TM43",

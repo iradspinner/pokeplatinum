@@ -8,12 +8,12 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_POISON",
-    "power": 75,
+    "power": 90,
     "accuracy": 100,
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_BADLY_POISON_HIT",
-        "chance": 30
+        "chance": 40
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
