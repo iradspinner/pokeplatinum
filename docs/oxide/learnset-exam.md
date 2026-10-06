@@ -30,3 +30,31 @@ analysis broadly.
 What the rewrite must show for it: a physical Fire attack between Ember and
 Blaze Kick, in Gardenia's split (Flame Wheel or Flame Charge), and the points
 shown as facts addressed.
+
+## 2. Treecko (2026-10-06)
+
+Shown: Treecko caught at 9 in Gardenia's split knows Pound, Leer and Absorb
+and learns Quick Attack 11; Grovyle at 16 learns Fury Cutter 16, Pursuit 17,
+Screech 23, Leaf Blade 29 and Agility 35; Sceptile (Grass/Dragon) at 36
+learns Slam 43, Detect 51, False Swipe 59 and Leaf Storm 67, with X-Scissor
+at 16 lost below its evolution level and Night Slash at level 1 only; a
+Treecko held learns Mega Drain 26, Agility 31, Slam 36, Detect 41, Giga Drain
+46 and Energy Ball 51. Shown as facts: Absorb its only Grass attack through
+Gardenia's split; no Dragon attack by level-up; physical Grass power on a
+mixed line until Leaf Storm; coverage Pursuit and Fury Cutter; utility
+Agility, Screech, priority, False Swipe, Leer and Detect; no
+later-generation moves.
+
+Ian's verdict, verbatim:
+
+Absorb until Leaf Blade is rough; Detect should go like Protect; False swipe
+is an okay move but is a meme that late, and fury cutter is a terrible move
+that should either be reworked or removed. You broadly got the analysis
+correctly though.
+
+Two of these are rulings for the whole game, applied at once and so not
+counted in the exam: Detect leaves the player's lists with Protect, and Fury
+Cutter is reworked or removed (the tracker's move reworks). What the rewrite
+must show for the line itself: a Grass attack between Absorb and Leaf Blade
+in good time, False Swipe early if at all, and the points shown as facts
+addressed.

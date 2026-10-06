@@ -233,7 +233,7 @@ read, so they are written here too. Each is a standing instruction.
   on), team sizes vary from fight to fight, and ordinary trainers are
   genuinely dangerous: two-Pokemon teams are too trivial (Ian, 2026-10-04).
   Trainers may use TM and tutor moves freely (Ian, 2026-10-04). Protect,
-  Double Team and every one-hit KO move leave every player-accessible list,
+  Detect, Double Team and every one-hit KO move leave every player-accessible list,
   level-up, TM and tutor alike, and the one-hit KO moves leave every
   moveset or become other moves (Ian, 2026-10-06). Teams
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
