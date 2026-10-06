@@ -40,6 +40,18 @@ unlinked attack only fills a gap a rule asks for; and added moves keep
 under a per-split ceiling, which sets aside his answer 8 of 2026-09-27 (no
 ceiling on coverage power) for this pass.
 
+**Facts the learnset rewrite met (2026-10-06).** A level-up list holds at
+most 34 entries, level-1 entries included (`MAX_LEARNSET_ENTRIES` in
+`include/struct_defs/species.h`; the build refuses a longer one), so a
+generator budgets each list. The pool still reads three catches wrongly,
+which `learncheck.py` corrects only for itself so the stored scores do not
+move: Amity Square's table has no map header, Cynthia's Togepi egg comes
+in Fantina's split, and the fossils, which the pool leaves out, come in
+Fantina's split too (Ian, 2026-09-30); the census owes all three at the
+next rescore. And `tools/oxide/balance/learngen.py` is the learnset
+study's part 3, imported by `learnwild.py` and `kaizoteams.py`; the
+rewrite's generator once overwrote it and is `learnrewrite.py`.
+
 **Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all
 1,030. The census leaves out the test kit, the pool takes the encounter
