@@ -73,10 +73,13 @@ def prepare(paths, split, cap, recs, stock):
     """(st, box keys, [(boss keys, flags)] per trainer) for these trainer
     files against this box. The field starts in the map weather of the
     trainers the files rebuild, matched by file name, as a story fight's
-    does (the comb's Roark was read with no sand until 2026-10-06)."""
+    does (the comb's Roark was read with no sand until 2026-10-06), and in
+    the game's permanent Trick Room when one of them is on its list."""
     parties = [trainer_party(p) for p in paths]
-    weather = pressure.fight_weather(trainer_ids([os.path.basename(p)[:-len(".json")] for p in paths]))
-    st = fs.prepare(split, [p for p, _f in parties], weather, cap=cap, given_side=recs)
+    stems = [os.path.basename(p)[:-len(".json")] for p in paths]
+    weather = pressure.fight_weather(trainer_ids(stems))
+    trick_room = fs.trick_room_for(["TRAINER_" + s.upper() for s in stems])
+    st = fs.prepare(split, [p for p, _f in parties], weather, trick_room, cap=cap, given_side=recs)
     st["item_stock"] = dict(stock)
     keys = [f"p{i}" for i in range(len(recs))]
     return st, keys, [(st["bosses"][i], f) for i, (_p, f) in enumerate(parties)]

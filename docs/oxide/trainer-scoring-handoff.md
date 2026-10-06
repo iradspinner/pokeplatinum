@@ -40,7 +40,9 @@ odds. In the very unlucky fights they roll against the player (your answer
 of 2026-10-06 for Quick Claw and Focus Band): King's Rock and Razor Fang's
 flinch, Quick Claw and Focus Band each fire for the trainer if either of
 two rolls does, and for the player only if both do. No reading is redone
-for it now.
+for it now. Saturn 2's permanent Trick Room now comes from the game's own
+list on every path, the comb's included, which had started him without it
+(2026-10-06); no reading of him is affected.
 
 | Step | Takes |
 |---|---|
