@@ -3,10 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
-#include "constants/moves.h"
 #include "constants/npc_trades.h"
-
-#include "generated/moves.h"
 
 #include "field/field_system.h"
 #include "overlay006/struct_npc_trade_animation_template.h"
@@ -34,18 +31,6 @@ static const u8 sFixedTradeLevel[MAX_NPC_TRADES] = {
     [NPC_TRADE_CHARAP_CHATOT] = 20,
     [NPC_TRADE_GASPAR_HAUNTER] = 0,
     [NPC_TRADE_FOPPA_MAGIKARP] = 0,
-};
-
-// A traded Pokemon starts with the last four moves its level gives, so a move
-// that only sits on the level-1 list can be pushed out at every level. Meloetta
-// has five level-1 moves with Relic Song first, so the Meister's Meloetta would
-// never know the move that changes its form. A move named here goes in the
-// first slot instead (Ian, 2026-10-06). MOVE_NONE keeps the default moves.
-static const u16 sTradeFirstMove[MAX_NPC_TRADES] = {
-    [NPC_TRADE_KAZZA_ABRA] = MOVE_NONE,
-    [NPC_TRADE_CHARAP_CHATOT] = MOVE_NONE,
-    [NPC_TRADE_GASPAR_HAUNTER] = MOVE_NONE,
-    [NPC_TRADE_FOPPA_MAGIKARP] = MOVE_RELIC_SONG,
 };
 
 static inline String *NPCTrade_GetOTName(enum HeapID heapID, u32 npcTradeID);
@@ -148,22 +133,6 @@ static void NPCTrade_CreateMon(Pokemon *mon, NPCTradeMon *npcTradeMon, u32 level
     }
 
     Pokemon_InitWith(mon, npcTradeMon->species, level, INIT_IVS_RANDOM, TRUE, npcTradeMon->personality, OTID_SET, npcTradeMon->otID);
-
-    if (npcTradeID < MAX_NPC_TRADES && sTradeFirstMove[npcTradeID] != MOVE_NONE) {
-        u16 firstMove = sTradeFirstMove[npcTradeID];
-        BOOL known = FALSE;
-
-        for (int slot = 0; slot < LEARNED_MOVES_MAX; slot++) {
-            if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + slot, NULL) == firstMove) {
-                known = TRUE;
-            }
-        }
-
-        // Pokemon_SetMoveSlot also fills the slot's PP to the move's maximum.
-        if (!known) {
-            Pokemon_SetMoveSlot(mon, firstMove, 0);
-        }
-    }
 
     String *string = NPCTrade_GetNickname(heapID, npcTradeID);
     Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);

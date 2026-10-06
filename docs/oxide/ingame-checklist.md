@@ -559,17 +559,18 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   An untouched Koffing still becomes ordinary Weezing at level 35, and a
   Ponyta ordinary Rapidash at 40.
 
-- [ ] With `main-meloetta` merged, **the Meister's trade** on Route 226 (talk
-  to him twice; the first time powers up the Pokedex): he asks for a Finneon
+- [ ] **The Meister's trade** on Route 226. In the test kit, the menu's
+  "Meister's trade" gives a level-50 Finneon and puts you at his door. Talk
+  to him twice (the first time powers up the Pokedex): he asks for a Finneon
   for his precious MELOETTA. The trade gives a Meloetta nicknamed Sera, OT
   Meister, holding a Lum Berry, at the Finneon's level, with Relic Song in
-  its first move slot at full PP (the trade puts it there, 2026-10-06), and
+  its first move slot at full PP (his script sets it after the trade), and
   his thanks name it. Its other three moves are its last level-up moves at
-  that level: at 30, Sing, Teeter Dance and Acrobatics; at 50, Echoed Voice,
-  U-turn and Wake-Up Slap. Its cry plays, and its Pokedex entry reads "Its
-  melodies sway the hearts of all who hear them..." with the Melody Pokemon
-  category. With the emulator's bridge running, the Overseer can check the
-  received Meloetta field by field from the box export.
+  that level, at 50 Echoed Voice, U-turn and Wake-Up Slap. Its cry plays,
+  and its Pokedex entry reads "Its melodies sway the hearts of all who hear
+  them..." with the Melody Pokemon category. With the emulator's bridge
+  running, the Overseer can check the received Meloetta field by field from
+  the box export.
 
 - [x] **Eight items the balance census cannot reach** (2026-09-29): its map
   flood finds no way to them, so no score counts them. For each, say whether
