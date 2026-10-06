@@ -253,3 +253,60 @@ The rules drawn from it:
   (Luxio: Volt Tackle and Double-Edge by the Galactic split; Luxray: at 66
   and later), so a player can weaken the box early to carry great moves into
   the hardest splits. The gap crosses splits, by R8.
+
+## 5. Togepi (2026-10-06)
+
+Shown: Togepi from Cynthia's egg, hatching at 1, knows Growl and Charm; it
+learns Metronome 6; Togetic at 10 learns Sweet Kiss 10, Yawn 15, Encore 19,
+Follow Me 24, Wish 28, Ancient Power 33 (its first attack), Safeguard 37,
+Baton Pass 42, Double-Edge 46 and Last Resort 51; Togekiss (Shiny Stone) has
+Air Slash, Aura Sphere, Extreme Speed and Sky Attack at level 1 only. No
+Fairy or Flying attack by level-up at all. The sheet put the egg in
+Gardenia's split; Ian corrected it.
+
+Ian's verdict, verbatim:
+
+As togepi is only received in Fantina split and is always as an egg, the
+movesets before then are treated the same.
+
+1. Ancient power as its only attacking move is ridiculous. You hit the nail
+   on the head with what stands out, so I will just talk about the utility
+   moves: Growl=Pretty bad, better than leer. Charm=Incredible, better than
+   screech. Metronome=useless (too random). Sweet Kiss=Incredible, as good as
+   swagger. Yawn=incredible. Encore=SSS tier, every single pokemon that gets
+   encore needs to have a damn good reason to get it. Follow Me=SSS tier, can
+   potentially trivialize/completely change how you plan for doubles fights,
+   same as encore reasoning. Wish=Fantastic, better than synthesize.
+   Safeguard=Pretty solid. Baton Pass=Absolutely incredible but only if there
+   is a move that gives boosts (Ancient power doesn't really count given its
+   inconsistency); given that togekiss doesn't learn any boosting moves, it
+   is useless here.
+2. Togekiss is known as a) a very versatile pokemon, and b) one with an
+   incredible amount of coverage. This is a case where it having access to a
+   bunch of coverage TMs to compete with its incredible utility moves is fine
+   because ultimately the pokemon can only have 4 moves learned so improving
+   the quality of its learnset makes the choices harder without
+   proportionally making the pokemon "better".
+
+The rules drawn from it:
+
+- **R20, a late gift's early moves arrive together.** A line first had in a
+  later split (an egg, a gift, a late catch) gets every move below that
+  split's cap at once, so their order below the cap does not matter; only
+  the set it holds by the cap does. The checker's sheets put Cynthia's egg in
+  Gardenia's split, but it is received in Fantina's: the balance tools'
+  catch data has the egg's split wrong.
+- **R7, the tiers grow.** SSS, rationed: Encore and Follow Me, each given
+  only with a strong reason (Follow Me can reshape a double battle). Fantastic:
+  Wish (better than Synthesis). Incredible: Charm (better than Screech),
+  Sweet Kiss (as good as Swagger), Yawn. Pretty solid: Safeguard. Pretty bad:
+  Growl (still better than Leer). Useless: Metronome (too random).
+- **R21, Baton Pass needs a boost to pass.** It is incredible on a line that
+  learns a boosting move and useless otherwise; Ancient Power's chance of a
+  boost does not count.
+- **R22, a support line still needs real attacks.** One coverage attack as
+  the only attack is ridiculous: a support line gets own-type attacks too.
+- **R23, breadth is choice, not power.** Four slots cap what a Pokemon can
+  use, so a versatile line (Togekiss) may have broad coverage and many good
+  utility moves, by level-up or TM: a richer list makes the choice harder
+  without making the Pokemon proportionally stronger.
