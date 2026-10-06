@@ -639,3 +639,96 @@ The rules drawn from it:
   where an ability keeps it (Shell Armor and Battle Armor stop the critical
   hits that ignore it).
 - **R7, more tiers.** Great: Iron Defense.
+
+## 15. Delibird (2026-10-06)
+
+Shown: Delibird (Ice/Flying), caught at 33 in Candice's split or 38 in the
+Galactic split, with Oxide's buffed 90 Attack, 85 Special Attack and 100
+Speed and Adaptability on offer, learns Present and nothing else; its egg list
+(trainers only) holds Ice Punch, Ice Shard, Rapid Spin, Quick Attack, Aurora
+Beam and Future Sight.
+
+Ian's verdict, verbatim:
+
+Obviously this move list is terrible; needs a full movelist rework and given
+its pretty mid BST should be placed earlier in the game (somewhere around
+fantina/maylene splits IMO) as an immediate power pokemon that likely won't
+last too long.
+
+The rules drawn from it:
+
+- **R36, a mid line can be an early carry.** A line of middling total stats
+  with a real kit is placed earlier in the game (Delibird around Fantina's or
+  Maylene's split), as an immediate power Pokemon that will not last long.
+  Where a line is caught is part of its design; moving Delibird's encounters
+  is the encounter track's work (the tracker).
+- Delibird's list is rebuilt from nothing, to R17 (a buffed line's kit
+  follows its new stats).
+
+## The locked rules (2026-10-06, after the fifteen)
+
+These are the rules from the fifteen lines above, locked before Ian judges the
+five exam lines, whose verdicts go to `learnset-exam.md` and are never read by
+the generator. The generator and the new checks are built from this section.
+
+**Shape over the game.**
+R1 five or six usable moves by the first split's cap, with some flavour;
+R2 two or three new moves per stage per split, and a stage reached late
+learns what it would have missed; R20 a late gift's or catch's moves below
+its split's cap arrive together, so only the set by the cap matters;
+R25 no move lost below an evolution level; R8 an evolution or learn-level
+choice only counts if it crosses a split; R19 delay demons in two kinds (an
+earlier stage learns the big moves sooner, or a held middle stage past about
+66 earns payoff moves, a top setup move among the prizes); R10 a
+stone-evolved final form keeps learning late, starting about three splits on;
+R30 the final form's kit is what matters most, with its signature attack;
+R36 a middling line with a real kit can be an early carry.
+
+**Attacks.**
+R11 an attack of each of the line's types, early, and a strong own-type
+attack in good time; R3 an early own-type attack on the weaker stat fills a
+gap safely; R14 strong early neutral attacks are welcome; R29 priority is
+always a boon; R22 a support line still gets real own-type attacks; R34 a
+mixed attacker gets plenty of both kinds; R9 rampage moves count only once
+they are one-turn.
+
+**Coverage.**
+R4 the first coverage move by the second split; R5 several coverage moves
+over the game, Kaizo's list for the line as the reference for types; R15
+coverage on the line's attacking stat that makes sense for it; R35 a very
+strong line may have less coverage, never almost none; R23 a versatile line
+may have broad coverage and utility, since breadth is choice, not power.
+
+**Utility.**
+R7 the tiers below; R21 Baton Pass only with a boost to pass; R32 a setup
+move only beside attacks it boosts; R27 guaranteed speed control counts as
+incredible utility; R33 a blocking move is valued for catching too; R12 the
+good mid-game kit: a strong own-type attack, a hazard or status spreader, a
+second status move and coverage (Popplio, R28, is the model early kit).
+
+**Fit.**
+R31 abilities decide which moves suit a line (Serene Grace, Sheer Force,
+Shell Armor and Battle Armor so far); R17 a buffed line's kit follows its new
+stats; R16 every line gets later-generation moves, placed by Oxide since
+Kaizo has none; R13 a strong evolution is reachable only from a split that
+suits it; R26 moves bad for the player but good for trainers go to the
+trainers' palette; R18 Roar belongs on wild Pokemon, where its risk is a
+feature; R24 Protect, Double Team and one-hit KO moves leave the player's
+lists; R6 no move weaker than one of the same type already learned.
+
+**The utility tiers.**
+
+| Tier | Moves |
+|---|---|
+| SSS, rationed | Encore, Follow Me, Toxic, Dragon Dance and every move raising Speed and an attacking stat (Quiver Dance, Shell Smash), Mirror Move where it applies |
+| Fantastic | Wish, Confuse Ray, Mean Look and the blocking moves |
+| Incredible | Charm, Sweet Kiss, Swagger, Yawn, Synthesis, Icy Wind and other sure speed control |
+| Great | Agility, Tickle, Iron Defense |
+| Good | Scary Face, Screech, Stun Spore, Toxic Spikes, Curse, Rock Polish, Baby-Doll Eyes, Life Dew, Spite (with limited PP) |
+| Pretty solid | Safeguard, Captivate |
+| Okay | Charge, Sing, Sand-Attack, Lucky Chant, Flail, Baton Pass with a boost |
+| Niche, used sparingly | Aromatherapy, Fire Spin, Natural Gift, Worry Seed |
+| Bad | Growl, Leer, Tackle, Bind, Growth, Water Sport, Smokescreen, Roar for the player, Refresh, Mist, Pain Split (except very bulky, low-HP lines) |
+| Useless | Metronome, Sweet Scent, Mud Sport, Rage, Grudge, Wring Out, Baton Pass without a boost |
+| Out of player lists | Protect, Double Team, every one-hit KO move; Ingrain (too dangerous) |
+| Leaving the game or reworked | Fury Attack, Feint; Psywave; the rampage moves (one-turn); Hyper Beam and the other two-turn moves; the multi-hit review |
