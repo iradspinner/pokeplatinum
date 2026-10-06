@@ -61,6 +61,10 @@ copy "restart-checks.md" "notes/restart-checks.md"
 copy "prompt-audit-2026-10-02.md" "notes/prompt-audit-2026-10-02.md"
 copy "plugin-review-2026-10-06.md" "notes/plugin-review-2026-10-06.md"
 copy "learnset-checks.md" "notes/learnset-checks.md"
+copy "learnset-baseline.md" "notes/learnset-baseline.md"
+for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
+    copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
+done
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "species-id-scheme.md" "notes/species-id-scheme.md"
