@@ -134,8 +134,9 @@ how random it can make fights.
 
 A whole-game ruling, applied at once and not counted in the exam: an attack
 below 90 percent accuracy is very hard to justify for the player, since it
-makes fights random (`learnset-insights.md`). Poison Fang's power is a move
-question put to Ian.
+makes fights random (`learnset-insights.md`). Poison Fang's power was put to
+Ian, who answered the same day: it takes Kaizo's version, 90 power with a 40%
+chance to badly poison (a move change, not counted in the exam).
 
 What the rewrite must show for the line itself: Knock Off reachable at or
 after capture, a fuller pool with elemental fang coverage by level-up, and the
