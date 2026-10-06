@@ -238,4 +238,6 @@ read, so they are written here too. Each is a standing instruction.
   restate it to him as a short list of pass/fail checks, each saying how it
   is verified (by the session alone, or by Ian in game with the session
   reading the result), which pass today, and what he must decide; prompt him
-  to reword or rework the request into that form. Run the cheap checks first.
+  to reword or rework the request into that form. Run the cheap checks first,
+  and claim nothing as done, fixed or passing without the output in hand
+  (Ian, 2026-10-06, from the superpowers plugin's verification skill).
