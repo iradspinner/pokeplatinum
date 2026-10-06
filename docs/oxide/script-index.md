@@ -19,7 +19,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Item balls | 332 | 327 | 0 | 5 | 0 | 2 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3236 | 2976 | 215 | 45 | 0 | 93 |
-| Variables | 1124 | 1082 | 31 | 11 | 0 | 32 |
+| Variables | 1125 | 1082 | 31 | 12 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -5797,7 +5797,7 @@ Flags:
 Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0 (added, Oxide), VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide).
-- Checked: VAR_MAP_LOCAL_0x00, VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide).
+- Checked: VAR_MAP_LOCAL_0x00, VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide), VAR_GAUNTLET_SECTION (added, Oxide).
 
 ### Victory Road 2F
 
@@ -8436,7 +8436,7 @@ Variables:
 - Set: VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 - Checked: VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 
-Scripts nothing reaches: script 6 `FieldMoves_Fog_Unused` (line 343), script 8 `FieldMoves_Dummy8` (line 462).
+Scripts nothing reaches: script 6 `FieldMoves_Fog_Unused` (line 346), script 8 `FieldMoves_Dummy8` (line 465).
 
 Could not read: 2 commands with no name.
 

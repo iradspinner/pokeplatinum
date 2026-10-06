@@ -317,12 +317,12 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_field_moves:377"], "daily": false, "flag": 123, "name": "FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_field_moves:380"], "daily": false, "flag": 123, "name": "FLAG_USED_DEFOG_IN_ROUTE_209_LOST_TOWER_5F", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "vars": [
-     {"at": ["scripts_field_moves:91"], "name": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16561},
-     {"at": ["scripts_field_moves:90"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16589},
-     {"at": ["scripts_field_moves:94"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16589}
+     {"at": ["scripts_field_moves:94"], "name": "VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16561},
+     {"at": ["scripts_field_moves:93"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16589},
+     {"at": ["scripts_field_moves:97"], "name": "VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16589}
     ]
    },
    "file": "scripts_field_moves",
@@ -336,12 +336,12 @@
    "unreached": [
     {
      "label": "FieldMoves_Fog_Unused",
-     "line": 343,
+     "line": 346,
      "number": 6
     },
     {
      "label": "FieldMoves_Dummy8",
-     "line": 462,
+     "line": 465,
      "number": 8
     }
    ]
@@ -8103,6 +8103,7 @@
     "vars": [
      {"at": ["scripts_victory_road_1f:17", "scripts_victory_road_1f:48"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["events_victory_road_1f:326"], "commit": "3a3472432", "name": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16492},
+     {"at": ["events_victory_road_1f:336", "events_victory_road_1f:346", "events_victory_road_1f:356"], "commit": "37ef0df04", "name": "VAR_GAUNTLET_SECTION", "op": "check", "origin": "added", "reached": true, "source": "Oxide", "var": 16527},
      {"at": ["scripts_victory_road_1f:16", "scripts_victory_road_1f:47"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
      {"at": ["scripts_victory_road_1f:49", "scripts_victory_road_1f:53"], "commit": "3a3472432", "name": "VAR_OBJ_GFX_ID_0", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16416},
      {"at": ["scripts_victory_road_1f:191"], "commit": "3a3472432", "name": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE", "op": "set", "origin": "added", "reached": true, "source": "Oxide", "var": 16492}
@@ -18859,10 +18860,10 @@
    "vanilla": 513
   },
   "vars": {
-   "Oxide": 11,
+   "Oxide": 12,
    "base ROM": 31,
    "gone": 32,
-   "total": 1124,
+   "total": 1125,
    "vanilla": 1082
   }
  }
