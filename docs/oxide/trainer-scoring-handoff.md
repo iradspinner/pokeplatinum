@@ -1,5 +1,40 @@
 # Trainer scoring: the handoff from the three-gym run
 
+## Summary for Ian (kept current with every commit; last 2026-10-06)
+
+**Outcome.** The scorer reads a fight by playing it turn by turn in the
+simulator at the game's real odds, 100 fights a reading (75 at real odds,
+25 very unlucky), and reports how often it is won, how many Pokemon faint
+and how often it is won with none fainting. A boss gets a six the team
+search chooses from the box; an ordinary trainer gets a random six from the
+box's stronger half. Goals 1 and 2 (Roark's split, then the run through
+Fantina at 33) are passed. On 2026-10-06 the Kaizo study's comb of Roark's
+split was read (one of eighteen checks passed; you approved the comb as
+built), learnset checks 2 and 3 went to the balance track, and the change
+to Poison Fang left no reading stale.
+
+**Your action items.** None today. The next ones come as the study writes
+each split: the fights its readings flag. When you want double and tag
+battles read (about 60 fights after Roark's split), say when; the estimate
+is below.
+
+**Next steps, and how long each takes on this machine.** The study's
+exports are done (`goal3.csv`, the boxes after Fantina's split, the blind
+pools at 19 to 33, in `~/oxide-trials/kaizo-teams/`).
+
+| Step | Takes |
+|---|---|
+| Goal 3: each split's bosses, read by the team search as the study writes the split | about 1 to 2 hours a boss; about 22 hours for all 39, or 15 with one set of labels a boss |
+| Each split's ordinary trainers, read blind | 5 to 30 minutes each, several at once |
+| Double and tag battles, on the backlog: build and check the planner for them | about 3 to 4 working sessions, then your check of one hand-played double |
+| Then reading the 60 or so doubles | roughly 60 to 100 hours of machine time, if a double costs 2 to 3 times a single |
+
+The rest of this document is the track's working record. The latest
+readings are in its sections dated 2026-10-03 and 2026-10-06, from "Goal 2's
+readings" to "Learnset checks 2 and 3".
+
+## The brief
+
 This is the brief for the agent that takes over training Oxide's trainer
 scorer. On 2026-09-30 Ian and the Oxide Overseer played Roark, Mars 1 and
 Gardenia by hand on the fight simulator, as a fresh three-gym run optimised
@@ -2174,6 +2209,20 @@ the session on every reading's pool, fails today at both caps. One
 adjustment: keep the stronger half, but swap its weakest members for the
 strongest that resist the type most of the pool fears. His decision; a
 re-read of the sixteen blind trainers then takes about 1.5 hours.
+
+Ian keeps the rule as it is (2026-10-06, relayed by the Overseer): "Given
+it's the first split of the game, I'm fine with it being a bit
+biased/inaccurate with a skewed box here." No pool is adjusted for a shared
+weakness, and the comb's readings above stand, every blind one drawn from
+the stronger half.
+
+Ian approved the comb as built (2026-10-06, relayed by the Overseer): the
+teams are "all in the approximate right ballpark (barry and roark aren't
+perfect, but I want to move on from the first split as I think it can
+give funky data)". Roark's split is not read again; once he approves the
+study's combs of Gardenia's and Fantina's splits, the three go into the
+trainer files together and goal 3 reads those two splits' bosses (the
+tracker's Scheduled list).
 
 ## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
 
