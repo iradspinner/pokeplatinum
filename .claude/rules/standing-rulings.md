@@ -131,7 +131,8 @@ read, so they are written here too. Each is a standing instruction.
   trainer's and the player's, rolls twice and keeps the result worse for the
   player (the trainer's 1-in-24 crit lands about 1 in 12 and a 10% status
   about 19%; the player's own crits and secondary effects land less often,
-  and its full-paralysis and confusion checks go against it). Its three
+  and its full-paralysis and confusion checks go against it). Quick Claw
+  and Focus Band roll against the player too (Ian, 2026-10-06). Its three
   numbers are reported beside the real-odds ones, as a very unlucky fight.
   Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
   unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). The
@@ -247,7 +248,8 @@ read, so they are written here too. Each is a standing instruction.
   2026-10-06). Luck items are allowed on trainers: Quick Claw, Focus Band,
   King's Rock, Razor Fang and the like, his own teams' Quick Claws included
   (Ian, 2026-10-06); the evasion items (BrightPowder, Lax Incense) stay
-  under the evasion-is-rare rule. No level-1 Focus Sash and Endeavor sets.
+  under the evasion-is-rare rule. A Focus Sash may go on a lead that carries
+  the boss's trade (Ian, 2026-10-06). No level-1 Focus Sash and Endeavor sets.
   No overlevelled optional trainers. Oxide adds some double battles. An
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
