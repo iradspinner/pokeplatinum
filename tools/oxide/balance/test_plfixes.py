@@ -4,6 +4,7 @@ simulator, each checked on that fight (the Overseer, 2026-09-30).
     PYTHONPATH=. python3 -m tools.oxide.balance.test_plfixes
 """
 import collections
+import os
 import random
 
 from . import fightai, plscore, perfectline as pl, fightsim as fs
@@ -445,6 +446,24 @@ def blind_pool_checks():
                  f"{len(set(drawn))} different sixes in 75 draws")]
 
 
+def map_weather_checks():
+    """The study and blind readings start in the trainers' map weather, as
+    a story fight does: Roark's file and Youngster Darius's (Oreburgh's gym,
+    permanent sand) in sand, Youngster Tristan's (Route 203) in none. The
+    comb read all three with no weather until 2026-10-06."""
+    from . import plstep3, plstudy, plteam_test
+    recs = plstudy.fixed(plteam_test.box(plstep3.ROARK, 16))
+    got = {}
+    for stem in ("leader_roark", "youngster_darius", "youngster_tristan"):
+        st, _k, _f = plstudy.prepare([os.path.join(plstudy.RES, stem + ".json")], "Roark", 16, recs,
+                                     plstudy.stock({}))
+        got[stem] = st.get("base_weather")
+    story = plscore.prepare(plscore.parse_fight("roark"))["st"].get("base_weather")
+    ok = got == {"leader_roark": "Sand", "youngster_darius": "Sand", "youngster_tristan": None} and story == "Sand"
+    return [("study and blind readings start in the map's weather, as the story fight does", ok,
+             f"{got}; the story fight's Roark {story}")]
+
+
 # The Kaizo study's worked examples brought these moves (2026-10-03).
 STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
               ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
@@ -593,6 +612,7 @@ def study_effect_checks():
     outcomes = plplan.turn_outcomes(b, ("move", mv(barboach, "Mud-Slap")), ("move", talk), 7)
     total = sum(p for _c, p in outcomes)
     out += blind_pool_checks()
+    out += map_weather_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

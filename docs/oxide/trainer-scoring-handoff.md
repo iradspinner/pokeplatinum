@@ -11,7 +11,9 @@ box's stronger half. Goals 1 and 2 (Roark's split, then the run through
 Fantina at 33) are passed. On 2026-10-06 the Kaizo study's comb of Roark's
 split was read (one of eighteen checks passed; you approved the comb as
 built), learnset checks 2 and 3 went to the balance track, and the change
-to Poison Fang left no reading stale.
+to Poison Fang left no reading stale. Three of the comb's readings (Roark
+and two of his gym trainers) ran without the gym's permanent sand; the
+reader now takes every trainer's map weather, and they are not read again.
 
 **Your action items.** None today. When you want double and tag battles
 read (about 60 fights after Roark's split), say when; the estimate is
@@ -2236,6 +2238,19 @@ give funky data)". Roark's split is not read again; once he approves the
 study's combs of Gardenia's and Fantina's splits, the three go into the
 trainer files together and goal 3 reads those two splits' bosses (the
 tracker's Scheduled list).
+
+**Three of these readings had no sand** (found 2026-10-06 on the Overseer's
+question). Oreburgh's gym has permanent sand, which the game starts every
+battle there in, and the story path (goals 1 and 2, the team search) gave
+it; the study's reader, which read the comb, started every fight clear.
+Roark, Youngster Darius and Youngster Jonathon were read that way. The
+reader now takes each trainer's map weather by file name, and a weather
+move now ends a map's weather for good, as the game's scripts do, where
+the simulator had brought it back (no team today meets that case: every
+weather move on a weathered map sets the map's own weather, which fails).
+The three are not read again (the Overseer, 2026-10-06): Roark is read in
+goal 3 on the QA ROM's files, and Darius and Jonathon wait for the full
+reading. Goal 3's Ace Trainers on Routes 215, 217 and 228 needed the fix.
 
 ## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
 
