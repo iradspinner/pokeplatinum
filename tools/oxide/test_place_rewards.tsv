@@ -1,0 +1,91 @@
+# Test data for tools/oxide/test_place_rewards.py, made from the TM pass
+# draft's set (docs/oxide/tm-pass-set.tsv on balance-learngen-v2, 2026-09-30).
+# Not a reward table: no placement in it is to be committed to the game.
+reward	copies	kind	split	map	place	replaces	trainer_id	note
+ITEM_TM40	1	trainer	Wake	MAP_HEADER_ROUTE_214			TRAINER_PI_CARLOS	draft: defeating pi_carlos (scale 2.3)
+ITEM_TM72	1	trainer	Candice	MAP_HEADER_ROUTE_217			TRAINER_SKIER_BJORN	draft: defeating skier_bjorn (scale 2.3)
+ITEM_TM14	1	ball	Candice	MAP_HEADER_LAKE_ACUITY		ITEM_TM14		draft: Blizzard
+ITEM_TM31	2	ball	Fantina	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM31		draft: Brick Break
+ITEM_TM55	2	gift	Wake	MAP_HEADER_PASTORIA_CITY_GYM		ITEM_TM55		draft: Brine
+ITEM_TM08	1	gift	Byron	MAP_HEADER_ROUTE_211_EAST		ITEM_TM77		draft: Bulk Up
+ITEM_TM09	2	ball	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM09		draft: Bullet Seed
+ITEM_TM04	1	gift	Byron	MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE		ITEM_TM48		draft: Calm Mind
+ITEM_TM57	1	trainer	Volkner	MAP_HEADER_ROUTE_222			TRAINER_FISHERMAN_BRETT	draft: defeating fisherman_brett (scale 2.3)
+ITEM_TM32	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM32		draft: Curse
+ITEM_TM79	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM79		draft: Dark Pulse
+ITEM_TM11	2	ball	Wake	MAP_HEADER_ROUTE_212_NORTH		ITEM_TM11		draft: Dazzling Gleam
+ITEM_TM28	2	ball	Wake	MAP_HEADER_RUIN_MANIAC_CAVE_SHORT		ITEM_TM28		draft: Dig
+ITEM_TM02	2	ball	Gardenia	MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1		ITEM_TM02		draft: Dragon Claw
+ITEM_TM59	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_B1F		ITEM_TM59		draft: Dragon Pulse
+ITEM_TM60	2	gift	Maylene	MAP_HEADER_VEILSTONE_CITY_GYM		ITEM_TM60		draft: Drain Punch
+ITEM_TM26	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_HM08		draft: Earthquake
+ITEM_TM58	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_JOHN	draft: defeating cyclist_john (scale 2.3)
+ITEM_TM53	1	ball	Galactic	MAP_HEADER_ROUTE_226		ITEM_TM53		draft: Energy Ball
+ITEM_TM42	2	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM42		draft: Facade
+ITEM_TM54	2	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM45		draft: False Swipe
+ITEM_TM38	1	ball	Byron	MAP_HEADER_LAKE_VERITY		ITEM_TM38		draft: Fire Blast
+ITEM_TM35	1	ball	Byron	MAP_HEADER_FUEGO_IRONWORKS_BUILDING		ITEM_TM35		draft: Flamethrower
+ITEM_TM91	2	gift	Byron	MAP_HEADER_CANALAVE_CITY_GYM		ITEM_TM91		draft: Flash Cannon
+ITEM_TM52	1	ball	HQ	MAP_HEADER_VALOR_LAKEFRONT		ITEM_TM85		draft: Focus Blast
+ITEM_TM21	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_3F		ITEM_TM21		draft: Frustration
+ITEM_TM19	2	ball	Byron	MAP_HEADER_ROUTE_209		ITEM_TM19		draft: Giga Drain
+ITEM_TM68	2	ball	Fantina	MAP_HEADER_ETERNA_CITY		ITEM_TM46		draft: Giga Impact
+ITEM_TM86	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_GYM		ITEM_TM86		draft: Grass Knot
+ITEM_TM74	2	ball	Fantina	MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM		ITEM_TM90		draft: Gyro Ball
+ITEM_TM64	2	gift	Maylene	MAP_HEADER_GAME_CORNER		ITEM_TM64		draft: Haze
+ITEM_TM10	1	trainer	Roark	MAP_HEADER_ROUTE_203			TRAINER_YOUNGSTER_MICHAEL	draft: defeating youngster_michael (scale 2.3)
+ITEM_TM37	1	ball	Galactic	MAP_HEADER_ROUTE_228		ITEM_TM37		draft: Hydro Pump
+ITEM_TM15	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F		ITEM_TM67		draft: Hyper Beam
+ITEM_TM13	1	ball	HQ	MAP_HEADER_ROUTE_216		ITEM_TM13		draft: Ice Beam
+ITEM_TM56	2	gift	Volkner	MAP_HEADER_ROUTE_222		ITEM_TM56		draft: Iron Defense
+ITEM_TM23	1	ball	Byron	MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM		ITEM_TM23		draft: Iron Tail
+ITEM_TM87	2	ball	Wake	MAP_HEADER_POKEMON_MANSION_OFFICE		ITEM_TM87		draft: Knock Off
+ITEM_TM16	2	ball	Gardenia	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM70		draft: Light Screen
+ITEM_TM50	1	ball	Galactic	MAP_HEADER_STARK_MOUNTAIN_ROOM_2		ITEM_TM50		draft: Overheat
+ITEM_TM66	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_COWGIRL_SHELLEY	draft: defeating cowgirl_shelley (scale 2.3)
+ITEM_TM88	1	trainer	Gardenia	MAP_HEADER_ROUTE_204_SOUTH			TRAINER_LASS_SAMANTHA	draft: defeating lass_samantha (scale 2.3)
+ITEM_TM84	2	ball	Byron	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM84		draft: Poison Jab
+ITEM_TM29	1	ball	HQ	MAP_HEADER_ROUTE_211_EAST		ITEM_TM29		draft: Psychic
+ITEM_TM33	2	gift	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM78		draft: Reflect
+ITEM_TM44	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_JAMES	draft: defeating cyclist_james (scale 2.3)
+ITEM_TM27	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_TM07		draft: Return
+ITEM_TM05	1	trainer	Candice	MAP_HEADER_ROUTE_216			TRAINER_SKIER_EDWARD	draft: defeating skier_edward (scale 2.3)
+ITEM_TM69	1	trainer	Candice	MAP_HEADER_ROUTE_217			TRAINER_SKIER_SHAWN	draft: defeating skier_shawn (scale 2.3)
+ITEM_TM80	2	ball	Galactic	MAP_HEADER_MT_CORONET_2F		ITEM_TM80		draft: Rock Slide
+ITEM_TM39	1	trainer	Gardenia	MAP_HEADER_ROUTE_204_SOUTH			TRAINER_YOUNGSTER_TYLER	draft: defeating youngster_tyler (scale 2.3)
+ITEM_TM51	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_1F		ITEM_TM49		draft: Roost
+ITEM_TM18	2	ball	Barry	MAP_HEADER_ROUTE_223		ITEM_TM18		draft: Scald
+ITEM_TM43	2	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM43		draft: Secret Power
+ITEM_TM30	2	ball	Byron	MAP_HEADER_ROUTE_210_NORTH		ITEM_TM30		draft: Shadow Ball
+ITEM_TM65	2	gift	Fantina	MAP_HEADER_HEARTHOME_CITY_DP_GYM_LEADER_ROOM		ITEM_TM65		draft: Shadow Claw
+ITEM_TM34	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_BREEDER_ALBERT	draft: defeating breeder_albert (scale 2.3)
+ITEM_TM63	2	gift	Maylene	MAP_HEADER_VEILSTONE_CITY		ITEM_TM63		draft: Signal Beam
+ITEM_TM62	1	trainer	Wake	MAP_HEADER_ROUTE_214			TRAINER_COLLECTOR_JAMAL	draft: defeating collector_jamal (scale 2.7)
+ITEM_HM05	2	ball	Maylene	MAP_HEADER_SOLACEON_RUINS_ROOM_7		ITEM_HM05		draft: Skitter Smack
+ITEM_TM82	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_RYAN	draft: defeating cyclist_ryan (scale 2.3)
+ITEM_TM36	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_B2F		ITEM_TM36		draft: Sludge Bomb
+ITEM_TM22	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_AXEL	draft: defeating cyclist_axel (scale 2.3)
+ITEM_TM76	2	gift	Roark	MAP_HEADER_OREBURGH_CITY_GYM		ITEM_TM76		draft: Stealth Rock
+ITEM_TM47	2	ball	Maylene	MAP_HEADER_ROUTE_209		ITEM_TM47		draft: Steel Wing
+ITEM_TM71	1	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM71		draft: Stone Edge
+ITEM_TM12	1	ball	Candice	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM01		draft: Taunt
+ITEM_TM25	1	ball	Byron	MAP_HEADER_LAKE_VALOR		ITEM_TM25		draft: Thunder
+ITEM_TM73	1	ball	HQ	MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE		ITEM_HM02		draft: Thunder Wave
+ITEM_TM24	1	ball	Byron	MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE		ITEM_TM24		draft: Thunderbolt
+ITEM_TM92	2	gift	Wake	MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE		ITEM_TM92		draft: Trick Room
+ITEM_TM89	2	ball	Byron	MAP_HEADER_CANALAVE_CITY		ITEM_TM89		draft: U-turn
+ITEM_TM03	1	trainer	Byron	MAP_HEADER_ROUTE_210_NORTH			TRAINER_BLACK_BELT_ADAM	draft: defeating black_belt_adam (scale 2.3)
+ITEM_TM81	2	ball	Byron	MAP_HEADER_ROUTE_221		ITEM_TM81		draft: X-Scissor
+ITEM_TM41	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_1F		ITEM_TM41		draft: Zen Headbutt
+# Synthetic rows, for the kinds and forms the draft has none of: a new ball, a
+# ball named by its object id, a new hidden item, a hidden item named by its
+# flag, two mart rows and a trainer with two rewards. Element 7 items, which
+# vanilla places nowhere. Test data, like the rows above.
+ITEM_EVIOLITE	1	ball	Gardenia	MAP_HEADER_ROUTE_202	163,806			synthetic: a new ball beside the Potion
+ITEM_ROCKY_HELMET	1	ball	Roark	MAP_HEADER_ROUTE_203	LOCALID_ITEM_REPEL			synthetic: a ball named by its object id
+ITEM_WEAKNESS_POLICY	1	hidden	Roark	MAP_HEADER_ROUTE_203	230,755			synthetic: a new hidden item
+ITEM_SAFETY_GOGGLES	1	hidden	Fantina	MAP_HEADER_ROUTE_206	FLAG_OBTAINED_HIDDEN_ROUTE_206_ETHER	ITEM_ETHER		synthetic: a hidden item named by its flag
+ITEM_ABSORB_BULB		mart	Roark		MART_SPECIALTIES_ID_OREBURGH	ITEM_NET_BALL		synthetic: a mart swap
+ITEM_CELL_BATTERY		mart	Gardenia		MART_SPECIALTIES_ID_FLOAROMA			synthetic: a mart addition
+ITEM_ASSAULT_VEST	1	trainer	Roark	MAP_HEADER_ROUTE_202			TRAINER_YOUNGSTER_TRISTAN	synthetic: a trainer with two rewards
+ITEM_RED_CARD	2	trainer	Roark	MAP_HEADER_ROUTE_202			youngster_tristan	synthetic: the second, by its lower-case name
