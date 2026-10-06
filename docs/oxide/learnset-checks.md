@@ -47,7 +47,13 @@ what the baseline reports against.
    split: a line passes when it is in the screen's top sixes for at least one
    boss in the split it is first caught in or the next. The report lists the
    lines no boss ever takes and the ones every boss takes, which Ian ruled are
-   both signs of balance to fix (2026-10-02).
+   both signs of balance to fix (2026-10-02). The screen counts hits, so it
+   cannot see a plan that wins on turns: it ranked the Mars 1 PP-stall six
+   1,831st of 38,760, and only the race recovered it. So walls, stallers and
+   support lines (Togetic, a Vullaby stall) may read as having no niche when
+   they have one. Its "never taken" list is a lead to check with the race or
+   a reading, not a verdict, and a flagged support line is never fixed just by
+   giving it more attacks (a side agent's caution, kept by Ian, 2026-10-06).
 3. **No dead moves and no universal ones.** From the same screen, how often
    each move is among the four the screen picks for a chosen Pokemon, totalled
    over all bosses. The screen picks moves by a fixed rule, so this shows what
