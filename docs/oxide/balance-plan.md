@@ -23,15 +23,22 @@ in the game, and a few named cases; the report sets each out with its
 context and a recommendation.
 
 **Next steps.** The rescore on the new lists, checks 2 and 3 and the gate
-(an hour or two of machine time); then step 5, the Overseer's and the
-Scoring Agent's; then the TM pass rerun on the new lists, with the reward
-table and the gauntlet list (2 to 3 hours, and 2 to 3 to write it in).
+(an hour or two of machine time); then step 5, the checks and the sealed
+exam, which the Overseer runs; then the TM pass rerun on the new lists,
+with the reward table and the gauntlet list (2 to 3 hours, and 2 to 3 to
+write it in). No boss is read until the rewrite and the TM pass have both
+landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
 
 **Ian's ruling of 2026-10-06 for this track.** Additions to a level-up list
 come from the whole pool of moves Oxide has; later games' learnsets
 (hg-engine's, or looked up) are inspiration, not pick lists. For level-up
 lists it supersedes the rule of 2026-09-27 under which only later games'
 level-up moves came in and TM, tutor and egg moves waited for the TM pass.
+He accepted two narrowings for alpha 1 the same day (relayed by the
+Overseer): an added status move must already be linked to the line, and an
+unlinked attack only fills a gap a rule asks for; and added moves keep
+under a per-split ceiling, which sets aside his answer 8 of 2026-09-27 (no
+ceiling on coverage power) for this pass.
 
 **Where it stood (2026-09-29).** Every score is rescored on the combined
 landing branch (`balance-combined-rescore`), and two passes agreed on all

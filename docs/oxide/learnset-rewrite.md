@@ -22,11 +22,23 @@ short is R2's two new moves per split, which holds through Byron's split
 and falls away from HQ on, where lines run out of moves that fit them.
 Lists average 16.8 entries, up from 14.0; the ROM builds.
 
-**Not yet verified.** The B3 and B6 scores are being recomputed on the new
-lists; checks 2 and 3 (the scoring track's screen) and the gate follow it.
-Step 5 (the exam, read by a reviewer who did not write the lists, and the
-bosses against their bands) is the Overseer's and the Scoring Agent's.
-Nothing is checked in game.
+**Checks 2 and 3** (the scoring track's screen) barely move the lines the
+bosses take (36 taken by none against 38) and show the screen picking real
+moves where it picked filler, but leaning on a few staple coverage moves.
+
+**The stored scores** (B3 and B6) are recomputed on the new lists, all
+1,030 verified by a second pass with no disagreement. No story fight moves
+on Ian's fight scale and no ordinary trainer changes band (one pair, Hikers
+Damon and Maurice, reads 3.4 where it read 4.2). That scale is built from
+safe switch-ins, which turn on the player's types and bulk more than their
+moves, so it barely sees a learnset change; the boss readings of step 15
+are the real check of the rewrite's power.
+Step 5 is these checks and the sealed exam, read by an independent
+reviewer the Overseer runs on the lists at 47503db009; the rewrite lands
+on those. No boss is read until the rewrite and the TM pass have both
+landed (Ian, 2026-10-06): one goal 3 reading on the QA ROM then checks the
+bosses against their bands (`alpha-readiness.md`, step 15). Nothing is
+checked in game.
 
 **Ian's action items**, each set out with its context below:
 
@@ -37,15 +49,18 @@ Nothing is checked in game.
 3. Decide a few named cases: Unown and Wooloo, three thin coverage counts,
    16 inaccurate attacks with no accurate stand-in, three early
    fixed-damage moves, and the delay demons.
+4. Say whether the generator should spread its coverage away from a few
+   staple moves (Rock Tomb, Bulldoze, Iron Head) before the rewrite lands.
 
 **Next steps.**
 
 | Step | What | Who | About how long |
 |---|---|---|---|
-| 4 | Rescore, checks 2 and 3, the gate, then this report closed | Balance Agent | an hour of machine time |
-| 5 | The exam judged blind; the bosses read against their bands | Overseer, Scoring Agent | an hour, plus hours of machine time |
+| 4 | Rescore, checks 2 and 3, the gate, then this report closed | Balance Agent | an hour or two of machine time |
+| 5 | The checks above and the sealed exam, judged by an independent reviewer | Overseer | about an hour |
 | Reworks | The engine side of Ian's rulings on the questions below | a cloud job | a session |
 | TM pass | Rerun on the new lists, with the reward table and gauntlets | Balance Agent | 2 to 3 hours, then 2 to 3 to write it in |
+| 15 | The bosses read against their bands, once on the QA ROM | Scoring Agent | hours of machine time |
 
 ## Ian's questions
 
@@ -154,7 +169,22 @@ The others, kept unless Ian changes them:
   too early (R13). That is the item's placement, for the item pass, not the
   lists.
 
-### 4. Two notes for the TM pass
+### 4. Staple coverage (check 3)
+
+The screen behind check 3 (below) shows the rewrite's coverage leaning on a
+few staple moves: among the screened team members, Rock Tomb is known by
+922, Bulldoze by 896, Iron Head by 618, Earthquake by 588, Bite by 553 and
+Ice Beam by 545. Earthquake was already the screen's top pick on Oxide's
+lists, but Rock Tomb, Body Press and Iron Head are new near-universal
+picks, which check 3 ("no universal moves") sets against. The generator
+can weigh a move down by how many lines already have it, which spreads
+coverage over the types' other moves (Smack Down, Rock Slide and Stone
+Edge's accurate kin; Mud Shot and High Horsepower; Flash Cannon and Steel
+Wing). Recommendation: yes, before the rewrite lands. It changes lists, so
+the scores and checks run again (about an hour of machine time), and the
+exam is read on the new lists.
+
+### 5. Two notes for the TM pass
 
 R5's coverage by level-up draws most on staple TM moves: Bulldoze is new
 on 66 lines' lists, Rock Tomb on 64, Ice Beam on 52, Icy Wind on 50 and
@@ -167,19 +197,45 @@ back for being TM-only in later games.
 
 Ian, 2026-10-06, to the Balance Agent: additions to a level-up list come
 from the whole pool of moves Oxide has; later games' learnsets (hg-engine's,
-or looked up) are inspiration, not pick lists. The generator therefore
-considers every working move for every line, scored by fit (type, stats,
-abilities, role), and a move a later game, Generation 4 or Kaizo gives the
-line counts in its favour without limiting the choice. It supersedes, for
-level-up lists, the rule of 2026-09-27 that only later games' level-up moves
-come in and TM, tutor and egg moves wait for the TM pass. The Overseer
-recorded it in the standing rulings and the balance-rules skill.
+or looked up) are inspiration, not pick lists. It supersedes, for level-up
+lists, the rule of 2026-09-27 that only later games' level-up moves come in
+and TM, tutor and egg moves wait for the TM pass.
+
+The generator applies it with two narrowings, which Ian accepted for alpha
+1 the same day (relayed by the Overseer):
+
+1. A status move it adds must already be linked to the line (Oxide's own
+   lists, canon by any way, or Kaizo's lists); an unlinked attack comes in
+   only to fill a gap a rule asks for (R11, check 1, R4, R5's count, R7,
+   R30, R16 or the late move), never to make up R2's count.
+2. The added attacks and utility moves keep under a ceiling for their
+   split (the power and tier ceilings under "How the generator works").
+   For this pass this sets aside his answer 8 of 2026-09-27, which put no
+   ceiling on coverage power.
+
+The standing rulings and the Kaizo comparison record both on `oxide`.
 
 ## The checks: Oxide's lists against the rewrite
 
 Checks 1, 4 and 5 are step 1's, run again; check 1 no longer counts the
 moves no list may rely on. Checks 2 and 3 are the scoring track's screen
-and follow the rescore.
+(`plniche.py`, run unchanged on 39 boss fights and 3 rolled boxes each;
+its output is in `~/oxide-trials/learnset-rewrite/`, where its "oxide"
+column is the rewrite and its "v3" column Oxide's lists before it).
+
+| Check | Oxide | Rewrite |
+|---|---|---|
+| 2. Lines met by a boss in their window that no boss takes, of 86 (leads, not verdicts) | 38 | 36 |
+| 2. Lines every boss that met them takes | 20 | 18 |
+| 3. Moves known by a screened member, never picked | 134 of 433 | 173 of 442 |
+| 3. The screen's most-picked moves | Earthquake, Tackle, Take Down, Crunch, Brave Bird | Earthquake, Taunt, Rock Tomb, Body Press, Iron Head |
+
+The screen takes about the same lines with either version, since it ranks
+by stats and type matchups first. It now picks real moves where it picked
+filler (Tackle, Growl, Fury Attack and Double Team were among Oxide's top
+twenty picks), and more moves go unpicked because the lists are longer
+and the screen takes one attack of each type. The staple coverage is
+question 4 above.
 
 | Check | Rule | Oxide | Rewrite |
 |---|---|---|---|
