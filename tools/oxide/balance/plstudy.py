@@ -10,13 +10,14 @@ trainers blind from a realistic box; every reading 75 fights at real odds
 and 25 very unlucky, by the play-out planner at budget 64):
 
 - blind (taylor, catherine, grunt): each fight draws a six at random from
-  the box the run would have there, every member with four fixed moves by
-  the scorer's rule over its whole pool, as goal 2's records are made: the
-  player brings what it carries, not a six chosen for this trainer.
+  the stronger half of the box the run would have there, never a member
+  held below the cap (plteam.blind_pool, Ian, 2026-10-04), every member
+  with its own fixed moves: the player brings what it carries, not a six
+  chosen for this trainer.
 - section (the grunt's gauntlet): the four grunts of the Eterna building's
   1F and 2F in a row, the example first and the other three as res/ has
-  them, one random six from the box carrying its HP, status, PP and items
-  from fight to fight with no healing (plplan.CARRY).
+  them, one random six from the box's stronger half carrying its HP,
+  status, PP and items from fight to fight with no healing (plplan.CARRY).
 - search (gardenia, maylene): the team search (plteam.search) and Ian's
   standard reading of its winner.
 
@@ -28,6 +29,7 @@ evolutions taken, no new captures (a real box at 38 would be stronger).
 
     PYTHONPATH=. tools/oxide/capped python3 -m tools.oxide.balance.plstudy taylor catherine grunt section
 """
+import collections
 import json
 import os
 import random
@@ -179,7 +181,35 @@ def examples():
                               lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
         "kaizo_fantina": (("Leader Fantina", 0), "Fantina", 33,
                           lambda: plgoal2.box("fantina"), stock(plgoal2.FIGHTS["fantina"][2]), "kaizo"),
-    }
+    } | comb_roark(roark)
+
+
+# The study's comb of Roark's split (the Overseer, 2026-10-06), read from
+# out/comb/ as the examples are. Ordinary trainers blind at the cap in force
+# when met: 11 before Barry 2, on goal 2's Barry 2 box with its own moves,
+# and 16 from Route 203 on, on the hand run's Roark box with the scorer's
+# moves. Roark at 16 and Barry 2 at 11 (a Piplup player's file) by the team
+# search on the boxes goal 2 and the Kaizo anchor read them on. The Jubilife
+# tag pair, a double in Gardenia's split, waits for doubles.
+COMB = os.path.expanduser("~/oxide-trials/kaizo-teams/out/comb")
+COMB_BEFORE_BARRY_2 = ["youngster_tristan", "youngster_logan", "lass_natalie", "school_kid_harrison",
+                       "school_kid_christine"]
+COMB_AT_16 = ["youngster_michael", "lass_madeline", "lass_kaitlin", "youngster_dallas", "youngster_sebastian",
+              "camper_curtis", "picnicker_diana", "worker_colin", "worker_mason", "youngster_jonathon",
+              "youngster_darius"]
+
+
+def comb_roark(roark):
+    path = lambda stem: os.path.join(COMB, stem + ".json")    # noqa: E731
+    out = {f"comb_{s}": (path(s), "Roark", 11, lambda: goal2_records("barry_2"), stock({}), "blind")
+           for s in COMB_BEFORE_BARRY_2}
+    out |= {f"comb_{s}": (path(s), "Roark", 16, lambda: fixed(plteam_test.box(plstep3.ROARK, 16)),
+                          stock(roark["boosters"]), "blind") for s in COMB_AT_16}
+    out["comb_leader_roark"] = (path("leader_roark"), "Roark", 16, lambda: plteam_test.box(plstep3.ROARK, 16),
+                                stock(roark["boosters"]), "search")
+    out["comb_rival_route_203_piplup"] = (path("rival_route_203_piplup"), "Roark", 11,
+                                          lambda: plgoal2.box("barry_2"), stock({}), "search")
+    return out
 
 
 def pooled(tally):
@@ -191,20 +221,34 @@ def pooled(tally):
 
 
 def draw(rng, keys, n):
-    """n different sixes drawn at random from the box."""
-    out = []
-    while len(out) < n:
-        s = tuple(sorted(rng.sample(keys, min(6, len(keys))), key=keys.index))
-        if s not in out:
-            out.append(s)
-    return out
+    """n sixes drawn at random from the pool, one for each fight, each
+    draw on its own: a small pool repeats a six, as a player can. (Drawing
+    n different sixes looped forever once the stronger half of a box left
+    fewer than n of them: eight members make 28.)"""
+    return [tuple(sorted(rng.sample(keys, min(6, len(keys))), key=keys.index)) for _ in range(n)]
 
 
-def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11):
-    """The blind reading: each fight with its own random six."""
+def read_drawn(st, boss_keys, flags, sixes, luck, seed0, procs):
+    """The drawn sixes read one fight per draw: a six drawn k times is read
+    on k fights in one call, so that its fights take different seeds
+    (plteam.read seeds a six by its members and the fights it has had)."""
+    counts = collections.Counter(sixes)
+    tally = None
+    for k in sorted(set(counts.values())):
+        tally = plteam.read(st, boss_keys, flags, [s for s, c in counts.items() if c == k], k, {}, luck,
+                            seed0=seed0, procs=procs, tally=tally)
+    return tally
+
+
+def blind(st, keys, boss_keys, flags, real=75, unlucky=25, procs=None, seed=11, cap=None, split=None,
+          leave_out=()):
+    """The blind reading: each fight with its own random six from the box's
+    stronger half, never a member held below the cap (plteam.blind_pool,
+    Ian, 2026-10-04)."""
     rng = random.Random(seed)
-    a = plteam.read(st, boss_keys, flags, draw(rng, keys, real), 1, {}, "real", seed0=seed, procs=procs)
-    b = plteam.read(st, boss_keys, flags, draw(rng, keys, unlucky), 1, {}, "unlucky", seed0=seed + 1, procs=procs)
+    keys = plteam.blind_pool(st, keys, split, cap, leave_out)
+    a = read_drawn(st, boss_keys, flags, draw(rng, keys, real), "real", seed, procs)
+    b = read_drawn(st, boss_keys, flags, draw(rng, keys, unlucky), "unlucky", seed + 1, procs)
     rows = [r for rs in a.rows.values() for r in rs]
     return pooled(a), pooled(b), plteam.losing_enemies(rows), fainted(rows)
 
@@ -244,11 +288,13 @@ def _section_job(args):
     return won, deaths, won and deaths == 0, faints
 
 
-def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
-    """The gauntlet section read blind: each run one random six through
-    every fight in a row."""
+def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13, cap=None, split=None,
+            leave_out=()):
+    """The gauntlet section read blind: each run one random six from the
+    box's stronger half (as blind's) through every fight in a row."""
     _JOB.update(st=st, fights=fights)
     rng = random.Random(seed)
+    keys = plteam.blind_pool(st, keys, split, cap, leave_out)
     out = {}
     for luck, n, s0 in (("real", real, seed), ("unlucky", unlucky, seed + 1)):
         jobs = [(six, s0 * 1000 + i, luck) for i, six in enumerate(draw(rng, keys, n))]
@@ -260,6 +306,13 @@ def section(st, keys, fights, real=75, unlucky=25, procs=None, seed=13):
             out["faints_to"] = plteam.losing_enemies([(w, d, c, f) for w, d, c, f in rows])
             out["fainted"] = fainted(rows)
     return out
+
+
+def trainer_ids(stems):
+    """The res/ trainer ids of these file stems (an example keeps the stem
+    of the trainer it rebuilds), to keep them out of the blind draw's panel."""
+    by_stem = {t["stem"]: k for k, t in data.oxide_trainers().items()}
+    return [by_stem[s] for s in stems if s in by_stem]
 
 
 def run(name, procs=12, without=()):
@@ -275,7 +328,7 @@ def run(name, procs=12, without=()):
         st, keys, fights = prepare(paths, split, cap, recs, stk)
         result["trainers"] = [[st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in bk]
                               for bk, _f in fights]
-        out = section(st, keys, fights, procs=procs)
+        out = section(st, keys, fights, procs=procs, cap=cap, split=split, leave_out=trainer_ids(SECTION))
         result.update(real=out["real"], unlucky=out["unlucky"], faints_to=out["faints_to"], fainted=out["fainted"])
     else:
         st, keys, fights = (kaizo_prepare(*path[:2], split, cap, recs, stk, *path[2:]) if kind == "kaizo"
@@ -283,7 +336,9 @@ def run(name, procs=12, without=()):
         boss_keys, flags = fights[0]
         result["trainer"] = [st["pokemon"][k]["species"] + f" {st['pokemon'][k]['level']}" for k in boss_keys]
         if kind == "blind":
-            real, unlucky, faints_to, result["fainted"] = blind(st, keys, boss_keys, flags, procs=procs)
+            real, unlucky, faints_to, result["fainted"] = blind(
+                st, keys, boss_keys, flags, procs=procs, cap=cap, split=split,
+                leave_out=trainer_ids([os.path.basename(path)[:-5]]))
         else:
             out_dir = os.path.join(OUT, name)
             summary = plteam.search(f"study_{name}", None, recs, stk, out_dir, procs=procs,
@@ -313,4 +368,4 @@ if __name__ == "__main__":
     for example in sys.argv[1:]:
         # "taylor:Starly" reads Taylor with Starly left out of the box.
         example, _sep, left = example.partition(":")
-        run(example, without=tuple(x for x in left.split(",") if x))
+        run(example, procs=int(os.environ.get("STUDY_PROCS", 12)), without=tuple(x for x in left.split(",") if x))

@@ -420,6 +420,31 @@ def held_state_checks():
     return out
 
 
+def blind_pool_checks():
+    """The blind draw's pool (Ian, 2026-10-04): the stronger half of the
+    members at the cap, by their margins against the split's trainers, six
+    at least; a member held below the cap never in it. Read on the hand
+    run's box at 19, which keeps a level-6 Starly, in Gardenia's split."""
+    from . import plstep3, plteam, plteam_test
+    recs = plteam_test.box(plstep3.ROARK, 19)
+    st = fs.prepare("Gardenia", [], None, cap=19, given_side=recs)
+    keys = [f"p{i}" for i in range(len(recs))]
+    pool_ = plteam.blind_pool(st, keys, "Gardenia", 19)
+    ready = [k for k in keys if st["pokemon"][k]["level"] >= 19]
+    power = plteam.split_strength(st, ready, "Gardenia", 19)
+    dropped = [k for k in ready if k not in pool_]
+    below = [st["pokemon"][k]["species"] for k in keys if k not in ready]
+    ok = (len(pool_) == max(6, (len(ready) + 1) // 2) and not set(pool_) - set(ready)
+          and min(power[k] for k in pool_) >= max(power[k] for k in dropped) and below)
+    # 75 fights from eight members, which make only 28 different sixes.
+    from . import plstudy
+    drawn = plstudy.draw(random.Random(1), pool_, 75)
+    ok = ok and len(drawn) == 75 and all(len(s) == 6 and set(s) <= set(pool_) for s in drawn)
+    return [("the blind pool is the stronger half at the cap, never one held below it; 75 draws from it",
+             ok, f"keeps {len(pool_)} of {len(keys)}; below the cap and out: {', '.join(below)}; "
+                 f"{len(set(drawn))} different sixes in 75 draws")]
+
+
 # The Kaizo study's worked examples brought these moves (2026-10-03).
 STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
               ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
@@ -567,6 +592,7 @@ def study_effect_checks():
     picked = fs.sleep_talk_pick(b, foe)
     outcomes = plplan.turn_outcomes(b, ("move", mv(barboach, "Mud-Slap")), ("move", talk), 7)
     total = sum(p for _c, p in outcomes)
+    out += blind_pool_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

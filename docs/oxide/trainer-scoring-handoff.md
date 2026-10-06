@@ -90,7 +90,10 @@ faints a fight through Drifblim's Unburden ("Goal 2 read again"). The Kaizo
 study's five worked examples are read ("The Kaizo study's worked
 examples"), and so is the Kaizo anchor, Kaizo's six readable bosses of its
 first three splits on goal 2's boxes, which those boxes win 0 to 81 times
-in 100 but for Fantina's second team ("The Kaizo anchor"). Goal 3 is held
+in 100 but for Fantina's second team ("The Kaizo anchor"). By Ian's
+answers of 2026-10-04 a blind six now comes from the box's stronger half,
+never a member held below the cap, and the Jubilife grunts' tag battle is
+in Gardenia's split ("Ian's answers (2026-10-04)"). Goal 3 is held
 until it follows the study's comb, by the tracker's Scheduled list. Every
 reading is 75 fights at real odds and 25 very unlucky. The perfect-line store has been stale since the simulator
 fixes of 2026-09-30 (`test_pline` passes 1 of 3); its rescore, and the Kaizo
@@ -2064,6 +2067,135 @@ reading took 52 to 98 minutes on twelve workers. Kaizo's Fantina first
 stopped partway: Sleep Talk drew its move outside the play-outs' dice, so
 two replays of one turn could differ. It now draws through them, and no
 earlier reading had a Pokemon talking in its sleep.
+
+## Ian's answers (2026-10-04, relayed by the Overseer)
+
+1. An ordinary trainer is read blind from a random six of the box's
+   stronger half, never a member held below the cap. The targets: an
+   ordinary trainer won cleanly 80 to 85 percent of the time; no boss above
+   95 percent won; the hardest bosses near the easiest of Kaizo's on our box
+   (about 80 percent won). The numbers order fights; they do not measure
+   them absolutely.
+2. The Jubilife grunts' tag battle belongs to Gardenia's split, as the game
+   scripts it.
+3. Trainers may use TM and tutor moves freely.
+
+**What changed.** `plteam.blind_pool` gives the members a blind six is
+drawn from, in both the study's reader and the perfect-line scorer: the
+members at the cap, ranked by `plteam.split_strength`, and the top half of
+them, six at least. A member's strength is its mean margin against every
+Pokemon of the split's ordinary singles trainers, as the screen reckons
+margins (hits it needs against hits it takes, half a hit for moving first,
+clipped to 3 either way), with its own moves; the trainer being read is
+left out of that panel, so the reading stays blind. A first try ranked by
+stats and the best attack alone put Onix and Bibarel at the top of the hand
+run's box at 19 and left Vulpix and Charmander out, against a split of
+Grass trainers; the margins keep both, as a player would. Ranked so, the
+blind examples keep 8 of Taylor's 16, 15 of Catherine's 31 and 12 of the
+grunt's 24, and the level-6 Starly is out of all three; a check in
+`test_plfixes` (72 of 72) holds the rule. The Jubilife pair (trainers 414
+and 415) joins `plscore.SPLIT_OVERRIDE`: Jubilife is first reached before
+Roark, so `splits.trainer_split` puts them in his split, but the Oreburgh
+Gym's win sets VAR_JUBILIFE_CITY_STATE to 3, at which Jubilife's script
+starts the battle; `trainers.csv` now has the pair first in Gardenia's
+split. No reader of this track checks a trainer's moves for legality, so
+TM and tutor moves already pass. Ian accepted this definition of the
+stronger half for now (2026-10-06, relayed by the Overseer), to be adjusted
+if it keeps landing on bad boxes.
+
+The study's four blind examples read again with the stronger half (won /
+faints / clean; the earlier readings stay beside them as `-olddraw`):
+
+| Example | Real odds | Very unlucky | Before, real odds |
+|---|---|---|---|
+| Taylor, at 19 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 97 / 0.48 / 80 |
+| Catherine, at 33 | 100 / 0.27 / 83 | 100 / 0.28 / 84 | 95 / 0.89 / 63 |
+| the Eterna 1F grunt, at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.00 / 100 |
+| the Eterna section, at 27 | 100 / 0.00 / 100 | 100 / 0.00 / 100 | 100 / 0.01 / 99 |
+
+Catherine now sits in Ian's 80 to 85 band; Taylor and the Eterna grunts
+read trivial. The first try at the new draw hung on Taylor: it asked for
+75 different sixes from a pool of eight, which makes 28, so each fight now
+draws its own six and may repeat one.
+
+## The Kaizo study's comb of Roark's split (2026-10-06, for Ian's check)
+
+The study rebuilt Roark's split (`~/oxide-trials/kaizo-teams/out/comb/`,
+reported in its `roark.md`), and its expectations came from its own rough
+simulator, so the Overseer set three checks for the scorer's readings in
+their place: Roark, by the team search at 16 on the three-gym run's Roark
+box, 95 percent won or below; Barry 2, by the team search at 11 on goal 2's
+Barry 2 box (a Piplup player's file), 95 percent won or below; every other
+trainer but the Jubilife tag pair blind from the stronger half, at 11
+before Barry 2 and 16 after, 80 to 85 percent clean. `plstudy.py`'s
+`comb_*` entries read them from the study's files. Numbers are won /
+faints / clean; one of eighteen passes.
+
+| Trainer | Path | At | The study expected | Real odds | Very unlucky | Check |
+|---|---|---|---|---|---|---|
+| Youngster Tristan | required | 11 | 100 / 0.10 / 89 | 100 / 0.00 / 100 | 100 / 0.08 / 92 | fail, too easy |
+| Youngster Logan | required | 11 | 100 / 0.15 / 83 | 100 / 0.00 / 100 | 100 / 0.04 / 96 | fail, too easy |
+| Lass Natalie | required | 11 | 100 / 0.15 / 81 | 100 / 0.03 / 97 | 100 / 0.20 / 88 | fail, too easy |
+| School Kid Harrison | optional | 11 | 100 / 0.20 / 81 | 92 / 0.72 / 73 | 88 / 0.72 / 88 | fail, too hard |
+| School Kid Christine | optional | 11 | 100 / 0.15 / 85 | 100 / 0.01 / 99 | 100 / 0.00 / 100 | fail, too easy |
+| Barry 2 | required, boss | 11 | 93 / 3.0 / 0 | 100 / 2.72 / 0 | 92 / 2.76 / 0 | fail, over 95 won |
+| Youngster Michael | optional | 16 | 100 / 0.20 / 90 | 96 / 0.49 / 79 | 100 / 0.16 / 88 | fail, too hard |
+| Lass Madeline | optional | 16 | 100 / 0.15 / 84 | 100 / 0.20 / 87 | 96 / 0.60 / 72 | fail, too easy |
+| Lass Kaitlin | optional | 16 | 100 / 0.15 / 85 | 100 / 0.15 / 87 | 100 / 0.20 / 84 | fail, too easy |
+| Youngster Dallas | optional | 16 | 100 / 0.15 / 88 | 100 / 0.36 / 83 | 88 / 1.32 / 56 | pass |
+| Youngster Sebastian | optional | 16 | 100 / 0.10 / 87 | 100 / 0.01 / 99 | 100 / 0.00 / 100 | fail, too easy |
+| Camper Curtis | optional | 16 | 100 / 0.20 / 79 | 93 / 1.44 / 32 | 88 / 1.96 / 24 | fail, too hard |
+| Picnicker Diana | optional | 16 | 100 / 0.25 / 82 | 100 / 0.35 / 75 | 100 / 0.36 / 80 | fail, too hard |
+| Worker Colin | optional | 16 | 100 / 0.15 / 83 | 100 / 0.07 / 93 | 100 / 0.04 / 96 | fail, too easy |
+| Worker Mason | optional | 16 | 100 / 0.10 / 90 | 100 / 0.11 / 89 | 100 / 0.00 / 100 | fail, too easy |
+| Youngster Jonathon | optional | 16 | 100 / 0.15 / 77 | 100 / 0.15 / 87 | 100 / 0.36 / 84 | fail, too easy |
+| Youngster Darius | optional | 16 | 100 / 0.15 / 84 | 100 / 0.57 / 65 | 96 / 0.72 / 64 | fail, too hard |
+| Roark | required, boss | 16 | 90 / 2.3 / 5 | 99 / 1.91 / 4 | 92 / 2.48 / 0 | fail, over 95 won |
+
+The two bosses land on the study's faints (Barry 2's Munchlax wall takes
+146 of 204 Pokemon, Roark's Lileep 71 of 143) but are never lost at real odds;
+Barry 2's six is Piplup, Wooloo, Vulpix, Rookidee, Dottler and Krabby,
+Roark's Prinplup, Nidorino, Onix, Charmander, Steenee and Geodude.
+
+**For Ian: the blind pool leans on one weakness.** Ranked against Roark's
+split, whose trainers are mostly Rock types, the stronger half at 16 is
+Prinplup, Bibarel, Barboach, Wartortle, Krabby, Finneon, Onix and Geodude:
+all eight are weak to Grass, and Vulpix, Charmander, Corvisquire, Nidorino
+and Steenee are out. Curtis's Roselia at 14 (Mega Drain, Stun Spore,
+Growth) then makes 92 of his 108 faints, and Michael's Grass team and
+Darius's Kabuto read hard for the same reason. At 11 the box keeps nine
+members at the cap, so the half is the six-member floor, the same six in
+every fight, four of them Water types; Harrison's Abra, with Charge Beam,
+makes 45 of his 54 faints while the other four trainers there read
+trivial. Ian accepted the stronger half "to be adjusted if it keeps landing
+on bad boxes" (2026-10-06), and these are bad boxes. As a check: "a blind
+pool has no weakness shared by more than half its members", verified by
+the session on every reading's pool, fails today at both caps. One
+adjustment: keep the stronger half, but swap its weakest members for the
+strongest that resist the type most of the pool fears. His decision; a
+re-read of the sixteen blind trainers then takes about 1.5 hours.
+
+## Learnset checks 2 and 3 (2026-10-06, for the balance track's baseline)
+
+Ian's plan of learnsets by check and verify (`docs/oxide/learnset-checks.md`)
+gives this track checks 2 (a niche) and 3 (move use), both from the team
+search's matchup screen alone. `plniche.py` runs the screen on goal 3's 39
+kept boss fights (Ace Trainers and doubles left out), three rolled boxes
+each, once with oxide's level-up lists and once with learnset v3's, which
+live only in `docs/oxide/learnset-proposal.tsv` on `balance-learngen-v2`
+(`plteam.mon_data` reads another set of lists when `OXIDE_LEARNSETS` names
+one). The results, JSON and a summary, are in
+`~/oxide-trials/learnset-baseline/`; the balance job folds them into its
+report. The screen counts 38 lines taken by no boss of their window under
+either set, leads rather than verdicts with the support-like marked, and
+134 moves never picked under oxide's lists against 125 under v3's; v3
+changes the screen's picture for 13 lines only. Two limits the report
+names: a box over 30 members is cut first by summed margins (from
+Maylene's split on, 11 to 50 members a box), which drops walls and support
+lines before the screen sees them; and an early box is small enough that
+the top five sixes hold most of it, so "taken" says little there and the
+best six says more. Most never-picked attacks are outclassed in their
+pools, since the screen takes one attack a type.
 
 ## The cost of labelling every boss (2026-10-02)
 

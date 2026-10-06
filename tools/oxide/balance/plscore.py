@@ -36,8 +36,11 @@ SEED = 20260930
 # named by the player's starter (the data files are named that way too).
 # Trainers the placements leave to their map's split although the player
 # meets them later: Officer Somnu at Lake Verity is the return visit
-# before Mars 2 (docs/oxide/pairwise-candidates.md, pair 23).
-SPLIT_OVERRIDE = {420: "Candice"}
+# before Mars 2 (docs/oxide/pairwise-candidates.md, pair 23); the two
+# Jubilife grunts of the tag battle beside Lucas or Dawn come only after
+# Roark, since the Oreburgh Gym's win sets VAR_JUBILIFE_CITY_STATE to 3 and
+# Jubilife's script starts the battle at 3 (Ian, 2026-10-04).
+SPLIT_OVERRIDE = {420: "Candice", 414: "Gardenia", 415: "Gardenia"}
 STARTER_VARIANT = {"SPECIES_TURTWIG": "TURTWIG", "SPECIES_CHIMCHAR": "CHIMCHAR", "SPECIES_PIPLUP": "PIPLUP"}
 
 
@@ -258,7 +261,12 @@ def read_fight(prep, n_boxes=BOXES, blind=BLIND, planned=PLANNED, procs=None, se
         box = prep.get("save_box") or boxes.box_from(box_source, prep["split"], random.Random(seed * 100 + bi))
         keys = box_keys(st, box, rng)
         boss_keys, flags, _starter = variant_for(prep, box)
-        for j, team in enumerate(sixes(keys, blind, rng)):
+        # A blind six comes from the box's stronger half, never a member held
+        # below the cap (plteam.blind_pool, Ian, 2026-10-04).
+        from . import plteam
+        read = [int(prep["key"][2:])] if str(prep["key"]).startswith("tr") else []
+        pool_ = plteam.blind_pool(st, keys, prep["split"], leave_out=read)
+        for j, team in enumerate(sixes(pool_, blind, rng)):
             jobs.append((team, boss_keys, flags, f"blind:{bi}", budget, strict, seed + 1000 * bi + j))
         weights = pl.matchup_wins(st, keys, boss_keys, flags, budget)
         for j, team in enumerate(sixes(keys, planned, rng, weights)):

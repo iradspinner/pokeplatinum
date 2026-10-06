@@ -65,14 +65,41 @@ def move_names():
 # ---- a box member's moves -------------------------------------------------------------------------
 
 def mon_data(sp):
+    """A species' data as the tree has it; with OXIDE_LEARNSETS naming a file
+    of other level-up lists ({species: [[level, move], ...]}, such as a
+    learnset proposal's), its list there instead, the rest unchanged."""
     with open(os.path.join(REPO, "res/pokemon", sp[len("SPECIES_"):].lower(), "data.json")) as fh:
-        return json.load(fh)
+        d = json.load(fh)
+    other = _other_learnsets()
+    if sp in other:
+        d["learnset"] = dict(d.get("learnset") or {}, by_level=[list(e) for e in other[sp]])
+    return d
+
+
+_OTHER = {}
+
+
+def _other_learnsets():
+    path = os.environ.get("OXIDE_LEARNSETS")
+    if not path:
+        return {}
+    if path not in _OTHER:
+        with open(path) as fh:
+            _OTHER[path] = json.load(fh)
+    return _OTHER[path]
 
 
 def species_name(sp):
+    """A species constant as the calculator spells it."""
     blob = fs.teamscore._blob()
     n = sp[len("SPECIES_"):].replace("_", " ").title().replace(" ", "-")
-    return n if n in blob["poks"] else n.replace("-", "")
+    if n in blob["poks"] or n.replace("-", "") in blob["poks"]:
+        return n if n in blob["poks"] else n.replace("-", "")
+    # Regional forms and punctuated names (Ninetales-Alola, Mr. Rime), which
+    # the calculator fails on under the plain spelling.
+    from ..encounters import canon
+    alt = canon.showdown_name(sp)
+    return alt if alt in blob["poks"] else n.replace("-", "")
 
 
 def chain(sp, caught, cap, holds=None, magnetic=False):
@@ -246,6 +273,47 @@ def margins(st, keys, boss_keys, moves, mine, theirs, speed):
             taken = math.ceil(1.0 / theirs[(e, k)]) if theirs[(e, k)] > 0.01 else 99
             out[i, j] = min(taken - hits + (0.5 if speed[k] > speed[e] else -0.5), 3.0)
     return out
+
+
+_STRENGTH = {}
+
+
+def split_strength(st, keys, split, cap, leave_out=()):
+    """Each box member's strength in its split, for the blind draw: its mean
+    margin, as the screen reckons it and clipped to 3 either way, against
+    every Pokemon of the split's ordinary singles trainers (plgen.trainers),
+    with its own moves. No trainer being read is in view, so the reading
+    stays blind (`leave_out`: trainer ids kept out of the panel, such as the
+    one read). {key: strength}, cached by the box and the panel."""
+    from . import data, plgen
+    recs = [st["pokemon"][k] for k in keys]
+    panel = [tr for tr in plgen.trainers((split,)) if tr not in set(leave_out)]
+    tag = json.dumps([split, cap, panel, [(r["species"], r["level"], list(st["moves"][k]))
+                                          for r, k in zip(recs, keys)]])
+    if tag not in _STRENGTH:
+        parties = [plscore.with_genders(data.oxide_trainers()[tr]) for tr in panel]
+        s2 = fs.prepare(split, parties, None, cap=cap, given_side=[dict(r, moves=list(st["moves"][k]))
+                                                                   for r, k in zip(recs, keys)])
+        own = [f"p{i}" for i in range(len(recs))]
+        foes = [k for party in s2["bosses"] for k in party]
+        mine, theirs, speed = matchups(s2, own, foes)
+        M = np.clip(margins(s2, own, foes, {k: s2["moves"][k] for k in own}, mine, theirs, speed), -3, 3)
+        _STRENGTH[tag] = {k: float(M[i].mean()) for i, k in enumerate(keys)}
+    return _STRENGTH[tag]
+
+
+def blind_pool(st, keys, split, cap=None, leave_out=()):
+    """The members an ordinary trainer's blind six is drawn from (Ian,
+    2026-10-04): never one held below the cap (the box's top level when no
+    cap is given), and of the rest the stronger half by split_strength, six
+    at least while the box has them, in box order."""
+    levels = {k: st["pokemon"][k]["level"] for k in keys}
+    top = cap if cap is not None else max(levels.values())
+    ready = [k for k in keys if levels[k] >= top] or list(keys)
+    power = split_strength(st, ready, split, top, leave_out)
+    ranked = sorted(ready, key=lambda k: -power[k])
+    kept = set(ranked[:max(6, (len(ranked) + 1) // 2)])
+    return [k for k in keys if k in kept]
 
 
 def score_sixes(M, size=6, depth=0.3, hole=2.0):

@@ -28,7 +28,13 @@ among those, the best position. Nothing tells it to stall, bait or pivot;
 those plays come out of this look-ahead on their own, and the three-gym
 run's planning ideas are the test of whether they do.
 
-**The six.** An ordinary trainer is read blind, from a realistic box. For a
+**The six.** An ordinary trainer is read blind: each of its simulated fights
+draws its own six at random from the stronger half of a realistic box,
+never a member held below the cap (Ian, 2026-10-04). The stronger half is
+judged without the trainer in view, by how each member fares on paper
+against the split's other ordinary trainers with its own moves, so the
+player brings the Pokemon it relies on that split, not a six chosen for
+this fight. For a
 boss the scorer picks its own six and moves from the box. It first scores
 every possible six on paper (who knocks out whom, in how many hits, who
 moves first), choosing each member's four moves for this fight. A fast,
@@ -47,22 +53,26 @@ first and faints second; the clean rate is reported, not ranked on. One
 fight in 25 moves a rate by four points, so differences of a few points
 between readings are noise.
 
-**What the numbers look like.** Readings so far, real odds, with the six the
-scorer chose (or our hand-played six where marked):
+**What the numbers look like.** Readings on the simulator of 2026-10-03,
+real odds, with the six the scorer chose:
 
 | Fight | Won | Faints |
 |---|---|---|
-| Roark, cap 16 (our six) | 100% | 0.07 |
 | Barry 2, cap 11 | 100% | 0.00 |
-| Mars 1, cap 19 (25 fights) | 100% | 0.00 |
-| Gardenia, cap 26 (25 fights) | 96% | 1.5 |
-| Jupiter 1, cap 27 | 100% | 0.07 |
+| Roark, cap 16 | 100% | 0.05 |
+| Mars 1, cap 19 | 100% | 0.16 |
+| Gardenia, cap 26 | 97% | 1.07 |
+| Jupiter 1, cap 27 | 100% | 0.19 |
 | Lucas and Dawn 2, cap 30 | 100% | 0.00 |
-| Fantina, cap 33 | 95% | 2.2 |
+| Fantina, cap 33 | 91% | 3.04 |
+
+Kaizo's own bosses of the same splits, read on the same boxes, are won 0 to
+81% of the time (Barry 2 0%, Roark 81%, Gardenia 24%, Jupiter 80%,
+Fantina 40%).
 
 **What it does not yet model.** Double battles' AI partners; Gravity,
 Foresight, Embargo and Judgment's plate; a two-to-five-hit move counts as
-three hits; Baton Pass passes nothing. Attract and Cute Charm need genders,
-and Wish, Spite, Recycle and Camouflage are being added (2026-10-03). The
+three hits; Baton Pass passes nothing; Camouflage and Secret Power's
+secondary effect need the battle's terrain; Smack Down does not ground. The
 learned judge misreads hard fights badly, so it only shortlists; every
 number above comes from the full scorer.
