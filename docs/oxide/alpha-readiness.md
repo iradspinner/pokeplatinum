@@ -26,8 +26,8 @@ guess, and says which.
 | 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore | Overseer, Balance Agent | | a few hours | 8 |
 | 13 | The QA ROM and test kit, handed to Ian | Overseer | | an hour | 4, 5, 10, 12 |
 | 14 | Ian's QA pass, from `docs/oxide/ingame-checklist.md` | Ian | | a day or two | 13 |
-| 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | 22 hours or more of machine time (its estimate) | 4, 8, 12 |
-| 16 | QA's hotfixes, then the alpha 1 ROM; any boss team landed after step 13 is read before the ROM is fixed | Overseer and the tracks, Scoring Agent | | depends on QA; about 15 to 20 minutes of machine time per re-read boss (Overseer's guess, from 22 hours for about 80 fights) | 14, 15 |
+| 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | 22 hours of machine time for its 38 bosses (its estimate), more for the Ace Trainers (estimate asked) | 4, 8, 12 |
+| 16 | QA's hotfixes, then the alpha 1 ROM; any boss team landed after step 13 is read before the ROM is fixed | Overseer and the tracks, Scoring Agent | | depends on QA; 1 to 2 hours of machine time for one re-read boss, about 35 minutes each when several are read together (the Scoring Agent's estimate) | 14, 15 |
 
 The scorer reads only the teams in the ROM Ian plays, never the study's working files, so its boss order and Ian's ratings describe the same fights (a side agent's catch, 2026-10-06). It does so on an extraction of the ROM's commit (`git archive`), with the boxes rebuilt on it; the Scoring Agent proved the route on a planted edit the same day, with no code change. The TM pass grows the Bag, so QA starts a fresh game on step 13's ROM, and the
 alpha starts another on step 16's. Doubles and tag battles stay unread in
