@@ -5,7 +5,7 @@ in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
 Kaizo comb; the splits it has finished when the TM pass lands go in. The
 Overseer updates this page as each step finishes and tells Ian, step by step.
 
-**Status on 2026-10-06.** Steps 1 and 9 are done, and step 11 is built. Step 2 is under way. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
+**Status on 2026-10-06.** Steps 1, 2, 4 and 9 are done, and step 11 is built. Step 3 (Ian's rulings on the move reworks) and step 6 (the reward table) are next. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
 two to three days, set mostly by Ian's three decision points (steps 3, 7 and
 14) and the TM pass. Every estimate is a session's own or the Overseer's
 guess, and says which.
@@ -13,9 +13,9 @@ guess, and says which.
 | # | Step | Owner | Status | Estimate | Needs |
 |---|---|---|---|---|---|
 | 1 | Learnset rewrite: the 16 new checks and the new baseline | Balance Agent | done (8b05da09c1) | | |
-| 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | done after a second loop (51b4ddeefb): rescored, checks 2 and 3 run, its gate passing; waits on Ian's yes to land | 2 to 4 hours (its estimate) | 1 |
+| 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | done: landed at 085f72211 after a second loop (Ian, 2026-10-06), gate 48 of 48 | 2 to 4 hours (its estimate) | 1 |
 | 3 | Ian rules on the thresholds and the move reworks | Ian | | | 2 |
-| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); the second loop is done; the five lines read right on a regression read, with two gaps left (Leafeon and Sylveon start late) | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
+| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); done: the rewrite landed at 085f72211; Leafeon's and Sylveon's late start (a rock or Charm, not a level) is fixed in the TM pass | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
 | 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | | about a day (Overseer's guess), then half a session (its estimate) | 3 |
 | 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
 | 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
