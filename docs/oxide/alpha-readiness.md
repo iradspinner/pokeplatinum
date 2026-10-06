@@ -49,11 +49,27 @@ Repo `~/pokeplatinum`. Invoke the `oxide-session` skill first, then
 flags. Work in two worktrees: `main-placements`, cut from `oxide`, and
 `main-gauntlets` (built and held at e5bf0f2cf, 318 commits behind `oxide`).
 
-Step 9, now, before the reward table exists:
+The Balance Agent's two tables, drafts until learnset step 5 closes (the
+formats are settled; the rows come in step 6):
 
-1. Write `tools/oxide/place_rewards.py`, with a test. It reads a reward table
-   (item, copies, kind: item ball, gift, trainer reward or mart, the map, the
-   place or the trainer) and writes each row into the map's events and
+- `docs/oxide/reward-placements.tsv`, the table the placement tool reads, one
+  row per placement: `reward` (item constant), `copies`, `kind` (ball,
+  hidden, gift, trainer or mart), `split`, `map` (map header constant),
+  `place` (the object's local id, or the mart's id), `replaces` (the item the
+  place holds today, so vanilla's balls and gifts are repointed and none is
+  lost), `trainer_id` (for kind trainer, the key into the next table),
+  `note`.
+- `docs/oxide/trainer-roles.tsv`, one row per trainer before the post-game:
+  `split`, `trainer_id`, `trainer`, `map`, `object`, `required`, `role`
+  (gauntlet, reward or none), `section` (the gauntlet section), `reward`,
+  `copies`, `size`, `reading`, `flag`, `note`. The gauntlets read `role` and
+  `section`; its reward columns are a copy for Ian, checked against the
+  placements table.
+
+Step 9, now, before the tables have rows:
+
+1. Write `tools/oxide/place_rewards.py`, with a test. It reads
+   `reward-placements.tsv` and writes each row into the map's events and
    scripts in the files' own style. A trainer reward is given once, when the
    player talks to the trainer after beating them, under a spare flag. A
    checker reads every placement back out of the built ROM with
