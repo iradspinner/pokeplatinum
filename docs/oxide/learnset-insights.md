@@ -730,5 +730,6 @@ lists; R6 no move weaker than one of the same type already learned.
 | Niche, used sparingly | Aromatherapy, Fire Spin, Natural Gift, Worry Seed |
 | Bad | Growl, Leer, Tackle, Bind, Growth, Water Sport, Smokescreen, Roar for the player, Refresh, Mist, Pain Split (except very bulky, low-HP lines) |
 | Useless | Metronome, Sweet Scent, Mud Sport, Rage, Grudge, Wring Out, Baton Pass without a boost |
+| Terrible (added during the exam, as whole-game tier rulings) | Memento, Haze |
 | Out of player lists | Protect, Double Team, every one-hit KO move; Ingrain (too dangerous) |
 | Leaving the game or reworked | Fury Attack, Feint; Psywave; the rampage moves (one-turn); Hyper Beam and the other two-turn moves; the multi-hit review |

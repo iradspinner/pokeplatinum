@@ -84,3 +84,31 @@ from level 20 onward, as the exception to the stone rule (R10's late, sparse
 lists do not apply), Sylveon reachable, and the points shown as facts
 addressed. Sylveon's reachability is a defect for the whole game and is in the
 tracker now.
+
+## 4. Koffing (2026-10-06)
+
+Shown: Koffing caught at 18 to 19 in Maylene's split knows Tackle, Smog,
+Smokescreen and Assurance. Weezing (at 35) learns Self-Destruct 19, Sludge 24,
+Haze 28, Gyro Ball 33, Explosion 40, Sludge Bomb 48, Destiny Bond 55 and
+Memento 63, its Double Hit lost below its evolution level; Galarian Weezing
+(Moon Stone, Poison/Fairy) learns Payback 23, Sludge 26, Toxic 29,
+Self-Destruct 34, Will-O-Wisp 38, Sludge Bomb 42, Pain Split 45, Strange Steam
+48 and Explosion 55. Shown as facts: up to three ways to faint on purpose and
+Destiny Bond on the player's list; Sludge until Sludge Bomb; coverage
+Assurance, Gyro Ball and Payback; utility Toxic, Will-O-Wisp, Haze, Pain
+Split, Smokescreen and Poison Gas; later-generation moves only on the
+Galarian branch.
+
+Ian's verdict, verbatim:
+
+Your analysis is apt, and memento is a terrible move. Haze is also a
+terrible move. Its coverage is pretty awful, and Galarian Weezing's moveset
+is significantly better than weezing to the point where IDK if someone would
+ever choose to have weezing unless they didn't have an available moon stone.
+
+Whole-game tier rulings, applied at once and not counted in the exam:
+Memento and Haze are terrible (`learnset-insights.md`'s tier table).
+
+What the rewrite must show for the line itself: real coverage, and the two
+branches close enough in worth that Weezing is a choice and not only the
+fallback without a Moon Stone, with the points shown as facts addressed.
