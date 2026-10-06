@@ -50,8 +50,12 @@
             [ 25, "MOVE_CONFUSE_RAY" ],
             [ 28, "MOVE_FIRE_PUNCH" ],
             [ 37, "MOVE_LAVA_PLUME" ],
+            [ 40, "MOVE_SCORCHING_SANDS" ],
             [ 43, "MOVE_FLAMETHROWER" ],
-            [ 58, "MOVE_FIRE_BLAST" ],
+            [ 45, "MOVE_MILK_DRINK" ],
+            [ 58, "MOVE_OVERHEAT" ],
+            [ 61, "MOVE_PSYCHIC" ],
+            [ 63, "MOVE_THUNDERBOLT" ],
             [ 67, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [

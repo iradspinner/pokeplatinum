@@ -464,6 +464,33 @@ def map_weather_checks():
              f"{got}; the story fight's Roark {story}")]
 
 
+def trick_room_checks():
+    """Saturn 2 opens in the game's permanent Trick Room on every path, from
+    the game's own list (battle_lib.c, sPermanentTrickRoomTrainers): the
+    story fight, and the study's reader on his own file (which started clear
+    until 2026-10-06). In the planner's battle the room stays through a
+    Trick Room and ten turns' ends; Roark's file opens with none."""
+    from . import plstep3, plstudy, plteam_test
+    listed = fs.permanent_trick_room()
+    recs = plstudy.fixed(plteam_test.box(plstep3.ROARK, 16))
+    prep = plscore.prepare(plscore.parse_fight("saturn_2"), given_side=recs)
+    boss_keys, flags, _ = prep["variants"][0]
+    b = pl.make_battle(prep["st"], ["p0", "p1", "p2"], boss_keys, flags, 0)
+    start = b.trick_room
+    pl.status_move(b, b.p.cur(), fs.move("Trick Room"), b.b.cur(), True)
+    for _ in range(10):
+        fs.end_of_turn(b)
+    study = {}
+    for stem in ("commander_saturn_galactic_hq", "leader_roark"):
+        st, _k, _f = plstudy.prepare([os.path.join(plstudy.RES, stem + ".json")], "HQ", 60, recs, plstudy.stock({}))
+        study[stem] = st["trick_room"]
+    ok = (listed == {"TRAINER_COMMANDER_SATURN_GALACTIC_HQ"} and prep["st"]["trick_room"] and start == 999
+          and b.trick_room == 999 and study == {"commander_saturn_galactic_hq": True, "leader_roark": False})
+    return [("Saturn 2 opens in the game's permanent Trick Room on the story and study paths", ok,
+             f"list {sorted(listed)}; story {prep['st']['trick_room']}, battle {start} then {b.trick_room}; "
+             f"study {study}")]
+
+
 # The Kaizo study's worked examples brought these moves (2026-10-03).
 STUDY_TEAM = [("SPECIES_BARBOACH", "Barboach", "Lonely", "Swift Swim", ["Hex", "Venoshock", "Assurance", "Mortal Spin"]),
               ("SPECIES_NACLI", "Nacli", "Impish", "Sturdy", ["Rapid Spin", "Toxic", "Rock Throw", "Gyro Ball"]),
@@ -613,6 +640,7 @@ def study_effect_checks():
     total = sum(p for _c, p in outcomes)
     out += blind_pool_checks()
     out += map_weather_checks()
+    out += trick_room_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))
@@ -993,6 +1021,53 @@ def main():
         firsts += bool(log) and log[0] == "p"
     results.append(("a slower Pokemon's Quick Claw moves it first about one time in five",
                     50 <= firsts <= 115, f"{firsts} of 400"))
+
+    # The very unlucky stress test (Ian, 2026-10-06): Quick Claw and Focus
+    # Band roll against the player, the trainer's firing if either of two
+    # rolls does and the player's only if both do. The player's claw above
+    # then fires about one time in twenty-five; the trainer's Focus Band
+    # saves a Bronzor at 1 HP about 19 times in 100 hits, against 10 at
+    # real odds. Each seed is played with and without the band, so a miss
+    # (Rock Throw is 90 percent) never counts as a save.
+    stressed = 0
+    for i in range(400):
+        c = pl.clone_battle(b)
+        c.rng = random.Random(i); c.dice = pl.RunDice(c.rng, True, luck="unlucky")
+        g, bz = c.p.cur(), c.b.cur()
+        g.hp, bz.hp = g.maxhp, bz.maxhp
+        log = []
+        orig = pl.use_move
+        pl.use_move = lambda bb, att, m, d, first, _o=orig, _l=log: (_l.append(att.side), _o(bb, att, m, d, first))
+        try:
+            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Calm Mind")))
+        finally:
+            pl.use_move = orig
+        stressed += bool(log) and log[0] == "p"
+    saves = {}
+    for luck in ("real", "unlucky"):
+        saves[luck] = 0
+        for i in range(1000):
+            alive = []
+            for band in ("Focus Band", None):
+                c = pl.clone_battle(b)
+                c.rng = random.Random(i); c.dice = pl.RunDice(c.rng, True, luck=luck)
+                g, bz = c.p.cur(), c.b.cur()
+                bz.item, bz.hp = band, 1
+                pl.attack(c, g, mv(g, "Rock Throw"), bz, True)
+                alive.append(bz.hp > 0)
+            saves[luck] += alive[0] and not alive[1]
+    dice = {}
+    for side in ("bad", "good"):
+        for kind, p in (("quickclaw", 0.2), ("focusband", 0.1)):
+            d = pl.RunDice(random.Random(7), True, luck="unlucky")
+            roll = (lambda: d.bad(kind, p)) if side == "bad" else (lambda: d.good(p, kind))
+            dice[f"{side} {kind}"] = round(sum(roll() for _ in range(20000)) / 20000, 3)
+    want = {"bad quickclaw": 0.36, "bad focusband": 0.19, "good quickclaw": 0.04, "good focusband": 0.01}
+    results.append(("the stress test rolls Quick Claw and Focus Band against the player",
+                    stressed <= 35 and 55 <= saves["real"] <= 130 and 130 <= saves["unlucky"] <= 220
+                    and all(abs(dice[k] - v) < 0.015 for k, v in want.items()),
+                    f"player's claw first {stressed} of 400; band saves {saves['real']} real, "
+                    f"{saves['unlucky']} unlucky of 1000; dice {dice}"))
 
     # Powder: Grass types are immune, and the AI knows; Leaf Guard stops
     # status in sun (the engine knows, the AI does not).

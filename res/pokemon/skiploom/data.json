@@ -38,14 +38,11 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
             [ 1, "MOVE_SYNTHESIS" ],
             [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_TACKLE" ],
             [ 4, "MOVE_SYNTHESIS" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
             [ 10, "MOVE_TACKLE" ],
-            [ 12, "MOVE_POISON_POWDER" ],
             [ 14, "MOVE_STUN_SPORE" ],
             [ 16, "MOVE_SLEEP_POWDER" ],
             [ 20, "MOVE_BULLET_SEED" ],
@@ -55,8 +52,7 @@
             [ 36, "MOVE_U_TURN" ],
             [ 40, "MOVE_WORRY_SEED" ],
             [ 44, "MOVE_GIGA_DRAIN" ],
-            [ 48, "MOVE_BOUNCE" ],
-            [ 52, "MOVE_MEMENTO" ]
+            [ 48, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM06",

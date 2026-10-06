@@ -38,14 +38,15 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WHIRLWIND" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 5, "MOVE_QUICK_ATTACK" ],
             [ 9, "MOVE_WING_ATTACK" ],
-            [ 13, "MOVE_DOUBLE_TEAM" ],
             [ 18, "MOVE_ENDEAVOR" ],
-            [ 23, "MOVE_WHIRLWIND" ],
+            [ 20, "MOVE_HEADBUTT" ],
+            [ 25, "MOVE_SECRET_POWER" ],
             [ 28, "MOVE_AERIAL_ACE" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 38, "MOVE_AGILITY" ],

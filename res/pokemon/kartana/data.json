@@ -73,10 +73,6 @@
                 "MOVE_AERIAL_ACE"
             ],
             [
-                30,
-                "MOVE_DETECT"
-            ],
-            [
                 35,
                 "MOVE_NIGHT_SLASH"
             ],
@@ -103,10 +99,6 @@
             [
                 65,
                 "MOVE_SWORDS_DANCE"
-            ],
-            [
-                70,
-                "MOVE_GUILLOTINE"
             ]
         ],
         "by_tm": [],

@@ -93,6 +93,10 @@
                 "MOVE_PERISH_SONG"
             ],
             [
+                48,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 51,
                 "MOVE_HYPER_VOICE"
             ],
@@ -101,12 +105,20 @@
                 "MOVE_FLIP_TURN"
             ],
             [
+                58,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
                 64,
                 "MOVE_MOONBLAST"
             ],
             [
-                70,
-                "MOVE_HYDRO_PUMP"
+                66,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                72,
+                "MOVE_ICE_BEAM"
             ]
         ],
         "by_tm": [],

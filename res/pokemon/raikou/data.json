@@ -38,10 +38,10 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ROAR" ],
             [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_LEER" ],
             [ 8, "MOVE_THUNDER_SHOCK" ],
-            [ 15, "MOVE_ROAR" ],
             [ 22, "MOVE_QUICK_ATTACK" ],
             [ 29, "MOVE_SPARK" ],
             [ 36, "MOVE_REFLECT" ],
@@ -49,9 +49,7 @@
             [ 50, "MOVE_THUNDER_FANG" ],
             [ 57, "MOVE_DISCHARGE" ],
             [ 64, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_RAIN_DANCE" ],
-            [ 78, "MOVE_CALM_MIND" ],
-            [ 85, "MOVE_THUNDER" ]
+            [ 78, "MOVE_CALM_MIND" ]
         ],
         "by_tm": [
             "TM04",

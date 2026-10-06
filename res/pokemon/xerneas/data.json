@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_NATURE_POWER"
+            ],
+            [
+                1,
                 "MOVE_TACKLE"
             ],
             [
@@ -59,10 +63,6 @@
             [
                 1,
                 "MOVE_AROMATHERAPY"
-            ],
-            [
-                1,
-                "MOVE_INGRAIN"
             ],
             [
                 1,
@@ -90,10 +90,6 @@
             ],
             [
                 41,
-                "MOVE_NATURE_POWER"
-            ],
-            [
-                41,
                 "MOVE_GEOMANCY"
             ],
             [
@@ -105,16 +101,8 @@
                 "MOVE_HORN_LEECH"
             ],
             [
-                45,
-                "MOVE_INGRAIN"
-            ],
-            [
                 48,
                 "MOVE_MOONBLAST"
-            ],
-            [
-                50,
-                "MOVE_MISTY_TERRAIN"
             ],
             [
                 50,
@@ -131,14 +119,6 @@
             [
                 77,
                 "MOVE_CLOSE_COMBAT"
-            ],
-            [
-                86,
-                "MOVE_OUTRAGE"
-            ],
-            [
-                86,
-                "MOVE_GIGA_IMPACT"
             ]
         ],
         "by_tm": [],

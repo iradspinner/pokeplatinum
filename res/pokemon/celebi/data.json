@@ -34,6 +34,7 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HEALING_WISH" ],
             [ 1, "MOVE_LEECH_SEED" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 1, "MOVE_RECOVER" ],
@@ -44,10 +45,7 @@
             [ 37, "MOVE_BATON_PASS" ],
             [ 46, "MOVE_NATURAL_GIFT" ],
             [ 55, "MOVE_HEAL_BLOCK" ],
-            [ 64, "MOVE_FUTURE_SIGHT" ],
-            [ 73, "MOVE_HEALING_WISH" ],
-            [ 82, "MOVE_LEAF_STORM" ],
-            [ 91, "MOVE_PERISH_SONG" ]
+            [ 64, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM03",

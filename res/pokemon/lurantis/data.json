@@ -78,10 +78,6 @@
             ],
             [
                 1,
-                "MOVE_INGRAIN"
-            ],
-            [
-                1,
                 "MOVE_X_SCISSOR"
             ],
             [
@@ -97,20 +93,8 @@
                 "MOVE_RAZOR_LEAF"
             ],
             [
-                14,
-                "MOVE_GROWTH"
-            ],
-            [
-                19,
-                "MOVE_INGRAIN"
-            ],
-            [
                 28,
                 "MOVE_SLASH"
-            ],
-            [
-                29,
-                "MOVE_SWEET_SCENT"
             ],
             [
                 30,
@@ -125,8 +109,32 @@
                 "MOVE_LEAF_BLADE"
             ],
             [
+                40,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                42,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                48,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 55,
                 "MOVE_SOLAR_BLADE"
+            ],
+            [
+                57,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                59,
+                "MOVE_LEECH_LIFE"
+            ],
+            [
+                64,
+                "MOVE_SCARY_FACE"
             ]
         ],
         "by_tm": [],

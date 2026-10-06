@@ -99,10 +99,6 @@
             [
                 46,
                 "MOVE_LEECH_LIFE"
-            ],
-            [
-                49,
-                "MOVE_STONE_EDGE"
             ]
         ],
         "by_tm": [],

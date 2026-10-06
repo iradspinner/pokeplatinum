@@ -81,6 +81,10 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                28,
+                "MOVE_SPIDER_WEB"
+            ],
+            [
                 31,
                 "MOVE_SOAK"
             ],
@@ -89,8 +93,16 @@
                 "MOVE_DIVE"
             ],
             [
+                38,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
                 41,
                 "MOVE_LUNGE"
+            ],
+            [
+                43,
+                "MOVE_WATERFALL"
             ],
             [
                 48,
@@ -98,15 +110,27 @@
             ],
             [
                 51,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_POISON_JAB"
             ],
             [
                 55,
                 "MOVE_LIQUIDATION"
             ],
             [
+                59,
+                "MOVE_CRUNCH"
+            ],
+            [
                 61,
                 "MOVE_LEECH_LIFE"
+            ],
+            [
+                63,
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                67,
+                "MOVE_BODY_SLAM"
             ]
         ],
         "by_tm": [],

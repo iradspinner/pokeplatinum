@@ -49,8 +49,12 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_GROWL"
+                3,
+                "MOVE_EMBER"
+            ],
+            [
+                4,
+                "MOVE_TAILWIND"
             ],
             [
                 6,
@@ -73,24 +77,16 @@
                 "MOVE_NATURAL_GIFT"
             ],
             [
+                32,
+                "MOVE_FEATHER_DANCE"
+            ],
+            [
                 33,
                 "MOVE_DEFOG"
             ],
             [
-                33,
-                "MOVE_FEATHER_DANCE"
-            ],
-            [
                 35,
                 "MOVE_ACROBATICS"
-            ],
-            [
-                40,
-                "MOVE_ME_FIRST"
-            ],
-            [
-                45,
-                "MOVE_TAILWIND"
             ]
         ],
         "by_tm": [],

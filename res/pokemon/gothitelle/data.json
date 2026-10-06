@@ -77,24 +77,24 @@
                 "MOVE_DOUBLE_SLAP"
             ],
             [
-                19,
-                "MOVE_FAKE_TEARS"
+                18,
+                "MOVE_EMBARGO"
             ],
             [
                 19,
-                "MOVE_EMBARGO"
+                "MOVE_FAKE_TEARS"
             ],
             [
                 22,
                 "MOVE_PSYSHOCK"
             ],
             [
-                24,
-                "MOVE_HYPNOSIS"
+                23,
+                "MOVE_FAINT_ATTACK"
             ],
             [
                 24,
-                "MOVE_FAINT_ATTACK"
+                "MOVE_HYPNOSIS"
             ],
             [
                 33,
@@ -117,16 +117,24 @@
                 "MOVE_PSYCHIC"
             ],
             [
+                41,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 44,
                 "MOVE_FUTURE_SIGHT"
             ],
             [
-                45,
-                "MOVE_TELEKINESIS"
-            ],
-            [
                 61,
                 "MOVE_MAGIC_ROOM"
+            ],
+            [
+                63,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                69,
+                "MOVE_THUNDERBOLT"
             ]
         ],
         "by_tm": [],

@@ -39,11 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
+            [ 3, "MOVE_DRAINING_KISS" ],
             [ 4, "MOVE_CHARM" ],
             [ 7, "MOVE_WATER_GUN" ],
-            [ 9, "MOVE_AGILITY" ],
+            [ 8, "MOVE_AQUA_JET" ],
             [ 14, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
+            [ 19, "MOVE_ICY_WIND" ],
             [ 22, "MOVE_ATTRACT" ],
             [ 27, "MOVE_SWEET_KISS" ],
             [ 31, "MOVE_WATER_PULSE" ],
@@ -91,7 +93,8 @@
             "MOVE_WATER_SPORT",
             "MOVE_MUD_SPORT",
             "MOVE_CAPTIVATE",
-            "MOVE_AQUA_RING"
+            "MOVE_AQUA_RING",
+            "MOVE_HEALING_WISH"
         ]
     },
     "evolutions": [

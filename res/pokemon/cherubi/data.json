@@ -35,9 +35,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 7, "MOVE_GROWTH" ],
+            [ 9, "MOVE_DRAINING_KISS" ],
             [ 10, "MOVE_LEECH_SEED" ],
             [ 13, "MOVE_HELPING_HAND" ],
+            [ 17, "MOVE_STUN_SPORE" ],
             [ 19, "MOVE_MAGICAL_LEAF" ],
             [ 28, "MOVE_WORRY_SEED" ],
             [ 31, "MOVE_TAKE_DOWN" ],

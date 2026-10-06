@@ -50,7 +50,9 @@
             [ 33, "MOVE_DRAGON_CLAW" ],
             [ 40, "MOVE_DIG" ],
             [ 48, "MOVE_CRUNCH" ],
-            [ 55, "MOVE_DRAGON_RUSH" ]
+            [ 55, "MOVE_DRAGON_RUSH" ],
+            [ 57, "MOVE_FIRE_FANG" ],
+            [ 62, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM02",

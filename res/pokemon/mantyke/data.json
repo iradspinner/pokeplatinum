@@ -40,7 +40,7 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_BUBBLE" ],
-            [ 4, "MOVE_SUPERSONIC" ],
+            [ 8, "MOVE_ICY_WIND" ],
             [ 10, "MOVE_BUBBLE_BEAM" ],
             [ 13, "MOVE_HEADBUTT" ],
             [ 19, "MOVE_AGILITY" ],
@@ -50,7 +50,7 @@
             [ 37, "MOVE_CONFUSE_RAY" ],
             [ 40, "MOVE_BOUNCE" ],
             [ 46, "MOVE_AQUA_RING" ],
-            [ 49, "MOVE_HYDRO_PUMP" ]
+            [ 49, "MOVE_SCALD" ]
         ],
         "by_tm": [
             "TM03",

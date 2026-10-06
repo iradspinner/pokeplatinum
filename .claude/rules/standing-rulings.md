@@ -106,7 +106,19 @@ read, so they are written here too. Each is a standing instruction.
   learnsets (either via hg-engine or via looking them up) should be used as
   inspiration, not as pick lists." A move a later game, Generation 4 or
   Kaizo gives the line weighs in its favour; its absence there does not
-  rule it out.
+  rule it out. For alpha 1's rewrite Ian accepted two narrowings of the
+  generator (2026-10-06): a status move it adds must already be linked to
+  the line (canon, Kaizo or Oxide's lists), an unlinked attack comes in only
+  to fill a gap a rule asks for, and the attacks and utility moves it adds
+  keep under per-split ceilings, his answer 8 of 2026-09-27 (no ceiling on
+  coverage power) set aside for this pass.
+  From the learnset exam (Ian, 2026-10-06): a move meant only for trainers
+  never lands in a wild catch's four (it goes on the egg list, the trainers'
+  palette); two branches of one line are close in worth at the split where
+  the player chooses between them; a strong move below a line's catch level
+  moves to or after it; and Eevee's evolutions are the exception to the
+  stone rule's late, sparse lists, each learning a full moveset from 20, the
+  level Bebe's Eevee is held at.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
@@ -131,7 +143,8 @@ read, so they are written here too. Each is a standing instruction.
   trainer's and the player's, rolls twice and keeps the result worse for the
   player (the trainer's 1-in-24 crit lands about 1 in 12 and a 10% status
   about 19%; the player's own crits and secondary effects land less often,
-  and its full-paralysis and confusion checks go against it). Its three
+  and its full-paralysis and confusion checks go against it). Quick Claw
+  and Focus Band roll against the player too (Ian, 2026-10-06). Its three
   numbers are reported beside the real-odds ones, as a very unlucky fight.
   Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
   unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). The
@@ -247,7 +260,8 @@ read, so they are written here too. Each is a standing instruction.
   2026-10-06). Luck items are allowed on trainers: Quick Claw, Focus Band,
   King's Rock, Razor Fang and the like, his own teams' Quick Claws included
   (Ian, 2026-10-06); the evasion items (BrightPowder, Lax Incense) stay
-  under the evasion-is-rare rule. No level-1 Focus Sash and Endeavor sets.
+  under the evasion-is-rare rule. A Focus Sash may go on a lead that carries
+  the boss's trade (Ian, 2026-10-06). No level-1 Focus Sash and Endeavor sets.
   No overlevelled optional trainers. Oxide adds some double battles. An
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are

@@ -50,15 +50,7 @@
             ],
             [
                 1,
-                "MOVE_DOUBLE_TEAM"
-            ],
-            [
-                1,
                 "MOVE_HURRICANE"
-            ],
-            [
-                1,
-                "MOVE_RAZOR_WIND"
             ],
             [
                 1,
@@ -71,10 +63,6 @@
             [
                 5,
                 "MOVE_TAUNT"
-            ],
-            [
-                5,
-                "MOVE_DOUBLE_TEAM"
             ],
             [
                 13,
@@ -113,32 +101,20 @@
                 "MOVE_PSYCHIC"
             ],
             [
-                55,
-                "MOVE_PHANTOM_FORCE"
+                54,
+                "MOVE_FOUL_PLAY"
             ],
             [
                 55,
-                "MOVE_FOUL_PLAY"
+                "MOVE_PHANTOM_FORCE"
             ],
             [
                 64,
                 "MOVE_DRAGON_RUSH"
             ],
             [
-                70,
-                "MOVE_HURRICANE"
-            ],
-            [
                 73,
                 "MOVE_FOCUS_BLAST"
-            ],
-            [
-                86,
-                "MOVE_SKY_ATTACK"
-            ],
-            [
-                86,
-                "MOVE_HYPER_BEAM"
             ]
         ],
         "by_tm": [],

@@ -40,12 +40,18 @@
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_PURSUIT" ],
-            [ 1, "MOVE_HAZE" ],
             [ 1, "MOVE_WING_ATTACK" ],
             [ 25, "MOVE_SWAGGER" ],
-            [ 35, "MOVE_NASTY_PLOT" ],
+            [ 34, "MOVE_DRILL_PECK" ],
+            [ 40, "MOVE_U_TURN" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
-            [ 55, "MOVE_DARK_PULSE" ]
+            [ 46, "MOVE_NASTY_PLOT" ],
+            [ 53, "MOVE_HEAT_WAVE" ],
+            [ 55, "MOVE_DARK_PULSE" ],
+            [ 61, "MOVE_BRAVE_BIRD" ],
+            [ 63, "MOVE_FOUL_PLAY" ],
+            [ 69, "MOVE_ACROBATICS" ],
+            [ 71, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [
             "TM04",

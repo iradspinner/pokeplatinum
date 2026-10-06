@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_WRING_OUT"
+            ],
+            [
+                1,
                 "MOVE_TACKLE"
             ],
             [
@@ -53,16 +57,12 @@
                 "MOVE_VINE_WHIP"
             ],
             [
-                5,
-                "MOVE_LEER"
-            ],
-            [
-                10,
-                "MOVE_WRAP"
-            ],
-            [
                 14,
                 "MOVE_HOLD_BACK"
+            ],
+            [
+                17,
+                "MOVE_AERIAL_ACE"
             ],
             [
                 19,
@@ -81,8 +81,8 @@
                 "MOVE_GRASS_KNOT"
             ],
             [
-                36,
-                "MOVE_WRING_OUT"
+                33,
+                "MOVE_MEAN_LOOK"
             ],
             [
                 40,

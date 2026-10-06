@@ -46,10 +46,15 @@
             [ 24, "MOVE_AQUA_RING" ],
             [ 28, "MOVE_CAPTIVATE" ],
             [ 33, "MOVE_BATON_PASS" ],
+            [ 35, "MOVE_DRAINING_KISS" ],
             [ 37, "MOVE_DIVE" ],
+            [ 40, "MOVE_MUDDY_WATER" ],
             [ 42, "MOVE_PSYCHIC" ],
             [ 46, "MOVE_AQUA_TAIL" ],
-            [ 51, "MOVE_HYDRO_PUMP" ]
+            [ 48, "MOVE_SHADOW_BALL" ],
+            [ 50, "MOVE_GIGA_DRAIN" ],
+            [ 56, "MOVE_SCALD" ],
+            [ 64, "MOVE_SHELL_SMASH" ]
         ],
         "by_tm": [
             "TM03",

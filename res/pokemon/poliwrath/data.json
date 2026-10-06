@@ -41,9 +41,17 @@
             [ 1, "MOVE_BUBBLE_BEAM" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 1, "MOVE_SUBMISSION" ],
-            [ 43, "MOVE_DYNAMIC_PUNCH" ],
-            [ 53, "MOVE_MIND_READER" ]
+            [ 33, "MOVE_LIQUIDATION" ],
+            [ 35, "MOVE_WAKE_UP_SLAP" ],
+            [ 40, "MOVE_THROAT_CHOP" ],
+            [ 43, "MOVE_BRICK_BREAK" ],
+            [ 53, "MOVE_MIND_READER" ],
+            [ 55, "MOVE_ROCK_TOMB" ],
+            [ 57, "MOVE_LOW_SWEEP" ],
+            [ 62, "MOVE_ICE_PUNCH" ],
+            [ 64, "MOVE_CLOSE_COMBAT" ],
+            [ 70, "MOVE_DRAIN_PUNCH" ],
+            [ 72, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM01",

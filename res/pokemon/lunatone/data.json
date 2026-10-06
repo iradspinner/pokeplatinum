@@ -34,19 +34,25 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_EXPLOSION" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_HARDEN" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 9, "MOVE_ROCK_THROW" ],
             [ 12, "MOVE_HYPNOSIS" ],
             [ 20, "MOVE_ROCK_POLISH" ],
             [ 23, "MOVE_PSYWAVE" ],
             [ 31, "MOVE_EMBARGO" ],
+            [ 32, "MOVE_ROCK_THROW" ],
             [ 34, "MOVE_COSMIC_POWER" ],
             [ 42, "MOVE_HEAL_BLOCK" ],
             [ 45, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_AURA_SPHERE" ],
             [ 53, "MOVE_FUTURE_SIGHT" ],
-            [ 56, "MOVE_EXPLOSION" ]
+            [ 55, "MOVE_EARTH_POWER" ],
+            [ 57, "MOVE_SIGNAL_BEAM" ],
+            [ 62, "MOVE_MOONBLAST" ],
+            [ 64, "MOVE_POWER_GEM" ],
+            [ 70, "MOVE_MOONLIGHT" ]
         ],
         "by_tm": [
             "TM04",

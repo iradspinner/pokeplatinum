@@ -69,10 +69,6 @@
                 "MOVE_METAL_CLAW"
             ],
             [
-                21,
-                "MOVE_INGRAIN"
-            ],
-            [
                 26,
                 "MOVE_PAYBACK"
             ],
@@ -81,33 +77,32 @@
                 "MOVE_BULLET_SEED"
             ],
             [
+                34,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
                 35,
                 "MOVE_GYRO_BALL"
             ],
             [
-                38,
-                "MOVE_SELFDESTRUCT"
+                40,
+                "MOVE_SEED_BOMB"
             ],
             [
                 43,
                 "MOVE_KNOCK_OFF"
             ],
             [
-                47,
-                "MOVE_SEED_BOMB"
-            ],
-            [
                 52,
                 "MOVE_IRON_HEAD"
-            ],
-            [
-                55,
-                "MOVE_EXPLOSION"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SELFDESTRUCT",
+            "MOVE_EXPLOSION"
+        ]
     },
     "evolutions": [
         [

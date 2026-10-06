@@ -46,9 +46,7 @@
             [ 40, "MOVE_SPACIAL_REND" ],
             [ 50, "MOVE_HEAL_BLOCK" ],
             [ 60, "MOVE_EARTH_POWER" ],
-            [ 70, "MOVE_SLASH" ],
-            [ 80, "MOVE_AQUA_TAIL" ],
-            [ 90, "MOVE_AURA_SPHERE" ]
+            [ 70, "MOVE_SLASH" ]
         ],
         "by_tm": [
             "TM01",

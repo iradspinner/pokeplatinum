@@ -48,7 +48,6 @@
             [ 24, "MOVE_SWAGGER" ],
             [ 29, "MOVE_MUD_BOMB" ],
             [ 31, "MOVE_SUCKER_PUNCH" ],
-            [ 36, "MOVE_NASTY_PLOT" ],
             [ 38, "MOVE_POISON_JAB" ],
             [ 43, "MOVE_SLUDGE_BOMB" ],
             [ 45, "MOVE_FLATTER" ]

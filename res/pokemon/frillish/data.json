@@ -49,10 +49,6 @@
                 "MOVE_BUBBLE"
             ],
             [
-                1,
-                "MOVE_ABSORB"
-            ],
-            [
                 5,
                 "MOVE_NIGHT_SHADE"
             ],
@@ -81,12 +77,12 @@
                 "MOVE_BRINE"
             ],
             [
-                39,
-                "MOVE_PAIN_SPLIT"
+                36,
+                "MOVE_DARK_PULSE"
             ],
             [
-                44,
-                "MOVE_DESTINY_BOND"
+                39,
+                "MOVE_PAIN_SPLIT"
             ],
             [
                 48,
@@ -107,7 +103,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_DESTINY_BOND"
+        ]
     },
     "evolutions": [
         [

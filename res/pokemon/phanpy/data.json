@@ -40,9 +40,9 @@
         "by_level": [
             [ 1, "MOVE_ODOR_SLEUTH" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 4, "MOVE_BULLDOZE" ],
             [ 6, "MOVE_FLAIL" ],
+            [ 8, "MOVE_ICE_SHARD" ],
             [ 10, "MOVE_TAKE_DOWN" ],
             [ 15, "MOVE_ROLLOUT" ],
             [ 19, "MOVE_NATURAL_GIFT" ],

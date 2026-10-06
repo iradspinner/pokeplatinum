@@ -53,10 +53,6 @@
                 "MOVE_LEAFAGE"
             ],
             [
-                4,
-                "MOVE_GROWL"
-            ],
-            [
                 8,
                 "MOVE_PECK"
             ],
@@ -107,6 +103,10 @@
             [
                 58,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                66,
+                "MOVE_ACROBATICS"
             ]
         ],
         "by_tm": [],

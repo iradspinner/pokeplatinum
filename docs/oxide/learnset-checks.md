@@ -28,6 +28,11 @@ generator. Ian approved the plan and asked for the baseline on 2026-10-06.
    lines, the six checks pass at his thresholds, and the bosses stay in their
    bands (the standing rulings' targets). A failure is understood, the rule
    adjusted, and the loop runs again.
+   The first exam (2026-10-06) failed in part, and Ian sent the rewrite round
+   a second loop the same day: each miss becomes a check over all 652 lists,
+   the five lines are re-judged only to catch regressions, and the alpha run
+   is the test on lines the rules were not built from. The boss bands are
+   read in the goal 3 reading after the TM pass (alpha-readiness, step 15).
 
 ## The six checks
 

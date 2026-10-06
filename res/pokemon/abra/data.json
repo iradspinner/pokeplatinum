@@ -38,7 +38,9 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TELEPORT" ]
+            [ 2, "MOVE_ROUND" ],
+            [ 3, "MOVE_CALM_MIND" ],
+            [ 4, "MOVE_CONFUSION" ]
         ],
         "by_tm": [
             "TM01",

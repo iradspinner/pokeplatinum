@@ -53,16 +53,20 @@
                 "MOVE_LEAFAGE"
             ],
             [
-                4,
-                "MOVE_GROWL"
-            ],
-            [
                 8,
                 "MOVE_PECK"
             ],
             [
                 12,
                 "MOVE_ASTONISH"
+            ],
+            [
+                13,
+                "MOVE_SHADOW_SNEAK"
+            ],
+            [
+                14,
+                "MOVE_SPITE"
             ],
             [
                 15,

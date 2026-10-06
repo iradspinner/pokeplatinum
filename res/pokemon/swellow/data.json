@@ -46,7 +46,6 @@
             [ 4, "MOVE_FOCUS_ENERGY" ],
             [ 8, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_WING_ATTACK" ],
-            [ 19, "MOVE_DOUBLE_TEAM" ],
             [ 28, "MOVE_ENDEAVOR" ],
             [ 38, "MOVE_AERIAL_ACE" ],
             [ 49, "MOVE_AGILITY" ],

@@ -38,8 +38,11 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
+            [ 5, "MOVE_SWAGGER" ],
+            [ 6, "MOVE_DRAGON_TAIL" ],
+            [ 13, "MOVE_WATER_PULSE" ],
             [ 15, "MOVE_TACKLE" ],
+            [ 25, "MOVE_CAPTIVATE" ],
             [ 30, "MOVE_FLAIL" ]
         ],
         "by_tm": [

@@ -57,10 +57,6 @@
                 "MOVE_ROCK_THROW"
             ],
             [
-                10,
-                "MOVE_PROTECT"
-            ],
-            [
                 15,
                 "MOVE_STOMP"
             ],

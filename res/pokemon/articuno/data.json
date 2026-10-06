@@ -49,8 +49,8 @@
             [ 50, "MOVE_REFLECT" ],
             [ 57, "MOVE_ROOST" ],
             [ 64, "MOVE_TAILWIND" ],
-            [ 71, "MOVE_BLIZZARD" ],
-            [ 78, "MOVE_SHEER_COLD" ]
+            [ 66, "MOVE_AIR_SLASH" ],
+            [ 69, "MOVE_SIGNAL_BEAM" ]
         ],
         "by_tm": [
             "TM03",

@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ME_FIRST" ],
             [ 1, "MOVE_TACKLE" ],
             [ 3, "MOVE_LEER" ],
             [ 7, "MOVE_ASTONISH" ],
@@ -50,8 +51,7 @@
             [ 33, "MOVE_ROLE_PLAY" ],
             [ 38, "MOVE_ZEN_HEADBUTT" ],
             [ 43, "MOVE_IMPRISON" ],
-            [ 49, "MOVE_CAPTIVATE" ],
-            [ 53, "MOVE_ME_FIRST" ]
+            [ 49, "MOVE_CAPTIVATE" ]
         ],
         "by_tm": [
             "TM04",

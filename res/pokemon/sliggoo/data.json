@@ -77,6 +77,10 @@
                 "MOVE_INFESTATION"
             ],
             [
+                40,
+                "MOVE_DRAGON_CLAW"
+            ],
+            [
                 42,
                 "MOVE_BODY_SLAM"
             ],

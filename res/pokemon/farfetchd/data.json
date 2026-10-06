@@ -43,7 +43,6 @@
             [ 1, "MOVE_SAND_ATTACK" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_FURY_CUTTER" ],
-            [ 7, "MOVE_FURY_ATTACK" ],
             [ 9, "MOVE_KNOCK_OFF" ],
             [ 13, "MOVE_AERIAL_ACE" ],
             [ 19, "MOVE_SLASH" ],
@@ -51,9 +50,7 @@
             [ 25, "MOVE_SWORDS_DANCE" ],
             [ 31, "MOVE_AGILITY" ],
             [ 33, "MOVE_NIGHT_SLASH" ],
-            [ 37, "MOVE_AIR_SLASH" ],
-            [ 43, "MOVE_FEINT" ],
-            [ 45, "MOVE_FALSE_SWIPE" ]
+            [ 37, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [
             "TM06",

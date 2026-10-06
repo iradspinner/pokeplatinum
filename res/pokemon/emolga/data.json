@@ -57,48 +57,56 @@
                 "MOVE_THUNDER_SHOCK"
             ],
             [
+                6,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
                 7,
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                7,
-                "MOVE_TAIL_WHIP"
+                13,
+                "MOVE_NUZZLE"
             ],
             [
-                11,
-                "MOVE_DOUBLE_TEAM"
+                14,
+                "MOVE_CHARGE"
             ],
             [
                 15,
                 "MOVE_THUNDER_SHOCK"
             ],
             [
-                15,
-                "MOVE_CHARGE"
-            ],
-            [
-                15,
-                "MOVE_NUZZLE"
-            ],
-            [
                 16,
                 "MOVE_PURSUIT"
+            ],
+            [
+                18,
+                "MOVE_TAUNT"
+            ],
+            [
+                20,
+                "MOVE_AIR_CUTTER"
+            ],
+            [
+                21,
+                "MOVE_SHOCK_WAVE"
             ],
             [
                 22,
                 "MOVE_SPARK"
             ],
             [
-                22,
-                "MOVE_SHOCK_WAVE"
-            ],
-            [
-                26,
-                "MOVE_ELECTRO_BALL"
+                24,
+                "MOVE_SNARL"
             ],
             [
                 27,
                 "MOVE_ACROBATICS"
+            ],
+            [
+                29,
+                "MOVE_ELECTROWEB"
             ],
             [
                 36,
@@ -113,12 +121,32 @@
                 "MOVE_VOLT_SWITCH"
             ],
             [
+                49,
+                "MOVE_AGILITY"
+            ],
+            [
                 50,
                 "MOVE_DISCHARGE"
             ],
             [
-                50,
-                "MOVE_AGILITY"
+                52,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                54,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                56,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                59,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                67,
+                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

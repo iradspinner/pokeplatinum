@@ -57,10 +57,6 @@
                 "MOVE_EMBER"
             ],
             [
-                6,
-                "MOVE_SMOG"
-            ],
-            [
                 11,
                 "MOVE_FLAIL"
             ],
@@ -81,6 +77,10 @@
                 "MOVE_RAPID_SPIN"
             ],
             [
+                29,
+                "MOVE_SMOG"
+            ],
+            [
                 33,
                 "MOVE_BODY_SLAM"
             ],
@@ -93,25 +93,43 @@
                 "MOVE_DRAGON_PULSE"
             ],
             [
+                45,
+                "MOVE_SHELL_SMASH"
+            ],
+            [
                 47,
                 "MOVE_FIRE_SPIN"
             ],
             [
-                55,
-                "MOVE_EXPLOSION"
+                54,
+                "MOVE_BODY_PRESS"
             ],
             [
                 61,
                 "MOVE_OVERHEAT"
             ],
             [
+                63,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
                 66,
                 "MOVE_DRACO_METEOR"
+            ],
+            [
+                70,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                72,
+                "MOVE_IRON_DEFENSE"
             ]
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_EXPLOSION"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_TURTONATOR",

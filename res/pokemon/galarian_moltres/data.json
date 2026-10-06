@@ -93,16 +93,8 @@
                 "MOVE_NASTY_PLOT"
             ],
             [
-                55,
-                "MOVE_HURRICANE"
-            ],
-            [
                 60,
                 "MOVE_ENDURE"
-            ],
-            [
-                65,
-                "MOVE_MEMENTO"
             ],
             [
                 70,
@@ -111,7 +103,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [],
     "offspring": "SPECIES_GALARIAN_MOLTRES",

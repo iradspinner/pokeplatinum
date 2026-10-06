@@ -43,8 +43,7 @@
             [ 1, "MOVE_FORESIGHT" ],
             [ 25, "MOVE_REVENGE" ],
             [ 50, "MOVE_ZEN_HEADBUTT" ],
-            [ 75, "MOVE_CRUSH_GRIP" ],
-            [ 100, "MOVE_GIGA_IMPACT" ]
+            [ 75, "MOVE_CRUSH_GRIP" ]
         ],
         "by_tm": [
             "TM01",

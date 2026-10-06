@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_WRAP"
-            ],
-            [
-                1,
                 "MOVE_POUND"
             ],
             [
@@ -69,12 +65,12 @@
                 "MOVE_CLEAR_SMOG"
             ],
             [
-                25,
-                "MOVE_POWER_SPLIT"
+                24,
+                "MOVE_GUARD_SPLIT"
             ],
             [
                 25,
-                "MOVE_GUARD_SPLIT"
+                "MOVE_POWER_SPLIT"
             ],
             [
                 30,

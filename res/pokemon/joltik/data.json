@@ -49,10 +49,6 @@
                 "MOVE_STRING_SHOT"
             ],
             [
-                1,
-                "MOVE_ABSORB"
-            ],
-            [
                 4,
                 "MOVE_FURY_CUTTER"
             ],
@@ -81,6 +77,10 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
+                28,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
                 29,
                 "MOVE_DISCHARGE"
             ],
@@ -91,10 +91,6 @@
             [
                 37,
                 "MOVE_ENERGY_BALL"
-            ],
-            [
-                40,
-                "MOVE_SUCKER_PUNCH"
             ],
             [
                 45,

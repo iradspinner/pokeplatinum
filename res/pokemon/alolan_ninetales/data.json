@@ -94,14 +94,6 @@
             ],
             [
                 1,
-                "MOVE_SHEER_COLD"
-            ],
-            [
-                1,
-                "MOVE_GRUDGE"
-            ],
-            [
-                1,
                 "MOVE_BLIZZARD"
             ],
             [
@@ -123,6 +115,62 @@
             [
                 1,
                 "MOVE_SAFEGUARD"
+            ],
+            [
+                17,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                18,
+                "MOVE_INCINERATE"
+            ],
+            [
+                20,
+                "MOVE_SPITE"
+            ],
+            [
+                27,
+                "MOVE_ICY_WIND"
+            ],
+            [
+                31,
+                "MOVE_PAYBACK"
+            ],
+            [
+                35,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                37,
+                "MOVE_CHILLING_WATER"
+            ],
+            [
+                43,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                44,
+                "MOVE_EXTRASENSORY"
+            ],
+            [
+                51,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
+                53,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
+                59,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                61,
+                "MOVE_WILL_O_WISP"
+            ],
+            [
+                67,
+                "MOVE_OVERHEAT"
             ]
         ],
         "by_tm": [],

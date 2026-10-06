@@ -62,19 +62,23 @@
             ],
             [
                 1,
-                "MOVE_AROMATIC_MIST"
-            ],
-            [
-                1,
                 "MOVE_MEGA_DRAIN"
             ],
             [
+                17,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
                 18,
-                "MOVE_PROTECT"
+                "MOVE_MAGICAL_LEAF"
             ],
             [
                 24,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                29,
+                "MOVE_HEX"
             ],
             [
                 30,
@@ -85,20 +89,24 @@
                 "MOVE_GIGA_DRAIN"
             ],
             [
-                42,
-                "MOVE_NASTY_PLOT"
+                45,
+                "MOVE_DARK_PULSE"
             ],
             [
                 48,
                 "MOVE_SHADOW_BALL"
             ],
             [
-                54,
-                "MOVE_MEMENTO"
+                53,
+                "MOVE_PSYSHOCK"
             ],
             [
                 60,
                 "MOVE_SHELL_SMASH"
+            ],
+            [
+                62,
+                "MOVE_PSYCHIC"
             ],
             [
                 66,

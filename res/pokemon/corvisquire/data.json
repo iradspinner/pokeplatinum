@@ -53,16 +53,16 @@
                 "MOVE_LEER"
             ],
             [
-                4,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 12,
                 "MOVE_SAND_ATTACK"
             ],
             [
                 15,
                 "MOVE_PLUCK"
+            ],
+            [
+                17,
+                "MOVE_SWAGGER"
             ],
             [
                 20,
@@ -75,6 +75,10 @@
             [
                 32,
                 "MOVE_FEATHER_DANCE"
+            ],
+            [
+                34,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 38,

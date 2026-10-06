@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_STRING_SHOT" ],
-            [ 5, "MOVE_POISON_STING" ],
-            [ 15, "MOVE_BUG_BITE" ]
+            [ 3, "MOVE_STUN_SPORE" ],
+            [ 4, "MOVE_BUG_BITE" ],
+            [ 5, "MOVE_POISON_STING" ]
         ],
         "by_tm": [  ],
         "by_tutor": [ "MOVE_SNORE" ]

@@ -58,19 +58,11 @@
             ],
             [
                 1,
-                "MOVE_FLOWER_SHIELD"
-            ],
-            [
-                1,
                 "MOVE_WISH"
             ],
             [
                 1,
                 "MOVE_FAIRY_WIND"
-            ],
-            [
-                1,
-                "MOVE_ABSORB"
             ],
             [
                 1,
@@ -123,6 +115,18 @@
             [
                 57,
                 "MOVE_MOONBLAST"
+            ],
+            [
+                59,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                65,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                67,
+                "MOVE_POLLEN_PUFF"
             ]
         ],
         "by_tm": [],

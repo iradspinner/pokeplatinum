@@ -57,14 +57,6 @@
                 "MOVE_COACHING"
             ],
             [
-                4,
-                "MOVE_FEINT"
-            ],
-            [
-                8,
-                "MOVE_BRICK_BREAK"
-            ],
-            [
                 12,
                 "MOVE_ENCORE"
             ],
@@ -73,16 +65,16 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
+                19,
+                "MOVE_SKY_DROP"
+            ],
+            [
                 20,
                 "MOVE_FLYING_PRESS"
             ],
             [
-                20,
-                "MOVE_SKY_DROP"
-            ],
-            [
-                24,
-                "MOVE_SUBMISSION"
+                27,
+                "MOVE_BRICK_BREAK"
             ],
             [
                 28,
@@ -101,8 +93,12 @@
                 "MOVE_HI_JUMP_KICK"
             ],
             [
-                48,
-                "MOVE_ME_FIRST"
+                45,
+                "MOVE_LUNGE"
+            ],
+            [
+                47,
+                "MOVE_AIR_SLASH"
             ],
             [
                 55,
@@ -113,12 +109,20 @@
                 "MOVE_CLOSE_COMBAT"
             ],
             [
-                82,
-                "MOVE_BRAVE_BIRD"
+                62,
+                "MOVE_THROAT_CHOP"
             ],
             [
-                83,
-                "MOVE_ENTRAINMENT"
+                64,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
+                70,
+                "MOVE_FIRE_PUNCH"
+            ],
+            [
+                72,
+                "MOVE_THUNDER_PUNCH"
             ]
         ],
         "by_tm": [],

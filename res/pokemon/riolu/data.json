@@ -41,12 +41,11 @@
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_FORESIGHT" ],
             [ 1, "MOVE_ENDURE" ],
+            [ 2, "MOVE_CRUNCH" ],
             [ 6, "MOVE_COUNTER" ],
             [ 11, "MOVE_FORCE_PALM" ],
-            [ 15, "MOVE_FEINT" ],
             [ 19, "MOVE_REVERSAL" ],
-            [ 24, "MOVE_SCREECH" ],
-            [ 29, "MOVE_COPYCAT" ]
+            [ 24, "MOVE_SCREECH" ]
         ],
         "by_tm": [
             "TM01",

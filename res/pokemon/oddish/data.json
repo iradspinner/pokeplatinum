@@ -38,8 +38,7 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
-            [ 5, "MOVE_SWEET_SCENT" ],
+            [ 1, "MOVE_SWEET_SCENT" ],
             [ 9, "MOVE_ACID" ],
             [ 13, "MOVE_POISON_POWDER" ],
             [ 15, "MOVE_STUN_SPORE" ],
@@ -49,7 +48,7 @@
             [ 29, "MOVE_NATURAL_GIFT" ],
             [ 33, "MOVE_MOONLIGHT" ],
             [ 37, "MOVE_GIGA_DRAIN" ],
-            [ 41, "MOVE_PETAL_DANCE" ]
+            [ 45, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",

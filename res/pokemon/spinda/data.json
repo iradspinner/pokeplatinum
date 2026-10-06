@@ -38,9 +38,9 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_COPYCAT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 5, "MOVE_UPROAR" ],
-            [ 10, "MOVE_COPYCAT" ],
             [ 14, "MOVE_FAINT_ATTACK" ],
             [ 19, "MOVE_PSYBEAM" ],
             [ 23, "MOVE_HYPNOSIS" ],
@@ -50,7 +50,7 @@
             [ 41, "MOVE_PSYCH_UP" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 50, "MOVE_FLAIL" ],
-            [ 55, "MOVE_THRASH" ]
+            [ 57, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

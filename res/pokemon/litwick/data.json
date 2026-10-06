@@ -89,10 +89,6 @@
                 "MOVE_IMPRISON"
             ],
             [
-                40,
-                "MOVE_MEMENTO"
-            ],
-            [
                 45,
                 "MOVE_MYSTICAL_FIRE"
             ],
@@ -115,7 +111,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_MEMENTO"
+        ]
     },
     "evolutions": [
         [

@@ -39,11 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_GROWL" ],
             [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 16, "MOVE_DRAGON_RAGE" ],
-            [ 19, "MOVE_SCARY_FACE" ],
+            [ 8, "MOVE_FLAME_WHEEL" ],
+            [ 10, "MOVE_METAL_CLAW" ],
+            [ 12, "MOVE_SCARY_FACE" ],
             [ 25, "MOVE_FIRE_FANG" ],
             [ 28, "MOVE_SLASH" ],
             [ 34, "MOVE_FLAMETHROWER" ],

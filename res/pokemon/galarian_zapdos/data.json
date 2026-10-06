@@ -97,10 +97,6 @@
                 "MOVE_COUNTER"
             ],
             [
-                60,
-                "MOVE_DETECT"
-            ],
-            [
                 65,
                 "MOVE_CLOSE_COMBAT"
             ],

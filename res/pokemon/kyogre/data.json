@@ -40,12 +40,10 @@
             [ 20, "MOVE_BODY_SLAM" ],
             [ 30, "MOVE_CALM_MIND" ],
             [ 35, "MOVE_ICE_BEAM" ],
-            [ 45, "MOVE_HYDRO_PUMP" ],
+            [ 45, "MOVE_ORIGIN_PULSE" ],
             [ 50, "MOVE_REST" ],
-            [ 60, "MOVE_SHEER_COLD" ],
             [ 65, "MOVE_DOUBLE_EDGE" ],
-            [ 75, "MOVE_AQUA_TAIL" ],
-            [ 80, "MOVE_WATER_SPOUT" ]
+            [ 75, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM03",

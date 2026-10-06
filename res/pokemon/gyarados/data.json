@@ -45,8 +45,7 @@
             [ 29, "MOVE_TWISTER" ],
             [ 32, "MOVE_ICE_FANG" ],
             [ 35, "MOVE_AQUA_TAIL" ],
-            [ 38, "MOVE_RAIN_DANCE" ],
-            [ 41, "MOVE_HYDRO_PUMP" ],
+            [ 41, "MOVE_MUDDY_WATER" ],
             [ 44, "MOVE_DRAGON_DANCE" ],
             [ 47, "MOVE_HYPER_BEAM" ]
         ],

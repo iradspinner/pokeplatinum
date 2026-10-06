@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_WRING_OUT"
+            ],
+            [
+                1,
                 "MOVE_REFLECT"
             ],
             [
@@ -59,14 +63,6 @@
             [
                 1,
                 "MOVE_VINE_WHIP"
-            ],
-            [
-                5,
-                "MOVE_LEER"
-            ],
-            [
-                10,
-                "MOVE_WRAP"
             ],
             [
                 14,
@@ -90,11 +86,15 @@
             ],
             [
                 36,
-                "MOVE_WRING_OUT"
+                "MOVE_GRASS_PLEDGE"
             ],
             [
                 40,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                42,
+                "MOVE_KNOCK_OFF"
             ],
             [
                 46,
@@ -111,6 +111,30 @@
             [
                 55,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                57,
+                "MOVE_SLAM"
+            ],
+            [
+                59,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                61,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                64,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                66,
+                "MOVE_BREAKING_SWIPE"
+            ],
+            [
+                72,
+                "MOVE_LEECH_SEED"
             ]
         ],
         "by_tm": [],

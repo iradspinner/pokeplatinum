@@ -40,12 +40,10 @@
             [ 20, "MOVE_SLASH" ],
             [ 30, "MOVE_BULK_UP" ],
             [ 35, "MOVE_EARTHQUAKE" ],
-            [ 45, "MOVE_FIRE_BLAST" ],
+            [ 45, "MOVE_LAVA_PLUME" ],
             [ 50, "MOVE_REST" ],
-            [ 60, "MOVE_FISSURE" ],
             [ 65, "MOVE_SOLAR_BEAM" ],
-            [ 75, "MOVE_EARTH_POWER" ],
-            [ 80, "MOVE_ERUPTION" ]
+            [ 75, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM02",

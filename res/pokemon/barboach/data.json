@@ -39,19 +39,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MUD_SLAP" ],
-            [ 6, "MOVE_MUD_SPORT" ],
+            [ 3, "MOVE_SCARY_FACE" ],
             [ 6, "MOVE_WATER_SPORT" ],
             [ 10, "MOVE_WATER_GUN" ],
             [ 14, "MOVE_MUD_BOMB" ],
             [ 18, "MOVE_AMNESIA" ],
+            [ 20, "MOVE_ROCK_TOMB" ],
             [ 22, "MOVE_WATER_PULSE" ],
             [ 26, "MOVE_MAGNITUDE" ],
             [ 31, "MOVE_REST" ],
-            [ 31, "MOVE_SNORE" ],
             [ 35, "MOVE_AQUA_TAIL" ],
             [ 39, "MOVE_EARTHQUAKE" ],
-            [ 43, "MOVE_FUTURE_SIGHT" ],
-            [ 47, "MOVE_FISSURE" ]
+            [ 43, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM03",

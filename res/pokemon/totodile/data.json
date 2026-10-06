@@ -39,9 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_LEER" ],
             [ 6, "MOVE_WATER_GUN" ],
-            [ 8, "MOVE_RAGE" ],
+            [ 9, "MOVE_FLIP_TURN" ],
             [ 13, "MOVE_BITE" ],
             [ 15, "MOVE_SCARY_FACE" ],
             [ 20, "MOVE_ICE_FANG" ],
@@ -49,10 +48,10 @@
             [ 27, "MOVE_CRUNCH" ],
             [ 29, "MOVE_SLASH" ],
             [ 34, "MOVE_SCREECH" ],
-            [ 36, "MOVE_THRASH" ],
             [ 41, "MOVE_AQUA_TAIL" ],
             [ 43, "MOVE_SUPERPOWER" ],
-            [ 48, "MOVE_HYDRO_PUMP" ]
+            [ 48, "MOVE_MUDDY_WATER" ],
+            [ 61, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

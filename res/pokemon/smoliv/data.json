@@ -49,16 +49,8 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
                 5,
-                "MOVE_ABSORB"
-            ],
-            [
-                7,
-                "MOVE_GROWTH"
+                "MOVE_TERRAIN_PULSE"
             ],
             [
                 10,
@@ -77,10 +69,6 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
-                23,
-                "MOVE_GRASSY_TERRAIN"
-            ],
-            [
                 27,
                 "MOVE_SEED_BOMB"
             ],
@@ -91,10 +79,6 @@
             [
                 34,
                 "MOVE_LEECH_SEED"
-            ],
-            [
-                38,
-                "MOVE_TERRAIN_PULSE"
             ]
         ],
         "by_tm": [],

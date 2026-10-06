@@ -38,20 +38,25 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WHIRLWIND" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_WING_ATTACK" ],
             [ 5, "MOVE_QUICK_ATTACK" ],
             [ 9, "MOVE_WING_ATTACK" ],
-            [ 13, "MOVE_DOUBLE_TEAM" ],
             [ 18, "MOVE_ENDEAVOR" ],
-            [ 23, "MOVE_WHIRLWIND" ],
             [ 28, "MOVE_AERIAL_ACE" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 34, "MOVE_CLOSE_COMBAT" ],
+            [ 36, "MOVE_BULLDOZE" ],
             [ 41, "MOVE_AGILITY" ],
-            [ 49, "MOVE_BRAVE_BIRD" ]
+            [ 43, "MOVE_STEEL_WING" ],
+            [ 49, "MOVE_BRAVE_BIRD" ],
+            [ 51, "MOVE_KNOCK_OFF" ],
+            [ 56, "MOVE_BITE" ],
+            [ 58, "MOVE_SLAM" ],
+            [ 64, "MOVE_ACROBATICS" ]
         ],
         "by_tm": [
             "TM06",

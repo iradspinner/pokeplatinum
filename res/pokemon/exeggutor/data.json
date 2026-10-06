@@ -39,7 +39,6 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SEED_BOMB" ],
-            [ 1, "MOVE_BARRAGE" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 1, "MOVE_STOMP" ],

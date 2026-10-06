@@ -47,9 +47,8 @@
             [ 1, "MOVE_CHARM" ],
             [ 7, "MOVE_BITE" ],
             [ 13, "MOVE_LICK" ],
+            [ 17, "MOVE_DAZZLING_GLEAM" ],
             [ 19, "MOVE_HEADBUTT" ],
-            [ 25, "MOVE_ROAR" ],
-            [ 31, "MOVE_RAGE" ],
             [ 37, "MOVE_TAKE_DOWN" ],
             [ 43, "MOVE_PAYBACK" ],
             [ 49, "MOVE_CRUNCH" ]

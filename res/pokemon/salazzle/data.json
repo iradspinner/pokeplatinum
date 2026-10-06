@@ -65,10 +65,6 @@
                 "MOVE_EMBER"
             ],
             [
-                8,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
                 13,
                 "MOVE_VENOM_DRENCH"
             ],
@@ -89,6 +85,10 @@
                 "MOVE_VENOSHOCK"
             ],
             [
+                34,
+                "MOVE_SWAGGER"
+            ],
+            [
                 36,
                 "MOVE_FLAMETHROWER"
             ],
@@ -97,12 +97,28 @@
                 "MOVE_SLUDGE_BOMB"
             ],
             [
+                44,
+                "MOVE_ENCORE"
+            ],
+            [
                 50,
                 "MOVE_DRAGON_PULSE"
             ],
             [
-                55,
-                "MOVE_FIRE_BLAST"
+                52,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                58,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                66,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                68,
+                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [],

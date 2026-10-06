@@ -65,14 +65,6 @@
                 "MOVE_ASSIST"
             ],
             [
-                3,
-                "MOVE_GROWL"
-            ],
-            [
-                6,
-                "MOVE_ASSIST"
-            ],
-            [
                 10,
                 "MOVE_SAND_ATTACK"
             ],
@@ -87,6 +79,10 @@
             [
                 17,
                 "MOVE_TORMENT"
+            ],
+            [
+                20,
+                "MOVE_TRAILBLAZE"
             ],
             [
                 22,
@@ -105,16 +101,16 @@
                 "MOVE_SLASH"
             ],
             [
+                36,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
                 38,
                 "MOVE_TAUNT"
             ],
             [
                 43,
                 "MOVE_SUCKER_PUNCH"
-            ],
-            [
-                44,
-                "MOVE_NASTY_PLOT"
             ],
             [
                 44,
@@ -125,8 +121,28 @@
                 "MOVE_SNATCH"
             ],
             [
+                49,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                51,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 54,
                 "MOVE_PLAY_ROUGH"
+            ],
+            [
+                59,
+                "MOVE_PSYCHO_CUT"
+            ],
+            [
+                61,
+                "MOVE_SEED_BOMB"
+            ],
+            [
+                67,
+                "MOVE_U_TURN"
             ]
         ],
         "by_tm": [],

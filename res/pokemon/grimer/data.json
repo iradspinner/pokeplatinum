@@ -50,8 +50,7 @@
             [ 33, "MOVE_SCREECH" ],
             [ 36, "MOVE_SLUDGE_BOMB" ],
             [ 39, "MOVE_ACID_ARMOR" ],
-            [ 44, "MOVE_GUNK_SHOT" ],
-            [ 49, "MOVE_MEMENTO" ]
+            [ 44, "MOVE_GUNK_SHOT" ]
         ],
         "by_tm": [
             "TM06",
@@ -111,7 +110,8 @@
             "MOVE_SHADOW_SNEAK",
             "MOVE_STOCKPILE",
             "MOVE_SWALLOW",
-            "MOVE_SPIT_UP"
+            "MOVE_SPIT_UP",
+            "MOVE_MEMENTO"
         ]
     },
     "evolutions": [

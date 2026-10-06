@@ -46,10 +46,8 @@
             [ 19, "MOVE_TRIPLE_KICK" ],
             [ 24, "MOVE_RAPID_SPIN" ],
             [ 28, "MOVE_COUNTER" ],
-            [ 33, "MOVE_FEINT" ],
             [ 37, "MOVE_AGILITY" ],
             [ 42, "MOVE_GYRO_BALL" ],
-            [ 46, "MOVE_DETECT" ],
             [ 51, "MOVE_CLOSE_COMBAT" ],
             [ 55, "MOVE_ENDEAVOR" ]
         ],

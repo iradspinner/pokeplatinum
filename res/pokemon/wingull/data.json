@@ -38,11 +38,11 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_WATER_GUN" ],
+            [ 4, "MOVE_TWISTER" ],
+            [ 5, "MOVE_TAILWIND" ],
             [ 6, "MOVE_SUPERSONIC" ],
             [ 11, "MOVE_WING_ATTACK" ],
-            [ 16, "MOVE_MIST" ],
             [ 19, "MOVE_WATER_PULSE" ],
             [ 24, "MOVE_QUICK_ATTACK" ],
             [ 29, "MOVE_ROOST" ],

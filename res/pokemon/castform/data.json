@@ -35,10 +35,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
+            [ 9, "MOVE_EMBER" ],
             [ 10, "MOVE_WATER_GUN" ],
-            [ 10, "MOVE_EMBER" ],
-            [ 10, "MOVE_POWDER_SNOW" ],
-            [ 30, "MOVE_WEATHER_BALL" ]
+            [ 11, "MOVE_POWDER_SNOW" ],
+            [ 30, "MOVE_WEATHER_BALL" ],
+            [ 34, "MOVE_SWAGGER" ],
+            [ 40, "MOVE_CLEAR_SMOG" ],
+            [ 42, "MOVE_SWIFT" ],
+            [ 48, "MOVE_SCALD" ],
+            [ 56, "MOVE_HYPER_VOICE" ],
+            [ 58, "MOVE_FLAMETHROWER" ],
+            [ 64, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

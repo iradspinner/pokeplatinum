@@ -34,7 +34,8 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TELEPORT" ],
+            [ 1, "MOVE_EXPLOSION" ],
+            [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 1, "MOVE_HARDEN" ],
             [ 1, "MOVE_RAPID_SPIN" ],
@@ -43,15 +44,12 @@
             [ 7, "MOVE_MUD_SLAP" ],
             [ 11, "MOVE_PSYBEAM" ],
             [ 15, "MOVE_ROCK_TOMB" ],
-            [ 19, "MOVE_SELFDESTRUCT" ],
             [ 25, "MOVE_ANCIENT_POWER" ],
             [ 31, "MOVE_POWER_TRICK" ],
             [ 36, "MOVE_HYPER_BEAM" ],
-            [ 40, "MOVE_SANDSTORM" ],
             [ 51, "MOVE_COSMIC_POWER" ],
             [ 62, "MOVE_EARTH_POWER" ],
-            [ 73, "MOVE_HEAL_BLOCK" ],
-            [ 86, "MOVE_EXPLOSION" ]
+            [ 73, "MOVE_HEAL_BLOCK" ]
         ],
         "by_tm": [
             "TM04",

@@ -49,28 +49,24 @@
                 "MOVE_SCRATCH"
             ],
             [
-                1,
-                "MOVE_GROWL"
-            ],
-            [
-                3,
-                "MOVE_GROWL"
+                2,
+                "MOVE_SNARL"
             ],
             [
                 6,
                 "MOVE_SAND_ATTACK"
             ],
             [
-                6,
-                "MOVE_ASSIST"
+                8,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                11,
+                "MOVE_FURY_SWIPES"
             ],
             [
                 12,
                 "MOVE_FAKE_OUT"
-            ],
-            [
-                12,
-                "MOVE_FURY_SWIPES"
             ],
             [
                 15,
@@ -81,12 +77,12 @@
                 "MOVE_TORMENT"
             ],
             [
-                24,
-                "MOVE_ASSURANCE"
+                23,
+                "MOVE_HONE_CLAWS"
             ],
             [
                 24,
-                "MOVE_HONE_CLAWS"
+                "MOVE_ASSURANCE"
             ],
             [
                 30,
@@ -97,16 +93,12 @@
                 "MOVE_CAPTIVATE"
             ],
             [
+                35,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
                 36,
                 "MOVE_SUCKER_PUNCH"
-            ],
-            [
-                36,
-                "MOVE_NASTY_PLOT"
-            ],
-            [
-                36,
-                "MOVE_NIGHT_SLASH"
             ],
             [
                 39,

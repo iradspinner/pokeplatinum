@@ -50,7 +50,6 @@
             [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_HAZE" ],
             [ 51, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [

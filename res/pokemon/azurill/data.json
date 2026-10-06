@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
             [ 2, "MOVE_CHARM" ],
             [ 7, "MOVE_TAIL_WHIP" ],
             [ 10, "MOVE_BUBBLE" ],

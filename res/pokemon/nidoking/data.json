@@ -42,9 +42,20 @@
             [ 1, "MOVE_FOCUS_ENERGY" ],
             [ 1, "MOVE_DOUBLE_KICK" ],
             [ 1, "MOVE_POISON_STING" ],
-            [ 23, "MOVE_THRASH" ],
+            [ 16, "MOVE_BULLDOZE" ],
+            [ 27, "MOVE_ROCK_TOMB" ],
+            [ 34, "MOVE_FOCUS_ENERGY" ],
+            [ 37, "MOVE_POISON_JAB" ],
+            [ 40, "MOVE_BODY_PRESS" ],
             [ 43, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_MEGAHORN" ]
+            [ 48, "MOVE_POISON_FANG" ],
+            [ 50, "MOVE_TOXIC" ],
+            [ 56, "MOVE_EARTHQUAKE" ],
+            [ 58, "MOVE_MEGAHORN" ],
+            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 66, "MOVE_THRASH" ],
+            [ 68, "MOVE_THROAT_CHOP" ],
+            [ 72, "MOVE_SLUDGE_BOMB" ]
         ],
         "by_tm": [
             "TM01",

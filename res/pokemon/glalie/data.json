@@ -40,18 +40,22 @@
         "by_level": [
             [ 1, "MOVE_POWDER_SNOW" ],
             [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_DOUBLE_TEAM" ],
             [ 1, "MOVE_BITE" ],
-            [ 4, "MOVE_DOUBLE_TEAM" ],
             [ 10, "MOVE_BITE" ],
             [ 13, "MOVE_ICY_WIND" ],
             [ 19, "MOVE_HEADBUTT" ],
-            [ 22, "MOVE_PROTECT" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
             [ 37, "MOVE_ICE_BEAM" ],
-            [ 51, "MOVE_BLIZZARD" ],
-            [ 59, "MOVE_SHEER_COLD" ]
+            [ 42, "MOVE_ROCK_SLIDE" ],
+            [ 44, "MOVE_POWER_GEM" ],
+            [ 46, "MOVE_EARTH_POWER" ],
+            [ 48, "MOVE_ICICLE_CRASH" ],
+            [ 53, "MOVE_SHADOW_BALL" ],
+            [ 55, "MOVE_DARK_PULSE" ],
+            [ 61, "MOVE_BLOCK" ],
+            [ 63, "MOVE_BULLDOZE" ],
+            [ 69, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM03",

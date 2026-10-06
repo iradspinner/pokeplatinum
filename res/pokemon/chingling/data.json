@@ -34,11 +34,12 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
             [ 6, "MOVE_GROWL" ],
             [ 9, "MOVE_ASTONISH" ],
+            [ 13, "MOVE_YAWN" ],
             [ 14, "MOVE_CONFUSION" ],
             [ 17, "MOVE_UPROAR" ],
+            [ 19, "MOVE_SNARL" ],
             [ 22, "MOVE_LAST_RESORT" ]
         ],
         "by_tm": [
@@ -98,7 +99,8 @@
             "MOVE_DREAM_EATER",
             "MOVE_WISH",
             "MOVE_FUTURE_SIGHT",
-            "MOVE_RECOVER"
+            "MOVE_RECOVER",
+            "MOVE_HEALING_WISH"
         ]
     },
     "evolutions": [

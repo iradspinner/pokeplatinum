@@ -39,14 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_PECK" ],
-            [ 1, "MOVE_GROWL" ],
             [ 5, "MOVE_ASTONISH" ],
             [ 9, "MOVE_SING" ],
-            [ 13, "MOVE_FURY_ATTACK" ],
             [ 18, "MOVE_SAFEGUARD" ],
+            [ 20, "MOVE_DRAGON_DANCE" ],
             [ 23, "MOVE_MIST" ],
+            [ 24, "MOVE_AIR_SLASH" ],
             [ 28, "MOVE_TAKE_DOWN" ],
             [ 32, "MOVE_NATURAL_GIFT" ],
+            [ 34, "MOVE_PLAY_ROUGH" ],
+            [ 35, "MOVE_STEEL_WING" ],
             [ 36, "MOVE_MIRROR_MOVE" ],
             [ 40, "MOVE_REFRESH" ],
             [ 45, "MOVE_DRAGON_PULSE" ],

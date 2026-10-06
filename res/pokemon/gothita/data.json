@@ -53,10 +53,6 @@
                 "MOVE_CONFUSION"
             ],
             [
-                3,
-                "MOVE_CONFUSION"
-            ],
-            [
                 5,
                 "MOVE_PLAY_NICE"
             ],
@@ -73,36 +69,44 @@
                 "MOVE_DOUBLE_SLAP"
             ],
             [
-                19,
-                "MOVE_FAKE_TEARS"
+                17,
+                "MOVE_CONFUSION"
+            ],
+            [
+                18,
+                "MOVE_EMBARGO"
             ],
             [
                 19,
-                "MOVE_EMBARGO"
+                "MOVE_FAKE_TEARS"
             ],
             [
                 22,
                 "MOVE_PSYSHOCK"
             ],
             [
+                23,
+                "MOVE_FAINT_ATTACK"
+            ],
+            [
                 24,
                 "MOVE_HYPNOSIS"
             ],
             [
-                24,
-                "MOVE_FAINT_ATTACK"
+                26,
+                "MOVE_DARK_PULSE"
             ],
             [
                 30,
                 "MOVE_CHARM"
             ],
             [
-                33,
-                "MOVE_PSYCH_UP"
+                32,
+                "MOVE_HEAL_BLOCK"
             ],
             [
                 33,
-                "MOVE_HEAL_BLOCK"
+                "MOVE_PSYCH_UP"
             ],
             [
                 34,
@@ -115,10 +119,6 @@
             [
                 37,
                 "MOVE_FUTURE_SIGHT"
-            ],
-            [
-                40,
-                "MOVE_TELEKINESIS"
             ],
             [
                 48,

@@ -44,10 +44,7 @@
             [ 40, "MOVE_EXTREME_SPEED" ],
             [ 50, "MOVE_REFRESH" ],
             [ 60, "MOVE_FUTURE_SIGHT" ],
-            [ 70, "MOVE_RECOVER" ],
-            [ 80, "MOVE_HYPER_BEAM" ],
-            [ 90, "MOVE_PERISH_SONG" ],
-            [ 100, "MOVE_JUDGMENT" ]
+            [ 70, "MOVE_RECOVER" ]
         ],
         "by_tm": [
             "TM02",

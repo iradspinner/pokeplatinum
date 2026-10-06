@@ -50,10 +50,16 @@
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 37, "MOVE_WITHDRAW" ],
+            [ 39, "MOVE_SIGNAL_BEAM" ],
             [ 41, "MOVE_SLACK_OFF" ],
             [ 47, "MOVE_AMNESIA" ],
+            [ 49, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_PSYCHIC" ],
-            [ 67, "MOVE_PSYCH_UP" ]
+            [ 56, "MOVE_SURF" ],
+            [ 58, "MOVE_MUDDY_WATER" ],
+            [ 64, "MOVE_SCALD" ],
+            [ 67, "MOVE_PSYCH_UP" ],
+            [ 72, "MOVE_FLAMETHROWER" ]
         ],
         "by_tm": [
             "TM01",

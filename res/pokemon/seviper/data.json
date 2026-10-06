@@ -38,7 +38,8 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_WRING_OUT" ],
+            [ 1, "MOVE_HAZE" ],
             [ 7, "MOVE_LICK" ],
             [ 10, "MOVE_BITE" ],
             [ 16, "MOVE_POISON_TAIL" ],
@@ -47,10 +48,8 @@
             [ 28, "MOVE_CRUNCH" ],
             [ 34, "MOVE_POISON_FANG" ],
             [ 37, "MOVE_SWAGGER" ],
-            [ 43, "MOVE_HAZE" ],
             [ 46, "MOVE_NIGHT_SLASH" ],
-            [ 52, "MOVE_POISON_JAB" ],
-            [ 55, "MOVE_WRING_OUT" ]
+            [ 52, "MOVE_POISON_JAB" ]
         ],
         "by_tm": [
             "TM06",

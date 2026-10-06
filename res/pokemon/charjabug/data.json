@@ -73,12 +73,24 @@
                 "MOVE_SPARK"
             ],
             [
+                27,
+                "MOVE_LUNGE"
+            ],
+            [
                 29,
                 "MOVE_STICKY_WEB"
             ],
             [
+                31,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
                 36,
                 "MOVE_X_SCISSOR"
+            ],
+            [
+                38,
+                "MOVE_SUPERCELL_SLAM"
             ],
             [
                 43,

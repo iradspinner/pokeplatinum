@@ -69,6 +69,10 @@
                 "MOVE_BUBBLE_BEAM"
             ],
             [
+                19,
+                "MOVE_STICKY_WEB"
+            ],
+            [
                 21,
                 "MOVE_BUG_BITE"
             ],
@@ -91,10 +95,6 @@
             [
                 41,
                 "MOVE_SCALD"
-            ],
-            [
-                45,
-                "MOVE_HYDRO_PUMP"
             ],
             [
                 49,

@@ -73,12 +73,12 @@
                 "MOVE_STEALTH_ROCK"
             ],
             [
-                22,
-                "MOVE_VENOSHOCK"
+                20,
+                "MOVE_MUD_SHOT"
             ],
             [
-                29,
-                "MOVE_SELFDESTRUCT"
+                22,
+                "MOVE_VENOSHOCK"
             ],
             [
                 33,
@@ -99,7 +99,9 @@
         ],
         "by_tm": [],
         "by_tutor": [],
-        "egg_moves": []
+        "egg_moves": [
+            "MOVE_SELFDESTRUCT"
+        ]
     },
     "evolutions": [
         [

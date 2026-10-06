@@ -38,8 +38,8 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_SWEET_SCENT" ],
             [ 9, "MOVE_CHARM" ],
             [ 13, "MOVE_MOONLIGHT" ],
             [ 17, "MOVE_QUICK_ATTACK" ],

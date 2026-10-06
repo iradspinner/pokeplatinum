@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WRING_OUT" ],
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_YAWN" ],
             [ 1, "MOVE_POISON_GAS" ],
@@ -49,12 +50,11 @@
             [ 23, "MOVE_ENCORE" ],
             [ 26, "MOVE_BODY_SLAM" ],
             [ 30, "MOVE_TOXIC" ],
+            [ 37, "MOVE_SPIT_UP" ],
             [ 38, "MOVE_STOCKPILE" ],
-            [ 38, "MOVE_SPIT_UP" ],
-            [ 38, "MOVE_SWALLOW" ],
+            [ 39, "MOVE_SWALLOW" ],
             [ 45, "MOVE_SLUDGE_BOMB" ],
             [ 52, "MOVE_GASTRO_ACID" ],
-            [ 59, "MOVE_WRING_OUT" ],
             [ 66, "MOVE_GUNK_SHOT" ]
         ],
         "by_tm": [

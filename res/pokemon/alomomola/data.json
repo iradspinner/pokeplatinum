@@ -74,40 +74,44 @@
                 "MOVE_AQUA_RING"
             ],
             [
-                9,
-                "MOVE_AQUA_JET"
-            ],
-            [
-                13,
-                "MOVE_DOUBLE_SLAP"
-            ],
-            [
-                17,
-                "MOVE_HEAL_PULSE"
-            ],
-            [
-                21,
-                "MOVE_PROTECT"
-            ],
-            [
                 25,
                 "MOVE_WATER_PULSE"
             ],
             [
-                29,
-                "MOVE_WAKE_UP_SLAP"
+                30,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                31,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 33,
                 "MOVE_SOAK"
             ],
             [
+                34,
+                "MOVE_WAKE_UP_SLAP"
+            ],
+            [
+                35,
+                "MOVE_AGILITY"
+            ],
+            [
                 37,
                 "MOVE_WISH"
             ],
             [
+                39,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
                 41,
                 "MOVE_BRINE"
+            ],
+            [
+                43,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 45,
@@ -122,8 +126,12 @@
                 "MOVE_HELPING_HAND"
             ],
             [
-                57,
-                "MOVE_HEALING_WISH"
+                55,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                58,
+                "MOVE_ICE_PUNCH"
             ],
             [
                 61,
@@ -131,7 +139,19 @@
             ],
             [
                 65,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_MUDDY_WATER"
+            ],
+            [
+                67,
+                "MOVE_ACROBATICS"
+            ],
+            [
+                69,
+                "MOVE_FLIP_TURN"
+            ],
+            [
+                74,
+                "MOVE_BABY_DOLL_EYES"
             ]
         ],
         "by_tm": [],

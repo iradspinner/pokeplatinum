@@ -62,7 +62,7 @@
             ],
             [
                 17,
-                "MOVE_SWEET_SCENT"
+                "MOVE_DRAINING_KISS"
             ],
             [
                 21,
@@ -75,10 +75,6 @@
             [
                 25,
                 "MOVE_STOMP"
-            ],
-            [
-                32,
-                "MOVE_AROMATIC_MIST"
             ],
             [
                 38,
