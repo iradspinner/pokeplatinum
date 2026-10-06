@@ -46,9 +46,13 @@
             [ 40, "MOVE_SHADOW_FORCE" ],
             [ 50, "MOVE_HEAL_BLOCK" ],
             [ 60, "MOVE_EARTH_POWER" ],
+            [ 65, "MOVE_SCARY_FACE" ],
+            [ 66, "MOVE_DRACO_METEOR" ],
+            [ 67, "MOVE_POLTERGEIST" ],
+            [ 69, "MOVE_AURA_SPHERE" ],
             [ 70, "MOVE_SLASH" ],
-            [ 80, "MOVE_SHADOW_CLAW" ],
-            [ 90, "MOVE_AURA_SPHERE" ]
+            [ 74, "MOVE_EARTHQUAKE" ],
+            [ 78, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM02",

@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_DESTINY_BOND"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_CLAW"
             ],
             [
@@ -55,10 +59,6 @@
             [
                 1,
                 "MOVE_ASTONISH"
-            ],
-            [
-                1,
-                "MOVE_PROTECT"
             ],
             [
                 1,
@@ -73,10 +73,6 @@
                 "MOVE_DISABLE"
             ],
             [
-                16,
-                "MOVE_BRUTAL_SWING"
-            ],
-            [
                 20,
                 "MOVE_CRAFTY_SHIELD"
             ],
@@ -85,23 +81,19 @@
                 "MOVE_HEX"
             ],
             [
-                28,
-                "MOVE_MEAN_LOOK"
-            ],
-            [
-                32,
-                "MOVE_SLAM"
-            ],
-            [
                 38,
                 "MOVE_CURSE"
             ],
             [
-                44,
-                "MOVE_SHADOW_BALL"
+                53,
+                "MOVE_BRUTAL_SWING"
             ],
             [
-                50,
+                54,
+                "MOVE_SLAM"
+            ],
+            [
+                55,
                 "MOVE_EARTHQUAKE"
             ],
             [
@@ -109,12 +101,24 @@
                 "MOVE_POWER_SPLIT"
             ],
             [
-                56,
-                "MOVE_GUARD_SPLIT"
+                61,
+                "MOVE_ROCK_TOMB"
             ],
             [
-                62,
-                "MOVE_DESTINY_BOND"
+                66,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                68,
+                "MOVE_POLTERGEIST"
+            ],
+            [
+                69,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                71,
+                "MOVE_BODY_PRESS"
             ]
         ],
         "by_tm": [],

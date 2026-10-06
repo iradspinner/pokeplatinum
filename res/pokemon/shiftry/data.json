@@ -42,7 +42,19 @@
             [ 1, "MOVE_WHIRLWIND" ],
             [ 1, "MOVE_NASTY_PLOT" ],
             [ 1, "MOVE_RAZOR_LEAF" ],
-            [ 49, "MOVE_LEAF_STORM" ]
+            [ 34, "MOVE_LEAF_BLADE" ],
+            [ 40, "MOVE_LEECH_LIFE" ],
+            [ 43, "MOVE_EXTRASENSORY" ],
+            [ 49, "MOVE_LEAF_STORM" ],
+            [ 53, "MOVE_ROCK_SLIDE" ],
+            [ 54, "MOVE_THROAT_CHOP" ],
+            [ 56, "MOVE_SUCKER_PUNCH" ],
+            [ 58, "MOVE_SWAGGER" ],
+            [ 60, "MOVE_LOW_SWEEP" ],
+            [ 62, "MOVE_ROCK_TOMB" ],
+            [ 65, "MOVE_SYNTHESIS" ],
+            [ 66, "MOVE_NASTY_PLOT" ],
+            [ 68, "MOVE_UPPER_HAND" ]
         ],
         "by_tm": [
             "TM06",

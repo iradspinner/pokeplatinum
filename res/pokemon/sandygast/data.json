@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_ABSORB"
-            ],
-            [
-                1,
                 "MOVE_HARDEN"
             ],
             [
@@ -83,14 +79,6 @@
             [
                 36,
                 "MOVE_IRON_DEFENSE"
-            ],
-            [
-                43,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                47,
-                "MOVE_EARTH_POWER"
             ],
             [
                 52,

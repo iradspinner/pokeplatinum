@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
-                1,
                 "MOVE_MIRROR_COAT"
             ],
             [
@@ -59,14 +55,6 @@
             [
                 1,
                 "MOVE_TACKLE"
-            ],
-            [
-                5,
-                "MOVE_ABSORB"
-            ],
-            [
-                7,
-                "MOVE_GROWTH"
             ],
             [
                 10,
@@ -85,10 +73,6 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
-                23,
-                "MOVE_GRASSY_TERRAIN"
-            ],
-            [
                 29,
                 "MOVE_SEED_BOMB"
             ],
@@ -101,16 +85,36 @@
                 "MOVE_LEECH_SEED"
             ],
             [
-                46,
-                "MOVE_TERRAIN_PULSE"
+                42,
+                "MOVE_ALLURING_VOICE"
+            ],
+            [
+                44,
+                "MOVE_SWIFT"
             ],
             [
                 52,
                 "MOVE_PETAL_BLIZZARD"
             ],
             [
+                54,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                55,
+                "MOVE_POLLEN_PUFF"
+            ],
+            [
                 58,
                 "MOVE_PETAL_DANCE"
+            ],
+            [
+                60,
+                "MOVE_EARTH_POWER"
+            ],
+            [
+                65,
+                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [],

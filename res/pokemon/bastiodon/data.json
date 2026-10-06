@@ -39,7 +39,6 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_PROTECT" ],
             [ 1, "MOVE_TAUNT" ],
             [ 1, "MOVE_METAL_SOUND" ],
             [ 6, "MOVE_TAUNT" ],
@@ -49,9 +48,17 @@
             [ 24, "MOVE_SWAGGER" ],
             [ 28, "MOVE_ANCIENT_POWER" ],
             [ 30, "MOVE_BLOCK" ],
-            [ 36, "MOVE_ENDURE" ],
+            [ 33, "MOVE_ENDURE" ],
+            [ 34, "MOVE_ROCK_SLIDE" ],
+            [ 39, "MOVE_ZEN_HEADBUTT" ],
+            [ 41, "MOVE_ROCK_TOMB" ],
             [ 43, "MOVE_METAL_BURST" ],
-            [ 52, "MOVE_IRON_HEAD" ]
+            [ 47, "MOVE_BODY_PRESS" ],
+            [ 52, "MOVE_IRON_HEAD" ],
+            [ 56, "MOVE_BODY_SLAM" ],
+            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 60, "MOVE_FOUL_PLAY" ],
+            [ 65, "MOVE_CURSE" ]
         ],
         "by_tm": [
             "TM05",

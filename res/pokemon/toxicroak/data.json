@@ -50,10 +50,20 @@
             [ 24, "MOVE_SWAGGER" ],
             [ 29, "MOVE_MUD_BOMB" ],
             [ 31, "MOVE_SUCKER_PUNCH" ],
-            [ 36, "MOVE_NASTY_PLOT" ],
-            [ 41, "MOVE_POISON_JAB" ],
+            [ 38, "MOVE_POISON_JAB" ],
+            [ 40, "MOVE_NASTY_PLOT" ],
+            [ 44, "MOVE_LOW_SWEEP" ],
+            [ 46, "MOVE_X_SCISSOR" ],
             [ 49, "MOVE_SLUDGE_BOMB" ],
-            [ 54, "MOVE_FLATTER" ]
+            [ 54, "MOVE_FLATTER" ],
+            [ 56, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_UPPER_HAND" ],
+            [ 60, "MOVE_DRAIN_PUNCH" ],
+            [ 62, "MOVE_THROAT_CHOP" ],
+            [ 65, "MOVE_CLOSE_COMBAT" ],
+            [ 66, "MOVE_BULLDOZE" ],
+            [ 68, "MOVE_EARTHQUAKE" ],
+            [ 71, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM01",

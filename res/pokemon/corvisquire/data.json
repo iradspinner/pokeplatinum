@@ -53,10 +53,6 @@
                 "MOVE_LEER"
             ],
             [
-                4,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 12,
                 "MOVE_SAND_ATTACK"
             ],
@@ -73,8 +69,16 @@
                 "MOVE_DRILL_PECK"
             ],
             [
+                29,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
                 32,
                 "MOVE_FEATHER_DANCE"
+            ],
+            [
+                35,
+                "MOVE_U_TURN"
             ],
             [
                 38,
@@ -83,10 +87,6 @@
             [
                 42,
                 "MOVE_DEFOG"
-            ],
-            [
-                48,
-                "MOVE_BRAVE_BIRD"
             ],
             [
                 55,

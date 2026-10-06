@@ -45,11 +45,23 @@
     "learnset": {
         "by_level": [
             [
-                1,
-                "MOVE_SPLASH"
+                4,
+                "MOVE_GRASSY_GLIDE"
             ],
             [
                 5,
+                "MOVE_TRAILBLAZE"
+            ],
+            [
+                6,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                7,
+                "MOVE_TAUNT"
+            ],
+            [
+                8,
                 "MOVE_PLAY_NICE"
             ],
             [
@@ -61,24 +73,12 @@
                 "MOVE_RAZOR_LEAF"
             ],
             [
-                17,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
-                21,
-                "MOVE_MAGICAL_LEAF"
-            ],
-            [
                 23,
                 "MOVE_TEETER_DANCE"
             ],
             [
                 29,
                 "MOVE_FLAIL"
-            ],
-            [
-                33,
-                "MOVE_AROMATIC_MIST"
             ]
         ],
         "by_tm": [],

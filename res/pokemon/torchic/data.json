@@ -39,14 +39,11 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
             [ 10, "MOVE_EMBER" ],
+            [ 11, "MOVE_SWAGGER" ],
+            [ 13, "MOVE_FLAME_CHARGE" ],
             [ 16, "MOVE_PECK" ],
-            [ 19, "MOVE_SAND_ATTACK" ],
             [ 25, "MOVE_FIRE_SPIN" ],
-            [ 28, "MOVE_QUICK_ATTACK" ],
-            [ 34, "MOVE_SLASH" ],
             [ 37, "MOVE_MIRROR_MOVE" ],
             [ 43, "MOVE_FLAMETHROWER" ]
         ],

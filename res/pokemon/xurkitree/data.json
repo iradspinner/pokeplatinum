@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_WRAP"
-            ],
-            [
-                1,
                 "MOVE_THUNDER_SHOCK"
             ],
             [
@@ -59,10 +55,6 @@
             [
                 10,
                 "MOVE_THUNDER_WAVE"
-            ],
-            [
-                15,
-                "MOVE_INGRAIN"
             ],
             [
                 20,
@@ -97,16 +89,8 @@
                 "MOVE_THUNDERBOLT"
             ],
             [
-                60,
-                "MOVE_ELECTRIC_TERRAIN"
-            ],
-            [
                 65,
                 "MOVE_POWER_WHIP"
-            ],
-            [
-                70,
-                "MOVE_ZAP_CANNON"
             ]
         ],
         "by_tm": [],

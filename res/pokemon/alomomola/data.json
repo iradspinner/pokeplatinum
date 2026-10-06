@@ -74,32 +74,24 @@
                 "MOVE_AQUA_RING"
             ],
             [
-                9,
-                "MOVE_AQUA_JET"
-            ],
-            [
-                13,
-                "MOVE_DOUBLE_SLAP"
-            ],
-            [
-                17,
+                30,
                 "MOVE_HEAL_PULSE"
             ],
             [
-                21,
-                "MOVE_PROTECT"
-            ],
-            [
-                25,
-                "MOVE_WATER_PULSE"
-            ],
-            [
-                29,
+                31,
                 "MOVE_WAKE_UP_SLAP"
+            ],
+            [
+                32,
+                "MOVE_WATER_PULSE"
             ],
             [
                 33,
                 "MOVE_SOAK"
+            ],
+            [
+                35,
+                "MOVE_PLAY_ROUGH"
             ],
             [
                 37,
@@ -108,6 +100,10 @@
             [
                 41,
                 "MOVE_BRINE"
+            ],
+            [
+                43,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 45,
@@ -122,8 +118,20 @@
                 "MOVE_HELPING_HAND"
             ],
             [
+                54,
+                "MOVE_FLIP_TURN"
+            ],
+            [
+                56,
+                "MOVE_LIQUIDATION"
+            ],
+            [
                 57,
-                "MOVE_HEALING_WISH"
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                58,
+                "MOVE_BODY_SLAM"
             ],
             [
                 61,
@@ -131,7 +139,11 @@
             ],
             [
                 65,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_MUDDY_WATER"
+            ],
+            [
+                68,
+                "MOVE_BABY_DOLL_EYES"
             ]
         ],
         "by_tm": [],

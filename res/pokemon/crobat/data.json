@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HAZE" ],
             [ 1, "MOVE_CROSS_POISON" ],
             [ 1, "MOVE_SCREECH" ],
             [ 1, "MOVE_LEECH_LIFE" ],
@@ -51,8 +52,13 @@
             [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_HAZE" ],
-            [ 51, "MOVE_AIR_SLASH" ]
+            [ 45, "MOVE_ZEN_HEADBUTT" ],
+            [ 51, "MOVE_AIR_SLASH" ],
+            [ 54, "MOVE_U_TURN" ],
+            [ 56, "MOVE_CRUNCH" ],
+            [ 58, "MOVE_TAILWIND" ],
+            [ 60, "MOVE_TOXIC" ],
+            [ 65, "MOVE_BRAVE_BIRD" ]
         ],
         "by_tm": [
             "TM06",

@@ -85,8 +85,16 @@
                 "MOVE_SPARKLING_ARIA"
             ],
             [
-                40,
+                39,
                 "MOVE_DRAINING_KISS"
+            ],
+            [
+                41,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                43,
+                "MOVE_ALLURING_VOICE"
             ],
             [
                 46,
@@ -97,16 +105,28 @@
                 "MOVE_HYPER_VOICE"
             ],
             [
+                54,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
                 56,
                 "MOVE_FLIP_TURN"
             ],
             [
-                64,
-                "MOVE_MOONBLAST"
+                58,
+                "MOVE_ICE_BEAM"
             ],
             [
-                70,
-                "MOVE_HYDRO_PUMP"
+                60,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                62,
+                "MOVE_MUDDY_WATER"
+            ],
+            [
+                64,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [],

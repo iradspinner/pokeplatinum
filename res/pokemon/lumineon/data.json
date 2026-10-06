@@ -47,11 +47,20 @@
             [ 22, "MOVE_WATER_PULSE" ],
             [ 26, "MOVE_CAPTIVATE" ],
             [ 29, "MOVE_SAFEGUARD" ],
-            [ 35, "MOVE_AQUA_RING" ],
+            [ 31, "MOVE_FLIP_TURN" ],
+            [ 33, "MOVE_AQUA_RING" ],
+            [ 34, "MOVE_ICY_WIND" ],
+            [ 38, "MOVE_AQUA_TAIL" ],
+            [ 40, "MOVE_SIGNAL_BEAM" ],
             [ 42, "MOVE_WHIRLPOOL" ],
+            [ 45, "MOVE_ICE_FANG" ],
             [ 48, "MOVE_U_TURN" ],
             [ 53, "MOVE_BOUNCE" ],
-            [ 59, "MOVE_SILVER_WIND" ]
+            [ 54, "MOVE_AIR_SLASH" ],
+            [ 56, "MOVE_CRUNCH" ],
+            [ 57, "MOVE_CONFUSE_RAY" ],
+            [ 59, "MOVE_SILVER_WIND" ],
+            [ 65, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM03",

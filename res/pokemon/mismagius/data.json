@@ -39,7 +39,17 @@
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_PSYWAVE" ],
             [ 1, "MOVE_SPITE" ],
-            [ 1, "MOVE_ASTONISH" ]
+            [ 1, "MOVE_ASTONISH" ],
+            [ 27, "MOVE_HEX" ],
+            [ 33, "MOVE_CONFUSION" ],
+            [ 45, "MOVE_SHADOW_BALL" ],
+            [ 50, "MOVE_POWER_GEM" ],
+            [ 54, "MOVE_MYSTICAL_FIRE" ],
+            [ 56, "MOVE_MEAN_LOOK" ],
+            [ 58, "MOVE_PSYCHIC" ],
+            [ 60, "MOVE_ENERGY_BALL" ],
+            [ 62, "MOVE_BURNING_JEALOUSY" ],
+            [ 65, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM04",

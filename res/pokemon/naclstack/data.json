@@ -69,10 +69,6 @@
                 "MOVE_SMACK_DOWN"
             ],
             [
-                13,
-                "MOVE_ROCK_POLISH"
-            ],
-            [
                 16,
                 "MOVE_HEADBUTT"
             ],
@@ -81,8 +77,20 @@
                 "MOVE_IRON_DEFENSE"
             ],
             [
-                30,
+                24,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                25,
                 "MOVE_RECOVER"
+            ],
+            [
+                27,
+                "MOVE_ROCK_POLISH"
+            ],
+            [
+                32,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 34,
@@ -91,14 +99,6 @@
             [
                 38,
                 "MOVE_STEALTH_ROCK"
-            ],
-            [
-                41,
-                "MOVE_HEAVY_SLAM"
-            ],
-            [
-                45,
-                "MOVE_EARTHQUAKE"
             ],
             [
                 51,

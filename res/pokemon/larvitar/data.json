@@ -45,6 +45,7 @@
             [ 19, "MOVE_SCARY_FACE" ],
             [ 23, "MOVE_THRASH" ],
             [ 28, "MOVE_DARK_PULSE" ],
+            [ 30, "MOVE_STOMPING_TANTRUM" ],
             [ 32, "MOVE_PAYBACK" ],
             [ 37, "MOVE_CRUNCH" ],
             [ 41, "MOVE_EARTHQUAKE" ],

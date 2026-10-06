@@ -43,8 +43,7 @@
             [ 39, "MOVE_WHIRLPOOL" ],
             [ 46, "MOVE_WATER_PULSE" ],
             [ 54, "MOVE_AQUA_RING" ],
-            [ 61, "MOVE_DIVE" ],
-            [ 69, "MOVE_RAIN_DANCE" ]
+            [ 61, "MOVE_DIVE" ]
         ],
         "by_tm": [
             "TM03",

@@ -65,10 +65,6 @@
                 "MOVE_LEAFAGE"
             ],
             [
-                4,
-                "MOVE_GROWL"
-            ],
-            [
                 8,
                 "MOVE_PECK"
             ],
@@ -97,12 +93,20 @@
                 "MOVE_SEED_BOMB"
             ],
             [
-                34,
+                36,
                 "MOVE_SPIRIT_SHACKLE"
             ],
             [
                 38,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                41,
+                "MOVE_U_TURN"
+            ],
+            [
+                44,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 48,
@@ -113,8 +117,20 @@
                 "MOVE_ROOST"
             ],
             [
+                54,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
                 55,
                 "MOVE_LEAF_BLADE"
+            ],
+            [
+                57,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                58,
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 61,
@@ -123,6 +139,14 @@
             [
                 65,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                66,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                68,
+                "MOVE_BRAVE_BIRD"
             ]
         ],
         "by_tm": [],

@@ -65,16 +65,20 @@
                 "MOVE_REFLECT"
             ],
             [
-                10,
-                "MOVE_LIGHT_SCREEN"
+                11,
+                "MOVE_CONFUSION"
             ],
             [
-                10,
-                "MOVE_CONFUSION"
+                12,
+                "MOVE_LIGHT_SCREEN"
             ],
             [
                 20,
                 "MOVE_PSYBEAM"
+            ],
+            [
+                26,
+                "MOVE_SNARL"
             ],
             [
                 36,

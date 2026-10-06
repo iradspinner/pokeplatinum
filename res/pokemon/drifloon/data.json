@@ -38,19 +38,19 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_EXPLOSION" ],
             [ 1, "MOVE_MINIMIZE" ],
             [ 6, "MOVE_ASTONISH" ],
             [ 11, "MOVE_GUST" ],
             [ 14, "MOVE_FOCUS_ENERGY" ],
             [ 17, "MOVE_PAYBACK" ],
+            [ 19, "MOVE_HEX" ],
             [ 22, "MOVE_STOCKPILE" ],
+            [ 24, "MOVE_STRENGTH_SAP" ],
             [ 27, "MOVE_SWALLOW" ],
-            [ 27, "MOVE_SPIT_UP" ],
-            [ 30, "MOVE_OMINOUS_WIND" ],
+            [ 28, "MOVE_SPIT_UP" ],
             [ 33, "MOVE_BATON_PASS" ],
-            [ 38, "MOVE_SHADOW_BALL" ],
-            [ 43, "MOVE_EXPLOSION" ]
+            [ 38, "MOVE_SHADOW_BALL" ]
         ],
         "by_tm": [
             "TM04",

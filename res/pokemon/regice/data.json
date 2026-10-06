@@ -47,10 +47,8 @@
             [ 41, "MOVE_AMNESIA" ],
             [ 49, "MOVE_CHARGE_BEAM" ],
             [ 57, "MOVE_LOCK_ON" ],
-            [ 65, "MOVE_ZAP_CANNON" ],
-            [ 73, "MOVE_ICE_BEAM" ],
-            [ 81, "MOVE_HAMMER_ARM" ],
-            [ 89, "MOVE_HYPER_BEAM" ]
+            [ 65, "MOVE_THUNDERBOLT" ],
+            [ 73, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM01",

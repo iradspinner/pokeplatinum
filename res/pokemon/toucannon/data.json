@@ -81,28 +81,60 @@
                 "MOVE_ROOST"
             ],
             [
-                24,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 30,
                 "MOVE_SCREECH"
             ],
             [
-                34,
+                32,
                 "MOVE_DRILL_PECK"
+            ],
+            [
+                35,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                37,
+                "MOVE_FACADE"
             ],
             [
                 40,
                 "MOVE_BULLET_SEED"
             ],
             [
+                42,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
                 44,
                 "MOVE_FEATHER_DANCE"
             ],
             [
+                47,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
                 50,
                 "MOVE_HYPER_VOICE"
+            ],
+            [
+                54,
+                "MOVE_BRICK_BREAK"
+            ],
+            [
+                56,
+                "MOVE_TEMPER_FLARE"
+            ],
+            [
+                60,
+                "MOVE_ROCK_CLIMB"
+            ],
+            [
+                65,
+                "MOVE_BRAVE_BIRD"
+            ],
+            [
+                68,
+                "MOVE_BEAK_BLAST"
             ]
         ],
         "by_tm": [],

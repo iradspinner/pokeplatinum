@@ -38,13 +38,12 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_CHARM" ],
             [ 1, "MOVE_ENCORE" ],
+            [ 14, "MOVE_MIRROR_COAT" ],
             [ 15, "MOVE_COUNTER" ],
-            [ 15, "MOVE_MIRROR_COAT" ],
-            [ 15, "MOVE_SAFEGUARD" ],
-            [ 15, "MOVE_DESTINY_BOND" ]
+            [ 16, "MOVE_SAFEGUARD" ]
         ],
         "by_tm": [  ],
         "by_tutor": [  ]

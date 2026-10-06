@@ -44,8 +44,7 @@
             [ 50, "MOVE_REST" ],
             [ 60, "MOVE_EXTREME_SPEED" ],
             [ 65, "MOVE_HYPER_BEAM" ],
-            [ 75, "MOVE_DRAGON_PULSE" ],
-            [ 80, "MOVE_OUTRAGE" ]
+            [ 75, "MOVE_DRAGON_PULSE" ]
         ],
         "by_tm": [
             "TM02",

@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_EXPLOSION"
+            ],
+            [
+                1,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                1,
                 "MOVE_HEAT_WAVE"
             ],
             [
@@ -57,24 +65,12 @@
                 "MOVE_TACKLE"
             ],
             [
-                4,
-                "MOVE_SMOKE_SCREEN"
-            ],
-            [
-                7,
-                "MOVE_GRUDGE"
-            ],
-            [
-                12,
-                "MOVE_HAZE"
-            ],
-            [
-                15,
-                "MOVE_CLEAR_SMOG"
-            ],
-            [
                 18,
                 "MOVE_BELCH"
+            ],
+            [
+                19,
+                "MOVE_CLEAR_SMOG"
             ],
             [
                 23,
@@ -90,7 +86,7 @@
             ],
             [
                 34,
-                "MOVE_SELFDESTRUCT"
+                "MOVE_PLAY_ROUGH"
             ],
             [
                 38,
@@ -109,8 +105,36 @@
                 "MOVE_STRANGE_STEAM"
             ],
             [
-                55,
-                "MOVE_EXPLOSION"
+                54,
+                "MOVE_POISON_FANG"
+            ],
+            [
+                56,
+                "MOVE_HEAT_WAVE"
+            ],
+            [
+                58,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                60,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                62,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                65,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                66,
+                "MOVE_DARK_PULSE"
+            ],
+            [
+                68,
+                "MOVE_BODY_SLAM"
             ]
         ],
         "by_tm": [],

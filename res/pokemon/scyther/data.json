@@ -48,14 +48,13 @@
             [ 21, "MOVE_WING_ATTACK" ],
             [ 25, "MOVE_FURY_CUTTER" ],
             [ 29, "MOVE_SLASH" ],
-            [ 33, "MOVE_RAZOR_WIND" ],
-            [ 37, "MOVE_DOUBLE_TEAM" ],
+            [ 35, "MOVE_SKITTER_SMACK" ],
             [ 41, "MOVE_X_SCISSOR" ],
+            [ 43, "MOVE_BRICK_BREAK" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 49, "MOVE_DOUBLE_HIT" ],
             [ 53, "MOVE_AIR_SLASH" ],
-            [ 57, "MOVE_SWORDS_DANCE" ],
-            [ 61, "MOVE_FEINT" ]
+            [ 57, "MOVE_SWORDS_DANCE" ]
         ],
         "by_tm": [
             "TM06",

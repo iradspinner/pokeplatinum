@@ -49,18 +49,6 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
-                5,
-                "MOVE_ABSORB"
-            ],
-            [
-                7,
-                "MOVE_GROWTH"
-            ],
-            [
                 10,
                 "MOVE_RAZOR_LEAF"
             ],
@@ -77,20 +65,24 @@
                 "MOVE_MEGA_DRAIN"
             ],
             [
-                23,
-                "MOVE_GRASSY_TERRAIN"
+                25,
+                "MOVE_CHARM"
+            ],
+            [
+                26,
+                "MOVE_MUD_SHOT"
             ],
             [
                 29,
                 "MOVE_SEED_BOMB"
             ],
             [
-                34,
-                "MOVE_ENERGY_BALL"
+                31,
+                "MOVE_GIGA_DRAIN"
             ],
             [
-                37,
-                "MOVE_LEECH_SEED"
+                34,
+                "MOVE_ENERGY_BALL"
             ],
             [
                 42,

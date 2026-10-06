@@ -49,13 +49,14 @@
             [ 17, "MOVE_SCREECH" ],
             [ 22, "MOVE_FAINT_ATTACK" ],
             [ 25, "MOVE_TAUNT" ],
+            [ 30, "MOVE_PAY_DAY" ],
             [ 32, "MOVE_POWER_GEM" ],
+            [ 33, "MOVE_SLASH" ],
             [ 37, "MOVE_SLASH" ],
             [ 44, "MOVE_NASTY_PLOT" ],
             [ 49, "MOVE_ASSURANCE" ],
             [ 56, "MOVE_CAPTIVATE" ],
-            [ 61, "MOVE_NIGHT_SLASH" ],
-            [ 68, "MOVE_FEINT" ]
+            [ 61, "MOVE_NIGHT_SLASH" ]
         ],
         "by_tm": [
             "TM03",

@@ -36,15 +36,25 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWTH" ],
-            [ 7, "MOVE_GROWTH" ],
             [ 10, "MOVE_LEECH_SEED" ],
             [ 13, "MOVE_HELPING_HAND" ],
             [ 19, "MOVE_MAGICAL_LEAF" ],
             [ 25, "MOVE_PETAL_DANCE" ],
+            [ 27, "MOVE_FLAME_WHEEL" ],
             [ 30, "MOVE_WORRY_SEED" ],
+            [ 34, "MOVE_PETAL_BLIZZARD" ],
             [ 35, "MOVE_TAKE_DOWN" ],
+            [ 40, "MOVE_ROCK_SLIDE" ],
             [ 43, "MOVE_SOLAR_BEAM" ],
-            [ 48, "MOVE_LUCKY_CHANT" ]
+            [ 48, "MOVE_LUCKY_CHANT" ],
+            [ 53, "MOVE_GIGA_DRAIN" ],
+            [ 54, "MOVE_BODY_SLAM" ],
+            [ 56, "MOVE_POLLEN_PUFF" ],
+            [ 58, "MOVE_PLAY_ROUGH" ],
+            [ 60, "MOVE_BLAZE_KICK" ],
+            [ 62, "MOVE_LEAF_STORM" ],
+            [ 65, "MOVE_FLARE_BLITZ" ],
+            [ 68, "MOVE_MORNING_SUN" ]
         ],
         "by_tm": [
             "TM06",

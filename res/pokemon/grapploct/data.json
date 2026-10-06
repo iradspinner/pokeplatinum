@@ -62,15 +62,7 @@
             ],
             [
                 1,
-                "MOVE_FEINT"
-            ],
-            [
-                1,
                 "MOVE_BIND"
-            ],
-            [
-                15,
-                "MOVE_DETECT"
             ],
             [
                 20,
@@ -79,10 +71,6 @@
             [
                 25,
                 "MOVE_BULK_UP"
-            ],
-            [
-                30,
-                "MOVE_SUBMISSION"
             ],
             [
                 35,
@@ -97,8 +85,24 @@
                 "MOVE_SUPERPOWER"
             ],
             [
-                50,
-                "MOVE_TOPSY_TURVY"
+                53,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                54,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                56,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                60,
+                "MOVE_STOMPING_TANTRUM"
+            ],
+            [
+                65,
+                "MOVE_CLOSE_COMBAT"
             ]
         ],
         "by_tm": [],

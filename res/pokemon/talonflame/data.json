@@ -81,20 +81,44 @@
                 "MOVE_ACROBATICS"
             ],
             [
+                40,
+                "MOVE_STEEL_WING"
+            ],
+            [
                 42,
-                "MOVE_ME_FIRST"
+                "MOVE_FLAMETHROWER"
             ],
             [
                 46,
                 "MOVE_TAILWIND"
             ],
             [
+                48,
+                "MOVE_UPPER_HAND"
+            ],
+            [
                 51,
                 "MOVE_FLARE_BLITZ"
             ],
             [
+                54,
+                "MOVE_OVERHEAT"
+            ],
+            [
                 55,
                 "MOVE_BRAVE_BIRD"
+            ],
+            [
+                57,
+                "MOVE_AGILITY"
+            ],
+            [
+                60,
+                "MOVE_U_TURN"
+            ],
+            [
+                65,
+                "MOVE_BULK_UP"
             ]
         ],
         "by_tm": [],

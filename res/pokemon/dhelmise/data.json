@@ -50,10 +50,6 @@
             ],
             [
                 1,
-                "MOVE_STEEL_ROLLER"
-            ],
-            [
-                1,
                 "MOVE_POLTERGEIST"
             ],
             [
@@ -66,19 +62,11 @@
             ],
             [
                 1,
-                "MOVE_ABSORB"
-            ],
-            [
-                1,
                 "MOVE_ASTONISH"
             ],
             [
                 1,
                 "MOVE_RAPID_SPIN"
-            ],
-            [
-                4,
-                "MOVE_WRAP"
             ],
             [
                 7,
@@ -105,24 +93,60 @@
                 "MOVE_ANCHOR_SHOT"
             ],
             [
+                35,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                36,
+                "MOVE_SEED_BOMB"
+            ],
+            [
+                37,
+                "MOVE_ASTONISH"
+            ],
+            [
                 40,
                 "MOVE_SHADOW_CLAW"
             ],
             [
-                46,
-                "MOVE_GRASSY_GLIDE"
+                43,
+                "MOVE_BULLDOZE"
             ],
             [
                 51,
                 "MOVE_GIGA_DRAIN"
             ],
             [
+                54,
+                "MOVE_LIQUIDATION"
+            ],
+            [
                 55,
                 "MOVE_HEAVY_SLAM"
             ],
             [
+                57,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                60,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                61,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                62,
+                "MOVE_POLTERGEIST"
+            ],
+            [
                 65,
                 "MOVE_PHANTOM_FORCE"
+            ],
+            [
+                67,
+                "MOVE_PETAL_BLIZZARD"
             ],
             [
                 70,

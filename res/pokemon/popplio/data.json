@@ -53,6 +53,10 @@
                 "MOVE_WATER_GUN"
             ],
             [
+                2,
+                "MOVE_BUBBLE_BEAM"
+            ],
+            [
                 4,
                 "MOVE_DISARMING_VOICE"
             ],
@@ -69,28 +73,12 @@
                 "MOVE_AQUA_JET"
             ],
             [
-                18,
-                "MOVE_ICY_WIND"
-            ],
-            [
-                22,
-                "MOVE_ENCORE"
-            ],
-            [
                 26,
                 "MOVE_SING"
             ],
             [
                 31,
                 "MOVE_SCALD"
-            ],
-            [
-                36,
-                "MOVE_DRAINING_KISS"
-            ],
-            [
-                41,
-                "MOVE_PERISH_SONG"
             ],
             [
                 46,
@@ -106,7 +94,7 @@
             ],
             [
                 63,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_SPARKLING_ARIA"
             ]
         ],
         "by_tm": [],

@@ -89,14 +89,6 @@
                 "MOVE_WHIRLWIND"
             ],
             [
-                1,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
-                5,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 10,
                 "MOVE_PLUCK"
             ],
@@ -133,10 +125,6 @@
                 "MOVE_AIR_SLASH"
             ],
             [
-                45,
-                "MOVE_WHIRLWIND"
-            ],
-            [
                 47,
                 "MOVE_DARK_PULSE"
             ],
@@ -149,6 +137,14 @@
                 "MOVE_EMBARGO"
             ],
             [
+                57,
+                "MOVE_HEAT_WAVE"
+            ],
+            [
+                60,
+                "MOVE_TOXIC"
+            ],
+            [
                 70,
                 "MOVE_MIRROR_MOVE"
             ],
@@ -157,7 +153,7 @@
                 "MOVE_ATTRACT"
             ],
             [
-                72,
+                73,
                 "MOVE_BRAVE_BIRD"
             ]
         ],

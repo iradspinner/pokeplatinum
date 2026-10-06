@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_FAKE_TEARS"
-            ],
-            [
-                1,
                 "MOVE_SLACK_OFF"
             ],
             [
@@ -71,10 +67,6 @@
             [
                 1,
                 "MOVE_ROLE_PLAY"
-            ],
-            [
-                1,
-                "MOVE_PROTECT"
             ],
             [
                 1,
@@ -102,10 +94,6 @@
             ],
             [
                 1,
-                "MOVE_MISTY_TERRAIN"
-            ],
-            [
-                1,
                 "MOVE_POUND"
             ],
             [
@@ -123,10 +111,6 @@
             [
                 12,
                 "MOVE_CONFUSION"
-            ],
-            [
-                16,
-                "MOVE_ALLY_SWITCH"
             ],
             [
                 20,
@@ -163,6 +147,38 @@
             [
                 52,
                 "MOVE_TEETER_DANCE"
+            ],
+            [
+                54,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                56,
+                "MOVE_ENCORE"
+            ],
+            [
+                58,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                60,
+                "MOVE_BLOCK"
+            ],
+            [
+                62,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                65,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                66,
+                "MOVE_TICKLE"
+            ],
+            [
+                68,
+                "MOVE_SLACK_OFF"
             ]
         ],
         "by_tm": [],

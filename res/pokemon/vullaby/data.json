@@ -53,8 +53,12 @@
                 "MOVE_LEER"
             ],
             [
-                5,
-                "MOVE_FURY_ATTACK"
+                2,
+                "MOVE_FAINT_ATTACK"
+            ],
+            [
+                6,
+                "MOVE_SCARY_FACE"
             ],
             [
                 11,
@@ -65,8 +69,8 @@
                 "MOVE_FLATTER"
             ],
             [
-                23,
-                "MOVE_FAINT_ATTACK"
+                16,
+                "MOVE_MUD_SHOT"
             ],
             [
                 24,
@@ -85,16 +89,24 @@
                 "MOVE_IRON_DEFENSE"
             ],
             [
+                32,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
                 35,
                 "MOVE_NASTY_PLOT"
+            ],
+            [
+                38,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 41,
                 "MOVE_AIR_SLASH"
             ],
             [
-                44,
-                "MOVE_WHIRLWIND"
+                43,
+                "MOVE_U_TURN"
             ],
             [
                 46,

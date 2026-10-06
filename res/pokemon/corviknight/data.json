@@ -53,10 +53,6 @@
                 "MOVE_LEER"
             ],
             [
-                4,
-                "MOVE_FURY_ATTACK"
-            ],
-            [
                 12,
                 "MOVE_SAND_ATTACK"
             ],
@@ -93,12 +89,40 @@
                 "MOVE_BRAVE_BIRD"
             ],
             [
+                52,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                54,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
                 55,
                 "MOVE_BODY_PRESS"
             ],
             [
+                57,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                60,
+                "MOVE_SWAGGER"
+            ],
+            [
+                62,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
                 65,
                 "MOVE_ROOST"
+            ],
+            [
+                66,
+                "MOVE_SCREECH"
+            ],
+            [
+                68,
+                "MOVE_SCARY_FACE"
             ]
         ],
         "by_tm": [],

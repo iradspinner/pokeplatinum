@@ -34,6 +34,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_REST" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 6, "MOVE_IMPRISON" ],
@@ -44,8 +45,7 @@
             [ 46, "MOVE_AMNESIA" ],
             [ 51, "MOVE_EXTRASENSORY" ],
             [ 61, "MOVE_FLAIL" ],
-            [ 66, "MOVE_NATURAL_GIFT" ],
-            [ 76, "MOVE_MEMENTO" ]
+            [ 66, "MOVE_NATURAL_GIFT" ]
         ],
         "by_tm": [
             "TM03",

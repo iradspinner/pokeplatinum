@@ -85,7 +85,7 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
-                29,
+                30,
                 "MOVE_FELL_STINGER"
             ],
             [
@@ -101,6 +101,10 @@
                 "MOVE_X_SCISSOR"
             ],
             [
+                41,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 43,
                 "MOVE_ENTRAINMENT"
             ],
@@ -111,6 +115,30 @@
             [
                 50,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                54,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
+                56,
+                "MOVE_LUNGE"
+            ],
+            [
+                58,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                60,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                62,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                65,
+                "MOVE_SLASH"
             ]
         ],
         "by_tm": [],

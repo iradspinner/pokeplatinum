@@ -101,8 +101,16 @@
                 "MOVE_ROCK_SLIDE"
             ],
             [
-                40,
+                39,
                 "MOVE_STOMPING_TANTRUM"
+            ],
+            [
+                42,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                44,
+                "MOVE_SHELL_SMASH"
             ],
             [
                 45,
@@ -117,8 +125,32 @@
                 "MOVE_STONE_EDGE"
             ],
             [
+                56,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                57,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                58,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 61,
                 "MOVE_ROCK_WRECKER"
+            ],
+            [
+                63,
+                "MOVE_ROCK_POLISH"
+            ],
+            [
+                65,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                68,
+                "MOVE_LUNGE"
             ]
         ],
         "by_tm": [],

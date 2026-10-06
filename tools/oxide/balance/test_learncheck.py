@@ -33,11 +33,15 @@ def check_catches(results):
     fixed = lc.catch_rows()
     amity = sum(1 for r in raw if r[4] in lc.UNMET_PLACES)
     togepi = [r[1] for r in fixed if r[0] == "SPECIES_TOGEPI" and r[3] == "egg gift"]
-    ok = ours == theirs and len(fixed) == len(raw) - amity and amity > 0 and togepi == ["Fantina"] \
-        and not any(r[4] in lc.UNMET_PLACES for r in fixed)
-    results.append(("catch rows are pool.catches(), Ian's two fixes apart", ok,
+    raw_fossils = {(r[0], r[3]) for r in raw if r[3] == "fossil"}
+    fossils = [r for r in fixed if r[3] == "fossil"]
+    added = [r for r in fossils if (r[0], r[3]) not in raw_fossils]
+    ok = ours == theirs and len(fixed) == len(raw) - amity + len(added) and amity > 0 \
+        and togepi == ["Fantina"] and not any(r[4] in lc.UNMET_PLACES for r in fixed) \
+        and len(added) >= 4 and all(r[1] == "Fantina" for r in added)
+    results.append(("catch rows are pool.catches(), Ian's three fixes apart", ok,
                     f"{sum(ours.values())} rows, {amity} Amity Square rows left out, Togepi's egg in "
-                    f"{togepi}" if ours == theirs else
+                    f"{togepi}, {len(fossils)} fossils in Fantina's split" if ours == theirs else
                     f"ours only {list((ours - theirs).items())[:3]}, pool only "
                     f"{list((theirs - ours).items())[:3]}"))
 
@@ -171,12 +175,16 @@ def check_evolutions_and_late(results):
     Check 22: Trapinch's Fissure at 89 is past the League."""
     c20 = {(pre, t): verdict for pre, _m, t, _how, verdict in lc.check20(O)}
     past = {sp for sp, _d in lc.check22(O)["past the League"]}
+    c23 = lc.check23(O)
     ok = (c20.get(("SPECIES_EEVEE", "SPECIES_SYLVEON")) == "fail"
           and c20.get(("SPECIES_TANGELA", "SPECIES_TANGROWTH")) == "pass"
           and "MOVE_FLARE_BLITZ" in lc.check21(O)["SPECIES_CHARIZARD"]
-          and "SPECIES_TRAPINCH" in past)
-    results.append(("checks 20 to 22 read Sylveon, Charizard and Trapinch", ok,
-                    f"Sylveon {c20.get(('SPECIES_EEVEE', 'SPECIES_SYLVEON'))}, {len(past)} species past 78"))
+          and "SPECIES_TRAPINCH" in past
+          and not c23["SPECIES_CHARMANDER"] and not c23["SPECIES_ONIX"] and not c23["SPECIES_BUDEW"]
+          and lc.moves()["MOVE_SHADOW_FORCE"]["id"] == lc.GEN4_LAST_ID)
+    results.append(("checks 20 to 23 read Sylveon, Charizard, Trapinch and the newer moves", ok,
+                    f"Sylveon {c20.get(('SPECIES_EEVEE', 'SPECIES_SYLVEON'))}, {len(past)} species past 78; "
+                    f"Charmander, Onix and Budew learn no newer move (Ian: '0 newer gen moves')"))
 
 
 def check_at_capture(results):

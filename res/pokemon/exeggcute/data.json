@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BARRAGE" ],
             [ 1, "MOVE_UPROAR" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 7, "MOVE_REFLECT" ],

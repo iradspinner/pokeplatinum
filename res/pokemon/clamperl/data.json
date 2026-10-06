@@ -41,7 +41,11 @@
             [ 1, "MOVE_CLAMP" ],
             [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_WHIRLPOOL" ],
-            [ 1, "MOVE_IRON_DEFENSE" ]
+            [ 1, "MOVE_IRON_DEFENSE" ],
+            [ 19, "MOVE_BRINE" ],
+            [ 26, "MOVE_BITE" ],
+            [ 29, "MOVE_SCALD" ],
+            [ 33, "MOVE_AURORA_BEAM" ]
         ],
         "by_tm": [
             "TM03",

@@ -54,7 +54,7 @@
             ],
             [
                 4,
-                "MOVE_FURY_ATTACK"
+                "MOVE_TAUNT"
             ],
             [
                 12,
@@ -67,22 +67,6 @@
             [
                 20,
                 "MOVE_SCARY_FACE"
-            ],
-            [
-                24,
-                "MOVE_DRILL_PECK"
-            ],
-            [
-                30,
-                "MOVE_FEATHER_DANCE"
-            ],
-            [
-                34,
-                "MOVE_REVENGE"
-            ],
-            [
-                40,
-                "MOVE_DEFOG"
             ],
             [
                 44,

@@ -61,14 +61,6 @@
                 "MOVE_EMBER"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
-                10,
-                "MOVE_LEER"
-            ],
-            [
                 14,
                 "MOVE_FIRE_FANG"
             ],
@@ -93,8 +85,16 @@
                 "MOVE_DARKEST_LARIAT"
             ],
             [
-                40,
+                38,
                 "MOVE_FLAMETHROWER"
+            ],
+            [
+                41,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                42,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 45,
@@ -105,16 +105,40 @@
                 "MOVE_KNOCK_OFF"
             ],
             [
+                54,
+                "MOVE_LEECH_LIFE"
+            ],
+            [
                 55,
                 "MOVE_FLARE_BLITZ"
+            ],
+            [
+                57,
+                "MOVE_BULK_UP"
+            ],
+            [
+                60,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                61,
+                "MOVE_U_TURN"
+            ],
+            [
+                62,
+                "MOVE_EARTHQUAKE"
             ],
             [
                 64,
                 "MOVE_OUTRAGE"
             ],
             [
-                83,
-                "MOVE_FLING"
+                66,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
+                68,
+                "MOVE_CLOSE_COMBAT"
             ]
         ],
         "by_tm": [],

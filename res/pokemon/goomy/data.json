@@ -75,18 +75,6 @@
             [
                 34,
                 "MOVE_INFESTATION"
-            ],
-            [
-                41,
-                "MOVE_BODY_SLAM"
-            ],
-            [
-                46,
-                "MOVE_MUDDY_WATER"
-            ],
-            [
-                54,
-                "MOVE_DRAGON_PULSE"
             ]
         ],
         "by_tm": [],

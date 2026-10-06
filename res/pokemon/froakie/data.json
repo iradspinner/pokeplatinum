@@ -53,10 +53,6 @@
                 "MOVE_WATER_GUN"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
                 10,
                 "MOVE_QUICK_ATTACK"
             ],
@@ -85,16 +81,12 @@
                 "MOVE_LOW_KICK"
             ],
             [
-                32,
-                "MOVE_WATERFALL"
-            ],
-            [
                 35,
                 "MOVE_FLING"
             ],
             [
                 40,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_SURF"
             ]
         ],
         "by_tm": [],

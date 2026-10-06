@@ -57,16 +57,48 @@
                 "MOVE_WILL_O_WISP"
             ],
             [
+                24,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
                 30,
                 "MOVE_NIGHT_SHADE"
+            ],
+            [
+                32,
+                "MOVE_LAVA_PLUME"
+            ],
+            [
+                34,
+                "MOVE_MYSTICAL_FIRE"
+            ],
+            [
+                36,
+                "MOVE_BITTER_BLADE"
             ],
             [
                 40,
                 "MOVE_INCINERATE"
             ],
             [
-                50,
-                "MOVE_LAVA_PLUME"
+                44,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                48,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                53,
+                "MOVE_EXPANDING_FORCE"
+            ],
+            [
+                54,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                56,
+                "MOVE_PSYCHIC"
             ]
         ],
         "by_tm": [],

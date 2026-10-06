@@ -35,19 +35,14 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_WRAP" ],
             [ 9, "MOVE_NIGHT_SHADE" ],
-            [ 17, "MOVE_TELEPORT" ],
             [ 25, "MOVE_KNOCK_OFF" ],
             [ 33, "MOVE_PURSUIT" ],
             [ 41, "MOVE_PSYCHIC" ],
             [ 49, "MOVE_SNATCH" ],
             [ 57, "MOVE_PSYCHO_SHIFT" ],
             [ 65, "MOVE_ZEN_HEADBUTT" ],
-            [ 73, "MOVE_COSMIC_POWER" ],
-            [ 81, "MOVE_RECOVER" ],
-            [ 89, "MOVE_PSYCHO_BOOST" ],
-            [ 97, "MOVE_HYPER_BEAM" ]
+            [ 73, "MOVE_COSMIC_POWER" ]
         ],
         "by_tm": [
             "TM01",

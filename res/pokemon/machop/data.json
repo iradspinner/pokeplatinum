@@ -40,17 +40,15 @@
         "by_level": [
             [ 1, "MOVE_LOW_KICK" ],
             [ 1, "MOVE_LEER" ],
+            [ 6, "MOVE_SCARY_FACE" ],
             [ 7, "MOVE_FOCUS_ENERGY" ],
             [ 10, "MOVE_KARATE_CHOP" ],
             [ 13, "MOVE_FORESIGHT" ],
+            [ 16, "MOVE_BULLET_PUNCH" ],
             [ 19, "MOVE_SEISMIC_TOSS" ],
             [ 22, "MOVE_REVENGE" ],
             [ 25, "MOVE_VITAL_THROW" ],
-            [ 31, "MOVE_SUBMISSION" ],
-            [ 34, "MOVE_WAKE_UP_SLAP" ],
-            [ 37, "MOVE_CROSS_CHOP" ],
-            [ 43, "MOVE_SCARY_FACE" ],
-            [ 46, "MOVE_DYNAMIC_PUNCH" ]
+            [ 37, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [
             "TM01",

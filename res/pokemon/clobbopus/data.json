@@ -53,16 +53,8 @@
                 "MOVE_LEER"
             ],
             [
-                5,
-                "MOVE_FEINT"
-            ],
-            [
                 10,
-                "MOVE_BIND"
-            ],
-            [
-                15,
-                "MOVE_DETECT"
+                "MOVE_BODY_SLAM"
             ],
             [
                 20,
@@ -74,7 +66,7 @@
             ],
             [
                 30,
-                "MOVE_SUBMISSION"
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 35,

@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_EXPLOSION"
+            ],
+            [
+                1,
                 "MOVE_HEAD_SMASH"
             ],
             [
@@ -93,20 +97,60 @@
                 "MOVE_DRAGON_PULSE"
             ],
             [
+                45,
+                "MOVE_SHELL_SMASH"
+            ],
+            [
                 47,
                 "MOVE_FIRE_SPIN"
             ],
             [
-                55,
-                "MOVE_EXPLOSION"
+                53,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                54,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                56,
+                "MOVE_BURNING_JEALOUSY"
+            ],
+            [
+                57,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                58,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 61,
                 "MOVE_OVERHEAT"
             ],
             [
+                63,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
                 66,
                 "MOVE_DRACO_METEOR"
+            ],
+            [
+                68,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                69,
+                "MOVE_SCORCHING_SANDS"
+            ],
+            [
+                71,
+                "MOVE_SHELL_TRAP"
+            ],
+            [
+                78,
+                "MOVE_IRON_HEAD"
             ]
         ],
         "by_tm": [],

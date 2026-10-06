@@ -41,7 +41,6 @@
             [ 1, "MOVE_FIRE_PUNCH" ],
             [ 1, "MOVE_THUNDER_PUNCH" ],
             [ 1, "MOVE_ROOST" ],
-            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_THUNDER_WAVE" ],
             [ 1, "MOVE_TWISTER" ],

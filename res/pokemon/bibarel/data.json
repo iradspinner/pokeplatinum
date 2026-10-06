@@ -40,18 +40,24 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_GROWL" ],
-            [ 9, "MOVE_DEFENSE_CURL" ],
             [ 13, "MOVE_ROLLOUT" ],
             [ 15, "MOVE_WATER_GUN" ],
             [ 18, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_BITE" ],
             [ 23, "MOVE_HYPER_FANG" ],
             [ 28, "MOVE_YAWN" ],
+            [ 30, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_AMNESIA" ],
+            [ 35, "MOVE_AQUA_TAIL" ],
             [ 38, "MOVE_TAKE_DOWN" ],
+            [ 40, "MOVE_ROCK_CLIMB" ],
             [ 43, "MOVE_SUPER_FANG" ],
             [ 48, "MOVE_SUPERPOWER" ],
-            [ 53, "MOVE_CURSE" ]
+            [ 53, "MOVE_CURSE" ],
+            [ 54, "MOVE_CRUNCH" ],
+            [ 56, "MOVE_ICE_FANG" ],
+            [ 60, "MOVE_DOUBLE_EDGE" ],
+            [ 65, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

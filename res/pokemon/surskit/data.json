@@ -39,13 +39,14 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
+            [ 3, "MOVE_STICKY_WEB" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
-            [ 13, "MOVE_SWEET_SCENT" ],
+            [ 10, "MOVE_GUST" ],
+            [ 13, "MOVE_SILVER_WIND" ],
             [ 19, "MOVE_WATER_SPORT" ],
             [ 25, "MOVE_BUBBLE_BEAM" ],
             [ 31, "MOVE_AGILITY" ],
             [ 37, "MOVE_MIST" ],
-            [ 37, "MOVE_HAZE" ],
             [ 43, "MOVE_BATON_PASS" ]
         ],
         "by_tm": [

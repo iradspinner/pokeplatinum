@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_FINAL_GAMBIT"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_PUNCH"
             ],
             [
@@ -73,20 +77,12 @@
                 "MOVE_FURY_SWIPES"
             ],
             [
-                8,
-                "MOVE_LOW_KICK"
-            ],
-            [
                 12,
                 "MOVE_SEISMIC_TOSS"
             ],
             [
                 17,
                 "MOVE_SWAGGER"
-            ],
-            [
-                22,
-                "MOVE_CROSS_CHOP"
             ],
             [
                 26,
@@ -97,10 +93,6 @@
                 "MOVE_THRASH"
             ],
             [
-                35,
-                "MOVE_RAGE_FIST"
-            ],
-            [
                 39,
                 "MOVE_CLOSE_COMBAT"
             ],
@@ -109,16 +101,48 @@
                 "MOVE_SCREECH"
             ],
             [
-                48,
-                "MOVE_STOMPING_TANTRUM"
+                50,
+                "MOVE_LOW_KICK"
+            ],
+            [
+                51,
+                "MOVE_PUNISHMENT"
             ],
             [
                 53,
                 "MOVE_OUTRAGE"
             ],
             [
-                57,
-                "MOVE_FINAL_GAMBIT"
+                54,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                56,
+                "MOVE_SHADOW_PUNCH"
+            ],
+            [
+                58,
+                "MOVE_THROAT_CHOP"
+            ],
+            [
+                60,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                62,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                65,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                66,
+                "MOVE_SUPERPOWER"
+            ],
+            [
+                68,
+                "MOVE_ROCK_TOMB"
             ]
         ],
         "by_tm": [],

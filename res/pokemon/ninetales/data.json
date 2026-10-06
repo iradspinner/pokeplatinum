@@ -43,7 +43,17 @@
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
             [ 1, "MOVE_SAFEGUARD" ],
-            [ 40, "MOVE_FLARE_BLITZ" ]
+            [ 34, "MOVE_DAZZLING_GLEAM" ],
+            [ 40, "MOVE_FLARE_BLITZ" ],
+            [ 54, "MOVE_ENERGY_BALL" ],
+            [ 56, "MOVE_EXTRASENSORY" ],
+            [ 58, "MOVE_MOONBLAST" ],
+            [ 60, "MOVE_MYSTICAL_FIRE" ],
+            [ 62, "MOVE_ICE_BEAM" ],
+            [ 65, "MOVE_OVERHEAT" ],
+            [ 66, "MOVE_NASTY_PLOT" ],
+            [ 68, "MOVE_DARK_PULSE" ],
+            [ 71, "MOVE_SPITE" ]
         ],
         "by_tm": [
             "TM04",

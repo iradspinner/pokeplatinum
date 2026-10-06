@@ -42,9 +42,22 @@
             [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_DOUBLE_KICK" ],
             [ 1, "MOVE_POISON_STING" ],
+            [ 17, "MOVE_BULLDOZE" ],
             [ 23, "MOVE_BODY_SLAM" ],
+            [ 34, "MOVE_POISON_FANG" ],
+            [ 40, "MOVE_DRILL_PECK" ],
             [ 43, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_SUPERPOWER" ]
+            [ 48, "MOVE_EARTHQUAKE" ],
+            [ 53, "MOVE_SHADOW_BALL" ],
+            [ 54, "MOVE_TOXIC" ],
+            [ 55, "MOVE_BODY_PRESS" ],
+            [ 58, "MOVE_SUPERPOWER" ],
+            [ 60, "MOVE_POISON_JAB" ],
+            [ 62, "MOVE_SLUDGE_BOMB" ],
+            [ 65, "MOVE_ICE_BEAM" ],
+            [ 66, "MOVE_THROAT_CHOP" ],
+            [ 68, "MOVE_CRUNCH" ],
+            [ 71, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

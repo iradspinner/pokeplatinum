@@ -47,7 +47,6 @@
             [ 23, "MOVE_RAPID_SPIN" ],
             [ 28, "MOVE_FLAMETHROWER" ],
             [ 33, "MOVE_BODY_SLAM" ],
-            [ 36, "MOVE_PROTECT" ],
             [ 39, "MOVE_LAVA_PLUME" ],
             [ 44, "MOVE_IRON_DEFENSE" ],
             [ 49, "MOVE_AMNESIA" ],

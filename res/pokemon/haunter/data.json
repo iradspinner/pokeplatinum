@@ -34,6 +34,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_LICK" ],
             [ 1, "MOVE_SPITE" ],
@@ -44,11 +45,11 @@
             [ 19, "MOVE_CONFUSE_RAY" ],
             [ 22, "MOVE_SUCKER_PUNCH" ],
             [ 25, "MOVE_SHADOW_PUNCH" ],
-            [ 28, "MOVE_PAYBACK" ],
+            [ 26, "MOVE_PAYBACK" ],
             [ 33, "MOVE_SHADOW_BALL" ],
+            [ 36, "MOVE_CLEAR_SMOG" ],
             [ 39, "MOVE_DREAM_EATER" ],
             [ 44, "MOVE_DARK_PULSE" ],
-            [ 50, "MOVE_DESTINY_BOND" ],
             [ 55, "MOVE_NIGHTMARE" ]
         ],
         "by_tm": [

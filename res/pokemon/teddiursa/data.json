@@ -38,6 +38,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_COVET" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_LEER" ],
@@ -45,11 +46,9 @@
             [ 1, "MOVE_FAKE_TEARS" ],
             [ 8, "MOVE_FURY_SWIPES" ],
             [ 15, "MOVE_FAINT_ATTACK" ],
-            [ 22, "MOVE_SWEET_SCENT" ],
             [ 29, "MOVE_SLASH" ],
             [ 36, "MOVE_CHARM" ],
             [ 43, "MOVE_REST" ],
-            [ 43, "MOVE_SNORE" ],
             [ 50, "MOVE_THRASH" ],
             [ 57, "MOVE_FLING" ]
         ],

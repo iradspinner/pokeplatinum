@@ -53,20 +53,20 @@
                 "MOVE_LEER"
             ],
             [
-                5,
-                "MOVE_BUG_BITE"
-            ],
-            [
                 10,
                 "MOVE_WING_ATTACK"
             ],
             [
-                14,
-                "MOVE_ROCK_SMASH"
-            ],
-            [
                 18,
                 "MOVE_FALSE_SWIPE"
+            ],
+            [
+                19,
+                "MOVE_BUG_BITE"
+            ],
+            [
+                20,
+                "MOVE_ROCK_SMASH"
             ],
             [
                 22,
@@ -83,6 +83,10 @@
             [
                 32,
                 "MOVE_ROCK_BLAST"
+            ],
+            [
+                35,
+                "MOVE_ROCK_SLIDE"
             ],
             [
                 36,
@@ -109,8 +113,32 @@
                 "MOVE_CLOSE_COMBAT"
             ],
             [
+                54,
+                "MOVE_IRON_HEAD"
+            ],
+            [
                 55,
                 "MOVE_ACCELEROCK"
+            ],
+            [
+                57,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                60,
+                "MOVE_LUNGE"
+            ],
+            [
+                62,
+                "MOVE_U_TURN"
+            ],
+            [
+                65,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                68,
+                "MOVE_NIGHT_SLASH"
             ]
         ],
         "by_tm": [],

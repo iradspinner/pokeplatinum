@@ -40,12 +40,19 @@
             [ 1, "MOVE_THUNDER_SHOCK" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
             [ 8, "MOVE_UPROAR" ],
-            [ 15, "MOVE_DOUBLE_TEAM" ],
             [ 22, "MOVE_SHOCK_WAVE" ],
             [ 29, "MOVE_OMINOUS_WIND" ],
+            [ 32, "MOVE_SNARL" ],
             [ 36, "MOVE_SUBSTITUTE" ],
+            [ 39, "MOVE_SHADOW_BALL" ],
+            [ 41, "MOVE_SIGNAL_BEAM" ],
             [ 43, "MOVE_CHARGE" ],
-            [ 50, "MOVE_DISCHARGE" ]
+            [ 46, "MOVE_THUNDERBOLT" ],
+            [ 50, "MOVE_DISCHARGE" ],
+            [ 54, "MOVE_VOLT_SWITCH" ],
+            [ 56, "MOVE_DARK_PULSE" ],
+            [ 61, "MOVE_HYPER_VOICE" ],
+            [ 65, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM06",

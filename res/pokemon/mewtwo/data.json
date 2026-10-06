@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ME_FIRST" ],
             [ 1, "MOVE_CONFUSION" ],
             [ 1, "MOVE_DISABLE" ],
             [ 8, "MOVE_BARRIER" ],
@@ -48,13 +49,9 @@
             [ 43, "MOVE_MIST" ],
             [ 50, "MOVE_PSYCHO_CUT" ],
             [ 57, "MOVE_AMNESIA" ],
+            [ 63, "MOVE_GUARD_SWAP" ],
             [ 64, "MOVE_POWER_SWAP" ],
-            [ 64, "MOVE_GUARD_SWAP" ],
-            [ 71, "MOVE_PSYCHIC" ],
-            [ 79, "MOVE_ME_FIRST" ],
-            [ 86, "MOVE_RECOVER" ],
-            [ 93, "MOVE_SAFEGUARD" ],
-            [ 100, "MOVE_AURA_SPHERE" ]
+            [ 71, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM01",

@@ -65,6 +65,10 @@
                 "MOVE_PSYBEAM"
             ],
             [
+                17,
+                "MOVE_CHARM"
+            ],
+            [
                 19,
                 "MOVE_LUCKY_CHANT"
             ],
@@ -73,8 +77,8 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
-                29,
-                "MOVE_FLAME_BURST"
+                27,
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
                 34,
@@ -89,20 +93,8 @@
                 "MOVE_WILL_O_WISP"
             ],
             [
-                50,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
-                54,
-                "MOVE_PSYCHIC"
-            ],
-            [
                 58,
                 "MOVE_MAGIC_ROOM"
-            ],
-            [
-                61,
-                "MOVE_FUTURE_SIGHT"
             ],
             [
                 65,

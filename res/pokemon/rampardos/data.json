@@ -47,9 +47,18 @@
             [ 24, "MOVE_ASSURANCE" ],
             [ 28, "MOVE_ANCIENT_POWER" ],
             [ 30, "MOVE_ENDEAVOR" ],
-            [ 36, "MOVE_ZEN_HEADBUTT" ],
+            [ 33, "MOVE_ZEN_HEADBUTT" ],
+            [ 34, "MOVE_REVENGE" ],
+            [ 39, "MOVE_BULLDOZE" ],
+            [ 41, "MOVE_ROCK_SLIDE" ],
             [ 43, "MOVE_SCREECH" ],
-            [ 52, "MOVE_HEAD_SMASH" ]
+            [ 47, "MOVE_ROCK_TOMB" ],
+            [ 52, "MOVE_HEAD_SMASH" ],
+            [ 54, "MOVE_BODY_PRESS" ],
+            [ 56, "MOVE_CRUNCH" ],
+            [ 61, "MOVE_EARTHQUAKE" ],
+            [ 65, "MOVE_HAMMER_ARM" ],
+            [ 68, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",

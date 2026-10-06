@@ -41,7 +41,11 @@
             [ 1, "MOVE_SKY_ATTACK" ],
             [ 1, "MOVE_EXTREME_SPEED" ],
             [ 1, "MOVE_AURA_SPHERE" ],
-            [ 1, "MOVE_AIR_SLASH" ]
+            [ 1, "MOVE_AIR_SLASH" ],
+            [ 57, "MOVE_AURA_SPHERE" ],
+            [ 60, "MOVE_MOONBLAST" ],
+            [ 62, "MOVE_LIFE_DEW" ],
+            [ 65, "MOVE_MORNING_SUN" ]
         ],
         "by_tm": [
             "TM01",

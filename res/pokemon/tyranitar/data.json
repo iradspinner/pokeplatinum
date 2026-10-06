@@ -53,6 +53,10 @@
             [ 41, "MOVE_CRUNCH" ],
             [ 47, "MOVE_EARTHQUAKE" ],
             [ 54, "MOVE_STONE_EDGE" ],
+            [ 57, "MOVE_IRON_DEFENSE" ],
+            [ 60, "MOVE_ROCK_TOMB" ],
+            [ 65, "MOVE_BLOCK" ],
+            [ 67, "MOVE_SUPERPOWER" ],
             [ 70, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [

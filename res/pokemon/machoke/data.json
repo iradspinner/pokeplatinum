@@ -47,11 +47,11 @@
             [ 19, "MOVE_SEISMIC_TOSS" ],
             [ 22, "MOVE_REVENGE" ],
             [ 25, "MOVE_VITAL_THROW" ],
-            [ 32, "MOVE_SUBMISSION" ],
+            [ 30, "MOVE_BULLDOZE" ],
+            [ 34, "MOVE_THROAT_CHOP" ],
             [ 36, "MOVE_WAKE_UP_SLAP" ],
-            [ 40, "MOVE_CROSS_CHOP" ],
-            [ 44, "MOVE_SCARY_FACE" ],
-            [ 51, "MOVE_DYNAMIC_PUNCH" ]
+            [ 40, "MOVE_CLOSE_COMBAT" ],
+            [ 44, "MOVE_SCARY_FACE" ]
         ],
         "by_tm": [
             "TM01",

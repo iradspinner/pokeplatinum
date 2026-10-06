@@ -51,10 +51,18 @@
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 39, "MOVE_NASTY_PLOT" ],
+            [ 41, "MOVE_POWER_GEM" ],
             [ 43, "MOVE_SWAGGER" ],
             [ 48, "MOVE_PSYCHIC" ],
             [ 53, "MOVE_TRUMP_CARD" ],
-            [ 57, "MOVE_PSYCH_UP" ]
+            [ 57, "MOVE_PSYCH_UP" ],
+            [ 60, "MOVE_SIGNAL_BEAM" ],
+            [ 62, "MOVE_MUDDY_WATER" ],
+            [ 65, "MOVE_SURF" ],
+            [ 66, "MOVE_SCALD" ],
+            [ 68, "MOVE_FLAMETHROWER" ],
+            [ 69, "MOVE_YAWN" ],
+            [ 71, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM01",

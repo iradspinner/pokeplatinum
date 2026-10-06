@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_EXPLOSION"
+            ],
+            [
+                1,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                1,
                 "MOVE_TACKLE"
             ],
             [
@@ -69,10 +77,6 @@
                 "MOVE_METAL_CLAW"
             ],
             [
-                21,
-                "MOVE_INGRAIN"
-            ],
-            [
                 26,
                 "MOVE_PAYBACK"
             ],
@@ -85,12 +89,12 @@
                 "MOVE_GYRO_BALL"
             ],
             [
-                38,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
                 44,
                 "MOVE_KNOCK_OFF"
+            ],
+            [
+                46,
+                "MOVE_BULLDOZE"
             ],
             [
                 48,
@@ -101,8 +105,20 @@
                 "MOVE_IRON_HEAD"
             ],
             [
-                55,
-                "MOVE_EXPLOSION"
+                54,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                56,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                58,
+                "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                60,
+                "MOVE_CURSE"
             ],
             [
                 65,

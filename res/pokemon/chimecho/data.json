@@ -34,19 +34,27 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WRAP" ],
+            [ 1, "MOVE_HEALING_WISH" ],
             [ 6, "MOVE_GROWL" ],
             [ 9, "MOVE_ASTONISH" ],
             [ 14, "MOVE_CONFUSION" ],
             [ 17, "MOVE_UPROAR" ],
+            [ 20, "MOVE_LAST_RESORT" ],
             [ 22, "MOVE_TAKE_DOWN" ],
             [ 25, "MOVE_YAWN" ],
+            [ 27, "MOVE_PSYBEAM" ],
             [ 30, "MOVE_PSYWAVE" ],
             [ 33, "MOVE_DOUBLE_EDGE" ],
+            [ 35, "MOVE_CONFUSE_RAY" ],
             [ 38, "MOVE_HEAL_BELL" ],
             [ 41, "MOVE_SAFEGUARD" ],
+            [ 43, "MOVE_PSYCHIC" ],
             [ 46, "MOVE_EXTRASENSORY" ],
-            [ 49, "MOVE_HEALING_WISH" ]
+            [ 53, "MOVE_SHADOW_BALL" ],
+            [ 54, "MOVE_AURA_SPHERE" ],
+            [ 56, "MOVE_FLASH_CANNON" ],
+            [ 60, "MOVE_RECOVER" ],
+            [ 65, "MOVE_WISH" ]
         ],
         "by_tm": [
             "TM04",

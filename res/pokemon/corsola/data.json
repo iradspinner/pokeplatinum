@@ -39,19 +39,28 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_HARDEN" ],
+            [ 6, "MOVE_LIFE_DEW" ],
             [ 8, "MOVE_BUBBLE" ],
             [ 13, "MOVE_RECOVER" ],
-            [ 16, "MOVE_REFRESH" ],
+            [ 16, "MOVE_ANCIENT_POWER" ],
+            [ 18, "MOVE_BULLDOZE" ],
             [ 20, "MOVE_ROCK_BLAST" ],
             [ 25, "MOVE_BUBBLE_BEAM" ],
             [ 28, "MOVE_LUCKY_CHANT" ],
-            [ 32, "MOVE_ANCIENT_POWER" ],
+            [ 33, "MOVE_AQUA_CUTTER" ],
+            [ 35, "MOVE_LIQUIDATION" ],
             [ 37, "MOVE_AQUA_RING" ],
             [ 40, "MOVE_SPIKE_CANNON" ],
+            [ 42, "MOVE_THROAT_CHOP" ],
             [ 44, "MOVE_POWER_GEM" ],
             [ 48, "MOVE_MIRROR_COAT" ],
-            [ 53, "MOVE_EARTH_POWER" ]
+            [ 53, "MOVE_EARTH_POWER" ],
+            [ 54, "MOVE_ROCK_SLIDE" ],
+            [ 56, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_BODY_SLAM" ],
+            [ 60, "MOVE_EARTHQUAKE" ],
+            [ 62, "MOVE_ICE_PUNCH" ],
+            [ 65, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [
             "TM03",

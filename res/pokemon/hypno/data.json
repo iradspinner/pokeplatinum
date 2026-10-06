@@ -51,7 +51,6 @@
             [ 21, "MOVE_MEDITATE" ],
             [ 28, "MOVE_PSYBEAM" ],
             [ 33, "MOVE_PSYCH_UP" ],
-            [ 38, "MOVE_HEADBUTT" ],
             [ 45, "MOVE_SWAGGER" ],
             [ 50, "MOVE_PSYCHIC" ],
             [ 55, "MOVE_NASTY_PLOT" ],

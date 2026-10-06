@@ -53,10 +53,6 @@
                 "MOVE_LEAFAGE"
             ],
             [
-                4,
-                "MOVE_GROWL"
-            ],
-            [
                 8,
                 "MOVE_PECK"
             ],
@@ -65,24 +61,20 @@
                 "MOVE_ASTONISH"
             ],
             [
+                13,
+                "MOVE_OMINOUS_WIND"
+            ],
+            [
+                14,
+                "MOVE_SPITE"
+            ],
+            [
                 15,
                 "MOVE_RAZOR_LEAF"
             ],
             [
-                18,
-                "MOVE_PLUCK"
-            ],
-            [
-                22,
-                "MOVE_OMINOUS_WIND"
-            ],
-            [
                 25,
                 "MOVE_SYNTHESIS"
-            ],
-            [
-                30,
-                "MOVE_SEED_BOMB"
             ],
             [
                 33,

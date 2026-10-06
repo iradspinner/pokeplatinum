@@ -38,14 +38,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_WATER_GUN" ],
             [ 6, "MOVE_SUPERSONIC" ],
+            [ 8, "MOVE_TWISTER" ],
             [ 11, "MOVE_WING_ATTACK" ],
-            [ 16, "MOVE_MIST" ],
+            [ 15, "MOVE_TAILWIND" ],
             [ 19, "MOVE_WATER_PULSE" ],
             [ 24, "MOVE_QUICK_ATTACK" ],
-            [ 29, "MOVE_ROOST" ],
             [ 34, "MOVE_PURSUIT" ],
             [ 37, "MOVE_AGILITY" ],
             [ 42, "MOVE_AERIAL_ACE" ],

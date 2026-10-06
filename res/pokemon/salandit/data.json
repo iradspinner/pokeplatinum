@@ -57,10 +57,6 @@
                 "MOVE_EMBER"
             ],
             [
-                8,
-                "MOVE_SWEET_SCENT"
-            ],
-            [
                 13,
                 "MOVE_VENOM_DRENCH"
             ],
@@ -77,20 +73,12 @@
                 "MOVE_TOXIC"
             ],
             [
+                27,
+                "MOVE_MUD_SHOT"
+            ],
+            [
                 29,
                 "MOVE_VENOSHOCK"
-            ],
-            [
-                34,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
-                40,
-                "MOVE_SLUDGE_BOMB"
-            ],
-            [
-                48,
-                "MOVE_DRAGON_PULSE"
             ]
         ],
         "by_tm": [],

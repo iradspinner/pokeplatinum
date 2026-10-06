@@ -41,7 +41,16 @@
             [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_MEGA_DRAIN" ],
-            [ 1, "MOVE_NATURE_POWER" ]
+            [ 1, "MOVE_NATURE_POWER" ],
+            [ 34, "MOVE_ENERGY_BALL" ],
+            [ 54, "MOVE_ICE_BEAM" ],
+            [ 56, "MOVE_MUDDY_WATER" ],
+            [ 58, "MOVE_HYPER_VOICE" ],
+            [ 60, "MOVE_LEAF_STORM" ],
+            [ 62, "MOVE_PSYCHIC" ],
+            [ 65, "MOVE_SYNTHESIS" ],
+            [ 66, "MOVE_LEECH_SEED" ],
+            [ 68, "MOVE_OVERHEAT" ]
         ],
         "by_tm": [
             "TM01",

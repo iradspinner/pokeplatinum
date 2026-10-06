@@ -41,7 +41,17 @@
             [ 1, "MOVE_THUNDER_SHOCK" ],
             [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_THUNDERBOLT" ]
+            [ 1, "MOVE_THUNDERBOLT" ],
+            [ 54, "MOVE_THUNDER_PUNCH" ],
+            [ 56, "MOVE_DISCHARGE" ],
+            [ 58, "MOVE_PLAY_ROUGH" ],
+            [ 60, "MOVE_SURF" ],
+            [ 62, "MOVE_VOLT_SWITCH" ],
+            [ 65, "MOVE_VOLT_TACKLE" ],
+            [ 66, "MOVE_SIGNAL_BEAM" ],
+            [ 68, "MOVE_EXTREME_SPEED" ],
+            [ 69, "MOVE_NASTY_PLOT" ],
+            [ 71, "MOVE_AGILITY" ]
         ],
         "by_tm": [
             "TM01",

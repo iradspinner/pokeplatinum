@@ -42,9 +42,20 @@
             [ 1, "MOVE_WITHDRAW" ],
             [ 1, "MOVE_SUPERSONIC" ],
             [ 1, "MOVE_AURORA_BEAM" ],
-            [ 1, "MOVE_PROTECT" ],
             [ 28, "MOVE_SPIKES" ],
-            [ 40, "MOVE_SPIKE_CANNON" ]
+            [ 40, "MOVE_SPIKE_CANNON" ],
+            [ 45, "MOVE_ICICLE_CRASH" ],
+            [ 49, "MOVE_POISON_FANG" ],
+            [ 53, "MOVE_RAZOR_SHELL" ],
+            [ 56, "MOVE_SHELL_SMASH" ],
+            [ 61, "MOVE_TOXIC" ],
+            [ 65, "MOVE_LIQUIDATION" ],
+            [ 66, "MOVE_SMART_STRIKE" ],
+            [ 68, "MOVE_DRILL_RUN" ],
+            [ 69, "MOVE_TAKE_DOWN" ],
+            [ 71, "MOVE_SIGNAL_BEAM" ],
+            [ 74, "MOVE_POISON_JAB" ],
+            [ 78, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [
             "TM03",

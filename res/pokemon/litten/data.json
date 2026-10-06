@@ -53,12 +53,12 @@
                 "MOVE_EMBER"
             ],
             [
-                7,
-                "MOVE_GROWL"
-            ],
-            [
                 10,
                 "MOVE_LICK"
+            ],
+            [
+                12,
+                "MOVE_SWAGGER"
             ],
             [
                 14,

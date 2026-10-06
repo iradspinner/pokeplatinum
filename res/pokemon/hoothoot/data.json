@@ -45,13 +45,13 @@
             [ 9, "MOVE_PECK" ],
             [ 13, "MOVE_UPROAR" ],
             [ 17, "MOVE_REFLECT" ],
-            [ 21, "MOVE_CONFUSION" ],
+            [ 18, "MOVE_CONFUSION" ],
+            [ 19, "MOVE_ROOST" ],
+            [ 20, "MOVE_SWIFT" ],
             [ 25, "MOVE_TAKE_DOWN" ],
-            [ 29, "MOVE_AIR_SLASH" ],
             [ 33, "MOVE_ZEN_HEADBUTT" ],
             [ 37, "MOVE_EXTRASENSORY" ],
             [ 41, "MOVE_PSYCHO_SHIFT" ],
-            [ 45, "MOVE_ROOST" ],
             [ 49, "MOVE_DREAM_EATER" ]
         ],
         "by_tm": [

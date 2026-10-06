@@ -47,9 +47,11 @@
             [ 19, "MOVE_FIRE_SPIN" ],
             [ 25, "MOVE_CONFUSE_RAY" ],
             [ 28, "MOVE_FIRE_PUNCH" ],
+            [ 32, "MOVE_LOW_SWEEP" ],
+            [ 34, "MOVE_BURNING_JEALOUSY" ],
             [ 36, "MOVE_LAVA_PLUME" ],
             [ 41, "MOVE_FLAMETHROWER" ],
-            [ 54, "MOVE_FIRE_BLAST" ]
+            [ 54, "MOVE_OVERHEAT" ]
         ],
         "by_tm": [
             "TM01",

@@ -61,6 +61,10 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
+                29,
+                "MOVE_U_TURN"
+            ],
+            [
                 30,
                 "MOVE_FLAME_WHEEL"
             ],
@@ -69,8 +73,28 @@
                 "MOVE_BUG_BITE"
             ],
             [
+                41,
+                "MOVE_FIRE_SPIN"
+            ],
+            [
+                45,
+                "MOVE_ROOST"
+            ],
+            [
                 50,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                53,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                54,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                56,
+                "MOVE_LUNGE"
             ],
             [
                 64,
@@ -87,10 +111,6 @@
             [
                 77,
                 "MOVE_LEECH_LIFE"
-            ],
-            [
-                82,
-                "MOVE_FLARE_BLITZ"
             ]
         ],
         "by_tm": [],

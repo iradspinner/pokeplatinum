@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_ABSORB"
-            ],
-            [
-                1,
                 "MOVE_HARDEN"
             ],
             [
@@ -69,12 +65,12 @@
                 "MOVE_ASTONISH"
             ],
             [
-                14,
-                "MOVE_SAND_ATTACK"
+                13,
+                "MOVE_SAND_TOMB"
             ],
             [
                 14,
-                "MOVE_SAND_TOMB"
+                "MOVE_SAND_ATTACK"
             ],
             [
                 16,
@@ -101,12 +97,32 @@
                 "MOVE_SHADOW_BALL"
             ],
             [
+                47,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
                 50,
                 "MOVE_EARTH_POWER"
             ],
             [
+                54,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                55,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
                 57,
                 "MOVE_SHORE_UP"
+            ],
+            [
+                60,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                65,
+                "MOVE_CONFUSE_RAY"
             ]
         ],
         "by_tm": [],

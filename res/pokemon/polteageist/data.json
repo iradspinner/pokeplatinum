@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_MEMENTO"
+            ],
+            [
+                1,
                 "MOVE_TEATIME"
             ],
             [
@@ -62,23 +66,23 @@
             ],
             [
                 1,
-                "MOVE_AROMATIC_MIST"
-            ],
-            [
-                1,
                 "MOVE_MEGA_DRAIN"
-            ],
-            [
-                18,
-                "MOVE_PROTECT"
             ],
             [
                 24,
                 "MOVE_SUCKER_PUNCH"
             ],
             [
+                29,
+                "MOVE_HEX"
+            ],
+            [
                 30,
                 "MOVE_AROMATHERAPY"
+            ],
+            [
+                33,
+                "MOVE_STRENGTH_SAP"
             ],
             [
                 36,
@@ -93,16 +97,40 @@
                 "MOVE_SHADOW_BALL"
             ],
             [
+                53,
+                "MOVE_SCALD"
+            ],
+            [
                 54,
-                "MOVE_MEMENTO"
+                "MOVE_DARK_PULSE"
+            ],
+            [
+                56,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                58,
+                "MOVE_ENERGY_BALL"
             ],
             [
                 60,
                 "MOVE_SHELL_SMASH"
             ],
             [
+                61,
+                "MOVE_STUN_SPORE"
+            ],
+            [
+                63,
+                "MOVE_LIFE_DEW"
+            ],
+            [
                 66,
                 "MOVE_CURSE"
+            ],
+            [
+                68,
+                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [],

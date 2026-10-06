@@ -89,10 +89,6 @@
                 "MOVE_PSYBEAM"
             ],
             [
-                36,
-                "MOVE_ECHOED_VOICE"
-            ],
-            [
                 43,
                 "MOVE_U_TURN"
             ],
@@ -105,8 +101,24 @@
                 "MOVE_PSYCHIC"
             ],
             [
+                61,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                62,
+                "MOVE_CHARM"
+            ],
+            [
                 64,
                 "MOVE_HYPER_VOICE"
+            ],
+            [
+                66,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                67,
+                "MOVE_THUNDERBOLT"
             ],
             [
                 71,
@@ -115,10 +127,6 @@
             [
                 78,
                 "MOVE_CLOSE_COMBAT"
-            ],
-            [
-                85,
-                "MOVE_PERISH_SONG"
             ]
         ],
         "by_tm": [],

@@ -49,10 +49,6 @@
                 "MOVE_SCRATCH"
             ],
             [
-                1,
-                "MOVE_GROWL"
-            ],
-            [
                 3,
                 "MOVE_THUNDER_SHOCK"
             ],
@@ -61,8 +57,16 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
+                9,
+                "MOVE_ELECTROWEB"
+            ],
+            [
                 12,
                 "MOVE_NUZZLE"
+            ],
+            [
+                15,
+                "MOVE_MACH_PUNCH"
             ],
             [
                 19,

@@ -49,8 +49,8 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_STRING_SHOT"
+                4,
+                "MOVE_STICKY_WEB"
             ],
             [
                 8,
@@ -61,16 +61,16 @@
                 "MOVE_RAZOR_LEAF"
             ],
             [
+                16,
+                "MOVE_POUNCE"
+            ],
+            [
                 22,
                 "MOVE_STRUGGLE_BUG"
             ],
             [
                 29,
                 "MOVE_ENDURE"
-            ],
-            [
-                31,
-                "MOVE_STICKY_WEB"
             ],
             [
                 36,

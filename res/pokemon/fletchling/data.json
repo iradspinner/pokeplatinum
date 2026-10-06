@@ -49,48 +49,36 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_GROWL"
-            ],
-            [
                 6,
                 "MOVE_QUICK_ATTACK"
+            ],
+            [
+                10,
+                "MOVE_EMBER"
             ],
             [
                 12,
                 "MOVE_AERIAL_ACE"
             ],
             [
-                20,
-                "MOVE_ROOST"
+                16,
+                "MOVE_TAILWIND"
             ],
             [
                 25,
                 "MOVE_WILL_O_WISP"
             ],
             [
-                29,
-                "MOVE_NATURAL_GIFT"
+                32,
+                "MOVE_FEATHER_DANCE"
             ],
             [
                 33,
                 "MOVE_DEFOG"
             ],
             [
-                33,
-                "MOVE_FEATHER_DANCE"
-            ],
-            [
                 35,
                 "MOVE_ACROBATICS"
-            ],
-            [
-                40,
-                "MOVE_ME_FIRST"
-            ],
-            [
-                45,
-                "MOVE_TAILWIND"
             ]
         ],
         "by_tm": [],

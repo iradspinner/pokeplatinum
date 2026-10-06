@@ -46,26 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_DISARMING_VOICE"
-            ],
-            [
-                1,
-                "MOVE_FAIRY_WIND"
-            ],
-            [
-                1,
-                "MOVE_DISARMING_VOICE"
-            ],
-            [
-                1,
-                "MOVE_COVET"
-            ],
-            [
-                1,
-                "MOVE_BITE"
-            ],
-            [
-                1,
                 "MOVE_COPYCAT"
             ],
             [
@@ -113,28 +93,32 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                12,
-                "MOVE_BABY_DOLL_EYES"
-            ],
-            [
                 18,
                 "MOVE_SWIFT"
             ],
             [
-                25,
-                "MOVE_DRAINING_KISS"
-            ],
-            [
-                28,
-                "MOVE_LIGHT_SCREEN"
-            ],
-            [
                 32,
-                "MOVE_MISTY_TERRAIN"
+                "MOVE_BABY_DOLL_EYES"
             ],
             [
                 33,
                 "MOVE_SKILL_SWAP"
+            ],
+            [
+                34,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                35,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                39,
+                "MOVE_SNARL"
+            ],
+            [
+                40,
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 43,
@@ -147,6 +131,54 @@
             [
                 48,
                 "MOVE_LAST_RESORT"
+            ],
+            [
+                54,
+                "MOVE_MUDDY_WATER"
+            ],
+            [
+                56,
+                "MOVE_EARTH_POWER"
+            ],
+            [
+                58,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                60,
+                "MOVE_DARK_PULSE"
+            ],
+            [
+                62,
+                "MOVE_MEAN_LOOK"
+            ],
+            [
+                65,
+                "MOVE_SCALD"
+            ],
+            [
+                66,
+                "MOVE_MOONLIGHT"
+            ],
+            [
+                68,
+                "MOVE_LEAF_STORM"
+            ],
+            [
+                69,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
+                71,
+                "MOVE_MORNING_SUN"
+            ],
+            [
+                74,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                78,
+                "MOVE_WISH"
             ]
         ],
         "by_tm": [],

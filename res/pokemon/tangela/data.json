@@ -38,22 +38,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_INGRAIN" ],
-            [ 1, "MOVE_CONSTRICT" ],
             [ 5, "MOVE_SLEEP_POWDER" ],
-            [ 8, "MOVE_ABSORB" ],
-            [ 12, "MOVE_GROWTH" ],
             [ 15, "MOVE_POISON_POWDER" ],
             [ 19, "MOVE_VINE_WHIP" ],
-            [ 22, "MOVE_BIND" ],
             [ 26, "MOVE_MEGA_DRAIN" ],
             [ 29, "MOVE_STUN_SPORE" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
+            [ 34, "MOVE_GIGA_DRAIN" ],
             [ 36, "MOVE_KNOCK_OFF" ],
             [ 40, "MOVE_NATURAL_GIFT" ],
             [ 43, "MOVE_SLAM" ],
             [ 47, "MOVE_TICKLE" ],
-            [ 50, "MOVE_WRING_OUT" ],
             [ 54, "MOVE_POWER_WHIP" ]
         ],
         "by_tm": [

@@ -51,9 +51,18 @@
             [ 25, "MOVE_SCREECH" ],
             [ 29, "MOVE_AGILITY" ],
             [ 32, "MOVE_DOUBLE_HIT" ],
+            [ 34, "MOVE_LOW_SWEEP" ],
             [ 36, "MOVE_FLING" ],
             [ 39, "MOVE_NASTY_PLOT" ],
-            [ 43, "MOVE_LAST_RESORT" ]
+            [ 41, "MOVE_TAKE_DOWN" ],
+            [ 43, "MOVE_LAST_RESORT" ],
+            [ 48, "MOVE_SECRET_POWER" ],
+            [ 53, "MOVE_HEADBUTT" ],
+            [ 54, "MOVE_SEED_BOMB" ],
+            [ 56, "MOVE_SLAM" ],
+            [ 58, "MOVE_THROAT_CHOP" ],
+            [ 60, "MOVE_U_TURN" ],
+            [ 65, "MOVE_UPPER_HAND" ]
         ],
         "by_tm": [
             "TM01",

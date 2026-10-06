@@ -50,10 +50,21 @@
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 37, "MOVE_WITHDRAW" ],
-            [ 41, "MOVE_SLACK_OFF" ],
+            [ 38, "MOVE_AURORA_BEAM" ],
+            [ 39, "MOVE_SLACK_OFF" ],
+            [ 40, "MOVE_MUDDY_WATER" ],
+            [ 44, "MOVE_SURF" ],
             [ 47, "MOVE_AMNESIA" ],
+            [ 50, "MOVE_POWER_GEM" ],
             [ 54, "MOVE_PSYCHIC" ],
-            [ 67, "MOVE_PSYCH_UP" ]
+            [ 56, "MOVE_SCALD" ],
+            [ 58, "MOVE_FLAMETHROWER" ],
+            [ 60, "MOVE_SIGNAL_BEAM" ],
+            [ 63, "MOVE_ICE_BEAM" ],
+            [ 65, "MOVE_SWAGGER" ],
+            [ 66, "MOVE_YAWN" ],
+            [ 67, "MOVE_PSYCH_UP" ],
+            [ 71, "MOVE_NASTY_PLOT" ]
         ],
         "by_tm": [
             "TM01",

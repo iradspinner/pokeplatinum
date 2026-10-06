@@ -40,17 +40,16 @@
         "by_level": [
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_PECK" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
             [ 9, "MOVE_DOUBLE_KICK" ],
             [ 13, "MOVE_POISON_STING" ],
-            [ 20, "MOVE_FURY_ATTACK" ],
+            [ 17, "MOVE_ROCK_TOMB" ],
             [ 23, "MOVE_HORN_ATTACK" ],
             [ 28, "MOVE_HELPING_HAND" ],
+            [ 31, "MOVE_POISON_TAIL" ],
             [ 35, "MOVE_TOXIC_SPIKES" ],
             [ 38, "MOVE_FLATTER" ],
             [ 43, "MOVE_POISON_JAB" ],
-            [ 50, "MOVE_CAPTIVATE" ],
-            [ 58, "MOVE_HORN_DRILL" ]
+            [ 50, "MOVE_CAPTIVATE" ]
         ],
         "by_tm": [
             "TM03",

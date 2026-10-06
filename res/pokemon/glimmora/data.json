@@ -46,15 +46,15 @@
         "by_level": [
             [
                 1,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                1,
                 "MOVE_MORTAL_SPIN"
             ],
             [
                 1,
                 "MOVE_SMACK_DOWN"
-            ],
-            [
-                1,
-                "MOVE_SPIKY_SHIELD"
             ],
             [
                 1,
@@ -89,10 +89,6 @@
                 "MOVE_VENOSHOCK"
             ],
             [
-                29,
-                "MOVE_SELFDESTRUCT"
-            ],
-            [
                 33,
                 "MOVE_ROCK_SLIDE"
             ],
@@ -101,12 +97,36 @@
                 "MOVE_POWER_GEM"
             ],
             [
+                41,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
                 44,
                 "MOVE_ACID_ARMOR"
             ],
             [
+                47,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
                 50,
                 "MOVE_SLUDGE_WAVE"
+            ],
+            [
+                54,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                56,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                60,
+                "MOVE_EARTH_POWER"
+            ],
+            [
+                65,
+                "MOVE_CONFUSE_RAY"
             ]
         ],
         "by_tm": [],

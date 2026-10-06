@@ -65,6 +65,10 @@
                 "MOVE_FLAME_CHARGE"
             ],
             [
+                19,
+                "MOVE_BITE"
+            ],
+            [
                 22,
                 "MOVE_ROOST"
             ],
@@ -75,18 +79,6 @@
             [
                 31,
                 "MOVE_NATURAL_GIFT"
-            ],
-            [
-                37,
-                "MOVE_ACROBATICS"
-            ],
-            [
-                41,
-                "MOVE_ME_FIRST"
-            ],
-            [
-                45,
-                "MOVE_TAILWIND"
             ]
         ],
         "by_tm": [],

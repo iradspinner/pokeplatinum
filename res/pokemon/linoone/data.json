@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_MUD_SPORT" ],
             [ 1, "MOVE_SWITCHEROO" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
@@ -47,7 +48,6 @@
             [ 9, "MOVE_HEADBUTT" ],
             [ 13, "MOVE_SAND_ATTACK" ],
             [ 17, "MOVE_ODOR_SLEUTH" ],
-            [ 23, "MOVE_MUD_SPORT" ],
             [ 29, "MOVE_FURY_SWIPES" ],
             [ 35, "MOVE_COVET" ],
             [ 41, "MOVE_SLASH" ],

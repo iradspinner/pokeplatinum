@@ -46,6 +46,14 @@
         "by_level": [
             [
                 1,
+                "MOVE_DESTINY_BOND"
+            ],
+            [
+                1,
+                "MOVE_GRUDGE"
+            ],
+            [
+                1,
                 "MOVE_SHADOW_CLAW"
             ],
             [
@@ -66,10 +74,6 @@
             ],
             [
                 1,
-                "MOVE_PROTECT"
-            ],
-            [
-                1,
                 "MOVE_HAZE"
             ],
             [
@@ -85,10 +89,6 @@
                 "MOVE_DISABLE"
             ],
             [
-                9,
-                "MOVE_HAZE"
-            ],
-            [
                 13,
                 "MOVE_NIGHT_SHADE"
             ],
@@ -97,12 +97,12 @@
                 "MOVE_WILL_O_WISP"
             ],
             [
-                20,
-                "MOVE_CRAFTY_SHIELD"
+                19,
+                "MOVE_HEX"
             ],
             [
                 20,
-                "MOVE_HEX"
+                "MOVE_CRAFTY_SHIELD"
             ],
             [
                 25,
@@ -113,23 +113,27 @@
                 "MOVE_CURSE"
             ],
             [
+                34,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
                 38,
                 "MOVE_MEAN_LOOK"
             ],
             [
-                38,
-                "MOVE_GRUDGE"
+                40,
+                "MOVE_SCARY_FACE"
             ],
             [
-                41,
-                "MOVE_SHADOW_BALL"
+                43,
+                "MOVE_ROUND"
             ],
             [
                 45,
                 "MOVE_POWER_SPLIT"
             ],
             [
-                45,
+                46,
                 "MOVE_GUARD_SPLIT"
             ],
             [
@@ -137,8 +141,20 @@
                 "MOVE_DARK_PULSE"
             ],
             [
-                59,
-                "MOVE_DESTINY_BOND"
+                54,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                56,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                60,
+                "MOVE_EARTH_POWER"
+            ],
+            [
+                65,
+                "MOVE_IRON_DEFENSE"
             ]
         ],
         "by_tm": [],

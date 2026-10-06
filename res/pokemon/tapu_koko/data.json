@@ -107,10 +107,6 @@
             [
                 70,
                 "MOVE_POWER_SWAP"
-            ],
-            [
-                75,
-                "MOVE_ELECTRIC_TERRAIN"
             ]
         ],
         "by_tm": [],

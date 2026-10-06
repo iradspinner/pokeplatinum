@@ -49,10 +49,18 @@
             [ 25, "MOVE_AURORA_BEAM" ],
             [ 32, "MOVE_SWAGGER" ],
             [ 39, "MOVE_REST" ],
-            [ 39, "MOVE_SNORE" ],
             [ 44, "MOVE_ICE_FANG" ],
-            [ 52, "MOVE_BLIZZARD" ],
-            [ 65, "MOVE_SHEER_COLD" ]
+            [ 48, "MOVE_BODY_PRESS" ],
+            [ 52, "MOVE_ICE_BEAM" ],
+            [ 54, "MOVE_AQUA_TAIL" ],
+            [ 56, "MOVE_CRUNCH" ],
+            [ 58, "MOVE_ROCK_TOMB" ],
+            [ 60, "MOVE_EARTHQUAKE" ],
+            [ 62, "MOVE_YAWN" ],
+            [ 65, "MOVE_CLOSE_COMBAT" ],
+            [ 66, "MOVE_ICE_PUNCH" ],
+            [ 68, "MOVE_BULLDOZE" ],
+            [ 71, "MOVE_MUDDY_WATER" ]
         ],
         "by_tm": [
             "TM03",

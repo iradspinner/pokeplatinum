@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_MEMENTO"
+            ],
+            [
+                1,
                 "MOVE_GUST"
             ],
             [
@@ -99,10 +103,6 @@
             [
                 60,
                 "MOVE_ENDURE"
-            ],
-            [
-                65,
-                "MOVE_MEMENTO"
             ],
             [
                 70,

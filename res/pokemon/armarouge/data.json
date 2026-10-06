@@ -69,14 +69,6 @@
                 "MOVE_WIDE_GUARD"
             ],
             [
-                8,
-                "MOVE_CLEAR_SMOG"
-            ],
-            [
-                12,
-                "MOVE_FIRE_SPIN"
-            ],
-            [
                 16,
                 "MOVE_WILL_O_WISP"
             ],
@@ -85,12 +77,16 @@
                 "MOVE_NIGHT_SHADE"
             ],
             [
-                24,
-                "MOVE_FLAME_CHARGE"
-            ],
-            [
                 28,
                 "MOVE_INCINERATE"
+            ],
+            [
+                29,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                30,
+                "MOVE_FIRE_SPIN"
             ],
             [
                 32,
@@ -101,12 +97,12 @@
                 "MOVE_CALM_MIND"
             ],
             [
-                42,
-                "MOVE_ALLY_SWITCH"
-            ],
-            [
                 48,
                 "MOVE_FLAMETHROWER"
+            ],
+            [
+                52,
+                "MOVE_PSYSHOCK"
             ],
             [
                 56,
@@ -115,6 +111,26 @@
             [
                 62,
                 "MOVE_ARMOR_CANNON"
+            ],
+            [
+                65,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                66,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                68,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                69,
+                "MOVE_DARK_PULSE"
+            ],
+            [
+                71,
+                "MOVE_PSYCHIC"
             ]
         ],
         "by_tm": [],

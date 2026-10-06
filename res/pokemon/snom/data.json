@@ -51,6 +51,14 @@
             [
                 1,
                 "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                27,
+                "MOVE_STUN_SPORE"
+            ],
+            [
+                30,
+                "MOVE_FAIRY_WIND"
             ]
         ],
         "by_tm": [],

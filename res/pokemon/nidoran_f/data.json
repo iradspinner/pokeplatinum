@@ -38,15 +38,13 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_SCRATCH" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
+            [ 5, "MOVE_SLUDGE" ],
+            [ 7, "MOVE_PURSUIT" ],
             [ 9, "MOVE_DOUBLE_KICK" ],
             [ 13, "MOVE_POISON_STING" ],
-            [ 19, "MOVE_FURY_SWIPES" ],
-            [ 21, "MOVE_BITE" ],
+            [ 16, "MOVE_TOXIC_SPIKES" ],
             [ 25, "MOVE_HELPING_HAND" ],
-            [ 31, "MOVE_TOXIC_SPIKES" ],
             [ 33, "MOVE_FLATTER" ],
             [ 37, "MOVE_CRUNCH" ],
             [ 43, "MOVE_CAPTIVATE" ],

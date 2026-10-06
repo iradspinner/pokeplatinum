@@ -38,6 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_MEMENTO" ],
             [ 1, "MOVE_POISON_GAS" ],
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_HARDEN" ],
@@ -51,9 +52,9 @@
             [ 28, "MOVE_FLING" ],
             [ 33, "MOVE_SCREECH" ],
             [ 36, "MOVE_SLUDGE_BOMB" ],
+            [ 39, "MOVE_ACID_ARMOR" ],
             [ 44, "MOVE_ACID_ARMOR" ],
-            [ 54, "MOVE_GUNK_SHOT" ],
-            [ 65, "MOVE_MEMENTO" ]
+            [ 54, "MOVE_GUNK_SHOT" ]
         ],
         "by_tm": [
             "TM01",

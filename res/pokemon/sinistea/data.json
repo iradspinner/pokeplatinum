@@ -53,28 +53,32 @@
                 "MOVE_WITHDRAW"
             ],
             [
-                6,
-                "MOVE_AROMATIC_MIST"
-            ],
-            [
                 12,
                 "MOVE_MEGA_DRAIN"
-            ],
-            [
-                18,
-                "MOVE_PROTECT"
             ],
             [
                 24,
                 "MOVE_SUCKER_PUNCH"
             ],
             [
+                29,
+                "MOVE_HEX"
+            ],
+            [
                 30,
                 "MOVE_AROMATHERAPY"
             ],
             [
+                33,
+                "MOVE_STRENGTH_SAP"
+            ],
+            [
                 36,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                39,
+                "MOVE_SCALD"
             ],
             [
                 42,
@@ -83,10 +87,6 @@
             [
                 48,
                 "MOVE_SHADOW_BALL"
-            ],
-            [
-                54,
-                "MOVE_MEMENTO"
             ],
             [
                 60,

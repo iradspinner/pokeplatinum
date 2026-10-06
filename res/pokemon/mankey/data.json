@@ -49,9 +49,7 @@
             [ 21, "MOVE_SCREECH" ],
             [ 25, "MOVE_ASSURANCE" ],
             [ 33, "MOVE_SWAGGER" ],
-            [ 37, "MOVE_CROSS_CHOP" ],
             [ 41, "MOVE_THRASH" ],
-            [ 45, "MOVE_PUNISHMENT" ],
             [ 49, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [

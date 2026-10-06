@@ -49,16 +49,8 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_GROWL"
-            ],
-            [
-                4,
-                "MOVE_DEFENSE_CURL"
-            ],
-            [
-                8,
-                "MOVE_COPYCAT"
+                3,
+                "MOVE_ROUND"
             ],
             [
                 12,
@@ -75,10 +67,6 @@
             [
                 25,
                 "MOVE_TAKE_DOWN"
-            ],
-            [
-                28,
-                "MOVE_GUARD_SWAP"
             ],
             [
                 32,

@@ -44,10 +44,15 @@
             [ 7, "MOVE_DRAGON_RAGE" ],
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_SAND_TOMB" ],
-            [ 28, "MOVE_SLASH" ],
+            [ 25, "MOVE_SLASH" ],
             [ 33, "MOVE_DRAGON_CLAW" ],
+            [ 36, "MOVE_BULLDOZE" ],
+            [ 38, "MOVE_AERIAL_ACE" ],
             [ 40, "MOVE_DIG" ],
-            [ 49, "MOVE_DRAGON_RUSH" ]
+            [ 42, "MOVE_ROCK_TOMB" ],
+            [ 44, "MOVE_CRUNCH" ],
+            [ 49, "MOVE_DRAGON_RUSH" ],
+            [ 66, "MOVE_OUTRAGE" ]
         ],
         "by_tm": [
             "TM02",

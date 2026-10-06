@@ -39,16 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
-            [ 4, "MOVE_MUD_SPORT" ],
-            [ 8, "MOVE_ROCK_POLISH" ],
+            [ 5, "MOVE_SMACK_DOWN" ],
             [ 11, "MOVE_ROCK_THROW" ],
+            [ 12, "MOVE_BULLDOZE" ],
             [ 15, "MOVE_MAGNITUDE" ],
-            [ 18, "MOVE_SELFDESTRUCT" ],
+            [ 17, "MOVE_ROCK_POLISH" ],
             [ 22, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_ROCK_BLAST" ],
-            [ 29, "MOVE_EARTHQUAKE" ],
-            [ 32, "MOVE_EXPLOSION" ],
             [ 36, "MOVE_DOUBLE_EDGE" ],
             [ 39, "MOVE_STONE_EDGE" ]
         ],

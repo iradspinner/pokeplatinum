@@ -81,8 +81,12 @@
                 "MOVE_AURA_SPHERE"
             ],
             [
-                40,
-                "MOVE_ME_FIRST"
+                41,
+                "MOVE_U_TURN"
+            ],
+            [
+                43,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 45,
@@ -97,8 +101,20 @@
                 "MOVE_FOCUS_BLAST"
             ],
             [
+                54,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 55,
                 "MOVE_ACROBATICS"
+            ],
+            [
+                56,
+                "MOVE_UPPER_HAND"
+            ],
+            [
+                60,
+                "MOVE_HAMMER_ARM"
             ],
             [
                 64,

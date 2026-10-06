@@ -46,14 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_BANEFUL_BUNKER"
-            ],
-            [
-                1,
-                "MOVE_BANEFUL_BUNKER"
-            ],
-            [
-                1,
                 "MOVE_POISON_STING"
             ],
             [
@@ -101,12 +93,12 @@
                 "MOVE_SPIKE_CANNON"
             ],
             [
-                37,
-                "MOVE_PIN_MISSILE"
+                36,
+                "MOVE_TOXIC"
             ],
             [
-                39,
-                "MOVE_TOXIC"
+                37,
+                "MOVE_PIN_MISSILE"
             ],
             [
                 42,
@@ -119,6 +111,22 @@
             [
                 45,
                 "MOVE_LIQUIDATION"
+            ],
+            [
+                53,
+                "MOVE_LUNGE"
+            ],
+            [
+                54,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                56,
+                "MOVE_SLUDGE_BOMB"
+            ],
+            [
+                61,
+                "MOVE_IRON_DEFENSE"
             ]
         ],
         "by_tm": [],

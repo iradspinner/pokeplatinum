@@ -38,9 +38,9 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_COPYCAT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 5, "MOVE_UPROAR" ],
-            [ 10, "MOVE_COPYCAT" ],
             [ 14, "MOVE_FAINT_ATTACK" ],
             [ 19, "MOVE_PSYBEAM" ],
             [ 23, "MOVE_HYPNOSIS" ],

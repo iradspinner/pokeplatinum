@@ -38,16 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_TAIL_WHIP" ],
+            [ 6, "MOVE_MYSTICAL_FIRE" ],
             [ 10, "MOVE_EMBER" ],
+            [ 14, "MOVE_FLAME_CHARGE" ],
             [ 15, "MOVE_FLAME_WHEEL" ],
+            [ 17, "MOVE_CHARM" ],
             [ 19, "MOVE_STOMP" ],
+            [ 21, "MOVE_BULLDOZE" ],
             [ 24, "MOVE_FIRE_SPIN" ],
             [ 28, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_AGILITY" ],
-            [ 37, "MOVE_FIRE_BLAST" ],
+            [ 35, "MOVE_BLAZE_KICK" ],
+            [ 37, "MOVE_HEAT_WAVE" ],
             [ 42, "MOVE_BOUNCE" ],
             [ 46, "MOVE_FLARE_BLITZ" ]
         ],

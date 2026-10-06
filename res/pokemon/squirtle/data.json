@@ -39,18 +39,14 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 4, "MOVE_LIFE_DEW" ],
             [ 7, "MOVE_BUBBLE" ],
-            [ 10, "MOVE_WITHDRAW" ],
             [ 13, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_WATER_PULSE" ],
             [ 16, "MOVE_BITE" ],
-            [ 19, "MOVE_RAPID_SPIN" ],
-            [ 22, "MOVE_PROTECT" ],
-            [ 25, "MOVE_WATER_PULSE" ],
-            [ 28, "MOVE_AQUA_TAIL" ],
             [ 31, "MOVE_SKULL_BASH" ],
             [ 34, "MOVE_IRON_DEFENSE" ],
-            [ 40, "MOVE_HYDRO_PUMP" ]
+            [ 40, "MOVE_MUDDY_WATER" ]
         ],
         "by_tm": [
             "TM01",

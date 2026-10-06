@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
             [ 7, "MOVE_PSYWAVE" ],
             [ 10, "MOVE_ODOR_SLEUTH" ],
             [ 14, "MOVE_PSYBEAM" ],
@@ -47,8 +46,6 @@
             [ 21, "MOVE_MAGIC_COAT" ],
             [ 26, "MOVE_ZEN_HEADBUTT" ],
             [ 29, "MOVE_REST" ],
-            [ 29, "MOVE_SNORE" ],
-            [ 34, "MOVE_PAYBACK" ],
             [ 41, "MOVE_PSYCHIC" ],
             [ 46, "MOVE_POWER_GEM" ],
             [ 48, "MOVE_BOUNCE" ]

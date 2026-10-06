@@ -38,13 +38,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ROAR" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_LEER" ],
-            [ 5, "MOVE_LEER" ],
             [ 9, "MOVE_CHARGE" ],
             [ 13, "MOVE_SPARK" ],
             [ 18, "MOVE_BITE" ],
-            [ 23, "MOVE_ROAR" ],
+            [ 24, "MOVE_VOLT_SWITCH" ],
             [ 28, "MOVE_SWAGGER" ],
             [ 33, "MOVE_THUNDER_FANG" ],
             [ 38, "MOVE_CRUNCH" ],

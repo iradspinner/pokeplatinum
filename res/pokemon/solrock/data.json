@@ -34,6 +34,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_EXPLOSION" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_HARDEN" ],
             [ 1, "MOVE_CONFUSION" ],
@@ -45,8 +46,16 @@
             [ 34, "MOVE_COSMIC_POWER" ],
             [ 42, "MOVE_HEAL_BLOCK" ],
             [ 45, "MOVE_ROCK_SLIDE" ],
+            [ 47, "MOVE_BULLDOZE" ],
+            [ 49, "MOVE_ZEN_HEADBUTT" ],
             [ 53, "MOVE_SOLAR_BEAM" ],
-            [ 56, "MOVE_EXPLOSION" ]
+            [ 54, "MOVE_IRON_HEAD" ],
+            [ 56, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_MORNING_SUN" ],
+            [ 60, "MOVE_BODY_SLAM" ],
+            [ 62, "MOVE_WILL_O_WISP" ],
+            [ 65, "MOVE_EARTHQUAKE" ],
+            [ 68, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM04",

@@ -43,8 +43,10 @@
             [ 7, "MOVE_DRAGON_RAGE" ],
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_SAND_TOMB" ],
+            [ 20, "MOVE_BITE" ],
+            [ 21, "MOVE_BLOCK" ],
+            [ 22, "MOVE_DRAGON_CLAW" ],
             [ 25, "MOVE_SLASH" ],
-            [ 27, "MOVE_DRAGON_CLAW" ],
             [ 31, "MOVE_DIG" ],
             [ 37, "MOVE_DRAGON_RUSH" ]
         ],

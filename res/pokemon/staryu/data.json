@@ -47,11 +47,13 @@
             [ 24, "MOVE_SWIFT" ],
             [ 28, "MOVE_BUBBLE_BEAM" ],
             [ 33, "MOVE_MINIMIZE" ],
+            [ 35, "MOVE_SIGNAL_BEAM" ],
             [ 37, "MOVE_GYRO_BALL" ],
+            [ 40, "MOVE_SCALD" ],
             [ 42, "MOVE_LIGHT_SCREEN" ],
             [ 46, "MOVE_POWER_GEM" ],
             [ 51, "MOVE_COSMIC_POWER" ],
-            [ 55, "MOVE_HYDRO_PUMP" ]
+            [ 55, "MOVE_SURF" ]
         ],
         "by_tm": [
             "TM03",

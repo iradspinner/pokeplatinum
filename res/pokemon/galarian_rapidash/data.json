@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_HEALING_WISH"
+            ],
+            [
+                1,
                 "MOVE_PSYCHO_CUT"
             ],
             [
@@ -81,6 +85,10 @@
                 "MOVE_FAIRY_WIND"
             ],
             [
+                17,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
                 20,
                 "MOVE_AGILITY"
             ],
@@ -97,20 +105,48 @@
                 "MOVE_HEAL_PULSE"
             ],
             [
+                40,
+                "MOVE_OVERHEAT"
+            ],
+            [
                 43,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                46,
+                "MOVE_DRILL_RUN"
             ],
             [
                 49,
                 "MOVE_DAZZLING_GLEAM"
             ],
             [
+                54,
+                "MOVE_JUMP_KICK"
+            ],
+            [
                 56,
                 "MOVE_PSYCHIC"
             ],
             [
+                58,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                60,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 63,
-                "MOVE_HEALING_WISH"
+                "MOVE_FLARE_BLITZ"
+            ],
+            [
+                65,
+                "MOVE_HIGH_HORSEPOWER"
+            ],
+            [
+                68,
+                "MOVE_ZEN_HEADBUTT"
             ]
         ],
         "by_tm": [],

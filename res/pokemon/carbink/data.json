@@ -49,16 +49,8 @@
                 "MOVE_TACKLE"
             ],
             [
-                1,
-                "MOVE_HARDEN"
-            ],
-            [
                 5,
                 "MOVE_ROCK_THROW"
-            ],
-            [
-                8,
-                "MOVE_SHARPEN"
             ],
             [
                 10,
@@ -69,8 +61,16 @@
                 "MOVE_GUARD_SPLIT"
             ],
             [
+                17,
+                "MOVE_BULLDOZE"
+            ],
+            [
                 18,
                 "MOVE_REFLECT"
+            ],
+            [
+                21,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 24,
@@ -81,8 +81,16 @@
                 "MOVE_ANCIENT_POWER"
             ],
             [
-                25,
+                26,
                 "MOVE_ROCK_POLISH"
+            ],
+            [
+                27,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                30,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 35,
@@ -111,6 +119,18 @@
             [
                 54,
                 "MOVE_STONE_EDGE"
+            ],
+            [
+                56,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                58,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                60,
+                "MOVE_IRON_HEAD"
             ],
             [
                 70,

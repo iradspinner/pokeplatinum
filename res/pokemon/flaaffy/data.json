@@ -41,7 +41,6 @@
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 5, "MOVE_GROWL" ],
             [ 10, "MOVE_THUNDER_SHOCK" ],
             [ 14, "MOVE_THUNDER_WAVE" ],
             [ 20, "MOVE_COTTON_SPORE" ],
@@ -50,7 +49,7 @@
             [ 36, "MOVE_SIGNAL_BEAM" ],
             [ 42, "MOVE_LIGHT_SCREEN" ],
             [ 47, "MOVE_POWER_GEM" ],
-            [ 53, "MOVE_THUNDER" ]
+            [ 53, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM01",

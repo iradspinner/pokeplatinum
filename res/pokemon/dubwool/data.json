@@ -73,28 +73,60 @@
                 "MOVE_HEADBUTT"
             ],
             [
-                27,
+                24,
+                "MOVE_PAYBACK"
+            ],
+            [
+                25,
                 "MOVE_TAKE_DOWN"
+            ],
+            [
+                26,
+                "MOVE_SWAGGER"
+            ],
+            [
+                29,
+                "MOVE_AGILITY"
             ],
             [
                 32,
                 "MOVE_GUARD_SWAP"
             ],
             [
+                35,
+                "MOVE_BODY_SLAM"
+            ],
+            [
                 38,
                 "MOVE_REVERSAL"
+            ],
+            [
+                41,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 44,
                 "MOVE_COTTON_GUARD"
             ],
             [
+                47,
+                "MOVE_BODY_PRESS"
+            ],
+            [
                 50,
                 "MOVE_DOUBLE_EDGE"
             ],
             [
+                54,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
                 56,
                 "MOVE_LAST_RESORT"
+            ],
+            [
+                61,
+                "MOVE_THUNDER_WAVE"
             ]
         ],
         "by_tm": [],

@@ -46,11 +46,11 @@
         "by_level": [
             [
                 1,
-                "MOVE_BUBBLE"
+                "MOVE_DESTINY_BOND"
             ],
             [
                 1,
-                "MOVE_ABSORB"
+                "MOVE_BUBBLE"
             ],
             [
                 5,
@@ -81,24 +81,16 @@
                 "MOVE_BRINE"
             ],
             [
+                36,
+                "MOVE_DARK_PULSE"
+            ],
+            [
                 39,
                 "MOVE_PAIN_SPLIT"
             ],
             [
-                44,
-                "MOVE_DESTINY_BOND"
-            ],
-            [
-                48,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
                 55,
                 "MOVE_SCALD"
-            ],
-            [
-                61,
-                "MOVE_WATER_SPOUT"
             ],
             [
                 70,

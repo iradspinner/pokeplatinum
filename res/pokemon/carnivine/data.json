@@ -35,18 +35,24 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BIND" ],
-            [ 1, "MOVE_GROWTH" ],
             [ 7, "MOVE_BITE" ],
             [ 11, "MOVE_VINE_WHIP" ],
-            [ 17, "MOVE_SWEET_SCENT" ],
-            [ 21, "MOVE_INGRAIN" ],
             [ 27, "MOVE_FAINT_ATTACK" ],
+            [ 29, "MOVE_SWALLOW" ],
+            [ 30, "MOVE_LEAF_TORNADO" ],
             [ 31, "MOVE_STOCKPILE" ],
-            [ 31, "MOVE_SPIT_UP" ],
-            [ 31, "MOVE_SWALLOW" ],
+            [ 32, "MOVE_SPIT_UP" ],
+            [ 33, "MOVE_SWAGGER" ],
+            [ 35, "MOVE_SEED_BOMB" ],
             [ 37, "MOVE_CRUNCH" ],
-            [ 41, "MOVE_WRING_OUT" ],
-            [ 47, "MOVE_POWER_WHIP" ]
+            [ 40, "MOVE_GIGA_DRAIN" ],
+            [ 42, "MOVE_LEECH_LIFE" ],
+            [ 47, "MOVE_POWER_WHIP" ],
+            [ 53, "MOVE_SECRET_POWER" ],
+            [ 54, "MOVE_SLUDGE_BOMB" ],
+            [ 56, "MOVE_FIRE_FANG" ],
+            [ 60, "MOVE_LEAF_STORM" ],
+            [ 65, "MOVE_SLAM" ]
         ],
         "by_tm": [
             "TM06",

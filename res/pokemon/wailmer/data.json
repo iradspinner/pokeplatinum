@@ -38,8 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
-            [ 4, "MOVE_GROWL" ],
             [ 7, "MOVE_WATER_GUN" ],
             [ 11, "MOVE_ROLLOUT" ],
             [ 14, "MOVE_WHIRLPOOL" ],
@@ -47,12 +45,13 @@
             [ 21, "MOVE_WATER_PULSE" ],
             [ 24, "MOVE_MIST" ],
             [ 27, "MOVE_REST" ],
+            [ 29, "MOVE_BULLDOZE" ],
             [ 31, "MOVE_BRINE" ],
             [ 34, "MOVE_WATER_SPOUT" ],
             [ 37, "MOVE_AMNESIA" ],
             [ 41, "MOVE_DIVE" ],
             [ 44, "MOVE_BOUNCE" ],
-            [ 47, "MOVE_HYDRO_PUMP" ]
+            [ 47, "MOVE_SURF" ]
         ],
         "by_tm": [
             "TM03",

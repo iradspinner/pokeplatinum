@@ -46,10 +46,6 @@
         "by_level": [
             [
                 1,
-                "MOVE_FAIRY_LOCK"
-            ],
-            [
-                1,
                 "MOVE_ASTONISH"
             ],
             [
@@ -73,32 +69,32 @@
                 "MOVE_SPIKES"
             ],
             [
-                16,
-                "MOVE_METAL_SOUND"
-            ],
-            [
                 19,
                 "MOVE_CRAFTY_SHIELD"
+            ],
+            [
+                20,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 21,
                 "MOVE_TORMENT"
             ],
             [
-                21,
-                "MOVE_DRAINING_KISS"
+                32,
+                "MOVE_IMPRISON"
             ],
             [
                 33,
                 "MOVE_RECYCLE"
             ],
             [
-                33,
-                "MOVE_IMPRISON"
-            ],
-            [
                 34,
                 "MOVE_MIRROR_SHOT"
+            ],
+            [
+                35,
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 36,
@@ -117,12 +113,36 @@
                 "MOVE_MAGIC_ROOM"
             ],
             [
+                47,
+                "MOVE_CALM_MIND"
+            ],
+            [
                 50,
                 "MOVE_HEAL_BLOCK"
             ],
             [
                 52,
                 "MOVE_LAST_RESORT"
+            ],
+            [
+                54,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                56,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                58,
+                "MOVE_MOONBLAST"
+            ],
+            [
+                60,
+                "MOVE_FACADE"
+            ],
+            [
+                65,
+                "MOVE_THUNDER_WAVE"
             ]
         ],
         "by_tm": [],

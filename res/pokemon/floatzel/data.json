@@ -49,9 +49,17 @@
             [ 15, "MOVE_SWIFT" ],
             [ 21, "MOVE_AQUA_JET" ],
             [ 26, "MOVE_CRUNCH" ],
-            [ 29, "MOVE_AGILITY" ],
+            [ 29, "MOVE_ICY_WIND" ],
+            [ 33, "MOVE_FLIP_TURN" ],
+            [ 36, "MOVE_WATERFALL" ],
             [ 39, "MOVE_WHIRLPOOL" ],
-            [ 50, "MOVE_RAZOR_WIND" ]
+            [ 41, "MOVE_LIQUIDATION" ],
+            [ 44, "MOVE_LOW_SWEEP" ],
+            [ 51, "MOVE_AGILITY" ],
+            [ 53, "MOVE_ROCK_TOMB" ],
+            [ 56, "MOVE_ICE_FANG" ],
+            [ 62, "MOVE_WAVE_CRASH" ],
+            [ 65, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

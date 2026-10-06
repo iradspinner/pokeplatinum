@@ -46,19 +46,15 @@
         "by_level": [
             [
                 1,
+                "MOVE_ROAR"
+            ],
+            [
+                1,
                 "MOVE_TACKLE"
             ],
             [
                 5,
                 "MOVE_LEER"
-            ],
-            [
-                9,
-                "MOVE_BIDE"
-            ],
-            [
-                13,
-                "MOVE_PROTECT"
             ],
             [
                 17,
@@ -85,16 +81,12 @@
                 "MOVE_SKY_UPPERCUT"
             ],
             [
-                39,
-                "MOVE_ROAR"
-            ],
-            [
                 44,
                 "MOVE_NOBLE_ROAR"
             ],
             [
-                50,
-                "MOVE_SCALE_SHOT"
+                45,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 55,

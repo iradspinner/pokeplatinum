@@ -46,10 +46,8 @@
             [ 13, "MOVE_ICE_BALL" ],
             [ 19, "MOVE_BODY_SLAM" ],
             [ 25, "MOVE_AURORA_BEAM" ],
-            [ 37, "MOVE_REST" ],
-            [ 37, "MOVE_SNORE" ],
-            [ 43, "MOVE_BLIZZARD" ],
-            [ 49, "MOVE_SHEER_COLD" ]
+            [ 32, "MOVE_SIGNAL_BEAM" ],
+            [ 43, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

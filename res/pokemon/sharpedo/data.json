@@ -38,12 +38,9 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FEINT" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_BITE" ],
-            [ 1, "MOVE_RAGE" ],
             [ 1, "MOVE_FOCUS_ENERGY" ],
-            [ 6, "MOVE_RAGE" ],
             [ 8, "MOVE_FOCUS_ENERGY" ],
             [ 11, "MOVE_SCARY_FACE" ],
             [ 16, "MOVE_ICE_FANG" ],
@@ -52,11 +49,18 @@
             [ 26, "MOVE_ASSURANCE" ],
             [ 28, "MOVE_CRUNCH" ],
             [ 30, "MOVE_SLASH" ],
-            [ 34, "MOVE_AQUA_JET" ],
+            [ 31, "MOVE_AQUA_JET" ],
+            [ 35, "MOVE_BUG_BITE" ],
+            [ 37, "MOVE_AERIAL_ACE" ],
             [ 40, "MOVE_TAUNT" ],
+            [ 41, "MOVE_LIQUIDATION" ],
             [ 45, "MOVE_AGILITY" ],
             [ 50, "MOVE_SKULL_BASH" ],
-            [ 56, "MOVE_NIGHT_SLASH" ]
+            [ 54, "MOVE_POISON_FANG" ],
+            [ 56, "MOVE_NIGHT_SLASH" ],
+            [ 58, "MOVE_POISON_JAB" ],
+            [ 60, "MOVE_FLIP_TURN" ],
+            [ 65, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM03",

@@ -53,8 +53,7 @@
             [ 28, "MOVE_EARTH_POWER" ],
             [ 33, "MOVE_MUD_BOMB" ],
             [ 40, "MOVE_SLASH" ],
-            [ 45, "MOVE_EARTHQUAKE" ],
-            [ 50, "MOVE_FISSURE" ]
+            [ 45, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM06",

@@ -38,7 +38,12 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TELEPORT" ]
+            [ 4, "MOVE_PSYCHO_CUT" ],
+            [ 5, "MOVE_CONFUSION" ],
+            [ 7, "MOVE_ROLE_PLAY" ],
+            [ 10, "MOVE_REFLECT" ],
+            [ 13, "MOVE_DISABLE" ],
+            [ 16, "MOVE_CALM_MIND" ]
         ],
         "by_tm": [
             "TM01",

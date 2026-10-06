@@ -39,17 +39,16 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_HARDEN" ],
-            [ 6, "MOVE_ABSORB" ],
-            [ 11, "MOVE_LEER" ],
             [ 16, "MOVE_MUD_SHOT" ],
             [ 21, "MOVE_SAND_ATTACK" ],
             [ 26, "MOVE_ENDURE" ],
+            [ 28, "MOVE_ROCK_SLIDE" ],
             [ 31, "MOVE_AQUA_JET" ],
+            [ 33, "MOVE_BITE" ],
             [ 36, "MOVE_MEGA_DRAIN" ],
+            [ 38, "MOVE_LIQUIDATION" ],
             [ 41, "MOVE_METAL_SOUND" ],
-            [ 46, "MOVE_ANCIENT_POWER" ],
-            [ 51, "MOVE_WRING_OUT" ]
+            [ 46, "MOVE_ANCIENT_POWER" ]
         ],
         "by_tm": [
             "TM03",

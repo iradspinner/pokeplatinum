@@ -57,10 +57,6 @@
                 "MOVE_COACHING"
             ],
             [
-                4,
-                "MOVE_FEINT"
-            ],
-            [
                 8,
                 "MOVE_BRICK_BREAK"
             ],
@@ -73,16 +69,12 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
-                20,
-                "MOVE_FLYING_PRESS"
-            ],
-            [
-                20,
+                19,
                 "MOVE_SKY_DROP"
             ],
             [
-                24,
-                "MOVE_SUBMISSION"
+                20,
+                "MOVE_FLYING_PRESS"
             ],
             [
                 28,
@@ -101,24 +93,60 @@
                 "MOVE_HI_JUMP_KICK"
             ],
             [
+                45,
+                "MOVE_AIR_SLASH"
+            ],
+            [
                 48,
-                "MOVE_ME_FIRST"
+                "MOVE_LUNGE"
+            ],
+            [
+                54,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 55,
                 "MOVE_ACROBATICS"
             ],
             [
+                57,
+                "MOVE_LOW_SWEEP"
+            ],
+            [
                 60,
                 "MOVE_CLOSE_COMBAT"
             ],
             [
-                82,
+                62,
+                "MOVE_FIRE_PUNCH"
+            ],
+            [
+                65,
                 "MOVE_BRAVE_BIRD"
             ],
             [
-                83,
-                "MOVE_ENTRAINMENT"
+                66,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                68,
+                "MOVE_THUNDER_PUNCH"
+            ],
+            [
+                69,
+                "MOVE_UPPER_HAND"
+            ],
+            [
+                71,
+                "MOVE_ROOST"
+            ],
+            [
+                74,
+                "MOVE_TAUNT"
+            ],
+            [
+                78,
+                "MOVE_U_TURN"
             ]
         ],
         "by_tm": [],

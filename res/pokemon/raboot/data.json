@@ -65,6 +65,10 @@
                 "MOVE_DOUBLE_KICK"
             ],
             [
+                17,
+                "MOVE_ACROBATICS"
+            ],
+            [
                 21,
                 "MOVE_HEADBUTT"
             ],

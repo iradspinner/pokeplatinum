@@ -40,17 +40,14 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 5, "MOVE_HOWL" ],
+            [ 7, "MOVE_SCARY_FACE" ],
             [ 9, "MOVE_SAND_ATTACK" ],
             [ 13, "MOVE_BITE" ],
             [ 17, "MOVE_ODOR_SLEUTH" ],
-            [ 21, "MOVE_ROAR" ],
             [ 25, "MOVE_SWAGGER" ],
-            [ 29, "MOVE_ASSURANCE" ],
             [ 31, "MOVE_CRUNCH" ],
-            [ 33, "MOVE_SCARY_FACE" ],
             [ 37, "MOVE_TAUNT" ],
             [ 41, "MOVE_EMBARGO" ],
-            [ 45, "MOVE_TAKE_DOWN" ],
             [ 49, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [

@@ -69,28 +69,8 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                18,
-                "MOVE_SEED_BOMB"
-            ],
-            [
-                21,
-                "MOVE_SLASH"
-            ],
-            [
                 26,
                 "MOVE_WORRY_SEED"
-            ],
-            [
-                34,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                40,
-                "MOVE_PLAY_ROUGH"
-            ],
-            [
-                46,
-                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [],

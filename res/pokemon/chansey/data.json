@@ -38,19 +38,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HEALING_WISH" ],
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
             [ 9, "MOVE_REFRESH" ],
-            [ 12, "MOVE_SOFTBOILED" ],
-            [ 16, "MOVE_DOUBLE_SLAP" ],
+            [ 19, "MOVE_SOFTBOILED" ],
             [ 20, "MOVE_MINIMIZE" ],
             [ 23, "MOVE_SING" ],
             [ 27, "MOVE_FLING" ],
+            [ 28, "MOVE_SWIFT" ],
+            [ 29, "MOVE_CHILLING_WATER" ],
             [ 31, "MOVE_DEFENSE_CURL" ],
             [ 34, "MOVE_LIGHT_SCREEN" ],
             [ 38, "MOVE_EGG_BOMB" ],
-            [ 42, "MOVE_HEALING_WISH" ],
             [ 46, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [

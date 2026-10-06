@@ -89,16 +89,12 @@
                 "MOVE_TOXIC"
             ],
             [
-                40,
-                "MOVE_VENOM_DRENCH"
+                38,
+                "MOVE_MUDDY_WATER"
             ],
             [
                 41,
                 "MOVE_LIQUIDATION"
-            ],
-            [
-                41,
-                "MOVE_POISON_JAB"
             ]
         ],
         "by_tm": [],

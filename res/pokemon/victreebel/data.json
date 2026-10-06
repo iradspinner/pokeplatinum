@@ -45,8 +45,8 @@
             [ 1, "MOVE_SLEEP_POWDER" ],
             [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_RAZOR_LEAF" ],
-            [ 47, "MOVE_LEAF_STORM" ],
-            [ 47, "MOVE_LEAF_BLADE" ]
+            [ 46, "MOVE_LEAF_BLADE" ],
+            [ 47, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
             "TM06",

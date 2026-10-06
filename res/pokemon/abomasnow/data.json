@@ -49,10 +49,17 @@
             [ 17, "MOVE_SWAGGER" ],
             [ 21, "MOVE_MIST" ],
             [ 26, "MOVE_ICE_SHARD" ],
-            [ 31, "MOVE_INGRAIN" ],
             [ 36, "MOVE_WOOD_HAMMER" ],
-            [ 47, "MOVE_BLIZZARD" ],
-            [ 58, "MOVE_SHEER_COLD" ]
+            [ 41, "MOVE_ICE_BEAM" ],
+            [ 50, "MOVE_GIGA_DRAIN" ],
+            [ 53, "MOVE_ICE_PUNCH" ],
+            [ 54, "MOVE_ROCK_CLIMB" ],
+            [ 56, "MOVE_SHADOW_BALL" ],
+            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 60, "MOVE_LEAF_STORM" ],
+            [ 62, "MOVE_DOUBLE_EDGE" ],
+            [ 65, "MOVE_HAMMER_ARM" ],
+            [ 68, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [
             "TM01",

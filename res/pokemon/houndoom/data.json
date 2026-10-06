@@ -49,11 +49,21 @@
             [ 17, "MOVE_BITE" ],
             [ 22, "MOVE_ODOR_SLEUTH" ],
             [ 32, "MOVE_FIRE_FANG" ],
+            [ 35, "MOVE_FIRE_PLEDGE" ],
             [ 38, "MOVE_FAINT_ATTACK" ],
+            [ 41, "MOVE_MUD_SHOT" ],
             [ 44, "MOVE_EMBARGO" ],
             [ 48, "MOVE_FLAMETHROWER" ],
+            [ 51, "MOVE_DARK_PULSE" ],
             [ 54, "MOVE_CRUNCH" ],
-            [ 60, "MOVE_NASTY_PLOT" ]
+            [ 56, "MOVE_SHADOW_BALL" ],
+            [ 58, "MOVE_BURNING_JEALOUSY" ],
+            [ 60, "MOVE_NASTY_PLOT" ],
+            [ 62, "MOVE_SLUDGE_BOMB" ],
+            [ 65, "MOVE_OVERHEAT" ],
+            [ 66, "MOVE_TOXIC" ],
+            [ 68, "MOVE_HYPER_VOICE" ],
+            [ 71, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [
             "TM05",

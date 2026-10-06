@@ -98,7 +98,7 @@ DOWNSIDE = {"UPROAR": 0.5, "CONTINUE_AND_CONFUSE_SELF": 0.6, "USER_SP_ATK_DOWN_2
             "LOWER_OWN_ATK_AND_DEF": 0.85, "DEF_SPD_DOWN_HIT": 0.9, "SPEED_DOWN_HIT": 0.95}
 # Moves that knock the user out: no usable attack in a nuzlocke, where the
 # user is then dead.
-SELF_KO = {"MOVE_EXPLOSION", "MOVE_SELF_DESTRUCT", "MOVE_MISTY_EXPLOSION", "MOVE_FINAL_GAMBIT",
+SELF_KO = {"MOVE_EXPLOSION", "MOVE_SELFDESTRUCT", "MOVE_MISTY_EXPLOSION", "MOVE_FINAL_GAMBIT",
            "MOVE_MEMENTO", "MOVE_HEALING_WISH", "MOVE_LUNAR_DANCE"}
 USABLE_POWER = 50
 
@@ -287,17 +287,37 @@ def at_capture(version, species, level):
 # (Togepi's session, R20).
 UNMET_PLACES = {"Amity Square"}
 SPLIT_FIXES = {("SPECIES_TOGEPI", "egg gift", "Eterna City"): "Fantina"}
+# A third, from Ian's ruling of 2026-09-30 (the tracker's fossils entry): the
+# Mining Museum revives a fossil only once the player is through Cycling
+# Road, so every fossil comes in Fantina's split. The pool leaves fossils out
+# (their revival level is above Roark's cap, their location's split), which
+# the balance census still owes.
+FOSSIL_SPLIT = "Fantina"
+
+
+@functools.lru_cache(maxsize=None)
+def fossil_rows():
+    """((species, split, level, "fossil", place), ...) from the sources file."""
+    out = []
+    with open(pool.SOURCES, encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row["method"] == "fossil" and row["species"].startswith("SPECIES_"):
+                out.append((row["species"], FOSSIL_SPLIT, pool._source_level(row["level"]), "fossil",
+                            row["location"]))
+    return tuple(out)
 
 
 @functools.lru_cache(maxsize=None)
 def catch_rows():
     """((species, split, level, how, place), ...): pool.catches() row for row,
     with the capture area each comes from (the encounter tool's location name,
-    "Honey trees", or a scripted source's location), less UNMET_PLACES and with
-    SPLIT_FIXES applied. test_learncheck checks that the rows are pool's but
-    for those."""
-    return tuple((sp, SPLIT_FIXES.get((sp, how, place), split), level, how, place)
+    "Honey trees", or a scripted source's location), less UNMET_PLACES, with
+    SPLIT_FIXES applied and the fossils added (fossil_rows). test_learncheck
+    checks that the rows are pool's but for those."""
+    rows = tuple((sp, SPLIT_FIXES.get((sp, how, place), split), level, how, place)
                  for sp, split, level, how, place in _pool_rows() if place not in UNMET_PLACES)
+    have = {(r[0], r[3]) for r in rows}
+    return rows + tuple(r for r in fossil_rows() if (r[0], r[3]) not in have)
 
 
 @functools.lru_cache(maxsize=None)
@@ -1150,9 +1170,11 @@ def utility(const):
 
 def counts(const):
     """A move that counts as one of a Pokemon's moves for R1 and R2: one a
-    list may rely on and not rated useless or terrible."""
+    list may rely on, not rated useless or terrible, and not one for
+    trainers only (R26: Destiny Bond and the moves that knock their user out)."""
     t = tier(const)
-    return reliable(const) and not (t and t[0] == 0)
+    return reliable(const) and not (t and t[0] == 0) and const not in SELF_KO \
+        and const != "MOVE_DESTINY_BOND"
 
 
 def filler(const, species):
@@ -1277,8 +1299,9 @@ def held_splits(path, i):
     """The split indices R2 holds stage i of a path to: those it is held at
     the cap of. A stage that evolves by level is held from the split after it
     is had until the split it evolves in, which is not counted. One that
-    evolves by an item waits on the player, so it is held while its own list
-    still teaches. A final stage is held to the League's cap, except one
+    evolves by an item waits on the player, so it is held through the split
+    after its item comes in reach (a split's grace; the player chooses when
+    to use the item). A final stage is held to the League's cap, except one
     reached by an item, which keeps learning from about three splits on (R10)."""
     st = path[i]
     a = si(st.split)
@@ -1286,9 +1309,7 @@ def held_splits(path, i):
     if i + 1 < len(path):
         if path[i + 1].via == "level":
             return list(range(a + 1, si(path[i + 1].split)))
-        levels = [lv for lv, _m in st.own if lv <= caps()[SPLITS[-1]]]
-        end = si(split_of_level(max(levels))) if levels else a
-        return list(range(a + 1, end + 1))
+        return list(range(a + 1, min(si(path[i + 1].split) + 1, last) + 1))
     if st.via not in ("caught", "level"):
         return list(range(a + 3, last + 1))
     return list(range(a + 1, last + 1))
@@ -1770,6 +1791,25 @@ def check22(version):
     return out
 
 
+GEN4_LAST_ID = 467      # Shadow Force, the last move Platinum has
+
+
+@functools.lru_cache(maxsize=None)
+def check23(version):
+    """{family: [moves]}: R16, the moves from after Generation 4 a line
+    learns by level-up or knows at capture on any of its paths; a line with
+    none fails (Ian on Onix: "all 3 pokemon so far have 0 newer gen moves")."""
+    out = {}
+    for fam in sorted(line_catches()):
+        got = []
+        for path in line_paths(version, fam):
+            for _lv, _i, mv, _how in path_events(path):
+                if (moves()[mv].get("id") or 0) > GEN4_LAST_ID and counts(mv) and mv not in got:
+                    got.append(mv)
+        out[fam] = tuple(got)
+    return out
+
+
 # ---- the rules' report ----------------------------------------------------------------------------
 
 def _fails(version):
@@ -1797,6 +1837,7 @@ def _fails(version):
         20: (sum(r[4] == "fail" for r in c20), len(c20), "evolutions"),
         21: (sum(1 for ms in c21.values() if not ms), len(c21), "final forms"),
         22: (sum(len(v) for k, v in c22.items() if k != "on evolving"), None, "entries"),
+        23: (sum(1 for ms in check23(version).values() if not ms), len(check23(version)), "lines"),
     }
 
 
@@ -1815,7 +1856,8 @@ RULES = {7: "R1, five or six moves by the first split's cap, at most one filler"
          19: "R37, no attack under 90% accuracy",
          20: "Every evolution that needs a known move reachable by level-up",
          21: "A real level-up move from 61 on each final form",
-         22: "List hygiene: one move a level, none past 78, no move twice"}
+         22: "List hygiene: one move a level, none past 78, no move twice",
+         23: "R16, a move from after Generation 4 on every line"}
 
 
 def _names(items, n=12):
@@ -1886,6 +1928,7 @@ def rules_report(out=sys.stdout, worst=12):
         p(f"\nCheck 21: " + (_names(_sp(s) for s, ms in sorted(c21.items()) if not ms) or "none") + ".")
         c22 = check22(v)
         p(f"\nCheck 22: " + "; ".join(f"{k} {len(rows)}" for k, rows in c22.items()) + ".")
+        p(f"\nCheck 23: " + (_names(_sp(f) for f, ms in check23(v).items() if not ms) or "none") + ".")
     tm16 = [(sp, w, m) for sp, w, m, _r in check16(A) if not w.startswith("level")]
     p(f"\nCheck 16 on the TM and tutor lists, the same in both (for the TM pass): {len(tm16)} entries, "
       + _names(f"{_sp(sp)} {move_name(m)} ({w})" for sp, w, m in tm16) + ".")

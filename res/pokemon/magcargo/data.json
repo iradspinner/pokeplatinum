@@ -49,10 +49,18 @@
             [ 26, "MOVE_ANCIENT_POWER" ],
             [ 31, "MOVE_AMNESIA" ],
             [ 40, "MOVE_LAVA_PLUME" ],
+            [ 41, "MOVE_SHELL_SMASH" ],
+            [ 42, "MOVE_SCORCHING_SANDS" ],
             [ 45, "MOVE_ROCK_SLIDE" ],
             [ 52, "MOVE_BODY_SLAM" ],
+            [ 54, "MOVE_BURNING_JEALOUSY" ],
+            [ 56, "MOVE_ENERGY_BALL" ],
+            [ 57, "MOVE_YAWN" ],
+            [ 58, "MOVE_POWER_GEM" ],
             [ 61, "MOVE_FLAMETHROWER" ],
-            [ 66, "MOVE_EARTH_POWER" ]
+            [ 63, "MOVE_OVERHEAT" ],
+            [ 66, "MOVE_EARTH_POWER" ],
+            [ 68, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [
             "TM06",

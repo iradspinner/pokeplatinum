@@ -81,16 +81,32 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                28,
+                "MOVE_SPIDER_WEB"
+            ],
+            [
                 31,
                 "MOVE_SOAK"
+            ],
+            [
+                34,
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 36,
                 "MOVE_DIVE"
             ],
             [
+                38,
+                "MOVE_WATERFALL"
+            ],
+            [
                 41,
                 "MOVE_LUNGE"
+            ],
+            [
+                44,
+                "MOVE_POISON_JAB"
             ],
             [
                 48,
@@ -98,11 +114,23 @@
             ],
             [
                 51,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_SURF"
+            ],
+            [
+                54,
+                "MOVE_CRUNCH"
             ],
             [
                 55,
                 "MOVE_LIQUIDATION"
+            ],
+            [
+                57,
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                58,
+                "MOVE_BODY_SLAM"
             ],
             [
                 61,

@@ -47,12 +47,17 @@
             [ 17, "MOVE_FAINT_ATTACK" ],
             [ 20, "MOVE_FURY_SWIPES" ],
             [ 25, "MOVE_CHARM" ],
-            [ 29, "MOVE_ASSIST" ],
             [ 32, "MOVE_CAPTIVATE" ],
             [ 37, "MOVE_SLASH" ],
             [ 38, "MOVE_SWAGGER" ],
+            [ 39, "MOVE_STRENGTH" ],
+            [ 40, "MOVE_METAL_CLAW" ],
+            [ 42, "MOVE_SHADOW_CLAW" ],
             [ 45, "MOVE_BODY_SLAM" ],
-            [ 53, "MOVE_ATTRACT" ]
+            [ 53, "MOVE_ATTRACT" ],
+            [ 54, "MOVE_SLAM" ],
+            [ 56, "MOVE_SUCKER_PUNCH" ],
+            [ 61, "MOVE_CRUSH_CLAW" ]
         ],
         "by_tm": [
             "TM03",

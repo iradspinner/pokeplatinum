@@ -38,6 +38,7 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_LEECH_SEED" ],
@@ -45,11 +46,10 @@
             [ 3, "MOVE_GROWL" ],
             [ 7, "MOVE_LEECH_SEED" ],
             [ 9, "MOVE_VINE_WHIP" ],
+            [ 12, "MOVE_SLEEP_POWDER" ],
             [ 13, "MOVE_POISON_POWDER" ],
-            [ 13, "MOVE_SLEEP_POWDER" ],
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 20, "MOVE_RAZOR_LEAF" ],
-            [ 23, "MOVE_SWEET_SCENT" ],
             [ 28, "MOVE_GROWTH" ],
             [ 31, "MOVE_DOUBLE_EDGE" ],
             [ 32, "MOVE_PETAL_DANCE" ],

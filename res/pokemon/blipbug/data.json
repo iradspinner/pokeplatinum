@@ -49,8 +49,12 @@
                 "MOVE_STRUGGLE_BUG"
             ],
             [
-                81,
-                "MOVE_TRICK_ROOM"
+                4,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                10,
+                "MOVE_TRAILBLAZE"
             ]
         ],
         "by_tm": [],

@@ -38,7 +38,6 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_RAGE" ],
             [ 5, "MOVE_DEFENSE_CURL" ],
             [ 9, "MOVE_YAWN" ],
             [ 13, "MOVE_GLARE" ],

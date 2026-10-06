@@ -46,10 +46,18 @@
             [ 24, "MOVE_ICE_FANG" ],
             [ 28, "MOVE_BRINE" ],
             [ 33, "MOVE_BATON_PASS" ],
+            [ 35, "MOVE_FLIP_TURN" ],
             [ 37, "MOVE_DIVE" ],
+            [ 40, "MOVE_WATERFALL" ],
             [ 42, "MOVE_CRUNCH" ],
             [ 46, "MOVE_AQUA_TAIL" ],
-            [ 51, "MOVE_HYDRO_PUMP" ]
+            [ 51, "MOVE_MUDDY_WATER" ],
+            [ 54, "MOVE_ROCK_TOMB" ],
+            [ 56, "MOVE_LEECH_LIFE" ],
+            [ 58, "MOVE_SHELL_SMASH" ],
+            [ 60, "MOVE_SUCKER_PUNCH" ],
+            [ 62, "MOVE_AGILITY" ],
+            [ 65, "MOVE_CONFUSE_RAY" ]
         ],
         "by_tm": [
             "TM03",

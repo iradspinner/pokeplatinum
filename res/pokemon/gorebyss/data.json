@@ -46,10 +46,19 @@
             [ 24, "MOVE_AQUA_RING" ],
             [ 28, "MOVE_CAPTIVATE" ],
             [ 33, "MOVE_BATON_PASS" ],
+            [ 35, "MOVE_DRAINING_KISS" ],
             [ 37, "MOVE_DIVE" ],
+            [ 40, "MOVE_SURF" ],
             [ 42, "MOVE_PSYCHIC" ],
             [ 46, "MOVE_AQUA_TAIL" ],
-            [ 51, "MOVE_HYDRO_PUMP" ]
+            [ 51, "MOVE_MUDDY_WATER" ],
+            [ 54, "MOVE_SHADOW_BALL" ],
+            [ 56, "MOVE_ICE_BEAM" ],
+            [ 58, "MOVE_SHELL_SMASH" ],
+            [ 60, "MOVE_SCALD" ],
+            [ 62, "MOVE_SCARY_FACE" ],
+            [ 65, "MOVE_CONFUSE_RAY" ],
+            [ 68, "MOVE_SCREECH" ]
         ],
         "by_tm": [
             "TM03",

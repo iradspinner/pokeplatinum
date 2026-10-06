@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_MEMENTO"
+            ],
+            [
+                1,
                 "MOVE_EMBER"
             ],
             [
@@ -87,10 +91,6 @@
             [
                 35,
                 "MOVE_IMPRISON"
-            ],
-            [
-                40,
-                "MOVE_MEMENTO"
             ],
             [
                 46,

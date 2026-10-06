@@ -38,26 +38,23 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_EXPLOSION" ],
             [ 1, "MOVE_TOXIC_SPIKES" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_PROTECT" ],
             [ 1, "MOVE_SELFDESTRUCT" ],
             [ 1, "MOVE_BUG_BITE" ],
-            [ 6, "MOVE_SELFDESTRUCT" ],
             [ 9, "MOVE_BUG_BITE" ],
             [ 12, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_RAPID_SPIN" ],
-            [ 20, "MOVE_BIDE" ],
             [ 23, "MOVE_NATURAL_GIFT" ],
             [ 28, "MOVE_SPIKES" ],
             [ 31, "MOVE_MIRROR_SHOT" ],
             [ 33, "MOVE_PAYBACK" ],
-            [ 38, "MOVE_EXPLOSION" ],
             [ 45, "MOVE_IRON_DEFENSE" ],
             [ 50, "MOVE_GYRO_BALL" ],
             [ 55, "MOVE_DOUBLE_EDGE" ],
             [ 62, "MOVE_MAGNET_RISE" ],
-            [ 67, "MOVE_ZAP_CANNON" ]
+            [ 67, "MOVE_VOLT_SWITCH" ]
         ],
         "by_tm": [
             "TM06",

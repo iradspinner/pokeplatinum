@@ -85,12 +85,32 @@
                 "MOVE_SIGNAL_BEAM"
             ],
             [
+                40,
+                "MOVE_POLLEN_PUFF"
+            ],
+            [
                 48,
                 "MOVE_DISCHARGE"
             ],
             [
+                54,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
                 55,
                 "MOVE_BUG_BUZZ"
+            ],
+            [
+                57,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                60,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                62,
+                "MOVE_AGILITY"
             ],
             [
                 65,
@@ -98,7 +118,11 @@
             ],
             [
                 66,
-                "MOVE_ZAP_CANNON"
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                68,
+                "MOVE_VOLT_SWITCH"
             ]
         ],
         "by_tm": [],

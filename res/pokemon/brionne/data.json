@@ -81,6 +81,10 @@
                 "MOVE_SING"
             ],
             [
+                31,
+                "MOVE_WATER_PLEDGE"
+            ],
+            [
                 34,
                 "MOVE_SCALD"
             ],
@@ -93,20 +97,8 @@
                 "MOVE_PERISH_SONG"
             ],
             [
-                50,
-                "MOVE_HYPER_VOICE"
-            ],
-            [
-                55,
-                "MOVE_FLIP_TURN"
-            ],
-            [
-                61,
-                "MOVE_MOONBLAST"
-            ],
-            [
                 67,
-                "MOVE_HYDRO_PUMP"
+                "MOVE_SPARKLING_ARIA"
             ]
         ],
         "by_tm": [],

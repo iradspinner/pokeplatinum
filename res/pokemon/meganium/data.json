@@ -38,6 +38,7 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_RAZOR_LEAF" ],
@@ -49,7 +50,6 @@
             [ 22, "MOVE_MAGICAL_LEAF" ],
             [ 26, "MOVE_NATURAL_GIFT" ],
             [ 32, "MOVE_PETAL_DANCE" ],
-            [ 34, "MOVE_SWEET_SCENT" ],
             [ 40, "MOVE_LIGHT_SCREEN" ],
             [ 46, "MOVE_BODY_SLAM" ],
             [ 54, "MOVE_SAFEGUARD" ],

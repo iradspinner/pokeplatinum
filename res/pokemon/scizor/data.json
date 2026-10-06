@@ -48,14 +48,20 @@
             [ 21, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_FURY_CUTTER" ],
             [ 29, "MOVE_SLASH" ],
-            [ 33, "MOVE_RAZOR_WIND" ],
+            [ 34, "MOVE_SKITTER_SMACK" ],
             [ 37, "MOVE_IRON_DEFENSE" ],
             [ 41, "MOVE_X_SCISSOR" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 49, "MOVE_DOUBLE_HIT" ],
             [ 53, "MOVE_IRON_HEAD" ],
+            [ 54, "MOVE_LEECH_LIFE" ],
+            [ 55, "MOVE_BRICK_BREAK" ],
             [ 57, "MOVE_SWORDS_DANCE" ],
-            [ 61, "MOVE_FEINT" ]
+            [ 60, "MOVE_ROCK_TOMB" ],
+            [ 62, "MOVE_U_TURN" ],
+            [ 65, "MOVE_LUNGE" ],
+            [ 66, "MOVE_DOUBLE_EDGE" ],
+            [ 68, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [
             "TM06",

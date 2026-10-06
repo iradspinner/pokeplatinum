@@ -38,21 +38,24 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MUD_SPORT" ],
             [ 1, "MOVE_BUBBLE" ],
             [ 1, "MOVE_VICE_GRIP" ],
             [ 5, "MOVE_VICE_GRIP" ],
             [ 9, "MOVE_LEER" ],
-            [ 11, "MOVE_HARDEN" ],
             [ 15, "MOVE_BUBBLE_BEAM" ],
             [ 19, "MOVE_MUD_SHOT" ],
             [ 21, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_STOMP" ],
-            [ 32, "MOVE_PROTECT" ],
-            [ 37, "MOVE_GUILLOTINE" ],
+            [ 34, "MOVE_WATERFALL" ],
+            [ 36, "MOVE_RAZOR_SHELL" ],
+            [ 39, "MOVE_ROCK_TOMB" ],
+            [ 41, "MOVE_X_SCISSOR" ],
             [ 44, "MOVE_SLAM" ],
+            [ 47, "MOVE_NIGHT_SLASH" ],
             [ 51, "MOVE_BRINE" ],
+            [ 54, "MOVE_LIQUIDATION" ],
             [ 56, "MOVE_CRABHAMMER" ],
+            [ 59, "MOVE_ROCK_SLIDE" ],
             [ 63, "MOVE_FLAIL" ]
         ],
         "by_tm": [

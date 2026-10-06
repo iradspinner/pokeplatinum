@@ -38,13 +38,13 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
             [ 5, "MOVE_TACKLE" ],
+            [ 7, "MOVE_MAGICAL_LEAF" ],
             [ 9, "MOVE_STUN_SPORE" ],
+            [ 11, "MOVE_MACH_PUNCH" ],
             [ 13, "MOVE_LEECH_SEED" ],
             [ 17, "MOVE_MEGA_DRAIN" ],
             [ 21, "MOVE_HEADBUTT" ],
-            [ 25, "MOVE_POISON_POWDER" ],
             [ 29, "MOVE_WORRY_SEED" ],
             [ 33, "MOVE_GROWTH" ],
             [ 37, "MOVE_GIGA_DRAIN" ],

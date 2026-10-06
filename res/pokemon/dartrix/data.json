@@ -53,10 +53,6 @@
                 "MOVE_LEAFAGE"
             ],
             [
-                4,
-                "MOVE_GROWL"
-            ],
-            [
                 8,
                 "MOVE_PECK"
             ],
@@ -85,16 +81,8 @@
                 "MOVE_SEED_BOMB"
             ],
             [
-                36,
-                "MOVE_SUCKER_PUNCH"
-            ],
-            [
                 42,
                 "MOVE_FEATHER_DANCE"
-            ],
-            [
-                47,
-                "MOVE_ROOST"
             ],
             [
                 52,

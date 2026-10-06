@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_ROAR"
+            ],
+            [
+                1,
                 "MOVE_DRACO_METEOR"
             ],
             [
@@ -63,14 +67,6 @@
             [
                 5,
                 "MOVE_LEER"
-            ],
-            [
-                9,
-                "MOVE_BIDE"
-            ],
-            [
-                13,
-                "MOVE_PROTECT"
             ],
             [
                 17,
@@ -97,10 +93,6 @@
                 "MOVE_SKY_UPPERCUT"
             ],
             [
-                39,
-                "MOVE_ROAR"
-            ],
-            [
                 44,
                 "MOVE_NOBLE_ROAR"
             ],
@@ -113,16 +105,52 @@
                 "MOVE_SCALE_SHOT"
             ],
             [
+                54,
+                "MOVE_CLANGOROUS_SOUL"
+            ],
+            [
+                55,
+                "MOVE_DRACO_METEOR"
+            ],
+            [
                 58,
                 "MOVE_BOOMBURST"
+            ],
+            [
+                60,
+                "MOVE_DRAGON_DANCE"
+            ],
+            [
+                62,
+                "MOVE_EARTHQUAKE"
             ],
             [
                 65,
                 "MOVE_CLOSE_COMBAT"
             ],
             [
+                66,
+                "MOVE_ICE_PUNCH"
+            ],
+            [
+                67,
+                "MOVE_FIRE_PUNCH"
+            ],
+            [
+                69,
+                "MOVE_UPPER_HAND"
+            ],
+            [
                 70,
                 "MOVE_OUTRAGE"
+            ],
+            [
+                71,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                74,
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 77,

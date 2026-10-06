@@ -44,7 +44,15 @@
             [ 1, "MOVE_PERISH_SONG" ],
             [ 27, "MOVE_SWAGGER" ],
             [ 37, "MOVE_BOUNCE" ],
-            [ 48, "MOVE_HYPER_VOICE" ]
+            [ 48, "MOVE_HYPER_VOICE" ],
+            [ 57, "MOVE_ICE_BEAM" ],
+            [ 60, "MOVE_MUDDY_WATER" ],
+            [ 62, "MOVE_PSYCHIC" ],
+            [ 65, "MOVE_BELLY_DRUM" ],
+            [ 66, "MOVE_EARTHQUAKE" ],
+            [ 68, "MOVE_CLOSE_COMBAT" ],
+            [ 69, "MOVE_UPPER_HAND" ],
+            [ 71, "MOVE_DRAIN_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

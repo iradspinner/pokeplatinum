@@ -40,7 +40,6 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 3, "MOVE_TAIL_WHIP" ],
-            [ 5, "MOVE_RAGE" ],
             [ 8, "MOVE_HORN_ATTACK" ],
             [ 11, "MOVE_SCARY_FACE" ],
             [ 15, "MOVE_PURSUIT" ],

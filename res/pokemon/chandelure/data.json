@@ -46,6 +46,10 @@
         "by_level": [
             [
                 1,
+                "MOVE_MEMENTO"
+            ],
+            [
+                1,
                 "MOVE_EMBER"
             ],
             [
@@ -89,16 +93,28 @@
                 "MOVE_IMPRISON"
             ],
             [
-                40,
-                "MOVE_MEMENTO"
-            ],
-            [
                 46,
                 "MOVE_MYSTICAL_FIRE"
             ],
             [
                 55,
                 "MOVE_PAIN_SPLIT"
+            ],
+            [
+                57,
+                "MOVE_BURNING_JEALOUSY"
+            ],
+            [
+                60,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                61,
+                "MOVE_DARK_PULSE"
+            ],
+            [
+                62,
+                "MOVE_PSYCHIC"
             ],
             [
                 65,
