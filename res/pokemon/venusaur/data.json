@@ -52,9 +52,9 @@
             [ 20, "MOVE_RAZOR_LEAF" ],
             [ 28, "MOVE_GROWTH" ],
             [ 31, "MOVE_DOUBLE_EDGE" ],
-            [ 32, "MOVE_PETAL_DANCE" ],
             [ 39, "MOVE_WORRY_SEED" ],
             [ 45, "MOVE_SYNTHESIS" ],
+            [ 46, "MOVE_PETAL_DANCE" ],
             [ 53, "MOVE_SOLAR_BEAM" ]
         ],
         "by_tm": [

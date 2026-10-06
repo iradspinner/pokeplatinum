@@ -101,12 +101,12 @@
                 "MOVE_LEAF_STORM"
             ],
             [
-                49,
-                "MOVE_U_TURN"
+                48,
+                "MOVE_PETAL_BLIZZARD"
             ],
             [
-                52,
-                "MOVE_KNOCK_OFF"
+                51,
+                "MOVE_U_TURN"
             ],
             [
                 54,
@@ -117,7 +117,11 @@
                 "MOVE_HI_JUMP_KICK"
             ],
             [
-                61,
+                60,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                65,
                 "MOVE_CHARM"
             ]
         ],

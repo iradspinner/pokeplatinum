@@ -43,7 +43,6 @@
             [ 1, "MOVE_DOUBLE_KICK" ],
             [ 1, "MOVE_POISON_STING" ],
             [ 17, "MOVE_BULLDOZE" ],
-            [ 23, "MOVE_THRASH" ],
             [ 34, "MOVE_FOCUS_ENERGY" ],
             [ 37, "MOVE_POISON_JAB" ],
             [ 40, "MOVE_ROCK_TOMB" ],
@@ -54,9 +53,10 @@
             [ 55, "MOVE_THROAT_CHOP" ],
             [ 58, "MOVE_MEGAHORN" ],
             [ 60, "MOVE_POISON_FANG" ],
-            [ 62, "MOVE_DRILL_PECK" ],
-            [ 65, "MOVE_SLUDGE_BOMB" ],
-            [ 66, "MOVE_SUCKER_PUNCH" ],
+            [ 61, "MOVE_DRILL_PECK" ],
+            [ 63, "MOVE_SLUDGE_BOMB" ],
+            [ 66, "MOVE_THRASH" ],
+            [ 67, "MOVE_SUCKER_PUNCH" ],
             [ 68, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [

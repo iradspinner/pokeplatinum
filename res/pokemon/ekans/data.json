@@ -50,7 +50,7 @@
             [ 26, "MOVE_SPIT_UP" ],
             [ 28, "MOVE_MUD_BOMB" ],
             [ 33, "MOVE_GASTRO_ACID" ],
-            [ 41, "MOVE_GUNK_SHOT" ]
+            [ 41, "MOVE_POISON_FANG" ]
         ],
         "by_tm": [
             "TM06",

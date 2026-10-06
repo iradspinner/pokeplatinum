@@ -46,7 +46,7 @@
             [ 23, "MOVE_AGILITY" ],
             [ 26, "MOVE_TWISTER" ],
             [ 30, "MOVE_BRINE" ],
-            [ 35, "MOVE_MUDDY_WATER" ],
+            [ 35, "MOVE_OCTAZOOKA" ],
             [ 38, "MOVE_DRAGON_DANCE" ],
             [ 42, "MOVE_DRAGON_PULSE" ]
         ],

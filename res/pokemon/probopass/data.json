@@ -57,8 +57,7 @@
             [ 54, "MOVE_THUNDERBOLT" ],
             [ 55, "MOVE_DISCHARGE" ],
             [ 57, "MOVE_THUNDER_PUNCH" ],
-            [ 58, "MOVE_EARTHQUAKE" ],
-            [ 61, "MOVE_STONE_EDGE" ],
+            [ 60, "MOVE_EARTHQUAKE" ],
             [ 65, "MOVE_VOLT_SWITCH" ],
             [ 73, "MOVE_LOCK_ON" ]
         ],

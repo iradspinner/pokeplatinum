@@ -122,19 +122,19 @@
             ],
             [
                 54,
-                "MOVE_STONE_EDGE"
-            ],
-            [
-                56,
                 "MOVE_SKITTER_SMACK"
             ],
             [
+                56,
+                "MOVE_POISON_JAB"
+            ],
+            [
                 57,
-                "MOVE_BULLDOZE"
+                "MOVE_ROCK_POLISH"
             ],
             [
                 58,
-                "MOVE_POISON_JAB"
+                "MOVE_BULLDOZE"
             ],
             [
                 61,
@@ -142,15 +142,11 @@
             ],
             [
                 63,
-                "MOVE_ROCK_POLISH"
+                "MOVE_LUNGE"
             ],
             [
                 65,
                 "MOVE_EARTHQUAKE"
-            ],
-            [
-                68,
-                "MOVE_LUNGE"
             ]
         ],
         "by_tm": [],

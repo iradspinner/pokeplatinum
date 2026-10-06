@@ -568,11 +568,13 @@ def _wild_knows(species, move):
 
 
 def accurate_twin(const, species, fam):
-    """An accurate move of the same type and class worth at least what the
-    inaccurate one does on average (its power times its accuracy), which
-    suits the line: R37's replacement, a linked move first."""
+    """An accurate move of the same type and class worth at least 85% of
+    what the inaccurate one does on average (its power times its accuracy),
+    which suits the line: R37's replacement, a linked move first. Ian would
+    rather lose a little power than gamble (R37: inaccuracy makes fights
+    random), so Rock Slide stands in for Stone Edge."""
     m = M()[const]
-    want = lc.effective_power(const) * (m["accuracy"] or 100) / 100
+    want = lc.effective_power(const) * (m["accuracy"] or 100) / 100 * 0.85
     best = None
     for c, mm in M().items():
         if mm["type"] != m["type"] or mm["class"] != m["class"] or never_added(c) \
@@ -582,6 +584,27 @@ def accurate_twin(const, species, fam):
         if best is None or key > best[0]:
             best = (key, c)
     return best[1] if best else None
+
+
+def place_rampage(d, species, entry):
+    """R9: Thrash, Petal Dance and Outrage become one-turn moves (Ian,
+    2026-10-06), so a list places them at their one-turn worth: an entry
+    whose one-turn power exceeds its split's ceiling moves to the first split
+    whose ceiling holds it, so the engine change brings no early spike
+    (Larvitar's Thrash at 23 would be a 120-power move in Gardenia's split)."""
+    lv, mv = entry
+    stab = M()[mv]["type"] in lc.types_of(species)
+    worth = ONE_TURN[mv] * ratio(mv, species)
+    x = si(lc.split_of_level(lv))
+    while x < len(SPLITS) - 1 and worth > ceiling(species, x, not stab):
+        x += 1
+    if x == si(lc.split_of_level(lv)):
+        return
+    lo, hi = lc.window(SPLITS[x])
+    free = next((l for l in range(max(lo, lv), top() + 1) if l not in d.levels(species)), None)
+    if free is not None:
+        d.move(species, entry, free, "R9", f"at its one-turn worth ({worth:.0f}) it fits {SPLITS[x]}'s split; "
+                                          "waits on the engine change")
 
 
 def clean(d, species):
@@ -626,6 +649,8 @@ def clean(d, species):
                 d.remove(species, entry, "R37", "under 90% accuracy, beside an accurate move of its type")
             else:
                 d.note(species, lv, mv, "kept for Ian", "R37", "under 90% accuracy, no accurate twin fits")
+        elif mv in ONE_TURN and 2 <= lv <= top():
+            place_rampage(d, species, entry)
         elif lv > top():
             free = [l for l in range(top(), caps()[SPLITS[-2]], -1) if l not in d.levels(species)]
             if lc.counts(mv) and free and not d.has(species, mv):

@@ -47,7 +47,7 @@
             [ 22, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_ROCK_BLAST" ],
             [ 36, "MOVE_DOUBLE_EDGE" ],
-            [ 39, "MOVE_STONE_EDGE" ]
+            [ 39, "MOVE_ROCK_SLIDE" ]
         ],
         "by_tm": [
             "TM01",

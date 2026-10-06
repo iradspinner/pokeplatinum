@@ -45,8 +45,8 @@
             [ 21, "MOVE_SLAM" ],
             [ 25, "MOVE_AGILITY" ],
             [ 41, "MOVE_SAFEGUARD" ],
-            [ 51, "MOVE_OUTRAGE" ],
-            [ 55, "MOVE_HYPER_BEAM" ]
+            [ 55, "MOVE_HYPER_BEAM" ],
+            [ 61, "MOVE_OUTRAGE" ]
         ],
         "by_tm": [
             "TM03",

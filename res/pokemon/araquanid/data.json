@@ -114,23 +114,19 @@
             ],
             [
                 51,
-                "MOVE_SURF"
+                "MOVE_CRUNCH"
             ],
             [
                 54,
-                "MOVE_CRUNCH"
+                "MOVE_BODY_SLAM"
             ],
             [
                 55,
                 "MOVE_LIQUIDATION"
             ],
             [
-                57,
-                "MOVE_ICE_PUNCH"
-            ],
-            [
                 58,
-                "MOVE_BODY_SLAM"
+                "MOVE_ICE_PUNCH"
             ],
             [
                 61,

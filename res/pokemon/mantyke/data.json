@@ -50,7 +50,7 @@
             [ 37, "MOVE_CONFUSE_RAY" ],
             [ 40, "MOVE_BOUNCE" ],
             [ 46, "MOVE_AQUA_RING" ],
-            [ 49, "MOVE_SURF" ]
+            [ 49, "MOVE_SCALD" ]
         ],
         "by_tm": [
             "TM03",

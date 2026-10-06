@@ -24,13 +24,14 @@ SPECIES_ALTARIA	13	Fury Attack	removed	removed	leaves the game or every player l
 SPECIES_AMPHAROS	68	Thunder	removed	R37	under 90% accuracy; Thunderbolt takes its place
 SPECIES_AMPHAROS	68	Thunderbolt	added	R37	in place of Thunder
 SPECIES_ANNIHILAPE	22	Cross Chop	removed	R37	under 90% accuracy, beside Close Combat
+SPECIES_ANNIHILAPE	66	Thrash	moved from 30	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
+SPECIES_ANNIHILAPE	69	Outrage	moved from 53	R9	at its one-turn worth (112) it fits Barry's split; waits on the engine change
 SPECIES_ANNIHILAPE	1	Final Gambit	moved from 57 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_ANORITH	7	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_ANORITH	25	Protect	removed	R24	out of every player list
-SPECIES_ARAQUANID	51	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_ARAQUANID	51	Surf	added	R37	in place of Hydro Pump
+SPECIES_ARAQUANID	51	Hydro Pump	removed	R37	under 90% accuracy, beside Scald
 SPECIES_ARBOK	1	Haze	moved from 48 to level 1	R7	a move Ian rates useless or terrible
-SPECIES_ARBOK	56	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_ARBOK	56	Gunk Shot	removed	R37	under 90% accuracy, beside Poison Fang
 SPECIES_ARBOLIVA	1	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_ARBOLIVA	5	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_ARBOLIVA	23	Grassy Terrain	removed	removed	leaves the game or every player list
@@ -106,11 +107,12 @@ SPECIES_CACTURNE	25	Ingrain	removed	R24	out of every player list
 SPECIES_CACTURNE	65	Sandstorm	removed	weather	the player never controls weather
 SPECIES_CACTURNE	1	Destiny Bond	moved from 71 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_CAMERUPT	67	Fissure	removed	R24	out of every player list
-SPECIES_CARBINK	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_CARBINK	54	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_CARNIVINE	17	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_CARNIVINE	21	Ingrain	removed	R24	out of every player list
 SPECIES_CARNIVINE	41	Wring Out	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_CARNIVINE	47	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_CARNIVINE	47	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_CARNIVINE	47	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_CARVANHA	6	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_CELEBI	1	Healing Wish	moved from 73 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_CELEBI	82	Leaf Storm	removed	past the League	nothing is placed past 78
@@ -123,6 +125,7 @@ SPECIES_CHANSEY	1	Healing Wish	moved from 42 to level 1	R26	bad for the player, 
 SPECIES_CHARMANDER	16	Dragon Rage	removed	Ian's ruling	Dragon Rage leaves the line's early list
 SPECIES_CHARMELEON	17	Dragon Rage	removed	Ian's ruling	Dragon Rage leaves the line's early list
 SPECIES_CHATOT	17	Fury Attack	removed	removed	leaves the game or every player list
+SPECIES_CHERRIM	45	Petal Dance	moved from 25	R9	at its one-turn worth (100) it fits Byron's split; waits on the engine change
 SPECIES_CHIKORITA	1	Sweet Scent	moved from 28 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_CHIMECHO	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_CHIMECHO	1	Healing Wish	moved from 49 to level 1	R26	bad for the player, good for a trainer's fight
@@ -164,12 +167,14 @@ SPECIES_CRESSELIA	1	Lunar Dance	moved from 84 to level 1	R26	bad for the player,
 SPECIES_CRESSELIA	93	Psychic	removed	past the League	nothing is placed past 78
 SPECIES_CROBAT	1	Haze	moved from 45 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_CROCONAW	8	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_CROCONAW	61	Thrash	moved from 42	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_CROCONAW	57	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_CROCONAW	57	Muddy Water	added	R37	in place of Hydro Pump
-SPECIES_CRUSTLE	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_CRUSTLE	54	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_CUBONE	7	Bone Club	removed	R37	under 90% accuracy; Earthquake takes its place
 SPECIES_CUBONE	7	Earthquake	added	R37	in place of Bone Club
 SPECIES_CUBONE	23	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_CUBONE	61	Thrash	moved from 31	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_DARKRAI	47	Double Team	removed	R24	out of every player list
 SPECIES_DARKRAI	1	Haze	moved from 57 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_DARKRAI	84	Dream Eater	removed	past the League	nothing is placed past 78
@@ -182,12 +187,12 @@ SPECIES_DEOXYS	81	Recover	removed	past the League	nothing is placed past 78
 SPECIES_DEOXYS	89	Psycho Boost	removed	past the League	nothing is placed past 78
 SPECIES_DEOXYS	97	Hyper Beam	removed	past the League	nothing is placed past 78
 SPECIES_DEWGONG	34	Sheer Cold	removed	R24	out of every player list
-SPECIES_DEWPIDER	45	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_DEWPIDER	45	Surf	added	R37	in place of Hydro Pump
+SPECIES_DEWPIDER	45	Hydro Pump	removed	R37	under 90% accuracy, beside Scald
 SPECIES_DHELMISE	1	Steel Roller	removed	removed	leaves the game or every player list
 SPECIES_DHELMISE	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_DHELMISE	4	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
-SPECIES_DHELMISE	70	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_DHELMISE	70	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_DHELMISE	70	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_DIALGA	80	Flash Cannon	removed	past the League	nothing is placed past 78
 SPECIES_DIALGA	90	Aura Sphere	removed	past the League	nothing is placed past 78
 SPECIES_DIANCIE	67	Stone Edge	removed	R37	under 90% accuracy, beside Diamond Storm
@@ -203,7 +208,9 @@ SPECIES_DOLLIV	23	Grassy Terrain	removed	removed	leaves the game or every player
 SPECIES_DONPHAN	25	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_DRAGONAIR	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_DRAGONITE	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_DRAGONITE	66	Outrage	moved from 64	R9	at its one-turn worth (112) it fits Volkner's split; waits on the engine change
 SPECIES_DRATINI	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_DRATINI	61	Outrage	moved from 51	R9	at its one-turn worth (112) it fits Galactic's split; waits on the engine change
 SPECIES_DRIFBLIM	1	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_DRIFBLIM	1	Explosion	moved from 51 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_DRIFLOON	1	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -212,10 +219,11 @@ SPECIES_DUGTRIO	50	Fissure	removed	R24	out of every player list
 SPECIES_DUNSPARCE	1	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_DUSTOX	17	Protect	removed	R24	out of every player list
 SPECIES_DUSTOX	1	Whirlwind	moved from 27 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
-SPECIES_DWEBBLE	49	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_DWEBBLE	49	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_EKANS	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_EKANS	1	Haze	moved from 36 to level 1	R7	a move Ian rates useless or terrible
-SPECIES_EKANS	41	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_EKANS	41	Gunk Shot	removed	R37	under 90% accuracy; Poison Fang takes its place
+SPECIES_EKANS	41	Poison Fang	added	R37	in place of Gunk Shot
 SPECIES_ELECTABUZZ	58	Thunder	removed	R37	under 90% accuracy, beside Thunderbolt
 SPECIES_ELECTIVIRE	58	Thunder	removed	R37	under 90% accuracy, beside Thunderbolt
 SPECIES_ELECTRIKE	1	Roar	moved from 36 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
@@ -229,8 +237,7 @@ SPECIES_EMPOLEON	28	Fury Attack	removed	removed	leaves the game or every player 
 SPECIES_EMPOLEON	59	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
 SPECIES_EMPOLEON	59	Surf	added	R37	in place of Hydro Pump
 SPECIES_ENTEI	1	Roar	moved from 15 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
-SPECIES_ENTEI	71	Fire Blast	removed	R37	under 90% accuracy; Overheat takes its place
-SPECIES_ENTEI	71	Overheat	added	R37	in place of Fire Blast
+SPECIES_ENTEI	71	Fire Blast	removed	R37	under 90% accuracy, beside Flamethrower
 SPECIES_ENTEI	85	Eruption	removed	past the League	nothing is placed past 78
 SPECIES_EXEGGCUTE	1	Barrage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_EXEGGUTOR	1	Barrage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -243,6 +250,7 @@ SPECIES_FEAROW	9	Fury Attack	removed	removed	leaves the game or every player lis
 SPECIES_FEEBAS	1	Splash	removed	removed	leaves the game or every player list
 SPECIES_FERALIGATR	1	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_FERALIGATR	8	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_FERALIGATR	66	Thrash	moved from 50	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_FERALIGATR	71	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_FERALIGATR	71	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_FERROSEED	21	Ingrain	removed	R24	out of every player list
@@ -251,7 +259,8 @@ SPECIES_FERROSEED	1	Explosion	moved from 55 to level 1	R26	bad for the player, g
 SPECIES_FERROTHORN	21	Ingrain	removed	R24	out of every player list
 SPECIES_FERROTHORN	1	Selfdestruct	moved from 38 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_FERROTHORN	1	Explosion	moved from 55 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_FERROTHORN	70	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_FERROTHORN	70	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_FERROTHORN	70	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_FLAAFFY	53	Thunder	removed	R37	under 90% accuracy; Thunderbolt takes its place
 SPECIES_FLAAFFY	53	Thunderbolt	added	R37	in place of Thunder
 SPECIES_FLABEBE	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -273,10 +282,10 @@ SPECIES_FORRETRESS	67	Zap Cannon	removed	R37	under 90% accuracy; Volt Switch tak
 SPECIES_FORRETRESS	67	Volt Switch	added	R37	in place of Zap Cannon
 SPECIES_FRILLISH	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_FRILLISH	1	Destiny Bond	moved from 44 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_FROAKIE	40	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_FROAKIE	40	Surf	added	R37	in place of Hydro Pump
-SPECIES_FROGADIER	45	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_FROGADIER	45	Surf	added	R37	in place of Hydro Pump
+SPECIES_FROAKIE	40	Hydro Pump	removed	R37	under 90% accuracy; Scald takes its place
+SPECIES_FROAKIE	40	Scald	added	R37	in place of Hydro Pump
+SPECIES_FROGADIER	45	Hydro Pump	removed	R37	under 90% accuracy; Scald takes its place
+SPECIES_FROGADIER	45	Scald	added	R37	in place of Hydro Pump
 SPECIES_FROSLASS	1	Double Team	removed	R24	out of every player list
 SPECIES_FROSLASS	4	Double Team	removed	R24	out of every player list
 SPECIES_FROSLASS	51	Blizzard	removed	R37	under 90% accuracy; Ice Beam takes its place
@@ -285,8 +294,9 @@ SPECIES_FROSLASS	1	Destiny Bond	moved from 59 to level 1	R26	bad for the player,
 SPECIES_FROSMOTH	40	Blizzard	removed	R37	under 90% accuracy; Ice Beam takes its place
 SPECIES_FROSMOTH	40	Ice Beam	added	R37	in place of Blizzard
 SPECIES_FURRET	1	Me First	moved from 50 to level 1	R7	calls a random or borrowed move, too random like Metronome
-SPECIES_GALARIAN_ARTICUNO	55	Hurricane	kept for Ian	R37	under 90% accuracy, no accurate twin fits
-SPECIES_GALARIAN_MOLTRES	55	Hurricane	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GALARIAN_ARTICUNO	55	Hurricane	removed	R37	under 90% accuracy; Air Slash takes its place
+SPECIES_GALARIAN_ARTICUNO	55	Air Slash	added	R37	in place of Hurricane
+SPECIES_GALARIAN_MOLTRES	55	Hurricane	removed	R37	under 90% accuracy, beside Air Slash
 SPECIES_GALARIAN_MOLTRES	1	Memento	moved from 65 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GALARIAN_MR_MIME	1	Protect	removed	R24	out of every player list
 SPECIES_GALARIAN_MR_MIME	1	Misty Terrain	removed	removed	leaves the game or every player list
@@ -309,7 +319,7 @@ SPECIES_GARDEVOIR	1	Double Team	removed	R24	out of every player list
 SPECIES_GARDEVOIR	1	Teleport	removed	removed	leaves the game or every player list
 SPECIES_GARDEVOIR	10	Double Team	removed	R24	out of every player list
 SPECIES_GARDEVOIR	12	Teleport	removed	removed	leaves the game or every player list
-SPECIES_GARGANACL	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GARGANACL	54	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_GARGANACL	1	Explosion	moved from 60 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GASTLY	1	Destiny Bond	moved from 40 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GASTRODON	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
@@ -318,7 +328,8 @@ SPECIES_GENGAR	1	Destiny Bond	moved from 50 to level 1	R26	bad for the player, g
 SPECIES_GEODUDE	4	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_GEODUDE	1	Selfdestruct	moved from 18 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GEODUDE	1	Explosion	moved from 32 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_GEODUDE	39	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GEODUDE	39	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_GEODUDE	39	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_GIRATINA	80	Shadow Claw	removed	past the League	nothing is placed past 78
 SPECIES_GIRATINA	90	Aura Sphere	removed	past the League	nothing is placed past 78
 SPECIES_GLACEON	71	Blizzard	removed	R37	under 90% accuracy; Ice Beam takes its place
@@ -346,7 +357,8 @@ SPECIES_GOLEM	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a cat
 SPECIES_GOLEM	4	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_GOLEM	1	Selfdestruct	moved from 18 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GOLEM	1	Explosion	moved from 38 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_GOLEM	49	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GOLEM	49	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_GOLEM	49	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_GOODRA	61	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_GOREBYSS	51	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_GOREBYSS	51	Muddy Water	added	R37	in place of Hydro Pump
@@ -363,15 +375,15 @@ SPECIES_GRAVELER	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a 
 SPECIES_GRAVELER	4	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_GRAVELER	1	Selfdestruct	moved from 18 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GRAVELER	1	Explosion	moved from 38 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_GRAVELER	49	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GRAVELER	49	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_GRAVELER	49	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_GRENINJA	51	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin fits
-SPECIES_GRENINJA	55	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_GRENINJA	55	Surf	added	R37	in place of Hydro Pump
+SPECIES_GRENINJA	55	Hydro Pump	removed	R37	under 90% accuracy, beside Scald
 SPECIES_GRIMER	44	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_GRIMER	1	Memento	moved from 49 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_GROTLE	9	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
-SPECIES_GROUDON	45	Fire Blast	removed	R37	under 90% accuracy; Overheat takes its place
-SPECIES_GROUDON	45	Overheat	added	R37	in place of Fire Blast
+SPECIES_GROUDON	45	Fire Blast	removed	R37	under 90% accuracy; Lava Plume takes its place
+SPECIES_GROUDON	45	Lava Plume	added	R37	in place of Fire Blast
 SPECIES_GROUDON	60	Fissure	removed	R24	out of every player list
 SPECIES_GROUDON	80	Eruption	removed	past the League	nothing is placed past 78
 SPECIES_GROVYLE	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -381,13 +393,17 @@ SPECIES_GRUMPIG	1	Splash	removed	removed	leaves the game or every player list
 SPECIES_GRUMPIG	29	Snore	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_GULPIN	1	Wring Out	moved from 49 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_GULPIN	54	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_GUZZLORD	66	Thrash	moved from 65	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_GYARADOS	38	Rain Dance	removed	weather	the player never controls weather
 SPECIES_GYARADOS	41	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_GYARADOS	41	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_GYARADOS_M	45	Hydro Pump	removed	R37	under 90% accuracy, beside Surf
+SPECIES_GYARADOS_M	69	Outrage	moved from 53	R9	at its one-turn worth (112) it fits Barry's split; waits on the engine change
+SPECIES_GYARADOS_M	67	Thrash	moved from 60	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_HAKAMO_O	9	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_HAKAMO_O	13	Protect	removed	R24	out of every player list
 SPECIES_HAKAMO_O	1	Roar	moved from 39 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
+SPECIES_HAKAMO_O	61	Outrage	moved from 55	R9	at its one-turn worth (112) it fits Galactic's split; waits on the engine change
 SPECIES_HAPPINY	5	Copycat	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
 SPECIES_HAUNTER	1	Destiny Bond	moved from 50 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_HAWLUCHA	4	Feint	removed	removed	leaves the game or every player list
@@ -413,15 +429,15 @@ SPECIES_HITMONCHAN	41	Mega Punch	removed	R37	under 90% accuracy; Body Slam takes
 SPECIES_HITMONCHAN	41	Body Slam	added	R37	in place of Mega Punch
 SPECIES_HITMONCHAN	46	Detect	removed	R24	out of every player list
 SPECIES_HITMONLEE	25	Feint	removed	removed	leaves the game or every player list
-SPECIES_HITMONLEE	49	Mega Kick	removed	R37	under 90% accuracy; Double-Edge takes its place
-SPECIES_HITMONLEE	49	Double-Edge	added	R37	in place of Mega Kick
+SPECIES_HITMONLEE	49	Mega Kick	removed	R37	under 90% accuracy; Body Slam takes its place
+SPECIES_HITMONLEE	49	Body Slam	added	R37	in place of Mega Kick
 SPECIES_HITMONTOP	33	Feint	removed	removed	leaves the game or every player list
 SPECIES_HITMONTOP	46	Detect	removed	R24	out of every player list
 SPECIES_HONCHKROW	1	Haze	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_HOPPIP	1	Splash	removed	removed	leaves the game or every player list
 SPECIES_HOPPIP	1	Memento	moved from 43 to level 1	R26	bad for the player, good for a trainer's fight
-SPECIES_HORSEA	35	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
-SPECIES_HORSEA	35	Muddy Water	added	R37	in place of Hydro Pump
+SPECIES_HORSEA	35	Hydro Pump	removed	R37	under 90% accuracy; Octazooka takes its place
+SPECIES_HORSEA	35	Octazooka	added	R37	in place of Hydro Pump
 SPECIES_HO_OH	29	Fire Blast	removed	R37	under 90% accuracy; Overheat takes its place
 SPECIES_HO_OH	29	Overheat	added	R37	in place of Fire Blast
 SPECIES_HO_OH	37	Sunny Day	removed	weather	the player never controls weather
@@ -433,12 +449,14 @@ SPECIES_HUNTAIL	51	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes 
 SPECIES_HUNTAIL	51	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_IGGLYBUFF	1	Copycat	moved from 17 to level 1	R7	calls a random or borrowed move, too random like Metronome
 SPECIES_ILLUMISE	1	Sweet Scent	moved from 5 to level 1	R7	a move Ian rates useless or terrible
+SPECIES_INCINEROAR	69	Outrage	moved from 64	R9	at its one-turn worth (112) it fits Barry's split; waits on the engine change
 SPECIES_INCINEROAR	83	Fling	removed	past the League	nothing is placed past 78
 SPECIES_INFERNAPE	29	Feint	removed	removed	leaves the game or every player list
 SPECIES_IVYSAUR	1	Sweet Scent	moved from 23 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_JANGMO_O	9	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_JANGMO_O	13	Protect	removed	R24	out of every player list
 SPECIES_JANGMO_O	37	Roar	removed	R18	Roar's use is on a wild catch, which this list's level never is; a catch would know it at level 1
+SPECIES_JANGMO_O	61	Outrage	moved from 49	R9	at its one-turn worth (112) it fits Galactic's split; waits on the engine change
 SPECIES_JELLICENT	1	Wring Out	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_JELLICENT	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_JELLICENT	1	Destiny Bond	moved from 45 to level 1	R26	bad for the player, good for a trainer's fight
@@ -460,13 +478,14 @@ SPECIES_KADABRA	1	Teleport	removed	removed	leaves the game or every player list
 SPECIES_KANGASKHAN	19	Mega Punch	removed	R37	under 90% accuracy; Double-Edge takes its place
 SPECIES_KANGASKHAN	19	Double-Edge	added	R37	in place of Mega Punch
 SPECIES_KANGASKHAN	22	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_KANGASKHAN	66	Outrage	moved from 37	R9	at its one-turn worth (112) it fits Volkner's split; waits on the engine change
 SPECIES_KARTANA	30	Detect	removed	R24	out of every player list
 SPECIES_KARTANA	70	Guillotine	removed	R24	out of every player list
 SPECIES_KECLEON	4	Bind	removed	R37	under 90% accuracy; Body Slam takes its place
 SPECIES_KECLEON	4	Body Slam	added	R37	in place of Bind
 SPECIES_KECLEON	14	Feint	removed	removed	leaves the game or every player list
-SPECIES_KINGDRA	40	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
-SPECIES_KINGDRA	40	Muddy Water	added	R37	in place of Hydro Pump
+SPECIES_KINGDRA	40	Hydro Pump	removed	R37	under 90% accuracy; Octazooka takes its place
+SPECIES_KINGDRA	40	Octazooka	added	R37	in place of Hydro Pump
 SPECIES_KINGLER	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_KINGLER	32	Protect	removed	R24	out of every player list
 SPECIES_KINGLER	37	Guillotine	removed	R24	out of every player list
@@ -474,7 +493,8 @@ SPECIES_KIRLIA	1	Double Team	removed	R24	out of every player list
 SPECIES_KIRLIA	1	Teleport	removed	removed	leaves the game or every player list
 SPECIES_KIRLIA	10	Double Team	removed	R24	out of every player list
 SPECIES_KIRLIA	12	Teleport	removed	removed	leaves the game or every player list
-SPECIES_KLEAVOR	48	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_KLEAVOR	48	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_KLEAVOR	48	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_KLEFKI	1	Fairy Lock	removed	removed	leaves the game or every player list
 SPECIES_KOFFING	1	Selfdestruct	moved from 19 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_KOFFING	28	Haze	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
@@ -503,7 +523,8 @@ SPECIES_LAPRAS	49	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes i
 SPECIES_LAPRAS	49	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_LAPRAS	55	Sheer Cold	removed	R24	out of every player list
 SPECIES_LARVESTA	82	Flare Blitz	removed	past the League	nothing is placed past 78
-SPECIES_LARVITAR	46	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_LARVITAR	61	Thrash	moved from 23	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
+SPECIES_LARVITAR	46	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_LATIAS	1	Healing Wish	moved from 60 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_LATIOS	25	Protect	removed	R24	out of every player list
 SPECIES_LATIOS	1	Memento	moved from 60 to level 1	R26	bad for the player, good for a trainer's fight
@@ -522,6 +543,7 @@ SPECIES_LILEEP	1	Constrict	removed	dead weight	a weak attack that goes from ever
 SPECIES_LILEEP	15	Ingrain	removed	R24	out of every player list
 SPECIES_LILEEP	64	Wring Out	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_LINOONE	1	Mud Sport	moved from 23 to level 1	R7	a move Ian rates useless or terrible
+SPECIES_LITTEN	66	Outrage	moved from 56	R9	at its one-turn worth (112) it fits Volkner's split; waits on the engine change
 SPECIES_LITWICK	1	Memento	moved from 40 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_LOMBRE	5	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_LOMBRE	7	Nature Power	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
@@ -589,10 +611,11 @@ SPECIES_MANECTRIC	1	Roar	moved from 42 to level 1	R18	Roar's use is on a wild ca
 SPECIES_MANECTRIC	61	Thunder	removed	R37	under 90% accuracy; Thunderbolt takes its place
 SPECIES_MANECTRIC	61	Thunderbolt	added	R37	in place of Thunder
 SPECIES_MANKEY	37	Cross Chop	removed	R37	under 90% accuracy, beside Close Combat
-SPECIES_MANTINE	49	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_MANTINE	49	Surf	added	R37	in place of Hydro Pump
-SPECIES_MANTYKE	49	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
-SPECIES_MANTYKE	49	Surf	added	R37	in place of Hydro Pump
+SPECIES_MANKEY	61	Thrash	moved from 41	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
+SPECIES_MANTINE	49	Hydro Pump	removed	R37	under 90% accuracy; Scald takes its place
+SPECIES_MANTINE	49	Scald	added	R37	in place of Hydro Pump
+SPECIES_MANTYKE	49	Hydro Pump	removed	R37	under 90% accuracy; Scald takes its place
+SPECIES_MANTYKE	49	Scald	added	R37	in place of Hydro Pump
 SPECIES_MAREEP	46	Thunder	removed	R37	under 90% accuracy; Thunderbolt takes its place
 SPECIES_MAREEP	46	Thunderbolt	added	R37	in place of Thunder
 SPECIES_MARILL	42	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
@@ -600,6 +623,7 @@ SPECIES_MARILL	42	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_MAROWAK	7	Bone Club	removed	R37	under 90% accuracy; Earthquake takes its place
 SPECIES_MAROWAK	7	Earthquake	added	R37	in place of Bone Club
 SPECIES_MAROWAK	23	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_MAROWAK	61	Thrash	moved from 33	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_MARSHTOMP	15	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_MARSHTOMP	42	Protect	removed	R24	out of every player list
 SPECIES_MASQUERAIN	1	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
@@ -613,6 +637,7 @@ SPECIES_MEDICHAM	22	Feint	removed	removed	leaves the game or every player list
 SPECIES_MEDITITE	1	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_MEDITITE	11	Detect	removed	R24	out of every player list
 SPECIES_MEDITITE	22	Feint	removed	removed	leaves the game or every player list
+SPECIES_MEGANIUM	45	Petal Dance	moved from 32	R9	at its one-turn worth (100) it fits Byron's split; waits on the engine change
 SPECIES_MEGANIUM	1	Sweet Scent	moved from 34 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_MELOETTA	85	Perish Song	removed	past the League	nothing is placed past 78
 SPECIES_MEOWTH	54	Feint	removed	removed	leaves the game or every player list
@@ -631,9 +656,9 @@ SPECIES_MEWTWO	86	Recover	removed	past the League	nothing is placed past 78
 SPECIES_MEWTWO	93	Safeguard	removed	past the League	nothing is placed past 78
 SPECIES_MEWTWO	100	Aura Sphere	removed	past the League	nothing is placed past 78
 SPECIES_MIENFOO	40	Me First	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
-SPECIES_MIENFOO	50	Focus Blast	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_MIENFOO	50	Focus Blast	removed	R37	under 90% accuracy, beside Aura Sphere
 SPECIES_MIENSHAO	40	Me First	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
-SPECIES_MIENSHAO	51	Focus Blast	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_MIENSHAO	51	Focus Blast	removed	R37	under 90% accuracy, beside Aura Sphere
 SPECIES_MILOTIC	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_MILOTIC	37	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
 SPECIES_MILOTIC	37	Surf	added	R37	in place of Hydro Pump
@@ -658,11 +683,12 @@ SPECIES_MUK	54	Gunk Shot	kept for Ian	R37	under 90% accuracy, no accurate twin f
 SPECIES_MUK	1	Memento	moved from 65 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_MUNCHLAX	1	Metronome	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_MURKROW	11	Haze	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_NACLI	45	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
-SPECIES_NACLSTACK	51	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_NACLI	45	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
+SPECIES_NACLSTACK	51	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_NAGANADEL	7	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_NATU	9	Teleport	removed	removed	leaves the game or every player list
 SPECIES_NATU	1	Me First	moved from 20 to level 1	R7	calls a random or borrowed move, too random like Metronome
+SPECIES_NIDOKING	66	Thrash	moved from 23	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_NIDOKING	58	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_NIDORAN_M	19	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_NIDORAN_M	45	Horn Drill	removed	R24	out of every player list
@@ -671,7 +697,7 @@ SPECIES_NIDORINO	58	Horn Drill	removed	R24	out of every player list
 SPECIES_NIHILEGO	1	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_NIHILEGO	70	Head Smash	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_NINJASK	20	Double Team	removed	R24	out of every player list
-SPECIES_NOSEPASS	61	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_NOSEPASS	61	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_NOSEPASS	67	Zap Cannon	removed	R37	under 90% accuracy, beside Discharge
 SPECIES_NOSEPASS	79	Earth Power	removed	past the League	nothing is placed past 78
 SPECIES_NUZLEAF	13	Nature Power	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
@@ -681,6 +707,7 @@ SPECIES_OCTILLERY	6	Constrict	removed	dead weight	a weak attack that goes from e
 SPECIES_OCTILLERY	36	Wring Out	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_ODDISH	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_ODDISH	1	Sweet Scent	moved from 5 to level 1	R7	a move Ian rates useless or terrible
+SPECIES_ODDISH	45	Petal Dance	moved from 41	R9	at its one-turn worth (100) it fits Byron's split; waits on the engine change
 SPECIES_OMANYTE	1	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_OMANYTE	34	Protect	removed	R24	out of every player list
 SPECIES_OMANYTE	52	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
@@ -693,7 +720,8 @@ SPECIES_ONIX	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catc
 SPECIES_ONIX	14	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_ONIX	41	Iron Tail	removed	R37	under 90% accuracy; Iron Head takes its place
 SPECIES_ONIX	41	Iron Head	added	R37	in place of Iron Tail
-SPECIES_ONIX	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_ONIX	54	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_ONIX	54	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_PACHIRISU	1	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_PALKIA	80	Aqua Tail	removed	past the League	nothing is placed past 78
 SPECIES_PALKIA	90	Aura Sphere	removed	past the League	nothing is placed past 78
@@ -722,6 +750,7 @@ SPECIES_PINECO	20	Bide	removed	dead weight	a weak attack that goes from every li
 SPECIES_PINECO	1	Explosion	moved from 34 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_PINSIR	4	Bind	removed	R37	under 90% accuracy; Body Slam takes its place
 SPECIES_PINSIR	4	Body Slam	added	R37	in place of Bind
+SPECIES_PINSIR	66	Thrash	moved from 35	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_PINSIR	42	Submission	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_PINSIR	47	Guillotine	removed	R24	out of every player list
 SPECIES_PIPLUP	22	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -753,16 +782,18 @@ SPECIES_PORYGON_Z	62	Zap Cannon	removed	R37	under 90% accuracy, beside Discharge
 SPECIES_PRIMARINA	70	Hydro Pump	removed	R37	under 90% accuracy, beside Sparkling Aria
 SPECIES_PRIMEAPE	28	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_PRIMEAPE	41	Cross Chop	removed	R37	under 90% accuracy, beside Close Combat
+SPECIES_PRIMEAPE	66	Thrash	moved from 47	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
 SPECIES_PRINPLUP	24	Bide	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_PRINPLUP	28	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_PRINPLUP	51	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
 SPECIES_PRINPLUP	51	Surf	added	R37	in place of Hydro Pump
-SPECIES_PROBOPASS	61	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_PROBOPASS	61	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_PROBOPASS	67	Zap Cannon	removed	R37	under 90% accuracy, beside Discharge
 SPECIES_PROBOPASS	79	Earth Power	removed	past the League	nothing is placed past 78
 SPECIES_PSYDUCK	48	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_PSYDUCK	48	Muddy Water	added	R37	in place of Hydro Pump
-SPECIES_PUPITAR	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_PUPITAR	61	Thrash	moved from 23	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
+SPECIES_PUPITAR	54	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_PURRLOIN	6	Assist	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
 SPECIES_PURUGLY	29	Assist	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
 SPECIES_QUAGSIRE	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
@@ -788,7 +819,8 @@ SPECIES_REGICE	89	Hyper Beam	removed	past the League	nothing is placed past 78
 SPECIES_REGIGIGAS	100	Giga Impact	removed	past the League	nothing is placed past 78
 SPECIES_REGIROCK	65	Zap Cannon	removed	R37	under 90% accuracy; Thunderbolt takes its place
 SPECIES_REGIROCK	65	Thunderbolt	added	R37	in place of Zap Cannon
-SPECIES_REGIROCK	73	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_REGIROCK	73	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_REGIROCK	73	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_REGIROCK	81	Hammer Arm	removed	past the League	nothing is placed past 78
 SPECIES_REGIROCK	89	Hyper Beam	removed	past the League	nothing is placed past 78
 SPECIES_REGISTEEL	65	Zap Cannon	removed	R37	under 90% accuracy; Thunderbolt takes its place
@@ -802,16 +834,19 @@ SPECIES_RELICANTH	78	Head Smash	kept for Ian	R37	under 90% accuracy, no accurate
 SPECIES_RHYDON	1	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_RHYDON	13	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_RHYDON	37	Horn Drill	removed	R24	out of every player list
-SPECIES_RHYDON	45	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_RHYDON	45	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_RHYDON	45	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_RHYDON	57	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_RHYHORN	13	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_RHYHORN	37	Horn Drill	removed	R24	out of every player list
-SPECIES_RHYHORN	45	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_RHYHORN	45	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_RHYHORN	45	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_RHYHORN	57	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_RHYPERIOR	1	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_RHYPERIOR	13	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_RHYPERIOR	37	Horn Drill	removed	R24	out of every player list
-SPECIES_RHYPERIOR	45	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_RHYPERIOR	45	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_RHYPERIOR	45	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_RHYPERIOR	57	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_RIOLU	15	Feint	removed	removed	leaves the game or every player list
 SPECIES_RIOLU	29	Copycat	removed	R7	calls a random or borrowed move, too random like Metronome; a catch would know it at level 1
@@ -819,6 +854,7 @@ SPECIES_ROOKIDEE	4	Fury Attack	removed	removed	leaves the game or every player l
 SPECIES_ROSELIA	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_ROSELIA	1	Sweet Scent	moved from 31 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_ROSELIA	34	Ingrain	removed	R24	out of every player list
+SPECIES_ROSELIA	45	Petal Dance	moved from 40	R9	at its one-turn worth (100) it fits Byron's split; waits on the engine change
 SPECIES_ROSERADE	1	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_ROTOM	15	Double Team	removed	R24	out of every player list
 SPECIES_RUNERIGUS	1	Protect	removed	R24	out of every player list
@@ -828,8 +864,7 @@ SPECIES_SALAMENCE	1	Rage	removed	dead weight	a weak attack that goes from every 
 SPECIES_SALAMENCE	30	Protect	removed	R24	out of every player list
 SPECIES_SALANDIT	8	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_SALAZZLE	8	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_SALAZZLE	55	Fire Blast	removed	R37	under 90% accuracy; Overheat takes its place
-SPECIES_SALAZZLE	55	Overheat	added	R37	in place of Fire Blast
+SPECIES_SALAZZLE	55	Fire Blast	removed	R37	under 90% accuracy, beside Flamethrower
 SPECIES_SANDSHREW	37	Sandstorm	removed	weather	the player never controls weather
 SPECIES_SANDSLASH	52	Sandstorm	removed	weather	the player never controls weather
 SPECIES_SANDYGAST	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -841,8 +876,8 @@ SPECIES_SCIZOR	61	Feint	removed	removed	leaves the game or every player list
 SPECIES_SCYTHER	33	Razor Wind	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SCYTHER	37	Double Team	removed	R24	out of every player list
 SPECIES_SCYTHER	61	Feint	removed	removed	leaves the game or every player list
-SPECIES_SEADRA	40	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
-SPECIES_SEADRA	40	Muddy Water	added	R37	in place of Hydro Pump
+SPECIES_SEADRA	40	Hydro Pump	removed	R37	under 90% accuracy; Octazooka takes its place
+SPECIES_SEADRA	40	Octazooka	added	R37	in place of Hydro Pump
 SPECIES_SEAKING	31	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_SEAKING	47	Horn Drill	removed	R24	out of every player list
 SPECIES_SEAKING	63	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
@@ -926,6 +961,7 @@ SPECIES_SPHEAL	43	Ice Beam	added	R37	in place of Blizzard
 SPECIES_SPHEAL	49	Sheer Cold	removed	R24	out of every player list
 SPECIES_SPINARAK	8	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SPINDA	1	Copycat	moved from 10 to level 1	R7	calls a random or borrowed move, too random like Metronome
+SPECIES_SPINDA	57	Thrash	moved from 55	R9	at its one-turn worth (102) it fits HQ's split; waits on the engine change
 SPECIES_SPIRITOMB	1	Memento	moved from 43 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_SPOINK	1	Splash	removed	removed	leaves the game or every player list
 SPECIES_SPOINK	29	Snore	removed	dead weight	a weak attack that goes from every list (2026-09-27)
@@ -946,7 +982,8 @@ SPECIES_STEELIX	1	Mud Sport	removed	R7	a move Ian rates useless or terrible; a c
 SPECIES_STEELIX	14	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_STEELIX	41	Iron Tail	removed	R37	under 90% accuracy; Iron Head takes its place
 SPECIES_STEELIX	41	Iron Head	added	R37	in place of Iron Tail
-SPECIES_STEELIX	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_STEELIX	54	Stone Edge	removed	R37	under 90% accuracy; Rock Slide takes its place
+SPECIES_STEELIX	54	Rock Slide	added	R37	in place of Stone Edge
 SPECIES_STEENEE	17	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_STEENEE	32	Aromatic Mist	removed	removed	leaves the game or every player list
 SPECIES_STUNKY	18	Feint	removed	removed	leaves the game or every player list
@@ -957,6 +994,7 @@ SPECIES_SUICUNE	71	Surf	added	R37	in place of Hydro Pump
 SPECIES_SUICUNE	85	Blizzard	removed	past the League	nothing is placed past 78
 SPECIES_SUNFLORA	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SUNFLORA	9	Ingrain	removed	R24	out of every player list
+SPECIES_SUNFLORA	54	Petal Dance	moved from 33	R9	at its one-turn worth (100) it fits Candice's split; waits on the engine change
 SPECIES_SUNFLORA	37	Sunny Day	removed	weather	the player never controls weather
 SPECIES_SUNKERN	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SUNKERN	9	Ingrain	removed	R24	out of every player list
@@ -982,13 +1020,15 @@ SPECIES_TANGELA	1	Constrict	removed	dead weight	a weak attack that goes from eve
 SPECIES_TANGELA	8	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TANGELA	22	Bind	removed	R37	under 90% accuracy, beside Slam
 SPECIES_TANGELA	50	Wring Out	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_TANGELA	54	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_TANGELA	54	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_TANGELA	54	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_TANGROWTH	1	Ingrain	removed	R24	out of every player list
 SPECIES_TANGROWTH	1	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TANGROWTH	8	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TANGROWTH	22	Bind	removed	R37	under 90% accuracy, beside Slam
 SPECIES_TANGROWTH	1	Wring Out	moved from 50 to level 1	R7	a move Ian rates useless or terrible
-SPECIES_TANGROWTH	54	Power Whip	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_TANGROWTH	54	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_TANGROWTH	54	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_TAPU_BULU	1	Whirlwind	moved from 25 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
 SPECIES_TAPU_BULU	65	Megahorn	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_TAPU_BULU	75	Grassy Terrain	removed	removed	leaves the game or every player list
@@ -1000,8 +1040,10 @@ SPECIES_TAPU_LELE	30	Aromatic Mist	removed	removed	leaves the game or every play
 SPECIES_TAPU_LELE	1	Sweet Scent	moved from 35 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_TAPU_LELE	75	Psychic Terrain	removed	removed	leaves the game or every player list
 SPECIES_TAUROS	5	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_TAUROS	61	Thrash	moved from 48	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_TEDDIURSA	1	Sweet Scent	moved from 22 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_TEDDIURSA	43	Snore	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_TEDDIURSA	58	Thrash	moved from 50	R9	at its one-turn worth (102) it fits HQ's split; waits on the engine change
 SPECIES_TENTACOOL	8	Constrict	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TENTACOOL	22	Wrap	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TENTACOOL	40	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
@@ -1018,9 +1060,11 @@ SPECIES_TOGEDEMARU	55	Spiky Shield	removed	R24	out of every player list
 SPECIES_TOGEPI	6	Metronome	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_TOGETIC	1	Metronome	moved from 6 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_TORKOAL	36	Protect	removed	R24	out of every player list
+SPECIES_TORRACAT	66	Outrage	moved from 56	R9	at its one-turn worth (112) it fits Volkner's split; waits on the engine change
 SPECIES_TORTERRA	1	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TORTERRA	9	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_TOTODILE	8	Rage	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_TOTODILE	61	Thrash	moved from 36	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_TOTODILE	48	Hydro Pump	removed	R37	under 90% accuracy; Muddy Water takes its place
 SPECIES_TOTODILE	48	Muddy Water	added	R37	in place of Hydro Pump
 SPECIES_TOUCANNON	24	Fury Attack	removed	removed	leaves the game or every player list
@@ -1033,19 +1077,24 @@ SPECIES_TREECKO	41	Detect	removed	R24	out of every player list
 SPECIES_TROPIUS	21	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_TRUMBEAK	24	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_TSAREENA	17	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_TSAREENA	48	Power Whip	removed	R37	under 90% accuracy, beside an accurate move of its type
+SPECIES_TSAREENA	48	Power Whip	removed	R37	under 90% accuracy; Petal Blizzard takes its place
+SPECIES_TSAREENA	48	Petal Blizzard	added	R37	in place of Power Whip
 SPECIES_TURTONATOR	1	Explosion	moved from 55 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_TURTWIG	9	Absorb	removed	dead weight	a weak attack that goes from every list (2026-09-27)
-SPECIES_TYRANITAR	54	Stone Edge	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_TYRANITAR	66	Thrash	moved from 23	R9	at its one-turn worth (102) it fits Volkner's split; waits on the engine change
+SPECIES_TYRANITAR	54	Stone Edge	removed	R37	under 90% accuracy, beside Rock Slide
 SPECIES_URSARING	1	Sweet Scent	moved from 22 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_URSARING	49	Snore	removed	dead weight	a weak attack that goes from every list (2026-09-27)
+SPECIES_URSARING	61	Thrash	moved from 58	R9	at its one-turn worth (102) it fits Galactic's split; waits on the engine change
 SPECIES_UXIE	1	Memento	moved from 76 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_VAPOREON	1	Haze	moved from 57 to level 1	R7	a move Ian rates useless or terrible
 SPECIES_VAPOREON	71	Hydro Pump	removed	R37	under 90% accuracy, beside Muddy Water
 SPECIES_VENUSAUR	1	Sweet Scent	moved from 23 to level 1	R7	a move Ian rates useless or terrible
+SPECIES_VENUSAUR	46	Petal Dance	moved from 32	R9	at its one-turn worth (100) it fits Byron's split; waits on the engine change
 SPECIES_VESPIQUEN	1	Sweet Scent	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
 SPECIES_VESPIQUEN	1	Destiny Bond	moved from 43 to level 1	R26	bad for the player, good for a trainer's fight
 SPECIES_VIKAVOLT	66	Zap Cannon	removed	R37	under 90% accuracy, beside Thunderbolt
+SPECIES_VILEPLUME	54	Petal Dance	moved from 53	R9	at its one-turn worth (100) it fits Candice's split; waits on the engine change
 SPECIES_VOLBEAT	5	Double Team	removed	R24	out of every player list
 SPECIES_VOLBEAT	29	Protect	removed	R24	out of every player list
 SPECIES_VOLCARONA	1	Whirlwind	moved from 64 to level 1	R18	Roar's use is on a wild catch, which this list's level never is
@@ -1055,8 +1104,7 @@ SPECIES_VOLTORB	1	Explosion	moved from 43 to level 1	R26	bad for the player, goo
 SPECIES_VULLABY	5	Fury Attack	removed	removed	leaves the game or every player list
 SPECIES_VULLABY	44	Whirlwind	removed	R18	Roar's use is on a wild catch, which this list's level never is; a catch would know it at level 1
 SPECIES_VULPIX	41	Grudge	removed	R7	a move Ian rates useless or terrible; a catch would know it at level 1
-SPECIES_VULPIX	47	Fire Blast	removed	R37	under 90% accuracy; Overheat takes its place
-SPECIES_VULPIX	47	Overheat	added	R37	in place of Fire Blast
+SPECIES_VULPIX	47	Fire Blast	removed	R37	under 90% accuracy, beside Flamethrower
 SPECIES_WAILMER	1	Splash	removed	removed	leaves the game or every player list
 SPECIES_WAILMER	47	Hydro Pump	removed	R37	under 90% accuracy; Surf takes its place
 SPECIES_WAILMER	47	Surf	added	R37	in place of Hydro Pump
@@ -1118,7 +1166,7 @@ SPECIES_YANMEGA	38	Feint	removed	removed	leaves the game or every player list
 SPECIES_YVELTAL	1	Double Team	removed	R24	out of every player list
 SPECIES_YVELTAL	1	Razor Wind	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_YVELTAL	5	Double Team	removed	R24	out of every player list
-SPECIES_YVELTAL	70	Hurricane	kept for Ian	R37	under 90% accuracy, no accurate twin fits
+SPECIES_YVELTAL	70	Hurricane	removed	R37	under 90% accuracy, beside Oblivion Wing
 SPECIES_YVELTAL	73	Focus Blast	kept for Ian	R37	under 90% accuracy, no accurate twin fits
 SPECIES_YVELTAL	86	Sky Attack	removed	past the League	nothing is placed past 78
 SPECIES_YVELTAL	86	Hyper Beam	removed	past the League	nothing is placed past 78
@@ -1279,10 +1327,10 @@ SPECIES_BOUNSWEET	7	Taunt	added	R7	Roark's split; score 132
 SPECIES_BOUNSWEET	6	Magical Leaf	moved from 21	R1	brought into Roark's split; score 45
 SPECIES_STEENEE	17	Draining Kiss	added	R4, R5	Gardenia's split; score 178
 SPECIES_TSAREENA	41	Zen Headbutt	added	R5	Wake's split; score 87
-SPECIES_TSAREENA	49	U-turn	added	R5	Byron's split; score 85
-SPECIES_TSAREENA	52	Knock Off	added	R5	Byron's split; score 42
-SPECIES_TSAREENA	54	Play Rough	added	R5	Candice's split; score 52
-SPECIES_TSAREENA	61	Charm	added	late move	Galactic's split; score 50
+SPECIES_TSAREENA	51	U-turn	added	R5	Byron's split; score 85
+SPECIES_TSAREENA	54	Play Rough	added	R5	Candice's split; score 90
+SPECIES_TSAREENA	60	Knock Off	added	R5	HQ's split; score 42
+SPECIES_TSAREENA	65	Charm	added	late move	Galactic's split; score 50
 SPECIES_BRONZOR	35	Gyro Ball	removed	R8	Bronzong learns it at 38, in the same split
 SPECIES_BRONZOR	22	Bulldoze	added	R4, R5, R16	Gardenia's split; score 201
 SPECIES_BRONZOR	17	Smart Strike	added	R11	Gardenia's split; score 88
@@ -1304,7 +1352,7 @@ SPECIES_BUDEW	4	Acid	added	R11	Roark's split; score 241
 SPECIES_BUDEW	15	Magical Leaf	added	check 1	Roark's split; score 215
 SPECIES_BUDEW	20	Venoshock	added	R16	Gardenia's split; score 58
 SPECIES_BUDEW	18	Confusion	added	R4, R5	Gardenia's split; score 58
-SPECIES_ROSELIA	41	Sludge Bomb	added	R30	Wake's split; score 182
+SPECIES_ROSELIA	40	Sludge Bomb	added	R30	Wake's split; score 182
 SPECIES_ROSELIA	53	Shadow Ball	added	R5	Byron's split; score 96
 SPECIES_ROSERADE	40	Energy Ball	added	R30	Wake's split; score 144
 SPECIES_ROSERADE	57	Shadow Ball	added	R5	HQ's split; score 87
@@ -1379,8 +1427,8 @@ SPECIES_CARBINK	17	Bulldoze	added	R4, R5	Gardenia's split; score 45
 SPECIES_CARBINK	30	Rock Tomb	added	R2	Fantina's split; score 52
 SPECIES_CARBINK	27	Dazzling Gleam	added	R2	Fantina's split; score 51
 SPECIES_CARBINK	56	Psychic	added	R5	Candice's split; score 90
-SPECIES_CARBINK	60	Iron Head	added	R5	HQ's split; score 88
-SPECIES_CARBINK	58	Body Press	added	R5	HQ's split; score 47
+SPECIES_CARBINK	54	Iron Head	added	R5	Candice's split; score 50
+SPECIES_CARBINK	60	Body Press	added	R5	HQ's split; score 47
 SPECIES_CARNIVINE	1	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_CARNIVINE	30	Leaf Tornado	added	check 1, R16	Fantina's split; score 229
 SPECIES_CARNIVINE	33	Swagger	added	R7	Fantina's split; score 144
@@ -1643,15 +1691,14 @@ SPECIES_DELIBIRD	68	Brick Break	added	R5	Volkner's split; score 45
 SPECIES_DELIBIRD	66	Signal Beam	added	R5	Volkner's split; score 44
 SPECIES_DEWPIDER	25	Headbutt	removed	R8	Araquanid learns it at 26, in the same split
 SPECIES_DEWPIDER	29	Soak	removed	R8	Araquanid learns it at 31, in the same split
-SPECIES_DEWPIDER	45	Surf	removed	R8	Araquanid learns it at 51, in the same split
 SPECIES_DEWPIDER	19	Sticky Web	added	R7	Gardenia's split; score 155
 SPECIES_ARAQUANID	28	Spider Web	added	R2	Fantina's split; score 56
 SPECIES_ARAQUANID	34	Skitter Smack	added	R2	Maylene's split; score 54
 SPECIES_ARAQUANID	38	Waterfall	added	R2	Maylene's split; score 53
 SPECIES_ARAQUANID	44	Poison Jab	added	R5	Wake's split; score 50
-SPECIES_ARAQUANID	54	Crunch	added	R2	Candice's split; score 42
-SPECIES_ARAQUANID	58	Body Slam	added	R2	HQ's split; score 39
-SPECIES_ARAQUANID	57	Ice Punch	added	R5	HQ's split; score 27
+SPECIES_ARAQUANID	51	Crunch	added	R2	Byron's split; score 42
+SPECIES_ARAQUANID	54	Body Slam	added	R2	Candice's split; score 39
+SPECIES_ARAQUANID	58	Ice Punch	added	R5	HQ's split; score 27
 SPECIES_DHELMISE	37	Astonish	added	R11	Maylene's split; score 224
 SPECIES_DHELMISE	35	Synthesis	added	R7	Maylene's split; score 169
 SPECIES_DHELMISE	36	Seed Bomb	added	check 1	Maylene's split; score 74
@@ -1661,7 +1708,6 @@ SPECIES_DHELMISE	60	Body Press	added	R5	HQ's split; score 47
 SPECIES_DHELMISE	57	Iron Head	added	R2	HQ's split; score 37
 SPECIES_DHELMISE	62	Poltergeist	added	R2	Galactic's split; score 74
 SPECIES_DHELMISE	61	Earthquake	added	R2	Galactic's split; score 42
-SPECIES_DHELMISE	67	Petal Blizzard	added	R2	Volkner's split; score 24
 SPECIES_DHELMISE	46	Grassy Glide	removed	R6	weaker than Seed Bomb, already had
 SPECIES_DRIFLOON	30	Ominous Wind	removed	R8	Drifblim learns it at 32, in the same split
 SPECIES_DRIFBLIM	33	Baton Pass	added	R8	Drifloon learns it at 33, after evolving at 28 in the same split: holding it is no choice
@@ -1690,12 +1736,12 @@ SPECIES_DWEBBLE	46	Leech Life	removed	R8	Crustle learns it at 48, in the same sp
 SPECIES_CRUSTLE	39	StompingTantrum	added	R8	Dwebble learns it at 39, after evolving at 34 in the same split: holding it is no choice
 SPECIES_CRUSTLE	44	Shell Smash	added	R2	Wake's split; score 73
 SPECIES_CRUSTLE	42	Body Press	added	R5	Wake's split; score 55
-SPECIES_CRUSTLE	56	Skitter Smack	added	R2	Candice's split; score 54
-SPECIES_CRUSTLE	58	Poison Jab	added	R5	HQ's split; score 50
-SPECIES_CRUSTLE	57	Bulldoze	added	R2	HQ's split; score 40
+SPECIES_CRUSTLE	54	Skitter Smack	added	R2	Candice's split; score 54
+SPECIES_CRUSTLE	56	Poison Jab	added	R5	Candice's split; score 50
+SPECIES_CRUSTLE	58	Bulldoze	added	R2	HQ's split; score 40
+SPECIES_CRUSTLE	57	Rock Polish	added	R2	HQ's split; score 35
 SPECIES_CRUSTLE	65	Earthquake	added	late move	Galactic's split; score 100
-SPECIES_CRUSTLE	63	Rock Polish	added	R2	Galactic's split; score 35
-SPECIES_CRUSTLE	68	Lunge	added	R2	Volkner's split; score 25
+SPECIES_CRUSTLE	63	Lunge	added	R2	Galactic's split; score 25
 SPECIES_ESPEON	44	Confusion	moved from 15	R25	was below 44, the lowest level it is had at
 SPECIES_ESPEON	29	Swift	removed	R25	below 44; onto Eevee's list
 SPECIES_EEVEE	28	Swift	added	R25	from Espeon's 29, below its 44
@@ -1881,7 +1927,6 @@ SPECIES_FERROTHORN	46	Bulldoze	added	R5, R16	Byron's split; score 69
 SPECIES_FERROTHORN	56	Poison Jab	added	R5	Candice's split; score 50
 SPECIES_FERROTHORN	54	Body Press	added	R5	Candice's split; score 47
 SPECIES_FERROTHORN	60	Curse	added	R2	HQ's split; score 35
-SPECIES_FERROTHORN	58	Petal Blizzard	added	R2	HQ's split; score 24
 SPECIES_FINNEON	45	Bounce	removed	R8	Lumineon learns it at 53, in the same split
 SPECIES_LUMINEON	33	Aqua Ring	added	R8	Finneon learns it at 33, after evolving at 31 in the same split: holding it is no choice
 SPECIES_FINNEON	13	Water Pulse	moved from 22	check 1	brought into Roark's split; score 197
@@ -1950,10 +1995,11 @@ SPECIES_FROAKIE	32	Waterfall	removed	R8	Frogadier learns it at 30, in the same s
 SPECIES_FROAKIE	7	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_FROGADIER	7	Growl	removed	R25	below 16, the lowest level it is had at
 SPECIES_GRENINJA	7	Growl	removed	R25	below 36, the lowest level it is had at
-SPECIES_FROGADIER	27	Scald	added	R2	Fantina's split; score 64
+SPECIES_FROGADIER	27	Mud Shot	added	R5	Fantina's split; score 58
+SPECIES_GRENINJA	56	Surf	added	R2	Candice's split; score 57
 SPECIES_GRENINJA	54	Ice Beam	added	R2	Candice's split; score 46
 SPECIES_GRENINJA	60	Muddy Water	added	R2	HQ's split; score 25
-SPECIES_GRENINJA	57	Throat Chop	added	R2	HQ's split; score 24
+SPECIES_GRENINJA	58	Throat Chop	added	R2	HQ's split; score 24
 SPECIES_GRENINJA	62	Taunt	added	late move	Galactic's split; score 72
 SPECIES_GALARIAN_MR_MIME	42	Dazzling Gleam	added	R4, R5, R16	Wake's split; score 195
 SPECIES_MR_RIME	56	Encore	added	R2	Candice's split; score 63
@@ -1982,12 +2028,11 @@ SPECIES_GEODUDE	17	Rock Polish	added	R32	moved from Geodude's 8, beside the atta
 SPECIES_GEODUDE	12	Bulldoze	added	R11, R16	Roark's split; score 292
 SPECIES_GEODUDE	5	Smack Down	added	R1	Roark's split; score 55
 SPECIES_GRAVELER	25	Karate Chop	added	R4, R5	Gardenia's split; score 230
-SPECIES_GRAVELER	30	Rock Slide	added	R2	Fantina's split; score 54
-SPECIES_GRAVELER	39	Rock Tomb	added	R2	Maylene's split; score 52
-SPECIES_GRAVELER	36	Iron Head	added	R5	Maylene's split; score 50
-SPECIES_GOLEM	53	Sucker Punch	added	R5	Byron's split; score 49
+SPECIES_GRAVELER	30	Rock Tomb	added	R2	Fantina's split; score 52
+SPECIES_GRAVELER	39	Iron Head	added	R5	Maylene's split; score 50
+SPECIES_GRAVELER	36	Sucker Punch	added	R5	Maylene's split; score 49
+SPECIES_GOLEM	53	Body Press	added	R2	Byron's split; score 34
 SPECIES_GOLEM	56	Body Slam	added	R2	Candice's split; score 46
-SPECIES_GOLEM	54	Body Press	added	R2	Candice's split; score 34
 SPECIES_GOLEM	61	Fire Punch	added	R5, late move	Galactic's split; score 139
 SPECIES_GOLEM	65	Hammer Arm	added	R2	Galactic's split; score 48
 SPECIES_GOLEM	68	Superpower	added	R2	Volkner's split; score 43
@@ -2357,11 +2402,11 @@ SPECIES_LARVITAR	30	StompingTantrum	added	R11, R16	Fantina's split; score 296
 SPECIES_PUPITAR	37	Body Press	added	R5	Maylene's split; score 68
 SPECIES_PUPITAR	39	Bulldoze	added	R2	Maylene's split; score 62
 SPECIES_PUPITAR	44	Iron Head	added	R5	Wake's split; score 59
-SPECIES_PUPITAR	50	Foul Play	added	R2	Byron's split; score 61
-SPECIES_TYRANITAR	60	Rock Tomb	added	R2	HQ's split; score 52
-SPECIES_TYRANITAR	57	Iron Defense	added	R2	HQ's split; score 42
-SPECIES_TYRANITAR	65	Block	added	late move	Galactic's split; score 56
-SPECIES_TYRANITAR	67	Superpower	added	R2	Volkner's split; score 51
+SPECIES_PUPITAR	53	Foul Play	added	R2	Byron's split; score 61
+SPECIES_TYRANITAR	57	Rock Tomb	added	R2	HQ's split; score 52
+SPECIES_TYRANITAR	60	Iron Defense	added	R2	HQ's split; score 42
+SPECIES_TYRANITAR	63	Block	added	late move	Galactic's split; score 56
+SPECIES_TYRANITAR	68	Superpower	added	R2	Volkner's split; score 51
 SPECIES_PUPITAR	66	Dragon Dance	added	R19	setup prize for holding past 66; Tyranitar comes at 55
 SPECIES_LICKITUNG	9	Defense Curl	removed	R1	filler past the one a first split may carry
 SPECIES_LICKILICKY	9	Defense Curl	removed	R25	below 32, the lowest level it is had at
@@ -2399,9 +2444,9 @@ SPECIES_INCINEROAR	41	Bulldoze	added	R5	Wake's split; score 52
 SPECIES_INCINEROAR	54	Leech Life	added	R5	Candice's split; score 50
 SPECIES_INCINEROAR	60	Drain Punch	added	R2	HQ's split; score 35
 SPECIES_INCINEROAR	57	Bulk Up	added	R2	HQ's split; score 35
-SPECIES_INCINEROAR	62	Earthquake	added	late move	Galactic's split; score 85
-SPECIES_INCINEROAR	61	U-turn	added	R2	Galactic's split; score 34
-SPECIES_INCINEROAR	68	Close Combat	added	R2	Volkner's split; score 54
+SPECIES_INCINEROAR	65	Earthquake	added	late move	Galactic's split; score 85
+SPECIES_INCINEROAR	62	U-turn	added	R2	Galactic's split; score 34
+SPECIES_INCINEROAR	67	Close Combat	added	R2	Volkner's split; score 54
 SPECIES_INCINEROAR	66	Shadow Claw	added	R2	Volkner's split; score 30
 SPECIES_LITWICK	45	Mystical Fire	removed	R8	Lampent learns it at 46, in the same split
 SPECIES_LITWICK	50	Pain Split	removed	R8	Lampent learns it at 51, in the same split
@@ -2524,23 +2569,23 @@ SPECIES_ANNIHILAPE	48	StompingTantrum	removed	R25	below 50; onto Primeape's list
 SPECIES_PRIMEAPE	48	StompingTantrum	added	R25	from Annihilape's 48, below its 50
 SPECIES_MANKEY	45	Punishment	removed	R8	Primeape learns it at 53, in the same split
 SPECIES_PRIMEAPE	33	Swagger	added	R8	Mankey learns it at 33, after evolving at 28 in the same split: holding it is no choice
-SPECIES_ANNIHILAPE	51	Punishment	added	R8	Primeape learns it at 53, after evolving at 50 in the same split: holding it is no choice
-SPECIES_PRIMEAPE	53	Punishment	removed	R8	Annihilape learns it at 51, in the same split
+SPECIES_ANNIHILAPE	53	Punishment	added	R8	Primeape learns it at 53, after evolving at 50 in the same split: holding it is no choice
 SPECIES_PRIMEAPE	40	Rock Slide	added	R5	Wake's split; score 77
-SPECIES_PRIMEAPE	43	Low Sweep	added	R2	Wake's split; score 56
+SPECIES_PRIMEAPE	44	Low Sweep	added	R2	Wake's split; score 56
 SPECIES_ANNIHILAPE	56	Shadow Punch	added	R30	Candice's split; score 171
 SPECIES_ANNIHILAPE	54	Drain Punch	added	R2	Candice's split; score 51
 SPECIES_ANNIHILAPE	60	Poison Jab	added	R5	HQ's split; score 50
 SPECIES_ANNIHILAPE	58	Throat Chop	added	R2	HQ's split; score 44
-SPECIES_ANNIHILAPE	65	Earthquake	added	late move	Galactic's split; score 85
-SPECIES_ANNIHILAPE	62	Bulldoze	added	R2	Galactic's split; score 40
-SPECIES_ANNIHILAPE	68	Rock Tomb	added	R2	Volkner's split; score 40
-SPECIES_ANNIHILAPE	66	Superpower	added	R2	Volkner's split; score 27
+SPECIES_ANNIHILAPE	63	Earthquake	added	late move	Galactic's split; score 85
+SPECIES_ANNIHILAPE	61	Bulldoze	added	R2	Galactic's split; score 40
+SPECIES_ANNIHILAPE	67	Rock Tomb	added	R2	Volkner's split; score 40
+SPECIES_ANNIHILAPE	68	Superpower	added	R2	Volkner's split; score 27
 SPECIES_MANTYKE	4	Supersonic	removed	R1	filler past the one a first split may carry
 SPECIES_MANTINE	4	Supersonic	removed	R25	below 30, the lowest level it is had at
 SPECIES_MANTYKE	25	Icy Wind	added	R4, R5	Gardenia's split; score 171
-SPECIES_MANTINE	34	Scald	added	R16 due	Maylene's split; score 124
-SPECIES_MANTINE	43	Signal Beam	added	R5	Wake's split; score 79
+SPECIES_MANTINE	34	Signal Beam	added	R5	Maylene's split; score 79
+SPECIES_MANTINE	35	Round	added	R16 due	Maylene's split; score 76
+SPECIES_MANTINE	43	Surf	added	R30	Wake's split; score 142
 SPECIES_MANTINE	41	Psybeam	added	R5	Wake's split; score 73
 SPECIES_MANTINE	54	Air Slash	added	R2	Candice's split; score 57
 SPECIES_MANTINE	56	Roost	added	R2	Candice's split; score 49
@@ -2608,16 +2653,15 @@ SPECIES_MELOETTA	62	Charm	added	R7	Galactic's split; score 144
 SPECIES_MELOETTA	67	Thunderbolt	added	R5	Volkner's split; score 53
 SPECIES_MELOETTA	66	Shadow Ball	added	R5	Volkner's split; score 51
 SPECIES_MIENFOO	46	Dual Chop	removed	R8	Mienshao learns it at 48, in the same split
-SPECIES_MIENFOO	50	Focus Blast	removed	R8	Mienshao learns it at 51, in the same split
 SPECIES_MIENFOO	54	Acrobatics	removed	R8	Mienshao learns it at 55, in the same split
 SPECIES_MIENFOO	18	Acrobatics	added	R4, R5, R16	Gardenia's split; score 182
 SPECIES_MIENFOO	19	Agility	added	R7	Gardenia's split; score 138
 SPECIES_MIENFOO	28	Low Sweep	added	R2	Fantina's split; score 56
 SPECIES_MIENSHAO	41	U-turn	added	R5	Wake's split; score 55
 SPECIES_MIENSHAO	43	Rock Tomb	added	R5	Wake's split; score 52
-SPECIES_MIENSHAO	54	Poison Jab	added	R5	Candice's split; score 50
-SPECIES_MIENSHAO	56	Upper Hand	added	R2	Candice's split; score 48
-SPECIES_MIENSHAO	60	Hammer Arm	added	R2	HQ's split; score 25
+SPECIES_MIENSHAO	51	Poison Jab	added	R5	Byron's split; score 50
+SPECIES_MIENSHAO	54	Upper Hand	added	R2	Candice's split; score 48
+SPECIES_MIENSHAO	56	Hammer Arm	added	R2	Candice's split; score 25
 SPECIES_MIME_JR	27	Dazzling Gleam	added	R11, R16	Wake's split; score 290
 SPECIES_MIME_JR	24	Signal Beam	added	R4, R5	Wake's split; score 209
 SPECIES_MR_MIME	54	Energy Ball	added	R5	Candice's split; score 82
@@ -2709,7 +2753,6 @@ SPECIES_HONCHKROW	62	Sucker Punch	added	R2	Galactic's split; score 60
 SPECIES_HONCHKROW	68	Mean Look	added	R2	Volkner's split; score 56
 SPECIES_GARGANACL	38	Rock Tomb	moved from 10	R25	was below 38, the lowest level it is had at
 SPECIES_GARGANACL	39	Salt Cure	moved from 24	R25	was below 38, the lowest level it is had at
-SPECIES_NACLI	45	Stone Edge	removed	R8	Naclstack learns it at 51, in the same split
 SPECIES_NACLSTACK	25	Recover	added	R8	Nacli learns it at 25, after evolving at 24 in the same split: holding it is no choice
 SPECIES_NACLSTACK	41	Heavy Slam	removed	R8	Garganacl learns it at 44, in the same split
 SPECIES_NACLSTACK	45	Earthquake	removed	R8	Garganacl learns it at 49, in the same split
@@ -2719,10 +2762,10 @@ SPECIES_NACLSTACK	27	Rock Polish	added	R32	moved from Nacli's 13, beside the att
 SPECIES_NACLSTACK	24	Bulldoze	added	R4, R5	Gardenia's split; score 193
 SPECIES_NACLSTACK	32	Rock Tomb	added	R2	Fantina's split; score 62
 SPECIES_GARGANACL	42	Iron Head	added	R5	Wake's split; score 88
-SPECIES_GARGANACL	46	Zen Headbutt	added	R5	Byron's split; score 49
+SPECIES_GARGANACL	53	Zen Headbutt	added	R5	Byron's split; score 49
 SPECIES_GARGANACL	56	Body Press	added	R5	Candice's split; score 47
+SPECIES_GARGANACL	54	Block	added	R2	Candice's split; score 16
 SPECIES_GARGANACL	60	Hammer Arm	added	R2	HQ's split; score 48
-SPECIES_GARGANACL	58	Block	added	R2	HQ's split; score 16
 SPECIES_GARGANACL	65	Curse	added	late move	Galactic's split; score 38
 SPECIES_NACLSTACK	13	Rock Polish	removed	R25	below 24, the lowest level it is had at
 SPECIES_NIDORAN_F	19	Fury Swipes	removed	R8	Nidorina learns it at 20, in the same split
@@ -2763,10 +2806,10 @@ SPECIES_NIDOKING	50	Toxic	added	R2	Byron's split; score 73
 SPECIES_NIDOKING	55	Throat Chop	added	R5	Candice's split; score 95
 SPECIES_NIDOKING	54	Earthquake	added	R2	Candice's split; score 75
 SPECIES_NIDOKING	60	Poison Fang	added	R2	HQ's split; score 73
-SPECIES_NIDOKING	65	Sludge Bomb	added	late move	Galactic's split; score 99
-SPECIES_NIDOKING	62	Drill Peck	added	R2	Galactic's split; score 40
+SPECIES_NIDOKING	63	Sludge Bomb	added	late move	Galactic's split; score 99
+SPECIES_NIDOKING	61	Drill Peck	added	R2	Galactic's split; score 40
 SPECIES_NIDOKING	68	Superpower	added	R2	Volkner's split; score 43
-SPECIES_NIDOKING	66	Sucker Punch	added	R2	Volkner's split; score 36
+SPECIES_NIDOKING	67	Sucker Punch	added	R2	Volkner's split; score 36
 SPECIES_NIDORINO	7	Focus Energy	removed	R25	below 16; onto Nidoran♂'s list
 SPECIES_NIDORAN_M	7	Focus Energy	added	R25	from Nidorino's 7, below its 16
 SPECIES_PROBOPASS	7	Iron Defense	removed	R25	below 32; onto Nosepass's list
@@ -2781,7 +2824,7 @@ SPECIES_PROBOPASS	35	Iron Head	added	R2	Maylene's split; score 64
 SPECIES_PROBOPASS	41	Body Press	added	R5	Wake's split; score 47
 SPECIES_PROBOPASS	46	Dazzling Gleam	added	R5	Byron's split; score 47
 SPECIES_PROBOPASS	54	Thunderbolt	added	R2	Candice's split; score 39
-SPECIES_PROBOPASS	58	Earthquake	added	R2	HQ's split; score 50
+SPECIES_PROBOPASS	60	Earthquake	added	R2	HQ's split; score 50
 SPECIES_PROBOPASS	57	ThunderPunch	added	R2	HQ's split; score 42
 SPECIES_PROBOPASS	65	Volt Switch	added	R2	Galactic's split; score 34
 SPECIES_OMASTAR	43	Tickle	added	R8	Omanyte learns it at 43, after evolving at 40 in the same split: holding it is no choice
@@ -3086,13 +3129,11 @@ SPECIES_RHYHORN	10	Bulldoze	added	R11, check 1, R16	Roark's split; score 442
 SPECIES_RHYHORN	16	Smack Down	added	R11	Roark's split; score 255
 SPECIES_RHYHORN	13	Peck	added	R4	Roark's split; score 140
 SPECIES_RHYHORN	18	Bite	added	R5	Gardenia's split; score 118
-SPECIES_RHYHORN	29	Rock Slide	added	R2	Fantina's split; score 54
+SPECIES_RHYHORN	29	Rock Tomb	added	R2	Fantina's split; score 52
 SPECIES_RHYHORN	39	Poison Jab	added	R5	Maylene's split; score 84
 SPECIES_RHYHORN	36	Body Press	added	R5	Maylene's split; score 68
-SPECIES_RHYDON	54	Rock Tomb	added	R2	Candice's split; score 52
-SPECIES_RHYDON	55	Crunch	added	R2	Candice's split; score 42
-SPECIES_RHYPERIOR	65	Rock Tomb	added	late move	Galactic's split; score 95
-SPECIES_RHYPERIOR	63	Crunch	added	R2	Galactic's split; score 42
+SPECIES_RHYDON	54	Crunch	added	R2	Candice's split; score 42
+SPECIES_RHYPERIOR	65	Crunch	added	late move	Galactic's split; score 92
 SPECIES_RHYPERIOR	68	Superpower	added	R2	Volkner's split; score 43
 SPECIES_LUCARIO	19	Bone Rush	removed	R25	below 28, the lowest level it is had at
 SPECIES_LUCARIO	24	Metal Sound	removed	R25	below 28, the lowest level it is had at
@@ -3158,8 +3199,9 @@ SPECIES_SALAZZLE	39	BurningJealousy	added	R2	Maylene's split; score 54
 SPECIES_SALAZZLE	44	Encore	added	R2	Wake's split; score 63
 SPECIES_SALAZZLE	47	Swagger	added	R2	Byron's split; score 49
 SPECIES_SALAZZLE	54	Nasty Plot	added	R2	Candice's split; score -5
-SPECIES_SALAZZLE	61	Hyper Voice	added	late move	Galactic's split; score 85
-SPECIES_SALAZZLE	65	Energy Ball	added	R5	Galactic's split; score 27
+SPECIES_SALAZZLE	61	Overheat	added	late move	Galactic's split; score 114
+SPECIES_SALAZZLE	65	Hyper Voice	added	R2	Galactic's split; score 42
+SPECIES_SALAZZLE	68	Leaf Storm	added	R5	Volkner's split; score 30
 SPECIES_SANDYGAST	43	Shadow Ball	removed	R8	Palossand learns it at 44, in the same split
 SPECIES_SANDYGAST	47	Earth Power	removed	R8	Palossand learns it at 50, in the same split
 SPECIES_PALOSSAND	47	Sludge Bomb	added	R5	Byron's split; score 54
@@ -3192,13 +3234,12 @@ SPECIES_SCIZOR	65	Lunge	added	late move	Galactic's split; score 104
 SPECIES_SCIZOR	62	U-turn	added	R2	Galactic's split; score 49
 SPECIES_SCIZOR	68	Close Combat	added	R2	Volkner's split; score 54
 SPECIES_SCIZOR	66	Double-Edge	added	R2	Volkner's split; score 51
-SPECIES_KLEAVOR	35	Rock Slide	added	R11	Maylene's split; score 276
+SPECIES_KLEAVOR	34	Rock Tomb	added	R11	Maylene's split; score 266
 SPECIES_KLEAVOR	54	Iron Head	added	R5	Candice's split; score 102
 SPECIES_KLEAVOR	60	Lunge	added	R2	HQ's split; score 66
-SPECIES_KLEAVOR	57	Rock Tomb	added	R2	HQ's split; score 66
+SPECIES_KLEAVOR	57	U-turn	added	R2	HQ's split; score 49
 SPECIES_KLEAVOR	65	Iron Defense	added	late move	Galactic's split; score 92
-SPECIES_KLEAVOR	62	U-turn	added	R2	Galactic's split; score 49
-SPECIES_KLEAVOR	68	Night Slash	added	R2	Volkner's split; score 35
+SPECIES_KLEAVOR	62	Night Slash	added	R2	Galactic's split; score 35
 SPECIES_SEEDOT	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_NUZLEAF	7	Growth	removed	R25	below 14, the lowest level it is had at
 SPECIES_SEEDOT	14	Giga Drain	added	R11, check 1	Roark's split; score 406
@@ -3705,8 +3746,9 @@ SPECIES_TANGELA	34	Giga Drain	added	check 1	Maylene's split; score 220
 SPECIES_TANGROWTH	50	Bulldoze	added	R5, R16 due	Byron's split; score 101
 SPECIES_TANGROWTH	55	Sludge Bomb	added	R5	Candice's split; score 89
 SPECIES_TANGROWTH	60	Brick Break	added	R5	HQ's split; score 74
-SPECIES_TANGROWTH	65	Leaf Storm	added	late move	Galactic's split; score 114
-SPECIES_TANGROWTH	62	Rock Tomb	added	R2	Galactic's split; score 37
+SPECIES_TANGROWTH	65	Energy Ball	added	late move	Galactic's split; score 119
+SPECIES_TANGROWTH	62	Leaf Storm	added	R2	Galactic's split; score 72
+SPECIES_TANGROWTH	68	Rock Tomb	added	R2	Volkner's split; score 37
 SPECIES_TENTACRUEL	33	Poison Jab	added	R8	Tentacool learns it at 33, after evolving at 30 in the same split: holding it is no choice
 SPECIES_TENTACOOL	16	Water Pulse	moved from 29	R11, check 1	brought into Roark's split; score 407
 SPECIES_TENTACOOL	8	Pounce	added	R4, R5, R16	Roark's split; score 183
@@ -3775,7 +3817,7 @@ SPECIES_FERALIGATR	39	Metal Claw	added	R5	Maylene's split; score 64
 SPECIES_FERALIGATR	42	Liquidation	added	R2	Wake's split; score 56
 SPECIES_FERALIGATR	40	Aqua Jet	added	R2	Wake's split; score 32
 SPECIES_FERALIGATR	61	Earthquake	added	R2	Galactic's split; score 50
-SPECIES_FERALIGATR	67	Ice Punch	added	R2	Volkner's split; score 49
+SPECIES_FERALIGATR	68	Ice Punch	added	R2	Volkner's split; score 49
 SPECIES_CROCONAW	66	Dragon Dance	added	R19	setup prize for holding past 66; Feraligatr comes at 30
 SPECIES_VIBRAVA	33	Supersonic	removed	R25	below 35, the lowest level it is had at
 SPECIES_FLYGON	33	Supersonic	removed	R25	below 45, the lowest level it is had at
@@ -4233,14 +4275,12 @@ SPECIES_CHIKORITA	20	Magical Leaf	removed	R8	Bayleef learns it at 22, in the sam
 SPECIES_CHIKORITA	23	Natural Gift	removed	R8	Bayleef learns it at 26, in the same split
 SPECIES_CHIMCHAR	15	Fury Swipes	removed	R8	Monferno learns it at 16, in the same split
 SPECIES_CHIMCHAR	17	Flame Wheel	removed	R8	Monferno learns it at 19, in the same split
-SPECIES_CUBONE	31	Thrash	removed	R8	Marowak learns it at 33, in the same split
-SPECIES_MAROWAK	28	Fling	added	R8	Cubone learns it at 33, after evolving at 28 in the same split: holding it is no choice
+SPECIES_MAROWAK	33	Fling	added	R8	Cubone learns it at 33, after evolving at 28 in the same split: holding it is no choice
 SPECIES_CYNDAQUIL	19	Flame Wheel	removed	R8	Quilava learns it at 20, in the same split
 SPECIES_CYNDAQUIL	22	Defense Curl	removed	R8	Quilava learns it at 24, in the same split
 SPECIES_CYNDAQUIL	28	Swift	removed	R8	Quilava learns it at 31, in the same split
 SPECIES_CYNDAQUIL	46	Double-Edge	removed	R8	Quilava learns it at 53, in the same split
 SPECIES_DIGLETT	29	Mud Bomb	removed	R8	Dugtrio learns it at 33, in the same split
-SPECIES_DRAGONAIR	61	Outrage	removed	R8	Dragonite learns it at 64, in the same split
 SPECIES_DRATINI	31	Aqua Tail	removed	R8	Dragonair learns it at 33, in the same split
 SPECIES_DRATINI	35	Dragon Rush	removed	R8	Dragonair learns it at 39, in the same split
 SPECIES_DRATINI	45	Dragon Dance	removed	R8	Dragonair learns it at 53, in the same split
@@ -4267,6 +4307,7 @@ SPECIES_NINJASK	22	False Swipe	added	R8	Nincada learns it at 25, after evolving 
 SPECIES_SHEDINJA	20	False Swipe	added	R8	Nincada learns it at 25, after evolving at 20 in the same split: holding it is no choice
 SPECIES_NUMEL	35	Earth Power	removed	R8	Camerupt learns it at 39, in the same split
 SPECIES_ODDISH	21	Mega Drain	removed	R8	Gloom learns it at 23, in the same split
+SPECIES_ODDISH	45	Petal Dance	removed	R8	Gloom learns it at 53, in the same split
 SPECIES_GLOOM	25	Lucky Chant	added	R8	Oddish learns it at 25, after evolving at 21 in the same split: holding it is no choice
 SPECIES_PARAS	27	Growth	removed	R8	Parasect learns it at 30, in the same split
 SPECIES_PIDGEOTTO	37	Wing Attack	removed	R8	Pidgeot learns it at 38, in the same split

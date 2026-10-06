@@ -47,9 +47,9 @@
             [ 33, "MOVE_GRASS_WHISTLE" ],
             [ 34, "MOVE_TOXIC_SPIKES" ],
             [ 37, "MOVE_TOXIC" ],
-            [ 40, "MOVE_PETAL_DANCE" ],
-            [ 41, "MOVE_SLUDGE_BOMB" ],
+            [ 40, "MOVE_SLUDGE_BOMB" ],
             [ 43, "MOVE_AROMATHERAPY" ],
+            [ 45, "MOVE_PETAL_DANCE" ],
             [ 46, "MOVE_SYNTHESIS" ],
             [ 53, "MOVE_SHADOW_BALL" ]
         ],

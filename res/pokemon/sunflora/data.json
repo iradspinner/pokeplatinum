@@ -46,9 +46,9 @@
             [ 21, "MOVE_BULLET_SEED" ],
             [ 25, "MOVE_WORRY_SEED" ],
             [ 29, "MOVE_RAZOR_LEAF" ],
-            [ 33, "MOVE_PETAL_DANCE" ],
             [ 41, "MOVE_SOLAR_BEAM" ],
-            [ 43, "MOVE_LEAF_STORM" ]
+            [ 43, "MOVE_LEAF_STORM" ],
+            [ 54, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",

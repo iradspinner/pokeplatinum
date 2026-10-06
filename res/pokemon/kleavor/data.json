@@ -85,8 +85,8 @@
                 "MOVE_ROCK_BLAST"
             ],
             [
-                35,
-                "MOVE_ROCK_SLIDE"
+                34,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 36,
@@ -102,7 +102,7 @@
             ],
             [
                 48,
-                "MOVE_STONE_EDGE"
+                "MOVE_ROCK_SLIDE"
             ],
             [
                 51,
@@ -122,7 +122,7 @@
             ],
             [
                 57,
-                "MOVE_ROCK_TOMB"
+                "MOVE_U_TURN"
             ],
             [
                 60,
@@ -130,15 +130,11 @@
             ],
             [
                 62,
-                "MOVE_U_TURN"
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 65,
                 "MOVE_IRON_DEFENSE"
-            ],
-            [
-                68,
-                "MOVE_NIGHT_SLASH"
             ]
         ],
         "by_tm": [],

@@ -48,10 +48,10 @@
             [ 24, "MOVE_FLAIL" ],
             [ 33, "MOVE_SLASH" ],
             [ 39, "MOVE_SCREECH" ],
-            [ 42, "MOVE_THRASH" ],
             [ 48, "MOVE_AQUA_TAIL" ],
             [ 51, "MOVE_SUPERPOWER" ],
             [ 57, "MOVE_MUDDY_WATER" ],
+            [ 61, "MOVE_THRASH" ],
             [ 66, "MOVE_DRAGON_DANCE" ]
         ],
         "by_tm": [

@@ -47,10 +47,10 @@
             [ 25, "MOVE_DIZZY_PUNCH" ],
             [ 31, "MOVE_CRUNCH" ],
             [ 34, "MOVE_ENDURE" ],
-            [ 37, "MOVE_OUTRAGE" ],
             [ 43, "MOVE_DOUBLE_HIT" ],
             [ 46, "MOVE_SUCKER_PUNCH" ],
-            [ 49, "MOVE_REVERSAL" ]
+            [ 49, "MOVE_REVERSAL" ],
+            [ 66, "MOVE_OUTRAGE" ]
         ],
         "by_tm": [
             "TM01",

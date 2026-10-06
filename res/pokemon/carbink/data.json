@@ -118,19 +118,15 @@
             ],
             [
                 54,
-                "MOVE_STONE_EDGE"
+                "MOVE_IRON_HEAD"
             ],
             [
                 56,
                 "MOVE_PSYCHIC"
             ],
             [
-                58,
-                "MOVE_BODY_PRESS"
-            ],
-            [
                 60,
-                "MOVE_IRON_HEAD"
+                "MOVE_BODY_PRESS"
             ],
             [
                 70,

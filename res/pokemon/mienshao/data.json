@@ -98,11 +98,11 @@
             ],
             [
                 51,
-                "MOVE_FOCUS_BLAST"
+                "MOVE_POISON_JAB"
             ],
             [
                 54,
-                "MOVE_POISON_JAB"
+                "MOVE_UPPER_HAND"
             ],
             [
                 55,
@@ -110,10 +110,6 @@
             ],
             [
                 56,
-                "MOVE_UPPER_HAND"
-            ],
-            [
-                60,
                 "MOVE_HAMMER_ARM"
             ],
             [

@@ -89,10 +89,6 @@
                 "MOVE_ASSURANCE"
             ],
             [
-                30,
-                "MOVE_THRASH"
-            ],
-            [
                 39,
                 "MOVE_CLOSE_COMBAT"
             ],
@@ -105,12 +101,8 @@
                 "MOVE_LOW_KICK"
             ],
             [
-                51,
-                "MOVE_PUNISHMENT"
-            ],
-            [
                 53,
-                "MOVE_OUTRAGE"
+                "MOVE_PUNISHMENT"
             ],
             [
                 54,
@@ -129,20 +121,28 @@
                 "MOVE_POISON_JAB"
             ],
             [
-                62,
+                61,
                 "MOVE_BULLDOZE"
             ],
             [
-                65,
+                63,
                 "MOVE_EARTHQUAKE"
             ],
             [
                 66,
-                "MOVE_SUPERPOWER"
+                "MOVE_THRASH"
+            ],
+            [
+                67,
+                "MOVE_ROCK_TOMB"
             ],
             [
                 68,
-                "MOVE_ROCK_TOMB"
+                "MOVE_SUPERPOWER"
+            ],
+            [
+                69,
+                "MOVE_OUTRAGE"
             ]
         ],
         "by_tm": [],

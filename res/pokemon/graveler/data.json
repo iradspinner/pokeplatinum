@@ -49,12 +49,12 @@
             [ 22, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_KARATE_CHOP" ],
             [ 27, "MOVE_ROCK_BLAST" ],
-            [ 30, "MOVE_ROCK_SLIDE" ],
+            [ 30, "MOVE_ROCK_TOMB" ],
             [ 33, "MOVE_EARTHQUAKE" ],
-            [ 36, "MOVE_IRON_HEAD" ],
-            [ 39, "MOVE_ROCK_TOMB" ],
+            [ 36, "MOVE_SUCKER_PUNCH" ],
+            [ 39, "MOVE_IRON_HEAD" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 49, "MOVE_STONE_EDGE" ]
+            [ 49, "MOVE_ROCK_SLIDE" ]
         ],
         "by_tm": [
             "TM01",

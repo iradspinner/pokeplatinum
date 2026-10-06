@@ -51,10 +51,11 @@
             [ 33, "MOVE_SWAGGER" ],
             [ 34, "MOVE_RAGE_FIST" ],
             [ 40, "MOVE_ROCK_SLIDE" ],
-            [ 43, "MOVE_LOW_SWEEP" ],
-            [ 47, "MOVE_THRASH" ],
+            [ 44, "MOVE_LOW_SWEEP" ],
             [ 48, "MOVE_STOMPING_TANTRUM" ],
-            [ 59, "MOVE_CLOSE_COMBAT" ]
+            [ 53, "MOVE_PUNISHMENT" ],
+            [ 59, "MOVE_CLOSE_COMBAT" ],
+            [ 66, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

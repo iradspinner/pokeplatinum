@@ -145,12 +145,8 @@
                 "MOVE_PHANTOM_FORCE"
             ],
             [
-                67,
-                "MOVE_PETAL_BLIZZARD"
-            ],
-            [
                 70,
-                "MOVE_POWER_WHIP"
+                "MOVE_PETAL_BLIZZARD"
             ]
         ],
         "by_tm": [],

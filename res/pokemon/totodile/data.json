@@ -44,10 +44,10 @@
             [ 13, "MOVE_BITE" ],
             [ 15, "MOVE_SCARY_FACE" ],
             [ 27, "MOVE_CRUNCH" ],
-            [ 36, "MOVE_THRASH" ],
             [ 41, "MOVE_AQUA_TAIL" ],
             [ 43, "MOVE_SUPERPOWER" ],
-            [ 48, "MOVE_MUDDY_WATER" ]
+            [ 48, "MOVE_MUDDY_WATER" ],
+            [ 61, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

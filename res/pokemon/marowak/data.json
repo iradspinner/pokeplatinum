@@ -49,12 +49,12 @@
             [ 17, "MOVE_FOCUS_ENERGY" ],
             [ 21, "MOVE_BONEMERANG" ],
             [ 27, "MOVE_FALSE_SWIPE" ],
-            [ 28, "MOVE_FLING" ],
-            [ 33, "MOVE_THRASH" ],
+            [ 33, "MOVE_FLING" ],
             [ 37, "MOVE_FLING" ],
             [ 43, "MOVE_BONE_RUSH" ],
             [ 49, "MOVE_ENDEAVOR" ],
-            [ 53, "MOVE_DOUBLE_EDGE" ]
+            [ 53, "MOVE_DOUBLE_EDGE" ],
+            [ 61, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

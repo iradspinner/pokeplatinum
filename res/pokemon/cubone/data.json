@@ -49,7 +49,8 @@
             [ 33, "MOVE_FLING" ],
             [ 37, "MOVE_BONE_RUSH" ],
             [ 41, "MOVE_ENDEAVOR" ],
-            [ 43, "MOVE_DOUBLE_EDGE" ]
+            [ 43, "MOVE_DOUBLE_EDGE" ],
+            [ 61, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM01",

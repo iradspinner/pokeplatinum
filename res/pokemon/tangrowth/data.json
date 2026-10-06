@@ -50,12 +50,13 @@
             [ 43, "MOVE_SLAM" ],
             [ 47, "MOVE_TICKLE" ],
             [ 50, "MOVE_BULLDOZE" ],
-            [ 54, "MOVE_POWER_WHIP" ],
+            [ 54, "MOVE_PETAL_BLIZZARD" ],
             [ 55, "MOVE_SLUDGE_BOMB" ],
             [ 57, "MOVE_BLOCK" ],
             [ 60, "MOVE_BRICK_BREAK" ],
-            [ 62, "MOVE_ROCK_TOMB" ],
-            [ 65, "MOVE_LEAF_STORM" ]
+            [ 62, "MOVE_LEAF_STORM" ],
+            [ 65, "MOVE_ENERGY_BALL" ],
+            [ 68, "MOVE_ROCK_TOMB" ]
         ],
         "by_tm": [
             "TM06",

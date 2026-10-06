@@ -105,16 +105,8 @@
                 "MOVE_WATERFALL"
             ],
             [
-                53,
-                "MOVE_OUTRAGE"
-            ],
-            [
                 55,
                 "MOVE_BOUNCE"
-            ],
-            [
-                60,
-                "MOVE_THRASH"
             ],
             [
                 61,
@@ -123,6 +115,14 @@
             [
                 66,
                 "MOVE_SCALE_SHOT"
+            ],
+            [
+                67,
+                "MOVE_THRASH"
+            ],
+            [
+                69,
+                "MOVE_OUTRAGE"
             ]
         ],
         "by_tm": [],

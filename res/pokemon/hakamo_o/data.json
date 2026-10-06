@@ -89,12 +89,12 @@
                 "MOVE_THROAT_CHOP"
             ],
             [
-                55,
-                "MOVE_OUTRAGE"
-            ],
-            [
                 60,
                 "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                61,
+                "MOVE_OUTRAGE"
             ]
         ],
         "by_tm": [],

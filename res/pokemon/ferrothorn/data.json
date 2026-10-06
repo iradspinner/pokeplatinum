@@ -113,10 +113,6 @@
                 "MOVE_POISON_JAB"
             ],
             [
-                58,
-                "MOVE_PETAL_BLIZZARD"
-            ],
-            [
                 60,
                 "MOVE_CURSE"
             ],
@@ -126,7 +122,7 @@
             ],
             [
                 70,
-                "MOVE_POWER_WHIP"
+                "MOVE_PETAL_BLIZZARD"
             ]
         ],
         "by_tm": [],

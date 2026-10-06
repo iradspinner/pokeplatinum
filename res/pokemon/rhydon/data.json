@@ -46,10 +46,9 @@
             [ 25, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 42, "MOVE_HAMMER_ARM" ],
-            [ 45, "MOVE_STONE_EDGE" ],
+            [ 45, "MOVE_ROCK_SLIDE" ],
             [ 49, "MOVE_EARTHQUAKE" ],
-            [ 54, "MOVE_ROCK_TOMB" ],
-            [ 55, "MOVE_CRUNCH" ],
+            [ 54, "MOVE_CRUNCH" ],
             [ 57, "MOVE_MEGAHORN" ]
         ],
         "by_tm": [

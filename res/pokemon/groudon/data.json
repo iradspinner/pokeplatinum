@@ -40,7 +40,7 @@
             [ 20, "MOVE_SLASH" ],
             [ 30, "MOVE_BULK_UP" ],
             [ 35, "MOVE_EARTHQUAKE" ],
-            [ 45, "MOVE_OVERHEAT" ],
+            [ 45, "MOVE_LAVA_PLUME" ],
             [ 50, "MOVE_REST" ],
             [ 65, "MOVE_SOLAR_BEAM" ],
             [ 75, "MOVE_EARTH_POWER" ]

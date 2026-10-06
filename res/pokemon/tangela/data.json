@@ -49,7 +49,7 @@
             [ 40, "MOVE_NATURAL_GIFT" ],
             [ 43, "MOVE_SLAM" ],
             [ 47, "MOVE_TICKLE" ],
-            [ 54, "MOVE_POWER_WHIP" ]
+            [ 54, "MOVE_PETAL_BLIZZARD" ]
         ],
         "by_tm": [
             "TM06",

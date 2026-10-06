@@ -49,7 +49,6 @@
             [ 50, "MOVE_FIRE_FANG" ],
             [ 57, "MOVE_LAVA_PLUME" ],
             [ 64, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_OVERHEAT" ],
             [ 78, "MOVE_CALM_MIND" ]
         ],
         "by_tm": [

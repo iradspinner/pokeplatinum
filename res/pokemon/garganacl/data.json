@@ -117,24 +117,20 @@
                 "MOVE_HEAVY_SLAM"
             ],
             [
-                46,
-                "MOVE_ZEN_HEADBUTT"
-            ],
-            [
                 49,
                 "MOVE_EARTHQUAKE"
             ],
             [
+                53,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
                 54,
-                "MOVE_STONE_EDGE"
+                "MOVE_BLOCK"
             ],
             [
                 56,
                 "MOVE_BODY_PRESS"
-            ],
-            [
-                58,
-                "MOVE_BLOCK"
             ],
             [
                 60,

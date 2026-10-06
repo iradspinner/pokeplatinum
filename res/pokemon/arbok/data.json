@@ -58,8 +58,7 @@
             [ 28, "MOVE_STOCKPILE" ],
             [ 29, "MOVE_SPIT_UP" ],
             [ 34, "MOVE_MUD_BOMB" ],
-            [ 42, "MOVE_GASTRO_ACID" ],
-            [ 56, "MOVE_GUNK_SHOT" ]
+            [ 42, "MOVE_GASTRO_ACID" ]
         ],
         "by_tm": [
             "TM06",
