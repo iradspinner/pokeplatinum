@@ -522,3 +522,36 @@ The rules drawn from it:
   Speed and an attacking stat (Quiver Dance, Shell Smash and the like),
   very hard to beat, so rationed like Encore. Great: Agility. Niche but
   worth keeping: Flail, which can lead to good lines.
+
+## 11. Misdreavus (2026-10-06)
+
+Shown: Misdreavus caught at 15 to 20 in Fantina's and Maylene's splits knows
+Psywave, Spite, Astonish and Confuse Ray; held, it learns Mean Look 19,
+Psybeam 23, Pain Split 28, Payback 32, Shadow Ball 37, Perish Song 41, Grudge
+46 and Power Gem 50. Mismagius (Dusk Stone) has only level-1 moves.
+
+Ian's verdict, verbatim:
+
+Other than what stands out:
+
+1. Spite is a very cool move in nuzlockes as it encourages PP stalls; needs
+   limited PP though. Psywave is a dumb move, needs rework or removal.
+2. Mean look (and any other blocking move) = Fantastic, specifically for
+   preventing encounters from escaping.
+3. Pain split = bad unless on a very low base health, very high base
+   defenses pokemon.
+4. Grudge = useless
+5. lucky chant = okay but niche.
+
+The rules drawn from it:
+
+- **R7, more tiers.** Fantastic: Mean Look and every blocking move, above
+  all for keeping a wild encounter from fleeing. Very good in a nuzlocke:
+  Spite, for PP stalls, given limited PP. Okay but niche: Lucky Chant.
+  Bad: Pain Split, except on a line with very low HP and very high defences.
+  Useless: Grudge.
+- **R33, utility's worth can lie in catching.** A move that keeps a wild
+  Pokemon from escaping (a blocking move) is valued for the capture, not only
+  for battle.
+- **Move reworks** (the tracker, with Fury Attack's): Spite gets limited PP,
+  and Psywave is reworked or removed.
