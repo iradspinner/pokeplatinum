@@ -80,6 +80,12 @@ read, so they are written here too. Each is a standing instruction.
   later too. Sleep moves, powders, Thunder Wave, Dark Void
   and Swagger keep their Generation 4 accuracy. Kaizo's changes come in only
   as `docs/oxide/kaizo-comparison.md` lists (Ian's answers, 2026-09-27).
+  The rampage moves become one-turn moves, since a two- or three-turn lock
+  is too dangerous in a permadeath run (Ian, 2026-10-06): Thrash, Petal
+  Dance and Outrage take Kaizo's versions (Thrash 120 with a 20% paralysis
+  chance and a third of the damage as recoil; Petal Dance 100 with a 20%
+  confusion chance; Outrage 140 with half as recoil), and Uproar and Raging
+  Fury, which Kaizo lacks, get one-turn versions on the same pattern.
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
   browser, never a bare path (Ian, 2026-09-27): the OxiDex's viewer at
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged
@@ -92,8 +98,10 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
-- Local builds are trusted (2026-09-29): a ROM counts when its SHA-1
-  matches GitHub's build of the same commit.
+- Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
+  local gate passes. Matching GitHub's SHA-1 first was a guard against the
+  degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
+  only if a build ever looks wrong.
 - How the fight scorer reads a fight (Ian, 2026-09-30, on the trainer-scoring
   handoff). The aim is to beat the game: a win that loses a Pokemon is still a
   win, but each loss takes away later team-building options. Lines are ranked
@@ -134,7 +142,8 @@ read, so they are written here too. Each is a standing instruction.
   important it is, and Oxide's hardest bosses top out around the easiest of
   Kaizo's read on the same box (about 80 percent won). The numbers order
   fights rather than measure them absolutely, and Oxide is not meant to be
-  beaten on a first run.
+  beaten on a first run. A trainer that trends a little hard, or reads as an
+  outlier, is fine while it approximates its band (Ian, 2026-10-06).
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
@@ -223,7 +232,10 @@ read, so they are written here too. Each is a standing instruction.
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
   genuinely dangerous: two-Pokemon teams are too trivial (Ian, 2026-10-04).
-  Trainers may use TM and tutor moves freely (Ian, 2026-10-04). Teams
+  Trainers may use TM and tutor moves freely (Ian, 2026-10-04). Protect,
+  Detect, Double Team and every one-hit KO move leave every player-accessible list,
+  level-up, TM and tutor alike, and the one-hit KO moves leave every
+  moveset or become other moves (Ian, 2026-10-06). Teams
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
@@ -236,4 +248,6 @@ read, so they are written here too. Each is a standing instruction.
   restate it to him as a short list of pass/fail checks, each saying how it
   is verified (by the session alone, or by Ian in game with the session
   reading the result), which pass today, and what he must decide; prompt him
-  to reword or rework the request into that form. Run the cheap checks first.
+  to reword or rework the request into that form. Run the cheap checks first,
+  and claim nothing as done, fixed or passing without the output in hand
+  (Ian, 2026-10-06, from the superpowers plugin's verification skill).

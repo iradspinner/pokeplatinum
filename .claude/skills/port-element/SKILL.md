@@ -164,8 +164,9 @@ are the house style.
 
 ## Before calling it done
 
-1. The ROM builds with `make rom`, and once pushed its SHA-1 matches GitHub's
-   build of the same commit (`integrate.sh` compares them).
+1. The ROM builds with `make rom` and passes the gate. `integrate.sh` still
+   compares its SHA-1 with GitHub's build when one exists, but a match is not
+   required (Ian, 2026-10-06).
 2. Declare intended divergence so the integration gate keeps meaning something
    (the `oxide-session` skill lists every register). Species and move records
    that now differ from the base ROM go in `DIVERGED`

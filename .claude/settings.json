@@ -10,6 +10,9 @@
       "Bash(git fetch *)"
     ]
   },
+  "enabledPlugins": {
+    "superpowers@anthropic-plugin-directory": false
+  },
   "hooks": {
     "PreToolUse": [
       {
