@@ -97,6 +97,22 @@ enum OxideBeaconLayout {
     BEACON_LAYOUT_BATTLE_MON_MAX_HP, // u32
     BEACON_LAYOUT_PARTY_RECORD_SIZE,
     BEACON_LAYOUT_BOX_RECORD_SIZE,
+    // Added 2026-10-06 for the battle recorder: what each battler knows and
+    // what it chose this turn. They go after the first nine, so a reader
+    // built for nine still works; a newer reader checks layoutCount first.
+    BEACON_LAYOUT_BATTLE_MON_MOVES, // four u16 move ids
+    BEACON_LAYOUT_BATTLE_MON_CUR_PP, // four u8, one a move
+    BEACON_LAYOUT_BATTLE_MON_STATUS, // u32, the MON_CONDITION_ bits
+    BEACON_LAYOUT_BATTLE_MON_STATUS_VOLATILE, // u32, the VOLATILE_CONDITION_ bits
+    BEACON_LAYOUT_BATTLE_MON_STAT_BOOSTS, // eight s8 stages, 6 meaning unchanged
+    BEACON_LAYOUT_BATTLER_ACTIONS, // BattleContext's u32[4][4]: each battler's BATTLE_ACTION_ values
+    BEACON_LAYOUT_MOVE_SLOTS, // BattleContext's u16[4]: each battler's chosen move slot, 0 to 3
+    BEACON_LAYOUT_RECORDED_COMMAND_FLAGS, // BattleContext's u8[4]: bit 0 once a battler chose a command this turn
+    BEACON_LAYOUT_TOTAL_TURNS, // BattleContext's int: turns finished
+    BEACON_LAYOUT_COMMAND, // BattleContext's int: the battle controller's step
+    BEACON_LAYOUT_COMMAND_NEXT, // BattleContext's int: the step a running script returns to
+    BEACON_LAYOUT_CONTROL_SELECTION_INPUT, // the value of BATTLE_CONTROL_COMMAND_SELECTION_INPUT
+    BEACON_LAYOUT_CONTROL_EXEC_SCRIPT, // the value of BATTLE_CONTROL_EXEC_SCRIPT
     BEACON_LAYOUT_COUNT
 };
 

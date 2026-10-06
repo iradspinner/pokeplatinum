@@ -73,6 +73,20 @@ replacement went in on 2026-09-29, and all of this was done that day:
   51fa6cdaa; the OxiDex's Battle Log listed all three, and Sync and the log
   also work on melonDS-oxide's live feed. Still unseen: a lost fight logging
   as lost.
+- [ ] **The battle recorder logs your moves** (alpha readiness step 11,
+  `overseer-beacon-moves` with the melonDS fork's `beacon-moves` build).
+  With the ROM from that branch, and that melonDS build swapped into your
+  playing folder while melonDS is closed, start `record.py` in
+  `~/oxide-playtest/battle-recordings/`. Fight one wild battle and one
+  trainer; in each, use one attacking move, one stat move such as Growl or
+  Leer if a Pokemon has one, and one switch. Afterwards, the recorder's file
+  for each battle, read with `analyze.py`, should show each Pokemon's four
+  moves, the PP of the move you used falling by one, a stat stage after the
+  stat move (Atk-1 on the target of Growl, Def-1 for Leer), and under
+  "actions by turn" your move, your switch, and the foe's move for every
+  turn. `http://127.0.0.1:31124/status` should report `"turnData":true`.
+  Note any turn missing from the list. Nothing of this shows during the
+  fight itself.
 
 ## 2. The test kit ROM
 
