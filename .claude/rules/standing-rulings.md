@@ -100,6 +100,13 @@ read, so they are written here too. Each is a standing instruction.
   almost nothing: the relearner is in Pastoria, each move costs a scarce Heart
   Scale, and each use competes with every other in the box. Level-1 lists
   matter as the relearner's menu and the legal palette for trainer teams.
+- A level-up list may take any working move in Oxide that fits the line
+  (Ian, 2026-10-06, relayed by the balance track): "You should look at the
+  total pool of available moves for possible additions; future gen
+  learnsets (either via hg-engine or via looking them up) should be used as
+  inspiration, not as pick lists." A move a later game, Generation 4 or
+  Kaizo gives the line weighs in its favour; its absence there does not
+  rule it out.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
@@ -241,6 +248,13 @@ read, so they are written here too. Each is a standing instruction.
   are judged against Oxide's box, not Kaizo's. Ian plans a boss by baiting
   matchups in the order he wants, so the main tax on him is moveset overlap
   and coverage, then switching or staying in by fight.
+- Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
+  study result or plan that comes to him starts with a one-page summary: the
+  outcome, the action items (what he decides or does), the next steps, and
+  how long each step will take. The detail goes below that summary or in the
+  track's own doc, which he does not read in full; the trainer-scoring
+  handoff, at its length, is unreadable for him. A track's status home may
+  stay long, as long as its summary is kept current at its top.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
