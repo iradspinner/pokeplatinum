@@ -86,6 +86,8 @@ read, so they are written here too. Each is a standing instruction.
   chance and a third of the damage as recoil; Petal Dance 100 with a 20%
   confusion chance; Outrage 140 with half as recoil), and Uproar and Raging
   Fury, which Kaizo lacks, get one-turn versions on the same pattern.
+  Poison Fang takes Kaizo's 90 power and 40% chance to badly poison (Ian,
+  2026-10-06).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
   browser, never a bare path (Ian, 2026-09-27): the OxiDex's viewer at
   `http://localhost:8765/doc/<path>` (with `?ref=<branch>` for an unmerged

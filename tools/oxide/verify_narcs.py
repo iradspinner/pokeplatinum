@@ -643,6 +643,12 @@ DIVERGED = {
             "members": {141},
             "why": "Leech Life at its modern 80 power, over the base ROM's 65 (Ian, 2026-09-26)",
         },
+        {
+            "offsets": (3, 7),  # power, effect chance
+            "members": {305},
+            "why": "Poison Fang takes Kaizo's 90 power and 40% bad-poison chance, over the "
+                   "base ROM's 75 and 30% (Ian, 2026-10-06)",
+        },
     ],
 }
 

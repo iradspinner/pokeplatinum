@@ -62,7 +62,9 @@ The rules drawn from it:
   Fighting), weaker early and stronger later.
 - **R6, no dominated moves.** A move of the same type and role, weaker than
   one already learned (Fire Spin after Flamethrower), is wasted. A binding or
-  other distinct effect can earn a place, but rarely.
+  other distinct effect can earn a place, but rarely. Ian narrowed it on
+  2026-10-06: a weaker move is dominated only when it has no secondary
+  effect and is in the same physical or special class as the stronger one.
 - **R7, utility has quality.** Status moves differ in worth: Scary Face is
   good, Growl and Smokescreen nearly useless, Fire Spin niche. A line needs
   at least one good utility move, and a less offensive line needs more.
@@ -714,7 +716,10 @@ Kaizo has none; R13 a strong evolution is reachable only from a split that
 suits it; R26 moves bad for the player but good for trainers go to the
 trainers' palette; R18 Roar belongs on wild Pokemon, where its risk is a
 feature; R24 Protect, Double Team and one-hit KO moves leave the player's
-lists; R6 no move weaker than one of the same type already learned.
+lists; R6 no move weaker than one of the same type already learned, where
+the weaker move has no secondary effect and is in the same physical or
+special class (Ian's narrowing, 2026-10-06, after the lock: a weaker move
+with a burn chance, or one on the other attacking stat, can stay).
 
 **Added during the exam, as whole-game rulings** (not counted in the exam): R37, an attack below 90 percent accuracy is very hard to justify on a player's list, since it makes fights random (Gunk Shot and the like); Detect leaves with Protect; Fury Cutter is reworked or removed; Memento and Haze are terrible.
 

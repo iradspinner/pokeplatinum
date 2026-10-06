@@ -500,6 +500,13 @@ for _move in ("octazooka", "mirror_shot", "magnet_bomb", "needle_arm", "poison_t
 for _move in ("hyper_fang", "octazooka", "rock_climb", "sky_uppercut", "double_hit", "dragon_rush"):
     MOVES_DIVERGED.setdefault(_move, {})["accuracy"] = (
         "100, from the Kaizo comparison's short list (Ian, 2026-09-27)")
+# Poison Fang takes Kaizo's version, 90 power with a 40% chance to badly
+# poison, over the base ROM's 75 and 30% (Ian, 2026-10-06, from Skorupi's
+# exam verdict). "effect" holds the chance, so the whole field is left alone.
+MOVES_DIVERGED.setdefault("poison_fang", {})["power"] = (
+    "Kaizo's 90, over the base ROM's 75 (Ian, 2026-10-06)")
+MOVES_DIVERGED.setdefault("poison_fang", {})["effect"] = (
+    "Kaizo's 40% chance to badly poison, over the base ROM's 30% (Ian, 2026-10-06)")
 # The base ROM gave Fire Fang the Snatch flag, which only a status move can
 # use; the 2026-09-22 review found it, and it goes (element 4's QA leftovers).
 MOVES_DIVERGED.setdefault("fire_fang", {})["flags"] = (
