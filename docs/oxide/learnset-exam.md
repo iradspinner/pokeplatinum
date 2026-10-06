@@ -141,3 +141,56 @@ chance to badly poison (a move change, not counted in the exam).
 What the rewrite must show for the line itself: Knock Off reachable at or
 after capture, a fuller pool with elemental fang coverage by level-up, and the
 points shown as facts addressed.
+
+## Step 5: the exam's result (2026-10-06)
+
+An independent reviewer, who wrote none of the lists, judged the rewrite at
+47503db009 on `balance-learnset-rewrite` against every point above. **The
+rewrite does not reproduce Ian's verdicts as a whole.** It passes where his
+verdict asked for something the locked rules already held (an early
+own-type attack), and misses where the verdict carried an idea no rule held:
+an Eevee kept at 20, a strong move below the catch level, and two branches of
+one line close in worth.
+
+| Line | Pass | Partial | Fail |
+|---|---|---|---|
+| Scorbunny | 5 | 0 | 0 |
+| Treecko | 6 | 1 | 1 |
+| Eevee | 2 | 2 | 3 |
+| Koffing | 2 | 3 | 1 |
+| Skorupi | 1 | 1 | 1 |
+
+What decided each line:
+
+- **Scorbunny passes.** Flame Charge at 8 fills the gap before Blaze Kick;
+  Acrobatics moves to Raboot at 17, U-turn to 41, Iron Head at 50 is new.
+- **Treecko mostly passes.** Giga Drain moves from 46 to 13, Dragon Breath at
+  10, X-Scissor and real coverage later. False Swipe stays late (Grovyle 53,
+  Sceptile 59): a fail. Utility only loses moves: partial.
+- **Eevee fails its main point.** The checks evolve an Eevee by stone at the
+  cap of the split before the stone, so they assume one levelled to 33 or 44,
+  the opposite of Ian's premise that it is kept at 20. Only Umbreon's list
+  works from 20; the others' first own-type attack is at 30 to 44, with Quick
+  Attack and Bite before. Sylveon is now reachable (Charm at Eevee 27). The
+  same filler sits on every Eeveelution (Quick Attack, Last Resort, Moonlight,
+  Mean Look, Morning Sun, Confuse Ray), and Baton Pass stays at 36.
+- **Koffing is partial.** Weezing gains Shadow Ball, Psybeam and Flamethrower;
+  Galarian Weezing has only Dark coverage until 56. The branches come close
+  in worth only from Candice's split. Sludge stays until Sludge Bomb. The
+  forced-faint moves went to level 1, so a Koffing caught at 18 to 22 knows
+  Destiny Bond.
+- **Skorupi fails its main point.** Knock Off stays at 6, below the catch level
+  of 29. The pool is fuller (Crunch 40, Aqua Tail 45, Brick Break 55 and more),
+  but of the fangs only Fire Fang (65) comes by level-up.
+
+Regressions the reviewer found on these lines: an Espeon evolved at 20 learns
+nothing new but Quick Attack until 43; moves parked at level 1 for trainers
+land in a wild catch's four; Glaceon and Sylveon each carry four recovery
+moves; Umbreon (60 Special Attack) gets Leaf Storm, Psychic and Moonblast;
+Upper Hand is placed though the engine runs it as a plain 65-power +3 hit;
+Raboot's Acrobatics at 17 hits for 110 with no item, which may overcorrect
+Gardenia's split. Nothing here relies on a move awaiting its rework.
+
+The plan's answer to a failure is to understand it, adjust the rules (never a
+patch for one species) and run the loop again. The exam has now been read, so
+it can no longer test rules drawn from it.
