@@ -63,12 +63,14 @@ FREE = 1.0
 # measured. "unlucky": the stress test, a very unlucky fight, where every
 # status and crit check, the trainer's and the player's alike, rolls twice and
 # keeps the result worse for the player (STRESS names them; damage rolls and
-# accuracy stay at the game's odds). "budget": Ian's earlier luck budget of
+# accuracy stay at the game's odds). Quick Claw and Focus Band roll the same
+# way (Ian, 2026-10-06): the trainer's fire if either roll does, the player's
+# only if both do. "budget": Ian's earlier luck budget of
 # 2026-09-30 (a secondary status against the player always lands, at most one
 # crit lands on the player), kept so the old bar can be re-measured.
 LUCK = "real"
 STRESS = frozenset({"crit", "status", "confusehit", "flinch", "statdrop", "statup", "kingsrock", "love",
-                    "paralysis", "confusion", "thaw"})
+                    "paralysis", "confusion", "thaw", "quickclaw", "focusband"})
 
 
 class Luck:
@@ -538,7 +540,7 @@ def attack(b, att, mv, dfn, first):
             dmg = dfn.hp - 1
         # The trainer's Focus Band is an item proc, in the budget (question 8).
         if dmg >= dfn.hp and dfn.item == "Focus Band" and \
-                (b.dice.bad("focusband", 0.1) if not player(dfn) else b.dice.good(0.1)):
+                (b.dice.bad("focusband", 0.1) if not player(dfn) else b.dice.good(0.1, "focusband")):
             dmg = dfn.hp - 1
         dealt = min(dmg, dfn.hp)
         dfn.hp -= dealt
@@ -1153,7 +1155,7 @@ def _turn(c, pa, aa):
                 # The player is slower: its Quick Claw (one in five) keeps it
                 # first. Before this the check sat after this branch and could
                 # never fire.
-                if not (me.item == "Quick Claw" and c.dice.good(0.2)):
+                if not (me.item == "Quick Claw" and c.dice.good(0.2, "quickclaw")):
                     order.reverse()
             elif foe.item == "Quick Claw" and c.dice.bad("quickclaw", 0.2):
                 order.reverse()
@@ -1218,7 +1220,7 @@ def play_turn(b, pa, rng, one_crit=True):
     b.dice.rng = rng
     # Quick Claw is rolled before anyone chooses, and the trainer's AI reads
     # the roll (BattleSystem_CompareBattlerSpeed sees speedRand).
-    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2) if player(m) else b.dice.bad("quickclaw", 0.2)))
+    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     _turn(b, pa, aa)

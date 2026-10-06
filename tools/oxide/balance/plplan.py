@@ -1104,7 +1104,7 @@ def real_turn(b, a, rng):
     """perfectline.play_turn, returning the trainer's choice as well."""
     b.rng = rng
     b.dice.rng = rng
-    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2) if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
+    b.quick = {m.key: fs.custap_fires(m) or (m.item == "Quick Claw" and (b.dice.good(0.2, "quickclaw") if pl.player(m) else b.dice.bad("quickclaw", 0.2)))
                for m in (b.p.cur(), b.b.cur())}
     aa = fightai.choose(b, b.b.cur(), b.p.cur())
     pl._turn(b, a, aa)
