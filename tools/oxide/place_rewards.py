@@ -1312,6 +1312,18 @@ class RomReader:
         return uses
 
 
+# Map headers the player never reaches, by the start of their names. The
+# Diamond and Pearl gym's rooms are entered only through three warps in
+# Platinum's leader room that sit on tiles walled off from where the player
+# arrives (tools/oxide/mapreach.py HEARTHOME_CITY_GYM_LEADER_ROOM puts them
+# in a pocket of their own; findings log, 2026-10-06).
+UNREACHED = ("MAP_HEADER_HEARTHOME_CITY_DP_GYM_",)
+
+
+def reached(header):
+    return "UNUSED" not in header and not header.startswith(UNREACHED)
+
+
 def check(tree, placements, rom_path, roles, rows_only=False):
     """Read every placement back out of the ROM. Returns (errors, notes).
     With rows_only, other sources of the table's items and the DIVERGED
@@ -1329,7 +1341,7 @@ def check(tree, placements, rom_path, roles, rows_only=False):
     hidden = r.hidden_items()
     hidden_flags = HiddenItems(tree)
     spots = {}  # (kind, flag) -> {"files", "names", "tiles", "item", "count"}
-    used_events = {fields.get("eventsArchiveID") for h, fields in tree.headers.items() if "UNUSED" not in h}
+    used_events = {fields.get("eventsArchiveID") for h, fields in tree.headers.items() if reached(h)}
     for stem in sorted(used_events & set(r.events_order)):
         rel = f"res/field/events/{stem}.json"
         objs = json.loads(tree.read(rel)).get("object_events", []) if tree.exists(rel) else []
@@ -1390,9 +1402,10 @@ def check(tree, placements, rom_path, roles, rows_only=False):
     for p in placements:
         if p.kind == "gift":
             gift_rows[tree.headers[p.header]["scriptsArchiveID"]].append(p)
-    # Maps the decomp names unused are never reached, so a gift there is no
-    # source (vanilla left a TM04 in one).
-    stems = sorted({fields["scriptsArchiveID"] for h, fields in tree.headers.items() if "UNUSED" not in h}
+    # Maps the player never reaches hold no source: those the decomp names
+    # unused (vanilla left a TM04 in one), and Fantina's Diamond and Pearl
+    # gym, which keeps its own TM65 gift.
+    stems = sorted({fields["scriptsArchiveID"] for h, fields in tree.headers.items() if reached(h)}
                    & set(r.script_order))
     for stem in stems:
         if stem in (VISIBLE_ITEMS, BATTLES) or stem.startswith("scripts_init"):
