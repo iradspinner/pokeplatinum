@@ -41,7 +41,32 @@ SEED = 20260930
 # Roark, since the Oreburgh Gym's win sets VAR_JUBILIFE_CITY_STATE to 3 and
 # Jubilife's script starts the battle at 3 (Ian, 2026-10-04).
 SPLIT_OVERRIDE = {420: "Candice", 414: "Gardenia", 415: "Gardenia"}
-STARTER_VARIANT = {"SPECIES_TURTWIG": "TURTWIG", "SPECIES_CHIMCHAR": "CHIMCHAR", "SPECIES_PIPLUP": "PIPLUP"}
+# A rival fight keeps one team for each starter the player can choose, in
+# slots named by vanilla's starters: TRAINER_RIVAL_..._PIPLUP is met by a
+# player who chose Piplup. Oxide's player chooses Scorbunny where vanilla's
+# chose Chimchar, so the _CHIMCHAR slot is the Scorbunny player's (the
+# OxiDex's Alpha tab reads it so too); a box that starts with Chimchar, as
+# older boxes do, meets the same slot.
+STARTER_VARIANT = {"SPECIES_TURTWIG": "TURTWIG", "SPECIES_SCORBUNNY": "CHIMCHAR", "SPECIES_CHIMCHAR": "CHIMCHAR",
+                   "SPECIES_PIPLUP": "PIPLUP"}
+SLOT_STARTER = {"TURTWIG": "SPECIES_TURTWIG", "CHIMCHAR": "SPECIES_SCORBUNNY", "PIPLUP": "SPECIES_PIPLUP"}
+# Lucas and Dawn's teams are kept once for each starter too, in unnamed
+# slots: the counterpart carries the starter weak to the player's, so a
+# counterpart with the Piplup line is the Turtwig player's. The Dawn and
+# Lucas versions of one slot hold the same team, for a male and a female
+# player; the first listed (Dawn's) is taken.
+COUNTERPART_STARTER = {"SPECIES_TURTWIG": ("Piplup", "Prinplup", "Empoleon"),
+                       "SPECIES_SCORBUNNY": ("Turtwig", "Grotle", "Torterra"),
+                       "SPECIES_PIPLUP": ("Chimchar", "Monferno", "Infernape")}
+
+
+def slot_starter(t):
+    """The player's starter this rival or counterpart team is met by, or None."""
+    tag = t["constant"].rsplit("_", 1)[-1]
+    if tag in SLOT_STARTER:
+        return SLOT_STARTER[tag]
+    names = {m["species"] for m in t["party"]}
+    return next((sp for sp, line in COUNTERPART_STARTER.items() if names & set(line)), None)
 
 
 # ---- Ian's movesets --------------------------------------------------------------------------------
@@ -135,7 +160,7 @@ def prepare(f, given_side=None):
                         given_side=given_side)
         variants = []
         for v, t in enumerate(trainers):
-            starter = next((sp for sp, tag in STARTER_VARIANT.items() if t["constant"].endswith("_" + tag)), None)
+            starter = slot_starter(t) if len(trainers) > 1 else None
             variants.append((st["bosses"][v], t["ai"], starter))
         st["first_battle"] = any(t["constant"] in fs.FIRST_BATTLE for t in trainers)
         return {"st": st, "variants": variants, "split": split, "label": fight["label"], "key": key}
@@ -201,11 +226,12 @@ def sixes(keys, n, rng, weights=None):
 
 
 def variant_for(prep, box):
-    """The boss variant this box meets: a rival by the box's starter."""
+    """The boss variant this box meets: a rival or counterpart by the box's
+    starter (its first member), else the first."""
     vs = prep["variants"]
     if len(vs) == 1:
         return vs[0]
-    starter = box[0]
+    starter = SLOT_STARTER.get(STARTER_VARIANT.get(box[0]), box[0])
     return next((v for v in vs if v[2] == starter), vs[0])
 
 

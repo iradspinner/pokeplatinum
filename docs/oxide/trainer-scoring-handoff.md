@@ -1,6 +1,6 @@
 # Trainer scoring: the handoff from the three-gym run
 
-## Summary for Ian (kept current with every commit; last 2026-10-06)
+## Summary for Ian (kept current with every commit; last 2026-10-07)
 
 **Outcome.** The scorer reads a fight by playing it turn by turn in the
 simulator at the game's real odds, 100 fights a reading (75 at real odds,
@@ -19,21 +19,36 @@ reader now takes every trainer's map weather, and they are not read again.
 read (about 60 fights after Roark's split), say when; the estimate is
 below.
 
-**Next steps, and how long each takes on this machine.** The study's
-exports are done (`goal3.csv`, the boxes after Fantina's split, the blind
-pools at 19 to 33, in `~/oxide-trials/kaizo-teams/`). Goal 3 waits until the
-learnset rewrite and the TM pass have landed, since both change the
-player's box; it then runs once, during QA, on the trainer files of the QA
-ROM's commit and never the study's working files, so that its boss order
-and your ratings describe the same fights. It serves the comb, step 5's
-boss bands and the alpha's boss order (Ian, 2026-10-06; steps 15 and 16 of
-`docs/oxide/alpha-readiness.md`, and the tracker's Scheduled list). The
-scorer reads an extracted copy of that commit with no code change; a
-planted edit to Roark's file showed up in its reading and not in this
-branch's (checked 2026-10-06). A boss team that lands after the QA ROM is
-re-read the same way before the alpha ROM is fixed. Nothing is queued
-until then: step 5's boss bands are folded into goal 3 (the Overseer,
-2026-10-06). Your ruling that luck items are fair on trainers (Quick Claw,
+**Next steps, and how long each takes on this machine.** Goal 3
+(alpha-readiness step 15) is ready to start on the commit that lands step
+12, which the Overseer sends. Its driver is `plgoal3.py`, and it reads an
+extracted copy of that commit, so every trainer, learnset, encounter and
+item file is that commit's. It serves the comb, step 5's boss bands and the
+alpha's boss order. How it reads each fight (Ian's answers of 2026-10-07,
+relayed by the Overseer):
+
+- Boxes: five random runs of the encounter simulator for each split, seeds
+  1 to 5, the same five for every fight of a split, every catch alive. Box
+  k's starter is Turtwig, Scorbunny, Piplup, Turtwig, Scorbunny in turn, so
+  every rival team is met at least once, and a rival's readings are kept
+  per team. A fight that closes its split, and each Elite Four fight, takes
+  the box at the split's end; any other takes the catches made before it in
+  walking order.
+- Levels: a split-closing boss at the split's cap, the Elite Four at their
+  aces, and every other boss at its own ace (goal 2's soft caps, now also
+  Barry 3 to 6, Cyrus 1 and 2, Saturn 1 and 2, Mars 2, Lucas and Dawn 3 and
+  the officers). An Ace Trainer stands at the next boss's ace, never below
+  a boss already beaten nor the cap of the split before.
+- Items: the type boosters, Leftovers and Sitrus Berries the run holds by
+  the split's end, after-win rewards included. The player's six never holds
+  element 7's items (Eviolite, Assault Vest and the rest), so late bosses
+  read slightly hard; the results will say so.
+- Readings: a boss by the team search on each box and then its winner's
+  100 fights; an Ace Trainer blind, 20 fights on each box. Each fight's five
+  boxes are pooled into the difficulty store the OxiDex shows.
+
+A boss team that lands after the QA ROM is re-read the same way before the
+alpha ROM is fixed. Your ruling that luck items are fair on trainers (Quick Claw,
 Custap Berry, Focus Band, King's Rock, Razor Fang, and the evasion items
 when rare) needs no scorer work: the simulator already plays each at its
 odds. In the very unlucky fights they roll against the player (your answer
@@ -2329,6 +2344,49 @@ lines before the screen sees them; and an early box is small enough that
 the top five sixes hold most of it, so "taken" says little there and the
 best six says more. Most never-picked attacks are outclassed in their
 pools, since the screen takes one attack a type.
+
+## Goal 3's driver (2026-10-07)
+
+`plgoal3.py` reads goal 3's 80 single battles (39 bosses, 41 Ace Trainers)
+from an extracted copy of step 12's commit, on the rules the summary lists
+and Ian's answers of 2026-10-07 set; `test_plgoal3` checks them (14 of 14).
+The run goes box by box (every fight's first box, then every fight's
+second), two jobs side by side so that one job's network training on the
+GPU overlaps the other's play-outs, and each box's result is written as it
+finishes, so a stopped run resumes where it stopped and a run stopped early
+still orders the whole game on fewer boxes. `--store` then pools each
+fight's boxes into the difficulty store and writes a summary with each
+box's winning six.
+
+A fight's place in walking order is its zone's order in the encounter
+sidecar (the OxiDex's Alpha tab uses the same). A zone first reached in an
+earlier split is a revisit: Mars 2 at Lake Verity, Saturn 1 at Lake Valor,
+Saturn 2 at the Galactic HQ, Lucas and Dawn 2 on Route 207, and the officers
+on Mt. Coronet. Such a fight takes its split's own area of that zone's name
+where one exists (Mt. Coronet Peak, for the officers), and otherwise its
+split's start, where only earlier splits' catches come before it. A place
+evolution opens where the walk first reaches one of the engine's maps for
+it: the magnetic field at Mt. Coronet 1F North Room 1 in Gardenia's split
+(so Mars 1 has no Probopass and Gardenia's box may), the Moss Rock in
+Eterna Forest, the Ice Rock on Route 217.
+
+Four things the driver fixed or settled on the way. The box builder's
+evolution chain took only plain level evolutions, so Wurmple, Burmy,
+Combee, Frillish, Nincada and Tyrogue stayed unevolved at any level, and
+Eevee, Budew and Snom never met their rocks (goal 2's boxes and the
+learnset checks shared this). Now a member takes the evolution its
+personality, gender or stats give, and the place evolutions it has
+reached; where several are open (Eevee's) a coin fixed per member picks
+one, so the five boxes spread over them. Stones, held items, trades,
+friendship and Shedinja stay out, as before. A box whose starter is
+Scorbunny met the first rival team, not the one for the Scorbunny player
+(the `_CHIMCHAR` slot), and Lucas and Dawn's team was picked by hand; both
+now follow the box's starter (`plscore.slot_starter`). The item stock
+counts step 10's after-win rewards (today Jogger Raul's Silk Scarf, in
+Maylene's split). And Ian's level rule read literally puts the four
+officers on Mt. Coronet (aces 56 and 57) below Commanders Mars and Jupiter
+at Stark Mountain (60), whom the walk meets first, so the officers read a
+little hard; they are read as ruled.
 
 ## The cost of labelling every boss (2026-10-02)
 
