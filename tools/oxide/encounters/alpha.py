@@ -532,6 +532,47 @@ def build(root=None):
             "sources": {"roles": roles_from, "rewards": rewards_from}}
 
 
+def tick_targets(root):
+    """What the save can tick, under the page's own keys: {"trainers": {row
+    key: [flag ids]}, "pickups": [flag ids]}. A trainer's flag is
+    TRAINER_DEFEATED_FLAGS_START plus its id; a fight kept once per starter
+    is beaten when any of its variants is."""
+    from . import savefile
+    start = savefile._vars_layout()["values"]["TRAINER_DEFEATED_FLAGS_START"]
+    ids = _trainer_ids(root)
+    with open(os.path.join(root, FIGHTS), encoding="utf-8") as f:
+        fights = json.load(f)["fights"]
+    out, bosses = {}, set()
+    for fight in fights:
+        consts = [c for c in fight["trainers"] if c in ids]
+        bosses.update(consts)
+        if consts:
+            out[fight["key"]] = [start + ids[c] for c in consts]
+    for r in tables(root)["roles"][0]:
+        c = r["trainer_id"]
+        if c not in bosses and c in ids:
+            out[c] = [start + ids[c]]
+    flags = bsplits.flag_values()
+    pickups = []
+    for key, (row, _maps) in bsplits.pickups().items():
+        if row[3] == "hidden":
+            pickups.append(flags["HIDDEN_ITEM_FLAGS_START"] + key - HIDDEN_ITEM_SCRIPT)
+        elif isinstance(key, str) and key in flags:
+            pickups.append(flags[key])
+    return {"trainers": out, "pickups": pickups}
+
+
+def ticks(root, data):
+    """{"trainers": {row key: beaten}, "pickups": {flag id: picked up}} from
+    a save's bytes."""
+    from . import savefile
+    want = tick_targets(root)
+    every = {n for nums in want["trainers"].values() for n in nums} | set(want["pickups"])
+    got = savefile.flags_set(data, every)
+    return {"trainers": {k: any(n in got for n in nums) for k, nums in want["trainers"].items()},
+            "pickups": {str(n): n in got for n in want["pickups"]}}
+
+
 def _zone_view(zone, kinds):
     trainers_ = kinds.get("trainers", [])
     return {

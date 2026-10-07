@@ -1814,24 +1814,43 @@ async function restore(p) {
 // server rebuilds it from the tree on each load, so it follows the reward
 // placements and the combed teams as they land.
 
-let ALPHA = null, ALPHASPLIT = null;
+let ALPHA = null, ALPHASPLIT = null, ALPHASTATE = null, ALPHAPOLL = null;
 const ANYWHERE = "Anywhere";
 
 async function loadAlpha() {
   try {
-    ALPHA = await api("/api/alpha");
+    [ALPHA, ALPHASTATE] = await Promise.all([api("/api/alpha"), api("/api/alpha/state")]);
     if (!ALPHASPLIT) ALPHASPLIT = (ALPHA.splits.find(s => s.zones.length) || {}).split;
     drawAlphaNav();
     drawAlphaMid();
+    // The save ticks rows as Ian plays: every few seconds the state is read
+    // again, and only the ticks and the rail change, so a note being typed
+    // is never redrawn away.
+    if (!ALPHAPOLL) ALPHAPOLL = setInterval(pollAlpha, 5000);
   } catch (e) {
     toast(e.message, true);
     $("#alphamid").innerHTML = `<p class="sub">${esc(e.message)}</p>`;
   }
 }
 
+async function pollAlpha() {
+  if (VIEW !== "alpha" || !ALPHA) return;
+  try {
+    const next = await api("/api/alpha/state");
+    const changed = JSON.stringify(next.ticks) !== JSON.stringify(ALPHASTATE && ALPHASTATE.ticks)
+      || next.seq !== (ALPHASTATE && ALPHASTATE.seq);
+    ALPHASTATE = Object.assign(next, { feedback: ALPHASTATE ? ALPHASTATE.feedback : next.feedback });
+    if (changed) { applyAlphaTicks(); drawAlphaNav(); drawAlphaBar(); }
+  } catch (e) { /* the next poll tries again */ }
+}
+
 const zoneId = z => "az-" + z.replace(/[^A-Za-z0-9]+/g, "-");
 const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + "s")}`;
 const copiesOf = r => r.copies > 1 ? ` ×${r.copies}` : "";
+const noteOf = key => (ALPHASTATE && ALPHASTATE.feedback.notes[key]) || {};
+const beaten = key => !!(ALPHASTATE && ALPHASTATE.ticks && ALPHASTATE.ticks.trainers[key]);
+const picked = flag => !!(ALPHASTATE && ALPHASTATE.ticks && ALPHASTATE.ticks.pickups[String(flag)]);
+const zoneTrainers = z => z.trainers.concat(...z.gauntlets.map(g => g.trainers));
 
 // A zone's numbers as one line of words, the things Ian ticks off there.
 function zoneSummary(c) {
@@ -1850,28 +1869,72 @@ function zoneSummary(c) {
 }
 
 function drawAlphaNav() {
-  const d = ALPHA;
+  const d = ALPHA, ticked = !!(ALPHASTATE && ALPHASTATE.ticks);
   const head = (split, label, sub) => `<button class="asplit ${split === ALPHASPLIT ? "on" : ""}"
       data-split="${esc(split)}">${label}<span class="sub">${esc(sub)}</span></button>`;
   let html = head(ANYWHERE, "Anywhere", plural(d.anywhere.length, "check"));
   d.splits.forEach(s => {
     if (!s.zones.length) return;
-    html += head(s.split, splitTag(s.split), s.cap ? `cap ${s.cap}, ${plural(s.zones.length, "zone")}`
-                                                   : plural(s.zones.length, "zone"));
+    const all = s.zones.flatMap(zoneTrainers);
+    const done = all.filter(t => beaten(t.key)).length;
+    const sub = ticked && all.length ? `${done} of ${all.length} beaten`
+      : s.cap ? `cap ${s.cap}, ${plural(s.zones.length, "zone")}` : plural(s.zones.length, "zone");
+    html += head(s.split, splitTag(s.split), sub);
     if (s.split !== ALPHASPLIT) return;
     html += s.zones.map(z => {
-      const c = z.counts, n = c.mandatory + c.optional + c.gauntlet;
-      return `<div class="azlink" data-zone="${esc(z.zone)}"><span>${esc(z.zone)}</span>
-        <span class="num">${n ? plural(n, "trainer") : ""}</span></div>`;
+      const ts = zoneTrainers(z), n = ts.length, k = ts.filter(t => beaten(t.key)).length;
+      return `<div class="azlink ${n && k === n ? "alldone" : ""}" data-zone="${esc(z.zone)}"><span>${esc(z.zone)}</span>
+        <span class="num">${n ? (ticked ? `${k}/${n}` : plural(n, "trainer")) : ""}</span></div>`;
     }).join("");
   });
   $("#alphanav").innerHTML = html;
 }
 
+// The feedback a row carries (check 3): fought, a rating out of 10 where the
+// row is a boss or a gauntlet section, and a note with a death beside it. The
+// row's key, name, zone and split ride on the wrapper, so every control
+// inside it posts to the same note.
+function fbControls(key, rated, fromSave) {
+  const n = noteOf(key), fought = n.fought || fromSave;
+  const rating = rated ? `<select class="fb-rating" title="Your rating, 1 to 10">
+      <option value="">rate</option>${[...Array(10)].map((_, i) =>
+        `<option ${n.rating === i + 1 ? "selected" : ""}>${i + 1}</option>`).join("")}</select>` : "";
+  return `<span class="afb">
+    <label title="${fromSave ? "Beaten, read from your save" : "Tick once fought"}"><input type="checkbox"
+      class="fb-fought" ${fought ? "checked" : ""} ${fromSave ? "disabled" : ""}> fought</label>
+    ${rating}<button class="fb-open">${n.note || n.death ? "Note *" : "Note"}</button></span>`;
+}
+
+function fbText(key) {
+  const n = noteOf(key), d = n.death, out = [];
+  if (n.note) out.push(`<span>${esc(n.note)}</span>`);
+  if (d) out.push(`<span class="death">Death: ${esc(d.mon || "a Pokémon")}, killed by ${esc(d.killer || "?")}${
+    d.saw === "yes" ? ", saw it coming" : d.saw === "no" ? ", did not see it coming" : ""}</span>`);
+  return out.length ? `<div class="afbtext">${out.join("")}</div>` : "";
+}
+
+function fbEditor(key) {
+  const n = noteOf(key), d = n.death || {};
+  return `<div class="afbedit" hidden>
+    <textarea class="fb-note" rows="3" placeholder="A note on this fight or place">${esc(n.note || "")}</textarea>
+    <div class="fbdeath"><b>A death here</b>
+      <input class="fb-mon" placeholder="Which Pokémon died" value="${esc(d.mon || "")}">
+      <input class="fb-killer" placeholder="What killed it" value="${esc(d.killer || "")}">
+      <select class="fb-saw"><option value="">Saw it coming?</option>
+        <option value="yes" ${d.saw === "yes" ? "selected" : ""}>Saw it coming</option>
+        <option value="no" ${d.saw === "no" ? "selected" : ""}>Did not see it coming</option></select></div>
+    <div><button class="fb-save">Save note</button> <button class="fb-cancel">Cancel</button>
+      ${n.stamp ? `<span class="sub">Last stamped ${esc(n.stamp.at)}${n.stamp.rom ? ", ROM " + esc(n.stamp.rom) : ""}${
+        n.stamp.badges != null ? ", " + plural(n.stamp.badges, "badge") : ""}</span>` : ""}</div></div>`;
+}
+
+const fbWrap = (key, label, zone, split, inner) => `<div class="afbrow" data-key="${esc(key)}"
+  data-label="${esc(label)}" data-zone="${esc(zone)}" data-split="${esc(split)}">${inner}${fbText(key)}${fbEditor(key)}</div>`;
+
 // One trainer: its standing (boss, mandatory, optional), its name opening the
 // Trainers tab, its team as icons and levels (a rival's three teams, one a
-// line, named by the starter each leads with), and its reward.
-function alphaTrainer(t) {
+// line, named by the starter each leads with), its reward, and its feedback.
+function alphaTrainer(t, zone, split) {
   const chip = t.kind === "boss" ? `<span class="chip boss">Boss</span>`
     : t.required ? `<span class="chip req">Mandatory</span>` : `<span class="chip opt">Optional</span>`;
   const stem = c => c.replace(/^TRAINER_/, "").toLowerCase();
@@ -1880,16 +1943,19 @@ function alphaTrainer(t) {
     : t.teams.length === 1 ? mons(t.teams[0].team)
     : t.teams.map(x => `<span class="alt">${esc(x.label || x.constant)}</span>${mons(x.team)}`).join("");
   const sub = [t.section ? "gauntlet " + t.section : "", t.tag ? "tag battle" : ""].filter(Boolean).join(", ");
-  return `<div class="atr"><span>${chip}</span>
+  const won = beaten(t.key);
+  return fbWrap(t.key, t.name, zone, split, `<div class="atr ${won ? "beaten" : ""}" data-tick="${esc(t.key)}"><span>${chip}</span>
     <span class="who">${t.planned ? esc(t.name)
       : `<a href="#" data-tr="${esc(stem(t.constants[0]))}" title="Open in the Trainers tab">${esc(t.name)}</a>`}
       ${sub ? `<span class="sub">${esc(sub)}</span>` : ""}</span>
     <span class="ateam">${teams}</span>
-    <span class="areward">${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span></div>`;
+    <span class="areward">${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span>
+    ${fbControls(t.key, t.kind === "boss", won)}</div>`);
 }
 
 // A ball, hidden item or gift: what the tree holds there, what opens it, and
-// what the reward table puts there instead (until step 10 places it).
+// what the reward table puts there instead (until step 10 places it); a ball
+// or hidden item ticks itself once the save has it picked up.
 function alphaItem(p) {
   const what = p.item ? esc(p.label) : `<span class="planned">a new ${esc(p.how)}</span>`;
   const how = p.how === "hidden" ? "hidden" : p.how === "ball" ? "ball" : "";
@@ -1898,7 +1964,10 @@ function alphaItem(p) {
   const r = p.placed;
   const becomes = !r ? "" : r.item === p.item ? `<span class="becomes">reward${esc(copiesOf(r))}</span>`
     : `<span class="becomes">becomes ${esc(r.label + copiesOf(r))}</span>`;
-  return `<span class="it">${what}${sub ? ` <span class="sub">${esc(sub)}</span>` : ""} ${becomes}</span>`;
+  const box = p.flag != null && ALPHASTATE && ALPHASTATE.ticks
+    ? `<input type="checkbox" disabled data-flag="${p.flag}" ${picked(p.flag) ? "checked" : ""}
+         title="Picked up, read from your save">` : "";
+  return `<span class="it">${box}${what}${sub ? ` <span class="sub">${esc(sub)}</span>` : ""} ${becomes}</span>`;
 }
 
 function alphaChecks(list) {
@@ -1907,12 +1976,19 @@ function alphaChecks(list) {
       <span class="sub">${esc(c.section)}</span></summary><p>${esc(c.text)}</p></details>`).join("")}</div>`;
 }
 
-function alphaZone(z) {
-  const parts = [`<div class="azone" id="${zoneId(z.zone)}">
-    <div><h2>${esc(z.zone)}</h2><span class="azsum">${esc(zoneSummary(z.counts))}</span></div>`];
-  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div>${z.trainers.map(alphaTrainer).join("")}</div>`);
-  z.gauntlets.forEach(g => parts.push(`<div class="agaunt"><div class="ghead">Gauntlet section: ${esc(g.section)}</div>
-    ${g.trainers.map(alphaTrainer).join("")}</div>`));
+function alphaZone(z, split) {
+  const zkey = `zone:${split}:${z.zone}`;
+  const parts = [fbWrap(zkey, z.zone, z.zone, split, `<div class="azhead"><div><h2>${esc(z.zone)}</h2>
+    <span class="azsum">${esc(zoneSummary(z.counts))}</span></div>
+    <span class="afb"><button class="fb-open" title="A note on this place">${
+      noteOf(zkey).note || noteOf(zkey).death ? "Zone note *" : "Zone note"}</button></span></div>`)];
+  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div>${z.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
+  z.gauntlets.forEach(g => {
+    const gkey = `gauntlet:${split}:${g.section}`;
+    parts.push(`<div class="agaunt">${fbWrap(gkey, "Gauntlet " + g.section, z.zone, split,
+      `<div class="ghead"><span>Gauntlet section: ${esc(g.section)}</span>${fbControls(gkey, true, false)}</div>`)}
+      ${g.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
+  });
   const items = z.pickups.concat(z.gifts.map(g => Object.assign({ how: "gift" }, g)));
   if (items.length) parts.push(`<h3>Items</h3><div class="alist">${items.map(alphaItem).join("")}</div>`);
   if (z.shop.length) parts.push(`<h3>Shop TMs</h3><div class="alist">${z.shop.map(s =>
@@ -1924,25 +2000,69 @@ function alphaZone(z) {
     z.scripted.map(s => `<span>${esc(s.label)} <span class="sub">${esc(s.kind)}${s.planned ? ", planned" : ""}</span></span>
       <span class="sp">${esc(s.pool.join(", "))}${s.level ? ", level " + s.level : ""}</span>`).join("")}</div>`);
   if (z.checks.length) parts.push(`<h3>In-game checks</h3>${alphaChecks(z.checks)}`);
-  parts.push(`</div>`);
-  return parts.join("");
+  return `<div class="azone" id="${zoneId(z.zone)}">${parts.join("")}</div>`;
+}
+
+// The line over the split: what the save says, and the run's notes.
+function drawAlphaBar() {
+  const bar = $("#alphabar");
+  if (!bar) return;
+  const st = ALPHASTATE || {}, sv = st.save, fb = st.feedback || { notes: {} };
+  const n = Object.keys(fb.notes || {}).length;
+  const save = st.save_error ? `Your save cannot be read for ticks: ${st.save_error}.`
+    : sv ? `From your save${sv.rom ? ` (ROM ${sv.rom})` : ""}: ${plural(sv.badges || 0, "badge")}${
+        sv.split ? `, ${sv.split}'s split` : ""}.`
+    : "No save is watched, so nothing ticks itself; set one in the Calc tab's save bar.";
+  const run = `${plural(n, "note")} this run${fb.started ? `, started ${fb.started}` : ""}${
+    fb.from === "export" ? " (read back from the export)" : ""}.`;
+  bar.innerHTML = `<span>${esc(save)} ${esc(run)}</span>
+    <button id="alpha-export" title="Write the notes to docs/oxide/encounters/alpha-notes.json and .md, which Commit my edits commits">Export notes</button>
+    <button id="alpha-newrun" title="Set this run's notes aside and start empty">New run</button>`;
 }
 
 function drawAlphaMid() {
   const d = ALPHA, src = d.sources;
   const from = src.roles === "working tree" ? ""
     : `<p class="asrc">The trainer roles and the reward table are read from ${esc(src.roles || "nowhere")} until they land.</p>`;
+  const top = `<div id="alphabar"></div>${from}`;
+  const keep = $("#alphamid").scrollTop;
   if (ALPHASPLIT === ANYWHERE) {
-    $("#alphamid").innerHTML = `<h1>Anywhere</h1>${from}
+    $("#alphamid").innerHTML = `<h1>Anywhere</h1>${top}
       <p class="asrc">The in-game checks no zone holds: the test kit's, and the ones checked wherever you are.</p>
       <div class="azone">${alphaChecks(d.anywhere)}</div>`;
-    return;
+  } else {
+    const s = d.splits.find(x => x.split === ALPHASPLIT);
+    if (!s) return;
+    $("#alphamid").innerHTML = `<h1>${esc(s.split)}'s split${s.cap ? `, cap ${s.cap}` : ""}</h1>${top}`
+      + s.zones.map(z => alphaZone(z, s.split)).join("");
   }
-  const s = d.splits.find(x => x.split === ALPHASPLIT);
-  if (!s) return;
-  $("#alphamid").innerHTML = `<h1>${esc(s.split)}'s split${s.cap ? `, cap ${s.cap}` : ""}</h1>${from}`
-    + s.zones.map(alphaZone).join("");
-  $("#alphamid").scrollTop = 0;
+  drawAlphaBar();
+  $("#alphamid").scrollTop = drawAlphaMid.keepScroll ? keep : 0;
+  drawAlphaMid.keepScroll = false;
+}
+
+// The save's ticks, put in place without redrawing anything else.
+function applyAlphaTicks() {
+  document.querySelectorAll("#alphamid [data-tick]").forEach(row => {
+    const won = beaten(row.dataset.tick), box = row.querySelector(".fb-fought");
+    row.classList.toggle("beaten", won);
+    if (box) {
+      box.disabled = won;
+      box.checked = won || !!noteOf(row.dataset.tick).fought;
+    }
+  });
+  document.querySelectorAll("#alphamid input[data-flag]").forEach(box => {
+    box.checked = picked(box.dataset.flag);
+  });
+}
+
+async function postAlphaNote(wrap, fields) {
+  const body = { key: wrap.dataset.key, label: wrap.dataset.label, zone: wrap.dataset.zone,
+                 split: wrap.dataset.split, fields };
+  const r = await api("/api/alpha/feedback", { method: "POST",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  ALPHASTATE.feedback.notes[r.key] = r.entry;
+  return r.entry;
 }
 
 $("#alphanav").addEventListener("click", ev => {
@@ -1959,7 +2079,61 @@ $("#alphanav").addEventListener("click", ev => {
     if (card) card.scrollIntoView({ block: "start", behavior: "smooth" });
   }
 });
-$("#alphamid").addEventListener("click", ev => {
+$("#alphamid").addEventListener("change", async ev => {
+  const wrap = ev.target.closest(".afbrow");
+  if (!wrap) return;
+  try {
+    if (ev.target.classList.contains("fb-fought")) await postAlphaNote(wrap, { fought: ev.target.checked });
+    else if (ev.target.classList.contains("fb-rating"))
+      await postAlphaNote(wrap, { rating: ev.target.value ? +ev.target.value : null });
+    else return;
+    toast("Saved");
+    drawAlphaBar();
+  } catch (e) { toast(e.message, true); }
+});
+$("#alphamid").addEventListener("click", async ev => {
+  const wrap = ev.target.closest(".afbrow");
+  if (ev.target.closest("#alpha-export")) {
+    try {
+      const r = await api("/api/alpha/export", { method: "POST", headers: { "Content-Type": "application/json" },
+                                                 body: "{}" });
+      toast("Written: " + r.written.join(", "));
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
+  if (ev.target.closest("#alpha-newrun")) {
+    if (!confirm("Set this run's notes aside (kept under their start date) and start a new run?")) return;
+    try {
+      const r = await api("/api/alpha/newrun", { method: "POST", headers: { "Content-Type": "application/json" },
+                                                 body: "{}" });
+      ALPHASTATE.feedback = r.feedback;
+      drawAlphaMid();
+      toast("A new run started");
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-open")) {
+    const ed = wrap.querySelector(".afbedit");
+    ed.hidden = !ed.hidden;
+    if (!ed.hidden) ed.querySelector(".fb-note").focus();
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-cancel")) {
+    wrap.querySelector(".afbedit").hidden = true;
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-save")) {
+    const ed = wrap.querySelector(".afbedit"), v = s => ed.querySelector(s).value.trim();
+    const death = v(".fb-mon") || v(".fb-killer") || v(".fb-saw")
+      ? { mon: v(".fb-mon"), killer: v(".fb-killer"), saw: v(".fb-saw") || null } : null;
+    try {
+      await postAlphaNote(wrap, { note: v(".fb-note"), death });
+      toast("Note saved");
+      drawAlphaMid.keepScroll = true;
+      drawAlphaMid();
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
   const hit = ev.target.closest("[data-sp], [data-tr], [data-area]");
   if (!hit) return;
   ev.preventDefault();

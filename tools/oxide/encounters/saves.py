@@ -32,7 +32,10 @@ BRANCH = "ian-saves"
 WRITES = (re.compile(r"^res/field/encounters/"),
           re.compile(r"^docs/oxide/encounters/design\.json$"),
           re.compile(r"^res/trainers/data/[^/]+\.json$"),
-          re.compile(r"^tools/oxide/trainers_diverged\.json$"))
+          re.compile(r"^tools/oxide/trainers_diverged\.json$"),
+          # The alpha run's notes, exported from the Alpha tab for the other
+          # sessions (alphanotes.py).
+          re.compile(r"^docs/oxide/encounters/alpha-notes\.(json|md)$"))
 ROMS = (os.path.expanduser("~/roms/base.nds"), os.path.expanduser("~/roms/vanilla.nds"))
 
 
@@ -82,6 +85,8 @@ def describe(path):
         return f"the table {name}"
     if path.endswith("design.json"):
         return "the encounter sidecar"
+    if os.path.basename(path).startswith("alpha-notes"):
+        return "the alpha run's notes"
     return "the importer's registry of trainers edited on purpose"
 
 
