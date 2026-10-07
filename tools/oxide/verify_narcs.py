@@ -525,6 +525,8 @@ REWORK_DIG_DIVE = {91, 291}
 # The two to five hit moves below 25 a hit: Double Slap, Comet Punch, Fury
 # Attack, Spike Cannon, Barrage, Fury Swipes, Arm Thrust.
 REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
+# Fury Cutter.
+REWORK_FURY_CUTTER = {210}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -693,6 +695,12 @@ DIVERGED = {
             "offsets": (3,),  # power
             "members": REWORK_MULTI_HIT_25,
             "why": "every two to five hit move at 25 a hit (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_FURY_CUTTER,
+            "why": "Fury Cutter as Kaizo's three hits of 30 rising by 10, at 100 accuracy "
+                   "(the move reworks, Ian, 2026-10-06)",
         },
     ],
 }

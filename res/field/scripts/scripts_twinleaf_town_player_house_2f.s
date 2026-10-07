@@ -810,6 +810,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet74, 19
     AddListMenuEntry TestKit_Text_MenuSet75, 20
     AddListMenuEntry TestKit_Text_MenuSet76, 21
+    AddListMenuEntry TestKit_Text_MenuSet77, 22
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -833,6 +834,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet74
     GoToIfEq VAR_0x8004, 20, TestKit_MoveSet75
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet76
+    GoToIfEq VAR_0x8004, 22, TestKit_MoveSet77
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1801,6 +1803,22 @@ TestKit_MoveSet76:
     SetVar VAR_0x8008, MOVE_SPIKE_CANNON
     SetVar VAR_0x8009, MOVE_PIN_MISSILE
     GoTo TestKit_GivePokemonWithMoves
+
+/* Set 77: Fury Cutter as Kaizo has it (the move reworks, Ian, 2026-10-06):
+   three hits of 30, 40 and 50 power, 100% accuracy. Against a wild Chansey
+   that knows only Splash, each use ends with "Hit 3 time(s)!", each hit
+   visibly larger than the one before, and a second use the next turn does
+   the same as the first. Before the change it was one hit of 40 that doubled
+   each turn it was used in a row. */
+TestKit_MoveSet77:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FURY_CUTTER
+    SetVar VAR_0x8007, MOVE_X_SCISSOR
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */
