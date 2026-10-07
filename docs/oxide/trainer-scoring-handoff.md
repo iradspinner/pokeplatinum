@@ -60,7 +60,29 @@ simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
 re-measures the calculator so the two never stack). A Sheer Force user
 with a Life Orb takes no Life Orb recoil on a move Sheer Force boosts and
 keeps both boosts (Ian, 2026-10-07), as the game's fix does; the
-calculator's rows carry both 1.3s. Every stored
+calculator's rows carry both 1.3s. An Infiltrator attacker's move passes a
+Substitute, as on the main track's engine branch: the hit, its added
+effects and status moves reach the Pokemon behind it. The AI mirror
+follows the other flags' routing of 21 new moves (Ian, 2026-10-07,
+alpha-readiness step 18): its tables come from the script, and Evaluate
+Attack's and Baton Pass's named lists now do too.
+Meteor Beam and Electro Shot charge with their Sp. Atk rise (Power Herb
+and, for Electro Shot, rain skip the charge and still raise it; Skull
+Bash's Power Herb now raises Defense too), and Heal Block and Psychic Noise
+block healing for five turns as the engine does (the listed healing moves,
+which the AI also refuses to choose, draining, Leech Seed's heal, Wish,
+Ingrain and Aqua Ring; not held items or abilities); the three-quarters
+drain (Draining Kiss) now heals. Weather from an ability is permanent, as
+in the engine; a move's counts its turns (2026-10-07).
+The turn's end now runs as the engine's does (2026-10-07): every Pokemon
+in speed order (Quick Claw and Custap first, then Speed, reversed under
+Trick Room, ties on a coin the planner enumerates), field effects and
+weather first, then each Pokemon's conditions in the engine's order, then
+Perish Song and Trick Room's count, and it stops the moment a side is out
+of Pokemon. Before this the player's side always went first and the whole
+turn's end ran out, and a fight where both last Pokemon fell at the turn's
+end counted as won, so every reading made before it is slightly
+optimistic in close finishes; goal 3 reads them all again. Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,

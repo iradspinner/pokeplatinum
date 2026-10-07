@@ -359,7 +359,7 @@ def use_move(b, att, mv, dfn, first):
         return fs.could_not_act(b, att, mv, dfn)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
         return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv):
+    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -370,16 +370,10 @@ def use_move(b, att, mv, dfn, first):
         att.choice = mv.name
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
-    if mv.effect in fs.TWO_TURN and att.charging is None:
-        if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
-            pass
-        elif att.item == "Power Herb":
-            fs.consume(att)
-        else:
-            att.charging = mv
-            if mv.effect == "CHARGE_TURN_DEF_UP":
-                fs.change_stages(att, {"def": 1})
-            return
+    if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
+        att.charging = mv
+        fs.change_stages(att, fs.CHARGE_STAGES.get(mv.effect, {}))   # Skull Bash, Meteor Beam, Electro Shot
+        return
     att.charging = None
     if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
         mv = fs.sleep_talk_pick(b, att) if att.status == "slp" else None
@@ -555,7 +549,7 @@ def attack(b, att, mv, dfn, first):
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
                 dfn.flash_fire = True
         return
-    if dfn.sub:
+    if fs.sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
@@ -588,9 +582,10 @@ def attack(b, att, mv, dfn, first):
         fs.hurt(b, att, max(1, att.maxhp // 4))
     if e in fs.RECOIL and att.ability != "Rock Head":
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
-    if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
-        # Big Root raises what a draining move restores by 30%.
-        gain = dealt // 2
+    if e in fs.DRAIN and not fs.heal_blocked(att):
+        # Big Root raises what a draining move restores by 30%; Heal Block on
+        # the user stops the heal, not the damage.
+        gain = int(dealt * fs.DRAIN[e])
         fs.heal(att, int(gain * 1.3) if att.item == "Big Root" else gain)
     if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
         # Bug Bite and Pluck eat the target's berry and take its effect.
@@ -627,7 +622,7 @@ def attack(b, att, mv, dfn, first):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
-    if not dfn.alive() or dfn.sub:
+    if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
@@ -640,16 +635,16 @@ def attack(b, att, mv, dfn, first):
     def status_lands(kind):
         return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
     if e in fs.HIT_STATUS and chance and status_lands("status"):
-        give_status(b, dfn, fs.HIT_STATUS[e])
+        fs.give_status_by_move(b, att, dfn, mv, fs.HIT_STATUS[e])
     # Burning Jealousy burns only a target one of whose stats rose this turn.
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and chance and status_lands("status"):
-        give_status(b, dfn, "brn")
+        fs.give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and chance and status_lands("status"):
         order = ("frz", "par", "brn")
         if b.dice.mode == "run":
             order = (order[b.dice.choice("tri", 3)],)
         for st in order:
-            if give_status(b, dfn, st):
+            if fs.give_status_by_move(b, att, dfn, mv, st):
                 break
     # A flinch and a stat change are not status conditions: they are luck,
     # at the move's chance (design.md, question 10).
@@ -671,6 +666,8 @@ def attack(b, att, mv, dfn, first):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
+    if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
+        fs.start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound = b.dice.bind(dfn.side)
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
@@ -705,34 +702,36 @@ def status_move(b, att, mv, dfn, first):
         if not accuracy_hits(b, att, dfn, mv):
             return
     if e in fs.STATUS_OF:
-        if dfn.sub:
+        if fs.sub_blocks(att, dfn, mv):
             return
-        give_status(b, dfn, fs.STATUS_OF[e])
+        fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not dfn.sub and not dfn.confused and dfn.ability != "Own Tempo":
+        if not fs.sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
             dfn.confused = b.dice.confusion(dfn.side)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
-        if not dfn.sub:
+        if not fs.sub_blocks(att, dfn, mv):
             fs.change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not dfn.confused and dfn.ability != "Own Tempo":
                 dfn.confused = b.dice.confusion(dfn.side)
     elif e == "STATUS_SLEEP_NEXT_TURN":
-        if not dfn.status and not dfn.yawn and not dfn.sub:
+        if not dfn.status and not dfn.yawn and not fs.sub_blocks(att, dfn, mv):
             dfn.yawn = 2
     elif e == "PREVENT_ESCAPE":
-        if dfn.trapped_by is None and not dfn.sub:
+        if dfn.trapped_by is None and not fs.sub_blocks(att, dfn, mv):
             dfn.trapped_by = att.key
     elif e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
         att.ingrained = True
     elif e == "STATUS_LEECH_SEED":
-        if "Grass" not in dfn.types and not dfn.sub:
+        if "Grass" not in dfn.types and not fs.sub_blocks(att, dfn, mv):
             dfn.seeded = True
+    elif e == "PREVENT_HEALING":                             # Heal Block
+        fs.start_heal_block(att, dfn, mv)
     elif e in fs.SELF_STAGES:
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not dfn.sub and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
+        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -883,7 +882,7 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle)
+            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0))
 
 
 def side_key(s):
@@ -1060,7 +1059,8 @@ def player_actions(b):
     saved, b.rng = b.rng, b.rng if getattr(b, "rng", None) is not None else random.Random(0)
     try:
         for mv in me.moves:
-            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv):
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
+                    or fs.move_heal_blocked(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue

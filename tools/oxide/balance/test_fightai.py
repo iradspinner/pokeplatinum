@@ -528,6 +528,23 @@ FLAG_ROWS = [
      _t(b_turn=2, u_hp=50), -7, 0),
     ("BatonPass flag, an attack with a comparison", ai.BATON, "Body Slam", None, 0, 0),
     ("BatonPass flag, no bench", ai.BATON, "Swords Dance", lambda b, u, t: _last_pokemon(b), 0, 0),
+    # The other flags' routing (Ian, 2026-10-07; other-flags-new-moves.md): each
+    # new move as its nearest Platinum effect, and the doc's judgment calls.
+    ("SetupFirstTurn, Hone Claws on turn 0, as Meditate", ai.SETUP_FIRST, "Hone Claws", None, 2, 0),
+    ("SetupFirstTurn, Aurora Veil on turn 0, as Reflect", ai.SETUP_FIRST, "Aurora Veil", None, 2, 0),
+    ("SetupFirstTurn, Venom Drench is left out (it fails on turn 0)", ai.SETUP_FIRST, "Venom Drench", None, 0, 0),
+    ("SetupFirstTurn, Quiver Dance is left out, as Dragon Dance", ai.SETUP_FIRST, "Quiver Dance", None, 0, 0),
+    ("Risky, Final Gambit, as Explosion", ai.RISKY, "Final Gambit", None, 2, 0),
+    ("Risky, Flower Trick is left out (no gamble)", ai.RISKY, "Flower Trick", None, 0, 0),
+    ("Harassment, Sticky Web, as Spikes", ai.HARASS, "Sticky Web", None, 2, 0),
+    ("Harassment, Magic Room, as Embargo", ai.HARASS, "Magic Room", None, 2, 0),
+    ("CheckHP, Hone Claws at 50%, as Meditate", ai.CHECK_HP, "Hone Claws", _t(u_hp=50), -2, 0),
+    ("CheckHP, Strength Sap at full HP, as Recover", ai.CHECK_HP, "Strength Sap", None, -2, 0),
+    ("CheckHP, Final Gambit, foe at 20% (the target-low table only)", ai.CHECK_HP, "Final Gambit",
+     _t(t_hp=20), -2, 0),
+    ("CheckHP, Final Gambit at 50% is left out", ai.CHECK_HP, "Final Gambit", _t(u_hp=50), 0, 0),
+    ("BatonPass flag, Quiver Dance on turn 0, knowing Baton Pass, as Dragon Dance", ai.BATON, "Quiver Dance",
+     _t(u_moves=("Quiver Dance", "Baton Pass")), 5, 5),
 ]
 
 
@@ -878,6 +895,8 @@ BASIC_ROWS = [
 EVAL_ROWS = [
     ("EvalAttack_MaybeDeprioritize: Sucker Punch (no comparison)", "Absol", "Zigzagoon", "Sucker Punch", None, -2, 0),
     ("EvalAttack_MaybeDeprioritize: Explosion (no comparison)", "Golem", "Zigzagoon", "Explosion", None, -2, 0),
+    ("EvalAttack_MaybeDeprioritize: Final Gambit, as Explosion (2026-10-07)", "Kangaskhan", "Zigzagoon",
+     "Final Gambit", None, -2, 0),
     ("EvalAttack_ApplyKillBonuses: Quick Attack (PRIORITY_1) knocks out", "Absol", "Starly", "Quick Attack",
      None, 6, 6),
     ("EvalAttack_ApplyKillBonuses: Feint knocks out (+4: the effect, not the priority)", "Absol", "Starly", "Feint",

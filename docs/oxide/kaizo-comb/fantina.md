@@ -24,7 +24,11 @@ Overseer advised, each a step harder than today's in my simulator: Jupiter 97
 won to today's 100, Lucas and Dawn about level, Fantina 55 to today's 60
 (the scorer read today's Fantina at 92). The ordinary singles average about
 90 clean in the scorer's terms (75 to 99), and the two gauntlet sections read
-about 65 and 63 clean as a whole, against Ian's 60.
+about 65 and 63 clean as a whole, against Ian's 60. Re-read on 2026-10-07 with
+Moira's hail lasting the whole fight, as Oxide's battle code has it, the
+second section reads 96 won and about 66 clean in the scorer's terms (68
+under the earlier five-turn rule, read the same day), and Moira herself is
+unchanged.
 
 ## Decisions for Ian
 
@@ -44,7 +48,9 @@ No conditional attack (Dream Eater and the like) appears in this split.
 No trainer of this split stands on a map with its own weather (a map's
 weather is battle weather for every fight on it; the nearest such maps are
 Oreburgh's gym before this split and Route 215 after it), so Moira's hail
-from Snow Warning is the split's only weather.
+from Snow Warning is the split's only weather. It lasts the whole fight, as in
+Platinum: weather from an ability never runs out (the Overseer, from Oxide's
+battle code, 2026-10-07).
 
 **The legality sweep (2026-10-07).** The files were checked against the final
 learnsets and TM list (origin/balance-tm-pass at 377312dbf0), with the moves
@@ -91,7 +97,7 @@ splits' bosses in order, then their ordinary trainers.
 | Galactic Grunt (2F, 1) | Eterna building 2F | gauntlet, first section | single | 3 | 23 to 24 | Pursuit on two members punishes the player who switches to spare a hurt Pokemon for the next fight | 100 / 0.10 / 94 |
 | Galactic Grunt (2F, 2) | Eterna building 2F | gauntlet, first section | single | 3 | 23 to 24 | Toxic and Poison Point at the end of the section | 100 / 0.25 / 84 |
 | Scientist Travon | Eterna building 3F | gauntlet, second section | single | 3 | 24 to 25 | Kadabra behind a TwistedSpoon and an X Special in the bag | 100 / 0.30 / 84 |
-| Galactic Officer Moira | Eterna building 3F | gauntlet, second section | single, named officer | 4 | 25 to 26 | Ian's Moira kept to her idea | about 100 / 0.2 / 83 in my simulator |
+| Galactic Officer Moira | Eterna building 3F | gauntlet, second section | single, named officer | 4 | 25 to 26 | Ian's Moira kept to her idea | about 100 / 0.0 / 96 in my simulator with her hail lasting the whole fight (100 / 0.1 / 94 under the earlier five-turn rule) |
 | Jupiter 1 | Eterna building 4F | on the path | single, boss | 5 | 26 to 27 | Poison and chip | about 97 / 1.7 / 12 in my simulator |
 | Cyclist Axel | Route 206 | optional | single | 3 | 27 to 29 | Electric speed | 100 / 0.10 / 97 |
 | Cyclist James | Route 206 | optional | single | 4 | 27 to 29 | Fire Fang on everything | 100 / 0.10 / 94 |
@@ -209,7 +215,7 @@ Ian's Moira kept to her idea: hail from Snover's Snow Warning, Blizzard that can
 | Slowpoke | 25 | Sitrus Berry | Own Tempo | Modest | Blizzard, Water Pulse, Confusion, Disable |
 | Kirlia | 26 | Lum Berry | Trace | Modest | Psychic, Icy Wind, Calm Mind, Magical Leaf |
 
-Today's team: Snover 24 (Quick Claw; Swagger, GrassWhistle, Swords Dance, Avalanche), Slowpoke 25 (Rest, Future Sight, Blizzard, Sleep Talk), Swinub 26 (Salac Berry; Ice Shard, Superpower, Dig, Endure), Kirlia 25 (Future Sight, Calm Mind, Icy Wind, Psychic). Expected: about 100 / 0.2 / 83 in my simulator; read by the scorer later.
+Today's team: Snover 24 (Quick Claw; Swagger, GrassWhistle, Swords Dance, Avalanche), Slowpoke 25 (Rest, Future Sight, Blizzard, Sleep Talk), Swinub 26 (Salac Berry; Ice Shard, Superpower, Dig, Endure), Kirlia 25 (Future Sight, Calm Mind, Icy Wind, Psychic). Expected: about 100 / 0.0 / 96 in my simulator with her hail lasting the whole fight (100 / 0.1 / 94 under the earlier five-turn rule); read by the scorer later.
 
 ### Jupiter 1: Eterna building 4F, on the path, single, boss, cap 27
 
