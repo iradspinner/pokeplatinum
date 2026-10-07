@@ -702,6 +702,12 @@ DIVERGED = {
             "why": "Fury Cutter as Kaizo's three hits of 30 rising by 10, at 100 accuracy "
                    "(the move reworks, Ian, 2026-10-06)",
         },
+        {
+            "offsets": (6,),  # pp
+            "members": {180},
+            "why": "Spite at 5 PP, inside the 3 to 6 of the stat-lowering moves (the move "
+                   "reworks, Ian, 2026-10-06)",
+        },
     ],
 }
 
