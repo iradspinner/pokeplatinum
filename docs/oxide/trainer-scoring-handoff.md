@@ -52,6 +52,14 @@ driver is `plgoal3.py`. How it reads each fight (Ian's answers of
   shows. (An Ace Trainer would be read blind, its 100 fights shared among
   the boxes; this milestone leaves them out.)
 
+**Under way.** The reading started at 16:52 on 2026-10-07 (two boxes at
+once on 13 workers each, under a 9 GB cap so that a first box's network
+training, about 16.5 GB, fits beside it); each box's result lands in
+`~/oxide-trials/goal3/988ff99ed/` as it finishes, and a stopped run
+resumes with the same command. When all 117 boxes are in, `plgoal3 --run
+988ff99ed --store` puts the pooled readings in the store and writes the
+summary.
+
 The dry run measured one box on 14 workers: Roark by the team search in
 44 minutes, 17 of them training networks on a GPU that melonDS shares;
 Ace Trainer Allen blind in 11 minutes. With the networks reused, a boss's
