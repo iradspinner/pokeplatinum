@@ -112,6 +112,11 @@ calculator checks fail if the offline ones are lost.
     let a profile name the Pokemon and stat a move attacks with and send a
     special move against Defense or past the target's stages; the defending
     side's Defense and Sp. Def modifiers follow the stat the move hits.
+    Since 2026-10-07 one more, `recklessMove` (named in `romhacks/helpers.js`'s
+    `HOOK_NAMES` too, which drops a hook it does not list), lets a profile say
+    which moves Reckless raises: upstream asks the move's own recoil and crash flags,
+    while Oxide's game raises exactly the moves whose effect scripts set the
+    power multiplier for it, its one-turn recoil reworks among them.
 
 11. **`calc/mechanics/util.js`, Mirror Armor.** Freeze-Dry and Flying Press
     kept their plain type chart under the "Platinum Oxide" title from item 22

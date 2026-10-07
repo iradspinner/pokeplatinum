@@ -720,6 +720,19 @@ def check_calculator(results):
                     < page.index("profiles/platinum-oxide.js")
                     < page.index("romhacks/index.js"),
                     f"{len(fresh['slicing'])} slicing, {len(fresh['sheerForce'])} Sheer Force"))
+    # Reckless follows the effect scripts that set its 1.2 (2026-10-07): the
+    # reworked one-turn moves and Chloroblast, which the calculator's own
+    # recoil flags miss, and not a move with no recoil or crash.
+    helpers = open(os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics",
+                                "romhacks", "helpers.js"), encoding="utf-8").read()
+    gen4 = open(os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics",
+                             "gen4.js"), encoding="utf-8").read()
+    results.append(("Reckless raises exactly the moves whose effect scripts set it, and the "
+                    "calculator asks the profile",
+                    {"Hyper Beam", "Outrage", "Chloroblast", "Double-Edge", "Jump Kick"} <= set(fresh["reckless"])
+                    and not {"Tackle", "Struggle", "Close Combat"} & set(fresh["reckless"])
+                    and '"recklessMove"' in helpers and '"recklessMove"' in gen4,
+                    f"{len(fresh['reckless'])} moves"))
 
     # Every patch is written down, so an upstream update knows what to redo.
     vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()
