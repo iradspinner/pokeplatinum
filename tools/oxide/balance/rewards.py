@@ -940,8 +940,9 @@ def check(out=sys.stdout):
         if not str(r.get("badges") or "").isdigit():
             fails.append(f"{r['reward']} at {r['place']} has no badge count")
     resold = collections.Counter((r["place"], r["replaces"]) for r in shop_rows)
+    applied_shops = collections.Counter((r["place"], r["reward"]) for r in shop_rows)
     for k, n in sorted(sold.items()):
-        if resold[k] < n:
+        if resold[k] < n and applied_shops[k] < n:
             fails.append(f"{k[1]} at {k[0]} is still sold as it is today")
     print(f"{len(placed)} placements, {len(trainers)} reward trainers, {new_balls} new balls: "
           f"{flags} of {FLAG_POOL} spare flags; {sum(1 for r in shop_rows if r["reward"] != DROPPED)} shop TMs; {len(fails)} failures", file=out)

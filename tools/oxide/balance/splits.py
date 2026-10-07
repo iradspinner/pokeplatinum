@@ -443,14 +443,17 @@ def sold_once():
 @functools.lru_cache(maxsize=None)
 def trainer_rewards():
     """Every item a trainer gives straight after the win: (split, trainer
-    constant, item constant), in the trainer's split. place_rewards.py writes
-    one comment line a reward trainer: "@ TRAINER_X: ITEM_A x1, ITEM_B x2,
-    under FLAG_Y"."""
+    constant, item constant), in the split the player can first beat the
+    trainer (B6's placement, which reads the way there: Route 219's tubers
+    need Surf), else its map's. place_rewards.py writes one comment line a
+    reward trainer: "@ TRAINER_X: ITEM_A x1, ITEM_B x2, under FLAG_Y"."""
+    from . import b6
     block = _between(_read("res", "field", "scripts", "scripts_battles.s"),
                      "@ place_rewards.py: trainer rewards (begin)", "@ place_rewards.py: trainer rewards (end)")
     out = []
     for tr, items, _flag in _REWARD.findall(block):
-        split = trainer_split(_trainer_id(tr))
+        tid = _trainer_id(tr)
+        split = (b6.placements().get(tid) or {}).get("split") or trainer_split(tid)
         for part in items.split(","):
             out.append((split, tr, part.strip().split(" x")[0]))
     return out
