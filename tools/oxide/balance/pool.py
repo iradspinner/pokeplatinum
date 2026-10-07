@@ -374,11 +374,14 @@ def species_by_split():
 
 @functools.lru_cache(maxsize=None)
 def _items_first():
-    """{item constant: the first split the player can hold it in}."""
+    """{item constant: the first split the player can hold it in}: balls and
+    hidden items, gifts, marts (a TM sold once from its badge count's split),
+    and the items a trainer gives straight after the win (the TM pass)."""
     first = {}
     rows = ([(s, it) for s, _m, it, _how in splits.items()]
             + [(s, it) for s, _m, it in splits.gifts()]
-            + [(s, it) for s, _t, it in splits.marts()])
+            + [(s, it) for s, _t, it in splits.marts()]
+            + [(s, it) for s, _t, it in splits.trainer_rewards()])
     for split, item in rows:
         if item and split in SPLITS:
             if item not in first or split_index(split) < split_index(first[item]):
