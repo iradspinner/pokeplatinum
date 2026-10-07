@@ -20,20 +20,24 @@ read (about 60 fights after Roark's split), say when; the estimate is
 below.
 
 **Next steps, and how long each takes on this machine.** Goal 3
-(alpha-readiness step 15) is ready to start on the commit that lands step
-12, which the Overseer sends. Its driver is `plgoal3.py`, and it reads an
-extracted copy of that commit, so every trainer, learnset, encounter and
-item file is that commit's. It serves the comb, step 5's boss bands and the
-alpha's boss order. How it reads each fight (Ian's answers of 2026-10-07,
-relayed by the Overseer):
+(alpha-readiness step 15) is the one milestone reading before alpha 1,
+cut down by Ian on 2026-10-07: the 39 bosses only, on three boxes each,
+with one pair of networks per boss, trained on its first box and reused
+on the other two. By his rule of the same day (each change is judged for
+its effect on difficulty), nothing else is read until the next milestone
+unless he names the fight, and the simulator stays frozen but for fixes he
+approves. It reads step 12's commit, 988ff99ed, from an extracted copy in
+`~/oxide-trials/goal3/tree`, with this branch's reader laid over it, so
+every trainer, learnset, encounter and item file is that commit's. Its
+driver is `plgoal3.py`. How it reads each fight (Ian's answers of
+2026-10-07, relayed by the Overseer):
 
-- Boxes: five random runs of the encounter simulator for each split, seeds
-  1 to 5, the same five for every fight of a split, every catch alive. Box
-  k's starter is Turtwig, Scorbunny, Piplup, Turtwig, Scorbunny in turn, so
-  every rival team is met at least once, and a rival's readings are kept
-  per team. A fight that closes its split, and each Elite Four fight, takes
-  the box at the split's end; any other takes the catches made before it in
-  walking order.
+- Boxes: three random runs of the encounter simulator for each split,
+  seeds 1 to 3, the same three for every fight of a split, every catch
+  alive. Box k's starter is Turtwig, Scorbunny, Piplup, so every rival
+  team is met once, and a rival's readings are kept per team. A fight that
+  closes its split, and each Elite Four fight, takes the box at the split's
+  end; any other takes the catches made before it in walking order.
 - Levels: a split-closing boss at the split's cap, the Elite Four at their
   aces, and every other boss at its own ace (goal 2's soft caps, now also
   Barry 3 to 6, Cyrus 1 and 2, Saturn 1 and 2, Mars 2, Lucas and Dawn 3 and
@@ -44,8 +48,14 @@ relayed by the Overseer):
   element 7's items (Eviolite, Assault Vest and the rest), so late bosses
   read slightly hard; the results will say so.
 - Readings: a boss by the team search on each box and then its winner's
-  100 fights; an Ace Trainer blind, 20 fights on each box. Each fight's five
-  boxes are pooled into the difficulty store the OxiDex shows.
+  100 fights, the three boxes pooled into the difficulty store the OxiDex
+  shows. (An Ace Trainer would be read blind, its 100 fights shared among
+  the boxes; this milestone leaves them out.)
+
+The dry run measured one box on 14 workers: Roark by the team search in
+44 minutes, 17 of them training networks on a GPU that melonDS shares;
+Ace Trainer Allen blind in 11 minutes. With the networks reused, a boss's
+later boxes skip about 23 of those minutes.
 
 A boss team that lands after the QA ROM is re-read the same way before the
 alpha ROM is fixed. Your ruling that luck items are fair on trainers (Quick Claw,
@@ -107,9 +117,10 @@ worktree as its root. Next: nothing queued.
 
 | Step | Takes |
 |---|---|
-| Goal 3 in all (alpha-readiness step 15): its 80 single battles | about 35 hours of machine time |
-| of which the 39 bosses, by the team search over five boxes each | about 22 to 23 hours |
-| of which the 41 Ace Trainers, read blind as ordinary trainers | about 9 to 17 hours, 30 to 60 minutes each on 12 workers (scaled from Fantina's split, not yet measured late) |
+| Goal 3, the milestone reading (alpha-readiness step 15): 39 bosses on three boxes, one network pair each | about 30 to 40 hours of machine time, two boxes at once (from the dry run's Roark, scaled for later fights) |
+| of which each boss's first box, which labels and trains its networks | about 45 to 60 minutes each |
+| of which its two later boxes, which reuse them | about 25 to 35 minutes each |
+| the 41 Ace Trainers | not read at this milestone (Ian, 2026-10-07); blind, about 1 hour each on 14 workers |
 | Re-reading a boss whose team lands after the QA ROM | about 1 to 2 hours for one boss alone; about 35 minutes each when several run together |
 | Goal 3's 8 tag battles | not in the total; they wait for the doubles planner below |
 | Double and tag battles, on the backlog: build and check the planner for them | about 3 to 4 working sessions, then your check of one hand-played double |

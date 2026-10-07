@@ -70,6 +70,7 @@ import subprocess
 import sys
 import time
 
+from . import plthreads  # noqa: F401  (one numpy thread per process, before anything loads numpy)
 from ..encounters import alpha, model as encounter_model
 from . import data, fightsim as fs, pboxes, pldifficulty, plniche, plscore, plstudy, plteam, pool
 
