@@ -65,6 +65,7 @@ copy "learnset-baseline.md" "notes/learnset-baseline.md"
 copy "learnset-insights.md" "notes/learnset-insights.md"
 copy "learnset-exam.md" "notes/learnset-exam.md"
 copy "learnset-exam-changes.md" "notes/learnset-exam-changes.md"
+copy "learnset-capture-spikes.md" "notes/learnset-capture-spikes.md"
 copy "alpha-readiness.md" "notes/alpha-readiness.md"
 copy "learnset-rewrite.md" "notes/learnset-rewrite.md"
 for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
