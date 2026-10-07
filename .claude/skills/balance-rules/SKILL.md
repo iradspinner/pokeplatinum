@@ -106,6 +106,10 @@ is listed for Ian.
   out.
 - Move numbers, setup PP and the no-weather rule for the player are in the
   standing rulings; they bind every learnset too.
+- **Starters start plain** (Ian, 2026-10-07): Rowan's three starters know
+  exactly a basic weak attack and a basic status move at level 5 (Tackle and
+  Growl or their equivalents), nothing else at or below 5; their own type's
+  first move comes after. A generator rule with a check, not a patch.
 - **Every line learns something late** (2026-09-28): each final stage the
   player can own gets at least one real level-up move at 61 or later.
 - **Stone and item evolutions** (2026-09-28) get their own sparser list after

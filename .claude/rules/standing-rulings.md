@@ -135,6 +135,12 @@ read, so they are written here too. Each is a standing instruction.
   moves to or after it; and Eevee's evolutions are the exception to the
   stone rule's late, sparse lists, each learning a full moveset from 20, the
   level Bebe's Eevee is held at.
+  Starters at level 5 know Tackle and Growl or their equivalents, "as it
+  always has been and always will be" (Ian, 2026-10-07): Rowan's three
+  starters know exactly a basic weak attack and a basic status move at level
+  5, nothing else sits at or below 5, and their own type's first move comes
+  after it. The generator holds this as a rule with a check, never as a
+  per-species patch.
 - Local builds are trusted (2026-09-29): a ROM goes to Ian as soon as the
   local gate passes. Matching GitHub's SHA-1 first was a guard against the
   degraded CPU and is no longer required (Ian, 2026-10-06); it comes back
