@@ -57,9 +57,9 @@
             [ 37, "MOVE_SHADOW_PUNCH" ],
             [ 40, "MOVE_SKITTER_SMACK" ],
             [ 43, "MOVE_MEAN_LOOK" ],
-            [ 48, "MOVE_ZEN_HEADBUTT" ],
+            [ 48, "MOVE_FIRE_PUNCH" ],
             [ 51, "MOVE_PAYBACK" ],
-            [ 56, "MOVE_ROCK_TOMB" ],
+            [ 56, "MOVE_LEECH_LIFE" ],
             [ 61, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [

@@ -154,23 +154,23 @@
             ],
             [
                 54,
-                "MOVE_ENCORE"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 56,
-                "MOVE_ICE_BEAM"
+                "MOVE_ENCORE"
             ],
             [
                 61,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                63,
                 "MOVE_BLOCK"
             ],
             [
+                63,
+                "MOVE_ICE_BEAM"
+            ],
+            [
                 69,
-                "MOVE_THUNDERBOLT"
+                "MOVE_ENERGY_BALL"
             ],
             [
                 71,

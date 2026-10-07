@@ -42,7 +42,6 @@
             [ 1, "MOVE_HELPING_HAND" ],
             [ 8, "MOVE_SAND_ATTACK" ],
             [ 22, "MOVE_QUICK_ATTACK" ],
-            [ 24, "MOVE_HEADBUTT" ],
             [ 27, "MOVE_CHARM" ],
             [ 28, "MOVE_SNARL" ],
             [ 29, "MOVE_BITE" ],

@@ -106,7 +106,7 @@
             ],
             [
                 38,
-                "MOVE_MUD_SHOT"
+                "MOVE_SHADOW_BALL"
             ],
             [
                 40,
@@ -114,7 +114,7 @@
             ],
             [
                 42,
-                "MOVE_SHADOW_BALL"
+                "MOVE_MUD_SHOT"
             ],
             [
                 45,
@@ -146,7 +146,7 @@
             ],
             [
                 72,
-                "MOVE_BURN_UP"
+                "MOVE_ENCORE"
             ]
         ],
         "by_tm": [],

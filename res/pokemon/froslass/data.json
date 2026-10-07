@@ -50,11 +50,11 @@
             [ 37, "MOVE_ICE_SHARD" ],
             [ 44, "MOVE_SIGNAL_BEAM" ],
             [ 51, "MOVE_ICE_BEAM" ],
+            [ 54, "MOVE_SHADOW_BALL" ],
             [ 57, "MOVE_AURA_SPHERE" ],
-            [ 61, "MOVE_SHADOW_BALL" ],
+            [ 61, "MOVE_SWEET_KISS" ],
             [ 63, "MOVE_PSYCHIC" ],
-            [ 69, "MOVE_SWEET_KISS" ],
-            [ 71, "MOVE_WILL_O_WISP" ]
+            [ 69, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [
             "TM03",

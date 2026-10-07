@@ -46,6 +46,7 @@
             [ 15, "MOVE_SCARY_FACE" ],
             [ 21, "MOVE_ICE_FANG" ],
             [ 24, "MOVE_FLAIL" ],
+            [ 27, "MOVE_FLIP_TURN" ],
             [ 30, "MOVE_CRUNCH" ],
             [ 33, "MOVE_SLASH" ],
             [ 39, "MOVE_SCREECH" ],

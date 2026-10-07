@@ -109,16 +109,12 @@
                 "MOVE_ECHOED_VOICE"
             ],
             [
-                39,
-                "MOVE_SEED_BOMB"
-            ],
-            [
                 54,
                 "MOVE_PLAY_ROUGH"
             ],
             [
                 57,
-                "MOVE_AQUA_TAIL"
+                "MOVE_U_TURN"
             ],
             [
                 65,

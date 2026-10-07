@@ -98,19 +98,19 @@
             ],
             [
                 54,
-                "MOVE_SHADOW_PUNCH"
+                "MOVE_POISON_JAB"
             ],
             [
                 56,
-                "MOVE_LOW_SWEEP"
+                "MOVE_SHADOW_CLAW"
             ],
             [
                 62,
-                "MOVE_FIRE_PUNCH"
+                "MOVE_BULLDOZE"
             ],
             [
                 64,
-                "MOVE_DRAIN_PUNCH"
+                "MOVE_LASH_OUT"
             ],
             [
                 66,
@@ -123,10 +123,6 @@
             [
                 71,
                 "MOVE_THROAT_CHOP"
-            ],
-            [
-                73,
-                "MOVE_EARTHQUAKE"
             ]
         ],
         "by_tm": [],

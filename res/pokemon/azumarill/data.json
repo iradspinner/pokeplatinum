@@ -48,15 +48,14 @@
             [ 20, "MOVE_BUBBLE_BEAM" ],
             [ 27, "MOVE_AQUA_RING" ],
             [ 33, "MOVE_DOUBLE_EDGE" ],
-            [ 35, "MOVE_BRICK_BREAK" ],
-            [ 37, "MOVE_PLAY_ROUGH" ],
-            [ 43, "MOVE_AURORA_BEAM" ],
+            [ 36, "MOVE_SUPERPOWER" ],
+            [ 38, "MOVE_ICE_PUNCH" ],
+            [ 43, "MOVE_PLAY_ROUGH" ],
             [ 47, "MOVE_AQUA_TAIL" ],
             [ 51, "MOVE_BODY_SLAM" ],
             [ 54, "MOVE_MUDDY_WATER" ],
-            [ 59, "MOVE_ICE_PUNCH" ],
-            [ 61, "MOVE_KNOCK_OFF" ],
-            [ 67, "MOVE_SUPERPOWER" ]
+            [ 59, "MOVE_KNOCK_OFF" ],
+            [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

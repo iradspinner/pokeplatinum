@@ -138,15 +138,19 @@
             ],
             [
                 54,
+                "MOVE_ROCK_TOMB"
+            ],
+            [
+                56,
                 "MOVE_U_TURN"
             ],
             [
-                57,
-                "MOVE_ACROBATICS"
+                58,
+                "MOVE_HEAT_WAVE"
             ],
             [
-                59,
-                "MOVE_HEAT_WAVE"
+                60,
+                "MOVE_TOXIC"
             ],
             [
                 70,
@@ -162,7 +166,7 @@
             ],
             [
                 74,
-                "MOVE_TOXIC"
+                "MOVE_ACROBATICS"
             ]
         ],
         "by_tm": [],

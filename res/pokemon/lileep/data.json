@@ -40,9 +40,9 @@
         "by_level": [
             [ 1, "MOVE_ASTONISH" ],
             [ 8, "MOVE_ACID" ],
-            [ 20, "MOVE_GIGA_DRAIN" ],
+            [ 20, "MOVE_ANCIENT_POWER" ],
             [ 22, "MOVE_CONFUSE_RAY" ],
-            [ 27, "MOVE_ANCIENT_POWER" ],
+            [ 27, "MOVE_MEGA_DRAIN" ],
             [ 29, "MOVE_AMNESIA" ],
             [ 36, "MOVE_GASTRO_ACID" ],
             [ 40, "MOVE_BLOCK" ],

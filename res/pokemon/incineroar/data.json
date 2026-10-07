@@ -126,15 +126,11 @@
             ],
             [
                 66,
-                "MOVE_EARTHQUAKE"
+                "MOVE_U_TURN"
             ],
             [
                 69,
                 "MOVE_OUTRAGE"
-            ],
-            [
-                72,
-                "MOVE_CLOSE_COMBAT"
             ]
         ],
         "by_tm": [],

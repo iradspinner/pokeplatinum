@@ -45,11 +45,10 @@
             [ 13, "MOVE_HYPNOSIS" ],
             [ 17, "MOVE_FAINT_ATTACK" ],
             [ 20, "MOVE_FURY_SWIPES" ],
-            [ 22, "MOVE_RETALIATE" ],
+            [ 22, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_CHARM" ],
             [ 32, "MOVE_CAPTIVATE" ],
-            [ 34, "MOVE_BODY_SLAM" ],
-            [ 35, "MOVE_BULLDOZE" ],
+            [ 33, "MOVE_BULLDOZE" ],
             [ 37, "MOVE_SLASH" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
             [ 45, "MOVE_ATTRACT" ]

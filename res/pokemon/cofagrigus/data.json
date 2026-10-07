@@ -130,19 +130,15 @@
             ],
             [
                 54,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                56,
-                "MOVE_PSYCHIC"
-            ],
-            [
-                58,
                 "MOVE_SCARY_FACE"
             ],
             [
                 64,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                66,
+                "MOVE_PSYCHIC"
             ]
         ],
         "by_tm": [],

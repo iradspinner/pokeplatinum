@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_SCREECH" ],
-            [ 3, "MOVE_WATER_PULSE" ],
+            [ 3, "MOVE_SCREECH" ],
             [ 6, "MOVE_MUD_SLAP" ],
+            [ 10, "MOVE_WATER_GUN" ],
             [ 19, "MOVE_FORESIGHT" ],
             [ 28, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_WHIRLPOOL" ],

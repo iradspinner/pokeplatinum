@@ -50,17 +50,16 @@
             [ 28, "MOVE_CRUNCH" ],
             [ 30, "MOVE_SLASH" ],
             [ 34, "MOVE_AQUA_JET" ],
+            [ 36, "MOVE_BULLDOZE" ],
             [ 40, "MOVE_TAUNT" ],
+            [ 42, "MOVE_POISON_FANG" ],
             [ 45, "MOVE_AGILITY" ],
-            [ 46, "MOVE_LIQUIDATION" ],
             [ 50, "MOVE_SKULL_BASH" ],
-            [ 52, "MOVE_POISON_JAB" ],
             [ 56, "MOVE_NIGHT_SLASH" ],
             [ 58, "MOVE_FIRE_FANG" ],
-            [ 60, "MOVE_THUNDER_FANG" ],
-            [ 66, "MOVE_POISON_FANG" ],
-            [ 68, "MOVE_FLIP_TURN" ],
-            [ 74, "MOVE_THROAT_CHOP" ]
+            [ 60, "MOVE_FLIP_TURN" ],
+            [ 66, "MOVE_POISON_JAB" ],
+            [ 68, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM03",

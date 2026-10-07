@@ -45,13 +45,10 @@
             [ 17, "MOVE_ICY_WIND" ],
             [ 24, "MOVE_PSYBEAM" ],
             [ 28, "MOVE_CONFUSE_RAY" ],
-            [ 45, "MOVE_SCALD" ],
+            [ 45, "MOVE_FLIP_TURN" ],
             [ 54, "MOVE_POWER_GEM" ],
             [ 56, "MOVE_SIGNAL_BEAM" ],
-            [ 62, "MOVE_PSYCHIC" ],
-            [ 64, "MOVE_SURF" ],
-            [ 70, "MOVE_THUNDERBOLT" ],
-            [ 72, "MOVE_ICE_BEAM" ]
+            [ 62, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM03",

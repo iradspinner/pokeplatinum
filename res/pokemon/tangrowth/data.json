@@ -46,6 +46,7 @@
             [ 29, "MOVE_STUN_SPORE" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
             [ 36, "MOVE_KNOCK_OFF" ],
+            [ 38, "MOVE_TRAILBLAZE" ],
             [ 40, "MOVE_NATURAL_GIFT" ],
             [ 43, "MOVE_SLAM" ],
             [ 47, "MOVE_TICKLE" ],
@@ -54,8 +55,8 @@
             [ 57, "MOVE_BLOCK" ],
             [ 59, "MOVE_BRICK_BREAK" ],
             [ 64, "MOVE_ENERGY_BALL" ],
-            [ 66, "MOVE_LEAF_STORM" ],
-            [ 72, "MOVE_EARTHQUAKE" ]
+            [ 66, "MOVE_GIGA_DRAIN" ],
+            [ 72, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
             "TM06",

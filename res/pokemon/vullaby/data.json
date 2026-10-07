@@ -54,7 +54,7 @@
             ],
             [
                 2,
-                "MOVE_FAINT_ATTACK"
+                "MOVE_SNARL"
             ],
             [
                 4,
@@ -73,8 +73,8 @@
                 "MOVE_FLATTER"
             ],
             [
-                17,
-                "MOVE_LASH_OUT"
+                23,
+                "MOVE_FAINT_ATTACK"
             ],
             [
                 24,
@@ -90,7 +90,7 @@
             ],
             [
                 33,
-                "MOVE_ROCK_TOMB"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 35,
@@ -111,10 +111,6 @@
             [
                 50,
                 "MOVE_EMBARGO"
-            ],
-            [
-                54,
-                "MOVE_THROAT_CHOP"
             ],
             [
                 64,

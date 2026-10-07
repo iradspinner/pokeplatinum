@@ -48,13 +48,10 @@
             [ 27, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_EARTHQUAKE" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 46, "MOVE_SUCKER_PUNCH" ],
+            [ 46, "MOVE_IRON_HEAD" ],
             [ 49, "MOVE_ROCK_SLIDE" ],
-            [ 53, "MOVE_BODY_SLAM" ],
-            [ 55, "MOVE_BODY_PRESS" ],
-            [ 61, "MOVE_FIRE_PUNCH" ],
-            [ 63, "MOVE_HAMMER_ARM" ],
-            [ 69, "MOVE_SUPERPOWER" ]
+            [ 53, "MOVE_THUNDER_PUNCH" ],
+            [ 61, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",

@@ -46,7 +46,7 @@
             [ 20, "MOVE_CHARM" ],
             [ 21, "MOVE_SLAM" ],
             [ 26, "MOVE_THUNDERBOLT" ],
-            [ 28, "MOVE_EXTREME_SPEED" ],
+            [ 28, "MOVE_THUNDER_PUNCH" ],
             [ 34, "MOVE_AGILITY" ],
             [ 37, "MOVE_DISCHARGE" ],
             [ 42, "MOVE_LIGHT_SCREEN" ]

@@ -43,7 +43,7 @@
             [ 13, "MOVE_ROLLOUT" ],
             [ 15, "MOVE_WATER_GUN" ],
             [ 18, "MOVE_HEADBUTT" ],
-            [ 20, "MOVE_BITE" ],
+            [ 20, "MOVE_SMACK_DOWN" ],
             [ 23, "MOVE_HYPER_FANG" ],
             [ 28, "MOVE_YAWN" ],
             [ 30, "MOVE_BULLDOZE" ],
@@ -53,9 +53,9 @@
             [ 48, "MOVE_SUPERPOWER" ],
             [ 50, "MOVE_ICE_FANG" ],
             [ 53, "MOVE_CURSE" ],
-            [ 57, "MOVE_AQUA_TAIL" ],
-            [ 59, "MOVE_DOUBLE_EDGE" ],
-            [ 65, "MOVE_CRUNCH" ]
+            [ 57, "MOVE_ROCK_CLIMB" ],
+            [ 59, "MOVE_FLIP_TURN" ],
+            [ 65, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM01",

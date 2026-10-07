@@ -85,10 +85,6 @@
                 "MOVE_KNOCK_OFF"
             ],
             [
-                46,
-                "MOVE_BULLDOZE"
-            ],
-            [
                 48,
                 "MOVE_SEED_BOMB"
             ],
@@ -97,16 +93,16 @@
                 "MOVE_IRON_HEAD"
             ],
             [
-                54,
+                53,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                55,
                 "MOVE_POISON_JAB"
             ],
             [
-                56,
-                "MOVE_BODY_PRESS"
-            ],
-            [
                 61,
-                "MOVE_CURSE"
+                "MOVE_BODY_PRESS"
             ],
             [
                 65,
@@ -115,6 +111,10 @@
             [
                 70,
                 "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                72,
+                "MOVE_CURSE"
             ]
         ],
         "by_tm": [],

@@ -38,7 +38,7 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 2, "MOVE_ROUND" ],
+            [ 2, "MOVE_CHARGE_BEAM" ],
             [ 3, "MOVE_CALM_MIND" ],
             [ 4, "MOVE_CONFUSION" ]
         ],

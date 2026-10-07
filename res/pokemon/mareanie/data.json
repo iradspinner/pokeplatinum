@@ -85,12 +85,12 @@
                 "MOVE_PIN_MISSILE"
             ],
             [
-                35,
-                "MOVE_LIQUIDATION"
-            ],
-            [
                 36,
                 "MOVE_TOXIC"
+            ],
+            [
+                38,
+                "MOVE_WATER_PULSE"
             ],
             [
                 40,
@@ -98,6 +98,10 @@
             ],
             [
                 41,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                42,
                 "MOVE_POISON_JAB"
             ]
         ],

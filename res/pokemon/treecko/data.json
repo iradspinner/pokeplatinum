@@ -39,14 +39,15 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 8, "MOVE_DRAGON_BREATH" ],
-            [ 9, "MOVE_GIGA_DRAIN" ],
+            [ 8, "MOVE_MAGICAL_LEAF" ],
+            [ 9, "MOVE_MEGA_DRAIN" ],
+            [ 10, "MOVE_SCREECH" ],
             [ 11, "MOVE_QUICK_ATTACK" ],
-            [ 13, "MOVE_SCREECH" ],
+            [ 13, "MOVE_DRAGON_BREATH" ],
             [ 16, "MOVE_PURSUIT" ],
-            [ 26, "MOVE_MEGA_DRAIN" ],
             [ 31, "MOVE_AGILITY" ],
             [ 36, "MOVE_SLAM" ],
+            [ 46, "MOVE_GIGA_DRAIN" ],
             [ 51, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [

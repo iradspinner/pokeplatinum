@@ -56,10 +56,11 @@
             [ 45, "MOVE_BULLDOZE" ],
             [ 50, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_RECOVER" ],
-            [ 58, "MOVE_SLUDGE_BOMB" ],
-            [ 60, "MOVE_SKITTER_SMACK" ],
+            [ 58, "MOVE_SKITTER_SMACK" ],
+            [ 60, "MOVE_ROCK_TOMB" ],
             [ 66, "MOVE_BLOCK" ],
-            [ 68, "MOVE_ROCK_TOMB" ]
+            [ 68, "MOVE_SLUDGE" ],
+            [ 74, "MOVE_SLUDGE_BOMB" ]
         ],
         "by_tm": [
             "TM03",

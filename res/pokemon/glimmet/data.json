@@ -73,12 +73,12 @@
                 "MOVE_STEALTH_ROCK"
             ],
             [
-                20,
-                "MOVE_MUD_SHOT"
-            ],
-            [
                 22,
                 "MOVE_VENOSHOCK"
+            ],
+            [
+                27,
+                "MOVE_MUD_SHOT"
             ],
             [
                 33,

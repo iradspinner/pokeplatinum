@@ -50,12 +50,11 @@
             [ 32, "MOVE_CAPTIVATE" ],
             [ 37, "MOVE_SLASH" ],
             [ 38, "MOVE_SWAGGER" ],
-            [ 40, "MOVE_SHADOW_CLAW" ],
-            [ 42, "MOVE_AERIAL_ACE" ],
+            [ 39, "MOVE_STRENGTH" ],
+            [ 41, "MOVE_SHADOW_CLAW" ],
             [ 45, "MOVE_BODY_SLAM" ],
-            [ 48, "MOVE_SUCKER_PUNCH" ],
+            [ 48, "MOVE_BITE" ],
             [ 53, "MOVE_ATTRACT" ],
-            [ 56, "MOVE_SLAM" ],
             [ 64, "MOVE_CRUSH_CLAW" ]
         ],
         "by_tm": [

@@ -52,8 +52,8 @@
             [ 48, "MOVE_METEOR_MASH" ],
             [ 51, "MOVE_EXTREME_SPEED" ],
             [ 54, "MOVE_BULLDOZE" ],
-            [ 56, "MOVE_EXTRASENSORY" ],
-            [ 62, "MOVE_ICE_PUNCH" ],
+            [ 56, "MOVE_ICE_PUNCH" ],
+            [ 62, "MOVE_THUNDER_PUNCH" ],
             [ 64, "MOVE_IRON_HEAD" ],
             [ 70, "MOVE_LOW_SWEEP" ],
             [ 72, "MOVE_DRAIN_PUNCH" ]

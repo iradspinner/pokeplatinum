@@ -41,6 +41,7 @@
             [ 1, "MOVE_WATER_SPORT" ],
             [ 1, "MOVE_BUBBLE" ],
             [ 1, "MOVE_HYPNOSIS" ],
+            [ 5, "MOVE_BUBBLE" ],
             [ 8, "MOVE_HYPNOSIS" ],
             [ 15, "MOVE_DOUBLE_SLAP" ],
             [ 21, "MOVE_BODY_SLAM" ],
@@ -49,8 +50,8 @@
             [ 28, "MOVE_SWAGGER" ],
             [ 32, "MOVE_MUD_SHOT" ],
             [ 34, "MOVE_LOW_SWEEP" ],
-            [ 36, "MOVE_LIQUIDATION" ],
-            [ 38, "MOVE_THROAT_CHOP" ],
+            [ 36, "MOVE_THROAT_CHOP" ],
+            [ 38, "MOVE_ROCK_TOMB" ],
             [ 43, "MOVE_WAKE_UP_SLAP" ],
             [ 48, "MOVE_MUDDY_WATER" ],
             [ 53, "MOVE_MUD_BOMB" ]

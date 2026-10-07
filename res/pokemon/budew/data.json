@@ -38,16 +38,16 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 2, "MOVE_MAGICAL_LEAF" ],
+            [ 2, "MOVE_CLEAR_SMOG" ],
             [ 3, "MOVE_ACID" ],
+            [ 5, "MOVE_CONFUSION" ],
             [ 7, "MOVE_WATER_SPORT" ],
             [ 10, "MOVE_STUN_SPORE" ],
             [ 13, "MOVE_MEGA_DRAIN" ],
             [ 16, "MOVE_WORRY_SEED" ],
-            [ 18, "MOVE_GIGA_DRAIN" ],
-            [ 20, "MOVE_VENOSHOCK" ],
-            [ 22, "MOVE_CONFUSION" ],
-            [ 27, "MOVE_WEATHER_BALL" ],
+            [ 19, "MOVE_MAGICAL_LEAF" ],
+            [ 21, "MOVE_WEATHER_BALL" ],
+            [ 25, "MOVE_GIGA_DRAIN" ],
             [ 28, "MOVE_TOXIC_SPIKES" ]
         ],
         "by_tm": [

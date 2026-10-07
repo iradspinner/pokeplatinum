@@ -86,7 +86,7 @@
             ],
             [
                 42,
-                "MOVE_FLAMETHROWER"
+                "MOVE_U_TURN"
             ],
             [
                 46,
@@ -102,19 +102,15 @@
             ],
             [
                 57,
-                "MOVE_U_TURN"
-            ],
-            [
-                59,
                 "MOVE_OVERHEAT"
             ],
             [
-                64,
-                "MOVE_DOUBLE_EDGE"
+                59,
+                "MOVE_AGILITY"
             ],
             [
-                66,
-                "MOVE_AGILITY"
+                64,
+                "MOVE_BULK_UP"
             ]
         ],
         "by_tm": [],

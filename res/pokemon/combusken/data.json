@@ -45,7 +45,7 @@
             [ 13, "MOVE_EMBER" ],
             [ 16, "MOVE_DOUBLE_KICK" ],
             [ 17, "MOVE_PECK" ],
-            [ 19, "MOVE_ROLLING_KICK" ],
+            [ 19, "MOVE_VACUUM_WAVE" ],
             [ 21, "MOVE_SAND_ATTACK" ],
             [ 27, "MOVE_FOCUS_ENERGY" ],
             [ 28, "MOVE_BULK_UP" ],
@@ -53,7 +53,8 @@
             [ 39, "MOVE_SLASH" ],
             [ 43, "MOVE_MIRROR_MOVE" ],
             [ 50, "MOVE_SKY_UPPERCUT" ],
-            [ 54, "MOVE_FLARE_BLITZ" ]
+            [ 54, "MOVE_FLARE_BLITZ" ],
+            [ 66, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [
             "TM01",

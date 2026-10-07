@@ -102,15 +102,11 @@
             ],
             [
                 43,
-                "MOVE_WATERFALL"
+                "MOVE_POISON_JAB"
             ],
             [
                 48,
                 "MOVE_SCALD"
-            ],
-            [
-                51,
-                "MOVE_POISON_JAB"
             ],
             [
                 55,
@@ -118,19 +114,11 @@
             ],
             [
                 59,
-                "MOVE_CRUNCH"
+                "MOVE_ICE_FANG"
             ],
             [
                 61,
                 "MOVE_LEECH_LIFE"
-            ],
-            [
-                63,
-                "MOVE_ICE_PUNCH"
-            ],
-            [
-                67,
-                "MOVE_BODY_SLAM"
             ]
         ],
         "by_tm": [],

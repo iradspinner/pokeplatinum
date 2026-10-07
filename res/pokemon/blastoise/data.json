@@ -44,6 +44,7 @@
             [ 1, "MOVE_BUBBLE" ],
             [ 1, "MOVE_WITHDRAW" ],
             [ 7, "MOVE_BUBBLE" ],
+            [ 13, "MOVE_WATER_GUN" ],
             [ 16, "MOVE_BITE" ],
             [ 20, "MOVE_RAPID_SPIN" ],
             [ 28, "MOVE_WATER_PULSE" ],
@@ -52,11 +53,11 @@
             [ 39, "MOVE_SKULL_BASH" ],
             [ 41, "MOVE_FLASH_CANNON" ],
             [ 46, "MOVE_IRON_DEFENSE" ],
-            [ 48, "MOVE_DARK_PULSE" ],
-            [ 50, "MOVE_AURA_SPHERE" ],
-            [ 56, "MOVE_SHELL_SMASH" ],
+            [ 48, "MOVE_AURA_SPHERE" ],
+            [ 50, "MOVE_SHELL_SMASH" ],
+            [ 56, "MOVE_SIGNAL_BEAM" ],
             [ 60, "MOVE_MUDDY_WATER" ],
-            [ 64, "MOVE_ICE_BEAM" ]
+            [ 64, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

@@ -56,10 +56,8 @@
             [ 50, "MOVE_DAZZLING_GLEAM" ],
             [ 51, "MOVE_LIGHT_SCREEN" ],
             [ 59, "MOVE_POWER_GEM" ],
-            [ 61, "MOVE_DRAGON_PULSE" ],
-            [ 66, "MOVE_DRACO_METEOR" ],
-            [ 68, "MOVE_THUNDERBOLT" ],
-            [ 74, "MOVE_CONFUSE_RAY" ]
+            [ 61, "MOVE_CONFUSE_RAY" ],
+            [ 68, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM01",

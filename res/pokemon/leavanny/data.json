@@ -118,7 +118,7 @@
             ],
             [
                 54,
-                "MOVE_SLASH"
+                "MOVE_LUNGE"
             ],
             [
                 58,
@@ -126,19 +126,11 @@
             ],
             [
                 60,
-                "MOVE_LUNGE"
-            ],
-            [
-                66,
                 "MOVE_SKITTER_SMACK"
             ],
             [
-                68,
-                "MOVE_THROAT_CHOP"
-            ],
-            [
-                74,
-                "MOVE_TAKE_DOWN"
+                66,
+                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

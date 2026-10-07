@@ -50,13 +50,11 @@
             [ 36, "MOVE_WAKE_UP_SLAP" ],
             [ 40, "MOVE_CLOSE_COMBAT" ],
             [ 44, "MOVE_SCARY_FACE" ],
-            [ 46, "MOVE_ROCK_SLIDE" ],
+            [ 46, "MOVE_THROAT_CHOP" ],
             [ 48, "MOVE_LOW_SWEEP" ],
-            [ 53, "MOVE_THROAT_CHOP" ],
-            [ 55, "MOVE_ROCK_TOMB" ],
-            [ 61, "MOVE_METEOR_MASH" ],
-            [ 63, "MOVE_EARTHQUAKE" ],
-            [ 69, "MOVE_BULK_UP" ]
+            [ 53, "MOVE_ROCK_TOMB" ],
+            [ 55, "MOVE_BULK_UP" ],
+            [ 61, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

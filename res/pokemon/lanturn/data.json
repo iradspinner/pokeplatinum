@@ -52,16 +52,15 @@
             [ 29, "MOVE_SPIT_UP" ],
             [ 30, "MOVE_BUBBLE_BEAM" ],
             [ 35, "MOVE_SIGNAL_BEAM" ],
-            [ 37, "MOVE_SCALD" ],
             [ 40, "MOVE_DISCHARGE" ],
             [ 42, "MOVE_THUNDERBOLT" ],
             [ 47, "MOVE_AQUA_RING" ],
             [ 52, "MOVE_MUDDY_WATER" ],
             [ 57, "MOVE_CHARGE" ],
             [ 59, "MOVE_FLASH_CANNON" ],
-            [ 61, "MOVE_VOLT_SWITCH" ],
-            [ 66, "MOVE_DAZZLING_GLEAM" ],
-            [ 68, "MOVE_ICE_BEAM" ]
+            [ 61, "MOVE_SCALD" ],
+            [ 66, "MOVE_VOLT_SWITCH" ],
+            [ 68, "MOVE_DAZZLING_GLEAM" ]
         ],
         "by_tm": [
             "TM03",

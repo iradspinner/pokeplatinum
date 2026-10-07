@@ -54,11 +54,15 @@
             ],
             [
                 8,
-                "MOVE_FLAME_CHARGE"
+                "MOVE_INCINERATE"
             ],
             [
                 9,
                 "MOVE_ROLE_PLAY"
+            ],
+            [
+                11,
+                "MOVE_CALM_MIND"
             ],
             [
                 13,

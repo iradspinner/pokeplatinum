@@ -40,11 +40,10 @@
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_FORESIGHT" ],
-            [ 3, "MOVE_COVET" ],
+            [ 3, "MOVE_BABY_DOLL_EYES" ],
             [ 4, "MOVE_DEFENSE_CURL" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
-            [ 9, "MOVE_BABY_DOLL_EYES" ],
-            [ 11, "MOVE_PURSUIT" ],
+            [ 9, "MOVE_PURSUIT" ],
             [ 13, "MOVE_FURY_SWIPES" ],
             [ 16, "MOVE_HELPING_HAND" ],
             [ 19, "MOVE_FOLLOW_ME" ],

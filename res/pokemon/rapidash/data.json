@@ -53,10 +53,10 @@
             [ 37, "MOVE_HEAT_WAVE" ],
             [ 40, "MOVE_BLAZE_KICK" ],
             [ 42, "MOVE_POISON_JAB" ],
-            [ 45, "MOVE_OVERHEAT" ],
+            [ 45, "MOVE_DRILL_RUN" ],
             [ 47, "MOVE_BOUNCE" ],
-            [ 49, "MOVE_THROAT_CHOP" ],
-            [ 53, "MOVE_SMART_STRIKE" ],
+            [ 49, "MOVE_OVERHEAT" ],
+            [ 53, "MOVE_JUMP_KICK" ],
             [ 56, "MOVE_FLARE_BLITZ" ],
             [ 61, "MOVE_CHARM" ]
         ],

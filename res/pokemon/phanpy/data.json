@@ -42,7 +42,7 @@
             [ 1, "MOVE_TACKLE" ],
             [ 4, "MOVE_BULLDOZE" ],
             [ 6, "MOVE_FLAIL" ],
-            [ 8, "MOVE_ICE_SHARD" ],
+            [ 8, "MOVE_ROCK_THROW" ],
             [ 10, "MOVE_TAKE_DOWN" ],
             [ 15, "MOVE_ROLLOUT" ],
             [ 19, "MOVE_NATURAL_GIFT" ],

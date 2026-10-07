@@ -52,9 +52,9 @@
             [ 42, "MOVE_THROAT_CHOP" ],
             [ 48, "MOVE_SUCKER_PUNCH" ],
             [ 50, "MOVE_POISON_JAB" ],
-            [ 56, "MOVE_PLAY_ROUGH" ],
-            [ 58, "MOVE_SHADOW_BALL" ],
-            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 56, "MOVE_SHADOW_BALL" ],
+            [ 58, "MOVE_TAKE_DOWN" ],
+            [ 64, "MOVE_PLAY_ROUGH" ],
             [ 66, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [

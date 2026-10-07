@@ -50,12 +50,12 @@
             [ 28, "MOVE_ICY_WIND" ],
             [ 35, "MOVE_SLASH" ],
             [ 37, "MOVE_REVENGE" ],
-            [ 40, "MOVE_POISON_JAB" ],
+            [ 40, "MOVE_AERIAL_ACE" ],
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_ICE_SHARD" ],
-            [ 51, "MOVE_THROAT_CHOP" ],
-            [ 56, "MOVE_ICE_PUNCH" ],
-            [ 58, "MOVE_ICICLE_CRASH" ]
+            [ 51, "MOVE_LOW_SWEEP" ],
+            [ 56, "MOVE_POISON_JAB" ],
+            [ 58, "MOVE_BITE" ]
         ],
         "by_tm": [
             "TM01",

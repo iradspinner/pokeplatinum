@@ -90,7 +90,7 @@
             ],
             [
                 36,
-                "MOVE_FACADE"
+                "MOVE_SMACK_DOWN"
             ],
             [
                 40,
@@ -109,27 +109,15 @@
                 "MOVE_HYPER_VOICE"
             ],
             [
-                52,
+                58,
                 "MOVE_TAKE_DOWN"
             ],
             [
-                58,
-                "MOVE_SEED_BOMB"
-            ],
-            [
                 60,
-                "MOVE_BRICK_BREAK"
+                "MOVE_BODY_SLAM"
             ],
             [
                 66,
-                "MOVE_BEAK_BLAST"
-            ],
-            [
-                68,
-                "MOVE_TEMPER_FLARE"
-            ],
-            [
-                74,
                 "MOVE_ROCK_CLIMB"
             ]
         ],

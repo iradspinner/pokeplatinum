@@ -40,7 +40,7 @@
         "by_level": [
             [ 1, "MOVE_SONIC_BOOM" ],
             [ 1, "MOVE_WATER_SPORT" ],
-            [ 2, "MOVE_BUBBLE_BEAM" ],
+            [ 2, "MOVE_CHILLING_WATER" ],
             [ 3, "MOVE_QUICK_ATTACK" ],
             [ 8, "MOVE_SCARY_FACE" ],
             [ 10, "MOVE_PURSUIT" ],

@@ -45,16 +45,20 @@
     "learnset": {
         "by_level": [
             [
-                3,
-                "MOVE_MAGICAL_LEAF"
-            ],
-            [
                 4,
-                "MOVE_TAUNT"
+                "MOVE_TACKLE"
             ],
             [
                 5,
+                "MOVE_MEGA_DRAIN"
+            ],
+            [
+                6,
                 "MOVE_PLAY_NICE"
+            ],
+            [
+                7,
+                "MOVE_TAUNT"
             ],
             [
                 9,
@@ -63,6 +67,10 @@
             [
                 12,
                 "MOVE_RAZOR_LEAF"
+            ],
+            [
+                21,
+                "MOVE_MAGICAL_LEAF"
             ],
             [
                 23,

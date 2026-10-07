@@ -43,12 +43,12 @@
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_THUNDERBOLT" ],
             [ 45, "MOVE_BRICK_BREAK" ],
-            [ 54, "MOVE_THUNDER_PUNCH" ],
-            [ 56, "MOVE_DISCHARGE" ],
-            [ 62, "MOVE_SURF" ],
-            [ 64, "MOVE_VOLT_TACKLE" ],
-            [ 70, "MOVE_PLAY_ROUGH" ],
-            [ 72, "MOVE_SWEET_KISS" ]
+            [ 54, "MOVE_VOLT_TACKLE" ],
+            [ 56, "MOVE_SURF" ],
+            [ 62, "MOVE_SWEET_KISS" ],
+            [ 64, "MOVE_PLAY_ROUGH" ],
+            [ 70, "MOVE_VOLT_SWITCH" ],
+            [ 72, "MOVE_EXTREME_SPEED" ]
         ],
         "by_tm": [
             "TM01",

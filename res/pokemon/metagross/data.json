@@ -53,12 +53,12 @@
             [ 45, "MOVE_HAMMER_ARM" ],
             [ 53, "MOVE_METEOR_MASH" ],
             [ 55, "MOVE_ICE_FANG" ],
-            [ 57, "MOVE_PSYCHIC_FANGS" ],
+            [ 57, "MOVE_IRON_HEAD" ],
             [ 62, "MOVE_ZEN_HEADBUTT" ],
-            [ 64, "MOVE_IRON_HEAD" ],
+            [ 64, "MOVE_ICE_PUNCH" ],
+            [ 66, "MOVE_LOW_SWEEP" ],
             [ 71, "MOVE_HYPER_BEAM" ],
-            [ 73, "MOVE_ICE_PUNCH" ],
-            [ 75, "MOVE_CRUNCH" ]
+            [ 73, "MOVE_BITE" ]
         ],
         "by_tm": [
             "TM06",

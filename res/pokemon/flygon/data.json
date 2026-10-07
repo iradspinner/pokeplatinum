@@ -48,9 +48,7 @@
             [ 56, "MOVE_DRAGON_RUSH" ],
             [ 57, "MOVE_HYPER_BEAM" ],
             [ 62, "MOVE_FIRE_PUNCH" ],
-            [ 64, "MOVE_DRACO_METEOR" ],
-            [ 70, "MOVE_BUG_BUZZ" ],
-            [ 72, "MOVE_FIRST_IMPRESSION" ]
+            [ 64, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM02",

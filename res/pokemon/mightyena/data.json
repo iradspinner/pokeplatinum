@@ -53,7 +53,7 @@
             [ 37, "MOVE_SCARY_FACE" ],
             [ 39, "MOVE_THROAT_CHOP" ],
             [ 42, "MOVE_TAUNT" ],
-            [ 44, "MOVE_BODY_SLAM" ],
+            [ 44, "MOVE_QUICK_ATTACK" ],
             [ 47, "MOVE_EMBARGO" ],
             [ 49, "MOVE_POISON_JAB" ],
             [ 52, "MOVE_TAKE_DOWN" ],

@@ -39,10 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_DRAINING_KISS" ],
+            [ 1, "MOVE_ZEN_HEADBUTT" ],
             [ 6, "MOVE_CONFUSION" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
-            [ 19, "MOVE_DAZZLING_GLEAM" ],
+            [ 19, "MOVE_DRAINING_KISS" ],
             [ 20, "MOVE_MAGICAL_LEAF" ],
             [ 23, "MOVE_CALM_MIND" ],
             [ 28, "MOVE_PSYCHIC" ],

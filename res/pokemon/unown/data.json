@@ -65,8 +65,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_HIDDEN_POWER" ],
-            [ 19, "MOVE_PSYCHIC" ],
-            [ 20, "MOVE_PSYCHIC_FANGS" ],
+            [ 19, "MOVE_PSYCHIC_NOISE" ],
+            [ 20, "MOVE_PSYCHO_CUT" ],
+            [ 34, "MOVE_ZEN_HEADBUTT" ],
+            [ 40, "MOVE_PSYCHIC" ],
             [ 64, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [  ],

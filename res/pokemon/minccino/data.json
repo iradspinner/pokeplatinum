@@ -90,7 +90,7 @@
             ],
             [
                 27,
-                "MOVE_FACADE"
+                "MOVE_TRAILBLAZE"
             ],
             [
                 28,
@@ -114,7 +114,7 @@
             ],
             [
                 41,
-                "MOVE_SEED_BOMB"
+                "MOVE_U_TURN"
             ],
             [
                 43,
@@ -123,10 +123,6 @@
             [
                 46,
                 "MOVE_LAST_RESORT"
-            ],
-            [
-                49,
-                "MOVE_PLAY_ROUGH"
             ]
         ],
         "by_tm": [],

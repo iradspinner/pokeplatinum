@@ -93,10 +93,6 @@
                 "MOVE_SUPER_FANG"
             ],
             [
-                35,
-                "MOVE_BODY_PRESS"
-            ],
-            [
                 39,
                 "MOVE_ENTRAINMENT"
             ],
@@ -122,19 +118,19 @@
             ],
             [
                 63,
-                "MOVE_KNOCK_OFF"
-            ],
-            [
-                65,
                 "MOVE_LOW_SWEEP"
             ],
             [
-                70,
+                65,
                 "MOVE_FIRE_PUNCH"
             ],
             [
+                70,
+                "MOVE_AGILITY"
+            ],
+            [
                 72,
-                "MOVE_THROAT_CHOP"
+                "MOVE_THUNDER_WAVE"
             ]
         ],
         "by_tm": [],

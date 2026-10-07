@@ -40,9 +40,9 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 10, "MOVE_THUNDER_SHOCK" ],
-            [ 11, "MOVE_SHOCK_WAVE" ],
+            [ 11, "MOVE_CHARGE_BEAM" ],
             [ 12, "MOVE_SWAGGER" ],
-            [ 13, "MOVE_ANCIENT_POWER" ],
+            [ 13, "MOVE_SNARL" ],
             [ 14, "MOVE_THUNDER_WAVE" ],
             [ 19, "MOVE_COTTON_SPORE" ],
             [ 23, "MOVE_CHARGE" ],

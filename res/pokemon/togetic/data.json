@@ -49,14 +49,14 @@
             [ 19, "MOVE_ENCORE" ],
             [ 24, "MOVE_FOLLOW_ME" ],
             [ 28, "MOVE_WISH" ],
-            [ 30, "MOVE_AIR_SLASH" ],
+            [ 30, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
             [ 35, "MOVE_AURA_SPHERE" ],
             [ 37, "MOVE_SAFEGUARD" ],
             [ 42, "MOVE_SHADOW_BALL" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 51, "MOVE_LAST_RESORT" ],
-            [ 53, "MOVE_MOONBLAST" ]
+            [ 53, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [
             "TM01",

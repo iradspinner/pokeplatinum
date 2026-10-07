@@ -46,10 +46,9 @@
             [ 19, "MOVE_SAND_TOMB" ],
             [ 28, "MOVE_SLASH" ],
             [ 33, "MOVE_DRAGON_CLAW" ],
-            [ 35, "MOVE_STOMPING_TANTRUM" ],
+            [ 35, "MOVE_BULLDOZE" ],
             [ 37, "MOVE_AERIAL_ACE" ],
             [ 40, "MOVE_DIG" ],
-            [ 45, "MOVE_BULLDOZE" ],
             [ 49, "MOVE_DRAGON_RUSH" ],
             [ 66, "MOVE_OUTRAGE" ]
         ],

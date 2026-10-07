@@ -130,19 +130,11 @@
             ],
             [
                 49,
-                "MOVE_SURF"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 51,
                 "MOVE_GUNK_SHOT"
-            ],
-            [
-                56,
-                "MOVE_ICE_BEAM"
-            ],
-            [
-                58,
-                "MOVE_MUDDY_WATER"
             ],
             [
                 65,
@@ -151,10 +143,6 @@
             [
                 67,
                 "MOVE_TAUNT"
-            ],
-            [
-                69,
-                "MOVE_THROAT_CHOP"
             ]
         ],
         "by_tm": [],

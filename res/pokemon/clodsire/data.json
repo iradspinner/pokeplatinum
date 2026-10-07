@@ -70,7 +70,7 @@
             ],
             [
                 18,
-                "MOVE_ROCK_TOMB"
+                "MOVE_ROCK_SLIDE"
             ],
             [
                 21,
@@ -94,7 +94,7 @@
             ],
             [
                 42,
-                "MOVE_WATERFALL"
+                "MOVE_BODY_PRESS"
             ],
             [
                 48,
@@ -102,7 +102,7 @@
             ],
             [
                 50,
-                "MOVE_BODY_PRESS"
+                "MOVE_IRON_HEAD"
             ],
             [
                 55,
@@ -110,7 +110,7 @@
             ],
             [
                 58,
-                "MOVE_LIQUIDATION"
+                "MOVE_ROCK_TOMB"
             ],
             [
                 60,

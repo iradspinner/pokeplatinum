@@ -78,7 +78,7 @@
             ],
             [
                 34,
-                "MOVE_LOW_SWEEP"
+                "MOVE_BODY_PRESS"
             ],
             [
                 38,
@@ -86,7 +86,7 @@
             ],
             [
                 40,
-                "MOVE_BODY_PRESS"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 42,

@@ -48,12 +48,12 @@
             [ 33, "MOVE_BATON_PASS" ],
             [ 35, "MOVE_DRAINING_KISS" ],
             [ 37, "MOVE_DIVE" ],
-            [ 40, "MOVE_MUDDY_WATER" ],
             [ 42, "MOVE_PSYCHIC" ],
             [ 46, "MOVE_AQUA_TAIL" ],
             [ 48, "MOVE_SHADOW_BALL" ],
-            [ 50, "MOVE_GIGA_DRAIN" ],
-            [ 56, "MOVE_SCALD" ],
+            [ 51, "MOVE_MUDDY_WATER" ],
+            [ 56, "MOVE_ICE_BEAM" ],
+            [ 58, "MOVE_SCALD" ],
             [ 64, "MOVE_SHELL_SMASH" ]
         ],
         "by_tm": [

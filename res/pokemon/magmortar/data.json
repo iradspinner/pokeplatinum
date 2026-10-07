@@ -52,10 +52,11 @@
             [ 37, "MOVE_LAVA_PLUME" ],
             [ 40, "MOVE_SCORCHING_SANDS" ],
             [ 43, "MOVE_FLAMETHROWER" ],
-            [ 45, "MOVE_MILK_DRINK" ],
+            [ 45, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_THUNDERBOLT" ],
+            [ 53, "MOVE_MILK_DRINK" ],
             [ 58, "MOVE_OVERHEAT" ],
-            [ 61, "MOVE_PSYCHIC" ],
-            [ 63, "MOVE_THUNDERBOLT" ],
+            [ 61, "MOVE_SWAGGER" ],
             [ 67, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [

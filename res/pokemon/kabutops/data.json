@@ -49,12 +49,12 @@
             [ 36, "MOVE_MEGA_DRAIN" ],
             [ 40, "MOVE_SLASH" ],
             [ 45, "MOVE_METAL_SOUND" ],
-            [ 49, "MOVE_LEECH_LIFE" ],
+            [ 47, "MOVE_ROCK_TOMB" ],
             [ 54, "MOVE_ANCIENT_POWER" ],
-            [ 56, "MOVE_BRICK_BREAK" ],
+            [ 56, "MOVE_CROSS_POISON" ],
             [ 61, "MOVE_ICE_FANG" ],
-            [ 63, "MOVE_RAZOR_SHELL" ],
-            [ 69, "MOVE_ROCK_TOMB" ],
+            [ 63, "MOVE_LEECH_LIFE" ],
+            [ 69, "MOVE_POISON_JAB" ],
             [ 72, "MOVE_NIGHT_SLASH" ]
         ],
         "by_tm": [

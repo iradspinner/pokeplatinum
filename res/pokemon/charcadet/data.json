@@ -54,7 +54,7 @@
             ],
             [
                 17,
-                "MOVE_LAVA_PLUME"
+                "MOVE_SHADOW_SNEAK"
             ],
             [
                 20,
@@ -70,7 +70,7 @@
             ],
             [
                 34,
-                "MOVE_PSYSHOCK"
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 40,
@@ -78,15 +78,15 @@
             ],
             [
                 42,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
-                48,
-                "MOVE_BITTER_BLADE"
+                44,
+                "MOVE_SHADOW_CLAW"
             ],
             [
                 50,
-                "MOVE_SHADOW_CLAW"
+                "MOVE_LAVA_PLUME"
             ]
         ],
         "by_tm": [],

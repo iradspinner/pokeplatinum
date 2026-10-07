@@ -86,7 +86,7 @@
             ],
             [
                 45,
-                "MOVE_MUDDY_WATER"
+                "MOVE_DARK_PULSE"
             ],
             [
                 51,
@@ -94,7 +94,7 @@
             ],
             [
                 53,
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 55,
@@ -102,7 +102,7 @@
             ],
             [
                 61,
-                "MOVE_ENERGY_BALL"
+                "MOVE_SLUDGE_BOMB"
             ],
             [
                 65,
@@ -114,7 +114,7 @@
             ],
             [
                 72,
-                "MOVE_ICE_BEAM"
+                "MOVE_ENERGY_BALL"
             ]
         ],
         "by_tm": [],

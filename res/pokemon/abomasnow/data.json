@@ -50,14 +50,12 @@
             [ 21, "MOVE_MIST" ],
             [ 26, "MOVE_ICE_SHARD" ],
             [ 36, "MOVE_WOOD_HAMMER" ],
-            [ 45, "MOVE_ICE_PUNCH" ],
+            [ 45, "MOVE_HAMMER_ARM" ],
             [ 47, "MOVE_ICE_BEAM" ],
-            [ 53, "MOVE_BODY_PRESS" ],
-            [ 55, "MOVE_GIGA_DRAIN" ],
-            [ 61, "MOVE_LEAF_STORM" ],
-            [ 63, "MOVE_EARTHQUAKE" ],
-            [ 69, "MOVE_SHADOW_BALL" ],
-            [ 71, "MOVE_HAMMER_ARM" ]
+            [ 53, "MOVE_LEAF_STORM" ],
+            [ 55, "MOVE_ICE_PUNCH" ],
+            [ 61, "MOVE_GIGA_DRAIN" ],
+            [ 63, "MOVE_SHADOW_BALL" ]
         ],
         "by_tm": [
             "TM01",

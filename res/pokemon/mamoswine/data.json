@@ -52,12 +52,12 @@
             [ 40, "MOVE_EARTHQUAKE" ],
             [ 42, "MOVE_BRICK_BREAK" ],
             [ 48, "MOVE_MIST" ],
-            [ 50, "MOVE_ICICLE_CRASH" ],
+            [ 50, "MOVE_BULLDOZE" ],
             [ 56, "MOVE_ICE_BEAM" ],
-            [ 58, "MOVE_BULLDOZE" ],
+            [ 58, "MOVE_IRON_HEAD" ],
             [ 65, "MOVE_SCARY_FACE" ],
-            [ 67, "MOVE_DOUBLE_EDGE" ],
-            [ 72, "MOVE_SUPERPOWER" ]
+            [ 67, "MOVE_ICICLE_CRASH" ],
+            [ 72, "MOVE_ROCK_TOMB" ]
         ],
         "by_tm": [
             "TM05",

@@ -49,16 +49,15 @@
             [ 26, "MOVE_IRON_DEFENSE" ],
             [ 30, "MOVE_SAFEGUARD" ],
             [ 33, "MOVE_BLOCK" ],
-            [ 35, "MOVE_IRON_HEAD" ],
+            [ 35, "MOVE_BULLDOZE" ],
             [ 38, "MOVE_GYRO_BALL" ],
             [ 43, "MOVE_FUTURE_SIGHT" ],
-            [ 45, "MOVE_ROCK_TOMB" ],
+            [ 45, "MOVE_IRON_HEAD" ],
             [ 50, "MOVE_FAINT_ATTACK" ],
-            [ 52, "MOVE_BODY_PRESS" ],
-            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 52, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_BODY_PRESS" ],
             [ 61, "MOVE_PAYBACK" ],
-            [ 67, "MOVE_HEAL_BLOCK" ],
-            [ 69, "MOVE_SHADOW_BALL" ]
+            [ 67, "MOVE_HEAL_BLOCK" ]
         ],
         "by_tm": [
             "TM04",

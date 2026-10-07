@@ -40,15 +40,13 @@
             [ 1, "MOVE_SPITE" ],
             [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_PSYBEAM" ],
-            [ 17, "MOVE_MAGICAL_LEAF" ],
-            [ 23, "MOVE_HEX" ],
-            [ 45, "MOVE_SHADOW_BALL" ],
-            [ 50, "MOVE_POWER_GEM" ],
-            [ 53, "MOVE_PSYSHOCK" ],
-            [ 55, "MOVE_MYSTICAL_FIRE" ],
-            [ 61, "MOVE_MEAN_LOOK" ],
-            [ 63, "MOVE_ENERGY_BALL" ],
-            [ 69, "MOVE_PSYCHIC" ]
+            [ 17, "MOVE_OMINOUS_WIND" ],
+            [ 19, "MOVE_CONFUSION" ],
+            [ 40, "MOVE_HEX" ],
+            [ 45, "MOVE_MEAN_LOOK" ],
+            [ 61, "MOVE_POWER_GEM" ],
+            [ 63, "MOVE_MYSTICAL_FIRE" ],
+            [ 69, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM04",

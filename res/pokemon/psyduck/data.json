@@ -39,12 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 2, "MOVE_SCREECH" ],
-            [ 3, "MOVE_WATER_PULSE" ],
-            [ 5, "MOVE_TRAILBLAZE" ],
+            [ 2, "MOVE_CONFUSION" ],
+            [ 3, "MOVE_FLIP_TURN" ],
+            [ 5, "MOVE_SCREECH" ],
+            [ 9, "MOVE_WATER_GUN" ],
             [ 14, "MOVE_DISABLE" ],
-            [ 18, "MOVE_CONFUSION" ],
-            [ 20, "MOVE_LOW_SWEEP" ],
+            [ 17, "MOVE_LOW_SWEEP" ],
+            [ 22, "MOVE_WATER_PULSE" ],
             [ 27, "MOVE_FURY_SWIPES" ],
             [ 35, "MOVE_PSYCH_UP" ],
             [ 40, "MOVE_ZEN_HEADBUTT" ],

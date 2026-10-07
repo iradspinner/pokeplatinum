@@ -55,8 +55,8 @@
             [ 49, "MOVE_POWER_GEM" ],
             [ 51, "MOVE_IRON_HEAD" ],
             [ 56, "MOVE_BODY_PRESS" ],
-            [ 58, "MOVE_DAZZLING_GLEAM" ],
-            [ 64, "MOVE_EARTHQUAKE" ],
+            [ 58, "MOVE_ROCK_TOMB" ],
+            [ 64, "MOVE_FIRE_PUNCH" ],
             [ 66, "MOVE_THUNDER_PUNCH" ],
             [ 73, "MOVE_LOCK_ON" ]
         ],

@@ -48,7 +48,7 @@
             [ 21, "MOVE_WING_ATTACK" ],
             [ 25, "MOVE_FURY_CUTTER" ],
             [ 29, "MOVE_SLASH" ],
-            [ 34, "MOVE_SKITTER_SMACK" ],
+            [ 34, "MOVE_POUNCE" ],
             [ 41, "MOVE_X_SCISSOR" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 49, "MOVE_DOUBLE_HIT" ],

@@ -49,15 +49,15 @@
             [ 29, "MOVE_FORCE_PALM" ],
             [ 32, "MOVE_HI_JUMP_KICK" ],
             [ 36, "MOVE_PSYCH_UP" ],
-            [ 40, "MOVE_IRON_HEAD" ],
+            [ 40, "MOVE_FIRE_PUNCH" ],
             [ 42, "MOVE_POWER_TRICK" ],
             [ 49, "MOVE_REVERSAL" ],
             [ 55, "MOVE_RECOVER" ],
-            [ 57, "MOVE_POISON_JAB" ],
-            [ 59, "MOVE_ZEN_HEADBUTT" ],
-            [ 64, "MOVE_FIRE_PUNCH" ],
-            [ 66, "MOVE_AXE_KICK" ],
-            [ 72, "MOVE_DRAIN_PUNCH" ]
+            [ 57, "MOVE_ICE_PUNCH" ],
+            [ 59, "MOVE_THUNDER_PUNCH" ],
+            [ 64, "MOVE_PSYCHO_CUT" ],
+            [ 66, "MOVE_LOW_SWEEP" ],
+            [ 72, "MOVE_ZEN_HEADBUTT" ]
         ],
         "by_tm": [
             "TM01",

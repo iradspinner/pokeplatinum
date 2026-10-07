@@ -39,8 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
-            [ 2, "MOVE_SILVER_WIND" ],
-            [ 4, "MOVE_STICKY_WEB" ],
+            [ 2, "MOVE_STRUGGLE_BUG" ],
+            [ 4, "MOVE_SCARY_FACE" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
             [ 9, "MOVE_GUST" ],
             [ 19, "MOVE_WATER_SPORT" ],

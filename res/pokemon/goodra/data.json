@@ -110,7 +110,7 @@
             ],
             [
                 63,
-                "MOVE_DRACO_METEOR"
+                "MOVE_SLUDGE_BOMB"
             ],
             [
                 66,
@@ -118,15 +118,15 @@
             ],
             [
                 68,
-                "MOVE_SLUDGE_BOMB"
-            ],
-            [
-                70,
                 "MOVE_FLAMETHROWER"
             ],
             [
-                72,
+                70,
                 "MOVE_SCALD"
+            ],
+            [
+                72,
+                "MOVE_CURSE"
             ]
         ],
         "by_tm": [],

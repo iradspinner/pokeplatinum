@@ -47,13 +47,13 @@
             [ 43, "MOVE_ANCIENT_POWER" ],
             [ 45, "MOVE_BULLDOZE" ],
             [ 50, "MOVE_DOUBLE_EDGE" ],
-            [ 54, "MOVE_AQUA_TAIL" ],
+            [ 54, "MOVE_ROCK_SLIDE" ],
             [ 57, "MOVE_DIVE" ],
-            [ 59, "MOVE_ROCK_SLIDE" ],
-            [ 62, "MOVE_EARTHQUAKE" ],
+            [ 59, "MOVE_ZEN_HEADBUTT" ],
+            [ 62, "MOVE_BODY_PRESS" ],
             [ 64, "MOVE_REST" ],
             [ 71, "MOVE_MUDDY_WATER" ],
-            [ 73, "MOVE_ZEN_HEADBUTT" ],
+            [ 73, "MOVE_BODY_SLAM" ],
             [ 78, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [

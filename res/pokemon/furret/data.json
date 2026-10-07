@@ -51,16 +51,15 @@
             [ 21, "MOVE_FOLLOW_ME" ],
             [ 28, "MOVE_SLAM" ],
             [ 32, "MOVE_REST" ],
-            [ 34, "MOVE_AGILITY" ],
+            [ 34, "MOVE_BODY_SLAM" ],
             [ 36, "MOVE_SUCKER_PUNCH" ],
             [ 42, "MOVE_AMNESIA" ],
             [ 46, "MOVE_BATON_PASS" ],
-            [ 49, "MOVE_BODY_SLAM" ],
+            [ 49, "MOVE_PLAY_ROUGH" ],
             [ 56, "MOVE_HYPER_VOICE" ],
             [ 58, "MOVE_FIRE_PUNCH" ],
-            [ 60, "MOVE_ICE_PUNCH" ],
-            [ 65, "MOVE_SEED_BOMB" ],
-            [ 67, "MOVE_THUNDER_WAVE" ]
+            [ 60, "MOVE_AGILITY" ],
+            [ 65, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM01",

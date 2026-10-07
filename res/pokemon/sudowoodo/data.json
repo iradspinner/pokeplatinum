@@ -55,12 +55,10 @@
             [ 41, "MOVE_SUCKER_PUNCH" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 49, "MOVE_HAMMER_ARM" ],
-            [ 51, "MOVE_BULLDOZE" ],
-            [ 54, "MOVE_BODY_SLAM" ],
+            [ 51, "MOVE_WOOD_HAMMER" ],
+            [ 54, "MOVE_LOW_SWEEP" ],
             [ 58, "MOVE_DRAIN_PUNCH" ],
-            [ 66, "MOVE_WOOD_HAMMER" ],
-            [ 68, "MOVE_EARTHQUAKE" ],
-            [ 74, "MOVE_FOUL_PLAY" ]
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

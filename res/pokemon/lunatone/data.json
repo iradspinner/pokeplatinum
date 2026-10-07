@@ -46,12 +46,11 @@
             [ 34, "MOVE_COSMIC_POWER" ],
             [ 42, "MOVE_HEAL_BLOCK" ],
             [ 45, "MOVE_PSYCHIC" ],
-            [ 47, "MOVE_AURA_SPHERE" ],
             [ 53, "MOVE_FUTURE_SIGHT" ],
             [ 55, "MOVE_EARTH_POWER" ],
-            [ 57, "MOVE_SIGNAL_BEAM" ],
+            [ 57, "MOVE_AURA_SPHERE" ],
             [ 62, "MOVE_MOONBLAST" ],
-            [ 64, "MOVE_POWER_GEM" ],
+            [ 64, "MOVE_SIGNAL_BEAM" ],
             [ 70, "MOVE_MOONLIGHT" ]
         ],
         "by_tm": [

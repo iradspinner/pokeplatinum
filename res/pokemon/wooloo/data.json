@@ -50,6 +50,14 @@
             ],
             [
                 2,
+                "MOVE_WEATHER_BALL"
+            ],
+            [
+                4,
+                "MOVE_TRAILBLAZE"
+            ],
+            [
+                6,
                 "MOVE_ROUND"
             ],
             [
@@ -62,15 +70,11 @@
             ],
             [
                 18,
-                "MOVE_PAYBACK"
+                "MOVE_SWAGGER"
             ],
             [
                 21,
                 "MOVE_HEADBUTT"
-            ],
-            [
-                23,
-                "MOVE_SWAGGER"
             ],
             [
                 25,

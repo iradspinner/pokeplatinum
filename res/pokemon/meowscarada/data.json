@@ -102,7 +102,7 @@
             ],
             [
                 39,
-                "MOVE_LOW_SWEEP"
+                "MOVE_U_TURN"
             ],
             [
                 42,
@@ -110,31 +110,27 @@
             ],
             [
                 44,
-                "MOVE_THROAT_CHOP"
+                "MOVE_LOW_SWEEP"
             ],
             [
                 47,
                 "MOVE_PLAY_ROUGH"
             ],
             [
+                49,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
                 51,
                 "MOVE_KNOCK_OFF"
             ],
             [
-                55,
-                "MOVE_U_TURN"
-            ],
-            [
-                57,
-                "MOVE_SUCKER_PUNCH"
+                56,
+                "MOVE_SHADOW_CLAW"
             ],
             [
                 61,
                 "MOVE_LEAF_STORM"
-            ],
-            [
-                64,
-                "MOVE_THUNDER_PUNCH"
             ]
         ],
         "by_tm": [],

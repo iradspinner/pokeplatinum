@@ -93,24 +93,20 @@
                 "MOVE_MYSTICAL_FIRE"
             ],
             [
-                48,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
                 54,
-                "MOVE_ENERGY_BALL"
+                "MOVE_DARK_PULSE"
             ],
             [
                 55,
                 "MOVE_PAIN_SPLIT"
             ],
             [
-                57,
-                "MOVE_PSYCHIC"
+                65,
+                "MOVE_SHADOW_BALL"
             ],
             [
-                59,
-                "MOVE_DARK_PULSE"
+                67,
+                "MOVE_ENERGY_BALL"
             ],
             [
                 72,

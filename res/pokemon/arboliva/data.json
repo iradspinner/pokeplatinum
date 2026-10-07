@@ -89,12 +89,12 @@
                 "MOVE_ALLURING_VOICE"
             ],
             [
-                43,
-                "MOVE_GIGA_DRAIN"
-            ],
-            [
                 46,
                 "MOVE_TERRAIN_PULSE"
+            ],
+            [
+                48,
+                "MOVE_LEAF_STORM"
             ],
             [
                 52,
@@ -109,16 +109,8 @@
                 "MOVE_PETAL_DANCE"
             ],
             [
-                60,
-                "MOVE_HYPER_VOICE"
-            ],
-            [
                 64,
-                "MOVE_LEAF_STORM"
-            ],
-            [
-                66,
-                "MOVE_EARTH_POWER"
+                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

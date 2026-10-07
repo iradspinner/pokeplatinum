@@ -48,7 +48,7 @@
             [ 42, "MOVE_HAMMER_ARM" ],
             [ 45, "MOVE_ROCK_SLIDE" ],
             [ 49, "MOVE_EARTHQUAKE" ],
-            [ 53, "MOVE_CRUNCH" ],
+            [ 53, "MOVE_ROCK_TOMB" ],
             [ 57, "MOVE_MEGAHORN" ]
         ],
         "by_tm": [

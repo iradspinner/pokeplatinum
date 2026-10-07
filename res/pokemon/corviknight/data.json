@@ -77,10 +77,6 @@
                 "MOVE_REVENGE"
             ],
             [
-                40,
-                "MOVE_U_TURN"
-            ],
-            [
                 42,
                 "MOVE_DEFOG"
             ],
@@ -90,7 +86,7 @@
             ],
             [
                 46,
-                "MOVE_BODY_SLAM"
+                "MOVE_U_TURN"
             ],
             [
                 49,
@@ -98,7 +94,7 @@
             ],
             [
                 53,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_DOUBLE_EDGE"
             ],
             [
                 55,
@@ -106,15 +102,11 @@
             ],
             [
                 57,
-                "MOVE_SCARY_FACE"
+                "MOVE_BODY_SLAM"
             ],
             [
                 61,
-                "MOVE_DOUBLE_EDGE"
-            ],
-            [
-                63,
-                "MOVE_THROAT_CHOP"
+                "MOVE_ACROBATICS"
             ],
             [
                 65,
@@ -122,11 +114,11 @@
             ],
             [
                 69,
-                "MOVE_ACROBATICS"
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 71,
-                "MOVE_SCREECH"
+                "MOVE_SCARY_FACE"
             ]
         ],
         "by_tm": [],

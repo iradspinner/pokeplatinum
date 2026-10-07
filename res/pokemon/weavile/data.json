@@ -54,9 +54,7 @@
             [ 38, "MOVE_FLING" ],
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_DARK_PULSE" ],
-            [ 61, "MOVE_X_SCISSOR" ],
-            [ 69, "MOVE_ICICLE_CRASH" ],
-            [ 71, "MOVE_LOW_SWEEP" ]
+            [ 61, "MOVE_BITE" ]
         ],
         "by_tm": [
             "TM01",

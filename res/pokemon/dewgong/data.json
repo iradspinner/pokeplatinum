@@ -61,7 +61,7 @@
             [ 54, "MOVE_BITE" ],
             [ 56, "MOVE_HEADBUTT" ],
             [ 58, "MOVE_MUDDY_WATER" ],
-            [ 64, "MOVE_DOUBLE_EDGE" ],
+            [ 64, "MOVE_BODY_SLAM" ],
             [ 66, "MOVE_PLAY_ROUGH" ],
             [ 72, "MOVE_FLIP_TURN" ]
         ],

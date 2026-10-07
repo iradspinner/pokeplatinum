@@ -50,15 +50,12 @@
             [ 28, "MOVE_SPIT_UP" ],
             [ 32, "MOVE_OMINOUS_WIND" ],
             [ 37, "MOVE_BATON_PASS" ],
-            [ 40, "MOVE_AIR_SLASH" ],
+            [ 40, "MOVE_TEMPER_FLARE" ],
             [ 44, "MOVE_SHADOW_BALL" ],
-            [ 48, "MOVE_ACROBATICS" ],
-            [ 50, "MOVE_PSYCHIC" ],
-            [ 56, "MOVE_THUNDERBOLT" ],
-            [ 58, "MOVE_TEMPER_FLARE" ],
-            [ 64, "MOVE_BODY_SLAM" ],
-            [ 66, "MOVE_SUCKER_PUNCH" ],
-            [ 72, "MOVE_POLTERGEIST" ]
+            [ 48, "MOVE_BODY_SLAM" ],
+            [ 50, "MOVE_SUCKER_PUNCH" ],
+            [ 64, "MOVE_PSYCHIC" ],
+            [ 66, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM04",

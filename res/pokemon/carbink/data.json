@@ -70,7 +70,7 @@
             ],
             [
                 20,
-                "MOVE_BULLDOZE"
+                "MOVE_MUD_SHOT"
             ],
             [
                 24,
@@ -118,11 +118,11 @@
             ],
             [
                 54,
-                "MOVE_PSYCHIC"
+                "MOVE_IRON_HEAD"
             ],
             [
                 59,
-                "MOVE_IRON_HEAD"
+                "MOVE_PSYCHIC"
             ],
             [
                 61,

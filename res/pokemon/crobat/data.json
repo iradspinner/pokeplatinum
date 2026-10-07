@@ -56,10 +56,9 @@
             [ 51, "MOVE_AIR_SLASH" ],
             [ 53, "MOVE_POISON_JAB" ],
             [ 55, "MOVE_ZEN_HEADBUTT" ],
-            [ 61, "MOVE_BRAVE_BIRD" ],
-            [ 63, "MOVE_ACROBATICS" ],
-            [ 69, "MOVE_CRUNCH" ],
-            [ 71, "MOVE_U_TURN" ]
+            [ 61, "MOVE_U_TURN" ],
+            [ 63, "MOVE_TOXIC" ],
+            [ 69, "MOVE_TAILWIND" ]
         ],
         "by_tm": [
             "TM06",

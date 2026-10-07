@@ -130,15 +130,15 @@
             ],
             [
                 64,
-                "MOVE_EARTHQUAKE"
-            ],
-            [
-                66,
                 "MOVE_POISON_JAB"
             ],
             [
-                72,
+                66,
                 "MOVE_BULLDOZE"
+            ],
+            [
+                72,
+                "MOVE_ROCK_POLISH"
             ]
         ],
         "by_tm": [],

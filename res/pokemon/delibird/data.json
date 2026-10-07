@@ -43,11 +43,11 @@
             [ 33, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_DRILL_RUN" ],
             [ 56, "MOVE_SWAGGER" ],
-            [ 58, "MOVE_ACROBATICS" ],
+            [ 58, "MOVE_BRAVE_BIRD" ],
             [ 60, "MOVE_ICE_PUNCH" ],
-            [ 65, "MOVE_FOUL_PLAY" ],
-            [ 67, "MOVE_SEED_BOMB" ],
-            [ 73, "MOVE_BRICK_BREAK" ]
+            [ 65, "MOVE_ACROBATICS" ],
+            [ 67, "MOVE_FOUL_PLAY" ],
+            [ 73, "MOVE_SEED_BOMB" ]
         ],
         "by_tm": [
             "TM01",

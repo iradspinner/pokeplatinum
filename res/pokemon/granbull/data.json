@@ -50,13 +50,11 @@
             [ 13, "MOVE_LICK" ],
             [ 19, "MOVE_HEADBUTT" ],
             [ 27, "MOVE_BULLDOZE" ],
-            [ 29, "MOVE_ROCK_TOMB" ],
+            [ 29, "MOVE_LOW_SWEEP" ],
             [ 43, "MOVE_TAKE_DOWN" ],
-            [ 44, "MOVE_PLAY_ROUGH" ],
             [ 51, "MOVE_PAYBACK" ],
-            [ 53, "MOVE_LASH_OUT" ],
             [ 59, "MOVE_CRUNCH" ],
-            [ 67, "MOVE_EARTHQUAKE" ]
+            [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

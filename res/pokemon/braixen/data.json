@@ -65,10 +65,6 @@
                 "MOVE_PSYBEAM"
             ],
             [
-                17,
-                "MOVE_WILL_O_WISP"
-            ],
-            [
                 19,
                 "MOVE_LUCKY_CHANT"
             ],
@@ -77,7 +73,7 @@
                 "MOVE_LIGHT_SCREEN"
             ],
             [
-                27,
+                26,
                 "MOVE_MYSTICAL_FIRE"
             ],
             [
@@ -87,6 +83,10 @@
             [
                 39,
                 "MOVE_HYPNOSIS"
+            ],
+            [
+                43,
+                "MOVE_WILL_O_WISP"
             ],
             [
                 50,
@@ -107,6 +107,10 @@
             [
                 65,
                 "MOVE_OVERHEAT"
+            ],
+            [
+                66,
+                "MOVE_BURN_UP"
             ]
         ],
         "by_tm": [],

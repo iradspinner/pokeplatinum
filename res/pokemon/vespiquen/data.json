@@ -52,14 +52,12 @@
             [ 37, "MOVE_ATTACK_ORDER" ],
             [ 39, "MOVE_SWAGGER" ],
             [ 41, "MOVE_POUNCE" ],
-            [ 43, "MOVE_AIR_SLASH" ],
-            [ 45, "MOVE_U_TURN" ],
+            [ 43, "MOVE_U_TURN" ],
+            [ 45, "MOVE_AIR_CUTTER" ],
             [ 51, "MOVE_PSYCHIC_NOISE" ],
-            [ 53, "MOVE_POISON_JAB" ],
-            [ 59, "MOVE_SLUDGE_BOMB" ],
-            [ 61, "MOVE_TAKE_DOWN" ],
-            [ 67, "MOVE_ACROBATICS" ],
-            [ 69, "MOVE_SECRET_POWER" ]
+            [ 53, "MOVE_SECRET_POWER" ],
+            [ 59, "MOVE_LOW_SWEEP" ],
+            [ 67, "MOVE_AGILITY" ]
         ],
         "by_tm": [
             "TM06",

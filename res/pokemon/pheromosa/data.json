@@ -102,14 +102,14 @@
             ],
             [
                 67,
-                "MOVE_HI_JUMP_KICK"
-            ],
-            [
-                69,
                 "MOVE_LOW_SWEEP"
             ],
             [
-                71,
+                70,
+                "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                72,
                 "MOVE_SKITTER_SMACK"
             ]
         ],

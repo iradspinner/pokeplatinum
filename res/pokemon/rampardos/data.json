@@ -51,10 +51,9 @@
             [ 36, "MOVE_ZEN_HEADBUTT" ],
             [ 43, "MOVE_SCREECH" ],
             [ 45, "MOVE_IRON_HEAD" ],
-            [ 50, "MOVE_ROCK_TOMB" ],
             [ 52, "MOVE_HEAD_SMASH" ],
-            [ 58, "MOVE_CRUNCH" ],
-            [ 66, "MOVE_EARTHQUAKE" ]
+            [ 58, "MOVE_ROCK_TOMB" ],
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

@@ -53,11 +53,11 @@
             [ 45, "MOVE_ROCK_SLIDE" ],
             [ 48, "MOVE_SHELL_SMASH" ],
             [ 52, "MOVE_BODY_SLAM" ],
-            [ 56, "MOVE_ENERGY_BALL" ],
+            [ 56, "MOVE_POWER_GEM" ],
             [ 61, "MOVE_FLAMETHROWER" ],
-            [ 64, "MOVE_OVERHEAT" ],
+            [ 64, "MOVE_ENERGY_BALL" ],
             [ 66, "MOVE_EARTH_POWER" ],
-            [ 72, "MOVE_POWER_GEM" ]
+            [ 72, "MOVE_YAWN" ]
         ],
         "by_tm": [
             "TM06",

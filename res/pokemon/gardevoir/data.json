@@ -54,9 +54,8 @@
             [ 58, "MOVE_THUNDERBOLT" ],
             [ 60, "MOVE_HYPNOSIS" ],
             [ 65, "MOVE_DREAM_EATER" ],
-            [ 67, "MOVE_MOONBLAST" ],
-            [ 69, "MOVE_ENERGY_BALL" ],
-            [ 74, "MOVE_CHARM" ]
+            [ 67, "MOVE_DAZZLING_GLEAM" ],
+            [ 69, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM04",

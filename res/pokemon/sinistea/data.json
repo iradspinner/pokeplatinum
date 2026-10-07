@@ -65,12 +65,12 @@
                 "MOVE_STRENGTH_SAP"
             ],
             [
-                29,
-                "MOVE_HEX"
-            ],
-            [
                 30,
                 "MOVE_AROMATHERAPY"
+            ],
+            [
+                32,
+                "MOVE_OMINOUS_WIND"
             ],
             [
                 36,

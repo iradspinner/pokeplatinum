@@ -46,7 +46,7 @@
             [ 13, "MOVE_ICE_BALL" ],
             [ 19, "MOVE_BODY_SLAM" ],
             [ 25, "MOVE_AURORA_BEAM" ],
-            [ 27, "MOVE_SIGNAL_BEAM" ],
+            [ 27, "MOVE_SNARL" ],
             [ 37, "MOVE_REST" ],
             [ 43, "MOVE_ICE_BEAM" ]
         ],

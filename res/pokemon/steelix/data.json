@@ -52,13 +52,12 @@
             [ 33, "MOVE_DRAGON_BREATH" ],
             [ 34, "MOVE_ROCK_POLISH" ],
             [ 38, "MOVE_CURSE" ],
-            [ 39, "MOVE_IRON_HEAD" ],
-            [ 41, "MOVE_BODY_PRESS" ],
+            [ 41, "MOVE_IRON_HEAD" ],
             [ 46, "MOVE_CRUNCH" ],
             [ 49, "MOVE_DOUBLE_EDGE" ],
             [ 54, "MOVE_ROCK_SLIDE" ],
             [ 56, "MOVE_FIRE_FANG" ],
-            [ 58, "MOVE_EARTHQUAKE" ],
+            [ 58, "MOVE_ICE_FANG" ],
             [ 64, "MOVE_BLOCK" ]
         ],
         "by_tm": [

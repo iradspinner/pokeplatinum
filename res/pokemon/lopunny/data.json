@@ -50,17 +50,14 @@
             [ 28, "MOVE_BITE" ],
             [ 33, "MOVE_AGILITY" ],
             [ 36, "MOVE_DIZZY_PUNCH" ],
-            [ 38, "MOVE_STRENGTH" ],
+            [ 39, "MOVE_BLAZE_KICK" ],
             [ 43, "MOVE_CHARM" ],
             [ 46, "MOVE_BOUNCE" ],
-            [ 48, "MOVE_BODY_SLAM" ],
-            [ 51, "MOVE_U_TURN" ],
-            [ 53, "MOVE_CRUNCH" ],
-            [ 59, "MOVE_BLAZE_KICK" ],
-            [ 61, "MOVE_LOW_SWEEP" ],
-            [ 67, "MOVE_CLOSE_COMBAT" ],
-            [ 69, "MOVE_FIRE_PUNCH" ],
-            [ 75, "MOVE_DRAIN_PUNCH" ]
+            [ 48, "MOVE_STRENGTH" ],
+            [ 51, "MOVE_HEADBUTT" ],
+            [ 53, "MOVE_SECRET_POWER" ],
+            [ 59, "MOVE_LOW_SWEEP" ],
+            [ 61, "MOVE_DRAIN_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

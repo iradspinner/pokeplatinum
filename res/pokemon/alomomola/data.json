@@ -83,15 +83,11 @@
             ],
             [
                 31,
-                "MOVE_LOW_SWEEP"
+                "MOVE_WAKE_UP_SLAP"
             ],
             [
                 33,
                 "MOVE_SOAK"
-            ],
-            [
-                34,
-                "MOVE_WAKE_UP_SLAP"
             ],
             [
                 35,
@@ -127,11 +123,11 @@
             ],
             [
                 55,
-                "MOVE_LIQUIDATION"
+                "MOVE_FLIP_TURN"
             ],
             [
                 58,
-                "MOVE_ICE_PUNCH"
+                "MOVE_SHADOW_CLAW"
             ],
             [
                 61,
@@ -147,10 +143,6 @@
             ],
             [
                 69,
-                "MOVE_FLIP_TURN"
-            ],
-            [
-                74,
                 "MOVE_BABY_DOLL_EYES"
             ]
         ],

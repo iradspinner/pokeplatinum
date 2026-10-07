@@ -52,11 +52,10 @@
             [ 31, "MOVE_CRUNCH" ],
             [ 40, "MOVE_EARTHQUAKE" ],
             [ 42, "MOVE_ROCK_TOMB" ],
+            [ 48, "MOVE_ICE_FANG" ],
             [ 50, "MOVE_DOUBLE_EDGE" ],
-            [ 52, "MOVE_SLACK_OFF" ],
-            [ 56, "MOVE_ICE_FANG" ],
-            [ 58, "MOVE_FIRE_FANG" ],
-            [ 64, "MOVE_SWAGGER" ]
+            [ 56, "MOVE_FIRE_FANG" ],
+            [ 62, "MOVE_SLACK_OFF" ]
         ],
         "by_tm": [
             "TM03",

@@ -110,27 +110,11 @@
             ],
             [
                 57,
-                "MOVE_SLAM"
-            ],
-            [
-                59,
-                "MOVE_BODY_SLAM"
-            ],
-            [
-                61,
                 "MOVE_PSYCHIC"
             ],
             [
                 64,
-                "MOVE_DRAGON_PULSE"
-            ],
-            [
-                66,
-                "MOVE_BREAKING_SWIPE"
-            ],
-            [
-                72,
-                "MOVE_LEECH_SEED"
+                "MOVE_SCARY_FACE"
             ]
         ],
         "by_tm": [],

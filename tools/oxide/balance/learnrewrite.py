@@ -449,6 +449,125 @@ def ceiling(holder, split_idx, cover):
 RAW_MARGIN = 15   # an off-stat attack may exceed the ceiling by its stat share, not by more than this
 
 
+# ---- the type ladders: climb, don't jump (Ian, 2026-10-06) ------------------------------------
+#
+# Ian on the early kits: "It entirely depends on the pokemon, and keeping it
+# to hard rules destroys the variability between pokemon; giga drain in
+# roark is clearly too much, but bubblebeam on corphish is probably fine."
+# So each type's attacks form a ladder by power, physical and special side
+# by side, and a line climbs it: a gap is filled from the rung that fits the
+# point in the game, a rung or two above what the line has, never the
+# strongest move a ceiling lets through. A rung is read by the power the
+# holder feels (its share of its better attacking stat), so an off-stat
+# BubbleBeam sits low on a physical Corphish and a Giga Drain high on any
+# Grass line in Roark's split. The ceilings stay only as a weight.
+
+FIRST_RUNG = 40     # a line's first attacks come from the ladder's foot; below it is dead weight
+
+
+@functools.lru_cache(maxsize=None)
+def ladder(typ, side=None):
+    """The type's rungs on one side (PHYSICAL or SPECIAL; both when None):
+    the distinct effective powers of the attacks a list may rely on, lowest
+    first. A line climbs the side of its better attacking stat; a side with
+    no attack of the type falls back to both."""
+    out = tuple(sorted({round(lc.effective_power(c)) for c, m in M().items()
+                        if m["type"] == typ and is_attack(c) and lc.reliable(c) and lc.effective_power(c) >= 20
+                        and (side is None or m["class"] == side)}))
+    return out if out or side is None else ladder(typ)
+
+
+def side_of(holder):
+    atk, spa = lc.attack_stats(holder)
+    return "PHYSICAL" if atk >= spa else "SPECIAL"
+
+
+def rung(power, typ, side=None):
+    """The highest rung of the type's ladder at or under the power; -1 when
+    the power is under the ladder's foot."""
+    return max((i for i, p in enumerate(ladder(typ, side)) if p <= power + 0.5), default=-1)
+
+
+def rung_up(power, typ, side=None):
+    """The lowest rung of the type's ladder at or over the power."""
+    steps = ladder(typ, side)
+    return next((i for i, p in enumerate(steps) if p >= power - 0.5), len(steps) - 1)
+
+
+def side_for(const, holder):
+    """The ladder side a move is read on: its own class where it fits the
+    holder (a mixed attacker climbs both), else the holder's better side, so
+    an off-stat move sits low there (Corphish's BubbleBeam)."""
+    return M()[const]["class"] if lc.fits(const, holder) else side_of(holder)
+
+
+def rung_of(const, holder):
+    """Where an attack stands on its type's ladder for the holder."""
+    return rung(standing(const, holder), M()[const]["type"], side_for(const, holder))
+
+
+def felt(const, holder):
+    """An attack's power as the holder feels it: effective power times its
+    share of the holder's better attacking stat."""
+    return lc.effective_power(const) * ratio(const, holder)
+
+
+def standing(const, holder):
+    """Where an attack stands on its ladder for the holder: halfway between
+    its power as the player reads it and as the holder feels it, so an
+    off-stat move sits lower (Corphish's BubbleBeam) without a 90-power move
+    passing for a weak one at level 3 (Chinchou's Wild Charge)."""
+    return (lc.effective_power(const) + felt(const, holder)) / 2
+
+
+def pace(holder):
+    """Rungs a line climbs a split: one for a flagged stage, which gets its
+    strong moves later (balance-rules), two for the rest."""
+    return 1 if flagged(holder) else 2
+
+
+def start_power(holder, split_idx):
+    """Where a line meets a type's ladder for the first time at a split:
+    the old ceiling less 20, read as the point in the game (40 in Roark's
+    split, 55 in Gardenia's), never under the ladder's foot."""
+    return max(FIRST_RUNG, ceiling(holder, split_idx, False) - 20)
+
+
+def climb_room(holder, typ, before, split_idx, first=False, side=None):
+    """The highest rung of the type, on the holder's side, a move added to
+    it at the split may stand on: a rung or two (pace) above the best of the
+    type it had before the split, one rung fewer in the split it is caught
+    in, where it starts. For a type it has none of: its own type from the
+    first rung at or over the lower of its best attack and the split's
+    starting point, since a line's first moves come from the low rungs
+    (Zubat's first Flying move is Gust, not the Wing Attack two rungs up); a
+    coverage type no higher than the line's own level, so a sparse ladder
+    (special Steel starts at Flash Cannon) gives no early spike."""
+    side = side or side_of(holder)
+    held = [standing(m, holder) for m in before if m in M() and is_attack(m) and M()[m]["type"] == typ]
+    if held:
+        return rung(max(held), typ, side) + pace(holder) - (1 if first else 0)
+    known = [standing(m, holder) for m in before if m in M() and is_attack(m)]
+    start = start_power(holder, split_idx)
+    if typ in lc.types_of(holder):
+        # The first rung at or over the base on the holder's better side,
+        # read as a power on the side asked about, so a sparse side does not
+        # start high (Nosepass's special Rock starts at AncientPower 60,
+        # its physical at Rock Throw 50).
+        base = max(FIRST_RUNG, min(max(known), start) if known else start)
+        better = side_of(holder)
+        steps = ladder(typ, better)
+        power = steps[rung_up(base, typ, better)] if steps else base
+        return rung(power, typ, side)
+    return rung(max(known + [start]), typ, side)
+
+
+def climbs(const, holder, before, split_idx, first=False):
+    """Whether an attack added at the split climbs rather than jumps."""
+    return rung_of(const, holder) <= climb_room(holder, M()[const]["type"], before, split_idx, first,
+                                                side_for(const, holder))
+
+
 def within_ceiling(const, holder, split_idx):
     # Normal hits nothing hard, so it is no coverage (learncheck.coverage)
     # and takes the plain ceiling.
@@ -1026,6 +1145,43 @@ def candidates(d, fam, holder, slot, needs):
     path_moves = held | {m for st in slot.path for lv, m in d.lists[st.species] if lv >= 2}
     line_heals = any(heals(m) for m in path_moves)
     kin = related(holder)
+    # The lowest rung of each type the holder has a move to stand on, so
+    # that where a type's ladder has nothing for it at the climbing point,
+    # the next rung up with something is the step, not a gap left open
+    # (R11, R4). A coverage move may do so only up to the line's own level,
+    # the higher of its best attack and the split's starting point: Chinchou's
+    # only Bug move, Signal Beam, is no level-4 move.
+    first = slot.kind == "first"
+    no_attack = {t for t in holder_types if not any(is_attack(h) and M()[h]["type"] == t for h in held)}
+    foot = {}
+    for c in family_pool(fam):
+        t = M()[c]["type"]
+        if t not in no_attack or c in held or not is_attack(c) or plausibility(c, fam, holder) <= 0:
+            continue
+        if not lc.fits(c, holder) and slot.split > 1:
+            continue
+        # The lowest move the line has of the type, as a power, over both
+        # sides: Vullaby's Bite, not the Dark Pulse at the foot of special Dark.
+        foot[t] = min(foot.get(t, 999), standing(c, holder))
+    room_cache = {}
+
+    def reach_of(c):
+        """The highest rung the candidate's type and side allow it here."""
+        k = (M()[c]["type"], side_for(c, holder))
+        if k not in room_cache:
+            reach = climb_room(holder, k[0], needs.before, slot.split, first, k[1])
+            if k[0] in foot:
+                reach = max(reach, rung(foot[k[0]], k[0], k[1]))
+            room_cache[k] = reach
+        return room_cache[k]
+    # Whether a move on the line's better stat stands within reach of each
+    # type: an off-stat one fills an early gap only where none does (Abra's
+    # Psycho Cut, Geodude's Mud Bomb).
+    fit_in_reach = collections.defaultdict(bool)
+    for c in family_pool(fam):
+        if is_attack(c) and lc.fits(c, holder) and c not in held and plausibility(c, fam, holder) > 0 \
+                and rung_of(c, holder) <= reach_of(c):
+            fit_in_reach[M()[c]["type"]] = True
     for c in family_pool(fam) + tuple(sorted(later - set(family_pool(fam)))):
         if c in held or (c in on_list and c not in later):
             continue
@@ -1040,20 +1196,19 @@ def candidates(d, fam, holder, slot, needs):
         why, score = [], 0.0
         if m["class"] != "STATUS":
             stab = m["type"] in holder_types
-            # A line's first, weak coverage move (R4) answers to the plain
-            # ceiling: a strong line's later start on power does not hold its
-            # coverage back past the second split.
-            early_cover = needs.cover_early and not stab and lc.effective_power(c) < WEAK_POWER + 15
-            if not is_attack(c) or not (within_ceiling(c, holder, slot.split) or
-                                        (early_cover and lc.effective_power(c) * ratio(c, holder)
-                                         <= CEILING[SPLITS[slot.split]] - 15)):
+            # Climb, don't jump: the attack stands no more than a rung or two
+            # above what the line had before this slot (the type ladders).
+            if not is_attack(c):
+                continue
+            if rung_of(c, holder) > reach_of(c):
                 continue
             # An attack uses a stat that fits (R15); an off-stat one of the
             # holder's type fills only an early gap, a type with no attack
             # (R11) or no usable same-type attack (check 1), in the first two
-            # splits (R3; Ian, 2026-10-06).
-            if not lc.fits(c, holder) and not (stab and slot.split <= 1 and
-                                               (m["type"] in needs.types or needs.stab50)):
+            # splits, and only where no move on its better stat is in reach
+            # (R3; Ian, 2026-10-06).
+            if not lc.fits(c, holder) and not (stab and slot.split <= 1 and not fit_in_reach.get(m["type"])
+                                               and (m["type"] in needs.types or needs.stab50)):
                 continue
             value = attack_value(c, holder)
             if slot.split >= LATE_SPLIT and lc.effective_power(c) < LATE_POWER \
@@ -1078,6 +1233,9 @@ def candidates(d, fam, holder, slot, needs):
                 if floor and floor > slot.hi:
                     continue
             score = value / 2
+            # The old ceiling stays only as a weight: power felt over it costs score.
+            cover = not stab and m["type"] != "NORMAL"
+            score -= max(0.0, felt(c, holder) - ceiling(holder, slot.split, cover))
             if m["type"] in needs.types:
                 score += 200
                 why.append("R11")
@@ -1558,7 +1716,7 @@ def boost_branch(d, fam, path, j, cap, current):
         else:
             if not is_attack(c) or not lc.fits(c, holder):
                 continue
-            fits = lambda l: within_ceiling(c, holder, max(si(st.split), si(lc.split_of_level(l))))
+            fits = lambda l: climbs(c, holder, held, max(si(st.split), si(lc.split_of_level(l))))
         gain = lc.kit_worth(held + [c], holder) - current
         if gain <= 0:
             continue
@@ -1736,9 +1894,10 @@ def no_wild_trainer_move(d, species):
 
 def ensure_attack_at_capture(d, species):
     """Every catch knows an attack. Where one would know none, the best
-    fitting same-type attack within its split's ceiling goes in: at level 1
-    for a catch made that low, else at the catch level, the last move the
-    catch knows, a status move holding that level moving up one."""
+    fitting same-type attack from the foot of its ladder goes in (climbing
+    from nothing, as a first move does): at level 1 for a catch made that
+    low, else at the catch level, the last move the catch knows, a status
+    move holding that level moving up one."""
     fam = lc.family(species)
     for sp, split, lv, _h, _p in lc.catch_rows():
         if sp != species:
@@ -1761,7 +1920,7 @@ def ensure_attack_at_capture(d, species):
                 and lc.effective_power(x) > lc.effective_power(c) and lc._acc(x) >= lc._acc(c) for x in lower)
         cands = sorted((c for c, m in M().items()
                         if m["type"] in lc.types_of(sp) and is_attack(c) and not never_added(c)
-                        and within_ceiling(c, sp, min(level_split, si(split))) and plausibility(c, fam, sp) > 0
+                        and climbs(c, sp, (), min(level_split, si(split))) and plausibility(c, fam, sp) > 0
                         and c not in known and c not in on_list and not outclassed(c)),
                        key=lambda c: (-plausibility(c, fam, sp), -attack_value(c, sp), c))
         mv = cands[0] if cands else "MOVE_TACKLE"

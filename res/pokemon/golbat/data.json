@@ -50,7 +50,8 @@
             [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],
             [ 39, "MOVE_POISON_FANG" ],
-            [ 51, "MOVE_AIR_SLASH" ]
+            [ 51, "MOVE_AIR_SLASH" ],
+            [ 66, "MOVE_ACROBATICS" ]
         ],
         "by_tm": [
             "TM06",

@@ -61,12 +61,12 @@
                 "MOVE_HOLD_BACK"
             ],
             [
-                17,
-                "MOVE_AERIAL_ACE"
-            ],
-            [
                 19,
                 "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                20,
+                "MOVE_LEECH_SEED"
             ],
             [
                 24,
@@ -85,12 +85,12 @@
                 "MOVE_MEAN_LOOK"
             ],
             [
-                34,
-                "MOVE_LEAF_BLADE"
-            ],
-            [
                 40,
                 "MOVE_GIGA_DRAIN"
+            ],
+            [
+                43,
+                "MOVE_LEAF_BLADE"
             ],
             [
                 48,

@@ -78,7 +78,7 @@
             ],
             [
                 26,
-                "MOVE_REVENGE"
+                "MOVE_VACUUM_WAVE"
             ],
             [
                 27,
@@ -122,11 +122,11 @@
             ],
             [
                 59,
-                "MOVE_PLAY_ROUGH"
+                "MOVE_ACROBATICS"
             ],
             [
-                61,
-                "MOVE_KNOCK_OFF"
+                67,
+                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

@@ -71,6 +71,7 @@ for split in roark gardenia fantina maylene wake byron candice hq galactic volkn
     copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
 done
 copy "reward-table.md" "notes/reward-table.md"
+copy "early-kits-read.md" "notes/early-kits-read.md"
 copy "reward-placements.tsv" "notes/reward-placements.tsv"
 copy "trainer-roles.tsv" "notes/trainer-roles.tsv"
 copy "species-pick-list.md" "notes/species-pick-list.md"

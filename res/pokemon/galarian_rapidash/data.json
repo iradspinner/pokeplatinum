@@ -82,7 +82,7 @@
             ],
             [
                 17,
-                "MOVE_DRAINING_KISS"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 20,
@@ -102,23 +102,19 @@
             ],
             [
                 40,
-                "MOVE_BLAZE_KICK"
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
                 43,
                 "MOVE_TAKE_DOWN"
             ],
             [
-                45,
-                "MOVE_DRILL_RUN"
+                48,
+                "MOVE_THROAT_CHOP"
             ],
             [
-                49,
-                "MOVE_DAZZLING_GLEAM"
-            ],
-            [
-                51,
-                "MOVE_PSYCHO_CUT"
+                50,
+                "MOVE_WILD_CHARGE"
             ],
             [
                 56,
@@ -126,19 +122,15 @@
             ],
             [
                 58,
-                "MOVE_THROAT_CHOP"
+                "MOVE_MOONBLAST"
             ],
             [
                 64,
-                "MOVE_FLARE_BLITZ"
-            ],
-            [
-                66,
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                72,
-                "MOVE_DOUBLE_EDGE"
+                66,
+                "MOVE_ZEN_HEADBUTT"
             ]
         ],
         "by_tm": [],

@@ -81,6 +81,10 @@
                 "MOVE_TORMENT"
             ],
             [
+                20,
+                "MOVE_TRAILBLAZE"
+            ],
+            [
                 22,
                 "MOVE_FAKE_OUT"
             ],
@@ -98,11 +102,15 @@
             ],
             [
                 36,
-                "MOVE_THROAT_CHOP"
+                "MOVE_DARK_PULSE"
             ],
             [
                 38,
                 "MOVE_TAUNT"
+            ],
+            [
+                40,
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 43,
@@ -118,7 +126,7 @@
             ],
             [
                 49,
-                "MOVE_SKITTER_SMACK"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 51,
@@ -134,11 +142,11 @@
             ],
             [
                 61,
-                "MOVE_SEED_BOMB"
+                "MOVE_U_TURN"
             ],
             [
                 67,
-                "MOVE_U_TURN"
+                "MOVE_NASTY_PLOT"
             ]
         ],
         "by_tm": [],

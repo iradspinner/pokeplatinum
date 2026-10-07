@@ -118,23 +118,23 @@
             ],
             [
                 17,
-                "MOVE_DRAINING_KISS"
+                "MOVE_DISARMING_VOICE"
             ],
             [
-                18,
-                "MOVE_INCINERATE"
+                19,
+                "MOVE_PAYBACK"
             ],
             [
-                20,
+                21,
                 "MOVE_SPITE"
             ],
             [
                 27,
-                "MOVE_ICY_WIND"
+                "MOVE_PLAY_ROUGH"
             ],
             [
-                31,
-                "MOVE_PAYBACK"
+                29,
+                "MOVE_FLAME_WHEEL"
             ],
             [
                 35,
@@ -142,35 +142,27 @@
             ],
             [
                 37,
-                "MOVE_CHILLING_WATER"
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 43,
-                "MOVE_ICE_BEAM"
+                "MOVE_CHILLING_WATER"
             ],
             [
-                44,
-                "MOVE_EXTRASENSORY"
+                45,
+                "MOVE_INCINERATE"
             ],
             [
                 51,
-                "MOVE_FOUL_PLAY"
-            ],
-            [
-                53,
                 "MOVE_CONFUSE_RAY"
             ],
             [
-                59,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
-                61,
+                53,
                 "MOVE_WILL_O_WISP"
             ],
             [
                 67,
-                "MOVE_OVERHEAT"
+                "MOVE_BITE"
             ]
         ],
         "by_tm": [],

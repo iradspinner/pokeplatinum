@@ -40,19 +40,17 @@
         "by_level": [
             [ 1, "MOVE_EMBER" ],
             [ 4, "MOVE_HOWL" ],
-            [ 6, "MOVE_BITE" ],
+            [ 6, "MOVE_SNARL" ],
             [ 9, "MOVE_SMOG" ],
-            [ 11, "MOVE_SCARY_FACE" ],
+            [ 11, "MOVE_NASTY_PLOT" ],
             [ 14, "MOVE_ROAR" ],
-            [ 17, "MOVE_SNARL" ],
+            [ 17, "MOVE_BITE" ],
             [ 22, "MOVE_ODOR_SLEUTH" ],
-            [ 27, "MOVE_INCINERATE" ],
             [ 30, "MOVE_FIRE_FANG" ],
             [ 35, "MOVE_FAINT_ATTACK" ],
             [ 40, "MOVE_EMBARGO" ],
             [ 43, "MOVE_FLAMETHROWER" ],
-            [ 48, "MOVE_CRUNCH" ],
-            [ 53, "MOVE_NASTY_PLOT" ]
+            [ 48, "MOVE_CRUNCH" ]
         ],
         "by_tm": [
             "TM05",

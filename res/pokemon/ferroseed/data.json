@@ -69,6 +69,10 @@
                 "MOVE_METAL_CLAW"
             ],
             [
+                23,
+                "MOVE_TRAILBLAZE"
+            ],
+            [
                 26,
                 "MOVE_PAYBACK"
             ],
@@ -77,20 +81,20 @@
                 "MOVE_BULLET_SEED"
             ],
             [
-                34,
-                "MOVE_IRON_DEFENSE"
-            ],
-            [
                 35,
                 "MOVE_GYRO_BALL"
             ],
             [
                 40,
-                "MOVE_SEED_BOMB"
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 43,
                 "MOVE_KNOCK_OFF"
+            ],
+            [
+                47,
+                "MOVE_SEED_BOMB"
             ],
             [
                 52,

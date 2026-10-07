@@ -48,10 +48,9 @@
             [ 46, "MOVE_NASTY_PLOT" ],
             [ 53, "MOVE_HEAT_WAVE" ],
             [ 55, "MOVE_DARK_PULSE" ],
-            [ 61, "MOVE_BRAVE_BIRD" ],
-            [ 63, "MOVE_FOUL_PLAY" ],
-            [ 69, "MOVE_ACROBATICS" ],
-            [ 71, "MOVE_SUCKER_PUNCH" ]
+            [ 61, "MOVE_SUCKER_PUNCH" ],
+            [ 63, "MOVE_MEAN_LOOK" ],
+            [ 69, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM04",

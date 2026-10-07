@@ -86,7 +86,7 @@
             ],
             [
                 20,
-                "MOVE_AIR_CUTTER"
+                "MOVE_GUST"
             ],
             [
                 21,
@@ -97,16 +97,12 @@
                 "MOVE_SPARK"
             ],
             [
-                24,
-                "MOVE_SNARL"
-            ],
-            [
                 27,
                 "MOVE_ACROBATICS"
             ],
             [
                 29,
-                "MOVE_ELECTROWEB"
+                "MOVE_SNARL"
             ],
             [
                 36,
@@ -130,23 +126,19 @@
             ],
             [
                 52,
-                "MOVE_THUNDERBOLT"
-            ],
-            [
-                54,
-                "MOVE_AIR_SLASH"
-            ],
-            [
-                56,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                59,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                67,
-                "MOVE_CHARM"
+                54,
+                "MOVE_THUNDERBOLT"
+            ],
+            [
+                59,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                61,
+                "MOVE_SHADOW_BALL"
             ]
         ],
         "by_tm": [],

@@ -49,10 +49,9 @@
             [ 34, "MOVE_LIGHT_SCREEN" ],
             [ 38, "MOVE_EGG_BOMB" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
-            [ 48, "MOVE_HYPER_VOICE" ],
-            [ 53, "MOVE_FLAMETHROWER" ],
-            [ 55, "MOVE_ICE_BEAM" ],
-            [ 61, "MOVE_PSYCHIC" ]
+            [ 48, "MOVE_SHADOW_BALL" ],
+            [ 53, "MOVE_ALLURING_VOICE" ],
+            [ 61, "MOVE_FLAMETHROWER" ]
         ],
         "by_tm": [
             "TM01",

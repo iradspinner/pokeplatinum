@@ -42,10 +42,7 @@
             [ 34, "MOVE_SWAGGER" ],
             [ 40, "MOVE_CLEAR_SMOG" ],
             [ 42, "MOVE_SWIFT" ],
-            [ 48, "MOVE_SCALD" ],
-            [ 56, "MOVE_HYPER_VOICE" ],
-            [ 58, "MOVE_FLAMETHROWER" ],
-            [ 64, "MOVE_ICE_BEAM" ]
+            [ 64, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM03",

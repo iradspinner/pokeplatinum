@@ -46,7 +46,7 @@
             [ 17, "MOVE_PURSUIT" ],
             [ 23, "MOVE_SCREECH" ],
             [ 29, "MOVE_LEAF_BLADE" ],
-            [ 34, "MOVE_SNARL" ],
+            [ 34, "MOVE_GRASS_PLEDGE" ],
             [ 35, "MOVE_AGILITY" ],
             [ 41, "MOVE_SLAM" ],
             [ 59, "MOVE_LEAF_STORM" ]

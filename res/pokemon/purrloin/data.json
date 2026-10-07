@@ -50,15 +50,11 @@
             ],
             [
                 2,
-                "MOVE_SNARL"
+                "MOVE_TAUNT"
             ],
             [
                 6,
                 "MOVE_SAND_ATTACK"
-            ],
-            [
-                8,
-                "MOVE_NASTY_PLOT"
             ],
             [
                 11,
@@ -78,7 +74,7 @@
             ],
             [
                 19,
-                "MOVE_TRAILBLAZE"
+                "MOVE_SNARL"
             ],
             [
                 23,
@@ -98,11 +94,15 @@
             ],
             [
                 35,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_NASTY_PLOT"
             ],
             [
                 36,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                37,
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 39,

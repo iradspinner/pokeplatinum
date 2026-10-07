@@ -109,16 +109,12 @@
                 "MOVE_NASTY_PLOT"
             ],
             [
-                58,
+                66,
                 "MOVE_HYPER_VOICE"
             ],
             [
-                66,
-                "MOVE_OVERHEAT"
-            ],
-            [
                 68,
-                "MOVE_LEAF_STORM"
+                "MOVE_ENERGY_BALL"
             ]
         ],
         "by_tm": [],

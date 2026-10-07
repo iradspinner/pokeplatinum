@@ -61,10 +61,9 @@
             [ 52, "MOVE_CLOSE_COMBAT" ],
             [ 57, "MOVE_REVERSAL" ],
             [ 59, "MOVE_DRAIN_PUNCH" ],
-            [ 61, "MOVE_THROAT_CHOP" ],
-            [ 67, "MOVE_HEADLONG_RUSH" ],
-            [ 69, "MOVE_IRON_HEAD" ],
-            [ 75, "MOVE_BULK_UP" ]
+            [ 61, "MOVE_LASH_OUT" ],
+            [ 67, "MOVE_THROAT_CHOP" ],
+            [ 69, "MOVE_BULK_UP" ]
         ],
         "by_tm": [
             "TM01",

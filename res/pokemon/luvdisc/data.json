@@ -39,10 +39,11 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_DRAINING_KISS" ],
+            [ 3, "MOVE_DISARMING_VOICE" ],
             [ 4, "MOVE_CHARM" ],
             [ 7, "MOVE_WATER_GUN" ],
             [ 8, "MOVE_AQUA_JET" ],
+            [ 10, "MOVE_DRAINING_KISS" ],
             [ 14, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
             [ 19, "MOVE_ICY_WIND" ],

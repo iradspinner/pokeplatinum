@@ -43,12 +43,11 @@
             [ 10, "MOVE_BITE" ],
             [ 13, "MOVE_ICY_WIND" ],
             [ 19, "MOVE_HEADBUTT" ],
-            [ 22, "MOVE_OMINOUS_WIND" ],
+            [ 20, "MOVE_DRAINING_KISS" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
-            [ 35, "MOVE_DRAINING_KISS" ],
             [ 37, "MOVE_ICE_SHARD" ],
-            [ 40, "MOVE_ICE_BEAM" ]
+            [ 46, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM03",

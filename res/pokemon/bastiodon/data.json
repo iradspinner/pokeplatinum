@@ -51,13 +51,10 @@
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 36, "MOVE_ENDURE" ],
             [ 43, "MOVE_METAL_BURST" ],
-            [ 45, "MOVE_ROCK_SLIDE" ],
-            [ 50, "MOVE_ROCK_TOMB" ],
+            [ 45, "MOVE_BODY_SLAM" ],
+            [ 50, "MOVE_BODY_PRESS" ],
             [ 52, "MOVE_IRON_HEAD" ],
-            [ 54, "MOVE_BODY_PRESS" ],
-            [ 58, "MOVE_FOUL_PLAY" ],
-            [ 60, "MOVE_EARTHQUAKE" ],
-            [ 66, "MOVE_CURSE" ]
+            [ 66, "MOVE_FOUL_PLAY" ]
         ],
         "by_tm": [
             "TM05",

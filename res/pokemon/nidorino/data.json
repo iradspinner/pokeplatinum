@@ -42,7 +42,7 @@
             [ 1, "MOVE_PECK" ],
             [ 9, "MOVE_DOUBLE_KICK" ],
             [ 13, "MOVE_POISON_STING" ],
-            [ 17, "MOVE_ROCK_TOMB" ],
+            [ 17, "MOVE_SMACK_DOWN" ],
             [ 23, "MOVE_HORN_ATTACK" ],
             [ 25, "MOVE_BULLDOZE" ],
             [ 28, "MOVE_HELPING_HAND" ],

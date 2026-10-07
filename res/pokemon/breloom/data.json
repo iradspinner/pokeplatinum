@@ -48,7 +48,6 @@
             [ 21, "MOVE_HEADBUTT" ],
             [ 23, "MOVE_MACH_PUNCH" ],
             [ 25, "MOVE_COUNTER" ],
-            [ 27, "MOVE_BULLDOZE" ],
             [ 29, "MOVE_FORCE_PALM" ],
             [ 33, "MOVE_SKY_UPPERCUT" ],
             [ 37, "MOVE_MIND_READER" ],
@@ -56,12 +55,10 @@
             [ 43, "MOVE_POISON_JAB" ],
             [ 45, "MOVE_SPORE" ],
             [ 51, "MOVE_LOW_SWEEP" ],
-            [ 53, "MOVE_ROCK_TOMB" ],
-            [ 59, "MOVE_DRAIN_PUNCH" ],
-            [ 61, "MOVE_ZEN_HEADBUTT" ],
-            [ 67, "MOVE_CLOSE_COMBAT" ],
-            [ 69, "MOVE_PETAL_BLIZZARD" ],
-            [ 75, "MOVE_TOXIC" ]
+            [ 53, "MOVE_BULLDOZE" ],
+            [ 59, "MOVE_ROCK_TOMB" ],
+            [ 61, "MOVE_DRAIN_PUNCH" ],
+            [ 67, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM01",

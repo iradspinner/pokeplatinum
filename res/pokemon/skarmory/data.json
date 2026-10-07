@@ -55,7 +55,7 @@
             [ 62, "MOVE_BRAVE_BIRD" ],
             [ 64, "MOVE_IRON_HEAD" ],
             [ 70, "MOVE_ROCK_TOMB" ],
-            [ 72, "MOVE_DOUBLE_EDGE" ]
+            [ 72, "MOVE_DRILL_RUN" ]
         ],
         "by_tm": [
             "TM05",

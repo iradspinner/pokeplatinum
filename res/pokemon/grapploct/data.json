@@ -90,22 +90,18 @@
             ],
             [
                 53,
-                "MOVE_SUCKER_PUNCH"
-            ],
-            [
-                55,
-                "MOVE_WATERFALL"
-            ],
-            [
-                61,
                 "MOVE_CLOSE_COMBAT"
             ],
             [
-                63,
+                55,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                61,
                 "MOVE_ICE_PUNCH"
             ],
             [
-                69,
+                63,
                 "MOVE_LIQUIDATION"
             ]
         ],

@@ -129,12 +129,8 @@
                 "MOVE_SKILL_SWAP"
             ],
             [
-                34,
-                "MOVE_DAZZLING_GLEAM"
-            ],
-            [
                 35,
-                "MOVE_MAGICAL_LEAF"
+                "MOVE_SNARL"
             ],
             [
                 43,
@@ -149,8 +145,12 @@
                 "MOVE_PSYSHOCK"
             ],
             [
-                68,
+                53,
                 "MOVE_SHADOW_BALL"
+            ],
+            [
+                68,
+                "MOVE_PSYCHIC"
             ]
         ],
         "by_tm": [],

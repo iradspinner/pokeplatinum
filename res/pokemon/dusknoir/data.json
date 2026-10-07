@@ -58,9 +58,8 @@
             [ 43, "MOVE_MEAN_LOOK" ],
             [ 51, "MOVE_PAYBACK" ],
             [ 61, "MOVE_FUTURE_SIGHT" ],
-            [ 66, "MOVE_FIRE_PUNCH" ],
-            [ 68, "MOVE_LEECH_LIFE" ],
-            [ 74, "MOVE_SUCKER_PUNCH" ]
+            [ 66, "MOVE_LEECH_LIFE" ],
+            [ 68, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [
             "TM01",

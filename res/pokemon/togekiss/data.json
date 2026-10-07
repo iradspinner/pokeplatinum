@@ -43,7 +43,6 @@
             [ 1, "MOVE_AURA_SPHERE" ],
             [ 1, "MOVE_AIR_SLASH" ],
             [ 57, "MOVE_SHADOW_BALL" ],
-            [ 59, "MOVE_MOONBLAST" ],
             [ 65, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

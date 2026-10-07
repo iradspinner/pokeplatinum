@@ -48,7 +48,7 @@
             [ 27, "MOVE_ROCK_BLAST" ],
             [ 29, "MOVE_ROCK_TOMB" ],
             [ 33, "MOVE_EARTHQUAKE" ],
-            [ 35, "MOVE_IRON_HEAD" ],
+            [ 35, "MOVE_FIRE_PUNCH" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
             [ 49, "MOVE_ROCK_SLIDE" ]
         ],

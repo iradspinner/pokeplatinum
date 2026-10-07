@@ -52,14 +52,14 @@
             [ 35, "MOVE_DRAGON_BREATH" ],
             [ 40, "MOVE_BULLDOZE" ],
             [ 46, "MOVE_REFRESH" ],
-            [ 48, "MOVE_MOONBLAST" ],
+            [ 48, "MOVE_DRAGON_RUSH" ],
             [ 54, "MOVE_DRAGON_PULSE" ],
-            [ 56, "MOVE_DRAGON_RUSH" ],
+            [ 56, "MOVE_DRACO_METEOR" ],
             [ 62, "MOVE_PERISH_SONG" ],
-            [ 64, "MOVE_DRACO_METEOR" ],
-            [ 66, "MOVE_FLAMETHROWER" ],
+            [ 64, "MOVE_FLAMETHROWER" ],
+            [ 66, "MOVE_PLAY_ROUGH" ],
             [ 70, "MOVE_SKY_ATTACK" ],
-            [ 72, "MOVE_ICE_BEAM" ]
+            [ 72, "MOVE_MOONBLAST" ]
         ],
         "by_tm": [
             "TM02",

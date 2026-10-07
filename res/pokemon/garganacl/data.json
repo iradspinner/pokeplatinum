@@ -106,7 +106,7 @@
             ],
             [
                 42,
-                "MOVE_IRON_HEAD"
+                "MOVE_BRICK_BREAK"
             ],
             [
                 44,
@@ -118,19 +118,19 @@
             ],
             [
                 51,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_IRON_HEAD"
             ],
             [
                 56,
-                "MOVE_BODY_PRESS"
+                "MOVE_FIRE_PUNCH"
             ],
             [
                 58,
-                "MOVE_BLOCK"
+                "MOVE_BODY_PRESS"
             ],
             [
                 64,
-                "MOVE_HAMMER_ARM"
+                "MOVE_BLOCK"
             ]
         ],
         "by_tm": [],

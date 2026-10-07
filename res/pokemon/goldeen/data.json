@@ -40,9 +40,10 @@
         "by_level": [
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_WATER_SPORT" ],
-            [ 3, "MOVE_WATER_PULSE" ],
+            [ 3, "MOVE_AQUA_JET" ],
             [ 5, "MOVE_FLIP_TURN" ],
             [ 11, "MOVE_HORN_ATTACK" ],
+            [ 17, "MOVE_WATER_PULSE" ],
             [ 20, "MOVE_AGILITY" ],
             [ 21, "MOVE_FLAIL" ],
             [ 27, "MOVE_AQUA_RING" ],

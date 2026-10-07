@@ -48,14 +48,12 @@
             [ 25, "MOVE_COUNTER" ],
             [ 27, "MOVE_ROCK_TOMB" ],
             [ 31, "MOVE_TAKE_DOWN" ],
-            [ 35, "MOVE_LEECH_LIFE" ],
+            [ 35, "MOVE_BULLDOZE" ],
             [ 37, "MOVE_CLOSE_COMBAT" ],
             [ 43, "MOVE_REVERSAL" ],
-            [ 45, "MOVE_THROAT_CHOP" ],
-            [ 51, "MOVE_LUNGE" ],
             [ 55, "MOVE_MEGAHORN" ],
-            [ 59, "MOVE_BULLDOZE" ],
-            [ 67, "MOVE_EARTHQUAKE" ]
+            [ 59, "MOVE_LEECH_LIFE" ],
+            [ 61, "MOVE_LUNGE" ]
         ],
         "by_tm": [
             "TM01",

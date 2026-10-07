@@ -44,7 +44,7 @@
             [ 9, "MOVE_LOW_KICK" ],
             [ 14, "MOVE_ROCK_THROW" ],
             [ 17, "MOVE_MIMIC" ],
-            [ 19, "MOVE_LOW_SWEEP" ],
+            [ 19, "MOVE_BULLDOZE" ],
             [ 22, "MOVE_BLOCK" ],
             [ 25, "MOVE_FAINT_ATTACK" ],
             [ 30, "MOVE_ROCK_TOMB" ],

@@ -48,12 +48,12 @@
             [ 45, "MOVE_ROCK_SLIDE" ],
             [ 47, "MOVE_BULLDOZE" ],
             [ 53, "MOVE_SOLAR_BEAM" ],
-            [ 55, "MOVE_ZEN_HEADBUTT" ],
-            [ 57, "MOVE_ROCK_TOMB" ],
-            [ 62, "MOVE_EARTHQUAKE" ],
-            [ 64, "MOVE_IRON_HEAD" ],
-            [ 70, "MOVE_FLARE_BLITZ" ],
-            [ 72, "MOVE_ACROBATICS" ]
+            [ 55, "MOVE_ROCK_TOMB" ],
+            [ 57, "MOVE_IRON_HEAD" ],
+            [ 62, "MOVE_BODY_SLAM" ],
+            [ 64, "MOVE_MORNING_SUN" ],
+            [ 70, "MOVE_ACROBATICS" ],
+            [ 72, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [
             "TM04",

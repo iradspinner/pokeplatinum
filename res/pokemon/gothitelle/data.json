@@ -125,16 +125,20 @@
                 "MOVE_FUTURE_SIGHT"
             ],
             [
-                61,
-                "MOVE_MAGIC_ROOM"
+                46,
+                "MOVE_DARK_PULSE"
             ],
             [
-                63,
+                48,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                69,
+                53,
                 "MOVE_THUNDERBOLT"
+            ],
+            [
+                61,
+                "MOVE_MAGIC_ROOM"
             ]
         ],
         "by_tm": [],
