@@ -1052,7 +1052,7 @@ def attack(b, att, mv, dfn, first):
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
             att.lock = (mv, b.rng.randint(2, 3))
-    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard":
+    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard" and not sheer_force_active(att, mv):
         hurt(b, att, att.maxhp // 10)
     if e == "REMOVE_SCREENS":
         side = b.p if dfn.side == "p" else b.b
@@ -1632,11 +1632,28 @@ def sheer_force_effects():
     return frozenset(re.findall(r"BATTLE_EFFECT_(\w+)", body))
 
 
+@functools.lru_cache(maxsize=None)
+def sheer_force_keep_moves():
+    """The moves Sheer Force strengthens that keep their effect, as in
+    hg-engine (battle_lib.c, sSheerForceKeepEffectMoves): MOVE_ constants."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sSheerForceKeepEffectMoves\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    return frozenset(re.findall(r"MOVE_\w+", body))
+
+
 def sheer_force_strips(att, mv):
     """Whether this hit's secondary effect is stripped by its user's Sheer
-    Force (Battler_SheerForceStrips; the few moves hg-engine lets keep theirs
-    are not modelled)."""
-    return att.ability == "Sheer Force" and mv.effect in sheer_force_effects()
+    Force (Battler_SheerForceStrips): an effect on the game's list, unless
+    the move keeps its effect."""
+    return (att.ability == "Sheer Force" and mv.const not in sheer_force_keep_moves()
+            and mv.effect in sheer_force_effects())
+
+
+def sheer_force_active(att, mv):
+    """Whether Sheer Force boosts this hit (Battler_SheerForceActive): it
+    strips the effect, or the move keeps its effect under Sheer Force. While
+    it is active a Life Orb takes no recoil (Ian, 2026-10-07)."""
+    return sheer_force_strips(att, mv) or (att.ability == "Sheer Force" and mv.const in sheer_force_keep_moves())
 
 
 @functools.lru_cache(maxsize=None)
