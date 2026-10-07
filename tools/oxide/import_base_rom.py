@@ -530,6 +530,14 @@ TRAINERS_DIVERGED = {
     "galactic_grunt_celestic_town": {"name": _NAME_FIX + " (Officert Argo)"},
     "galactic_grunt_lake_valor_2": {"name": _NAME_FIX + " (Officer Hisperid)"},
 }
+# The Game Corner's challenger (Ian, 2026-10-06): vanilla's unused trainer 6
+# (TRAINER_DUMMY_006, a level 5 Rattata) is the optional trainer whose win
+# gives the TM the coins clerk gave for ten straight bonus rounds. His team
+# is a placeholder for Maylene's split until the Kaizo study builds his.
+_CHALLENGER = ("the Game Corner's challenger, in vanilla's unused trainer slot 6 "
+               "(Ian, 2026-10-06); a placeholder team until the Kaizo study builds his")
+TRAINERS_DIVERGED["game_corner_challenger"] = {
+    field: _CHALLENGER for field in ("party", "name", "class", "ai_flags", "items")}
 # The Battle Zone opens before the League, in the Galactic split (cap 65), so
 # every level of its route and Stark Mountain trainers came down 18 (Ian,
 # 2026-09-25; docs/oxide/balance-plan.md). "level" is left alone on every

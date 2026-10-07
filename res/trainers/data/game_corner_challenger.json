@@ -1,0 +1,79 @@
+{
+    "name": "Rocco",
+    "class": "TRAINER_CLASS_ROUGHNECK",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PERSIAN",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_SLASH",
+                "MOVE_BITE",
+                "MOVE_SCREECH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLEFABLE",
+            "form": 0,
+            "level": 37,
+            "item": null,
+            "moves": [
+                "MOVE_MOONBLAST",
+                "MOVE_METRONOME",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SING"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PORYGON2",
+            "form": 0,
+            "level": 38,
+            "item": null,
+            "moves": [
+                "MOVE_TRI_ATTACK",
+                "MOVE_PSYBEAM",
+                "MOVE_AGILITY",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_PRE_BATTLE",
+            "en_US": [
+                "Ten bonus rounds in a row?\n",
+                "Forget the slots. Beat me instead,\r",
+                "and the prize is yours."
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Busted!\n",
+                "You hit the jackpot, kid."
+            ]
+        },
+        {
+            "type": "TRMSG_POST_BATTLE",
+            "en_US": [
+                "The house always wins...\n",
+                "Except against you, it seems."
+            ]
+        }
+    ]
+}

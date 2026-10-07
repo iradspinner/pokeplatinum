@@ -124,6 +124,12 @@ DIVERGED["events_oreburgh_mine_b2f"] += (
 DIVERGED["events_stark_mountain_room_2"] += (
     "; then its Root Fossil ball removed, the Root Fossil being Oreburgh Mine B2F's "
     "(Ian, 2026-09-27)")
+# The Game Corner's challenger, an optional trainer beside the coins clerk
+# whose win gives the TM she gave for ten straight bonus rounds (Ian,
+# 2026-10-06).
+_why = "the optional trainer Rocco added beside the coins clerk (Ian, 2026-10-06)"
+DIVERGED["events_game_corner"] = (
+    DIVERGED["events_game_corner"] + "; " + _why if "events_game_corner" in DIVERGED else _why)
 
 
 def render(record, existing, index):
