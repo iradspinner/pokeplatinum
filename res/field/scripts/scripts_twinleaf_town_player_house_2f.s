@@ -2514,10 +2514,14 @@ TestKit_AbilityLiquidVoice:
     GoTo TestKit_GivePokemonWithMoves
 
 /* Sheer Force: a wild Chansey that knows only Growl; Flame Charge never
-   raises Toucannon's Speed, since Sheer Force strips that for more power. */
+   raises Toucannon's Speed, since Sheer Force strips that for more power.
+   Toucannon holds a Life Orb, which costs it a tenth of its HP after Bullet
+   Seed and Brave Bird but nothing after Flame Charge, the move Sheer Force
+   boosts (Ian, 2026-10-07). */
 TestKit_AbilitySheerForce:
     SetVar VAR_0x800A, SPECIES_TOUCANNON
     SetVar VAR_0x800B, ABILITY_SHEER_FORCE
+    SetVar VAR_0x8004, ITEM_LIFE_ORB
     SetVar VAR_0x8006, MOVE_FLAME_CHARGE
     SetVar VAR_0x8007, MOVE_BRAVE_BIRD
     SetVar VAR_0x8008, MOVE_BULLET_SEED
@@ -2525,7 +2529,7 @@ TestKit_AbilitySheerForce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
-    GoTo TestKit_GivePokemonWithMoves
+    GoTo TestKit_GivePokemonWithItem
 
 /* Auras: a wild Yveltal with Dark Aura that knows only Dark Pulse; both
    announce their auras, Yveltal as the battle starts and Xerneas as it comes

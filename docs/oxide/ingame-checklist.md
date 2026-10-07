@@ -138,6 +138,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
+- [ ] **Sheer Force with a Life Orb** (2026-10-07, `main-tm-items`): the
+  Abilities menu's Sheer Force entry gives a Toucannon holding a Life Orb.
+  Against the wild Chansey, Flame Charge costs Toucannon no HP, while Bullet
+  Seed and Brave Bird each cost it a tenth of its HP to the Life Orb (Brave
+  Bird its own recoil too). Before this fix every move took the recoil.
 - [ ] **Element 5's hidden abilities, the Abilities menu's third page**
   (reached from "More abilities" at the end of the second; 16 entries,
   `docs/oxide/test-kit.md` has what each should show). Those with a message:
