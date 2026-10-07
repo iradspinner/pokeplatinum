@@ -321,9 +321,16 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
 - [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
   Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
-  Lucas uses the Turtwig line. With Turtwig, Barry has Scorbunny; with Piplup,
-  Turtwig. The Jubilife TV mask, the Veilstone Department Store socialite's
-  mask and the Underground Man's doll are the fire starter's.
+  Lucas uses the Turtwig line. With Turtwig, Barry has the Chimchar line; with
+  Piplup, Turtwig, and Dawn or Lucas the Chimchar line (Ian, 2026-10-07:
+  Scorbunny took only Chimchar's place in the briefcase). The Jubilife TV
+  mask, the Veilstone Department Store socialite's mask and the Underground
+  Man's doll are the fire starter's.
+- [ ] The rival's and the counterpart's starter by name (2026-10-07,
+  `main-tm-items`). With Turtwig, Barry's lines on Route 201 and in the
+  Sandgem lab name Chimchar, as his team shows. With Piplup, Dawn or Lucas
+  names Chimchar in the lab and as a partner, and the catching demo on Route
+  202 uses a Chimchar. Before this fix both said Scorbunny.
 - [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
