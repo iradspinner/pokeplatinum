@@ -15546,16 +15546,11 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_survival_area_south_house:18"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_survival_area_south_house:27"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_survival_area_south_house:12"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_survival_area_south_house:18"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 26, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_RESULT"], "name": "ITEM_OVAL_STONE", "value": 110, "when": "VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_WHITE_HERB", "value": 214, "when": "VAR_RESULT (InitLocalTextListMenu) == 7"}, {"by": ["VAR_RESULT"], "name": "ITEM_MENTAL_HERB", "value": 219, "when": "VAR_RESULT (InitLocalTextListMenu) == 8"}, {"by": ["VAR_RESULT"], "name": "ITEM_KINGS_ROCK", "value": 221, "when": "VAR_RESULT (InitLocalTextListMenu) == 0"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEATOOTH", "value": 226, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEASCALE", "value": 227, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_EVERSTONE", "value": 229, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_0x8002 == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_METAL_COAT", "value": 233, "when": "VAR_RESULT (InitLocalTextListMenu) == 1"}, {"by": ["VAR_RESULT"], "name": "ITEM_DRAGON_SCALE", "value": 235, "when": "VAR_RESULT (InitLocalTextListMenu) == 2"}, {"by": ["VAR_RESULT"], "name": "ITEM_UPGRADE", "value": 252, "when": "VAR_RESULT (InitLocalTextListMenu) == 3"}, {"by": ["VAR_RESULT"], "name": "ITEM_POWER_HERB", "value": 271, "when": "VAR_RESULT (InitLocalTextListMenu) == 9"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_HEART_SCALE", "value": 93, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_0x8002 == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "set by AddVar", "value": null, "when": "VAR_RESULT (InitLocalTextListMenu) < 26 or VAR_RESULT (InitLocalTextListMenu) < 6 or VAR_0x8002 == 6 or VAR_RESULT (InitLocalTextListMenu) < 9 or VAR_RESULT (InitLocalTextListMenu) < 16 or VAR_RESULT (InitLocalTextListMenu) < 13"}], "line": 365, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
-    ],
-    "vars": [
-     {"at": ["scripts_survival_area_south_house:489", "scripts_survival_area_south_house:492"], "commit": "81d02e28e", "name": "25000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 25000},
-     {"at": ["scripts_survival_area_south_house:525", "scripts_survival_area_south_house:528"], "commit": "81d02e28e", "name": "30000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 30000}
+     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 17, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ]
    },
    "events": "events_survival_area_south_house",
@@ -15572,10 +15567,7 @@
    "split": null,
    "split_basis": null,
    "title": "Survival Area South House",
-   "undecoded": {
-    "commands with no name": 1,
-    "variables set elsewhere": 3
-   },
+   "undecoded": {},
    "unreached": []
   },
   {
@@ -19263,9 +19255,9 @@
   },
   "items": {
    "Oxide": 78,
-   "base ROM": 32,
+   "base ROM": 31,
    "gone": 33,
-   "total": 213,
+   "total": 212,
    "vanilla": 103
   },
   "pokemon": {
@@ -19296,9 +19288,9 @@
   },
   "vars": {
    "Oxide": 12,
-   "base ROM": 29,
+   "base ROM": 27,
    "gone": 32,
-   "total": 1123,
+   "total": 1121,
    "vanilla": 1082
   }
  }
