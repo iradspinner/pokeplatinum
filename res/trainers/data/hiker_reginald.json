@@ -13,30 +13,34 @@
         {
             "species": "SPECIES_BONSLY",
             "form": 0,
-            "level": 25,
-            "item": null,
+            "level": 27,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_ROCK_THROW",
-                "MOVE_MIMIC",
                 "MOVE_BLOCK",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_FAINT_ATTACK",
+                "MOVE_ROLLOUT"
             ],
-            "iv_scale": 158,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_PHANPY",
             "form": 0,
-            "level": 25,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_TAKE_DOWN",
                 "MOVE_ROLLOUT",
-                "MOVE_NATURAL_GIFT",
-                "MOVE_SLAM"
+                "MOVE_TAKE_DOWN",
+                "MOVE_ICE_SHARD",
+                "MOVE_FOCUS_ENERGY"
             ],
-            "iv_scale": 137,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

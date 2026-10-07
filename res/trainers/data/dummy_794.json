@@ -16,62 +16,81 @@
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
-                "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_MIRROR_COAT"
+                "MOVE_BOUNCE",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 159,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_SWIFT",
+                "MOVE_CHARM",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
             "level": 29,
-            "item": "ITEM_ORAN_BERRY",
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_MAGNET_RISE",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_FAKE_TEARS"
+                "MOVE_THUNDERBOLT",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 158,
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_JYNX",
             "form": 0,
-            "level": 30,
-            "item": "ITEM_ICICLE_PLATE",
+            "level": 29,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_ICY_WIND",
-                "MOVE_REFLECT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CONFUSION",
                 "MOVE_LOVELY_KISS",
-                "MOVE_COPYCAT"
+                "MOVE_FAKE_TEARS"
             ],
-            "iv_scale": 162,
+            "iv_scale": 255,
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_MONFERNO",
             "form": 0,
             "level": 30,
-            "item": "ITEM_MUSCLE_BAND",
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_MACH_PUNCH",
                 "MOVE_FLAME_WHEEL",
-                "MOVE_FAKE_OUT",
-                "MOVE_TORMENT"
+                "MOVE_MACH_PUNCH",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_TAUNT"
             ],
-            "iv_scale": 163,
+            "iv_scale": 255,
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         }
     ],
     "messages": []

@@ -12,32 +12,104 @@
         {
             "species": "SPECIES_DELCATTY",
             "form": 0,
-            "level": 59,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_CAPTIVATE",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_DOUBLE_EDGE"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 222,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 59,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
-                "MOVE_ICE_SHARD",
-                "MOVE_AVALANCHE",
-                "MOVE_RAZOR_LEAF",
-                "MOVE_WATER_PULSE"
+                "MOVE_BLIZZARD",
+                "MOVE_ENERGY_BALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_SHARD"
             ],
-            "iv_scale": 244,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_PROBOPASS",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_POWER_GEM",
+                "MOVE_EARTH_POWER",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_CACTURNE",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_MIRACLE_SEED",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 3,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_GLISCOR",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_U_TURN",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 64,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_IRON_HEAD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

@@ -1,7 +1,7 @@
 {
     "name": "Candice",
     "class": "TRAINER_CLASS_LEADER_CANDICE",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,6 +11,23 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_FROSLASS",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SPIKES",
+                "MOVE_BLIZZARD",
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
             "species": "SPECIES_WALREIN",
             "form": 0,
             "level": 55,
@@ -18,13 +35,31 @@
             "moves": [
                 "MOVE_BLIZZARD",
                 "MOVE_SURF",
-                "MOVE_REST",
+                "MOVE_ROAR",
                 "MOVE_TOXIC"
             ],
-            "iv_scale": 228,
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_GLACEON",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_SHADOW_BALL",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_WISH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
         },
         {
             "species": "SPECIES_MAMOSWINE",
@@ -32,31 +67,16 @@
             "level": 55,
             "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE",
-                "MOVE_IRON_HEAD"
+                "MOVE_ICE_FANG",
+                "MOVE_ICE_SHARD",
+                "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 246,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_CASTFORM",
-            "form": 3,
-            "level": 55,
-            "item": "ITEM_LIFE_ORB",
-            "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_THUNDERBOLT",
-                "MOVE_BLIZZARD",
-                "MOVE_ENERGY_BALL"
-            ],
-            "iv_scale": 247,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_ARTICUNO",
@@ -64,47 +84,33 @@
             "level": 55,
             "item": "ITEM_CHARTI_BERRY",
             "moves": [
-                "MOVE_ANCIENT_POWER",
-                "MOVE_EXTRASENSORY",
-                "MOVE_ROOST",
-                "MOVE_BLIZZARD"
-            ],
-            "iv_scale": 253,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GLACEON",
-            "form": 0,
-            "level": 55,
-            "item": "ITEM_CHOPLE_BERRY",
-            "moves": [
                 "MOVE_BLIZZARD",
-                "MOVE_YAWN",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_BATON_PASS"
+                "MOVE_ANCIENT_POWER",
+                "MOVE_ROOST",
+                "MOVE_U_TURN"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_FROSLASS",
+            "species": "SPECIES_ABOMASNOW",
             "form": 0,
             "level": 56,
-            "item": "ITEM_FOCUS_SASH",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_BLIZZARD",
-                "MOVE_DESTINY_BOND",
-                "MOVE_SHADOW_BALL",
-                "MOVE_PSYCHIC"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 233,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         }
     ],
     "messages": [

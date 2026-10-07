@@ -12,30 +12,51 @@
         {
             "species": "SPECIES_HOPPIP",
             "form": 0,
-            "level": 22,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_STUN_SPORE",
-                "MOVE_SLEEP_POWDER",
                 "MOVE_BULLET_SEED",
-                "MOVE_LEECH_SEED"
+                "MOVE_LEECH_SEED",
+                "MOVE_STUN_SPORE",
+                "MOVE_SYNTHESIS"
             ],
-            "iv_scale": 159,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_SKIPLOOM",
             "form": 0,
-            "level": 23,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_POISON_POWDER",
-                "MOVE_STUN_SPORE",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_BULLET_SEED",
                 "MOVE_LEECH_SEED",
-                "MOVE_BULLET_SEED"
+                "MOVE_TACKLE"
             ],
-            "iv_scale": 182,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MACH_PUNCH",
+                "MOVE_ROCK_TOMB",
+                "MOVE_BULLET_SEED",
+                "MOVE_HEADBUTT"
+            ],
+            "iv_scale": 230,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

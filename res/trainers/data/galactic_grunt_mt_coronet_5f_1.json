@@ -16,98 +16,104 @@
         {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 54,
-            "item": "ITEM_OCCA_BERRY",
+            "level": 60,
+            "item": "ITEM_ICY_ROCK",
             "moves": [
-                "MOVE_SWAGGER",
+                "MOVE_BLIZZARD",
+                "MOVE_WOOD_HAMMER",
                 "MOVE_EARTHQUAKE",
-                "MOVE_AVALANCHE",
-                "MOVE_ENDEAVOR"
+                "MOVE_ICE_SHARD"
             ],
-            "iv_scale": 247,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 3,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_SLOWKING",
             "form": 0,
-            "level": 54,
+            "level": 61,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_CALM_MIND",
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
                 "MOVE_BLIZZARD",
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_SURF"
+                "MOVE_SLACK_OFF"
             ],
             "iv_scale": 255,
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GARDEVOIR",
-            "form": 0,
-            "level": 55,
-            "item": "ITEM_LIFE_ORB",
-            "moves": [
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_PSYCHIC",
-                "MOVE_CALM_MIND",
-                "MOVE_FOCUS_BLAST"
-            ],
-            "iv_scale": 237,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_MAMOSWINE",
             "form": 0,
-            "level": 53,
-            "item": "ITEM_LUM_BERRY",
+            "level": 61,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
-                "MOVE_ICE_SHARD",
                 "MOVE_EARTHQUAKE",
-                "MOVE_SUPERPOWER",
+                "MOVE_ICE_FANG",
+                "MOVE_ICE_SHARD",
                 "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 232,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 61,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_CELEBI",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 61,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LEAF_STORM",
+                "MOVE_ENERGY_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_EARTH_POWER",
                 "MOVE_RECOVER"
             ],
-            "iv_scale": 242,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         },
         {
             "species": "SPECIES_ABSOL",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_FOCUS_BAND",
+            "level": 62,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_PURSUIT",
-                "MOVE_PERISH_SONG",
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_DETECT"
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUPERPOWER",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         }
     ],
     "messages": [

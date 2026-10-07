@@ -11,18 +11,69 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_ZUBAT",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BITE",
+                "MOVE_LEECH_LIFE",
+                "MOVE_ASTONISH",
+                "MOVE_SUPERSONIC"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MURKROW",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_PECK",
+                "MOVE_ASTONISH",
+                "MOVE_PURSUIT",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CROAGUNK",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_POISON_STING",
+                "MOVE_BRICK_BREAK",
+                "MOVE_MUD_SLAP",
+                "MOVE_ASTONISH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_EKANS",
             "form": 0,
-            "level": 15,
-            "item": null,
+            "level": 18,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
                 "MOVE_GLARE",
-                "MOVE_BIDE",
-                "MOVE_SCREECH",
-                "MOVE_POISON_FANG"
+                "MOVE_BITE",
+                "MOVE_POISON_STING",
+                "MOVE_ROCK_TOMB"
             ],
-            "iv_scale": 102,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

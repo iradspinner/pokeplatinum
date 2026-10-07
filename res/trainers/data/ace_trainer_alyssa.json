@@ -12,44 +12,104 @@
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 42,
-            "item": null,
+            "level": 50,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_LOW_KICK",
-                "MOVE_AERIAL_ACE"
+                "MOVE_DOUBLE_HIT",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 237,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_GIRAFARIG",
             "form": 0,
-            "level": 42,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 248,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_KANGASKHAN",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_URSARING",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_FACADE",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_U_TURN",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 42,
-            "item": null,
+            "level": 52,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_ENERGY_BALL",
-                "MOVE_EARTH_POWER",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_LEECH_SEED"
+                "MOVE_WOOD_HAMMER",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH"
             ],
-            "iv_scale": 254,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
     "messages": [

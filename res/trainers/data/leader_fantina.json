@@ -1,7 +1,7 @@
 {
     "name": "Fantina",
     "class": "TRAINER_CLASS_LEADER_FANTINA",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,19 +11,19 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUSKULL",
+            "species": "SPECIES_FROSLASS",
             "form": 0,
-            "level": 32,
+            "level": 31,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_WILL_O_WISP",
-                "MOVE_PURSUIT",
-                "MOVE_SHADOW_SNEAK",
+                "MOVE_SPIKES",
+                "MOVE_ICY_WIND",
+                "MOVE_OMINOUS_WIND",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 243,
+            "iv_scale": 240,
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "female"
         },
         {
@@ -37,7 +37,7 @@
                 "MOVE_CALM_MIND",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 225,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -51,12 +51,28 @@
                 "MOVE_OMINOUS_WIND",
                 "MOVE_SHOCK_WAVE",
                 "MOVE_SIGNAL_BEAM",
-                "MOVE_PAIN_SPLIT"
+                "MOVE_TRICK"
             ],
-            "iv_scale": 223,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
+        },
+        {
+            "species": "SPECIES_DUSKULL",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_WILL_O_WISP",
+                "MOVE_PURSUIT",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_DESTINY_BOND"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_SABLEYE",
@@ -69,10 +85,10 @@
                 "MOVE_RECOVER",
                 "MOVE_FOCUS_PUNCH"
             ],
-            "iv_scale": 245,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         },
         {
             "species": "SPECIES_MISMAGIUS",
@@ -83,9 +99,9 @@
                 "MOVE_SHADOW_BALL",
                 "MOVE_PSYBEAM",
                 "MOVE_MAGICAL_LEAF",
-                "MOVE_POWER_GEM"
+                "MOVE_PAYBACK"
             ],
-            "iv_scale": 232,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"

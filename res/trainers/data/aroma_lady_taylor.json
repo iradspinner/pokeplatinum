@@ -10,32 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TURTWIG",
-            "form": 0,
-            "level": 13,
-            "item": null,
-            "moves": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_WITHDRAW",
-                "MOVE_TACKLE",
-                "MOVE_NONE"
-            ],
-            "iv_scale": 134,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_CHERUBI",
             "form": 0,
-            "level": 13,
-            "item": null,
+            "level": 16,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_BULLET_SEED",
-                "MOVE_GROWTH",
                 "MOVE_LEECH_SEED",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_TACKLE",
                 "MOVE_SYNTHESIS"
             ],
-            "iv_scale": 101,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BELLSPROUT",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_VINE_WHIP",
+                "MOVE_BULLET_SEED",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_GROWTH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ODDISH",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ACID",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BULLET_SEED",
+                "MOVE_POISON_POWDER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SLEEP_POWDER",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_LEECH_SEED"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
     "messages": [

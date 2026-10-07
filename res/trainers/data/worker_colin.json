@@ -8,32 +8,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GEODUDE",
-            "form": 0,
-            "level": 12,
-            "item": null,
-            "moves": [
-                "MOVE_TACKLE",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_MUD_SPORT",
-                "MOVE_ROCK_THROW"
-            ],
-            "iv_scale": 145,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_WHISMUR",
             "form": 0,
-            "level": 12,
+            "level": 14,
             "item": null,
             "moves": [
-                "MOVE_UPROAR",
+                "MOVE_FACADE",
+                "MOVE_SHOCK_WAVE",
                 "MOVE_ASTONISH",
-                "MOVE_POUND",
-                "MOVE_NONE"
+                "MOVE_POUND"
             ],
-            "iv_scale": 157,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GEODUDE",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_ROLLOUT",
+                "MOVE_BLOCK",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NACLI",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_ROCK_THROW",
+                "MOVE_MUD_SHOT",
+                "MOVE_SMACK_DOWN",
+                "MOVE_ROCK_SLIDE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MACHOP",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_LOW_KICK",
+                "MOVE_ROCK_TOMB",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

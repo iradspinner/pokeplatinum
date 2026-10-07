@@ -13,98 +13,104 @@
         {
             "species": "SPECIES_UXIE",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_LUM_BERRY",
+            "level": 58,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_HYPNOSIS",
-                "MOVE_FUTURE_SIGHT",
+                "MOVE_STEALTH_ROCK",
                 "MOVE_U_TURN",
-                "MOVE_FOUL_PLAY"
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 238,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         },
         {
             "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 57,
+            "level": 59,
             "item": "ITEM_TOXIC_ORB",
             "moves": [
-                "MOVE_SLAM",
-                "MOVE_CURSE",
-                "MOVE_GYRO_BALL",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_BODY_SLAM",
+                "MOVE_EARTHQUAKE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_POWER_WHIP"
             ],
-            "iv_scale": 252,
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WOBBUFFET",
+            "form": 0,
+            "level": 59,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_COUNTER",
+                "MOVE_ENCORE",
+                "MOVE_SAFEGUARD",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 57,
+            "level": 59,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_WATER_SPOUT",
-                "MOVE_EARTHQUAKE",
-                "MOVE_AQUA_RING",
-                "MOVE_AVALANCHE"
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_TOXIC"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_QUIET",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_EXPERT_BELT",
+            "level": 59,
+            "item": "ITEM_PASSHO_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
                 "MOVE_STONE_EDGE",
-                "MOVE_AQUA_TAIL",
-                "MOVE_FIRE_PUNCH"
+                "MOVE_HAMMER_ARM",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_CRESSELIA",
-            "form": 0,
-            "level": 57,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_MOONLIGHT",
-                "MOVE_CHARGE_BEAM",
-                "MOVE_CALM_MIND",
-                "MOVE_ICE_BEAM"
-            ],
-            "iv_scale": 253,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 58,
+            "level": 60,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_GUNK_SHOT",
                 "MOVE_CROSS_CHOP",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_FIRE_PUNCH"
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": [

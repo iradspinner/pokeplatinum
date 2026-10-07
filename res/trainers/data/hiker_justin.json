@@ -13,30 +13,67 @@
         {
             "species": "SPECIES_DIGLETT",
             "form": 0,
-            "level": 25,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_MAGNITUDE",
                 "MOVE_MUD_SLAP",
-                "MOVE_DIG",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DIG"
             ],
-            "iv_scale": 167,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_NOSEPASS",
             "form": 0,
-            "level": 25,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_HARDEN",
-                "MOVE_ROCK_THROW",
+                "MOVE_ROCK_SLIDE",
                 "MOVE_BLOCK",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SHOCK_WAVE"
             ],
-            "iv_scale": 161,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SANDSHREW",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_POISON_STING",
+                "MOVE_RAPID_SPIN",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GLIGAR",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_DIG",
+                "MOVE_AERIAL_ACE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -11,16 +11,51 @@
         {
             "species": "SPECIES_EXEGGCUTE",
             "form": 0,
-            "level": 17,
-            "item": null,
+            "level": 23,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_HYPNOSIS",
-                "MOVE_REFLECT",
+                "MOVE_BULLET_SEED",
+                "MOVE_ANCIENT_POWER",
                 "MOVE_LEECH_SEED",
-                "MOVE_BULLET_SEED"
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 113,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NATU",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_NIGHT_SHADE",
+                "MOVE_PECK",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KIRLIA",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_SHADOW_SNEAK",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

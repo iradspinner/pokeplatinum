@@ -10,32 +10,84 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WURMPLE",
+            "species": "SPECIES_COMBEE",
             "form": 0,
             "level": 15,
-            "item": null,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_POISON_STING",
-                "MOVE_BUG_BITE"
+                "MOVE_GUST",
+                "MOVE_BUG_BITE",
+                "MOVE_AIR_CUTTER"
             ],
-            "iv_scale": 109,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_SILCOON",
+            "species": "SPECIES_NINCADA",
             "form": 0,
-            "level": 15,
-            "item": null,
+            "level": 16,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_BUG_BITE",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_TACKLE",
-                "MOVE_NONE"
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEECH_LIFE",
+                "MOVE_HARDEN",
+                "MOVE_MUD_SLAP"
             ],
-            "iv_scale": 108,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KRICKETUNE",
+            "form": 0,
+            "level": 16,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FURY_CUTTER",
+                "MOVE_LEECH_LIFE",
+                "MOVE_GROWL",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DUSTOX",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_GUST",
+                "MOVE_POISON_STING",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BEAUTIFLY",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_SILVERPOWDER",
+            "moves": [
+                "MOVE_SILVER_WIND",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_STUN_SPORE",
+                "MOVE_GUST"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

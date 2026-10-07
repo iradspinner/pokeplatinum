@@ -10,32 +10,85 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_TAILLOW",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_PURSUIT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_SWABLU",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_ASTONISH",
+                "MOVE_PECK",
                 "MOVE_SING",
-                "MOVE_FURY_ATTACK",
+                "MOVE_SWIFT",
                 "MOVE_SAFEGUARD"
             ],
-            "iv_scale": 111,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_CONFUSION",
+                "MOVE_REFLECT",
+                "MOVE_PECK"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MURKROW",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_ASTONISH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_STARAVIA",
             "form": 0,
-            "level": 20,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
+                "MOVE_AERIAL_ACE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_WING_ATTACK",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_ENDEAVOR"
+                "MOVE_STEEL_WING",
+                "MOVE_PURSUIT"
             ],
-            "iv_scale": 159,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

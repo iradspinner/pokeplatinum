@@ -1,7 +1,7 @@
 {
     "name": "Flint",
     "class": "TRAINER_CLASS_ELITE_FOUR_FLINT",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -12,44 +12,70 @@
         {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 74,
-            "item": "ITEM_NONE",
+            "level": 68,
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FLAMETHROWER",
-                "MOVE_SLUDGE_BOMB",
                 "MOVE_DARK_PULSE",
-                "MOVE_SUNNY_DAY"
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 242,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         },
         {
             "species": "SPECIES_ARCANINE",
             "form": 0,
-            "level": 74,
-            "item": "ITEM_NONE",
+            "level": 68,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FLARE_BLITZ",
-                "MOVE_THUNDER_FANG",
-                "MOVE_IRON_HEAD",
-                "MOVE_CRUNCH"
+                "MOVE_EXTREME_SPEED",
+                "MOVE_CRUNCH",
+                "MOVE_THUNDER_FANG"
             ],
-            "iv_scale": 240,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_INFERNAPE",
+            "form": 0,
+            "level": 68,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_U_TURN",
+                "MOVE_MACH_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 75,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 69,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_FIRE_BLAST",
+                "MOVE_FLAMETHROWER",
                 "MOVE_THUNDERBOLT",
-                "MOVE_SOLAR_BEAM",
-                "MOVE_HYPER_BEAM"
+                "MOVE_FOCUS_BLAST",
+                "MOVE_PSYCHIC"
             ],
-            "iv_scale": 248,
-            "ball_seal": 13
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

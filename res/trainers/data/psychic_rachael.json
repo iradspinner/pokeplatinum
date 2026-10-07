@@ -11,16 +11,51 @@
         {
             "species": "SPECIES_CHINGLING",
             "form": 0,
-            "level": 18,
-            "item": null,
+            "level": 23,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_GROWL",
-                "MOVE_RECOVER",
                 "MOVE_CONFUSION",
-                "MOVE_UPROAR"
+                "MOVE_SWIFT",
+                "MOVE_ASTONISH",
+                "MOVE_GROWL"
             ],
-            "iv_scale": 149,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MEDITITE",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_FORESIGHT",
+                "MOVE_ENDURE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_DISABLE",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
     "messages": [

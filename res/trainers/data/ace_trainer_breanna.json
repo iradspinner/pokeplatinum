@@ -10,46 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKARMORY",
-            "form": 0,
-            "level": 50,
-            "item": null,
-            "moves": [
-                "MOVE_STEEL_WING",
-                "MOVE_DRILL_PECK",
-                "MOVE_STEALTH_ROCK",
-                "MOVE_ROOST"
-            ],
-            "iv_scale": 231,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_PROBOPASS",
             "form": 0,
             "level": 50,
-            "item": null,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_HIDDEN_POWER",
+                "MOVE_STEALTH_ROCK",
                 "MOVE_POWER_GEM",
+                "MOVE_EARTH_POWER",
                 "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 234,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 50,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
                 "MOVE_GYRO_BALL",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_IRON_DEFENSE"
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 209,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SKARMORY",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_STEEL_WING",
+                "MOVE_ROOST",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_FLASH_CANNON",
+                "MOVE_GRASS_KNOT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_STEELIX",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_CORVIKNIGHT",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_IRON_HEAD",
+                "MOVE_REVENGE",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
         }
     ],
     "messages": [

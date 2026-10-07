@@ -10,32 +10,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_SKITTY",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FURY_SWIPES",
+                "MOVE_BABY_DOLL_EYES",
+                "MOVE_SWIFT",
+                "MOVE_FAKE_TEARS"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_STUNKY",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEER",
+                "MOVE_SCREECH",
+                "MOVE_SLASH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_GLAMEOW",
             "form": 0,
             "level": 24,
-            "item": null,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_GROWL",
+                "MOVE_FAKE_OUT",
+                "MOVE_FURY_SWIPES",
                 "MOVE_HYPNOSIS",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_FURY_SWIPES"
+                "MOVE_FAINT_ATTACK"
             ],
-            "iv_scale": 199,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_SKITTY",
-            "form": 0,
-            "level": 24,
-            "item": null,
-            "moves": [
-                "MOVE_SING",
-                "MOVE_DOUBLE_SLAP",
-                "MOVE_COPYCAT",
-                "MOVE_ASSIST"
-            ],
-            "iv_scale": 194,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

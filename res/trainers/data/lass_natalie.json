@@ -10,13 +10,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_SPHEAL",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_DEFENSE_CURL",
+                "MOVE_ROLLOUT",
+                "MOVE_POWDER_SNOW",
+                "MOVE_WATER_GUN"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PHANPY",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_ROLLOUT",
+                "MOVE_TACKLE",
+                "MOVE_ICE_SHARD"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_BIDOOF",
             "form": 0,
-            "level": 7,
-            "item": null,
-            "moves": null,
-            "iv_scale": 97,
-            "ball_seal": 0
+            "level": 10,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_DEFENSE_CURL",
+                "MOVE_ROLLOUT",
+                "MOVE_TACKLE",
+                "MOVE_ODOR_SLEUTH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

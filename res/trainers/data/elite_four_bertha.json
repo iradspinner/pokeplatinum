@@ -1,7 +1,7 @@
 {
     "name": "Bertha",
     "class": "TRAINER_CLASS_ELITE_FOUR_BERTHA",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -13,98 +13,104 @@
         {
             "species": "SPECIES_HIPPOWDON",
             "form": 0,
-            "level": 72,
+            "level": 76,
             "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_STEALTH_ROCK",
                 "MOVE_EARTHQUAKE",
-                "MOVE_STONE_EDGE",
-                "MOVE_THUNDER_FANG",
-                "MOVE_YAWN"
+                "MOVE_SLACK_OFF",
+                "MOVE_ROAR"
             ],
-            "iv_scale": 252,
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 3,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_GLISCOR",
-            "form": 0,
-            "level": 72,
-            "item": "ITEM_CHOICE_SCARF",
-            "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_U_TURN",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG"
-            ],
-            "iv_scale": 252,
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_NIDOKING",
             "form": 0,
-            "level": 72,
-            "item": "ITEM_SHUCA_BERRY",
+            "level": 76,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_EARTHQUAKE",
-                "MOVE_STONE_EDGE",
-                "MOVE_POISON_JAB",
-                "MOVE_SUCKER_PUNCH"
+                "MOVE_EARTH_POWER",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 245,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "ability": 3,
+            "gender": "male"
         },
         {
             "species": "SPECIES_GOLEM",
             "form": 0,
-            "level": 72,
+            "level": 76,
             "item": "ITEM_PASSHO_BERRY",
             "moves": [
+                "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_STONE_EDGE"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GLISCOR",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_U_TURN",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
         },
         {
             "species": "SPECIES_FLYGON",
             "form": 0,
-            "level": 72,
+            "level": 77,
             "item": "ITEM_YACHE_BERRY",
             "moves": [
-                "MOVE_OUTRAGE",
                 "MOVE_EARTHQUAKE",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_ROOST"
+                "MOVE_DRAGON_CLAW",
+                "MOVE_U_TURN",
+                "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 73,
-            "item": "ITEM_CHOICE_BAND",
+            "level": 78,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
-                "MOVE_ROCK_WRECKER",
+                "MOVE_STONE_EDGE",
                 "MOVE_MEGAHORN",
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_ROCK_POLISH"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

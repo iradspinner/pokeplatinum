@@ -12,18 +12,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_NINCADA",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEECH_LIFE",
+                "MOVE_MUD_SLAP",
+                "MOVE_HARDEN"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NINJASK",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_AERIAL_ACE",
+                "MOVE_LEECH_LIFE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_SHEDINJA",
             "form": 0,
-            "level": 29,
-            "item": null,
+            "level": 32,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_FAINT_ATTACK",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_BUG_BITE",
-                "MOVE_SPITE"
+                "MOVE_SHADOW_CLAW",
+                "MOVE_X_SCISSOR",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_AERIAL_ACE"
             ],
-            "iv_scale": 116,
-            "ball_seal": 0
+            "iv_scale": 240,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

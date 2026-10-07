@@ -15,50 +15,70 @@
         {
             "species": "SPECIES_SWALOT",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SALAC_BERRY",
+            "level": 53,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_DESTINY_BOND",
-                "MOVE_SMOG",
-                "MOVE_ENDURE",
-                "MOVE_EXPLOSION"
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_YAWN",
+                "MOVE_DREAM_EATER",
+                "MOVE_DESTINY_BOND"
             ],
-            "iv_scale": 230,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 53,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_TOXIC_SPIKES",
-                "MOVE_BUG_BITE",
-                "MOVE_PROTECT",
-                "MOVE_DOUBLE_EDGE"
+                "MOVE_GYRO_BALL",
+                "MOVE_PAYBACK",
+                "MOVE_RAPID_SPIN"
             ],
-            "iv_scale": 246,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SKUNTANK",
+            "form": 0,
+            "level": 53,
+            "item": "ITEM_DREAD_PLATE",
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_POISON_JAB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FIRE_BLAST"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_GLACEON",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_SHELL_BELL",
+            "level": 54,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
                 "MOVE_BLIZZARD",
-                "MOVE_DETECT",
                 "MOVE_SHADOW_BALL",
-                "MOVE_BARRIER"
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "ability": 3,
+            "gender": "female"
         }
     ],
     "messages": [

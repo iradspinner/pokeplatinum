@@ -10,18 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ROSELIA",
+            "species": "SPECIES_SUNFLORA",
             "form": 0,
-            "level": 16,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_LEECH_SEED",
+                "MOVE_SUNNY_DAY",
                 "MOVE_MEGA_DRAIN",
-                "MOVE_STUN_SPORE",
-                "MOVE_NONE"
+                "MOVE_BULLET_SEED",
+                "MOVE_INGRAIN"
             ],
-            "iv_scale": 142,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GLOOM",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SLEEP_POWDER",
+                "MOVE_ACID",
+                "MOVE_MEGA_DRAIN",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VULPIX",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_CHARCOAL",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

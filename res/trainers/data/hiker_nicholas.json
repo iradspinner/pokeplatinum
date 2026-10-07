@@ -12,16 +12,51 @@
         {
             "species": "SPECIES_CUBONE",
             "form": 0,
-            "level": 16,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_TAIL_WHIP",
-                "MOVE_BONE_CLUB",
+                "MOVE_BONEMERANG",
                 "MOVE_HEADBUTT",
+                "MOVE_ROCK_SLIDE",
                 "MOVE_LEER"
             ],
-            "iv_scale": 113,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_RHYHORN",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_HORN_ATTACK",
+                "MOVE_STOMP",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GRAVELER",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_MAGNITUDE",
+                "MOVE_ROLLOUT",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [
