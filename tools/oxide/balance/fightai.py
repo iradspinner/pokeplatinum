@@ -91,10 +91,6 @@ CHARGE_TURN = {"BIDE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
 # Move_FailsInHighGravity and Move_HealBlocked (battle_lib.c 3757 to 3816).
 GRAVITY_FAILS = {"MOVE_FLY", "MOVE_BOUNCE", "MOVE_JUMP_KICK", "MOVE_HI_JUMP_KICK", "MOVE_SPLASH",
                  "MOVE_MAGNET_RISE"}
-HEAL_BLOCKED = {"MOVE_RECOVER", "MOVE_SOFTBOILED", "MOVE_REST", "MOVE_MILK_DRINK",
-                "MOVE_MORNING_SUN", "MOVE_SYNTHESIS", "MOVE_MOONLIGHT", "MOVE_SWALLOW",
-                "MOVE_HEAL_ORDER", "MOVE_SLACK_OFF", "MOVE_ROOST", "MOVE_LUNAR_DANCE",
-                "MOVE_HEALING_WISH", "MOVE_WISH", "MOVE_LUNAR_BLESSING", "MOVE_JUNGLE_HEALING"}
 # Basic's raising handlers: (the stat at +6 that scores -10, the stats at
 # +6 that score -8, refused under Trick Room).
 RAISES = {
@@ -406,7 +402,7 @@ def invalid(b, u, mv):
         return True
     if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
         return True
-    if getattr(u, "heal_block", 0) and mv.const in HEAL_BLOCKED:
+    if fs.move_heal_blocked(u, mv):                           # Move_HealBlocked, the engine's own list
         return True
     if mv.const == "MOVE_BELCH" and not getattr(u, "ate_berry", False):
         return True

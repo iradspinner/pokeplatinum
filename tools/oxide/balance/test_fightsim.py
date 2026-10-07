@@ -178,6 +178,25 @@ def check_move_reworks(results):
                     f"Shell Trap {trap_no}/{trap_yes}; Burning Jealousy {calm} then {foe.status}"))
 
 
+def check_ability_weather(results):
+    """Weather from an ability is permanent, as in the engine (subscript_drizzle
+    and its siblings set the _PERM field conditions); a move's weather counts
+    five turns and ends."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    p.ability = "Drizzle"
+    fs.switch_in(b, b.p, 0)
+    for _ in range(10):
+        fs.end_of_turn(b)
+    ability = (b.weather, b.weather_turns)
+    b2, p2, foe2 = battle(["Rain Dance"], ["Tackle"], {})
+    fs.status_move(b2, p2, fs.move("Rain Dance"), foe2, True)
+    for _ in range(5):
+        fs.end_of_turn(b2)
+    ok = ability == ("Rain", 0) and b2.weather is None
+    results.append(("an ability's weather is permanent; a move's lasts five turns", ok,
+                    f"Drizzle after ten turns {ability}; Rain Dance after five {b2.weather}"))
+
+
 def check_infiltrator(results):
     """In fightsim's own attack, which double battles use: an Infiltrator
     attacker's hit and added effect pass the target's Substitute, and
@@ -402,7 +421,7 @@ def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
-                  check_move_reworks, check_infiltrator, check_status,
+                  check_move_reworks, check_infiltrator, check_ability_weather, check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):

@@ -761,6 +761,90 @@ def infiltrator_checks():
              f"{got}; a status not from a move {plain}; own Substitute, Transform, Sky Drop held {held}")]
 
 
+def charge_and_heal_block_checks():
+    """Meteor Beam and Electro Shot charge with a Sp. Atk rise; a Power Herb
+    skips the charge and still raises it, and Electro Shot skips in rain
+    unless Cloud Nine is out; Skull Bash's Power Herb raises Defense
+    (effect scripts 145, 324, 325). Heal Block and Psychic Noise block healing
+    for five turns: healing moves fail and cannot be chosen, draining and
+    Leech Seed heal nothing, Leftovers still heals (subscript_heal_block_start,
+    Move_HealBlocked, the drain and Leech Seed subscripts). Draining Kiss
+    heals three quarters. On the planner's routines with set rows."""
+    from . import fightai
+    from .test_fightsim import battle as duel
+    out = []
+
+    def fresh(pm, bm=("Tackle",), roll=20, hp=100):
+        rolls = {("p", m): [roll] * 16 for m in pm}
+        rolls.update({("b", m): [roll] * 16 for m in bm})
+        b, p, foe = duel(list(pm), list(bm), rolls, hp=hp)
+        b.dice = pl.RunDice(random.Random(1), True)
+        b.rng = b.dice.rng
+        foe.ability = "Battle Armor"
+        return b, p, foe
+
+    def charge(name, item=None, weather=None, foe_ability=None):
+        b, p, foe = fresh([name])
+        p.item, b.weather = item, weather
+        if foe_ability:
+            foe.ability = foe_ability
+        pl.use_move(b, p, fs.move(name), foe, True)
+        first = (100 - foe.hp, p.charging is not None, p.stages["spa"], p.stages["def"], p.item)
+        if p.charging is not None:
+            pl.use_move(b, p, fs.move(name), foe, True)
+        return first, 100 - foe.hp
+    got = {"Meteor Beam": charge("Meteor Beam"), "Meteor Beam, Power Herb": charge("Meteor Beam", "Power Herb"),
+           "Electro Shot, rain": charge("Electro Shot", weather="Rain"),
+           "Electro Shot, rain, Cloud Nine": charge("Electro Shot", weather="Rain", foe_ability="Cloud Nine"),
+           "Skull Bash, Power Herb": charge("Skull Bash", "Power Herb")}
+    # The Sp. Atk rise lands before the hit, so a 20 row deals 30.
+    want = {"Meteor Beam": ((0, True, 1, 0, None), 30), "Meteor Beam, Power Herb": ((30, False, 1, 0, None), 30),
+            "Electro Shot, rain": ((30, False, 1, 0, None), 30),
+            "Electro Shot, rain, Cloud Nine": ((0, True, 1, 0, None), 30),
+            "Skull Bash, Power Herb": ((20, False, 0, 1, None), 20)}
+    out.append(("Meteor Beam and Electro Shot charge with a Sp. Atk rise, as the engine runs them", got == want,
+                str(got)))
+
+    # Heal Block from Psychic Noise, on the foe; then what it stops and what it does not.
+    b, p, foe = fresh(["Psychic Noise"], ["Recover", "Giga Drain"], hp=100)
+    pl.attack(b, p, fs.move("Psychic Noise"), foe, True)
+    blocked = foe.heal_block
+    foe.hp = 50
+    pl.use_move(b, foe, fs.move("Recover"), p, True)
+    recover = foe.hp
+    chosen = fightai.invalid(b, foe, fs.move("Recover"))
+    pl.attack(b, foe, fs.move("Giga Drain"), p, True)
+    drain = foe.hp
+    foe.item, foe.seeded, p.seeded = "Leftovers", False, True
+    p.hp = 100
+    for _ in range(5):
+        fs.end_of_turn(b)
+    after = (foe.hp, foe.heal_block)
+    fs.end_of_turn(b)                                # the block is over: Leech Seed heals again
+    sixth = foe.hp
+    b2, p2, foe2 = fresh(["Heal Block"])
+    foe2.sub = 25
+    pl.status_move(b2, p2, fs.move("Heal Block"), foe2, True)
+    on_sub = foe2.heal_block
+    b3, p3, foe3 = fresh(["Draining Kiss"], roll=40)
+    p3.hp = 50
+    pl.attack(b3, p3, fs.move("Draining Kiss"), foe3, True)
+    # Five turns' ends: Leftovers heals each one; Leech Seed's heal from the seeded
+    # player's Pokemon is blocked on all five, since that Pokemon's turn end runs
+    # before the blocked one counts down: the engine runs each Pokemon's turn end
+    # in speed order (monSpeedOrder), and the seeded one is the faster here. (The
+    # simulator runs the player's side first whatever the speeds.) On the sixth
+    # Leech Seed heals again.
+    ok = (blocked == 5 and recover == 50 and chosen and drain == 50 and after == (50 + 5 * (100 // 16), 0)
+          and sixth == after[0] + 100 // 16 + 100 // 8 and on_sub == 0 and p3.hp == 80)
+    out.append(("Heal Block and Psychic Noise block healing moves, draining and Leech Seed for five turns, "
+                "not Leftovers; Draining Kiss heals three quarters", ok,
+                f"blocked {blocked}; Recover leaves {recover}, refused by the AI {chosen}; Giga Drain leaves {drain}; "
+                f"after five turns {after}, the sixth {sixth}; on a Substitute {on_sub}; "
+                f"Draining Kiss heals to {p3.hp}"))
+    return out
+
+
 def types_ns(**kw):
     import types
     return types.SimpleNamespace(**kw)
@@ -978,6 +1062,7 @@ def study_effect_checks():
     out += reckless_calc_checks()
     out += sheer_force_life_orb_checks()
     out += infiltrator_checks()
+    out += charge_and_heal_block_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))
