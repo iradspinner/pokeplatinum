@@ -518,6 +518,8 @@ BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 
 REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
 # Blast Burn, Hydro Cannon, Frenzy Plant.
 REWORK_STARTER_ULTIMATES = {307, 308, 338}
+# Sky Attack.
+REWORK_SKY_ATTACK = {143}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -669,6 +671,12 @@ DIVERGED = {
             "why": "Blast Burn, Frenzy Plant and Hydro Cannon at 95 accuracy with Kaizo's "
                    "recoil and status in place of the recharge turn (the move reworks, "
                    "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7),  # effect, power, effect chance
+            "members": REWORK_SKY_ATTACK,
+            "why": "Sky Attack in one turn at 120 power, with a third as recoil and a 20% "
+                   "paralysis (the move reworks, Ian, 2026-10-06)",
         },
     ],
 }

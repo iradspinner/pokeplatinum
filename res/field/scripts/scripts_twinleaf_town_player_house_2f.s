@@ -806,6 +806,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet70, 15
     AddListMenuEntry TestKit_Text_MenuSet71, 16
     AddListMenuEntry TestKit_Text_MenuSet72, 17
+    AddListMenuEntry TestKit_Text_MenuSet73, 18
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -825,6 +826,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 15, TestKit_MoveSet70
     GoToIfEq VAR_0x8004, 16, TestKit_MoveSet71
     GoToIfEq VAR_0x8004, 17, TestKit_MoveSet72
+    GoToIfEq VAR_0x8004, 18, TestKit_MoveSet73
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1724,6 +1726,23 @@ TestKit_MoveSet72:
     SetVar VAR_0x8007, MOVE_FRENZY_PLANT
     SetVar VAR_0x8008, MOVE_HYDRO_CANNON
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 73: Sky Attack in one turn (the move reworks, Ian, 2026-10-06): 120
+   power, 100% accuracy, a third of the damage dealt as recoil and a 20%
+   chance to paralyse. Against a wild Chansey that knows only Splash, Sky
+   Attack strikes on the turn it is chosen, with no "became cloaked in a
+   harsh light!" turn before it, brings "MEW is hit with recoil!", and now
+   and then paralyses Chansey. Before the change it glowed for a turn and
+   struck the next. */
+TestKit_MoveSet73:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SKY_ATTACK
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
