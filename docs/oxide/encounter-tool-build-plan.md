@@ -1364,6 +1364,25 @@ that stay. None blocks anything.
    `dex_pos` is also the spreadsheet row `species_import.py` reads. On the
    way, three wrong national dex numbers in the pick-list were corrected
    (Rotom, Manaphy, Shaymin) and its doc's row count brought up to 499.
+51. **The alpha checklist (alpha readiness step 17, Ian, 2026-10-06), on
+   `oxidex-alpha-checklist`.** Stage A (checks 1, 2 and 5, and the teams of
+   check 3) is done and landing: `alpha.py` builds every zone in walking
+   order by split from the tree, the Alpha tab shows it, and `test_alpha`
+   (19 checks) holds each count to its source. Stage B (checks 3's
+   feedback, 4 and 6) was paused on 2026-10-06 at the Overseer's word, for
+   Ian's usage limit, and resumes after 11 PM. Where it stopped (a7afb6832):
+   written but not yet run or tested are `savefile.flags_set`,
+   `savewatch.raw`, `alpha.ticks` with `tick_targets`, `alphanotes.py` (the
+   local notes file, its stamps, the export to `alpha-notes.json` and `.md`,
+   the read back and a new run), the server's `/api/alpha/state` and its
+   three POSTs, the page's feedback controls, the export file in
+   `saves.WRITES`, the `.gitignore` line and the sync mappings. Still to do:
+   the CSS for the feedback controls (`.afb`, `.afbrow`, `.afbtext`,
+   `.afbedit`, `.beaten`, `#alphabar`, the trainer row's fifth column), a
+   test save that ticks the right rows (check 4), a round trip of export and
+   read back under `OXIDE_ALPHA_DIR` (check 6), the Node render check
+   rerun, merging `origin/oxide` back in after stage A's landing, then the
+   report.
 
 ## Standing rules
 
