@@ -72,6 +72,11 @@ copy "learnset-rewrite.md" "notes/learnset-rewrite.md"
 for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
     copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
 done
+copy "kaizo-comb/README.md" "notes/kaizo-comb/README.md"
+for f in "$SRC"/kaizo-comb/*.md; do
+    name="$(basename "$f")"
+    [ "$name" = README.md ] || copy "kaizo-comb/$name" "notes/kaizo-comb/$name"
+done
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "species-id-scheme.md" "notes/species-id-scheme.md"
