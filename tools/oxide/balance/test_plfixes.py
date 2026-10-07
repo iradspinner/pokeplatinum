@@ -672,6 +672,60 @@ def rework_checks():
     return out
 
 
+def sheer_force_life_orb_checks():
+    """Ian, 2026-10-07: a Sheer Force user holding a Life Orb takes no Life
+    Orb recoil on a move Sheer Force boosts (Battler_SheerForceActive: an
+    effect it strips, or a move that keeps its effect under it), and keeps
+    both boosts. On the planner's attack with set rows, then on the
+    calculator: one level 100 Nidoking's Flamethrower into a Snorlax with
+    Sheer Force and a Life Orb, each alone, and neither (1.3, 1.3 and 1.69,
+    within rounding)."""
+    from . import pressure, teamscore
+    from .test_fightsim import battle as duel
+    out = []
+
+    def lost(name, ability, item="Life Orb"):
+        b, p, foe = duel([name], ["Tackle"], {("p", name): [20] * 16}, hp=100)
+        b.dice = pl.RunDice(random.Random(1), True)
+        b.rng = b.dice.rng
+        foe.ability = "Battle Armor"
+        p.ability, p.item = ability, item
+        pl.attack(b, p, fs.move(name), foe, True)
+        return 100 - p.hp
+    got = {"Flamethrower, Sheer Force": lost("Flamethrower", "Sheer Force"),
+           "Ceaseless Edge, Sheer Force": lost("Ceaseless Edge", "Sheer Force"),
+           "Spirit Shackle, Sheer Force": lost("Spirit Shackle", "Sheer Force"),
+           "Tackle, Sheer Force": lost("Tackle", "Sheer Force"),
+           "Flamethrower, Blaze": lost("Flamethrower", "Blaze")}
+    sf = types_ns(ability="Sheer Force")
+    strips = {n: fs.sheer_force_strips(sf, fs.move(n)) for n in ("Flamethrower", "Spirit Shackle", "Ceaseless Edge")}
+    out.append(("Sheer Force with a Life Orb: no recoil on a move it boosts, recoil on one it does not",
+                got == {"Flamethrower, Sheer Force": 0, "Ceaseless Edge, Sheer Force": 0,
+                        "Spirit Shackle, Sheer Force": 0, "Tackle, Sheer Force": 10, "Flamethrower, Blaze": 10}
+                and strips == {"Flamethrower": True, "Spirit Shackle": False, "Ceaseless Edge": False},
+                f"HP lost {got}; strips {strips}"))
+
+    ivs = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    mon = {"species": "Nidoking", "level": 100, "nature": "Modest", "ivs": ivs, "evs": dict.fromkeys(ivs, 0)}
+    pk = {"both": dict(mon, ability="Sheer Force", item="Life Orb"), "sf": dict(mon, ability="Sheer Force", item=""),
+          "lo": dict(mon, ability="Poison Point", item="Life Orb"), "none": dict(mon, ability="Poison Point", item=""),
+          # Immunity, not Thick Fat, so the Fire hit is large enough that rounding stays under 1%.
+          "t": dict(mon, species="Snorlax", level=50, nature="Hardy", ability="Immunity", item="")}
+    jobs = {"pokemon": pk, "pairs": [[k, "t", ["Flamethrower"], None] for k in ("both", "sf", "lo", "none")]}
+    rows = {r["a"]: r["moves"]["Flamethrower"]["rolls"][-1]
+            for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+    ratio = {k: round(rows[k] / rows["none"], 3) for k in ("both", "sf", "lo")}
+    out.append(("the calculator's row gives Sheer Force's 1.3 and the Life Orb's 1.3 together",
+                abs(ratio["sf"] - 1.3) < 0.03 and abs(ratio["lo"] - 1.3) < 0.03 and abs(ratio["both"] - 1.69) < 0.05,
+                f"Flamethrower {rows}; ratios to neither {ratio}"))
+    return out
+
+
+def types_ns(**kw):
+    import types
+    return types.SimpleNamespace(**kw)
+
+
 def reckless_calc_checks():
     """Every move on an effect the game raises for Reckless deals 1.2 times
     as much with Reckless, the calculator's own boost and the simulator's
@@ -882,6 +936,7 @@ def study_effect_checks():
     out += trick_room_checks()
     out += rework_checks()
     out += reckless_calc_checks()
+    out += sheer_force_life_orb_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

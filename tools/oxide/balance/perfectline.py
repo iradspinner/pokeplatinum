@@ -608,7 +608,7 @@ def attack(b, att, mv, dfn, first):
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
             att.lock = (mv, b.dice.outrage(att.side))
-    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard":
+    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard" and not fs.sheer_force_active(att, mv):
         fs.hurt(b, att, att.maxhp // 10)
     if e == "REMOVE_SCREENS":
         side = b.p if player(dfn) else b.b
