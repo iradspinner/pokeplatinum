@@ -2355,6 +2355,11 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SMACK_DOWN, Expert_Gravity
     // Magic Room stops held items, as Embargo does.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MAGIC_ROOM, Expert_Embargo
+    // Meteor Beam charges for a turn, raising its user's Sp. Atk, as Skull
+    // Bash charges raising Defense, Power Herb included (2026-10-07).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_SP_ATK_UP, Expert_ChargeTurnNoInvuln
+    // Psychic Noise is a hit that puts Heal Block on its target (2026-10-07).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_AND_PREVENT_HEALING, Expert_HealBlock
 
     // All other moves have no additional logic.
     PopOrEnd

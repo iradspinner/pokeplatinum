@@ -12,16 +12,67 @@
         {
             "species": "SPECIES_SHINX",
             "form": 0,
-            "level": 10,
-            "item": null,
+            "level": 15,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_NONE",
-                "MOVE_NONE"
+                "MOVE_SPARK",
+                "MOVE_TACKLE",
+                "MOVE_SCARY_FACE",
+                "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 114,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAREEP",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_THUNDER_SHOCK",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TACKLE",
+                "MOVE_SAND_ATTACK"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PIKACHU",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SHOCK_WAVE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BRICK_BREAK",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ELEKID",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SHOCK_WAVE",
+                "MOVE_LOW_KICK",
+                "MOVE_BRICK_BREAK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -10,15 +10,67 @@
         {
             "species": "SPECIES_ROSELIA",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_MEGA_DRAIN",
+                "MOVE_SPIKES",
+                "MOVE_GIGA_DRAIN",
                 "MOVE_POISON_STING",
                 "MOVE_STUN_SPORE"
             ],
-            "iv_scale": 20,
-            "ball_seal": 0
+            "iv_scale": 230,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_BELLSPROUT",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BULLET_SEED",
+                "MOVE_VINE_WHIP",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_GROWTH"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_POISON_POWDER",
+                "MOVE_LEECH_SEED"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SHIFTRY",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_FAINT_ATTACK"
+            ],
+            "iv_scale": 230,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

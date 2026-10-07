@@ -994,24 +994,37 @@ def check_trainer_sets(results):
                 members += len(__import__("json").load(fh).get("party") or [])
     names = {n for by in sets.values() for n in by}
     parse = re.compile(r"\(Lvl\s+-?\d+\s+([^)]+)\)")
+    # Roark's first fight and his rematch are two names, each with its own
+    # level, whatever team his files hold (the Kaizo comb rewrote them on
+    # 2026-10-07).
+    first = {n for n in names if re.fullmatch(r"Lvl \d+ Leader Roark", n)}
+    again = {n for n in names if re.fullmatch(r"Lvl \d+ Leader Roark Rematch", n)}
     results.append(("every party member of every trainer is a set, under a name "
                     "the calculator can parse",
                     sum(len(v) for v in sets.values()) == members
                     and set(sets) <= set(blob["poks"])
                     and all(parse.search(f"X ({n})") for n in names)
-                    and "Lvl 15 Leader Roark" in names
-                    and "Lvl 15 Leader Roark Rematch" not in names,
+                    and len(first) == 1 and len(again) == 1
+                    and next(iter(first)).split()[1] != next(iter(again)).split()[1],
                     f"{sum(len(v) for v in sets.values())} sets for {members} members"))
-    roark = sets["Cranidos"]["Lvl 15 Leader Roark"]
-    rematch = next(s for sp, by in sets.items() for n, s in by.items()
-                   if n.endswith("Leader Roark Rematch"))
+    # His ace's set carries what his file gives it: the level, the IVs from
+    # the IV scale, the item, the first move and the AI flags as bits.
+    from . import alpha, calc_export, trainers
+    flag_bits = trainers.detail(root, "leader_roark")["all_ai_flags"]
+    bits = lambda flags: sum(1 << flag_bits.index(f) for f in flags)
+    ace = trainers.load(root, "leader_roark")["party"][-1]
+    roark = sets[dex.display_name(ace["species"])][next(iter(first))]
+    rematch_file = trainers.load(root, "leader_roark_rematch")
+    rematch = next(s for sp, by in sets.items() for n, s in by.items() if n in again)
     results.append(("a set carries the level, IVs, item, moves and AI flags the "
                     "game gives it",
-                    roark["level"] == 16 and roark["item"] == "Sitrus Berry"
-                    and roark["ivs"]["sp"] == 223 * 31 // 255 == 27
-                    and roark["moves"][0] == "Headbutt" and roark["ai"] == 0b111
-                    and rematch["ai"] & (1 << 3) and rematch["ai"] & (1 << 5),
-                    f"Cranidos {roark['nature']} {roark['ability']}"))
+                    roark["level"] == ace["level"]
+                    and roark["item"] == alpha._item_records(root)[ace["item"]][0]
+                    and roark["ivs"]["sp"] == ace["iv_scale"] * 31 // 255
+                    and roark["moves"][0] == calc_export.move_keys(root)[ace["moves"][0]]
+                    and roark["ai"] == bits(trainers.load(root, "leader_roark")["ai_flags"])
+                    and rematch["ai"] == bits(rematch_file["ai_flags"]),
+                    f"{dex.display_name(ace['species'])} {roark['nature']} {roark['ability']}"))
     # A held item the calculator has no name for is dropped from the set.
     # Today that is only Rare Candy, which does nothing in battle.
     import json as _json
@@ -1027,9 +1040,25 @@ def check_trainer_sets(results):
                     and server.calc_item_icon("sitrus_berry.png")
                     and server.calc_item_icon("choice_specs.png"),
                     f"unnamed {sorted(unnamed)}"))
+    # Every trainer Pokemon in a form with a calculator name of its own sits
+    # under that name, whichever trainers hold one (Volkner's Rotom-Mow did
+    # until the Kaizo comb drafted his first team, 2026-10-07).
+    from . import calc_trainers as ctr
+    names_of = calc_export.form_folders_inverse()
+    wanted, missing = 0, []
+    for f in sorted(os.listdir(os.path.join(root, "res", "trainers", "data"))):
+        if f.startswith("dummy"):
+            continue            # the export leaves the dummy slots out, as the count above does
+        with open(os.path.join(root, "res", "trainers", "data", f), encoding="utf-8") as fh:
+            party = _json.load(fh).get("party") or []
+        for m in party:
+            name = names_of.get((m["species"], ctr.FORM_FOLDERS.get((m["species"], m.get("form") or 0))))
+            if name:
+                wanted += 1
+                if name not in sets:
+                    missing.append(f"{f}: {name}")
     results.append(("a trainer's form keeps its form in the calculator",
-                    "Rotom-Mow" in sets and any(
-                        n.endswith("Leader Volkner") for n in sets["Rotom-Mow"]), ""))
+                    wanted > 0 and not missing, f"{wanted} form Pokemon, missing {missing[:3]}"))
 
     # "ability": 3 (1832a346c) is "don't care" for the personality, then the
     # record's hidden ability, or the ordinary one when there is none; and a

@@ -1,7 +1,7 @@
 {
     "name": "Cyrus",
     "class": "TRAINER_CLASS_GALACTIC_BOSS",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_DUSKNOIR",
             "form": 0,
-            "level": 59,
+            "level": 63,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_SHADOW_PUNCH",
@@ -24,13 +24,13 @@
             "iv_scale": 243,
             "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 59,
+            "level": 63,
             "item": "ITEM_WACAN_BERRY",
             "moves": [
                 "MOVE_AQUA_TAIL",
@@ -41,13 +41,13 @@
             "iv_scale": 240,
             "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_HEATRAN",
             "form": 0,
-            "level": 59,
+            "level": 63,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_MAGMA_STORM",
@@ -58,13 +58,13 @@
             "iv_scale": 237,
             "nature": "NATURE_HASTY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_FLYGON",
             "form": 0,
-            "level": 59,
+            "level": 63,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_EARTH_POWER",
@@ -75,13 +75,13 @@
             "iv_scale": 240,
             "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         },
         {
             "species": "SPECIES_REGIROCK",
             "form": 0,
-            "level": 59,
+            "level": 64,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_CURSE",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 59,
+            "level": 65,
             "item": "ITEM_KINGS_ROCK",
             "moves": [
                 "MOVE_ROCK_SLIDE",
@@ -109,7 +109,7 @@
             "iv_scale": 252,
             "nature": "NATURE_LONELY",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
             "gender": null
         }
     ],

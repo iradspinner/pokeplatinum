@@ -14,29 +14,69 @@
             "species": "SPECIES_STARLY",
             "form": 0,
             "level": 10,
-            "item": null,
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
-                "MOVE_QUICK_ATTACK",
-                "MOVE_GROWL",
                 "MOVE_WING_ATTACK",
-                "MOVE_NONE"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_STEEL_WING"
             ],
-            "iv_scale": 134,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_BUIZEL",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_CHILLING_WATER",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_BRICK_BREAK",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MUNCHLAX",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_TACKLE",
+                "MOVE_LICK",
+                "MOVE_CHARM",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CAREFUL",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
         },
         {
             "species": "SPECIES_TURTWIG",
             "form": 0,
             "level": 11,
-            "item": null,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
+                "MOVE_GIGA_DRAIN",
                 "MOVE_TACKLE",
-                "MOVE_WITHDRAW",
-                "MOVE_ABSORB",
-                "MOVE_NONE"
+                "MOVE_AMNESIA",
+                "MOVE_GROWTH"
             ],
-            "iv_scale": 136,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -1,7 +1,7 @@
 {
     "name": "Byron",
     "class": "TRAINER_CLASS_LEADER_BYRON",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,97 +11,103 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_FORRETRESS",
+            "species": "SPECIES_BASTIODON",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 51,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_BUG_BITE",
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_EXPLOSION",
-                "MOVE_EARTHQUAKE"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_ROAR",
+                "MOVE_STONE_EDGE",
+                "MOVE_IRON_HEAD"
             ],
-            "iv_scale": 235,
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
-            "species": "SPECIES_STEELIX",
+            "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_PASSHO_BERRY",
+            "level": 51,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_IRON_HEAD",
-                "MOVE_ICE_FANG",
-                "MOVE_EARTHQUAKE",
-                "MOVE_SANDSTORM"
+                "MOVE_SPIKES",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ROOST",
+                "MOVE_WHIRLWIND"
             ],
-            "iv_scale": 237,
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_FOCUS_SASH",
+            "level": 51,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_MIRROR_COAT",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN",
                 "MOVE_THUNDERBOLT",
-                "MOVE_FLASH_CANNON",
-                "MOVE_REFLECT"
+                "MOVE_FLASH_CANNON"
             ],
-            "iv_scale": 235,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_METAGROSS",
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_EXPLOSION",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HEATRAN",
             "form": 0,
             "level": 52,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_AGILITY",
-                "MOVE_METEOR_MASH",
-                "MOVE_HAMMER_ARM"
+                "MOVE_FLAMETHROWER",
+                "MOVE_EARTH_POWER",
+                "MOVE_FLASH_CANNON",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 249,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
-            "species": "SPECIES_EMPOLEON",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_CHOPLE_BERRY",
-            "moves": [
-                "MOVE_AQUA_TAIL",
-                "MOVE_IRON_HEAD",
-                "MOVE_DRILL_PECK",
-                "MOVE_EARTHQUAKE"
-            ],
-            "iv_scale": 254,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BASTIODON",
+            "species": "SPECIES_METAGROSS",
             "form": 0,
             "level": 53,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_METAL_BURST",
-                "MOVE_STONE_EDGE",
-                "MOVE_IRON_HEAD",
-                "MOVE_AVALANCHE"
+                "MOVE_METEOR_MASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_AGILITY"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
             "gender": null

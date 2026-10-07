@@ -12,16 +12,50 @@
         {
             "species": "SPECIES_GRIMER",
             "form": 0,
-            "level": 15,
-            "item": null,
+            "level": 17,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_POISON_GAS",
+                "MOVE_TOXIC",
                 "MOVE_POUND",
-                "MOVE_HARDEN",
+                "MOVE_MUD_SLAP",
+                "MOVE_HARDEN"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CROAGUNK",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_POISON_STING",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_PURSUIT",
                 "MOVE_MUD_SLAP"
             ],
-            "iv_scale": 117,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KOFFING",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SMOG",
+                "MOVE_ASSURANCE",
+                "MOVE_SCARY_FACE",
+                "MOVE_TACKLE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -12,84 +12,89 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SOLROCK",
+            "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 58,
-            "item": "ITEM_KINGS_ROCK",
+            "level": 62,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_WILL_O_WISP"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_GYRO_BALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
             "ability": 1,
             "gender": null
         },
         {
-            "species": "SPECIES_DELCATTY",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 58,
-            "item": "ITEM_SILK_SCARF",
+            "level": 62,
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
-                "MOVE_FAKE_OUT",
-                "MOVE_COPYCAT",
-                "MOVE_LAST_RESORT",
-                "MOVE_NONE"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CROSS_POISON",
+                "MOVE_U_TURN",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 248,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 0,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_UMBREON",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_PAYBACK",
+                "MOVE_TOXIC",
+                "MOVE_WISH",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 58,
-            "item": "ITEM_MAGNET",
+            "level": 62,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_THUNDER_FANG",
-                "MOVE_ICE_FANG",
-                "MOVE_CHARGE",
-                "MOVE_MAGNET_RISE"
+                "MOVE_CRUNCH",
+                "MOVE_SUPERPOWER",
+                "MOVE_ICE_FANG"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_BRONZONG",
-            "form": 0,
-            "level": 58,
-            "item": "ITEM_SITRUS_BERRY",
-            "moves": [
-                "MOVE_CURSE",
-                "MOVE_GYRO_BALL",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_RECYCLE"
-            ],
-            "iv_scale": 243,
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 59,
-            "item": "ITEM_LIFE_ORB",
+            "level": 63,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_SLASH",
                 "MOVE_FAKE_OUT",
+                "MOVE_BODY_SLAM",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_HYPNOSIS"
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "ability": 3,
+            "gender": "female"
         }
     ],
     "messages": [

@@ -13,15 +13,103 @@
             "species": "SPECIES_GLALIE",
             "form": 0,
             "level": 54,
-            "item": null,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_SPIKES",
                 "MOVE_ICE_SHARD",
                 "MOVE_CRUNCH",
-                "MOVE_IRON_HEAD",
-                "MOVE_NONE"
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 252,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GOLEM",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_HARD_STONE",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_BLACK_BELT",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GLISCOR",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_U_TURN",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_PILOSWINE",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_EVIOLITE",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE",
+                "MOVE_AMNESIA"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         }
     ],
     "messages": [

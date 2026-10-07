@@ -12,50 +12,70 @@
         {
             "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_DARK_PULSE",
-                "MOVE_ICE_BEAM",
-                "MOVE_SHEER_COLD",
-                "MOVE_CRUNCH"
+                "MOVE_ICE_SHARD",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_FANG"
             ],
-            "iv_scale": 209,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 2,
+            "gender": "male"
         },
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_BRAVE_BIRD",
                 "MOVE_CROSS_POISON",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_U_TURN"
+                "MOVE_U_TURN",
+                "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 235,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 0,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_TYPHLOSION",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_ERUPTION",
+                "MOVE_FLAMETHROWER",
                 "MOVE_FOCUS_BLAST",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_LOW_KICK"
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 241,
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

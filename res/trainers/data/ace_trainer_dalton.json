@@ -10,32 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ELECTIVIRE",
+            "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 52,
-            "item": null,
+            "level": 54,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_SHARD",
+                "MOVE_CRUNCH",
                 "MOVE_EARTHQUAKE",
-                "MOVE_ICE_PUNCH",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_ICE_FANG"
             ],
-            "iv_scale": 242,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 52,
-            "item": null,
+            "level": 54,
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FLAMETHROWER",
-                "MOVE_PSYCHIC",
                 "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 252,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_ABOMASNOW",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_ENERGY_BALL",
+                "MOVE_ICE_SHARD",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_DEWGONG",
+            "form": 0,
+            "level": 54,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_SURF",
+                "MOVE_AQUA_JET",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_ELECTIVIRE",
+            "form": 0,
+            "level": 55,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
         }
     ],
     "messages": [

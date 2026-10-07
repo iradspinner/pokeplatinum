@@ -10,46 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SEVIPER",
-            "form": 0,
-            "level": 58,
-            "item": null,
-            "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_POISON_FANG",
-                "MOVE_WRING_OUT",
-                "MOVE_GLARE"
-            ],
-            "iv_scale": 242,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_PERSIAN",
             "form": 0,
-            "level": 58,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_U_TURN",
+                "MOVE_KNOCK_OFF",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SEVIPER",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_POISON_BARB",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_CRUNCH",
+                "MOVE_FLAMETHROWER",
+                "MOVE_GLARE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_NAIVE",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_HONCHKROW",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_SHARP_BEAK",
+            "moves": [
+                "MOVE_DRILL_PECK",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_HEAT_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_MIGHTYENA",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_THUNDER_FANG"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
                 "MOVE_NIGHT_SLASH",
-                "MOVE_SLASH",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_FAKE_OUT"
+                "MOVE_ICE_PUNCH",
+                "MOVE_ICE_SHARD",
+                "MOVE_BRICK_BREAK"
             ],
-            "iv_scale": 241,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_ABSOL",
             "form": 0,
-            "level": 58,
-            "item": null,
+            "level": 64,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_PSYCHO_CUT",
-                "MOVE_SLASH",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUPERPOWER",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 239,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

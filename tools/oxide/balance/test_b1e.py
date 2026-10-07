@@ -99,9 +99,11 @@ def check_gates(results):
 
 
 def check_late_visits(results):
-    """B2's 16 later visits (18 until Somnu and Moira at Lake Verity became a
-    story fight): every one a crossing reaches lands in a split whose cap
-    covers its ace, and the rest are off the story path."""
+    """B2's 22 later visits (16 until the Kaizo comb's levels, step 12, put
+    six more teams in a later split than their map's; 18 until Somnu and
+    Moira at Lake Verity became a story fight): every one a crossing reaches
+    lands in a split whose cap covers its ace, and the rest are off the
+    story path."""
     first = R.first_crossings()
     ox = data.oxide_trainers()
     rows, _ = metrics.all_metrics()
@@ -116,7 +118,7 @@ def check_late_visits(results):
         placed += 1
         if ace > cap:
             wrong.append(ox[tr_id]["stem"])
-    results.append(("the 16 later visits land under their split's cap", not wrong and placed == 11,
+    results.append(("the 22 later visits land under their split's cap", not wrong and placed == 15,
                     f"{placed} placed, {off} off the story path" + (f"; over cap {wrong}" if wrong else "")))
 
 

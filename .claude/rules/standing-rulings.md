@@ -3,6 +3,23 @@
 A local session keeps these in its memory folder, which a cloud session cannot
 read, so they are written here too. Each is a standing instruction.
 
+- **Each change is judged for its effect on difficulty, by judgement.** Ian,
+  2026-10-07: "this should dictate every single decision on every single
+  agent." A change that does not materially move a fight's difficulty (a
+  starter's level 5 moves, a TM's location, a line of dialogue) stales
+  nothing and sets off no rescore or re-read; a material one names the
+  fights it moves, and only those are marked for reading. Scores never block
+  a landing: the gate reports stale scores and passes. Full readings happen
+  only at milestones (once before alpha 1, then once after each round of
+  alpha changes); between them the scorer reads only the fights Ian names,
+  and the simulator is frozen except for fixes he approves. The cheap
+  calculator estimate runs on request, in the background. A problem Ian
+  reports is fixed as data, with common sense, never turned into a standing
+  rule, a generator rule or a gate check unless he asks for one. Every
+  landing commit says, in one line, "Difficulty: not material" or
+  "Difficulty: material, <fights>". The rule exists because Roark's split
+  was re-read more than 65 times before the alpha, and the full scorer costs
+  60 to 75 hours a pass.
 - Never launch an emulator. Ian runs melonDS on Windows and drives it; a local
   session attaches to it over the GDB stub (`debug-live` skill). A cloud
   session cannot reach it at all, so in-game checks are written into the
@@ -193,7 +210,12 @@ read, so they are written here too. Each is a standing instruction.
   Boss levels spike by importance (Ian, 2026-10-06): gym leaders, rivals,
   Cyrus and the League keep their aces at the cap, while officers and the
   other mini-bosses sit a few levels under it and earn their difficulty
-  from sharper sets. Cyrus 3 is today's team raised to the cap's levels.
+  from sharper sets. Concretely (Ian, 2026-10-07): an officer's or
+  mini-boss's ace sits a few (2 to 4) under the cap (the four Ian named at 3
+  under: Saturn 1 and Mars 2 at 53, Saturn 2 at 57, Lucas and Dawn 3 at 68), and the Elite Four's aces rise from 72 to
+  78 (Aaron 72, Bertha 73, Flint 74, Lucian 75, Cynthia 78) under the
+  engine's single League cap of 78. A mid-split boss is read with the
+  player's box at its ace's level, extending the interim soft caps. Cyrus 3 is today's team raised to the cap's levels.
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,

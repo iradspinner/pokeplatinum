@@ -10,20 +10,21 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_POLIWRATH",
+            "species": "SPECIES_GLIMMORA",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_DAMP_ROCK",
+            "level": 37,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_BRICK_BREAK",
-                "MOVE_WATERFALL",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_RAIN_DANCE"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_POWER_GEM",
+                "MOVE_VENOSHOCK",
+                "MOVE_MORTAL_SPIN"
             ],
-            "iv_scale": 210,
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": "male"
+            "ability": 3,
+            "gender": "female"
         },
         {
             "species": "SPECIES_HERACROSS",
@@ -34,12 +35,13 @@
                 "MOVE_CLOSE_COMBAT",
                 "MOVE_FACADE",
                 "MOVE_AERIAL_ACE",
-                "MOVE_BUG_BITE"
+                "MOVE_NIGHT_SLASH"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         },
         {
             "species": "SPECIES_TOXICROAK",
@@ -47,12 +49,13 @@
             "level": 38,
             "item": "ITEM_PAYAPA_BERRY",
             "moves": [
-                "MOVE_SUCKER_PUNCH",
+                "MOVE_FAKE_OUT",
                 "MOVE_POISON_JAB",
                 "MOVE_CROSS_CHOP",
                 "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 199,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
@@ -61,33 +64,35 @@
             "species": "SPECIES_CACTURNE",
             "form": 0,
             "level": 38,
-            "item": "ITEM_IRON_BALL",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_REVENGE",
-                "MOVE_FLING",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_SEED_BOMB"
+                "MOVE_SEED_BOMB",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_PAYBACK"
             ],
-            "iv_scale": 205,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
             "level": 38,
-            "item": "ITEM_SHELL_BELL",
+            "item": "ITEM_COBA_BERRY",
             "moves": [
                 "MOVE_HI_JUMP_KICK",
                 "MOVE_PSYCHO_CUT",
                 "MOVE_FIRE_PUNCH",
                 "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 218,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
+            "gender": "female"
         },
         {
             "species": "SPECIES_LUCARIO",
@@ -95,15 +100,16 @@
             "level": 39,
             "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_VACUUM_WAVE",
+                "MOVE_AURA_SPHERE",
                 "MOVE_FLASH_CANNON",
-                "MOVE_AURA_SPHERE"
+                "MOVE_WATER_PULSE",
+                "MOVE_VACUUM_WAVE"
             ],
-            "iv_scale": 201,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 2,
-            "gender": "male"
+            "gender": "female"
         }
     ],
     "messages": [

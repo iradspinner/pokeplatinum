@@ -10,18 +10,85 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_MANKEY",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_LOW_KICK",
+                "MOVE_FURY_SWIPES",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MACHOP",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_LOW_KICK",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_ARM_THRUST",
+                "MOVE_VITAL_THROW",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_RIOLU",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FORCE_PALM",
+                "MOVE_COUNTER",
+                "MOVE_ENDURE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 16,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_MEDITATE",
-                "MOVE_CONFUSION",
-                "MOVE_DETECT",
-                "MOVE_HIDDEN_POWER"
+                "MOVE_BULLET_PUNCH",
+                "MOVE_PSYCHO_CUT",
+                "MOVE_BRICK_BREAK",
+                "MOVE_FORESIGHT"
             ],
-            "iv_scale": 92,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

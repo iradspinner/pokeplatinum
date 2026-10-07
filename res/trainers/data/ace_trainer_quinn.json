@@ -10,52 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PINSIR",
+            "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 55,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_SUPERPOWER",
-                "MOVE_X_SCISSOR",
-                "MOVE_SWORDS_DANCE",
-                "MOVE_ROCK_TOMB"
+                "MOVE_SPIKES",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ROOST",
+                "MOVE_WHIRLWIND"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 55,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_DISCHARGE",
-                "MOVE_SIGNAL_BEAM",
                 "MOVE_SURF",
+                "MOVE_DISCHARGE",
+                "MOVE_ICE_BEAM",
                 "MOVE_CONFUSE_RAY"
             ],
-            "iv_scale": 221,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_MEGANIUM",
             "form": 0,
-            "level": 55,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_PETAL_DANCE",
+                "MOVE_ENERGY_BALL",
+                "MOVE_EARTHQUAKE",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_POISON_POWDER",
-                "MOVE_ANCIENT_POWER"
+                "MOVE_REFLECT"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_MEGAHORN",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_METAL_COAT",
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_U_TURN",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_PINSIR",
+            "form": 0,
+            "level": 64,
+            "item": "ITEM_SILVERPOWDER",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         }
     ],
     "messages": [

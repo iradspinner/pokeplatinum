@@ -10,18 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NIDORINO",
+            "species": "SPECIES_NIDORINA",
             "form": 0,
-            "level": 27,
+            "level": 31,
             "item": null,
             "moves": [
+                "MOVE_POISON_JAB",
                 "MOVE_DOUBLE_KICK",
-                "MOVE_POISON_STING",
-                "MOVE_DIG",
-                "MOVE_HEADBUTT"
+                "MOVE_BITE",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 169,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GLIGAR",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_AERIAL_ACE",
+                "MOVE_DIG",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NIDORINO",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_HORN_ATTACK",
+                "MOVE_SUCKER_PUNCH"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DUGTRIO",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_DIG",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

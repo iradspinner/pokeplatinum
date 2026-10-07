@@ -10,18 +10,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_MURKROW",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_PURSUIT",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_ASTONISH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_IMPRISON",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_ROCK_TOMB"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_CROAGUNK",
             "form": 0,
             "level": 24,
-            "item": null,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_PURSUIT",
+                "MOVE_POISON_JAB",
                 "MOVE_FAINT_ATTACK",
-                "MOVE_WAKE_UP_SLAP",
-                "MOVE_SWAGGER"
+                "MOVE_PURSUIT",
+                "MOVE_MUD_SLAP"
             ],
-            "iv_scale": 161,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

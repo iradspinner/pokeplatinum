@@ -12,44 +12,70 @@
         {
             "species": "SPECIES_LOPUNNY",
             "form": 0,
-            "level": 47,
-            "item": null,
+            "level": 50,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_LOW_KICK",
-                "MOVE_DIZZY_PUNCH",
                 "MOVE_FAKE_OUT",
-                "MOVE_BOUNCE"
+                "MOVE_JUMP_KICK",
+                "MOVE_DIZZY_PUNCH",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 247,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GARDEVOIR",
-            "form": 0,
-            "level": 47,
-            "item": null,
-            "moves": [
-                "MOVE_CALM_MIND",
-                "MOVE_PSYCHIC",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_SIGNAL_BEAM"
-            ],
-            "iv_scale": 234,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 47,
-            "item": null,
+            "level": 50,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_ZEN_HEADBUTT",
                 "MOVE_HI_JUMP_KICK",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_BULLET_PUNCH"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 246,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_HITMONTOP",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_HELPING_HAND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_TWISTEDSPOON",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         }
     ],
     "messages": [

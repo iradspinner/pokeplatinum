@@ -15,7 +15,7 @@
         {
             "species": "SPECIES_NIDOQUEEN",
             "form": 0,
-            "level": 69,
+            "level": 66,
             "item": "ITEM_BLACK_SLUDGE",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -24,14 +24,15 @@
                 "MOVE_TOXIC_SPIKES"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_UMBREON",
             "form": 0,
-            "level": 69,
+            "level": 66,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_PAYBACK",
@@ -39,31 +40,33 @@
                 "MOVE_WISH",
                 "MOVE_PROTECT"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_TANGROWTH",
             "form": 0,
-            "level": 69,
+            "level": 66,
             "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_POWER_WHIP",
+                "MOVE_LEAF_STORM",
                 "MOVE_EARTHQUAKE",
                 "MOVE_ROCK_SLIDE",
                 "MOVE_SLEEP_POWDER"
             ],
-            "iv_scale": 252,
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 70,
+            "level": 67,
             "item": "ITEM_TOXIC_ORB",
             "moves": [
                 "MOVE_BODY_SLAM",
@@ -71,15 +74,16 @@
                 "MOVE_ICE_PUNCH",
                 "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 240,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 70,
+            "level": 67,
             "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_LAVA_PLUME",
@@ -87,15 +91,16 @@
                 "MOVE_FOCUS_BLAST",
                 "MOVE_PSYCHIC"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 71,
+            "level": 68,
             "item": "ITEM_CHOPLE_BERRY",
             "moves": [
                 "MOVE_SURF",
@@ -103,10 +108,11 @@
                 "MOVE_ROAR",
                 "MOVE_STEALTH_ROCK"
             ],
-            "iv_scale": 251,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": []

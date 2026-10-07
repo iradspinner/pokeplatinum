@@ -12,30 +12,50 @@
         {
             "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_NIGHT_SHADE",
-                "MOVE_ASTONISH",
-                "MOVE_FURY_SWIPES",
-                "MOVE_FAKE_OUT"
+                "MOVE_SHADOW_CLAW",
+                "MOVE_KNOCK_OFF",
+                "MOVE_FAKE_OUT",
+                "MOVE_ASTONISH"
             ],
-            "iv_scale": 159,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_MAWILE",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_ASTONISH",
-                "MOVE_FAKE_TEARS",
                 "MOVE_BITE",
-                "MOVE_SWEET_SCENT"
+                "MOVE_VICE_GRIP",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_FAKE_TEARS"
             ],
-            "iv_scale": 160,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BRONZOR",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_ROCK_TOMB",
+                "MOVE_EXTRASENSORY",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

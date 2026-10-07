@@ -169,6 +169,10 @@ Report: failures and anything unverified first, then what changed with paths,
 then what was checked and how. Under <N> words.
 
 <paste the "Hard rules" section of ~/.claude/CLAUDE.md here>
+
+Each change is judged for its effect on difficulty, by judgement: a change
+that doesn't materially move a fight stales nothing and waits on no rescore
+(the standing rulings' first entry).
 ```
 
 Read the result before relaying it: rerun its check, look at the diff, and

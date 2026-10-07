@@ -10,18 +10,69 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_PONYTA",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLAME_WHEEL",
+                "MOVE_STOMP",
+                "MOVE_FIRE_SPIN",
+                "MOVE_DOUBLE_KICK"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HOUNDOUR",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_BITE",
+                "MOVE_SMOG",
+                "MOVE_ROAR"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GROWLITHE",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FIRE_FANG",
+                "MOVE_BITE",
+                "MOVE_CRUNCH",
+                "MOVE_ROAR"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_VULPIX",
             "form": 0,
-            "level": 21,
-            "item": null,
+            "level": 29,
+            "item": "ITEM_CHARCOAL",
             "moves": [
+                "MOVE_FLAMETHROWER",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_WILL_O_WISP",
                 "MOVE_CONFUSE_RAY",
-                "MOVE_EMBER"
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 136,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -1,7 +1,7 @@
 {
     "name": "Roark",
     "class": "TRAINER_CLASS_LEADER_ROARK",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -12,31 +12,33 @@
         {
             "species": "SPECIES_NOSEPASS",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_APICOT_BERRY",
+            "level": 14,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_BLOCK",
-                "MOVE_ROCK_THROW",
+                "MOVE_STEALTH_ROCK",
                 "MOVE_THUNDER_WAVE",
-                "MOVE_STEALTH_ROCK"
+                "MOVE_ROCK_TOMB",
+                "MOVE_BLOCK"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": "male"
         },
         {
             "species": "SPECIES_GEODUDE",
             "form": 0,
-            "level": 15,
+            "level": 14,
             "item": "ITEM_PASSHO_BERRY",
             "moves": [
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_ROCK_THROW",
                 "MOVE_ROLLOUT",
-                "MOVE_DEFENSE_CURL",
-                "MOVE_ROCK_THROW"
+                "MOVE_BLOCK",
+                "MOVE_ROCK_TOMB"
             ],
-            "iv_scale": 245,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 2,
             "gender": "male"
@@ -47,31 +49,50 @@
             "level": 15,
             "item": "ITEM_BIG_ROOT",
             "moves": [
-                "MOVE_MEGA_DRAIN",
-                "MOVE_ROCK_TOMB",
-                "MOVE_CONSTRICT",
-                "MOVE_INGRAIN"
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_RECOVER",
+                "MOVE_ACID"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LARVITAR",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_BITE",
+                "MOVE_SCREECH",
+                "MOVE_DIG"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
             "gender": "male"
         },
         {
             "species": "SPECIES_CRANIDOS",
             "form": 0,
             "level": 16,
-            "item": "ITEM_SITRUS_BERRY",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_HEADBUTT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_ZEN_HEADBUTT",
                 "MOVE_PURSUIT",
-                "MOVE_LEER",
-                "MOVE_ROCK_THROW"
+                "MOVE_ROCK_POLISH"
             ],
-            "iv_scale": 223,
-            "ball_seal": 14,
-            "ability": 2,
-            "gender": "female"
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

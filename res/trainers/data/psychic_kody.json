@@ -11,16 +11,50 @@
         {
             "species": "SPECIES_SLOWPOKE",
             "form": 0,
-            "level": 18,
+            "level": 24,
             "item": null,
             "moves": [
                 "MOVE_YAWN",
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN",
-                "MOVE_CONFUSION"
+                "MOVE_CONFUSION",
+                "MOVE_WATER_PULSE",
+                "MOVE_TACKLE"
             ],
-            "iv_scale": 159,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_DROWZEE",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_HEADBUTT",
+                "MOVE_DISABLE",
+                "MOVE_POISON_GAS"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SPOINK",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_ICY_WIND",
+                "MOVE_PAYBACK",
+                "MOVE_MAGIC_COAT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

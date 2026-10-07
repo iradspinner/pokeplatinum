@@ -12,6 +12,9 @@ and pushes only on a pass.
 
 ## Before
 
+0. Judge the branch's effect on difficulty, by judgement, and put one line in
+   the landing's report: "Difficulty: not material" or "Difficulty:
+   material, <fights>". Stale scores never hold a landing (Ian, 2026-10-07).
 1. Read the branch's report and diff. A cloud branch gets the `cloud-job`
    skill's review first. Check any claim you will repeat to Ian.
 2. Pre-check the merge with `git merge-tree --write-tree origin/oxide

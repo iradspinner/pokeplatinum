@@ -11,6 +11,7 @@ OXIDE_TRAINERS_DIR. It checks that nothing in the checkout changed.
 import http.client
 import json
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -110,11 +111,20 @@ def check_read(results, root):
                     f"Roark {by['leader_roark']}, Tristan {by['youngster_tristan']}"))
     d = trainers.detail(root, "leader_roark")
     built = calc_trainers.build_trainer(root, "leader_roark")
+    # The moves the tab shows are the file's own, by the calculator's name for
+    # each ("Ancient Power"), whatever team the file holds (the Kaizo comb
+    # rewrote Roark's on 2026-10-07).
+    from . import calc_export
+    move_name = calc_export.move_keys(root)
+    named = [[move_name.get(mv, mv) for mv in (m.get("moves") or [])]
+             for m in trainers.load(root, "leader_roark")["party"]]
+    shown = [m["built"]["moves"][:len(n)] for m, n in zip(d["members"], named)]
     results.append(("a team shows what the game builds: Roark's natures, abilities and moves",
                     [m["built"]["nature"] for m in d["members"]] == [s["nature"] for _, s in built]
                     and [m["built"]["ability"] for m in d["members"]] == [s["ability"] for _, s in built]
-                    and d["members"][0]["built"]["moves"][0] == "Block"
-                    and d["cap"] == 16 and d["split"] == "Roark", ""))
+                    and shown == named and any(named)
+                    and d["cap"] == 16 and d["split"] == "Roark",
+                    f"{shown[0] if shown else ''}"))
     results.append(("the AI flags listed are the named ones, in bit order",
                     d["all_ai_flags"][0] == "AI_FLAG_BASIC"
                     and not any(f.startswith("AI_FLAG_UNUSED") for f in d["all_ai_flags"]),
@@ -236,12 +246,35 @@ def check_style(results, root):
             field_miss.append(f)
     results.append(("rewriting a whole party reproduces every file's party byte for byte",
                     not party_miss, ", ".join(party_miss[:4])))
-    # Two files write their AI flags on one line, against every other file;
-    # a save changes them only when their flags are edited.
+    # A file that writes its AI flags on one line, against the files' usual
+    # style, is rewritten in that style only when its flags are edited (Jack
+    # and Zach did until the Kaizo comb, 2026-10-07; whichever do now).
+    one_line = {f for f in os.listdir(folder)
+                if re.search(r'"ai_flags": \[[^\n\]]*"AI_FLAG',
+                             open(os.path.join(folder, f), encoding="utf-8").read())}
     results.append(("rewriting any field with its own value leaves every file as it was, bar "
-                    "the two that write their AI flags on one line",
-                    set(field_miss) == {"bug_catcher_jack.json", "ninja_boy_zach.json"},
-                    ", ".join(field_miss[:4])))
+                    "those that write their AI flags on one line",
+                    set(field_miss) == one_line,
+                    f"{', '.join(field_miss[:4]) or 'none'} against {', '.join(sorted(one_line)) or 'none'}"))
+
+
+def _save_case(root, folder):
+    """(stem, member index): a trainer the save check can edit as it means
+    to, whatever the teams hold (the Kaizo comb rewrote them on 2026-10-07):
+    its first member can drop a level, a member has an IV scale and no
+    named nature yet, its AI flags sit one to a line, and its file passes
+    the lint as it is. Roark first, when he fits."""
+    names = sorted(f[:-5] for f in os.listdir(folder) if f.endswith(".json"))
+    for stem in ["leader_roark"] + names:
+        text = open(os.path.join(folder, stem + ".json"), encoding="utf-8").read()
+        d = json.loads(text)
+        party = d.get("party") or []
+        idx = next((i for i, m in enumerate(party) if "iv_scale" in m and not m.get("nature")), None)
+        if (party and idx is not None and party[0].get("level", 1) > 1 and d.get("ai_flags")
+                and not re.search(r'"ai_flags": \[[^\n\]]*"AI_FLAG', text)
+                and not any(f["severity"] == "error" for f in trainers.lint(root, d))):
+            return stem, idx
+    return None, None
 
 
 def check_save(results, root):
@@ -252,14 +285,17 @@ def check_save(results, root):
         folder = os.path.join(tmp, "data")
         shutil.copytree(trainers.data_dir(root), folder)
         registry = os.path.join(tmp, "trainers_diverged.json")
-        path = os.path.join(folder, "leader_roark.json")
+        stem, idx = _save_case(root, folder)
+        path = os.path.join(folder, stem + ".json")
         with open(path, encoding="utf-8") as f:
             before = f.read()
         d = json.loads(before)
-        d["party"][0]["level"] = 16
-        d["party"][1]["nature"] = "NATURE_ADAMANT"
-        d["ai_flags"] = d["ai_flags"] + ["AI_FLAG_RISKY"]
-        out = trainers.save(root, "leader_roark", d, folder=folder, registry=registry)
+        d["party"][0]["level"] -= 1
+        d["party"][idx]["nature"] = "NATURE_ADAMANT"
+        flag = next(f for f in ("AI_FLAG_RISKY", "AI_FLAG_PRIORITIZE_EXTREMES", "AI_FLAG_CHECK_HP")
+                    if f not in d["ai_flags"])
+        d["ai_flags"] = d["ai_flags"] + [flag]
+        out = trainers.save(root, stem, d, folder=folder, registry=registry)
         with open(path, encoding="utf-8") as f:
             after = f.read()
         import difflib
@@ -270,17 +306,21 @@ def check_save(results, root):
         gained = [l[1:] for l in diff if l.startswith("+")]
         with open(registry, encoding="utf-8") as f:
             reg = json.load(f)
+        # The named nature goes in on the line after its member's IV scale.
+        lines = after.splitlines()
+        at = next((i for i, l in enumerate(lines) if l.strip().startswith('"nature": "NATURE_ADAMANT"')
+                   and l in gained), None)
         results.append(("a save writes only what changed: a level, a named nature after the IV "
                         "scale, an AI flag; it packs, and registers the trainer",
                         len(lost) == 2 and len(gained) == 4
-                        and '            "nature": "NATURE_ADAMANT",' in gained
+                        and at is not None and '"iv_scale"' in lines[at - 1]
                         and out["packer"] in ("packed", None)
-                        and set(reg["leader_roark"]) == {"party", "ai_flags"},
-                        f"-{len(lost)} +{len(gained)}, {out['packer']}"))
+                        and set(reg[stem]) == {"party", "ai_flags"},
+                        f"{stem}: -{len(lost)} +{len(gained)}, {out['packer']}"))
         bad = json.loads(after)
         bad["party"][0]["level"] = 101
         try:
-            trainers.save(root, "leader_roark", bad, folder=folder, registry=registry)
+            trainers.save(root, stem, bad, folder=folder, registry=registry)
             refused = False
         except trainers.SaveRefused:
             refused = True
@@ -289,8 +329,8 @@ def check_save(results, root):
         trainers.pack_check = lambda _root, _folder: (False, "refused on purpose")
         try:
             again = json.loads(after)
-            again["party"][0]["level"] = 17
-            trainers.save(root, "leader_roark", again, folder=folder, registry=registry)
+            again["party"][0]["level"] -= 1
+            trainers.save(root, stem, again, folder=folder, registry=registry)
             restored = False
         except trainers.SaveRefused:
             with open(path, encoding="utf-8") as f:
@@ -574,7 +614,8 @@ def check_routes(results):
                     "is one team; an unknown stem is a 404",
                     listing[0] == 200 and listing[1]["splits"][0] == "Roark"
                     and listing[1]["caps"]["Roark"] == 16
-                    and one[0] == 200 and len(one[1]["members"]) == 4
+                    and one[0] == 200
+                    and len(one[1]["members"]) == len(trainers.load(model.repo_root(), "leader_roark")["party"])
                     and missing[0] == 404, f"{listing[0]} {one[0]} {missing[0]}"))
     results.append(("/api/trainer-moves gives the three lists apart; an unknown species is a 404",
                     lists[0] == 200 and {"oxide", "gen4", "latest"} <= set(lists[1])
