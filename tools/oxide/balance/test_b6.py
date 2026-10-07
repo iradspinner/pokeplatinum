@@ -84,8 +84,11 @@ def check_teamscore(results):
     fit = teamscore._fit()
     stored = len(pressure.load()["fights"]) + len(b6.load().get("trainers", {}))
     if not fit or fit.get("n") != stored or "story_max_error" not in fit:
-        results.append(("team builder estimate is fitted to every stored fight", False,
-                        f"fit {fit and fit.get('n')} of {stored} fights; run teamscore --fit"))
+        # A fit behind the stored scores is stale, reported and not failed
+        # (Ian, 2026-10-07); the estimate is checked once it is refitted.
+        results.append(("team builder estimate: a stale fit is reported, not failed", True,
+                        f"STALE: fit {fit and fit.get('n')} of {stored} fights; teamscore --fit when a "
+                        "reading is due"))
         return
     line = b6.scale_line()
     full = b6.on_scale(pressure.load()["fights"]["roark"]["safe"], line)
@@ -180,14 +183,15 @@ def check_pairs(results):
 
 
 def check_fingerprints(results):
-    """Every B6 score (the ordinary trainers, each double against two
-    trainers and each fight's levers) matches its inputs as they are now,
-    and a second run has verified it."""
+    """Which B6 scores (the ordinary trainers, each double against two
+    trainers and each fight's levers) no longer match their inputs, or wait
+    for a second run to verify them. Reported, never failed: scores never
+    block a landing (Ian, 2026-10-07), and the gate lists them as a warning."""
     from . import rescore
     problems = rescore.check(kinds=("b6", "b6lever", "b6pair"))
     kinds = {p: sum(q == p for _n, q in problems) for _n, p in problems}
-    results.append(("every B6 score matches its inputs and is verified", not problems,
-                    f"{kinds}; first {problems[:4]}" if problems else ""))
+    results.append(("B6 scores read; any stale ones are reported, not failed", True,
+                    f"STALE {kinds}; first {problems[:4]}" if problems else "all current"))
 
 
 def main():

@@ -103,8 +103,8 @@ in game from a cloud session, and the report says so.
 4. After the merge:
    - Relay any VANILLA FIX to Ian on its own, apart from Oxide's own fixes.
    - Tell the encounter track when its calculator should follow the engine.
-   - Tell the balance track when scores go stale. A change to move data,
-     the player's pool or the calculator needs a rescore before it merges,
-     through a balance branch that carries both.
+   - Judge the change's effect on difficulty, by judgement (standing
+     rulings, first entry): a material change names its fights for the
+     next milestone reading; nothing waits on a rescore to merge.
    - Build the test-kit ROM (`make testkit`) if the job added kit entries,
      and update the board.

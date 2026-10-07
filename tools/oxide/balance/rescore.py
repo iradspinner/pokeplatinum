@@ -659,10 +659,11 @@ def run(mode, kinds=KINDS, names=None, out=sys.stdout, workers=1):
     return counts
 
 
-def check(blob=None, kinds=KINDS):
+def check(blob=None, kinds=KINDS, with_kind=False):
     """[(unit name, problem)] for every stored score of `kinds` whose
-    fingerprint does not match its inputs or that is not verified. test_b3
-    reads it for the scores before B6, test_b6 for B6's."""
+    fingerprint does not match its inputs or that is not verified, with the
+    unit's kind first when asked. test_b3 reads it for the scores before B6,
+    test_b6 for B6's."""
     blob = calc_export.build() if blob is None else blob
     files, sides = Files(), Sides(blob)
     problems = []
@@ -670,7 +671,7 @@ def check(blob=None, kinds=KINDS):
         label, _disagreed = _one(u, "status", blob, None, files)
         u._built = None
         if label not in (None, "verified"):
-            problems.append((u.name, label))
+            problems.append((u.kind, u.name, label) if with_kind else (u.name, label))
     return problems
 
 
@@ -687,7 +688,16 @@ def main(argv=None):
                     help="one score, as the run prints it (a fight key, 'kaizo roark', ...)")
     ap.add_argument("--workers", type=int, default=1,
                     help="calculations at once; pin the run to as many cores")
+    g.add_argument("--stale", action="store_true",
+                   help="one line: how many stored scores are stale or unverified, by kind; computes nothing")
     args = ap.parse_args(argv)
+    if args.stale:
+        # The gate's warning (Ian, 2026-10-07: scores never block a landing).
+        problems = check(kinds=tuple(args.kind) or KINDS, with_kind=True)
+        by_kind = collections.Counter(f"{k} {p}" for k, _n, p in problems)
+        print(f"{len(problems)} stale" + (": " + ", ".join(f"{k} {c}" for k, c in sorted(by_kind.items()))
+                                          if problems else ""))
+        return 0
     mode = ("verify" if args.verify else "status" if args.status else "seed" if args.seed
             else "restamp" if args.restamp else "rescore")
     run(mode, tuple(args.kind) or KINDS, set(args.name) or None, workers=max(1, args.workers))
