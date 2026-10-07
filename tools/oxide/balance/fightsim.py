@@ -1526,21 +1526,38 @@ def reckless_effects():
     return frozenset(out)
 
 
-# The moves whose Reckless boost the OxiDex calculator already gives (its own
-# move data marks them as recoil or crash moves), measured 2026-10-07 by
-# costing each move on a Reckless effect for one Staraptor with Reckless and
-# with Intimidate (test_plfixes re-measures it). The rest the simulator
-# raises itself. When the calculator learns the reworked moves' recoil, the
-# check fails and a move moves into this list.
+# The moves whose Reckless boost an OxiDex calculator without the game's own
+# list gives anyway (upstream's data marks them as recoil or crash moves),
+# measured 2026-10-07 by costing each move on a Reckless effect for one
+# Staraptor with Reckless and with Intimidate.
 CALC_RECKLESS = frozenset({
     "Axe Kick", "Brave Bird", "Double-Edge", "Flare Blitz", "Head Charge", "Head Smash", "High Jump Kick",
     "Jump Kick", "Light of Ruin", "Submission", "Supercell Slam", "Take Down", "Volt Tackle", "Wave Crash",
     "Wild Charge", "Wood Hammer"})
+CALC_DATA = os.path.join("tools", "oxide", "encounters", "calc", "calc", "mechanics", "romhacks", "profiles",
+                         "platinum-oxide-data.js")
+
+
+@functools.lru_cache(maxsize=None)
+def calc_reckless():
+    """The moves the calculator's rows already boost for Reckless. Since the
+    encounter track's c5aed2a7bf (2026-10-07) the calculator's Platinum Oxide
+    profile reads a "reckless" list that make_calc_mechanics writes from the
+    game's own effect scripts, and boosts exactly those; before it, upstream's
+    recoil and crash moves (CALC_RECKLESS). Read from the tree either way, so
+    the simulator adds the 1.2 only where the calculator does not, whichever
+    lands first (test_plfixes re-measures it)."""
+    try:
+        with open(os.path.join(data.ROOT, CALC_DATA), encoding="utf-8") as fh:
+            m = re.search(r'"reckless":\s*\[(.*?)\]', fh.read(), re.S)
+    except OSError:
+        m = None
+    return frozenset(re.findall(r'"([^"]+)"', m.group(1))) if m else CALC_RECKLESS
 
 
 def reckless_fix(att, mv):
     """The 1.2 Reckless gives a move the calculator's row leaves unboosted."""
-    if att.ability == "Reckless" and mv.effect in reckless_effects() and mv.name not in CALC_RECKLESS:
+    if att.ability == "Reckless" and mv.effect in reckless_effects() and mv.name not in calc_reckless():
         return 1.2
     return 1.0
 
