@@ -20,9 +20,10 @@ import tempfile
 from . import savefile as S
 
 # The normal block this build writes: 0xD01C until element 7 widened the Bag
-# by 184 bytes (2026-09-28). The fixtures keep element 7's 18-box block by
-# default; the 30 PC boxes (2026-09-29) grew it to BOX_SIZE_30.
-NORMAL_SIZE, BOX_SIZE, BOX_SIZE_30 = 0xD0D4, 0x121E4, 0x1E310
+# by 184 bytes (2026-09-28), 0xD0D4 until the TM pass's two new TMs widened
+# its TM pocket by 8 more (2026-10-06). The fixtures keep element 7's 18-box
+# block by default; the 30 PC boxes (2026-09-29) grew it to BOX_SIZE_30.
+NORMAL_SIZE, BOX_SIZE, BOX_SIZE_30 = 0xD0DC, 0x121E4, 0x1E310
 OLD_NORMAL_SIZE = 0xD01C
 IAN_COPY = os.path.expanduser("~/roms/oxide-save-2026-09-21.sav")
 # His first save on a current ROM (53b863005), in his room after the intro.
@@ -123,13 +124,15 @@ def main():
                             exp=1000, hidden=True),
              (3, 1): record(0x0000BEEF, chimchar, [move_id("MOVE_SCRATCH")],
                             ability_id("ABILITY_BLAZE"), corrupt=True)}
-    data = make_save(party, boxed)
+    # A save from this build: since the TM pass's Bag (2026-10-06) no build
+    # has written this normal block with element 7's 18 boxes, so it has 30.
+    data = make_save(party, boxed, box_size=BOX_SIZE_30)
     s = S.parse(data, "synthetic")
 
     results.append(("each block comes from its newest valid copy: the backup's normal block "
                     "(counter 3), the primary's boxes (the backup's never written)",
                     s["blocks"][0]["copy"] == "backup" and s["blocks"][1]["copy"] == "primary"
-                    and s["box_count"] == 18, str({k: v["copy"] for k, v in s["blocks"].items()})))
+                    and s["box_count"] == 30, str({k: v["copy"] for k, v in s["blocks"].items()})))
     p = s["party"][0] if s["party"] else {}
     results.append(("a party Pokemon decodes: species, level from its stats, moves, "
                     "ability from Oxide's u16 in block B, nature, trainer id",
@@ -165,10 +168,11 @@ def main():
     pr = s["progress"]
     results.append(("the save's progress: money and badges from the trainer, the level-cap "
                     "split from its variable (after the party and the bag), with the engine's cap",
-                    # 0xDAC until element 7's Bag (2026-09-28): the TM pocket's
-                    # size is NUM_TMHMS now, which the reader resolves.
+                    # 0xDAC until element 7's Bag (2026-09-28), 0xE64 until the
+                    # TM pass's two TMs (2026-10-06): the TM pocket's size is
+                    # NUM_TMHMS, which the reader resolves.
                     pr["money"] == 12345 and pr["badges"] == 5 and pr["split"]
-                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xE64
+                    == {"index": 4, "name": "Wake", "cap": 44} and S._vars_layout()["at"] == 0xE6C
                     # the split names are the simulator's, so it can resume there
                     and S._vars_layout()["splits"][7] == "HQ"
                     and S._vars_layout()["splits"][12] == "Post",

@@ -348,16 +348,36 @@ box, is box 30. The calculator's own Read Save did assume 18, with box 18 as
 the graveyard; the encounter track's `encounter-save-30-boxes` reads as many
 boxes as the block holds.
 
+## The TM pocket grew (the TM pass, 2026-10-06)
+
+The TM pass's list has 100 TMs: TM01 to TM94 and the six HMs left (HM01 Cut
+and HM06 Rock Smash are placed nowhere), so `NUM_EXTRA_TMS` is 2 and the
+Bag's TM pocket, `NUM_TMHMS` slots, grows from 100 to 102. The `Bag` struct
+is 8 bytes bigger (2,092 to 2,100), and the normal block from 53,460
+(0xD0D4) to 53,468 (0xD0DC); every entry after the Bag moves by 8 bytes,
+the variables and flags among them (0xE64 to 0xE6C into the block). The
+boxes block does not change. Ian starts a new game on the QA ROM, the first
+with this change; a save from before it reads its party but not its Bag,
+variables or flags.
+
+`tools/oxide/save_budget.py` passes: the main save is 177,132 of the
+image's 184,320 bytes, 3,092 short of the battle log's sector. For the
+OxiDex, `savefile.py` works out the pocket's size from the build's own
+headers, so it needed only the new layout, (0xD0DC, 0x1E310), as
+`CURRENT_LAYOUT` and in `KNOWN_LAYOUTS` (Ian's permission, 2026-10-06), with
+its test's sizes. The list comes from `tools/oxide/tm_items.py`, which also
+writes the ids; a later list with a different number of TMs past TM92 moves
+the save again, by 4 bytes a TM.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:
 
-- More TMs (the TM pass, after element 7 took the cap off). The Bag's TM
-  pocket is `NUM_TMHMS` slots, so every TM past TM92 adds 4 bytes to the Bag
-  and moves the rest of the normal save block. Past 120 TMs the species
-  record grows by 4 bytes for each 32 more (`TM_LEARNSET_MASKS`), which is
-  not save data but moves `pl_personal.narc`'s record size, and
-  `verify_narcs.py`'s `PERSONAL_NEW_SIZE` would have to follow it
+- More TMs past TM94. Each adds 4 bytes to the Bag and moves the rest of the
+  normal save block (the section above). Past 120 TMs the species record
+  grows by 4 bytes for each 32 more (`TM_LEARNSET_MASKS`), which is not save
+  data but moves `pl_personal.narc`'s record size, and `verify_narcs.py`'s
+  `PERSONAL_NEW_SIZE` would have to follow it
 - The normal block, from the 30 PC boxes on (below). It may grow by at most
   3,100 bytes before the main save reaches the battle log's sector 44, and by
   3,684 before the log's RAM copy no longer fits the image's tail; the TM
