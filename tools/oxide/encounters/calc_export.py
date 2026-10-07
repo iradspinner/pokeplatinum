@@ -51,7 +51,12 @@ MULTIHIT = {"MULTI_HIT": [2, 5], "HIT_TWICE": 2, "POISON_MULTI_HIT": 2,
             "HIT_TWICE_AND_FLINCH": 2, "HIT_THREE_TIMES": 3,
             "HIT_THREE_TIMES_FIXED_POWER": 3,
             "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20": 3,
-            "HIT_THREE_TIMES_ALWAYS_CRITICAL": 3}
+            "HIT_THREE_TIMES_ALWAYS_CRITICAL": 3,
+            "HIT_THREE_TIMES_RISING_10": 3}
+# Effects Oxide gave a move the calculator already knows with another hit
+# count: the move takes Oxide's count over the calculator's own (Fury
+# Cutter, three hits since the move reworks of 2026-10-06).
+MULTIHIT_OVER_KNOWN = {"HIT_THREE_TIMES_RISING_10"}
 
 
 def clean(name):
@@ -257,6 +262,8 @@ def move_entry(rec, known):
         out["basePower"] = rec["power"]
     elif not known:
         out["basePower"] = 0
+    if known and rec["effect"] in MULTIHIT_OVER_KNOWN:
+        out["multihit"] = MULTIHIT[rec["effect"]]
     if not known:
         # Nothing to inherit, so the few things the formula reads come from
         # the move itself.

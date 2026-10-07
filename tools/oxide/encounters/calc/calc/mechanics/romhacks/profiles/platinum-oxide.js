@@ -131,6 +131,16 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
         moveBasePower: [
             function (ctx, basePower) {
                 var move = ctx.move;
+                // Fury Cutter since the move reworks (Ian, 2026-10-06; effect
+                // script 416): three hits, the first at the move's listed
+                // power and each later one 10 more, 30, 40 and 50.
+                if (move.named("Fury Cutter")) {
+                    var first = ctx.state.originalBasePower || move.bp || 30;
+                    var hit = ctx.state.hitCount || 0;
+                    var hits = move.hits || 1;
+                    ctx.desc.moveBP = hits * first + 10 * hits * (hits - 1) / 2;
+                    return first + 10 * hit;
+                }
                 if (move.named("Heavy Slam")) {
                     var aw = Math.max(1, Math.round(ctx.attacker.weightkg * 10));
                     var dw = Math.round(ctx.defender.weightkg * 10);
