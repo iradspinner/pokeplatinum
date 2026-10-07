@@ -73,7 +73,16 @@ block healing for five turns as the engine does (the listed healing moves,
 which the AI also refuses to choose, draining, Leech Seed's heal, Wish,
 Ingrain and Aqua Ring; not held items or abilities); the three-quarters
 drain (Draining Kiss) now heals. Weather from an ability is permanent, as
-in the engine; a move's counts its turns (2026-10-07). Every stored
+in the engine; a move's counts its turns (2026-10-07).
+The turn's end now runs as the engine's does (2026-10-07): every Pokemon
+in speed order (Quick Claw and Custap first, then Speed, reversed under
+Trick Room, ties on a coin the planner enumerates), field effects and
+weather first, then each Pokemon's conditions in the engine's order, then
+Perish Song and Trick Room's count, and it stops the moment a side is out
+of Pokemon. Before this the player's side always went first and the whole
+turn's end ran out, and a fight where both last Pokemon fell at the turn's
+end counted as won, so every reading made before it is slightly
+optimistic in close finishes; goal 3 reads them all again. Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,

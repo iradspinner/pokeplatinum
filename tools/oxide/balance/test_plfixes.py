@@ -845,6 +845,23 @@ def charge_and_heal_block_checks():
     return out
 
 
+def end_order_enumeration_checks():
+    """The planner's dice enumerate a speed tie at the turn's end at even
+    odds (fightsim.end_order's coin), so a tied finish is weighed both ways."""
+    from . import plplan
+    from .test_fightsim import battle as duel
+    b, p, foe = duel(["Tackle"], ["Tackle"], {}, p_speed=80, b_speed=80)
+    b.dice = plplan.EnumDice((), random.Random(0))
+    fs.end_order(b)
+    tie = b.dice.events[0] if b.dice.events else None
+    b2, p2, foe2 = duel(["Tackle"], ["Tackle"], {}, p_speed=100, b_speed=50)
+    b2.dice = plplan.EnumDice((), random.Random(0))
+    order = [m.side for m in fs.end_order(b2)]
+    return [("the planner enumerates a speed tie at the turn's end; no tie, no coin",
+             tie == (0.5, 0.5) and order == ["p", "b"] and not b2.dice.events,
+             f"tie events {tie}; untied order {order}, events {b2.dice.events}")]
+
+
 def types_ns(**kw):
     import types
     return types.SimpleNamespace(**kw)
@@ -1063,6 +1080,7 @@ def study_effect_checks():
     out += sheer_force_life_orb_checks()
     out += infiltrator_checks()
     out += charge_and_heal_block_checks()
+    out += end_order_enumeration_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

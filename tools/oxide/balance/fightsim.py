@@ -1999,18 +1999,83 @@ def end_of_turn(b):
     b.mid_turn = False
 
 
+def battle_over(b):
+    """A side has no Pokemon left: the engine checks it between every step
+    of the turn's end (BattleControllerPlayer_CheckBattleOver), so the first
+    side to run out loses, whatever would have come after."""
+    return not b.p.alive() or not b.b.alive()
+
+
+def coin(b, kind="tie"):
+    """A fair coin through the battle's dice (so the planner enumerates it),
+    or its own rng for a battle fightsim plays alone."""
+    dice = getattr(b, "dice", None)
+    return dice.choice(kind, 2) == 1 if dice is not None else b.rng.random() < 0.5
+
+
+def end_order(b):
+    """The Pokemon on the field in the order the engine runs the turn's end:
+    BattleSystem_SortMonSpeedOrder, re-run once the moves are done
+    (battle_controller_player.c 907), an exchange sort from battler 0 (the
+    player's first slot, then the trainer's, then the second slots) on
+    BattleSystem_CompareBattlerSpeed with ignoreQuickClaw (battle_lib.c 1207
+    to 1470). A fainted Pokemon goes after a standing one; then a Quick Claw
+    that fired this turn, or a Custap Berry in its pinch, goes first; a
+    Lagging Tail or Full Incense, then Stall, goes last; then Speed, the
+    slower first under Trick Room; a tie swaps on a coin flip."""
+    order = []
+    for pair in zip(b.p.on_field() + [None], b.b.on_field() + [None]):
+        order += [m for m in pair if m is not None]
+    quick = getattr(b, "quick", None) or {}
+
+    def after(m1, m2):
+        """Whether m1 goes after m2 (the comparison's nonzero result)."""
+        if not m1.alive() or not m2.alive():
+            return not m1.alive() and m2.alive()
+        q1, q2 = quick.get(m1.key) or custap_fires(m1), quick.get(m2.key) or custap_fires(m2)
+        s1, s2 = b.speed(m1), b.speed(m2)
+        if q1 != q2:
+            return q2
+        if q1 and q2:
+            return s1 < s2 or (s1 == s2 and coin(b))
+        lag1, lag2 = m1.item in ("Lagging Tail", "Full Incense"), m2.item in ("Lagging Tail", "Full Incense")
+        if lag1 or lag2:
+            return (lag1 and not lag2) or (lag1 and lag2 and (s1 > s2 or (s1 == s2 and coin(b))))
+        st1, st2 = m1.ability == "Stall", m2.ability == "Stall"
+        if st1 or st2:
+            return (st1 and not st2) or (st1 and st2 and (s1 > s2 or (s1 == s2 and coin(b))))
+        if b.trick_room:
+            return s1 > s2 or (s1 == s2 and coin(b))
+        return s1 < s2 or (s1 == s2 and coin(b))
+
+    for j in range(len(order) - 1):
+        for k in range(j + 1, len(order)):
+            if after(order[j], order[k]):
+                order[j], order[k] = order[k], order[j]
+    return order
+
+
 def _end_of_turn(b):
+    """The turn's end in the engine's three stages, each over the Pokemon in
+    end_order, stopping the moment a side has no Pokemon left (battle_over).
+    Field conditions (BattleControllerPlayer_CheckFieldConditions): the
+    sides' screens, Tailwind and Safeguard count down, Wish lands, then a
+    move's weather counts down (ending before it acts on its last turn) and
+    sand and hail strike each Pokemon (subscript_weather_continues, by
+    GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
+    Side conditions: Perish Song, then Trick Room's count."""
     b.status_src = None          # no foe gives what the turn's end gives
+    order = end_order(b)
     for side in (b.p, b.b):
-        if side.wish:
-            side.wish -= 1
-            if side.wish == 0 and side.cur().alive() and not heal_blocked(side.cur()):
-                heal(side.cur(), side.cur().maxhp // 2)
-        for m in side.on_field():
-            _end_of_turn_mon(b, side, m)
         side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
         side.tailwind = max(0, side.tailwind - 1)
         side.safeguard = max(0, side.safeguard - 1)
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        if side.wish and m is side.cur():
+            side.wish -= 1
+            if side.wish == 0 and m.alive() and not heal_blocked(m):
+                heal(m, m.maxhp // 2)
     if b.weather_turns:
         b.weather_turns -= 1
         if b.weather_turns == 0:
@@ -2019,24 +2084,73 @@ def _end_of_turn(b):
             # flag), and only the move's own flag clears now, so the
             # field is left clear rather than returning to the map's.
             b.weather = None
+    if b.weather in ("Sand", "Hail"):
+        safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
+        shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
+        for m in order:
+            if m.alive() and not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
+                hurt(b, m, m.maxhp // 16)
+                if battle_over(b):
+                    return
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        if not _end_of_turn_mon(b, side, m):
+            return
+    for m in order:
+        if m.alive() and m.perish:
+            m.perish -= 1
+            if m.perish == 0:
+                m.hp = 0
+                if battle_over(b):
+                    return
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
+    for m in order:
+        if m.alive():
+            m.protecting = False
+            m.enduring = False
+            m.flinch = False        # a flinch lasts only the turn it is dealt
+            m.hit_this_turn = None
+            m.hurt_this_turn = False
+            m.stat_raised = False
+            m.turns_in += 1
     b.turn += 1
 
 
 def _end_of_turn_mon(b, side, m):
+    """One Pokemon's own conditions, in the engine's order
+    (MON_COND_CHECK_STATE_*, battle_controller_player.c 1308 to 1335):
+    Ingrain, Aqua Ring, its ability, its berry, Leftovers, Leech Seed, poison
+    and burn, Curse, binding, the counts (Taunt, Magnet Rise, Heal Block),
+    Yawn, then the Orbs. False once the battle is over."""
+    if not m.alive():
+        return True
+    if m.ingrained and m.hp < m.maxhp and not heal_blocked(m):
+        gain = m.maxhp // 16
+        heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
+    if m.aqua_ring and not heal_blocked(m):
+        heal(m, m.maxhp // 16)
+    # Speed Boost (BattleSystem_TriggerTurnEndAbility): +1 Speed at each
+    # turn's end but the one it came in on.
+    if m.ability == "Speed Boost" and m.turns_in > 0:
+        change_stages(m, {"spe": 1})
+    if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
+        heal(m, m.maxhp // 4)
+        consume(m)
+    if m.item == "Lum Berry" and (m.status or m.confused):
+        m.status, m.confused = None, 0
+        consume(m)
+    if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
+        heal(m, m.maxhp // 16)
+    if m.seeded:
+        foe = foe_of(b, m)
+        amount = m.maxhp // 8
+        hurt(b, m, amount)
+        if foe.alive() and not heal_blocked(foe):     # Leech Seed heals no blocked seeder
+            heal(foe, amount)
+        if battle_over(b):
+            return False
     if m.alive():
-        if b.weather in ("Sand", "Hail"):
-            safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
-            shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
-            if not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
-                hurt(b, m, m.maxhp // 16)
-        if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
-            heal(m, m.maxhp // 16)
-        if m.aqua_ring and not heal_blocked(m):
-            heal(m, m.maxhp // 16)
-        if m.magnet_rise:
-            m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
         if m.status in ("psn", "tox") and m.ability == "Poison Heal":
             heal(m, m.maxhp // 8)        # Poison Heal: poison heals it an eighth instead
         elif m.status in ("brn", "psn") and m.ability != "Magic Guard":
@@ -2045,52 +2159,33 @@ def _end_of_turn_mon(b, side, m):
         elif m.status == "tox" and m.ability != "Magic Guard":
             m.toxic += 1
             hurt(b, m, m.maxhp * m.toxic // 16)
-        if m.seeded:
-            foe = foe_of(b, m)
-            amount = m.maxhp // 8
-            hurt(b, m, amount)
-            if foe.alive() and not heal_blocked(foe):     # Leech Seed heals no blocked seeder
-                heal(foe, amount)
-        if m.bound:
-            m.bound -= 1
-            hurt(b, m, m.maxhp // 16)
-        if m.yawn:
-            m.yawn -= 1
-            if m.yawn == 0:
-                give_status(b, m, "slp")
-        if m.ingrained and m.alive() and m.hp < m.maxhp and not heal_blocked(m):
-            gain = m.maxhp // 16
-            heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
-        if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
-            heal(m, m.maxhp // 4)
-            consume(m)
-        if m.item == "Lum Berry" and (m.status or m.confused):
-            m.status, m.confused = None, 0
-            consume(m)
-        if getattr(m, "heal_block", 0):
-            m.heal_block -= 1           # Heal Block counts down at the turn's end
-        if m.taunt:
-            m.taunt -= 1
-        if m.cursed and m.ability != "Magic Guard":
-            hurt(b, m, m.maxhp // 4)
-        if m.perish:
-            m.perish -= 1
-            if m.perish == 0:
-                m.hp = 0
-        # Speed Boost: +1 Speed at each turn's end but the one it came in on.
-        if m.ability == "Speed Boost" and m.alive() and m.turns_in > 0:
-            change_stages(m, {"spe": 1})
-        # Toxic Orb and Flame Orb give their holder their status.
-        if m.alive() and m.item in ("Toxic Orb", "Flame Orb") and not m.status:
-            b.status_src = None
-            give_status(b, m, "tox" if m.item == "Toxic Orb" else "brn")
-        m.protecting = False
-        m.enduring = False
-        m.flinch = False        # a flinch lasts only the turn it is dealt
-        m.hit_this_turn = None
-        m.hurt_this_turn = False
-        m.stat_raised = False
-        m.turns_in += 1
+        if battle_over(b):
+            return False
+    if m.alive() and m.cursed and m.ability != "Magic Guard":
+        hurt(b, m, m.maxhp // 4)
+        if battle_over(b):
+            return False
+    if m.alive() and m.bound:
+        m.bound -= 1
+        hurt(b, m, m.maxhp // 16)
+        if battle_over(b):
+            return False
+    if m.taunt:
+        m.taunt -= 1
+    if m.magnet_rise:
+        m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
+    if getattr(m, "heal_block", 0):
+        m.heal_block -= 1           # Heal Block counts down at the turn's end
+    if m.alive() and m.yawn:
+        m.yawn -= 1
+        if m.yawn == 0:
+            give_status(b, m, "slp")
+    # Toxic Orb and Flame Orb give their holder their status
+    # (BattleSystem_TriggerDetrimentalHeldItem, the last step).
+    if m.alive() and m.item in ("Toxic Orb", "Flame Orb") and not m.status:
+        b.status_src = None
+        give_status(b, m, "tox" if m.item == "Toxic Orb" else "brn")
+    return True
 
 
 # ---- the player's policy -----------------------------------------------------------------------
