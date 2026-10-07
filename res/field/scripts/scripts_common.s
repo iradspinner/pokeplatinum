@@ -5,6 +5,7 @@
 @ script read garbage movement actions and hung; see the tracker): labels are offsets and operands are mostly
 @ numbers. Rewrite in the repo's idiom when this map gets proper attention.
 #include "macros/scrcmd.inc"
+#include "generated/text_banks.h"
 
 
     ScriptEntry Common_Entry0
@@ -821,7 +822,7 @@ Common_PCMenu_PokemonCenterEntries:
     AddMenuEntryImm 62, 2
     Return
 Common_PCMenu_RareCandyEntry:
-    AddMenuEntryImm 280, 9
+    AddMenuEntry 280, 9
     Return
 @ Oxide: the Pocket PC's Rare Candy entry tops the bag's stack up to 999, the
 @ most a stack holds, however many are there (Ian, 2026-09-27).
@@ -832,9 +833,13 @@ Common_PCMenu_RareCandy:
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Common_PCMenu_RareCandyFilled
     AddItem ITEM_RARE_CANDY, VAR_0x800C, VAR_0x8005
+@ Oxide: this bank's messages past 255, and the menu strings past 255, need a
+@ command with a two-byte operand: Message and AddMenuEntryImm take one byte,
+@ which cut 256 and 257 to the nurse's lines and 280 to an empty label
+@ (fixed 2026-10-07).
 Common_PCMenu_RareCandyFilled:
     PlaySE SEQ_SE_DP_PC_LOGIN_sseq
-    Message 256
+    MessageFromBank TEXT_BANK_COMMON_STRINGS, 256
     WaitButton
     CloseMessage
     GoTo Common_0BB2
@@ -1714,7 +1719,7 @@ Common_2512:
     BufferTypeName 0, 32772
     CalcHiddenPowerPower 32768, VAR_0x800C
     BufferNumber 1, VAR_0x800C
-    Message 257
+    MessageFromBank TEXT_BANK_COMMON_STRINGS, 257
     GoTo Common_2506
 Common_2649:
     Message 131
@@ -1847,7 +1852,7 @@ Common_2CCE:
     BufferTypeName 0, 32772
     CalcHiddenPowerPower 32768, VAR_0x800C
     BufferNumber 1, VAR_0x800C
-    Message 257
+    MessageFromBank TEXT_BANK_COMMON_STRINGS, 257
     GoTo Common_2506
 Common_2CDC:
     UnloadAnimation 90
