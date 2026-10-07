@@ -62,7 +62,10 @@ with a Life Orb takes no Life Orb recoil on a move Sheer Force boosts and
 keeps both boosts (Ian, 2026-10-07), as the game's fix does; the
 calculator's rows carry both 1.3s. An Infiltrator attacker's move passes a
 Substitute, as on the main track's engine branch: the hit, its added
-effects and status moves reach the Pokemon behind it. Every stored
+effects and status moves reach the Pokemon behind it. The AI mirror
+follows the other flags' routing of 21 new moves (Ian, 2026-10-07,
+alpha-readiness step 18): its tables come from the script, and Evaluate
+Attack's and Baton Pass's named lists now do too. Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,
