@@ -255,7 +255,9 @@ read, so they are written here too. Each is a standing instruction.
   The item pass places them; the balance census counts each from its
   fight's split. A trainer's reward, held item or TM, is given
   automatically straight after the player wins, not on talking to the
-  trainer again (Ian, 2026-10-06, relayed by the main track).
+  trainer again (Ian, 2026-10-06, relayed by the main track). The Game
+  Corner's vanilla held items (Silk Scarf, Wide Lens, Zoom Lens, Metronome)
+  move behind optional fights the same way (Ian, 2026-10-06).
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go
@@ -300,7 +302,10 @@ read, so they are written here too. Each is a standing instruction.
   the rung of the type's move ladder (every working move of that type, by
   power and effect) that fits the point in the game and the Pokemon, climbing
   a rung or two a split, never by taking the strongest move a ceiling allows;
-  Giga Drain is far too strong for Roark's split.
+  Giga Drain is far too strong for Roark's split. Pivoting moves (Flip Turn,
+  U-turn, Volt Switch and the like) are high rungs, never early first moves,
+  since pivoting is very strong; and a line's ability can set its side of
+  the ladder (Huge Power makes Marill a physical attacker) (Ian, 2026-10-06).
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
