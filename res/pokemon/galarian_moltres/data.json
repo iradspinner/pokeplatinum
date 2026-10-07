@@ -101,7 +101,24 @@
                 "MOVE_SKY_ATTACK"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM18",
+            "TM20",
+            "TM30",
+            "TM40",
+            "TM42",
+            "TM49",
+            "TM56",
+            "TM66",
+            "TM68",
+            "TM77",
+            "TM79",
+            "TM89",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_MEMENTO"

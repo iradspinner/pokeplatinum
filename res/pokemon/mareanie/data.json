@@ -78,19 +78,19 @@
             ],
             [
                 29,
-                "MOVE_SPIKE_CANNON"
+                "MOVE_FURY_SWIPES"
             ],
             [
                 34,
                 "MOVE_PIN_MISSILE"
             ],
             [
-                35,
-                "MOVE_LIQUIDATION"
-            ],
-            [
                 36,
                 "MOVE_TOXIC"
+            ],
+            [
+                38,
+                "MOVE_WATER_PULSE"
             ],
             [
                 40,
@@ -98,10 +98,25 @@
             ],
             [
                 41,
+                "MOVE_LIQUIDATION"
+            ],
+            [
+                42,
                 "MOVE_POISON_JAB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM13",
+            "TM14",
+            "TM36",
+            "TM42",
+            "TM48",
+            "TM84",
+            "HM03"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

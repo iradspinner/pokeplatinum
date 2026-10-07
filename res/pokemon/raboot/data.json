@@ -65,8 +65,8 @@
                 "MOVE_DOUBLE_KICK"
             ],
             [
-                17,
-                "MOVE_SMACK_DOWN"
+                20,
+                "MOVE_AGILITY"
             ],
             [
                 21,
@@ -93,7 +93,17 @@
                 "MOVE_FLARE_BLITZ"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM08",
+            "TM12",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM49",
+            "TM50",
+            "TM82",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

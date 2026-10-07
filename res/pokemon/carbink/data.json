@@ -70,7 +70,7 @@
             ],
             [
                 20,
-                "MOVE_BULLDOZE"
+                "MOVE_MUD_SHOT"
             ],
             [
                 24,
@@ -118,11 +118,11 @@
             ],
             [
                 54,
-                "MOVE_PSYCHIC"
+                "MOVE_IRON_HEAD"
             ],
             [
                 59,
-                "MOVE_IRON_HEAD"
+                "MOVE_PSYCHIC"
             ],
             [
                 61,
@@ -133,7 +133,28 @@
                 "MOVE_SAFEGUARD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM29",
+            "TM33",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM48",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM91",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

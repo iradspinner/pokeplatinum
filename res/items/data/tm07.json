@@ -3,13 +3,13 @@
   "plural": "TM07s",
   "article": "a",
   "description": [
-    "Summons a hailstorm that lasts for\n",
-    "five turns. The hailstorm damages\n",
-    "all types except Ice."
+    "A move that works differently for the\n",
+    "Ghost type than for all the other\n",
+    "types."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_ice_NCLR"
+    "palette": "tm_ghost_NCLR"
   },
   "gbaID": "GBA_ITEM_TM07",
   "price": 2000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_HAIL"
+  "teachesMove": "MOVE_CURSE"
 }

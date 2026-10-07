@@ -93,7 +93,24 @@
                 "MOVE_SCALD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM28",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM54",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM89",
+            "HM03",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

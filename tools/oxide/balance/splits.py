@@ -412,9 +412,61 @@ _COMMON = re.compile(r"\{ (ITEM_\w+), (0x[0-9a-fA-F]+|\d+) \}")
 _TABLE = re.compile(r"const u16 (\w+)\[\] = \{(.*?)\};", re.S)
 
 
+# The TM pass's two sources, written by tools/oxide/place_rewards.py from the
+# reward table (step 10). A shop TM in sold_tms.h is sold once, only from a
+# badge count, so it comes in the first split with that many badges, not its
+# counter's. Seven badges come with Candice's, the eighth with Volkner's.
+BADGE_SPLIT = {0: "Roark", 1: "Gardenia", 2: "Fantina", 3: "Maylene", 4: "Wake", 5: "Byron",
+               6: "Candice", 7: "HQ", 8: "Barry"}
+SOLD_ONCE_COUNTERS = ("VeilstoneDeptStoreStock_3F_UP", "VeilstoneDeptStoreStock_3F_DOWN", "GameCornerPrizes")
+_SOLD = re.compile(r"\{ (ITEM_\w+), (\d+), (\d+), (\d+) \}")
+_REWARD = re.compile(r"^@ (TRAINER_\w+): (.+), under (FLAG_\w+)$", re.M)
+
+
+def _between(text, begin, end):
+    """The text between two marker lines, or nothing if either is missing."""
+    a, b = text.find(begin), text.find(end)
+    return text[a + len(begin):b] if a >= 0 and b > a else ""
+
+
+@functools.lru_cache(maxsize=None)
+def sold_once():
+    """{item constant: badges}: the TMs a counter sells once, from a badge count."""
+    try:
+        text = _read("include", "data", "sold_tms.h")
+    except FileNotFoundError:
+        return {}
+    block = _between(text, "// place_rewards.py: sold TMs (begin)", "// place_rewards.py: sold TMs (end)")
+    return {it: int(badges) for it, badges, _copies, _bit in _SOLD.findall(block) if it != "ITEM_NONE"}
+
+
+@functools.lru_cache(maxsize=None)
+def trainer_rewards():
+    """Every item a trainer gives straight after the win: (split, trainer
+    constant, item constant), in the trainer's split. place_rewards.py writes
+    one comment line a reward trainer: "@ TRAINER_X: ITEM_A x1, ITEM_B x2,
+    under FLAG_Y"."""
+    block = _between(_read("res", "field", "scripts", "scripts_battles.s"),
+                     "@ place_rewards.py: trainer rewards (begin)", "@ place_rewards.py: trainer rewards (end)")
+    out = []
+    for tr, items, _flag in _REWARD.findall(block):
+        split = trainer_split(_trainer_id(tr))
+        for part in items.split(","):
+            out.append((split, tr, part.strip().split(" x")[0]))
+    return out
+
+
 @functools.lru_cache(maxsize=None)
 def marts():
-    """Every item a mart sells: (split, table, item constant)."""
+    """Every item a mart sells: (split, table, item constant). A TM a
+    counter sells once from a badge count comes in that count's split."""
+    out = _marts()
+    sold = sold_once()
+    return [(BADGE_SPLIT[sold[it]] if it in sold and table in SOLD_ONCE_COUNTERS else split, table, it)
+            for split, table, it in out]
+
+
+def _marts():
     text = _read("include", "data", "mart_items.h")
     common = text[text.index("PokeMartCommonItems"):]
     common = common[:common.index("};")]

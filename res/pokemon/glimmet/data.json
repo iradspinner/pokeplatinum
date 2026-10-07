@@ -73,12 +73,12 @@
                 "MOVE_STEALTH_ROCK"
             ],
             [
-                20,
-                "MOVE_MUD_SHOT"
-            ],
-            [
                 22,
                 "MOVE_VENOSHOCK"
+            ],
+            [
+                27,
+                "MOVE_MUD_SHOT"
             ],
             [
                 33,
@@ -97,7 +97,22 @@
                 "MOVE_SLUDGE_WAVE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM06",
+            "TM16",
+            "TM33",
+            "TM36",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM63",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM80"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_SELFDESTRUCT"

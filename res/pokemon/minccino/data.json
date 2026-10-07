@@ -54,7 +54,7 @@
             ],
             [
                 2,
-                "MOVE_SWIFT"
+                "MOVE_BULLET_SEED"
             ],
             [
                 3,
@@ -65,19 +65,19 @@
                 "MOVE_HELPING_HAND"
             ],
             [
-                7,
-                "MOVE_CHILLING_WATER"
-            ],
-            [
                 13,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_FURY_SWIPES"
             ],
             [
                 16,
                 "MOVE_SING"
             ],
             [
-                19,
+                18,
+                "MOVE_SWIFT"
+            ],
+            [
+                20,
                 "MOVE_ENCORE"
             ],
             [
@@ -87,10 +87,6 @@
             [
                 23,
                 "MOVE_TICKLE"
-            ],
-            [
-                27,
-                "MOVE_FACADE"
             ],
             [
                 28,
@@ -114,7 +110,7 @@
             ],
             [
                 41,
-                "MOVE_SEED_BOMB"
+                "MOVE_ROCK_BLAST"
             ],
             [
                 43,
@@ -129,7 +125,22 @@
                 "MOVE_PLAY_ROUGH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM09",
+            "TM24",
+            "TM28",
+            "TM41",
+            "TM42",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM64",
+            "TM73",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

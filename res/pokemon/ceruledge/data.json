@@ -110,15 +110,11 @@
             ],
             [
                 22,
-                "MOVE_SHADOW_CLAW"
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 24,
                 "MOVE_FLAME_CHARGE"
-            ],
-            [
-                27,
-                "MOVE_BULLDOZE"
             ],
             [
                 28,
@@ -126,7 +122,7 @@
             ],
             [
                 30,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_SMACK_DOWN"
             ],
             [
                 32,
@@ -155,17 +151,31 @@
             [
                 62,
                 "MOVE_FLARE_BLITZ"
-            ],
-            [
-                64,
-                "MOVE_POLTERGEIST"
-            ],
-            [
-                69,
-                "MOVE_THROAT_CHOP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM07",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM16",
+            "TM30",
+            "TM31",
+            "TM33",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM48",
+            "TM50",
+            "TM54",
+            "TM56",
+            "TM61",
+            "TM63",
+            "TM65",
+            "TM81",
+            "TM84"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

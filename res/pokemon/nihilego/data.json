@@ -109,7 +109,27 @@
                 "MOVE_HEAD_SMASH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM16",
+            "TM20",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM32",
+            "TM36",
+            "TM39",
+            "TM42",
+            "TM56",
+            "TM73",
+            "TM75",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM84",
+            "TM86",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

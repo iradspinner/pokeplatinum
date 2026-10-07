@@ -79,19 +79,19 @@
             ],
             [
                 30,
-                "MOVE_HEAL_PULSE"
+                "MOVE_FURY_SWIPES"
             ],
             [
                 31,
-                "MOVE_LOW_SWEEP"
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                32,
+                "MOVE_WAKE_UP_SLAP"
             ],
             [
                 33,
                 "MOVE_SOAK"
-            ],
-            [
-                34,
-                "MOVE_WAKE_UP_SLAP"
             ],
             [
                 35,
@@ -111,7 +111,7 @@
             ],
             [
                 43,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_SCALE_SHOT"
             ],
             [
                 45,
@@ -127,11 +127,7 @@
             ],
             [
                 55,
-                "MOVE_LIQUIDATION"
-            ],
-            [
-                58,
-                "MOVE_ICE_PUNCH"
+                "MOVE_BOUNCE"
             ],
             [
                 61,
@@ -143,18 +139,33 @@
             ],
             [
                 67,
-                "MOVE_ACROBATICS"
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 69,
-                "MOVE_FLIP_TURN"
-            ],
-            [
-                74,
                 "MOVE_BABY_DOLL_EYES"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM20",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM45",
+            "TM55",
+            "TM64",
+            "TM68",
+            "HM03",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

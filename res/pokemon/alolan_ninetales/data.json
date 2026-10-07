@@ -118,23 +118,27 @@
             ],
             [
                 17,
-                "MOVE_DRAINING_KISS"
+                "MOVE_DISARMING_VOICE"
             ],
             [
-                18,
-                "MOVE_INCINERATE"
+                19,
+                "MOVE_PAYBACK"
             ],
             [
-                20,
+                21,
+                "MOVE_ICICLE_SPEAR"
+            ],
+            [
+                23,
                 "MOVE_SPITE"
             ],
             [
                 27,
-                "MOVE_ICY_WIND"
+                "MOVE_PLAY_ROUGH"
             ],
             [
-                31,
-                "MOVE_PAYBACK"
+                29,
+                "MOVE_FLAME_WHEEL"
             ],
             [
                 35,
@@ -142,19 +146,19 @@
             ],
             [
                 37,
-                "MOVE_CHILLING_WATER"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 43,
-                "MOVE_ICE_BEAM"
+                "MOVE_PSYSHOCK"
             ],
             [
-                44,
-                "MOVE_EXTRASENSORY"
+                45,
+                "MOVE_CHILLING_WATER"
             ],
             [
                 51,
-                "MOVE_FOUL_PLAY"
+                "MOVE_INCINERATE"
             ],
             [
                 53,
@@ -162,18 +166,34 @@
             ],
             [
                 59,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
-                61,
                 "MOVE_WILL_O_WISP"
             ],
             [
                 67,
-                "MOVE_OVERHEAT"
+                "MOVE_BITE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM28",
+            "TM32",
+            "TM41",
+            "TM42",
+            "TM49",
+            "TM56",
+            "TM58",
+            "TM63",
+            "TM64",
+            "TM68",
+            "TM72",
+            "TM77",
+            "TM79"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

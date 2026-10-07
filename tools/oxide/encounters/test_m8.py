@@ -496,9 +496,14 @@ def check_moves_view(results):
                     and d("MOVE_MOONBLAST") == {"new": True}, ""))
 
     machines = pokedex.machines(root)
+    # Vanilla's 92 TMs and 8 HMs, and the TMs past TM92 that the TM pass
+    # adds (NUM_EXTRA_TMS in items.h, 2 on 2026-10-06), so the count follows
+    # the list rather than a number written here.
+    with open(os.path.join(root, "include", "constants", "items.h"), encoding="utf-8") as f:
+        extra = int(re.search(r"#define NUM_EXTRA_TMS\s+(\d+)", f.read()).group(1))
     results.append(("every TM and HM names the move it teaches",
-                    len(machines) == 100 and machines["TM02"] == "MOVE_DRAGON_CLAW"
-                    and machines["HM03"] == "MOVE_SURF", f"{len(machines)} machines"))
+                    len(machines) == 100 + extra and machines["TM02"] == "MOVE_DRAGON_CLAW"
+                    and machines["HM03"] == "MOVE_SURF", f"{len(machines)} machines, {extra} past TM92"))
     learnt = pokedex.learners(root)
     surf = {(r["species"], r["how"], r["machine"]) for r in learnt["MOVE_SURF"]}
     results.append(("the reverse index covers level-up, machines, tutors and eggs",
@@ -715,6 +720,19 @@ def check_calculator(results):
                     < page.index("profiles/platinum-oxide.js")
                     < page.index("romhacks/index.js"),
                     f"{len(fresh['slicing'])} slicing, {len(fresh['sheerForce'])} Sheer Force"))
+    # Reckless follows the effect scripts that set its 1.2 (2026-10-07): the
+    # reworked one-turn moves and Chloroblast, which the calculator's own
+    # recoil flags miss, and not a move with no recoil or crash.
+    helpers = open(os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics",
+                                "romhacks", "helpers.js"), encoding="utf-8").read()
+    gen4 = open(os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics",
+                             "gen4.js"), encoding="utf-8").read()
+    results.append(("Reckless raises exactly the moves whose effect scripts set it, and the "
+                    "calculator asks the profile",
+                    {"Hyper Beam", "Outrage", "Chloroblast", "Double-Edge", "Jump Kick"} <= set(fresh["reckless"])
+                    and not {"Tackle", "Struggle", "Close Combat"} & set(fresh["reckless"])
+                    and '"recklessMove"' in helpers and '"recklessMove"' in gen4,
+                    f"{len(fresh['reckless'])} moves"))
 
     # Every patch is written down, so an upstream update knows what to redo.
     vendored = open(os.path.join(calc_dir, "VENDORED.md"), encoding="utf-8").read()

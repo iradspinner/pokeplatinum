@@ -82,7 +82,7 @@
             ],
             [
                 17,
-                "MOVE_DRAINING_KISS"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 20,
@@ -102,23 +102,19 @@
             ],
             [
                 40,
-                "MOVE_BLAZE_KICK"
+                "MOVE_QUICK_ATTACK"
             ],
             [
                 43,
                 "MOVE_TAKE_DOWN"
             ],
             [
-                45,
-                "MOVE_DRILL_RUN"
+                48,
+                "MOVE_THROAT_CHOP"
             ],
             [
-                49,
-                "MOVE_DAZZLING_GLEAM"
-            ],
-            [
-                51,
-                "MOVE_PSYCHO_CUT"
+                50,
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
                 56,
@@ -126,22 +122,39 @@
             ],
             [
                 58,
-                "MOVE_THROAT_CHOP"
+                "MOVE_WILD_CHARGE"
             ],
             [
                 64,
-                "MOVE_FLARE_BLITZ"
+                "MOVE_CHARM"
             ],
             [
                 66,
-                "MOVE_PLAY_ROUGH"
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 72,
-                "MOVE_DOUBLE_EDGE"
+                "MOVE_MOONBLAST"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM23",
+            "TM29",
+            "TM32",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM64",
+            "TM68",
+            "TM82",
+            "TM83",
+            "TM92",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

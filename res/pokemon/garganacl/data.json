@@ -106,7 +106,7 @@
             ],
             [
                 42,
-                "MOVE_IRON_HEAD"
+                "MOVE_BRICK_BREAK"
             ],
             [
                 44,
@@ -117,23 +117,48 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
-                51,
-                "MOVE_ZEN_HEADBUTT"
+                54,
+                "MOVE_ROCK_BLAST"
             ],
             [
                 56,
-                "MOVE_BODY_PRESS"
+                "MOVE_FIRE_PUNCH"
             ],
             [
                 58,
-                "MOVE_BLOCK"
+                "MOVE_ICE_PUNCH"
             ],
             [
                 64,
-                "MOVE_HAMMER_ARM"
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                66,
+                "MOVE_BLOCK"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM15",
+            "TM17",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM67",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM72",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM90",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -257,28 +257,52 @@ def check_items_and_marts(results):
     results.append(("every mart item has a split", ok, f"{len(marts)} mart items"))
 
 
-# TMs no source read so far offers. They are expected at the Battle
-# Frontier's prize counters, which B1d does not read; unverified.
-TMS_NOT_FOUND = ["ITEM_TM08", "ITEM_TM61", "ITEM_TM73"]
+def _table():
+    """The reward table's rows (docs/oxide/reward-placements.tsv)."""
+    import csv
+    with open(os.path.join(data.ROOT, "docs", "oxide", "reward-placements.tsv"), encoding="utf-8") as f:
+        return list(csv.DictReader((line for line in f if not line.startswith("#")), delimiter="\t"))
 
 
 def check_tm_sources(results):
-    """Every TM but three is found in a ball, a hidden item, a gift or a
-    shop, and Roark's gym gives TM76 in Roark's split."""
+    """Every TM and HM on the TM pass's list (docs/oxide/tm-list.tsv) is
+    found in a ball, a hidden item, a gift, a shop or a trainer's reward,
+    and Roark's gym gives what the reward table says in Roark's split. The
+    Frontier's three (TM08, TM61, TM73), which no source read offered
+    before, are placed by the table. Until step 10 applies the table to the
+    tree (place_rewards.py), TM93 and TM94 have no source and this fails."""
+    import csv
     from . import splits
     found = {}
     for sp, _h, item, _how in splits.items():
         found.setdefault(item, sp)
     for sp, _t, item in splits.marts():
         found.setdefault(item, sp)
-    roark_tm = [(sp, h) for sp, h, item in splits.gifts() if item == "ITEM_TM76"]
     for sp, _h, item in splits.gifts():
         found.setdefault(item, sp)
-    tms = [f"ITEM_TM{n:02d}" for n in range(1, 93)]
+    for sp, _t, item in splits.trainer_rewards():
+        found.setdefault(item, sp)
+    with open(os.path.join(data.ROOT, "docs", "oxide", "tm-list.tsv"), encoding="utf-8") as f:
+        tms = [f"ITEM_{r['tm']}" for r in csv.DictReader(f, delimiter="\t")]
     missing = [t for t in tms if t not in found]
-    ok = missing == TMS_NOT_FOUND and ("Roark", "OREBURGH_CITY_GYM") in roark_tm
-    results.append(("every TM has a source but the Frontier's three", ok,
-                    f"{92 - len(missing)} of 92 TMs; not found: {missing}"))
+    gym = next((r["reward"] for r in _table() if r["map"] == "MAP_HEADER_OREBURGH_CITY_GYM" and r["kind"] == "gift"),
+               None)
+    roark = [(sp, h) for sp, h, item in splits.gifts() if item == gym]
+    ok = not missing and ("Roark", "OREBURGH_CITY_GYM") in roark
+    results.append(("every TM and HM on the list has a source", ok,
+                    f"{len(tms) - len(missing)} of {len(tms)}; not found: {missing}; "
+                    f"Roark's gym gives {gym}: {bool(roark)}"))
+    # The table's trainer rewards and once-sold TMs, as the census reads them
+    # once step 10 has written them: each at its row's split.
+    rewards = set(splits.trainer_rewards())
+    marts = {(sp, item) for sp, _t, item in splits.marts()}
+    off = [(r["trainer_id"], r["reward"]) for r in _table()
+           if r["kind"] == "trainer" and (r["split"], r["trainer_id"], r["reward"]) not in rewards]
+    off += [(r["place"], r["reward"]) for r in _table()
+            if r["kind"] in ("mart", "prize") and r["reward"] != "ITEM_NONE"
+            and (splits.BADGE_SPLIT[int(r["badges"])], r["reward"]) not in marts]
+    results.append(("the census reads the table's trainer rewards and once-sold TMs at their splits", not off,
+                    f"{len(off)} not read: {off[:4]}" if off else "all read"))
 
 
 def check_weather(results):

@@ -61,6 +61,25 @@ V3_TM_SET = "docs/oxide/tm-pass-set.tsv"
 SHEETS = os.path.join(data.ROOT, "docs", "oxide", "learnset-sheets")
 
 
+@functools.lru_cache(maxsize=None)
+def base_machines():
+    """{"TM02": MOVE_X}: what each TM and HM taught at BASE_REF, before the
+    TM pass. A species' TM list read at BASE_REF names its machines by those
+    numbers, so it must be read through these records: today's (from
+    main-tm-items) teach the new list, and read through them a line that
+    had Sleep Talk by TM82 would read as linked to Bounce."""
+    listing = subprocess.run(["git", "-C", data.ROOT, "ls-tree", "--name-only", BASE_REF, "res/items/data/"],
+                             capture_output=True, text=True, check=True).stdout.split()
+    out = {}
+    for path in listing:
+        label = os.path.basename(path)[:-len(".json")]
+        if label[:2] in ("tm", "hm") and label[2:].isdigit():
+            raw = pokedex._read(data.ROOT, path, ref=BASE_REF) or {}
+            if raw.get("teachesMove"):
+                out[label.upper()] = raw["teachesMove"]
+    return out
+
+
 def si(split):
     """A split's position, the post-game and anything unknown last."""
     return pool.split_index(split)
@@ -132,33 +151,40 @@ def usable(const, types):
 
 # ---- the moves the rulings of 2026-10-06 single out ----------------------------------
 
-# The rampage moves lock the user in for two or three turns (R9): they count
-# for nothing until the engine makes them one-turn moves (the tracker), and
-# Uproar and Raging Fury wait on Ian's word on a one-turn version too.
+# The rampage moves locked the user in for two or three turns (R9) and counted
+# for nothing; the move rework Ian accepted (2026-10-06, cloud/main-move-
+# reworks) made Thrash, Petal Dance, Outrage, Uproar and Raging Fury one-turn
+# moves, so no move carries these effects now. Kept so an older list's
+# version still reads.
 RAMPAGE_EFFECTS = {"CONTINUE_AND_CONFUSE_SELF", "UPROAR"}
-# Moves waiting on a rework Ian has not ruled on (the tracker's move reworks):
-# Fury Cutter, Psywave, every two-turn attack that is neither setup nor made
-# worthwhile by circumstance (Solar Beam and Solar Blade in sun; Skull Bash,
-# Meteor Beam and Electro Shot raise a stat on the charging turn), and every
-# multi-hit move, which the multi-hit review may merge or cut. A list may keep
-# one where it stands, but none counts toward a check, so no list relies on one.
-TWO_TURN_EFFECTS = {"RECHARGE_AFTER", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
-                    "CHARGE_TURN_PARALYZE_HIT", "CHARGE_TURN_BURN_HIT", "FLY", "DIG", "DIVE",
-                    "BOUNCE", "SHADOW_FORCE", "SKY_DROP"}
-MULTI_HIT_EFFECTS = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TIMES",
-                     "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
-                     "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH",
-                     "BEAT_UP"}
-PENDING_BY_NAME = {"MOVE_FURY_CUTTER", "MOVE_PSYWAVE"}
+# Moves waiting on a rework Ian has not ruled on. The rework settled the
+# recharge and charge-turn moves he named, Dig and Dive, every multi-hit move
+# (25 a hit) and Fury Cutter, and Fly, Bounce, Phantom Force and Shadow Force
+# keep their two turns, ruled so; all of those count now. What stays pending
+# is the charge-turn attacks no ruling named (Freeze Shock, Ice Burn, Sky
+# Drop, and Razor Wind, dead weight anyway): a list may keep one where it
+# stands, but none counts toward a check.
+TWO_TURN_EFFECTS = {"CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH", "CHARGE_TURN_PARALYZE_HIT",
+                    "CHARGE_TURN_BURN_HIT", "SKY_DROP"}
+PENDING_BY_NAME = set()
 # Moves leaving every player list or the game: Fury Attack and Feint (Ian,
 # 2026-10-06, "useless"), the first cut of the move pool (2026-09-27: twelve
-# moves, Splash and Teleport), and the terrain moves that stay dead with
-# terrain (2026-09-27: Steel Roller and Ice Spinner).
+# moves, Splash and Teleport), the terrain moves that stay dead with terrain
+# (2026-09-27: Steel Roller and Ice Spinner), Psywave (Ian's answer on the
+# move reworks, 2026-10-06: cut, its lines given Psybeam at the same level),
+# and the Normal two-to-five-hit moves other than Fury Swipes and Tail Slap
+# (MULTI_HIT_CUT below).
+# Ian, 2026-10-06, relayed by the Overseer: one two-to-five-hit move per type.
+# These four leave the game, their learners taking Fury Swipes or their own
+# type's multi-hit move (the generator's multi_hit_stand_in picks which).
+MULTI_HIT_CUT = {"MOVE_DOUBLE_SLAP", "MOVE_COMET_PUNCH", "MOVE_BARRAGE", "MOVE_SPIKE_CANNON"}
 REMOVED = {"MOVE_FURY_ATTACK", "MOVE_FEINT", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
            "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
            "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN",
            "MOVE_MISTY_TERRAIN", "MOVE_PSYCHIC_TERRAIN", "MOVE_SPLASH", "MOVE_TELEPORT",
-           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER"}
+           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER", "MOVE_PSYWAVE"} | MULTI_HIT_CUT
+# A removed move whose lines get another in its place, at the same level.
+REPLACED = {"MOVE_PSYWAVE": "MOVE_PSYBEAM"}
 # Moves whose effect the engine does not run as designed, found after the
 # move-pool survey of 2026-09-27 (the exam's regressions, 2026-10-06): Upper
 # Hand is an unconditional +3 hit of 65, Shell Trap an unconditional -3 hit
@@ -191,8 +217,7 @@ def rampage(const):
 def pending(const):
     """Waiting on Ian's rework ruling: counted by no check."""
     m = moves().get(const)
-    return bool(m) and (const in PENDING_BY_NAME or m["effect"] in TWO_TURN_EFFECTS
-                        or m["effect"] in MULTI_HIT_EFFECTS)
+    return bool(m) and (const in PENDING_BY_NAME or m["effect"] in TWO_TURN_EFFECTS)
 
 
 def out_of_lists(const):
@@ -435,6 +460,9 @@ def _evolution(version, parent, target):
                 level = parent.level
             else:
                 level = max(parent.level, caps()[SPLITS[ti - 1]])
+            # A place evolution (pool.place_item) takes a level-up there.
+            if item.startswith("PLACE_"):
+                level += 1
         else:
             level = max(need, parent.level + 1)
             ti = next((i for i in range(pi, len(SPLITS)) if caps()[SPLITS[i]] >= level), None)
@@ -1071,9 +1099,22 @@ def stats(species):
     return (pokedex.load(data.ROOT, species) or {}).get("stats") or {}
 
 
+# Abilities that decide a line's attacking side whatever its stats say
+# (R31; Ian, 2026-10-06, on Marill's Alluring Voice): Huge Power and Pure
+# Power double Attack. The others that lean a side were checked and left
+# out: Hustle costs accuracy, Guts needs a status, Iron Fist and Technician
+# lift some moves only, Sheer Force lifts both sides.
+ATTACK_DOUBLERS = {"HUGE_POWER", "PURE_POWER"}
+
+
 def attack_stats(species):
+    """(Attack, Special Attack), Attack doubled for a line whose regular
+    ability doubles it."""
     s = stats(species)
-    return s.get("attack", 0), s.get("special_attack", 0)
+    atk = s.get("attack", 0)
+    if set((pokedex.load(data.ROOT, species) or {}).get("abilities") or []) & ATTACK_DOUBLERS:
+        atk *= 2
+    return atk, s.get("special_attack", 0)
 
 
 def fits(const, species):
@@ -1345,8 +1386,10 @@ def held_splits(path, i):
         if exception:
             return []           # kept at its level until it evolves
         return list(range(a + 1, min(si(path[i + 1].split) + 1, last) + 1))
+    if exception and st.via != "caught":
+        return list(range(a, last + 1))
     if st.via not in ("caught", "level"):
-        return list(range(a, last + 1)) if exception else list(range(a + 3, last + 1))
+        return list(range(a + 3, last + 1))
     return list(range(a + 1, last + 1))
 
 
@@ -1355,7 +1398,9 @@ def held_splits(path, i):
 # after evolving via stone; eevee will almost certainly be kept at 20 until it
 # is ready to be evolved, so it will need complete moveset reworks for the
 # eeveelutions from 20-onwards." The line's first stage is held at its level,
-# and each stone form is held from the level it arrives at.
+# and each evolved form, by stone, place or known move, is held from the
+# level it arrives at (Leafeon at 21 after the Moss Rock, Sylveon at 28 after
+# Charm; the Overseer's correction of 2026-10-06).
 STONE_EXCEPTIONS = {"SPECIES_EEVEE"}
 
 

@@ -102,7 +102,7 @@
             ],
             [
                 39,
-                "MOVE_LOW_SWEEP"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 42,
@@ -110,7 +110,7 @@
             ],
             [
                 44,
-                "MOVE_THROAT_CHOP"
+                "MOVE_LOW_SWEEP"
             ],
             [
                 47,
@@ -131,13 +131,32 @@
             [
                 61,
                 "MOVE_LEAF_STORM"
-            ],
-            [
-                64,
-                "MOVE_THUNDER_PUNCH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM12",
+            "TM15",
+            "TM19",
+            "TM22",
+            "TM30",
+            "TM31",
+            "TM40",
+            "TM41",
+            "TM42",
+            "TM46",
+            "TM49",
+            "TM53",
+            "TM58",
+            "TM64",
+            "TM65",
+            "TM68",
+            "TM77",
+            "TM79",
+            "TM86",
+            "TM89",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

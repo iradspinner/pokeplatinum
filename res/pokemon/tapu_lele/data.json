@@ -105,7 +105,28 @@
                 "MOVE_SKILL_SWAP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM20",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM48",
+            "TM52",
+            "TM53",
+            "TM64",
+            "TM68",
+            "TM86",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

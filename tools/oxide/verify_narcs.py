@@ -940,15 +940,51 @@ def personal_fields(member):
 # body colour), bit n - 1 for TM n.
 WEATHER_TMS = (7, 11, 18, 37)
 PERSONAL_TM_BITS_IN_TAIL = 2
+WEATHER_TM_LABELS = {f"TM{n:02d}" for n in WEATHER_TMS}
+# The TM bitfield: four u32 words, as in vanilla, until there are more than
+# 120 TMs (TM_LEARNSET_MASKS). Bit n - 1 is TM n; the HMs follow the last TM.
+PERSONAL_TM_BYTES = 16
+VANILLA_NUM_TMS = 92
 
 
 def without_weather_tms(tail):
-    """The tail with the weather TMs' bits cleared."""
+    """The tail with the weather TMs' bits cleared (the balance track's
+    test_weather_moves reads records through it)."""
     out = bytearray(tail)
     for tm in WEATHER_TMS:
         at = PERSONAL_TM_BITS_IN_TAIL + (tm - 1) // 8
         out[at] &= ~(1 << ((tm - 1) % 8)) & 0xFF
     return bytes(out)
+
+
+# The TM pass of 2026-10-06 authors every species' TM list on the new TM list
+# (tools/oxide/balance/tmcompat.py, from docs/oxide/tm-list.tsv), so a
+# record's TMs are no longer the base ROM's; the rest of its tail still is.
+TMS_AUTHORED = True
+
+
+def built_num_tms():
+    """TMs in the build: vanilla's 92 and the TMs past TM92 that
+    include/constants/items.h counts (the TM pass, 2026-10-06)."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                        "include", "constants", "items.h")
+    with open(path, encoding="utf-8") as f:
+        import re
+        m = re.search(r"#define NUM_EXTRA_TMS\s+(\d+)", f.read())
+    return VANILLA_NUM_TMS + int(m.group(1))
+
+
+def split_tms(tail, num_tms):
+    """(the tail without its TM bitfield, the TM and HM numbers it sets). The
+    HMs' bits sit after the last TM's, so where they are depends on the TM
+    count: TM93 and TM94 moved every HM bit up by two, which compared as
+    bytes would read as a changed learnset on every species that has an HM."""
+    field = tail[PERSONAL_TM_BITS_IN_TAIL:PERSONAL_TM_BITS_IN_TAIL + PERSONAL_TM_BYTES]
+    bits = int.from_bytes(field, "little")
+    labels = {f"TM{b + 1:02d}" if b < num_tms else f"HM{b - num_tms + 1:02d}"
+              for b in range(PERSONAL_TM_BYTES * 8) if bits >> b & 1}
+    rest = tail[:PERSONAL_TM_BITS_IN_TAIL] + tail[PERSONAL_TM_BITS_IN_TAIL + PERSONAL_TM_BYTES:]
+    return rest, labels
 
 
 def check_personal(b, r, path):
@@ -960,6 +996,7 @@ def check_personal(b, r, path):
     rules = diverged_rules(path)
     bad, intended, extra = [], [], max(0, len(b) - len(r))
     hidden = weather_tm_records = 0
+    num_tms = built_num_tms()
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
@@ -977,8 +1014,15 @@ def check_personal(b, r, path):
         abilities_diverged = (not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED
                               and tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0])
         abilities_ok = abilities_ok or abilities_diverged
-        tail_ok = bt.rstrip(b"\0") == rt.rstrip(b"\0")
-        weather_tms = not tail_ok and bt.rstrip(b"\0") == without_weather_tms(rt).rstrip(b"\0")
+        # The TM learnset is compared by TM and HM number, each side read
+        # with its own TM count; the rest of the tail byte for byte. Since the
+        # TM pass authors every TM list (TMS_AUTHORED), a record whose TMs
+        # differ is intended while the rest of its tail agrees.
+        b_rest, b_tms = split_tms(bt, num_tms)
+        r_rest, r_tms = split_tms(rt, VANILLA_NUM_TMS)
+        rest_ok = b_rest.rstrip(b"\0") == r_rest.rstrip(b"\0")
+        tail_ok = rest_ok and b_tms == r_tms
+        weather_tms = not tail_ok and rest_ok and (TMS_AUTHORED or b_tms == r_tms - WEATHER_TM_LABELS)
         if not (tail_ok or weather_tms) or not abilities_ok or bx != rx:
             bad.append(i)
             continue
@@ -1000,8 +1044,10 @@ def check_personal(b, r, path):
           + (f", {extra} are new species and their forms" if extra else "")
           + (f"; {hidden} of the shared records carry a hidden ability, which the "
              f"reference has no slot for" if hidden else "")
-          + (f"; {weather_tm_records} no longer learn the weather TMs, since the player "
-             f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
+          + (f"; {weather_tm_records} carry TM lists the TM pass of 2026-10-06 authors, the weather TMs "
+             f"gone since the player never sets weather (Ian, 2026-09-30)" if weather_tm_records and TMS_AUTHORED
+             else f"; {weather_tm_records} no longer learn the weather TMs, since the player "
+                  f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))

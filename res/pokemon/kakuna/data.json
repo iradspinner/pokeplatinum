@@ -41,7 +41,9 @@
             [ 1, "MOVE_HARDEN" ],
             [ 7, "MOVE_HARDEN" ]
         ],
-        "by_tm": [  ],
+        "by_tm": [
+            "TM48"
+        ],
         "by_tutor": [ "MOVE_IRON_DEFENSE" ]
     },
     "evolutions": [

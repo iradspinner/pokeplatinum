@@ -1361,6 +1361,13 @@ TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS].update({
 # later games, so its description says so (Ian, 2026-09-29).
 TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
     "Sturdy's description gives its later-games rule, which Oxide has")
+# The TM pass (2026-10-06) gives TM and HM numbers new moves, and a TM's
+# description is its move's (tools/oxide/tm_items.py writes both from the TM
+# list). Item ids 328 to 427 are ITEM_TM01 to ITEM_HM08, unchanged since
+# vanilla.
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_DESCRIPTIONS].update({
+    entry: "a TM or HM's description follows its move, which the TM pass sets"
+    for entry in range(328, 428)})
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
@@ -1649,6 +1656,11 @@ def main():
     # test_learnrewrite.py), so no re-import touches one.
     LEARNSETS_AUTHORED = True
     LEARNSETS_AUTHORED_WHY = "authored by the learnset rewrite of 2026-10-06"
+    # Since the TM pass of 2026-10-06 every species' TM list is authored on
+    # the new TM list (tools/oxide/balance/tmcompat.py), so no re-import
+    # touches one either.
+    TMS_AUTHORED = True
+    TMS_AUTHORED_WHY = "authored by the TM pass of 2026-10-06"
 
     # The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm): a record whose
     # TM list carries none of them keeps none on a re-import, since no species
@@ -1811,6 +1823,11 @@ def main():
             why = LEARNSETS_DIVERGED.get(i, LEARNSETS_AUTHORED_WHY)
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({why})"]))
+        if TMS_AUTHORED:
+            new["learnset"].pop("by_tm")
+            old["learnset"].pop("by_tm")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"learnset.by_tm: diverged, left alone ({TMS_AUTHORED_WHY})"]))
         if i in BASE_STATS_DIVERGED:
             new.pop("base_stats")
             old.pop("base_stats")

@@ -62,7 +62,7 @@
             ],
             [
                 17,
-                "MOVE_AERIAL_ACE"
+                "MOVE_BULLET_SEED"
             ],
             [
                 19,
@@ -105,7 +105,20 @@
                 "MOVE_LEAF_STORM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM09",
+            "TM12",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM33",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },
