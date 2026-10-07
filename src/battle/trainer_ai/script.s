@@ -9231,6 +9231,13 @@ Harrassment_Effects:
     TableEntry BATTLE_EFFECT_TOXIC_SPIKES
     TableEntry BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above. Noble Roar, Tearful Look and
+    // Venom Drench as Growl, Sticky Web as Spikes, Magic Room as Embargo.
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_VENOM_DRENCH
+    TableEntry BATTLE_EFFECT_STICKY_WEB
+    TableEntry BATTLE_EFFECT_MAGIC_ROOM
     TableEntry TABLE_END
 
 RoamingPokemon_Main:
