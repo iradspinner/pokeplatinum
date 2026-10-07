@@ -1,8 +1,8 @@
 """Check tools/oxide/tm_items.py on a scratch copy of the files it reads and
 writes. Nothing here writes to the checkout.
 
-The fixture, tools/oxide/test_tm_items.tsv, is the TM list of the Balance
-Agent's step 6 draft: test data, not the approved list.
+The fixture, tools/oxide/test_tm_items.tsv, is the frozen TM list of the
+TM pass (balance-tm-pass, c7e20b9064), copied as test data.
 
     python3 tools/oxide/test_tm_items.py [--built-tree DIR]
 

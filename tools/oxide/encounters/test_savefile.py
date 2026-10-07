@@ -21,8 +21,10 @@ from . import savefile as S
 
 # The normal block this build writes: 0xD01C until element 7 widened the Bag
 # by 184 bytes (2026-09-28), 0xD0D4 until the TM pass's two new TMs widened
-# its TM pocket by 8 more (2026-10-06). The fixtures keep element 7's 18-box
-# block by default; the 30 PC boxes (2026-09-29) grew it to BOX_SIZE_30.
+# its TM pocket by 8 more (2026-10-06). The fixtures' box block is this
+# build's 30 boxes (BOX_SIZE_30, since 2026-09-29) by default, since the TM
+# pass no build writes this normal block with element 7's 18; a save on an
+# older layout passes both sizes.
 NORMAL_SIZE, BOX_SIZE, BOX_SIZE_30 = 0xD0DC, 0x121E4, 0x1E310
 OLD_NORMAL_SIZE = 0xD01C
 IAN_COPY = os.path.expanduser("~/roms/oxide-save-2026-09-21.sav")
@@ -78,7 +80,7 @@ def footer(body, block, save_counter, block_counter, size):
 
 
 def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
-              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE):
+              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE_30):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
     copy of each block is newer (0 leaves that copy's block unwritten).
     `normal_size` other than this build's makes a save on an older layout,
@@ -124,9 +126,7 @@ def main():
                             exp=1000, hidden=True),
              (3, 1): record(0x0000BEEF, chimchar, [move_id("MOVE_SCRATCH")],
                             ability_id("ABILITY_BLAZE"), corrupt=True)}
-    # A save from this build: since the TM pass's Bag (2026-10-06) no build
-    # has written this normal block with element 7's 18 boxes, so it has 30.
-    data = make_save(party, boxed, box_size=BOX_SIZE_30)
+    data = make_save(party, boxed)
     s = S.parse(data, "synthetic")
 
     results.append(("each block comes from its newest valid copy: the backup's normal block "
@@ -182,7 +182,7 @@ def main():
                     _refuses(bytes(0x80000)) and "2026-09-21" in vanilla_sized, ""))
     # A save on the layout before element 7's Bag (Ian: a layout change costs a
     # new game, 2026-09-28): its party still reads, its variables do not.
-    older = make_save(party, {}, normal_size=OLD_NORMAL_SIZE)
+    older = make_save(party, {}, normal_size=OLD_NORMAL_SIZE, box_size=BOX_SIZE)
     o = S.parse(older, "older")
     try:
         S.flag(older, "FLAG_HAS_POKEDEX")
