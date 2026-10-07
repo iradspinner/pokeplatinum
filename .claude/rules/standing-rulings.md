@@ -194,8 +194,8 @@ read, so they are written here too. Each is a standing instruction.
   Cyrus and the League keep their aces at the cap, while officers and the
   other mini-bosses sit a few levels under it and earn their difficulty
   from sharper sets. Concretely (Ian, 2026-10-07): an officer's or
-  mini-boss's ace sits 3 under the cap (Saturn 1 and Mars 2 at 53, Saturn 2
-  at 57, Lucas and Dawn 3 at 68), and the Elite Four's aces rise from 72 to
+  mini-boss's ace sits a few (2 to 4) under the cap (the four Ian named at 3
+  under: Saturn 1 and Mars 2 at 53, Saturn 2 at 57, Lucas and Dawn 3 at 68), and the Elite Four's aces rise from 72 to
   78 (Aaron 72, Bertha 73, Flint 74, Lucian 75, Cynthia 78) under the
   engine's single League cap of 78. A mid-split boss is read with the
   player's box at its ace's level, extending the interim soft caps. Cyrus 3 is today's team raised to the cap's levels.

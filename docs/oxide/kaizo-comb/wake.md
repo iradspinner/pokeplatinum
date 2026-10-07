@@ -5,7 +5,10 @@ draft is set aside for alpha 1. The bosses were combed earlier: Barry 4 and
 Ace Trainer Krystal. On 2026-10-07 I added all 72 ordinary trainers, in
 walking order, from Route 214 through Route 213, Pastoria's gym and Route 212
 to the Hotel Grand Lake restaurant and the Pokemon Mansion, with Route 219's
-and Route 208's water trainers. Every file passes the checker and the rule
+and Route 208's water trainers. The restaurant fights its 18 trainers in
+pairs, two trainers against the player in one double battle (the Overseer,
+from the restaurant's scripts, 2026-10-07), so each of those files is one
+half of a pair, built with the dial's doubles recipes. Every file passes the checker and the rule
 audit.
 
 The ordinary trainers follow Ian's ruling of 2026-10-07. Each takes Kaizo's
@@ -16,17 +19,22 @@ ideas are mine, built around each trainer's old species where it fits.
 
 | Check | Result |
 |---|---|
-| Single battles read blind (72; the split has no doubles or tags) | 94.6 to 100 won, mean 98.5; 62 at 97 or more |
-| Clean, in the scorer's terms (Ian's band 80 to 85) | 65 to 92, mean 79 |
-| Faints a fight, in the scorer's terms (Ian's band 0.1 to 0.25) | 0.2 to 0.9, mean 0.47 |
-| Move slots that are Generation 5+ | 139 of 896, 16 percent |
-| Hidden abilities | 59, on 43 of 72 teams |
-| Element 7 items held | 13: nine Eviolites, a Weakness Policy, a Covert Cloak, an Eject Button and a Red Card |
-| Hazard setters | 8 of 72 teams, about one in nine |
+| Single battles read blind (54) | 94.6 to 100 won, mean 98.3; 46 at 97 or more |
+| The restaurant's nine pairs (18 files) | not readable yet (doubles against two trainers) |
+| Clean, in the scorer's terms (Ian's band 80 to 85) | 65 to 91, mean 79 |
+| Faints a fight, in the scorer's terms (Ian's band 0.1 to 0.25) | 0.2 to 0.9, mean 0.50 |
+| Move slots that are Generation 5+ | 126 of 820, 15 percent |
+| Hidden abilities | 53, on 39 of 72 teams |
+| Element 7 items held | 11: seven Eviolites, a Weakness Policy, a Covert Cloak, an Eject Button and a Red Card |
+| Hazard setters | 7 of 72 teams, about one in ten |
 
 As in Maylene's split, the ordinary trainers win as often as Ian asks but
 cost about twice his band in faints, which leans toward his wish that they be
-dangerous; the scorer's step 15 reading decides any change. Four trainers
+dangerous; the scorer's step 15 reading decides any change. The restaurant's
+pairs use redirection (Follow Me), spread moves beside immune or resistant
+partners (Discharge beside Ground types), speed control (Tailwind, Icy Wind,
+Electroweb, Low Sweep), Helping Hand and screens; each half brings two
+Pokemon, its top member at 41, a notch softer until the scorer reads doubles. Four trainers
 award an element 7 item, and each holds it: Trenton (Eject Button), Mariel
 (Red Card), Kenneth (Covert Cloak) and Shaun (Weakness Policy). Josh holds
 the Wide Lens he awards. My simulator does not model the Eject Button or the
@@ -39,7 +47,7 @@ reason:
 |---|---|
 | Fisherman Josh | The modern options (Psychic Noise, Bulldoze, Stomping Tantrum, Brutal Swing) are weaker than the Psychic, Earthquake and Knock Off the team carries. |
 | Scientist Shaun | Wild Charge is physical on Magnezone and weaker than Electivire's Thunder Punch; Foul Play on Porygon2 is over the 90 ceiling on borrowed attacks before Byron's split. |
-| School Kid Esteban | Bulldoze and Stomping Tantrum are weaker than the Earthquake on Whiscash and Quagsire. |
+| Gentleman Leonardo | Chatot's only modern move, Echoed Voice, is weaker than its Chatter and Air Cutter; Pidgeot has none. |
 
 The weather follows the dial. Three routes carry one weather-ability team
 each, as Rule 6 allows from this split: Trenton's Drizzle on Route 219,
@@ -92,7 +100,7 @@ read without it. No other map in this split has its own weather.
 Ian answered the two boss decisions on 2026-10-06: Wake loses the Pelipper,
 since his gym is already in rain, and Krystal stays at six with her Quick Claw
 restored, as luck items are allowed again. Three new ones come from the
-ordinary trainers.
+ordinary trainers; the third was answered the same day.
 
 | # | Decision | What the files do today | How it is checked | What Ian decides |
 |---|---|---|---|---|
@@ -100,7 +108,7 @@ ordinary trainers.
 | 2 | Krystal reads harsh blind (Ian: she stays at six) | Ian's own six (Metang, Glalie, Jumpluff, Rotom, Blaziken, Dragonair) on legal sets at 42 to 43, with fewer boosts on Rotom and Dragonair. Her Quick Claw on Metang is restored (Ian allowed luck items again on 2026-10-06); my simulator does not model it, so her numbers are unchanged. With a planned six she reads 100 won; met blind she loses about one fight in three in the corrected reading. | `dummy_795.json`. | Answered (2026-10-06). |
 | 3 | Ordinary trainers a little past the band | They win 94.6 to 100 percent blind but cost about 0.47 Pokemon a fight in the scorer's terms against Ian's 0.1 to 0.25, mostly through one strong member each. | The scorer's step 15 reading. | Accept for now (recommended, as in Maylene's split), or soften them now. |
 | 4 | Three permanent weather teams | Trenton's and Jared's Politoed set Drizzle and Alexa's Ninetales sets Drought, each lasting the whole fight under Platinum's rule. | My readings (98.8, 95.2 and 97.4 won); the scorer's reading later. | Accept (recommended: Rule 6 allows weather abilities from this split, one team per route), or change them to Rain Dance and Sunny Day, which last five turns. |
-| 5 | The restaurant's format | I built its 18 trainers as single battles of three, as trainers.csv lists them. If the game fights them as pairs, each pair brings six. | The restaurant's scripts, which my brief keeps me out of; the Overseer can check. | Confirm the format, and I adjust the sizes if they fight in pairs. |
+| 5 | The restaurant's format | The restaurant fights its 18 trainers in pairs, two against the player in one double (the Overseer, from its scripts, 2026-10-07). Each file is now one half of a pair, two Pokemon each, built with the doubles recipes. | The scorer cannot read doubles yet. | Answered (2026-10-07). |
 
 Barry's Ambipom keeps Last Resort, the split's one conditional attack. Two of
 the gym's trainers top out at 42 rather than one under the cap: Erick's
@@ -168,24 +176,24 @@ the updated simulator.
 | Policeman Danny | Route 212 south | optional | single | 3 | 40 to 42 | Electivire's elemental punches | 99 / 0.91 / 40 blind in my simulator, about 76 clean in the scorer's terms |
 | Collector Dean | Route 212 south | optional | single | 4 | 40 to 42 | Eeveelutions | 99 / 0.79 / 41 blind in my simulator, about 76 clean in the scorer's terms |
 | Scientist Shaun | Route 212 south | optional | single | 3 | 40 to 42 | Magnezone on the Weakness Policy that Shaun awards | 98 / 0.86 / 56 blind in my simulator, about 82 clean in the scorer's terms |
-| Aroma Lady Alison | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Flowers that sap and sleep | 99 / 0.36 / 79 blind in my simulator, about 92 clean in the scorer's terms |
-| Artist Ismael | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Colour and light | 100 / 0.71 / 42 blind in my simulator, about 77 clean in the scorer's terms |
-| Pkmn Breeder Kaylee | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Her babies grown | 99 / 0.75 / 51 blind in my simulator, about 80 clean in the scorer's terms |
-| Cameraman Darryl | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Mr | 97 / 1.11 / 42 blind in my simulator, about 77 clean in the scorer's terms |
-| Collector Eugene | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | His Feebas grown into a Marvel Scale Milotic | 99 / 0.91 / 38 blind in my simulator, about 75 clean in the scorer's terms |
-| Pokefan Meredith | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Electric mice on Sitrus Berries | 100 / 0.47 / 62 blind in my simulator, about 85 clean in the scorer's terms |
-| PI Kendrick | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Kangaskhan's Fake Out and Silk Scarf Double-Edge behind Granbull's Intimidate and a Moxie Mightyena | 99 / 0.86 / 37 blind in my simulator, about 75 clean in the scorer's terms |
-| Gentleman Leonardo | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Chatot's Chatter | 98 / 0.48 / 68 blind in my simulator, about 87 clean in the scorer's terms |
-| Socialite Rebecca | Hotel Grand Lake restaurant | optional | single | 4 | 40 to 42 | Cats | 99 / 0.70 / 50 blind in my simulator, about 80 clean in the scorer's terms |
-| Lass Blythe | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Her babies grown | 100 / 0.35 / 71 blind in my simulator, about 89 clean in the scorer's terms |
-| Rich Boy Roman | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | His Lickitung grown | 99 / 0.61 / 54 blind in my simulator, about 82 clean in the scorer's terms |
-| Lady Kylie | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Fairies | 100 / 0.42 / 67 blind in my simulator, about 87 clean in the scorer's terms |
-| Reporter Valerie | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Her Kirlia grown into Gardevoir | 99 / 0.91 / 41 blind in my simulator, about 77 clean in the scorer's terms |
-| School Kid Esteban | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Unaware Quagsire behind Bibarel's Yawn and Whiscash | 100 / 0.61 / 55 blind in my simulator, about 82 clean in the scorer's terms |
-| Scientist Emilio | Hotel Grand Lake restaurant | optional | single | 3 | 39 to 42 | Stealth Rock from Bronzong | 96 / 0.49 / 79 blind in my simulator, about 92 clean in the scorer's terms |
-| Beauty Gabriella | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Her Finneon grown into Lumineon | 100 / 0.34 / 69 blind in my simulator, about 88 clean in the scorer's terms |
-| Beauty Harley | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | Her Psyduck grown into Golduck | 100 / 0.56 / 52 blind in my simulator, about 81 clean in the scorer's terms |
-| Veteran Emanuel | Hotel Grand Lake restaurant | optional | single | 3 | 40 to 42 | His Machoke and Bronzor grown | 98 / 1.04 / 30 blind in my simulator, about 72 clean in the scorer's terms |
+| Aroma Lady Alison | Hotel Grand Lake restaurant | optional | double with Collector Eugene | 2 | 40 to 41 | Half of a double with Collector Eugene | not readable yet (a double against two trainers) |
+| Artist Ismael | Hotel Grand Lake restaurant | optional | double with Beauty Harley | 2 | 40 to 41 | Half of a double with Beauty Harley | not readable yet (a double against two trainers) |
+| Pkmn Breeder Kaylee | Hotel Grand Lake restaurant | optional | double with Scientist Emilio | 2 | 40 to 41 | Half of a double with Scientist Emilio | not readable yet (a double against two trainers) |
+| Cameraman Darryl | Hotel Grand Lake restaurant | optional | double with Reporter Valerie | 2 | 40 to 41 | Half of a double with Reporter Valerie | not readable yet (a double against two trainers) |
+| Collector Eugene | Hotel Grand Lake restaurant | optional | double with Aroma Lady Alison | 2 | 40 to 41 | Half of a double with Aroma Lady Alison | not readable yet (a double against two trainers) |
+| Pokefan Meredith | Hotel Grand Lake restaurant | optional | double with School Kid Esteban | 2 | 40 to 41 | Half of a double with School Kid Esteban | not readable yet (a double against two trainers) |
+| PI Kendrick | Hotel Grand Lake restaurant | optional | double with Beauty Gabriella | 2 | 40 to 41 | Half of a double with Beauty Gabriella | not readable yet (a double against two trainers) |
+| Gentleman Leonardo | Hotel Grand Lake restaurant | optional | double with Socialite Rebecca | 2 | 40 to 41 | Half of a double with Socialite Rebecca | not readable yet (a double against two trainers) |
+| Socialite Rebecca | Hotel Grand Lake restaurant | optional | double with Gentleman Leonardo | 2 | 40 to 41 | Half of a double with Gentleman Leonardo | not readable yet (a double against two trainers) |
+| Lass Blythe | Hotel Grand Lake restaurant | optional | double with Veteran Emanuel | 2 | 40 to 41 | Half of a double with Veteran Emanuel | not readable yet (a double against two trainers) |
+| Rich Boy Roman | Hotel Grand Lake restaurant | optional | double with Lady Kylie | 2 | 40 to 41 | Half of a double with Lady Kylie | not readable yet (a double against two trainers) |
+| Lady Kylie | Hotel Grand Lake restaurant | optional | double with Rich Boy Roman | 2 | 40 to 41 | Half of a double with Rich Boy Roman | not readable yet (a double against two trainers) |
+| Reporter Valerie | Hotel Grand Lake restaurant | optional | double with Cameraman Darryl | 2 | 40 to 41 | Half of a double with Cameraman Darryl | not readable yet (a double against two trainers) |
+| School Kid Esteban | Hotel Grand Lake restaurant | optional | double with Pokefan Meredith | 2 | 40 to 41 | Half of a double with Pokefan Meredith | not readable yet (a double against two trainers) |
+| Scientist Emilio | Hotel Grand Lake restaurant | optional | double with Pkmn Breeder Kaylee | 2 | 40 to 41 | Half of a double with Pkmn Breeder Kaylee | not readable yet (a double against two trainers) |
+| Beauty Gabriella | Hotel Grand Lake restaurant | optional | double with PI Kendrick | 2 | 40 to 41 | Half of a double with PI Kendrick | not readable yet (a double against two trainers) |
+| Beauty Harley | Hotel Grand Lake restaurant | optional | double with Artist Ismael | 2 | 40 to 41 | Half of a double with Artist Ismael | not readable yet (a double against two trainers) |
+| Veteran Emanuel | Hotel Grand Lake restaurant | optional | double with Lass Blythe | 2 | 40 to 41 | Half of a double with Lass Blythe | not readable yet (a double against two trainers) |
 | Rich Boy Liam | Pokemon Mansion | optional | single | 3 | 40 to 42 | Blissey's Softboiled and Toxic behind Lickilicky and a Sheer Force Tauros | 100 / 0.48 / 55 blind in my simulator, about 82 clean in the scorer's terms |
 | Lady Celeste | Pokemon Mansion | optional | single | 3 | 40 to 42 | Blissey and Florges's Wish behind a Super Luck Togekiss | 99 / 0.50 / 64 blind in my simulator, about 85 clean in the scorer's terms |
 | Maid Belinda | Pokemon Mansion | optional | single | 3 | 40 to 42 | The first maid | 98 / 0.46 / 72 blind in my simulator, about 89 clean in the scorer's terms |
@@ -816,222 +824,203 @@ Magnezone on the Weakness Policy that Shaun awards, beside Electivire's Adaptabi
 
 Today's team: Magneton 37 (Flash Cannon, Thunderbolt, Tri Attack, Thunder Wave), Electabuzz 37 (Low Kick, Light Screen, ThunderPunch, Ice Punch). Expected: 98 / 0.86 / 56 blind in my simulator, about 82 clean in the scorer's terms.
 
-### Aroma Lady Alison: Hotel Grand Lake restaurant, optional, single, cap 44
+### Aroma Lady Alison: Hotel Grand Lake restaurant, optional, double with Collector Eugene, cap 44
 
-Flowers that sap and sleep: Roserade's Leech Seed, Vileplume's Petal Dance and Sleep Powder, Bellossom's Stun Spore.
+Half of a double with Collector Eugene: Bellossom's Stun Spore and a Technician Roserade's Leech Seed.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Bellossom | 40 | none | Chlorophyll | default | Giga Drain, Dazzling Gleam, Moonlight, Stun Spore |
-| Vileplume | 41 | none | Chlorophyll | default | Petal Dance, Sludge Bomb, Moonlight, Sleep Powder |
-| Roserade | 42 | Black Sludge | Technician | default | Magical Leaf, Sludge Bomb, Leech Seed, Shadow Ball |
+| Roserade | 41 | Black Sludge | Technician | default | Magical Leaf, Sludge Bomb, Leech Seed, Shadow Ball |
 
-Today's team: Roselia 28 (default moves). Expected: 99 / 0.36 / 79 blind in my simulator, about 92 clean in the scorer's terms.
+Today's team: Roselia 28 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Artist Ismael: Hotel Grand Lake restaurant, optional, single, cap 44
+### Artist Ismael: Hotel Grand Lake restaurant, optional, double with Beauty Harley, cap 44
 
-Colour and light: Mr. Mime's screens, Delcatty's Fake Out, and Gardevoir's Mystical Fire. Today's Smeargle can only Sketch under the final lists, so it gives way.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Delcatty | 40 | none | Cute Charm | default | Fake Out, Hyper Voice, Sucker Punch, Thunder Wave |
-| Mr Mime | 41 | none | Filter | default | Reflect, Light Screen, Dazzling Gleam, Psybeam |
-| Gardevoir | 42 | TwistedSpoon | Magic Guard | default | Psychic, Dazzling Gleam, Mystical Fire, Thunderbolt |
-
-Today's team: Smeargle 28 (default moves). Expected: 100 / 0.71 / 42 blind in my simulator, about 77 clean in the scorer's terms.
-
-### Pkmn Breeder Kaylee: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Her babies grown: Ambipom's Fake Out and Triple Axel, a Huge Power Azumarill, Altaria.
+Half of a double with Beauty Harley: Delcatty's Fake Out and Helping Hand, then Mr. Mime's screens over both sides of the pair.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Azumarill | 40 | none | Huge Power | default | Play Rough, Aqua Tail, Aqua Jet, Knock Off |
-| Altaria | 41 | none | Cloud Nine | default | Dragon Pulse, Dazzling Gleam, Roost, Flamethrower |
-| Ambipom | 42 | none | Technician | default | Fake Out, Double Hit, U-turn, Triple Axel |
+| Delcatty | 40 | none | Cute Charm | default | Fake Out, Helping Hand, Hyper Voice, Thunder Wave |
+| Mr Mime | 41 | Leftovers | Filter | default | Reflect, Light Screen, Dazzling Gleam, Psychic |
 
-Today's team: Aipom 26 (default moves), Marill 26 (default moves), Swablu 26 (default moves). Expected: 99 / 0.75 / 51 blind in my simulator, about 80 clean in the scorer's terms.
+Today's team: Smeargle 28 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Cameraman Darryl: Hotel Grand Lake restaurant, optional, single, cap 44
+### Pkmn Breeder Kaylee: Hotel Grand Lake restaurant, optional, double with Scientist Emilio, cap 44
 
-Mr. Mime's screens, Rotom's Will-O-Wisp then Hex, and an Analytic Magnezone.
+Half of a double with Scientist Emilio: Ambipom's Fake Out, then Altaria's spread Dazzling Gleam.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Ambipom | 40 | none | Technician | default | Fake Out, Double Hit, U-turn, Triple Axel |
+| Altaria | 41 | Leftovers | Cloud Nine | default | Dazzling Gleam, Dragon Pulse, Roost, Flamethrower |
+
+Today's team: Aipom 26 (default moves), Marill 26 (default moves), Swablu 26 (default moves). Expected: not readable yet (a double against two trainers).
+
+### Cameraman Darryl: Hotel Grand Lake restaurant, optional, double with Reporter Valerie, cap 44
+
+Half of a double with Reporter Valerie: Mr. Mime's screens, then an Analytic Magnezone on a Magnet.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Mr Mime | 40 | none | Filter | default | Reflect, Light Screen, Dazzling Gleam, Psybeam |
-| Rotom | 41 | none | Levitate | default | Thunderbolt, Shadow Ball, Will-O-Wisp, Hex |
-| Magnezone | 42 | Magnet | Analytic | default | Thunderbolt, Flash Cannon, Tri Attack, Thunder Wave |
+| Magnezone | 41 | Magnet | Levitate | default | Thunderbolt, Flash Cannon, Tri Attack, Thunder Wave |
 
-Today's team: Magnemite 26 (default moves), Mr Mime 26 (default moves). Expected: 97 / 1.11 / 42 blind in my simulator, about 77 clean in the scorer's terms.
+Today's team: Magnemite 26 (default moves), Mr Mime 26 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Collector Eugene: Hotel Grand Lake restaurant, optional, single, cap 44
+### Collector Eugene: Hotel Grand Lake restaurant, optional, double with Aroma Lady Alison, cap 44
 
-His Feebas grown into a Marvel Scale Milotic, beside Lapras and Kingdra.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Lapras | 40 | none | Shell Armor | default | Surf, Ice Beam, Thunderbolt, Alluring Voice |
-| Kingdra | 41 | none | Sniper | default | Dragon Pulse, Surf, Ice Beam, Agility |
-| Milotic | 42 | Leftovers | Marvel Scale | default | Surf, Ice Beam, Dragon Pulse, Recover |
-
-Today's team: Feebas 28 (default moves). Expected: 99 / 0.91 / 38 blind in my simulator, about 75 clean in the scorer's terms.
-
-### Pokefan Meredith: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Electric mice on Sitrus Berries: Raichu's Fake Out, Pachirisu's Adaptability Discharge, Minun's Encore.
+Half of a double with Aroma Lady Alison: Lapras's Icy Wind slows the player's side, beside a Marvel Scale Milotic.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Minun | 40 | Sitrus Berry | Minus | default | Thunderbolt, Icy Wind, Alluring Voice, Encore |
-| Pachirisu | 41 | Sitrus Berry | Adaptability | default | Discharge, Super Fang, U-turn, Seed Bomb |
-| Raichu | 42 | Sitrus Berry | Lightning Rod | default | Thunderbolt, Surf, Grass Knot, Fake Out |
+| Lapras | 40 | none | Hydration | default | Icy Wind, Water Pulse, Ice Beam, Alluring Voice |
+| Milotic | 41 | Leftovers | Marvel Scale | default | Water Pulse, Ice Beam, Dragon Pulse, Recover |
 
-Today's team: Pichu 26 (Sitrus Berry; default moves), Pachirisu 26 (Sitrus Berry; default moves). Expected: 100 / 0.47 / 62 blind in my simulator, about 85 clean in the scorer's terms.
+Today's team: Feebas 28 (default moves). Expected: not readable yet (a double against two trainers).
 
-### PI Kendrick: Hotel Grand Lake restaurant, optional, single, cap 44
+### Pokefan Meredith: Hotel Grand Lake restaurant, optional, double with School Kid Esteban, cap 44
 
-Kangaskhan's Fake Out and Silk Scarf Double-Edge behind Granbull's Intimidate and a Moxie Mightyena.
+Half of a double with School Kid Esteban: Raichu's Fake Out, then spread Discharge and Electroweb from Pachirisu beside Ground partners.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Granbull | 40 | none | Intimidate | default | Play Rough, Crunch, Thunder Fang, StompingTantrum |
-| Mightyena | 41 | none | Moxie | default | Crunch, Sucker Punch, Play Rough, Thunder Fang |
-| Kangaskhan | 42 | Silk Scarf | Scrappy | default | Fake Out, Double-Edge, Crunch, Sucker Punch |
+| Raichu | 40 | none | Lightning Rod | default | Fake Out, Discharge, Grass Knot, Alluring Voice |
+| Pachirisu | 41 | Sitrus Berry | Adaptability | default | Discharge, Electroweb, Super Fang, U-turn |
 
-Today's team: Kangaskhan 31 (Dizzy Punch, Brick Break). Expected: 99 / 0.86 / 37 blind in my simulator, about 75 clean in the scorer's terms.
+Today's team: Pichu 26 (Sitrus Berry; default moves), Pachirisu 26 (Sitrus Berry; default moves). Expected: not readable yet (a double against two trainers).
 
-### Gentleman Leonardo: Hotel Grand Lake restaurant, optional, single, cap 44
+### PI Kendrick: Hotel Grand Lake restaurant, optional, double with Beauty Gabriella, cap 44
 
-Chatot's Chatter, Pidgeot's Intimidate, Ninetales' Will-O-Wisp.
+Half of a double with Beauty Gabriella: Granbull's Intimidate, then Kangaskhan's Fake Out and Silk Scarf Double-Edge.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Granbull | 40 | none | Intimidate | default | Play Rough, Thunder Fang, Crunch, StompingTantrum |
+| Kangaskhan | 41 | Silk Scarf | Scrappy | default | Fake Out, Double-Edge, Crunch, Sucker Punch |
+
+Today's team: Kangaskhan 31 (Dizzy Punch, Brick Break). Expected: not readable yet (a double against two trainers).
+
+### Gentleman Leonardo: Hotel Grand Lake restaurant, optional, double with Socialite Rebecca, cap 44
+
+Half of a double with Socialite Rebecca: Pidgeot's Tailwind and Chatot's spread Air Cutter and Chatter.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Chatot | 40 | none | Big Pecks | default | Chatter, Air Cutter, U-turn, Roost |
-| Pidgeot | 41 | none | Intimidate | default | Air Slash, U-turn, Roost, Quick Attack |
-| Ninetales | 42 | Charcoal | Magic Guard | default | Flamethrower, Alluring Voice, Energy Ball, Will-O-Wisp |
+| Pidgeot | 41 | Sharp Beak | Intimidate | default | Tailwind, Air Slash, U-turn, Quick Attack |
 
-Today's team: Chatot 27 (Mimic, Sing, Fury Attack, Roost). Expected: 98 / 0.48 / 68 blind in my simulator, about 87 clean in the scorer's terms.
+Today's team: Chatot 27 (Mimic, Sing, Fury Attack, Roost). Expected: not readable yet (a double against two trainers).
 
-### Socialite Rebecca: Hotel Grand Lake restaurant, optional, single, cap 44
+### Socialite Rebecca: Hotel Grand Lake restaurant, optional, double with Gentleman Leonardo, cap 44
 
-Cats: Delcatty's Fake Out, Persian, and a Defiant Purugly on a Silk Scarf.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Delcatty | 40 | none | Cute Charm | default | Fake Out, Hyper Voice, Sucker Punch, Thunder Wave |
-| Persian | 41 | none | Technician | default | Bite, Play Rough, U-turn, Slash |
-| Mightyena | 41 | none | Moxie | default | Crunch, Sucker Punch, Play Rough, Thunder Fang |
-| Purugly | 42 | Silk Scarf | Defiant | default | Slash, Play Rough, Sucker Punch, Knock Off |
-
-Today's team: Purugly 27 (default moves). Expected: 99 / 0.70 / 50 blind in my simulator, about 80 clean in the scorer's terms.
-
-### Lass Blythe: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Her babies grown: Chimecho's Yawn, Clefable's Moonlight, Lopunny's Fake Out and Triple Axel.
+Half of a double with Gentleman Leonardo: Delcatty's Fake Out and Helping Hand, then a Defiant Purugly on a Silk Scarf.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Chimecho | 40 | none | Levitate | default | Psychic, Dazzling Gleam, Yawn, Heal Bell |
-| Clefable | 41 | Leftovers | Magic Guard | default | Alluring Voice, Flamethrower, Moonlight, Thunder Wave |
-| Lopunny | 42 | none | Scrappy | default | Fake Out, Return, Jump Kick, Triple Axel |
+| Delcatty | 40 | none | Cute Charm | default | Fake Out, Helping Hand, Hyper Voice, Sucker Punch |
+| Purugly | 41 | Silk Scarf | Defiant | default | Slash, Play Rough, Sucker Punch, Knock Off |
 
-Today's team: Chingling 25 (default moves), Buneary 25 (default moves). Expected: 100 / 0.35 / 71 blind in my simulator, about 89 clean in the scorer's terms.
+Today's team: Purugly 27 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Rich Boy Roman: Hotel Grand Lake restaurant, optional, single, cap 44
+### Lass Blythe: Hotel Grand Lake restaurant, optional, double with Veteran Emanuel, cap 44
 
-His Lickitung grown, beside Persian's Fake Out and a Sheer Force Tauros.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Persian | 40 | none | Technician | default | Fake Out, Bite, Play Rough, U-turn |
-| Tauros | 41 | none | Sheer Force | default | Zen Headbutt, Rock Slide, Iron Head, StompingTantrum |
-| Lickilicky | 42 | Leftovers | Poison Heal | default | Body Slam, Knock Off, Ice Beam, Thunderbolt |
-
-Today's team: Lickitung 26 (default moves). Expected: 99 / 0.61 / 54 blind in my simulator, about 82 clean in the scorer's terms.
-
-### Lady Kylie: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Fairies: Clefable's Moonlight, Florges's Wish, a Super Luck Togekiss.
+Half of a double with Veteran Emanuel: Clefable's Follow Me and Icy Wind, then a Silk Scarf Lopunny.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Togekiss | 40 | none | Super Luck | default | Air Slash, Aura Sphere, Dazzling Gleam, Roost |
-| Florges | 41 | none | Flower Veil | default | Dazzling Gleam, Energy Ball, Psychic, Wish |
-| Clefable | 42 | Leftovers | Magic Guard | Calm | Calm Mind, Alluring Voice, Flamethrower, Moonlight |
+| Clefable | 40 | none | Magic Guard | default | Follow Me, Alluring Voice, Icy Wind, Moonlight |
+| Lopunny | 41 | Silk Scarf | Scrappy | default | Return, Jump Kick, Triple Axel, U-turn |
 
-Today's team: Cleffa 24 (default moves), Clefairy 26 (default moves). Expected: 100 / 0.42 / 67 blind in my simulator, about 87 clean in the scorer's terms.
+Today's team: Chingling 25 (default moves), Buneary 25 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Reporter Valerie: Hotel Grand Lake restaurant, optional, single, cap 44
+### Rich Boy Roman: Hotel Grand Lake restaurant, optional, double with Lady Kylie, cap 44
 
-Her Kirlia grown into Gardevoir, beside Rotom's Hex and Noctowl's Hypnosis.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Noctowl | 40 | none | Tinted Lens | default | Air Slash, Moonblast, Extrasensory, Hypnosis |
-| Rotom | 41 | none | Levitate | default | Thunderbolt, Shadow Ball, Will-O-Wisp, Hex |
-| Gardevoir | 42 | Leftovers | Magic Guard | default | Psychic, Dazzling Gleam, Mystical Fire, Thunderbolt |
-
-Today's team: Kirlia 26 (default moves). Expected: 99 / 0.91 / 41 blind in my simulator, about 77 clean in the scorer's terms.
-
-### School Kid Esteban: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Unaware Quagsire behind Bibarel's Yawn and Whiscash.
+Half of a double with Lady Kylie: Tauros's Intimidate and spread Rock Slide, then Lickilicky.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Bibarel | 40 | none | Simple | default | Hyper Fang, Aqua Tail, Aqua Jet, Yawn |
-| Whiscash | 41 | none | Hydration | default | Earthquake, Waterfall, Zen Headbutt, Rock Slide |
-| Quagsire | 42 | Leftovers | Unaware | default | Earthquake, Waterfall, Toxic, Ice Beam |
+| Tauros | 40 | none | Intimidate | default | Rock Slide, Zen Headbutt, Iron Head, StompingTantrum |
+| Lickilicky | 41 | Leftovers | Poison Heal | default | Body Slam, Knock Off, Ice Beam, Thunderbolt |
 
-Today's team: Quagsire 26 (Mud Bomb, Slam, Water Gun, Amnesia). Expected: 100 / 0.61 / 55 blind in my simulator, about 82 clean in the scorer's terms.
+Today's team: Lickitung 26 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Scientist Emilio: Hotel Grand Lake restaurant, optional, single, cap 44
+### Lady Kylie: Hotel Grand Lake restaurant, optional, double with Rich Boy Roman, cap 44
 
-Stealth Rock from Bronzong, an Eviolite Porygon2, and his Kadabra grown into a Magic Guard Alakazam.
+Half of a double with Rich Boy Roman: Togekiss's Follow Me draws attacks while Clefable's Icy Wind slows both of the player's Pokemon.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Togekiss | 40 | none | Super Luck | default | Follow Me, Air Slash, Dazzling Gleam, Roost |
+| Clefable | 41 | Leftovers | Magic Guard | default | Icy Wind, Alluring Voice, Flamethrower, Moonlight |
+
+Today's team: Cleffa 24 (default moves), Clefairy 26 (default moves). Expected: not readable yet (a double against two trainers).
+
+### Reporter Valerie: Hotel Grand Lake restaurant, optional, double with Cameraman Darryl, cap 44
+
+Half of a double with Cameraman Darryl: Gardevoir's spread Dazzling Gleam behind the screens, and Rotom's Will-O-Wisp then Hex.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Rotom | 40 | none | Levitate | default | Thunderbolt, Shadow Ball, Will-O-Wisp, Hex |
+| Gardevoir | 41 | Leftovers | Magic Guard | default | Dazzling Gleam, Psychic, Shadow Ball, Thunderbolt |
+
+Today's team: Kirlia 26 (default moves). Expected: not readable yet (a double against two trainers).
+
+### School Kid Esteban: Hotel Grand Lake restaurant, optional, double with Pokefan Meredith, cap 44
+
+Half of a double with Pokefan Meredith: Whiscash and Quagsire are Ground types, immune to their partner's spread Discharge.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Whiscash | 40 | none | Hydration | default | Waterfall, Rock Slide, StompingTantrum, Ice Beam |
+| Quagsire | 41 | Leftovers | Unaware | default | Waterfall, Ice Beam, Yawn, Toxic |
+
+Today's team: Quagsire 26 (Mud Bomb, Slam, Water Gun, Amnesia). Expected: not readable yet (a double against two trainers).
+
+### Scientist Emilio: Hotel Grand Lake restaurant, optional, double with Pkmn Breeder Kaylee, cap 44
+
+Half of a double with Pkmn Breeder Kaylee: an Eviolite Porygon2's Thunder Wave and a Levitate Bronzong's spread Rock Slide and Hypnosis.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Porygon2 | 40 | Eviolite | Download | default | Ice Beam, Thunderbolt, Recover, Thunder Wave |
-| Bronzong | 42 | Leftovers | Levitate | default | Gyro Ball, Psychic Noise, Rock Slide, Stealth Rock |
-| Alakazam | 39 | none | Magic Guard | default | Psychic, Shadow Ball, Thunder Wave, Reflect |
+| Bronzong | 41 | none | Levitate | default | Gyro Ball, Psychic Noise, Rock Slide, Hypnosis |
 
-Today's team: Kadabra 27 (default moves). Expected: 96 / 0.49 / 79 blind in my simulator, about 92 clean in the scorer's terms.
+Today's team: Kadabra 27 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Beauty Gabriella: Hotel Grand Lake restaurant, optional, single, cap 44
+### Beauty Gabriella: Hotel Grand Lake restaurant, optional, double with PI Kendrick, cap 44
 
-Her Finneon grown into Lumineon, beside Milotic and Gorebyss's Scald.
-
-| Pokemon | Level | Item | Ability | Nature | Moves |
-|---|---|---|---|---|---|
-| Gorebyss | 40 | none | Hydration | default | Scald, Psychic, Ice Beam, Draining Kiss |
-| Milotic | 41 | none | Marvel Scale | default | Surf, Ice Beam, Dragon Pulse, Recover |
-| Lumineon | 42 | Mystic Water | Water Veil | default | U-turn, Surf, Ice Beam, Dazzling Gleam |
-
-Today's team: Finneon 26 (default moves). Expected: 100 / 0.34 / 69 blind in my simulator, about 88 clean in the scorer's terms.
-
-### Beauty Harley: Hotel Grand Lake restaurant, optional, single, cap 44
-
-Her Psyduck grown into Golduck, beside Vaporeon's Wish and Wigglytuff's Dazzling Gleam.
+Half of a double with PI Kendrick: Lumineon's Tailwind, then Milotic.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Vaporeon | 40 | none | Water Absorb | default | Surf, Ice Beam, Wish, Haze |
-| Wigglytuff | 41 | none | Cute Charm | default | Dazzling Gleam, Flamethrower, Ice Beam, Thunderbolt |
-| Golduck | 42 | Mystic Water | Damp | default | Surf, Ice Beam, Psychic, Aqua Jet |
+| Lumineon | 40 | none | Water Veil | default | Tailwind, Water Pulse, Ice Beam, Alluring Voice |
+| Milotic | 41 | Leftovers | Marvel Scale | default | Water Pulse, Ice Beam, Dragon Pulse, Recover |
 
-Today's team: Psyduck 26 (default moves). Expected: 100 / 0.56 / 52 blind in my simulator, about 81 clean in the scorer's terms.
+Today's team: Finneon 26 (default moves). Expected: not readable yet (a double against two trainers).
 
-### Veteran Emanuel: Hotel Grand Lake restaurant, optional, single, cap 44
+### Beauty Harley: Hotel Grand Lake restaurant, optional, double with Artist Ismael, cap 44
 
-His Machoke and Bronzor grown: Machamp's Close Combat, Bronzong's Hypnosis, Hariyama's Fake Out.
+Half of a double with Artist Ismael: a Mystic Water Golduck's Scald behind the screens, and Vaporeon's Wish.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Hariyama | 40 | none | Thick Fat | default | Drain Punch, Knock Off, Bullet Punch, Fake Out |
-| Bronzong | 41 | Leftovers | Levitate | default | Gyro Ball, Psychic Noise, Rock Slide, Hypnosis |
-| Machamp | 42 | Black Belt | Steadfast | default | Close Combat, Knock Off, Bullet Punch, Rock Slide |
+| Vaporeon | 40 | Leftovers | Water Absorb | default | Water Pulse, Ice Beam, Wish, Haze |
+| Golduck | 41 | Mystic Water | Damp | default | Scald, Ice Beam, Psychic, Aqua Jet |
 
-Today's team: Machoke 28 (Seismic Toss, Low Kick, Foresight), Bronzor 28 (Extrasensory, Tackle, Confuse Ray). Expected: 98 / 1.04 / 30 blind in my simulator, about 72 clean in the scorer's terms.
+Today's team: Psyduck 26 (default moves). Expected: not readable yet (a double against two trainers).
+
+### Veteran Emanuel: Hotel Grand Lake restaurant, optional, double with Lass Blythe, cap 44
+
+Half of a double with Lass Blythe: Hariyama's Fake Out, Helping Hand and Low Sweep, then Machamp's spread Rock Slide.
+
+| Pokemon | Level | Item | Ability | Nature | Moves |
+|---|---|---|---|---|---|
+| Hariyama | 40 | none | Thick Fat | default | Fake Out, Helping Hand, Drain Punch, Low Sweep |
+| Machamp | 41 | Black Belt | No Guard | default | Close Combat, Rock Slide, Knock Off, Bullet Punch |
+
+Today's team: Machoke 28 (Seismic Toss, Low Kick, Foresight), Bronzor 28 (Extrasensory, Tackle, Confuse Ray). Expected: not readable yet (a double against two trainers).
 
 ### Rich Boy Liam: Pokemon Mansion, optional, single, cap 44
 
