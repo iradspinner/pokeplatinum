@@ -2061,14 +2061,18 @@ function alphaItem(p) {
   const now = p.item ? `<b>${esc(p.label)}</b>` : `<span class="planned">nothing yet</span>`;
   const needs = p.needs && p.needs !== "foot" ? ` <span class="sub">needs ${esc(p.needs)}</span>` : "";
   const r = p.placed;
-  const table = !r ? ""
+  // Once step 10 has applied the reward table, a place holds its reward
+  // itself: the row shows the item, tagged, with no second line. A place
+  // that still differs from the table says what the table puts there.
+  const applied = r && p.item && r.item === p.item;
+  const tag = applied ? ` <span class="tag" title="The reward table's, in place">reward table${esc(copiesOf(r))}</span>` : "";
+  const table = !r || applied ? ""
     : !p.item ? `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here, a new ${esc(p.how)}.</div>`
-    : r.item === p.item ? `<div class="becomes">Reward table: this is its reward${esc(copiesOf(r))}.</div>`
     : `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here instead.</div>`;
   const box = p.flag != null && ALPHASTATE && ALPHASTATE.ticks
     ? `<input type="checkbox" disabled data-flag="${p.flag}" ${picked(p.flag) ? "checked" : ""}
          title="Picked up, read from your save">` : "";
-  return `<div class="it"><div>${box}<span class="tag">${esc(kind)}</span> Now: ${now}${needs}</div>${table}</div>`;
+  return `<div class="it"><div>${box}<span class="tag">${esc(kind)}</span> ${applied ? "" : "Now: "}${now}${tag}${needs}</div>${table}</div>`;
 }
 
 // The checklist's own Markdown, inline: code, bold and a link's text.

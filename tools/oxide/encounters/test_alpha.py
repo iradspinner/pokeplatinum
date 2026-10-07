@@ -139,13 +139,20 @@ def check_zones(results, data, root):
                     roark[:2] == ["Twinleaf Town", "Route 201"]
                     and roark.index("Jubilife City") < roark.index("Oreburgh City")
                     and barry[-1] == "Pokémon League", f"{roark[:3]}, {barry[-1:]}"))
+    # The reward table's Jubilife ball (TM39 for the Potion): before step 10
+    # applies the table the ball still holds the Potion it replaces, after it
+    # the TM itself; either way the row carries the table's reward.
     jub = next(z for z in data["splits"][0]["zones"] if z["zone"] == "Jubilife City")
-    potion = [p for p in jub["pickups"] if p["placed"] and p["item"] == "ITEM_POTION"]
     rewards, _w = alpha.tables(root)["rewards"]
     row = next((r for r in rewards if r["map"] == "MAP_HEADER_JUBILIFE_CITY" and r["kind"] == "ball"), None)
-    results.append(("Jubilife's Potion ball shows the reward that replaces it",
-                    row is None or (potion and potion[0]["placed"]["item"] == row["reward"]),
-                    f"{row['reward'] if row else 'no row'}"))
+    ball = [p for p in jub["pickups"] if p["placed"] and row and p["placed"]["item"] == row["reward"]]
+    state = "no row" if row is None else "not found" if not ball \
+        else "applied" if ball[0]["item"] == row["reward"] \
+        else "not yet applied" if ball[0]["item"] == row["replaces"] else "holds " + str(ball[0]["item"])
+    results.append(("Jubilife's reward-table ball holds its reward, or the item it replaces "
+                    "until step 10 applies the table",
+                    row is None or state in ("applied", "not yet applied"),
+                    f"{row['reward'] if row else ''}: {state}"))
 
 
 def check_checklist(results, data, root):
