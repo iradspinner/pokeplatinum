@@ -511,6 +511,20 @@ MOVES_DIVERGED.setdefault("poison_fang", {})["effect"] = (
 # use; the 2026-09-22 review found it, and it goes (element 4's QA leftovers).
 MOVES_DIVERGED.setdefault("fire_fang", {})["flags"] = (
     "the base ROM's stray Snatch flag removed (2026-09-30)")
+# The move reworks Ian accepted on 2026-10-06 (docs/oxide/learnset-rewrite.md,
+# "1. The move reworks"; the numbers are in the standing rulings). Each move
+# lists the fields it changed; "effect" covers the chance as well. Their
+# descriptions are rewritten to match, in TEXT_ENTRIES_DIVERGED below.
+# MOVE_REWORK_DESCRIBED holds the move ids whose description was rewritten.
+MOVE_REWORKS = {}
+MOVE_REWORK_DESCRIBED = set()
+for _move in ("hyper_beam", "giga_impact", "rock_wrecker", "roar_of_time"):
+    MOVE_REWORKS[_move] = ("power", "accuracy", "effect")
+MOVE_REWORK_DESCRIBED |= {63, 416, 439, 459}
+_MOVE_REWORK_WHY = "the move reworks (Ian, 2026-10-06)"
+for _move, _fields in MOVE_REWORKS.items():
+    for _field in _fields:
+        MOVES_DIVERGED.setdefault(_move, {})[_field] = _MOVE_REWORK_WHY
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")
@@ -1318,6 +1332,12 @@ TEXT_ENTRIES_DIVERGED.update({
 # which put its shared entries under comparison.
 TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_NAMES_WITH_ARTICLES][443] = (
     "the Pocket PC, which the base ROM named in the item names only")
+# The move reworks of 2026-10-06 rewrite the descriptions of the native moves
+# they change (MOVE_REWORKS above).
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS].update({
+    _id: "the move reworks changed what the move does (Ian, 2026-10-06)"
+    for _id in MOVE_REWORK_DESCRIBED
+})
 # Sturdy leaves its holder at 1 HP from a hit taken at full HP, as in the
 # later games, so its description says so (Ian, 2026-09-29).
 TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (

@@ -269,6 +269,14 @@ Ian's ruling: the moves added since Platinum follow Platinum's own Expert patter
 
 Left for want of a command: Octolock into an already octolocked target, whose state is in `BattleMon.oxideFlags`, which no command reads, and Teatime with no Berry held on the field. Left because it would change how the AI plays, and so is Ian's: the items in the tracker's element 6 entry under "for Ian".
 
+## The move reworks, 2026-10-07
+
+`cloud/main-move-reworks` changed the moves Ian reworked on 2026-10-06 (the standing rulings' move numbers paragraph), one commit per move or family. Most of them moved to an effect the AI already scores, so its routine came with the effect; this table says where each one now goes and what changed in the AI itself.
+
+| Moves | Effect now | What the AI does |
+|---|---|---|
+| Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time | half recoil (269, Head Smash's) | Expert's recoil routine (+1 with Rock Head or Magic Guard), where the recharge routine scored them. Half recoil is no longer in `sNoDamageCalcMoveEffects`, so these four, Head Smash and Light of Ruin are costed as ordinary attacks: they can be the strongest move, count as a kill, and take Evaluate Attack's -1 when they are neither. Kaizo marks its half-recoil versions of these moves "fixed AI"; this is that fix, and a change of play for Head Smash and Light of Ruin |
+
 ## The parts
 
 | File | Covers |

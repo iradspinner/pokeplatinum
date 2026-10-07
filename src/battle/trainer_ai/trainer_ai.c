@@ -41,7 +41,9 @@ static const u16 sNoDamageCalcMoveEffects[] = {
     BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF,
     BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP,
     BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING,
-    BATTLE_EFFECT_RECOIL_HALF,
+    // Oxide: half recoil (Head Smash's) is costed as an ordinary attack, as in
+    // Kaizo, whose Hyper Beam, Giga Impact, Outrage and Hydro Cannon carry it
+    // with a "fixed AI" note (the move reworks, Ian, 2026-10-06).
     0xFFFF
 };
 

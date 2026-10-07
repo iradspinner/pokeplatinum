@@ -512,6 +512,11 @@ KAIZO_TRAINER_STATS = {39, 51, 83, 88, 165, 167, 174, 243, 244}
 # Houndoom's line.
 BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 337, 338, 400, 414, 444}
 
+# The move reworks Ian accepted on 2026-10-06 (docs/oxide/learnset-rewrite.md,
+# "1. The move reworks"; the numbers are in the standing rulings), by move id.
+# Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time.
+REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -648,6 +653,13 @@ DIVERGED = {
             "members": {305},
             "why": "Poison Fang takes Kaizo's 90 power and 40% bad-poison chance, over the "
                    "base ROM's 75 and 30% (Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_RECHARGE_TO_RECOIL,
+            "why": "Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time at 180 power and "
+                   "100 accuracy, with half the damage as recoil in place of the recharge "
+                   "turn (the move reworks, Ian, 2026-10-06)",
         },
     ],
 }

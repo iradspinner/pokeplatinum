@@ -804,6 +804,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet68, 13
     AddListMenuEntry TestKit_Text_MenuSet69, 14
     AddListMenuEntry TestKit_Text_MenuSet70, 15
+    AddListMenuEntry TestKit_Text_MenuSet71, 16
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -821,6 +822,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet68
     GoToIfEq VAR_0x8004, 14, TestKit_MoveSet69
     GoToIfEq VAR_0x8004, 15, TestKit_MoveSet70
+    GoToIfEq VAR_0x8004, 16, TestKit_MoveSet71
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1687,6 +1689,23 @@ TestKit_MoveSet70:
     SetVar VAR_0x8007, MOVE_HEAL_BELL
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 71: Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time (the move
+   reworks, Ian, 2026-10-06): 180 power, 100% accuracy, no recharge, half the
+   damage dealt as recoil. Against a wild Chansey that knows only Splash, each
+   hit brings "MEW is hit with recoil!" and costs Mew half of what it took from
+   Chansey, and on the next turn the menu opens as usual with no "must
+   recharge" turn. Before the change each was 150 power, 90% accuracy, and
+   left Mew unable to move the turn after. */
+TestKit_MoveSet71:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_HYPER_BEAM
+    SetVar VAR_0x8007, MOVE_GIGA_IMPACT
+    SetVar VAR_0x8008, MOVE_ROCK_WRECKER
+    SetVar VAR_0x8009, MOVE_ROAR_OF_TIME
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
