@@ -175,23 +175,50 @@ def team(root, constant):
     return out
 
 
-def _variant_label(root, constant, tag):
-    """What tells one of a fight's teams from the others: in a tag fight,
-    the trainer ("Commander Mars"); in a fight kept once per starter, the
-    starter its constant names (TRAINER_RIVAL_ROUTE_201_PIPLUP), else its
-    ace, since Lucas's and Dawn's slots are numbered dummies."""
+# Which player meets which version of a fight kept once per starter. The
+# rival's constant names the player's starter (scripts_route_201.s:
+# GetPlayerStarterSpecies, then TRAINER_RIVAL_ROUTE_201_TURTWIG for a
+# Turtwig), Scorbunny holding Chimchar's slot in Oxide. Lucas and Dawn bring
+# the starter weak to the player's (scripts_victory_road_1f.s: a Turtwig
+# player meets Dawn's Empoleon), Dawn for a boy and Lucas for a girl.
+RIVAL_SLOT_STARTER = {"TURTWIG": "SPECIES_TURTWIG", "CHIMCHAR": "SPECIES_SCORBUNNY",
+                      "PIPLUP": "SPECIES_PIPLUP"}
+COUNTERPART_LINE_STARTER = {"SPECIES_PIPLUP": "SPECIES_TURTWIG", "SPECIES_TURTWIG": "SPECIES_SCORBUNNY",
+                            "SPECIES_CHIMCHAR": "SPECIES_PIPLUP"}
+COUNTERPART_PLAYER_GENDER = {"Dawn": "male", "Lucas": "female"}
+
+
+def version_for(root, constant, tag):
+    """{"starter", "gender"}: the player a version of a fight is for, or
+    None in a tag fight, whose teams are two opponents rather than versions."""
     if tag:
-        return _trainer_name(root, constant)
+        return None
     last = constant.rsplit("_", 1)[-1]
-    if last.isalpha():
-        return last.title()
-    members = team(root, constant)
+    if last in RIVAL_SLOT_STARTER:
+        return {"starter": RIVAL_SLOT_STARTER[last], "gender": None}
     try:
         who = trainers.load(root, _stem(constant)).get("name") or ""
     except (KeyError, FileNotFoundError):
-        who = ""
-    ace = members[-1]["label"] if members else ""
-    return f"{who}, {ace}".strip(", ") or constant
+        return None
+    lines = {dex.line_of(root, m["species"]) for m in team(root, constant) if m["species"]}
+    starter = next((s for base, s in COUNTERPART_LINE_STARTER.items()
+                    if dex.line_of(root, base) in lines), None)
+    return {"starter": starter, "gender": COUNTERPART_PLAYER_GENDER.get(who)}
+
+
+def _variant_label(root, constant, tag):
+    """What tells one of a fight's teams from the others: in a tag fight,
+    the trainer ("Commander Mars"); in a fight kept once per starter, the
+    player it is for ("if you chose Turtwig", "Dawn, if you chose Turtwig")."""
+    if tag:
+        return _trainer_name(root, constant)
+    who = version_for(root, constant, tag) or {}
+    chose = f"if you chose {dex.display_name(who['starter'])}" if who.get("starter") else constant
+    try:
+        name = trainers.load(root, _stem(constant)).get("name") or ""
+    except (KeyError, FileNotFoundError):
+        name = ""
+    return chose if constant.rsplit("_", 1)[-1] in RIVAL_SLOT_STARTER else f"{name}, {chose}"
 
 
 def _trainer_name(root, constant):
@@ -221,7 +248,7 @@ def _item_records(root):
     return out
 
 
-def item_label(root, item, tm_moves=None):
+def item_label(root, item, tm_moves=None, moves=None):
     """An item as the game names it, a TM or HM with its move ("TM39 Rock
     Tomb"). `tm_moves` ({"TM39": MOVE_X}, the TM list's numbering) wins over
     the tree's for a reward-table TM, since the table and the list are drawn
@@ -235,7 +262,7 @@ def item_label(root, item, tm_moves=None):
         move = tm_moves[m.group(1)]
     name = name or item[len("ITEM_"):].replace("_", " ").title()
     if move:
-        rec = pokedex.moves(root).get(move)
+        rec = (moves if moves is not None else pokedex.moves(root)).get(move)
         name += " " + (rec["name"] if rec else move[len("MOVE_"):].replace("_", " ").title())
     return name
 
@@ -273,9 +300,28 @@ def checklist_items(root):
         seen[key] += 1
         if seen[key] > 1:
             key = f"{key} ({seen[key]})"
+        first, rest = first_sentence(body)
         out.append({"key": key, "done": m.group(2) == "x", "live": live,
-                    "section": section, "text": body})
+                    "section": section, "text": body, "first": first, "rest": rest})
     return out
+
+
+# A full stop that ends a sentence: after a word that is not one of the
+# checklist's abbreviations, and before a capital, a backtick, a bracket or
+# the end. "Lv. 16", "vs. Roark" and "e.g." do not end one.
+_ABBREV = ("Lv", "vs", "e.g", "i.e", "Mt", "No", "St", "Dr", "Mr", "Jr")
+_END = re.compile(r"([.!?])(\*\*)?(?=\s+[A-Z`(\[*\"]|\s*$)")
+
+
+def first_sentence(text):
+    """(the item's whole first sentence, the rest), Markdown left in."""
+    for m in _END.finditer(text):
+        word = re.search(r"([\w.]+)$", text[:m.start()])
+        if word and word.group(1).lower() in {a.lower() for a in _ABBREV}:
+            continue
+        cut = m.end()
+        return text[:cut].strip(), text[cut:].strip()
+    return text.strip(), ""
 
 
 @functools.lru_cache(maxsize=None)
@@ -314,13 +360,15 @@ def check_zone(item, names, overrides, first_split):
     if item["key"] in overrides:
         zone, _bar, split = overrides[item["key"]].partition("|")
         return (zone, split or first_split.get(zone)) if zone != "anywhere" else ANYWHERE
-    text = item["text"]
-    best = None
-    for n in sorted(names, key=len, reverse=True):
-        i = re.search(r"(?<![\w])" + re.escape(n) + r"(?![\w])", text)
-        if i and (best is None or i.start() < best[0]):
-            best = (i.start(), n)
-    return names[best[1]] if best else ANYWHERE
+    # One pattern of every name, longest first, so the leftmost match is the
+    # first name the text uses and, at one place, the longest.
+    pattern = names.get("\0pattern")
+    if pattern is None:
+        pattern = re.compile(r"(?<![\w])(" + "|".join(
+            re.escape(n) for n in sorted(names, key=len, reverse=True)) + r")(?![\w])")
+        names["\0pattern"] = pattern
+    hit = pattern.search(item["text"])
+    return names[hit.group(1)] if hit else ANYWHERE
 
 
 # ---- building the page ----------------------------------------------------
@@ -348,7 +396,8 @@ def _wild(root):
         out.append((split, zone, {"area": a.name, "label": _area_label(a.name),
                                   "kinds": a.kinds_present() if not a.land_active
                                   else ["land"] + [k for k in a.kinds_present() if k != "land"],
-                                  "species": [dex.display_name(s) for s in species]}))
+                                  "species": [dex.display_name(s) for s in species],
+                                  "species_ids": species}))
     return out
 
 
@@ -385,8 +434,12 @@ def build(root=None):
     tabs = tables(root)
     roles, roles_from = tabs["roles"]
     tm_moves = {r["tm"]: r["move"] for r in tabs["tms"][0] if r.get("tm")}
-    tree_label = functools.partial(item_label, root)
-    table_label = functools.partial(item_label, root, tm_moves=tm_moves)
+    # The move table once per build: each label would otherwise check every
+    # move file for a change.
+    from . import pokedex
+    all_moves = pokedex.moves(root)
+    tree_label = functools.partial(item_label, root, moves=all_moves)
+    table_label = functools.partial(item_label, root, tm_moves=tm_moves, moves=all_moves)
     rewards, rewards_from = tabs["rewards"]
     caps = trainers.caps()
     smap = trainers.split_map(root)
@@ -421,7 +474,8 @@ def build(root=None):
             "key": fight["key"], "name": fight["label"], "kind": "boss", "required": True,
             "constants": consts, "map": header, "tag": bool(fight.get("tag")),
             "teams": [{"constant": c, "team": team(root, c),
-                       "label": _variant_label(root, c, bool(fight.get("tag")))} for c in consts],
+                       "label": _variant_label(root, c, bool(fight.get("tag"))),
+                       "for": version_for(root, c, bool(fight.get("tag")))} for c in consts],
             "rewards": [x for c in consts for x in reward_of.get(c, [])], "rated": True})
 
     # Every ordinary trainer the census places.
@@ -500,6 +554,7 @@ def build(root=None):
     for s in scripted.load(root):
         put(s.get("split"), scripted_zone(s), "scripted", {
             "label": s["label"], "kind": s["kind"], "pool": [dex.display_name(x) for x in s["pool"]],
+            "pool_ids": list(s["pool"]),
             "level": s.get("level"), "planned": bool(s.get("planned"))})
 
     # The checklist's items, by zone; "anywhere" sits before the first split.

@@ -1403,6 +1403,20 @@ that stay. None blocks anything.
      is written under; a gift has no flag the save shows, so gifts do not
      tick; a planned trainer (the Game Corner challenger before step 10)
      has no tick until the main track creates it.
+   - The layout, reworked from Ian's screenshot (2026-10-07, branch
+     `oxidex-alpha-layout`): text at 17px and up, team sprites at 64px with
+     each level under its sprite and a team on one row, trainers as cards
+     across the width; a fight kept once per starter shows the save's own
+     version first and folds the rest (side by side with no save; the save's
+     `VAR_PLAYER_STARTER` and gender byte say which, `savefile.player`); the
+     in-game checks show their whole first sentence with the Markdown
+     rendered and the section as a muted tag; an item says what is there
+     now and what the reward table puts there; the encounter tables show
+     sprites. A warm page build went from 12 seconds to 0.3, the checklist
+     matcher now one pattern. Checked in a headless Edge screenshot at
+     2000 pixels wide (Route 202 and Jubilife), which also caught the note
+     editors showing open (a styled display outranks `hidden`), and by
+     `test_alpha` (27 checks).
 
 ## Standing rules
 
