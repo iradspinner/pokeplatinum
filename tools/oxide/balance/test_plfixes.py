@@ -721,6 +721,46 @@ def sheer_force_life_orb_checks():
     return out
 
 
+def infiltrator_checks():
+    """An Infiltrator attacker's move passes another Pokemon's Substitute
+    (BattleSystem_InfiltratorPasses, on main-engine-cleanups): its hit
+    strikes the Pokemon behind it, and its added effects, status moves and
+    stat drops land through it. A status from anything but a move (an
+    ability, an item, Toxic Spikes), the holder's own Substitute, Transform
+    and Sky Drop still meet it. On the planner's attack with set rows."""
+    from .test_fightsim import battle as duel
+
+    def setup(moves, ability):
+        b, p, foe = duel(moves, ["Tackle"], {("p", m): [20] * 16 for m in moves}, hp=100)
+        b.dice = pl.RunDice(random.Random(1), True)
+        b.rng = b.dice.rng
+        foe.ability, foe.sub, p.ability = "Battle Armor", 25, ability
+        return b, p, foe
+    got = {}
+    for ability in ("Infiltrator", "Run Away"):
+        b, p, foe = setup(["Tackle"], ability)
+        pl.attack(b, p, fs.move("Tackle"), foe, True)
+        hit = (100 - foe.hp, foe.sub)
+        b, p, foe = setup(["Nuzzle"], ability)
+        pl.attack(b, p, fs.move("Nuzzle"), foe, True)
+        nuzzle = foe.status
+        b, p, foe = setup(["Spore"], ability)
+        pl.status_move(b, p, fs.move("Spore"), foe, True)
+        spore = foe.status
+        b, p, foe = setup(["Growl"], ability)
+        pl.status_move(b, p, fs.move("Growl"), foe, True)
+        got[ability] = (hit, nuzzle, spore, foe.stages["atk"])
+    b, p, foe = setup(["Tackle"], "Infiltrator")
+    plain = fs.give_status(b, foe, "psn")          # not from a move: an ability's, an item's, a hazard's
+    p.sub = 10
+    held = (fs.sub_blocks(p, p, fs.move("Tackle")), fs.sub_blocks(p, foe, fs.move("Transform")),
+            fs.sub_blocks(p, foe, fs.move("Sky Drop")))
+    ok = (got == {"Infiltrator": ((20, 25), "par", "slp", -1), "Run Away": ((0, 5), None, None, 0)}
+          and plain is False and held == (True, True, True))
+    return [("Infiltrator passes a Substitute with a move's hit, effects and status moves, and only then", ok,
+             f"{got}; a status not from a move {plain}; own Substitute, Transform, Sky Drop held {held}")]
+
+
 def types_ns(**kw):
     import types
     return types.SimpleNamespace(**kw)
@@ -937,6 +977,7 @@ def study_effect_checks():
     out += rework_checks()
     out += reckless_calc_checks()
     out += sheer_force_life_orb_checks()
+    out += infiltrator_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

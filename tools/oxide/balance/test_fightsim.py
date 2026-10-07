@@ -178,6 +178,20 @@ def check_move_reworks(results):
                     f"Shell Trap {trap_no}/{trap_yes}; Burning Jealousy {calm} then {foe.status}"))
 
 
+def check_infiltrator(results):
+    """In fightsim's own attack, which double battles use: an Infiltrator
+    attacker's hit and added effect pass the target's Substitute, and
+    without Infiltrator the Substitute takes the hit and stops the effect."""
+    got = {}
+    for ability in ("Infiltrator", "Run Away"):
+        b, p, foe = battle(["Nuzzle"], ["Tackle"], {("p", "Nuzzle"): [20] * 16})
+        foe.ability, foe.sub, p.ability = "Battle Armor", 25, ability
+        fs.attack(b, p, fs.move("Nuzzle"), foe, True)
+        got[ability] = (100 - foe.hp, foe.sub, foe.status)
+    ok = got == {"Infiltrator": (20, 25, "par"), "Run Away": (0, 5, None)}
+    results.append(("Infiltrator passes a Substitute in fightsim's own attack", ok, str(got)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -388,7 +402,7 @@ def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
-                  check_move_reworks, check_status,
+                  check_move_reworks, check_infiltrator, check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):

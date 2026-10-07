@@ -540,7 +540,9 @@ def stage_mult(s):
 # ---- the rules of a turn --------------------------------------------------------------------
 
 def can_status(b, target, status):
-    if target.status or not target.alive() or target.sub:
+    # A Substitute stops a status unless a move's own effect passes it
+    # (give_status_by_move, for an Infiltrator attacker).
+    if target.status or not target.alive() or (target.sub and getattr(b, "passing_sub", None) is not target):
         return False
     side = b.p if target.side == "p" else b.b
     if side.safeguard:
@@ -1018,7 +1020,7 @@ def attack(b, att, mv, dfn, first):
                 dfn.flash_fire = True
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
-    if dfn.sub:
+    if sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
@@ -1064,7 +1066,7 @@ def attack(b, att, mv, dfn, first):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
-    if not dfn.alive() or dfn.sub:
+    if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
@@ -1072,11 +1074,11 @@ def attack(b, att, mv, dfn, first):
     if att.ability == "Serene Grace":
         chance *= 2
     if e in HIT_STATUS and b.rng.random() * 100 < chance:
-        give_status(b, dfn, HIT_STATUS[e])
+        give_status_by_move(b, att, dfn, mv, HIT_STATUS[e])
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and b.rng.random() * 100 < chance:
-        give_status(b, dfn, "brn")
+        give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and b.rng.random() * 100 < chance:
-        give_status(b, dfn, b.rng.choice(["brn", "par", "frz"]))
+        give_status_by_move(b, att, dfn, mv, b.rng.choice(["brn", "par", "frz"]))
     if e in FLINCH_HIT and first and b.rng.random() * 100 < chance:
         dfn.flinch = True
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
@@ -1170,7 +1172,7 @@ def pain_split(b, att, dfn):
     """Pain Split (subscript_pain_split): both Pokemon's HP become half
     their sum, each capped at its maximum (a berry fires on the drop as on
     any other); it fails on a Substitute."""
-    if dfn.sub:
+    if sub_blocks(att, dfn):
         return
     avg = (att.hp + dfn.hp) // 2
     for m in (att, dfn):
@@ -1361,9 +1363,9 @@ def spin(b, att, dfn, e):
     stage (subscript_rapid_spin); Mortal Spin first poisons its target
     (subscript_mortal_spin) as a secondary effect, which a Substitute,
     Shield Dust and Covert Cloak stop."""
-    if (e == "MORTAL_SPIN" and dfn.alive() and not dfn.sub and dfn.ability != "Shield Dust"
+    if (e == "MORTAL_SPIN" and dfn.alive() and not sub_blocks(att, dfn) and dfn.ability != "Shield Dust"
             and dfn.item != "Covert Cloak"):
-        give_status(b, dfn, "psn")
+        give_status_by_move(b, att, dfn, None, "psn")
     att.bound = 0
     att.seeded = False
     side = b.p if att.side == "p" else b.b
@@ -1488,6 +1490,31 @@ def move_priority(mon, mv):
     if mon.ability == "Gale Wings" and mv.type == "Flying" and mon.hp == mon.maxhp:
         pri += 1
     return pri
+
+
+def sub_blocks(att, dfn, mv=None):
+    """Whether dfn's Substitute stands between att's move and dfn: its hit,
+    its status move and the move's own added effects. An Infiltrator
+    attacker passes another Pokemon's Substitute with any move but Transform
+    and Sky Drop (BattleSystem_InfiltratorPasses, on main-engine-cleanups);
+    a Pokemon's own Substitute is never passed, and an ability's, an item's
+    or Toxic Spikes' effect never passes (give_status_by_move)."""
+    if not dfn.sub:
+        return False
+    passes = (att is not dfn and att.ability == "Infiltrator"
+              and (mv is None or mv.name not in ("Transform", "Sky Drop")))
+    return not passes
+
+
+def give_status_by_move(b, att, dfn, mv, status):
+    """give_status for a status that att's move gives dfn, the one path on
+    which an Infiltrator passes dfn's Substitute (can_status reads
+    b.passing_sub, set only here and only for the call)."""
+    b.passing_sub = dfn if dfn.sub and not sub_blocks(att, dfn, mv) else None
+    try:
+        return give_status(b, dfn, status)
+    finally:
+        b.passing_sub = None
 
 
 def move_fails_first(att, mv, dfn, first):
@@ -1726,29 +1753,29 @@ def status_move(b, att, mv, dfn, first):
         if not b.accuracy_hits(att, dfn, mv):
             return
     if e in STATUS_OF:
-        if dfn.sub:
+        if sub_blocks(att, dfn, mv):
             return
-        give_status(b, dfn, STATUS_OF[e])
+        give_status_by_move(b, att, dfn, mv, STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not dfn.sub and not dfn.confused and dfn.ability != "Own Tempo":
+        if not sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
             dfn.confused = b.rng.randint(2, 5)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
-        if not dfn.sub:
+        if not sub_blocks(att, dfn, mv):
             change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not dfn.confused and dfn.ability != "Own Tempo":
                 dfn.confused = b.rng.randint(2, 5)
     elif e == "STATUS_SLEEP_NEXT_TURN":
-        if not dfn.status and not dfn.yawn and not dfn.sub:
+        if not dfn.status and not dfn.yawn and not sub_blocks(att, dfn, mv):
             dfn.yawn = 2
     elif e == "STATUS_LEECH_SEED":
-        if "Grass" not in dfn.types and not dfn.sub:
+        if "Grass" not in dfn.types and not sub_blocks(att, dfn, mv):
             dfn.seeded = True
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not dfn.sub and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
+        if not sub_blocks(att, dfn, mv) and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:

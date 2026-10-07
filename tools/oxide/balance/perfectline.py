@@ -555,7 +555,7 @@ def attack(b, att, mv, dfn, first):
             if dfn.ability == "Flash Fire" and mv.type == "Fire":
                 dfn.flash_fire = True
         return
-    if dfn.sub:
+    if fs.sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
@@ -627,7 +627,7 @@ def attack(b, att, mv, dfn, first):
             fs.change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         fs.spin(b, att, dfn, e)
-    if not dfn.alive() or dfn.sub:
+    if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
@@ -640,16 +640,16 @@ def attack(b, att, mv, dfn, first):
     def status_lands(kind):
         return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
     if e in fs.HIT_STATUS and chance and status_lands("status"):
-        give_status(b, dfn, fs.HIT_STATUS[e])
+        fs.give_status_by_move(b, att, dfn, mv, fs.HIT_STATUS[e])
     # Burning Jealousy burns only a target one of whose stats rose this turn.
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and chance and status_lands("status"):
-        give_status(b, dfn, "brn")
+        fs.give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and chance and status_lands("status"):
         order = ("frz", "par", "brn")
         if b.dice.mode == "run":
             order = (order[b.dice.choice("tri", 3)],)
         for st in order:
-            if give_status(b, dfn, st):
+            if fs.give_status_by_move(b, att, dfn, mv, st):
                 break
     # A flinch and a stat change are not status conditions: they are luck,
     # at the move's chance (design.md, question 10).
@@ -705,34 +705,34 @@ def status_move(b, att, mv, dfn, first):
         if not accuracy_hits(b, att, dfn, mv):
             return
     if e in fs.STATUS_OF:
-        if dfn.sub:
+        if fs.sub_blocks(att, dfn, mv):
             return
-        give_status(b, dfn, fs.STATUS_OF[e])
+        fs.give_status_by_move(b, att, dfn, mv, fs.STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not dfn.sub and not dfn.confused and dfn.ability != "Own Tempo":
+        if not fs.sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
             dfn.confused = b.dice.confusion(dfn.side)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
-        if not dfn.sub:
+        if not fs.sub_blocks(att, dfn, mv):
             fs.change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not dfn.confused and dfn.ability != "Own Tempo":
                 dfn.confused = b.dice.confusion(dfn.side)
     elif e == "STATUS_SLEEP_NEXT_TURN":
-        if not dfn.status and not dfn.yawn and not dfn.sub:
+        if not dfn.status and not dfn.yawn and not fs.sub_blocks(att, dfn, mv):
             dfn.yawn = 2
     elif e == "PREVENT_ESCAPE":
-        if dfn.trapped_by is None and not dfn.sub:
+        if dfn.trapped_by is None and not fs.sub_blocks(att, dfn, mv):
             dfn.trapped_by = att.key
     elif e == "GROUND_TRAP_USER_CONTINUOUS_HEAL":
         att.ingrained = True
     elif e == "STATUS_LEECH_SEED":
-        if "Grass" not in dfn.types and not dfn.sub:
+        if "Grass" not in dfn.types and not fs.sub_blocks(att, dfn, mv):
             dfn.seeded = True
     elif e in fs.SELF_STAGES:
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in fs.FOE_STAGES:
-        if not dfn.sub and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
+        if not fs.sub_blocks(att, dfn, mv) and not fs.stat_drop_blocked(b, dfn, fs.FOE_STAGES[e]):
             fs.change_stages(dfn, fs.FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:

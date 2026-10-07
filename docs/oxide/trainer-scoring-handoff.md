@@ -60,7 +60,9 @@ simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
 re-measures the calculator so the two never stack). A Sheer Force user
 with a Life Orb takes no Life Orb recoil on a move Sheer Force boosts and
 keeps both boosts (Ian, 2026-10-07), as the game's fix does; the
-calculator's rows carry both 1.3s. Every stored
+calculator's rows carry both 1.3s. An Infiltrator attacker's move passes a
+Substitute, as on the main track's engine branch: the hit, its added
+effects and status moves reach the Pokemon behind it. Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,
