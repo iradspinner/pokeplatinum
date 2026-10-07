@@ -241,6 +241,14 @@ for _stem in ("scripts_canalave_city_gym", "scripts_canalave_city_southeast_hous
               "scripts_sunyshore_city_gym_room_3", "scripts_survival_area_south_house",
               "scripts_veilstone_city", "scripts_veilstone_city_gym"):
     DIVERGED[_stem] = DIVERGED[_stem] + "; " + _why if _stem in DIVERGED else _why
+
+# Solaceon's "Utility Stop" (Ian, 2026-10-07): the base ROM's three vendors in
+# the north house, selling Berries, evolution items, Heart Scales, herbs and
+# shards, undid stone and Heart Scale scarcity and the held items behind
+# optional fights. The house is vanilla's again, its two Day Care talkers
+# alone; its text bank keeps the base ROM's lines, which nothing shows.
+DIVERGED["scripts_solaceon_town_north_house"] = (
+    "the Utility Stop's three vendors removed, so the script is vanilla's (Ian, 2026-10-07)")
 for _stem, _why in (
         ("scripts_visible_items", "item balls the reward table changed (2026-10-07)"),
         ("scripts_battles", "the trainer rewards, each given straight after the win "

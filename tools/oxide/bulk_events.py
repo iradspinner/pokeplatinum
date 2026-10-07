@@ -139,6 +139,10 @@ _why = "item balls the reward table changed (2026-10-07)"
 for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
     DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
                                 if f"events_{_m}" in DIVERGED else _why)
+# Solaceon's "Utility Stop" vendors are gone (Ian, 2026-10-07; bulk_scripts.py
+# says why), so the north house's events are vanilla's again.
+DIVERGED["events_solaceon_town_north_house"] = (
+    "the Utility Stop's three vendors removed, so the events are vanilla's (Ian, 2026-10-07)")
 
 
 def render(record, existing, index):
