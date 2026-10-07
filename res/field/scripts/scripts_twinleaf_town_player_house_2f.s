@@ -2915,6 +2915,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleKaizoMoves, 23
     AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSubstitute, 24
     AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSafeguard, 25
+    AddListMenuEntry TestKit_Text_MenuStapleInfiltratorMimic, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -2942,6 +2943,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 23, TestKit_StapleKaizoMoves
     GoToIfEq VAR_0x8004, 24, TestKit_StapleInfiltratorSubstitute
     GoToIfEq VAR_0x8004, 25, TestKit_StapleInfiltratorSafeguard
+    GoToIfEq VAR_0x8004, 26, TestKit_StapleInfiltratorMimic
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -2989,6 +2991,24 @@ TestKit_StapleInfiltratorSafeguard:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SAFEGUARD
     GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator (2026-10-07): the same Crobat, holding a Flame Orb, against a
+   wild Snorlax that knows only Substitute. Splash while the doll goes up and
+   the Orb burns Crobat; then Psycho Shift burns Snorlax and cures Crobat,
+   and Mimic copies Substitute, both through the doll. Without Infiltrator
+   both fail against a Substitute, as in vanilla. */
+TestKit_StapleInfiltratorMimic:
+    SetVar VAR_0x800A, SPECIES_CROBAT
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8004, ITEM_FLAME_ORB
+    SetVar VAR_0x8006, MOVE_PSYCHO_SHIFT
+    SetVar VAR_0x8007, MOVE_MIMIC
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_CROSS_POISON
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SUBSTITUTE
+    GoTo TestKit_GivePokemonWithItem
 
 /* Lightning Rod: a Raichu given Lightning Rod, against a wild Jolteon that
    knows only Thunderbolt. */

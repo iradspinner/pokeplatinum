@@ -204,6 +204,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   poisons it and Confuse Ray confuses it. And the Geodude of Modern rules'
   "Sturdy" entry shows the new description in its summary: "It survives any
   hit at full HP and 1-hit KO attacks."
+- [ ] **Infiltrator with Mimic and Psycho Shift** (Modern rules, "Infiltrator,
+  Mimic"; `main-engine-cleanups`, 2026-10-07). Splash while Snorlax's doll
+  goes up and the Flame Orb burns Crobat. Psycho Shift then burns Snorlax and
+  cures Crobat, and Mimic copies Substitute, both with the doll still
+  standing. Before the fix both failed.
 - [ ] **The test kit's late lines** (`main-engine-cleanups`, 2026-10-07): the
   Items menu's Ice Stone, abilities, Mints and Caps, and TMs entries each
   print their own line, not another entry's.
