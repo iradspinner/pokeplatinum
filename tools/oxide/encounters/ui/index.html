@@ -31,22 +31,37 @@ a:hover { color: var(--place-ink); text-decoration-color: currentColor; }
 :focus-visible { outline: 2px solid var(--mass); outline-offset: 1px; }
 
 header {
-  display: flex; align-items: center; gap: 16px; flex-wrap: nowrap;
-  min-height: 44px; padding: 4px 16px; background: var(--panel);
+  display: flex; align-items: center; gap: 0 16px; flex-wrap: wrap;
+  min-height: 44px; padding: 4px 16px 0; background: var(--panel);
   border-bottom: 1px solid var(--rule); flex: none;
 }
 /* the pixel face is identity: the title, the tabs, the headline, the number */
 header .title { font: 600 18.5px/1 var(--pixel); margin-right: 4px; white-space: nowrap; }
 header .title .ox { color: var(--place-ink); }
-/* The metric strip is the flexible gap: it takes the room between the tabs
-   and the checkout, and when there is not enough it wraps inside itself, so
-   the title, the tabs, the checkout and the toggle always hold the first row
-   rather than being stranded on a second one. */
-header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap;
-                flex: 1 1 auto; min-width: 0; padding: 4px 0; }
-header > nav, header > .title, header > .checkout, header > button,
-header > .themeseg { flex: none; }
-header .checkout { font: 14.5px/1 var(--mono); color: var(--faint); white-space: nowrap; }
+/* Two rows (Ian, 2026-10-07: at 1280px the metrics ran through the theme
+   buttons, and at any width they wrapped into a tall block). The first row
+   is the title, the tabs, the commit button and the theme switch, pushed
+   right; the second is the metric strip on one line, the checkout at its
+   end, scrolling sideways rather than wrapping if a window is too narrow. */
+header > nav#views { margin-right: auto; }
+header > nav, header > .title, header > button, header > .themeseg { flex: none; }
+header .strip { order: 10; flex: 1 0 100%; display: flex; align-items: center; gap: 0 14px;
+                flex-wrap: nowrap; overflow-x: auto; min-width: 0; padding: 2px 0 5px;
+                border-top: 1px solid var(--rule); margin-top: 4px; scrollbar-width: thin; }
+header .strip > * { flex: none; }
+header .strip #clear-caught { padding: 1px 8px; font-size: 14px; }
+header .checkout { font: 14px/1 var(--mono); color: var(--faint); white-space: nowrap; margin-left: auto; }
+/* A narrower window keeps the strip on its one line: the figures a little
+   smaller, and the checkout's name, which only tells which worktree the
+   server reads, left out. */
+@media (max-width: 1500px) {
+  header .strip { gap: 0 10px; }
+  header .strip .metric { font-size: 13.5px; }
+  header .checkout { display: none; }
+  /* "Commit my edits" reads "Commit" and its count, so the first row still
+     holds the theme switch when the button shows (on Ian's server, always). */
+  header .wide-only { display: none; }
+}
 .metric { color: var(--dim); font-size: 15px; white-space: nowrap; }
 .metric b { font-family: var(--mono); font-variant-numeric: tabular-nums;
             color: var(--ink); font-weight: 600; margin-left: 4px; }
@@ -991,10 +1006,10 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span class="metric" id="w-lint">Problems <b id="h-lint">—</b></span>
     <span class="metric">Caught <b id="h-caught">0</b></span>
     <button id="clear-caught" title="Clear the caught list">Reset caught</button>
+    <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   </div>
-  <button id="commit-edits" hidden disabled><span id="edits-label">Commit my edits</span>
+  <button id="commit-edits" hidden disabled><span id="edits-label">Commit<span class="wide-only"> my edits</span></span>
     <b id="edits-n" class="num">0</b></button>
-  <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   <div class="themeseg" role="group" aria-label="Colour scheme">
     <button data-theme-set="dark">Dark</button><button data-theme-set="dim">Dim</button><button
       data-theme-set="light">Light</button><button data-theme-set="auto" title="Follow Windows">Auto</button>
@@ -3867,7 +3882,7 @@ async function commitEdits() {
     if (!r.ok) toast(j.error || "Not committed", true);
     else toast(`Committed and pushed as ${j.head}`);
   } catch (e) { toast(e.message, true); }
-  $("#edits-label").textContent = "Commit my edits";
+  $("#edits-label").innerHTML = `Commit<span class="wide-only"> my edits</span>`;
   refreshSaves();
 }
 
