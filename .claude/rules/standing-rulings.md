@@ -181,6 +181,10 @@ read, so they are written here too. Each is a standing instruction.
   biggest boss fight of the game (save Cynthia) surely has that claim").
   From about Cyrus 3 on, a boss may carry two or three legendaries where its
   team needs them, against one before (Ian, 2026-10-06).
+  Boss levels spike by importance (Ian, 2026-10-06): gym leaders, rivals,
+  Cyrus and the League keep their aces at the cap, while officers and the
+  other mini-bosses sit a few levels under it and earn their difficulty
+  from sharper sets. Cyrus 3 is today's team raised to the cap's levels.
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
@@ -265,6 +269,8 @@ read, so they are written here too. Each is a standing instruction.
   move behind optional fights the same way (Ian, 2026-10-06).
   The Game Corner's gift for ten straight slot bonus rounds, pure luck,
   becomes the reward for beating an optional trainer there (Ian, 2026-10-06).
+  The Game Corner sells no Heart Scales or PP Ups; its prizes are its gated
+  TMs and what else it sold before (Ian, 2026-10-06).
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go
