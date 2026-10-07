@@ -1398,6 +1398,14 @@ TEXT_BANKS_SKIPPED[220] = "the UNLOCK FPS description rewritten for its two choi
 # Fossils wait for Cycling Road (Ian, 2026-09-30): the researcher's unreachable
 # "not yet" line, vanilla's wait for the Explorer Kit, now says why he waits.
 TEXT_BANKS_SKIPPED[79] = "the Mining Museum's reviver waits for Cycling Road, and his line says so (2026-09-30)"
+# The reward table (step 10 of docs/oxide/alpha-readiness.md, 2026-10-07)
+# changed what 25 givers hand over, and each one's lines now name and explain
+# the new item. Two of these banks were already skipped for other reasons.
+for _i in (56, 61, 67, 85, 87, 98, 109, 133, 143, 144, 162, 165, 178, 257, 276, 470, 483,
+           488, 500, 504, 517, 561, 574, 589, 594):
+    _why = "a gift the reward table changed (2026-10-07), and its lines name the new item"
+    TEXT_BANKS_SKIPPED[_i] = (TEXT_BANKS_SKIPPED[_i] + "; then " + _why
+                              if _i in TEXT_BANKS_SKIPPED else _why)
 
 
 def text_bank_names():

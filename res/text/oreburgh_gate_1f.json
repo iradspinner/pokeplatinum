@@ -10,22 +10,19 @@
         "Trainer, aren’t you?\r",
         "But it’s all good! You’re a new fellow\n",
         "friend of Pokémon!\r",
-        "So, let me make a gift of this Hidden\n",
-        "Machine to you!\r"
+        "So, let me make a gift of this\n",
+        "Technical Machine to you!\r"
       ]
     },
     {
       "id": "OreburghGate1F_Text_ThatHMContainsRockSmash",
       "en_US": [
-        "That Hidden Machine, or HM for short,\n",
-        "contains the hidden move Rock Smash.\r",
-        "A Pokémon learning Rock Smash can\n",
-        "smash small boulders in the field.\r",
-        "But the Trainer has to have \n",
-        "the Gym Badge from Oreburgh City.\r",
-        "If you don’t have that Badge, you\n",
-        "can’t make a Pokémon use the hidden\f",
-        "move Rock Smash outside of battle."
+        "That Technical Machine, or TM for\n",
+        "short, contains the move Block.\r",
+        "A foe hit by Block can’t flee, and\n",
+        "it can’t be switched out either.\r",
+        "A TM works only once, so choose the\n",
+        "Pokémon that learns it with care!"
       ]
     },
     {
@@ -33,8 +30,8 @@
       "en_US": [
         "Oh! Good golly!\n",
         "That’s Oreburgh City’s Gym Badge!\r",
-        "All right! Now you can use the hidden\n",
-        "move Rock Smash on small boulders!"
+        "All right! Now your Pokémon can\n",
+        "smash small boulders in the field!"
       ]
     }
   ]
