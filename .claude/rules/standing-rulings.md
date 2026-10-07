@@ -280,6 +280,12 @@ read, so they are written here too. Each is a standing instruction.
   becomes the reward for beating an optional trainer there (Ian, 2026-10-06).
   The Game Corner sells no Heart Scales or PP Ups; its prizes are its gated
   TMs and what else it sold before (Ian, 2026-10-06).
+- Anything drawn from Platinum Kaizo's data (teams, learnsets, items, sets)
+  is translated twice: extrapolated into Oxide's Generation 5+ moves,
+  abilities and items, as Kaizo would have built with the modern pool, and
+  scaled to Oxide's easier difficulty. Tools have repeatedly done only the
+  second (Ian, 2026-10-07); a brief that hands over Kaizo data names both,
+  with a check for the first. The comb's brief is unchanged for now.
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go
