@@ -163,7 +163,10 @@ read, so they are written here too. Each is a standing instruction.
   and Focus Band roll against the player too (Ian, 2026-10-06). Its three
   numbers are reported beside the real-odds ones, as a very unlucky fight.
   Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
-  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). The
+  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). A fight's
+  single difficulty number, shown in the OxiDex's Trainers tab, is its
+  average faints plus 40 times its losing rate at real odds (Ian,
+  2026-10-07, relayed by the encounter track). The
   scorer's job is to order every fight in the game correctly by difficulty;
   it need not win as a person would, and close enough is good enough while
   that order is broadly right (Ian, 2026-10-02). For a boss the scorer
@@ -277,6 +280,12 @@ read, so they are written here too. Each is a standing instruction.
   becomes the reward for beating an optional trainer there (Ian, 2026-10-06).
   The Game Corner sells no Heart Scales or PP Ups; its prizes are its gated
   TMs and what else it sold before (Ian, 2026-10-06).
+- Anything drawn from Platinum Kaizo's data (teams, learnsets, items, sets)
+  is translated twice: extrapolated into Oxide's Generation 5+ moves,
+  abilities and items, as Kaizo would have built with the modern pool, and
+  scaled to Oxide's easier difficulty. Tools have repeatedly done only the
+  second (Ian, 2026-10-07); a brief that hands over Kaizo data names both,
+  with a check for the first. The comb's brief is unchanged for now.
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go

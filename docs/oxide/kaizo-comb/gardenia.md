@@ -42,6 +42,54 @@ weather is battle weather for every fight on it, as at Oreburgh's gym, which
 fights in sand), so the split's only weather is the Sunny Day on Elizabeth,
 Jenna and Angela.
 
+**The legality sweep (2026-10-07).** The files were checked against the final
+learnsets and TM list (origin/balance-tm-pass at 377312dbf0), with the moves
+cut from the TM list kept in each species' trainer palette as Ian ruled. 40
+moves the lists no longer hold were swapped for legal ones doing the same job,
+nearly all small level-up moves; the tables below show the swept sets. The
+expected numbers date from before the sweep, and the scorer's step 15 reading
+gives the real ones. The swaps:
+
+- Lass Sarah's Skitty: Tail Whip to Baby Doll Eyes.
+- Lass Samantha's Budew: Absorb to Bullet Seed.
+- Lass Samantha's Budew: Growth to Cotton Spore.
+- Lass Samantha's Ponyta: Tail Whip to Charm.
+- Lass Samantha's Ponyta: Growl to Charm.
+- Youngster Tyler's Wingull: Growl to Roost.
+- Youngster Tyler's Lotad: Absorb to Bullet Seed.
+- Youngster Tyler's Lotad: Growl to Sweet Scent.
+- Bug Catcher Brandon's Combee: Sweet Scent to Air Cutter.
+- Aroma Lady Taylor's Cherubi: Growth to Synthesis.
+- Aroma Lady Taylor's Bellsprout: Wrap to Bullet Seed.
+- Aroma Lady Taylor's Oddish: Absorb to Bullet Seed.
+- Aroma Lady Taylor's Tangela: Ingrain to Leech Seed.
+- Galactic Grunt's Murkrow: Haze to Confuse Ray.
+- Galactic Grunt's Stunky: Poison Gas to Leer.
+- Galactic Grunt's Zubat: Wing Attack to Aerial Ace.
+- Galactic Grunt's Koffing: Smoke Screen to Screech.
+- Galactic Grunt's Koffing: Poison Gas to Scary Face.
+- Galactic Officer Somnu's Eevee: Growl to Charm.
+- Camper Jacob's Ponyta: Growl to Charm.
+- Hiker Daniel's Phanpy: Defense Curl to Focus Energy.
+- Battle Girl Kelsey's Meditite: Meditate to Foresight.
+- Bug Catcher Jack's Beedrill: Fury Attack to Swift.
+- Lass Briana's Marill: Defense Curl to Charm.
+- Bug Catcher Phillip's Yanma: Detect to Endure.
+- Bug Catcher Phillip's Yanma: Supersonic to Screech.
+- Psychic Rachael's Chingling: Wrap to Swift.
+- Psychic Rachael's Meditite: Meditate to Foresight.
+- Psychic Rachael's Meditite: Detect to Endure.
+- Fisherman Andrew's Magikarp: Splash to nothing (the move is dropped).
+- Fisherman Andrew's Goldeen: Supersonic to Haze.
+- Fisherman Joseph's Tentacool: Wrap to Rapid Spin.
+- Fisherman Joseph's Shellder: Withdraw to Razor Shell.
+- Aroma Lady Jenna's Weepinbell: Wrap to Bullet Seed.
+- Aroma Lady Angela's Lileep: Ingrain to Confuse Ray.
+- Beauty Lindsay's Bellsprout: Wrap to Bullet Seed.
+- Beauty Lindsay's Tangela: Ingrain to Leech Seed.
+- Gardenia's Roserade: Growth to Cotton Spore.
+- Bird Keeper Alexandra's Swablu: Fury Attack to Swift.
+
 ## What comes next
 
 Fantina's split is being combed now, then the bosses from Maylene's split on,
@@ -103,7 +151,7 @@ Fake Out first, then Normal types that hit hard: Furret's Adaptability doubles C
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Skitty | 16 | none | Cute Charm | default | Fake Out, Tackle, Tail Whip, Sing |
+| Skitty | 16 | none | Cute Charm | default | Fake Out, Tackle, Baby-Doll Eyes, Sing |
 | Meowth | 17 | none | Super Luck | default | Bite, Fury Swipes, Thief, Growl |
 | Luxio | 17 | none | Hyper Cutter | default | Spark, Bite, Leer, Quick Attack |
 | Furret | 17 | Oran Berry | Adaptability | default | Covet, Quick Attack, Fury Swipes, Defense Curl |
@@ -117,8 +165,8 @@ Resist berries on the two members a player would target: Shellos's Rindo Berry t
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Shellos | 18 | Rindo Berry | Dry Skin | default | Mud Bomb, Water Pulse, AncientPower, Harden |
-| Budew | 17 | none | Natural Cure | default | Razor Leaf, Stun Spore, Absorb, Growth |
-| Ponyta | 17 | none | Run Away | default | Flame Wheel, Double Kick, Tail Whip, Growl |
+| Budew | 17 | none | Natural Cure | default | Razor Leaf, Stun Spore, Bullet Seed, Cotton Spore |
+| Ponyta | 17 | none | Run Away | default | Flame Wheel, Double Kick, Charm, Charm |
 | Vulpix | 18 | Passho Berry | Flash Fire | Modest | Ember, Confuse Ray, Quick Attack, Will-O-Wisp |
 
 Today's team: Budew 8 (default moves). Expected: 100 / 0.10 / 95.
@@ -129,8 +177,8 @@ Trap and drain: Barboach's Whirlpool holds the player in while Lotad's Leech See
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Wingull | 17 | none | Gluttony | default | Wing Attack, Water Pulse, Supersonic, Growl |
-| Lotad | 17 | none | Swift Swim | default | Absorb, Water Gun, Leech Seed, Growl |
+| Wingull | 17 | none | Gluttony | default | Wing Attack, Water Pulse, Supersonic, Roost |
+| Lotad | 17 | none | Swift Swim | default | Bullet Seed, Water Gun, Leech Seed, Sweet Scent |
 | Psyduck | 17 | none | Damp | default | Water Pulse, Psybeam, Disable, Scratch |
 | Barboach | 18 | Oran Berry | Swift Swim | Adamant | Whirlpool, Mud Bomb, Water Pulse, Amnesia |
 
@@ -142,7 +190,7 @@ Five evolved and evolving Bugs; Beautifly's Silver Wind behind a SilverPowder is
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Combee | 15 | none | Honey Gather | default | Gust, Bug Bite, Sweet Scent |
+| Combee | 15 | none | Honey Gather | default | Gust, Bug Bite, Air Cutter |
 | Nincada | 16 | none | Compound Eyes | default | Fury Swipes, Leech Life, Harden, Mud-Slap |
 | Kricketune | 16 | none | Hyper Cutter | default | Fury Cutter, Leech Life, Growl, Aerial Ace |
 | Dustox | 17 | none | Tinted Lens | default | Confusion, Gust, Poison Sting, Protect |
@@ -156,10 +204,10 @@ Sleep, then drain: Tangela's Sleep Powder and Giga Drain, with Leech Seed and Wr
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Cherubi | 16 | none | Chlorophyll | default | Leech Seed, Razor Leaf, Tackle, Growth |
-| Bellsprout | 17 | none | Chlorophyll | default | Vine Whip, Wrap, Magical Leaf, Growth |
-| Oddish | 17 | none | Chlorophyll | default | Acid, Razor Leaf, Absorb, PoisonPowder |
-| Tangela | 18 | Oran Berry | Leaf Guard | default | Sleep Powder, Giga Drain, AncientPower, Ingrain |
+| Cherubi | 16 | none | Chlorophyll | default | Leech Seed, Razor Leaf, Tackle, Synthesis |
+| Bellsprout | 17 | none | Chlorophyll | default | Vine Whip, Bullet Seed, Magical Leaf, Growth |
+| Oddish | 17 | none | Chlorophyll | default | Acid, Razor Leaf, Bullet Seed, PoisonPowder |
+| Tangela | 18 | Oran Berry | Leaf Guard | default | Sleep Powder, Giga Drain, AncientPower, Leech Seed |
 
 Today's team: Turtwig 13 (Razor Leaf, Withdraw, Tackle), Cherubi 13 (Bullet Seed, Growth, Leech Seed, Synthesis). Expected: 100 / 0.5 / 82; my simulator lost 6 fights in 100 to the sleep, which the scorer's player should handle better.
 
@@ -182,7 +230,7 @@ Paralysis, then bite: Ekans's Glare and Intimidate, Murkrow's Pursuit on the pla
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Zubat | 17 | none | Inner Focus | default | Bite, Leech Life, Astonish, Supersonic |
-| Murkrow | 18 | none | Insomnia | default | Peck, Astonish, Pursuit, Haze |
+| Murkrow | 18 | none | Insomnia | default | Peck, Astonish, Pursuit, Confuse Ray |
 | Croagunk | 17 | none | Dry Skin | default | Poison Sting, Brick Break, Mud-Slap, Astonish |
 | Ekans | 18 | Oran Berry | Intimidate | Adamant | Glare, Bite, Poison Sting, Rock Tomb |
 
@@ -196,8 +244,8 @@ Fake Out and Pursuit: Glameow takes the first turn, Stunky punishes the switch t
 |---|---|---|---|---|---|
 | Glameow | 17 | none | Limber | default | Fake Out, Scratch, Bite, Growl |
 | Poochyena | 17 | none | Quick Feet | default | Bite, Howl, Tackle, Sucker Punch |
-| Stunky | 18 | none | Aftermath | default | Poison Gas, Fury Swipes, Screech, Pursuit |
-| Zubat | 18 | Oran Berry | Inner Focus | Jolly | Leech Life, Bite, Wing Attack, Astonish |
+| Stunky | 18 | none | Aftermath | default | Leer, Fury Swipes, Screech, Pursuit |
+| Zubat | 18 | Oran Berry | Inner Focus | Jolly | Leech Life, Bite, Aerial Ace, Astonish |
 
 Today's team: Zubat 15 (Bite, Supersonic, Astonish, Pluck), Poochyena 15 (Bite, Howl, Sand-Attack). Expected: 100 / 0.20 / 89.
 
@@ -207,7 +255,7 @@ Yawn forces a switch or a nap; Poison Gas and Sludge chip what comes in.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Koffing | 16 | none | Levitate | default | Smog, Tackle, SmokeScreen, Poison Gas |
+| Koffing | 16 | none | Levitate | default | Smog, Tackle, Screech, Scary Face |
 | Grimer | 16 | none | Stench | default | Pound, Mud-Slap, Harden, Disable |
 | Gulpin | 18 | Oran Berry | Gluttony | default | Yawn, Sludge, Pound, Amnesia |
 
@@ -221,7 +269,7 @@ Poison that lasts: Toxic from Grimer, Poison Gas and Smog from Koffing, Pursuit 
 |---|---|---|---|---|---|
 | Grimer | 17 | none | Stench | default | Toxic, Pound, Mud-Slap, Harden |
 | Croagunk | 17 | none | Dry Skin | default | Poison Sting, Faint Attack, Pursuit, Mud-Slap |
-| Koffing | 18 | Oran Berry | Levitate | default | Smog, Assurance, Poison Gas, Tackle |
+| Koffing | 18 | Oran Berry | Levitate | default | Smog, Assurance, Scary Face, Tackle |
 
 Today's team: Grimer 15 (Poison Gas, Pound, Harden, Mud-Slap). Expected: 100 / 0.15 / 89.
 
@@ -232,7 +280,7 @@ Ian's Somnu kept to her idea: Toxic Spikes, then Yawn and stall. Built to the bo
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Pineco | 18 | Oran Berry | Sturdy | Relaxed | Toxic Spikes, Rock Slide, Bug Bite, Protect |
-| Eevee | 18 | Silk Scarf | Run Away | Jolly | Covet, Swift, Fake Tears, Growl |
+| Eevee | 18 | Silk Scarf | Run Away | Jolly | Covet, Swift, Fake Tears, Charm |
 | Barboach | 18 | Passho Berry | Swift Swim | Adamant | Water Pulse, Mud Bomb, Spark, Rock Tomb |
 | Swalot | 19 | Sitrus Berry | Gluttony | Calm | Yawn, Dream Eater, Sludge Bomb, Giga Drain |
 
@@ -259,7 +307,7 @@ Fire types with Fighting cover: Monferno's Mach Punch and Rock Tomb behind a Cha
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Growlithe | 24 | none | Intimidate | default | Flame Wheel, Bite, Leer, Roar |
-| Ponyta | 24 | none | Run Away | default | Flame Wheel, Stomp, Double Kick, Growl |
+| Ponyta | 24 | none | Run Away | default | Flame Wheel, Stomp, Double Kick, Charm |
 | Houndour | 24 | none | Early Bird | default | Smog, Bite, Ember, Howl |
 | Monferno | 25 | Charcoal | Blaze | Naive | Mach Punch, Flame Wheel, Rock Tomb, Taunt |
 
@@ -273,7 +321,7 @@ Rock Slide on three members, aimed at the Fire, Flying and Bug types this split'
 |---|---|---|---|---|---|
 | Baltoy | 25 | none | Levitate | default | Psybeam, Rock Tomb, Rapid Spin, Harden |
 | Sandshrew | 24 | none | Rough Skin | default | Rock Slide, Poison Sting, Rapid Spin, Defense Curl |
-| Phanpy | 24 | none | Pickup | default | Rollout, Defense Curl, Take Down, Ice Shard |
+| Phanpy | 24 | none | Pickup | default | Rollout, Focus Energy, Take Down, Ice Shard |
 | Graveler | 25 | Hard Stone | Sturdy | Adamant | Rock Slide, Magnitude, Rollout, Defense Curl |
 
 Today's team: Baltoy 15 (Psybeam, Rock Tomb, Rapid Spin, Mud-Slap), Phanpy 15 (Growl, Defense Curl, Rollout, Take Down), Sandshrew 15 (Scratch, Defense Curl, Sand-Attack, Poison Sting). Expected: 100 / 0.10 / 96, on the soft side.
@@ -339,7 +387,7 @@ Fighting types with Psychic cover: Meditite's Pure Power doubles a Black Belt Ps
 | Machop | 24 | none | Guts | default | Karate Chop, Low Kick, Rock Slide, Leer |
 | Makuhita | 24 | none | Thick Fat | default | Fake Out, Arm Thrust, Vital Throw, Knock Off |
 | Riolu | 24 | none | Adaptability | default | Quick Attack, Force Palm, Counter, Endure |
-| Meditite | 25 | Black Belt | Pure Power | Jolly | Bullet Punch, Psycho Cut, Brick Break, Meditate |
+| Meditite | 25 | Black Belt | Pure Power | Jolly | Bullet Punch, Psycho Cut, Brick Break, Foresight |
 
 Today's team: Meditite 16 (Meditate, Confusion, Detect, Hidden Power). Expected: 100 / 0.05 / 96.
 
@@ -362,7 +410,7 @@ Butterfree's Compound Eyes Sleep Powder beside a Swords Dance Ninjask and a Purs
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Beedrill | 23 | none | Swarm | default | Fury Attack, Twineedle, Focus Energy, Pursuit |
+| Beedrill | 23 | none | Swarm | default | Swift, Twineedle, Focus Energy, Pursuit |
 | Butterfree | 23 | Oran Berry | Compound Eyes | Modest | Sleep Powder, Confusion, Gust, Silver Wind |
 | Ninjask | 24 | none | Speed Boost | default | Fury Cutter, Leech Life, Sand-Attack, Swords Dance |
 
@@ -375,7 +423,7 @@ Redirection: Clefairy's Follow Me draws the attacks while Vigoroth hits and Mari
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Clefairy | 23 | none | Magic Guard | default | Follow Me, Encore, Magical Leaf, Helping Hand |
-| Marill | 23 | none | Huge Power | default | BubbleBeam, Rollout, Defense Curl, Helping Hand |
+| Marill | 23 | none | Huge Power | default | BubbleBeam, Rollout, Charm, Helping Hand |
 | Vigoroth | 24 | Oran Berry | Vital Spirit | Jolly | Slash, Fury Swipes, Encore, Uproar |
 
 Today's team: Slakoth 17 (Scratch, Yawn, Encore, Slack Off). Expected: not readable yet (a tag battle).
@@ -410,7 +458,7 @@ Speed: Yanma and Ninjask with Speed Boost, Dustox's Confusion.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Yanma | 23 | none | Speed Boost | default | Quick Attack, SonicBoom, Detect, Supersonic |
+| Yanma | 23 | none | Speed Boost | default | Quick Attack, SonicBoom, Endure, Screech |
 | Dustox | 23 | none | Tinted Lens | default | Confusion, Gust, Poison Sting, Protect |
 | Ninjask | 24 | none | Speed Boost | default | Leech Life, Fury Cutter, Aerial Ace, Swords Dance |
 
@@ -446,8 +494,8 @@ Wrap and Confusion: Chingling holds one target in while Meditite and Kadabra hit
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Chingling | 23 | none | Levitate | default | Confusion, Wrap, Astonish, Growl |
-| Meditite | 24 | none | Pure Power | default | Confusion, Bullet Punch, Meditate, Detect |
+| Chingling | 23 | none | Levitate | default | Confusion, Swift, Astonish, Growl |
+| Meditite | 24 | none | Pure Power | default | Confusion, Bullet Punch, Foresight, Endure |
 | Kadabra | 24 | Oran Berry | Inner Focus | Timid | Psybeam, Shock Wave, Disable, Knock Off |
 
 Today's team: Chingling 18 (Growl, Recover, Confusion, Uproar). Expected: not readable yet (a tag battle).
@@ -458,8 +506,8 @@ Six fish, five of them small: the fight is Gyarados, whose Intimidate, Bite and 
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Magikarp | 20 | none | Swift Swim | default | Splash, Tackle |
-| Goldeen | 22 | none | Swift Swim | default | Horn Attack, Water Pulse, Supersonic, Peck |
+| Magikarp | 20 | none | Swift Swim | default | Tackle |
+| Goldeen | 22 | none | Swift Swim | default | Horn Attack, Water Pulse, Haze, Peck |
 | Remoraid | 22 | none | Hustle | default | Water Gun, Psybeam, Aurora Beam, BubbleBeam |
 | Feebas | 22 | none | Swift Swim | default | Tackle, Water Pulse, Mirror Coat, DragonBreath |
 | Qwilfish | 23 | none | Poison Point | default | BubbleBeam, Poison Sting, Rollout, Harden |
@@ -473,9 +521,9 @@ Skill Link: Shellder's Icicle Spear always hits five times, the answer to Flying
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Tentacool | 25 | none | Clear Body | default | Acid, BubbleBeam, Aurora Beam, Wrap |
+| Tentacool | 25 | none | Clear Body | default | Acid, BubbleBeam, Aurora Beam, Rapid Spin |
 | Quagsire | 25 | none | Unaware | default | Mud Shot, Slam, AncientPower, Amnesia |
-| Shellder | 25 | NeverMeltIce | Skill Link | Adamant | Icicle Spear, BubbleBeam, Rapid Spin, Withdraw |
+| Shellder | 25 | NeverMeltIce | Skill Link | Adamant | Icicle Spear, BubbleBeam, Rapid Spin, Razor Shell |
 
 Today's team: Goldeen 18 (Water Sport, Supersonic, Horn Attack, Water Pulse). Expected: 100 / 0.05 / 95, on the soft side.
 
@@ -500,7 +548,7 @@ Sun and sleep together, the gym's rehearsal: Gloom sets Sunny Day and sleeps, Ex
 |---|---|---|---|---|---|
 | Gloom | 25 | Oran Berry | Chlorophyll | default | Sunny Day, Giga Drain, Acid, Sleep Powder |
 | Exeggutor | 25 | none | Chlorophyll | default | Seed Bomb, Confusion, AncientPower, Leech Seed |
-| Weepinbell | 24 | none | Chlorophyll | default | Vine Whip, Acid, Wrap, Sucker Punch |
+| Weepinbell | 24 | none | Chlorophyll | default | Vine Whip, Acid, Bullet Seed, Sucker Punch |
 | Nuzleaf | 25 | none | Chlorophyll | default | Fake Out, Razor Leaf, Rock Tomb, Payback |
 
 Today's team: Cacnea 23 (Growth, Leech Seed, Grass Knot, Pin Missile), Oddish 23 (PoisonPowder, Stun Spore, Sleep Powder, Mega Drain), Lotad 23 (Nature Power, Water Gun, Natural Gift, Mega Drain). Expected: 100 / 0.30 / 81.
@@ -526,7 +574,7 @@ Spikes from Roselia, Gardenia's hazard previewed, with Ludicolo and Lileep as th
 | Sunflora | 25 | none | Solar Power | default | Sunny Day, Giga Drain, Bullet Seed, Ingrain |
 | Roselia | 25 | Oran Berry | Natural Cure | default | Spikes, Mega Drain, Poison Sting, Stun Spore |
 | Ludicolo | 25 | none | Swift Swim | default | Icy Wind, Giga Drain, Fake Out, Water Pulse |
-| Lileep | 25 | none | Solid Rock | default | Rock Slide, Giga Drain, AncientPower, Ingrain |
+| Lileep | 25 | none | Solid Rock | default | Rock Slide, Giga Drain, AncientPower, Confuse Ray |
 
 Today's team: Sunflora 23 (Mega Drain, Leech Seed, Ingrain, Synthesis). Expected: 100 / 0.40 / 86.
 
@@ -537,8 +585,8 @@ Spikes and sleep together: Roselia lays Spikes, Bellsprout sleeps, Shiftry's Fak
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Roselia | 25 | Black Sludge | Natural Cure | Calm | Spikes, Giga Drain, Poison Sting, Stun Spore |
-| Bellsprout | 24 | none | Chlorophyll | default | Wrap, Vine Whip, Sleep Powder, Growth |
-| Tangela | 25 | none | Chlorophyll | default | Giga Drain, AncientPower, PoisonPowder, Ingrain |
+| Bellsprout | 24 | none | Chlorophyll | default | Bullet Seed, Vine Whip, Sleep Powder, Growth |
+| Tangela | 25 | none | Chlorophyll | default | Giga Drain, AncientPower, PoisonPowder, Leech Seed |
 | Shiftry | 25 | none | Chlorophyll | default | Fake Out, Razor Leaf, Rock Slide, Faint Attack |
 
 Today's team: Roselia 19 (Mega Drain, Poison Sting, Stun Spore). Expected: 100 / 0.10 / 95.
@@ -553,7 +601,7 @@ Spikes and sleep from the lead, then off-type answers to the Fire and Flying typ
 | Ludicolo | 25 | Sitrus Berry | Swift Swim | Calm | Ice Beam, Water Pulse, Giga Drain, Fake Out |
 | Exeggutor | 25 | Leftovers | Chlorophyll | Modest | Psychic, Giga Drain, AncientPower, Leech Seed |
 | Breloom | 25 | Coba Berry | Technician | Adamant | Mach Punch, Rock Tomb, Bullet Seed, Stun Spore |
-| Roserade | 26 | Lum Berry | Natural Cure | Modest | Sludge Bomb, Giga Drain, Shadow Ball, Growth |
+| Roserade | 26 | Lum Berry | Natural Cure | Modest | Sludge Bomb, Giga Drain, Shadow Ball, Cotton Spore |
 
 Today's team: Cherrim 25 (Heat Rock; SolarBeam, Leech Seed, Sunny Day, Weather Ball), Lumineon 25 (Watmel Berry; Aqua Tail, Natural Gift, Silver Wind, Swagger), Shiftry 25 (Occa Berry; SolarBeam, Rock Tomb, Natural Gift, Faint Attack), Breloom 25 (Lum Berry; Mach Punch, Bullet Seed, Stun Spore, Rock Tomb), Roserade 26 (Poison Barb; Sludge Bomb, Mega Drain, Weather Ball, Stun Spore). Expected: about 90 / 3.0 / 2; read by the scorer later.
 
@@ -564,7 +612,7 @@ Five fliers with Pursuit for the switch and Swablu's Sing; Staravia's Sharp Beak
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Taillow | 23 | none | Guts | default | Wing Attack, Quick Attack, Focus Energy, Pursuit |
-| Swablu | 24 | none | Natural Cure | default | Peck, Sing, Fury Attack, Safeguard |
+| Swablu | 24 | none | Natural Cure | default | Peck, Sing, Swift, Safeguard |
 | Noctowl | 24 | none | Insomnia | default | Wing Attack, Confusion, Reflect, Peck |
 | Murkrow | 24 | none | Insomnia | default | Wing Attack, Faint Attack, Pursuit, Astonish |
 | Staravia | 25 | Sharp Beak | Reckless | Jolly | Aerial Ace, Quick Attack, Steel Wing, Pursuit |

@@ -321,6 +321,7 @@ Pokemon is not in the lead, so switch it in on the first turn.
 | Kaizo move data | Mew: Extreme Speed, Minimize, Protect, Recover; foe a wild Shuckle that knows only Fake Out | Switch Mew in on the first turn. From then Shuckle's Fake Out ("But it failed!") comes before Mew's Extreme Speed every turn, though Mew is far faster: Fake Out is +3 and Extreme Speed +2 (Ian, 2026-09-27), where both were +1 and Mew went first. Minimize: "MEW's evasiveness sharply rose!", two stages where it was one | cloud/element4-kaizo-move-data |
 | Infiltrator, Substitute | Crobat with Infiltrator: Cross Poison, Screech, Confuse Ray, Toxic; foe a wild Snorlax that knows only Substitute | Once Snorlax's doll is up, Cross Poison takes Snorlax's own HP and may poison it, Screech lowers its Defense, and Confuse Ray and Toxic land, all with the doll still standing | element 5's gaps |
 | Infiltrator, Safeguard | the same Crobat: Toxic, Confuse Ray, Cross Poison, Screech; foe a wild Chansey that knows only Safeguard | With Safeguard up, Toxic still badly poisons Chansey and Confuse Ray still confuses it | element 5's gaps |
+| Infiltrator, Mimic | the same Crobat holding a Flame Orb: Psycho Shift, Mimic, Splash, Cross Poison; foe a wild Snorlax that knows only Substitute | Splash while the doll goes up and the Orb burns Crobat. Then Psycho Shift burns Snorlax and cures Crobat, and Mimic copies Substitute, both with the doll still standing; without Infiltrator both fail against it, as in vanilla | main-engine-cleanups |
 
 ## The item entries
 

@@ -31,22 +31,37 @@ a:hover { color: var(--place-ink); text-decoration-color: currentColor; }
 :focus-visible { outline: 2px solid var(--mass); outline-offset: 1px; }
 
 header {
-  display: flex; align-items: center; gap: 16px; flex-wrap: nowrap;
-  min-height: 44px; padding: 4px 16px; background: var(--panel);
+  display: flex; align-items: center; gap: 0 16px; flex-wrap: wrap;
+  min-height: 44px; padding: 4px 16px 0; background: var(--panel);
   border-bottom: 1px solid var(--rule); flex: none;
 }
 /* the pixel face is identity: the title, the tabs, the headline, the number */
 header .title { font: 600 18.5px/1 var(--pixel); margin-right: 4px; white-space: nowrap; }
 header .title .ox { color: var(--place-ink); }
-/* The metric strip is the flexible gap: it takes the room between the tabs
-   and the checkout, and when there is not enough it wraps inside itself, so
-   the title, the tabs, the checkout and the toggle always hold the first row
-   rather than being stranded on a second one. */
-header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap;
-                flex: 1 1 auto; min-width: 0; padding: 4px 0; }
-header > nav, header > .title, header > .checkout, header > button,
-header > .themeseg { flex: none; }
-header .checkout { font: 14.5px/1 var(--mono); color: var(--faint); white-space: nowrap; }
+/* Two rows (Ian, 2026-10-07: at 1280px the metrics ran through the theme
+   buttons, and at any width they wrapped into a tall block). The first row
+   is the title, the tabs, the commit button and the theme switch, pushed
+   right; the second is the metric strip on one line, the checkout at its
+   end, scrolling sideways rather than wrapping if a window is too narrow. */
+header > nav#views { margin-right: auto; }
+header > nav, header > .title, header > button, header > .themeseg { flex: none; }
+header .strip { order: 10; flex: 1 0 100%; display: flex; align-items: center; gap: 0 14px;
+                flex-wrap: nowrap; overflow-x: auto; min-width: 0; padding: 2px 0 5px;
+                border-top: 1px solid var(--rule); margin-top: 4px; scrollbar-width: thin; }
+header .strip > * { flex: none; }
+header .strip #clear-caught { padding: 1px 8px; font-size: 14px; }
+header .checkout { font: 14px/1 var(--mono); color: var(--faint); white-space: nowrap; margin-left: auto; }
+/* A narrower window keeps the strip on its one line: the figures a little
+   smaller, and the checkout's name, which only tells which worktree the
+   server reads, left out. */
+@media (max-width: 1500px) {
+  header .strip { gap: 0 10px; }
+  header .strip .metric { font-size: 13.5px; }
+  header .checkout { display: none; }
+  /* "Commit my edits" reads "Commit" and its count, so the first row still
+     holds the theme switch when the button shows (on Ian's server, always). */
+  header .wide-only { display: none; }
+}
 .metric { color: var(--dim); font-size: 15px; white-space: nowrap; }
 .metric b { font-family: var(--mono); font-variant-numeric: tabular-nums;
             color: var(--ink); font-weight: 600; margin-left: 4px; }
@@ -393,6 +408,15 @@ tr.got .spname { font-weight: 600; }
 .trrow .party { grid-column: 1 / -1; display: flex; }
 .trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
   min-width: 2.4em; text-align: right; }
+/* A stale difficulty reads faint and struck through until goal 3 reads the
+   fight again; a fight never read says so. */
+.trscore.stale, .scorenum.stale { color: var(--faint); text-decoration: line-through;
+  text-decoration-thickness: 1px; }
+.trrow .notread { font-size: 13px; }
+/* A study reading (the Kaizo study's rewrite, not the file's team) is italic. */
+.trscore.study { font-style: italic; }
+.stalenote { color: var(--warn); margin: 2px 0 0; }
+h3.oldscale { margin: 12px 0 0; font-size: 14px; color: var(--dim); }
 /* A pair (two trainers fought as one double): its row, a gap between the two
    parties, and its trainers folded under it, indented. */
 .trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
@@ -991,10 +1015,10 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span class="metric" id="w-lint">Problems <b id="h-lint">—</b></span>
     <span class="metric">Caught <b id="h-caught">0</b></span>
     <button id="clear-caught" title="Clear the caught list">Reset caught</button>
+    <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   </div>
-  <button id="commit-edits" hidden disabled><span id="edits-label">Commit my edits</span>
+  <button id="commit-edits" hidden disabled><span id="edits-label">Commit<span class="wide-only"> my edits</span></span>
     <b id="edits-n" class="num">0</b></button>
-  <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   <div class="themeseg" role="group" aria-label="Colour scheme">
     <button data-theme-set="dark">Dark</button><button data-theme-set="dim">Dim</button><button
       data-theme-set="light">Light</button><button data-theme-set="auto" title="Follow Windows">Auto</button>
@@ -1072,7 +1096,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   <section id="trainlist">
     <div class="listhead">
       <input id="trainfilter" placeholder="Find a trainer, a class or a species">
-      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">By score</button>
+      <div class="sortbar"><button data-k="score" class="on" title="The difficulty number, hardest first: average faints plus 40 times the losing rate; fights not read yet after">By difficulty</button>
         <button data-k="order">Play order</button>
         <select id="trainsplit"><option value="">Every split</option></select></div>
     </div>
@@ -2455,9 +2479,25 @@ function sortTrainers() {
   const play = (a, b) => (order.has(a.split) ? order.get(a.split) : 99)
     - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
     || a.label.localeCompare(b.label);
-  const scale = r => r.score ? r.score.scale : -Infinity;
-  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
+  // Hardest first by the difficulty number; a trainer not read yet after
+  // every one that has been, in play order.
+  const hard = r => r.difficulty ? r.difficulty.difficulty : -Infinity;
+  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => hard(b) - hard(a) || play(a, b) : play);
 }
+
+// The difficulty number (Ian, 2026-10-07): average faints plus 40 times the
+// losing rate, from the scoring track's readings (trainers.stored_difficulty).
+const fmtHard = v => v < 10 ? v.toFixed(2) : v.toFixed(1);
+const hardTitle = d => `Difficulty: average faints ${d.faints.toFixed(2)} plus 40 times the losing rate `
+  + `${(1 - d.won).toFixed(2)}; won ${Math.round(d.won * 100)}%${d.clean != null
+  ? `, clean ${Math.round(d.clean * 100)}%` : ""}${d.fights ? `, over ${d.fights} fights` : ""}${
+  d.date ? `, read ${d.date}` : ""}${d.unlucky != null ? `; very unlucky ${fmtHard(d.unlucky)}` : ""}${
+  d.team === "study" ? ". Read on the Kaizo study's rewrite of this team, not the team in the file" : ""}${
+  d.stale ? `. Stale: ${d.stale}` : ""}`;
+const hardNum = d => d
+  ? ` <b class="num trscore${d.stale ? " stale" : ""}${d.team === "study" ? " study" : ""}" title="${
+      esc(hardTitle(d))}">${fmtHard(d.difficulty)}</b>`
+  : ` <span class="sub notread" title="The scorer has not read this fight yet">not read</span>`;
 
 function trainerMatch(r) {
   const q = ($("#trainfilter").value || "").trim().toLowerCase();
@@ -2482,8 +2522,6 @@ function pairHow(p) {
   return "both see you at once" + (p.each_alone ? ", or one at a time" : "");
 }
 
-const scoreTitle = s => `Stored score on Ian's fight scale (${s.band})${s.fight
-  ? ", the story fight " + s.fight : ""}; a team saved since the last rescore still shows the old one`;
 
 function trainerRow(r, sub) {
   return `
@@ -2492,24 +2530,20 @@ function trainerRow(r, sub) {
         ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}${
         r.version ? `<span class="ver" title="Which version of the fight this is">${esc(r.version)}</span>` : ""}</span>
       <span>${sub ? "" : splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
-        r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
-        scoreTitle(r.score))}">${r.score.scale.toFixed(1)}</b>` : ""}</span>
+        r.top}${r.cap ? " / " + r.cap : ""}</span>${hardNum(r.difficulty)}</span>
       <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
     </div>`;
 }
 
 function pairRow(p) {
   const open = TROPEN.has(p.key);
-  const scores = p.scores.map(s => s ? s.scale.toFixed(1) : "none").join(" and ");
   return `
     <div class="trrow pair${TRPAIR && TRPAIR.key === p.key ? " on" : ""}" data-pair="${esc(p.key)}">
       <span class="nm"><button class="linkish fold-pair" data-open="${esc(p.key)}"
           title="${open ? "Fold" : "Show"} its two trainers">${open ? "▾" : "▸"}</button>
         ${esc(p.label)}</span>
       <span><span class="tag" title="${esc(pairHow(p))}">double</span> ${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
-        p.top}${p.cap ? " / " + p.cap : ""}</span>${p.score ? ` <b class="num trscore" title="${esc(
-        `Each trainer's own stored score, ${scores}, until the balance track scores the pair as one fight`)}">${
-        p.score.scale.toFixed(1)}</b>` : ""}</span>
+        p.top}${p.cap ? " / " + p.cap : ""}</span>${hardNum(p.difficulty)}</span>
       <span class="party">${p.parties.map(party => party.map(m => icon(m.species)).join("")).join(
         '<span class="pairgap" title="and"></span>')}</span>
     </div>${open ? p.members.map(m => trainerRow(m, true)).join("") : ""}`;
@@ -2667,10 +2701,29 @@ async function scoreTrainer() {
 // estimate, `scored` the last full score ({result, team}), and `team` what
 // is being edited now, which says whether that full score is stale. The
 // stored score is the list's, from the last rescore.
+// The difficulty number first (Ian, 2026-10-07): the scorer's reading of this
+// fight as one number, with the three it comes from and whether it is stale.
+function hardBlock() {
+  const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
+    : TRAINERS.rows.find(r => r.stem === TRSEL));
+  const d = row && row.difficulty;
+  if (!d) return `<h2>Difficulty</h2><p class="sub">Not read yet: the scorer has no reading of this
+    fight. Goal 3 reads every fight; until then only the fights already read have a number.</p>`;
+  const pc = v => Math.round(v * 100) + "%";
+  return `<h2>Difficulty</h2><div class="scorebig"><b class="scorenum big${d.stale ? " stale" : ""}">${
+      fmtHard(d.difficulty)}</b><span class="sub">average faints plus 40 times the losing rate, at real odds</span></div>
+    <p class="sub">Won ${pc(d.won)}${d.clean != null ? `, clean ${pc(d.clean)}` : ""}, ${d.faints.toFixed(2)} faints
+      a fight${d.fights ? `, over ${d.fights} fights` : ""}${d.date ? `; read ${esc(d.date)}` : ""}.${
+      d.unlucky != null ? ` Very unlucky, ${fmtHard(d.unlucky)}.` : ""}</p>
+    ${d.team === "study" ? `<p class="stalenote">Read on the Kaizo study's rewrite of this team, not the team
+      in the file; the file's own team is not read yet.</p>` : ""}
+    ${d.stale ? `<p class="stalenote">Stale: ${esc(d.stale)}. Goal 3 reads it again.</p>` : ""}`;
+}
+
 function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
   const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
     : TRFINDINGS.some(f => f.severity === "error");
-  const head = `<h2>Score${TRPAIR ? ", the pair as one fight" : ""}</h2>`;
+  const head = hardBlock() + `<h3 class="oldscale">The old fight scale${TRPAIR ? ", the pair as one fight" : ""}</h3>`;
   if (!e) return head + `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
   if (e.error) return head + `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
   const pc = v => Math.round(v * 100) + "%";
@@ -3867,7 +3920,7 @@ async function commitEdits() {
     if (!r.ok) toast(j.error || "Not committed", true);
     else toast(`Committed and pushed as ${j.head}`);
   } catch (e) { toast(e.message, true); }
-  $("#edits-label").textContent = "Commit my edits";
+  $("#edits-label").innerHTML = `Commit<span class="wide-only"> my edits</span>`;
   refreshSaves();
 }
 

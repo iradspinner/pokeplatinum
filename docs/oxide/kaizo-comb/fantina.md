@@ -46,6 +46,37 @@ weather is battle weather for every fight on it; the nearest such maps are
 Oreburgh's gym before this split and Route 215 after it), so Moira's hail
 from Snow Warning is the split's only weather.
 
+**The legality sweep (2026-10-07).** The files were checked against the final
+learnsets and TM list (origin/balance-tm-pass at 377312dbf0), with the moves
+cut from the TM list kept in each species' trainer palette as Ian ruled. 23
+moves the lists no longer hold were swapped for legal ones doing the same job,
+nearly all small level-up moves; the tables below show the swept sets. The
+expected numbers date from before the sweep, and the scorer's step 15 reading
+gives the real ones. The swaps:
+
+- Galactic Grunt's Skitty: Double Slap to Fury Swipes.
+- Galactic Grunt's Skitty: Tail Whip to Baby Doll Eyes.
+- Galactic Grunt's Skitty: Assist to Swift.
+- Galactic Grunt's Stunky: Poison Gas to Leer.
+- Galactic Grunt's Stunky: Feint to Slash.
+- Galactic Grunt's Koffing: Smoke Screen to Screech.
+- Jupiter 1's Delcatty: Double Slap to Fury Swipes.
+- Jupiter 1's Tangela: Bind to Bullet Seed.
+- Jupiter 1's Golbat: Wing Attack to Aerial Ace.
+- Cyclist John's Doduo: Fury Attack to Swift.
+- Cyclist Nicole's Clefairy: Double Slap to Fury Swipes.
+- Cyclist Nicole's Jigglypuff: Double Slap to Fury Swipes.
+- Cyclist Nicole's Wigglytuff: Double Slap to Fury Swipes.
+- Hiker Reginald's Phanpy: Defense Curl to Focus Energy.
+- Hiker Lorenzo's Geodude: Defense Curl to Block.
+- Camper Parker's Buizel: Water Gun to Chilling Water.
+- Youngster Austin's Buizel: Water Gun to Chilling Water.
+- Picnicker Lauren's Marill: Defense Curl to Charm.
+- Hiker Kevin's Phanpy: Defense Curl to Focus Energy.
+- Hiker Kevin's Geodude: Defense Curl to Block.
+- Battle Girl Helen's Riolu: Feint to Swift.
+- Black Belt Kyle's Machoke: Submission to Brick Break.
+
 ## What comes next
 
 The bosses of Maylene's split, whose box is in the folder, then the later
@@ -113,8 +144,8 @@ Hypnosis that follows you: Glameow's sleep carries into the next fight of the se
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Skitty | 23 | none | Cute Charm | default | DoubleSlap, Tail Whip, Assist, Fake Tears |
-| Stunky | 24 | none | Aftermath | default | Fury Swipes, Poison Gas, Screech, Feint |
+| Skitty | 23 | none | Cute Charm | default | Fury Swipes, Baby-Doll Eyes, Swift, Fake Tears |
+| Stunky | 24 | none | Aftermath | default | Fury Swipes, Leer, Screech, Slash |
 | Glameow | 24 | Oran Berry | Limber | Jolly | Fake Out, Fury Swipes, Hypnosis, Faint Attack |
 
 Today's team: Glameow 24 (Growl, Hypnosis, Faint Attack, Fury Swipes), Skitty 24 (Sing, DoubleSlap, Copycat, Assist). Expected: 100 / 0.00 / 99.
@@ -125,9 +156,9 @@ Poison that follows you: Toxic, Poison Gas and Pursuit, so the section's later f
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Koffing | 24 | none | Levitate | default | Smog, Assurance, Toxic, SmokeScreen |
+| Koffing | 24 | none | Levitate | default | Smog, Assurance, Toxic, Screech |
 | Zubat | 23 | none | Inner Focus | default | Leech Life, Bite, Supersonic, Astonish |
-| Stunky | 24 | Oran Berry | Aftermath | Adamant | Poison Gas, Fury Swipes, Pursuit, Slash |
+| Stunky | 24 | Oran Berry | Aftermath | Adamant | Leer, Fury Swipes, Pursuit, Slash |
 
 Today's team: Stunky 24 (Poison Gas, SmokeScreen, Feint, Slash), Koffing 24 (SmokeScreen, Assurance, Selfdestruct, Sludge). Expected: 100 / 0.35 / 76.
 
@@ -186,10 +217,10 @@ Poison and chip, with Fake Out: today's four (Delcatty, Sableye, Tangela, Skunta
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Delcatty | 26 | Oran Berry | Cute Charm | default | Fake Out, Sucker Punch, DoubleSlap, Charm |
+| Delcatty | 26 | Oran Berry | Cute Charm | default | Fake Out, Sucker Punch, Fury Swipes, Charm |
 | Sableye | 26 | Leftovers | Clear Body | default | Shadow Sneak, Astonish, Payback, Knock Off |
-| Tangela | 26 | Pecha Berry | Chlorophyll | default | Leech Seed, Mega Drain, Bind, Sleep Powder |
-| Golbat | 26 | Oran Berry | Inner Focus | default | Toxic, Wing Attack, Bite, Supersonic |
+| Tangela | 26 | Pecha Berry | Chlorophyll | default | Leech Seed, Mega Drain, Bullet Seed, Sleep Powder |
+| Golbat | 26 | Oran Berry | Inner Focus | default | Toxic, Aerial Ace, Bite, Supersonic |
 | Skuntank | 27 | Sitrus Berry | Aftermath | default | Slash, Poison Jab, Toxic, Screech |
 
 Today's team: Delcatty 26 (Fake Out, Sing, Attract, Headbutt), Sableye 26 (Shadow Sneak, Fake Out, Astonish, Poison Jab), Tangela 26 (Pecha Berry; Leech Seed, Mega Drain, Bind, Sleep Powder), Skuntank 27 (Sitrus Berry; Night Slash, Toxic, Screech, SmokeScreen). Expected: about 97 / 1.7 / 12 in my simulator, where today's file reads 100 / 0.3 / 72; read by the scorer later.
@@ -227,7 +258,7 @@ Four birds, Pursuit for the switch, a Sharp Beak Staravia at the end.
 |---|---|---|---|---|---|
 | Pidgeotto | 28 | none | Keen Eye | default | Air Slash, Quick Attack, Steel Wing, Gust |
 | Swellow | 28 | none | Guts | default | Aerial Ace, Quick Attack, Endeavor, Growl |
-| Doduo | 27 | none | Run Away | default | Fury Attack, Pursuit, Uproar, Quick Attack |
+| Doduo | 27 | none | Run Away | default | Swift, Pursuit, Uproar, Quick Attack |
 | Staravia | 29 | Sharp Beak | Reckless | Jolly | Aerial Ace, Quick Attack, Steel Wing, Take Down |
 
 Today's team: Pidgey 19 (Sand-Attack, Aerial Ace, Quick Attack, Whirlwind), Pidgeotto 21 (Sand-Attack, Aerial Ace, Quick Attack, Whirlwind). Expected: 100 / 0.05 / 98.
@@ -263,9 +294,9 @@ The Jigglypuff line curls and rolls, with one Sing and Igglybuff's Sweet Kiss.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Igglybuff | 26 | none | Cute Charm | default | Charm, Pound, Sweet Kiss, Covet |
-| Clefairy | 27 | none | Magic Guard | default | DoubleSlap, Wake-Up Slap, Magical Leaf, Encore |
-| Jigglypuff | 28 | none | Cute Charm | default | Rollout, Defense Curl, Sing, DoubleSlap |
-| Wigglytuff | 29 | Sitrus Berry | Cute Charm | Bold | Rollout, Defense Curl, Body Slam, DoubleSlap |
+| Clefairy | 27 | none | Magic Guard | default | Fury Swipes, Wake-Up Slap, Magical Leaf, Encore |
+| Jigglypuff | 28 | none | Cute Charm | default | Rollout, Defense Curl, Sing, Fury Swipes |
+| Wigglytuff | 29 | Sitrus Berry | Cute Charm | Bold | Rollout, Defense Curl, Body Slam, Fury Swipes |
 
 Today's team: Igglybuff 17 (default moves), Jigglypuff 18 (default moves), Wigglytuff 19 (default moves). Expected: 100 / 0.25 / 85.
 
@@ -358,7 +389,7 @@ Bonsly's Block and Phanpy's Rollout.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Bonsly | 27 | none | Rock Head | default | Rock Throw, Block, Faint Attack, Rollout |
-| Phanpy | 28 | Oran Berry | Pickup | default | Rollout, Take Down, Ice Shard, Defense Curl |
+| Phanpy | 28 | Oran Berry | Pickup | default | Rollout, Take Down, Ice Shard, Focus Energy |
 
 Today's team: Bonsly 25 (Rock Throw, Mimic, Block, Faint Attack), Phanpy 25 (Take Down, Rollout, Natural Gift, Slam). Expected: not readable yet (a tag battle).
 
@@ -369,7 +400,7 @@ Onix and Geodude: Rock Slide spread beside Magnitude.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Onix | 28 | Oran Berry | Sturdy | default | Rock Slide, Rock Tomb, Slam, Iron Head |
-| Geodude | 27 | none | Rock Head | default | Rock Throw, Magnitude, Rollout, Defense Curl |
+| Geodude | 27 | none | Rock Head | default | Rock Throw, Magnitude, Rollout, Block |
 
 Today's team: Onix 26 (Rage, Rock Tomb, Sandstorm, Slam). Expected: not readable yet (a tag battle).
 
@@ -412,7 +443,7 @@ Buizel's Aqua Jet and Luxio's Spark.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Buizel | 27 | none | Swift Swim | default | Water Gun, Swift, Quick Attack, Aqua Jet |
+| Buizel | 27 | none | Swift Swim | default | Chilling Water, Swift, Quick Attack, Aqua Jet |
 | Luxio | 28 | Oran Berry | Hyper Cutter | default | Spark, Bite, Roar, Charge |
 
 Today's team: Buizel 24 (Water Gun, Swift, Quick Attack), Luxio 24 (Spark, Bite). Expected: not readable yet (a tag battle).
@@ -423,7 +454,7 @@ Luxio's Ice Fang and Gligar's Dig cover each other's counters; Buizel's Pursuit 
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Buizel | 28 | none | Swift Swim | default | Aqua Jet, Water Gun, Pursuit, Swift |
+| Buizel | 28 | none | Swift Swim | default | Aqua Jet, Chilling Water, Pursuit, Swift |
 | Gligar | 28 | none | Hyper Cutter | default | Knock Off, Quick Attack, Dig, Faint Attack |
 | Luxio | 29 | Oran Berry | Hyper Cutter | Adamant | Spark, Bite, Ice Fang, Roar |
 
@@ -450,7 +481,7 @@ Huge Power Marill with Aqua Tail behind two Electric types.
 |---|---|---|---|---|---|
 | Pachirisu | 28 | none | Adaptability | default | Spark, Covet, Charm, Endure |
 | Emolga | 28 | none | Static | default | Acrobatics, Spark, Quick Attack, Charge |
-| Marill | 29 | Oran Berry | Huge Power | Adamant | Aqua Tail, Rollout, Defense Curl, Helping Hand |
+| Marill | 29 | Oran Berry | Huge Power | Adamant | Aqua Tail, Rollout, Charm, Helping Hand |
 
 Today's team: Pachirisu 24 (Charm, ThunderPunch, Endure, Headbutt). Expected: 100 / 0.00 / 99.
 
@@ -461,8 +492,8 @@ Five Rock and Ground types with Rollout, Rock Slide and Magnitude. Water and Gra
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Cubone | 27 | none | Rock Head | default | Bonemerang, Headbutt, Rock Slide, Focus Energy |
-| Phanpy | 27 | none | Pickup | default | Rollout, Take Down, Ice Shard, Defense Curl |
-| Geodude | 28 | none | Rock Head | default | Rock Throw, Magnitude, Rollout, Defense Curl |
+| Phanpy | 27 | none | Pickup | default | Rollout, Take Down, Ice Shard, Focus Energy |
+| Geodude | 28 | none | Rock Head | default | Rock Throw, Magnitude, Rollout, Block |
 | Onix | 28 | none | Rock Head | default | Rock Slide, Rock Tomb, Iron Head, Slam |
 | Graveler | 29 | Hard Stone | Sturdy | Adamant | Rock Slide, Magnitude, Rollout, Defense Curl |
 
@@ -487,7 +518,7 @@ Fighting types with Fake Out and priority; Machoke's Revenge and Meditite's Psyc
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Riolu | 28 | none | Adaptability | default | Force Palm, Quick Attack, Counter, Feint |
+| Riolu | 28 | none | Adaptability | default | Force Palm, Quick Attack, Counter, Swift |
 | Makuhita | 28 | none | Thick Fat | default | Fake Out, Knock Off, SmellingSalt, Vital Throw |
 | Meditite | 29 | none | Pure Power | default | Psycho Cut, Drain Punch, Bullet Punch, Force Palm |
 | Machoke | 29 | Oran Berry | Guts | Adamant | Vital Throw, Revenge, Rock Slide, Brick Break |
@@ -543,7 +574,7 @@ Three Fighting styles: Hitmontop's Technician Triple Kick and Fake Out, Hitmonch
 |---|---|---|---|---|---|
 | Hitmontop | 30 | none | Technician | default | Triple Kick, Fake Out, Rapid Spin, Rolling Kick |
 | Hitmonchan | 30 | none | Keen Eye | default | Bullet Punch, Mach Punch, Rock Slide, Revenge |
-| Machoke | 31 | none | Guts | default | Submission, Revenge, Rock Slide, Poison Jab |
+| Machoke | 31 | none | Guts | default | Brick Break, Revenge, Rock Slide, Poison Jab |
 
 Today's team: Machoke 29 (Foresight, Seismic Toss, Revenge, Vital Throw). Expected: 100 / 0.35 / 83.
 
