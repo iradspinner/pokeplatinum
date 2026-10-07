@@ -6,28 +6,60 @@ tree. The file covers what "balanced" means for Oxide, how it gets measured,
 the data behind it, and the order of work. Ian answered the scoping questions
 the same day, and his answers are recorded below as decisions.
 
-## Summary (2026-10-06)
+## Summary (2026-10-06, the TM pass)
 
-**Outcome.** Step 4 of the learnset plan (`docs/oxide/learnset-checks.md`)
-is built on its own branch, `balance-learnset-rewrite`, and its second
-loop answers step 5's exam: eighteen checks read the locked rules and
-Ian's exam verdicts, and a generator (`learnrewrite.py`) rewrote the
-level-up lists of 617 species by them, every change logged with its rule.
-Every check passes or improves on the first loop; what still falls short
-is a few named cases and R2's band count late in the game. The report,
-with the summary and Ian's questions, is `docs/oxide/learnset-rewrite.md`.
-Poison Fang's rescore landed on `oxide` the same day: all 1,030 stored
-scores verified, nothing moved on Ian's fight scale.
+**Outcome.** The learnset rewrite landed on `oxide` (085f72211). Step 6,
+the TM pass, is built on `balance-tm-pass`:
+- **TM list.** Ian approved it, 100 TMs, frozen with their numbers.
+- **Reward table.** It places every TM copy and element 7's and the Game
+  Corner's 24 held items once each, spread across the splits by their
+  length. The Department Store's and the Game Corner's TMs are sold once
+  each, gated by badge count. The table uses all 46 spare flags.
+- **Gauntlet list.** Approved.
+- **Early kits.** Rebuilt on per-type ladders (climb, don't jump), which
+  Ian found good enough for now.
+- **Evolution reading.** The pool now reads place and known-move
+  evolutions for the player: Leafeon, Glaceon and Sylveon have lists from
+  their arrival.
+- **TM compatibility.** Every species' list is written on the new TM list
+  (step 8, this track's part).
 
-**Ian's action items.** The move reworks, the named cases and staple
-coverage stay open from the first loop, and he may accept R2's late
-shortfall; the report sets each out with its context and a
-recommendation.
+The reports are `docs/oxide/reward-table.md` and
+`docs/oxide/early-kits-read.md`.
 
-**Next steps.** The Overseer lands the branch; then the TM pass rerun on
-the new lists, with the reward table and the gauntlet list (2 to 3 hours,
-and 2 to 3 to write it in). No boss is read until the rewrite and the TM
-pass have both landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+**Waiting.** The TM compatibility lands with or after the main track's
+`main-tm-items`, whose item records say what each TM number teaches;
+TM93 and TM94 are added once it raises `NUM_EXTRA_TMS`. The one rescore
+(stale since the pool's evolution reading changed) runs after the
+move-rework cloud job merges, so it covers the reworks, the TM pass and
+the evolution fix together.
+
+**Next steps.** Merge `main-tm-items` and rerun `tmcompat`; merge the
+rework job, rerun the generator and the TM set's tiers, then the rescore
+and the gate (about 1.5 hours of machine time). No boss is read until
+the TM pass has landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+
+**The early kits on type ladders (Ian, 2026-10-06).** "It entirely
+depends on the pokemon, and keeping it to hard rules destroys the
+variability between pokemon." A gap is filled from a ladder of each
+type's attacks, physical and special side by side:
+- **Climbing.** A line's first move of a type comes from the low rungs at
+  the point in the game, and it climbs one or two rungs a split.
+- **Reading a move.** It is read between its power and the power the line
+  feels through its own attacking stat.
+- **Pivots** stand high on the ladder.
+- **Abilities.** Huge Power and Pure Power set the physical side.
+- **Ceilings** are only a cost in the score.
+
+**Ian's TM rulings (2026-10-06).**
+- **Timing.** By his judgement, Confuse Ray, Charm, Knock Off,
+  Will-O-Wisp and Thunder Wave come later than the first list had them.
+- **Spread.** The list is spread evenly by each split's length.
+- **Shops.** Shop TMs unlock by badge count and are bought once.
+- **Held items.** The Game Corner's held items and its slot gift move to
+  optional fights.
+- **Darkrai** keeps Dark Void on its egg list for Officer Somnu, his call
+  for one move.
 
 **Ian's exam verdicts (2026-10-06, relayed by the Overseer)**, now rules
 of the generator and the checks: a strong move below a catch level moves
