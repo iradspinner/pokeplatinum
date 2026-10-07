@@ -17,14 +17,16 @@ difficulty store and write the summary:
 The fights: goal 3's single battles, as goal3_fights lists them (its kept
 rows and those dropped only as doubles, as goal3.csv has them), less the
 tag battles, which wait for the doubles planner: 39 bosses and 41 Ace
-Trainers.
+Trainers. The milestone reading before alpha 1 reads the bosses only (Ian,
+2026-10-07, under his rule that each change is judged for its effect on
+difficulty), so --kinds defaults to them.
 
-The boxes (Ian's answer 3 of 2026-09-30, a spread of rolled boxes): five
-random runs of the encounter simulator for each split, seeds 1 to 5, every
-catch alive. Box k's starter is the starter list's k-th in turn (Turtwig,
-Scorbunny, Piplup, Turtwig, Scorbunny), so every rival team is met by at
-least one box; the rest of the run is the seed's own rolls, the same for
-every fight of a split. A fight that closes its split (and each Elite Four
+The boxes (Ian's answer 3 of 2026-09-30, a spread of rolled boxes): three
+random runs of the encounter simulator for each split, seeds 1 to 3 (Ian
+cut five to three for this milestone, 2026-10-07), every catch alive. Box
+k's starter is the starter list's k-th (Turtwig, Scorbunny, Piplup), so
+every rival team is met by one box; the rest of the run is the seed's own
+rolls, the same for every fight of a split. A fight that closes its split (and each Elite Four
 fight) takes the box as it stands at the split's end; any other takes
 only the catches made before it in walking order (the encounter sidecar's
 order, which the OxiDex's Alpha tab follows) and every catch made from an
@@ -47,9 +49,12 @@ slightly hard.
 
 The readings: a boss by the team search on each box (plteam.search), then
 its winner's standard reading (75 fights at real odds and 25 very unlucky,
-by the play-out planner at budget 64), the five pooled; an Ace Trainer
-blind (plstudy.blind), 15 fights at real odds and 5 very unlucky on each
-of the five boxes. Each box's result goes to ~/oxide-trials/goal3/<run>/
+by the play-out planner at budget 64), the boxes pooled. One pair of
+networks serves each boss (Ian's yes, 2026-10-07): its first box labels
+and trains them, and its other boxes reuse them, skipping both; the race
+they steer is a shortlist, and the play-out check and the loop decide on
+each box. An Ace Trainer is read blind (plstudy.blind), its 75 and 25
+fights shared among the boxes. Each box's result goes to ~/oxide-trials/goal3/<run>/
 as it finishes, so a run stopped midway resumes where it stopped. Jobs run
 box by box (every fight's first box, then every fight's second), so a run
 stopped early still orders the whole game, on fewer boxes.
@@ -69,8 +74,10 @@ from ..encounters import alpha
 from . import data, fightsim as fs, pboxes, pldifficulty, plniche, plscore, plstudy, plteam, pool
 
 OUT = os.path.expanduser("~/oxide-trials/goal3")
-SEEDS = (1, 2, 3, 4, 5)
-BLIND = (15, 5)             # an Ace Trainer's fights on each box, real and very unlucky: 75 and 25 over five
+SEEDS = (1, 2, 3)
+# An Ace Trainer's fights on each box, real and very unlucky: about 75 and
+# 25 over the boxes.
+BLIND = (75 // len(SEEDS), 25 // len(SEEDS))
 ACE = "Ace Trainers"
 # The fights that close a split, and the Elite Four, each at its split's
 # cap or its own ace (fightsim.fight_cap).
@@ -316,6 +323,19 @@ def box_dir(run, slug, seed):
     return os.path.join(OUT, run, slug, f"box{seed}")
 
 
+def first_box_model(run, slug, seed):
+    """The networks the boss's first box trained, for a later box to reuse;
+    None on the first box, or where the first box has no result yet (the
+    later box then labels and trains its own, as the first would)."""
+    if seed == SEEDS[0]:
+        return None
+    path = os.path.join(box_dir(run, slug, SEEDS[0]), "result.json")
+    if not os.path.exists(path):
+        return None
+    with open(path) as fh:
+        return json.load(fh).get("model")
+
+
 def read_box(run, slug, seed, procs):
     """One fight on one box: the team search and its winner's reading for a
     boss, the blind reading for an Ace Trainer; its result.json."""
@@ -352,8 +372,10 @@ def read_box(run, slug, seed, procs):
             cap=lvl, split=split, leave_out=[trainer["tr_id"]])
         result.update(how="blind", real=real, unlucky=unlucky, faints_to=faints_to, fainted=fainted)
     else:
+        model = first_box_model(run, slug, seed)
         summary = plteam.search(f"g3-{run}-{slug}-b{seed}", key, recs, stock, os.path.join(out_dir, "search"),
-                                procs=procs, prepared=(st, keys, boss_keys, flags))
+                                procs=procs, prepared=(st, keys, boss_keys, flags), model=model)
+        result.update(model=summary.get("model"), reused=model is not None)
         win = summary["winner_keys"]
         real, unlucky, rows = plteam.full_reading(st, boss_keys, flags, win, {}, procs=procs)
         result.update(how="search", winner=summary["winner"],
@@ -507,7 +529,7 @@ def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--run", required=True, help="the run's name: the commit read")
     p.add_argument("--only", help="slugs, comma-separated (story keys or trainer file stems)")
-    p.add_argument("--kinds", default="boss,ace")
+    p.add_argument("--kinds", default="boss", help="boss, ace, or both comma-separated (this milestone: boss)")
     p.add_argument("--boxes", default=",".join(map(str, SEEDS)), help="box seeds, comma-separated")
     p.add_argument("--parallel", type=int, default=2)
     p.add_argument("--procs", type=int, default=14, help="workers for each job")

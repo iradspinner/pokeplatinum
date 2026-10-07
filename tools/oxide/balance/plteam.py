@@ -604,13 +604,15 @@ def improve(st, keys, boss_keys, flags, M, best, po, check=25, procs=None, round
 
 # ---- the whole search on one box ----------------------------------------------------------------------
 
-def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25, prepared=None):
+def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, procs=10, check=25, prepared=None,
+           model=None):
     """The five stages on one box, with a log and result.json in `out_dir`.
     `key` is the story fight (fights.json), `recs` the box's records with
     their whole move pools, `stock` the items the run has by then (in
     fightsim.player_items' form), `variant` the trainer's team a run with
     this starter meets. `ours`, a hand-played six's species names, is read
-    beside the finalists where one exists, against `bar`.
+    beside the finalists where one exists, against `bar`. `model`, networks
+    already trained for this boss, skips the labels and the training.
 
     The labels are the screen's top five sixes and five drawn at random from
     the box (labelled on the top sixes alone, which share a core, the first
@@ -650,21 +652,27 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         log(f"our six ({', '.join(names[k] for k in mine)}): screen rank {rank} of {len(all_scores)}")
     log("moves picked: " + "; ".join(f"{names[k]} {', '.join(moves[k])}" for k in keys))
 
-    t1 = time.time()
-    rng = random.Random(fight)
-    spread = []
-    while len(spread) < 5 and len(keys) > 6:
-        s = sorted(rng.sample(keys, 6), key=keys.index)
-        if s not in sixes[:5] and s not in spread:
-            spread.append(s)
-    lab_dir = os.path.join(out_dir, "labels")
-    metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
-    log(f"labels: {sum(m['positions'] for m in metas)} positions from {sum(m['games'] for m in metas)} fights "
-        f"in {time.time() - t1:.0f} s")
-    t1 = time.time()
-    base = without([fight], os.path.join(ROOT, "subsets", f"no-{fight}-team"))
-    model = train(f"team-{fight}", [base, lab_dir])
-    log(f"networks {model} trained in {time.time() - t1:.0f} s")
+    if model is not None:
+        # Networks trained on another box of the same boss (goal 3's reuse,
+        # Ian's yes of 2026-10-07): the race is a shortlist either way, and
+        # the play-out check and the loop below still decide on this box.
+        log(f"networks {model} reused, no labels or training on this box")
+    else:
+        t1 = time.time()
+        rng = random.Random(fight)
+        spread = []
+        while len(spread) < 5 and len(keys) > 6:
+            s = sorted(rng.sample(keys, 6), key=keys.index)
+            if s not in sixes[:5] and s not in spread:
+                spread.append(s)
+        lab_dir = os.path.join(out_dir, "labels")
+        metas = label(st, sixes[:5] + spread, boss_keys, flags, f"team:{fight}", lab_dir, procs=procs)
+        log(f"labels: {sum(m['positions'] for m in metas)} positions from {sum(m['games'] for m in metas)} "
+            f"fights in {time.time() - t1:.0f} s")
+        t1 = time.time()
+        base = without([fight], os.path.join(ROOT, "subsets", f"no-{fight}-team"))
+        model = train(f"team-{fight}", [base, lab_dir])
+        log(f"networks {model} trained in {time.time() - t1:.0f} s")
     cfg = {"value": model}
 
     t1 = time.time()
@@ -725,7 +733,7 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
                "finalists": [{"six": [names[k] for k in t], "real": r, "unlucky": u, "playouts": po.numbers(t)}
                              for t, r, u in results],
                "ours": {"network": ours_net, "playouts": ours_po} if mine else None, "bar": bar,
-               "winner": [names[k] for k in win], "winner_keys": list(win),
+               "winner": [names[k] for k in win], "winner_keys": list(win), "model": model,
                "playouts_on_winner": po.numbers(tuple(win)),
                "winner_faints_to": losing_enemies(po.rows[tuple(win)]),
                # Every six the play-out check read, the loop's included.

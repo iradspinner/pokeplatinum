@@ -104,6 +104,21 @@ def main():
           and evo["Eevee at the Moss Rock"] == "SPECIES_LEAFEON")
     results.append(("a box member takes its personality's, gender's, stats' and place's evolutions", ok, str(evo)))
 
+    # One pair of networks per boss: a later box reuses the first box's.
+    import json, os, tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        out, g.OUT = g.OUT, tmp
+        try:
+            os.makedirs(g.box_dir("t", "roark", g.SEEDS[0]))
+            with open(os.path.join(g.box_dir("t", "roark", g.SEEDS[0]), "result.json"), "w") as fh:
+                json.dump({"model": "team-x-s1+team-x-s2"}, fh)
+            got = (g.first_box_model("t", "roark", g.SEEDS[0]), g.first_box_model("t", "roark", g.SEEDS[1]),
+                   g.first_box_model("t", "gardenia", g.SEEDS[1]))
+        finally:
+            g.OUT = out
+    results.append(("a boss's later boxes reuse its first box's networks, the first trains its own",
+                    got == (None, "team-x-s1+team-x-s2", None), str(got)))
+
     # Pooling and the store's key.
     side = g.pool_side([{"won": 1.0, "clean": 1.0, "faints": 0.0, "fights": 15},
                         {"won": 0.5, "clean": 0.0, "faints": 2.0, "fights": 5}])
