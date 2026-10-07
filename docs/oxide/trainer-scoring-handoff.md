@@ -53,9 +53,11 @@ Prankster and Gale Wings. The AI mirror follows the game: since
 2026-10-07 it rates a move of several hits on its expected hits (3.1 for a
 two to five hit move, 5 under Skill Link; Fury Cutter, Triple Kick and
 Triple Axel on their three hits), and Bone Rush is at 100%. Reckless raises
-the newly recoiling moves by 1.2, as the game's effect scripts do; the
-OxiDex calculator still misses it for them, so the simulator adds it, and a
-check re-measures the calculator so the two never stack. Every stored
+the newly recoiling moves by 1.2, as the game's effect scripts do. The
+simulator adds it only where the calculator does not: the encounter track's
+c5aed2a7bf gives the calculator the game's own list, and once it lands the
+simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
+re-measures the calculator so the two never stack). Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,
