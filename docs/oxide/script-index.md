@@ -8085,7 +8085,7 @@ Scripts nothing reaches: script 1 `SurvivalAreaPokecenterB1F_Dummy1` (line 7).
 
 Items given:
 
-- ITEM_TM25 x1. Added by Oxide (not yet committed). `scripts_survival_area_south_house.s:17`
+- ITEM_TM25 x1. Added by Oxide (d69dc8036). `scripts_survival_area_south_house.s:17`
 
 Flags:
 

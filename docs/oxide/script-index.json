@@ -15550,7 +15550,7 @@
      {"at": ["scripts_survival_area_south_house:18"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 17, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
+     {"command": "Common_GiveItemQuantity", "commit": "d69dc8036", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 17, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ]
    },
    "events": "events_survival_area_south_house",
