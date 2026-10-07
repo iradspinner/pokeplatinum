@@ -181,9 +181,29 @@ def _stored_scores(root, stamp):
     return out
 
 
+def versions(root):
+    """{stem: which version it is} for every trainer of a story fight kept
+    once per starter ("if you chose Turtwig", "Dawn, if you chose Turtwig"),
+    so Barry's three rows on Route 201 can be told apart (Ian, 2026-10-07).
+    The label is the Alpha tab's, so the two tabs agree."""
+    from . import alpha
+    with open(os.path.join(root, alpha.FIGHTS), encoding="utf-8") as f:
+        fights = json.load(f)["fights"]
+    out = {}
+    for fight in fights:
+        if len(fight["trainers"]) > 1 and not fight.get("tag"):
+            for c in fight["trainers"]:
+                # The row already names Dawn or Lucas, so only the choice.
+                label = alpha._variant_label(root, c, False)
+                out[c[len("TRAINER_"):].lower()] = label[label.find("if you chose"):] \
+                    if "if you chose" in label else label
+    return out
+
+
 @functools.lru_cache(maxsize=2)
 def _summary(root, stamp):
     places, cap = split_map(root), caps()
+    version = versions(root)
     rows = []
     for stem in stems(root):
         data = load(root, stem)
@@ -191,6 +211,7 @@ def _summary(root, stamp):
         split = places.get(stem)
         rows.append({
             "stem": stem, "name": data.get("name", ""), "label": calc_trainers.trainer_name(root, data, stem),
+            "version": version.get(stem),
             "class": data.get("class"), "split": split, "cap": cap.get(split),
             "double": bool(data.get("double_battle")),
             "party": [{"species": m["species"], "level": m["level"]} for m in party],

@@ -360,7 +360,7 @@ tr.got .spname { font-weight: 600; }
    board): the list, then the trainer in the centre: a header line with its
    save bar, the team as a sheet, the move lists while a move is edited, and
    a row of cards for the score, threat and answers, and battle and AI. */
-#trainmain { grid-template-columns: 280px minmax(720px, 1fr); }
+#trainmain { grid-template-columns: 330px minmax(720px, 1fr); }
 #trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
 #trainfilter { width: 100%; box-sizing: border-box; }
 #trainmid { padding: 18px 22px 40px; font-size: 16px; display: flex; flex-direction: column;
@@ -385,7 +385,11 @@ tr.got .spname { font-weight: 600; }
   gap: 0 8px; padding: 4px 12px; cursor: pointer; }
 .trrow:hover { background: var(--sunken); }
 .trrow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
-.trrow .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The name on a line of its own, whole, wrapping if it must, with the
+   split, levels and score under it (Ian, 2026-10-07: names were cut to
+   "Pkmn Tra..."), and a fight's version under the name. */
+.trrow .nm { grid-column: 1 / -1; overflow-wrap: anywhere; font-weight: 600; }
+.trrow .nm .ver { display: block; font-weight: 400; font-size: 14px; color: var(--dim); }
 .trrow .party { grid-column: 1 / -1; display: flex; }
 .trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
   min-width: 2.4em; text-align: right; }
@@ -2461,7 +2465,7 @@ function trainerMatch(r) {
   if (split === "-" ? r.split : split && r.split !== split) return false;
   if (!q) return true;
   const word = q.replace(/ /g, "_");
-  return r.label.toLowerCase().includes(q)
+  return r.label.toLowerCase().includes(q) || (r.version || "").toLowerCase().includes(q)
     || (r.kind === "pair" ? r.stems.some(s => s.includes(word)) : r.stem.includes(word))
     || r.party.some(m => folderOf(m.species).includes(word));
 }
@@ -2485,7 +2489,8 @@ function trainerRow(r, sub) {
   return `
     <div class="trrow${sub ? " sub" : ""}${r.stem === TRSEL && !TRPAIR ? " on" : ""}" data-tr="${r.stem}">
       <span class="nm">${esc(r.label || r.stem)}${r.double
-        ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}</span>
+        ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}${
+        r.version ? `<span class="ver" title="Which version of the fight this is">${esc(r.version)}</span>` : ""}</span>
       <span>${sub ? "" : splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
         r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
         scoreTitle(r.score))}">${r.score.scale.toFixed(1)}</b>` : ""}</span>
