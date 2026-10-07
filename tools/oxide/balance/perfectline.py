@@ -526,7 +526,7 @@ def attack(b, att, mv, dfn, first):
                 # Dice that enumerate a turn's outcomes (plplan) take the
                 # damage of every roll, so rolls that land alike count as one.
                 grouped = getattr(b.dice, "roll_grouped", None)
-                roll = grouped(lambda r: fs.scale_hits(att, mv, damage_of(b, att, dfn, mv, crit, top=trainer,
+                roll = grouped(lambda r: fs.use_damage(att, mv, damage_of(b, att, dfn, mv, crit, top=trainer,
                                                                           roll=r) or 0, hits), dfn.hp) \
                     if grouped else b.dice.roll(trainer)
             dmg = damage_of(b, att, dfn, mv, crit, top=trainer, roll=roll)
@@ -534,7 +534,7 @@ def attack(b, att, mv, dfn, first):
             att.key = key
         if dmg is None:
             return
-        dmg = fs.scale_hits(att, mv, dmg, hits)
+        dmg = fs.use_damage(att, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
