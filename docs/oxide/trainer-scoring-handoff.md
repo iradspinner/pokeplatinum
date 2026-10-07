@@ -49,11 +49,13 @@ kin at half recoil with no recharge, the starter ultimates, Sky Attack, Dig
 and Dive in one turn, two to five hits on 35/35/15/15, Fury Cutter's three
 rising hits, the one-turn rampage moves, Upper Hand, Shell Trap, Burning
 Jealousy, Sheer Force's strip read from the game's list, and turn order with
-Prankster and Gale Wings. The AI mirror follows the game as it stands
-(multi-hit moves rated as one hit). Every stored reading is stale for these
-moves and is redone in goal 3. Left out, as small: Reckless on the newly
-recoiling moves, contact effects per hit of a multi-hit move. Next: nothing
-queued; the expected-hits AI comes when the game has it.
+Prankster and Gale Wings. The AI mirror follows the game: since
+2026-10-07 it rates a move of several hits on its expected hits (3.1 for a
+two to five hit move, 5 under Skill Link; Fury Cutter, Triple Kick and
+Triple Axel on their three hits), and Bone Rush is at 100%. Every stored
+reading is stale for these moves and is redone in goal 3. Left out, as
+small: Reckless on the newly recoiling moves, contact effects per hit of a
+multi-hit move. Next: nothing queued.
 
 | Step | Takes |
 |---|---|

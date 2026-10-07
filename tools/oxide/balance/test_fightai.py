@@ -909,8 +909,19 @@ def damage_figure_and_engine():
     t = b.p.cur()
     _to(b, b.b, "Breloom")
     bre = b.b.cur()
+    # A move of several hits on its expected hits (TrainerAI_ExpectedHitsDamage,
+    # 2026-10-07): the row adds three hits; the AI takes one and counts 3.1.
     one, row = ai.figure(b, bre, t, fs.move("Bullet Seed")), b.damage(bre, t, fs.move("Bullet Seed"), ai_view=True)
-    out.append(("figure: one hit of a multi-hit move (the row adds three)", one == row // 3, f"{one} of {row}"))
+    out.append(("figure: a two to five hit move on 3.1 hits (the row adds three)",
+                one == (row // 3) * 31 // 10, f"{one} of {row}"))
+    plain = ai.expected_hits(bre, fs.move("Bullet Seed"), 100)
+    bre.ability = "Skill Link"
+    link = ai.expected_hits(bre, fs.move("Bullet Seed"), 100)
+    cutter = ai.expected_hits(bre, fs.move("Fury Cutter"), 100)
+    kick = ai.expected_hits(bre, fs.move("Triple Kick"), 100)
+    out.append(("expected hits: 3.1, Skill Link 5, Fury Cutter 30+40+50 over 30, Triple Kick's row as it is; "
+                "Bone Rush at 100%", (plain, link, cutter, kick, fs.move("Bone Rush").acc) == (310, 500, 400, 100, 100),
+                f"{plain}, {link}, {cutter}, {kick}; Bone Rush {fs.move('Bone Rush').acc}%"))
     _to(b, b.b, "Lucario")
     luc = b.b.cur()
     lo, raw = ai.figure(b, luc, t, fs.move("Aura Sphere")), b.damage(luc, t, fs.move("Aura Sphere"), ai_view=True)
