@@ -251,6 +251,29 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   nothing. Switched out as Pirouette, it comes back in as Aria. After a battle
   ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
   Aria's stats.
+- [ ] **The move reworks** (`cloud/main-move-reworks`, 2026-10-07; Ian's
+  rulings of 2026-10-06), sets 71 to 83 on the move-set menu's third page,
+  each against the wild foe it names (`docs/oxide/test-kit.md` has what
+  each should show). Hyper Beam and its kin hit with half recoil and no
+  recharge turn (71); Blast Burn, Frenzy Plant and Hydro Cannon the same
+  with their recoil and status (72); Sky Attack strikes the turn it is
+  chosen (73); Dig and Dive strike at once and Chansey's Tackle reaches Mew
+  the same turn (74); the two to five hit moves end "Hit 2 time(s)!" to
+  "Hit 5 time(s)!", mostly two or three (75), and always five on the Skill
+  Link Cloyster (76); Fury Cutter hits three times, each harder (77);
+  Spite shows 5 PP (78); Thrash, Petal Dance, Outrage and Uproar strike once
+  with no lock and no confusion of Mew (79), and Raging Fury the same with
+  its recoil (80); Upper Hand flinches a Rattata that chose Quick Attack and
+  fails against Tackle (81); Shell Trap strikes after a Tackle and fails
+  after a Swift (82); Burning Jealousy burns a Ninjask only on a turn it
+  used Swords Dance (83). Watch the strike animations of Sky Attack, Dig and
+  Dive, which were the second halves of two-turn animations: Mew should be
+  drawn whole throughout.
+- [ ] **The move reworks, for normal play** (the kit cannot run them):
+  Petal Dance hitting both foes in a double battle; Dig still digging out of
+  a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
+  used as an ordinary attack (Cynthia, Volkner and the Flint and Volkner tag
+  carry them), with no recharge turn and the recoil message.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 

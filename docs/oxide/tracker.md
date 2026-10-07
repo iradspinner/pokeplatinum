@@ -51,6 +51,8 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
 
+- **The move reworks' calls** (`cloud/main-move-reworks`'s report): (1) the AI costs multi-hit moves as one hit, so seldom picks them; costing expected hits changes its play; (2) Uproar and Raging Fury hit one chosen foe, not a random one; (3) the AI's new Upper Hand and Shell Trap checks, and half recoil costed as an attack (Head Smash too); (4) Barrage and Comet Punch keep 85% accuracy, Bone Rush 90%.
+
 - **Also his**: the Frontier Brain teams (he builds them), the gauntlet trainer list (after the scoring review and the average-fight calibration), the zone-by-zone land pass with the encounter track, and reading the water biome draft.
 
 ## Phase 0: Setup
@@ -105,9 +107,7 @@ Each element gets a checklist here when it starts, with the emulator test that p
   - [ ] **When element 6 is finished**, Ian wants a human-readable, step-by-step account of how Oxide's AI decides, in the manner of pokemow.com's Gen 4 Trainer AI pages and lhearachel's gist, with every change from vanilla marked (Ian, 2026-09-27). The README's change sections are its raw material
   - [ ] When the trainer pass gives out new moves or the abilities no trainer has yet (Prankster, Telepathy), re-read the catch-up list: the move fixes act only then
   - [ ] The engine, recorded here since element 5's gaps: Mimic and Psycho Shift still fail against a Substitute whatever the attacker's ability, although Infiltrator passes it for every other move
-- [x] **7. Items, a curated subset**: done (2026-09-27 and 2026-09-28); the entry and Ian's answers on its follow-up are in the archive. For element 6: the AI's scoring knows none of the new held items (the branches' reports list which change a decision).
 - [ ] **8. The remaining engine changes**: the main changes are done or dropped (60 fps outside battle dropped; always national dex, hidden abilities as a mechanism, the trade strip, always-Set, restored items and the script-driven level caps landed; wild double battles dropped, Ian 2026-09-29); the entry's full wording is in the archive. Left:
-  - [x] **Field moves on the badge alone** and **30 PC boxes** landed on 2026-09-29; each waits only on Ian's in-game check (`docs/oxide/ingame-checklist.md`, sections 4 and 3). Their entries are in the archive.
   - [ ] **The natives' hidden slots**: imported and merged (`carry-over-hidden`, 2026-09-27, `import_donor.py hidden-abilities`), 451 natives from the donor's `a/0/2/8` member 7, 42 of which the donor gives none. The ability pass (the weather ruling) still decides what stays. Seven set or cancel weather (Vulpix and Ninetales Drought, Politoed Drizzle, Lickitung, Lickilicky, Swablu and Altaria Cloud Nine), allowed only through the one Ability Patch, so **no scripted encounter that rolls a hidden ability may use those seven lines**.
   - The natives' 17 hidden abilities are written (2026-09-27, `cloud/element5-hidden-abilities`; the entry is in the archive, the report is the branch's last commit; test kit Abilities page 3).
   - [ ] **Known limits of the hidden abilities** (Ian kept Pickpocket stealing for foes, 2026-09-27): Poison Touch, like Magician, does not roll on a hit that set off the target's own on-hit ability; a wild Pickpocket holder that steals the player's item and is then caught keeps it while the player's Pokemon gets its own back after the battle (element 8's restored items), doubling the item; Contrary does not reverse Moody's changes (no Moody holder can have it)
