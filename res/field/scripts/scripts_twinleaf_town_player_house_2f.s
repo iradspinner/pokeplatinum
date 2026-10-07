@@ -4,6 +4,14 @@
 #ifdef OXIDE_TESTKIT
 #include "generated/abilities.h"
 #include "generated/text_banks.h"
+
+    /* The kit's lines follow the bedroom's own in one bank and run past
+       255, which Message's one-byte operand cannot hold, so every kit line
+       goes through MessageFromBank, whose operands are two bytes. The kit
+       build stops on any value an operand would cut (2026-10-07). */
+    .macro TestKitMessage messageID
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, \messageID
+    .endm
 #endif
 
 
@@ -453,7 +461,7 @@ TestKit_Helper:
     SetVar VAR_0x800B, ABILITY_NONE
     SetVar VAR_0x8000, SPECIES_NONE
     SetVar VAR_0x8003, MOVE_NONE
-    Message TestKit_Text_WhatDoYouNeed
+    TestKitMessage TestKit_Text_WhatDoYouNeed
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuRareCandies, 0
     AddListMenuEntry TestKit_Text_MenuForms, 1
@@ -509,7 +517,7 @@ TestKit_MeisterTrade:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     GivePokemon SPECIES_FINNEON, 50, ITEM_NONE, VAR_RESULT
-    Message TestKit_Text_MeisterTrade
+    TestKitMessage TestKit_Text_MeisterTrade
     WaitButton
     CloseMessage
     Warp MAP_HEADER_ROUTE_226_HOUSE, 4, 8, DIR_NORTH
@@ -518,14 +526,14 @@ TestKit_MeisterTrade:
 
 TestKit_RareCandies:
     AddItem ITEM_RARE_CANDY, 99, VAR_RESULT
-    Message TestKit_Text_RareCandies
+    TestKitMessage TestKit_Text_RareCandies
     GoTo TestKit_WaitAndClose
 
 /* TMs are single-use (Ian, 2026-09-28): teaching TM01 once leaves one of
    the two in the TM Case. */
 TestKit_TwoTMs:
     AddItem ITEM_TM01, 2, VAR_RESULT
-    Message TestKit_Text_TwoTMs
+    TestKitMessage TestKit_Text_TwoTMs
     GoTo TestKit_WaitAndClose
 
 /* The TM pass (2026-10-06): two of every TM and HM, for the TM pocket's
@@ -546,7 +554,7 @@ TestKit_AllTMsExtra:
     GoTo TestKit_AllTMsExtra
 
 TestKit_AllTMsDone:
-    Message TestKit_Text_AllTMs
+    TestKitMessage TestKit_Text_AllTMs
     GoTo TestKit_WaitAndClose
 
 /* The party count before a gift is the slot the gift lands in. */
@@ -563,7 +571,7 @@ TestKit_Forms:
     AddVar VAR_0x8005, 1
     GivePokemon SPECIES_MELOETTA, 50, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_RELIC_SONG
-    Message TestKit_Text_Forms
+    TestKitMessage TestKit_Text_Forms
     GoTo TestKit_WaitAndClose
 
 /* Sylveon's method is a level-up while knowing Charm, so Eevee gets Charm in
@@ -574,7 +582,7 @@ TestKit_Eevee:
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     GivePokemon SPECIES_EEVEE, 15, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_CHARM
-    Message TestKit_Text_Eevee
+    TestKitMessage TestKit_Text_Eevee
     GoTo TestKit_WaitAndClose
 
 /* Klefki learns Fairy Wind (move 587) at Lv. 6, which the old packed learnset
@@ -583,7 +591,7 @@ TestKit_Klefki:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     GivePokemon SPECIES_KLEFKI, 5, ITEM_NONE, VAR_RESULT
-    Message TestKit_Text_Klefki
+    TestKitMessage TestKit_Text_Klefki
     GoTo TestKit_WaitAndClose
 
 TestKit_Fairy:
@@ -591,14 +599,14 @@ TestKit_Fairy:
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     GivePokemon SPECIES_GIBLE, 20, ITEM_NONE, VAR_RESULT
     ResetPartyMonMoveSlot_Unused VAR_0x8005, 0, MOVE_DRAGON_CLAW
-    Message TestKit_Text_Fairy
+    TestKitMessage TestKit_Text_Fairy
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_CLEFAIRY, 10
     GoTo TestKit_AfterBattle
 
 TestKit_WildChansey:
-    Message TestKit_Text_WildChansey
+    TestKitMessage TestKit_Text_WildChansey
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_CHANSEY, 50
@@ -608,7 +616,7 @@ TestKit_WildChansey:
    extra effect shows (Sappy Seed, Axe Kick's confusion, Double Iron Bash's
    flinch), so Shuckle is the physical target. It is also slower than Mew. */
 TestKit_WildShuckle:
-    Message TestKit_Text_WildShuckle
+    TestKitMessage TestKit_Text_WildShuckle
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_SHUCKLE, 50
@@ -617,7 +625,7 @@ TestKit_WildShuckle:
 /* At Lv. 2 Lugia knows only Whirlwind, so it uses it every turn: the attacker
    for the Roar and Whirlwind Ingrain fix (set 25). */
 TestKit_WildLugia:
-    Message TestKit_Text_WildLugia
+    TestKitMessage TestKit_Text_WildLugia
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_LUGIA, 2
@@ -626,7 +634,7 @@ TestKit_WildLugia:
 /* A Flying Pokemon bulky enough to take Smack Down and Thousand Arrows and
    still be there to show it was grounded (set 26). */
 TestKit_WildSkarmory:
-    Message TestKit_Text_WildSkarmory
+    TestKitMessage TestKit_Text_WildSkarmory
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_SKARMORY, 50
@@ -636,14 +644,14 @@ TestKit_WildSkarmory:
    Fake Out, which has raised priority: attackers for Wide Guard and Quick
    Guard (set 30). */
 TestKit_WildHorsea:
-    Message TestKit_Text_WildHorsea
+    TestKitMessage TestKit_Text_WildHorsea
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_HORSEA, 1
     GoTo TestKit_AfterBattle
 
 TestKit_WildGlameow:
-    Message TestKit_Text_WildGlameow
+    TestKitMessage TestKit_Text_WildGlameow
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_GLAMEOW, 1
@@ -653,7 +661,7 @@ TestKit_WildGlameow:
    Rookidee and Fletchling stand on their shadows, and Sinistea hovers just
    above its own. Lv. 5, so any lead can run. */
 TestKit_SpriteHeights:
-    Message TestKit_Text_SpriteHeights
+    TestKitMessage TestKit_Text_SpriteHeights
     WaitButton
     CloseMessage
     StartWildBattle SPECIES_WOOLOO, 5
@@ -682,7 +690,7 @@ TestKit_LostBattle:
 TestKit_MoveSets:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    Message TestKit_Text_WhichSet
+    TestKitMessage TestKit_Text_WhichSet
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuSet1, 0
     AddListMenuEntry TestKit_Text_MenuSet2, 1
@@ -746,7 +754,7 @@ TestKit_MoveSets:
 /* The field menu holds 28 entries (FIELD_MENU_ENTRIES_MAX), so the sets go on
    over a second page, as the abilities do. */
 TestKit_MoveSets2:
-    Message TestKit_Text_WhichSet
+    TestKitMessage TestKit_Text_WhichSet
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuSet28, 0
     AddListMenuEntry TestKit_Text_MenuSet29, 1
@@ -810,7 +818,7 @@ TestKit_MoveSets2:
 /* The third page, from set 55 on (2026-09-27): the second filled up with
    Shore Up, Meteor Beam, Electro Shot and Mind Blown. */
 TestKit_MoveSets3:
-    Message TestKit_Text_WhichSet
+    TestKitMessage TestKit_Text_WhichSet
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuSet55, 0
     AddListMenuEntry TestKit_Text_MenuSet56, 1
@@ -839,9 +847,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet79, 24
     AddListMenuEntry TestKit_Text_MenuSet80, 25
     AddListMenuEntry TestKit_Text_MenuSet81, 26
-    AddListMenuEntry TestKit_Text_MenuSet82, 27
-    AddListMenuEntry TestKit_Text_MenuSet83, 28
-    AddListMenuEntry TestKit_Text_MenuSet84, 29
+    AddListMenuEntry TestKit_Text_MenuSetMore, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -870,9 +876,21 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet79
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet80
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet81
-    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet82
-    GoToIfEq VAR_0x8004, 28, TestKit_MoveSet83
-    GoToIfEq VAR_0x8004, 29, TestKit_MoveSet84
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSets4
+    GoTo TestKit_Close
+
+/* Page 4: the sets past page 3's 27, since a field menu holds 28 entries
+   (FIELD_MENU_ENTRIES_MAX) and page 3 ends with "More sets". */
+TestKit_MoveSets4:
+    TestKitMessage TestKit_Text_WhichSet
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8004
+    AddListMenuEntry TestKit_Text_MenuSet82, 0
+    AddListMenuEntry TestKit_Text_MenuSet83, 1
+    AddListMenuEntry TestKit_Text_MenuSet84, 2
+    ShowListMenu
+    GoToIfEq VAR_0x8004, 0, TestKit_MoveSet82
+    GoToIfEq VAR_0x8004, 1, TestKit_MoveSet83
+    GoToIfEq VAR_0x8004, 2, TestKit_MoveSet84
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1998,7 +2016,7 @@ TestKit_GivePokemonSetMoves:
     BufferMoveName 1, VAR_0x8007
     BufferMoveName 2, VAR_0x8008
     BufferMoveName 3, VAR_0x8009
-    Message TestKit_Text_MoveSet
+    TestKitMessage TestKit_Text_MoveSet
     GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
     GoTo TestKit_WaitAndClose
 
@@ -2016,7 +2034,7 @@ TestKit_AbilityFoe:
 /* Towns land on their fly points (src/spawn_locations.c); the Pokemon Center
    lands in front of the counter, where a whiteout does. */
 TestKit_Warp:
-    Message TestKit_Text_WhereTo
+    TestKitMessage TestKit_Text_WhereTo
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuTwinleaf, 0
     AddListMenuEntry TestKit_Text_MenuSandgem, 1
@@ -2148,7 +2166,7 @@ TestKit_SetAbility:
 TestKit_Abilities:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    Message TestKit_Text_WhichAbility
+    TestKitMessage TestKit_Text_WhichAbility
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityBeastBoost, 0
     AddListMenuEntry TestKit_Text_MenuAbilitySoulHeart, 1
@@ -2211,7 +2229,7 @@ TestKit_Abilities:
 
 /* The field menu holds 28 entries, so the abilities go on over a second page. */
 TestKit_Abilities2:
-    Message TestKit_Text_WhichAbility
+    TestKitMessage TestKit_Text_WhichAbility
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityFluffy, 0
     AddListMenuEntry TestKit_Text_MenuAbilityIceScales, 1
@@ -2261,7 +2279,7 @@ TestKit_Abilities2:
 /* The third page: the hidden abilities the natives carry, which element 5
    left for a follow-up. */
 TestKit_Abilities3:
-    Message TestKit_Text_WhichAbility
+    TestKitMessage TestKit_Text_WhichAbility
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuAbilityAnalytic, 0
     AddListMenuEntry TestKit_Text_MenuAbilityFlareBoost, 1
@@ -3224,7 +3242,7 @@ TestKit_AbilityWonderSkin:
 TestKit_Staples:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
-    Message TestKit_Text_WhichRule
+    TestKitMessage TestKit_Text_WhichRule
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuStapleSturdy, 0
     AddListMenuEntry TestKit_Text_MenuStapleLightningRod, 1
@@ -3629,12 +3647,12 @@ TestKit_StapleHiddenGift:
     GoToIfGe VAR_0x8005, 6, TestKit_PartyFull
     SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
     GivePokemon SPECIES_LITTEN, 15, ITEM_NONE, VAR_RESULT
-    Message TestKit_Text_HiddenGift
+    TestKitMessage TestKit_Text_HiddenGift
     GoTo TestKit_WaitAndClose
 
 /* The wild Litten's Intimidate announces itself as the battle starts. */
 TestKit_StapleHiddenWild:
-    Message TestKit_Text_HiddenWild
+    TestKitMessage TestKit_Text_HiddenWild
     WaitButton
     CloseMessage
     SetFlag FLAG_NEXT_MON_HIDDEN_ABILITY
@@ -3679,7 +3697,7 @@ TestKit_StapleKaizoMoves:
    pockets and descriptions; the entries after it set up a battle for one
    item or a group. */
 TestKit_Items:
-    Message TestKit_Text_WhichItems
+    TestKitMessage TestKit_Text_WhichItems
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuItemsAll, 0
     AddListMenuEntry TestKit_Text_MenuItemEviolite, 1
@@ -3786,7 +3804,7 @@ TestKit_ItemsAll:
     AddItem ITEM_NAIVE_MINT, 1, VAR_RESULT
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
     AddItem ITEM_ICE_STONE, 1, VAR_RESULT
-    Message TestKit_Text_ItemsAll
+    TestKitMessage TestKit_Text_ItemsAll
     GoTo TestKit_WaitAndClose
 
 /* Element 7's held-item entries: two Lv. 50 VAR_0x800A with the four moves in
@@ -3805,7 +3823,7 @@ TestKit_GiveItemPair:
     CallIfNe VAR_0x800B, ABILITY_NONE, TestKit_SetAbility
     Call TestKit_SetPairMoves
     BufferItemName 0, VAR_0x8004
-    Message TestKit_Text_ItemPair
+    TestKitMessage TestKit_Text_ItemPair
     GoToIfNe VAR_0x8000, SPECIES_NONE, TestKit_AbilityFoe
     GoTo TestKit_WaitAndClose
 
@@ -4183,7 +4201,7 @@ TestKit_ItemPixiePlate:
     GivePokemon VAR_0x800A, 50, ITEM_NONE, VAR_RESULT
     Call TestKit_SetPairMoves
     BufferItemName 0, VAR_0x8004
-    Message TestKit_Text_ItemPair
+    TestKitMessage TestKit_Text_ItemPair
     GoTo TestKit_AbilityFoe
 
 /* The Roseli Berry: Dragonite against a wild Clefable that knows only
@@ -4227,10 +4245,7 @@ TestKit_ItemContrary:
 /* The Ice Stone and Vulpix's two evolutions: two Lv. 20 Vulpix, with an Ice
    Stone and a Fire Stone in the Bag. Both stones show ABLE beside a Vulpix.
    The Ice Stone evolves one into Alolan Ninetales (Ice and Fairy), and the
-   Fire Stone the other into Ninetales, as Eevee's stones pick its branch.
-   The kit's lines follow the room's own in one bank, and those numbered past
-   255 need MessageFromBank: Message takes one byte, and the assembler's
-   "truncated" warning names any line that needs it (2026-10-07). */
+   Fire Stone the other into Ninetales, as Eevee's stones pick its branch. */
 TestKit_ItemIceStone:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
@@ -4238,7 +4253,7 @@ TestKit_ItemIceStone:
     GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ICE_STONE, 1, VAR_RESULT
     AddItem ITEM_FIRE_STONE, 1, VAR_RESULT
-    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemIceStone
+    TestKitMessage TestKit_Text_ItemIceStone
     GoTo TestKit_WaitAndClose
 
 /* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
@@ -4257,7 +4272,7 @@ TestKit_ItemAbilities:
     GivePokemon SPECIES_DITTO, 50, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
     AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
-    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemAbilities
+    TestKitMessage TestKit_Text_ItemAbilities
     GoTo TestKit_WaitAndClose
 
 /* The Mints and Bottle Caps: a Machamp, with two Adamant Mints, a Modest
@@ -4279,7 +4294,7 @@ TestKit_ItemMintsCaps:
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
     AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
     AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
-    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemMintsCaps
+    TestKitMessage TestKit_Text_ItemMintsCaps
     GoTo TestKit_WaitAndClose
 
 /* The TM mechanism, which now allows more than 92 TMs but has none past
@@ -4293,18 +4308,18 @@ TestKit_ItemTMs:
     AddItem ITEM_HM08, 1, VAR_RESULT
     AddItem ITEM_TM01, 1, VAR_RESULT
     AddItem ITEM_HM01, 1, VAR_RESULT
-    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemTMs
+    TestKitMessage TestKit_Text_ItemTMs
     GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:
-    Message TestKit_Text_PartyFull
+    TestKitMessage TestKit_Text_PartyFull
     GoTo TestKit_WaitAndClose
 
 /* Element 8's level caps: puts the player in any split, including an earlier
    one, which RaiseLevelCap never does, so the cap can be checked at each
    value and put back. A new game starts in Roark's split, cap 16. */
 TestKit_LevelCaps:
-    Message TestKit_Text_WhichCap
+    TestKitMessage TestKit_Text_WhichCap
     InitLocalTextListMenu 1, 1, 0, VAR_0x8004
     AddListMenuEntry TestKit_Text_MenuCapRoark, LEVEL_CAP_SPLIT_ROARK
     AddListMenuEntry TestKit_Text_MenuCapGardenia, LEVEL_CAP_SPLIT_GARDENIA
@@ -4322,7 +4337,7 @@ TestKit_LevelCaps:
     ShowListMenu
     GoToIfGe VAR_0x8004, LEVEL_CAP_SPLIT_COUNT, TestKit_Close
     SetVar VAR_LEVEL_CAP_SPLIT, VAR_0x8004
-    Message TestKit_Text_LevelCapSet
+    TestKitMessage TestKit_Text_LevelCapSet
     GoTo TestKit_WaitAndClose
 
 TestKit_WaitAndClose:

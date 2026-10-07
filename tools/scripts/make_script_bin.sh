@@ -14,6 +14,7 @@ help() {
     echo "  -M | --depfile      output a compiler-generated depfile for the source"
     echo "  -P | --parent-dir   use the parent directory name of each input script to avoid name collisions"
     echo "  --define NAME       define a preprocessor symbol for every script"
+    echo "  --fatal-warnings    fail on any assembler warning, such as a value cut to fit its operand"
 }
 
 INCLUDE_ARGS=()
@@ -24,6 +25,7 @@ LD="arm-none-eabi-ld"
 OUTDIR="."
 MD=""
 USE_PARENT_DIR=0
+AS_FLAGS=()
 
 while [[ $# -gt 0 ]] ; do
     case $1 in 
@@ -65,6 +67,12 @@ while [[ $# -gt 0 ]] ; do
             USE_PARENT_DIR=1
             shift
             ;;
+        --fatal-warnings)
+            # Platinum Oxide: the test kit build passes this, so a message or
+            # label id cut to fit a one-byte operand stops the build.
+            AS_FLAGS+=("-Wa,--fatal-warnings")
+            shift
+            ;;
         --define)
             INCLUDE_ARGS+=("-D$2")
             shift
@@ -95,7 +103,7 @@ for script_file in "${SCRIPT_FILES[@]}" ; do
     # Convert + clean-up
     $AS $MD -E -x assembler-with-cpp "${INCLUDE_ARGS[@]}" "$script_file" \
         | $ENUMPROC \
-        | $AS -x assembler-with-cpp -o "$script_obj" -c -
+        | $AS -x assembler-with-cpp ${AS_FLAGS[@]+"${AS_FLAGS[@]}"} -o "$script_obj" -c -
     $OBJCOPY -O binary --file-alignment 4 "$script_obj" "$script_bin"
     $LD "$script_obj" -o "$script_obj.dummy"
     rm "$script_obj" "$script_obj.dummy"
