@@ -3,13 +3,12 @@
   "plural": "TM67s",
   "article": "a",
   "description": [
-    "The user recycles a single-use item\n",
-    "that has been used in battle so it can\n",
-    "be used again."
+    "The foe is punched with an icy fist. It\n",
+    "may leave the target frozen."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_ice_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_RECYCLE"
+  "teachesMove": "MOVE_ICE_PUNCH"
 }

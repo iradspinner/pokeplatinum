@@ -3,13 +3,12 @@
   "plural": "TM56s",
   "article": "a",
   "description": [
-    "The user flings its held item at the\n",
-    "foe to attack. Its power and effects\n",
-    "depend on the item."
+    "This attack does double damage to a\n",
+    "target affected by a status problem."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_dark_NCLR"
+    "palette": "tm_ghost_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 2000,
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_FLING"
+  "teachesMove": "MOVE_HEX"
 }

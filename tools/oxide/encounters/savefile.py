@@ -76,14 +76,17 @@ KNOWN_LAYOUTS = {
     (0xD0D4, 0x121E4): "Oxide's from element 7's Bag (2026-09-28) until the 30 boxes",
     # The 30 PC boxes (2026-09-29), with the same fresh start as element 7:
     # the normal block is unchanged, and the box block keeps its shape.
-    (0xD0D4, 0x1E310): "Oxide's since the 30 PC boxes (2026-09-29)",
+    (0xD0D4, 0x1E310): "Oxide's from the 30 PC boxes (2026-09-29) until the TM pass's Bag",
+    # The TM pass (2026-10-06, main-tm-items): TM93 and TM94 grow the Bag's
+    # TM pocket by two slots, 8 bytes, which moves the variables and flags.
+    (0xD0DC, 0x1E310): "Oxide's since the TM pass's Bag (2026-10-06)",
 }
 # The layout this build writes. A save on an older one still gives its party
 # (before the Bag) and its boxes (found by their footers), but its variables
 # and flags sit where an older build put them, and a layout change costs a
 # new game, not a converter (Ian, 2026-09-28). Only the normal block's size
 # decides that: an 18-box save from element 7's builds reads in full.
-CURRENT_LAYOUT = (0xD0D4, 0x1E310)
+CURRENT_LAYOUT = (0xD0DC, 0x1E310)
 # BoxPokemon_GetDataBlock: for each shuffle case, the position of blocks
 # A, B, C and D. Cases 24 to 31 repeat 0 to 7.
 BLOCK_POSITIONS = [

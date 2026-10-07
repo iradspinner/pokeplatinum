@@ -3,13 +3,13 @@
   "plural": "TM45s",
   "article": "a",
   "description": [
-    "If it is the opposite gender of the\n",
-    "user, the foe becomes infatuated\n",
-    "and less likely to attack."
+    "The user attacks with its angelic voice.\n",
+    "This confuses the foe if its stats rose\n",
+    "this turn."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_psychic_NCLR"
   },
   "gbaID": "GBA_ITEM_TM45",
   "price": 3000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_ATTRACT"
+  "teachesMove": "MOVE_ALLURING_VOICE"
 }

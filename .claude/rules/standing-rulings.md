@@ -210,7 +210,9 @@ read, so they are written here too. Each is a standing instruction.
   labels only, not intended power.
 - TMs are single-use again, as in vanilla (Ian, 2026-09-28): each placement
   gives a set number of copies (strong TMs one, utility ones two or three).
-  Weak TMs are not sold; each is the reward for beating one optional trainer
+  Weak TMs are not sold; the TMs the Veilstone Department Store and the Game
+  Corner do sell unlock by badge count in order of usefulness, and each can
+  be bought once, like any other placement (Ian, 2026-10-06); each is the reward for beating one optional trainer
   of weak-to-medium strength near its split. About 100 TMs. Ian's removals:
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
@@ -290,6 +292,15 @@ read, so they are written here too. Each is a standing instruction.
   track's own doc, which he does not read in full; the trainer-scoring
   handoff, at its length, is unreadable for him. A track's status home may
   stay long, as long as its summary is kept current at its top.
+- Prefer judging each Pokemon over global hard rules (Ian, 2026-10-06):
+  "It entirely depends on the pokemon, and keeping it to hard rules destroys
+  the variability between pokemon... We need to stop creating this web of
+  hard rules that gets us into bad spots like this." A rule that flattens the
+  differences between lines is a defect. For learnsets, a gap is filled from
+  the rung of the type's move ladder (every working move of that type, by
+  power and effect) that fits the point in the game and the Pokemon, climbing
+  a rung or two a split, never by taking the strongest move a ceiling allows;
+  Giga Drain is far too strong for Roark's split.
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.

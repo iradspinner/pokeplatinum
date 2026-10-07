@@ -1360,6 +1360,13 @@ TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS].update({
 # later games, so its description says so (Ian, 2026-09-29).
 TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
     "Sturdy's description gives its later-games rule, which Oxide has")
+# The TM pass (2026-10-06) gives TM and HM numbers new moves, and a TM's
+# description is its move's (tools/oxide/tm_items.py writes both from the TM
+# list). Item ids 328 to 427 are ITEM_TM01 to ITEM_HM08, unchanged since
+# vanilla.
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_DESCRIPTIONS].update({
+    entry: "a TM or HM's description follows its move, which the TM pass sets"
+    for entry in range(328, 428)})
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.

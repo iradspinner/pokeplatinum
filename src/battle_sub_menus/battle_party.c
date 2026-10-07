@@ -1721,17 +1721,13 @@ BOOL BattlePartyTask_CheckIfSwitchingWithPartnersPokemon(BattleParty *battlePart
     return FALSE;
 }
 
+// Platinum Oxide: an HM move can be forgotten for a move learned in battle,
+// as it already can on the summary screen and at the Move Deleter (the base
+// ROM stubbed the summary's check), since the HMs are single-use TMs now.
+// Vanilla answered Item_IsHMMove for the move in the selected slot.
 static BOOL CheckSelectedMoveIsHM(BattleParty *battleParty)
 {
-    u16 move;
-
-    if (battleParty->context->selectedMoveSlot == MOVE_TO_LEARN_SLOT) {
-        move = battleParty->context->moveToLearn;
-    } else {
-        move = battleParty->partyPokemon[battleParty->context->selectedPartyIndex].moves[battleParty->context->selectedMoveSlot].move;
-    }
-
-    return Item_IsHMMove(move);
+    return FALSE;
 }
 
 static void ClearMoveStats(BattleParty *battleParty)

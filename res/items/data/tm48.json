@@ -3,12 +3,13 @@
   "plural": "TM48s",
   "article": "a",
   "description": [
-    "The user employs its psychic power to\n",
-    "exchange abilities with the foe.\n"
+    "The user hardens its body’s surface\n",
+    "like iron, sharply raising its Defense\n",
+    "stat."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_psychic_NCLR"
+    "palette": "tm_steel_NCLR"
   },
   "gbaID": "GBA_ITEM_TM48",
   "price": 3000,
@@ -26,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_SKILL_SWAP"
+  "teachesMove": "MOVE_IRON_DEFENSE"
 }

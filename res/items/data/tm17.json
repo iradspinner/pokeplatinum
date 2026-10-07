@@ -3,13 +3,13 @@
   "plural": "TM17s",
   "article": "a",
   "description": [
-    "It enables the user to evade all\n",
-    "attacks. Its chance of failing rises\n",
-    "if it is used in succession."
+    "Driven by frustration, the user\n",
+    "attacks. This move’s power is doubled if\n",
+    "the user’s previous move failed."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_ground_NCLR"
   },
   "gbaID": "GBA_ITEM_TM17",
   "price": 2000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_PROTECT"
+  "teachesMove": "MOVE_STOMPING_TANTRUM"
 }

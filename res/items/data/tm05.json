@@ -3,13 +3,12 @@
   "plural": "TM05s",
   "article": "a",
   "description": [
-    "The foe is scared off, to be replaced\n",
-    "by another Pokémon in its party.\n",
-    "In the wild, the battle ends."
+    "The user damages opposing Pokémon by\n",
+    "emitting a powerful flash."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_psychic_NCLR"
   },
   "gbaID": "GBA_ITEM_TM05",
   "price": 1000,
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_ROAR"
+  "teachesMove": "MOVE_DAZZLING_GLEAM"
 }

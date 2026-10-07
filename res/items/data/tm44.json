@@ -3,13 +3,12 @@
   "plural": "TM44s",
   "article": "a",
   "description": [
-    "The user goes to sleep for two\n",
-    "turns. It fully restores the user’s HP\n",
-    "and heals any status problem."
+    "The user throws an electrified tackle.\n",
+    "It hurts the user a little."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_psychic_NCLR"
+    "palette": "tm_electric_NCLR"
   },
   "gbaID": "GBA_ITEM_TM44",
   "price": 3000,
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_REST"
+  "teachesMove": "MOVE_WILD_CHARGE"
 }

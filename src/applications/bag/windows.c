@@ -336,6 +336,10 @@ void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOf
         item = item - NUM_TMS + 1;
         FontSpecialChars_DrawPartyScreenHPText(controller->specialChars, item, 2, PADDING_MODE_SPACES, &controller->windows[BAG_UI_WINDOW_ITEM_LIST], 16, yOffset + 5);
         DrawHMIcon(controller, yOffset);
+        // Platinum Oxide: the HMs are single-use TMs now, given two at a
+        // time in places, so their count shows as a TM's does. Vanilla's
+        // HMs were never used up and showed none.
+        BagUI_PrintItemCount(controller, itemSlot->quantity, yOffset, TEXT_COLOR(1, 2, 0));
     }
 }
 

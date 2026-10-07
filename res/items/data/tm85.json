@@ -3,13 +3,13 @@
   "plural": "TM85s",
   "article": "a",
   "description": [
-    "An attack that works only on a\n",
-    "sleeping foe. It absorbs half the\n",
-    "damage caused to heal the user’s HP."
+    "The user skitters behind the target to\n",
+    "attack. This also lowers the target’s\n",
+    "Sp. Atk stat."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_psychic_NCLR"
+    "palette": "tm_bug_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 3000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_DREAM_EATER"
+  "teachesMove": "MOVE_SKITTER_SMACK"
 }

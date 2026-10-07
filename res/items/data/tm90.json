@@ -3,9 +3,8 @@
   "plural": "TM90s",
   "article": "a",
   "description": [
-    "The user makes a copy of itself using\n",
-    "some of its HP. The copy serves as\n",
-    "the user’s decoy."
+    "The user blocks the foe’s way with arms\n",
+    "spread wide to prevent escape."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_SUBSTITUTE"
+  "teachesMove": "MOVE_BLOCK"
 }
