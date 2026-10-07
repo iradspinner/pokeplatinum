@@ -521,6 +521,9 @@ MOVE_REWORK_DESCRIBED = set()
 for _move in ("hyper_beam", "giga_impact", "rock_wrecker", "roar_of_time"):
     MOVE_REWORKS[_move] = ("power", "accuracy", "effect")
 MOVE_REWORK_DESCRIBED |= {63, 416, 439, 459}
+for _move in ("blast_burn", "frenzy_plant", "hydro_cannon"):
+    MOVE_REWORKS[_move] = ("accuracy", "effect")
+MOVE_REWORK_DESCRIBED |= {307, 308, 338}
 _MOVE_REWORK_WHY = "the move reworks (Ian, 2026-10-06)"
 for _move, _fields in MOVE_REWORKS.items():
     for _field in _fields:

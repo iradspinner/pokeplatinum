@@ -805,6 +805,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet69, 14
     AddListMenuEntry TestKit_Text_MenuSet70, 15
     AddListMenuEntry TestKit_Text_MenuSet71, 16
+    AddListMenuEntry TestKit_Text_MenuSet72, 17
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -823,6 +824,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 14, TestKit_MoveSet69
     GoToIfEq VAR_0x8004, 15, TestKit_MoveSet70
     GoToIfEq VAR_0x8004, 16, TestKit_MoveSet71
+    GoToIfEq VAR_0x8004, 17, TestKit_MoveSet72
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1706,6 +1708,22 @@ TestKit_MoveSet71:
     SetVar VAR_0x8007, MOVE_GIGA_IMPACT
     SetVar VAR_0x8008, MOVE_ROCK_WRECKER
     SetVar VAR_0x8009, MOVE_ROAR_OF_TIME
+    GoTo TestKit_GiveMew
+
+/* Set 72: Blast Burn, Frenzy Plant and Hydro Cannon (the move reworks, Ian,
+   2026-10-06): 150 power, 95% accuracy, no recharge. Against a wild Chansey
+   that knows only Splash, Blast Burn and Frenzy Plant each bring "MEW is hit
+   with recoil!" for a third of what Chansey lost, and now and then burn or
+   paralyse it (30% and 20%); Hydro Cannon's recoil is half. The next turn's
+   menu opens as usual. Before the change each cost the turn after. */
+TestKit_MoveSet72:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BLAST_BURN
+    SetVar VAR_0x8007, MOVE_FRENZY_PLANT
+    SetVar VAR_0x8008, MOVE_HYDRO_CANNON
+    SetVar VAR_0x8009, MOVE_RECOVER
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

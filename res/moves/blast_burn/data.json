@@ -1,20 +1,20 @@
 {
     "name": "Blast Burn",
     "description": [
-        "The foe is razed by\n",
-        "a fiery explosion.\n",
-        "The user must rest\n",
-        "on the next turn,\n",
-        "however."
+        "The foe is razed by a\n",
+        "fiery explosion. It\n",
+        "may burn the foe, and\n",
+        "the user is hurt by a\n",
+        "third of the damage."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
     "power": 150,
-    "accuracy": 90,
+    "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_RECHARGE_AFTER",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RECOIL_BURN_HIT",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

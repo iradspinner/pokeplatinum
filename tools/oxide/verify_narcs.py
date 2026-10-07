@@ -516,6 +516,8 @@ BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 
 # "1. The move reworks"; the numbers are in the standing rulings), by move id.
 # Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time.
 REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
+# Blast Burn, Hydro Cannon, Frenzy Plant.
+REWORK_STARTER_ULTIMATES = {307, 308, 338}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -660,6 +662,13 @@ DIVERGED = {
             "why": "Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time at 180 power and "
                    "100 accuracy, with half the damage as recoil in place of the recharge "
                    "turn (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 5, 7),  # effect, accuracy, effect chance
+            "members": REWORK_STARTER_ULTIMATES,
+            "why": "Blast Burn, Frenzy Plant and Hydro Cannon at 95 accuracy with Kaizo's "
+                   "recoil and status in place of the recharge turn (the move reworks, "
+                   "Ian, 2026-10-06)",
         },
     ],
 }
