@@ -2269,6 +2269,9 @@ Expert_Main:
     // Oxide: Raging Fury's recoil and confusion (the move reworks, Ian,
     // 2026-10-06), scored as Volt Tackle's recoil and paralysis are.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_CONFUSE_HIT, Expert_RecoilMove
+    // Oxide: Shell Trap fails unless a physical move hits its user first (the
+    // move reworks, 2026-10-06).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHELL_TRAP, Expert_ShellTrap
     // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
     // condition the damage estimate does not see, scored as Wake-Up Slap and
     // Smelling Salts are.
@@ -6786,6 +6789,25 @@ Expert_WorrySeed_TryScorePlus1:
 
 Expert_WorrySeed_End:
     PopOrEnd 
+
+Expert_ShellTrap:
+    // Oxide: Shell Trap strikes only after a physical move hits its user this
+    // turn. If the opponent would resist or is immune, score -1. If the
+    // opponent's last move was not physical, it is likely to fail, so score
+    // -2. Before the opponent has moved, its last move reads as physical.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ShellTrap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ShellTrap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ShellTrap_ScoreMinus1
+    LoadDefenderLastUsedMoveClass
+    IfLoadedEqualTo CLASS_PHYSICAL, Expert_ShellTrap_End
+    AddToMoveScore -2
+    GoTo Expert_ShellTrap_End
+
+Expert_ShellTrap_ScoreMinus1:
+    AddToMoveScore -1
+
+Expert_ShellTrap_End:
+    PopOrEnd
 
 Expert_SuckerPunch:
     // If the opponent resists or is immune to the move, score -1.

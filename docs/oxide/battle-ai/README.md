@@ -286,6 +286,7 @@ Left for want of a command: Octolock into an already octolocked target, whose st
 | Petal Dance, Uproar | a 20% confusion (76, Psybeam's) | the ordinary handling of a damaging move, as Psybeam. Uproar keeps its place on Basic's Soundproof list, since it is still a sound move. No AI change was needed |
 | Raging Fury | recoil and confusion (417, new) | a new line in Expert's dispatch sends it to the recoil routine, as Volt Tackle's effect is sent |
 | Upper Hand | fails unless the target chose a priority move, then flinches it (418, new) | Basic gives -10 while the target has shown no move of raised priority, through a new command, `IfBattlerKnowsPriorityMove` (Prankster and Gale Wings counted), since the move cannot work then. When the target has shown one, the move is scored as an ordinary attack. This agrees the AI with the engine rather than changing how it plays |
+| Shell Trap | strikes only after a physical hit this turn (419, new) | a new Expert routine, `Expert_ShellTrap`: -1 into a resisting or immune target, and -2 when the target's last move was not physical, since then it is likely to fail. It is costed in full as a 150 power attack otherwise. A new routine for a move that only now works, so it is listed for Ian with the other judgment calls |
 
 ## The parts
 

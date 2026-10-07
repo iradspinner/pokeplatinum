@@ -815,6 +815,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet79, 24
     AddListMenuEntry TestKit_Text_MenuSet80, 25
     AddListMenuEntry TestKit_Text_MenuSet81, 26
+    AddListMenuEntry TestKit_Text_MenuSet82, 27
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -843,6 +844,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet79
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet80
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet81
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet82
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1894,6 +1896,24 @@ TestKit_MoveSet81:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 82: Shell Trap (the move reworks, Ian, 2026-10-06), a new effect
+   (419): -3 priority, 150 power, and it strikes only if a physical move hit
+   its user this turn, else fails. Against a wild Rattata that knows Tackle
+   and Swift, picking one at random: on a turn Rattata used Tackle, Shell
+   Trap strikes after it; on a turn it used Swift, which is special, Shell
+   Trap says "But it failed!". Before the change it was a plain hit that
+   always worked. */
+TestKit_MoveSet82:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_SHELL_TRAP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
