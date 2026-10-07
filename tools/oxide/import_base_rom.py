@@ -539,6 +539,7 @@ MOVE_REWORKS["thrash"] = ("effect", "range")
 for _move in ("petal_dance", "outrage", "uproar"):
     MOVE_REWORKS[_move] = ("power", "effect", "range")
 MOVE_REWORK_DESCRIBED |= {37, 80, 200, 253}
+MOVE_REWORKS["bone_rush"] = ("accuracy",)  # Ian's answer to the report, relayed 2026-10-07
 _MOVE_REWORK_WHY = "the move reworks (Ian, 2026-10-06)"
 for _move, _fields in MOVE_REWORKS.items():
     for _field in _fields:

@@ -840,6 +840,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet81, 26
     AddListMenuEntry TestKit_Text_MenuSet82, 27
     AddListMenuEntry TestKit_Text_MenuSet83, 28
+    AddListMenuEntry TestKit_Text_MenuSet84, 29
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -870,6 +871,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 26, TestKit_MoveSet81
     GoToIfEq VAR_0x8004, 27, TestKit_MoveSet82
     GoToIfEq VAR_0x8004, 28, TestKit_MoveSet83
+    GoToIfEq VAR_0x8004, 29, TestKit_MoveSet84
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1953,6 +1955,20 @@ TestKit_MoveSet83:
     SetVar VAR_0x8002, MOVE_SWORDS_DANCE
     SetVar VAR_0x8003, MOVE_SPLASH
     SetVar VAR_0x8006, MOVE_BURNING_JEALOUSY
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 84: Bone Rush at 100% accuracy (Ian's answer relayed on 2026-10-07),
+   where it had 90. The summary's move page shows Bone Rush at 100 accuracy,
+   and against a wild Chansey that knows only Splash it never misses, each
+   use ending "Hit 2 time(s)!" to "Hit 5 time(s)!" at 25 a hit. */
+TestKit_MoveSet84:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BONE_RUSH
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
