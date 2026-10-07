@@ -106,11 +106,9 @@ GameCorner_CoinsClerk:
     Message GameCorner_Text_WelcomeToGameCorner
     CheckItem ITEM_COIN_CASE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, GameCorner_CoinsClerk_NoCoinCase
-    GoToIfSet FLAG_RECEIVED_GAME_CORNER_TM64, GameCorner_CoinsClerk_ShowCoinsAndMoney
-    GoToIfSet FLAG_SAVED_GAME_CORNER_TM64, GameCorner_CoinsClerk_CheckIfCanGiveTM64
-    CheckBonusRoundStreak VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, GameCorner_CoinsClerk_ShowCoinsAndMoney
-    GoTo GameCorner_CoinsClerk_CheckIfCanGiveTM64
+    @ Platinum Oxide: no gift for ten straight bonus rounds (Ian, 2026-10-06);
+    @ its TM is the reward of Rocco, the optional trainer beside the counter.
+    GoTo GameCorner_CoinsClerk_ShowCoinsAndMoney
     End
 
 GameCorner_CoinsClerk_NoCoinCase:
@@ -192,38 +190,6 @@ GameCorner_CoinsClerk_Cancel:
     HideCoins
     HideMoney
     ReleaseAll
-    End
-
-GameCorner_CoinsClerk_CheckIfCanGiveTM64:
-    SetVar VAR_0x8004, ITEM_TM64
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, GameCorner_CoinsClerk_SaveTM64
-    GoTo GameCorner_CoinsClerk_TenStraightBonusRounds
-    End
-
-GameCorner_CoinsClerk_TenStraightBonusRounds:
-    GoToIfSet FLAG_SAVED_GAME_CORNER_TM64, GameCorner_CoinsClerk_TenStraightBonusRounds_SavedTM
-    Message GameCorner_Text_MementoForBonusRounds
-    GoTo GameCorner_CoinsClerk_GiveTM64
-    End
-
-GameCorner_CoinsClerk_TenStraightBonusRounds_SavedTM:
-    Message GameCorner_Text_StillAmazedTakeMemento
-    GoTo GameCorner_CoinsClerk_GiveTM64
-    End
-
-GameCorner_CoinsClerk_GiveTM64:
-    Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_GAME_CORNER_TM64
-    Message GameCorner_Text_PleaseKeepPlayingSlots
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-GameCorner_CoinsClerk_SaveTM64:
-    SetFlag FLAG_SAVED_GAME_CORNER_TM64
-    GoTo GameCorner_CoinsClerk_ShowCoinsAndMoney
     End
 
 GameCorner_LadyExplainSlotMachines:

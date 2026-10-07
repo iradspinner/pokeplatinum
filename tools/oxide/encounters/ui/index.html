@@ -31,22 +31,37 @@ a:hover { color: var(--place-ink); text-decoration-color: currentColor; }
 :focus-visible { outline: 2px solid var(--mass); outline-offset: 1px; }
 
 header {
-  display: flex; align-items: center; gap: 16px; flex-wrap: nowrap;
-  min-height: 44px; padding: 4px 16px; background: var(--panel);
+  display: flex; align-items: center; gap: 0 16px; flex-wrap: wrap;
+  min-height: 44px; padding: 4px 16px 0; background: var(--panel);
   border-bottom: 1px solid var(--rule); flex: none;
 }
 /* the pixel face is identity: the title, the tabs, the headline, the number */
 header .title { font: 600 18.5px/1 var(--pixel); margin-right: 4px; white-space: nowrap; }
 header .title .ox { color: var(--place-ink); }
-/* The metric strip is the flexible gap: it takes the room between the tabs
-   and the checkout, and when there is not enough it wraps inside itself, so
-   the title, the tabs, the checkout and the toggle always hold the first row
-   rather than being stranded on a second one. */
-header .strip { display: flex; align-items: center; gap: 4px 16px; flex-wrap: wrap;
-                flex: 1 1 auto; min-width: 0; padding: 4px 0; }
-header > nav, header > .title, header > .checkout, header > button,
-header > .themeseg { flex: none; }
-header .checkout { font: 14.5px/1 var(--mono); color: var(--faint); white-space: nowrap; }
+/* Two rows (Ian, 2026-10-07: at 1280px the metrics ran through the theme
+   buttons, and at any width they wrapped into a tall block). The first row
+   is the title, the tabs, the commit button and the theme switch, pushed
+   right; the second is the metric strip on one line, the checkout at its
+   end, scrolling sideways rather than wrapping if a window is too narrow. */
+header > nav#views { margin-right: auto; }
+header > nav, header > .title, header > button, header > .themeseg { flex: none; }
+header .strip { order: 10; flex: 1 0 100%; display: flex; align-items: center; gap: 0 14px;
+                flex-wrap: nowrap; overflow-x: auto; min-width: 0; padding: 2px 0 5px;
+                border-top: 1px solid var(--rule); margin-top: 4px; scrollbar-width: thin; }
+header .strip > * { flex: none; }
+header .strip #clear-caught { padding: 1px 8px; font-size: 14px; }
+header .checkout { font: 14px/1 var(--mono); color: var(--faint); white-space: nowrap; margin-left: auto; }
+/* A narrower window keeps the strip on its one line: the figures a little
+   smaller, and the checkout's name, which only tells which worktree the
+   server reads, left out. */
+@media (max-width: 1500px) {
+  header .strip { gap: 0 10px; }
+  header .strip .metric { font-size: 13.5px; }
+  header .checkout { display: none; }
+  /* "Commit my edits" reads "Commit" and its count, so the first row still
+     holds the theme switch when the button shows (on Ian's server, always). */
+  header .wide-only { display: none; }
+}
 .metric { color: var(--dim); font-size: 15px; white-space: nowrap; }
 .metric b { font-family: var(--mono); font-variant-numeric: tabular-nums;
             color: var(--ink); font-weight: 600; margin-left: 4px; }
@@ -360,7 +375,7 @@ tr.got .spname { font-weight: 600; }
    board): the list, then the trainer in the centre: a header line with its
    save bar, the team as a sheet, the move lists while a move is edited, and
    a row of cards for the score, threat and answers, and battle and AI. */
-#trainmain { grid-template-columns: 280px minmax(720px, 1fr); }
+#trainmain { grid-template-columns: 330px minmax(720px, 1fr); }
 #trainlist { border-right: 1px solid var(--rule); background: var(--panel); }
 #trainfilter { width: 100%; box-sizing: border-box; }
 #trainmid { padding: 18px 22px 40px; font-size: 16px; display: flex; flex-direction: column;
@@ -385,10 +400,23 @@ tr.got .spname { font-weight: 600; }
   gap: 0 8px; padding: 4px 12px; cursor: pointer; }
 .trrow:hover { background: var(--sunken); }
 .trrow.on { background: var(--place-bg); box-shadow: inset 3px 0 0 var(--place-ink); }
-.trrow .nm { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The name on a line of its own, whole, wrapping if it must, with the
+   split, levels and score under it (Ian, 2026-10-07: names were cut to
+   "Pkmn Tra..."), and a fight's version under the name. */
+.trrow .nm { grid-column: 1 / -1; overflow-wrap: anywhere; font-weight: 600; }
+.trrow .nm .ver { display: block; font-weight: 400; font-size: 14px; color: var(--dim); }
 .trrow .party { grid-column: 1 / -1; display: flex; }
 .trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
   min-width: 2.4em; text-align: right; }
+/* A stale difficulty reads faint and struck through until goal 3 reads the
+   fight again; a fight never read says so. */
+.trscore.stale, .scorenum.stale { color: var(--faint); text-decoration: line-through;
+  text-decoration-thickness: 1px; }
+.trrow .notread { font-size: 13px; }
+/* A study reading (the Kaizo study's rewrite, not the file's team) is italic. */
+.trscore.study { font-style: italic; }
+.stalenote { color: var(--warn); margin: 2px 0 0; }
+h3.oldscale { margin: 12px 0 0; font-size: 14px; color: var(--dim); }
 /* A pair (two trainers fought as one double): its row, a gap between the two
    parties, and its trainers folded under it, indented. */
 .trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
@@ -864,6 +892,104 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 .peer:hover { background: var(--sunken); }
 .peer.me { background: var(--place-bg); font-weight: 700; }
 .peer .num { color: var(--dim); }
+
+/* ---- the alpha checklist ----------------------------------------------- */
+/* The splits and their zones in a rail, the chosen split's zones as cards.
+   Ian's layout notes (2026-10-07): text at the Trainers tab's size or larger,
+   sprites of 48px with each level under its sprite, a team on one row, and
+   the zone's trainers as cards across the width. */
+#alphamain { grid-template-columns: 320px minmax(640px, 1fr); }
+#alphanav { border-right: 1px solid var(--rule); background: var(--panel); padding: 10px 0 40px; }
+#alphanav .asplit { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  border: 0; border-radius: 0; background: none; padding: 8px 16px; font-size: 17px; font-weight: 700; }
+#alphanav .asplit.on { background: var(--place-bg); color: var(--place-ink); }
+#alphanav .asplit .sub { font-weight: 400; margin-left: auto; font-size: 14.5px; }
+#alphanav .azlink { display: flex; justify-content: space-between; gap: 8px; padding: 4px 16px 4px 30px;
+  font-size: 16px; color: var(--ink); cursor: pointer; }
+#alphanav .azlink:hover { background: var(--sunken); }
+#alphanav .azlink .num { color: var(--dim); font-size: 14px; }
+#alphanav .azlink.alldone span:first-child { color: var(--faint); text-decoration: line-through; }
+#alphamid { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; }
+#alphamid > * { flex-shrink: 0; }
+#alphamid h1 { margin: 0; font-size: 24px; }
+#alphamid .asrc { color: var(--dim); font-size: 15px; margin: 0; }
+.azone { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 12px; }
+.azone h2 { margin: 0; font-size: 21px; }
+.azone .azsum { color: var(--dim); font-size: 16px; }
+.azone h3 { margin: 6px 0 0; font-size: 15px; color: var(--dim); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 700; }
+.azhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+/* Trainers as cards, as many across as fit. */
+.atgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(560px, 1fr)); gap: 10px; }
+.atr { border: 1px solid var(--rule); border-radius: 10px; padding: 8px 12px;
+  display: flex; flex-direction: column; gap: 6px; }
+.athead { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.athead .who { flex: 1 1 auto; }
+.athead .who a { font-weight: 700; color: var(--ink); font-size: 18px; }
+.athead .who .sub { font-size: 15px; }
+.atr.beaten .who a { text-decoration: line-through; text-decoration-color: var(--faint); }
+.areward { font-size: 16px; color: var(--place-ink); }
+.chip.req { --t: var(--type-fire); }
+.chip.opt { background: var(--panel); border-color: var(--rule); font-weight: 400; }
+.chip.boss { --t: var(--type-dragon); }
+/* A team on one row, each level under its sprite. */
+.ateam { display: flex; flex-wrap: nowrap; gap: 4px; align-items: flex-end; overflow-x: auto; }
+.ateam .mon { display: flex; flex-direction: column; align-items: center; min-width: 66px; }
+.ateam .ico { width: 64px; height: 64px; }
+.ateam .ico img { width: 64px; height: 128px; }
+.ateam .lv { font-size: 15px; color: var(--dim); font-family: var(--mono); }
+/* A fight's versions: side by side, or the save's own with the rest folded. */
+.aversions { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 8px 14px; }
+.aver .alabel { font-size: 15px; color: var(--dim); }
+.aver.mine .alabel { color: var(--place-ink); font-weight: 650; }
+.arest summary { cursor: pointer; font-size: 15px; color: var(--dim); }
+.arest .aversions { margin-top: 6px; }
+.agaunt { border: 1px solid var(--rule); border-radius: 10px; padding: 8px 12px;
+  display: flex; flex-direction: column; gap: 8px; }
+.agaunt .ghead { display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 17px; }
+/* Items: what is there now, and what the reward table puts there. */
+.alist { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 6px 22px; }
+.alist .it .sub { font-size: 15px; }
+.alist .it .becomes { color: var(--place-ink); font-size: 15.5px; margin-left: 4px; }
+.alist .it input[type=checkbox] { margin: 0 4px 0 0; }
+/* Encounters as sprites with names, as the Tables tab shows a table. */
+.awild { display: flex; flex-direction: column; gap: 10px; }
+.atable a { color: var(--ink); font-weight: 700; }
+.amons { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-top: 2px; }
+.amon { display: flex; flex-direction: column; align-items: center; width: 76px; font-size: 13.5px;
+  color: var(--dim); text-align: center; line-height: 1.2; }
+.amon .ico { width: 56px; height: 56px; }
+.amon .ico img { width: 56px; height: 112px; }
+/* In-game checks: the whole first sentence, rendered, and its section as a tag. */
+.achecks details { font-size: 16.5px; padding: 3px 0; }
+.achecks summary { cursor: pointer; }
+.achecks .tag.sect { margin-left: 6px; font-size: 13px; }
+.achecks code { font-family: var(--mono); font-size: .9em; }
+.achecks .done summary .first { color: var(--faint); text-decoration: line-through; }
+.achecks details p { margin: 4px 0 6px 18px; color: var(--dim); font-size: 15.5px; }
+.planned { color: var(--faint); font-style: italic; }
+/* The feedback each trainer, gauntlet section and zone carries: fought, a
+   rating for a boss or a section, and a note with a death. */
+#alphabar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px 14px;
+  border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); color: var(--dim);
+  font-size: 15.5px; }
+#alphabar span { flex: 1 1 360px; }
+.afb { display: flex; align-items: center; gap: 6px; justify-content: flex-end; font-size: 15px; }
+.afb label { display: flex; align-items: center; gap: 4px; color: var(--dim); }
+.afb select { font-size: 14.5px; padding: 1px 2px; }
+.afb button { font-size: 14.5px; padding: 2px 9px; }
+.afbtext { display: flex; flex-direction: column; gap: 2px; margin: 0 0 4px 4px; font-size: 15.5px; }
+.afbtext .death { color: var(--error); }
+.afbedit { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 8px; padding: 8px 10px;
+  border: 1px solid var(--rule); border-radius: 8px; background: var(--sunken); }
+/* A styled display outranks the hidden attribute, so a closed editor needs
+   its own rule (as the views do). */
+.afbedit[hidden] { display: none; }
+.afbedit textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 15.5px; }
+.afbedit .fbdeath { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
+.afbedit .fbdeath input { flex: 1 1 160px; font-size: 15px; }
 </style>
 </head>
 <body>
@@ -877,6 +1003,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <button data-view="trainers">Trainers</button>
     <button data-view="calc">Calc</button>
     <button data-view="sim">Box sim</button>
+    <button data-view="alpha" title="Every zone in walking order, with what to check there in the alpha run">Alpha</button>
   </nav>
   <div class="strip">
     <span class="metric">Source <b id="h-ref">—</b></span>
@@ -888,10 +1015,10 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span class="metric" id="w-lint">Problems <b id="h-lint">—</b></span>
     <span class="metric">Caught <b id="h-caught">0</b></span>
     <button id="clear-caught" title="Clear the caught list">Reset caught</button>
+    <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   </div>
-  <button id="commit-edits" hidden disabled><span id="edits-label">Commit my edits</span>
+  <button id="commit-edits" hidden disabled><span id="edits-label">Commit<span class="wide-only"> my edits</span></span>
     <b id="edits-n" class="num">0</b></button>
-  <span class="checkout" id="h-root" title="Which checkout this server is reading">—</span>
   <div class="themeseg" role="group" aria-label="Colour scheme">
     <button data-theme-set="dark">Dark</button><button data-theme-set="dim">Dim</button><button
       data-theme-set="light">Light</button><button data-theme-set="auto" title="Follow Windows">Auto</button>
@@ -969,7 +1096,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   <section id="trainlist">
     <div class="listhead">
       <input id="trainfilter" placeholder="Find a trainer, a class or a species">
-      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">By score</button>
+      <div class="sortbar"><button data-k="score" class="on" title="The difficulty number, hardest first: average faints plus 40 times the losing rate; fights not read yet after">By difficulty</button>
         <button data-k="order">Play order</button>
         <select id="trainsplit"><option value="">Every split</option></select></div>
     </div>
@@ -990,6 +1117,14 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span id="save-state">No save file set.</span>
   </div>
   <iframe id="calcframe" title="Damage calculator"></iframe>
+</main>
+<!-- The alpha checklist (alpha readiness step 17, alpha.py): every zone in
+     walking order, split by split, with its trainers, items, rewards, wild
+     tables and in-game checks. The splits and zones on the left; the chosen
+     split's zones in the middle. -->
+<main id="alphamain" hidden>
+  <section id="alphanav"></section>
+  <section id="alphamid"><p class="sub">Loading the checklist…</p></section>
 </main>
 <!-- The box simulator: one nuzlocke run to a chosen split, played to make
      the box worth as much as it can (tools/oxide/encounters/simulate.py). -->
@@ -1715,7 +1850,7 @@ function parseHash() {
   if (view === "dex") return { view, species: key };
   if (view === "moves") return { view, move: key };
   if (view === "trainers") return { view, trainer: key };
-  if (view === "calc" || view === "sim") return { view };
+  if (view === "calc" || view === "sim" || view === "alpha") return { view };
   return null;
 }
 
@@ -1748,6 +1883,383 @@ async function restore(p) {
 
 // Resolves once the view's list is loaded, so a jump from one view to a
 // row of another can select that row and scroll to it.
+// ---- the alpha checklist -----------------------------------------------
+// Every zone in walking order with what to check there (alpha.py). The
+// server rebuilds it from the tree on each load, so it follows the reward
+// placements and the combed teams as they land.
+
+let ALPHA = null, ALPHASPLIT = null, ALPHASTATE = null, ALPHAPOLL = null;
+const ANYWHERE = "Anywhere";
+
+async function loadAlpha() {
+  try {
+    [ALPHA, ALPHASTATE] = await Promise.all([api("/api/alpha"), api("/api/alpha/state")]);
+    if (!ALPHASPLIT) ALPHASPLIT = (ALPHA.splits.find(s => s.zones.length) || {}).split;
+    drawAlphaNav();
+    drawAlphaMid();
+    // The save ticks rows as Ian plays: every few seconds the state is read
+    // again, and only the ticks and the rail change, so a note being typed
+    // is never redrawn away.
+    if (!ALPHAPOLL) ALPHAPOLL = setInterval(pollAlpha, 5000);
+  } catch (e) {
+    toast(e.message, true);
+    $("#alphamid").innerHTML = `<p class="sub">${esc(e.message)}</p>`;
+  }
+}
+
+async function pollAlpha() {
+  if (VIEW !== "alpha" || !ALPHA) return;
+  try {
+    const next = await api("/api/alpha/state");
+    const changed = JSON.stringify(next.ticks) !== JSON.stringify(ALPHASTATE && ALPHASTATE.ticks)
+      || next.seq !== (ALPHASTATE && ALPHASTATE.seq);
+    ALPHASTATE = Object.assign(next, { feedback: ALPHASTATE ? ALPHASTATE.feedback : next.feedback });
+    if (changed) { applyAlphaTicks(); drawAlphaNav(); drawAlphaBar(); }
+  } catch (e) { /* the next poll tries again */ }
+}
+
+const zoneId = z => "az-" + z.replace(/[^A-Za-z0-9]+/g, "-");
+const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + "s")}`;
+const copiesOf = r => r.copies > 1 ? ` ×${r.copies}` : "";
+const noteOf = key => (ALPHASTATE && ALPHASTATE.feedback.notes[key]) || {};
+const beaten = key => !!(ALPHASTATE && ALPHASTATE.ticks && ALPHASTATE.ticks.trainers[key]);
+const picked = flag => !!(ALPHASTATE && ALPHASTATE.ticks && ALPHASTATE.ticks.pickups[String(flag)]);
+const zoneTrainers = z => z.trainers.concat(...z.gauntlets.map(g => g.trainers));
+
+// A zone's numbers as one line of words, the things Ian ticks off there.
+function zoneSummary(c) {
+  const out = [];
+  if (c.mandatory) out.push(plural(c.mandatory, "mandatory trainer"));
+  if (c.optional) out.push(plural(c.optional, "optional trainer"));
+  if (c.rewards) out.push(plural(c.rewards, "trainer reward"));
+  if (c.gauntlet) out.push(plural(c.gauntlet, "gauntlet trainer"));
+  if (c.balls) out.push(plural(c.balls, "ball"));
+  if (c.hidden) out.push(plural(c.hidden, "hidden item"));
+  if (c.gifts) out.push(plural(c.gifts, "gift"));
+  if (c.shop) out.push(plural(c.shop, "shop TM"));
+  if (c.wild) out.push(plural(c.wild, "wild table"));
+  if (c.checks) out.push(plural(c.checks, "in-game check"));
+  return out.join(", ") || "nothing new to check";
+}
+
+function drawAlphaNav() {
+  const d = ALPHA, ticked = !!(ALPHASTATE && ALPHASTATE.ticks);
+  const head = (split, label, sub) => `<button class="asplit ${split === ALPHASPLIT ? "on" : ""}"
+      data-split="${esc(split)}">${label}<span class="sub">${esc(sub)}</span></button>`;
+  let html = head(ANYWHERE, "Anywhere", plural(d.anywhere.length, "check"));
+  d.splits.forEach(s => {
+    if (!s.zones.length) return;
+    const all = s.zones.flatMap(zoneTrainers);
+    const done = all.filter(t => beaten(t.key)).length;
+    const sub = ticked && all.length ? `${done} of ${all.length} beaten`
+      : s.cap ? `cap ${s.cap}, ${plural(s.zones.length, "zone")}` : plural(s.zones.length, "zone");
+    html += head(s.split, splitTag(s.split), sub);
+    if (s.split !== ALPHASPLIT) return;
+    html += s.zones.map(z => {
+      const ts = zoneTrainers(z), n = ts.length, k = ts.filter(t => beaten(t.key)).length;
+      return `<div class="azlink ${n && k === n ? "alldone" : ""}" data-zone="${esc(z.zone)}"><span>${esc(z.zone)}</span>
+        <span class="num">${n ? (ticked ? `${k}/${n}` : plural(n, "trainer")) : ""}</span></div>`;
+    }).join("");
+  });
+  $("#alphanav").innerHTML = html;
+}
+
+// The feedback a row carries (check 3): fought, a rating out of 10 where the
+// row is a boss or a gauntlet section, and a note with a death beside it. The
+// row's key, name, zone and split ride on the wrapper, so every control
+// inside it posts to the same note.
+function fbControls(key, rated, fromSave) {
+  const n = noteOf(key), fought = n.fought || fromSave;
+  const rating = rated ? `<select class="fb-rating" title="Your rating, 1 to 10">
+      <option value="">rate</option>${[...Array(10)].map((_, i) =>
+        `<option ${n.rating === i + 1 ? "selected" : ""}>${i + 1}</option>`).join("")}</select>` : "";
+  return `<span class="afb">
+    <label title="${fromSave ? "Beaten, read from your save" : "Tick once fought"}"><input type="checkbox"
+      class="fb-fought" ${fought ? "checked" : ""} ${fromSave ? "disabled" : ""}> fought</label>
+    ${rating}<button class="fb-open">${n.note || n.death ? "Note *" : "Note"}</button></span>`;
+}
+
+function fbText(key) {
+  const n = noteOf(key), d = n.death, out = [];
+  if (n.note) out.push(`<span>${esc(n.note)}</span>`);
+  if (d) out.push(`<span class="death">Death: ${esc(d.mon || "a Pokémon")}, killed by ${esc(d.killer || "?")}${
+    d.saw === "yes" ? ", saw it coming" : d.saw === "no" ? ", did not see it coming" : ""}</span>`);
+  return out.length ? `<div class="afbtext">${out.join("")}</div>` : "";
+}
+
+function fbEditor(key) {
+  const n = noteOf(key), d = n.death || {};
+  return `<div class="afbedit" hidden>
+    <textarea class="fb-note" rows="3" placeholder="A note on this fight or place">${esc(n.note || "")}</textarea>
+    <div class="fbdeath"><b>A death here</b>
+      <input class="fb-mon" placeholder="Which Pokémon died" value="${esc(d.mon || "")}">
+      <input class="fb-killer" placeholder="What killed it" value="${esc(d.killer || "")}">
+      <select class="fb-saw"><option value="">Saw it coming?</option>
+        <option value="yes" ${d.saw === "yes" ? "selected" : ""}>Saw it coming</option>
+        <option value="no" ${d.saw === "no" ? "selected" : ""}>Did not see it coming</option></select></div>
+    <div><button class="fb-save">Save note</button> <button class="fb-cancel">Cancel</button>
+      ${n.stamp ? `<span class="sub">Last stamped ${esc(n.stamp.at)}${n.stamp.rom ? ", ROM " + esc(n.stamp.rom) : ""}${
+        n.stamp.badges != null ? ", " + plural(n.stamp.badges, "badge") : ""}</span>` : ""}</div></div>`;
+}
+
+const fbWrap = (key, label, zone, split, inner) => `<div class="afbrow" data-key="${esc(key)}"
+  data-label="${esc(label)}" data-zone="${esc(zone)}" data-split="${esc(split)}">${inner}${fbText(key)}${fbEditor(key)}</div>`;
+
+// A team on one row, each Pokemon's level under its sprite (Ian's layout
+// notes, 2026-10-07).
+const alphaTeam = team => `<span class="ateam">${team.map(m => `<span class="mon">${icon(m.species, true)}
+  <span class="lv">Lv ${m.level ?? "?"}</span></span>`).join("")}</span>`;
+
+// The version of a fight this save meets: the scripts pick a rival's team by
+// the player's starter, and Lucas's or Dawn's by the starter and gender.
+function yourVersion(t) {
+  const sv = ALPHASTATE && ALPHASTATE.save;
+  if (!sv || !sv.starter || t.tag) return null;
+  return t.teams.find(x => x.for && x.for.starter === sv.starter
+    && (!x.for.gender || x.for.gender === sv.gender)) || null;
+}
+
+// The teams of a fight: one team as a row; a tag fight's two opponents side
+// by side; a fight kept once per starter shows the save's version and folds
+// the rest behind one click, or, with no save to go by, sits them side by
+// side.
+function alphaTeams(t) {
+  if (t.planned) return `<span class="planned">planned; the main track creates it in step 10</span>`;
+  if (t.teams.length === 1) return alphaTeam(t.teams[0].team);
+  const box = x => `<div class="aver"><div class="alabel">${esc(x.label || x.constant)}</div>${alphaTeam(x.team)}</div>`;
+  const mine = yourVersion(t);
+  if (!mine) return `<div class="aversions">${t.teams.map(box).join("")}</div>`;
+  const rest = t.teams.filter(x => x !== mine);
+  return `<div class="aver mine"><div class="alabel">Your version: ${esc(mine.label)}</div>${alphaTeam(mine.team)}</div>
+    <details class="arest"><summary>The other ${plural(rest.length, "version")}</summary>
+      <div class="aversions">${rest.map(box).join("")}</div></details>`;
+}
+
+// One trainer as a card: its standing (boss, mandatory, optional), its name
+// opening the Trainers tab, its reward and its feedback on the top line,
+// then its team.
+function alphaTrainer(t, zone, split) {
+  const chip = t.kind === "boss" ? `<span class="chip boss">Boss</span>`
+    : t.required ? `<span class="chip req">Mandatory</span>` : `<span class="chip opt">Optional</span>`;
+  const stem = c => c.replace(/^TRAINER_/, "").toLowerCase();
+  const sub = [t.section ? "gauntlet " + t.section : "", t.tag ? "tag battle" : ""].filter(Boolean).join(", ");
+  const won = beaten(t.key);
+  const reward = t.rewards.length
+    ? `<span class="areward">Reward: ${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span>` : "";
+  return fbWrap(t.key, t.name, zone, split, `<div class="atr ${won ? "beaten" : ""}" data-tick="${esc(t.key)}">
+    <div class="athead">${chip}<span class="who">${t.planned ? esc(t.name)
+      : `<a href="#" data-tr="${esc(stem(t.constants[0]))}" title="Open in the Trainers tab">${esc(t.name)}</a>`}${
+      sub ? ` <span class="sub">${esc(sub)}</span>` : ""}</span>${reward}${fbControls(t.key, t.kind === "boss", won)}</div>
+    ${alphaTeams(t)}</div>`);
+}
+
+// A ball, hidden item or gift, in plain words: what is there now, what opens
+// the way to it, and what the reward table puts there (until step 10 places
+// it); a ball or hidden item ticks itself once the save has it picked up.
+function alphaItem(p) {
+  const kind = { ball: "Ball", hidden: "Hidden item", gift: "Gift" }[p.how] || p.how;
+  const now = p.item ? `<b>${esc(p.label)}</b>` : `<span class="planned">nothing yet</span>`;
+  const needs = p.needs && p.needs !== "foot" ? ` <span class="sub">needs ${esc(p.needs)}</span>` : "";
+  const r = p.placed;
+  // Once step 10 has applied the reward table, a place holds its reward
+  // itself: the row shows the item, tagged, with no second line. A place
+  // that still differs from the table says what the table puts there.
+  const applied = r && p.item && r.item === p.item;
+  const tag = applied ? ` <span class="tag" title="The reward table's, in place">reward table${esc(copiesOf(r))}</span>` : "";
+  const table = !r || applied ? ""
+    : !p.item ? `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here, a new ${esc(p.how)}.</div>`
+    : `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here instead.</div>`;
+  const box = p.flag != null && ALPHASTATE && ALPHASTATE.ticks
+    ? `<input type="checkbox" disabled data-flag="${p.flag}" ${picked(p.flag) ? "checked" : ""}
+         title="Picked up, read from your save">` : "";
+  return `<div class="it"><div>${box}<span class="tag">${esc(kind)}</span> ${applied ? "" : "Now: "}${now}${tag}${needs}</div>${table}</div>`;
+}
+
+// The checklist's own Markdown, inline: code, bold and a link's text.
+const mdInline = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>")
+  .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+
+// An in-game check: its whole first sentence, rendered; its checklist
+// section as a separate muted tag; the rest of the check when opened.
+function alphaChecks(list) {
+  return `<div class="achecks">${list.map(c => `<details class="${c.done ? "done" : ""}">
+    <summary><span class="first">${mdInline(c.first || c.key)}</span>${
+      c.live ? ` <span class="tag" title="Read by an agent attached to melonDS">live</span>` : ""}
+      <span class="tag sect">${esc(c.section)}</span></summary>${c.rest ? `<p>${mdInline(c.rest)}</p>` : ""}</details>`).join("")}</div>`;
+}
+
+// Species as sprites with their names under them, as the Tables tab shows a table.
+const alphaMons = (ids, names) => `<div class="amons">${ids.map((sp, i) => `<span class="amon">${icon(sp, true)}
+  <span>${esc(names[i] || sp)}</span></span>`).join("")}</div>`;
+
+function alphaZone(z, split) {
+  const zkey = `zone:${split}:${z.zone}`;
+  const parts = [fbWrap(zkey, z.zone, z.zone, split, `<div class="azhead"><div><h2>${esc(z.zone)}</h2>
+    <span class="azsum">${esc(zoneSummary(z.counts))}</span></div>
+    <span class="afb"><button class="fb-open" title="A note on this place">${
+      noteOf(zkey).note || noteOf(zkey).death ? "Zone note *" : "Zone note"}</button></span></div>`)];
+  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div class="atgrid">${
+    z.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
+  z.gauntlets.forEach(g => {
+    const gkey = `gauntlet:${split}:${g.section}`;
+    parts.push(`<div class="agaunt">${fbWrap(gkey, "Gauntlet " + g.section, z.zone, split,
+      `<div class="ghead"><span>Gauntlet section: ${esc(g.section)}</span>${fbControls(gkey, true, false)}</div>`)}
+      <div class="atgrid">${g.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div></div>`);
+  });
+  const items = z.pickups.concat(z.gifts.map(g => Object.assign({ how: "gift" }, g)));
+  if (items.length) parts.push(`<h3>Items</h3><div class="alist">${items.map(alphaItem).join("")}</div>`);
+  if (z.shop.length) parts.push(`<h3>Shop TMs</h3><div class="alist">${z.shop.map(s =>
+    `<div class="it"><b>${esc(s.label + copiesOf(s))}</b> <span class="sub">${s.kind === "prize" ? "Game Corner prize" : "shop"}, from ${
+      plural(s.badges, "badge")}</span></div>`).join("")}</div>`);
+  if (z.wild.length || z.scripted.length) parts.push(`<h3>Encounters</h3><div class="awild">${
+    z.wild.map(w => `<div class="atable"><a href="#" data-area="${esc(w.area)}" title="Open in the Tables tab">${esc(w.label)}</a>
+      ${alphaMons(w.species_ids || [], w.species)}</div>`).join("")}${
+    z.scripted.map(s => `<div class="atable"><span><b>${esc(s.label)}</b> <span class="sub">${esc(s.kind)}${
+      s.planned ? ", planned" : ""}${s.level ? ", level " + s.level : ""}</span></span>
+      ${alphaMons(s.pool_ids || [], s.pool)}</div>`).join("")}</div>`);
+  if (z.checks.length) parts.push(`<h3>In-game checks</h3>${alphaChecks(z.checks)}`);
+  return `<div class="azone" id="${zoneId(z.zone)}">${parts.join("")}</div>`;
+}
+
+// The line over the split: what the save says, and the run's notes.
+function drawAlphaBar() {
+  const bar = $("#alphabar");
+  if (!bar) return;
+  const st = ALPHASTATE || {}, sv = st.save, fb = st.feedback || { notes: {} };
+  const n = Object.keys(fb.notes || {}).length;
+  const save = st.save_error ? `Your save cannot be read for ticks: ${st.save_error}.`
+    : sv ? `From your save${sv.rom ? ` (ROM ${sv.rom})` : ""}: ${plural(sv.badges || 0, "badge")}${
+        sv.split ? `, ${sv.split}'s split` : ""}.`
+    : "No save is watched, so nothing ticks itself; set one in the Calc tab's save bar.";
+  const run = `${plural(n, "note")} this run${fb.started ? `, started ${fb.started}` : ""}${
+    fb.from === "export" ? " (read back from the export)" : ""}.`;
+  bar.innerHTML = `<span>${esc(save)} ${esc(run)}</span>
+    <button id="alpha-export" title="Write the notes to docs/oxide/encounters/alpha-notes.json and .md, which Commit my edits commits">Export notes</button>
+    <button id="alpha-newrun" title="Set this run's notes aside and start empty">New run</button>`;
+}
+
+function drawAlphaMid() {
+  const d = ALPHA, src = d.sources;
+  const from = src.roles === "working tree" ? ""
+    : `<p class="asrc">The trainer roles and the reward table are read from ${esc(src.roles || "nowhere")} until they land.</p>`;
+  const top = `<div id="alphabar"></div>${from}`;
+  const keep = $("#alphamid").scrollTop;
+  if (ALPHASPLIT === ANYWHERE) {
+    $("#alphamid").innerHTML = `<h1>Anywhere</h1>${top}
+      <p class="asrc">The in-game checks no zone holds: the test kit's, and the ones checked wherever you are.</p>
+      <div class="azone">${alphaChecks(d.anywhere)}</div>`;
+  } else {
+    const s = d.splits.find(x => x.split === ALPHASPLIT);
+    if (!s) return;
+    $("#alphamid").innerHTML = `<h1>${esc(s.split)}'s split${s.cap ? `, cap ${s.cap}` : ""}</h1>${top}`
+      + s.zones.map(z => alphaZone(z, s.split)).join("");
+  }
+  drawAlphaBar();
+  $("#alphamid").scrollTop = drawAlphaMid.keepScroll ? keep : 0;
+  drawAlphaMid.keepScroll = false;
+}
+
+// The save's ticks, put in place without redrawing anything else.
+function applyAlphaTicks() {
+  document.querySelectorAll("#alphamid [data-tick]").forEach(row => {
+    const won = beaten(row.dataset.tick), box = row.querySelector(".fb-fought");
+    row.classList.toggle("beaten", won);
+    if (box) {
+      box.disabled = won;
+      box.checked = won || !!noteOf(row.dataset.tick).fought;
+    }
+  });
+  document.querySelectorAll("#alphamid input[data-flag]").forEach(box => {
+    box.checked = picked(box.dataset.flag);
+  });
+}
+
+async function postAlphaNote(wrap, fields) {
+  const body = { key: wrap.dataset.key, label: wrap.dataset.label, zone: wrap.dataset.zone,
+                 split: wrap.dataset.split, fields };
+  const r = await api("/api/alpha/feedback", { method: "POST",
+    headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  ALPHASTATE.feedback.notes[r.key] = r.entry;
+  return r.entry;
+}
+
+$("#alphanav").addEventListener("click", ev => {
+  const sp = ev.target.closest("[data-split]");
+  if (sp) {
+    ALPHASPLIT = sp.dataset.split;
+    drawAlphaNav();
+    drawAlphaMid();
+    return;
+  }
+  const z = ev.target.closest("[data-zone]");
+  if (z) {
+    const card = document.getElementById(zoneId(z.dataset.zone));
+    if (card) card.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+});
+$("#alphamid").addEventListener("change", async ev => {
+  const wrap = ev.target.closest(".afbrow");
+  if (!wrap) return;
+  try {
+    if (ev.target.classList.contains("fb-fought")) await postAlphaNote(wrap, { fought: ev.target.checked });
+    else if (ev.target.classList.contains("fb-rating"))
+      await postAlphaNote(wrap, { rating: ev.target.value ? +ev.target.value : null });
+    else return;
+    toast("Saved");
+    drawAlphaBar();
+  } catch (e) { toast(e.message, true); }
+});
+$("#alphamid").addEventListener("click", async ev => {
+  const wrap = ev.target.closest(".afbrow");
+  if (ev.target.closest("#alpha-export")) {
+    try {
+      const r = await api("/api/alpha/export", { method: "POST", headers: { "Content-Type": "application/json" },
+                                                 body: "{}" });
+      toast("Written: " + r.written.join(", "));
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
+  if (ev.target.closest("#alpha-newrun")) {
+    if (!confirm("Set this run's notes aside (kept under their start date) and start a new run?")) return;
+    try {
+      const r = await api("/api/alpha/newrun", { method: "POST", headers: { "Content-Type": "application/json" },
+                                                 body: "{}" });
+      ALPHASTATE.feedback = r.feedback;
+      drawAlphaMid();
+      toast("A new run started");
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-open")) {
+    const ed = wrap.querySelector(".afbedit");
+    ed.hidden = !ed.hidden;
+    if (!ed.hidden) ed.querySelector(".fb-note").focus();
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-cancel")) {
+    wrap.querySelector(".afbedit").hidden = true;
+    return;
+  }
+  if (wrap && ev.target.closest(".fb-save")) {
+    const ed = wrap.querySelector(".afbedit"), v = s => ed.querySelector(s).value.trim();
+    const death = v(".fb-mon") || v(".fb-killer") || v(".fb-saw")
+      ? { mon: v(".fb-mon"), killer: v(".fb-killer"), saw: v(".fb-saw") || null } : null;
+    try {
+      await postAlphaNote(wrap, { note: v(".fb-note"), death });
+      toast("Note saved");
+      drawAlphaMid.keepScroll = true;
+      drawAlphaMid();
+    } catch (e) { toast(e.message, true); }
+    return;
+  }
+  const hit = ev.target.closest("[data-sp], [data-tr], [data-area]");
+  if (!hit) return;
+  ev.preventDefault();
+  if (hit.dataset.sp) openSpecies(hit.dataset.sp);
+  else if (hit.dataset.tr) openTrainer(hit.dataset.tr);
+  else if (hit.dataset.area) openTable(hit.dataset.area);
+});
+
 // ---- the box simulator -------------------------------------------------
 
 let SIM = null;
@@ -1971,9 +2483,25 @@ function sortTrainers() {
   const play = (a, b) => (order.has(a.split) ? order.get(a.split) : 99)
     - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
     || a.label.localeCompare(b.label);
-  const scale = r => r.score ? r.score.scale : -Infinity;
-  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
+  // Hardest first by the difficulty number; a trainer not read yet after
+  // every one that has been, in play order.
+  const hard = r => r.difficulty ? r.difficulty.difficulty : -Infinity;
+  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => hard(b) - hard(a) || play(a, b) : play);
 }
+
+// The difficulty number (Ian, 2026-10-07): average faints plus 40 times the
+// losing rate, from the scoring track's readings (trainers.stored_difficulty).
+const fmtHard = v => v < 10 ? v.toFixed(2) : v.toFixed(1);
+const hardTitle = d => `Difficulty: average faints ${d.faints.toFixed(2)} plus 40 times the losing rate `
+  + `${(1 - d.won).toFixed(2)}; won ${Math.round(d.won * 100)}%${d.clean != null
+  ? `, clean ${Math.round(d.clean * 100)}%` : ""}${d.fights ? `, over ${d.fights} fights` : ""}${
+  d.date ? `, read ${d.date}` : ""}${d.unlucky != null ? `; very unlucky ${fmtHard(d.unlucky)}` : ""}${
+  d.team === "study" ? ". Read on the Kaizo study's rewrite of this team, not the team in the file" : ""}${
+  d.stale ? `. Stale: ${d.stale}` : ""}`;
+const hardNum = d => d
+  ? ` <b class="num trscore${d.stale ? " stale" : ""}${d.team === "study" ? " study" : ""}" title="${
+      esc(hardTitle(d))}">${fmtHard(d.difficulty)}</b>`
+  : ` <span class="sub notread" title="The scorer has not read this fight yet">not read</span>`;
 
 function trainerMatch(r) {
   const q = ($("#trainfilter").value || "").trim().toLowerCase();
@@ -1981,7 +2509,7 @@ function trainerMatch(r) {
   if (split === "-" ? r.split : split && r.split !== split) return false;
   if (!q) return true;
   const word = q.replace(/ /g, "_");
-  return r.label.toLowerCase().includes(q)
+  return r.label.toLowerCase().includes(q) || (r.version || "").toLowerCase().includes(q)
     || (r.kind === "pair" ? r.stems.some(s => s.includes(word)) : r.stem.includes(word))
     || r.party.some(m => folderOf(m.species).includes(word));
 }
@@ -1998,33 +2526,28 @@ function pairHow(p) {
   return "both see you at once" + (p.each_alone ? ", or one at a time" : "");
 }
 
-const scoreTitle = s => `Stored score on Ian's fight scale (${s.band})${s.fight
-  ? ", the story fight " + s.fight : ""}; a team saved since the last rescore still shows the old one`;
 
 function trainerRow(r, sub) {
   return `
     <div class="trrow${sub ? " sub" : ""}${r.stem === TRSEL && !TRPAIR ? " on" : ""}" data-tr="${r.stem}">
       <span class="nm">${esc(r.label || r.stem)}${r.double
-        ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}</span>
+        ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}${
+        r.version ? `<span class="ver" title="Which version of the fight this is">${esc(r.version)}</span>` : ""}</span>
       <span>${sub ? "" : splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
-        r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
-        scoreTitle(r.score))}">${r.score.scale.toFixed(1)}</b>` : ""}</span>
+        r.top}${r.cap ? " / " + r.cap : ""}</span>${hardNum(r.difficulty)}</span>
       <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
     </div>`;
 }
 
 function pairRow(p) {
   const open = TROPEN.has(p.key);
-  const scores = p.scores.map(s => s ? s.scale.toFixed(1) : "none").join(" and ");
   return `
     <div class="trrow pair${TRPAIR && TRPAIR.key === p.key ? " on" : ""}" data-pair="${esc(p.key)}">
       <span class="nm"><button class="linkish fold-pair" data-open="${esc(p.key)}"
           title="${open ? "Fold" : "Show"} its two trainers">${open ? "▾" : "▸"}</button>
         ${esc(p.label)}</span>
       <span><span class="tag" title="${esc(pairHow(p))}">double</span> ${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
-        p.top}${p.cap ? " / " + p.cap : ""}</span>${p.score ? ` <b class="num trscore" title="${esc(
-        `Each trainer's own stored score, ${scores}, until the balance track scores the pair as one fight`)}">${
-        p.score.scale.toFixed(1)}</b>` : ""}</span>
+        p.top}${p.cap ? " / " + p.cap : ""}</span>${hardNum(p.difficulty)}</span>
       <span class="party">${p.parties.map(party => party.map(m => icon(m.species)).join("")).join(
         '<span class="pairgap" title="and"></span>')}</span>
     </div>${open ? p.members.map(m => trainerRow(m, true)).join("") : ""}`;
@@ -2182,10 +2705,29 @@ async function scoreTrainer() {
 // estimate, `scored` the last full score ({result, team}), and `team` what
 // is being edited now, which says whether that full score is stale. The
 // stored score is the list's, from the last rescore.
+// The difficulty number first (Ian, 2026-10-07): the scorer's reading of this
+// fight as one number, with the three it comes from and whether it is stale.
+function hardBlock() {
+  const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
+    : TRAINERS.rows.find(r => r.stem === TRSEL));
+  const d = row && row.difficulty;
+  if (!d) return `<h2>Difficulty</h2><p class="sub">Not read yet: the scorer has no reading of this
+    fight. Goal 3 reads every fight; until then only the fights already read have a number.</p>`;
+  const pc = v => Math.round(v * 100) + "%";
+  return `<h2>Difficulty</h2><div class="scorebig"><b class="scorenum big${d.stale ? " stale" : ""}">${
+      fmtHard(d.difficulty)}</b><span class="sub">average faints plus 40 times the losing rate, at real odds</span></div>
+    <p class="sub">Won ${pc(d.won)}${d.clean != null ? `, clean ${pc(d.clean)}` : ""}, ${d.faints.toFixed(2)} faints
+      a fight${d.fights ? `, over ${d.fights} fights` : ""}${d.date ? `; read ${esc(d.date)}` : ""}.${
+      d.unlucky != null ? ` Very unlucky, ${fmtHard(d.unlucky)}.` : ""}</p>
+    ${d.team === "study" ? `<p class="stalenote">Read on the Kaizo study's rewrite of this team, not the team
+      in the file; the file's own team is not read yet.</p>` : ""}
+    ${d.stale ? `<p class="stalenote">Stale: ${esc(d.stale)}. Goal 3 reads it again.</p>` : ""}`;
+}
+
 function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
   const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
     : TRFINDINGS.some(f => f.severity === "error");
-  const head = `<h2>Score${TRPAIR ? ", the pair as one fight" : ""}</h2>`;
+  const head = hardBlock() + `<h3 class="oldscale">The old fight scale${TRPAIR ? ", the pair as one fight" : ""}</h3>`;
   if (!e) return head + `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
   if (e.error) return head + `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
   const pc = v => Math.round(v * 100) + "%";
@@ -2689,8 +3231,10 @@ async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain):not(#alphamain)").hidden = view !== "tables";
   $("#simmain").hidden = view !== "sim";
+  $("#alphamain").hidden = view !== "alpha";
+  if (view === "alpha" && !ALPHA) loadAlpha();
   $("#trainmain").hidden = view !== "trainers";
   if (view === "sim" && !SIM) simulate(true);
   $("#dexmain").hidden = view !== "dex";
@@ -3380,7 +3924,7 @@ async function commitEdits() {
     if (!r.ok) toast(j.error || "Not committed", true);
     else toast(`Committed and pushed as ${j.head}`);
   } catch (e) { toast(e.message, true); }
-  $("#edits-label").textContent = "Commit my edits";
+  $("#edits-label").innerHTML = `Commit<span class="wide-only"> my edits</span>`;
   refreshSaves();
 }
 

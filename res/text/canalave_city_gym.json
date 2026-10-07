@@ -48,8 +48,8 @@
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains the move\n",
         "{STRVAR_1 6, 1, 0}.\r",
-        "If it hits, it may also lower the\n",
-        "target’s Special Defense."
+        "If it hits, it may also raise the\n",
+        "user’s Defense."
       ]
     },
     {

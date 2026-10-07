@@ -115,8 +115,8 @@ SunyshoreCityGymRoom3_017F:
     ReleaseAll
     End
 SunyshoreCityGymRoom3_0185:
-    SetVarFromValue VAR_0x8004, 384
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM74
+    SetVarFromValue VAR_0x8005, 2
     SetVarFromValue VAR_OBJ_GFX_ID_6, 78
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

@@ -151,8 +151,8 @@ CanalaveCityGym_0206:
     ReleaseAll
     End
 CanalaveCityGym_020C:
-    SetVarFromValue VAR_0x8004, 418
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM47
+    SetVarFromValue VAR_0x8005, 2
     SetVarFromValue VAR_OBJ_GFX_ID_6, 56
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

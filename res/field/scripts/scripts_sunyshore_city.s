@@ -572,8 +572,8 @@ SunyshoreCity_08B4:
     Return
 SunyshoreCity_08C0:
     Message 6
-    SetVarFromValue VAR_0x8004, 426
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM19
+    SetVarFromValue VAR_0x8005, 2
     CallCommonScript 2044
     SetFlag FLAG_RECEIVED_SUNYSHORE_CITY_HM07
     Message 7

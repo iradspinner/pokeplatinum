@@ -5329,6 +5329,9 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
         case AFTER_MOVE_HIT_STATE_LIFE_ORB:
             if (itemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
                 && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+                // Oxide: a move Sheer Force boosts costs its user no Life Orb
+                // recoil (Ian, 2026-10-07), as on the pivot moves' path.
+                && Battler_SheerForceActive(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
                 && CURRENT_MOVE_DATA.class != CLASS_STATUS

@@ -15,8 +15,9 @@ Run from the repository root (scriptdis reads its command table from there).
 Apply is idempotent: run it again on an applied tree and nothing changes.
 
 The table's columns are reward, copies, kind, split, map, place, replaces,
-trainer_id and note. reward and replaces are item constants, map a map header
-constant. What each kind writes, and what its place column holds:
+trainer_id, badges and note. reward and replaces are item constants, map a
+map header constant, badges a count from 0 to 8 (shop rows only). What each
+kind writes, and what its place column holds:
 
 ball     An item ball. place is the ball's object id on the map
          (LOCALID_ITEM_...), or empty when replaces names the one ball on the
@@ -35,7 +36,19 @@ trainer  An optional trainer's reward. trainer_id names the trainer
          (TRAINER_YOUNGSTER_MICHAEL, youngster_michael or its number), who
          must stand on the map as a sight or talk trainer; place is not read.
 mart     A mart's stock. place is the mart (MART_SPECIALTIES_ID_...); the
-         item is added, or put in the place of replaces. copies is not read.
+         item is added, or put in the place of replaces. A TM with a badge
+         count is sold once (below); copies is then what one purchase gives,
+         and is not read otherwise.
+prize    A Game Corner prize, in src/scrcmd_game_corner_prize.c's list. The
+         reward takes the place of replaces and its coin price; a TM with a
+         badge count is sold once, giving copies. A row whose reward is
+         ITEM_NONE, with copies 0, takes replaces off the list.
+
+A TM sold once (Ian, 2026-10-06) is listed only from its badge count and
+only until it is bought: include/data/sold_tms.h, which this writes from the
+mart and prize rows, gives each its badges, its copies and a bit in the
+saved variables VAR_SOLD_TMS_0 and VAR_SOLD_TMS_1, kept for good once given,
+as the trainer rewards keep their flags.
 
 A trainer's reward is given automatically straight after the player wins
 (Ian, 2026-10-06), whether the trainer saw the player or was talked to, in
@@ -50,8 +63,9 @@ leaves the table frees its flag for a later run, and a save that set it would
 then count the next trainer given it as rewarded already; mid-run hotfixes
 should keep reward trainers rather than drop them.
 
-Files outside res/field/ that a row can write: hidden_items.h (hidden) and
-mart_items.h (mart). Every changed script or events file must also be in the
+Files outside res/field/ that a row can write: hidden_items.h (hidden),
+mart_items.h (mart), scrcmd_game_corner_prize.c (prize) and sold_tms.h
+(mart and prize). Every changed script or events file must also be in the
 DIVERGED register of bulk_scripts.py or bulk_events.py; `check` lists any
 that are not.
 """
@@ -67,8 +81,13 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
-COLUMNS = ["reward", "copies", "kind", "split", "map", "place", "replaces", "trainer_id", "note"]
-KINDS = ("ball", "hidden", "gift", "trainer", "mart")
+COLUMNS = ["reward", "copies", "kind", "split", "map", "place", "replaces", "trainer_id", "badges", "note"]
+OPTIONAL_COLUMNS = ("badges",)
+KINDS = ("ball", "hidden", "gift", "trainer", "mart", "prize")
+PRIZES_C = "src/scrcmd_game_corner_prize.c"
+SOLD_TMS_H = "include/data/sold_tms.h"
+MAX_SOLD_TMS = 32  # two 16-bit saved variables
+MAX_BADGES = 8
 DEFAULT_TABLE = "docs/oxide/reward-placements.tsv"
 DEFAULT_ROLES = "docs/oxide/trainer-roles.tsv"
 DEFAULT_ROM = "build/pokeplatinum.us.nds"
@@ -230,13 +249,13 @@ def read_table(path):
         cells = [c.strip() for c in line.split("\t")]
         if header is None:
             header = cells
-            missing = [c for c in COLUMNS if c not in header]
+            missing = [c for c in COLUMNS if c not in header and c not in OPTIONAL_COLUMNS]
             if missing:
                 raise TableError(f"{path}: the header lacks {', '.join(missing)}")
             continue
         cells += [""] * (len(header) - len(cells))
         rec = {c: ("" if v == "-" else v) for c, v in zip(header, cells)}
-        rows.append(Row(**{c: rec[c] for c in COLUMNS}, line=n))
+        rows.append(Row(**{c: rec.get(c, "") for c in COLUMNS}, line=n))
     return rows
 
 
@@ -274,21 +293,38 @@ class Placement:
             raise TableError(f"kind {row.kind!r} is not one of {', '.join(KINDS)}")
         self.kind = row.kind
         self.reward = tree.item(row.reward)
-        if not self.reward or self.reward == "ITEM_NONE":
+        # A prize row whose reward is ITEM_NONE takes a prize off the list.
+        self.removes = self.kind == "prize" and self.reward == "ITEM_NONE"
+        if not self.reward or (self.reward == "ITEM_NONE" and not self.removes):
             raise TableError(f"reward {row.reward!r} is not an item")
         self.replaces = None
         if row.replaces:
             self.replaces = tree.item(row.replaces)
             if not self.replaces:
                 raise TableError(f"replaces {row.replaces!r} is not an item")
+        self.badges = None
+        if row.badges:
+            if self.kind not in ("mart", "prize"):
+                raise TableError("only a mart or prize row has a badge count")
+            if not row.badges.isdigit() or int(row.badges) > MAX_BADGES:
+                raise TableError(f"badges {row.badges!r} is not a count from 0 to {MAX_BADGES}")
+            self.badges = int(row.badges)
+        # Sold once, from a badge count (include/data/sold_tms.h).
+        self.sold_once = self.badges is not None and not self.removes
         self.copies = None
-        if self.kind != "mart":
+        if self.removes:
+            if row.copies not in ("", "0"):
+                raise TableError("a row that takes a prize off the list has copies 0")
+        elif self.kind not in ("mart", "prize") or self.sold_once:
             if not row.copies.isdigit() or not 1 <= int(row.copies) <= 99:
                 raise TableError(f"copies {row.copies!r} is not a count from 1 to 99")
             self.copies = int(row.copies)
         self.header = None
-        if self.kind != "mart":
+        if self.kind not in ("mart", "prize"):
             self.header, _ = tree.header(row.map)
+        if self.kind == "prize" and not self.replaces:
+            raise TableError("a prize row names the prize it replaces, whose coin price it takes, "
+                             "or which it takes off the list")
         self.place = row.place
         self.tile = tile(row.place)
         if self.kind == "trainer" and not row.trainer_id:
@@ -302,6 +338,8 @@ class Placement:
     def where(self):
         if self.kind == "mart":
             return f"mart {self.place}" + (f" replacing {self.replaces}" if self.replaces else "")
+        if self.kind == "prize":
+            return f"prize {'removing' if self.removes else 'replacing'} {self.replaces}"
         bits = [self.kind, self.row.map]
         if self.kind == "trainer":
             bits.append(self.trainer)
@@ -317,6 +355,8 @@ class Placement:
             return ("trainer", self.trainer, self.reward)
         if self.kind == "mart":
             return ("mart", self.place, self.reward)
+        if self.kind == "prize":
+            return ("prize", self.replaces)
         if self.kind == "gift":
             return ("gift", self.header, self.replaces)
         return (self.kind, self.header, self.place or self.replaces)
@@ -636,6 +676,101 @@ class Marts:
         self.tree.write(MARTS_H, text[:a] + "\n".join(body) + text[b:])
 
 
+def block(lines, begin, rel):
+    """The line numbers of a tool-owned block's begin and end markers."""
+    end = begin.replace("(begin)", "(end)")
+    if begin not in lines or end not in lines:
+        raise TableError(f"{rel} has lost its '{begin}' block")
+    return lines.index(begin), lines.index(end)
+
+
+PRIZE_LINE = re.compile(r"^(\s*)\{ (ITEM_\w+), (\d+) \},$")
+
+
+class Prizes:
+    """The Game Corner's prize list in src/scrcmd_game_corner_prize.c."""
+
+    BEGIN = "// place_rewards.py: Game Corner prizes (begin)"
+
+    def __init__(self, tree):
+        self.tree = tree
+
+    def entries(self):
+        """[(line, item, coins)] in the list's order."""
+        lines = self.tree.read(PRIZES_C).split("\n")
+        a, b = block(lines, self.BEGIN, PRIZES_C)
+        return lines, [(i, m.group(2), int(m.group(3)))
+                       for i in range(a, b) if (m := PRIZE_LINE.match(lines[i]))]
+
+    def place_all(self, rows):
+        """Every prize row at once. Rows chain (TM61 takes TM24's slot while
+        TM24 takes TM90's), so one row at a time would swap a reward a
+        second time on a rerun; the rows are one substitution over the list
+        as it stands, and the list counts as applied when every reward is
+        on it and no prize a row replaces or removes is."""
+        if not rows:
+            return
+        lines, entries = self.entries()
+        items = {item for _i, item, _coins in entries}
+        swaps = {p.replaces: p.reward for p in rows if not p.removes}
+        removes = {p.replaces for p in rows if p.removes}
+        gone = (set(swaps) - set(swaps.values())) | removes
+        if set(swaps.values()) <= items and not gone & items:
+            return
+        missing = sorted(r for r in set(swaps) | removes if r not in items)
+        if missing:
+            raise TableError(f"the Game Corner has no prize {', '.join(missing)} (or the list is "
+                             "only partly applied)")
+        out = []
+        for i, line in enumerate(lines):
+            m = PRIZE_LINE.match(line)
+            if m and any(i == at for at, _item, _coins in entries):
+                if m.group(2) in removes:
+                    continue
+                if m.group(2) in swaps:
+                    line = f"{m.group(1)}{{ {swaps[m.group(2)]}, {m.group(3)} }},"
+            out.append(line)
+        self.tree.write(PRIZES_C, "\n".join(out))
+
+
+SOLD_LINE = re.compile(r"^\s*\{ (ITEM_\w+), (\d+), (\d+), (\d+) \},$")
+
+
+class SoldTMs:
+    """include/data/sold_tms.h: every item a shop or prize row sells once,
+    with its badges, its copies and its bit. A bit, once given, is kept by
+    its item on every later run."""
+
+    BEGIN = "// place_rewards.py: sold TMs (begin)"
+
+    def __init__(self, tree):
+        self.tree = tree
+
+    def write(self, placements):
+        lines = self.tree.read(SOLD_TMS_H).split("\n")
+        a, b = block(lines, self.BEGIN, SOLD_TMS_H)
+        kept = {m.group(1): int(m.group(4)) for line in lines[a:b]
+                if (m := SOLD_LINE.match(line)) and m.group(1) != "ITEM_NONE"}
+        rows = [p for p in placements if p.sold_once]
+        seen = collections.Counter(p.reward for p in rows)
+        twice = sorted(item for item, n in seen.items() if n > 1)
+        if twice:
+            raise TableError(f"sold once at two counters: {', '.join(twice)}")
+        if len(rows) > MAX_SOLD_TMS:
+            raise TableError(f"{len(rows)} items are sold once; the two saved variables hold {MAX_SOLD_TMS}")
+        bits = {p.reward: kept[p.reward] for p in rows if p.reward in kept}
+        free = (bit for bit in range(MAX_SOLD_TMS) if bit not in bits.values())
+        for p in rows:
+            if p.reward not in bits:
+                bits[p.reward] = next(free)
+        body = ["static const SoldTM sSoldTMs[] = {"]
+        body += [f"    {{ {p.reward}, {p.badges}, {p.copies}, {bits[p.reward]} }},"
+                 for p in sorted(rows, key=lambda p: (p.badges, bits[p.reward]))]
+        body += ["    { ITEM_NONE, 0, 0, 0 },", "};"]
+        self.tree.write(SOLD_TMS_H, "\n".join(lines[:a + 1] + body + lines[b:]))
+        return bits
+
+
 # ------------------------------------------------------------------ gifts
 
 GIVE_LINE = re.compile(r"^\s+(Common_GiveItemQuantity|Common_GiveItemQuantityNoLineFeed"
@@ -690,13 +825,18 @@ def place_gift(tree, p):
     return text_mentions(tree, p)
 
 
-def item_words(tree, item):
+def item_words(tree, item, vanilla=True):
     """The words a line of dialogue would use for an item: its name and, for
-    a TM, the move it teaches."""
+    a TM, the move it teaches. The dialogue was written for vanilla's TMs,
+    and the TM pass gives TM numbers new moves, so with vanilla the record
+    is read from `main` where git has it, and from the tree otherwise."""
     words = []
     rel = f"res/items/data/{item[len('ITEM_'):].lower()}.json"
-    if tree.exists(rel):
-        data = json.loads(tree.read(rel))
+    import subprocess
+    proc = subprocess.run(["git", "-C", tree.root, "show", f"main:{rel}"], capture_output=True, text=True) \
+        if vanilla else None
+    if (proc and proc.returncode == 0) or tree.exists(rel):
+        data = json.loads(proc.stdout if proc and proc.returncode == 0 else tree.read(rel))
         words.append(data.get("name", ""))
         move = data.get("teachesMove")
         if move and move != "MOVE_NONE":
@@ -708,9 +848,13 @@ def text_mentions(tree, p):
     """Lines in the map's text bank that name the item a gift used to give,
     which the gift's dialogue may still promise."""
     rel = tree.text_rel(p.header)
-    if not rel or not tree.exists(rel) or p.replaces == p.reward:
+    if not rel or not tree.exists(rel):
         return []
+    # The same item can still have changed, when its TM number teaches a new
+    # move since the TM pass.
     words = item_words(tree, p.replaces)
+    if set(words) == set(item_words(tree, p.reward, vanilla=False)):
+        return []
     out = []
     for msg in json.loads(tree.read(rel)).get("messages", []):
         text = "".join(msg.get("en_US", [])) if isinstance(msg.get("en_US"), list) else str(msg.get("en_US", ""))
@@ -946,8 +1090,17 @@ def apply(tree, placements, roles=None):
         except TableError as e:
             errors.append(f"{p}: {e}")
     try:
+        Prizes(tree).place_all([p for p in placements if p.kind == "prize"])
+    except TableError as e:
+        errors.append(str(e))
+    try:
         flags = place_trainers(tree, [p for p in placements if p.kind == "trainer"], spare)
         notes += [f"{t} rewards under {f}" for t, f in sorted(flags.items())]
+    except TableError as e:
+        errors.append(str(e))
+    try:
+        if tree.exists(SOLD_TMS_H):
+            SoldTMs(tree).write(placements)
     except TableError as e:
         errors.append(str(e))
     if errors:
@@ -1155,6 +1308,39 @@ class RomReader:
             out[HIDDEN_ITEM_SCRIPT + script] = (self.tree.items[item], qty)
         return out
 
+    def _symbol(self, name):
+        """(the arm9 section, offset, size) of a symbol, by the linker map
+        beside the ROM."""
+        xmap = os.path.join(os.path.dirname(os.path.abspath(self.rom_path)), "main.nef.xMAP")
+        if not os.path.exists(xmap):
+            raise TableError(f"{name} is read at the address the linker map gives, and {xmap} is missing")
+        with open(xmap, encoding="utf-8", errors="replace") as f:
+            m = re.search(r"^\s+([0-9A-F]{8}) ([0-9A-F]{8}) \.\w+\s+%s\s" % name, f.read(), re.M)
+        if not m:
+            raise TableError(f"{xmap} does not place {name}")
+        addr, size = int(m.group(1), 16), int(m.group(2), 16)
+        sec = next((s for s in self.arm9.sections if s.ramAddress <= addr < s.ramAddress + len(s.data)), None)
+        if sec is None:
+            raise TableError(f"{name} at {addr:#x} is outside arm9")
+        return sec, addr - sec.ramAddress, size
+
+    def sold_tms(self):
+        """{item: (badges, copies, bit)} from sSoldTMs, to its ITEM_NONE."""
+        sec, off, size = self._symbol("sSoldTMs")
+        out = {}
+        for at in range(off, off + size, 6):
+            item, badges, copies, bit = struct.unpack_from("<HBBB", sec.data, at)
+            if item == 0:
+                break
+            out[self.tree.items[item]] = (badges, copies, bit)
+        return out
+
+    def prizes(self):
+        """[(item, coins)] from the Game Corner's sGameCornerPrizes."""
+        sec, off, size = self._symbol("sGameCornerPrizes")
+        return [(self.tree.items[item], coins)
+                for item, coins in struct.iter_unpack("<HH", sec.data[off:off + size])]
+
     def marts(self):
         """{MART_SPECIALTIES_ID_X: [item]} from PokeMartSpecialties in arm9.
         Its bytes are too common a shape to find by searching (a run of
@@ -1330,7 +1516,7 @@ def check(tree, placements, rom_path, roles, rows_only=False):
     registers are not looked at."""
     r = RomReader(tree, rom_path)
     errors, notes = [], []
-    rewards = set() if rows_only else {p.reward for p in placements}
+    rewards = set() if rows_only else {p.reward for p in placements} - {"ITEM_NONE"}
     claimed = set()
 
     # Item balls and hidden items, events file by events file. One pickup is
@@ -1485,8 +1671,17 @@ def check(tree, placements, rom_path, roles, rows_only=False):
                 except TableError as e:
                     errors.append(f"trainer-roles.tsv: {e}")
                     continue
-                want = {(p.reward, str(p.copies)) for p in rows.get(tree.trainer_ids[t], [])}
-                if (tree.item(rec["reward"]), rec.get("copies", "")) not in want:
+                want = sorted((p.reward, str(p.copies)) for p in rows.get(tree.trainer_ids[t], []))
+                # A trainer with two rewards lists both, comma-separated, with
+                # their copies in the same order ("ITEM_TM03, ITEM_TM28" and
+                # "1, 1"; Ian, 2026-10-07).
+                items = [i.strip() for i in rec["reward"].split(",")]
+                copies = [c.strip() for c in rec.get("copies", "").split(",")]
+                try:
+                    have = sorted(zip([tree.item(i) for i in items], copies, strict=True))
+                except (TableError, ValueError):
+                    have = None
+                if have != want:
                     errors.append(f"trainer-roles.tsv gives {t} {rec['reward']} x{rec.get('copies')}, "
                                   "which the placements table does not")
 
@@ -1501,6 +1696,37 @@ def check(tree, placements, rom_path, roles, rows_only=False):
         for item in items:
             if item in rewards and not any(p.place == mart and p.reward == item for p in mart_rows):
                 errors.append(f"{item} is also sold by {mart}, which no row names")
+
+    # The Game Corner's prizes.
+    prize_rows = [p for p in placements if p.kind == "prize"]
+    prize_items = [item for item, _coins in r.prizes()]
+    for p in prize_rows:
+        if p.removes:
+            if p.replaces in prize_items:
+                errors.append(f"{p}: {p.replaces} is still a prize")
+        elif prize_items.count(p.reward) != 1:
+            errors.append(f"{p}: found {prize_items.count(p.reward)} times")
+    for item in prize_items:
+        if item in rewards and not any(p.reward == item for p in prize_rows):
+            errors.append(f"{item} is also a Game Corner prize, which no row names")
+
+    # What is sold once: each such row's badges and copies, and nothing else.
+    sold = r.sold_tms()
+    sold_rows = {p.reward: p for p in placements if p.sold_once}
+    for item, p in sold_rows.items():
+        got = sold.get(item)
+        if got is None:
+            errors.append(f"{p}: not sold once in the ROM")
+        elif got[:2] != (p.badges, p.copies):
+            errors.append(f"{p}: sold once from {got[0]} badges giving {got[1]}, the table says "
+                          f"{p.badges} and {p.copies}")
+    for item in sold:
+        if item not in sold_rows:
+            errors.append(f"{item} is sold once in the ROM, but no row says so")
+    bits = collections.Counter(bit for _b, _c, bit in sold.values())
+    for bit, n in bits.items():
+        if n > 1 or bit >= MAX_SOLD_TMS:
+            errors.append(f"purchase bit {bit} is used {n} times (or is past {MAX_SOLD_TMS - 1})")
 
     # The files the rows changed must be declared, or the restart checks
     # regenerate them from the base ROM.

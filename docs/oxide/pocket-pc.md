@@ -76,9 +76,9 @@ Ian ruled on the whole list on 2026-09-27, relayed by the Overseer.
 
 1. **Where it works:** everywhere, caves and buildings included, except in
    gauntlets: one-way areas the player must clear, beating a set number of
-   trainers in a row, before leaving to heal. The mechanism is built
-   (`MapHeader_IsGauntlet` in `src/map_header.c`), with no map marked yet; the
-   tracker's "Gauntlets" entry says which areas are chosen.
+   trainers in a row, before leaving to heal. The Pocket PC refuses while a
+   gauntlet section is open (`src/gauntlet.c`); `docs/oxide/gauntlets.md` has
+   the sections and when each opens and closes.
 2. **The item** opens the PC menu. Vs. Seeker rematches go, and no Vs. Seeker
    item comes back.
 3. **The Pocket PC keeps** Pokemon Storage, Healing Waves, the Name Rater APP

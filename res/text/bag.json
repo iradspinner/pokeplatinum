@@ -511,6 +511,13 @@
     {
       "id": "Bag_Text_CannotUseNoFishing",
       "en_US": "There’s nothing to be caught here..."
+    },
+    {
+      "id": "Bag_Text_CannotUseInGauntlet",
+      "en_US": [
+        "You can’t use that here yet!\n",
+        "Press on, or beat the Trainers here."
+      ]
     }
   ]
 }

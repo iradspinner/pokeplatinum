@@ -40,6 +40,7 @@
 #include "player_avatar.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "scrcmd_shop.h"
 #include "screen_fade.h"
 #include "shop_misc.h"
 #include "sound_playback.h"
@@ -99,6 +100,7 @@ static void Shop_ShowQtyTotalItemPurchase(ShopMenu *shopMenu, u8 dontDrawFrame);
 static void Shop_ShowQtyWithinInventory(ShopMenu *shopMenu);
 static u8 Shop_FinishPurchase(ShopMenu *shopMenu);
 static u8 Shop_FinishFreePremierBall(ShopMenu *shopMenu);
+static void Shop_RemoveBoughtItem(ShopMenu *shopMenu);
 static u8 Shop_ShowConfirmPurchase(ShopMenu *shopMenu);
 static u8 Shop_SelectConfirmPurchase(ShopMenu *shopMenu);
 static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu);
@@ -229,7 +231,9 @@ static void Shop_SetItemsForSale(ShopMenu *shopMenu, u16 *itemsPtr)
     }
 
     shopMenu->itemsCount = i;
-    shopMenu->itemsPtr = Heap_Alloc(HEAP_ID_FIELD2, shopMenu->itemsCount * sizeof(u16));
+    // Platinum Oxide: at least one slot, since a counter of sold TMs can have
+    // nothing to list yet (or any more).
+    shopMenu->itemsPtr = Heap_Alloc(HEAP_ID_FIELD2, (shopMenu->itemsCount + 1) * sizeof(u16));
 
     for (i = 0; i < shopMenu->itemsCount; i++) {
         shopMenu->itemsPtr[i] = itemsPtr[i];
@@ -643,7 +647,9 @@ static void Shop_InitItemsList(ShopMenu *shopMenu)
     MessageLoader *itemNames;
     String *string;
     ListMenuTemplate listTemplate;
-    u32 i, itemId;
+    // Platinum Oxide: set, since an empty list (sold TMs not offered yet)
+    // never assigns it before the TM test below the loop.
+    u32 i, itemId = ITEM_NONE;
     MessageLoader *moveNames;
     BOOL isTMShop = FALSE;
 
@@ -904,12 +910,14 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         Window_DrawMessageBoxWithScrollCursor(&shopMenu->windows[SHOP_WINDOW_MESSAGE], FALSE, 1, 10);
 
         shopMenu->itemId = input;
-        shopMenu->itemAmount = 1;
+        // Platinum Oxide: a TM sold once (include/data/sold_tms.h) is bought
+        // as one lot of its copies; anything else starts at one.
+        shopMenu->itemAmount = shopMenu->martType == MART_TYPE_NORMAL ? SoldTMs_Copies(shopMenu->itemId) : 1;
         shopMenu->itemPrice = Shop_GetItemPrice(shopMenu, shopMenu->itemId);
 
         currMoney = Shop_GetCurrentMoney(shopMenu);
 
-        if (currMoney < shopMenu->itemPrice) {
+        if (currMoney < shopMenu->itemPrice * shopMenu->itemAmount) {
             if (shopMenu->martType == MART_TYPE_FRONTIER) {
                 string = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00037);
             } else {
@@ -924,6 +932,13 @@ static u8 Shop_SelectBuyMenu(ShopMenu *shopMenu)
         }
 
         if (shopMenu->martType == MART_TYPE_DECOR) {
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
+            return Shop_ShowPurchaseMessage(shopMenu);
+        }
+
+        // Platinum Oxide: a TM sold once has no quantity to choose, so it goes
+        // straight to the price, as a decoration does.
+        if (shopMenu->martType == MART_TYPE_NORMAL && SoldTMs_Find(shopMenu->itemId) != NULL) {
             Sound_PlayEffect(SE_CONFIRM_sseq_3);
             return Shop_ShowPurchaseMessage(shopMenu);
         }
@@ -1225,6 +1240,13 @@ static u8 Shop_ConfirmItemPurchase(ShopMenu *shopMenu)
     if (shopMenu->martType == MART_TYPE_NORMAL) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
         FieldSystem_SaveTVSegment_SinnohShoppingChampCorner(shopMenu->saveData, shopMenu->itemId, shopMenu->itemAmount);
+
+        // Platinum Oxide: a TM sold once is now bought for good, and leaves
+        // the list when the purchase is done.
+        if (SoldTMs_Find(shopMenu->itemId) != NULL) {
+            SoldTMs_MarkBought(shopMenu->saveData, shopMenu->itemId);
+            shopMenu->removeBoughtItem = TRUE;
+        }
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         Bag_TryAddItem(shopMenu->destInventory, shopMenu->itemId, shopMenu->itemAmount, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
@@ -1289,10 +1311,36 @@ static u8 Shop_FinishPurchase(ShopMenu *shopMenu)
         Shop_SetCursorSpritePalette(shopMenu, FALSE);
         Window_ScheduleCopyToVRAM(&shopMenu->windows[SHOP_WINDOW_ITEM_DESCRIPTION]);
 
+        if (shopMenu->removeBoughtItem) {
+            Shop_RemoveBoughtItem(shopMenu);
+        }
+
         return SHOP_STATE_SELECT_BUY_MENU;
     }
 
     return SHOP_STATE_FINISH_PURCHASE;
+}
+
+// Platinum Oxide: takes a TM sold once out of the list once it is bought,
+// and builds the list again from its top; the list redraws itself, its
+// description, its icon and its scroll arrows.
+static void Shop_RemoveBoughtItem(ShopMenu *shopMenu)
+{
+    u8 i, kept = 0;
+
+    for (i = 0; i < shopMenu->itemsCount; i++) {
+        if (shopMenu->itemsPtr[i] != shopMenu->itemId) {
+            shopMenu->itemsPtr[kept++] = shopMenu->itemsPtr[i];
+        }
+    }
+
+    shopMenu->itemsCount = kept;
+    shopMenu->removeBoughtItem = FALSE;
+
+    ListMenu_Free(shopMenu->listMenu, NULL, NULL);
+    StringList_Free(shopMenu->itemsList);
+    Shop_InitItemsList(shopMenu);
+    Sprite_SetPositionXY(shopMenu->sprites[SHOP_SPRITE_CURSOR], 176 - 4, 24);
 }
 
 static u8 Shop_FinishFreePremierBall(ShopMenu *shopMenu)

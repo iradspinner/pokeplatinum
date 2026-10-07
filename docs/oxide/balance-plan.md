@@ -27,9 +27,13 @@ the TM pass, is built on `balance-tm-pass`:
 The reports are `docs/oxide/reward-table.md` and
 `docs/oxide/early-kits-read.md`.
 
-**Where it stands (2026-10-07).** The branch has merged the rework job
-(ab8922caf2), `main-tm-items` (58630f941d), the calculator branch
-(c5aed2a7bf) and the scoring branch (d902f807e7), and it builds.
+**Where it stands (2026-10-07, ready to land).** The branch has merged
+the rework job (ab8922caf2), the calculator branch (c5aed2a7bf), the
+scoring branch (4042d8aecf) and `main-tm-items` with step 10's apply
+(d69dc80362), and it builds. The rescore recomputed all 1,031 stored
+scores, and its second pass agreed on every one. The readings moved
+little: each B6 measure moves under 0.005 on average across the 426
+trainers scored before.
 - **New-TM leak fixed.** The generator had read old TM numbers through
   the new item records, which gave 136 species 203 level-up entries
   linked only by the new TMs (Block from Substitute's TM90). It now reads
@@ -40,14 +44,16 @@ The reports are `docs/oxide/reward-table.md` and
   report to the Overseer.
 - **TM read-back.** `tmcompat check` reads every species' TM bits from
   the built ROM against its JSON through `tm-list.tsv`: 653 species, 0
-  failures. The gate runs it once the Overseer adds its line.
+  failures. The gate runs it.
+- **Census.** It reads the TM pass's two new sources: trainer rewards in
+  `scripts_battles.s`, at the split the trainer is first reached, and the
+  badge-gated shop TMs in `sold_tms.h`, at their badge count's split.
+  test_b1 checks every TM and HM on the list has a source.
 
-**Next steps.** Teach the census the TM pass's two new sources (trainer
-rewards in `scripts_battles.s`, the badge-gated shop TMs in
-`sold_tms.h`) and bring test_b1 up to the new list; merge step 10's
-apply from `main-tm-items`; then the one rescore and the gate (about 1.5
-hours of machine time). No boss is read until the TM pass has landed
-(Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+**Next steps.** The Overseer lands the branch. Then step 12, the Kaizo
+comb's teams in `res/trainers`, and its smaller rescore (40 minutes to an
+hour). No boss is read until the TM pass has landed (Ian, 2026-10-06;
+`alpha-readiness.md`, step 15).
 
 **Ian's rulings of 2026-10-07 (relayed by the Overseer).**
 - **The table is frozen.** The reward table keeps the timing Ian

@@ -42,8 +42,8 @@
       "en_US": [
         "That Badge will let you use the\n",
         "hidden move Defog outside of battle.\r",
-        "Also, you can make use of this\n",
-        "Technical Machine.\r",
+        "Also, you can make use of these\n",
+        "Hidden Machines.\r",
         "That is what I think.\r"
       ]
     },
@@ -52,8 +52,9 @@
       "en_US": [
         "That {STRVAR_1 8, 0, 0}...\n",
         "It contains {STRVAR_1 6, 1, 0}.\r",
-        "A very startling move it is.\n",
-        "Its hits turn critical often!"
+        "A very powerful move it is.\r",
+        "With the right Badge, it pushes\n",
+        "boulders aside outside of battle!"
       ]
     },
     {

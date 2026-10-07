@@ -543,6 +543,10 @@
             "en_US": "Infiltrator, Safeguard"
         },
         {
+            "id": "TestKit_Text_MenuStapleInfiltratorMimic",
+            "en_US": "Infiltrator, Mimic"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
@@ -1039,6 +1043,26 @@
         {
             "id": "TestKit_Text_MenuRoute208",
             "en_US": "Route 208, all badges"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletEterna",
+            "en_US": "Gauntlet: Eterna"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletHQ",
+            "en_US": "Gauntlet: Galactic HQ"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletTunnel",
+            "en_US": "Gauntlet: Coronet 1F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletClimb",
+            "en_US": "Gauntlet: Coronet 3F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletVictoryRoad",
+            "en_US": "Gauntlet: Victory Road"
         },
         {
             "id": "TestKit_Text_MenuMeisterTrade",

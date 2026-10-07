@@ -103,6 +103,7 @@ copy "ingame-checklist.md" "notes/ingame-checklist.md"
 copy "balance-plan.md" "notes/balance-plan.md"
 copy "battle-zone-plan.md" "notes/battle-zone-plan.md"
 copy "pocket-pc.md" "notes/pocket-pc.md"
+copy "gauntlets.md" "notes/gauntlets.md"
 copy "frontier-brains.md" "notes/frontier-brains.md"
 copy "kaizo-move-changes.md" "notes/kaizo-move-changes.md"
 copy "kaizo-learnsets.tsv" "notes/kaizo-learnsets.tsv"
@@ -146,6 +147,11 @@ copy "encounters/values.json" "Claude outputs/encounters/values.json"
 copy "encounters/friendship-evolutions.md" "Claude outputs/encounters/friendship-evolutions.md"
 copy "encounters/frontier-brains-rewards.md" "Claude outputs/encounters/frontier-brains-rewards.md"
 copy "encounters/regional-dex-proposal.md" "Claude outputs/encounters/regional-dex-proposal.md"
+copy "encounters/alpha-check-zones.json" "Claude outputs/encounters/alpha-check-zones.json"
+# The alpha run's notes exist once Ian first exports them from the Alpha tab.
+for f in encounters/alpha-notes.md encounters/alpha-notes.json; do
+    if [ -f "$SRC/$f" ]; then copy "$f" "Claude outputs/$f"; fi
+done
 copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replacements.md"
 copy "encounters/classic-starters.md" "Claude outputs/encounters/classic-starters.md"
 copy "encounters/ability-audit.md" "Claude outputs/encounters/ability-audit.md"
@@ -155,7 +161,7 @@ copy "encounters/ability-audit.md" "Claude outputs/encounters/ability-audit.md"
 unmapped=0
 while IFS= read -r -d '' f; do
     rel="${f#$SRC/}"
-    case "$rel" in encounters/caught.json) continue ;; esac
+    case "$rel" in encounters/caught.json|encounters/alpha-feedback*) continue ;; esac
     if [ -z "${MAPPED[$rel]:-}" ]; then
         echo "sync-docs: NOT MIRRORED (add it to the list): $rel" >&2
         unmapped=1

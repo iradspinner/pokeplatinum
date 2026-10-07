@@ -325,6 +325,44 @@ def flag(data, name):
     return bool(data[at] >> (i % 8) & 1)
 
 
+def flags_set(data, numbers):
+    """The flags among `numbers` (flag ids, as vars_flags.txt numbers them)
+    that a save has set, from its newest normal block: one read for the alpha
+    checklist's ticks, a trainer's TRAINER_DEFEATED_FLAGS_START plus its id
+    and every pickup's obtained flag. A save on an older layout is refused,
+    as flag() refuses it."""
+    lay = _vars_layout()
+    found = blocks(data)
+    if BLOCK_NORMAL not in found:
+        raise SaveError("no valid copy of the normal block")
+    if found[BLOCK_NORMAL]["size"] != CURRENT_LAYOUT[0]:
+        raise SaveError("this save was " + OLDER_LAYOUT)
+    base = found[BLOCK_NORMAL]["start"] + lay["at"] + 2 * lay["num_vars"]
+    return {n for n in numbers
+            if 0 <= n < lay["num_flags"] and data[base + n // 8] >> (n % 8) & 1}
+
+
+PLAYER_GENDER_AT = 0x80     # TrainerInfo: name, id, money, then gender
+
+
+def player(data):
+    """{"gender": "male" or "female", "starter": species constant or None},
+    which the alpha checklist uses to show the version of a fight the save
+    meets: the scripts pick a rival's or Lucas's and Dawn's team by the
+    player's starter (VAR_PLAYER_STARTER) and gender. None on a save of an
+    older layout, whose variables are elsewhere."""
+    found = blocks(data)
+    if BLOCK_NORMAL not in found or found[BLOCK_NORMAL]["size"] != CURRENT_LAYOUT[0]:
+        return None
+    n0 = found[BLOCK_NORMAL]["start"]
+    lay = _vars_layout()
+    at = n0 + lay["at"] + 2 * (lay["values"]["VAR_PLAYER_STARTER"] - lay["vars_start"])
+    sid = struct.unpack_from("<H", data, at)[0]
+    species = _tables()["species"]
+    return {"gender": "female" if data[n0 + PLAYER_GENDER_AT] else "male",
+            "starter": species[sid] if 0 < sid < len(species) else None}
+
+
 def _level(species, exp):
     """A boxed Pokemon's level, from its experience and its species' curve."""
     rec = pokedex.load(model.repo_root(), species) or {}

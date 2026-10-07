@@ -121,7 +121,7 @@ OreburghCityGym_019B:
     ReleaseAll
     End
 OreburghCityGym_01A1:
-    SetVarFromValue VAR_0x8004, 403
+    SetVarFromValue VAR_0x8004, ITEM_TM06
     SetVarFromValue VAR_0x8005, 1
     SetVarFromValue VAR_OBJ_GFX_ID_6, 26
     CanFitItem 32772, 32773, VAR_0x800C

@@ -4885,7 +4885,8 @@ static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx)
 
     if (Move_CanBeMimicked(DEFENDER_LAST_MOVE) == FALSE
         || (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+        || ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            && BattleSystem_InfiltratorPasses(battleCtx, battleCtx->defender) == FALSE) // Oxide: Infiltrator passes it
         || DEFENDER_LAST_MOVE == MOVE_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
@@ -8063,7 +8064,8 @@ static BOOL BtlCmd_CheckCanShareStatus(BattleSystem *battleSys, BattleContext *b
     int jumpOnFail = BattleScript_Read(battleCtx);
 
     if (DEFENDING_MON.status
-        || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+        || ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            && BattleSystem_InfiltratorPasses(battleCtx, battleCtx->defender) == FALSE) // Oxide: Infiltrator passes it
         || ATTACKING_MON.status == MON_CONDITION_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }

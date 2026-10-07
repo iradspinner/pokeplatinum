@@ -30,6 +30,29 @@ def get(port, path):
     return resp.status, body
 
 
+def check_difficulty(results, root):
+    """The difficulty number (Ian, 2026-10-07): average faints plus 40 times
+    the losing rate, the scoring track's formula on its store's readings
+    (balance/pldifficulty.py). A reading counts for the trainer whose team it
+    read, the Oxide team's reading before the study's, so Gardenia shows her
+    own team's 2.13, not the study rewrite's; Youngster Michael, read only on
+    the study's team, shows that one, marked; Barry 2's reading is the
+    Piplup player's version's alone; and a trainer never read has none. The
+    numbers are docs/oxide/fight-difficulty-ranking.md's."""
+    rows = {r["stem"]: r for r in trainers.summary(root)}
+    d = lambda stem: (rows[stem].get("difficulty") or {})
+    ok = (d("leader_gardenia").get("difficulty") == 2.13 and d("leader_gardenia")["team"] == "oxide"
+          and d("youngster_michael").get("difficulty") == 2.09 and d("youngster_michael")["team"] == "study"
+          and d("leader_roark").get("difficulty") == 0.05
+          and d("rival_route_203_piplup").get("difficulty") == 0.0 and d("rival_route_203_piplup")["stale"]
+          and rows["rival_route_203_turtwig"].get("difficulty") is None
+          and rows["leader_byron"].get("difficulty") is None
+          and all(v["unlucky"] is not None for v in trainers.stored_difficulty(root).values()))
+    results.append(("the difficulty is faints plus 40 times the losing rate on the trainer's own "
+                    "reading, the study's when it has no other",
+                    ok, f"Gardenia {d('leader_gardenia').get('difficulty')}, Michael "
+                    f"{d('youngster_michael').get('difficulty')}, Roark {d('leader_roark').get('difficulty')}, "
+                    f"{len(trainers.stored_difficulty(root))} trainers read"))
 def check_read(results, root):
     rows = trainers.summary(root)
     files = [f for f in os.listdir(os.path.join(root, *trainers.DATA)) if f.endswith(".json")]
@@ -37,6 +60,17 @@ def check_read(results, root):
                     len(rows) == len(files) and all("party" in r for r in rows)
                     and next(r for r in rows if r["stem"] == "leader_roark")["cap"] == 16,
                     f"{len(rows)} rows"))
+    # Ian, 2026-10-07: Barry's three Route 201 rows looked alike. Each
+    # version of a fight kept once per starter says whom it is for.
+    by = {r["stem"]: r for r in rows}
+    versioned = [r for r in rows if r.get("version")]
+    results.append(("every version of a starter-kept fight says whom it is for",
+                    len(versioned) == 36
+                    and by["rival_route_201_turtwig"]["version"] == "if you chose Turtwig"
+                    and by["rival_route_201_chimchar"]["version"] == "if you chose Scorbunny"
+                    and all(r["version"].startswith("if you chose") for r in versioned)
+                    and by["leader_roark"].get("version") is None,
+                    f"{len(versioned)} rows"))
     # The list places trainers without building parties; teamscore.resolve,
     # which the score uses, builds them. The two must agree, except that the
     # score refuses a split with no cap (Post), which the list still names.
@@ -553,6 +587,7 @@ def main():
     before = subprocess.run(["git", "status", "--porcelain"], cwd=root,
                             capture_output=True, text=True).stdout
     check_read(results, root)
+    check_difficulty(results, root)
     check_move_lists(results, root)
     check_lint(results, root)
     check_style(results, root)

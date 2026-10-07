@@ -124,7 +124,62 @@ def summary(root=None):
     each with its stored score (or None) for the list to sort by."""
     root = root or model.repo_root()
     scores = stored_scores(root)
-    return [dict(r, score=scores.get(r["stem"])) for r in _summary(root, _stamp(root))]
+    hard = stored_difficulty(root)
+    return [dict(r, score=scores.get(r["stem"]), difficulty=hard.get(r["stem"]))
+            for r in _summary(root, _stamp(root))]
+
+
+# -- the difficulty number (Ian, 2026-10-07) ----------------------------------------
+# One number per fight from the scorer's three, replacing the old fight-scale
+# score: average faints plus 40 times the losing rate, at real odds, so
+# losing one fight in ten weighs as four Pokemon lost and the win rate leads
+# (docs/oxide/fight-difficulty-ranking.md has why 40; Ian approved it). The
+# readings and the formula are the scoring track's (balance/pldifficulty.py
+# and difficulty.json beside it): each key, a trainer constant or a story
+# fight's key, holds one reading per team read, "oxide" (the trainer's own
+# file), "study" (the Kaizo study's rewrite) or "kaizo" (Kaizo's own team).
+# A reading counts for the trainer whose team it read; the tab shows the
+# Oxide team's reading, else the study's, and never stores a number itself.
+
+TEAM_ORDER = ("oxide", "study")
+
+
+def difficulty_path(root):
+    from ..balance import pldifficulty
+    return os.environ.get("OXIDE_DIFFICULTY_FILE") or pldifficulty.PATH
+
+
+def stored_difficulty(root=None):
+    """{stem: {"difficulty", "unlucky", "won", "faints", "clean", "fights",
+    "date", "team", "stale", "label", "key"}} for every trainer with an Oxide
+    or study reading; {} while the scoring track's store does not exist."""
+    root = root or model.repo_root()
+    path = difficulty_path(root)
+    if not os.path.exists(path):
+        return {}
+    return _stored_difficulty(root, path, os.stat(path).st_mtime_ns)
+
+
+@functools.lru_cache(maxsize=2)
+def _stored_difficulty(root, path, stamp):
+    from ..balance import pldifficulty
+    store = pldifficulty.load(path)
+    out = {}
+    for key, readings in (store.get("fights") or {}).items():
+        for r in readings:
+            if r.get("team") not in TEAM_ORDER or not r.get("trainer"):
+                continue
+            stem = r["trainer"][len("TRAINER_"):].lower()
+            held = out.get(stem)
+            if held and TEAM_ORDER.index(held["team"]) <= TEAM_ORDER.index(r["team"]):
+                continue
+            unlucky = r.get("unlucky")
+            out[stem] = {"difficulty": round(pldifficulty.difficulty(r), 2),
+                         "unlucky": round(pldifficulty.difficulty(unlucky), 2) if unlucky else None,
+                         "won": r["won"], "faints": r["faints"], "clean": r.get("clean"),
+                         "fights": r.get("fights"), "date": r.get("date"), "team": r["team"],
+                         "stale": r.get("stale"), "label": r.get("label"), "key": key}
+    return out
 
 
 # -- the stored scores (Ian, 2026-09-27) ------------------------------------------
@@ -181,9 +236,29 @@ def _stored_scores(root, stamp):
     return out
 
 
+def versions(root):
+    """{stem: which version it is} for every trainer of a story fight kept
+    once per starter ("if you chose Turtwig", "Dawn, if you chose Turtwig"),
+    so Barry's three rows on Route 201 can be told apart (Ian, 2026-10-07).
+    The label is the Alpha tab's, so the two tabs agree."""
+    from . import alpha
+    with open(os.path.join(root, alpha.FIGHTS), encoding="utf-8") as f:
+        fights = json.load(f)["fights"]
+    out = {}
+    for fight in fights:
+        if len(fight["trainers"]) > 1 and not fight.get("tag"):
+            for c in fight["trainers"]:
+                # The row already names Dawn or Lucas, so only the choice.
+                label = alpha._variant_label(root, c, False)
+                out[c[len("TRAINER_"):].lower()] = label[label.find("if you chose"):] \
+                    if "if you chose" in label else label
+    return out
+
+
 @functools.lru_cache(maxsize=2)
 def _summary(root, stamp):
     places, cap = split_map(root), caps()
+    version = versions(root)
     rows = []
     for stem in stems(root):
         data = load(root, stem)
@@ -191,6 +266,7 @@ def _summary(root, stamp):
         split = places.get(stem)
         rows.append({
             "stem": stem, "name": data.get("name", ""), "label": calc_trainers.trainer_name(root, data, stem),
+            "version": version.get(stem),
             "class": data.get("class"), "split": split, "cap": cap.get(split),
             "double": bool(data.get("double_battle")),
             "party": [{"species": m["species"], "level": m["level"]} for m in party],
@@ -241,6 +317,11 @@ def pair_rows(root=None):
             "key": p["key"], "stems": p["stems"], "how": p["how"], "story": p.get("story"),
             "labels": [s["label"] for s in sides], "label": " & ".join(s["label"] for s in sides),
             "parties": [s["party"] for s in sides], "scores": [s["score"] for s in sides],
+            # A pair's difficulty: its own reading when the store keys the
+            # pair, else the harder of its two trainers' readings.
+            "difficulty": stored_difficulty(root).get(p["key"]) or max(
+                (s["difficulty"] for s in sides if s.get("difficulty")),
+                key=lambda d: d["difficulty"], default=None),
             "top": max(s["top"] for s in sides), "split": split, "cap": caps().get(split),
             "maps": p["maps"], "partners": [label(st) for st in p["partners"]],
             # For two trainers who see the player at once: how many tiles both

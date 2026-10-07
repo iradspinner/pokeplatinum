@@ -3,6 +3,7 @@
 #include "res/field/events/events_twinleaf_town_player_house_2f.h"
 #ifdef OXIDE_TESTKIT
 #include "generated/abilities.h"
+#include "generated/text_banks.h"
 #endif
 
 
@@ -2024,6 +2025,11 @@ TestKit_Warp:
     AddListMenuEntry TestKit_Text_MenuPastoria, 4
     AddListMenuEntry TestKit_Text_MenuVeilstone, 5
     AddListMenuEntry TestKit_Text_MenuRoute208, 6
+    AddListMenuEntry TestKit_Text_MenuGauntletEterna, 7
+    AddListMenuEntry TestKit_Text_MenuGauntletHQ, 8
+    AddListMenuEntry TestKit_Text_MenuGauntletTunnel, 9
+    AddListMenuEntry TestKit_Text_MenuGauntletClimb, 10
+    AddListMenuEntry TestKit_Text_MenuGauntletVictoryRoad, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_WarpTwinleaf
     GoToIfEq VAR_0x8004, 1, TestKit_WarpSandgem
@@ -2032,6 +2038,11 @@ TestKit_Warp:
     GoToIfEq VAR_0x8004, 4, TestKit_WarpPastoria
     GoToIfEq VAR_0x8004, 5, TestKit_WarpVeilstone
     GoToIfEq VAR_0x8004, 6, TestKit_WarpRoute208
+    GoToIfEq VAR_0x8004, 7, TestKit_WarpGauntletEterna
+    GoToIfEq VAR_0x8004, 8, TestKit_WarpGauntletHQ
+    GoToIfEq VAR_0x8004, 9, TestKit_WarpGauntletTunnel
+    GoToIfEq VAR_0x8004, 10, TestKit_WarpGauntletClimb
+    GoToIfEq VAR_0x8004, 11, TestKit_WarpGauntletVictoryRoad
     GoTo TestKit_Close
 
 TestKit_WarpTwinleaf:
@@ -2085,6 +2096,44 @@ TestKit_WarpRoute208:
     GiveBadge BADGE_ID_BEACON
     CloseMessage
     Warp MAP_HEADER_ROUTE_208, 398, 719, DIR_WEST
+    ReleaseAll
+    End
+
+@ The gauntlets (main-gauntlets, docs/oxide/gauntlets.md): each lands one step
+@ from a section's way in, since a section opens only when the player arrives
+@ through it by a warp, not by a script's Warp.
+@ One step from the Galactic building's door.
+TestKit_WarpGauntletEterna:
+    CloseMessage
+    Warp MAP_HEADER_ETERNA_CITY, 305, 520, DIR_NORTH
+    ReleaseAll
+    End
+
+@ One step from the warehouse's stairs down to HQ B2F.
+TestKit_WarpGauntletHQ:
+    CloseMessage
+    Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 12, 3, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from the way south into the tunnel room.
+TestKit_WarpGauntletTunnel:
+    CloseMessage
+    Warp MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1, 20, 61, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from 2F's stairs up to 3F.
+TestKit_WarpGauntletClimb:
+    CloseMessage
+    Warp MAP_HEADER_MT_CORONET_2F, 10, 4, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from the League gate's way north into Victory Road.
+TestKit_WarpGauntletVictoryRoad:
+    CloseMessage
+    Warp MAP_HEADER_POKEMON_LEAGUE, 851, 598, DIR_NORTH
     ReleaseAll
     End
 
@@ -2728,10 +2777,14 @@ TestKit_AbilityLiquidVoice:
     GoTo TestKit_GivePokemonWithMoves
 
 /* Sheer Force: a wild Chansey that knows only Growl; Flame Charge never
-   raises Toucannon's Speed, since Sheer Force strips that for more power. */
+   raises Toucannon's Speed, since Sheer Force strips that for more power.
+   Toucannon holds a Life Orb, which costs it a tenth of its HP after Bullet
+   Seed and Brave Bird but nothing after Flame Charge, the move Sheer Force
+   boosts (Ian, 2026-10-07). */
 TestKit_AbilitySheerForce:
     SetVar VAR_0x800A, SPECIES_TOUCANNON
     SetVar VAR_0x800B, ABILITY_SHEER_FORCE
+    SetVar VAR_0x8004, ITEM_LIFE_ORB
     SetVar VAR_0x8006, MOVE_FLAME_CHARGE
     SetVar VAR_0x8007, MOVE_BRAVE_BIRD
     SetVar VAR_0x8008, MOVE_BULLET_SEED
@@ -2739,7 +2792,7 @@ TestKit_AbilitySheerForce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
-    GoTo TestKit_GivePokemonWithMoves
+    GoTo TestKit_GivePokemonWithItem
 
 /* Auras: a wild Yveltal with Dark Aura that knows only Dark Pulse; both
    announce their auras, Yveltal as the battle starts and Xerneas as it comes
@@ -3199,6 +3252,7 @@ TestKit_Staples:
     AddListMenuEntry TestKit_Text_MenuStapleKaizoMoves, 23
     AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSubstitute, 24
     AddListMenuEntry TestKit_Text_MenuStapleInfiltratorSafeguard, 25
+    AddListMenuEntry TestKit_Text_MenuStapleInfiltratorMimic, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_StapleSturdy
     GoToIfEq VAR_0x8004, 1, TestKit_StapleLightningRod
@@ -3226,6 +3280,7 @@ TestKit_Staples:
     GoToIfEq VAR_0x8004, 23, TestKit_StapleKaizoMoves
     GoToIfEq VAR_0x8004, 24, TestKit_StapleInfiltratorSubstitute
     GoToIfEq VAR_0x8004, 25, TestKit_StapleInfiltratorSafeguard
+    GoToIfEq VAR_0x8004, 26, TestKit_StapleInfiltratorMimic
     GoTo TestKit_Close
 
 /* Sturdy: a Geodude given Sturdy, against a wild Vaporeon that knows only
@@ -3273,6 +3328,24 @@ TestKit_StapleInfiltratorSafeguard:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SAFEGUARD
     GoTo TestKit_GivePokemonWithMoves
+
+/* Infiltrator (2026-10-07): the same Crobat, holding a Flame Orb, against a
+   wild Snorlax that knows only Substitute. Splash while the doll goes up and
+   the Orb burns Crobat; then Psycho Shift burns Snorlax and cures Crobat,
+   and Mimic copies Substitute, both through the doll. Without Infiltrator
+   both fail against a Substitute, as in vanilla. */
+TestKit_StapleInfiltratorMimic:
+    SetVar VAR_0x800A, SPECIES_CROBAT
+    SetVar VAR_0x800B, ABILITY_INFILTRATOR
+    SetVar VAR_0x8004, ITEM_FLAME_ORB
+    SetVar VAR_0x8006, MOVE_PSYCHO_SHIFT
+    SetVar VAR_0x8007, MOVE_MIMIC
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_CROSS_POISON
+    SetVar VAR_0x8000, SPECIES_SNORLAX
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SUBSTITUTE
+    GoTo TestKit_GivePokemonWithItem
 
 /* Lightning Rod: a Raichu given Lightning Rod, against a wild Jolteon that
    knows only Thunderbolt. */
@@ -4154,7 +4227,10 @@ TestKit_ItemContrary:
 /* The Ice Stone and Vulpix's two evolutions: two Lv. 20 Vulpix, with an Ice
    Stone and a Fire Stone in the Bag. Both stones show ABLE beside a Vulpix.
    The Ice Stone evolves one into Alolan Ninetales (Ice and Fairy), and the
-   Fire Stone the other into Ninetales, as Eevee's stones pick its branch. */
+   Fire Stone the other into Ninetales, as Eevee's stones pick its branch.
+   The kit's lines follow the room's own in one bank, and those numbered past
+   255 need MessageFromBank: Message takes one byte, and the assembler's
+   "truncated" warning names any line that needs it (2026-10-07). */
 TestKit_ItemIceStone:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
@@ -4162,7 +4238,7 @@ TestKit_ItemIceStone:
     GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ICE_STONE, 1, VAR_RESULT
     AddItem ITEM_FIRE_STONE, 1, VAR_RESULT
-    Message TestKit_Text_ItemIceStone
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemIceStone
     GoTo TestKit_WaitAndClose
 
 /* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
@@ -4181,7 +4257,7 @@ TestKit_ItemAbilities:
     GivePokemon SPECIES_DITTO, 50, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
     AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
-    Message TestKit_Text_ItemAbilities
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemAbilities
     GoTo TestKit_WaitAndClose
 
 /* The Mints and Bottle Caps: a Machamp, with two Adamant Mints, a Modest
@@ -4203,7 +4279,7 @@ TestKit_ItemMintsCaps:
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
     AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
     AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
-    Message TestKit_Text_ItemMintsCaps
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemMintsCaps
     GoTo TestKit_WaitAndClose
 
 /* The TM mechanism, which now allows more than 92 TMs but has none past
@@ -4217,7 +4293,7 @@ TestKit_ItemTMs:
     AddItem ITEM_HM08, 1, VAR_RESULT
     AddItem ITEM_TM01, 1, VAR_RESULT
     AddItem ITEM_HM01, 1, VAR_RESULT
-    Message TestKit_Text_ItemTMs
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemTMs
     GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:

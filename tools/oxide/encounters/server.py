@@ -30,6 +30,8 @@ import threading
 import urllib.parse
 import zlib
 
+from . import alpha
+from . import alphanotes
 from . import analysis as A
 from . import calc_export
 from . import canon
@@ -41,6 +43,7 @@ from . import locations
 from . import model
 from . import pokedex
 from . import progression
+from . import savefile
 from . import saves
 from . import savewatch
 from . import scripted
@@ -195,6 +198,30 @@ def scripted_row(s, st):
                                             "shares_table", "requires")},
         "honey": 0 if s["shares_table"] else st.honey_trees.get(s.get("capture_area")) or 0,
     }
+
+
+def alpha_state():
+    """The alpha checklist's live half: the ticks the watched save gives (None
+    without a save, or with one on an older layout, which `save_error` says),
+    what the save bar knows, and the run's notes."""
+    data, save, seq, path = savewatch.WATCHER.raw()
+    out = {"ticks": None, "save_error": None, "seq": seq, "save": None,
+           "feedback": alphanotes.load(model.repo_root())}
+    if data:
+        try:
+            out["ticks"] = alpha.ticks(model.repo_root(), data)
+        except savefile.SaveError as e:
+            out["save_error"] = str(e)
+        progress = (save or {}).get("progress") or {}
+        try:
+            who = savefile.player(data) or {}
+        except savefile.SaveError:
+            who = {}
+        out["save"] = {"path": path, "badges": progress.get("badges"),
+                       "split": (progress.get("split") or {}).get("name"),
+                       "starter": who.get("starter"), "gender": who.get("gender"),
+                       "rom": (alphanotes.ROM_NAME.search(os.path.basename(path or "")) or [None, None])[1]}
+    return out
 
 
 def honey_view(trees, split, st, area):
@@ -1051,6 +1078,13 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                    next(src["pool"] for src in st.scripted
                                         if src["kind"] == "starter")]
                 return self._send(out)
+            # The alpha checklist (alpha readiness step 17): every zone in
+            # walking order with what the player meets there (alpha.py).
+            if parts[1] == "alpha" and len(parts) == 2:
+                return self._send(alpha.build(model.repo_root()))
+            # Its ticks from the watched save, and the run's notes.
+            if parts[1:] == ["alpha", "state"]:
+                return self._send(alpha_state())
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,
@@ -1072,6 +1106,21 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             # Caught state is global: ticking a species here changes the odds
             # on every other table too, which is the point of the dupes
             # clause. Stored once, server side, rather than per page.
+            # The alpha checklist's notes (alphanotes.py): one row's fields,
+            # stamped from the watched save and the bridge; the export to the
+            # repo; and a new run, which sets the current one aside.
+            if parts[:3] == ["api", "alpha", "feedback"]:
+                entry = alphanotes.record(model.repo_root(), body.get("key"), body.get("fields") or {},
+                                          label=body.get("label") or "", zone=body.get("zone"),
+                                          split=body.get("split"), raw=savewatch.WATCHER.raw())
+                return self._send({"key": body.get("key"), "entry": entry})
+            if parts[:3] == ["api", "alpha", "export"]:
+                root = model.repo_root()
+                order = [(s["split"], z["zone"]) for s in alpha.build(root)["splits"] for z in s["zones"]]
+                paths = alphanotes.export(root, order)
+                return self._send({"written": [os.path.relpath(p, root) for p in paths]})
+            if parts[:3] == ["api", "alpha", "newrun"]:
+                return self._send({"feedback": alphanotes.new_run(model.repo_root(), body.get("name"))})
             if len(parts) >= 2 and parts[0] == "api" and parts[1] == "caught":
                 enc = load_encounters()
                 if body.get("clear") and "area" not in body:
