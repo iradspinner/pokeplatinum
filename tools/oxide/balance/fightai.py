@@ -32,10 +32,12 @@ BASIC, EVAL, EXPERT, SETUP_FIRST, RISKY, EXTREMES, BATON, TAG, CHECK_HP, WEATHER
 # not keep yet are read with getattr and a default that leaves the check off.
 
 # sNoDamageCalcMoveEffects (trainer_ai.c 31 to 46): no figure, whatever the power.
+# Half recoil (Head Smash's, now Hyper Beam's and its kin's) left the list
+# with the move reworks (Ian, 2026-10-06): it is costed as an ordinary attack.
 NO_CALC = {"HALVE_DEFENSE", "RECOVER_DAMAGE_SLEEP", "CHARGE_TURN_HIGH_CRIT",
            "CHARGE_TURN_HIGH_CRIT_FLINCH", "RECHARGE_AFTER", "CHARGE_TURN_DEF_UP",
            "SKIP_CHARGE_TURN_IN_SUN", "SPIT_UP", "HIT_LAST_WHIFF_IF_HIT", "LOWER_OWN_ATK_AND_DEF",
-           "DECREASE_POWER_WITH_LESS_USER_HP", "HIT_FIRST_IF_TARGET_ATTACKING", "RECOIL_HALF"}
+           "DECREASE_POWER_WITH_LESS_USER_HP", "HIT_FIRST_IF_TARGET_ATTACKING"}
 # sAltPowerMoveEffects (48 to 61): a figure although the listed power is 1.
 ALT_POWER = {"RANDOM_POWER_BASED_ON_IVS", "POWER_BASED_ON_LOW_SPEED", "NATURAL_GIFT", "JUDGEMENT",
              "40_DAMAGE_FLAT", "LEVEL_DAMAGE_FLAT", "RANDOM_DAMAGE_1_TO_150_LEVEL",
@@ -43,10 +45,10 @@ ALT_POWER = {"RANDOM_POWER_BASED_ON_IVS", "POWER_BASED_ON_LOW_SPEED", "NATURAL_G
              "INCREASE_POWER_WITH_WEIGHT"}
 # sComputedPowerHits (Oxide, 67 to 71): listed at power 1, given a figure.
 COMPUTED_POWER_HITS = {"MOVE_ELECTRO_BALL", "MOVE_HARD_PRESS"}
-# The hits the calculator's row adds up (calc_headless.js rolls(); move.js
-# counts a two-to-five-hit move as 3, or 5 with Skill Link). The AI's
-# estimate is a single hit (BattleSystem_CalcMoveDamage).
-ROW_HITS = {"MULTI_HIT": 3, "HIT_TWICE": 2}
+# The AI's estimate is a single hit (BattleSystem_CalcMoveDamage), where the
+# calculator's row adds up several (fightsim.row_hits). The move reworks
+# leave this as it is until the expected-hits version Ian approved on
+# 2026-10-06 lands in the game.
 # The pinch abilities BattleSystem_CalcMoveDamage applies at a third of HP or
 # less; the calculator's rows are made at full HP.
 # Hidden Power's types in IV order (TrainerAI_MoveType, the Mystery type skipped).
@@ -235,9 +237,7 @@ def figure(b, u, t, mv):
         d = _unabsorbed(b, u, t, mv)
     if d is None:
         return None          # no row: no comparison, rather than an immunity
-    hits = ROW_HITS.get(mv.effect)
-    if hits:
-        d //= 5 if (u.ability == "Skill Link" and mv.effect == "MULTI_HIT") else hits
+    d //= fs.row_hits(u, mv)        # a single hit, as the engine reckons a multi-hit move
     if u.item == "Life Orb":
         d = d * 4096 // 5324                       # the calculator's 1.3, taken back off
     if PINCH.get(u.ability) == mv.type and u.hp <= u.maxhp // 3:
@@ -861,6 +861,10 @@ def _basic_effect(b, u, t, mv):
         if getattr(own, "aurora_veil", 0):
             return -8
         return -10 if b.weather != "Hail" else 0
+    if e == "UPPER_HAND":                                           # Basic_CheckUpperHand
+        # IfBattlerKnowsPriorityMove on the target: the AI reads only the
+        # moves it has seen the player's Pokemon use.
+        return 0 if any(fs.move_priority(t, m) > 0 for m in shown(t)) else -10
     if e == "STRENGTH_SAP":
         return -10 if t.stages["atk"] <= -6 else 0
     if e == "PARTING_SHOT":
@@ -2652,6 +2656,15 @@ def x_sucker_punch(c):
     return 1 if c.roll(75) else 0
 
 
+def x_shell_trap(c):
+    """Expert_ShellTrap (the move reworks, 2026-10-06): -1 into a resist or
+    an immunity; else -2 unless the target's last move was physical (before
+    it has moved, its last move reads as physical)."""
+    if c.res:
+        return -1
+    return 0 if _prev_class(c.t) == "Physical" else -2
+
+
 def x_heart_swap(c):
     """Expert_HeartSwap (Focus Energy is the simulator's crit_stage)."""
     u, t = c.u, c.t
@@ -2870,7 +2883,7 @@ EXPERT_ROUTINES = {
     "Expert_LuckyChant": x_lucky_chant, "Expert_MeFirst": x_me_first, "Expert_Copycat": x_copycat,
     "Expert_PowerSwap": x_power_swap, "Expert_GuardSwap": x_guard_swap,
     "Expert_Punishment": x_punishment, "Expert_LastResort": x_last_resort,
-    "Expert_WorrySeed": x_worry_seed, "Expert_SuckerPunch": x_sucker_punch,
+    "Expert_WorrySeed": x_worry_seed, "Expert_SuckerPunch": x_sucker_punch, "Expert_ShellTrap": x_shell_trap,
     "Expert_HeartSwap": x_heart_swap, "Expert_AquaRing": x_aqua_ring, "Expert_MagnetRise": x_magnet_rise,
     "Expert_Defog": x_defog, "Expert_TrickRoom": x_trick_room, "Expert_Captivate": x_captivate,
     "Expert_RecoilMove": x_recoil_move, "Expert_Hex": x_doubled, "Expert_Venoshock": x_doubled,

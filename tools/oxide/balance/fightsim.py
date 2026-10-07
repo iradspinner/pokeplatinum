@@ -146,7 +146,8 @@ HIT_STATUS = {"BURN_HIT": "brn", "PARALYZE_HIT": "par", "FREEZE_HIT": "frz", "PO
               # Infernal Parade and Barb Barrage (effect scripts 321, 322).
               "BURN_HIT_DOUBLE_POWER_ON_STATUS": "brn", "POISON_HIT_DOUBLE_POWER_ON_POISONED": "psn"}
 FLINCH_HIT = {"FLINCH_HIT", "FLINCH_BURN_HIT", "FLINCH_PARALYZE_HIT", "FLINCH_FREEZE_HIT",
-              "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE"}
+              "FLINCH_MINIMIZE_DOUBLE_HIT", "FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE",
+              "UPPER_HAND"}                       # at its 100%, as Fake Out's target flinches
 # Stat changes: (on whom, {stat: stages}); a hit's change comes with its chance.
 SELF_STAGES = {
     "ATK_UP": {"atk": 1}, "ATK_UP_2": {"atk": 2}, "DEF_UP": {"def": 1}, "DEF_UP_2": {"def": 2},
@@ -187,7 +188,17 @@ HIT_SELF_STAGES = {  # (stages, certain)
     "RAISE_ALL_STATS_HIT": ({"atk": 1, "def": 1, "spa": 1, "spd": 1, "spe": 1}, False),
 }
 RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
-          "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3}
+          "RECOIL_BURN_HIT": 1 / 3, "RECOIL_PARALYZE_HIT": 1 / 3,
+          "RECOIL_CONFUSE_HIT": 1 / 3}           # Raging Fury (effect 417)
+# The move reworks (Ian, 2026-10-06; effects 416 to 420). A two to five hit
+# move rolls its hits on Generation 5's spread (BtlCmd_SetMultiHit): five with
+# Skill Link, and a Loaded Dice turns a roll of two or three into four or
+# five, which leaves four and five at even odds.
+MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
+# Fury Cutter: three hits rising by 10 from the listed power, each checking
+# accuracy and the move stopping at the first miss (effect_script_0416).
+RISING_HITS = "HIT_THREE_TIMES_RISING_10"
+RISING_COUNT = 3
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
             "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN"}
@@ -308,6 +319,7 @@ class Mon:
 
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
+        self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
         self.rollout = 0
         self.curled = False
         self.confused = 0
@@ -630,7 +642,13 @@ def change_stages(mon, changes):
     # Simple doubles every change to its own stages.
     mult = 2 if getattr(mon, "ability", None) == "Simple" else 1
     for k, v in changes.items():
+        before = mon.stages[k]
         mon.stages[k] = max(-6, min(6, mon.stages[k] + v * mult))
+        if mon.stages[k] > before:
+            # A stage that rose this turn (TurnFlags.statRaised), which
+            # Burning Jealousy reads; cleared at the turn's end and on a
+            # switch-in.
+            mon.stat_raised = True
     # A White Herb puts every lowered stage back to 0, once.
     if getattr(mon, "item", None) == "White Herb" and any(s < 0 for s in mon.stages.values()):
         mon.stages = {k: max(0, s) for k, s in mon.stages.items()}
@@ -935,6 +953,8 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
+    if move_fails_first(att, mv, dfn, first):
+        return
     if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one (a
@@ -949,6 +969,15 @@ def attack(b, att, mv, dfn, first):
         rollout_after(att, mv, False)
         return
     rollout_after(att, mv, True)
+    # The hits this use makes: a two to five hit move's roll, or Fury
+    # Cutter's run until a miss (a Loaded Dice skips the later checks).
+    hits = 1
+    odds = multi_hit_odds(att, mv)
+    if odds:
+        hits = b.rng.choices([h for h, _w in odds], [w for _h, w in odds])[0]
+    elif mv.effect == RISING_HITS:
+        while hits < RISING_COUNT and (att.item == "Loaded Dice" or b.accuracy_hits(att, dfn, mv)):
+            hits += 1
     # Fixed-damage moves.
     dmg = fixed_damage(b, att, dfn, mv, b.rng.randint(5, 15) if mv.effect == "RANDOM_DAMAGE_1_TO_150_LEVEL" else 10)
     if mv.effect == "ONE_HIT_KO":
@@ -969,6 +998,7 @@ def attack(b, att, mv, dfn, first):
         dmg = b.damage(att, dfn, mv, crit=crit)
         if dmg is None:
             return
+        dmg = scale_hits(att, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
@@ -992,7 +1022,9 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
-        full = dfn.hp == dfn.maxhp
+        # Focus Sash and Sturdy hold one hit from full HP: a move that hits
+        # twice or more lands its next hit on the 1 HP left.
+        full = dfn.hp == dfn.maxhp and hits < 2
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or dfn.ability == "Sturdy"):
             if dfn.ability == "Sturdy":
                 reveal(dfn)
@@ -1025,7 +1057,8 @@ def attack(b, att, mv, dfn, first):
     if e == "REMOVE_SCREENS":
         side = b.p if dfn.side == "p" else b.b
         side.screens = dict.fromkeys(side.screens, 0)
-    if e in HIT_SELF_STAGES:
+    stripped = sheer_force_strips(att, mv)
+    if e in HIT_SELF_STAGES and not (stripped and not HIT_SELF_STAGES[e][1]):
         ch, certain = HIT_SELF_STAGES[e]
         if certain or b.rng.random() * 100 < (mv.chance or 10):
             change_stages(att, ch)
@@ -1034,21 +1067,24 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive() or dfn.sub:
         return
     chance = mv.chance or 0
-    if dfn.ability == "Shield Dust":
+    if dfn.ability == "Shield Dust" or stripped:
         chance = 0
     if att.ability == "Serene Grace":
         chance *= 2
     if e in HIT_STATUS and b.rng.random() * 100 < chance:
         give_status(b, dfn, HIT_STATUS[e])
+    if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and b.rng.random() * 100 < chance:
+        give_status(b, dfn, "brn")
     if e == "TRI_ATTACK" and b.rng.random() * 100 < chance:
         give_status(b, dfn, b.rng.choice(["brn", "par", "frz"]))
     if e in FLINCH_HIT and first and b.rng.random() * 100 < chance:
         dfn.flinch = True
-    if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first:
+    if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
     if dfn.ability == "Inner Focus":
         dfn.flinch = False       # Inner Focus: it never flinches
-    if e in ("CONFUSE_HIT", "HURRICANE") and b.rng.random() * 100 < chance and not dfn.confused:
+    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and b.rng.random() * 100 < chance \
+            and not dfn.confused:
         dfn.confused = b.rng.randint(2, 5)
     if e in HIT_FOE_STAGES and b.rng.random() * 100 < chance and not stat_drop_blocked(b, dfn, HIT_FOE_STAGES[e]):
         change_stages(dfn, HIT_FOE_STAGES[e])
@@ -1442,6 +1478,102 @@ def loafs(att):
     return False
 
 
+def move_priority(mon, mv):
+    """A move's priority as the engine reckons it for its user
+    (Battler_MovePriority): one more for Prankster on a status move, and for
+    Gale Wings on a Flying move at full HP."""
+    pri = mv.pri
+    if mon.ability == "Prankster" and mv.cat == "Status":
+        pri += 1
+    if mon.ability == "Gale Wings" and mv.type == "Flying" and mon.hp == mon.maxhp:
+        pri += 1
+    return pri
+
+
+def move_fails_first(att, mv, dfn, first):
+    """The reworked moves that fail before they hit (effects 418 and 419).
+    Upper Hand needs its target to have chosen a move of raised priority and
+    not to have acted yet (TryUpperHand); Shell Trap, moving last, needs a
+    physical move to have hit its user this turn (a Substitute's hit does
+    not count, as the physical damage mask leaves it out)."""
+    if mv.effect == "UPPER_HAND":
+        nxt = getattr(dfn, "chosen", None)
+        return not first or nxt is None or move_priority(dfn, nxt) <= 0
+    if mv.effect == "SHELL_TRAP":
+        hit = att.hit_this_turn
+        return not hit or hit[0] != "Physical" or not hit[1]
+    return False
+
+
+def scale_hits(att, mv, dmg, hits):
+    """A row's damage for the hits this use rolled: a two to five hit move's
+    row counts row_hits hits, Fury Cutter's its first."""
+    if mv.effect == RISING_HITS:
+        return int(dmg * rising_scale(mv, hits))
+    rh = row_hits(att, mv)
+    if mv.effect == "MULTI_HIT" and hits != rh:
+        return dmg * hits // rh
+    return dmg
+
+
+def multi_hit_odds(att, mv):
+    """[(hits, weight)] for a two to five hit move, else None."""
+    if mv.effect != "MULTI_HIT":
+        return None
+    if att.ability == "Skill Link":
+        return ((5, 1),)
+    if att.item == "Loaded Dice":
+        return ((4, 1), (5, 1))
+    return MULTI_HIT_ODDS
+
+
+def row_hits(att, mv):
+    """The hits a calculator row adds up for this move (calc_headless.js
+    rolls(), move.js): a two to five hit move at its lowest plus one, or its
+    most with Skill Link or a Grip Claw; Double Kick's kind at two; else one."""
+    if mv.effect == "MULTI_HIT":
+        return 5 if att.ability == "Skill Link" or att.item == "Grip Claw" else 3
+    return 2 if mv.effect == "HIT_TWICE" else 1
+
+
+def rising_scale(mv, hits):
+    """Fury Cutter's damage over `hits` hits, as a multiple of its first hit's
+    (its row): each hit 10 more power than the last."""
+    p = max(1, mv.power)
+    return sum(p + 10 * i for i in range(hits)) / p
+
+
+def expected_hit_scale(mv):
+    """A move's expected damage as a multiple of its calculator row, for the
+    reckonings that read rows (exp_damage, plfeat._expected), before the
+    first hit's accuracy: Fury Cutter's later hits each need accuracy again.
+    A two to five hit move's row counts three hits, close to its expected
+    3.1, so it is left as it is."""
+    if mv.effect != RISING_HITS:
+        return 1.0
+    acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
+    p = max(1, mv.power)
+    return sum((p + 10 * i) / p * acc ** i for i in range(RISING_COUNT))
+
+
+@functools.lru_cache(maxsize=None)
+def sheer_force_effects():
+    """The effects whose secondary effect Sheer Force strips (and whose
+    power it raises, which the calculator's own copy of this list does),
+    read from the game's list (battle_lib.c, sSheerForceEffects); a recoil
+    stays. Names as Move.effect gives them."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sSheerForceEffects\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    return frozenset(re.findall(r"BATTLE_EFFECT_(\w+)", body))
+
+
+def sheer_force_strips(att, mv):
+    """Whether this hit's secondary effect is stripped by its user's Sheer
+    Force (Battler_SheerForceStrips; the few moves hg-engine lets keep theirs
+    are not modelled)."""
+    return att.ability == "Sheer Force" and mv.effect in sheer_force_effects()
+
+
 @functools.lru_cache(maxsize=None)
 def permanent_trick_room():
     """The trainers whose battles open in a Trick Room that lasts the whole
@@ -1782,6 +1914,7 @@ def _end_of_turn_mon(b, side, m):
         m.flinch = False        # a flinch lasts only the turn it is dealt
         m.hit_this_turn = None
         m.hurt_this_turn = False
+        m.stat_raised = False
         m.turns_in += 1
 
 
@@ -1794,7 +1927,7 @@ def exp_damage(b, att, dfn, mv):
     r = b.rolls(att, dfn, mv)
     if r is None:
         return 0.0
-    d = b.damage(att, dfn, mv, roll=len(r) // 2) or 0
+    d = (b.damage(att, dfn, mv, roll=len(r) // 2) or 0) * expected_hit_scale(mv)
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     if mv.effect in TWO_TURN or mv.effect == "RECHARGE_AFTER":
         d /= 2
@@ -2147,8 +2280,8 @@ def run_battle(st, player_keys, boss_keys, rng, flags, trick_room=False):
             mon.chosen = mv
         if len(order) == 2:
             (a, ma, _), (c, mc, _) = order
-            if ma.pri != mc.pri:
-                order.sort(key=lambda o: -o[1].pri)
+            if move_priority(a, ma) != move_priority(c, mc):
+                order.sort(key=lambda o: -move_priority(o[0], o[1]))
             elif not b.faster(a, c):
                 order.reverse()
         for i, (mon, mv, _t) in enumerate(order):
@@ -2336,7 +2469,8 @@ def run_doubles(st, player_keys, boss_groups, rng, boss_flags, partner_keys=(), 
         for mon, mv, _t in acts:
             mon.chosen = mv
         b.mid_turn = True
-        keyed = [(-mv.pri, -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(), mon, mv, t)
+        keyed = [(-move_priority(mon, mv), -b.speed(mon) if not b.trick_room else b.speed(mon), rng.random(),
+                  mon, mv, t)
                  for mon, mv, t in acts]
         for *_k, mon, mv, t in sorted(keyed, key=lambda x: x[:3]):
             if not mon.alive():

@@ -43,6 +43,17 @@ two rolls does, and for the player only if both do. No reading is redone
 for it now. Saturn 2's permanent Trick Room now comes from the game's own
 list on every path, the comb's included, which had started him without it
 (2026-10-06); no reading of him is affected.
+The simulator now plays the move reworks (alpha-readiness step 5's second
+half, on the engine of cloud/main-move-reworks, merged here): Hyper Beam's
+kin at half recoil with no recharge, the starter ultimates, Sky Attack, Dig
+and Dive in one turn, two to five hits on 35/35/15/15, Fury Cutter's three
+rising hits, the one-turn rampage moves, Upper Hand, Shell Trap, Burning
+Jealousy, Sheer Force's strip read from the game's list, and turn order with
+Prankster and Gale Wings. The AI mirror follows the game as it stands
+(multi-hit moves rated as one hit). Every stored reading is stale for these
+moves and is redone in goal 3. Left out, as small: Reckless on the newly
+recoiling moves, contact effects per hit of a multi-hit move. Next: nothing
+queued; the expected-hits AI comes when the game has it.
 
 | Step | Takes |
 |---|---|

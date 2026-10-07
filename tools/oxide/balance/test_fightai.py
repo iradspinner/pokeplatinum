@@ -265,8 +265,15 @@ EXPERT_ROWS = [
     ("Substitute, Focus Punch, 60%, foe's last Confuse Ray, foe unconfused", "Substitute",
      _t(u_hp=60, u_moves=("Substitute", "Focus Punch"), t_last="Confuse Ray"), 0, 0),
     ("Substitute, foe's last Leech Seed, foe unseeded", "Substitute", _t(t_last="Leech Seed"), 1, 0),
-    ("RechargeTurn, Giga Impact with Truant", "Giga Impact", _t(u_ability="Truant", u_hp=50), 1, 0),
-    ("RechargeTurn, Hyper Beam faster at 50%", "Hyper Beam", _t(u_hp=50), -1, -1),
+    # Hyper Beam and Giga Impact lost their recharge in the move reworks
+    # (2026-10-06); Prismatic Laser and Eternabeam keep it.
+    ("RechargeTurn, Prismatic Laser with Truant", "Prismatic Laser", _t(u_ability="Truant", u_hp=50), 1, 0),
+    ("RechargeTurn, Eternabeam faster at 50%", "Eternabeam", _t(u_hp=50), -1, -1),
+    ("RecoilMove, Raging Fury with Rock Head", "Raging Fury", _t(u_ability="Rock Head", t_types=["Normal"]), 1, 1),
+    ("ShellTrap, foe's last Tackle", "Shell Trap", _t(t_last="Tackle", t_types=["Normal"]), 0, 0),
+    ("ShellTrap, foe yet to move", "Shell Trap", _t(t_types=["Normal"]), 0, 0),
+    ("ShellTrap, foe's last Flamethrower", "Shell Trap", _t(t_last="Flamethrower", t_types=["Normal"]), -2, -2),
+    ("ShellTrap, into a Water type", "Shell Trap", _t(t_last="Flamethrower", t_types=["Water"]), -1, -1),
     ("Disable, foe's last Tackle", "Disable", _t(t_last="Tackle"), 1, 1),
     ("Counter, foe's last Tackle", "Counter", _t(t_last="Tackle"), 1, 0),
     ("Counter, foe's last Flamethrower", "Counter", _t(t_last="Flamethrower"), -1, -1),
@@ -319,9 +326,11 @@ EXPERT_ROWS = [
     ("ChargeTurnNoInvuln, at 38%", "Solar Beam", _t(u_hp=38), -1, -1),
     ("Thunder, Hurricane in sun", "Hurricane", _t(weather="Sun", t_types=["Normal"]), -3, 0),
     ("RainStorm, Bleakwind Storm in sun", "Bleakwind Storm", _t(weather="Sun", t_types=["Normal"]), 0, 0),
-    ("ChargeTurnWithInvuln, Dig faster", "Dig", _t(t_types=["Normal"]), 1, 0),
-    ("ChargeTurnWithInvuln, Dig slower", "Dig", _t(slower=True, t_types=["Normal"]), 0, 0),
-    ("ChargeTurnWithInvuln, Dig into a Flying type", "Dig", _t(t_types=["Flying"]), -1, -1),
+    # Dig and Dive became one-turn hits in the move reworks (2026-10-06);
+    # Bounce and Fly keep the routine.
+    ("ChargeTurnWithInvuln, Bounce faster", "Bounce", _t(t_types=["Normal"]), 1, 0),
+    ("ChargeTurnWithInvuln, Bounce slower", "Bounce", _t(slower=True, t_types=["Normal"]), 0, 0),
+    ("ChargeTurnWithInvuln, Bounce into a Rock type", "Bounce", _t(t_types=["Rock"]), -1, -1),
     ("ChargeTurnWithInvuln, Fly with a Power Herb", "Fly", _t(u_item="Power Herb"), 2, 2),
     ("FakeOut, First Impression", "First Impression", None, 2, 2),
     ("SpitUp, two Stockpiles", "Spit Up", _t(u_stockpile=2), 2, 0),
@@ -449,6 +458,22 @@ def expert_dispatch():
     unused = sorted(set(ai.EXPERT_ROUTINES) - set(routes.values()))
     return [("Expert_Main's table: every label has a routine", not missing and not unused and len(routes) >= 237,
              f"{len(routes)} effects, missing {missing}, unused {unused}")]
+
+
+@check
+def no_calc_list():
+    """The effects the AI gives no damage figure are the game's own list
+    (trainer_ai.c, sNoDamageCalcMoveEffects), which the move reworks changed
+    by taking half recoil off it (2026-10-06)."""
+    import os
+    import re
+    path = os.path.join(fs.data.ROOT, "src", "battle", "trainer_ai", "trainer_ai.c")
+    with open(path, encoding="utf-8") as fh:
+        body = re.search(r"sNoDamageCalcMoveEffects\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    game = set(re.findall(r"BATTLE_EFFECT_(\w+)", body))
+    return [("sNoDamageCalcMoveEffects matches the AI's list", game == ai.NO_CALC,
+             f"{len(game)} in the game; only in the game {sorted(game - ai.NO_CALC)}, "
+             f"only here {sorted(ai.NO_CALC - game)}")]
 
 
 # ---- the smaller flags, switching, the post-knockout pick ----------------------------------------
@@ -752,6 +777,13 @@ BASIC_ROWS = [
      "Sleep Powder", None, -10, 0),
     ("CheckRest: Leaf Guard in sun at half HP", "Gengar", "Zigzagoon", "Rest",
      _t(u_ability="Leaf Guard", weather="Sun", u_hp=50), -10, -10),
+    ("CheckUpperHand: no priority move shown", "Kangaskhan", "Zigzagoon", "Upper Hand", None, -10, -10),
+    ("CheckUpperHand: Quick Attack shown", "Kangaskhan", "Zigzagoon", "Upper Hand",
+     _t(t_shown=("Quick Attack",)), 0, 0),
+    ("CheckUpperHand: a Prankster's Thunder Wave shown", "Kangaskhan", "Zigzagoon", "Upper Hand",
+     _t(t_shown=("Thunder Wave",), t_ability="Prankster"), 0, 0),
+    ("CheckUpperHand: Thunder Wave shown, no Prankster", "Kangaskhan", "Zigzagoon", "Upper Hand",
+     _t(t_shown=("Thunder Wave",), t_ability="Run Away"), -10, -10),
     ("CheckTaunt: into Slowpoke (Oblivious or Own Tempo)", "Gengar", "Slowpoke", "Taunt", None, -10, 0),
     ("CheckTaunt: into a taunted Zigzagoon (Basic never checks it)", "Gengar", "Zigzagoon", "Taunt", _t(t_taunt=3), 0, 0),
     ("CheckCannotSleep: Hypnosis into Hoothoot (Insomnia or Tinted Lens)", "Gengar", "Hoothoot", "Hypnosis",
