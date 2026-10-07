@@ -29,7 +29,9 @@ were read again under them. Cyrus 3 is today's file moved up to the cap's
 levels, as Ian chose, and reads about 72 won to today's 97. Somnu reads
 about 84 to today's 100 with her sleep restored. Moira and Argo now sit three
 under the cap with sharper sets, as Ian's rule that levels follow importance
-asks of officers, and read about 97.5 and 83; Hesperid reads 95 and both
+asks of officers, and read about 99 and 83 (Moira's hail lasts the whole
+fight, as Oxide's battle code has it; under my earlier five-turn rule she read
+97.5); Hesperid reads 95 and both
 Stark Mountain commanders 95 to 96, to today's 100. Somnu's Hypno and Darkrai keep Dream Eater, the split's conditional
 attacks. Ian's four-way reading showed that most of the officers' rise came
 from their levels, which led to the new rule; it applies to the finished
@@ -66,7 +68,7 @@ League's, then the ordinary trainers from Maylene's split on.
 | Trainer | Place | Path | Battle | Size | Levels | The idea | Expected |
 |---|---|---|---|---|---|---|---|
 | Galactic Officer Somnu | Mt. Coronet 5F | gauntlet, closing 3F to 5F | single, named officer | 6 | 62 to 64 | Somnu's sleep | about 84 / 2.5 / 0 in my simulator, where today's file reads 100 / 0.2 / 80 |
-| Galactic Officer Moira | Mt. Coronet 5F | on the path | single, named officer | 6 | 60 to 62 | Moira's hail | about 98 / 3.0 / 0 in my simulator, where today's file reads 100 / 0.3 / 74 |
+| Galactic Officer Moira | Mt. Coronet 5F | on the path | single, named officer | 6 | 60 to 62 | Moira's hail | about 99 / 2.2 / 0 in my simulator, where today's file reads 100 / 0.4 / 71 |
 | Galactic Officer Hesperid | Mt. Coronet 6F | on the path | single, named officer | 6 | 63 to 65 | Today's six kept to one trade | about 95 / 1.7 / 9 in my simulator, where today's file reads 100 / 0.2 / 82 |
 | Galactic Officer Argo | Mt. Coronet 6F | on the path | single, named officer | 6 | 61 to 62 | Today's puzzle box | about 83 / 3.4 / 3 in my simulator, where today's file reads 100 / 0.3 / 75 |
 | Commander Mars | Spear Pillar | on the path | tag with Jupiter, beside Barry | 5 | 62 to 63 | Mars 2's core at Spear Pillar | not readable yet (a tag battle) |
@@ -117,7 +119,7 @@ Today's team: Swalot 55 (Starf Berry; Amnesia, Gunk Shot, Encore, Yawn), Hypno 5
 
 ### Galactic Officer Moira: Mt. Coronet 5F, on the path, single, named officer, cap 65
 
-Moira's hail, three levels under the cap with sharper sets: Abomasnow's Snow Warning on an Icy Rock for eight turns, Blizzard that cannot miss on Abomasnow and Slowking, Mamoswine's Ice Shard, a Life Orb Gardevoir with Calm Mind, Celebi as the legendary, and a Swords Dance Absol ace with a Scope Lens.
+Moira's hail, three levels under the cap with sharper sets: Abomasnow's Snow Warning, whose hail lasts the whole fight (its Icy Rock does nothing, since rocks extend only weather from a move), Blizzard that cannot miss on Abomasnow and Slowking, Mamoswine's Ice Shard, a Life Orb Gardevoir with Calm Mind, Celebi as the legendary, and a Swords Dance Absol ace with a Scope Lens.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
@@ -128,7 +130,7 @@ Moira's hail, three levels under the cap with sharper sets: Abomasnow's Snow War
 | Celebi | 61 | Leftovers | Natural Cure | Modest | Energy Ball, Psychic, Earth Power, Recover |
 | Absol | 62 | Scope Lens | Super Luck | Adamant | Knock Off, Superpower, Stone Edge, Swords Dance |
 
-Today's team: Abomasnow 54 (Occa Berry; Swagger, Earthquake, Avalanche, Endeavor), Slowking 54 (Leftovers; Calm Mind, Blizzard, Future Sight, Surf), Gardevoir 55 (Life Orb; Future Sight, Psychic, Calm Mind, Focus Blast), Mamoswine 53 (Lum Berry; Ice Shard, Earthquake, Superpower, Stone Edge), Celebi 50 (Sitrus Berry; Future Sight, AncientPower, Leaf Storm, Recover), Absol 57 (Focus Band; Pursuit, Perish Song, Future Sight, Detect). Expected: about 98 / 3.0 / 0 in my simulator, where today's file reads 100 / 0.3 / 74.
+Today's team: Abomasnow 54 (Occa Berry; Swagger, Earthquake, Avalanche, Endeavor), Slowking 54 (Leftovers; Calm Mind, Blizzard, Future Sight, Surf), Gardevoir 55 (Life Orb; Future Sight, Psychic, Calm Mind, Focus Blast), Mamoswine 53 (Lum Berry; Ice Shard, Earthquake, Superpower, Stone Edge), Celebi 50 (Sitrus Berry; Future Sight, AncientPower, Leaf Storm, Recover), Absol 57 (Focus Band; Pursuit, Perish Song, Future Sight, Detect). Expected: about 99 / 2.2 / 0 in my simulator, where today's file reads 100 / 0.4 / 71.
 
 ### Galactic Officer Hesperid: Mt. Coronet 6F, on the path, single, named officer, cap 65
 

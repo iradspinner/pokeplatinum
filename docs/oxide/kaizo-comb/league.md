@@ -13,9 +13,12 @@ fix and the legality sweep. From the Galactic split on, a trainer's move need
 not be legal for the species (Ian, 2026-10-07); no file here needed that.
 
 Aaron reads 100 won to today's 100, and Bertha 97 to today's 99, so both sit
-about level with today's files. Flint reads 58 won to today's 99, Lucian 78
-to 99, and Cynthia 37 to 91 with five faints a fight: all three read well past
-the dial's one step harder.
+about level with today's files. Flint reads 25 won to today's 99 with 5.5
+faints a fight, Lucian 78 to 99, and Cynthia 37 to 91 with five faints a
+fight: all three read well past the dial's one step harder. Flint fell from 58
+on 2026-10-07, when the Overseer confirmed from Oxide's battle code that
+weather from an ability lasts the whole battle, as in Platinum: his Torkoal's
+Drought sun never runs out, and its Heat Rock does nothing.
 
 Ian ruled that every draft goes into step 12 as drafted, and he chooses any
 retunes from the scorer's step 15 reading. For the League my candidates are in
@@ -39,7 +42,7 @@ The ordinary trainers from Maylene's split on, in walking order.
 |---|---|---|---|---|---|---|---|
 | Aaron | Pokemon League | on the path | single, Elite Four | 6 | 76 to 78 | Hazards | about 100 / 1.0 / 20 in my simulator, where today's file reads 100 / 0.5 / 59 |
 | Bertha | Pokemon League, her room (sand) | on the path | single, Elite Four | 6 | 76 to 78 | Sand | about 97 / 1.6 / 0 in my simulator in sand, where today's file reads 99 / 1.0 / 36 |
-| Flint | Pokemon League | on the path | single, Elite Four | 6 | 76 to 78 | Sun from Torkoal's Drought on a Heat Rock behind its Stealth Rock | about 58 / 4.5 / 0 in my simulator, where today's file reads 99 / 1.0 / 28 |
+| Flint | Pokemon League | on the path | single, Elite Four | 6 | 76 to 78 | Sun for the whole fight from Torkoal's Drought behind its Stealth Rock | about 25 / 5.5 / 0 in my simulator, where today's file reads 99 / 1.0 / 28 |
 | Lucian | Pokemon League | on the path | single, Elite Four | 6 | 76 to 78 | Psychic support | about 78 / 3.0 / 1 in my simulator, where today's file reads 99 / 1.9 / 0 |
 | Cynthia | Pokemon League | on the path | single, Champion | 6 | 76 to 78 | Every theme with one trade | about 37 / 5.1 / 0 in my simulator, where today's file reads 91 / 3.6 / 0 |
 
@@ -80,7 +83,7 @@ Today's team: Hippowdon 72 (Leftovers; Earthquake, Stone Edge, Thunder Fang, Yaw
 
 ### Flint: Pokemon League, on the path, single, Elite Four, cap 78
 
-Sun from Torkoal's Drought on a Heat Rock behind its Stealth Rock, then a Life Orb Ninetales with Nasty Plot and Solar Beam, Houndoom, Arcanine, Magmortar and a Bulk Up Infernape ace.
+Sun for the whole fight from Torkoal's Drought behind its Stealth Rock, then a Life Orb Ninetales with Nasty Plot and Solar Beam, Houndoom, Arcanine, Magmortar and a Bulk Up Infernape ace. Torkoal's Heat Rock does nothing, since rocks extend only weather from a move.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
@@ -91,7 +94,7 @@ Sun from Torkoal's Drought on a Heat Rock behind its Stealth Rock, then a Life O
 | Magmortar | 77 | Wise Glasses | Flame Body | Modest | Fire Blast, Thunderbolt, Focus Blast, SolarBeam |
 | Infernape | 78 | Lum Berry | Blaze | Jolly | Flare Blitz, Close Combat, Mach Punch, Swords Dance |
 
-Today's team: Ninetales 73 (Heat Rock; Flamethrower, Extrasensory, SolarBeam, Sunny Day), Houndoom 73 (Shuca Berry; Fire Blast, Sludge Bomb, Dark Pulse, Will-O-Wisp), Camerupt 73 (Passho Berry; Earth Power, SolarBeam, Fire Blast, Sunny Day), Infernape 73 (Choice Band; Flare Blitz, ThunderPunch, Close Combat, Earthquake), Arcanine 73 (Leftovers; Flare Blitz, Thunder Fang, Iron Head, Morning Sun), Magmortar 74 (Choice Specs; Fire Blast, Thunderbolt, SolarBeam, Focus Blast). Expected: about 58 / 4.5 / 0 in my simulator, where today's file reads 99 / 1.0 / 28.
+Today's team: Ninetales 73 (Heat Rock; Flamethrower, Extrasensory, SolarBeam, Sunny Day), Houndoom 73 (Shuca Berry; Fire Blast, Sludge Bomb, Dark Pulse, Will-O-Wisp), Camerupt 73 (Passho Berry; Earth Power, SolarBeam, Fire Blast, Sunny Day), Infernape 73 (Choice Band; Flare Blitz, ThunderPunch, Close Combat, Earthquake), Arcanine 73 (Leftovers; Flare Blitz, Thunder Fang, Iron Head, Morning Sun), Magmortar 74 (Choice Specs; Fire Blast, Thunderbolt, SolarBeam, Focus Blast). Expected: about 25 / 5.5 / 0 in my simulator, where today's file reads 99 / 1.0 / 28.
 
 ### Lucian: Pokemon League, on the path, single, Elite Four, cap 78
 
