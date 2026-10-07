@@ -7202,6 +7202,10 @@ EvalAttack_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, EvalAttack_MaybeDeprioritize
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, EvalAttack_MaybeDeprioritize
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, EvalAttack_MaybeDeprioritize
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): Final Gambit
+    // faints its user for its damage, as Explosion does, and like Explosion it
+    // never counts as a kill here, so only this test reaches it.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FINAL_GAMBIT, EvalAttack_MaybeDeprioritize
 
     // Check for quad-effectiveness.
     GoTo EvalAttack_CheckQuadEffective
