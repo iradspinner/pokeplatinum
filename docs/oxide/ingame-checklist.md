@@ -204,6 +204,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   poisons it and Confuse Ray confuses it. And the Geodude of Modern rules'
   "Sturdy" entry shows the new description in its summary: "It survives any
   hit at full HP and 1-hit KO attacks."
+- [ ] **The test kit's late lines** (`main-engine-cleanups`, 2026-10-07): the
+  Items menu's Ice Stone, abilities, Mints and Caps, and TMs entries each
+  print their own line, not another entry's.
 
 - [ ] **The new species on the field** (the "Sprite heights" entry, with
   `main-sprite-heights` merged). Four wild Pokemon come in turn: Wooloo,

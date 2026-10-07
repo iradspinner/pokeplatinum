@@ -3,6 +3,7 @@
 #include "res/field/events/events_twinleaf_town_player_house_2f.h"
 #ifdef OXIDE_TESTKIT
 #include "generated/abilities.h"
+#include "generated/text_banks.h"
 #endif
 
 
@@ -3869,7 +3870,10 @@ TestKit_ItemContrary:
 /* The Ice Stone and Vulpix's two evolutions: two Lv. 20 Vulpix, with an Ice
    Stone and a Fire Stone in the Bag. Both stones show ABLE beside a Vulpix.
    The Ice Stone evolves one into Alolan Ninetales (Ice and Fairy), and the
-   Fire Stone the other into Ninetales, as Eevee's stones pick its branch. */
+   Fire Stone the other into Ninetales, as Eevee's stones pick its branch.
+   The kit's lines follow the room's own in one bank, and those numbered past
+   255 need MessageFromBank: Message takes one byte, and the assembler's
+   "truncated" warning names any line that needs it (2026-10-07). */
 TestKit_ItemIceStone:
     GetPartyCount VAR_0x8005
     GoToIfGe VAR_0x8005, 5, TestKit_PartyFull
@@ -3877,7 +3881,7 @@ TestKit_ItemIceStone:
     GivePokemon SPECIES_VULPIX, 20, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ICE_STONE, 1, VAR_RESULT
     AddItem ITEM_FIRE_STONE, 1, VAR_RESULT
-    Message TestKit_Text_ItemIceStone
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemIceStone
     GoTo TestKit_WaitAndClose
 
 /* The Ability Capsule and Patch: a Machamp and a Ditto, with two Ability
@@ -3896,7 +3900,7 @@ TestKit_ItemAbilities:
     GivePokemon SPECIES_DITTO, 50, ITEM_NONE, VAR_RESULT
     AddItem ITEM_ABILITY_CAPSULE, 2, VAR_RESULT
     AddItem ITEM_ABILITY_PATCH, 1, VAR_RESULT
-    Message TestKit_Text_ItemAbilities
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemAbilities
     GoTo TestKit_WaitAndClose
 
 /* The Mints and Bottle Caps: a Machamp, with two Adamant Mints, a Modest
@@ -3918,7 +3922,7 @@ TestKit_ItemMintsCaps:
     AddItem ITEM_SERIOUS_MINT, 1, VAR_RESULT
     AddItem ITEM_BOTTLE_CAP, 2, VAR_RESULT
     AddItem ITEM_GOLD_BOTTLE_CAP, 1, VAR_RESULT
-    Message TestKit_Text_ItemMintsCaps
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemMintsCaps
     GoTo TestKit_WaitAndClose
 
 /* The TM mechanism, which now allows more than 92 TMs but has none past
@@ -3932,7 +3936,7 @@ TestKit_ItemTMs:
     AddItem ITEM_HM08, 1, VAR_RESULT
     AddItem ITEM_TM01, 1, VAR_RESULT
     AddItem ITEM_HM01, 1, VAR_RESULT
-    Message TestKit_Text_ItemTMs
+    MessageFromBank TEXT_BANK_TWINLEAF_TOWN_PLAYER_HOUSE_2F, TestKit_Text_ItemTMs
     GoTo TestKit_WaitAndClose
 
 TestKit_PartyFull:
