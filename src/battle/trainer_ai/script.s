@@ -2256,6 +2256,9 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Expert_Recovery // Oxide, change (Ian, 2026-09-27)
+    // Oxide: Raging Fury's recoil and confusion (the move reworks, Ian,
+    // 2026-10-06), scored as Volt Tackle's recoil and paralysis are.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_CONFUSE_HIT, Expert_RecoilMove
     // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
     // condition the damage estimate does not see, scored as Wake-Up Slap and
     // Smelling Salts are.

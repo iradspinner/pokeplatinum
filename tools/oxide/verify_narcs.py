@@ -527,6 +527,8 @@ REWORK_DIG_DIVE = {91, 291}
 REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
 # Fury Cutter.
 REWORK_FURY_CUTTER = {210}
+# The rampage moves: Thrash, Petal Dance, Outrage, Uproar.
+REWORK_RAMPAGE = {37, 80, 200, 253}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -706,6 +708,13 @@ DIVERGED = {
             "offsets": (6,),  # pp
             "members": {180},
             "why": "Spite at 5 PP, inside the 3 to 6 of the stat-lowering moves (the move "
+                   "reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7, 8, 9),  # effect, power, effect chance, range
+            "members": REWORK_RAMPAGE,
+            "why": "the rampage moves in one turn with no lock: Thrash, Petal Dance and "
+                   "Outrage as Kaizo has them, Uproar at 100 with a 20% confusion (the move "
                    "reworks, Ian, 2026-10-06)",
         },
     ],

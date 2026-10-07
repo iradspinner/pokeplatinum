@@ -535,6 +535,10 @@ for _move in ("double_slap", "comet_punch", "fury_attack", "spike_cannon", "barr
 MOVE_REWORKS["fury_cutter"] = ("power", "accuracy", "effect")
 MOVE_REWORK_DESCRIBED |= {210}
 MOVE_REWORKS["spite"] = ("pp",)
+MOVE_REWORKS["thrash"] = ("effect", "range")
+for _move in ("petal_dance", "outrage", "uproar"):
+    MOVE_REWORKS[_move] = ("power", "effect", "range")
+MOVE_REWORK_DESCRIBED |= {37, 80, 200, 253}
 _MOVE_REWORK_WHY = "the move reworks (Ian, 2026-10-06)"
 for _move, _fields in MOVE_REWORKS.items():
     for _field in _fields:

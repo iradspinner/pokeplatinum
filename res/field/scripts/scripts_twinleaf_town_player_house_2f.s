@@ -812,6 +812,8 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet76, 21
     AddListMenuEntry TestKit_Text_MenuSet77, 22
     AddListMenuEntry TestKit_Text_MenuSet78, 23
+    AddListMenuEntry TestKit_Text_MenuSet79, 24
+    AddListMenuEntry TestKit_Text_MenuSet80, 25
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -837,6 +839,8 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 21, TestKit_MoveSet76
     GoToIfEq VAR_0x8004, 22, TestKit_MoveSet77
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet78
+    GoToIfEq VAR_0x8004, 24, TestKit_MoveSet79
+    GoToIfEq VAR_0x8004, 25, TestKit_MoveSet80
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1832,6 +1836,40 @@ TestKit_MoveSet78:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
     SetVar VAR_0x8006, MOVE_SPITE
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 79: the rampage moves in one turn with no lock (the move reworks, Ian,
+   2026-10-06). Thrash 120 with a 20% paralysis and a third as recoil, Petal
+   Dance 100 with a 20% confusion (both foes in a double battle), Outrage 140
+   with half as recoil, Uproar 100 with a 20% confusion. Against a wild
+   Chansey that knows only Splash, each strikes once, the next turn's menu
+   opens as usual, Mew never becomes confused ("became confused due to
+   fatigue!" never shows) and Uproar brings no "caused an uproar!". Thrash
+   and Outrage bring "MEW is hit with recoil!"; Chansey is now and then
+   paralysed or confused. */
+TestKit_MoveSet79:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_THRASH
+    SetVar VAR_0x8007, MOVE_PETAL_DANCE
+    SetVar VAR_0x8008, MOVE_OUTRAGE
+    SetVar VAR_0x8009, MOVE_UPROAR
+    GoTo TestKit_GiveMew
+
+/* Set 80: Raging Fury in one turn (the move reworks, Ian, 2026-10-06), a new
+   effect (417): 120 power, a third of the damage as recoil and a 20% chance
+   to confuse. Against a wild Chansey that knows only Splash, each use brings
+   "MEW is hit with recoil!" and now and then "The wild CHANSEY became
+   confused!", Mew is never locked into it and never confused by it. */
+TestKit_MoveSet80:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_RAGING_FURY
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
