@@ -207,6 +207,39 @@ def check_ticks(results, data, root):
                     refused, ""))
 
 
+def check_versions(results, data, root):
+    """Ian's layout note 2: a fight kept once per starter knows whom each
+    version is for, every player meets exactly one, and the save says which
+    player it is (a girl who chose Scorbunny meets Lucas and his Turtwig)."""
+    from . import savefile
+    from . import test_savefile as T
+    starters = {"SPECIES_TURTWIG", "SPECIES_SCORBUNNY", "SPECIES_PIPLUP"}
+    bad = []
+    for _s, _z, t in _all(data, "trainers"):
+        if len(t["teams"]) < 2 or t.get("tag"):
+            continue
+        fors = [(x["for"] or {}).get("starter") for x in t["teams"]]
+        pairs = [((x["for"] or {}).get("starter"), (x["for"] or {}).get("gender")) for x in t["teams"]]
+        if set(fors) != starters or len(set(pairs)) != len(pairs):
+            bad.append(t["key"])
+    save = T.make_save([], {}, box_size=T.BOX_SIZE_30, gender=1,
+                       variables={"VAR_PLAYER_STARTER": T.species_id("SPECIES_SCORBUNNY")})
+    who = savefile.player(save)
+    lucas = next(t for _s, _z, t in _all(data, "trainers") if t["key"] == "lucas_dawn_1")
+    mine = [x for x in lucas["teams"] if x["for"]["starter"] == who["starter"] and x["for"]["gender"] == who["gender"]]
+    turtwig = mine and any(m["species"] == "SPECIES_TURTWIG" for m in mine[0]["team"])
+    results.append(("every version of a fight is for one player, and the save says which",
+                    not bad and who == {"gender": "female", "starter": "SPECIES_SCORBUNNY"}
+                    and len(mine) == 1 and turtwig and mine[0]["label"].startswith("Lucas"),
+                    f"bad {bad}, save {who}, {mine[0]['label'] if mine else 'none'}"))
+    items = alpha.checklist_items(root)
+    seeker = next((i for i in items if "Vs. Seeker never reached" in i["text"]), None)
+    results.append(("each check shows its whole first sentence; an abbreviation does not end one",
+                    all(i["first"] for i in items) and seeker is not None
+                    and "Vs. Seeker" in seeker["first"] and alpha.first_sentence("Lv. 16 holds. Next")[0]
+                    == "Lv. 16 holds.", f"{len(items)} items"))
+
+
 def check_notes(results, data, root):
     """Checks 3 and 6: a note is stamped from the save, a bad rating is
     refused, the export writes JSON and Markdown in the repo's folder, and
@@ -271,7 +304,7 @@ def main():
     data = alpha.build(root)
     results = []
     for check in (check_trainers, check_items, check_rewards, check_wild, check_zones,
-                  check_checklist, check_ticks, check_notes):
+                  check_checklist, check_ticks, check_versions, check_notes):
         check(results, data, root)
     width = max(len(l) for l, _, _ in results)
     failed = 0

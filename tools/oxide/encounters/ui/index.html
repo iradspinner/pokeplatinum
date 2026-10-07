@@ -866,80 +866,102 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 .peer .num { color: var(--dim); }
 
 /* ---- the alpha checklist ----------------------------------------------- */
-/* The splits and their zones in a rail, the chosen split's zones as cards. */
+/* The splits and their zones in a rail, the chosen split's zones as cards.
+   Ian's layout notes (2026-10-07): text at the Trainers tab's size or larger,
+   sprites of 48px with each level under its sprite, a team on one row, and
+   the zone's trainers as cards across the width. */
 #alphamain { grid-template-columns: 320px minmax(640px, 1fr); }
 #alphanav { border-right: 1px solid var(--rule); background: var(--panel); padding: 10px 0 40px; }
 #alphanav .asplit { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
-  border: 0; border-radius: 0; background: none; padding: 8px 16px; font-size: 16px; font-weight: 700; }
+  border: 0; border-radius: 0; background: none; padding: 8px 16px; font-size: 17px; font-weight: 700; }
 #alphanav .asplit.on { background: var(--place-bg); color: var(--place-ink); }
-#alphanav .asplit .sub { font-weight: 400; margin-left: auto; }
-#alphanav .azlink { display: flex; justify-content: space-between; gap: 8px; padding: 3px 16px 3px 30px;
-  font-size: 14.5px; color: var(--ink); cursor: pointer; }
+#alphanav .asplit .sub { font-weight: 400; margin-left: auto; font-size: 14.5px; }
+#alphanav .azlink { display: flex; justify-content: space-between; gap: 8px; padding: 4px 16px 4px 30px;
+  font-size: 16px; color: var(--ink); cursor: pointer; }
 #alphanav .azlink:hover { background: var(--sunken); }
-#alphanav .azlink .num { color: var(--dim); font-size: 13px; }
-#alphamid { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; }
+#alphanav .azlink .num { color: var(--dim); font-size: 14px; }
+#alphanav .azlink.alldone span:first-child { color: var(--faint); text-decoration: line-through; }
+#alphamid { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 14px; font-size: 17px; }
 #alphamid > * { flex-shrink: 0; }
-#alphamid h1 { margin: 0; font-size: 22px; }
-#alphamid .asrc { color: var(--dim); font-size: 14px; margin: 0; }
+#alphamid h1 { margin: 0; font-size: 24px; }
+#alphamid .asrc { color: var(--dim); font-size: 15px; margin: 0; }
 .azone { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
-  padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 12px; }
-.azone h2 { margin: 0; font-size: 19px; }
-.azone .azsum { color: var(--dim); font-size: 14.5px; }
-.azone h3 { margin: 4px 0 0; font-size: 14px; color: var(--dim); text-transform: uppercase;
+  padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 12px; }
+.azone h2 { margin: 0; font-size: 21px; }
+.azone .azsum { color: var(--dim); font-size: 16px; }
+.azone h3 { margin: 6px 0 0; font-size: 15px; color: var(--dim); text-transform: uppercase;
   letter-spacing: .04em; font-weight: 700; }
-.atr { display: grid; grid-template-columns: 96px minmax(170px, 230px) minmax(0, 1fr) minmax(120px, 220px);
-  column-gap: 12px; align-items: center; padding: 3px 0; border-top: 1px solid var(--rule); }
-.atr:first-of-type { border-top: 0; }
-.atr .who a { font-weight: 650; color: var(--ink); }
-.atr .who .sub { display: block; font-size: 13px; }
-.ateam { display: flex; flex-wrap: wrap; gap: 2px 6px; align-items: center; }
-.ateam .mon { display: inline-flex; align-items: center; gap: 1px; font-size: 13px; color: var(--dim); }
-.ateam .ico { width: 32px; height: 32px; }
-.ateam .ico img { width: 32px; height: 64px; }
-.ateam .alt { width: 100%; font-size: 12.5px; color: var(--faint); }
-.areward { font-size: 14px; }
+.azhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+/* Trainers as cards, as many across as fit. */
+.atgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(560px, 1fr)); gap: 10px; }
+.atr { border: 1px solid var(--rule); border-radius: 10px; padding: 8px 12px;
+  display: flex; flex-direction: column; gap: 6px; }
+.athead { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.athead .who { flex: 1 1 auto; }
+.athead .who a { font-weight: 700; color: var(--ink); font-size: 18px; }
+.athead .who .sub { font-size: 15px; }
+.atr.beaten .who a { text-decoration: line-through; text-decoration-color: var(--faint); }
+.areward { font-size: 16px; color: var(--place-ink); }
 .chip.req { --t: var(--type-fire); }
 .chip.opt { background: var(--panel); border-color: var(--rule); font-weight: 400; }
 .chip.boss { --t: var(--type-dragon); }
-.agaunt { border: 1px solid var(--rule); border-radius: 10px; padding: 6px 12px; }
-.agaunt .ghead { font-weight: 700; font-size: 15px; }
-.alist { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 18px;
-  font-size: 15px; }
-.alist .it { display: flex; gap: 6px; align-items: baseline; }
-.alist .it .sub { font-size: 13px; }
-.alist .it .becomes { color: var(--place-ink); font-size: 13.5px; }
-.awild { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 2px 12px; font-size: 15px; }
-.awild a { color: var(--ink); font-weight: 600; }
-.awild .sp { color: var(--dim); }
-.achecks details { font-size: 15px; padding: 2px 0; }
+/* A team on one row, each level under its sprite. */
+.ateam { display: flex; flex-wrap: nowrap; gap: 4px; align-items: flex-end; overflow-x: auto; }
+.ateam .mon { display: flex; flex-direction: column; align-items: center; min-width: 66px; }
+.ateam .ico { width: 64px; height: 64px; }
+.ateam .ico img { width: 64px; height: 128px; }
+.ateam .lv { font-size: 15px; color: var(--dim); font-family: var(--mono); }
+/* A fight's versions: side by side, or the save's own with the rest folded. */
+.aversions { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 8px 14px; }
+.aver .alabel { font-size: 15px; color: var(--dim); }
+.aver.mine .alabel { color: var(--place-ink); font-weight: 650; }
+.arest summary { cursor: pointer; font-size: 15px; color: var(--dim); }
+.arest .aversions { margin-top: 6px; }
+.agaunt { border: 1px solid var(--rule); border-radius: 10px; padding: 8px 12px;
+  display: flex; flex-direction: column; gap: 8px; }
+.agaunt .ghead { display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  font-weight: 700; font-size: 17px; }
+/* Items: what is there now, and what the reward table puts there. */
+.alist { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 6px 22px; }
+.alist .it .sub { font-size: 15px; }
+.alist .it .becomes { color: var(--place-ink); font-size: 15.5px; margin-left: 4px; }
+.alist .it input[type=checkbox] { margin: 0 4px 0 0; }
+/* Encounters as sprites with names, as the Tables tab shows a table. */
+.awild { display: flex; flex-direction: column; gap: 10px; }
+.atable a { color: var(--ink); font-weight: 700; }
+.amons { display: flex; flex-wrap: wrap; gap: 4px 6px; margin-top: 2px; }
+.amon { display: flex; flex-direction: column; align-items: center; width: 76px; font-size: 13.5px;
+  color: var(--dim); text-align: center; line-height: 1.2; }
+.amon .ico { width: 56px; height: 56px; }
+.amon .ico img { width: 56px; height: 112px; }
+/* In-game checks: the whole first sentence, rendered, and its section as a tag. */
+.achecks details { font-size: 16.5px; padding: 3px 0; }
 .achecks summary { cursor: pointer; }
-.achecks .done summary { color: var(--faint); text-decoration: line-through; }
-.achecks details p { margin: 4px 0 6px 18px; color: var(--dim); font-size: 14px; }
+.achecks .tag.sect { margin-left: 6px; font-size: 13px; }
+.achecks code { font-family: var(--mono); font-size: .9em; }
+.achecks .done summary .first { color: var(--faint); text-decoration: line-through; }
+.achecks details p { margin: 4px 0 6px 18px; color: var(--dim); font-size: 15.5px; }
 .planned { color: var(--faint); font-style: italic; }
-/* The feedback each trainer, gauntlet section and zone carries (stage B):
-   fought, a rating for a boss or a section, and a note with a death. */
+/* The feedback each trainer, gauntlet section and zone carries: fought, a
+   rating for a boss or a section, and a note with a death. */
 #alphabar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px 14px;
   border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); color: var(--dim);
-  font-size: 14.5px; }
+  font-size: 15.5px; }
 #alphabar span { flex: 1 1 360px; }
-.atr { grid-template-columns: 96px minmax(170px, 220px) minmax(0, 1fr) minmax(110px, 190px) 220px; }
-.atr.beaten .who a { text-decoration: line-through; text-decoration-color: var(--faint); }
-.afb { display: flex; align-items: center; gap: 6px; justify-content: flex-end; font-size: 14px; }
+.afb { display: flex; align-items: center; gap: 6px; justify-content: flex-end; font-size: 15px; }
 .afb label { display: flex; align-items: center; gap: 4px; color: var(--dim); }
-.afb select { font-size: 13.5px; padding: 1px 2px; }
-.afb button { font-size: 13.5px; padding: 1px 8px; }
-.afbtext { display: flex; flex-direction: column; gap: 2px; margin: 0 0 4px 108px; font-size: 14px; }
+.afb select { font-size: 14.5px; padding: 1px 2px; }
+.afb button { font-size: 14.5px; padding: 2px 9px; }
+.afbtext { display: flex; flex-direction: column; gap: 2px; margin: 0 0 4px 4px; font-size: 15.5px; }
 .afbtext .death { color: var(--error); }
-.afbedit { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 8px 108px; padding: 8px 10px;
+.afbedit { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 8px; padding: 8px 10px;
   border: 1px solid var(--rule); border-radius: 8px; background: var(--sunken); }
-.afbedit textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 14.5px; }
-.afbedit .fbdeath { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 14px; }
-.afbedit .fbdeath input { flex: 1 1 160px; font-size: 14px; }
-.azhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.agaunt .ghead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-.azone .afbrow + .afbrow .atr { border-top: 1px solid var(--rule); }
-#alphanav .azlink.alldone span:first-child { color: var(--faint); text-decoration: line-through; }
-.alist .it input[type=checkbox] { margin: 0 2px 0 0; }
+/* A styled display outranks the hidden attribute, so a closed editor needs
+   its own rule (as the views do). */
+.afbedit[hidden] { display: none; }
+.afbedit textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 15.5px; }
+.afbedit .fbdeath { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 15px; }
+.afbedit .fbdeath input { flex: 1 1 160px; font-size: 15px; }
 </style>
 </head>
 <body>
@@ -1955,50 +1977,88 @@ function fbEditor(key) {
 const fbWrap = (key, label, zone, split, inner) => `<div class="afbrow" data-key="${esc(key)}"
   data-label="${esc(label)}" data-zone="${esc(zone)}" data-split="${esc(split)}">${inner}${fbText(key)}${fbEditor(key)}</div>`;
 
-// One trainer: its standing (boss, mandatory, optional), its name opening the
-// Trainers tab, its team as icons and levels (a rival's three teams, one a
-// line, named by the starter each leads with), its reward, and its feedback.
+// A team on one row, each Pokemon's level under its sprite (Ian's layout
+// notes, 2026-10-07).
+const alphaTeam = team => `<span class="ateam">${team.map(m => `<span class="mon">${icon(m.species, true)}
+  <span class="lv">Lv ${m.level ?? "?"}</span></span>`).join("")}</span>`;
+
+// The version of a fight this save meets: the scripts pick a rival's team by
+// the player's starter, and Lucas's or Dawn's by the starter and gender.
+function yourVersion(t) {
+  const sv = ALPHASTATE && ALPHASTATE.save;
+  if (!sv || !sv.starter || t.tag) return null;
+  return t.teams.find(x => x.for && x.for.starter === sv.starter
+    && (!x.for.gender || x.for.gender === sv.gender)) || null;
+}
+
+// The teams of a fight: one team as a row; a tag fight's two opponents side
+// by side; a fight kept once per starter shows the save's version and folds
+// the rest behind one click, or, with no save to go by, sits them side by
+// side.
+function alphaTeams(t) {
+  if (t.planned) return `<span class="planned">planned; the main track creates it in step 10</span>`;
+  if (t.teams.length === 1) return alphaTeam(t.teams[0].team);
+  const box = x => `<div class="aver"><div class="alabel">${esc(x.label || x.constant)}</div>${alphaTeam(x.team)}</div>`;
+  const mine = yourVersion(t);
+  if (!mine) return `<div class="aversions">${t.teams.map(box).join("")}</div>`;
+  const rest = t.teams.filter(x => x !== mine);
+  return `<div class="aver mine"><div class="alabel">Your version: ${esc(mine.label)}</div>${alphaTeam(mine.team)}</div>
+    <details class="arest"><summary>The other ${plural(rest.length, "version")}</summary>
+      <div class="aversions">${rest.map(box).join("")}</div></details>`;
+}
+
+// One trainer as a card: its standing (boss, mandatory, optional), its name
+// opening the Trainers tab, its reward and its feedback on the top line,
+// then its team.
 function alphaTrainer(t, zone, split) {
   const chip = t.kind === "boss" ? `<span class="chip boss">Boss</span>`
     : t.required ? `<span class="chip req">Mandatory</span>` : `<span class="chip opt">Optional</span>`;
   const stem = c => c.replace(/^TRAINER_/, "").toLowerCase();
-  const mons = team => team.map(m => `<span class="mon">${icon(m.species, true)}${m.level ?? ""}</span>`).join("");
-  const teams = t.planned ? `<span class="planned">planned; the main track creates it in step 10</span>`
-    : t.teams.length === 1 ? mons(t.teams[0].team)
-    : t.teams.map(x => `<span class="alt">${esc(x.label || x.constant)}</span>${mons(x.team)}`).join("");
   const sub = [t.section ? "gauntlet " + t.section : "", t.tag ? "tag battle" : ""].filter(Boolean).join(", ");
   const won = beaten(t.key);
-  return fbWrap(t.key, t.name, zone, split, `<div class="atr ${won ? "beaten" : ""}" data-tick="${esc(t.key)}"><span>${chip}</span>
-    <span class="who">${t.planned ? esc(t.name)
-      : `<a href="#" data-tr="${esc(stem(t.constants[0]))}" title="Open in the Trainers tab">${esc(t.name)}</a>`}
-      ${sub ? `<span class="sub">${esc(sub)}</span>` : ""}</span>
-    <span class="ateam">${teams}</span>
-    <span class="areward">${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span>
-    ${fbControls(t.key, t.kind === "boss", won)}</div>`);
+  const reward = t.rewards.length
+    ? `<span class="areward">Reward: ${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span>` : "";
+  return fbWrap(t.key, t.name, zone, split, `<div class="atr ${won ? "beaten" : ""}" data-tick="${esc(t.key)}">
+    <div class="athead">${chip}<span class="who">${t.planned ? esc(t.name)
+      : `<a href="#" data-tr="${esc(stem(t.constants[0]))}" title="Open in the Trainers tab">${esc(t.name)}</a>`}${
+      sub ? ` <span class="sub">${esc(sub)}</span>` : ""}</span>${reward}${fbControls(t.key, t.kind === "boss", won)}</div>
+    ${alphaTeams(t)}</div>`);
 }
 
-// A ball, hidden item or gift: what the tree holds there, what opens it, and
-// what the reward table puts there instead (until step 10 places it); a ball
-// or hidden item ticks itself once the save has it picked up.
+// A ball, hidden item or gift, in plain words: what is there now, what opens
+// the way to it, and what the reward table puts there (until step 10 places
+// it); a ball or hidden item ticks itself once the save has it picked up.
 function alphaItem(p) {
-  const what = p.item ? esc(p.label) : `<span class="planned">a new ${esc(p.how)}</span>`;
-  const how = p.how === "hidden" ? "hidden" : p.how === "ball" ? "ball" : "";
-  const needs = p.needs && p.needs !== "foot" ? `needs ${p.needs}` : "";
-  const sub = [how, needs].filter(Boolean).join(", ");
+  const kind = { ball: "Ball", hidden: "Hidden item", gift: "Gift" }[p.how] || p.how;
+  const now = p.item ? `<b>${esc(p.label)}</b>` : `<span class="planned">nothing yet</span>`;
+  const needs = p.needs && p.needs !== "foot" ? ` <span class="sub">needs ${esc(p.needs)}</span>` : "";
   const r = p.placed;
-  const becomes = !r ? "" : r.item === p.item ? `<span class="becomes">reward${esc(copiesOf(r))}</span>`
-    : `<span class="becomes">becomes ${esc(r.label + copiesOf(r))}</span>`;
+  const table = !r ? ""
+    : !p.item ? `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here, a new ${esc(p.how)}.</div>`
+    : r.item === p.item ? `<div class="becomes">Reward table: this is its reward${esc(copiesOf(r))}.</div>`
+    : `<div class="becomes">Reward table: ${esc(r.label + copiesOf(r))} goes here instead.</div>`;
   const box = p.flag != null && ALPHASTATE && ALPHASTATE.ticks
     ? `<input type="checkbox" disabled data-flag="${p.flag}" ${picked(p.flag) ? "checked" : ""}
          title="Picked up, read from your save">` : "";
-  return `<span class="it">${box}${what}${sub ? ` <span class="sub">${esc(sub)}</span>` : ""} ${becomes}</span>`;
+  return `<div class="it"><div>${box}<span class="tag">${esc(kind)}</span> Now: ${now}${needs}</div>${table}</div>`;
 }
 
+// The checklist's own Markdown, inline: code, bold and a link's text.
+const mdInline = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>")
+  .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1");
+
+// An in-game check: its whole first sentence, rendered; its checklist
+// section as a separate muted tag; the rest of the check when opened.
 function alphaChecks(list) {
   return `<div class="achecks">${list.map(c => `<details class="${c.done ? "done" : ""}">
-    <summary>${esc(c.key)}${c.live ? ` <span class="tag" title="Read by an agent attached to melonDS">live</span>` : ""}
-      <span class="sub">${esc(c.section)}</span></summary><p>${esc(c.text)}</p></details>`).join("")}</div>`;
+    <summary><span class="first">${mdInline(c.first || c.key)}</span>${
+      c.live ? ` <span class="tag" title="Read by an agent attached to melonDS">live</span>` : ""}
+      <span class="tag sect">${esc(c.section)}</span></summary>${c.rest ? `<p>${mdInline(c.rest)}</p>` : ""}</details>`).join("")}</div>`;
 }
+
+// Species as sprites with their names under them, as the Tables tab shows a table.
+const alphaMons = (ids, names) => `<div class="amons">${ids.map((sp, i) => `<span class="amon">${icon(sp, true)}
+  <span>${esc(names[i] || sp)}</span></span>`).join("")}</div>`;
 
 function alphaZone(z, split) {
   const zkey = `zone:${split}:${z.zone}`;
@@ -2006,23 +2066,25 @@ function alphaZone(z, split) {
     <span class="azsum">${esc(zoneSummary(z.counts))}</span></div>
     <span class="afb"><button class="fb-open" title="A note on this place">${
       noteOf(zkey).note || noteOf(zkey).death ? "Zone note *" : "Zone note"}</button></span></div>`)];
-  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div>${z.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
+  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div class="atgrid">${
+    z.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
   z.gauntlets.forEach(g => {
     const gkey = `gauntlet:${split}:${g.section}`;
     parts.push(`<div class="agaunt">${fbWrap(gkey, "Gauntlet " + g.section, z.zone, split,
       `<div class="ghead"><span>Gauntlet section: ${esc(g.section)}</span>${fbControls(gkey, true, false)}</div>`)}
-      ${g.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div>`);
+      <div class="atgrid">${g.trainers.map(t => alphaTrainer(t, z.zone, split)).join("")}</div></div>`);
   });
   const items = z.pickups.concat(z.gifts.map(g => Object.assign({ how: "gift" }, g)));
   if (items.length) parts.push(`<h3>Items</h3><div class="alist">${items.map(alphaItem).join("")}</div>`);
   if (z.shop.length) parts.push(`<h3>Shop TMs</h3><div class="alist">${z.shop.map(s =>
-    `<span class="it">${esc(s.label + copiesOf(s))} <span class="sub">${s.kind === "prize" ? "Game Corner prize" : "shop"}, ${
-      plural(s.badges, "badge")}</span></span>`).join("")}</div>`);
+    `<div class="it"><b>${esc(s.label + copiesOf(s))}</b> <span class="sub">${s.kind === "prize" ? "Game Corner prize" : "shop"}, from ${
+      plural(s.badges, "badge")}</span></div>`).join("")}</div>`);
   if (z.wild.length || z.scripted.length) parts.push(`<h3>Encounters</h3><div class="awild">${
-    z.wild.map(w => `<a href="#" data-area="${esc(w.area)}" title="Open in the Tables tab">${esc(w.label)}</a>
-      <span class="sp">${esc(w.species.join(", "))}</span>`).join("")}${
-    z.scripted.map(s => `<span>${esc(s.label)} <span class="sub">${esc(s.kind)}${s.planned ? ", planned" : ""}</span></span>
-      <span class="sp">${esc(s.pool.join(", "))}${s.level ? ", level " + s.level : ""}</span>`).join("")}</div>`);
+    z.wild.map(w => `<div class="atable"><a href="#" data-area="${esc(w.area)}" title="Open in the Tables tab">${esc(w.label)}</a>
+      ${alphaMons(w.species_ids || [], w.species)}</div>`).join("")}${
+    z.scripted.map(s => `<div class="atable"><span><b>${esc(s.label)}</b> <span class="sub">${esc(s.kind)}${
+      s.planned ? ", planned" : ""}${s.level ? ", level " + s.level : ""}</span></span>
+      ${alphaMons(s.pool_ids || [], s.pool)}</div>`).join("")}</div>`);
   if (z.checks.length) parts.push(`<h3>In-game checks</h3>${alphaChecks(z.checks)}`);
   return `<div class="azone" id="${zoneId(z.zone)}">${parts.join("")}</div>`;
 }
