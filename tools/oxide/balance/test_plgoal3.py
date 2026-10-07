@@ -119,6 +119,13 @@ def main():
     results.append(("a boss's later boxes reuse its first box's networks, the first trains its own",
                     got == (None, "team-x-s1+team-x-s2", None), str(got)))
 
+    # A small box: the race and the labels take what sixes it has.
+    ks = [f"p{i}" for i in range(7)]
+    got = (pt.round_size(ks, 16), pt.round_size(ks[:5], 16), pt.round_size([f"p{i}" for i in range(20)], 16),
+           pt.spread_room(ks, [1]), pt.spread_room(ks, [1, 2, 3, 4, 5]), pt.spread_room(ks[:6], []))
+    results.append(("a small box's race draws only the sixes it has, and the labels as many",
+                    got == ((6, 7), (5, 1), (6, 16), 5, 2, 0), str(got)))
+
     # Pooling and the store's key.
     side = g.pool_side([{"won": 1.0, "clean": 1.0, "faints": 0.0, "fights": 15},
                         {"won": 0.5, "clean": 0.0, "faints": 2.0, "fights": 5}])

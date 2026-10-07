@@ -491,6 +491,21 @@ def read(st, boss_keys, flags, teams, fights, cfg, luck="real", seed0=0, procs=N
     return tally
 
 
+def round_size(keys, per_round):
+    """(team size, sixes a race round draws). A small box holds fewer
+    different sixes than a round draws (seven members make seven): a round
+    then takes them all, where it used to draw for ever (Lucas and Dawn 1,
+    goal 3, 2026-10-07); a box under six fields all it has."""
+    size = min(6, len(keys))
+    return size, min(per_round, math.comb(len(keys), size))
+
+
+def spread_room(keys, top):
+    """How many sixes drawn at random the labels can add beside the screen's
+    `top` ones: five, or as many as the box has left."""
+    return min(5, math.comb(len(keys), 6) - len(top)) if len(keys) > 6 else 0
+
+
 def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, fights=4, elite=4, rate=0.3,
          log=print, seed=1):
     """Ian's member ratings, then halving: (finalists best first, the tally,
@@ -503,12 +518,13 @@ def race(st, keys, boss_keys, flags, screened, cfg, rounds=5, per_round=16, figh
     counts = {k: 1.0 + sum(k in s for s in screened) for k in keys}
     w = {k: c / sum(counts.values()) for k, c in counts.items()}
     tally = Tally()
+    size, per_round = round_size(keys, per_round)
     for r in range(rounds):
         teams = [tuple(s) for s in screened[:per_round // 2]] if r == 0 else []
         while len(teams) < per_round:
             pool_ = list(keys)
             six = []
-            for _ in range(6):
+            for _ in range(size):
                 pick = rng.choices(pool_, weights=[w[k] for k in pool_])[0]
                 six.append(pick)
                 pool_.remove(pick)
@@ -661,7 +677,8 @@ def search(fight, key, recs, stock, out_dir, variant=0, ours=None, bar=None, pro
         t1 = time.time()
         rng = random.Random(fight)
         spread = []
-        while len(spread) < 5 and len(keys) > 6:
+        room = spread_room(keys, sixes[:5])
+        while len(spread) < room:
             s = sorted(rng.sample(keys, 6), key=keys.index)
             if s not in sixes[:5] and s not in spread:
                 spread.append(s)
