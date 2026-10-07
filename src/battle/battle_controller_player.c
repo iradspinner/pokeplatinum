@@ -5138,6 +5138,7 @@ static BOOL BattleControllerPlayer_RageBuilding(BattleSystem *battleSys, BattleC
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
         && DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < 12) {
         DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK]++;
+        DEFENDER_TURN_FLAGS.statRaised = TRUE; // Oxide, for Burning Jealousy
 
         LOAD_SUBSEQ(subscript_rage_is_building);
         battleCtx->commandNext = battleCtx->command;
