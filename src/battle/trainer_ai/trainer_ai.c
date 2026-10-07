@@ -220,6 +220,7 @@ static void AIScript_Iter(BattleContext *battleCtx, int i);
 static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler);
 static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, BOOL embargo, BOOL varyDamage);
 static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, BOOL embargo, u8 variance);
+static s32 TrainerAI_ExpectedHitsDamage(BattleContext *battleCtx, u16 move, int ability, s32 damage);
 static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1, int *buf2, int stat);
 
@@ -3550,6 +3551,51 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         damage = 0;
     } else {
         damage = BattleSystem_Divide(damage * variance, 100);
+        damage = TrainerAI_ExpectedHitsDamage(battleCtx, move, ability, damage);
+    }
+
+    return damage;
+}
+
+/**
+ * @brief Oxide: a move that hits more than once, rated on all its hits rather
+ * than its first (the move reworks, Ian's answer relayed on 2026-10-07).
+ *
+ * The damage of one hit at the move's listed power comes in, and the whole
+ * move's expected damage goes out. A two to five hit move lands about 3.1
+ * hits on Generation 5's spread (2 and 3 at 35% each, 4 and 5 at 15%), or
+ * always 5 under Skill Link. The three rising moves are rated on their three
+ * hits all landing: Triple Kick's 10, 20 and 30 and Triple Axel's 20, 40 and
+ * 60, whatever the listed power, and Fury Cutter's listed power and 10 and
+ * 20 more. Damage is close enough to proportional to power for the ratio to
+ * stand in for three separate estimates.
+ *
+ * @param battleCtx
+ * @param move
+ * @param ability The attacker's ability
+ * @param damage  One hit's damage at the listed power
+ * @return The move's expected damage
+ */
+static s32 TrainerAI_ExpectedHitsDamage(BattleContext *battleCtx, u16 move, int ability, s32 damage)
+{
+    int power = MOVE_DATA(move).power;
+
+    if (power <= 0) {
+        return damage;
+    }
+
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_MULTI_HIT:
+        return ability == ABILITY_SKILL_LINK ? damage * 5 : damage * 31 / 10;
+
+    case BATTLE_EFFECT_HIT_THREE_TIMES:
+        return damage * (10 + 20 + 30) / power;
+
+    case BATTLE_EFFECT_HIT_THREE_TIMES_INCREMENT_BASE_POWER_20:
+        return damage * (20 + 40 + 60) / power;
+
+    case BATTLE_EFFECT_HIT_THREE_TIMES_RISING_10:
+        return damage * (power * 3 + 10 + 20) / power;
     }
 
     return damage;

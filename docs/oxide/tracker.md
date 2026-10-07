@@ -51,8 +51,6 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 
 - **The regional dex order** for the 51 lines appended to the pick-list on 2026-09-26: the OxiDex Agent's proposal is `docs/oxide/encounters/regional-dex-proposal.md` (2026-09-30).
 
-- **The move reworks' calls** (`cloud/main-move-reworks`'s report): (1) the AI costs multi-hit moves as one hit, so seldom picks them; costing expected hits changes its play; (2) Uproar and Raging Fury hit one chosen foe, not a random one; (3) the AI's new Upper Hand and Shell Trap checks, and half recoil costed as an attack (Head Smash too); (4) Barrage and Comet Punch keep 85% accuracy, Bone Rush 90%.
-
 - **Also his**: the Frontier Brain teams (he builds them), the gauntlet trainer list (after the scoring review and the average-fight calibration), the zone-by-zone land pass with the encounter track, and reading the water biome draft.
 
 ## Phase 0: Setup
