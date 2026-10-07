@@ -103,9 +103,11 @@ relative_source_root = fs.relative_to(meson.project_source_root(), meson.project
 # Platinum Oxide: the test kit (docs/oxide/test-kit.md). Its field script code
 # sits in #ifdef OXIDE_TESTKIT blocks, and the bedroom's events and text bank are
 # swapped for merged copies, so none of it reaches a build without the option.
+# The kit build also fails on any assembler warning in a script: the kit's
+# lines run past 255, and a one-byte operand would cut one silently.
 script_defines = []
 if get_option('oxide_testkit')
-    script_defines = ['--define', 'OXIDE_TESTKIT']
+    script_defines = ['--define', 'OXIDE_TESTKIT', '--fatal-warnings']
     testkit_merge_py = find_program(meson.project_source_root() / 'tools' / 'oxide' / 'testkit_merge.py', native: true)
 endif
 

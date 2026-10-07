@@ -1956,8 +1956,18 @@ static BOOL ScrCmd_InitLocalTextListMenu(ScriptContext *ctx)
 static BOOL ScrCmd_AddListMenuEntry(ScriptContext *ctx)
 {
     FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
+#ifdef OXIDE_TESTKIT
+    // Platinum Oxide test kit: the kit's labels follow the bedroom's own lines
+    // in one bank and run past 255, so the kit build reads the label and its
+    // alt text whole. Vanilla keeps one byte of each, which its lists fit; a
+    // label cut to one byte loads another line, and a two-line one makes the
+    // menu window wider than the screen (2026-10-07).
+    u16 entryStringID = ScriptContext_GetVar(ctx);
+    u16 altTextStringID = ScriptContext_GetVar(ctx);
+#else
     u8 entryStringID = ScriptContext_GetVar(ctx);
     u8 altTextStringID = ScriptContext_GetVar(ctx);
+#endif
     u8 entryIndex = ScriptContext_GetVar(ctx);
 
     FieldMenuManager_AddListMenuEntry(*fieldMenuMan, entryStringID, altTextStringID, entryIndex);

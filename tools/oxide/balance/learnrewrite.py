@@ -2096,7 +2096,24 @@ def build():
             if mv not in d.eggs[sp]:
                 d.eggs[sp].append(mv)
                 d.note(sp, 0, mv, "egg list", "Ian's ruling", why)
+    # A list set by hand stays as its file holds it (learnsets_by_hand.txt).
+    for sp, why in by_hand().items():
+        d.lists[sp] = [list(e) for e in lc.learnset("rewrite", sp)]
+        d.note(sp, 0, "", "set by hand", "data", f"{why}; the rows above are not written")
     return d
+
+
+@functools.lru_cache(maxsize=None)
+def by_hand():
+    """{species: why}: the level-up lists set by hand in their files."""
+    out = {}
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "learnsets_by_hand.txt"),
+              encoding="utf-8") as f:
+        for line in f:
+            if line.strip() and not line.startswith("#"):
+                sp, why = line.split(None, 1)
+                out[sp] = why.strip()
+    return out
 
 
 def write(d):

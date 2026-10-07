@@ -101,7 +101,11 @@ calculator checks fail if the offline ones are lost.
    when it is made rather than in the formula, Normalize's fifth, Lightning
    Rod and Storm Drain taking their type, Grass immune to powder moves, and
    Sturdy surviving any hit from full HP, through three more hook names:
-   `simpleAtCalc`, `criticalDamage` and `firstHitDamage`.
+   `simpleAtCalc`, `criticalDamage` and `firstHitDamage`. Since 2026-10-07
+   Fury Cutter is three hits, the first at its listed power and each later
+   one 10 more (30, 40 and 50), as effect script 416 has it since the move
+   reworks; `calc_export.py` gives it the three hits, and the profile each
+   hit's power.
 
 10. **`calc/mechanics/gen4.js`, the hooks the profile needs.** Each is marked
     "Oxide patch" and does nothing for a profile without that hook: the

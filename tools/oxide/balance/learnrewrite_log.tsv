@@ -1684,22 +1684,22 @@ SPECIES_CRUSTLE	56	Shell Smash	added	R2	Candice's split; score 63
 SPECIES_CRUSTLE	64	Skitter Smack	added	R2	Galactic's split; score 54
 SPECIES_CRUSTLE	66	Poison Jab	added	R5	Galactic's split; score 50
 SPECIES_CRUSTLE	72	Bulldoze	added	R2	League's split; score 40
-SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_ESPEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_ESPEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_SYLVEON	5	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_SYLVEON	48	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_SYLVEON	5	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_SYLVEON	48	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_ESPEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_ESPEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	20	Confusion	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_FLAREON	20	Ember	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_GLACEON	21	Icy Wind	moved from 15	R25	was below 21, the lowest level it is had at
@@ -3447,3 +3447,6 @@ SPECIES_MIME_JR	23	Zen Headbutt	added	every catch knows an attack	caught at 23 i
 SPECIES_RALTS	1	Disarming Voice	added	every catch knows an attack	caught at 1 in Byron's split
 SPECIES_TOGEPI	1	Fairy Wind	added	every catch knows an attack	caught at 1 in Fantina's split
 SPECIES_DARKRAI	0	Dark Void	egg list	Ian's ruling	Ian, 2026-10-06: Officer Somnu's Darkrai keeps Dark Void, which Darkrai learns only at 66, above Somnu's levels; the player never reaches an egg list
+SPECIES_TURTWIG	0		set by hand	data	Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07); the rows above are not written
+SPECIES_SCORBUNNY	0		set by hand	data	Tackle and Growl at 5, Ember 7 and Flame Charge 9 after (Ian's QA, 2026-10-07); the rows above are not written
+SPECIES_PIPLUP	0		set by hand	data	Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07); the rows above are not written

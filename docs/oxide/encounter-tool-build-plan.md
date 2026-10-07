@@ -8,6 +8,16 @@ The design doc says *what* the tool is and *why* each number in it is the number
 it is. It does not say in what order to build it, what the repo already provides,
 or which of its claims survive contact with the files on disk. This does.
 
+**First, the rule over every decision (Ian, 2026-10-07): each change is
+judged for its effect on difficulty, by judgement.** The standing rulings
+and CLAUDE.md have it in full. For this track it means three things. A
+change to the tool itself (a tab, a check, the layout) moves no fight and
+stales nothing. A change to an encounter table names the fights it moves,
+if any, in its landing commit ("Difficulty: not material" or "Difficulty:
+material, <fights>"). And the Trainers tab shows a stale difficulty reading
+as stale, struck through with its reason, and never lets one block
+anything.
+
 ## Resuming cold
 
 For a session that has none of the conversation this came out of.

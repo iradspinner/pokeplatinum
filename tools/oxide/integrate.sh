@@ -438,6 +438,13 @@ if [ -z "$b1_missing" ]; then
     for t in test_b1 test_b1e test_b2 test_b3 test_b4 test_b6 test_learnstudy test_learncheck test_learnrewrite; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
     done
+    # Stale scores never block a landing (Ian, 2026-10-07): test_b3 and
+    # test_b6 report them and pass, and the gate lists them as a warning.
+    stale="$("$PY" -m tools.oxide.balance.rescore --stale 2>/dev/null | tail -1)"
+    case "$stale" in
+        "0 stale") ok "stored scores current" ;;
+        *) warn "stored scores stale, ${stale:-unread}; rescore when a reading is due" ;;
+    esac
 else
     warn "balance suites skipped, missing:$b1_missing"
 fi

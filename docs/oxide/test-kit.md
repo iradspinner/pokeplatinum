@@ -191,8 +191,19 @@ Sets 1 to 27 fill the first page, whose last entry, "More sets", opens the
 second: a field menu holds 28 entries (`FIELD_MENU_ENTRIES_MAX`), and a
 29th is written past the end of the menu's arrays. Sets 28 to 31 were
 added that way on 2026-09-25 and moved to the second page on 2026-09-26.
-The second page ends the same way at set 54, and set 55 on (2026-09-27) is
-on the third, `TestKit_MoveSets3`.
+The second page ends the same way at set 54, the third (`TestKit_MoveSets3`,
+set 55 on, 2026-09-27) at set 81, and sets 82 to 84 are on the fourth,
+`TestKit_MoveSets4` (2026-10-07: the third had grown to 30 entries, and
+opening it corrupted memory). The kit build now refuses any list menu of
+more than 28 entries (`tools/oxide/testkit_merge.py`).
+
+The kit's lines follow the bedroom's own 11 in one text bank and run past 255
+(2026-10-07: 294 in all). A kit line is shown with `TestKitMessage`, which is
+`MessageFromBank` with two-byte operands, never with `Message`, whose operand
+is one byte; and the kit build reads a list label whole, where vanilla keeps
+one byte of it (`ScrCmd_AddListMenuEntry`). The kit build fails on any value
+an assembler operand would cut. Before this, labels and lines past 255 showed
+other lines, and the top menu froze.
 Pair a move that needs a condition with the move that sets it up, as sets 3, 5,
 8 and 9 do.
 
