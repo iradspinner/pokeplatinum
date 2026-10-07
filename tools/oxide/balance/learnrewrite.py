@@ -468,7 +468,10 @@ RAW_MARGIN = 15   # an off-stat attack may exceed the ceiling by its stat share,
 # strongest move a ceiling lets through. A rung is read by the power the
 # holder feels (its share of its better attacking stat), so an off-stat
 # BubbleBeam sits low on a physical Corphish and a Giga Drain high on any
-# Grass line in Roark's split. The ceilings stay only as a weight.
+# Grass line in Roark's split. The old ceilings still set the point in the
+# game a first move of a type starts at (start_power: the ceiling less 20),
+# and otherwise weigh the score; start_power is the lever if early kits
+# feel off in play.
 
 FIRST_RUNG = 40     # a line's first attacks come from the ladder's foot; below it is dead weight
 

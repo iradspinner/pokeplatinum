@@ -14,8 +14,17 @@ move of a type comes from the low rungs at the point in the game, and it
 climbs one or two rungs a split (one for a power-flagged line, one fewer in
 the split it is caught in). A move is read halfway between its power and
 the power the line feels through its own attacking stat, so an off-stat
-move sits lower. The ceilings stay only as a cost in the score. The early
-Giga Drains are gone, and BubbleBeam stays on Corphish at its own level.
+move sits lower. The early Giga Drains are gone, and BubbleBeam stays on
+Corphish at its own level.
+
+**The old per-split power ceilings still steer in one place.** "The point
+in the game" where a line's first move of a type starts on its ladder is
+that split's ceiling less 20: 40 in Roark's split, 55 in Gardenia's, 60 in
+Fantina's, 70 in Maylene's and Wake's (a power-flagged line a split later).
+Beyond that, power over the ceiling only costs a move score. That starting
+point is the lever to turn if early kits feel too strong or too weak in
+the alpha. (Corrected on 2026-10-06: this page first said the ceilings
+were only a cost in the score.)
 
 | Check | Landed | Ladders |
 |---|---|---|

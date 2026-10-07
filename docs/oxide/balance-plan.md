@@ -49,7 +49,11 @@ type's attacks, physical and special side by side:
   feels through its own attacking stat.
 - **Pivots** stand high on the ladder.
 - **Abilities.** Huge Power and Pure Power set the physical side.
-- **Ceilings** are only a cost in the score.
+- **Ceilings.** The old per-split ceilings set where a line's first move
+  of a type starts (the ceiling less 20: 40 in Roark's split, 55 in
+  Gardenia's), and cost score beyond that. In the TM table they gate when
+  a TM attack may come. Both are the lever to turn if early kits or TM
+  timing feel off in the alpha.
 
 **Ian's TM rulings (2026-10-06).**
 - **Timing.** By his judgement, Confuse Ray, Charm, Knock Off,

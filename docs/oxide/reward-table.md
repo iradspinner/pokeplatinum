@@ -132,6 +132,8 @@ Every number from TM01, then the HMs: the move vanilla teaches by it, the move i
 
 TMs by the split they first come in, against each split's share by its length (the trainers in it), and the first draft's count.
 
+**What gates a TM's timing.** A TM attack comes no earlier than the split whose old power ceiling covers its power: the learnset generator's ceiling for a same-type attack, 60 in Roark's split, 75 in Gardenia's split, 80 in Fantina's split, 90 in Maylene's split, 90 in Wake's split, 100 in Byron's split, and more after. A hard gate, not a weight. A strong TM also waits for each flagged line that learns it to have a good attack of its type by level-up (Byron's split at the latest), and Ian's timing notes hold five moves later. The power gate is the lever to turn if TM timing feels off in the alpha.
+
 | Split | Share | Now | First draft |
 |---|---|---|---|
 | Roark | 4.2 | 4 | 3 |

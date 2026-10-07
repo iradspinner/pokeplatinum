@@ -1026,6 +1026,14 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     p("TMs by the split they first come in, against each split's share by its length (the trainers in it), "
       "and the first draft's count.")
     p()
+    p("**What gates a TM's timing.** A TM attack comes no earlier than the split whose old power ceiling "
+      "covers its power: the learnset generator's ceiling for a same-type attack, "
+      + ", ".join(f"{lr.CEILING[s]} in {s}'s split" for s in SPLITS[:6])
+      + ", and more after. A hard gate, not a weight. A strong TM also waits for each flagged line that "
+      "learns it to have a good attack of its type by level-up (Byron's split at the latest), and Ian's "
+      "timing notes hold five moves later. The power gate is the lever to turn if TM timing feels off in "
+      "the alpha.")
+    p()
     p("| Split | Share | Now | First draft |")
     p("|---|---|---|---|")
     for s in SPLITS:
