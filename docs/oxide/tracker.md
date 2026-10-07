@@ -16,6 +16,7 @@ Open work only, companion to `docs/oxide/design-doc.md`. When an item finishes, 
 5. **Overseer**: landings, this tracker and `docs/oxide/alpha-readiness.md`.
 6. **Kaizo study**: the session "Kaizo Analysis" in `~/oxide-trials/kaizo-teams/` (blind: it reads that folder and `res/` only), running again since 2026-10-06, combs the rest of the game straight through, Gardenia's and Fantina's splits first (Phase 5 has the entry).
 7. **Ian**: QA starts on readiness step 13's ROM with a fresh game, since the TM pass breaks the save; alpha 1 starts another on step 16's. What waits on him is below.
+8. **Cloud**: `cloud/main-ai-flags` (readiness step 18, the AI flags pass), started 2026-10-07 during QA; the Overseer watches for its report commit.
 8. **No owner**: the bug track; its one open item, the box deposit hang, is fixed on `main-box-hang` and waits on Ian's confirmation.
 
 **To confirm the state after a restart**, and what a clean gate looks like since Phase 4 changed the base ROM's tables: `docs/oxide/restart-checks.md`.
