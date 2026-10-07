@@ -2774,9 +2774,17 @@ static int sub_0206F160(FieldSystem *fieldSystem, StringTemplate *template, TVEp
 
     // Platinum Oxide: vanilla wrote `% NUM_VALID_MOVES - 2`, which parses as
     // `(x % N) - 2` and can hand MOVE_NONE or -1 to the name lookup. The
-    // intended range is a random real move; the placeholders at 468..470 are
-    // still reachable here and print "-", which is cosmetic.
-    StringTemplate_SetMoveName(template, 3, (LCRNG_Next() % (NUM_VALID_MOVES - 2)) + 1);
+    // intended range is a random real move: one draw over every move but
+    // MOVE_NONE and the three retail placeholders at 468..470, whose name is
+    // "-", stepping over the placeholders (2026-10-07).
+    u16 numPlaceholders = MOVE_UNUSED_470 - MOVE_UNUSED_468 + 1;
+    u16 move = LCRNG_Next() % (NUM_VALID_MOVES - numPlaceholders) + 1;
+
+    if (move >= MOVE_UNUSED_468) {
+        move += numPlaceholders;
+    }
+
+    StringTemplate_SetMoveName(template, 3, move);
 
     return 17;
 }

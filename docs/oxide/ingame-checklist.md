@@ -204,6 +204,17 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   poisons it and Confuse Ray confuses it. And the Geodude of Modern rules'
   "Sturdy" entry shows the new description in its summary: "It survives any
   hit at full HP and 1-hit KO attacks."
+- [ ] **The TV's random move** (`main-engine-cleanups`, 2026-10-07), in normal
+  play whenever it comes up: the Variety Hour's "Sinnoh Hot Hit Tunes" names a
+  real move in its no. 1 song ("...Our Summer of" a move), never "-".
+- [ ] **Infiltrator with Mimic and Psycho Shift** (Modern rules, "Infiltrator,
+  Mimic"; `main-engine-cleanups`, 2026-10-07). Splash while Snorlax's doll
+  goes up and the Flame Orb burns Crobat. Psycho Shift then burns Snorlax and
+  cures Crobat, and Mimic copies Substitute, both with the doll still
+  standing. Before the fix both failed.
+- [ ] **The test kit's late lines** (`main-engine-cleanups`, 2026-10-07): the
+  Items menu's Ice Stone, abilities, Mints and Caps, and TMs entries each
+  print their own line, not another entry's.
 
 - [ ] **The new species on the field** (the "Sprite heights" entry, with
   `main-sprite-heights` merged). Four wild Pokemon come in turn: Wooloo,

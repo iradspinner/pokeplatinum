@@ -530,6 +530,10 @@
             "en_US": "Infiltrator, Safeguard"
         },
         {
+            "id": "TestKit_Text_MenuStapleInfiltratorMimic",
+            "en_US": "Infiltrator, Mimic"
+        },
+        {
             "id": "TestKit_Text_MenuWarp",
             "en_US": "Warp"
         },
