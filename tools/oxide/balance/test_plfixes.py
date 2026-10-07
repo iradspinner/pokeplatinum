@@ -638,20 +638,24 @@ def rework_checks():
                 and {"RECOIL_CONFUSE_HIT", "UPPER_HAND", "BURN_HIT_IF_STATS_ROSE"} <= fs.sheer_force_effects(),
                 f"{sf}; Upper Hand flinch {foe.flinch}"))
 
-    # Reckless: the game raises every effect it lists by 1.2; the simulator
-    # adds it where the calculator's row lacks it (Hyper Beam now), not where
-    # the row has it (Brave Bird), and never without Reckless.
+    # Reckless: the game raises every effect it lists by 1.2; on a row the
+    # simulator adds it only where the calculator does not (Hyper Beam, until
+    # the calculator reads the game's list), never where it does (Brave Bird),
+    # and never without Reckless.
     reck = {}
     for name, ability in (("Hyper Beam", "Reckless"), ("Brave Bird", "Reckless"), ("Hyper Beam", "Intimidate")):
         b, p, foe = fresh([name], roll=40, hp=200)
         p.ability = ability
         pl.attack(b, p, fs.move(name), foe, True)
         reck[f"{name} {ability}"] = 200 - foe.hp
+    beam = 40 if "Hyper Beam" in fs.calc_reckless() else 48
     want_effects = {"RECOIL_HALF", "RECOIL_BURN_HIT", "RECOIL_PARALYZE_HIT", "RECOIL_CONFUSE_HIT", "RECOIL_THIRD",
                     "RECOIL_QUARTER", "CRASH_ON_MISS"}
-    out.append(("Reckless raises the reworked recoil moves the calculator leaves unboosted",
-                reck == {"Hyper Beam Reckless": 48, "Brave Bird Reckless": 40, "Hyper Beam Intimidate": 40}
-                and want_effects <= fs.reckless_effects(), f"{reck}; effects {sorted(fs.reckless_effects())}"))
+    out.append(("Reckless: the simulator adds 1.2 where the calculator's row lacks it, and only there",
+                reck == {"Hyper Beam Reckless": beam, "Brave Bird Reckless": 40, "Hyper Beam Intimidate": 40}
+                and want_effects <= fs.reckless_effects(),
+                f"{reck}; the calculator boosts {len(fs.calc_reckless())} moves itself; "
+                f"effects {sorted(fs.reckless_effects())}"))
 
     # Priority as the engine reckons it: Prankster on a status move, Gale
     # Wings on a Flying move at full HP.
