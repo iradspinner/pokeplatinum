@@ -70,8 +70,14 @@ import subprocess
 import sys
 import time
 
-from ..encounters import alpha
+from ..encounters import alpha, model as encounter_model
 from . import data, fightsim as fs, pboxes, pldifficulty, plniche, plscore, plstudy, plteam, pool
+
+# The reading runs from an extracted copy of a commit, which is not a git
+# checkout. The encounter tool finds its tree by asking git, which fails
+# there, and run from inside another checkout quietly reads that one
+# instead. Point it at the tree this module was loaded from.
+encounter_model.repo_root = lambda: data.ROOT
 
 OUT = os.path.expanduser("~/oxide-trials/goal3")
 SEEDS = (1, 2, 3)
