@@ -176,6 +176,9 @@ read, so they are written here too. Each is a standing instruction.
   fights rather than measure them absolutely, and Oxide is not meant to be
   beaten on a first run. A trainer that trends a little hard, or reads as an
   outlier, is fine while it approximates its band (Ian, 2026-10-06).
+  Cyrus 3, the biggest boss but Cynthia, may read harder than the rest
+  (Ian, 2026-10-06: "if any fight can be excused for being too hard, the
+  biggest boss fight of the game (save Cynthia) surely has that claim").
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
