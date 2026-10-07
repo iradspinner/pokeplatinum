@@ -45,6 +45,8 @@
             [ 20, "MOVE_ROCK_THROW" ],
             [ 22, "MOVE_SWAGGER" ],
             [ 32, "MOVE_HI_JUMP_KICK" ],
+            [ 34, "MOVE_BULK_UP" ],
+            [ 35, "MOVE_LOW_SWEEP" ],
             [ 36, "MOVE_PSYCH_UP" ],
             [ 39, "MOVE_POWER_TRICK" ],
             [ 43, "MOVE_REVERSAL" ],

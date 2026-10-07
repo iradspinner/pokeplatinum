@@ -105,6 +105,10 @@
                 "MOVE_BODY_PRESS"
             ],
             [
+                57,
+                "MOVE_SCARY_FACE"
+            ],
+            [
                 61,
                 "MOVE_DOUBLE_EDGE"
             ],
@@ -122,7 +126,7 @@
             ],
             [
                 71,
-                "MOVE_SCARY_FACE"
+                "MOVE_SCREECH"
             ]
         ],
         "by_tm": [],

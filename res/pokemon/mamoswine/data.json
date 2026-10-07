@@ -50,14 +50,14 @@
             [ 28, "MOVE_ICE_FANG" ],
             [ 32, "MOVE_TAKE_DOWN" ],
             [ 40, "MOVE_EARTHQUAKE" ],
-            [ 45, "MOVE_BRICK_BREAK" ],
+            [ 42, "MOVE_BRICK_BREAK" ],
             [ 48, "MOVE_MIST" ],
-            [ 53, "MOVE_ICICLE_CRASH" ],
+            [ 50, "MOVE_ICICLE_CRASH" ],
             [ 56, "MOVE_ICE_BEAM" ],
-            [ 61, "MOVE_BULLDOZE" ],
+            [ 58, "MOVE_BULLDOZE" ],
             [ 65, "MOVE_SCARY_FACE" ],
-            [ 69, "MOVE_DOUBLE_EDGE" ],
-            [ 71, "MOVE_SUPERPOWER" ]
+            [ 67, "MOVE_DOUBLE_EDGE" ],
+            [ 72, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM05",

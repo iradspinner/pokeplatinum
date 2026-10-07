@@ -65,8 +65,16 @@
                 "MOVE_FLAIL"
             ],
             [
+                18,
+                "MOVE_CHARM"
+            ],
+            [
                 20,
                 "MOVE_MEGA_DRAIN"
+            ],
+            [
+                22,
+                "MOVE_MUD_SHOT"
             ],
             [
                 27,

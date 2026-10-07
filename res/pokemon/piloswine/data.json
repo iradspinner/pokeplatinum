@@ -50,7 +50,7 @@
             [ 25, "MOVE_ICY_WIND" ],
             [ 32, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
-            [ 35, "MOVE_SMACK_DOWN" ],
+            [ 34, "MOVE_SMACK_DOWN" ],
             [ 40, "MOVE_EARTHQUAKE" ],
             [ 41, "MOVE_ICE_FANG" ],
             [ 48, "MOVE_MIST" ],

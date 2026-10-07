@@ -45,6 +45,7 @@
             [ 27, "MOVE_ANCIENT_POWER" ],
             [ 29, "MOVE_AMNESIA" ],
             [ 36, "MOVE_GASTRO_ACID" ],
+            [ 40, "MOVE_BLOCK" ],
             [ 50, "MOVE_ENERGY_BALL" ],
             [ 57, "MOVE_STOCKPILE" ],
             [ 58, "MOVE_SPIT_UP" ],

@@ -44,7 +44,6 @@
             [ 35, "MOVE_DRAGON_BREATH" ],
             [ 41, "MOVE_SCREECH" ],
             [ 45, "MOVE_DRAGON_CLAW" ],
-            [ 47, "MOVE_BULLDOZE" ],
             [ 54, "MOVE_POISON_FANG" ],
             [ 56, "MOVE_DRAGON_RUSH" ],
             [ 57, "MOVE_HYPER_BEAM" ],

@@ -46,7 +46,6 @@
             [ 22, "MOVE_WATER_PULSE" ],
             [ 26, "MOVE_CAPTIVATE" ],
             [ 29, "MOVE_SAFEGUARD" ],
-            [ 31, "MOVE_FLIP_TURN" ],
             [ 35, "MOVE_AQUA_RING" ],
             [ 37, "MOVE_AQUA_TAIL" ],
             [ 42, "MOVE_WHIRLPOOL" ],

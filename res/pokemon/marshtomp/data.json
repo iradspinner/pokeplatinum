@@ -49,6 +49,7 @@
             [ 25, "MOVE_MUD_BOMB" ],
             [ 31, "MOVE_TAKE_DOWN" ],
             [ 33, "MOVE_BULLDOZE" ],
+            [ 34, "MOVE_LIQUIDATION" ],
             [ 37, "MOVE_MUDDY_WATER" ],
             [ 46, "MOVE_EARTHQUAKE" ],
             [ 53, "MOVE_ENDEAVOR" ]

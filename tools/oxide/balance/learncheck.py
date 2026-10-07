@@ -149,16 +149,19 @@ MULTI_HIT_EFFECTS = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TI
                      "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
                      "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH",
                      "BEAT_UP"}
-PENDING_BY_NAME = {"MOVE_FURY_CUTTER", "MOVE_PSYWAVE"}
+PENDING_BY_NAME = {"MOVE_FURY_CUTTER"}
 # Moves leaving every player list or the game: Fury Attack and Feint (Ian,
 # 2026-10-06, "useless"), the first cut of the move pool (2026-09-27: twelve
-# moves, Splash and Teleport), and the terrain moves that stay dead with
-# terrain (2026-09-27: Steel Roller and Ice Spinner).
+# moves, Splash and Teleport), the terrain moves that stay dead with terrain
+# (2026-09-27: Steel Roller and Ice Spinner), and Psywave (Ian's answer on the
+# move reworks, 2026-10-06: cut, its lines given Psybeam at the same level).
 REMOVED = {"MOVE_FURY_ATTACK", "MOVE_FEINT", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
            "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
            "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN",
            "MOVE_MISTY_TERRAIN", "MOVE_PSYCHIC_TERRAIN", "MOVE_SPLASH", "MOVE_TELEPORT",
-           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER"}
+           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER", "MOVE_PSYWAVE"}
+# A removed move whose lines get another in its place, at the same level.
+REPLACED = {"MOVE_PSYWAVE": "MOVE_PSYBEAM"}
 # Moves whose effect the engine does not run as designed, found after the
 # move-pool survey of 2026-09-27 (the exam's regressions, 2026-10-06): Upper
 # Hand is an unconditional +3 hit of 65, Shell Trap an unconditional -3 hit
@@ -435,6 +438,9 @@ def _evolution(version, parent, target):
                 level = parent.level
             else:
                 level = max(parent.level, caps()[SPLITS[ti - 1]])
+            # A place evolution (pool.place_item) takes a level-up there.
+            if item.startswith("PLACE_"):
+                level += 1
         else:
             level = max(need, parent.level + 1)
             ti = next((i for i in range(pi, len(SPLITS)) if caps()[SPLITS[i]] >= level), None)
@@ -1345,8 +1351,10 @@ def held_splits(path, i):
         if exception:
             return []           # kept at its level until it evolves
         return list(range(a + 1, min(si(path[i + 1].split) + 1, last) + 1))
+    if exception and st.via != "caught":
+        return list(range(a, last + 1))
     if st.via not in ("caught", "level"):
-        return list(range(a, last + 1)) if exception else list(range(a + 3, last + 1))
+        return list(range(a + 3, last + 1))
     return list(range(a + 1, last + 1))
 
 
@@ -1355,7 +1363,9 @@ def held_splits(path, i):
 # after evolving via stone; eevee will almost certainly be kept at 20 until it
 # is ready to be evolved, so it will need complete moveset reworks for the
 # eeveelutions from 20-onwards." The line's first stage is held at its level,
-# and each stone form is held from the level it arrives at.
+# and each evolved form, by stone, place or known move, is held from the
+# level it arrives at (Leafeon at 21 after the Moss Rock, Sylveon at 28 after
+# Charm; the Overseer's correction of 2026-10-06).
 STONE_EXCEPTIONS = {"SPECIES_EEVEE"}
 
 

@@ -168,9 +168,11 @@ def check_r11(results):
 def check_mechanical(results):
     """Checks 15 to 19: Togetic's Baton Pass with no boost (R21); Snorunt's
     Double Team and Protect, and Abra's Teleport (R24, removed); Glalie's Ice
-    Beam at 37, below its 42 (R25); Budew's Growth with only Absorb and Mega
-    Drain, and Altaria's Dragon Dance with only Take Down (R32); Onix's Stone
-    Edge and Iron Tail (R37)."""
+    Beam at 37, below its 42 (R25); Fomantis's Growth with no strong special
+    attack to boost, and Altaria's Dragon Dance with only Take Down (R32);
+    Onix's Stone Edge and Iron Tail (R37). Ian's R32 case was Budew's Growth,
+    which passes since 2026-10-06: Roselia comes at the Moss Rock in
+    Gardenia's split, not at a judged 30, and learns Giga Drain at 25."""
     c16 = {(sp, m) for sp, w, m, _r in lc.check16(O) if w.startswith("level")}
     c17 = {(sp, lv, m) for sp, lv, m, _lo in lc.check17(O)}
     c18 = {(sp, m) for sp, _lv, m, _k in lc.check18(O)}
@@ -180,7 +182,8 @@ def check_mechanical(results):
              "Snorunt's Double Team and Protect"),
             (("SPECIES_ABRA", "MOVE_TELEPORT") in c16, "Abra's Teleport"),
             (("SPECIES_GLALIE", 37, "MOVE_ICE_BEAM") in c17, "Glalie's Ice Beam 37"),
-            (("SPECIES_BUDEW", "MOVE_GROWTH") in c18, "Budew's Growth"),
+            (("SPECIES_FOMANTIS", "MOVE_GROWTH") in c18 and ("SPECIES_BUDEW", "MOVE_GROWTH") not in c18,
+             "Fomantis's Growth, and Budew's passing"),
             (("SPECIES_ALTARIA", "MOVE_DRAGON_DANCE") in c18, "Altaria's Dragon Dance"),
             (("SPECIES_ONIX", "MOVE_STONE_EDGE") in c19 and ("SPECIES_ONIX", "MOVE_IRON_TAIL") in c19,
              "Onix's Stone Edge and Iron Tail")]

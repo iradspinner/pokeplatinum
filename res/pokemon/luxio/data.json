@@ -46,6 +46,7 @@
             [ 18, "MOVE_BITE" ],
             [ 20, "MOVE_METAL_CLAW" ],
             [ 28, "MOVE_SWAGGER" ],
+            [ 30, "MOVE_WILD_CHARGE" ],
             [ 33, "MOVE_THUNDER_FANG" ],
             [ 38, "MOVE_CRUNCH" ],
             [ 43, "MOVE_SCARY_FACE" ],

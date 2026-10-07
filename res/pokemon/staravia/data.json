@@ -49,6 +49,7 @@
             [ 25, "MOVE_SECRET_POWER" ],
             [ 28, "MOVE_AERIAL_ACE" ],
             [ 33, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_STEEL_WING" ],
             [ 38, "MOVE_AGILITY" ],
             [ 43, "MOVE_BRAVE_BIRD" ]
         ],

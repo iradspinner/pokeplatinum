@@ -55,6 +55,7 @@
             [ 32, "MOVE_RECYCLE" ],
             [ 36, "MOVE_TRICK" ],
             [ 39, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_MAGICAL_LEAF" ],
             [ 43, "MOVE_ROLE_PLAY" ],
             [ 46, "MOVE_BATON_PASS" ],
             [ 50, "MOVE_SAFEGUARD" ],

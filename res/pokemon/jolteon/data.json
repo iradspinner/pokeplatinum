@@ -50,14 +50,13 @@
             [ 29, "MOVE_DOUBLE_KICK" ],
             [ 31, "MOVE_ELECTROWEB" ],
             [ 36, "MOVE_PIN_MISSILE" ],
-            [ 38, "MOVE_BABY_DOLL_EYES" ],
             [ 43, "MOVE_THUNDER_FANG" ],
-            [ 45, "MOVE_SIGNAL_BEAM" ],
-            [ 47, "MOVE_THUNDERBOLT" ],
-            [ 52, "MOVE_ALLURING_VOICE" ],
+            [ 45, "MOVE_THUNDERBOLT" ],
+            [ 47, "MOVE_ALLURING_VOICE" ],
             [ 57, "MOVE_THUNDER_WAVE" ],
             [ 60, "MOVE_HYPER_VOICE" ],
             [ 64, "MOVE_AGILITY" ],
+            [ 68, "MOVE_SIGNAL_BEAM" ],
             [ 78, "MOVE_DISCHARGE" ]
         ],
         "by_tm": [

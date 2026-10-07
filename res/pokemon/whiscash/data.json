@@ -48,7 +48,6 @@
             [ 18, "MOVE_AMNESIA" ],
             [ 22, "MOVE_WATER_PULSE" ],
             [ 26, "MOVE_MAGNITUDE" ],
-            [ 30, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_REST" ],
             [ 35, "MOVE_ZEN_HEADBUTT" ],
             [ 39, "MOVE_AQUA_TAIL" ],
@@ -57,7 +56,6 @@
             [ 51, "MOVE_FUTURE_SIGHT" ],
             [ 53, "MOVE_ICE_BEAM" ],
             [ 58, "MOVE_SPARK" ],
-            [ 60, "MOVE_TICKLE" ],
             [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [

@@ -88,7 +88,6 @@
         ],
         "egg_moves": [
             "MOVE_SCREECH",
-            "MOVE_PSYWAVE",
             "MOVE_PSYBEAM",
             "MOVE_DESTINY_BOND",
             "MOVE_PAIN_SPLIT",

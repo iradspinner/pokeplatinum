@@ -49,6 +49,7 @@
             [ 19, "MOVE_SEISMIC_TOSS" ],
             [ 22, "MOVE_REVENGE" ],
             [ 25, "MOVE_VITAL_THROW" ],
+            [ 27, "MOVE_BULLDOZE" ],
             [ 34, "MOVE_WAKE_UP_SLAP" ],
             [ 37, "MOVE_CLOSE_COMBAT" ]
         ],

@@ -50,6 +50,7 @@
             [ 25, "MOVE_STOCKPILE" ],
             [ 28, "MOVE_SWALLOW" ],
             [ 33, "MOVE_BODY_SLAM" ],
+            [ 34, "MOVE_BULLDOZE" ],
             [ 36, "MOVE_FLING" ],
             [ 41, "MOVE_ROLLOUT" ],
             [ 44, "MOVE_NATURAL_GIFT" ],

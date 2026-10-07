@@ -49,8 +49,6 @@
             [ 29, "MOVE_FORCE_PALM" ],
             [ 32, "MOVE_HI_JUMP_KICK" ],
             [ 36, "MOVE_PSYCH_UP" ],
-            [ 37, "MOVE_LOW_SWEEP" ],
-            [ 38, "MOVE_BULK_UP" ],
             [ 40, "MOVE_IRON_HEAD" ],
             [ 42, "MOVE_POWER_TRICK" ],
             [ 49, "MOVE_REVERSAL" ],

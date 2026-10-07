@@ -138,18 +138,14 @@
             ],
             [
                 54,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
-                56,
                 "MOVE_U_TURN"
             ],
             [
-                58,
+                57,
                 "MOVE_ACROBATICS"
             ],
             [
-                60,
+                59,
                 "MOVE_HEAT_WAVE"
             ],
             [

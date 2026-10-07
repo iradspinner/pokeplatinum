@@ -77,16 +77,20 @@
                 "MOVE_TEETER_DANCE"
             ],
             [
-                32,
-                "MOVE_LOW_SWEEP"
+                26,
+                "MOVE_REVENGE"
             ],
             [
-                33,
+                27,
                 "MOVE_SWAGGER"
             ],
             [
-                35,
+                29,
                 "MOVE_BITE"
+            ],
+            [
+                32,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 38,
@@ -97,19 +101,19 @@
                 "MOVE_TROP_KICK"
             ],
             [
-                42,
-                "MOVE_ZEN_HEADBUTT"
-            ],
-            [
                 44,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                46,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 48,
                 "MOVE_PETAL_BLIZZARD"
             ],
             [
-                50,
+                51,
                 "MOVE_U_TURN"
             ],
             [
@@ -117,16 +121,12 @@
                 "MOVE_HI_JUMP_KICK"
             ],
             [
-                58,
+                59,
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                60,
+                61,
                 "MOVE_KNOCK_OFF"
-            ],
-            [
-                66,
-                "MOVE_CHARM"
             ]
         ],
         "by_tm": [],

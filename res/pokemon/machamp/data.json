@@ -49,14 +49,14 @@
             [ 25, "MOVE_VITAL_THROW" ],
             [ 36, "MOVE_WAKE_UP_SLAP" ],
             [ 40, "MOVE_CLOSE_COMBAT" ],
-            [ 42, "MOVE_ROCK_SLIDE" ],
             [ 44, "MOVE_SCARY_FACE" ],
-            [ 46, "MOVE_BULLDOZE" ],
-            [ 48, "MOVE_THROAT_CHOP" ],
-            [ 53, "MOVE_ROCK_TOMB" ],
-            [ 55, "MOVE_BULK_UP" ],
+            [ 46, "MOVE_ROCK_SLIDE" ],
+            [ 48, "MOVE_LOW_SWEEP" ],
+            [ 53, "MOVE_THROAT_CHOP" ],
+            [ 55, "MOVE_ROCK_TOMB" ],
             [ 61, "MOVE_METEOR_MASH" ],
-            [ 63, "MOVE_EARTHQUAKE" ]
+            [ 63, "MOVE_EARTHQUAKE" ],
+            [ 69, "MOVE_BULK_UP" ]
         ],
         "by_tm": [
             "TM01",

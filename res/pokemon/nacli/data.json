@@ -65,6 +65,10 @@
                 "MOVE_HEADBUTT"
             ],
             [
+                18,
+                "MOVE_BULLDOZE"
+            ],
+            [
                 20,
                 "MOVE_IRON_DEFENSE"
             ],

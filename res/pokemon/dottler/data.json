@@ -81,6 +81,10 @@
                 "MOVE_PSYBEAM"
             ],
             [
+                27,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
                 36,
                 "MOVE_BODY_PRESS"
             ],

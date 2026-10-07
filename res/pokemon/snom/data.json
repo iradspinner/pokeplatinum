@@ -59,6 +59,34 @@
             [
                 27,
                 "MOVE_FAIRY_WIND"
+            ],
+            [
+                28,
+                "MOVE_AURORA_BEAM"
+            ],
+            [
+                34,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
+                36,
+                "MOVE_BUG_BUZZ"
+            ],
+            [
+                42,
+                "MOVE_QUIVER_DANCE"
+            ],
+            [
+                44,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                50,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                52,
+                "MOVE_TAILWIND"
             ]
         ],
         "by_tm": [],

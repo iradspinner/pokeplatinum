@@ -48,6 +48,7 @@
             [ 27, "MOVE_ROCK_TOMB" ],
             [ 29, "MOVE_AQUA_CUTTER" ],
             [ 33, "MOVE_BRINE" ],
+            [ 35, "MOVE_LIQUIDATION" ],
             [ 37, "MOVE_WHIRLPOOL" ],
             [ 42, "MOVE_MIST" ],
             [ 46, "MOVE_DRILL_PECK" ],

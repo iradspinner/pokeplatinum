@@ -61,8 +61,16 @@
                 "MOVE_DOUBLE_KICK"
             ],
             [
+                18,
+                "MOVE_PAYBACK"
+            ],
+            [
                 21,
                 "MOVE_HEADBUTT"
+            ],
+            [
+                23,
+                "MOVE_SWAGGER"
             ],
             [
                 25,

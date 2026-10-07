@@ -35,7 +35,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_MEMENTO" ],
-            [ 1, "MOVE_PSYWAVE" ],
+            [ 1, "MOVE_PSYBEAM" ],
             [ 5, "MOVE_HEAL_BLOCK" ],
             [ 10, "MOVE_HELPING_HAND" ],
             [ 15, "MOVE_SAFEGUARD" ],

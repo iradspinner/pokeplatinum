@@ -38,7 +38,6 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 7, "MOVE_PSYWAVE" ],
             [ 10, "MOVE_ODOR_SLEUTH" ],
             [ 14, "MOVE_PSYBEAM" ],
             [ 15, "MOVE_PSYCH_UP" ],

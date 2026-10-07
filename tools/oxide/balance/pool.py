@@ -49,6 +49,7 @@ import csv
 import functools
 import json
 import os
+import re
 import sys
 
 from ..encounters import audit, calc_export, calc_trainers, canon, evolve, model, pokedex, progression, scripted
@@ -253,6 +254,12 @@ def evolution_items_first():
     held item from the split its holder is first caught in, since a catch or
     Thief takes it (Seadra's Dragon Scale, Clamperl's Deep Sea Scale)."""
     first = dict(_items_first())
+    # A place evolution's stand-in item: the first split any of its maps opens in.
+    for method, headers in place_maps().items():
+        reached = [splits.map_split(h)[0] for h in headers if h in splits.headers()]
+        reached = [s for s in reached if s in SPLITS]
+        if reached:
+            first[place_item(method)] = min(reached, key=split_index)
     for sp, (split, _how) in caught().items():
         rec = pokedex.load(data.ROOT, sp) or {}
         for item in (rec.get("held_items") or {}).values():
@@ -264,17 +271,66 @@ def evolution_items_first():
 
 
 @functools.lru_cache(maxsize=None)
+def place_maps():
+    """{place evolution method: [map header]}: the engine's own table of the
+    maps where a level-up evolves by place (src/map_header.c), the Moss Rock
+    in Eterna Forest, the Ice Rock on Route 217 and Mt. Coronet's field."""
+    with open(os.path.join(data.ROOT, "src", "map_header.c"), encoding="utf-8") as f:
+        text = f.read()
+    body = text[text.index("mapEvolutionMethods[]"):]
+    body = body[:body.index("};")]
+    names = re.findall(r"MAP_HEADER_(\w+)\s*,\s*EVO_(\w+)", body)
+    out = collections.defaultdict(list)
+    for header, method in names:
+        out[method].append(header)
+    return dict(out)
+
+
+def place_item(method):
+    """The stand-in item a place evolution is read as: the place, reached."""
+    return "PLACE_" + method.replace("LEVEL_", "")
+
+
+@functools.lru_cache(maxsize=None)
+def known_move_levels(species):
+    """{target: the level the stage first learns the move its evolution
+    needs}, by its own level-up list from level 2 (an evolved stage never
+    learns its level-1 entries, so Piloswine's AncientPower 1 does not
+    count; its 33 does)."""
+    raw = pokedex._read(data.ROOT, f"res/pokemon/{pokedex.folder_of(species)}/data.json") or {}
+    lst = (raw.get("learnset") or {}).get("by_level") or []
+    out = {}
+    for entry in raw.get("evolutions") or []:
+        if entry and entry[0] == "EVO_LEVEL_KNOW_MOVE":
+            mv = next((x for x in entry if isinstance(x, str) and x.startswith("MOVE_")), None)
+            into = [x for x in entry if isinstance(x, str) and x.startswith("SPECIES_")]
+            levels = [lv for lv, m in lst if m == mv and lv >= 2]
+            if into and levels:
+                out[into[-1]] = min(levels)
+    return out
+
+
+@functools.lru_cache(maxsize=None)
 def evolutions(species):
     """[(level, item, target)] out of one stage for the player's side: an
     evolution that needs an item (a stone, or a held item on level-up) takes
     none of the encounter tool's judged level, only the item, since the player
-    can use it at any level once it is in reach; the rest keep the encounter
-    tool's rule (evolve.py)."""
+    can use it at any level once it is in reach. One by place (the Moss Rock,
+    the Ice Rock, Mt. Coronet's field) is read the same way, its place as the
+    item; one that needs a known move comes the level after the stage learns
+    it by level-up (2026-10-06: Leafeon at the Moss Rock once Bebe's Eevee
+    arrives at 20, Sylveon once Eevee knows Charm, not the judged 30 and 32).
+    The rest keep the encounter tool's rule (evolve.py), whose judged levels
+    place wild stages."""
     items = {}
     for evo in (pokedex.load(data.ROOT, species) or {}).get("evolutions", []):
         if evo["item"] and evo["into"]:
             items.setdefault(evo["into"], "ITEM_" + evo["item"])
-    out = [(1 if target in items else need, items.get(target), target)
+        elif evo["into"] and evo["method"] in place_maps():
+            items.setdefault(evo["into"], place_item(evo["method"]))
+    know = known_move_levels(species)
+    out = [(1 if target in items else know[target] + 1 if target in know else need,
+            items.get(target), target)
            for need, target in evolve.evolutions(data.ROOT, species)]
     # The encounter tool keeps only a stage's level evolutions when it has
     # any, which is right for placing wild stages; the player can use the

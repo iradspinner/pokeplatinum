@@ -48,7 +48,6 @@
             [ 28, "MOVE_BRINE" ],
             [ 37, "MOVE_ANCIENT_POWER" ],
             [ 40, "MOVE_SPIKE_CANNON" ],
-            [ 42, "MOVE_SHELL_SMASH" ],
             [ 48, "MOVE_TICKLE" ],
             [ 50, "MOVE_SURF" ],
             [ 53, "MOVE_SCALD" ],

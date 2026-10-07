@@ -50,14 +50,13 @@
             [ 32, "MOVE_CAPTIVATE" ],
             [ 37, "MOVE_SLASH" ],
             [ 38, "MOVE_SWAGGER" ],
-            [ 39, "MOVE_STRENGTH" ],
-            [ 41, "MOVE_SHADOW_CLAW" ],
+            [ 40, "MOVE_SHADOW_CLAW" ],
+            [ 42, "MOVE_AERIAL_ACE" ],
             [ 45, "MOVE_BODY_SLAM" ],
-            [ 48, "MOVE_BULLDOZE" ],
+            [ 48, "MOVE_SUCKER_PUNCH" ],
             [ 53, "MOVE_ATTRACT" ],
-            [ 56, "MOVE_PLAY_ROUGH" ],
-            [ 58, "MOVE_SUCKER_PUNCH" ],
-            [ 64, "MOVE_DOUBLE_EDGE" ]
+            [ 56, "MOVE_SLAM" ],
+            [ 64, "MOVE_CRUSH_CLAW" ]
         ],
         "by_tm": [
             "TM03",

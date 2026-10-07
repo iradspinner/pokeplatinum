@@ -45,7 +45,6 @@
             [ 11, "MOVE_ROCK_THROW" ],
             [ 15, "MOVE_MAGNITUDE" ],
             [ 22, "MOVE_ROLLOUT" ],
-            [ 25, "MOVE_KARATE_CHOP" ],
             [ 27, "MOVE_ROCK_BLAST" ],
             [ 29, "MOVE_ROCK_TOMB" ],
             [ 33, "MOVE_EARTHQUAKE" ],

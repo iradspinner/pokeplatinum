@@ -51,11 +51,10 @@
             [ 34, "MOVE_CLOSE_COMBAT" ],
             [ 36, "MOVE_BULLDOZE" ],
             [ 41, "MOVE_AGILITY" ],
-            [ 43, "MOVE_STEEL_WING" ],
+            [ 43, "MOVE_KNOCK_OFF" ],
             [ 49, "MOVE_BRAVE_BIRD" ],
-            [ 51, "MOVE_KNOCK_OFF" ],
-            [ 56, "MOVE_BITE" ],
-            [ 58, "MOVE_SLAM" ],
+            [ 51, "MOVE_BITE" ],
+            [ 56, "MOVE_SLAM" ],
             [ 64, "MOVE_ACROBATICS" ]
         ],
         "by_tm": [

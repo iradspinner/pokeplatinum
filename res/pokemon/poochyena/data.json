@@ -44,6 +44,7 @@
             [ 9, "MOVE_SAND_ATTACK" ],
             [ 13, "MOVE_BITE" ],
             [ 17, "MOVE_ODOR_SLEUTH" ],
+            [ 18, "MOVE_TRAILBLAZE" ],
             [ 25, "MOVE_SWAGGER" ],
             [ 29, "MOVE_ASSURANCE" ],
             [ 31, "MOVE_CRUNCH" ],

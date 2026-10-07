@@ -35,7 +35,6 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_PSYWAVE" ],
             [ 5, "MOVE_SPITE" ],
             [ 10, "MOVE_ASTONISH" ],
             [ 14, "MOVE_CONFUSE_RAY" ],

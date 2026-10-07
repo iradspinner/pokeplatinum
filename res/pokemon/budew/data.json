@@ -44,9 +44,11 @@
             [ 10, "MOVE_STUN_SPORE" ],
             [ 13, "MOVE_MEGA_DRAIN" ],
             [ 16, "MOVE_WORRY_SEED" ],
-            [ 18, "MOVE_VENOSHOCK" ],
-            [ 20, "MOVE_CONFUSION" ],
-            [ 25, "MOVE_GIGA_DRAIN" ]
+            [ 18, "MOVE_GIGA_DRAIN" ],
+            [ 20, "MOVE_VENOSHOCK" ],
+            [ 22, "MOVE_CONFUSION" ],
+            [ 27, "MOVE_WEATHER_BALL" ],
+            [ 28, "MOVE_TOXIC_SPIKES" ]
         ],
         "by_tm": [
             "TM06",

@@ -73,6 +73,10 @@
                 "MOVE_BITE"
             ],
             [
+                21,
+                "MOVE_MUD_SHOT"
+            ],
+            [
                 23,
                 "MOVE_SPARK"
             ],
@@ -81,7 +85,7 @@
                 "MOVE_CRUNCH"
             ],
             [
-                33,
+                34,
                 "MOVE_DISCHARGE"
             ],
             [
@@ -89,35 +93,35 @@
                 "MOVE_SIGNAL_BEAM"
             ],
             [
-                38,
-                "MOVE_MUD_SHOT"
-            ],
-            [
                 40,
                 "MOVE_FLASH_CANNON"
+            ],
+            [
+                42,
+                "MOVE_VOLT_SWITCH"
+            ],
+            [
+                48,
+                "MOVE_AGILITY"
             ],
             [
                 55,
                 "MOVE_BUG_BUZZ"
             ],
             [
-                57,
-                "MOVE_ENERGY_BALL"
+                56,
+                "MOVE_IRON_DEFENSE"
             ],
             [
-                62,
-                "MOVE_AGILITY"
+                57,
+                "MOVE_ENERGY_BALL"
             ],
             [
                 65,
                 "MOVE_THUNDERBOLT"
             ],
             [
-                70,
-                "MOVE_VOLT_SWITCH"
-            ],
-            [
-                72,
+                67,
                 "MOVE_AIR_SLASH"
             ]
         ],

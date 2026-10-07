@@ -48,7 +48,7 @@
             [ 25, "MOVE_WATER_PULSE" ],
             [ 27, "MOVE_BABY_DOLL_EYES" ],
             [ 29, "MOVE_BITE" ],
-            [ 31, "MOVE_CHARM" ],
+            [ 31, "MOVE_CHILLING_WATER" ],
             [ 36, "MOVE_AURORA_BEAM" ],
             [ 43, "MOVE_AQUA_RING" ],
             [ 45, "MOVE_SURF" ],

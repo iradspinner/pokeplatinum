@@ -90,7 +90,7 @@
             ],
             [
                 33,
-                "MOVE_THROAT_CHOP"
+                "MOVE_ROCK_TOMB"
             ],
             [
                 35,
@@ -111,6 +111,10 @@
             [
                 50,
                 "MOVE_EMBARGO"
+            ],
+            [
+                54,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 64,

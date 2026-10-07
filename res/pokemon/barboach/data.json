@@ -47,6 +47,8 @@
             [ 20, "MOVE_ROCK_TOMB" ],
             [ 22, "MOVE_WATER_PULSE" ],
             [ 26, "MOVE_MAGNITUDE" ],
+            [ 28, "MOVE_TICKLE" ],
+            [ 29, "MOVE_BULLDOZE" ],
             [ 31, "MOVE_REST" ],
             [ 35, "MOVE_AQUA_TAIL" ],
             [ 39, "MOVE_EARTHQUAKE" ],

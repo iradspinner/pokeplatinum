@@ -48,14 +48,12 @@
             [ 31, "MOVE_CRUNCH" ],
             [ 37, "MOVE_ICE_BEAM" ],
             [ 42, "MOVE_ROCK_SLIDE" ],
-            [ 44, "MOVE_POWER_GEM" ],
-            [ 46, "MOVE_EARTH_POWER" ],
-            [ 48, "MOVE_ICICLE_CRASH" ],
-            [ 53, "MOVE_SHADOW_BALL" ],
-            [ 55, "MOVE_DARK_PULSE" ],
+            [ 45, "MOVE_EARTH_POWER" ],
+            [ 47, "MOVE_SHADOW_BALL" ],
+            [ 53, "MOVE_DARK_PULSE" ],
+            [ 55, "MOVE_BULLDOZE" ],
             [ 61, "MOVE_BLOCK" ],
-            [ 63, "MOVE_BULLDOZE" ],
-            [ 69, "MOVE_ICE_PUNCH" ]
+            [ 63, "MOVE_POWER_GEM" ]
         ],
         "by_tm": [
             "TM03",

@@ -109,8 +109,20 @@
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                32,
+                28,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                29,
                 "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                30,
+                "MOVE_SWIFT"
+            ],
+            [
+                31,
+                "MOVE_DRAINING_KISS"
             ],
             [
                 33,
@@ -118,23 +130,11 @@
             ],
             [
                 34,
-                "MOVE_SWIFT"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 35,
-                "MOVE_DRAINING_KISS"
-            ],
-            [
-                36,
-                "MOVE_LIGHT_SCREEN"
-            ],
-            [
-                37,
                 "MOVE_MAGICAL_LEAF"
-            ],
-            [
-                40,
-                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 43,
@@ -145,11 +145,11 @@
                 "MOVE_PSYCH_UP"
             ],
             [
-                50,
+                47,
                 "MOVE_PSYSHOCK"
             ],
             [
-                66,
+                68,
                 "MOVE_SHADOW_BALL"
             ]
         ],

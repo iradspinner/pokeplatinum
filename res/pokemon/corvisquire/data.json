@@ -85,6 +85,10 @@
                 "MOVE_REVENGE"
             ],
             [
+                40,
+                "MOVE_BODY_PRESS"
+            ],
+            [
                 42,
                 "MOVE_DEFOG"
             ],

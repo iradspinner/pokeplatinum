@@ -661,6 +661,13 @@ def place_rampage(d, species, entry):
 
 def clean(d, species):
     fam = lc.family(species)
+    # The egg list, the trainers' palette, takes the same swap.
+    eggs = d.eggs[species]
+    if any(m in lc.REPLACED for m in eggs):
+        d.eggs[species] = list(dict.fromkeys(lc.REPLACED.get(m, m) for m in eggs))
+        for m in eggs:
+            if m in lc.REPLACED:
+                d.note(species, 0, m, "egg list", "Ian's rework", f"{name(lc.REPLACED[m])} in its place")
     for entry in list(d.lists[species]):
         lv, mv = entry
         m = M().get(mv)
@@ -668,6 +675,11 @@ def clean(d, species):
             d.remove(species, entry, "unknown move")
         elif lc.out_of_lists(mv):
             d.remove(species, entry, "R24", "out of every player list")
+        elif mv in lc.REPLACED:
+            new = lc.REPLACED[mv]
+            d.remove(species, entry, "Ian's rework", f"{name(mv)} leaves the game; {name(new)} takes its place")
+            if not any(m == new for _l, m in d.lists[species]):
+                d.add(species, lv, new, "Ian's rework", f"in place of {name(mv)} (2026-10-06)")
         elif mv in lc.REMOVED:
             d.remove(species, entry, "removed", "leaves the game or every player list")
         elif mv in weather_moves.WEATHER_MOVES:
@@ -884,6 +896,13 @@ def windows(d, path, i):
     xs = [(a, "first" if i == 0 else "arrival")]
     if i + 1 == len(path) and by_item and lc.family(st.species) not in lc.STONE_EXCEPTIONS:
         xs += [(x, "arrival") for x in range(a + 1, a + 3)]
+    # The levels a stage spends in the split it evolves in by level, before
+    # evolving: no R2 count asks for them, but what is due may come there
+    # (Steenee's 17 to 25 in Gardenia's split, before Tsareena at 26).
+    if i + 1 < len(path) and path[i + 1].via == "level":
+        e = si(path[i + 1].split)
+        if e > a and e not in lc.held_splits(path, i):
+            xs.append((e, "arrival"))
     for x, kind in xs:
         if x >= len(SPLITS):
             continue

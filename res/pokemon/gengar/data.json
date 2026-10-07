@@ -50,10 +50,9 @@
             [ 44, "MOVE_DARK_PULSE" ],
             [ 46, "MOVE_SLUDGE_BOMB" ],
             [ 48, "MOVE_GIGA_DRAIN" ],
-            [ 53, "MOVE_DAZZLING_GLEAM" ],
+            [ 53, "MOVE_TOXIC" ],
             [ 55, "MOVE_NIGHTMARE" ],
-            [ 61, "MOVE_ENERGY_BALL" ],
-            [ 63, "MOVE_TOXIC" ]
+            [ 61, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM01",

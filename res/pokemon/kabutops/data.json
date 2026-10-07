@@ -48,7 +48,6 @@
             [ 31, "MOVE_AQUA_JET" ],
             [ 36, "MOVE_MEGA_DRAIN" ],
             [ 40, "MOVE_SLASH" ],
-            [ 42, "MOVE_LIQUIDATION" ],
             [ 45, "MOVE_METAL_SOUND" ],
             [ 49, "MOVE_LEECH_LIFE" ],
             [ 54, "MOVE_ANCIENT_POWER" ],
