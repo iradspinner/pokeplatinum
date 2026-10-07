@@ -702,18 +702,35 @@ class Prizes:
         return lines, [(i, m.group(2), int(m.group(3)))
                        for i in range(a, b) if (m := PRIZE_LINE.match(lines[i]))]
 
-    def place(self, p):
+    def place_all(self, rows):
+        """Every prize row at once. Rows chain (TM61 takes TM24's slot while
+        TM24 takes TM90's), so one row at a time would swap a reward a
+        second time on a rerun; the rows are one substitution over the list
+        as it stands, and the list counts as applied when every reward is
+        on it and no prize a row replaces or removes is."""
+        if not rows:
+            return
         lines, entries = self.entries()
-        at = {item: i for i, item, _coins in entries}
-        if p.removes:
-            if p.replaces in at:
-                del lines[at[p.replaces]]
-        elif p.replaces in at:
-            m = PRIZE_LINE.match(lines[at[p.replaces]])
-            lines[at[p.replaces]] = f"{m.group(1)}{{ {p.reward}, {m.group(3)} }},"
-        elif p.reward not in at:
-            raise TableError(f"the Game Corner has no prize {p.replaces}")
-        self.tree.write(PRIZES_C, "\n".join(lines))
+        items = {item for _i, item, _coins in entries}
+        swaps = {p.replaces: p.reward for p in rows if not p.removes}
+        removes = {p.replaces for p in rows if p.removes}
+        gone = (set(swaps) - set(swaps.values())) | removes
+        if set(swaps.values()) <= items and not gone & items:
+            return
+        missing = sorted(r for r in set(swaps) | removes if r not in items)
+        if missing:
+            raise TableError(f"the Game Corner has no prize {', '.join(missing)} (or the list is "
+                             "only partly applied)")
+        out = []
+        for i, line in enumerate(lines):
+            m = PRIZE_LINE.match(line)
+            if m and any(i == at for at, _item, _coins in entries):
+                if m.group(2) in removes:
+                    continue
+                if m.group(2) in swaps:
+                    line = f"{m.group(1)}{{ {swaps[m.group(2)]}, {m.group(3)} }},"
+            out.append(line)
+        self.tree.write(PRIZES_C, "\n".join(out))
 
 
 SOLD_LINE = re.compile(r"^\s*\{ (ITEM_\w+), (\d+), (\d+), (\d+) \},$")
@@ -808,13 +825,18 @@ def place_gift(tree, p):
     return text_mentions(tree, p)
 
 
-def item_words(tree, item):
+def item_words(tree, item, vanilla=True):
     """The words a line of dialogue would use for an item: its name and, for
-    a TM, the move it teaches."""
+    a TM, the move it teaches. The dialogue was written for vanilla's TMs,
+    and the TM pass gives TM numbers new moves, so with vanilla the record
+    is read from `main` where git has it, and from the tree otherwise."""
     words = []
     rel = f"res/items/data/{item[len('ITEM_'):].lower()}.json"
-    if tree.exists(rel):
-        data = json.loads(tree.read(rel))
+    import subprocess
+    proc = subprocess.run(["git", "-C", tree.root, "show", f"main:{rel}"], capture_output=True, text=True) \
+        if vanilla else None
+    if (proc and proc.returncode == 0) or tree.exists(rel):
+        data = json.loads(proc.stdout if proc and proc.returncode == 0 else tree.read(rel))
         words.append(data.get("name", ""))
         move = data.get("teachesMove")
         if move and move != "MOVE_NONE":
@@ -826,9 +848,13 @@ def text_mentions(tree, p):
     """Lines in the map's text bank that name the item a gift used to give,
     which the gift's dialogue may still promise."""
     rel = tree.text_rel(p.header)
-    if not rel or not tree.exists(rel) or p.replaces == p.reward:
+    if not rel or not tree.exists(rel):
         return []
+    # The same item can still have changed, when its TM number teaches a new
+    # move since the TM pass.
     words = item_words(tree, p.replaces)
+    if set(words) == set(item_words(tree, p.reward, vanilla=False)):
+        return []
     out = []
     for msg in json.loads(tree.read(rel)).get("messages", []):
         text = "".join(msg.get("en_US", [])) if isinstance(msg.get("en_US"), list) else str(msg.get("en_US", ""))
@@ -1061,10 +1087,12 @@ def apply(tree, placements, roles=None):
                 notes += place_gift(tree, p)
             elif p.kind == "mart":
                 marts.place(p.place, p.reward, p.replaces)
-            elif p.kind == "prize":
-                Prizes(tree).place(p)
         except TableError as e:
             errors.append(f"{p}: {e}")
+    try:
+        Prizes(tree).place_all([p for p in placements if p.kind == "prize"])
+    except TableError as e:
+        errors.append(str(e))
     try:
         flags = place_trainers(tree, [p for p in placements if p.kind == "trainer"], spare)
         notes += [f"{t} rewards under {f}" for t, f in sorted(flags.items())]

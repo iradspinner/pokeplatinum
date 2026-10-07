@@ -26,6 +26,10 @@ What it checks, without building a ROM:
    regaining rows; a prize takes the place and coin price of the one it
    replaces, or leaves the list; a second apply changes nothing.
 
+The files the tool writes are taken from commit BASE, the last before the real
+table was applied, since the fixtures were written against them; a clone
+without that commit prints SKIPPED.
+
 With --built-tree DIR, a checkout where both fixtures were applied and the ROM
 built (`place_rewards.py apply --table <fixture> --root DIR`, then `make -C
 DIR rom`), it also reads every row back out of that ROM with `check
@@ -53,6 +57,13 @@ SHOPS = os.path.join(HERE, "test_place_rewards_shops.tsv")
 COPY = ["res/field/scripts", "res/field/events", "res/text", "res/items/data", "include",
         "generated", "src", "asm"]
 BATTLES = "res/field/scripts/scripts_battles.s"
+# The last commit before the reward table was applied (step 10), with the
+# shops' engine in. The fixtures were written against its files, so the
+# files the tool writes are taken from it rather than from the working tree,
+# which carries the applied table.
+BASE = "6d4cc53c96"
+WRITTEN = ["res/field/scripts", "res/field/events", "include/data/field/hidden_items.h",
+           "include/data/mart_items.h", "include/data/sold_tms.h", "src/scrcmd_game_corner_prize.c"]
 
 failures = []
 
@@ -193,6 +204,13 @@ def main():
         work = os.path.join(tmp, "tree")
         for rel in COPY:
             shutil.copytree(os.path.join(ROOT, rel), os.path.join(work, rel), symlinks=True)
+        # The files the tool writes come from BASE, before the real table was
+        # applied, so the fixtures meet the places they were written for.
+        proc = subprocess.run(["git", "-C", ROOT, "archive", BASE] + WRITTEN, capture_output=True)
+        if proc.returncode != 0:
+            print(f"SKIPPED: the test needs commit {BASE}, which this clone lacks (a shallow one?)")
+            return 1
+        subprocess.run(["tar", "-x", "-C", work], input=proc.stdout, check=True)
         with open(os.path.join(work, BATTLES), encoding="utf-8") as f:
             original = f.read()
 
@@ -274,9 +292,10 @@ def main():
         tree = pr.Tree(work)
         _lines, prizes = pr.Prizes(tree).entries()
         coins = {item: c for _l, item, c in prizes}
-        expect("ITEM_SILK_SCARF" not in coins and "ITEM_TM74" not in coins and "ITEM_TM10" not in coins
-               and coins.get("ITEM_TM02") == 15000 and coins.get("ITEM_TM45") == 6000,
-               f"the prize list is {coins}")
+        # TM74 is a chain: TM02 takes its slot while it takes TM90's.
+        expect("ITEM_SILK_SCARF" not in coins and "ITEM_TM90" not in coins and "ITEM_TM10" not in coins
+               and coins.get("ITEM_TM02") == 15000 and coins.get("ITEM_TM45") == 6000
+               and coins.get("ITEM_TM74") == 2000, f"the prize list is {coins}")
         stock = pr.Marts(tree).stock("MART_SPECIALTIES_ID_VEILSTONE_3F_UP")
         expect("ITEM_TM23" in stock and "ITEM_TM54" not in stock, f"the 3F counter sells {stock}")
         code, out = run("apply", "--table", SHOPS, "--root", work, "--roles", none)

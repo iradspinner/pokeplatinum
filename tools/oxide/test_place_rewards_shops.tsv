@@ -6,3 +6,4 @@ ITEM_TM05	2	mart	Fantina	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILS
 ITEM_TM02	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM74		4	a prize sold once, two copies
 ITEM_TM45	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM10			a plain prize swap
 ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_SILK_SCARF		3	a prize taken off the list
+ITEM_TM74	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM90			a chain: TM74 takes TM90's slot while TM02 takes TM74's
