@@ -809,6 +809,10 @@ def check_calc_mechanics(results):
         "lariatwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Darkest Lariat"),
         "breakwall": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
         "breakplain": ("Gallade", "Steadfast", "Bastiodon", "Soundproof", "Brick Break"),
+        # Fury Cutter since the move reworks (2026-10-06): three hits at 30,
+        # 40 and 50, against X-Scissor's single 80.
+        "cutter": ("Scyther", "Swarm", "Snorlax", "", "Fury Cutter"),
+        "scissor": ("Scyther", "Swarm", "Snorlax", "", "X-Scissor"),
     }
     # The target's own stages: Foul Play reads them, and Sacred Sword,
     # Darkest Lariat and Brick Break meet a Bastiodon at +6 Defense.
@@ -845,6 +849,28 @@ def check_calc_mechanics(results):
                     and rolls["pixie"][0] > rolls["plain"][-1] and set(rolls["sap"]) == {0},
                     f"Night Slash {rolls['blunt'][-1]} to {rolls['sharp'][-1]}, "
                     f"Hyper Voice {rolls['plain'][-1]} to {rolls['pixie'][-1]}"))
+    # Fury Cutter's three hits come to 120 power in all, half again X-Scissor's
+    # 80 (a single 30, the old reading, would be under half of it), and the
+    # profile's hook gives each hit its own: 30, 40, then 50, which the
+    # total alone cannot tell from Kaizo's 20, 40, 60.
+    hook = subprocess.run(["node", "-e", (
+        "const p = require(process.argv[1]).platinumOxideProfile;"
+        "const f = p.hooks.moveBasePower[0];"
+        "const move = {bp: 30, hits: 3, named: (...n) => n.includes('Fury Cutter')};"
+        "console.log(JSON.stringify([0, 1, 2].map(h => {"
+        "  const ctx = {move, state: {hitCount: h, originalBasePower: 30}, desc: {}};"
+        "  return [f(ctx, 30), ctx.desc.moveBP]; })));"),
+        os.path.join(root, "tools", "oxide", "encounters", "calc", "calc", "mechanics", "romhacks",
+                     "profiles", "platinum-oxide.js")], capture_output=True, text=True)
+    try:
+        per_hit = json.loads(hook.stdout)
+    except ValueError:
+        per_hit = hook.stderr[-160:]
+    ratio = rolls["cutter"][-1] / rolls["scissor"][-1]
+    results.append(("Fury Cutter is three hits of 30, 40 and 50 in the calculator, as Oxide's "
+                    "engine has it",
+                    1.4 <= ratio <= 1.6 and per_hit == [[30, 120], [40, 120], [50, 120]],
+                    f"{rolls['cutter'][-1]} against X-Scissor's {rolls['scissor'][-1]}; hits {per_hit}"))
     # Electro Ball's power is 40 when the user is the slower (Pikachu into
     # Electrode, as Thunder Shock), and 80 at twice the target's Speed
     # (Pikachu, 110, into Slowbro, 50, as Discharge); Hard
