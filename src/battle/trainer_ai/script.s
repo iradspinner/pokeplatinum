@@ -8836,6 +8836,11 @@ CheckHP_DiscourageAtHighHP:
     TableEntry BATTLE_EFFECT_HEAL_HALF_REMOVE_FLYING_TYPE
     TableEntry BATTLE_EFFECT_FAINT_AND_FULL_HEAL_NEXT_MON
     TableEntry BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above.
+    // Strength Sap and Life Dew as Recover.
+    TableEntry BATTLE_EFFECT_STRENGTH_SAP
+    TableEntry BATTLE_EFFECT_LIFE_DEW
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtMediumHP:
@@ -8885,6 +8890,27 @@ CheckHP_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_SWAP_ATK_SP_ATK_STAT_CHANGES
     TableEntry BATTLE_EFFECT_SWAP_DEF_SP_DEF_STAT_CHANGES
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above.
+    // Hone Claws as Meditate, Coil and Cotton Guard as Harden, Autotomize
+    // as Agility, Noble Roar, Tearful Look and Venom Drench as Growl, and the
+    // Dragon Dance family (Quiver Dance, Shift Gear, Shell Smash, Geomancy and
+    // Clangorous Soul) as Dragon Dance; Soak as Conversion 2; Guard Split
+    // and Power Split as Guard Swap and Power Swap.
+    TableEntry BATTLE_EFFECT_ATK_ACC_UP
+    TableEntry BATTLE_EFFECT_ATK_DEF_ACC_UP
+    TableEntry BATTLE_EFFECT_DEF_UP_3
+    TableEntry BATTLE_EFFECT_AUTOTOMIZE
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_VENOM_DRENCH
+    TableEntry BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_SPEED_UP_2_ATK_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
+    TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
+    TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
+    TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
+    TableEntry BATTLE_EFFECT_GUARD_SPLIT
+    TableEntry BATTLE_EFFECT_POWER_SPLIT
     TableEntry TABLE_END
 
 CheckHP_DiscourageAtLowHP:
@@ -8939,6 +8965,24 @@ CheckHP_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_RANDOM_STAT_UP_2
     TableEntry BATTLE_EFFECT_METAL_BURST
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above.
+    // Hone Claws as Meditate, Coil and Cotton Guard as Harden, Autotomize
+    // as Agility, Noble Roar, Tearful Look and Venom Drench as Growl, and the
+    // Dragon Dance family (Quiver Dance, Shift Gear, Shell Smash, Geomancy and
+    // Clangorous Soul) as Dragon Dance; Soak as Conversion 2.
+    TableEntry BATTLE_EFFECT_ATK_ACC_UP
+    TableEntry BATTLE_EFFECT_ATK_DEF_ACC_UP
+    TableEntry BATTLE_EFFECT_DEF_UP_3
+    TableEntry BATTLE_EFFECT_AUTOTOMIZE
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_VENOM_DRENCH
+    TableEntry BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_SPEED_UP_2_ATK_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
+    TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
+    TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
+    TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtHighHP:
@@ -8987,6 +9031,23 @@ CheckHP_Target_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_RANDOM_STAT_UP_2
     TableEntry BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above.
+    // Hone Claws as Meditate, Coil and Cotton Guard as Harden, Autotomize
+    // as Agility, Noble Roar, Tearful Look and Venom Drench as Growl, and the
+    // Dragon Dance family (Quiver Dance, Shift Gear, Shell Smash, Geomancy and
+    // Clangorous Soul) as Dragon Dance.
+    TableEntry BATTLE_EFFECT_ATK_ACC_UP
+    TableEntry BATTLE_EFFECT_ATK_DEF_ACC_UP
+    TableEntry BATTLE_EFFECT_DEF_UP_3
+    TableEntry BATTLE_EFFECT_AUTOTOMIZE
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_VENOM_DRENCH
+    TableEntry BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_SPEED_UP_2_ATK_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
+    TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
+    TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
     TableEntry TABLE_END
 
 CheckHP_Target_DiscourageAtLowHP:
@@ -9052,6 +9113,26 @@ CheckHP_Target_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_RANDOM_STAT_UP_2
     TableEntry BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP
     TableEntry BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above.
+    // Hone Claws as Meditate, Coil and Cotton Guard as Harden, Autotomize
+    // as Agility, Noble Roar, Tearful Look and Venom Drench as Growl, and the
+    // Dragon Dance family (Quiver Dance, Shift Gear, Shell Smash, Geomancy and
+    // Clangorous Soul) as Dragon Dance; Soak as Conversion 2;
+    // Final Gambit as Explosion.
+    TableEntry BATTLE_EFFECT_ATK_ACC_UP
+    TableEntry BATTLE_EFFECT_ATK_DEF_ACC_UP
+    TableEntry BATTLE_EFFECT_DEF_UP_3
+    TableEntry BATTLE_EFFECT_AUTOTOMIZE
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_VENOM_DRENCH
+    TableEntry BATTLE_EFFECT_SP_ATK_SP_DEF_SPEED_UP
+    TableEntry BATTLE_EFFECT_SPEED_UP_2_ATK_UP
+    TableEntry BATTLE_EFFECT_ATK_SP_ATK_SPEED_UP_2_DEF_SP_DEF_DOWN
+    TableEntry BATTLE_EFFECT_CHARGE_TURN_ATK_SP_ATK_SPEED_UP_2
+    TableEntry BATTLE_EFFECT_RAISE_ALL_STATS_LOSE_THIRD_MAX_HP
+    TableEntry BATTLE_EFFECT_CHANGE_TO_WATER_TYPE
+    TableEntry BATTLE_EFFECT_FINAL_GAMBIT
     TableEntry TABLE_END
 
 Weather_Main:
