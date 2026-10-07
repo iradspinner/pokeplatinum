@@ -53,7 +53,6 @@ BOOL MapHeader_IsBikeAllowed(enum MapHeaderID mapHeaderID);
 u32 MapHeader_GetMapType(enum MapHeaderID mapHeaderID);
 BOOL MapHeader_IsTeleportAllowed(enum MapHeaderID mapHeaderID);
 BOOL MapHeader_IsOnMainMatrix(enum MapHeaderID mapHeaderID);
-BOOL MapHeader_IsGauntlet(enum MapHeaderID mapHeaderID);
 BOOL MapHeader_IsPokemonCenter(enum MapHeaderID mapHeaderID);
 BOOL MapHeader_IsCave(enum MapHeaderID mapHeaderID);
 BOOL MapHeader_IsBuilding(enum MapHeaderID mapHeaderID);

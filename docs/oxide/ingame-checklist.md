@@ -251,6 +251,36 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   nothing. Switched out as Pirouette, it comes back in as Aria. After a battle
   ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
   Aria's stats.
+- [ ] **Gauntlets** (`main-gauntlets`, `docs/oxide/gauntlets.md`), on the
+  test kit ROM. Take "Route 208, all badges" first, then the Warp menu's five
+  gauntlet entries, each of which lands one step from a section's way in; walk
+  through it. The trainers are far above the kit's Pokemon, so keep out of
+  their sight where the check does not need a fight. In each section, while it
+  is open: the Pocket PC says "You can’t use that here yet! / Press on, or beat
+  the Trainers here." in the bag; Dig, Fly and Teleport say the same in the
+  party menu; an Escape Rope in a cave says it too; and the way back says
+  "There’s no turning back now! / Press on, or beat the Trainers here.", after
+  which a staircase or warp panel stepped onto walks the player back off it.
+  Then, one per entry:
+  - Eterna: go up to 3F and beat Travon and the grunt. The Pocket PC works on
+    3F again, and the stairs down no longer refuse.
+  - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
+    on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
+    let you go. Then fetch the key and come back: the same stairs refuse.
+    1F's front doors to Veilstone refuse too, once the key has opened its
+    lobby.
+  - Coronet 1F: south into the tunnel room, then back north: refused. At the
+    far end, out onto the north ledge, the Pocket PC works again.
+  - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
+    refuses there, although the ledge is outdoors. On the north ledge, the
+    cave mouth into the tunnel refuses.
+  - Victory Road: north from the League's gate. The gate refuses. Walk north
+    through the one-tile corridor that passes under the long bridge west of
+    the middle (x 13, z 26 to 27), then turn back south: the player is turned
+    back north with the message. Walking out at the far end, the Pocket PC
+    works on the League's side.
+  A whiteout inside a section closes it too: the Pocket PC works from the
+  Pokemon Center.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -436,6 +466,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   screen shows every battler, as Haze's does, and it feeds every Pokemon on
   the field its Berry; Core Enforcer leaves the ability of a foe that has not
   moved yet alone.
+- [ ] **The gauntlets in a real run** (`main-gauntlets`), as each comes up:
+  the Eterna building, Galactic HQ (entered from the warehouse), Mt. Coronet
+  on the way to Spear Pillar, and Victory Road. From each section's way in,
+  the Pocket PC refuses until its trainers are beaten or you move on, and
+  nothing shuts you in: the way forward always opens. Note any stretch that
+  felt like a gauntlet but let you heal, or refused where it should not.
 - [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
   works everywhere but a gauntlet: the Great Marsh, the Underground, the
   Distortion World, and the Battle Frontier's lobbies. Each should either open

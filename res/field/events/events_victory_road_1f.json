@@ -324,6 +324,36 @@
             "y": 0,
             "value": 0,
             "var": "VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE"
+        },
+        {
+            "script": 10018,
+            "x": 13,
+            "z": 26,
+            "width": 1,
+            "length": 1,
+            "y": 0,
+            "value": 0,
+            "var": "VAR_GAUNTLET_SECTION"
+        },
+        {
+            "script": 10018,
+            "x": 13,
+            "z": 26,
+            "width": 1,
+            "length": 1,
+            "y": 0,
+            "value": 9,
+            "var": "VAR_GAUNTLET_SECTION"
+        },
+        {
+            "script": 10018,
+            "x": 13,
+            "z": 27,
+            "width": 1,
+            "length": 1,
+            "y": 0,
+            "value": 10,
+            "var": "VAR_GAUNTLET_SECTION"
         }
     ]
 }
