@@ -1,5 +1,13 @@
 # The comb: Candice's split
 
+**Refreshed 2026-10-07.** The expected numbers were read again after two
+changes: a fix to my simulator, which had picked the player's lead by party
+order when two choices looked equal and so skewed every earlier boss reading,
+and the legality sweep against the final lists (origin/balance-tm-pass at
+377312dbf0), which changed three moves here: Hesperid's and Ace Trainer Laura's Tangrowth trade Power Whip for Seed Bomb, and Ace Trainer Olivia's Altaria trades Dragon Dance for Agility. Ian ruled that every draft goes into step 12 as
+drafted; the scorer's step 15 reading gives the real numbers, and he chooses
+any retunes from them. My candidates are in `../retune-proposals-not-approved/`.
+
 The bosses of Candice's split are combed: Officer Hesperid and Saturn at
 Lake Valor, the Somnu and Moira tag and Mars at Lake Verity, twelve Ace
 Trainers on Routes 216 and 217 and in Snowpoint's gym, and Candice. All 19
@@ -14,19 +22,19 @@ changing weather and are read without it; the lakes have none. My simulator
 reads the bosses against the scorer's box at Candice, which knows no TMs, so
 they read harsher than they will once the TM pass lands. It now also models
 trapping abilities, Counter, Mirror Coat and Destiny Bond. Saturn reads
-about 81 won to today's 94, Mars about 89 to today's 100, and Hesperid about
-level on wins with far more faints. Candice reads level with today's file
-(91 won), whose Snow Cloak and Double Team evasion the dial bars, so mine
-gets there without it. Somnu's Swalot keeps Dream Eater, the split's one
+about 80 won to today's 94, Mars about 91 to today's 100, and Hesperid about
+level on wins with far more faints. Candice reads about 90 won to today's
+94; today's file earns much of its difficulty with Snow Cloak and Double Team
+evasion the dial bars, so mine gets close without it. Somnu's Swalot keeps Dream Eater, the split's one
 conditional attack.
 
 ## Decisions for Ian
 
 | # | Decision | What the files do today | How it is checked | What Ian decides |
 |---|---|---|---|---|
-| 1 | Candice is level with today's, not a step harder | Froslass leads with Spikes behind a Focus Sash, Walrein heals with Ice Body and phazes with Roar, then Glaceon, Mamoswine, Articuno (the legendary) and an Adaptability Abomasnow ace. She carries no trade, since Oxide's Froslass has no Destiny Bond. A Weavile in Glaceon's place read 75 won, far past a step. | `leader_candice.json`; the scorer's reading in hail later. | Accept (recommended: today's 91 comes from evasion the dial bars), or take the Weavile version. |
+| 1 | Candice is only a little harder than today's (90 won to 94) | Froslass leads with Spikes behind a Focus Sash, Walrein heals with Ice Body and phazes with Roar, then Glaceon, Mamoswine, Articuno (the legendary) and an Adaptability Abomasnow ace. She carries no trade, since Oxide's Froslass has no Destiny Bond. A Weavile in Glaceon's place read 75 won, far past a step. | `leader_candice.json`; the scorer's reading in hail later. | Accept (recommended: today's file earns its 94 with evasion the dial bars), or take the Weavile version. |
 | 2 | Saturn's trap is a Shadow Tag Wobbuffet | Wobbuffet traps whatever it faces and carries Counter but not Mirror Coat; with Mirror Coat as well the fight read 69 to 77 won. The trap is Saturn's one trade. Azelf leads with Stealth Rock, and Toxicroak is the Swords Dance ace. | `commander_saturn_valor_cavern.json`; the scorer's reading later. | Accept (recommended), or give the trap to a Dugtrio (Arena Trap), which read harder still. |
-| 3 | Ace Trainers, tuned on the planned reading | The dial's numbers for this split first gave readings from 47 to 100 won with a planned six. Seven teams were softened toward Byron's band (94 to 100) and now read 91 to 100, mostly by moving the non-ace members two or three levels under the ace, as Rule 2 allows, and by taking setup moves off them. Met blind they still win 9 to 79 percent of fights in my simulator. | My readings now; the scorer's planned reading after the TM pass; Ian's alpha run. | The same choice as Byron's decision 3, which covers both splits. |
+| 3 | Ace Trainers, tuned on the planned reading | The dial's numbers for this split first gave readings from 47 to 100 won with a planned six. Seven teams were softened toward Byron's band (94 to 100) and now read 90 to 100, mostly by moving the non-ace members two or three levels under the ace, as Rule 2 allows, and by taking setup moves off them. Met blind they win 7 to 72 percent of fights in my simulator. | My readings now; the scorer's planned reading after the TM pass; Ian's alpha run. | The same choice as Byron's decision 3, which covers both splits. |
 | 4 | Lake Verity tag | Somnu and Moira bring four each at 53 to 54 beside Lucas or Dawn, Moira's Snow Warning setting five turns of hail. | The scorer cannot read tag battles yet. | Nothing now. |
 
 ## What comes next
@@ -38,24 +46,24 @@ the rest in order, then the ordinary trainers from Maylene's split on.
 
 | Trainer | Place | Path | Battle | Size | Levels | The idea | Expected |
 |---|---|---|---|---|---|---|---|
-| Galactic Officer Hesperid | Lake Valor (drained) | on the path | single, named officer | 6 | 54 to 56 | Today's five without the dice | about 98 / 1.8 / 7.5 in my simulator, where today's file reads 100 / 0.02 / 98 |
-| Saturn 1 | Valor Cavern | on the path | single, boss | 6 | 54 to 56 | A hazard lead and a trap | about 81 / 2.9 / 0 in my simulator (two readings, 81 and 80.5), where today's file reads 94 / 0.87 / 58 |
+| Galactic Officer Hesperid | Lake Valor (drained) | on the path | single, named officer | 6 | 54 to 56 | Today's five without the dice | about 98 / 2.2 / 0 in my simulator, where today's file reads 100 / 0.0 / 99 |
+| Saturn 1 | Valor Cavern | on the path | single, boss | 6 | 54 to 56 | A hazard lead and a trap | about 80 / 3.1 / 0 in my simulator, where today's file reads 94 / 0.9 / 56 |
 | Galactic Officer Somnu | Lake Verity | on the path | tag, beside Lucas or Dawn | 4 | 53 to 54 | Somnu's sleep | not readable yet |
 | Galactic Officer Moira | Lake Verity | on the path | tag, beside Lucas or Dawn | 4 | 53 to 54 | Moira's hail again | not readable yet |
-| Mars 2 | Lake Verity | on the path | single, boss | 6 | 54 to 56 | Status from the lead again | about 89 / 1.9 / 27 in my simulator, where today's file reads 100 / 0.55 / 51 |
-| Ace Trainer Blake | Route 216 | optional | single, Ace Trainer | 6 | 52 to 55 | Normal types | about 91 / 3.0 / 0.5 with a planned six |
-| Ace Trainer Garrett | Route 216 | optional | single, Ace Trainer | 6 | 54 to 55 | Psychic | about 91 / 3.6 / 0 with a planned six |
-| Ace Trainer Laura | Route 216 | on the path | single, Ace Trainer | 6 | 54 to 55 | Grass types | about 100 / 0.7 / 52 with a planned six |
-| Ace Trainer Maria | Route 216 | optional | single, Ace Trainer | 6 | 54 to 55 | One of each element | about 100 / 1.0 / 19 with a planned six |
-| Ace Trainer Dalton | Route 217 (hail) | on the path | single, Ace Trainer | 6 | 54 to 55 | The elemental pair in the hail | about 98 / 2.1 / 0.5 with a planned six in hail |
-| Ace Trainer Olivia | Route 217 (hail) | on the path | single, Ace Trainer | 6 | 52 to 55 | Dragons and Ice | about 98 / 1.8 / 0 with a planned six in hail |
-| Ace Trainer Sergio | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Grass and Ice | about 100 / 0.8 / 43 with a planned six in hail |
-| Ace Trainer Isaiah | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Ground types with Ice moves | about 95 / 2.2 / 5.5 with a planned six in hail |
+| Mars 2 | Lake Verity | on the path | single, boss | 6 | 54 to 56 | Status from the lead again | about 91 / 2.5 / 1 in my simulator, where today's file reads 100 / 0.4 / 57 |
+| Ace Trainer Blake | Route 216 | optional | single, Ace Trainer | 6 | 52 to 55 | Normal types | about 90 / 2.8 / 1 with a planned six |
+| Ace Trainer Garrett | Route 216 | optional | single, Ace Trainer | 6 | 54 to 55 | Psychic | about 90 / 3.4 / 0 with a planned six |
+| Ace Trainer Laura | Route 216 | on the path | single, Ace Trainer | 6 | 54 to 55 | Grass types | about 99 / 0.7 / 58 with a planned six |
+| Ace Trainer Maria | Route 216 | optional | single, Ace Trainer | 6 | 54 to 55 | One of each element | about 100 / 0.8 / 32 with a planned six |
+| Ace Trainer Dalton | Route 217 (hail) | on the path | single, Ace Trainer | 6 | 54 to 55 | The elemental pair in the hail | about 97 / 2.3 / 0 with a planned six in hail |
+| Ace Trainer Olivia | Route 217 (hail) | on the path | single, Ace Trainer | 6 | 52 to 55 | Dragons and Ice | about 98 / 1.1 / 19 with a planned six in hail |
+| Ace Trainer Sergio | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Grass and Ice | about 100 / 0.8 / 46 with a planned six in hail |
+| Ace Trainer Isaiah | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Ground types with Ice moves | about 97 / 2.1 / 7 with a planned six in hail |
 | Ace Trainer Savannah | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Hail support | about 98 / 2.2 / 0 with a planned six in hail |
-| Ace Trainer Alicia | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Water and Ice | about 100 / 1.9 / 2 with a planned six in hail |
-| Ace Trainer Anton | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Today's Glalie leads with Spikes | about 98 / 2.4 / 0 with a planned six in hail |
-| Ace Trainer Brenna | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Today's Dewgong and Lapras with Froslass's Spikes and Thunder Wave | about 99 / 2.2 / 1 with a planned six in hail |
-| Candice | Snowpoint Gym (hail) | on the path | single, boss | 6 | 54 to 56 | Hail and its abusers | about 91 / 3.6 / 0 in my simulator in the gym's hail, where today's file reads 91 / 3.3 / 0 |
+| Ace Trainer Alicia | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Water and Ice | about 100 / 1.7 / 3 with a planned six in hail |
+| Ace Trainer Anton | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Today's Glalie leads with Spikes | about 99 / 2.2 / 1 with a planned six in hail |
+| Ace Trainer Brenna | Snowpoint Gym (hail) | gym trainer | single, Ace Trainer | 6 | 54 to 55 | Today's Dewgong and Lapras with Froslass's Spikes and Thunder Wave | about 97 / 2.4 / 0 with a planned six in hail |
+| Candice | Snowpoint Gym (hail) | on the path | single, boss | 6 | 54 to 56 | Hail and its abusers | about 90 / 3.8 / 0 in my simulator in hail, where today's file reads 94 / 4.0 / 0 |
 
 Expected numbers are won / faints a fight / clean in my simulator, beside
 today's file where it was read.
@@ -72,10 +80,10 @@ Today's five without the dice: Sudowoodo leads with Stealth Rock behind a Focus 
 | Weezing | 55 | Black Sludge | Levitate | Bold | Sludge Bomb, Will-O-Wisp, Thunderbolt, Explosion |
 | Girafarig | 55 | Starf Berry | Quick Feet | Timid | Agility, Baton Pass, Psychic, Thunderbolt |
 | Chatot | 55 | Sharp Beak | Scrappy | Timid | Hyper Voice, Heat Wave, Chatter, Nasty Plot |
-| Tangrowth | 55 | Leftovers | Regenerator | Relaxed | Power Whip, Earthquake, Knock Off, Sleep Powder |
+| Tangrowth | 55 | Leftovers | Regenerator | Relaxed | Seed Bomb, Earthquake, Knock Off, Sleep Powder |
 | Sceptile | 56 | Life Orb | Overgrow | Naive | Leaf Storm, Focus Blast, Earthquake, Rock Slide |
 
-Today's team: Weezing 50 (Black Sludge; Payback, Thunder, Explosion, Sludge Bomb), Sceptile 49 (Petaya Berry; Rock Slide, Pursuit, Leaf Storm, Aerial Ace), Girafarig 50 (Starf Berry; Earthquake, Agility, Baton Pass, Charge Beam), Sudowoodo 50 (BrightPowder; Stealth Rock, Explosion, Sucker Punch, Focus Punch), Chatot 52 (Choice Specs; Hyper Voice, Heat Wave, Chatter). Expected: about 98 / 1.8 / 7.5 in my simulator, where today's file reads 100 / 0.02 / 98.
+Today's team: Weezing 50 (Black Sludge; Payback, Thunder, Explosion, Sludge Bomb), Sceptile 49 (Petaya Berry; Rock Slide, Pursuit, Leaf Storm, Aerial Ace), Girafarig 50 (Starf Berry; Earthquake, Agility, Baton Pass, Charge Beam), Sudowoodo 50 (BrightPowder; Stealth Rock, Explosion, Sucker Punch, Focus Punch), Chatot 52 (Choice Specs; Hyper Voice, Heat Wave, Chatter). Expected: about 98 / 2.2 / 0 in my simulator, where today's file reads 100 / 0.0 / 99.
 
 ### Saturn 1: Valor Cavern, on the path, single, boss, cap 56
 
@@ -90,7 +98,7 @@ A hazard lead and a trap, as the dial asks of Saturn: Azelf sets Stealth Rock an
 | Rhyperior | 55 | Passho Berry | Solid Rock | Adamant | Earthquake, Stone Edge, Hammer Arm, Ice Punch |
 | Toxicroak | 56 | Lum Berry | Dry Skin | Adamant | Poison Jab, Cross Chop, Sucker Punch, Swords Dance |
 
-Today's team: Mr Mime 52 (Light Clay; Light Screen, Reflect, Psychic, Thunderbolt), Lickilicky 52 (Toxic Orb; Toxic, Substitute, Slam, Shadow Ball), Slaking 52 (Sitrus Berry; Slash, Hammer Arm, Night Slash, Slack Off), Rhyperior 52 (Leftovers; Earthquake, Stone Edge, ThunderPunch, Superpower), Toxicroak 52 (Life Orb; Poison Jab, Cross Chop, ThunderPunch, Sucker Punch), Azelf 53 (Focus Sash; U-turn, Future Sight, Psychic, Payback). Expected: about 81 / 2.9 / 0 in my simulator (two readings, 81 and 80.5), where today's file reads 94 / 0.87 / 58.
+Today's team: Mr Mime 52 (Light Clay; Light Screen, Reflect, Psychic, Thunderbolt), Lickilicky 52 (Toxic Orb; Toxic, Substitute, Slam, Shadow Ball), Slaking 52 (Sitrus Berry; Slash, Hammer Arm, Night Slash, Slack Off), Rhyperior 52 (Leftovers; Earthquake, Stone Edge, ThunderPunch, Superpower), Toxicroak 52 (Life Orb; Poison Jab, Cross Chop, ThunderPunch, Sucker Punch), Azelf 53 (Focus Sash; U-turn, Future Sight, Psychic, Payback). Expected: about 80 / 3.1 / 0 in my simulator, where today's file reads 94 / 0.9 / 56.
 
 ### Galactic Officer Somnu: Lake Verity, on the path, tag, beside Lucas or Dawn, cap 56
 
@@ -131,7 +139,7 @@ Status from the lead again, now behind a hazard: Mesprit sets Stealth Rock and T
 | Umbreon | 55 | Leftovers | Synchronize | Calm | Payback, Toxic, Wish, Protect |
 | Luxray | 56 | Expert Belt | Tinted Lens | Adamant | Thunder Fang, Crunch, Superpower, Howl |
 
-Today's team: Umbreon 53 (Leftovers; Protect, Payback, Heal Bell, Dig), Delcatty 53 (Chople Berry; Calm Mind, Baton Pass, Hyper Voice, Attract), Luxray 53 (Expert Belt; Thunder Fang, Crunch, Superpower, Ice Fang), Bronzong 53 (Iron Ball; Gyro Ball, Curse, Zen Headbutt, Confuse Ray), Purugly 53 (Sitrus Berry; Slash, Sucker Punch, Hypnosis, Fake Out), Mesprit 54 (Life Orb; Rest, Psychic, Sleep Talk, U-turn). Expected: about 89 / 1.9 / 27 in my simulator, where today's file reads 100 / 0.55 / 51.
+Today's team: Umbreon 53 (Leftovers; Protect, Payback, Heal Bell, Dig), Delcatty 53 (Chople Berry; Calm Mind, Baton Pass, Hyper Voice, Attract), Luxray 53 (Expert Belt; Thunder Fang, Crunch, Superpower, Ice Fang), Bronzong 53 (Iron Ball; Gyro Ball, Curse, Zen Headbutt, Confuse Ray), Purugly 53 (Sitrus Berry; Slash, Sucker Punch, Hypnosis, Fake Out), Mesprit 54 (Life Orb; Rest, Psychic, Sleep Talk, U-turn). Expected: about 91 / 2.5 / 1 in my simulator, where today's file reads 100 / 0.4 / 57.
 
 ### Ace Trainer Blake: Route 216, optional, single, Ace Trainer, cap 56
 
@@ -146,7 +154,7 @@ Normal types: Ambipom's Fake Out, an Eviolite Porygon2, Snorlax, Tauros, Kangask
 | Kangaskhan | 53 | Sitrus Berry | Scrappy | Adamant | Double-Edge, Earthquake, Crunch, Ice Punch |
 | Lickilicky | 55 | Leftovers | Poison Heal | Adamant | Body Slam, Earthquake, Ice Beam, Knock Off |
 
-Today's team: Ambipom 48 (Double Hit, U-turn, Sand-Attack, Screech), Porygon2 48 (Psybeam, Signal Beam, Conversion 2, Recover). Expected: about 91 / 3.0 / 0.5 with a planned six; read blind, 38 / 5.1 / 0.
+Today's team: Ambipom 48 (Double Hit, U-turn, Sand-Attack, Screech), Porygon2 48 (Psybeam, Signal Beam, Conversion 2, Recover). Expected: about 90 / 2.8 / 1 with a planned six; read blind, 31 / 5.2 / 0.
 
 ### Ace Trainer Garrett: Route 216, optional, single, Ace Trainer, cap 56
 
@@ -161,7 +169,7 @@ Psychic, Ghost and Steel: Mr. Mime's screens, Dusknoir's Will-O-Wisp, Alakazam, 
 | Metagross | 54 | Shuca Berry | Clear Body | Adamant | Meteor Mash, Earthquake, Zen Headbutt, Ice Punch |
 | Scizor | 55 | Metal Coat | Technician | Adamant | Bullet Punch, X-Scissor, U-turn, Swords Dance |
 
-Today's team: Mr Mime 47 (Psychic, Thunderbolt, Reflect, Light Screen), Dusknoir 47 (Will-O-Wisp, Shadow Punch, Pursuit, Confuse Ray), Scizor 47 (Slash, X-Scissor, Bullet Punch, Night Slash). Expected: about 91 / 3.6 / 0 with a planned six; read blind, 9 / 5.8 / 0.
+Today's team: Mr Mime 47 (Psychic, Thunderbolt, Reflect, Light Screen), Dusknoir 47 (Will-O-Wisp, Shadow Punch, Pursuit, Confuse Ray), Scizor 47 (Slash, X-Scissor, Bullet Punch, Night Slash). Expected: about 90 / 3.4 / 0 with a planned six; read blind, 14 / 5.6 / 0.
 
 ### Ace Trainer Laura: Route 216, on the path, single, Ace Trainer, cap 56
 
@@ -172,11 +180,11 @@ Grass types: Roserade leads with Spikes behind a Focus Sash, then Tropius, a Poi
 | Roserade | 54 | Focus Sash | Natural Cure | Timid | Spikes, Sludge Bomb, Energy Ball, Shadow Ball |
 | Tropius | 54 | Leftovers | Overgrow | Modest | Air Slash, Energy Ball, Roost, Earthquake |
 | Breloom | 54 | Toxic Orb | Poison Heal | Jolly | Seed Bomb, Mach Punch, Stone Edge, Spore |
-| Tangrowth | 54 | Sitrus Berry | Regenerator | Relaxed | Power Whip, Earthquake, Knock Off, Rock Slide |
+| Tangrowth | 54 | Sitrus Berry | Regenerator | Relaxed | Seed Bomb, Earthquake, Knock Off, Rock Slide |
 | Leafeon | 54 | Miracle Seed | Chlorophyll | Jolly | Seed Bomb, X-Scissor, Quick Attack, Swords Dance |
 | Venusaur | 55 | Black Sludge | Overgrow | Modest | Sludge Bomb, Energy Ball, Earthquake, Synthesis |
 
-Today's team: Tropius 50 (Air Slash, Leaf Storm, Ominous Wind, Tailwind). Expected: about 100 / 0.7 / 52 with a planned six; read blind, 42 / 4.4 / 5.
+Today's team: Tropius 50 (Air Slash, Leaf Storm, Ominous Wind, Tailwind). Expected: about 99 / 0.7 / 58 with a planned six; read blind, 47 / 4.1 / 4.
 
 ### Ace Trainer Maria: Route 216, optional, single, Ace Trainer, cap 56
 
@@ -191,7 +199,7 @@ One of each element: Golduck's Calm Mind, Jolteon, Sudowoodo, Exeggutor's Sleep 
 | Arcanine | 54 | Charcoal | Intimidate | Adamant | Flare Blitz, ExtremeSpeed, Crunch, Thunder Fang |
 | Rapidash | 55 | Life Orb | Reckless | Jolly | Flare Blitz, Megahorn, Poison Jab, Bounce |
 
-Today's team: Golduck 47 (Cross Chop, Ice Punch, Aqua Jet, Confuse Ray), Rapidash 47 (Fire Blast, Bounce, Poison Jab, Will-O-Wisp), Sudowoodo 47 (Stone Edge, Low Kick, Wood Hammer, ThunderPunch). Expected: about 100 / 1.0 / 19 with a planned six; read blind, 79 / 3.5 / 4.
+Today's team: Golduck 47 (Cross Chop, Ice Punch, Aqua Jet, Confuse Ray), Rapidash 47 (Fire Blast, Bounce, Poison Jab, Will-O-Wisp), Sudowoodo 47 (Stone Edge, Low Kick, Wood Hammer, ThunderPunch). Expected: about 100 / 0.8 / 32 with a planned six; read blind, 72 / 3.7 / 3.
 
 ### Ace Trainer Dalton: Route 217 (hail), on the path, single, Ace Trainer, cap 56
 
@@ -206,7 +214,7 @@ The elemental pair in the hail: Glalie, Magmortar's Will-O-Wisp, Abomasnow's Bli
 | Dewgong | 54 | Leftovers | Ice Body | Calm | Blizzard, Surf, Aqua Jet, Toxic |
 | Electivire | 55 | Magnet | Vital Spirit | Adamant | ThunderPunch, Ice Punch, Cross Chop, Earthquake |
 
-Today's team: Electivire 52 (ThunderPunch, Earthquake, Ice Punch, Thunder Wave), Magmortar 52 (Flamethrower, Psychic, Thunderbolt, Will-O-Wisp). Expected: about 98 / 2.1 / 0.5 with a planned six in hail; read blind, 48 / 4.6 / 0.
+Today's team: Electivire 52 (ThunderPunch, Earthquake, Ice Punch, Thunder Wave), Magmortar 52 (Flamethrower, Psychic, Thunderbolt, Will-O-Wisp). Expected: about 97 / 2.3 / 0 with a planned six in hail; read blind, 43 / 4.8 / 0.
 
 ### Ace Trainer Olivia: Route 217 (hail), on the path, single, Ace Trainer, cap 56
 
@@ -218,10 +226,10 @@ Dragons and Ice: Lapras, Glaceon's Ice Body and Yawn, Ursaring, Kingdra, an Evio
 | Glaceon | 52 | NeverMeltIce | Ice Body | Modest | Blizzard, Shadow Ball, Signal Beam, Yawn |
 | Ursaring | 52 | Sitrus Berry | Guts | Adamant | Take Down, Close Combat, Crunch, Earthquake |
 | Kingdra | 53 | Mystic Water | Sniper | Modest | Surf, Dragon Pulse, Ice Beam, Signal Beam |
-| Altaria | 55 | Sitrus Berry | Serene Grace | Adamant | Dragon Claw, Earthquake, Roost, Dragon Dance |
+| Altaria | 55 | Sitrus Berry | Serene Grace | Adamant | Dragon Claw, Earthquake, Roost, Agility |
 | Dragonair | 52 | Eviolite | Shed Skin | Adamant | Dragon Rush, Aqua Tail, Thunder Wave, Iron Tail |
 
-Today's team: Altaria 52 (Dragon Dance, Outrage, Earthquake, Roost), Lapras 52 (Dragon Dance, Waterfall, Outrage, Rest), Ursaring 52 (Slash, Swords Dance, Stone Edge, Close Combat). Expected: about 98 / 1.8 / 0 with a planned six in hail; read blind, 44 / 4.8 / 0.
+Today's team: Altaria 52 (Dragon Dance, Outrage, Earthquake, Roost), Lapras 52 (Dragon Dance, Waterfall, Outrage, Rest), Ursaring 52 (Slash, Swords Dance, Stone Edge, Close Combat). Expected: about 98 / 1.1 / 19 with a planned six in hail; read blind, 46 / 4.6 / 0.
 
 ### Ace Trainer Sergio: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -236,7 +244,7 @@ Grass and Ice: Cloyster's Spikes, Jynx's Lovely Kiss, Ludicolo's Fake Out, a Qui
 | Cloyster | 54 | Focus Sash | Skill Link | Jolly | Icicle Spear, Ice Shard, Poison Jab, Spikes |
 | Abomasnow | 55 | Occa Berry | Adaptability | Adamant | Blizzard, Wood Hammer, Ice Shard, Earthquake |
 
-Today's team: Abomasnow 54 (Ice Punch, Wood Hammer, Headbutt, Leech Seed). Expected: about 100 / 0.8 / 43 with a planned six in hail; read blind, 62 / 4.6 / 1.
+Today's team: Abomasnow 54 (Ice Punch, Wood Hammer, Headbutt, Leech Seed). Expected: about 100 / 0.8 / 46 with a planned six in hail; read blind, 71 / 4.0 / 0.
 
 ### Ace Trainer Isaiah: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -251,7 +259,7 @@ Ground types with Ice moves: Whiscash, Quagsire's Yawn, Swampert, Gastrodon, Ste
 | Steelix | 54 | Passho Berry | Rock Head | Adamant | Earthquake, Iron Head, Ice Fang, Stone Edge |
 | Mamoswine | 55 | Lum Berry | Thick Fat | Adamant | Earthquake, Ice Fang, Stone Edge, Superpower |
 
-Today's team: Piloswine 55 (Earthquake, Bite, Ice Fang, Stone Edge). Expected: about 95 / 2.2 / 5.5 with a planned six in hail; read blind, 24 / 5.2 / 0.
+Today's team: Piloswine 55 (Earthquake, Bite, Ice Fang, Stone Edge). Expected: about 97 / 2.1 / 7 with a planned six in hail; read blind, 7 / 5.9 / 0.
 
 ### Ace Trainer Savannah: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -266,7 +274,7 @@ Hail support: Froslass's Spikes behind a Focus Sash, Mr. Rime's Reflect, an Adap
 | Jynx | 54 | TwistedSpoon | Dry Skin | Modest | Blizzard, Psychic, Shadow Ball, Focus Blast |
 | Glaceon | 55 | Leftovers | Ice Body | Modest | Blizzard, Shadow Ball, Signal Beam, Wish |
 
-Today's team: Delibird 54 (Present, Blizzard, Hail, Water Pulse), Jynx 54 (Blizzard, Psychic, Shadow Ball, Protect). Expected: about 98 / 2.2 / 0 with a planned six in hail; read blind, 17 / 5.5 / 0.
+Today's team: Delibird 54 (Present, Blizzard, Hail, Water Pulse), Jynx 54 (Blizzard, Psychic, Shadow Ball, Protect). Expected: about 98 / 2.2 / 0 with a planned six in hail; read blind, 19 / 5.5 / 0.
 
 ### Ace Trainer Alicia: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -281,7 +289,7 @@ Water and Ice: a Skill Link Cloyster with Spikes, Dewgong, Kingdra, Gyarados, La
 | Lapras | 54 | Sitrus Berry | Shell Armor | Modest | Blizzard, Surf, Thunderbolt, Psychic |
 | Walrein | 55 | Sitrus Berry | Ice Body | Modest | Blizzard, Surf, Body Slam, Toxic |
 
-Today's team: Cloyster 54 (Surf, Ice Beam, Signal Beam, Toxic Spikes), Sealeo 55 (Sheer Cold). Expected: about 100 / 1.9 / 2 with a planned six in hail; read blind, 30 / 5.3 / 0.
+Today's team: Cloyster 54 (Surf, Ice Beam, Signal Beam, Toxic Spikes), Sealeo 55 (Sheer Cold). Expected: about 100 / 1.7 / 3 with a planned six in hail; read blind, 23 / 5.5 / 0.
 
 ### Ace Trainer Anton: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -296,7 +304,7 @@ Today's Glalie leads with Spikes, then Golem, Weavile, Lucario, Gliscor and an E
 | Gliscor | 54 | Sitrus Berry | Sand Veil | Jolly | Earthquake, U-turn, Ice Fang, Stone Edge |
 | Piloswine | 55 | Eviolite | Thick Fat | Adamant | Earthquake, Ice Fang, Stone Edge, Amnesia |
 
-Today's team: Glalie 54 (Ice Shard, Crunch, Iron Head). Expected: about 98 / 2.4 / 0 with a planned six in hail; read blind, 42 / 4.9 / 0.
+Today's team: Glalie 54 (Ice Shard, Crunch, Iron Head). Expected: about 99 / 2.2 / 1 with a planned six in hail; read blind, 37 / 5.0 / 0.
 
 ### Ace Trainer Brenna: Snowpoint Gym (hail), gym trainer, single, Ace Trainer, cap 56
 
@@ -311,7 +319,7 @@ Today's Dewgong and Lapras with Froslass's Spikes and Thunder Wave, Mr. Rime's L
 | Cloyster | 54 | NeverMeltIce | Skill Link | Jolly | Icicle Spear, Ice Shard, Poison Jab, Surf |
 | Walrein | 55 | Leftovers | Ice Body | Modest | Blizzard, Surf, Roar, Toxic |
 
-Today's team: Dewgong 54 (Stockpile, Swallow, Spit Up, Perish Song), Lapras 54 (Surf, Ice Beam, Psychic, Thunderbolt). Expected: about 99 / 2.2 / 1 with a planned six in hail; read blind, 21 / 5.3 / 0.
+Today's team: Dewgong 54 (Stockpile, Swallow, Spit Up, Perish Song), Lapras 54 (Surf, Ice Beam, Psychic, Thunderbolt). Expected: about 97 / 2.4 / 0 with a planned six in hail; read blind, 14 / 5.7 / 0.
 
 ### Candice: Snowpoint Gym (hail), on the path, single, boss, cap 56
 
@@ -326,5 +334,5 @@ Hail and its abusers, and phazing: Froslass leads with Spikes behind a Focus Sas
 | Articuno | 55 | Charti Berry | Pressure | Modest | Blizzard, AncientPower, Roost, U-turn |
 | Abomasnow | 56 | Occa Berry | Adaptability | Adamant | Blizzard, Wood Hammer, Earthquake, Swords Dance |
 
-Today's team: Walrein 55 (Leftovers; Blizzard, Surf, Rest, Toxic), Mamoswine 55 (Lum Berry; Ice Fang, Stone Edge, Earthquake, Iron Head), Castform 55 (Life Orb; Flamethrower, Thunderbolt, Blizzard, Energy Ball), Articuno 55 (Charti Berry; AncientPower, Extrasensory, Roost, Blizzard), Glaceon 55 (Chople Berry; Blizzard, Yawn, Double Team, Baton Pass), Froslass 56 (Focus Sash; Blizzard, Destiny Bond, Shadow Ball, Psychic). Expected: about 91 / 3.6 / 0 in my simulator in the gym's hail, where today's file reads 91 / 3.3 / 0.
+Today's team: Walrein 55 (Leftovers; Blizzard, Surf, Rest, Toxic), Mamoswine 55 (Lum Berry; Ice Fang, Stone Edge, Earthquake, Iron Head), Castform 55 (Life Orb; Flamethrower, Thunderbolt, Blizzard, Energy Ball), Articuno 55 (Charti Berry; AncientPower, Extrasensory, Roost, Blizzard), Glaceon 55 (Chople Berry; Blizzard, Yawn, Double Team, Baton Pass), Froslass 56 (Focus Sash; Blizzard, Destiny Bond, Shadow Ball, Psychic). Expected: about 90 / 3.8 / 0 in my simulator in hail, where today's file reads 94 / 4.0 / 0.
 
