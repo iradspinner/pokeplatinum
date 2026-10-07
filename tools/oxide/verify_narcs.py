@@ -522,6 +522,9 @@ REWORK_STARTER_ULTIMATES = {307, 308, 338}
 REWORK_SKY_ATTACK = {143}
 # Dig and Dive.
 REWORK_DIG_DIVE = {91, 291}
+# The two to five hit moves below 25 a hit: Double Slap, Comet Punch, Fury
+# Attack, Spike Cannon, Barrage, Fury Swipes, Arm Thrust.
+REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -685,6 +688,11 @@ DIVERGED = {
             "members": REWORK_DIG_DIVE,
             "why": "Dig at 60 and Dive at 80 as plain one turn hits (the move reworks, "
                    "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": REWORK_MULTI_HIT_25,
+            "why": "every two to five hit move at 25 a hit (the move reworks, Ian, 2026-10-06)",
         },
     ],
 }

@@ -2824,11 +2824,18 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
             } else {
-                hits = BattleSystem_RandNext(battleSys) & 3;
-                if (hits < 2) { // 2 or 3 hits
-                    hits += 2;
-                } else { // 4 or 5 hits
-                    hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
+                // Oxide: Generation 5's spread of hits (the move reworks,
+                // Ian, 2026-10-06), 2 and 3 hits 35% each, 4 and 5 hits 15%
+                // each, where Platinum's gave 37.5%, 37.5%, 12.5%, 12.5%.
+                hits = BattleSystem_RandNext(battleSys) % 100;
+                if (hits < 35) {
+                    hits = 2;
+                } else if (hits < 70) {
+                    hits = 3;
+                } else if (hits < 85) {
+                    hits = 4;
+                } else {
+                    hits = 5;
                 }
             }
         }

@@ -808,6 +808,8 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet72, 17
     AddListMenuEntry TestKit_Text_MenuSet73, 18
     AddListMenuEntry TestKit_Text_MenuSet74, 19
+    AddListMenuEntry TestKit_Text_MenuSet75, 20
+    AddListMenuEntry TestKit_Text_MenuSet76, 21
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -829,6 +831,8 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 17, TestKit_MoveSet72
     GoToIfEq VAR_0x8004, 18, TestKit_MoveSet73
     GoToIfEq VAR_0x8004, 19, TestKit_MoveSet74
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet75
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet76
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1763,6 +1767,40 @@ TestKit_MoveSet74:
     SetVar VAR_0x8008, MOVE_RECOVER
     SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
+
+/* Set 75: the two to five hit moves at 25 a hit, on Generation 5's spread of
+   hits (the move reworks, Ian, 2026-10-06): two and three hits 35% of the
+   time each, four and five 15% each. Against a wild Chansey that knows only
+   Splash, each move ends with "Hit 2 time(s)!" up to "Hit 5 time(s)!", two or
+   three hits far more often than four or five, and each hit of the four moves
+   does about the same (Water Shuriken is special and goes first). Before the
+   change Fury Attack and Water Shuriken hit at 15, Fury Swipes at 18 and
+   Spike Cannon at 20. */
+TestKit_MoveSet75:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FURY_ATTACK
+    SetVar VAR_0x8007, MOVE_FURY_SWIPES
+    SetVar VAR_0x8008, MOVE_SPIKE_CANNON
+    SetVar VAR_0x8009, MOVE_WATER_SHURIKEN
+    GoTo TestKit_GiveMew
+
+/* Set 76: Skill Link keeps working with the new spread of hits. A Lv. 50
+   Cloyster given Skill Link, with Icicle Spear, Rock Blast, Spike Cannon and
+   Pin Missile, against a wild Chansey that knows only Splash: every use ends
+   with "Hit 5 time(s)!". */
+TestKit_MoveSet76:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_CLOYSTER
+    SetVar VAR_0x800B, ABILITY_SKILL_LINK
+    SetVar VAR_0x8006, MOVE_ICICLE_SPEAR
+    SetVar VAR_0x8007, MOVE_ROCK_BLAST
+    SetVar VAR_0x8008, MOVE_SPIKE_CANNON
+    SetVar VAR_0x8009, MOVE_PIN_MISSILE
+    GoTo TestKit_GivePokemonWithMoves
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once
    a menu has been answered), for an entry that needs a held item. */
