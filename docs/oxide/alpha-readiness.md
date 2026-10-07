@@ -14,10 +14,10 @@ guess, and says which.
 |---|---|---|---|---|---|
 | 1 | Learnset rewrite: the 16 new checks and the new baseline | Balance Agent | done (8b05da09c1) | | |
 | 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | done: landed at 085f72211 after a second loop (Ian, 2026-10-06), gate 48 of 48 | 2 to 4 hours (its estimate) | 1 |
-| 3 | Ian rules on the thresholds and the move reworks | Ian | | | 2 |
+| 3 | Ian rules on the thresholds and the move reworks | Ian | done: the reworks accepted as listed, the late shortfall and named cases left for after the alpha (2026-10-06) | | 2 |
 | 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); done: the rewrite landed at 085f72211; Leafeon's and Sylveon's late start (a rock or Charm, not a level) is fixed in the TM pass | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
-| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | | about a day (Overseer's guess), then half a session (its estimate) | 3 |
-| 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
+| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | prompt ready for Ian to paste | about a day (Overseer's guess), then half a session (its estimate) | 3 |
+| 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list, with the Leafeon and Sylveon fix | Balance Agent | under way on `balance-tm-pass` | 5 to 7 hours and 2 of machine time (its estimate); the table's draft in about 4 | 4 |
 | 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
 | 8 | Item data and the bigger Bag (the save break) | Balance Agent | | 2 to 3 hours, a build and a rescore (its estimate) | 7 |
 | 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | done: the tool landed (c82ffe884) and its test is in the gate; `main-gauntlets` is up to date (a82e550cb) and held for step 10 | 3 to 4 hours (Overseer's guess) | |

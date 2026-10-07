@@ -430,6 +430,9 @@ Basic_ScoreMoveEffectByEffect:
     // Oxide, change (Ian, 2026-09-27, the new moves' routing): Lunar Blessing and Jungle
     // Healing heal and cure, and fail only with nothing to do (2026-09-30).
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Basic_CheckLunarBlessing
+    // Oxide: Upper Hand fails unless its target chooses a priority move (the
+    // move reworks, 2026-10-06), so -10 while the target has shown none.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UPPER_HAND, Basic_CheckUpperHand
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
     // Oxide: Sticky Web fails when the target's side already has one, and is
     // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
@@ -800,6 +803,13 @@ Basic_CheckLunarBlessing:
     // double battle the partner may still gain, which Life Dew's check ignores too).
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckCanRecoverHP_Terminate
     GoTo Basic_CheckCanRecoverHP
+
+Basic_CheckUpperHand:
+    IfBattlerKnowsPriorityMove AI_BATTLER_DEFENDER, Basic_CheckUpperHand_Terminate
+    GoTo ScoreMinus10
+
+Basic_CheckUpperHand_Terminate:
+    PopOrEnd
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.
@@ -2256,6 +2266,12 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LIFE_DEW, Expert_Recovery
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Expert_Recovery // Oxide, change (Ian, 2026-09-27)
+    // Oxide: Raging Fury's recoil and confusion (the move reworks, Ian,
+    // 2026-10-06), scored as Volt Tackle's recoil and paralysis are.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_RECOIL_CONFUSE_HIT, Expert_RecoilMove
+    // Oxide: Shell Trap fails unless a physical move hits its user first (the
+    // move reworks, 2026-10-06).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SHELL_TRAP, Expert_ShellTrap
     // Oxide, change (Ian, 2026-09-27): attacks whose power doubles in a
     // condition the damage estimate does not see, scored as Wake-Up Slap and
     // Smelling Salts are.
@@ -6773,6 +6789,25 @@ Expert_WorrySeed_TryScorePlus1:
 
 Expert_WorrySeed_End:
     PopOrEnd 
+
+Expert_ShellTrap:
+    // Oxide: Shell Trap strikes only after a physical move hits its user this
+    // turn. If the opponent would resist or is immune, score -1. If the
+    // opponent's last move was not physical, it is likely to fail, so score
+    // -2. Before the opponent has moved, its last move reads as physical.
+    IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_ShellTrap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_ShellTrap_ScoreMinus1
+    IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_ShellTrap_ScoreMinus1
+    LoadDefenderLastUsedMoveClass
+    IfLoadedEqualTo CLASS_PHYSICAL, Expert_ShellTrap_End
+    AddToMoveScore -2
+    GoTo Expert_ShellTrap_End
+
+Expert_ShellTrap_ScoreMinus1:
+    AddToMoveScore -1
+
+Expert_ShellTrap_End:
+    PopOrEnd
 
 Expert_SuckerPunch:
     // If the opponent resists or is immune to the move, score -1.

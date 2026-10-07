@@ -1,46 +1,11 @@
 #include "macros/btlanimcmd.inc"
 
+// Oxide: Dig strikes in one turn since the move reworks (Ian, 2026-10-06),
+// so only the strike is played, without the rise from underground that
+// followed the old turn spent digging.
 L_0:
     LoadParticleResource 0, dig_spa
     LoadParticleResource 1, pound_spa
-    JumpIfEffectChanceOdd L_1, L_2
-    End
-
-L_1:
-    Func_BattlerPartialDraw BATTLE_ANIM_ATTACKER, 8, 10
-    CreateEmitter 0, 0, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    PlayLoopedSoundEffectL SEQ_SE_DP_W091_sseq, 2, 2
-    Delay 10
-    CreateEmitter 0, 1, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    PlayLoopedSoundEffectL SEQ_SE_DP_W091_sseq, 2, 2
-    Delay 10
-    CreateEmitter 0, 2, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    CreateEmitter 0, 3, EMITTER_CB_GENERIC
-    SetExtraParams 0, 1, 5, 0, 0, 0
-    SetExtraParams 1, 0, -688, 0
-    PlayLoopedSoundEffectL SEQ_SE_DP_W091_sseq, 2, 3
-    Delay 45
-    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
-    WaitForAllEmitters
-    UnloadParticleSystem 0
-    UnloadParticleSystem 1
-    End
-
-L_2:
-    Func_BattlerPartialDraw BATTLE_ANIM_ATTACKER, -8, 2
-    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
     CreateEmitter 0, 0, EMITTER_CB_GENERIC
     SetExtraParams 0, 1, 5, 0, 0, 0
     SetExtraParams 1, 0, -688, 0

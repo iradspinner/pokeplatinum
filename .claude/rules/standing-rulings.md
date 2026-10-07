@@ -86,6 +86,16 @@ read, so they are written here too. Each is a standing instruction.
   chance and a third of the damage as recoil; Petal Dance 100 with a 20%
   confusion chance; Outrage 140 with half as recoil), and Uproar and Raging
   Fury, which Kaizo lacks, get one-turn versions on the same pattern.
+  The other move reworks, as the learnset rewrite's report recommended
+  (Ian, 2026-10-06): Hyper Beam, Giga Impact, Rock Wrecker and Roar of
+  Time at 180, 100%, no recharge, half the damage as recoil; Blast Burn,
+  Frenzy Plant and Hydro Cannon without recharge, at 95% with Kaizo's
+  recoil and status; Sky Attack one turn (120, a third as recoil, 20%
+  paralysis); Dig 60 and Dive 80 one turn; Fly, Bounce, Phantom Force and
+  Shadow Force kept two-turn; every two-to-five-hit move at 25 a hit;
+  Fury Cutter as Kaizo's three rising hits; Psywave cut for Psybeam;
+  Spite at 5 PP; Uproar one turn at 100 with 20% confusion; Raging Fury
+  one turn at 120 with a third as recoil and 20% confusion.
   Poison Fang takes Kaizo's 90 power and 40% chance to badly poison (Ian,
   2026-10-06).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his

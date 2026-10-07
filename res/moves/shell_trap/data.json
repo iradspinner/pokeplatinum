@@ -1,11 +1,11 @@
 {
     "name": "Shell Trap",
     "description": [
-        "The user sets a shell\n",
-        "trap. If hit by a\n",
-        "physical move, the\n",
-        "trap will explode and\n",
-        "inflict damage."
+        "The user moves last.\n",
+        "If a physical move hit\n",
+        "it this turn, its shell\n",
+        "bursts on the foes; if\n",
+        "not, it fails."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",
@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_SHELL_TRAP",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

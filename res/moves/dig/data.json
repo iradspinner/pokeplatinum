@@ -1,19 +1,19 @@
 {
     "name": "Dig",
     "description": [
-        "The user burrows,\n",
-        "then attacks on the\n",
-        "second turn.\n",
-        "It can also be used\n",
-        "to exit dungeons."
+        "The user burrows and\n",
+        "strikes the foe from\n",
+        "below in one turn. It\n",
+        "can also be used to\n",
+        "exit dungeons."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GROUND",
-    "power": 80,
+    "power": 60,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DIG",
+        "type": "BATTLE_EFFECT_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

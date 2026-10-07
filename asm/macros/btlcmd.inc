@@ -1351,6 +1351,11 @@
     .long (\jump_safeguard_up-.) / 4 - 1
     .endm
 
+    .macro TryUpperHand jump_on_fail
+    .long BTLCMD_TRYUPPERHAND
+    .long (\jump_on_fail-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

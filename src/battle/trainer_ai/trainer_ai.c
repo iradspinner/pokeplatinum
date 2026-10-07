@@ -41,7 +41,9 @@ static const u16 sNoDamageCalcMoveEffects[] = {
     BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF,
     BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP,
     BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING,
-    BATTLE_EFFECT_RECOIL_HALF,
+    // Oxide: half recoil (Head Smash's) is costed as an ordinary attack, as in
+    // Kaizo, whose Hyper Beam, Giga Impact, Outrage and Hydro Cannon carry it
+    // with a "fixed AI" note (the move reworks, Ian, 2026-10-06).
     0xFFFF
 };
 
@@ -204,6 +206,7 @@ static void AICmd_IfPranksterBlockedByDark(BattleSystem *battleSys, BattleContex
 static void AICmd_IfPartnerEffectivenessEquals(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoveCanBeReflected(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfMoldBreakerIgnores(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_IfBattlerKnowsPriorityMove(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2935,6 +2938,29 @@ static void AICmd_IfMoldBreakerIgnores(BattleSystem *battleSys, BattleContext *b
     if (Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_MOLD_BREAKER
         && Battler_HasAbilityShield(battleCtx, battler) == FALSE) {
         AIScript_Iter(battleCtx, jump);
+    }
+}
+
+// Oxide: jump if the battler has a move of raised priority, as Upper Hand
+// needs its target to choose one (the move reworks, Ian, 2026-10-06). The AI
+// reads its own side's moves and only the moves it has seen the other side
+// use, as IfMoveKnown does.
+static void AICmd_IfBattlerKnowsPriorityMove(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int inBattler = AIScript_Read(battleCtx);
+    int jump = AIScript_Read(battleCtx);
+    u8 battler = AIScript_Battler(battleCtx, inBattler);
+    BOOL ownSide = inBattler == AI_BATTLER_ATTACKER || inBattler == AI_BATTLER_ATTACKER_PARTNER;
+
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        u16 move = ownSide ? battleCtx->battleMons[battler].moves[i] : AI_CONTEXT.battlerMoves[battler][i];
+
+        if (move != MOVE_NONE && Battler_MovePriority(battleCtx, battler, move) > 0) {
+            AIScript_Iter(battleCtx, jump);
+            return;
+        }
     }
 }
 

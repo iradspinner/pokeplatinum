@@ -1,20 +1,20 @@
 {
     "name": "Sky Attack",
     "description": [
-        "A second-turn attack\n",
-        "move with a high\n",
-        "critical-hit ratio.\n",
-        "It may also make the\n",
-        "target flinch."
+        "A dive from the sky\n",
+        "that may paralyze the\n",
+        "foe. The user is hurt\n",
+        "by a third of the\n",
+        "damage it deals."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",
-    "power": 140,
+    "power": 120,
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH",
-        "chance": 30
+        "type": "BATTLE_EFFECT_RECOIL_PARALYZE_HIT",
+        "chance": 20
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
