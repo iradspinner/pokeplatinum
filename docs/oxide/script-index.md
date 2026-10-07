@@ -15,11 +15,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
-| Items given | 166 | 129 | 35 | 2 | 0 | 7 |
-| Item balls | 332 | 327 | 0 | 5 | 0 | 2 |
+| Items given | 212 | 103 | 33 | 76 | 0 | 33 |
+| Item balls | 332 | 262 | 62 | 8 | 0 | 67 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3232 | 2972 | 215 | 45 | 0 | 97 |
-| Variables | 1124 | 1082 | 31 | 11 | 0 | 32 |
+| Flags | 3324 | 2972 | 215 | 137 | 0 | 97 |
+| Variables | 1125 | 1082 | 31 | 12 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -253,7 +253,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. Vanilla. `events_lake_verity.json:70`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. `events_lake_verity.json:70`
 
 Flags:
 
@@ -267,6 +267,8 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0, VAR_LAKE_VERITY_PROF_ROWAN_STATE, VAR_LAKE_ACUITY_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_LAKE_VERITY_PROF_ROWAN_STATE.
 
+Gone from vanilla: ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38.
+
 Scripts nothing reaches: code at `LakeVerity_Unused` (line 56).
 
 ### Lake Verity Low Water
@@ -275,7 +277,7 @@ Scripts nothing reaches: code at `LakeVerity_Unused` (line 56).
 
 Item balls:
 
-- ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. Vanilla. `events_lake_verity_low_water.json:100`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38. `events_lake_verity_low_water.json:100`
 
 Flags:
 
@@ -289,6 +291,8 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0, VAR_FOLLOWER_RIVAL_STATE, VAR_VISITED_LAKE_VERITY_WITH_RIVAL.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_VISITED_LAKE_VERITY_WITH_RIVAL.
 
+Gone from vanilla: ITEM_TM38 x1, one time, flag FLAG_OBTAINED_LAKE_VERITY_TM38.
+
 Scripts nothing reaches: script 6 `LakeVerityLowWater_Dummy6` (line 424), script 7 `LakeVerityLowWater_Dummy7` (line 427).
 
 ### Sandgem Town
@@ -297,7 +301,7 @@ Scripts nothing reaches: script 6 `LakeVerityLowWater_Dummy6` (line 424), script
 
 Items given:
 
-- ITEM_TM10 x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town.s:67`
+- ITEM_TM51 x1. Added by Oxide (2f5fc736c). `scripts_sandgem_town.s:67`
 - ITEM_VS_SEEKER x1. Added from the base ROM (81d02e28e). `scripts_sandgem_town.s:72`
 
 Flags:
@@ -441,7 +445,7 @@ Items given:
 
 Item balls:
 
-- ITEM_POTION x1, one time, flag FLAG_OBTAINED_JUBILIFE_CITY_POTION. Vanilla. `events_jubilife_city.json:501`
+- ITEM_TM39 x2, one time, flag FLAG_OBTAINED_JUBILIFE_CITY_POTION. Added by Oxide (2f5fc736c). Replaces vanilla's ITEM_POTION x1, one time, flag FLAG_OBTAINED_JUBILIFE_CITY_POTION. `events_jubilife_city.json:501`
 
 Hidden items:
 
@@ -458,6 +462,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_OBJ_GFX_ID_0, VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, VAR_JUBILIFE_CITY_STATE, VAR_OREBURGH_CITY_STATE, VAR_POKETCH_CAMPAIGN_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x01, VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, VAR_JUBILIFE_CITY_STATE, VAR_POKETCH_CAMPAIGN_STATE, VAR_GTS_ACCESS_STATE.
+
+Gone from vanilla: ITEM_POTION x1, one time, flag FLAG_OBTAINED_JUBILIFE_CITY_POTION.
 
 Could not read: 1 raw data lines.
 
@@ -667,7 +673,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM76 x1. Vanilla. `scripts_oreburgh_city_gym.s:130`
+- ITEM_TM06 x1. Added by Oxide (2f5fc736c). `scripts_oreburgh_city_gym.s:130`
 
 Flags:
 
@@ -678,6 +684,8 @@ Flags:
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_JUBILIFE_LOOKER_PAL_PAD_STATE, VAR_JUBILIFE_CITY_STATE, VAR_OREBURGH_CITY_STATE, VAR_GTS_ACCESS_STATE.
+
+Gone from vanilla: ITEM_TM76 x1.
 
 Could not read: 1 raw data lines.
 
@@ -782,8 +790,8 @@ Trainer battles:
 
 Items given:
 
-- ITEM_HM06 x1. Vanilla. `scripts_oreburgh_gate_1f.s:32`
-- ITEM_HM06 x1. Vanilla. `scripts_oreburgh_gate_1f.s:56`
+- ITEM_TM90 x1. Added by Oxide (2f5fc736c). `scripts_oreburgh_gate_1f.s:32`
+- ITEM_TM90 x1. Added by Oxide (2f5fc736c). `scripts_oreburgh_gate_1f.s:56`
 
 Flags:
 
@@ -795,6 +803,8 @@ Variables:
 
 - Set: VAR_OREBURGH_GATE_1F_HIKER_STATE.
 - Checked: VAR_OREBURGH_GATE_1F_HIKER_STATE.
+
+Gone from vanilla: ITEM_HM06 x1.
 
 ### Route 207
 
@@ -926,15 +936,17 @@ Flags:
 
 Item balls:
 
-- ITEM_TM39 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM39. Vanilla. `events_ravaged_path.json:415`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM39. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM39 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM39. `events_ravaged_path.json:415`
 - ITEM_LUCK_INCENSE x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_LUCK_INCENSE. Vanilla. `events_ravaged_path.json:430`
-- ITEM_TM03 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM03. Vanilla. `events_ravaged_path.json:445`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM03. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM03 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM03. `events_ravaged_path.json:445`
 - ITEM_POTION x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_POTION. Vanilla. `events_ravaged_path.json:460`
 
 Flags:
 
 - Set: FLAG_FIRST_ARRIVAL_RAVAGED_PATH.
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_MAP_LOCAL_HIDE_OBSTACLE_9, FLAG_MAP_LOCAL_HIDE_OBSTACLE_10, FLAG_MAP_LOCAL_HIDE_OBSTACLE_11, FLAG_MAP_LOCAL_HIDE_OBSTACLE_12, FLAG_MAP_LOCAL_HIDE_OBSTACLE_13, FLAG_MAP_LOCAL_HIDE_OBSTACLE_14, FLAG_MAP_LOCAL_HIDE_OBSTACLE_15, FLAG_MAP_LOCAL_HIDE_OBSTACLE_16, FLAG_MAP_LOCAL_HIDE_OBSTACLE_17, FLAG_MAP_LOCAL_HIDE_OBSTACLE_18, FLAG_MAP_LOCAL_HIDE_OBSTACLE_19, FLAG_MAP_LOCAL_HIDE_OBSTACLE_20, FLAG_MAP_LOCAL_HIDE_OBSTACLE_21, FLAG_MAP_LOCAL_HIDE_OBSTACLE_22, FLAG_MAP_LOCAL_HIDE_OBSTACLE_23, FLAG_MAP_LOCAL_HIDE_OBSTACLE_24, FLAG_MAP_LOCAL_HIDE_OBSTACLE_25, FLAG_MAP_LOCAL_HIDE_OBSTACLE_26, FLAG_MAP_LOCAL_HIDE_OBSTACLE_27, FLAG_OBTAINED_RAVAGED_PATH_TM39, FLAG_OBTAINED_RAVAGED_PATH_LUCK_INCENSE, FLAG_OBTAINED_RAVAGED_PATH_TM03, FLAG_OBTAINED_RAVAGED_PATH_POTION.
+
+Gone from vanilla: ITEM_TM39 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM39; ITEM_TM03 x1, one time, flag FLAG_OBTAINED_RAVAGED_PATH_TM03.
 
 Scripts nothing reaches: code at `RavagedPath_Unused` (line 11).
 
@@ -971,15 +983,17 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM01 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM01. Vanilla. `events_oreburgh_gate_b1f.json:177`
+- ITEM_TM20 x2, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM01. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM01 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM01. `events_oreburgh_gate_b1f.json:177`
 - ITEM_EARTH_PLATE x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_EARTH_PLATE. Vanilla. `events_oreburgh_gate_b1f.json:192`
-- ITEM_TM31 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM31. Vanilla. `events_oreburgh_gate_b1f.json:207`
-- ITEM_TM70 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM70. Vanilla. `events_oreburgh_gate_b1f.json:222`
+- ITEM_TM93 x2, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM31. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM31 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM31. `events_oreburgh_gate_b1f.json:207`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM70. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM70 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM70. `events_oreburgh_gate_b1f.json:222`
 - ITEM_BIG_PEARL x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_BIG_PEARL. Vanilla. `events_oreburgh_gate_b1f.json:252`
 
 Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_MAP_LOCAL_HIDE_OBSTACLE_9, FLAG_MAP_LOCAL_HIDE_OBSTACLE_10, FLAG_OBTAINED_OREBURGH_GATE_B1F_TM01, FLAG_OBTAINED_OREBURGH_GATE_B1F_TM31, FLAG_OBTAINED_OREBURGH_GATE_B1F_TM70, FLAG_OBTAINED_OREBURGH_GATE_B1F_EARTH_PLATE, FLAG_OBTAINED_OREBURGH_GATE_B1F_BIG_PEARL.
+
+Gone from vanilla: ITEM_TM01 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM01; ITEM_TM31 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM31; ITEM_TM70 x1, one time, flag FLAG_OBTAINED_OREBURGH_GATE_B1F_TM70.
 
 ### Route 204 North
 
@@ -994,11 +1008,11 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM78 x1. Vanilla. `scripts_route_204_north.s:23`
+- ITEM_LUM_BERRY x1. Added by Oxide (2f5fc736c). `scripts_route_204_north.s:23`
 
 Item balls:
 
-- ITEM_TM09 x1, one time, flag FLAG_OBTAINED_ROUTE_204_NORTH_TM09. Vanilla. `events_route_204_north.json:157`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_204_NORTH_TM09. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM09 x1, one time, flag FLAG_OBTAINED_ROUTE_204_NORTH_TM09. `events_route_204_north.json:157`
 - ITEM_AWAKENING x1, one time, flag FLAG_OBTAINED_ROUTE_204_NORTH_AWAKENING. Vanilla. `events_route_204_north.json:187`
 
 Flags:
@@ -1006,6 +1020,8 @@ Flags:
 - Set: FLAG_RECEIVED_ROUTE_204_NORTH_TM78.
 - Checked: FLAG_RECEIVED_ROUTE_204_NORTH_TM78.
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_OBTAINED_ROUTE_204_NORTH_TM09, FLAG_OBTAINED_ROUTE_204_NORTH_AWAKENING.
+
+Gone from vanilla: ITEM_TM78 x1; ITEM_TM09 x1, one time, flag FLAG_OBTAINED_ROUTE_204_NORTH_TM09.
 
 ### Floaroma Town
 
@@ -1039,12 +1055,14 @@ Flags:
 
 Items given:
 
-- ITEM_TM88 x1. Vanilla. `scripts_floaroma_town_middle_house.s:65`
+- ITEM_HM05 x2. Added by Oxide (2f5fc736c). `scripts_floaroma_town_middle_house.s:65`
 
 Flags:
 
 - Set: FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88.
 - Checked: FLAG_RECEIVED_FLOAROMA_TOWN_MIDDLE_HOUSE_TM88.
+
+Gone from vanilla: ITEM_TM88 x1.
 
 ### Floaroma Town Pokecenter 1F
 
@@ -1146,7 +1164,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM24 x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24. Vanilla. `events_valley_windworks_outside.json:73`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM24 x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24. `events_valley_windworks_outside.json:73`
 - ITEM_POTION x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_POTION. Vanilla. `events_valley_windworks_outside.json:103`
 - ITEM_ELECTIRIZER x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_ELECTIRIZER. Vanilla. `events_valley_windworks_outside.json:133`
 
@@ -1166,7 +1184,7 @@ Variables:
 - Set: VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, VAR_VALLEY_WINDWORKS_LOOKER_STATE.
 - Checked: VAR_VALLEY_WINDWORKS_STATE, VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, VAR_VALLEY_WINDWORKS_LOOKER_STATE.
 
-Gone from vanilla: StartLegendaryBattle: SPECIES_DRIFLOON at level 15, by name; flag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON (daily) (check); flag FLAG_MAP_LOCAL_REMOVE_OBJECT (set); flag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON (daily) (set); variable VAR_MAP_LOCAL_0x00 (set); variable VAR_MAP_LOCAL_0x00 (check).
+Gone from vanilla: StartLegendaryBattle: SPECIES_DRIFLOON at level 15, by name; ITEM_TM24 x1, one time, flag FLAG_OBTAINED_VALLEY_WINDWORKS_OUTSIDE_TM24; flag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON (daily) (check); flag FLAG_MAP_LOCAL_REMOVE_OBJECT (set); flag FLAG_DAILY_WON_AGAINST_VALLEY_WINDWORKS_OUTSIDE_DRIFLOON (daily) (set); variable VAR_MAP_LOCAL_0x00 (set); variable VAR_MAP_LOCAL_0x00 (check).
 
 Scripts nothing reaches: code at `ValleyWindworksOutside_0225` (line 136), code at `ValleyWindworksOutside_0275` (line 162).
 
@@ -1248,7 +1266,7 @@ Could not read: 1 raw data lines.
 
 Item balls:
 
-- ITEM_TM82 x1, one time, flag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_TM82. Vanilla. `events_eterna_forest_outside.json:138`
+- ITEM_TM84 x2, one time, flag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_TM82. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM82 x1, one time, flag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_TM82. `events_eterna_forest_outside.json:138`
 - ITEM_SILVERPOWDER x1, one time, flag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_SILVER_POWDER. Vanilla. `events_eterna_forest_outside.json:153`
 
 Flags:
@@ -1256,6 +1274,8 @@ Flags:
 - Set: FLAG_RECEIVED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE, FLAG_FIRST_ARRIVAL_ETERNA_FOREST.
 - Checked: FLAG_RECEIVED_ETERNA_FOREST_OUTSIDE_ACCESSORY_BIG_TREE.
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_TM82, FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_SILVER_POWDER.
+
+Gone from vanilla: ITEM_TM82 x1, one time, flag FLAG_OBTAINED_ETERNA_FOREST_OUTSIDE_TM82.
 
 Scripts nothing reaches: script 2 `EternaForestOutside_Dummy2` (line 37), script 3 `EternaForestOutside_Dummy3` (line 41).
 
@@ -1273,11 +1293,11 @@ Trainer battles:
 
 Items given:
 
-- ITEM_HM01 x1. Vanilla. `scripts_eterna_city.s:732`
+- ITEM_TM31 x2. Added by Oxide (2f5fc736c). `scripts_eterna_city.s:732`
 
 Item balls:
 
-- ITEM_TM46 x1, one time, flag FLAG_OBTAINED_ETERNA_CITY_TM46. Vanilla. `events_eterna_city.json:367`
+- ITEM_TM83 x2, one time, flag FLAG_OBTAINED_ETERNA_CITY_TM46. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM46 x1, one time, flag FLAG_OBTAINED_ETERNA_CITY_TM46. `events_eterna_city.json:367`
 - ITEM_SUPER_POTION x1, one time, flag FLAG_OBTAINED_ETERNA_CITY_SUPER_POTION. Vanilla. `events_eterna_city.json:382`
 
 Hidden items:
@@ -1298,6 +1318,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_ETERNA_CITY_STATE, VAR_ETERNA_CITY_BLOCK_EXITS_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_ETERNA_CITY_STATE, VAR_ROUTE_207_COUNTERPART_TRIGGER_STATE, VAR_ETERNA_CITY_BLOCK_EXITS_STATE.
+
+Gone from vanilla: ITEM_HM01 x1; ITEM_TM46 x1, one time, flag FLAG_OBTAINED_ETERNA_CITY_TM46.
 
 Scripts nothing reaches: script 7 `EternaCity_Entry6` (line 98).
 
@@ -1326,12 +1348,14 @@ Could not read: 1 commands with no name.
 
 Items given:
 
-- ITEM_TM67 x1. Vanilla. `scripts_eterna_city_condominiums_2f.s:20`
+- ITEM_LUM_BERRY x1. Added by Oxide (2f5fc736c). `scripts_eterna_city_condominiums_2f.s:20`
 
 Flags:
 
 - Set: FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67.
 - Checked: FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67.
+
+Gone from vanilla: ITEM_TM67 x1.
 
 ### Eterna City Gym
 
@@ -1347,8 +1371,8 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM86 x1. Vanilla. `scripts_eterna_city_gym.s:209`
-- ITEM_TM86 x1. Vanilla. `scripts_eterna_city_gym.s:256`
+- ITEM_TM43 x2. Added by Oxide (2f5fc736c). `scripts_eterna_city_gym.s:209`
+- ITEM_TM43 x2. Added by Oxide (2f5fc736c). `scripts_eterna_city_gym.s:256`
 
 Flags:
 
@@ -1361,6 +1385,8 @@ Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_ETERNA_GYM_TRAINERS_BEATEN.
 - Checked: VAR_ETERNA_GYM_TRAINERS_BEATEN.
+
+Gone from vanilla: ITEM_TM86 x1.
 
 ### Eterna City Mart
 
@@ -1465,7 +1491,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM12 x1, one time, flag FLAG_OBTAINED_ROUTE_211_WEST_TM12. Vanilla. `events_route_211_west.json:102`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_211_WEST_TM12. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM12 x1, one time, flag FLAG_OBTAINED_ROUTE_211_WEST_TM12. `events_route_211_west.json:102`
 
 Hidden items:
 
@@ -1475,7 +1501,7 @@ Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_UNK_0x0041, FLAG_OBTAINED_ROUTE_211_WEST_TM12.
 
-Gone from vanilla: ITEM_MOON_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ETERNA_CITY_MOON_STONE.
+Gone from vanilla: ITEM_TM12 x1, one time, flag FLAG_OBTAINED_ROUTE_211_WEST_TM12; ITEM_MOON_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ETERNA_CITY_MOON_STONE.
 
 Scripts nothing reaches: script 1 `Route211West_Dummy1` (line 10).
 
@@ -1486,9 +1512,9 @@ Scripts nothing reaches: script 1 `Route211West_Dummy1` (line 10).
 Item balls:
 
 - ITEM_RARE_CANDY x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_RARE_CANDY. Vanilla. `events_mt_coronet_1f_north_room_1.json:216`
-- ITEM_TM69 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69. Vanilla. `events_mt_coronet_1f_north_room_1.json:231`
+- ITEM_TM94 x2, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM69 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69. `events_mt_coronet_1f_north_room_1.json:231`
 - ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ESCAPE_ROPE. Vanilla. `events_mt_coronet_1f_north_room_1.json:246`
-- ITEM_TM02 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02. Vanilla. `events_mt_coronet_1f_north_room_1.json:261`
+- ITEM_TM76 x2, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM02 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02. `events_mt_coronet_1f_north_room_1.json:261`
 - ITEM_ICE_HEAL x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ICE_HEAL. Vanilla. `events_mt_coronet_1f_north_room_1.json:321`
 
 Hidden items:
@@ -1502,6 +1528,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_MAP_LOCAL_HIDE_OBSTACLE_9, FLAG_MAP_LOCAL_HIDE_OBSTACLE_10, FLAG_MAP_LOCAL_HIDE_OBSTACLE_11, FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNT_F, FLAG_HIDE_MT_CORONET_1F_NORTH_ROOM_1_GRUNTS_M, FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69, FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ESCAPE_ROPE, FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_RARE_CANDY, FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02, FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_ICE_HEAL.
+
+Gone from vanilla: ITEM_TM69 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM69; ITEM_TM02 x1, one time, flag FLAG_OBTAINED_MT_CORONET_1F_NORTH_ROOM_1_TM02.
 
 ## Fantina's split
 
@@ -1585,7 +1613,7 @@ Flags:
 
 Item balls:
 
-- ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. Vanilla. `events_old_chateau_back_middle_east_room.json:10`
+- ITEM_TM44 x2, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. `events_old_chateau_back_middle_east_room.json:10`
 
 Flags:
 
@@ -1598,17 +1626,21 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00, VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_OLD_CHATEAU_BACK_MIDDLE_EAST_ROOM_TWIN_STATE.
 
+Gone from vanilla: ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90.
+
 ### Old Chateau Back East Room
 
 `MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM`: scripts `scripts_empty`, events `events_old_chateau_back_east_room`. Location name Old Chateau. In Fantina's split, placed by its encounter table.
 
 Item balls:
 
-- ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. Vanilla. `events_old_chateau_back_east_room.json:10`
+- ITEM_TM44 x2, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90. `events_old_chateau_back_east_room.json:10`
 
 Flags:
 
 - Hide an object: FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90.
+
+Gone from vanilla: ITEM_TM90 x1, one time, flag FLAG_OBTAINED_OLD_CHATEAU_BACK_EAST_ROOM_TM90.
 
 ### Mining Museum
 
@@ -1855,7 +1887,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM65 x1. Vanilla. `scripts_hearthome_city_gym_leader_room.s:37`
+- ITEM_HM04 x2. Added by Oxide (2f5fc736c). `scripts_hearthome_city_gym_leader_room.s:37`
 
 Flags:
 
@@ -1867,6 +1899,8 @@ Flags:
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_ROUTE_209_GATE_TO_HEARTHOME_CITY_STATE.
+
+Gone from vanilla: ITEM_TM65 x1.
 
 ### Hearthome City Gym Trainer Room 1
 
@@ -2042,8 +2076,8 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM26 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26. Vanilla. `events_wayward_cave_1f.json:59`
-- ITEM_TM32 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32. Vanilla. `events_wayward_cave_1f.json:74`
+- ITEM_TM85 x2, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM26 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26. `events_wayward_cave_1f.json:59`
+- ITEM_TM11 x2, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM32 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32. `events_wayward_cave_1f.json:74`
 - ITEM_REVIVE x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_REVIVE. Vanilla. `events_wayward_cave_1f.json:89`
 - ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_ESCAPE_ROPE. Vanilla. `events_wayward_cave_1f.json:104`
 
@@ -2066,6 +2100,8 @@ Variables:
 
 - Set: VAR_PARTNER_TRAINER_ID, VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, VAR_FOLLOWER_MIRA_TIMES_TALKED.
 - Checked: VAR_WAYWARD_CAVE_1F_FOLLOWER_MIRA_STATE, VAR_FOLLOWER_MIRA_TIMES_TALKED.
+
+Gone from vanilla: ITEM_TM26 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM26; ITEM_TM32 x1, one time, flag FLAG_OBTAINED_WAYWARD_CAVE_1F_TM32.
 
 Scripts nothing reaches: script 3 `WaywardCave1f_Entry2` (line 46).
 
@@ -2153,8 +2189,8 @@ Items given:
 
 Item balls:
 
-- ITEM_TM45 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. Vanilla. `events_amity_square.json:40`
-- ITEM_TM43 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43. Vanilla. `events_amity_square.json:55`
+- ITEM_TM28 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM45 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. `events_amity_square.json:40`
+- ITEM_TM79 x2, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM43 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43. `events_amity_square.json:55`
 - ITEM_SPOOKY_PLATE x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_SPOOKY_PLATE. Vanilla. `events_amity_square.json:70`
 - ITEM_AMULET_COIN x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_AMULET_COIN. Vanilla. `events_amity_square.json:220`
 
@@ -2169,6 +2205,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x0A, VAR_MAP_LOCAL_0x0B, VAR_MAP_LOCAL_0x0C, VAR_OBJ_GFX_ID_0, VAR_FOLLOWER_MON_ACTIVE, VAR_FOLLOWER_MON_SPECIES, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID, VAR_FOLLOWER_MON_PARTY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID, VAR_AMITY_SQUARE_GIFT_ID, VAR_AMITY_SQUARE_STATE (unreached).
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x0A, VAR_MAP_LOCAL_0x0B, VAR_MAP_LOCAL_0x0C, VAR_FOLLOWER_MON_ACTIVE, VAR_FOLLOWER_MON_SPECIES, VAR_FOLLOWER_MON_NEXT_PICKUP_TYPE, VAR_FOLLOWER_MON_PICKUP_ACCESSORY_ID, VAR_FOLLOWER_MON_PARTY_ID, VAR_FOLLOWER_MON_PICKUP_ITEM_ID, VAR_AMITY_SQUARE_GIFT_ID, VAR_AMITY_SQUARE_STATE.
+
+Gone from vanilla: ITEM_TM45 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45; ITEM_TM43 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43.
 
 Scripts nothing reaches: script 45 `AmitySquare_Dummy45` (line 1328), code at `AmitySquare_Unused` (line 223), code at `AmitySquare_Unused2` (line 961).
 
@@ -2229,9 +2267,9 @@ Item balls:
 
 - ITEM_GREAT_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_209_GREAT_BALL. Vanilla. `events_route_209.json:256`
 - ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_209_HYPER_POTION. Vanilla. `events_route_209.json:271`
-- ITEM_TM47 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM47. Vanilla. `events_route_209.json:286`
+- ITEM_TM09 x2, one time, flag FLAG_OBTAINED_ROUTE_209_TM47. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM47 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM47. `events_route_209.json:286`
 - ITEM_CALCIUM x1, one time, flag FLAG_OBTAINED_ROUTE_209_CALCIUM. Vanilla. `events_route_209.json:301`
-- ITEM_TM19 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM19. Vanilla. `events_route_209.json:316`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM19. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM19 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM19. `events_route_209.json:316`
 - ITEM_ETHER x1, one time, flag FLAG_OBTAINED_ROUTE_209_ETHER. Vanilla. `events_route_209.json:558`
 
 Hidden items:
@@ -2252,6 +2290,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_HALLOWED_TOWER_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_HALLOWED_TOWER_STATE.
+
+Gone from vanilla: ITEM_TM47 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM47; ITEM_TM19 x1, one time, flag FLAG_OBTAINED_ROUTE_209_TM19.
 
 Could not read: 1 raw data lines.
 
@@ -2374,7 +2414,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM27 x1, one time, flag FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27. Vanilla. `events_route_209_lost_tower_4f.json:19`
+- ITEM_TM17 x2, one time, flag FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM27 x1, one time, flag FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27. `events_route_209_lost_tower_4f.json:19`
 
 Hidden items:
 
@@ -2383,6 +2423,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27.
+
+Gone from vanilla: ITEM_TM27 x1, one time, flag FLAG_OBTAINED_ROUTE_209_LOST_TOWER_4F_TM27.
 
 ### Route 209 Lost Tower 5F
 
@@ -2579,7 +2621,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM63 x1. Vanilla. `scripts_veilstone_city.s:111`
+- ITEM_SITRUS_BERRY x1. Added by Oxide (2f5fc736c). `scripts_veilstone_city.s:111`
 
 Item balls:
 
@@ -2605,6 +2647,8 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0, VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE, VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, VAR_VEILSTONE_CITY_CRASHER_WAKE_STATE, VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE.
 
+Gone from vanilla: ITEM_TM63 x1.
+
 ### Veilstone City Galactic Warehouse
 
 `MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE`: scripts `scripts_veilstone_city_galactic_warehouse`, events `events_veilstone_city_galactic_warehouse`, init scripts `scripts_init_veilstone_city_galactic_warehouse`. Location name Veilstone City. In Maylene's split, placed by its location name.
@@ -2612,7 +2656,7 @@ Variables:
 Item balls:
 
 - ITEM_DUSK_STONE x1, one time, flag FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_DUSK_STONE. Vanilla. `events_veilstone_city_galactic_warehouse.json:10`
-- ITEM_HM02 x1, one time, flag FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_HM02. Vanilla. `events_veilstone_city_galactic_warehouse.json:25`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_HM02. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_HM02 x1, one time, flag FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_HM02. `events_veilstone_city_galactic_warehouse.json:25`
 
 Flags:
 
@@ -2624,6 +2668,8 @@ Variables:
 
 - Set: VAR_PASTORIA_CITY_STATE, VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE.
 - Checked: VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE.
+
+Gone from vanilla: ITEM_HM02 x1, one time, flag FLAG_OBTAINED_VEILSTONE_CITY_GALACTIC_WAREHOUSE_HM02.
 
 ### Veilstone City Gym
 
@@ -2640,7 +2686,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM60 x1. Vanilla. `scripts_veilstone_city_gym.s:181`
+- ITEM_LUM_BERRY x1. Added by Oxide (2f5fc736c). `scripts_veilstone_city_gym.s:181`
 
 Flags:
 
@@ -2652,6 +2698,8 @@ Flags:
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_VEILSTONE_WAREHOUSE_GUARDS_FIGHTABLE, VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE.
+
+Gone from vanilla: ITEM_TM60 x1.
 
 Could not read: 1 raw data lines.
 
@@ -2759,11 +2807,13 @@ Item balls:
 - ITEM_MIND_PLATE x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_MIND_PLATE. Vanilla. `events_solaceon_ruins_room_7.json:35`
 - ITEM_ODD_INCENSE x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_ODD_INCENSE. Vanilla. `events_solaceon_ruins_room_7.json:50`
 - ITEM_NUGGET x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_NUGGET. Vanilla. `events_solaceon_ruins_room_7.json:65`
-- ITEM_HM05 x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05. Vanilla. `events_solaceon_ruins_room_7.json:80`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_HM05 x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05. `events_solaceon_ruins_room_7.json:80`
 
 Flags:
 
 - Hide an object: FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_MIND_PLATE, FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_ODD_INCENSE, FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_NUGGET, FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05.
+
+Gone from vanilla: ITEM_HM05 x1, one time, flag FLAG_OBTAINED_SOLACEON_RUINS_ROOM_7_HM05.
 
 ### Route 210 Grandma Wilma House
 
@@ -2799,8 +2849,8 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM51 x1. Vanilla. `scripts_route_210_south.s:50`
-- ITEM_TM42 x1. Unreached. Added from the base ROM (81d02e28e). `scripts_route_210_south.s:101`
+- ITEM_TM16 x2. Added by Oxide (2f5fc736c). `scripts_route_210_south.s:50`
+- ITEM_TM55 x2. Unreached. Added by Oxide (2f5fc736c). `scripts_route_210_south.s:101`
 - ITEM_OLD_CHARM x1. Vanilla. `scripts_route_210_south.s:189`
 
 Item balls:
@@ -2830,7 +2880,7 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
 
-Gone from vanilla: flag FLAG_UNUSED_0x016B (hides).
+Gone from vanilla: ITEM_TM51 x1; flag FLAG_UNUSED_0x016B (hides).
 
 Names a script the file does not have: object_event LOCALID_BLACK_BELT runs script 13, and `scripts_route_210_south` has 8. Added. `events_route_210_south.json:490`
 
@@ -2853,14 +2903,14 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM66 x1. Vanilla. `scripts_route_215.s:48`
+- ITEM_SITRUS_BERRY x1. Added by Oxide (2f5fc736c). `scripts_route_215.s:48`
 
 Item balls:
 
 - ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_215_HYPER_POTION. Vanilla. `events_route_215.json:320`
 - ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_ROUTE_215_FULL_HEAL. Vanilla. `events_route_215.json:335`
 - ITEM_MAX_ETHER x1, one time, flag FLAG_OBTAINED_ROUTE_215_MAX_ETHER. Vanilla. `events_route_215.json:350`
-- ITEM_TM34 x1, one time, flag FLAG_OBTAINED_ROUTE_215_TM34. Vanilla. `events_route_215.json:365`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_215_TM34. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM34 x1, one time, flag FLAG_OBTAINED_ROUTE_215_TM34. `events_route_215.json:365`
 - ITEM_FIST_PLATE x1, one time, flag FLAG_OBTAINED_ROUTE_215_FIST_PLATE. Vanilla. `events_route_215.json:395`
 - ITEM_HP_UP x1, one time, flag FLAG_OBTAINED_ROUTE_215_HP_UP. Vanilla. `events_route_215.json:455`
 
@@ -2881,6 +2931,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM66 x1; ITEM_TM34 x1, one time, flag FLAG_OBTAINED_ROUTE_215_TM34.
 
 Scripts nothing reaches: script 1 `Route215_Dummy1` (line 35).
 
@@ -2957,12 +3009,14 @@ Variables:
 
 Item balls:
 
-- ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Vanilla. `events_maniac_tunnel.json:25`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. `events_maniac_tunnel.json:25`
 
 Flags:
 
 - Set: FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE.
 - Hide an object: FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
+
+Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
 
 ### Ruin Maniac Cave Short
 
@@ -2970,12 +3024,14 @@ Flags:
 
 Item balls:
 
-- ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Vanilla. `events_ruin_maniac_cave_short.json:10`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. `events_ruin_maniac_cave_short.json:10`
 
 Flags:
 
 - Set: FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE.
 - Hide an object: FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
+
+Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
 
 ### Ruin Maniac Cave Long
 
@@ -2983,12 +3039,14 @@ Flags:
 
 Item balls:
 
-- ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Vanilla. `events_ruin_maniac_cave_long.json:25`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28. `events_ruin_maniac_cave_long.json:25`
 
 Flags:
 
 - Set: FLAG_FIRST_ARRIVAL_RUIN_MANIAC_CAVE.
 - Hide an object: FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
+
+Gone from vanilla: ITEM_TM28 x1, one time, flag FLAG_OBTAINED_RUIN_MANIAC_CAVE_OR_TUNNEL_TM28.
 
 ### Valor Lakefront
 
@@ -3004,7 +3062,7 @@ Items given:
 
 Item balls:
 
-- ITEM_TM85 x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_TM85. Vanilla. `events_valor_lakefront.json:88`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_TM85. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM85 x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_TM85. `events_valor_lakefront.json:88`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_ULTRA_BALL. Vanilla. `events_valor_lakefront.json:103`
 - ITEM_IRON x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_IRON. Vanilla. `events_valor_lakefront.json:209`
 
@@ -3027,6 +3085,8 @@ Variables:
 - Set: VAR_PASTORIA_CITY_STATE, VAR_DUMMY_0x4083.
 - Checked: VAR_VALOR_LAKEFRONT_BLOCK_SUNYSHORE_STATE.
 
+Gone from vanilla: ITEM_TM85 x1, one time, flag FLAG_OBTAINED_VALOR_LAKEFRONT_TM85.
+
 ### Route 213
 
 `MAP_HEADER_ROUTE_213`: scripts `scripts_route_213`, events `events_route_213`, init scripts `scripts_init_route_213`. Location name Route 213. In Wake's split, placed by its encounter table.
@@ -3045,11 +3105,11 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM40 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM40. Vanilla. `events_route_213.json:464`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM40. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM40 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM40. `events_route_213.json:464`
 - ITEM_YELLOW_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_213_YELLOW_SHARD. Vanilla. `events_route_213.json:479`
 - ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_ROUTE_213_MAX_REVIVE. Vanilla. `events_route_213.json:494`
 - ITEM_WATER_STONE x1, one time, flag FLAG_OBTAINED_ROUTE_213_WATER_STONE. Vanilla. `events_route_213.json:509`
-- ITEM_TM05 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM05. Vanilla. `events_route_213.json:524`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM05. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM05 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM05. `events_route_213.json:524`
 - ITEM_PP_UP x1, one time, flag FLAG_OBTAINED_ROUTE_213_PP_UP. Vanilla. `events_route_213.json:539`
 - ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_213_PROTEIN. Vanilla. `events_route_213.json:554`
 
@@ -3079,6 +3139,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM40 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM40; ITEM_TM05 x1, one time, flag FLAG_OBTAINED_ROUTE_213_TM05.
 
 ### Pastoria City
 
@@ -3139,7 +3201,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM55 x1. Vanilla. `scripts_pastoria_city_gym.s:178`
+- ITEM_TM81 x2. Added by Oxide (2f5fc736c). `scripts_pastoria_city_gym.s:178`
 
 Flags:
 
@@ -3151,6 +3213,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03, VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_PASTORIA_CITY_STATE.
 - Checked: VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02, VAR_MAP_LOCAL_0x03.
+
+Gone from vanilla: ITEM_TM55 x1.
 
 Could not read: 1 raw data lines.
 
@@ -3302,7 +3366,7 @@ Eggs given:
 
 Item balls:
 
-- ITEM_TM87 x1, one time, flag FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87. Vanilla. `events_pokemon_mansion_office.json:27`
+- ITEM_TM46 x2, one time, flag FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM87 x1, one time, flag FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87. `events_pokemon_mansion_office.json:27`
 
 Flags:
 
@@ -3315,6 +3379,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x0B, VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_MAP_LOCAL_0x0B, VAR_POKEMON_MANSION_OFFICE_BLOCK_STATUE_STATE.
+
+Gone from vanilla: ITEM_TM87 x1, one time, flag FLAG_OBTAINED_POKEMON_MANSION_OFFICE_TM87.
 
 ### Great Marsh 4
 
@@ -3405,7 +3471,7 @@ Trainer battles:
 Item balls:
 
 - ITEM_ROSE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ROSE_INCENSE. Vanilla. `events_route_212_north.json:226`
-- ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. Vanilla. `events_route_212_north.json:241`
+- ITEM_TM37 x2, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11. `events_route_212_north.json:241`
 - ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_ELIXIR. Vanilla. `events_route_212_north.json:324`
 - ITEM_GREEN_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_GREEN_SHARD. Vanilla. `events_route_212_north.json:483`
 - ITEM_IRON x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_IRON. Vanilla. `events_route_212_north.json:498`
@@ -3425,6 +3491,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM11 x1, one time, flag FLAG_OBTAINED_ROUTE_212_NORTH_TM11.
 
 ### Route 212 South
 
@@ -3448,11 +3516,11 @@ Trainer battles:
 Item balls:
 
 - ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_FULL_HEAL. Vanilla. `events_route_212_south.json:389`
-- ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. Vanilla. `events_route_212_south.json:404`
-- ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. Vanilla. `events_route_212_south.json:419`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84. `events_route_212_south.json:404`
+- ITEM_TM78 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62. `events_route_212_south.json:419`
 - ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ZINC. Vanilla. `events_route_212_south.json:434`
 - ITEM_HYPER_POTION x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_HYPER_POTION. Vanilla. `events_route_212_south.json:449`
-- ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. Vanilla. `events_route_212_south.json:464`
+- ITEM_TM89 x2, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06. `events_route_212_south.json:464`
 - ITEM_REVIVE x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_REVIVE. Vanilla. `events_route_212_south.json:479`
 - ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_ELIXIR. Vanilla. `events_route_212_south.json:738`
 - ITEM_BLUE_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_BLUE_SHARD. Vanilla. `events_route_212_south.json:753`
@@ -3479,7 +3547,7 @@ Variables:
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
 
-Gone from vanilla: ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
+Gone from vanilla: ITEM_TM84 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM84; ITEM_TM62 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM62; ITEM_TM06 x1, one time, flag FLAG_OBTAINED_ROUTE_212_SOUTH_TM06; ITEM_DAWN_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_212_SOUTH_DAWN_STONE.
 
 ## Byron's split
 
@@ -3505,7 +3573,7 @@ Item balls:
 
 - ITEM_SMOKE_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL. Vanilla. `events_route_210_north.json:269`
 - ITEM_WAVE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE. Vanilla. `events_route_210_north.json:284`
-- ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. Vanilla. `events_route_210_north.json:299`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30. `events_route_210_north.json:299`
 - ITEM_ZINC x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_ZINC. Vanilla. `events_route_210_north.json:412`
 - ITEM_RED_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD. Vanilla. `events_route_210_north.json:427`
 
@@ -3517,7 +3585,7 @@ Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_OBTAINED_ROUTE_210_NORTH_SMOKE_BALL, FLAG_OBTAINED_ROUTE_210_NORTH_WAVE_INCENSE, FLAG_OBTAINED_ROUTE_210_NORTH_TM30, FLAG_OBTAINED_ROUTE_210_NORTH_RED_SHARD, FLAG_OBTAINED_ROUTE_210_NORTH_ZINC.
 
-Gone from vanilla: ITEM_SHINY_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_210_NORTH_SHINY_STONE.
+Gone from vanilla: ITEM_TM30 x1, one time, flag FLAG_OBTAINED_ROUTE_210_NORTH_TM30; ITEM_SHINY_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_ROUTE_210_NORTH_SHINY_STONE.
 
 ### Route 211 East
 
@@ -3532,11 +3600,11 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM77 x1. Vanilla. `scripts_route_211_east.s:24`
+- ITEM_LUM_BERRY x1. Added by Oxide (2f5fc736c). `scripts_route_211_east.s:24`
 
 Item balls:
 
-- ITEM_TM29 x1, one time, flag FLAG_OBTAINED_ROUTE_211_EAST_TM29. Vanilla. `events_route_211_east.json:207`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_211_EAST_TM29. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM29 x1, one time, flag FLAG_OBTAINED_ROUTE_211_EAST_TM29. `events_route_211_east.json:207`
 - ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_211_EAST_CARBOS. Vanilla. `events_route_211_east.json:354`
 
 Hidden items:
@@ -3548,6 +3616,8 @@ Flags:
 - Set: FLAG_RECEIVED_ROUTE_211_EAST_TM77.
 - Checked: FLAG_RECEIVED_ROUTE_211_EAST_TM77.
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_OBTAINED_ROUTE_211_EAST_TM29, FLAG_OBTAINED_ROUTE_211_EAST_CARBOS.
+
+Gone from vanilla: ITEM_TM77 x1; ITEM_TM29 x1, one time, flag FLAG_OBTAINED_ROUTE_211_EAST_TM29.
 
 ### Celestic Town
 
@@ -3588,7 +3658,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_HM03 x1. Vanilla. `scripts_celestic_town_cave.s:131`
+- ITEM_SITRUS_BERRY x1. Added by Oxide (2f5fc736c). `scripts_celestic_town_cave.s:131`
 
 Flags:
 
@@ -3600,6 +3670,8 @@ Flags:
 Variables:
 
 - Set: VAR_CELESTIC_TOWN_STATE.
+
+Gone from vanilla: ITEM_HM03 x1.
 
 Scripts nothing reaches: code at `CelesticTownCave_Unused` (line 173), code at `CelesticTownCave_Unused2` (line 192).
 
@@ -3697,7 +3769,7 @@ Items given:
 
 Item balls:
 
-- ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35. Vanilla. `events_fuego_ironworks_building.json:27`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35. `events_fuego_ironworks_building.json:27`
 - ITEM_CALCIUM x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM. Vanilla. `events_fuego_ironworks_building.json:42`
 - ITEM_ROCK_INCENSE x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE. Vanilla. `events_fuego_ironworks_building.json:57`
 - ITEM_BLUE_SHARD x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD. Vanilla. `events_fuego_ironworks_building.json:138`
@@ -3716,7 +3788,7 @@ Flags:
 - Checked: FLAG_MR_FUEGO_ASKED_FOR_TRADE, FLAG_RECEIVED_FUEGO_IRONWORKS_BUILDING_STAR_PIECE.
 - Hide an object: FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_ROCK_INCENSE, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_CALCIUM, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_BLUE_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_RED_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_GREEN_SHARD, FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_YELLOW_SHARD.
 
-Gone from vanilla: ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE; flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE (hides).
+Gone from vanilla: ITEM_TM35 x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_TM35; ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE; flag FLAG_OBTAINED_FUEGO_IRONWORKS_BUILDING_FIRE_STONE (hides).
 
 ### Route 218
 
@@ -3779,7 +3851,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89. Vanilla. `events_canalave_city.json:252`
+- ITEM_TM80 x2, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89. `events_canalave_city.json:252`
 
 Hidden items:
 
@@ -3796,6 +3868,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0, VAR_CANALAVE_CITY_STATE, VAR_CANALAVE_LIBRARY_STATE, VAR_DARKRAI_EVENT_STATE.
 - Checked: VAR_MAP_LOCAL_0x00, VAR_CANALAVE_CITY_STATE, VAR_DARKRAI_EVENT_STATE, VAR_LUNAR_WING_EVENT_STATE.
+
+Gone from vanilla: ITEM_TM89 x1, one time, flag FLAG_OBTAINED_CANALAVE_CITY_TM89.
 
 ### Canalave City East House
 
@@ -3824,7 +3898,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM91 x1. Vanilla. `scripts_canalave_city_gym.s:160`
+- ITEM_TM47 x2. Added by Oxide (2f5fc736c). `scripts_canalave_city_gym.s:160`
 
 Flags:
 
@@ -3835,6 +3909,8 @@ Flags:
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_CANALAVE_CITY_STATE.
+
+Gone from vanilla: ITEM_TM91 x1.
 
 ### Canalave City Harbor Inn
 
@@ -3914,12 +3990,14 @@ Scripts nothing reaches: code at `CanalaveCitySailorEldritchHouse_Unused` (line 
 
 Items given:
 
-- ITEM_TM48 x1. Vanilla. `scripts_canalave_city_southeast_house.s:18`
+- ITEM_TM12 x2. Added by Oxide (2f5fc736c). `scripts_canalave_city_southeast_house.s:18`
 
 Flags:
 
 - Set: FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48.
 - Checked: FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48.
+
+Gone from vanilla: ITEM_TM48 x1.
 
 ### Canalave City West House
 
@@ -3948,7 +4026,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_HM04 x1. Vanilla. `scripts_iron_island.s:37`
+- ITEM_SITRUS_BERRY x1. Added by Oxide (2f5fc736c). `scripts_iron_island.s:37`
 
 Hidden items:
 
@@ -3959,6 +4037,8 @@ Flags:
 - Set: FLAG_FIRST_ARRIVAL_IRON_ISLAND_EXTERIOR, FLAG_UNK_0x0A73 (added, base ROM).
 - Checked: FLAG_UNK_0x0A73 (added, base ROM).
 - Hide an object: FLAG_HIDE_IRON_ISLAND_RILEY.
+
+Gone from vanilla: ITEM_HM04 x1.
 
 ### Iron Island House
 
@@ -4061,7 +4141,7 @@ Trainer battles:
 Item balls:
 
 - ITEM_ELIXIR x1, one time, flag FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_ELIXIR. Vanilla. `events_iron_island_b2f_right_room.json:19`
-- ITEM_TM23 x1, one time, flag FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23. Vanilla. `events_iron_island_b2f_right_room.json:34`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM23 x1, one time, flag FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23. `events_iron_island_b2f_right_room.json:34`
 
 Hidden items:
 
@@ -4070,6 +4150,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_ELIXIR, FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23.
+
+Gone from vanilla: ITEM_TM23 x1, one time, flag FLAG_OBTAINED_IRON_ISLAND_B2F_RIGHT_ROOM_TM23.
 
 ### Iron Island B2F Left Room
 
@@ -4191,7 +4273,7 @@ Trainer battles:
 Item balls:
 
 - ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_ROUTE_221_PROTEIN. Vanilla. `events_route_221.json:156`
-- ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Vanilla. `events_route_221.json:171`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81. `events_route_221.json:171`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_221_ULTRA_BALL. Vanilla. `events_route_221.json:186`
 - ITEM_PURE_INCENSE x1, one time, flag FLAG_OBTAINED_ROUTE_221_PURE_INCENSE. Vanilla. `events_route_221.json:261`
 
@@ -4213,6 +4295,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM81 x1, one time, flag FLAG_OBTAINED_ROUTE_221_TM81.
 
 ### Route 221 House
 
@@ -4241,11 +4325,13 @@ Could not read: 1 variables set elsewhere.
 
 Item balls:
 
-- ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. Vanilla. `events_lake_valor.json:10`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. `events_lake_valor.json:10`
 
 Flags:
 
 - Hide an object: FLAG_OBTAINED_LAKE_VALOR_TM25.
+
+Gone from vanilla: ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25.
 
 Scripts nothing reaches: script 1 `LakeValor_Dummy1` (line 7).
 
@@ -4261,7 +4347,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. Vanilla. `events_lake_valor_drained.json:456`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25. `events_lake_valor_drained.json:456`
 
 Hidden items:
 
@@ -4270,6 +4356,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_HIDE_LAKE_VALOR_GALACTIC, FLAG_HIDE_LAKE_VALOR_DRAINED_MAGIKARP, FLAG_OBTAINED_LAKE_VALOR_TM25.
+
+Gone from vanilla: ITEM_TM25 x1, one time, flag FLAG_OBTAINED_LAKE_VALOR_TM25.
 
 ## Candice's split
 
@@ -4334,7 +4422,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM13 x1, one time, flag FLAG_OBTAINED_ROUTE_216_TM13. Vanilla. `events_route_216.json:204`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_216_TM13. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM13 x1, one time, flag FLAG_OBTAINED_ROUTE_216_TM13. `events_route_216.json:204`
 - ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_ROUTE_216_FULL_HEAL. Vanilla. `events_route_216.json:219`
 - ITEM_MENTAL_HERB x1, one time, flag FLAG_OBTAINED_ROUTE_216_MENTAL_HERB. Vanilla. `events_route_216.json:234`
 - ITEM_HP_UP x1, one time, flag FLAG_OBTAINED_ROUTE_216_HP_UP. Vanilla. `events_route_216.json:249`
@@ -4348,6 +4436,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_OBTAINED_ROUTE_216_TM13, FLAG_OBTAINED_ROUTE_216_MENTAL_HERB, FLAG_OBTAINED_ROUTE_216_FULL_HEAL, FLAG_OBTAINED_ROUTE_216_HP_UP, FLAG_OBTAINED_ROUTE_216_MAX_POTION, FLAG_OBTAINED_ROUTE_216_REVIVE.
+
+Gone from vanilla: ITEM_TM13 x1, one time, flag FLAG_OBTAINED_ROUTE_216_TM13.
 
 Scripts nothing reaches: script 1 `Route216_CantRideBike_Unused` (line 10).
 
@@ -4369,9 +4459,9 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_HM08 x1, one time, flag FLAG_OBTAINED_ROUTE_217_HM08. Vanilla. `events_route_217.json:261`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_217_HM08. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_HM08 x1, one time, flag FLAG_OBTAINED_ROUTE_217_HM08. `events_route_217.json:261`
 - ITEM_IRON x1, one time, flag FLAG_OBTAINED_ROUTE_217_IRON. Vanilla. `events_route_217.json:276`
-- ITEM_TM07 x1, one time, flag FLAG_OBTAINED_ROUTE_217_TM07. Vanilla. `events_route_217.json:291`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_ROUTE_217_TM07. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM07 x1, one time, flag FLAG_OBTAINED_ROUTE_217_TM07. `events_route_217.json:291`
 - ITEM_BLUE_SHARD x1, one time, flag FLAG_OBTAINED_ROUTE_217_BLUE_SHARD. Vanilla. `events_route_217.json:351`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_217_ULTRA_BALL. Vanilla. `events_route_217.json:366`
 - ITEM_RARE_CANDY x1, one time, flag FLAG_OBTAINED_ROUTE_217_RARE_CANDY. Vanilla. `events_route_217.json:381`
@@ -4399,6 +4489,8 @@ Variables:
 
 - Set: VAR_ROUTE_217_STATE.
 - Checked: VAR_ROUTE_217_STATE.
+
+Gone from vanilla: ITEM_HM08 x1, one time, flag FLAG_OBTAINED_ROUTE_217_HM08; ITEM_TM07 x1, one time, flag FLAG_OBTAINED_ROUTE_217_TM07.
 
 ### Route 217 Northeast House
 
@@ -4454,7 +4546,7 @@ Variables:
 
 Item balls:
 
-- ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Vanilla. `events_lake_acuity.json:10`
+- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity.json:10`
 
 Flags:
 
@@ -4467,19 +4559,23 @@ Variables:
 - Set: VAR_LAKE_ACUITY_STATE.
 - Checked: VAR_LAKE_ACUITY_STATE.
 
+Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
 ### Lake Acuity Low Water
 
 `MAP_HEADER_LAKE_ACUITY_LOW_WATER`: scripts `scripts_lake_acuity_low_water`, events `events_lake_acuity_low_water`, init scripts `scripts_init_lake_acuity_low_water`. Location name Lake Acuity. In Candice's split, placed by its location name.
 
 Item balls:
 
-- ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Vanilla. `events_lake_acuity_low_water.json:25`
+- ITEM_TM42 x2, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14. `events_lake_acuity_low_water.json:25`
 
 Flags:
 
 - Set: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
 - Checked: FLAG_TALKED_TO_LAKE_ACUITY_LOW_WATER_RIVAL.
 - Hide an object: FLAG_HIDE_LAKE_ACUITY_LOW_WATER_RIVAL, FLAG_OBTAINED_LAKE_ACUITY_TM14.
+
+Gone from vanilla: ITEM_TM14 x1, one time, flag FLAG_OBTAINED_LAKE_ACUITY_TM14.
 
 ### Snowpoint City
 
@@ -4539,7 +4635,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM72 x1. Vanilla. `scripts_snowpoint_city_gym.s:156`
+- ITEM_LUM_BERRY x1. Added by Oxide (2f5fc736c). `scripts_snowpoint_city_gym.s:156`
 
 Flags:
 
@@ -4549,6 +4645,8 @@ Flags:
 Variables:
 
 - Set: VAR_OBJ_GFX_ID_6 (added, base ROM).
+
+Gone from vanilla: ITEM_TM72 x1.
 
 ### Snowpoint City Mart
 
@@ -4667,7 +4765,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM53 x1, one time, flag FLAG_OBTAINED_ROUTE_226_TM53. Vanilla. `events_route_226.json:68`
+- ITEM_TM14 x1, one time, flag FLAG_OBTAINED_ROUTE_226_TM53. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM53 x1, one time, flag FLAG_OBTAINED_ROUTE_226_TM53. `events_route_226.json:68`
 - ITEM_CARBOS x1, one time, flag FLAG_OBTAINED_ROUTE_226_CARBOS. Vanilla. `events_route_226.json:83`
 - ITEM_LAGGING_TAIL x1, one time, flag FLAG_OBTAINED_ROUTE_226_LAGGING_TAIL. Vanilla. `events_route_226.json:98`
 
@@ -4682,6 +4780,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_UNUSED_0x0193, FLAG_HIDE_TEAM_GALACTIC_ETERNA_BUILDING_1F_GRUNT_M_LOOKER, FLAG_OBTAINED_ROUTE_226_TM53, FLAG_OBTAINED_ROUTE_226_LAGGING_TAIL, FLAG_OBTAINED_ROUTE_226_CARBOS.
+
+Gone from vanilla: ITEM_TM53 x1, one time, flag FLAG_OBTAINED_ROUTE_226_TM53.
 
 ### Route 226 House
 
@@ -4792,7 +4892,7 @@ Trainer battles:
 Item balls:
 
 - ITEM_FULL_HEAL x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_FULL_HEAL. Vanilla. `events_stark_mountain_room_1.json:169`
-- ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE. Vanilla. `events_stark_mountain_room_1.json:184`
+- ITEM_TM50 x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE. Added by Oxide (2f5fc736c). Replaces vanilla's ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE. `events_stark_mountain_room_1.json:184`
 - ITEM_PP_UP x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_PP_UP. Vanilla. `events_stark_mountain_room_1.json:199`
 - ITEM_FULL_RESTORE x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_FULL_RESTORE. Vanilla. `events_stark_mountain_room_1.json:214`
 
@@ -4810,6 +4910,8 @@ Variables:
 
 - Set: VAR_STARK_MOUNTAIN_ROOM_1_STATE.
 - Checked: VAR_STARK_MOUNTAIN_ROOM_1_STATE.
+
+Gone from vanilla: ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE.
 
 ### Stark Mountain Room 2
 
@@ -4836,7 +4938,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM50 x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_TM50. Vanilla. `events_stark_mountain_room_2.json:149`
+- ITEM_TM01 x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_TM50. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM50 x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_TM50. `events_stark_mountain_room_2.json:149`
 - ITEM_CALCIUM x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_CALCIUM. Vanilla. `events_stark_mountain_room_2.json:164`
 - ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_MAX_REVIVE. Vanilla. `events_stark_mountain_room_2.json:179`
 - ITEM_RARE_CANDY x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_RARE_CANDY. Vanilla. `events_stark_mountain_room_2.json:194`
@@ -4866,7 +4968,7 @@ Variables:
 - Set: VAR_PARTNER_TRAINER_ID, VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE.
 - Checked: VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE.
 
-Gone from vanilla: ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_STARK_MOUNTAIN_ROOM_2_FIRE_STONE.
+Gone from vanilla: ITEM_TM50 x1, one time, flag FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_2_TM50; ITEM_FIRE_STONE x1, one time, flag FLAG_OBTAINED_HIDDEN_STARK_MOUNTAIN_ROOM_2_FIRE_STONE.
 
 Scripts nothing reaches: script 4 `StarkMountainRoom2_Entry3` (line 59), script 5 `StarkMountainRoom2_Entry4` (line 68).
 
@@ -4891,7 +4993,7 @@ Item balls:
 - ITEM_IRON x1, one time, flag FLAG_OBTAINED_ROUTE_228_IRON. Vanilla. `events_route_228.json:164`
 - ITEM_SHINY_STONE x1, one time, flag FLAG_OBTAINED_ROUTE_228_SHINY_STONE. Vanilla. `events_route_228.json:179`
 - ITEM_SHED_SHELL x1, one time, flag FLAG_OBTAINED_ROUTE_228_SHED_SHELL. Vanilla. `events_route_228.json:194`
-- ITEM_TM37 x1, one time, flag FLAG_OBTAINED_ROUTE_228_TM37. Vanilla. `events_route_228.json:209`
+- ITEM_TM38 x1, one time, flag FLAG_OBTAINED_ROUTE_228_TM37. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM37 x1, one time, flag FLAG_OBTAINED_ROUTE_228_TM37. `events_route_228.json:209`
 
 Hidden items:
 
@@ -4911,6 +5013,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02 (added, base ROM), VAR_ROCK_PEAK_RUINS_STATE.
 - Checked: VAR_MAP_LOCAL_0x01, VAR_MAP_LOCAL_0x02 (added, base ROM), VAR_ROCK_PEAK_RUINS_STATE.
+
+Gone from vanilla: ITEM_TM37 x1, one time, flag FLAG_OBTAINED_ROUTE_228_TM37.
 
 ### Route 228 North House
 
@@ -5252,8 +5356,8 @@ Item balls:
 
 - ITEM_MAX_REVIVE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REVIVE. Vanilla. `events_mt_coronet_2f.json:27`
 - ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_MAX_REPEL. Vanilla. `events_mt_coronet_2f.json:42`
-- ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. Vanilla. `events_mt_coronet_2f.json:57`
-- ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. Vanilla. `events_mt_coronet_2f.json:72`
+- ITEM_TM75 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80. `events_mt_coronet_2f.json:57`
+- ITEM_TM58 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. Added by Oxide (2f5fc736c). Replaces vanilla's ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE. `events_mt_coronet_2f.json:72`
 
 Hidden items:
 
@@ -5271,6 +5375,8 @@ Variables:
 
 - Set: VAR_MT_CORONET_2F_STATE.
 - Checked: VAR_MT_CORONET_2F_STATE.
+
+Gone from vanilla: ITEM_TM80 x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_TM80; ITEM_ESCAPE_ROPE x1, one time, flag FLAG_OBTAINED_MT_CORONET_2F_ESCAPE_ROPE.
 
 ### Mt Coronet 3F
 
@@ -5477,7 +5583,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM56 x1. Vanilla. `scripts_route_222.s:40`
+- ITEM_TM08 x1. Added by Oxide (2f5fc736c). `scripts_route_222.s:40`
 
 Item balls:
 
@@ -5508,6 +5614,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM56 x1.
 
 ### Route 222 East House
 
@@ -5545,7 +5653,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_HM07 x1. Vanilla. `scripts_sunyshore_city.s:577`
+- ITEM_TM19 x2. Added by Oxide (2f5fc736c). `scripts_sunyshore_city.s:577`
 
 Item balls:
 
@@ -5567,6 +5675,8 @@ Variables:
 
 - Set: VAR_SUNYSHORE_CITY_STATE, VAR_SANDGEM_TOWN_LAB_STATE.
 - Checked: VAR_SUNYSHORE_CITY_STATE, VAR_SANDGEM_TOWN_LAB_STATE.
+
+Gone from vanilla: ITEM_HM07 x1.
 
 Scripts nothing reaches: script 2 `SunyshoreCity_Entry1` (line 38), script 17 `SunyshoreCity_Entry16` (line 171).
 
@@ -5630,7 +5740,7 @@ Trainer battles:
 
 Items given:
 
-- ITEM_TM57 x1. Vanilla. `scripts_sunyshore_city_gym_room_3.s:124`
+- ITEM_TM74 x2. Added by Oxide (2f5fc736c). `scripts_sunyshore_city_gym_room_3.s:124`
 
 Flags:
 
@@ -5641,6 +5751,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_6 (added, base ROM), VAR_SUNYSHORE_CITY_STATE.
 - Checked: VAR_MAP_LOCAL_0x00.
+
+Gone from vanilla: ITEM_TM57 x1.
 
 ### Sunyshore City Mart
 
@@ -5743,7 +5855,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM18 x1, one time, flag FLAG_OBTAINED_ROUTE_223_TM18. Vanilla. `events_route_223.json:207`
+- ITEM_TM15 x1, one time, flag FLAG_OBTAINED_ROUTE_223_TM18. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM18 x1, one time, flag FLAG_OBTAINED_ROUTE_223_TM18. `events_route_223.json:207`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_223_ULTRA_BALL. Vanilla. `events_route_223.json:222`
 - ITEM_DIVE_BALL x1, one time, flag FLAG_OBTAINED_ROUTE_223_DIVE_BALL. Vanilla. `events_route_223.json:268`
 - ITEM_RARE_CANDY x1, one time, flag FLAG_OBTAINED_ROUTE_223_RARE_CANDY. Vanilla. `events_route_223.json:283`
@@ -5756,6 +5868,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_UNUSED_0x0096, FLAG_OBTAINED_ROUTE_223_ULTRA_BALL, FLAG_OBTAINED_ROUTE_223_DIVE_BALL, FLAG_OBTAINED_ROUTE_223_TM18, FLAG_OBTAINED_ROUTE_223_RARE_CANDY.
+
+Gone from vanilla: ITEM_TM18 x1, one time, flag FLAG_OBTAINED_ROUTE_223_TM18.
 
 ### Victory Road 1F
 
@@ -5780,7 +5894,7 @@ Item balls:
 
 - ITEM_RARE_CANDY x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_RARE_CANDY. Vanilla. `events_victory_road_1f.json:35`
 - ITEM_MAX_REPEL x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_MAX_REPEL. Vanilla. `events_victory_road_1f.json:50`
-- ITEM_TM41 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_TM41. Vanilla. `events_victory_road_1f.json:65`
+- ITEM_TM65 x2, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_TM41. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM41 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_TM41. `events_victory_road_1f.json:65`
 - ITEM_RAZOR_CLAW x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_RAZOR_CLAW. Vanilla. `events_victory_road_1f.json:80`
 - ITEM_ZINC x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_ZINC. Vanilla. `events_victory_road_1f.json:95`
 
@@ -5799,7 +5913,9 @@ Flags:
 Variables:
 
 - Set: VAR_MAP_LOCAL_0x00, VAR_OBJ_GFX_ID_0 (added, Oxide), VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide).
-- Checked: VAR_MAP_LOCAL_0x00, VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide).
+- Checked: VAR_MAP_LOCAL_0x00, VAR_VICTORY_ROAD_1F_COUNTERPART_TRIGGER_STATE (added, Oxide), VAR_GAUNTLET_SECTION (added, Oxide).
+
+Gone from vanilla: ITEM_TM41 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_1F_TM41.
 
 ### Victory Road 2F
 
@@ -5815,10 +5931,10 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM79 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM79. Vanilla. `events_victory_road_2f.json:27`
+- ITEM_TM68 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM79. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM79 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM79. `events_victory_road_2f.json:27`
 - ITEM_MAX_ELIXIR x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_MAX_ELIXIR. Vanilla. `events_victory_road_2f.json:42`
 - ITEM_FULL_RESTORE x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_FULL_RESTORE. Vanilla. `events_victory_road_2f.json:57`
-- ITEM_TM71 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM71. Vanilla. `events_victory_road_2f.json:72`
+- ITEM_TM18 x2, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM71. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM71 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM71. `events_victory_road_2f.json:72`
 
 Hidden items:
 
@@ -5828,6 +5944,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_MAP_LOCAL_HIDE_OBSTACLE_1, FLAG_MAP_LOCAL_HIDE_OBSTACLE_2, FLAG_MAP_LOCAL_HIDE_OBSTACLE_3, FLAG_MAP_LOCAL_HIDE_OBSTACLE_4, FLAG_MAP_LOCAL_HIDE_OBSTACLE_5, FLAG_MAP_LOCAL_HIDE_OBSTACLE_6, FLAG_MAP_LOCAL_HIDE_OBSTACLE_7, FLAG_MAP_LOCAL_HIDE_OBSTACLE_8, FLAG_MAP_LOCAL_HIDE_OBSTACLE_9, FLAG_MAP_LOCAL_HIDE_OBSTACLE_10, FLAG_MAP_LOCAL_HIDE_OBSTACLE_11, FLAG_MAP_LOCAL_HIDE_OBSTACLE_12, FLAG_MAP_LOCAL_HIDE_OBSTACLE_13, FLAG_MAP_LOCAL_HIDE_OBSTACLE_14, FLAG_MAP_LOCAL_HIDE_OBSTACLE_15, FLAG_MAP_LOCAL_HIDE_OBSTACLE_16, FLAG_MAP_LOCAL_HIDE_OBSTACLE_17, FLAG_MAP_LOCAL_HIDE_OBSTACLE_18, FLAG_MAP_LOCAL_HIDE_OBSTACLE_19, FLAG_MAP_LOCAL_HIDE_OBSTACLE_20, FLAG_MAP_LOCAL_HIDE_OBSTACLE_21, FLAG_MAP_LOCAL_HIDE_OBSTACLE_22, FLAG_MAP_LOCAL_HIDE_OBSTACLE_23, FLAG_OBTAINED_VICTORY_ROAD_2F_MAX_ELIXIR, FLAG_OBTAINED_VICTORY_ROAD_2F_FULL_RESTORE, FLAG_OBTAINED_VICTORY_ROAD_2F_TM79, FLAG_OBTAINED_VICTORY_ROAD_2F_TM71.
+
+Gone from vanilla: ITEM_TM79 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM79; ITEM_TM71 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_2F_TM71.
 
 ### Victory Road B1F
 
@@ -5843,7 +5961,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM59 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. Vanilla. `events_victory_road_b1f.json:27`
+- ITEM_TM70 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM59 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. `events_victory_road_b1f.json:27`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_ULTRA_BALL. Vanilla. `events_victory_road_b1f.json:118`
 - ITEM_CALCIUM x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_CALCIUM. Vanilla. `events_victory_road_b1f.json:133`
 
@@ -5855,6 +5973,8 @@ Hidden items:
 Flags:
 
 - Hide an object: FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59, FLAG_OBTAINED_VICTORY_ROAD_B1F_ULTRA_BALL, FLAG_OBTAINED_VICTORY_ROAD_B1F_CALCIUM.
+
+Gone from vanilla: ITEM_TM59 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59.
 
 ### Pokemon League
 
@@ -7286,7 +7406,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49. Vanilla. `events_galactic_hq_1f.json:57`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49. `events_galactic_hq_1f.json:57`
 - ITEM_DUBIOUS_DISC x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC. Vanilla. `events_galactic_hq_1f.json:181`
 
 Hidden items:
@@ -7298,6 +7418,8 @@ Flags:
 - Set: FLAG_HIDE_GALACTIC_HQ_1F_DOOR, FLAG_FIRST_ARRIVAL_GALACTIC_HQ.
 - Checked: FLAG_GALACTIC_LEFT_LAKE_VALOR.
 - Hide an object: FLAG_HIDE_GALACTIC_HQ_1F_DOOR, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_HIDE_GALACTIC_HQ_1F_SATURN, FLAG_OBTAINED_GALACTIC_HQ_1F_TM49, FLAG_OBTAINED_GALACTIC_HQ_1F_DUBIOUS_DISC.
+
+Gone from vanilla: ITEM_TM49 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_1F_TM49.
 
 ### Galactic HQ 2F
 
@@ -7337,7 +7459,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21. Vanilla. `events_galactic_hq_3f.json:58`
+- ITEM_TM56 x2, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21. `events_galactic_hq_3f.json:58`
 - ITEM_MAX_ELIXIR x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR. Vanilla. `events_galactic_hq_3f.json:172`
 - ITEM_PROTEIN x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN. Vanilla. `events_galactic_hq_3f.json:187`
 
@@ -7351,6 +7473,8 @@ Flags:
 
 - Set: FLAG_HIDE_GALACTIC_HQ_3F_DOOR.
 - Hide an object: FLAG_HIDE_GALACTIC_HQ_3F_DOOR, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_OBTAINED_GALACTIC_HQ_3F_TM21, FLAG_OBTAINED_GALACTIC_HQ_3F_MAX_ELIXIR, FLAG_OBTAINED_GALACTIC_HQ_3F_PROTEIN.
+
+Gone from vanilla: ITEM_TM21 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_3F_TM21.
 
 ### Galactic HQ 4F
 
@@ -7397,7 +7521,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM36 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36. Vanilla. `events_galactic_hq_b2f.json:40`
+- ITEM_TM33 x2, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM36 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36. `events_galactic_hq_b2f.json:40`
 - ITEM_GALACTIC_KEY x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_GALACTIC_KEY. Vanilla. `events_galactic_hq_b2f.json:85`
 - ITEM_ZINC x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_ZINC. Vanilla. `events_galactic_hq_b2f.json:130`
 - ITEM_SECRET_KEY x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_SECRET_KEY. Added by Oxide (e1a9eaab8). `events_galactic_hq_b2f.json:145`
@@ -7406,6 +7530,8 @@ Flags:
 
 - Set: FLAG_HIDE_GALACTIC_HQ_B2F_DOOR.
 - Hide an object: FLAG_HIDE_GALACTIC_HQ_B2F_DOOR, FLAG_HIDE_GALACTIC_HQ_TEAM_GALACTIC, FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36, FLAG_OBTAINED_GALACTIC_HQ_B2F_GALACTIC_KEY, FLAG_OBTAINED_GALACTIC_HQ_B2F_ZINC, FLAG_OBTAINED_GALACTIC_HQ_B2F_SECRET_KEY (added, Oxide).
+
+Gone from vanilla: ITEM_TM36 x1, one time, flag FLAG_OBTAINED_GALACTIC_HQ_B2F_TM36.
 
 ### Galactic HQ Control Room
 
@@ -7539,12 +7665,14 @@ Hidden items:
 
 Items given:
 
-- ITEM_TM92 x1. Vanilla. `scripts_grand_lake_route_213_northwest_house.s:19`
+- ITEM_TM30 x2. Added by Oxide (2f5fc736c). `scripts_grand_lake_route_213_northwest_house.s:19`
 
 Flags:
 
 - Set: FLAG_RECEIVED_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE_TM92, FLAG_TALKED_TO_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE_PSYCHIC.
 - Checked: FLAG_RECEIVED_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE_TM92, FLAG_TALKED_TO_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE_PSYCHIC.
+
+Gone from vanilla: ITEM_TM92 x1.
 
 ### Grand Lake Valor Lakefront East House
 
@@ -7971,7 +8099,7 @@ Scripts nothing reaches: script 1 `SurvivalAreaPokecenterB1F_Dummy1` (line 7).
 
 Items given:
 
-- ITEM_TM42 x1. Vanilla. `scripts_survival_area_south_house.s:26`
+- ITEM_TM25 x1. Added by Oxide (2f5fc736c). `scripts_survival_area_south_house.s:26`
 - one of 13, ITEM_OVAL_STONE, ITEM_WHITE_HERB, ITEM_MENTAL_HERB, ITEM_KINGS_ROCK, ITEM_DEEPSEATOOTH, ITEM_DEEPSEASCALE, ITEM_EVERSTONE, ITEM_METAL_COAT, ITEM_DRAGON_SCALE, ITEM_UPGRADE, ITEM_POWER_HERB, ITEM_HEART_SCALE, set by AddVar, chosen by VAR_0x8002 and VAR_RESULT xset elsewhere. Added from the base ROM (81d02e28e). `scripts_survival_area_south_house.s:365`
 
 Flags:
@@ -7982,6 +8110,8 @@ Flags:
 Variables:
 
 - Checked: 25000 (added, base ROM), 30000 (added, base ROM).
+
+Gone from vanilla: ITEM_TM42 x1.
 
 Could not read: 1 commands with no name, 3 variables set elsewhere.
 
@@ -8317,9 +8447,63 @@ A shared script file: other scripts, events and the engine start it by number.
 Trainer battles:
 
 - StartTrainerBattle: against set by GetApproachingTrainerID, through a variable. Vanilla. `scripts_battles.s:1015`
-- StartTrainerBattle: against set by GetApproachingTrainerID, through a variable; and set by GetApproachingTrainerID, through a variable. Vanilla. `scripts_battles.s:1041`
-- StartTrainerBattle: against set by GetApproachingTrainerID, through a variable; and set by GetApproachingTrainerID, through a variable. Vanilla. `scripts_battles.s:1074`
-- StartTrainerBattle: against set by GetRematchTrainerID if VAR_RESULT (GetRematchTrainerID) != 0, set by GetTrainerID if defeated 32772 no; VAR_0x8001 (GetMovementType) != 54; VAR_0x8001 (GetMovementType) != 53, through a variable. Vanilla. `scripts_battles.s:1118`
+- StartTrainerBattle: against set by GetApproachingTrainerID, through a variable; and set by GetApproachingTrainerID, through a variable. Vanilla. `scripts_battles.s:1044`
+- StartTrainerBattle: against set by GetApproachingTrainerID, through a variable; and set by GetApproachingTrainerID, through a variable. Vanilla. `scripts_battles.s:1083`
+- StartTrainerBattle: against set by GetRematchTrainerID if VAR_RESULT (GetRematchTrainerID) != 0, set by GetTrainerID if defeated 32772 no; VAR_0x8001 (GetMovementType) != 54; VAR_0x8001 (GetMovementType) != 53, through a variable. Vanilla. `scripts_battles.s:1136`
+
+Items given:
+
+- ITEM_RING_TARGET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1248`
+- ITEM_TM92 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1259`
+- ITEM_TM21 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1270`
+- ITEM_TM64 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1281`
+- ITEM_TM87 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1292`
+- ITEM_TM27 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1303`
+- ITEM_AIR_BALLOON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1314`
+- ITEM_PIXIE_PLATE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1325`
+- ITEM_CELL_BATTERY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1336`
+- ITEM_TM86 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1347`
+- ITEM_ROCKY_HELMET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1358`
+- ITEM_SAFETY_GOGGLES x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1369`
+- ITEM_EVIOLITE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1380`
+- ITEM_ABSORB_BULB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1391`
+- ITEM_FAIRY_FEATHER x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1402`
+- ITEM_TM62 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1413`
+- ITEM_TM34 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1424`
+- ITEM_BINDING_BAND x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1435`
+- ITEM_CLEAR_AMULET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1446`
+- ITEM_WIDE_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1457`
+- ITEM_COVERT_CLOAK x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1468`
+- ITEM_TM88 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1479`
+- ITEM_METRONOME x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1490`
+- ITEM_TM32 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1501`
+- ITEM_TM66 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1512`
+- ITEM_TM03 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1523`
+- ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1534`
+- ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1545`
+- ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1556`
+- ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1567`
+- ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1578`
+- ITEM_TM72 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1589`
+- ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1600`
+- ITEM_TM22 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1611`
+- ITEM_WEAKNESS_POLICY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1622`
+- ITEM_ABILITY_SHIELD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1633`
+- ITEM_ZOOM_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1644`
+- ITEM_TM54 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1655`
+- ITEM_MIRROR_HERB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1666`
+- ITEM_TM36 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1677`
+- ITEM_HM07 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1688`
+- ITEM_TM48 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1699`
+- ITEM_RED_CARD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1710`
+- ITEM_EJECT_BUTTON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1721`
+- ITEM_PUNCHING_GLOVE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1732`
+- ITEM_ASSAULT_VEST x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1743`
+
+Flags:
+
+- Set: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
+- Checked: FLAG_UNUSED_0x006F (added, Oxide), FLAG_UNUSED_0x0094 (added, Oxide), FLAG_UNUSED_0x0095 (added, Oxide), FLAG_UNUSED_0x0096 (added, Oxide), FLAG_UNUSED_0x00A4 (added, Oxide), FLAG_UNUSED_0x00AE (added, Oxide), FLAG_UNUSED_0x00D4 (added, Oxide), FLAG_UNUSED_0x00EC (added, Oxide), FLAG_UNUSED_0x0101 (added, Oxide), FLAG_UNUSED_0x0114 (added, Oxide), FLAG_UNUSED_0x0122 (added, Oxide), FLAG_UNUSED_0x015F (added, Oxide), FLAG_UNUSED_0x0163 (added, Oxide), FLAG_UNUSED_0x0167 (added, Oxide), FLAG_UNUSED_0x0168 (added, Oxide), FLAG_UNUSED_0x0169 (added, Oxide), FLAG_UNUSED_0x016A (added, Oxide), FLAG_UNUSED_0x016B (added, Oxide), FLAG_UNUSED_0x016C (added, Oxide), FLAG_UNUSED_0x016D (added, Oxide), FLAG_UNUSED_0x016E (added, Oxide), FLAG_UNUSED_0x016F (added, Oxide), FLAG_UNUSED_0x0170 (added, Oxide), FLAG_UNUSED_0x0171 (added, Oxide), FLAG_UNUSED_0x0187 (added, Oxide), FLAG_UNUSED_0x0193 (added, Oxide), FLAG_UNUSED_0x01C4 (added, Oxide), FLAG_UNUSED_0x01C6 (added, Oxide), FLAG_UNUSED_0x01CE (added, Oxide), FLAG_UNUSED_0x01CF (added, Oxide), FLAG_UNUSED_0x01D0 (added, Oxide), FLAG_UNUSED_0x021F (added, Oxide), FLAG_UNUSED_0x023E (added, Oxide), FLAG_UNUSED_0x02CD (added, Oxide), FLAG_UNUSED_0x02CE (added, Oxide), FLAG_UNUSED_0x02CF (added, Oxide), FLAG_UNUSED_0x02D0 (added, Oxide), FLAG_UNUSED_0x02D1 (added, Oxide), FLAG_UNUSED_0x02D2 (added, Oxide), FLAG_UNUSED_0x02D3 (added, Oxide), FLAG_UNUSED_0x02D4 (added, Oxide), FLAG_UNUSED_0x02D5 (added, Oxide), FLAG_UNUSED_0x02D6 (added, Oxide), FLAG_UNUSED_0x02D7 (added, Oxide), FLAG_UNUSED_0x02D8 (added, Oxide), FLAG_UNUSED_0x02D9 (added, Oxide).
 
 ### scripts_berry_tree_interaction
 
@@ -8440,7 +8624,7 @@ Variables:
 - Set: VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 - Checked: VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, VAR_ETERNA_FOREST_CHERYL_OLD_CHATEAU_CUTSCENE_STATE.
 
-Scripts nothing reaches: script 6 `FieldMoves_Fog_Unused` (line 343), script 8 `FieldMoves_Dummy8` (line 462).
+Scripts nothing reaches: script 6 `FieldMoves_Fog_Unused` (line 346), script 8 `FieldMoves_Dummy8` (line 465).
 
 Could not read: 2 commands with no name.
 
