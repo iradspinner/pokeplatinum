@@ -1439,6 +1439,45 @@ that stay. None blocks anything.
    `dex_pos` is also the spreadsheet row `species_import.py` reads. On the
    way, three wrong national dex numbers in the pick-list were corrected
    (Rotom, Manaphy, Shaymin) and its doc's row count brought up to 499.
+51. **The alpha checklist (alpha readiness step 17, Ian, 2026-10-06), on
+   `oxidex-alpha-checklist`.** Checks 1 to 6 pass; check 7, Ian looking at
+   the page in his browser on today's data, is his.
+   - Stage A (checks 1, 2 and 5, and the teams of check 3), landed as
+     `oxidex-alpha-stage-a` with its two gate fixes (test_m8's view count,
+     the sync mapping): `alpha.py` builds every zone in walking order by
+     split from the tree at load time, and the Alpha tab shows it. Each zone
+     lists its trainers (the story fights and every trainer the balance
+     census places, with teams, roles, rewards and gauntlet sections), balls
+     and hidden items with what opens them, NPC gifts, the reward table's
+     placements, shop and Game Corner TMs with badge counts, wild tables,
+     scripted captures and the in-game checks that belong to it. A
+     checklist item goes to the zone of the first place, town or trainer
+     its text names, else Anywhere; `docs/oxide/encounters/alpha-check-zones.json`
+     overrides seven. The trainer and reward tables are read from
+     `origin/balance-tm-pass` until they land on `oxide`.
+   - Stage B (checks 3's feedback, 4 and 6), 2026-10-07: every trainer,
+     gauntlet section and zone has a feedback spot (fought, a rating out of
+     10 for bosses and gauntlet sections, a note, and a death note naming
+     the Pokemon, its killer and whether Ian saw it coming). Each note is
+     stamped with the ROM's commit (from the watched save's file name), the
+     badges, split and party (from the save), the zone, and the battle on
+     screen when melonDS-oxide's bridge answers. Trainers beaten and items
+     picked up tick themselves from the watched save's flags, polled every
+     five seconds without redrawing an open note. The notes live in a
+     gitignored per-run file (`alpha-feedback.json`); Export writes
+     `alpha-notes.json` and `.md` beside it, which Commit my edits may
+     commit, and the export is read back when the local file is missing;
+     New run sets the run aside under its start date (`alphanotes.py`).
+   - Checked: `test_alpha` 25 checks, among them a test save that ticks
+     exactly the four rows its flags name, an older layout refused, and the
+     notes' stamp, refused rating, export, read back and new run under
+     `OXIDE_ALPHA_DIR`; `test_m4` 62 with the routes over HTTP; and the
+     page's drawing code run in Node on the real data with a test save's
+     ticks and notes, every split clean. Not seen in a browser.
+   - Known limits: the save gives no map, so a note's place is the zone it
+     is written under; a gift has no flag the save shows, so gifts do not
+     tick; a planned trainer (the Game Corner challenger before step 10)
+     has no tick until the main track creates it.
 
 ## Standing rules
 

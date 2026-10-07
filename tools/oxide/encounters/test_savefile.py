@@ -77,11 +77,13 @@ def footer(body, block, save_counter, block_counter, size):
 
 
 def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
-              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE):
+              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE, flags=()):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
     copy of each block is newer (0 leaves that copy's block unwritten).
     `normal_size` other than this build's makes a save on an older layout,
-    and `box_size` sets the box block, so the number of boxes."""
+    and `box_size` sets the box block, so the number of boxes. `flags` are
+    flag ids to set (a beaten trainer, a picked-up item), for the alpha
+    checklist's ticks."""
     NORMAL_SIZE, BOX_SIZE = normal_size, box_size
     n_boxes = (BOX_SIZE - S.FOOTER_SIZE - 5) // S.BOX_STRIDE
     data = bytearray(b"\xff" * 0x80000)
@@ -93,6 +95,8 @@ def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4
     lay = S._vars_layout()
     var = lay["values"]["VAR_LEVEL_CAP_SPLIT"] - lay["vars_start"]
     struct.pack_into("<H", normal, lay["at"] + 2 * var, split)
+    for n in flags:
+        normal[lay["at"] + 2 * lay["num_vars"] + n // 8] |= 1 << (n % 8)
     for i, rec in enumerate(party):
         normal[S.PARTY_AT + 8 + i * S.PARTY_RECORD:S.PARTY_AT + 8 + (i + 1) * S.PARTY_RECORD] = rec
     boxes = bytearray(BOX_SIZE - S.FOOTER_SIZE)
