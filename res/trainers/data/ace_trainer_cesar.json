@@ -10,18 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SCIZOR",
+            "species": "SPECIES_SKARMORY",
+            "form": 0,
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SPIKES",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_ROOST",
+                "MOVE_WHIRLWIND"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_FERROTHORN",
             "form": 0,
             "level": 51,
-            "item": null,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_METAL_CLAW",
-                "MOVE_X_SCISSOR",
-                "MOVE_SLASH",
-                "MOVE_PURSUIT"
+                "MOVE_IRON_HEAD",
+                "MOVE_SEED_BOMB",
+                "MOVE_KNOCK_OFF",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 235,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_HARD_STONE",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_IRON_HEAD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MAWILE",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_IRON_HEAD",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_FANG",
+                "MOVE_ICE_FANG"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_BLACK_BELT",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_CRUNCH",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_OCCA_BERRY",
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_U_TURN",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

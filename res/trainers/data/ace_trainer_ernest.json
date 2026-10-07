@@ -10,46 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SCIZOR",
-            "form": 0,
-            "level": 41,
-            "item": null,
-            "moves": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_IRON_HEAD",
-                "MOVE_X_SCISSOR"
-            ],
-            "iv_scale": 238,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_PROBOPASS",
             "form": 0,
-            "level": 41,
-            "item": null,
+            "level": 50,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
+                "MOVE_STEALTH_ROCK",
                 "MOVE_EARTH_POWER",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_FLASH_CANNON",
-                "MOVE_THUNDERBOLT"
+                "MOVE_POWER_GEM",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 239,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_METAL_COAT",
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_U_TURN",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 41,
-            "item": null,
+            "level": 51,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_POWER_GEM",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_ELECTIVIRE",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_THUNDER_PUNCH",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_OUTRAGE",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_ICE_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 244,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 51,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_AURA_SPHERE",
+                "MOVE_FLASH_CANNON",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_VACUUM_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_TRI_ATTACK",
+                "MOVE_MIRROR_COAT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

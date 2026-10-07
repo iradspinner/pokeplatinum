@@ -12,16 +12,35 @@
         {
             "species": "SPECIES_AIPOM",
             "form": 0,
-            "level": 25,
-            "item": null,
+            "level": 27,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_TICKLE",
                 "MOVE_FURY_SWIPES",
                 "MOVE_SWIFT",
+                "MOVE_COVET",
                 "MOVE_SCREECH"
             ],
-            "iv_scale": 152,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_AMBIPOM",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_SILK_SCARF",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_COVET",
+                "MOVE_SWIFT",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

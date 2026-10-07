@@ -178,6 +178,73 @@ def check_move_reworks(results):
                     f"Shell Trap {trap_no}/{trap_yes}; Burning Jealousy {calm} then {foe.status}"))
 
 
+def check_end_of_turn_order(results):
+    """The turn's end runs in the engine's speed order (BattleSystem_SortMonSpeedOrder)
+    and stops the moment a side is out of Pokemon, so with both last Pokemon
+    poisoned and low, the faster faints first and the slower survives; Trick
+    Room reverses it; a speed tie splits on a coin. Sand and hail strike every
+    Pokemon before any one's own conditions, and a move's sandstorm ends on
+    its fifth turn's end before striking, so it strikes four times."""
+    def poisoned(p_speed, b_speed, p_hp=5, b_hp=5, trick_room=0, weather=None, seed=1):
+        b, p, foe = battle(["Tackle"], ["Tackle"], {}, p_speed=p_speed, b_speed=b_speed, seed=seed)
+        p.hp, foe.hp, p.status, foe.status = p_hp, b_hp, "psn", "psn"
+        b.trick_room, b.weather = trick_room, weather
+        fs.end_of_turn(b)
+        return p.hp, foe.hp
+    faster = poisoned(100, 50)
+    slower = poisoned(50, 100)
+    room = poisoned(100, 50, trick_room=3)
+    ties = [poisoned(80, 80, seed=s) for s in range(200)]
+    p_first = sum(1 for p_hp, _f in ties if p_hp == 0)
+    # Sand before poison: the faster player's Pokemon takes sand (20 to 14),
+    # the trainer's faints to sand (5 to 0) and the battle ends before the
+    # player's poison.
+    sand = poisoned(100, 50, p_hp=20, b_hp=5, weather="Sand")
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    b.weather, b.weather_turns = "Sand", 5
+    for _ in range(5):
+        fs.end_of_turn(b)
+    storm = (100 - p.hp, b.weather)
+    ok = (faster == (0, 5) and slower == (5, 0) and room == (5, 0) and 70 <= p_first <= 130
+          and sand == (14, 0) and storm == (24, None))
+    results.append(("the turn's end runs in speed order, Trick Room reversed, and stops at the first wipe", ok,
+                    f"faster {faster}, slower {slower}, Trick Room {room}, ties: player first {p_first} of 200; "
+                    f"sand before poison {sand}; a five-turn sandstorm {storm}"))
+
+
+def check_ability_weather(results):
+    """Weather from an ability is permanent, as in the engine (subscript_drizzle
+    and its siblings set the _PERM field conditions); a move's weather counts
+    five turns and ends."""
+    b, p, foe = battle(["Tackle"], ["Tackle"], {})
+    p.ability = "Drizzle"
+    fs.switch_in(b, b.p, 0)
+    for _ in range(10):
+        fs.end_of_turn(b)
+    ability = (b.weather, b.weather_turns)
+    b2, p2, foe2 = battle(["Rain Dance"], ["Tackle"], {})
+    fs.status_move(b2, p2, fs.move("Rain Dance"), foe2, True)
+    for _ in range(5):
+        fs.end_of_turn(b2)
+    ok = ability == ("Rain", 0) and b2.weather is None
+    results.append(("an ability's weather is permanent; a move's lasts five turns", ok,
+                    f"Drizzle after ten turns {ability}; Rain Dance after five {b2.weather}"))
+
+
+def check_infiltrator(results):
+    """In fightsim's own attack, which double battles use: an Infiltrator
+    attacker's hit and added effect pass the target's Substitute, and
+    without Infiltrator the Substitute takes the hit and stops the effect."""
+    got = {}
+    for ability in ("Infiltrator", "Run Away"):
+        b, p, foe = battle(["Nuzzle"], ["Tackle"], {("p", "Nuzzle"): [20] * 16})
+        foe.ability, foe.sub, p.ability = "Battle Armor", 25, ability
+        fs.attack(b, p, fs.move("Nuzzle"), foe, True)
+        got[ability] = (100 - foe.hp, foe.sub, foe.status)
+    ok = got == {"Infiltrator": (20, 25, "par"), "Run Away": (0, 5, None)}
+    results.append(("Infiltrator passes a Substitute in fightsim's own attack", ok, str(got)))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -384,14 +451,36 @@ def check_sure(results):
                     f"{sorted(not_sure & set(sure))}"))
 
 
+def check_reward_items(results):
+    """A booster a trainer gives straight after the win is in the player's
+    stock from that trainer's split on, and not a split before, unless
+    another source gives that type's booster sooner."""
+    from tools.oxide.encounters import calc_trainers
+    from . import pool, splits
+    by_type = {i: t for t, items in pool.TYPE_ITEMS.items() for i in items}
+    rows, ok = [], True
+    for split, tr, it in splits.trainer_rewards():
+        t = by_type.get(calc_trainers._item_name(it))
+        if t is None or split not in pool.SPLITS:
+            continue
+        here = t in fs.player_items(split)["boosters"]
+        i = pool.SPLITS.index(split)
+        before = i > 0 and t in fs.player_items(pool.SPLITS[i - 1])["boosters"]
+        rows.append(f"{tr} {t} in {split}: {here}, before: {before}")
+        ok = ok and here
+    results.append(("a trainer's after-win booster joins the player's stock in its split", ok and bool(rows),
+                    "; ".join(rows) or "no booster among the rewards"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
                   check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
-                  check_move_reworks, check_status,
+                  check_move_reworks, check_infiltrator, check_ability_weather, check_end_of_turn_order,
+                  check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure):
+                  check_self_risk, check_sure, check_reward_items):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0

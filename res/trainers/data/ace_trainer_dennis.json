@@ -10,17 +10,17 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GLIGAR",
+            "species": "SPECIES_GLISCOR",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_KNOCK_OFF",
+                "MOVE_ICE_FANG",
                 "MOVE_U_TURN",
-                "MOVE_SLASH",
-                "MOVE_TAILWIND"
+                "MOVE_ROCK_SLIDE"
             ],
-            "iv_scale": 216,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -28,15 +28,31 @@
         {
             "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 37,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_ICE_PUNCH",
+                "MOVE_WATERFALL",
+                "MOVE_ICE_FANG",
                 "MOVE_CRUNCH",
-                "MOVE_AQUA_JET",
-                "MOVE_BRICK_BREAK"
+                "MOVE_AQUA_JET"
             ],
-            "iv_scale": 208,
+            "iv_scale": 240,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 37,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
             "gender": null
@@ -44,18 +60,18 @@
         {
             "species": "SPECIES_DRIFBLIM",
             "form": 0,
-            "level": 35,
-            "item": null,
+            "level": 38,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
+                "MOVE_SHADOW_BALL",
                 "MOVE_THUNDERBOLT",
-                "MOVE_WEATHER_BALL",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_OMINOUS_WIND"
+                "MOVE_WILL_O_WISP",
+                "MOVE_STOCKPILE"
             ],
-            "iv_scale": 197,
+            "iv_scale": 240,
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": [

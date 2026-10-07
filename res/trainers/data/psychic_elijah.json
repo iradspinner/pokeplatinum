@@ -9,18 +9,53 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_SPOINK",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_ICY_WIND",
+                "MOVE_PAYBACK",
+                "MOVE_MAGIC_COAT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
             "species": "SPECIES_WYNAUT",
             "form": 0,
-            "level": 17,
-            "item": null,
+            "level": 23,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_COUNTER",
                 "MOVE_MIRROR_COAT",
                 "MOVE_SAFEGUARD",
-                "MOVE_DESTINY_BOND"
+                "MOVE_ENCORE"
             ],
-            "iv_scale": 184,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_CONFUSION",
+                "MOVE_DISABLE",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
         }
     ],
     "messages": [

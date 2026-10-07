@@ -2,50 +2,75 @@
     "name": "Zach",
     "class": "TRAINER_CLASS_NINJA_BOY",
     "items": [],
-    "ai_flags": [ "AI_FLAG_BASIC", "AI_FLAG_EXPERT" ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EXPERT"
+    ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SHROOMISH",
+            "species": "SPECIES_NUZLEAF",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STUN_SPORE",
-                "MOVE_LEECH_SEED",
-                "MOVE_MEGA_DRAIN"
+                "MOVE_FAKE_OUT",
+                "MOVE_RAZOR_LEAF",
+                "MOVE_PAYBACK",
+                "MOVE_ROCK_TOMB"
             ],
-            "iv_scale": 138,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_PARAS",
+            "species": "SPECIES_PARASECT",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
+                "MOVE_LEECH_LIFE",
+                "MOVE_CROSS_POISON",
                 "MOVE_STUN_SPORE",
-                "MOVE_POISON_POWDER",
-                "MOVE_BUG_BITE",
-                "MOVE_SPORE"
+                "MOVE_SLASH"
             ],
-            "iv_scale": 153,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
-            "species": "SPECIES_SEEDOT",
+            "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 19,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_LEECH_SEED",
-                "MOVE_HARDEN",
+                "MOVE_MACH_PUNCH",
                 "MOVE_BULLET_SEED",
-                "MOVE_NATURE_POWER"
+                "MOVE_ROCK_TOMB",
+                "MOVE_HEADBUTT"
             ],
-            "iv_scale": 142,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NINJASK",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_LEECH_LIFE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_FURY_CUTTER",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

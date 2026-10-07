@@ -10,52 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RHYPERIOR",
-            "form": 0,
-            "level": 63,
-            "item": null,
-            "moves": [
-                "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_HAMMER_ARM",
-                "MOVE_POISON_JAB"
-            ],
-            "iv_scale": 236,
-            "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
             "species": "SPECIES_CRAWDAUNT",
             "form": 0,
-            "level": 63,
-            "item": null,
+            "level": 66,
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
                 "MOVE_CRABHAMMER",
                 "MOVE_NIGHT_SLASH",
                 "MOVE_BRICK_BREAK",
                 "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 237,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 63,
-            "item": null,
+            "level": 66,
+            "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FIRE_BLAST",
                 "MOVE_PSYCHIC",
                 "MOVE_FOCUS_BLAST",
                 "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_ELECTIVIRE",
+            "form": 0,
+            "level": 66,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_CROSS_CHOP",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 67,
+            "item": "ITEM_WACAN_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_FANG",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 66,
+            "item": "ITEM_NEVERMELTICE",
+            "moves": [
+                "MOVE_ICE_SHARD",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_RHYPERIOR",
+            "form": 0,
+            "level": 68,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

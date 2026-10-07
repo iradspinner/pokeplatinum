@@ -10,18 +10,52 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_ARM_THRUST",
+                "MOVE_VITAL_THROW",
+                "MOVE_ROCK_TOMB",
+                "MOVE_KNOCK_OFF"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MANKEY",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_KARATE_CHOP",
+                "MOVE_COVET",
+                "MOVE_LOW_KICK",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
             "species": "SPECIES_MACHOP",
             "form": 0,
-            "level": 10,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_LOW_KICK",
-                "MOVE_LEER",
                 "MOVE_KARATE_CHOP",
-                "MOVE_NONE"
+                "MOVE_LOW_KICK",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_LEER"
             ],
-            "iv_scale": 154,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

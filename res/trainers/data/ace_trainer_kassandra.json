@@ -12,44 +12,70 @@
         {
             "species": "SPECIES_JUMPLUFF",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_MEMENTO",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_TOXIC",
-                "MOVE_BOUNCE"
+                "MOVE_U_TURN",
+                "MOVE_LEECH_SEED",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_MEMENTO"
             ],
-            "iv_scale": 251,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE",
                 "MOVE_IRON_HEAD",
-                "MOVE_THUNDER_FANG"
+                "MOVE_STONE_EDGE",
+                "MOVE_ICE_FANG"
             ],
-            "iv_scale": 236,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         },
         {
             "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 60,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_MAGNET",
             "moves": [
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_THUNDERBOLT",
                 "MOVE_POWER_GEM",
                 "MOVE_SIGNAL_BEAM",
-                "MOVE_FIRE_PUNCH"
+                "MOVE_FOCUS_BLAST"
             ],
-            "iv_scale": 215,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         }
     ],
     "messages": [

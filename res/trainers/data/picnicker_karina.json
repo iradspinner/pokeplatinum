@@ -10,18 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PIPLUP",
+            "species": "SPECIES_PRINPLUP",
             "form": 0,
-            "level": 16,
-            "item": null,
+            "level": 25,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_BUBBLE",
+                "MOVE_BUBBLE_BEAM",
+                "MOVE_METAL_CLAW",
                 "MOVE_PECK",
-                "MOVE_YAWN",
-                "MOVE_NONE"
+                "MOVE_GROWL"
             ],
-            "iv_scale": 118,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_GROTLE",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BITE",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_WITHDRAW"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MARSHTOMP",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MUD_BOMB",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_WATER_GUN",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CROCONAW",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_ICE_FANG",
+                "MOVE_BITE",
+                "MOVE_WATER_GUN",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

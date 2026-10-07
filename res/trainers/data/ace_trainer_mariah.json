@@ -10,48 +10,106 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_GLALIE",
+            "form": 0,
+            "level": 66,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SPIKES",
+                "MOVE_ICE_SHARD",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
+        },
+        {
             "species": "SPECIES_BLISSEY",
             "form": 0,
-            "level": 63,
-            "item": null,
+            "level": 66,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_HYPER_BEAM",
+                "MOVE_ICE_BEAM",
                 "MOVE_SING",
                 "MOVE_SOFTBOILED",
                 "MOVE_LIGHT_SCREEN"
             ],
             "iv_scale": 255,
-            "ball_seal": 0
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
-            "species": "SPECIES_GLALIE",
+            "species": "SPECIES_DUSKNOIR",
             "form": 0,
-            "level": 63,
-            "item": null,
+            "level": 67,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_ICE_BEAM",
-                "MOVE_CRUNCH",
-                "MOVE_HEADBUTT",
-                "MOVE_SHADOW_BALL"
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_PUNCH",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 214,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_HIPPOWDON",
+            "form": 0,
+            "level": 66,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_SLACK_OFF"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 67,
+            "item": "ITEM_MYSTIC_WATER",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 63,
-            "item": null,
+            "level": 68,
+            "item": "ITEM_CHOPLE_BERRY",
             "moves": [
                 "MOVE_STONE_EDGE",
                 "MOVE_CRUNCH",
-                "MOVE_THUNDER_FANG",
-                "MOVE_EARTHQUAKE"
+                "MOVE_EARTHQUAKE",
+                "MOVE_DRAGON_DANCE"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 3,
-            "gender": null
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

@@ -10,13 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SENTRET",
+            "species": "SPECIES_SKITTY",
             "form": 0,
-            "level": 8,
-            "item": null,
-            "moves": null,
-            "iv_scale": 98,
-            "ball_seal": 0
+            "level": 16,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_TACKLE",
+                "MOVE_BABY_DOLL_EYES",
+                "MOVE_SING"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MEOWTH",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BITE",
+                "MOVE_FURY_SWIPES",
+                "MOVE_THIEF",
+                "MOVE_GROWL"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LUXIO",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_BITE",
+                "MOVE_LEER",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_FURRET",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_COVET",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_FURY_SWIPES",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

@@ -10,32 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAKUHITA",
-            "form": 0,
-            "level": 26,
-            "item": null,
-            "moves": [
-                "MOVE_WHIRLWIND",
-                "MOVE_KNOCK_OFF",
-                "MOVE_SMELLING_SALT",
-                "MOVE_BELLY_DRUM"
-            ],
-            "iv_scale": 144,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_RIOLU",
             "form": 0,
-            "level": 26,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_FORCE_PALM",
-                "MOVE_FEINT",
-                "MOVE_REVERSAL",
-                "MOVE_SCREECH"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_COUNTER",
+                "MOVE_SWIFT"
             ],
-            "iv_scale": 168,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SMELLING_SALT",
+                "MOVE_VITAL_THROW"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MEDITITE",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_FORCE_PALM"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_VITAL_THROW",
+                "MOVE_REVENGE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_BRICK_BREAK"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

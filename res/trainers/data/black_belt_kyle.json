@@ -10,18 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 29,
+            "level": 30,
             "item": null,
             "moves": [
-                "MOVE_FORESIGHT",
-                "MOVE_SEISMIC_TOSS",
-                "MOVE_REVENGE",
-                "MOVE_VITAL_THROW"
+                "MOVE_TRIPLE_KICK",
+                "MOVE_FAKE_OUT",
+                "MOVE_RAPID_SPIN",
+                "MOVE_ROLLING_KICK"
             ],
-            "iv_scale": 193,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_HITMONCHAN",
+            "form": 0,
+            "level": 30,
+            "item": null,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_MACH_PUNCH",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_REVENGE"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_MACHOKE",
+            "form": 0,
+            "level": 31,
+            "item": null,
+            "moves": [
+                "MOVE_BRICK_BREAK",
+                "MOVE_REVENGE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_POISON_JAB"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

@@ -1,7 +1,7 @@
 {
     "name": "Cyrus",
     "class": "TRAINER_CLASS_GALACTIC_BOSS",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -13,99 +13,104 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 58,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
-                "MOVE_STEEL_WING",
-                "MOVE_PLUCK",
-                "MOVE_TAILWIND"
+                "MOVE_SPIKES",
+                "MOVE_WHIRLWIND",
+                "MOVE_BRAVE_BIRD"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_IMPISH",
             "ball_seal": 0,
             "ability": 1,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 58,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_TRI_ATTACK",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 2,
             "gender": null
         },
         {
             "species": "SPECIES_DUSKNOIR",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_CHESTO_BERRY",
+            "level": 58,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SHADOW_PUNCH",
-                "MOVE_BRICK_BREAK",
-                "MOVE_MEAN_LOOK",
-                "MOVE_REST"
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_PUNCH",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_CHARCOAL",
+            "level": 58,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FLAMETHROWER",
+                "MOVE_DARK_PULSE",
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_WILL_O_WISP",
-                "MOVE_DARK_PULSE"
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 252,
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_SUICUNE",
             "form": 0,
-            "level": 57,
+            "level": 58,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_AQUA_RING",
-                "MOVE_CURSE",
-                "MOVE_WATERFALL",
-                "MOVE_AVALANCHE"
-            ],
-            "iv_scale": 253,
-            "nature": "NATURE_BOLD",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_MAGNEZONE",
-            "form": 0,
-            "level": 57,
-            "item": "ITEM_SHUCA_BERRY",
-            "moves": [
-                "MOVE_MAGNET_RISE",
-                "MOVE_FLASH_CANNON",
-                "MOVE_CHARGE_BEAM",
-                "MOVE_NATURAL_GIFT"
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_ROAR",
+                "MOVE_TOXIC"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 0,
             "gender": null
         },
         {
             "species": "SPECIES_WEAVILE",
             "form": 0,
-            "level": 58,
-            "item": "ITEM_NEVERMELTICE",
+            "level": 60,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_NIGHT_SLASH",
                 "MOVE_ICE_PUNCH",
                 "MOVE_ICE_SHARD",
                 "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 228,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": [

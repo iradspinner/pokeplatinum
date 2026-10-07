@@ -10,46 +10,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NINCADA",
+            "species": "SPECIES_YANMA",
             "form": 0,
-            "level": 17,
+            "level": 23,
             "item": null,
             "moves": [
-                "MOVE_HARDEN",
-                "MOVE_LEECH_LIFE",
-                "MOVE_SAND_ATTACK",
-                "MOVE_FURY_SWIPES"
+                "MOVE_QUICK_ATTACK",
+                "MOVE_SONIC_BOOM",
+                "MOVE_ENDURE",
+                "MOVE_SCREECH"
             ],
-            "iv_scale": 106,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_BUTTERFREE",
-            "form": 0,
-            "level": 17,
-            "item": null,
-            "moves": [
-                "MOVE_POISON_POWDER",
-                "MOVE_CONFUSION",
-                "MOVE_SLEEP_POWDER",
-                "MOVE_GUST"
-            ],
-            "iv_scale": 136,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_DUSTOX",
             "form": 0,
-            "level": 19,
+            "level": 23,
             "item": null,
             "moves": [
-                "MOVE_BUG_BITE",
                 "MOVE_CONFUSION",
                 "MOVE_GUST",
+                "MOVE_POISON_STING",
                 "MOVE_PROTECT"
             ],
-            "iv_scale": 136,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NINJASK",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": [
+                "MOVE_LEECH_LIFE",
+                "MOVE_FURY_CUTTER",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         }
     ],
     "messages": [

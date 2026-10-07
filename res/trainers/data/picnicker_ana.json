@@ -10,18 +10,36 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NOCTOWL",
+            "species": "SPECIES_HOOTHOOT",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 27,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_PECK",
+                "MOVE_CONFUSION",
                 "MOVE_UPROAR",
-                "MOVE_REFLECT",
-                "MOVE_CONFUSION"
+                "MOVE_REFLECT"
             ],
-            "iv_scale": 172,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_NOCTOWL",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_UPROAR",
+                "MOVE_CONFUSION",
+                "MOVE_AIR_CUTTER",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

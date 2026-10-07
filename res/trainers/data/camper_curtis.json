@@ -10,32 +10,68 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DODUO",
+            "species": "SPECIES_NIDORAN_F",
             "form": 0,
-            "level": 10,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_PECK",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_RAGE"
+                "MOVE_DOUBLE_KICK",
+                "MOVE_POISON_STING",
+                "MOVE_SCRATCH",
+                "MOVE_CHARM"
             ],
-            "iv_scale": 139,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_NIDORAN_M",
             "form": 0,
-            "level": 10,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_LEER",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_POISON_STING",
                 "MOVE_PECK",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_DOUBLE_KICK"
+                "MOVE_LEER"
             ],
-            "iv_scale": 128,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ROSELIA",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MEGA_DRAIN",
+                "MOVE_POISON_STING",
+                "MOVE_STUN_SPORE",
+                "MOVE_COTTON_SPORE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_QWILFISH",
+            "form": 0,
+            "level": 13,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_POISON_STING",
+                "MOVE_WATER_GUN",
+                "MOVE_TACKLE",
+                "MOVE_HARDEN"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

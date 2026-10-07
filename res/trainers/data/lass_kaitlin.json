@@ -10,60 +10,85 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GROWLITHE",
+            "species": "SPECIES_EKANS",
             "form": 0,
-            "level": 7,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_BITE",
-                "MOVE_ROAR",
-                "MOVE_EMBER",
-                "MOVE_NONE"
+                "MOVE_POISON_STING",
+                "MOVE_GLARE",
+                "MOVE_LEER"
             ],
-            "iv_scale": 123,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
-            "species": "SPECIES_SUNKERN",
+            "species": "SPECIES_GROWLITHE",
             "form": 0,
-            "level": 7,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_MEGA_DRAIN",
-                "MOVE_GROWTH",
-                "MOVE_NONE",
-                "MOVE_NONE"
+                "MOVE_EMBER",
+                "MOVE_BITE",
+                "MOVE_LEER",
+                "MOVE_WILL_O_WISP"
             ],
-            "iv_scale": 137,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_SNUBBULL",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BITE",
+                "MOVE_THUNDER_FANG",
+                "MOVE_CHARM",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
         },
         {
             "species": "SPECIES_TAILLOW",
             "form": 0,
-            "level": 7,
-            "item": null,
+            "level": 13,
+            "item": "ITEM_NONE",
             "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK",
                 "MOVE_PECK",
-                "MOVE_GROWL",
-                "MOVE_FOCUS_ENERGY",
-                "MOVE_NONE"
+                "MOVE_GROWL"
             ],
-            "iv_scale": 138,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_SPOINK",
             "form": 0,
-            "level": 7,
-            "item": null,
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
-                "MOVE_HIDDEN_POWER",
-                "MOVE_PSYWAVE",
-                "MOVE_NONE",
-                "MOVE_NONE"
+                "MOVE_PSYBEAM",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_ICY_WIND",
+                "MOVE_PAYBACK"
             ],
-            "iv_scale": 119,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

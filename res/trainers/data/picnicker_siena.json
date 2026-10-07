@@ -11,32 +11,85 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZIGZAGOON",
+            "species": "SPECIES_PLUSLE",
             "form": 0,
-            "level": 15,
-            "item": null,
+            "level": 23,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_SAND_ATTACK",
-                "MOVE_TICKLE",
-                "MOVE_NONE",
-                "MOVE_HEADBUTT"
+                "MOVE_SPARK",
+                "MOVE_HELPING_HAND",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 116,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LINOONE",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_HEADBUTT",
+                "MOVE_PURSUIT",
+                "MOVE_TAIL_WHIP",
+                "MOVE_GROWL"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_ELECTRIKE",
             "form": 0,
-            "level": 15,
-            "item": null,
+            "level": 24,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_THUNDER_FANG",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_LEER",
-                "MOVE_HOWL"
+                "MOVE_SPARK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_HOWL",
+                "MOVE_SIGNAL_BEAM"
             ],
-            "iv_scale": 114,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_BITE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LUXIO",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_MAGNET",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_BITE",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_LEER"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [
