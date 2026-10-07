@@ -638,6 +638,21 @@ def rework_checks():
                 and {"RECOIL_CONFUSE_HIT", "UPPER_HAND", "BURN_HIT_IF_STATS_ROSE"} <= fs.sheer_force_effects(),
                 f"{sf}; Upper Hand flinch {foe.flinch}"))
 
+    # Reckless: the game raises every effect it lists by 1.2; the simulator
+    # adds it where the calculator's row lacks it (Hyper Beam now), not where
+    # the row has it (Brave Bird), and never without Reckless.
+    reck = {}
+    for name, ability in (("Hyper Beam", "Reckless"), ("Brave Bird", "Reckless"), ("Hyper Beam", "Intimidate")):
+        b, p, foe = fresh([name], roll=40, hp=200)
+        p.ability = ability
+        pl.attack(b, p, fs.move(name), foe, True)
+        reck[f"{name} {ability}"] = 200 - foe.hp
+    want_effects = {"RECOIL_HALF", "RECOIL_BURN_HIT", "RECOIL_PARALYZE_HIT", "RECOIL_CONFUSE_HIT", "RECOIL_THIRD",
+                    "RECOIL_QUARTER", "CRASH_ON_MISS"}
+    out.append(("Reckless raises the reworked recoil moves the calculator leaves unboosted",
+                reck == {"Hyper Beam Reckless": 48, "Brave Bird Reckless": 40, "Hyper Beam Intimidate": 40}
+                and want_effects <= fs.reckless_effects(), f"{reck}; effects {sorted(fs.reckless_effects())}"))
+
     # Priority as the engine reckons it: Prankster on a status move, Gale
     # Wings on a Flying move at full HP.
     b, p, foe = fresh(["Tackle"])
@@ -651,6 +666,37 @@ def rework_checks():
                 (prank, gale, gale_hurt) == (1, 1, 0), f"Prankster Thunder Wave {prank}, Gale Wings {gale}, "
                                                        f"hurt {gale_hurt}"))
     return out
+
+
+def reckless_calc_checks():
+    """Every move on an effect the game raises for Reckless deals 1.2 times
+    as much with Reckless, the calculator's own boost and the simulator's
+    (fs.reckless_fix) together: re-measured on the calculator, one level 100
+    Staraptor with Reckless against the same with Intimidate. Catches the
+    day the calculator learns a move's recoil, which would double the boost."""
+    import types
+    from . import pressure, teamscore
+    by_name = fs._by_calc_name()[0]
+    moves = sorted(n for n, r in by_name.items() if (r.get("effect") or "") in fs.reckless_effects() and r.get("power"))
+    ivs = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    mon = {"species": "Staraptor", "level": 100, "nature": "Hardy", "ivs": ivs, "evs": dict.fromkeys(ivs, 0), "item": ""}
+    jobs = {"pokemon": {"r": dict(mon, ability="Reckless"), "i": dict(mon, ability="Intimidate"),
+                        "t": dict(mon, species="Snorlax", level=50, ability="Thick Fat")},
+            "pairs": [["r", "t", moves, None], ["i", "t", moves, None]]}
+    rows = {r["a"]: r["moves"] for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+    reckless = types.SimpleNamespace(ability="Reckless")
+    off, small = [], []
+    for n in moves:
+        a, p = rows["r"].get(n, {}), rows["i"].get(n, {})
+        if not a.get("rolls") or not p.get("rolls") or p["rolls"][-1] < 60:
+            small.append(n)
+            continue
+        ratio = a["rolls"][-1] / p["rolls"][-1] * fs.reckless_fix(reckless, fs.move(n))
+        if abs(ratio - 1.2) > 0.03:
+            off.append(f"{n} {ratio:.3f}")
+    return [("Reckless: the calculator's boost and the simulator's come to 1.2 on every move it raises",
+             not off and len(moves) - len(small) >= 20,
+             f"{len(moves) - len(small)} moves measured; off {off}; too small to measure {small}")]
 
 
 def trick_room_checks():
@@ -831,6 +877,7 @@ def study_effect_checks():
     out += map_weather_checks()
     out += trick_room_checks()
     out += rework_checks()
+    out += reckless_calc_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

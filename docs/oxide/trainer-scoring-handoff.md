@@ -52,10 +52,16 @@ Jealousy, Sheer Force's strip read from the game's list, and turn order with
 Prankster and Gale Wings. The AI mirror follows the game: since
 2026-10-07 it rates a move of several hits on its expected hits (3.1 for a
 two to five hit move, 5 under Skill Link; Fury Cutter, Triple Kick and
-Triple Axel on their three hits), and Bone Rush is at 100%. Every stored
+Triple Axel on their three hits), and Bone Rush is at 100%. Reckless raises
+the newly recoiling moves by 1.2, as the game's effect scripts do; the
+OxiDex calculator still misses it for them, so the simulator adds it, and a
+check re-measures the calculator so the two never stack. Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
-small: Reckless on the newly recoiling moves, contact effects per hit of a
-multi-hit move. Next: nothing queued.
+small: contact effects per hit of a multi-hit move. Goal 3's preflight
+passed (2026-10-07): with a learnset change planted in an extracted copy,
+both box builders read it from the copy and not from this branch, once
+goal 2's builder (in `~/oxide-trials/three-gym-run`) stopped naming this
+worktree as its root. Next: nothing queued.
 
 | Step | Takes |
 |---|---|

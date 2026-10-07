@@ -998,7 +998,7 @@ def attack(b, att, mv, dfn, first):
         dmg = b.damage(att, dfn, mv, crit=crit)
         if dmg is None:
             return
-        dmg = scale_hits(att, mv, dmg, hits)
+        dmg = use_damage(att, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "DOUBLE_POWER_WHEN_STATUSED" and att.status:
@@ -1505,6 +1505,54 @@ def move_fails_first(att, mv, dfn, first):
     return False
 
 
+@functools.lru_cache(maxsize=None)
+def reckless_effects():
+    """The effects whose power Reckless raises by 1.2 in the game: every
+    effect script that sets BTLVAR_POWER_MULTI to 12 for ABILITY_RECKLESS
+    (battle_lib.c applies it as power * 12 / 10), named by its number in
+    generated/move_battle_effects.txt. Since the move reworks these include
+    Hyper Beam's kin, the starter ultimates, Sky Attack, Thrash, Outrage and
+    Raging Fury."""
+    with open(os.path.join(data.ROOT, "generated", "move_battle_effects.txt"), encoding="utf-8") as fh:
+        names = [line.strip()[len("BATTLE_EFFECT_"):] for line in fh if line.strip()]
+    out = set()
+    scripts = os.path.join(data.ROOT, "res", "battle", "scripts", "effects")
+    for fn in os.listdir(scripts):
+        m = re.fullmatch(r"effect_script_(\d+)\.s", fn)
+        if m and int(m.group(1)) < len(names):
+            with open(os.path.join(scripts, fn), encoding="utf-8") as fh:
+                if "ABILITY_RECKLESS" in fh.read():
+                    out.add(names[int(m.group(1))])
+    return frozenset(out)
+
+
+# The moves whose Reckless boost the OxiDex calculator already gives (its own
+# move data marks them as recoil or crash moves), measured 2026-10-07 by
+# costing each move on a Reckless effect for one Staraptor with Reckless and
+# with Intimidate (test_plfixes re-measures it). The rest the simulator
+# raises itself. When the calculator learns the reworked moves' recoil, the
+# check fails and a move moves into this list.
+CALC_RECKLESS = frozenset({
+    "Axe Kick", "Brave Bird", "Double-Edge", "Flare Blitz", "Head Charge", "Head Smash", "High Jump Kick",
+    "Jump Kick", "Light of Ruin", "Submission", "Supercell Slam", "Take Down", "Volt Tackle", "Wave Crash",
+    "Wild Charge", "Wood Hammer"})
+
+
+def reckless_fix(att, mv):
+    """The 1.2 Reckless gives a move the calculator's row leaves unboosted."""
+    if att.ability == "Reckless" and mv.effect in reckless_effects() and mv.name not in CALC_RECKLESS:
+        return 1.2
+    return 1.0
+
+
+def use_damage(att, mv, dmg, hits):
+    """A row's damage as this use deals it: its hits (scale_hits) and the
+    Reckless boost the calculator misses (reckless_fix)."""
+    dmg = scale_hits(att, mv, dmg, hits)
+    fix = reckless_fix(att, mv)
+    return dmg if fix == 1.0 else int(dmg * fix)
+
+
 def scale_hits(att, mv, dmg, hits):
     """A row's damage for the hits this use rolled: a two to five hit move's
     row counts row_hits hits, Fury Cutter's its first."""
@@ -1927,7 +1975,7 @@ def exp_damage(b, att, dfn, mv):
     r = b.rolls(att, dfn, mv)
     if r is None:
         return 0.0
-    d = (b.damage(att, dfn, mv, roll=len(r) // 2) or 0) * expected_hit_scale(mv)
+    d = (b.damage(att, dfn, mv, roll=len(r) // 2) or 0) * expected_hit_scale(mv) * reckless_fix(att, mv)
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     if mv.effect in TWO_TURN or mv.effect == "RECHARGE_AFTER":
         d /= 2
