@@ -8,13 +8,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGIKARP",
+            "species": "SPECIES_WINGULL",
             "form": 0,
-            "level": 11,
-            "item": null,
-            "moves": null,
-            "iv_scale": 100,
-            "ball_seal": 0
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_WATER_PULSE",
+                "MOVE_SUPERSONIC",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LOTAD",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_BULLET_SEED",
+                "MOVE_WATER_GUN",
+                "MOVE_LEECH_SEED",
+                "MOVE_SWEET_SCENT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PSYDUCK",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_PSYBEAM",
+                "MOVE_DISABLE",
+                "MOVE_SCRATCH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BARBOACH",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_WHIRLPOOL",
+                "MOVE_MUD_BOMB",
+                "MOVE_WATER_PULSE",
+                "MOVE_AMNESIA"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

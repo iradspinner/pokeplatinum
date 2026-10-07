@@ -12,16 +12,34 @@
         {
             "species": "SPECIES_SLOWPOKE",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 27,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_GROWL",
-                "MOVE_WATER_GUN",
                 "MOVE_CONFUSION",
-                "MOVE_DISABLE"
+                "MOVE_WATER_PULSE",
+                "MOVE_YAWN",
+                "MOVE_HEADBUTT"
             ],
-            "iv_scale": 149,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CLEFAIRY",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_FOLLOW_ME",
+                "MOVE_HELPING_HAND",
+                "MOVE_ENCORE",
+                "MOVE_MAGICAL_LEAF"
+            ],
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

@@ -10,32 +10,53 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STUNKY",
-            "form": 0,
-            "level": 24,
-            "item": null,
-            "moves": [
-                "MOVE_POISON_GAS",
-                "MOVE_SMOKE_SCREEN",
-                "MOVE_FEINT",
-                "MOVE_SLASH"
-            ],
-            "iv_scale": 185,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_KOFFING",
             "form": 0,
             "level": 24,
-            "item": null,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_SMOKE_SCREEN",
+                "MOVE_SMOG",
                 "MOVE_ASSURANCE",
-                "MOVE_SELFDESTRUCT",
-                "MOVE_SLUDGE"
+                "MOVE_TOXIC",
+                "MOVE_SCREECH"
             ],
-            "iv_scale": 148,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ZUBAT",
+            "form": 0,
+            "level": 23,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_LEECH_LIFE",
+                "MOVE_BITE",
+                "MOVE_SUPERSONIC",
+                "MOVE_ASTONISH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_STUNKY",
+            "form": 0,
+            "level": 24,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_LEER",
+                "MOVE_FURY_SWIPES",
+                "MOVE_PURSUIT",
+                "MOVE_SLASH"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

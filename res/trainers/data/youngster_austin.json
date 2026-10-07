@@ -12,44 +12,51 @@
         {
             "species": "SPECIES_BUIZEL",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_NONE",
             "moves": [
-                "MOVE_WATER_GUN",
+                "MOVE_AQUA_JET",
+                "MOVE_CHILLING_WATER",
                 "MOVE_PURSUIT",
-                "MOVE_SWIFT",
-                "MOVE_AQUA_JET"
+                "MOVE_SWIFT"
             ],
-            "iv_scale": 151,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_LUXIO",
-            "form": 0,
-            "level": 24,
-            "item": null,
-            "moves": [
-                "MOVE_CHARGE",
-                "MOVE_SPARK",
-                "MOVE_BITE",
-                "MOVE_ROAR"
-            ],
-            "iv_scale": 165,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
         },
         {
             "species": "SPECIES_GLIGAR",
             "form": 0,
-            "level": 24,
-            "item": null,
+            "level": 28,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_KNOCK_OFF",
                 "MOVE_QUICK_ATTACK",
                 "MOVE_DIG",
                 "MOVE_FAINT_ATTACK"
             ],
-            "iv_scale": 178,
-            "ball_seal": 0
+            "iv_scale": 220,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_LUXIO",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_BITE",
+                "MOVE_ICE_FANG",
+                "MOVE_ROAR"
+            ],
+            "iv_scale": 220,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

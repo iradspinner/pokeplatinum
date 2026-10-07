@@ -10,13 +10,69 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_SHELLOS",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_RINDO_BERRY",
+            "moves": [
+                "MOVE_MUD_BOMB",
+                "MOVE_WATER_PULSE",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_HARDEN"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": null
+        },
+        {
             "species": "SPECIES_BUDEW",
             "form": 0,
-            "level": 8,
-            "item": null,
-            "moves": null,
-            "iv_scale": 105,
-            "ball_seal": 0
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_STUN_SPORE",
+                "MOVE_BULLET_SEED",
+                "MOVE_COTTON_SPORE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PONYTA",
+            "form": 0,
+            "level": 17,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_FLAME_WHEEL",
+                "MOVE_DOUBLE_KICK",
+                "MOVE_CHARM",
+                "MOVE_CHARM"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_VULPIX",
+            "form": 0,
+            "level": 18,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_EMBER",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [

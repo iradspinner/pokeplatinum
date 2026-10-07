@@ -25,8 +25,9 @@ UNKNOWN_MOVES = {"unbound": {"Leech Fang"}}
 # fight in the Barry split (Ian, 2026-09-27), the rest of the Battle Zone
 # (73 in all) until it came down 18 levels on 2026-09-25, and Officers Somnu
 # and Moira at Lake Verity (18) until they became a story fight on
-# 2026-09-29.
-LATE_VISITS = 16
+# 2026-09-29. Since the Kaizo comb (step 12, 2026-10-07) 22: its levels put
+# six more teams in a later split than their map's, the one B6 places them in.
+LATE_VISITS = 22
 
 
 def check_coverage(results):

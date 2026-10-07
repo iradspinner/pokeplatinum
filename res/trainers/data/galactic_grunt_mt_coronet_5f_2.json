@@ -13,74 +13,78 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SWALOT",
+            "species": "SPECIES_JUMPLUFF",
             "form": 0,
-            "level": 55,
-            "item": "ITEM_STARF_BERRY",
+            "level": 62,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_AMNESIA",
-                "MOVE_GUNK_SHOT",
-                "MOVE_ENCORE",
-                "MOVE_YAWN"
+                "MOVE_SLEEP_POWDER",
+                "MOVE_U_TURN",
+                "MOVE_LEECH_SEED",
+                "MOVE_ENCORE"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SWALOT",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DESTINY_BOND",
+                "MOVE_ENCORE",
+                "MOVE_TOXIC"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_HYPNO",
             "form": 0,
-            "level": 55,
+            "level": 62,
             "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_FLATTER",
                 "MOVE_HYPNOSIS",
                 "MOVE_DREAM_EATER",
-                "MOVE_DRAIN_PUNCH"
+                "MOVE_PSYCHIC",
+                "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 252,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_JUMPLUFF",
-            "form": 0,
-            "level": 52,
-            "item": "ITEM_YACHE_BERRY",
-            "moves": [
-                "MOVE_COTTON_SPORE",
-                "MOVE_U_TURN",
-                "MOVE_SLEEP_POWDER",
-                "MOVE_LEECH_SEED"
-            ],
-            "iv_scale": 251,
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_STANTLER",
             "form": 0,
-            "level": 54,
+            "level": 62,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_HYPNOSIS",
-                "MOVE_RETURN",
-                "MOVE_MEGAHORN",
-                "MOVE_DREAM_EATER"
+                "MOVE_TAKE_DOWN",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SUCKER_PUNCH"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_DARKRAI",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_WIDE_LENS",
+            "level": 63,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_DARK_VOID",
                 "MOVE_DREAM_EATER",
@@ -88,25 +92,27 @@
                 "MOVE_FOCUS_BLAST"
             ],
             "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 0,
             "gender": null
         },
         {
             "species": "SPECIES_WHISCASH",
             "form": 0,
-            "level": 56,
-            "item": "ITEM_WAVE_INCENSE",
+            "level": 64,
+            "item": "ITEM_WACAN_BERRY",
             "moves": [
-                "MOVE_DRAGON_DANCE",
-                "MOVE_AQUA_TAIL",
+                "MOVE_WATERFALL",
                 "MOVE_EARTHQUAKE",
-                "MOVE_AMNESIA"
+                "MOVE_STONE_EDGE",
+                "MOVE_ZEN_HEADBUTT"
             ],
-            "iv_scale": 233,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "female"
         }
     ],
     "messages": [

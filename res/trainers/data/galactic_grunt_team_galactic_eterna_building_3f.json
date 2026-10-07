@@ -13,66 +13,70 @@
         {
             "species": "SPECIES_SNOVER",
             "form": 0,
-            "level": 24,
+            "level": 25,
             "item": "ITEM_QUICK_CLAW",
             "moves": [
-                "MOVE_SWAGGER",
-                "MOVE_GRASS_WHISTLE",
-                "MOVE_SWORDS_DANCE",
-                "MOVE_AVALANCHE"
+                "MOVE_RAZOR_LEAF",
+                "MOVE_ICY_WIND",
+                "MOVE_AVALANCHE",
+                "MOVE_GRASS_WHISTLE"
             ],
-            "iv_scale": 116,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 3,
-            "gender": null
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_SWINUB",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_SALAC_BERRY",
+            "moves": [
+                "MOVE_ENDURE",
+                "MOVE_MUD_BOMB",
+                "MOVE_ICY_WIND",
+                "MOVE_TAKE_DOWN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "female"
         },
         {
             "species": "SPECIES_SLOWPOKE",
             "form": 0,
             "level": 25,
-            "item": "ITEM_NONE",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_REST",
-                "MOVE_FUTURE_SIGHT",
                 "MOVE_BLIZZARD",
-                "MOVE_SLEEP_TALK"
+                "MOVE_WATER_PULSE",
+                "MOVE_CONFUSION",
+                "MOVE_DISABLE"
             ],
-            "iv_scale": 197,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SWINUB",
-            "form": 0,
-            "level": 26,
-            "item": "ITEM_SALAC_BERRY",
-            "moves": [
-                "MOVE_ICE_SHARD",
-                "MOVE_SUPERPOWER",
-                "MOVE_DIG",
-                "MOVE_ENDURE"
-            ],
-            "iv_scale": 141,
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "gender": "female"
         },
         {
             "species": "SPECIES_KIRLIA",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_CALM_MIND",
+                "MOVE_PSYCHIC",
                 "MOVE_ICY_WIND",
-                "MOVE_PSYCHIC"
+                "MOVE_CALM_MIND",
+                "MOVE_MAGICAL_LEAF"
             ],
-            "iv_scale": 202,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "female"
         }
     ],
     "messages": [

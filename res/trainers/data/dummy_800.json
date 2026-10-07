@@ -16,62 +16,82 @@
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
-                "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_MIRROR_COAT"
+                "MOVE_BOUNCE",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 159,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_SWIFT",
+                "MOVE_CHARM",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_VAPOREON",
             "form": 0,
             "level": 29,
-            "item": "ITEM_SPLASH_PLATE",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_WATER_PULSE",
-                "MOVE_ROAR",
-                "MOVE_FAKE_TEARS",
-                "MOVE_YAWN"
+                "MOVE_ICE_BEAM",
+                "MOVE_BITE",
+                "MOVE_WISH"
             ],
-            "iv_scale": 175,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_ELECTABUZZ",
             "form": 0,
-            "level": 30,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 29,
+            "item": "ITEM_MAGNET",
             "moves": [
                 "MOVE_THUNDER_PUNCH",
                 "MOVE_LOW_KICK",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_SUBSTITUTE"
+                "MOVE_FIRE_PUNCH",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 194,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_GROTLE",
             "form": 0,
             "level": 30,
-            "item": "ITEM_QUICK_CLAW",
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
                 "MOVE_RAZOR_LEAF",
-                "MOVE_STEALTH_ROCK",
-                "MOVE_HEADBUTT",
-                "MOVE_SYNTHESIS"
+                "MOVE_BITE",
+                "MOVE_CURSE",
+                "MOVE_GIGA_DRAIN"
             ],
-            "iv_scale": 170,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": []

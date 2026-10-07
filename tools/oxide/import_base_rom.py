@@ -613,6 +613,14 @@ for _stem in (
 ):
     # Beside any field already diverged (Stefan's and Meagan's Battle Zone levels).
     TRAINERS_DIVERGED.setdefault(_stem, {})["ability"] = _WEATHER_HIDDEN
+# The Kaizo comb's teams (alpha readiness step 12; Ian, 2026-10-07, copied as
+# drafted) are listed in trainers_combed.txt beside this file: "party" is
+# left alone on each.
+_COMBED = "the Kaizo comb's team, alpha readiness step 12 (Ian, 2026-10-07)"
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "trainers_combed.txt"),
+          encoding="utf-8") as _f:
+    for _stem in (line.strip() for line in _f if line.strip() and not line.startswith("#")):
+        TRAINERS_DIVERGED.setdefault(_stem, {})["party"] = _COMBED
 # Trainers edited in the encounter tool's team builder (encounter build plan
 # item 28) are listed in trainers_diverged.json beside this file, which the
 # builder writes on every save, so a save never edits this code. The same

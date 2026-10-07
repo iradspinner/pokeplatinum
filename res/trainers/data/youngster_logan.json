@@ -10,18 +10,64 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BURMY",
+            "species": "SPECIES_WEEDLE",
             "form": 0,
-            "level": 7,
+            "level": 8,
             "item": null,
             "moves": [
-                "MOVE_PROTECT",
-                "MOVE_BUG_BITE",
-                "MOVE_STRING_SHOT",
-                "MOVE_NONE"
+                "MOVE_POISON_STING",
+                "MOVE_STRING_SHOT"
             ],
-            "iv_scale": 112,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_WURMPLE",
+            "form": 0,
+            "level": 8,
+            "item": null,
+            "moves": [
+                "MOVE_POISON_STING",
+                "MOVE_TACKLE",
+                "MOVE_STUN_SPORE"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_KAKUNA",
+            "form": 0,
+            "level": 9,
+            "item": null,
+            "moves": [
+                "MOVE_POISON_STING",
+                "MOVE_HARDEN",
+                "MOVE_STRING_SHOT"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BEEDRILL",
+            "form": 0,
+            "level": 10,
+            "item": null,
+            "moves": [
+                "MOVE_SWIFT",
+                "MOVE_POISON_STING",
+                "MOVE_STRING_SHOT",
+                "MOVE_HARDEN"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

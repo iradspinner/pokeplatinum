@@ -1,7 +1,7 @@
 {
     "name": "Gardenia",
     "class": "TRAINER_CLASS_LEADER_GARDENIA",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,49 +11,52 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHERRIM",
+            "species": "SPECIES_ROSELIA",
             "form": 0,
-            "level": 25,
-            "item": "ITEM_HEAT_ROCK",
+            "level": 24,
+            "item": "ITEM_BLACK_SLUDGE",
             "moves": [
-                "MOVE_SOLAR_BEAM",
-                "MOVE_LEECH_SEED",
-                "MOVE_SUNNY_DAY",
-                "MOVE_WEATHER_BALL"
+                "MOVE_SPIKES",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_EXTRASENSORY"
             ],
-            "iv_scale": 235,
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
         },
         {
-            "species": "SPECIES_LUMINEON",
+            "species": "SPECIES_LUDICOLO",
             "form": 0,
             "level": 25,
-            "item": "ITEM_WATMEL_BERRY",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_AQUA_TAIL",
-                "MOVE_NATURAL_GIFT",
-                "MOVE_SILVER_WIND",
-                "MOVE_SWAGGER"
+                "MOVE_ICE_BEAM",
+                "MOVE_WATER_PULSE",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 254,
+            "iv_scale": 255,
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": "male"
+            "ability": 1,
+            "gender": "female"
         },
         {
-            "species": "SPECIES_SHIFTRY",
+            "species": "SPECIES_EXEGGUTOR",
             "form": 0,
             "level": 25,
-            "item": "ITEM_OCCA_BERRY",
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_SOLAR_BEAM",
-                "MOVE_ROCK_TOMB",
-                "MOVE_NATURAL_GIFT",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_PSYCHIC",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_LEECH_SEED"
             ],
-            "iv_scale": 243,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": "male"
@@ -62,30 +65,32 @@
             "species": "SPECIES_BRELOOM",
             "form": 0,
             "level": 25,
-            "item": "ITEM_LUM_BERRY",
+            "item": "ITEM_COBA_BERRY",
             "moves": [
                 "MOVE_MACH_PUNCH",
+                "MOVE_ROCK_TOMB",
                 "MOVE_BULLET_SEED",
-                "MOVE_STUN_SPORE",
-                "MOVE_ROCK_TOMB"
+                "MOVE_STUN_SPORE"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 2,
+            "ability": 1,
             "gender": "female"
         },
         {
             "species": "SPECIES_ROSERADE",
             "form": 0,
             "level": 26,
-            "item": "ITEM_POISON_BARB",
+            "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_WEATHER_BALL",
-                "MOVE_STUN_SPORE"
+                "MOVE_GIGA_DRAIN",
+                "MOVE_SHADOW_BALL",
+                "MOVE_COTTON_SPORE"
             ],
-            "iv_scale": 244,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"

@@ -10,46 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CACTURNE",
+            "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_CHARCOAL",
             "moves": [
-                "MOVE_SEED_BOMB",
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_DESTINY_BOND"
+                "MOVE_FLAMETHROWER",
+                "MOVE_ENERGY_BALL",
+                "MOVE_WILL_O_WISP",
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 246,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
             "species": "SPECIES_RAICHU",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_MAGNET",
             "moves": [
+                "MOVE_THUNDERBOLT",
                 "MOVE_GRASS_KNOT",
-                "MOVE_HIDDEN_POWER",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_THUNDER"
+                "MOVE_FOCUS_BLAST",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 243,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         },
         {
-            "species": "SPECIES_NINETALES",
+            "species": "SPECIES_CACTURNE",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_MIRACLE_SEED",
             "moves": [
-                "MOVE_FIRE_BLAST",
-                "MOVE_WILL_O_WISP",
-                "MOVE_ENERGY_BALL",
-                "MOVE_CALM_MIND"
+                "MOVE_SEED_BOMB",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 251,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_VAPOREON",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_WISH",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_BLACK_SLUDGE",
+            "moves": [
+                "MOVE_POISON_JAB",
+                "MOVE_CROSS_CHOP",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_LEAFEON",
+            "form": 0,
+            "level": 64,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_X_SCISSOR",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "female"
         }
     ],
     "messages": [

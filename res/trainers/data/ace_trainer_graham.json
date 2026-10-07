@@ -10,52 +10,106 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HITMONLEE",
+            "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_ENDURE",
-                "MOVE_REVERSAL",
+                "MOVE_FAKE_OUT",
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_BLAZE_KICK"
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 249,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_BLACK_BELT",
             "moves": [
-                "MOVE_MEGA_PUNCH",
+                "MOVE_DRAIN_PUNCH",
                 "MOVE_ICE_PUNCH",
-                "MOVE_COUNTER",
-                "MOVE_CLOSE_COMBAT"
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_MACH_PUNCH"
             ],
-            "iv_scale": 239,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 2,
+            "gender": "male"
         },
         {
-            "species": "SPECIES_HITMONTOP",
+            "species": "SPECIES_HITMONLEE",
             "form": 0,
-            "level": 56,
-            "item": null,
+            "level": 62,
+            "item": "ITEM_LUM_BERRY",
             "moves": [
-                "MOVE_BULLET_PUNCH",
-                "MOVE_DETECT",
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_ENDEAVOR"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_STONE_EDGE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 248,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 62,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_MACH_PUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_SPORE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_AURA_SPHERE",
+                "MOVE_FLASH_CANNON",
+                "MOVE_DARK_PULSE",
+                "MOVE_VACUUM_WAVE"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_MACHAMP",
+            "form": 0,
+            "level": 64,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_ICE_PUNCH",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         }
     ],
     "messages": [

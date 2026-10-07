@@ -1,7 +1,7 @@
 {
     "name": "Aaron",
     "class": "TRAINER_CLASS_ELITE_FOUR_AARON",
-    "items": [  ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -11,52 +11,55 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NINJASK",
+            "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 71,
+            "level": 70,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_X_SCISSOR",
-                "MOVE_SWORDS_DANCE",
-                "MOVE_PROTECT",
-                "MOVE_BATON_PASS"
+                "MOVE_STEALTH_ROCK",
+                "MOVE_SPIKES",
+                "MOVE_VOLT_SWITCH",
+                "MOVE_EXPLOSION"
             ],
-            "iv_scale": 253,
+            "iv_scale": 255,
+            "nature": "NATURE_RELAXED",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
-        },
-        {
-            "species": "SPECIES_SCIZOR",
-            "form": 0,
-            "level": 71,
-            "item": "ITEM_CHOICE_BAND",
-            "moves": [
-                "MOVE_IRON_HEAD",
-                "MOVE_X_SCISSOR",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_BULLET_PUNCH"
-            ],
-            "iv_scale": 236,
-            "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_VESPIQUEN",
             "form": 0,
-            "level": 71,
-            "item": "ITEM_YACHE_BERRY",
+            "level": 70,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_ATTACK_ORDER",
                 "MOVE_DEFEND_ORDER",
                 "MOVE_HEAL_ORDER",
-                "MOVE_POWER_GEM"
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 249,
+            "iv_scale": 255,
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "female"
+        },
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 70,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_AIR_SLASH",
+                "MOVE_ANCIENT_POWER",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_HERACROSS",
@@ -69,26 +72,28 @@
                 "MOVE_NIGHT_SLASH",
                 "MOVE_STONE_EDGE"
             ],
-            "iv_scale": 234,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 2,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
-            "species": "SPECIES_YANMEGA",
+            "species": "SPECIES_SCIZOR",
             "form": 0,
             "level": 71,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_AIR_SLASH",
-                "MOVE_BUG_BUZZ",
-                "MOVE_DETECT",
-                "MOVE_ANCIENT_POWER"
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_U_TURN",
+                "MOVE_SUPERPOWER"
             ],
-            "iv_scale": 208,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 0,
-            "gender": null
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_DRAPION",
@@ -96,15 +101,16 @@
             "level": 72,
             "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_X_SCISSOR",
                 "MOVE_CROSS_POISON",
-                "MOVE_ICE_FANG",
-                "MOVE_EARTHQUAKE"
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_SWORDS_DANCE"
             ],
-            "iv_scale": 217,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": [

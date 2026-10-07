@@ -98,17 +98,44 @@ def check_fights_resolve(results):
                         not missing, f"unresolved: {missing}" if missing else ""))
 
 
+# Boss levels spike by importance (Ian, 2026-10-06, his answers of
+# 2026-10-07): gym leaders, rivals and Cyrus keep their aces at the split's
+# cap; officers and the other mini-bosses sit a few levels under it, about 2
+# to 4 (Saturn 1 and 2, Mars 2 and Lucas and Dawn 3 at 3); the Elite Four's
+# aces rise 72 to 75 to Cynthia's 78 (the rulebook's per-fight line), under
+# the engine's single League cap of 78. The first three splits' mini-bosses
+# keep the interim soft caps the rulebook gives them. Barry on Route 201 and
+# Lucas or Dawn on Route 202, the first two fights, are left out, and so is
+# the Fight Area's Flint and Volkner tag (ace 69, cap 71), kept as drafted:
+# the scorer cannot read a tag battle, and Ian may raise it in the alpha.
+AT_CAP = ("roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner",
+          "barry_3", "barry_4", "barry_5", "barry_6", "cyrus_1", "cyrus_2", "cyrus_3")
+UNDER_CAP = ("saturn_1", "mars_2", "somnu_moira", "saturn_2", "mars_jupiter", "lucas_dawn_3")
+FIXED_ACES = {"aaron": 72, "bertha": 73, "flint": 74, "lucian": 75, "cynthia": 78,
+              "barry_2": 11, "mars_1": 19, "jupiter_1": 27, "lucas_dawn_2": 30}
+MINI_BOSS_UNDER = range(2, 5)
+
+
 def check_sheet_levels(results):
-    """Oxide's aces match Ian's Level Caps sheet, apart from the fights
-    whose note says why not."""
-    off = []
+    """Oxide's boss aces keep Ian's boss-level ruling: each fight named
+    above, at its split's cap, 2 to 4 under it, or at its fixed ace."""
+    from . import pool
+    caps = pool.caps()
+    off, seen = [], 0
     for fight in data.fights()["fights"]:
-        if fight["sheet_ace"] is None or "note" in fight:
+        key = fight["key"]
+        cap = caps.get(fight["split"])
+        if key not in AT_CAP and key not in UNDER_CAP and key not in FIXED_ACES:
             continue
+        seen += 1
         ace = max(m["level"] for t in data.fight_trainers("oxide", fight) for m in t["party"])
-        if ace != fight["sheet_ace"]:
-            off.append(f"{fight['key']} {ace} vs {fight['sheet_ace']}")
-    results.append(("oxide's boss aces match the Level Caps sheet", not off, "; ".join(off)))
+        if key in UNDER_CAP:
+            if cap - ace not in MINI_BOSS_UNDER:
+                off.append(f"{key} {ace}, {cap - ace} under the cap of {cap}")
+        elif ace != (cap if key in AT_CAP else FIXED_ACES[key]):
+            off.append(f"{key} {ace} vs {cap if key in AT_CAP else FIXED_ACES[key]}")
+    results.append(("oxide's boss aces keep Ian's boss-level ruling", not off,
+                    "; ".join(off) if off else f"{seen} fights"))
 
 
 def check_league_after_volkner(results):
@@ -129,7 +156,7 @@ def check_roark(results):
     roark = next(f for f in data.fights()["fights"] if f["key"] == "roark")
     got = {h: len(data.fight_trainers(h, roark)[0]["party"])
            for h in ("oxide", "vanilla", "renegade", "kaizo")}
-    want = {"oxide": 4, "vanilla": 3, "renegade": 6, "kaizo": 6}
+    want = {"oxide": 5, "vanilla": 3, "renegade": 6, "kaizo": 6}    # Oxide 5 since the comb (step 12)
     results.append(("Roark's party sizes", got == want, str(got)))
 
 

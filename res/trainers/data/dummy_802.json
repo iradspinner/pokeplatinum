@@ -16,62 +16,82 @@
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_JUMP_KICK",
-                "MOVE_THUNDER_WAVE",
                 "MOVE_QUICK_ATTACK",
-                "MOVE_MIRROR_COAT"
+                "MOVE_BOUNCE",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 209,
+            "iv_scale": 255,
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_PACHIRISU",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_SPARK",
+                "MOVE_SWIFT",
+                "MOVE_CHARM",
+                "MOVE_BITE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "male"
         },
         {
             "species": "SPECIES_GLACEON",
             "form": 0,
             "level": 29,
-            "item": "ITEM_BRIGHTPOWDER",
+            "item": "ITEM_NEVERMELTICE",
             "moves": [
                 "MOVE_ICY_WIND",
-                "MOVE_CHARM",
-                "MOVE_HAIL",
-                "MOVE_FAKE_TEARS"
+                "MOVE_BITE",
+                "MOVE_SHADOW_BALL",
+                "MOVE_WISH"
             ],
-            "iv_scale": 162,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_MAGMAR",
             "form": 0,
-            "level": 30,
-            "item": "ITEM_ORAN_BERRY",
+            "level": 29,
+            "item": "ITEM_CHARCOAL",
             "moves": [
+                "MOVE_FIRE_PUNCH",
                 "MOVE_CONFUSE_RAY",
                 "MOVE_FAINT_ATTACK",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_WILL_O_WISP"
+                "MOVE_SMOG"
             ],
-            "iv_scale": 194,
+            "iv_scale": 255,
+            "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
             "ability": 1,
-            "gender": null
+            "gender": "male"
         },
         {
             "species": "SPECIES_PRINPLUP",
             "form": 0,
             "level": 30,
-            "item": "ITEM_SHELL_BELL",
+            "item": "ITEM_MYSTIC_WATER",
             "moves": [
-                "MOVE_METAL_CLAW",
                 "MOVE_BUBBLE_BEAM",
-                "MOVE_AGILITY",
-                "MOVE_FURY_ATTACK"
+                "MOVE_METAL_CLAW",
+                "MOVE_PECK",
+                "MOVE_BRINE"
             ],
-            "iv_scale": 183,
+            "iv_scale": 255,
+            "nature": "NATURE_MODEST",
             "ball_seal": 0,
             "ability": 2,
-            "gender": null
+            "gender": "male"
         }
     ],
     "messages": []

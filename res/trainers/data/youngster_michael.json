@@ -10,32 +10,69 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KRICKETOT",
-            "form": 0,
-            "level": 9,
-            "item": null,
-            "moves": [
-                "MOVE_GROWL",
-                "MOVE_BIDE",
-                "MOVE_BUG_BITE",
-                "MOVE_NONE"
-            ],
-            "iv_scale": 130,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_ZUBAT",
             "form": 0,
-            "level": 9,
-            "item": null,
+            "level": 15,
+            "item": "ITEM_NONE",
             "moves": [
                 "MOVE_LEECH_LIFE",
-                "MOVE_SUPERSONIC",
+                "MOVE_BITE",
                 "MOVE_ASTONISH",
-                "MOVE_PLUCK"
+                "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 121,
-            "ball_seal": 0
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_PARAS",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_LEECH_LIFE",
+                "MOVE_METAL_CLAW",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_STUN_SPORE"
+            ],
+            "iv_scale": 200,
+            "nature": "NATURE_ADAMANT",
+            "ball_seal": 0,
+            "ability": 2,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_RAZOR_LEAF",
+                "MOVE_BULLET_SEED",
+                "MOVE_COTTON_SPORE",
+                "MOVE_SYNTHESIS"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_ODDISH",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ACID",
+                "MOVE_POISON_POWDER",
+                "MOVE_BULLET_SEED"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0,
+            "ability": 1,
+            "gender": "female"
         }
     ],
     "messages": [
