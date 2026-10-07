@@ -274,6 +274,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
   used as an ordinary attack (Cynthia, Volkner and the Flint and Volkner tag
   carry them), with no recharge turn and the recoil message.
+- [ ] **The AI rates multi-hit moves on their expected hits** (the kit cannot
+  show it, since a wild Pokemon picks its move at random and never runs the
+  trainer AI). In a trainer battle against a Pokemon with a two to five hit
+  move (Gardenia's team carries Bullet Seed), it should now use that move
+  where it is the strongest attack counted over about three hits, where it
+  used to rate it as a single 25 power hit and seldom chose it.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
