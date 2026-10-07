@@ -37,6 +37,17 @@ def check_read(results, root):
                     len(rows) == len(files) and all("party" in r for r in rows)
                     and next(r for r in rows if r["stem"] == "leader_roark")["cap"] == 16,
                     f"{len(rows)} rows"))
+    # Ian, 2026-10-07: Barry's three Route 201 rows looked alike. Each
+    # version of a fight kept once per starter says whom it is for.
+    by = {r["stem"]: r for r in rows}
+    versioned = [r for r in rows if r.get("version")]
+    results.append(("every version of a starter-kept fight says whom it is for",
+                    len(versioned) == 36
+                    and by["rival_route_201_turtwig"]["version"] == "if you chose Turtwig"
+                    and by["rival_route_201_chimchar"]["version"] == "if you chose Scorbunny"
+                    and all(r["version"].startswith("if you chose") for r in versioned)
+                    and by["leader_roark"].get("version") is None,
+                    f"{len(versioned)} rows"))
     # The list places trainers without building parties; teamscore.resolve,
     # which the score uses, builds them. The two must agree, except that the
     # score refuses a split with no cap (Post), which the list still names.
