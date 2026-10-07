@@ -2847,8 +2847,9 @@ BOOSTER_TYPE = {it: t for t, items in pool.TYPE_ITEMS.items() for it in items}
 @functools.lru_cache(maxsize=None)
 def player_items(split):
     """{"boosters": {type: item}, "Leftovers": copies, "Sitrus Berry": copies}
-    by the split's end: field items and gifts once each, mart items without
-    limit."""
+    by the split's end: field items, gifts and the items a trainer gives
+    straight after the win (step 10's rewards) once each, mart items
+    without limit."""
     from ..encounters import calc_trainers
     from . import splits as sp
     order = pool.SPLITS
@@ -2863,7 +2864,10 @@ def player_items(split):
     for s, _m, it in sp.gifts():
         if upto(s):
             finds[name(it)] += 1
-    marts = {name(it) for s, _t, it in sp.marts() if upto(s)}
+    for s, _t, it in sp.trainer_rewards():
+        if upto(s):
+            finds[name(it)] += 1
+    marts ={name(it) for s, _t, it in sp.marts() if upto(s)}
     boosters = {}
     for t, items in pool.TYPE_ITEMS.items():
         have = [i for i in items if finds.get(i) or i in marts]

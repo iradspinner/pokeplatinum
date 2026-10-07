@@ -451,6 +451,27 @@ def check_sure(results):
                     f"{sorted(not_sure & set(sure))}"))
 
 
+def check_reward_items(results):
+    """A booster a trainer gives straight after the win is in the player's
+    stock from that trainer's split on, and not a split before, unless
+    another source gives that type's booster sooner."""
+    from tools.oxide.encounters import calc_trainers
+    from . import pool, splits
+    by_type = {i: t for t, items in pool.TYPE_ITEMS.items() for i in items}
+    rows, ok = [], True
+    for split, tr, it in splits.trainer_rewards():
+        t = by_type.get(calc_trainers._item_name(it))
+        if t is None or split not in pool.SPLITS:
+            continue
+        here = t in fs.player_items(split)["boosters"]
+        i = pool.SPLITS.index(split)
+        before = i > 0 and t in fs.player_items(pool.SPLITS[i - 1])["boosters"]
+        rows.append(f"{tr} {t} in {split}: {here}, before: {before}")
+        ok = ok and here
+    results.append(("a trainer's after-win booster joins the player's stock in its split", ok and bool(rows),
+                    "; ".join(rows) or "no booster among the rewards"))
+
+
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
@@ -459,7 +480,7 @@ def main():
                   check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
-                  check_self_risk, check_sure):
+                  check_self_risk, check_sure, check_reward_items):
         check(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
