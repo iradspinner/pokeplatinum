@@ -7410,6 +7410,9 @@ Risky_RiskyEffects:
     TableEntry BATTLE_EFFECT_DOUBLE_POWER_IF_MOVING_SECOND
     TableEntry BATTLE_EFFECT_USE_MOVE_FIRST
     TableEntry BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): Final Gambit,
+    // a sacrifice as Explosion is.
+    TableEntry BATTLE_EFFECT_FINAL_GAMBIT
     TableEntry TABLE_END
 
 BatonPass_Main:
