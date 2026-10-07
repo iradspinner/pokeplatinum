@@ -50,13 +50,14 @@
             [ 30, "MOVE_THUNDER_PUNCH" ],
             [ 32, "MOVE_DRAGON_BREATH" ],
             [ 34, "MOVE_DISCHARGE" ],
-            [ 36, "MOVE_VOLT_SWITCH" ],
+            [ 36, "MOVE_ELECTROWEB" ],
             [ 42, "MOVE_SIGNAL_BEAM" ],
             [ 44, "MOVE_MIRROR_SHOT" ],
             [ 50, "MOVE_DAZZLING_GLEAM" ],
             [ 51, "MOVE_LIGHT_SCREEN" ],
             [ 59, "MOVE_POWER_GEM" ],
-            [ 61, "MOVE_CONFUSE_RAY" ],
+            [ 61, "MOVE_VOLT_SWITCH" ],
+            [ 66, "MOVE_CONFUSE_RAY" ],
             [ 68, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [

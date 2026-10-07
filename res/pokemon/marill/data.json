@@ -40,10 +40,9 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 10, "MOVE_WATER_GUN" ],
-            [ 14, "MOVE_ALLURING_VOICE" ],
+            [ 14, "MOVE_CHARM" ],
             [ 15, "MOVE_ROLLOUT" ],
-            [ 16, "MOVE_BULLDOZE" ],
-            [ 17, "MOVE_CHARM" ],
+            [ 17, "MOVE_TRAILBLAZE" ],
             [ 18, "MOVE_BUBBLE_BEAM" ],
             [ 23, "MOVE_AQUA_RING" ],
             [ 27, "MOVE_DOUBLE_EDGE" ],

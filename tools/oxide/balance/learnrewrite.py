@@ -49,6 +49,7 @@ import argparse
 import collections
 import csv
 import functools
+import json
 import os
 import re
 import sys
@@ -99,6 +100,13 @@ PHAZING = {"MOVE_ROAR", "MOVE_WHIRLWIND"}
 # Ian's rulings on one move of one line (2026-09-30, and 2026-10-06 in
 # Charmander's session: "Dragon Rage leaves the line's early list").
 RULED_OFF = {("SPECIES_CHARMANDER", "MOVE_DRAGON_RAGE"), ("SPECIES_CHARMELEON", "MOVE_DRAGON_RAGE")}
+# Ian's calls for one move on one egg list, the trainers' palette, recorded
+# as his, not a rule of the generator.
+IAN_EGG_MOVES = {
+    "SPECIES_DARKRAI": [("MOVE_DARK_VOID", "Ian, 2026-10-06: Officer Somnu's Darkrai keeps Dark Void, which "
+                                           "Darkrai learns only at 66, above Somnu's levels; the player never "
+                                           "reaches an egg list")],
+}
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
 # wants used sparingly).
@@ -516,8 +524,15 @@ def standing(const, holder):
     """Where an attack stands on its ladder for the holder: halfway between
     its power as the player reads it and as the holder feels it, so an
     off-stat move sits lower (Corphish's BubbleBeam) without a 90-power move
-    passing for a weak one at level 3 (Chinchou's Wild Charge)."""
-    return (lc.effective_power(const) + felt(const, holder)) / 2
+    passing for a weak one at level 3 (Chinchou's Wild Charge). A pivot
+    (Flip Turn, U-turn, Volt Switch) stands at least at the middle of its
+    type's ladder: Ian, 2026-10-06, "pivoting is incredibly strong", so it
+    is never a first move."""
+    s = (lc.effective_power(const) + felt(const, holder)) / 2
+    if M()[const]["effect"] in PIVOT_EFFECTS:
+        steps = ladder(M()[const]["type"])
+        s = max(s, steps[len(steps) // 2] if steps else s)
+    return s
 
 
 def pace(holder):
@@ -1207,7 +1222,10 @@ def candidates(d, fam, holder, slot, needs):
             # (R11) or no usable same-type attack (check 1), in the first two
             # splits, and only where no move on its better stat is in reach
             # (R3; Ian, 2026-10-06).
+            # A line whose ability sets its side (Huge Power) takes no
+            # off-stat move at all (Ian, 2026-10-06, on Marill's Alluring Voice).
             if not lc.fits(c, holder) and not (stab and slot.split <= 1 and not fit_in_reach.get(m["type"])
+                                               and not abilities(holder) & lc.ATTACK_DOUBLERS
                                                and (m["type"] in needs.types or needs.stab50)):
                 continue
             value = attack_value(c, holder)
@@ -1957,6 +1975,11 @@ def build():
         tidy(d, sp)
         no_wild_trainer_move(d, sp)
         ensure_attack_at_capture(d, sp)
+    for sp, adds in IAN_EGG_MOVES.items():
+        for mv, why in adds:
+            if mv not in d.eggs[sp]:
+                d.eggs[sp].append(mv)
+                d.note(sp, 0, mv, "egg list", "Ian's ruling", why)
     return d
 
 
@@ -1975,7 +1998,11 @@ def write(d):
             new = render(new, lst)
         eggs = file_eggs(text)
         if eggs is None and d.eggs[sp]:
-            raise SystemExit(f"{sp} has no egg list to write {d.eggs[sp]} into")
+            # A file with no egg list gets one after its last learnset list.
+            raw = json.loads(text)["learnset"]
+            last = next(k for k in ("by_tutor", "by_tm", "by_level") if k in raw)
+            new = jsonstyle.insert_key(new, ["learnset"], last, "egg_moves", [])
+            eggs = []
         if eggs is not None and d.eggs[sp] != eggs:
             new = render_eggs(new, d.eggs[sp])
         if new == text:

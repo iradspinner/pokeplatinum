@@ -45,10 +45,10 @@
             [ 17, "MOVE_ICY_WIND" ],
             [ 24, "MOVE_PSYBEAM" ],
             [ 28, "MOVE_CONFUSE_RAY" ],
-            [ 45, "MOVE_FLIP_TURN" ],
+            [ 45, "MOVE_SKITTER_SMACK" ],
             [ 54, "MOVE_POWER_GEM" ],
-            [ 56, "MOVE_SIGNAL_BEAM" ],
-            [ 62, "MOVE_THUNDERBOLT" ]
+            [ 56, "MOVE_FLASH_CANNON" ],
+            [ 62, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM03",

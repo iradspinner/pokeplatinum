@@ -59,7 +59,7 @@
             [ 58, "MOVE_POWER_GEM" ],
             [ 60, "MOVE_ICE_BEAM" ],
             [ 66, "MOVE_PSYCHIC" ],
-            [ 68, "MOVE_SIGNAL_BEAM" ]
+            [ 68, "MOVE_FLIP_TURN" ]
         ],
         "by_tm": [
             "TM01",

@@ -52,7 +52,8 @@
             [ 40, "MOVE_WATERFALL" ],
             [ 42, "MOVE_POISON_JAB" ],
             [ 44, "MOVE_THROAT_CHOP" ],
-            [ 50, "MOVE_LIQUIDATION" ],
+            [ 50, "MOVE_FLIP_TURN" ],
+            [ 52, "MOVE_LIQUIDATION" ],
             [ 56, "MOVE_AGILITY" ],
             [ 63, "MOVE_MEGAHORN" ]
         ],

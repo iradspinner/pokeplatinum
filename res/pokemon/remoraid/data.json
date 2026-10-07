@@ -39,7 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
-            [ 3, "MOVE_FLIP_TURN" ],
+            [ 3, "MOVE_CHILLING_WATER" ],
             [ 4, "MOVE_SCREECH" ],
             [ 6, "MOVE_LOCK_ON" ],
             [ 10, "MOVE_PSYBEAM" ],

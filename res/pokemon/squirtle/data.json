@@ -39,8 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_LIFE_DEW" ],
-            [ 3, "MOVE_FLIP_TURN" ],
+            [ 3, "MOVE_LIFE_DEW" ],
             [ 7, "MOVE_BUBBLE" ],
             [ 13, "MOVE_WATER_GUN" ],
             [ 16, "MOVE_BITE" ],

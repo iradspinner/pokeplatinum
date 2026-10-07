@@ -1077,9 +1077,22 @@ def stats(species):
     return (pokedex.load(data.ROOT, species) or {}).get("stats") or {}
 
 
+# Abilities that decide a line's attacking side whatever its stats say
+# (R31; Ian, 2026-10-06, on Marill's Alluring Voice): Huge Power and Pure
+# Power double Attack. The others that lean a side were checked and left
+# out: Hustle costs accuracy, Guts needs a status, Iron Fist and Technician
+# lift some moves only, Sheer Force lifts both sides.
+ATTACK_DOUBLERS = {"HUGE_POWER", "PURE_POWER"}
+
+
 def attack_stats(species):
+    """(Attack, Special Attack), Attack doubled for a line whose regular
+    ability doubles it."""
     s = stats(species)
-    return s.get("attack", 0), s.get("special_attack", 0)
+    atk = s.get("attack", 0)
+    if set((pokedex.load(data.ROOT, species) or {}).get("abilities") or []) & ATTACK_DOUBLERS:
+        atk *= 2
+    return atk, s.get("special_attack", 0)
 
 
 def fits(const, species):

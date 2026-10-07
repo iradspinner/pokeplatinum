@@ -39,9 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POISON_STING" ],
-            [ 3, "MOVE_POUNCE" ],
-            [ 4, "MOVE_FLIP_TURN" ],
+            [ 3, "MOVE_CHILLING_WATER" ],
+            [ 4, "MOVE_WATER_GUN" ],
             [ 5, "MOVE_SUPERSONIC" ],
+            [ 7, "MOVE_POUNCE" ],
             [ 12, "MOVE_ACID" ],
             [ 15, "MOVE_TOXIC_SPIKES" ],
             [ 17, "MOVE_ICY_WIND" ],

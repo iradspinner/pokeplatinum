@@ -56,6 +56,7 @@
             [ 58, "MOVE_AQUA_TAIL" ],
             [ 63, "MOVE_SUPERPOWER" ],
             [ 66, "MOVE_THRASH" ],
+            [ 68, "MOVE_FLIP_TURN" ],
             [ 71, "MOVE_MUDDY_WATER" ]
         ],
         "by_tm": [

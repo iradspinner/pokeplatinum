@@ -57,7 +57,8 @@
             [ 59, "MOVE_SILVER_WIND" ],
             [ 61, "MOVE_WATERFALL" ],
             [ 66, "MOVE_AQUA_TAIL" ],
-            [ 68, "MOVE_CONFUSE_RAY" ]
+            [ 68, "MOVE_FLIP_TURN" ],
+            [ 74, "MOVE_CONFUSE_RAY" ]
         ],
         "by_tm": [
             "TM03",

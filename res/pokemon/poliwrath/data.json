@@ -50,8 +50,7 @@
             [ 57, "MOVE_LOW_SWEEP" ],
             [ 62, "MOVE_ICE_PUNCH" ],
             [ 64, "MOVE_DRAIN_PUNCH" ],
-            [ 70, "MOVE_FLIP_TURN" ],
-            [ 72, "MOVE_BELLY_DRUM" ]
+            [ 70, "MOVE_BELLY_DRUM" ]
         ],
         "by_tm": [
             "TM01",

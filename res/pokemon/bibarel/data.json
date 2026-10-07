@@ -54,7 +54,6 @@
             [ 50, "MOVE_ICE_FANG" ],
             [ 53, "MOVE_CURSE" ],
             [ 57, "MOVE_ROCK_CLIMB" ],
-            [ 59, "MOVE_FLIP_TURN" ],
             [ 65, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [

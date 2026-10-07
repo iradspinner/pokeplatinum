@@ -54,7 +54,7 @@
             ],
             [
                 2,
-                "MOVE_FLIP_TURN"
+                "MOVE_CHILLING_WATER"
             ],
             [
                 4,
@@ -99,6 +99,10 @@
             [
                 46,
                 "MOVE_HYPER_VOICE"
+            ],
+            [
+                51,
+                "MOVE_FLIP_TURN"
             ],
             [
                 57,

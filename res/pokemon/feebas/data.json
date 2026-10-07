@@ -38,12 +38,12 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 4, "MOVE_DRAGON_TAIL" ],
-            [ 5, "MOVE_FLIP_TURN" ],
+            [ 5, "MOVE_AQUA_JET" ],
             [ 6, "MOVE_SWAGGER" ],
             [ 13, "MOVE_WATER_PULSE" ],
             [ 15, "MOVE_TACKLE" ],
             [ 25, "MOVE_CAPTIVATE" ],
+            [ 27, "MOVE_DRAGON_TAIL" ],
             [ 30, "MOVE_FLAIL" ]
         ],
         "by_tm": [

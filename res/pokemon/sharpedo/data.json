@@ -57,9 +57,8 @@
             [ 50, "MOVE_SKULL_BASH" ],
             [ 56, "MOVE_NIGHT_SLASH" ],
             [ 58, "MOVE_FIRE_FANG" ],
-            [ 60, "MOVE_FLIP_TURN" ],
-            [ 66, "MOVE_POISON_JAB" ],
-            [ 68, "MOVE_THROAT_CHOP" ]
+            [ 60, "MOVE_POISON_JAB" ],
+            [ 66, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM03",

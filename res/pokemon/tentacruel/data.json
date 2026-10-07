@@ -56,8 +56,8 @@
             [ 58, "MOVE_MUDDY_WATER" ],
             [ 60, "MOVE_POWER_GEM" ],
             [ 66, "MOVE_THROAT_CHOP" ],
-            [ 68, "MOVE_TOXIC" ],
-            [ 74, "MOVE_CONFUSE_RAY" ]
+            [ 68, "MOVE_FLIP_TURN" ],
+            [ 74, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM03",

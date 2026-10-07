@@ -109,15 +109,15 @@
                 "MOVE_ENERGY_BALL"
             ],
             [
-                60,
-                "MOVE_PSYCHIC"
-            ],
-            [
                 64,
                 "MOVE_MOONBLAST"
             ],
             [
                 66,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                72,
                 "MOVE_MUDDY_WATER"
             ]
         ],

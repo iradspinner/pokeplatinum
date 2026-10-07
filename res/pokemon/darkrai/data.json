@@ -111,6 +111,9 @@
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_DARK_VOID"
         ]
     },
     "evolutions": [  ],
