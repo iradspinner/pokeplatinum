@@ -1,0 +1,8 @@
+# Test data for tools/oxide/test_place_rewards.py: shop and prize rows, in
+# the reward table's full columns with badges. Not a reward table.
+reward	copies	kind	split	map	place	replaces	trainer_id	badges	note
+ITEM_TM23	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM54		5	sold once, one copy
+ITEM_TM05	2	mart	Fantina	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM38		3	sold once, two copies
+ITEM_TM02	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM74		4	a prize sold once, two copies
+ITEM_TM45	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM10			a plain prize swap
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_SILK_SCARF		3	a prize taken off the list

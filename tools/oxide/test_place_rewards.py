@@ -20,8 +20,13 @@ What it checks, without building a ROM:
    back byte for byte.
 5. Bad rows are refused with their reason, a gauntlet trainer's reward among
    them.
+6. The shop rows (tools/oxide/test_place_rewards_shops.tsv, test data too):
+   a sold-once row lands in include/data/sold_tms.h with its badges, copies
+   and a purchase bit of its own that survives the table losing and
+   regaining rows; a prize takes the place and coin price of the one it
+   replaces, or leaves the list; a second apply changes nothing.
 
-With --built-tree DIR, a checkout where the fixture was applied and the ROM
+With --built-tree DIR, a checkout where both fixtures were applied and the ROM
 built (`place_rewards.py apply --table <fixture> --root DIR`, then `make -C
 DIR rom`), it also reads every row back out of that ROM with `check
 --rows-only` and requires each to be found exactly once.
@@ -44,6 +49,7 @@ sys.path.insert(0, HERE)
 import place_rewards as pr  # noqa: E402
 
 FIXTURE = os.path.join(HERE, "test_place_rewards.tsv")
+SHOPS = os.path.join(HERE, "test_place_rewards_shops.tsv")
 COPY = ["res/field/scripts", "res/field/events", "res/text", "res/items/data", "include",
         "generated", "src", "asm"]
 BATTLES = "res/field/scripts/scripts_battles.s"
@@ -65,9 +71,11 @@ def run(*argv):
 
 
 def table(path, rows, header=True):
+    """A table of rows in the fixture's columns, which leave out the
+    optional ones (badges)."""
     with open(path, "w", encoding="utf-8") as f:
         if header:
-            f.write("\t".join(pr.COLUMNS) + "\n")
+            f.write("\t".join(c for c in pr.COLUMNS if c not in pr.OPTIONAL_COLUMNS) + "\n")
         for r in rows:
             f.write("\t".join(r) + "\n")
 
@@ -75,6 +83,14 @@ def table(path, rows, header=True):
 def fixture_lines():
     with open(FIXTURE, encoding="utf-8") as f:
         return [l for l in f.read().splitlines() if l.strip() and not l.startswith("#")][1:]
+
+
+def sold_tms(root):
+    """{item: (badges, copies, bit)} as sold_tms.h lists them."""
+    with open(os.path.join(root, pr.SOLD_TMS_H), encoding="utf-8") as f:
+        return {m.group(1): (int(m.group(2)), int(m.group(3)), int(m.group(4)))
+                for line in f.read().split("\n")
+                if (m := pr.SOLD_LINE.match(line)) and m.group(1) != "ITEM_NONE"}
 
 
 def block_branches(text):
@@ -245,12 +261,44 @@ def main():
         code, out = run("apply", "--table", FIXTURE, "--root", work, "--roles", roles, "--dry-run")
         expect(code == 1 and "gauntlet trainer" in out, f"a gauntlet trainer's reward was not refused: {out.strip()}")
 
+        # 6: the shops. A sold-once row goes into sold_tms.h with its badges,
+        # copies and a bit of its own, kept across reruns; a prize takes the
+        # place and coin price of the one it replaces, or leaves the list.
+        code, out = run("apply", "--table", SHOPS, "--root", work, "--roles", none)
+        expect(code == 0, f"apply of the shop rows failed: {out}")
+        sold = sold_tms(work)
+        expect(sorted(sold) == ["ITEM_TM02", "ITEM_TM05", "ITEM_TM23"]
+               and sold["ITEM_TM05"][:2] == (3, 2) and sold["ITEM_TM02"][:2] == (4, 2)
+               and sold["ITEM_TM23"][:2] == (5, 1), f"sold_tms.h holds {sold}")
+        expect(len({bit for _b, _c, bit in sold.values()}) == 3, f"purchase bits repeat: {sold}")
+        tree = pr.Tree(work)
+        _lines, prizes = pr.Prizes(tree).entries()
+        coins = {item: c for _l, item, c in prizes}
+        expect("ITEM_SILK_SCARF" not in coins and "ITEM_TM74" not in coins and "ITEM_TM10" not in coins
+               and coins.get("ITEM_TM02") == 15000 and coins.get("ITEM_TM45") == 6000,
+               f"the prize list is {coins}")
+        stock = pr.Marts(tree).stock("MART_SPECIALTIES_ID_VEILSTONE_3F_UP")
+        expect("ITEM_TM23" in stock and "ITEM_TM54" not in stock, f"the 3F counter sells {stock}")
+        code, out = run("apply", "--table", SHOPS, "--root", work, "--roles", none)
+        expect(code == 0 and "wrote 0 files" in out, f"a second shop apply changed something: {out}")
+        only = os.path.join(tmp, "only.tsv")
+        with open(SHOPS, encoding="utf-8") as f:
+            shop_lines = [l for l in f.read().splitlines() if l.strip() and not l.startswith("#")]
+        with open(only, "w", encoding="utf-8") as f:
+            f.write("\n".join([shop_lines[0]] + [l for l in shop_lines[1:] if l.startswith("ITEM_TM02\t")]) + "\n")
+        run("apply", "--table", only, "--root", work, "--roles", none)
+        run("apply", "--table", SHOPS, "--root", work, "--roles", none)
+        expect(sold_tms(work)["ITEM_TM02"][2] == sold["ITEM_TM02"][2],
+               "a sold TM's purchase bit moved when the others left the table and came back")
+
     # With a built tree: every row read back out of its ROM.
     if a.built_tree:
-        proc = subprocess.run([sys.executable, os.path.join(HERE, "place_rewards.py"), "check", "--rows-only",
-                               "--table", FIXTURE], cwd=a.built_tree, capture_output=True, text=True)
-        expect(proc.returncode == 0 and "every row found exactly once" in proc.stdout,
-               f"check on {a.built_tree}: {proc.stdout.strip()}{proc.stderr.strip()}")
+        for table_path in (FIXTURE, SHOPS):
+            proc = subprocess.run([sys.executable, os.path.join(HERE, "place_rewards.py"), "check", "--rows-only",
+                                   "--table", table_path], cwd=a.built_tree, capture_output=True, text=True)
+            expect(proc.returncode == 0 and "every row found exactly once" in proc.stdout,
+                   f"check of {os.path.basename(table_path)} on {a.built_tree}: "
+                   f"{proc.stdout.strip()}{proc.stderr.strip()}")
 
     for f in failures:
         print("FAILED:", f)
