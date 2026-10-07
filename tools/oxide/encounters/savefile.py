@@ -322,6 +322,23 @@ def flag(data, name):
     return bool(data[at] >> (i % 8) & 1)
 
 
+def flags_set(data, numbers):
+    """The flags among `numbers` (flag ids, as vars_flags.txt numbers them)
+    that a save has set, from its newest normal block: one read for the alpha
+    checklist's ticks, a trainer's TRAINER_DEFEATED_FLAGS_START plus its id
+    and every pickup's obtained flag. A save on an older layout is refused,
+    as flag() refuses it."""
+    lay = _vars_layout()
+    found = blocks(data)
+    if BLOCK_NORMAL not in found:
+        raise SaveError("no valid copy of the normal block")
+    if found[BLOCK_NORMAL]["size"] != CURRENT_LAYOUT[0]:
+        raise SaveError("this save was " + OLDER_LAYOUT)
+    base = found[BLOCK_NORMAL]["start"] + lay["at"] + 2 * lay["num_vars"]
+    return {n for n in numbers
+            if 0 <= n < lay["num_flags"] and data[base + n // 8] >> (n % 8) & 1}
+
+
 def _level(species, exp):
     """A boxed Pokemon's level, from its experience and its species' curve."""
     rec = pokedex.load(model.repo_root(), species) or {}

@@ -128,6 +128,10 @@ compile_commands.json
 
 # Encounter tool: per-playthrough caught state, not design intent
 docs/oxide/encounters/caught.json
+# The alpha checklist's notes for the current run, and runs set aside; the
+# export, alpha-notes.json and .md, is what reaches the repo.
+docs/oxide/encounters/alpha-feedback*.json
+docs/oxide/encounters/alpha-feedback*.json.tmp
 
 # Claude Code session worktrees (each agent gets its own; never committed)
 .claude/worktrees/

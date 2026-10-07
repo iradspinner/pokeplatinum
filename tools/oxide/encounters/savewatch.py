@@ -140,6 +140,12 @@ class Watcher:
             out["save"]["battle_log"] = {"count": copy["count"], "counter": copy["counter"]} if copy else None
         return out
 
+    def raw(self):
+        """(bytes, parsed save, seq, path) of the last save read, or Nones:
+        the alpha checklist reads its ticks and its notes' stamps from it."""
+        with self._lock:
+            return self._data, self._save, self.state["seq"], self.state["path"]
+
     def packed(self):
         with self._lock:
             data = self._data
