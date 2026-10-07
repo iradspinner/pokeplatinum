@@ -348,6 +348,14 @@ box, is box 30. The calculator's own Read Save did assume 18, with box 18 as
 the graveyard; the encounter track's `encounter-save-30-boxes` reads as many
 boxes as the block holds.
 
+## The gauntlets take an unused variable (2026-09-29)
+
+Nothing moves. `VAR_GAUNTLET_SECTION` (`src/gauntlet.c`) holds the open
+gauntlet section's number, or 0 when none is open, in vanilla's
+`VAR_UNUSED_0x408F`, which no script, vanilla, base ROM or Oxide, reads or
+writes. An older save holds 0 there, so it loads with no section open; the
+first section opens when the player next walks in through a way in.
+
 ## The TM pocket grew (the TM pass, 2026-10-06)
 
 The TM pass's list has 100 TMs: TM01 to TM94 and the six HMs left (HM01 Cut
@@ -368,6 +376,17 @@ headers, so it needed only the new layout, (0xD0DC, 0x1E310), as
 its test's sizes. The list comes from `tools/oxide/tm_items.py`, which also
 writes the ids; a later list with a different number of TMs past TM92 moves
 the save again, by 4 bytes a TM.
+
+## Two spare variables hold the shops' purchases (2026-10-06)
+
+The TMs the Veilstone counters and the Game Corner sell once (Ian,
+2026-10-06; `include/data/sold_tms.h`) record each purchase as a bit in two
+saved variables vanilla never used, renamed from `VAR_UNUSED_0x4031` and
+`VAR_UNUSED_0x40A2` to `VAR_SOLD_TMS_0` and `VAR_SOLD_TMS_1`: 32 bits, one
+per sold TM, given by `place_rewards.py` and kept by its TM. Nothing moves:
+the variables were already in the save, and a save from before reads them
+as zero, nothing bought. The Game Corner challenger takes vanilla's unused
+trainer slot 6, so his defeated flag is that slot's, already in the save.
 
 ## Not yet moved, but expected to
 

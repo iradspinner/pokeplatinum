@@ -18,7 +18,7 @@ SurvivalAreaSouthHouse_Entry0:
     CheckFlag FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42
     GoToIf 1, SurvivalAreaSouthHouse_00C2
     Message 0
-    SetVarFromValue VAR_0x8004, 369
+    SetVarFromValue VAR_0x8004, ITEM_TM25
     SetVarFromValue VAR_0x8005, 1
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

@@ -22,6 +22,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "field_task.h"
+#include "gauntlet.h"
 #include "heap.h"
 #include "inlines.h"
 #include "journal.h"
@@ -378,6 +379,11 @@ static enum FieldMoveError FieldMoves_CheckFly(const FieldMoveContext *fieldMove
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
+    // Oxide: no leaving an open gauntlet section but by its way forward (Ian, 2026-09-29).
+    if (Gauntlet_IsOpen(fieldMoveContext->fieldSystem)) {
+        return FIELD_MOVE_ERROR_GAUNTLET;
+    }
+
     if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
@@ -714,6 +720,11 @@ static enum FieldMoveError FieldMoves_CheckTeleport(const FieldMoveContext *fiel
         return FIELD_MOVE_ERROR_LOCATION;
     }
 
+    // Oxide: no leaving an open gauntlet section but by its way forward (Ian, 2026-09-29).
+    if (Gauntlet_IsOpen(fieldMoveContext->fieldSystem)) {
+        return FIELD_MOVE_ERROR_GAUNTLET;
+    }
+
     if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {
         return FIELD_MOVE_ERROR_PARTNER;
     }
@@ -759,6 +770,11 @@ static enum FieldMoveError FieldMoves_CheckDig(const FieldMoveContext *fieldMove
 
     if (!((MapHeader_IsCave(fieldMoveContext->mapHeaderID) == TRUE) && (MapHeader_IsEscapeRopeAllowed(fieldMoveContext->mapHeaderID) == TRUE))) {
         return FIELD_MOVE_ERROR_LOCATION;
+    }
+
+    // Oxide: no leaving an open gauntlet section but by its way forward (Ian, 2026-09-29).
+    if (Gauntlet_IsOpen(fieldMoveContext->fieldSystem)) {
+        return FIELD_MOVE_ERROR_GAUNTLET;
     }
 
     if (PlayerTravellingWithPartner(fieldMoveContext) == TRUE) {

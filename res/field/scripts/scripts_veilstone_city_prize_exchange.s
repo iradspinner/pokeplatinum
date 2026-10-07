@@ -12,7 +12,7 @@ VeilstoneCityPrizeExchange_Receptionist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    SetVar VAR_MAP_LOCAL_0x01, 19
+    GetGameCornerPrizeCount VAR_MAP_LOCAL_0x01
     Message VeilstoneCityPrizeExchange_Text_ExchangeCoinsForPrizes
     ShowCoins 21, 1
     SetVar VAR_0x8005, 0
@@ -32,9 +32,13 @@ VeilstoneCityPrizeExchange_TryBuyPrize:
     GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCityPrizeExchange_TryBuyPrize
     HasCoins VAR_RESULT, VAR_0x8001
     GoToIfEq VAR_RESULT, FALSE, VeilstoneCityPrizeExchange_NotEnoughCoins
-    GoToIfCannotFitItem VAR_0x8000, 1, VAR_RESULT, VeilstoneCityPrizeExchange_NoRoomAvailable
+    @ Platinum Oxide: a TM sold once gives its copies for the one price and
+    @ is then bought for good (include/data/sold_tms.h); any other prize, one.
+    GetSoldTMCopies VAR_0x8000, VAR_0x8002
+    GoToIfCannotFitItem VAR_0x8000, VAR_0x8002, VAR_RESULT, VeilstoneCityPrizeExchange_NoRoomAvailable
     Message VeilstoneCityPrizeExchange_Text_HereYouGo
-    AddItem VAR_0x8000, 1, VAR_RESULT
+    AddItem VAR_0x8000, VAR_0x8002, VAR_RESULT
+    MarkSoldTMBought VAR_0x8000
     SubtractCoins VAR_0x8001
     UpdateCoinDisplay
     PlaySE SEQ_SE_DP_REGI_sseq
@@ -81,9 +85,13 @@ VeilstoneCityPrizeExchange_InitPrizeMenu:
 
 VeilstoneCityPrizeExchange_AddPrizeToMenu:
     GetGameCornerPrizeData VAR_0x8008, VAR_0x8000, VAR_0x8001
+    @ Platinum Oxide: a TM not yet offered, or already bought, reads as no
+    @ item and is left off the menu.
+    GoToIfEq VAR_0x8000, ITEM_NONE, VeilstoneCityPrizeExchange_NextPrize
     BufferItemName 0, VAR_0x8000
     BufferVarPaddingDigits 1, VAR_0x8001, PADDING_MODE_SPACES, 5
     AddListMenuEntry MenuEntries_Text_PrizeExchange_Prize, VAR_0x8008
+VeilstoneCityPrizeExchange_NextPrize:
     AddVar VAR_0x8008, 1
     GoToIfLt VAR_0x8008, VAR_MAP_LOCAL_0x01, VeilstoneCityPrizeExchange_AddPrizeToMenu
     GoTo VeilstoneCityPrizeExchange_FinishMenu

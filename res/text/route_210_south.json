@@ -73,16 +73,16 @@
     {
       "id": "Route210South_Text_YouShouldRestToo",
       "en_US": [
-        "I’m taking a rest. If I were a bird\n",
-        "Pokémon, it would be a roost. Haha!\r",
-        "Uh... You should rest up, too.\r"
+        "I’m taking a rest behind this rock.\n",
+        "It keeps the wind right off me. Haha!\r",
+        "Uh... You could use a wall, too.\r"
       ]
     },
     {
       "id": "Route210South_Text_BirdPokemonWouldCrash",
       "en_US": [
-        "If they had to keep flying forever,\n",
-        "bird Pokémon would eventually crash."
+        "Light Screen puts up a wall that\n",
+        "weakens special moves for five turns."
       ]
     },
     {
@@ -110,19 +110,18 @@
       "id": "Route210South_Text_12",
       "en_US": [
         "There’s a move that doubles in power\n",
-        "if the Pokémon using it is poisoned,\f",
-        "paralyzed, or burned.\r",
-        "I’ve got the Technical Machine for\n",
-        "it right here. You want it?\r"
+        "once the foe is down to half its HP.\r",
+        "I’ve got two Technical Machines for\n",
+        "it right here. You want them?\r"
       ]
     },
     {
       "id": "Route210South_Text_13",
       "en_US": [
-        "Facade’s a good move for your Pokémon\n",
+        "Brine’s a good move for your Pokémon\n",
         "to have.\r",
-        "Your opponent will think twice about\n",
-        "poisoning or paralyzing your Pokémon."
+        "Wear a foe down to half its HP, and\n",
+        "Brine will wash it right away."
       ]
     }
   ]

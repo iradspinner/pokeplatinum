@@ -28,8 +28,8 @@ HearthomeCityGymLeaderRoom_Entry0:
     GoToIf 1, HearthomeCityGymLeaderRoom_0132
     End
 HearthomeCityGymLeaderRoom_Entry1:
-    SetVarFromValue VAR_0x8004, 392
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_HM04
+    SetVarFromValue VAR_0x8005, 2
     SetVarFromValue VAR_OBJ_GFX_ID_6, 39
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

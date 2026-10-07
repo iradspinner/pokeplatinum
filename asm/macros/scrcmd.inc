@@ -5248,6 +5248,40 @@
     .short \location
     .endm
 
+    /* Platinum Oxide: how many prizes the Game Corner's list has
+       (src/scrcmd_game_corner_prize.c), into \destVar. */
+    .macro GetGameCornerPrizeCount destVar
+    .short SCRCMD_GETGAMECORNERPRIZECOUNT
+    .short \destVar
+    .endm
+
+    /* Platinum Oxide: how many of \item one purchase gives, into \destVar:
+       a TM sold once gives its copies (include/data/sold_tms.h), anything
+       else one. */
+    .macro GetSoldTMCopies item, destVar
+    .short SCRCMD_GETSOLDTMCOPIES
+    .short \item
+    .short \destVar
+    .endm
+
+    /* Platinum Oxide: records that the TM sold once, \item, is bought, so
+       no counter offers it again. */
+    .macro MarkSoldTMBought item
+    .short SCRCMD_MARKSOLDTMBOUGHT
+    .short \item
+    .endm
+
+    /* Platinum Oxide: run by the coord events of a line that splits one map
+       between two gauntlet sections (src/gauntlet.c, sGauntletLines). Stepping
+       onto the far tile facing the way forward opens the section beyond;
+       \destVar is GAUNTLET_LINE_TURN_BACK when the player stepped onto the
+       near tile facing back while that section is open, else
+       GAUNTLET_LINE_NOTHING. */
+    .macro GauntletStepOnLine destVar
+    .short SCRCMD_GAUNTLETSTEPONLINE
+    .short \destVar
+    .endm
+
 #ifdef OXIDE_TESTKIT
     /* Platinum Oxide test kit only (make testkit): puts the Pokemon in
        \partySlot into \form. Rotom takes the game's own form change, which

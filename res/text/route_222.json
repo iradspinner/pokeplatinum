@@ -4,23 +4,22 @@
     {
       "id": "Route222_Text_IGiveTMFling",
       "en_US": [
-        "The only items you ever throw are\n",
-        "Poké Balls!\r",
-        "But is that true?!\n",
+        "Money can buy a lot of things.\n",
+        "But can it buy muscles?!\r",
         "I want people to think about that.\r",
         "That’s why I give away the Technical\n",
-        "Machine Fling.\r"
+        "Machine Bulk Up.\r"
       ]
     },
     {
       "id": "Route222_Text_ExplainFling",
       "en_US": [
-        "Using that move, the Pokémon hurls\n",
-        "whatever item it’s holding at the foe.\r",
-        "The move’s effect depends on what\n",
-        "item is hurled.\r",
-        "Remember, the move Fling fails if the\n",
-        "Pokémon isn’t holding anything."
+        "Using that move, the Pokémon bulks\n",
+        "up its body.\r",
+        "It raises both its Attack and its\n",
+        "Defense.\r",
+        "Remember, a TM works only once, so\n",
+        "choose its Pokémon with care."
       ]
     },
     {

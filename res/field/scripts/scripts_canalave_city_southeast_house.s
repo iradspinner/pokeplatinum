@@ -12,8 +12,8 @@ CanalaveCitySoutheastHouse_AceTrainerF:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48, CanalaveCitySoutheastHouse_ExplainSkillSwap
     Message CanalaveCitySoutheastHouse_Text_IFoundThis
-    SetVar VAR_0x8004, ITEM_TM48
-    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8004, ITEM_TM12
+    SetVar VAR_0x8005, 2
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, CanalaveCitySoutheastHouse_BagIsFull
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_CANALAVE_CITY_SOUTHEAST_HOUSE_TM48

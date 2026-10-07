@@ -23,21 +23,21 @@
       "en_US": [
         "Wah!\n",
         "You startled me good!\r",
-        "I think you’ll understand what I was\n",
-        "doing when you see this TM.\r"
+        "I was psyching myself up so that\n",
+        "nothing could rattle me.\r",
+        "Here, take a Berry that does the\n",
+        "same job.\r"
       ]
     },
     {
       "id": "Route211East_Text_ExplainPsychUp",
       "en_US": [
-        "Let me explain how that move works\n",
-        "without getting too technical.\r",
-        "Let’s say your opponent raises its\n",
-        "Defense using Harden.\r",
-        "Your Pokémon can use Psych Up to get\n",
-        "the same Defense boost as its foe.\r",
-        "Basically, your Pokémon gets the same\n",
-        "status boosts as its target."
+        "Let me explain without getting too\n",
+        "technical.\r",
+        "A Pokémon holding a Lum Berry eats it\n",
+        "when it gets a status problem.\r",
+        "The Berry cures it right away, and it\n",
+        "even snaps it out of confusion!"
       ]
     },
     {

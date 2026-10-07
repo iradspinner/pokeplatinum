@@ -13,7 +13,7 @@ EternaCityCondominiums2F_ExpertF:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67, EternaCityCondominiums2F_LongHistory
     Message EternaCityCondominiums2F_Text_HadTMLongTimeNow
-    SetVar VAR_0x8004, ITEM_TM67
+    SetVar VAR_0x8004, ITEM_LUM_BERRY
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityCondominiums2F_BagIsFull
     SetFlag FLAG_RECEIVED_ETERNA_CITY_CONDOMINIUMS_2F_TM67

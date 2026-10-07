@@ -46,12 +46,12 @@
     {
       "id": "SnowpointGym_Text_CandiceExplainTM72",
       "en_US": [
-        "{STRVAR_1 8, 0, 0} contains the move\n",
-        "{STRVAR_1 6, 1, 0}.\r",
-        "If the user takes damage, the move’s\n",
-        "power is doubled!\r",
-        "Can you imagine what sort of focus\n",
-        "you’d need to pull it off?"
+        "A {STRVAR_1 8, 0, 0} cures any status\n",
+        "problem, and confusion too.\r",
+        "Even a frozen Pokémon holding one\n",
+        "thaws right out!\r",
+        "Can you imagine anything cooler\n",
+        "than that?"
       ]
     },
     {

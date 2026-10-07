@@ -27,6 +27,9 @@
     ScriptEntry FieldMoves_UseWaterfallFromMenu
     ScriptEntry FieldMoves_UseDefogFromMenu
     ScriptEntry FieldMoves_UseFlashFromMenu
+    ScriptEntry FieldMoves_GauntletNoTurningBack
+    ScriptEntry FieldMoves_GauntletNoTurningBackStepOff
+    ScriptEntry FieldMoves_GauntletLine
     ScriptEntryEnd
 
 FieldMoves_CutTree:
@@ -463,3 +466,75 @@ FieldMoves_Dummy8:
     End
 
     .balign 4, 0
+
+@ Platinum Oxide: the gauntlets (src/gauntlet.c). C starts the first two when
+@ an open section refuses its way back: the second after a step onto the
+@ warp's tile, walking the player back off it. The third runs from the coord
+@ events of a line that splits one map between two sections.
+FieldMoves_GauntletNoTurningBack:
+    LockAll
+    Message FieldMoves_Text_NoTurningBack
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+FieldMoves_GauntletNoTurningBackStepOff:
+    LockAll
+    Message FieldMoves_Text_NoTurningBack
+    WaitButton
+    CloseMessage
+    GetPlayerDir VAR_0x8004
+    GoToIfEq VAR_0x8004, DIR_NORTH, FieldMoves_GauntletStepBackSouth
+    GoToIfEq VAR_0x8004, DIR_SOUTH, FieldMoves_GauntletStepBackNorth
+    GoToIfEq VAR_0x8004, DIR_WEST, FieldMoves_GauntletStepBackEast
+    ApplyMovement LOCALID_PLAYER, FieldMoves_Movement_GauntletStepWest
+    GoTo FieldMoves_GauntletSteppedBack
+    End
+
+FieldMoves_GauntletStepBackSouth:
+    ApplyMovement LOCALID_PLAYER, FieldMoves_Movement_GauntletStepSouth
+    GoTo FieldMoves_GauntletSteppedBack
+    End
+
+FieldMoves_GauntletStepBackNorth:
+    ApplyMovement LOCALID_PLAYER, FieldMoves_Movement_GauntletStepNorth
+    GoTo FieldMoves_GauntletSteppedBack
+    End
+
+FieldMoves_GauntletStepBackEast:
+    ApplyMovement LOCALID_PLAYER, FieldMoves_Movement_GauntletStepEast
+    GoTo FieldMoves_GauntletSteppedBack
+    End
+
+FieldMoves_GauntletSteppedBack:
+    WaitMovement
+    ReleaseAll
+    End
+
+@ GauntletStepOnLine sets VAR_RESULT to GAUNTLET_LINE_TURN_BACK (1) when the
+@ player must turn around, and opens the section beyond on a step forward.
+FieldMoves_GauntletLine:
+    GauntletStepOnLine VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, FieldMoves_GauntletNoTurningBackStepOff
+    End
+
+    .balign 4, 0
+FieldMoves_Movement_GauntletStepSouth:
+    WalkNormalSouth
+    EndMovement
+
+    .balign 4, 0
+FieldMoves_Movement_GauntletStepNorth:
+    WalkNormalNorth
+    EndMovement
+
+    .balign 4, 0
+FieldMoves_Movement_GauntletStepEast:
+    WalkNormalEast
+    EndMovement
+
+    .balign 4, 0
+FieldMoves_Movement_GauntletStepWest:
+    WalkNormalWest
+    EndMovement
