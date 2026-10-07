@@ -291,6 +291,10 @@ Left for want of a command: Octolock into an already octolocked target, whose st
 
 The three new effects that carry a secondary effect (417, 418, 420) are on the engine's Sheer Force list, so Sheer Force strips Raging Fury's confusion (keeping its recoil), Upper Hand's flinch and Burning Jealousy's burn, and strengthens each, as it does Volt Tackle, Fake Out and Ember. The reworked moves that moved onto effects already on that list (Blast Burn, Frenzy Plant, Sky Attack, Thrash, Petal Dance, Uproar) came with it.
 
+## The other flags' routing, 2026-10-07
+
+Ian's ruling (alpha readiness, step 18): the nine flags beyond Basic and Expert route each learnable new move as its nearest Platinum effect is routed there, judged by its effect script, as Expert's pass did. Routing only, with no new test or score, marked in the code "Oxide, change (Ian, 2026-10-07, the other flags' routing)". Of 165 learnable new moves, 21 are newly routed: in Evaluate Attack, Setup First Turn, Risky, Baton Pass, Check HP and Harassment, one commit per flag on `cloud/main-ai-flags`. Prioritize Extremes, Tag Strategy and Weather needed nothing, since the first reads only the shared damage tables, the second already had the new spread moves, and no learnable new move sets weather. Three of Ian's eleven Expert judgment calls (Final Gambit, Guard Split, Power Split) are routed in flags that do not read what made Expert misjudge them, and eight moves are left out of a list their match is on; each is Ian's to reverse. What would need new behaviour (the partner moves in Tag Strategy, Rage Powder, the Guard moves, Snowscape, two Prioritize Extremes mismatches in `trainer_ai.c`) is listed for him. [other-flags-new-moves.md](other-flags-new-moves.md) has every flag's table and the mapping for all 165 moves.
+
 ## The parts
 
 | File | Covers |
@@ -302,5 +306,6 @@ The three new effects that carry a secondary effect (417, 418, 420) are on the e
 | `switching-and-items.md` | the damage the AI calculates, switching, replacements and item use |
 | `expert-gaps.md` | Platinum's own moves with no Expert routine, grouped by effect, with what else scores them |
 | `expert-new-moves.md` | every learnable new move and the Expert routine it takes, or why none |
+| `other-flags-new-moves.md` | every learnable new move in the nine other flags: what each flag now does with it, or why nothing |
 
 Each of the first five parts ends with its apparent bugs, every one labelled as present in vanilla Platinum or introduced by Oxide and headed by a line saying which are fixed, then a pointer to the battle_edits fixes that fall in it, then what Oxide's new moves, abilities and types do there. Fixing a bug that is present in vanilla is Ian's call and is always called out as such.

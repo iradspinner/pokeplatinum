@@ -281,6 +281,21 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   move (Gardenia's team carries Bullet Seed), it should now use that move
   where it is the strongest attack counted over about three hits, where it
   used to rate it as a single 25 power hit and seldom chose it.
+- [ ] **(live)** The new moves in the other AI flags (`cloud/main-ai-flags`,
+  readiness step 18; the kit cannot show it, since a wild Pokemon never runs
+  the trainer AI). No trainer carries any of the 21 routed moves on the
+  branch's base, so this waits until a team does (the comb's teams of step 12
+  or the trainer pass); `docs/oxide/battle-ai/other-flags-new-moves.md` lists
+  the moves and flags. Take one trainer whose flags include Setup First Turn
+  and whose Pokemon knows one of that table's routed moves (Hone Claws, Coil,
+  Cotton Guard, Autotomize, Noble Roar, Tearful Look or Aurora Veil), and one
+  with Check HP and a routed move. Break at the end of
+  `TrainerAI_MainSingles` and read `moveScore`, as for Camper Zackary. On the
+  battle's first turn the Setup First Turn move should carry the same +2 as a
+  Platinum setup move most turns (about two in three); the Check HP move
+  should lose 2 most turns (about four in five) once its user is at 70% HP
+  or less. Before the branch neither moved. Compare the change, not the totals,
+  since Basic and Expert score the same move too.
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
