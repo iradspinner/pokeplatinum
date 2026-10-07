@@ -1404,10 +1404,10 @@ static void TeachMove(PartyMenuApplication *application, Pokemon *mon, u32 moveS
     if (application->partyMenu->usedItemID != ITEM_NONE) {
         // Platinum Oxide: TMs are single-use again, as in vanilla (Ian,
         // 2026-09-28); the base ROM had skipped this removal, making every TM
-        // reusable. HMs stay exempt.
-        if (Item_IsHMMove(application->partyMenu->learnedMove) == FALSE) {
-            Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
-        }
+        // reusable. The HMs are single-use TMs too since field moves work on
+        // the badge alone (standing rulings, 2026-09-28; the TM pass), so
+        // every TM and HM is used up, where vanilla kept its HMs.
+        Bag_TryRemoveItem(application->partyMenu->bag, application->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
 
         Pokemon_UpdateFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM, (u16)GetCurrentMapLabel(application));
     }

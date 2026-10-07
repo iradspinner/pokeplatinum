@@ -18,7 +18,7 @@ Route211East_AceTrainerM:
     ApplyMovement VAR_LAST_TALKED, Route211East_Movement_ExclamationMark
     WaitMovement
     Message Route211East_Text_YouStartledMe
-    SetVar VAR_0x8004, ITEM_TM77
+    SetVar VAR_0x8004, ITEM_LUM_BERRY
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route211East_BagIsFull
     Common_GiveItemQuantity

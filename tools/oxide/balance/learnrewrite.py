@@ -49,6 +49,7 @@ import argparse
 import collections
 import csv
 import functools
+import json
 import os
 import re
 import sys
@@ -99,6 +100,13 @@ PHAZING = {"MOVE_ROAR", "MOVE_WHIRLWIND"}
 # Ian's rulings on one move of one line (2026-09-30, and 2026-10-06 in
 # Charmander's session: "Dragon Rage leaves the line's early list").
 RULED_OFF = {("SPECIES_CHARMANDER", "MOVE_DRAGON_RAGE"), ("SPECIES_CHARMELEON", "MOVE_DRAGON_RAGE")}
+# Ian's calls for one move on one egg list, the trainers' palette, recorded
+# as his, not a rule of the generator.
+IAN_EGG_MOVES = {
+    "SPECIES_DARKRAI": [("MOVE_DARK_VOID", "Ian, 2026-10-06: Officer Somnu's Darkrai keeps Dark Void, which "
+                                           "Darkrai learns only at 66, above Somnu's levels; the player never "
+                                           "reaches an egg list")],
+}
 # Damage that needs a condition the user rarely has, or comes out random:
 # never added (learnstudy's conditional moves, and Natural Gift, which Ian
 # wants used sparingly).
@@ -295,8 +303,11 @@ def canon_key(species):
 
 def links(fam):
     """{MOVE_X: weight}: the moves the line is linked to by any of its
-    members: Oxide's lists (level-up 1.0; TM, tutor and egg 0.85), the
-    canon lists, and Kaizo's lists (1.0)."""
+    members: Oxide's lists before the rewrite (level-up 1.0; TM, tutor and
+    egg 0.85), the canon lists, and Kaizo's lists (1.0). The TM lists are
+    read with the TM records of the same commit, never the TM pass's: the
+    new TMs are no link (on 2026-10-07 reading them gave 136 species 203
+    entries, Block from Substitute's TM90 among them)."""
     return links_of(frozenset(lc.families()[fam]))
 
 
@@ -312,7 +323,7 @@ def links_of(members):
     per, _lv, _n = canon_index()
     kz = lc.learnstudy_kaizo()
     names = lc._by_compact_name()
-    machines = pokedex.machines(data.ROOT)
+    machines = lc.base_machines()
     out = {}
 
     def add(mv, w):
@@ -344,7 +355,7 @@ def species_links(species, const):
     if const in per.get(canon_key(species), {}):
         return True
     rec = pokedex.load(data.ROOT, species, ref=lc.BASE_REF) or {}
-    machines = pokedex.machines(data.ROOT)
+    machines = lc.base_machines()
     return (any(m == const for _l, m in lc.learnset(BASE, species))
             or const in (rec.get("by_tutor") or []) or const in (rec.get("egg_moves") or [])
             or any(machines.get(label) == const for label in rec.get("by_tm") or []))
@@ -447,6 +458,150 @@ def ceiling(holder, split_idx, cover):
 
 
 RAW_MARGIN = 15   # an off-stat attack may exceed the ceiling by its stat share, not by more than this
+
+
+# ---- the type ladders: climb, don't jump (Ian, 2026-10-06) ------------------------------------
+#
+# Ian on the early kits: "It entirely depends on the pokemon, and keeping it
+# to hard rules destroys the variability between pokemon; giga drain in
+# roark is clearly too much, but bubblebeam on corphish is probably fine."
+# So each type's attacks form a ladder by power, physical and special side
+# by side, and a line climbs it: a gap is filled from the rung that fits the
+# point in the game, a rung or two above what the line has, never the
+# strongest move a ceiling lets through. A rung is read by the power the
+# holder feels (its share of its better attacking stat), so an off-stat
+# BubbleBeam sits low on a physical Corphish and a Giga Drain high on any
+# Grass line in Roark's split. The old ceilings still set the point in the
+# game a first move of a type starts at (start_power: the ceiling less 20),
+# and otherwise weigh the score; start_power is the lever if early kits
+# feel off in play.
+
+FIRST_RUNG = 40     # a line's first attacks come from the ladder's foot; below it is dead weight
+
+
+# The multi-hit moves stand on a ladder by their power a hit, as Ian's Grass
+# ladder has it ("Bullet Seed 25 a hit", near the foot, 2026-10-06), not by
+# their average total, which the checks read.
+MULTI_HIT = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TIMES", "HIT_THREE_TIMES_RISING_10",
+             "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
+             "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH"}
+
+
+def ladder_power(const):
+    """A move's power for the ladders: a hit's for a multi-hit move, else effective power."""
+    m = M()[const]
+    return float(m["power"] or 0) if m["effect"] in MULTI_HIT else lc.effective_power(const)
+
+
+@functools.lru_cache(maxsize=None)
+def ladder(typ, side=None):
+    """The type's rungs on one side (PHYSICAL or SPECIAL; both when None):
+    the distinct ladder powers of the attacks a list may rely on, lowest
+    first. A line climbs the side of its better attacking stat; a side with
+    no attack of the type falls back to both."""
+    out = tuple(sorted({round(ladder_power(c)) for c, m in M().items()
+                        if m["type"] == typ and is_attack(c) and lc.reliable(c) and ladder_power(c) >= 20
+                        and (side is None or m["class"] == side)}))
+    return out if out or side is None else ladder(typ)
+
+
+def side_of(holder):
+    atk, spa = lc.attack_stats(holder)
+    return "PHYSICAL" if atk >= spa else "SPECIAL"
+
+
+def rung(power, typ, side=None):
+    """The highest rung of the type's ladder at or under the power; -1 when
+    the power is under the ladder's foot."""
+    return max((i for i, p in enumerate(ladder(typ, side)) if p <= power + 0.5), default=-1)
+
+
+def rung_up(power, typ, side=None):
+    """The lowest rung of the type's ladder at or over the power."""
+    steps = ladder(typ, side)
+    return next((i for i, p in enumerate(steps) if p >= power - 0.5), len(steps) - 1)
+
+
+def side_for(const, holder):
+    """The ladder side a move is read on: its own class where it fits the
+    holder (a mixed attacker climbs both), else the holder's better side, so
+    an off-stat move sits low there (Corphish's BubbleBeam)."""
+    return M()[const]["class"] if lc.fits(const, holder) else side_of(holder)
+
+
+def rung_of(const, holder):
+    """Where an attack stands on its type's ladder for the holder."""
+    return rung(standing(const, holder), M()[const]["type"], side_for(const, holder))
+
+
+def felt(const, holder):
+    """An attack's power as the holder feels it: effective power times its
+    share of the holder's better attacking stat."""
+    return lc.effective_power(const) * ratio(const, holder)
+
+
+def standing(const, holder):
+    """Where an attack stands on its ladder for the holder: halfway between
+    its power as the player reads it and as the holder feels it, so an
+    off-stat move sits lower (Corphish's BubbleBeam) without a 90-power move
+    passing for a weak one at level 3 (Chinchou's Wild Charge). A pivot
+    (Flip Turn, U-turn, Volt Switch) stands at least at the middle of its
+    type's ladder: Ian, 2026-10-06, "pivoting is incredibly strong", so it
+    is never a first move."""
+    power = ladder_power(const)
+    s = (power + power * ratio(const, holder)) / 2
+    if M()[const]["effect"] in PIVOT_EFFECTS:
+        steps = ladder(M()[const]["type"])
+        s = max(s, steps[len(steps) // 2] if steps else s)
+    return s
+
+
+def pace(holder):
+    """Rungs a line climbs a split: one for a flagged stage, which gets its
+    strong moves later (balance-rules), two for the rest."""
+    return 1 if flagged(holder) else 2
+
+
+def start_power(holder, split_idx):
+    """Where a line meets a type's ladder for the first time at a split:
+    the old ceiling less 20, read as the point in the game (40 in Roark's
+    split, 55 in Gardenia's), never under the ladder's foot."""
+    return max(FIRST_RUNG, ceiling(holder, split_idx, False) - 20)
+
+
+def climb_room(holder, typ, before, split_idx, first=False, side=None):
+    """The highest rung of the type, on the holder's side, a move added to
+    it at the split may stand on: a rung or two (pace) above the best of the
+    type it had before the split, one rung fewer in the split it is caught
+    in, where it starts. For a type it has none of: its own type from the
+    first rung at or over the lower of its best attack and the split's
+    starting point, since a line's first moves come from the low rungs
+    (Zubat's first Flying move is Gust, not the Wing Attack two rungs up); a
+    coverage type no higher than the line's own level, so a sparse ladder
+    (special Steel starts at Flash Cannon) gives no early spike."""
+    side = side or side_of(holder)
+    held = [standing(m, holder) for m in before if m in M() and is_attack(m) and M()[m]["type"] == typ]
+    if held:
+        return rung(max(held), typ, side) + pace(holder) - (1 if first else 0)
+    known = [standing(m, holder) for m in before if m in M() and is_attack(m)]
+    start = start_power(holder, split_idx)
+    if typ in lc.types_of(holder):
+        # The first rung at or over the base on the holder's better side,
+        # read as a power on the side asked about, so a sparse side does not
+        # start high (Nosepass's special Rock starts at AncientPower 60,
+        # its physical at Rock Throw 50).
+        base = max(FIRST_RUNG, min(max(known), start) if known else start)
+        better = side_of(holder)
+        steps = ladder(typ, better)
+        power = steps[rung_up(base, typ, better)] if steps else base
+        return rung(power, typ, side)
+    return rung(max(known + [start]), typ, side)
+
+
+def climbs(const, holder, before, split_idx, first=False):
+    """Whether an attack added at the split climbs rather than jumps."""
+    return rung_of(const, holder) <= climb_room(holder, M()[const]["type"], before, split_idx, first,
+                                                side_for(const, holder))
 
 
 def within_ceiling(const, holder, split_idx):
@@ -638,36 +793,149 @@ def accurate_twin(const, species, fam):
     return best[1] if best else None
 
 
-def place_rampage(d, species, entry):
-    """R9: Thrash, Petal Dance and Outrage become one-turn moves (Ian,
-    2026-10-06), so a list places them at their one-turn worth: an entry
-    whose one-turn power exceeds its split's ceiling moves to the first split
-    whose ceiling holds it, so the engine change brings no early spike
-    (Larvitar's Thrash at 23 would be a 120-power move in Gardenia's split)."""
+# The moves the rework Ian accepted made stronger (2026-10-06, cloud/main-
+# move-reworks): the rampage moves in one turn, the recharge and charge-turn
+# moves without their lost turn, and every multi-hit move at 25 a hit. An
+# entry of one on a list Oxide had would be an early spike where it stands
+# (Larvitar's Thrash at 23, a one-turn 120 in Gardenia's split), so it moves
+# to where the line can climb to it.
+REWORKED = {"MOVE_THRASH", "MOVE_PETAL_DANCE", "MOVE_OUTRAGE", "MOVE_UPROAR", "MOVE_RAGING_FURY",
+            "MOVE_HYPER_BEAM", "MOVE_GIGA_IMPACT", "MOVE_ROCK_WRECKER", "MOVE_ROAR_OF_TIME",
+            "MOVE_BLAST_BURN", "MOVE_FRENZY_PLANT", "MOVE_HYDRO_CANNON", "MOVE_SKY_ATTACK"}
+
+
+def reworked(const):
+    """A move the rework made stronger in one turn. The multi-hit moves are
+    not among them: the ladders read them by their power a hit (Ian's Grass
+    ladder puts Bullet Seed, 25 a hit, near the foot), so they stay put."""
+    return const in REWORKED
+
+
+def place_reworked(d, species, entry):
+    """R9 after the rework: an entry of a move the rework made stronger stays
+    where the line can climb to it on the type ladders by its level's split,
+    with what the stage and those it evolves from know by then, and else
+    moves to the first split where it can, at its new numbers, so the rework
+    brings no early spike. An entry below the level the stage is first had
+    at is left to R25."""
     lv, mv = entry
-    stab = M()[mv]["type"] in lc.types_of(species)
-    worth = ONE_TURN[mv] * ratio(mv, species)
-    x = si(lc.split_of_level(lv))
-    while x < len(SPLITS) - 1 and worth > ceiling(species, x, not stab):
-        x += 1
-    if x == si(lc.split_of_level(lv)):
+    if lv < lowest_had().get(species, 2):
         return
-    lo, hi = lc.window(SPLITS[x])
-    free = next((l for l in range(max(lo, lv), top() + 1) if l not in d.levels(species)), None)
+    own = [species] + list(pool.pre_evolutions().get(species) or [])
+    x0 = si(lc.split_of_level(lv))
+    for x in range(x0, len(SPLITS)):
+        level = max(lv, lc.window(SPLITS[x])[0])
+        before = [m for s in own for l, m in d.lists[s] if 2 <= l < level and m != mv]
+        if climbs(mv, species, before, x):
+            break
+    else:
+        return
+    if x == x0:
+        return
+    free = next((l for l in range(max(lv, lc.window(SPLITS[x])[0]), top() + 1) if l not in d.levels(species)), None)
     if free is not None:
-        d.move(species, entry, free, "R9", f"at its one-turn worth ({worth:.0f}) it fits {SPLITS[x]}'s split; "
-                                          "waits on the engine change")
+        d.move(species, entry, free, "R9", f"at its reworked numbers the line climbs to it in {SPLITS[x]}'s split")
+
+
+@functools.lru_cache(maxsize=None)
+def type_multi_hit():
+    """{TYPE: MOVE_X}: the one physical two-to-five-hit move each type keeps
+    (Ian, 2026-10-06), Normal's being Fury Swipes. Water Shuriken, Water's
+    only one, is left out: it is special and strikes first, so it would not
+    stand in for a physical slap like for like."""
+    out = {"NORMAL": "MOVE_FURY_SWIPES"}
+    for c, m in sorted(M().items()):
+        if m["effect"] == "MULTI_HIT" and m["class"] == "PHYSICAL" and m["type"] != "NORMAL" \
+                and c not in lc.REMOVED and not lc.not_working(c):
+            if m["type"] in out:
+                raise SystemExit(f"two multi-hit moves for {m['type']}: {out[m['type']]} and {c}")
+            out[m["type"]] = c
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def ordered_types(species):
+    return tuple((pokedex.load(data.ROOT, species) or {}).get("types") or [])
+
+
+@functools.lru_cache(maxsize=None)
+def line_members(species):
+    fam = lc.family(species)
+    return tuple(sp for sp in sorted(lc.species_set()) if lc.family(sp) == fam)
+
+
+def multi_hit_pick(species):
+    """The stand-in for a cut multi-hit move: the stage's own type's, first
+    type first, else Fury Swipes."""
+    return next((type_multi_hit()[t] for t in ordered_types(species) if t in type_multi_hit()),
+                "MOVE_FURY_SWIPES")
+
+
+def multi_hit_stand_in(d, species, entry):
+    """Ian's ruling of 2026-10-06 on one list entry of a cut multi-hit move.
+    A stage that already learns a multi-hit move of its line's types by that
+    level, or whose earlier stages do, needs no stand-in (Shellder has Icicle
+    Spear from 13, so Cloyster has it too). One that learns the stand-in
+    later has it brought down to this level, so the line keeps one multi-hit
+    move where it had it (Omastar's Rock Blast). Else the stand-in takes the
+    level."""
+    lv, mv = entry
+    pick = multi_hit_pick(species)
+    line = {t for sp in line_members(species) for t in ordered_types(sp)}
+    covering = {type_multi_hit()[t] for t in line if t in type_multi_hit()} | {pick}
+    why = "one two-to-five-hit move per type (Ian, 2026-10-06)"
+    d.remove(species, entry, "Ian's ruling", f"{name(mv)} leaves the game: {why}")
+    have = [(l, m, species) for l, m in d.lists[species] if m in covering and (2 <= l <= lv or l == lv == 1)]
+    # An earlier stage's entry counts as what it will be once its own cut
+    # moves have their stand-ins, so the order the species are walked in
+    # does not matter.
+    for pre in pool.pre_evolutions().get(species) or []:
+        for l, m in d.lists[pre]:
+            if m in lc.MULTI_HIT_CUT and m not in DEAD_WEIGHT:
+                m = multi_hit_pick(pre)
+            if m in covering and 2 <= l <= lv:
+                have.append((l, m, pre))
+    if have:
+        l, m, who = have[0]
+        whose = "" if who == species else f"{lc.species_name(who)} "
+        d.note(species, lv, mv, "no stand-in", "Ian's ruling", f"{whose}learns {name(m)} at {l}")
+        return
+    later = [e for e in d.lists[species] if e[1] == pick and e[0] > lv]
+    if later and lv >= 2:
+        d.move(species, later[0], lv, "Ian's ruling", f"in place of {name(mv)}: {why}")
+    else:
+        d.add(species, lv, pick, "Ian's ruling", f"in place of {name(mv)}: {why}")
 
 
 def clean(d, species):
     fam = lc.family(species)
+    # The egg list, the trainers' palette, takes the same swap.
+    eggs = d.eggs[species]
+    if any(m in lc.REPLACED or m in lc.MULTI_HIT_CUT for m in eggs):
+        swap = {m: lc.REPLACED.get(m) or multi_hit_pick(species) for m in eggs
+                if m in lc.REPLACED or m in lc.MULTI_HIT_CUT}
+        d.eggs[species] = list(dict.fromkeys(swap.get(m, m) for m in eggs))
+        for m, new in swap.items():
+            d.note(species, 0, m, "egg list", "Ian's ruling" if m in lc.MULTI_HIT_CUT else "Ian's rework",
+                   f"{name(new)} in its place")
     for entry in list(d.lists[species]):
+        # A stand-in can move a later entry down, ahead of the walk.
+        if entry not in d.lists[species]:
+            continue
         lv, mv = entry
         m = M().get(mv)
         if m is None:
             d.remove(species, entry, "unknown move")
         elif lc.out_of_lists(mv):
             d.remove(species, entry, "R24", "out of every player list")
+        elif mv in lc.REPLACED:
+            new = lc.REPLACED[mv]
+            d.remove(species, entry, "Ian's rework", f"{name(mv)} leaves the game; {name(new)} takes its place")
+            if not any(m == new for _l, m in d.lists[species]):
+                d.add(species, lv, new, "Ian's rework", f"in place of {name(mv)} (2026-10-06)")
+        elif mv in lc.MULTI_HIT_CUT and mv not in DEAD_WEIGHT:
+            # Barrage went as dead weight on 2026-09-27, with nothing in its place.
+            multi_hit_stand_in(d, species, entry)
         elif mv in lc.REMOVED:
             d.remove(species, entry, "removed", "leaves the game or every player list")
         elif mv in weather_moves.WEATHER_MOVES:
@@ -705,8 +973,8 @@ def clean(d, species):
                 d.remove(species, entry, "R37", "under 90% accuracy, beside an accurate move of its type")
             else:
                 d.note(species, lv, mv, "kept for Ian", "R37", "under 90% accuracy, no accurate twin fits")
-        elif mv in ONE_TURN and 2 <= lv <= top():
-            place_rampage(d, species, entry)
+        elif reworked(mv) and 2 <= lv <= top():
+            place_reworked(d, species, entry)
         elif lv > top():
             free = [l for l in range(top(), caps()[SPLITS[-2]], -1) if l not in d.levels(species)]
             if lc.counts(mv) and free and not d.has(species, mv):
@@ -884,6 +1152,13 @@ def windows(d, path, i):
     xs = [(a, "first" if i == 0 else "arrival")]
     if i + 1 == len(path) and by_item and lc.family(st.species) not in lc.STONE_EXCEPTIONS:
         xs += [(x, "arrival") for x in range(a + 1, a + 3)]
+    # The levels a stage spends in the split it evolves in by level, before
+    # evolving: no R2 count asks for them, but what is due may come there
+    # (Steenee's 17 to 25 in Gardenia's split, before Tsareena at 26).
+    if i + 1 < len(path) and path[i + 1].via == "level":
+        e = si(path[i + 1].split)
+        if e > a and e not in lc.held_splits(path, i):
+            xs.append((e, "arrival"))
     for x, kind in xs:
         if x >= len(SPLITS):
             continue
@@ -1007,6 +1282,43 @@ def candidates(d, fam, holder, slot, needs):
     path_moves = held | {m for st in slot.path for lv, m in d.lists[st.species] if lv >= 2}
     line_heals = any(heals(m) for m in path_moves)
     kin = related(holder)
+    # The lowest rung of each type the holder has a move to stand on, so
+    # that where a type's ladder has nothing for it at the climbing point,
+    # the next rung up with something is the step, not a gap left open
+    # (R11, R4). A coverage move may do so only up to the line's own level,
+    # the higher of its best attack and the split's starting point: Chinchou's
+    # only Bug move, Signal Beam, is no level-4 move.
+    first = slot.kind == "first"
+    no_attack = {t for t in holder_types if not any(is_attack(h) and M()[h]["type"] == t for h in held)}
+    foot = {}
+    for c in family_pool(fam):
+        t = M()[c]["type"]
+        if t not in no_attack or c in held or not is_attack(c) or plausibility(c, fam, holder) <= 0:
+            continue
+        if not lc.fits(c, holder) and slot.split > 1:
+            continue
+        # The lowest move the line has of the type, as a power, over both
+        # sides: Vullaby's Bite, not the Dark Pulse at the foot of special Dark.
+        foot[t] = min(foot.get(t, 999), standing(c, holder))
+    room_cache = {}
+
+    def reach_of(c):
+        """The highest rung the candidate's type and side allow it here."""
+        k = (M()[c]["type"], side_for(c, holder))
+        if k not in room_cache:
+            reach = climb_room(holder, k[0], needs.before, slot.split, first, k[1])
+            if k[0] in foot:
+                reach = max(reach, rung(foot[k[0]], k[0], k[1]))
+            room_cache[k] = reach
+        return room_cache[k]
+    # Whether a move on the line's better stat stands within reach of each
+    # type: an off-stat one fills an early gap only where none does (Abra's
+    # Psycho Cut, Geodude's Mud Bomb).
+    fit_in_reach = collections.defaultdict(bool)
+    for c in family_pool(fam):
+        if is_attack(c) and lc.fits(c, holder) and c not in held and plausibility(c, fam, holder) > 0 \
+                and rung_of(c, holder) <= reach_of(c):
+            fit_in_reach[M()[c]["type"]] = True
     for c in family_pool(fam) + tuple(sorted(later - set(family_pool(fam)))):
         if c in held or (c in on_list and c not in later):
             continue
@@ -1021,20 +1333,22 @@ def candidates(d, fam, holder, slot, needs):
         why, score = [], 0.0
         if m["class"] != "STATUS":
             stab = m["type"] in holder_types
-            # A line's first, weak coverage move (R4) answers to the plain
-            # ceiling: a strong line's later start on power does not hold its
-            # coverage back past the second split.
-            early_cover = needs.cover_early and not stab and lc.effective_power(c) < WEAK_POWER + 15
-            if not is_attack(c) or not (within_ceiling(c, holder, slot.split) or
-                                        (early_cover and lc.effective_power(c) * ratio(c, holder)
-                                         <= CEILING[SPLITS[slot.split]] - 15)):
+            # Climb, don't jump: the attack stands no more than a rung or two
+            # above what the line had before this slot (the type ladders).
+            if not is_attack(c):
+                continue
+            if rung_of(c, holder) > reach_of(c):
                 continue
             # An attack uses a stat that fits (R15); an off-stat one of the
             # holder's type fills only an early gap, a type with no attack
             # (R11) or no usable same-type attack (check 1), in the first two
-            # splits (R3; Ian, 2026-10-06).
-            if not lc.fits(c, holder) and not (stab and slot.split <= 1 and
-                                               (m["type"] in needs.types or needs.stab50)):
+            # splits, and only where no move on its better stat is in reach
+            # (R3; Ian, 2026-10-06).
+            # A line whose ability sets its side (Huge Power) takes no
+            # off-stat move at all (Ian, 2026-10-06, on Marill's Alluring Voice).
+            if not lc.fits(c, holder) and not (stab and slot.split <= 1 and not fit_in_reach.get(m["type"])
+                                               and not abilities(holder) & lc.ATTACK_DOUBLERS
+                                               and (m["type"] in needs.types or needs.stab50)):
                 continue
             value = attack_value(c, holder)
             if slot.split >= LATE_SPLIT and lc.effective_power(c) < LATE_POWER \
@@ -1059,6 +1373,9 @@ def candidates(d, fam, holder, slot, needs):
                 if floor and floor > slot.hi:
                     continue
             score = value / 2
+            # The old ceiling stays only as a weight: power felt over it costs score.
+            cover = not stab and m["type"] != "NORMAL"
+            score -= max(0.0, felt(c, holder) - ceiling(holder, slot.split, cover))
             if m["type"] in needs.types:
                 score += 200
                 why.append("R11")
@@ -1460,11 +1777,6 @@ def settle_family(d, fam):
 # late into a strong final form, held past about 66, earns payoff moves the
 # early evolver never gets by level-up, a top setup move among the prizes.
 DEMON_LEVEL, DEMON_BST, DEMON_LEVELS, DEMON_POWER = 30, 530, (66, 69), 100
-# The rampage moves at their one-turn worth as Ian took them from Kaizo
-# (standing rulings, 2026-10-06): Thrash 120 with a third as recoil, Petal
-# Dance 100, Outrage 140 with half as recoil. Uproar and Raging Fury wait on
-# his word on their versions.
-ONE_TURN = {"MOVE_THRASH": 120 * 0.85, "MOVE_PETAL_DANCE": 100.0, "MOVE_OUTRAGE": 140 * 0.8}
 
 
 def delay_demons(d, fam):
@@ -1487,11 +1799,10 @@ def delay_demons(d, fam):
                               if is_attack(m) and M()[m]["type"] == t), default=0)
                       for t in lc.types_of(pre)}
         prizes = []
-        # A rampage move may be the prize at its one-turn worth (the brief:
-        # placed, and named as waiting on the engine change).
-        power = lambda c: ONE_TURN.get(c, lc.effective_power(c) if is_attack(c) else 0)
+        # A rampage move may be the prize at its reworked, one-turn numbers.
+        power = lambda c: lc.effective_power(c) if is_attack(c) else 0
         value = lambda c, sp: power(c) * (1.5 if M()[c]["type"] in lc.types_of(sp) else 1.0) * ratio(c, sp)
-        attacks = sorted((c for c in branch_links(pre) if (c in ONE_TURN or (is_attack(c) and not never_added(c)))
+        attacks = sorted((c for c in branch_links(pre) if is_attack(c) and not never_added(c)
                           and M()[c]["type"] in lc.types_of(pre) and lc.fits(c, pre)
                           and power(c) >= DEMON_POWER
                           and value(c, target) > final_best.get(M()[c]["type"], 0)
@@ -1539,7 +1850,7 @@ def boost_branch(d, fam, path, j, cap, current):
         else:
             if not is_attack(c) or not lc.fits(c, holder):
                 continue
-            fits = lambda l: within_ceiling(c, holder, max(si(st.split), si(lc.split_of_level(l))))
+            fits = lambda l: climbs(c, holder, held, max(si(st.split), si(lc.split_of_level(l))))
         gain = lc.kit_worth(held + [c], holder) - current
         if gain <= 0:
             continue
@@ -1717,9 +2028,10 @@ def no_wild_trainer_move(d, species):
 
 def ensure_attack_at_capture(d, species):
     """Every catch knows an attack. Where one would know none, the best
-    fitting same-type attack within its split's ceiling goes in: at level 1
-    for a catch made that low, else at the catch level, the last move the
-    catch knows, a status move holding that level moving up one."""
+    fitting same-type attack from the foot of its ladder goes in (climbing
+    from nothing, as a first move does): at level 1 for a catch made that
+    low, else at the catch level, the last move the catch knows, a status
+    move holding that level moving up one."""
     fam = lc.family(species)
     for sp, split, lv, _h, _p in lc.catch_rows():
         if sp != species:
@@ -1742,7 +2054,7 @@ def ensure_attack_at_capture(d, species):
                 and lc.effective_power(x) > lc.effective_power(c) and lc._acc(x) >= lc._acc(c) for x in lower)
         cands = sorted((c for c, m in M().items()
                         if m["type"] in lc.types_of(sp) and is_attack(c) and not never_added(c)
-                        and within_ceiling(c, sp, min(level_split, si(split))) and plausibility(c, fam, sp) > 0
+                        and climbs(c, sp, (), min(level_split, si(split))) and plausibility(c, fam, sp) > 0
                         and c not in known and c not in on_list and not outclassed(c)),
                        key=lambda c: (-plausibility(c, fam, sp), -attack_value(c, sp), c))
         mv = cands[0] if cands else "MOVE_TACKLE"
@@ -1779,6 +2091,11 @@ def build():
         tidy(d, sp)
         no_wild_trainer_move(d, sp)
         ensure_attack_at_capture(d, sp)
+    for sp, adds in IAN_EGG_MOVES.items():
+        for mv, why in adds:
+            if mv not in d.eggs[sp]:
+                d.eggs[sp].append(mv)
+                d.note(sp, 0, mv, "egg list", "Ian's ruling", why)
     return d
 
 
@@ -1797,7 +2114,11 @@ def write(d):
             new = render(new, lst)
         eggs = file_eggs(text)
         if eggs is None and d.eggs[sp]:
-            raise SystemExit(f"{sp} has no egg list to write {d.eggs[sp]} into")
+            # A file with no egg list gets one after its last learnset list.
+            raw = json.loads(text)["learnset"]
+            last = next(k for k in ("by_tutor", "by_tm", "by_level") if k in raw)
+            new = jsonstyle.insert_key(new, ["learnset"], last, "egg_moves", [])
+            eggs = []
         if eggs is not None and d.eggs[sp] != eggs:
             new = render_eggs(new, d.eggs[sp])
         if new == text:

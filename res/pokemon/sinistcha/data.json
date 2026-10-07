@@ -90,7 +90,7 @@
             ],
             [
                 45,
-                "MOVE_GIGA_DRAIN"
+                "MOVE_DARK_PULSE"
             ],
             [
                 48,
@@ -110,18 +110,32 @@
             ],
             [
                 64,
-                "MOVE_SHELL_SMASH"
+                "MOVE_UPROAR"
             ],
             [
                 69,
-                "MOVE_NASTY_PLOT"
+                "MOVE_SHELL_SMASH"
             ],
             [
                 71,
-                "MOVE_STUN_SPORE"
+                "MOVE_NASTY_PLOT"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM11",
+            "TM15",
+            "TM19",
+            "TM22",
+            "TM30",
+            "TM33",
+            "TM48",
+            "TM53",
+            "TM56",
+            "TM77",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

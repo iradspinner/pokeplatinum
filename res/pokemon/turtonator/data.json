@@ -102,7 +102,7 @@
             ],
             [
                 54,
-                "MOVE_BODY_PRESS"
+                "MOVE_SCALE_SHOT"
             ],
             [
                 61,
@@ -110,7 +110,7 @@
             ],
             [
                 63,
-                "MOVE_EARTHQUAKE"
+                "MOVE_BODY_PRESS"
             ],
             [
                 66,
@@ -118,14 +118,37 @@
             ],
             [
                 70,
-                "MOVE_ROCK_TOMB"
+                "MOVE_EARTHQUAKE"
             ],
             [
                 72,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_ROCK_TOMB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM08",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM22",
+            "TM23",
+            "TM26",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM50",
+            "TM52",
+            "TM59",
+            "TM61",
+            "TM66",
+            "TM68",
+            "TM70",
+            "TM71",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_EXPLOSION"

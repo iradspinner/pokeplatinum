@@ -32,7 +32,9 @@ import jsonstyle  # noqa: E402
 DIVERGED = {
     "events_victory_road_1f": "the level 71 Lucas and Dawn fight at the start of "
                               "Victory Road adds the counterpart and a trigger "
-                              "(docs/oxide/battle-zone-plan.md)",
+                              "(docs/oxide/battle-zone-plan.md); then the gauntlet "
+                              "line between its two halves, three coord events "
+                              "(docs/oxide/gauntlets.md)",
     "events_pastoria_city_north_house": "the clown the base ROM added moved to the "
                                         "Restaurant with its gift (Ian, 2026-09-25)",
 }
@@ -124,6 +126,26 @@ DIVERGED["events_oreburgh_mine_b2f"] += (
 DIVERGED["events_stark_mountain_room_2"] += (
     "; then its Root Fossil ball removed, the Root Fossil being Oreburgh Mine B2F's "
     "(Ian, 2026-09-27)")
+# The Game Corner's challenger, an optional trainer beside the coins clerk
+# whose win gives the TM she gave for ten straight bonus rounds (Ian,
+# 2026-10-06).
+_why = "the optional trainer Rocco added beside the coins clerk (Ian, 2026-10-06)"
+DIVERGED["events_game_corner"] = (
+    DIVERGED["events_game_corner"] + "; " + _why if "events_game_corner" in DIVERGED else _why)
+# The reward table (step 10 of docs/oxide/alpha-readiness.md, applied
+# 2026-10-07 by tools/oxide/place_rewards.py) put its items in these maps'
+# balls; regenerating would bring back the base ROM's.
+_why = "item balls the reward table changed (2026-10-07)"
+for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
+# Solaceon's "Utility Stop" vendors are gone (Ian, 2026-10-07; bulk_scripts.py
+# says why), so the north house's events are vanilla's again.
+DIVERGED["events_solaceon_town_north_house"] = (
+    "the Utility Stop's three vendors removed, so the events are vanilla's (Ian, 2026-10-07)")
+DIVERGED["events_survival_area_south_house"] = (
+    "the second Utility Stop's greeter and three vendors removed; the Black Belt stays "
+    "where the base ROM moved him (2026-10-07)")
 
 
 def render(record, existing, index):

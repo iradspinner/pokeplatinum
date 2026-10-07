@@ -903,6 +903,9 @@ static void PartyMenu_SelectFieldMove(PartyMenuApplication *windowLayout, int *p
     case 4:
         msgID = PartyMenu_Text_YoureAlreadySurfing;
         break;
+    case 5: // Oxide: FIELD_MOVE_ERROR_GAUNTLET
+        msgID = PartyMenu_Text_CantUseInGauntlet;
+        break;
     }
 
     Window_EraseMessageBox(&windowLayout->windows[33], 1);

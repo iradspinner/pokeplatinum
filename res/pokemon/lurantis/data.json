@@ -110,15 +110,15 @@
             ],
             [
                 40,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_DUAL_CHOP"
             ],
             [
                 42,
-                "MOVE_LOW_SWEEP"
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 48,
-                "MOVE_POISON_JAB"
+                "MOVE_LOW_SWEEP"
             ],
             [
                 55,
@@ -137,7 +137,23 @@
                 "MOVE_SCARY_FACE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM15",
+            "TM18",
+            "TM19",
+            "TM22",
+            "TM31",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM68",
+            "TM81",
+            "TM84",
+            "TM85",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

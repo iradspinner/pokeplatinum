@@ -43,6 +43,7 @@
 #include "inlines.h"
 #include "item_use_functions.h"
 #include "location.h"
+#include "gauntlet.h"
 #include "map_header.h"
 #include "map_header_data.h"
 #include "map_object.h"
@@ -570,6 +571,21 @@ static BOOL Field_CheckWildEncounter(FieldSystem *fieldSystem)
     return MapHeader_HasWildEncounters(fieldSystem->location->mapHeaderID) && WildEncounters_TryWildEncounter(fieldSystem) == TRUE;
 }
 
+// Oxide: an open gauntlet section refuses its way back (src/gauntlet.c). The
+// refusal's script says so; after a step onto the warp's tile it also walks
+// the player back off it.
+static BOOL Field_GauntletRefusesWarp(FieldSystem *fieldSystem, int x, int z, BOOL stepBack)
+{
+    int warpIndex = MapHeaderData_GetIndexOfWarpEventAtPos(fieldSystem, x, z);
+
+    if (warpIndex == -1 || Gauntlet_RefusesWarp(fieldSystem, warpIndex) == FALSE) {
+        return FALSE;
+    }
+
+    ScriptManager_Set(fieldSystem, stepBack ? SCRIPT_ID(FIELD_MOVES, 17) : SCRIPT_ID(FIELD_MOVES, 16), NULL);
+    return TRUE;
+}
+
 static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput *input)
 {
     if (input->transitionDir == DIR_NONE) {
@@ -595,6 +611,10 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
 
         if (TileBehavior_IsDoor(tileBehavior)) {
             int transitionDir = input->transitionDir;
+
+            if (Field_GauntletRefusesWarp(fieldSystem, playerX, playerZ, FALSE)) {
+                return TRUE;
+            }
 
             if (PersistedMapFeatures_IsCurrentDynamicMap(fieldSystem, DYNAMIC_MAP_FEATURES_HEARTHOME_GYM) == TRUE) {
                 HearthomeGym_CheckIfEnteredIncorrectDoor(fieldSystem, playerX, playerZ, &transitionDir);
@@ -647,10 +667,18 @@ static BOOL Field_CheckMapTransition(FieldSystem *fieldSystem, const FieldInput 
     } else if (TileBehavior_IsWarpEntranceEast(tileBehavior) || TileBehavior_IsWarpEast(tileBehavior)
         || TileBehavior_IsWarpEntranceWest(tileBehavior) || TileBehavior_IsWarpWest(tileBehavior)
         || TileBehavior_IsWarpEntranceSouth(tileBehavior) || TileBehavior_IsWarpSouth(tileBehavior)) {
+        if (Field_GauntletRefusesWarp(fieldSystem, playerX, playerZ, FALSE)) {
+            return TRUE;
+        }
+
         sub_02056C18(fieldSystem, nextMap.mapHeaderID, nextMap.warpId, 0, 0, input->transitionDir);
         return TRUE;
     } else {
         return FALSE;
+    }
+
+    if (Field_GauntletRefusesWarp(fieldSystem, playerX, playerZ, FALSE)) {
+        return TRUE;
     }
 
     // these statements are unreachable, but required for matching
@@ -794,6 +822,13 @@ static BOOL Field_CheckTransition(FieldSystem *fieldSystem, const int playerX, c
 
     if (Field_MapConnection(fieldSystem, playerX, playerZ, &nextMap) == FALSE) {
         return FALSE;
+    }
+
+    if ((TileBehavior_IsEscalatorFlipFace(curTileBehavior) || TileBehavior_IsEscalator(curTileBehavior)
+            || TileBehavior_IsWarpEntranceNorth(curTileBehavior) || TileBehavior_IsWarpNorth(curTileBehavior)
+            || TileBehavior_IsWarpPanel(curTileBehavior))
+        && Field_GauntletRefusesWarp(fieldSystem, playerX, playerZ, TRUE)) {
+        return TRUE;
     }
 
     if (TileBehavior_IsEscalatorFlipFace(curTileBehavior) == TRUE) {

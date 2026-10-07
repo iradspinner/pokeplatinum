@@ -77,27 +77,42 @@
                 "MOVE_BULLET_SEED"
             ],
             [
-                34,
-                "MOVE_IRON_DEFENSE"
-            ],
-            [
                 35,
                 "MOVE_GYRO_BALL"
             ],
             [
                 40,
-                "MOVE_SEED_BOMB"
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 43,
                 "MOVE_KNOCK_OFF"
             ],
             [
+                47,
+                "MOVE_SEED_BOMB"
+            ],
+            [
                 52,
                 "MOVE_IRON_HEAD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM09",
+            "TM19",
+            "TM22",
+            "TM24",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM66",
+            "TM73",
+            "TM74",
+            "TM76",
+            "TM84",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_SELFDESTRUCT",

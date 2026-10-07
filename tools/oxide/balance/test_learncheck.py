@@ -48,15 +48,17 @@ def check_catches(results):
 
 def check_named_moves(results):
     """Every move the rule sets and tiers name exists in the tree, and the
-    sets read as meant: Thrash a rampage move, Hyper Beam, Dig and Bullet Seed
-    waiting on their rework, Detect and Fissure off the lists, Fury Attack
-    removed; Rock Tomb an incredible speed control attack; Swords Dance not
-    rated by Ian, so the Generation 9 list's S, a good move."""
+    sets read as meant: since the move rework (2026-10-06) Thrash is a
+    one-turn move and Hyper Beam, Dig, Bullet Seed, Fury Cutter and Fly count,
+    while Freeze Shock still waits; Detect and Fissure off the lists, Fury
+    Attack removed; Rock Tomb an incredible speed control attack; Swords
+    Dance not rated by Ian, so the Generation 9 list's S, a good move."""
     named = set(lc.REMOVED) | lc.OUT_BY_NAME | lc.PENDING_BY_NAME | \
         {"MOVE_" + m for ms in lc.IAN_TIERS.values() for m in ms}
     missing = sorted(m for m in named if m not in lc.moves())
-    ok = (not missing and lc.rampage("MOVE_THRASH") and all(lc.pending(m) for m in
-          ("MOVE_HYPER_BEAM", "MOVE_DIG", "MOVE_BULLET_SEED", "MOVE_FURY_CUTTER"))
+    ok = (not missing and not lc.rampage("MOVE_THRASH") and all(lc.reliable(m) for m in
+          ("MOVE_THRASH", "MOVE_HYPER_BEAM", "MOVE_DIG", "MOVE_BULLET_SEED", "MOVE_FURY_CUTTER", "MOVE_FLY"))
+          and lc.pending("MOVE_FREEZE_SHOCK")
           and lc.out_of_lists("MOVE_DETECT") and lc.out_of_lists("MOVE_FISSURE")
           and not lc.reliable("MOVE_FURY_ATTACK") and lc.reliable("MOVE_FLAMETHROWER")
           and lc.tier("MOVE_ROCK_TOMB") == (lc.TIER_RANK["Incredible"], "Ian")
@@ -168,9 +170,11 @@ def check_r11(results):
 def check_mechanical(results):
     """Checks 15 to 19: Togetic's Baton Pass with no boost (R21); Snorunt's
     Double Team and Protect, and Abra's Teleport (R24, removed); Glalie's Ice
-    Beam at 37, below its 42 (R25); Budew's Growth with only Absorb and Mega
-    Drain, and Altaria's Dragon Dance with only Take Down (R32); Onix's Stone
-    Edge and Iron Tail (R37)."""
+    Beam at 37, below its 42 (R25); Fomantis's Growth with no strong special
+    attack to boost, and Altaria's Dragon Dance with only Take Down (R32);
+    Onix's Stone Edge and Iron Tail (R37). Ian's R32 case was Budew's Growth,
+    which passes since 2026-10-06: Roselia comes at the Moss Rock in
+    Gardenia's split, not at a judged 30, and learns Giga Drain at 25."""
     c16 = {(sp, m) for sp, w, m, _r in lc.check16(O) if w.startswith("level")}
     c17 = {(sp, lv, m) for sp, lv, m, _lo in lc.check17(O)}
     c18 = {(sp, m) for sp, _lv, m, _k in lc.check18(O)}
@@ -180,7 +184,8 @@ def check_mechanical(results):
              "Snorunt's Double Team and Protect"),
             (("SPECIES_ABRA", "MOVE_TELEPORT") in c16, "Abra's Teleport"),
             (("SPECIES_GLALIE", 37, "MOVE_ICE_BEAM") in c17, "Glalie's Ice Beam 37"),
-            (("SPECIES_BUDEW", "MOVE_GROWTH") in c18, "Budew's Growth"),
+            (("SPECIES_FOMANTIS", "MOVE_GROWTH") in c18 and ("SPECIES_BUDEW", "MOVE_GROWTH") not in c18,
+             "Fomantis's Growth, and Budew's passing"),
             (("SPECIES_ALTARIA", "MOVE_DRAGON_DANCE") in c18, "Altaria's Dragon Dance"),
             (("SPECIES_ONIX", "MOVE_STONE_EDGE") in c19 and ("SPECIES_ONIX", "MOVE_IRON_TAIL") in c19,
              "Onix's Stone Edge and Iron Tail")]

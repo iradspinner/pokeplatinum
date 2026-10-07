@@ -32,7 +32,6 @@ ITEM_TM19	2	ball	Byron	MAP_HEADER_ROUTE_209		ITEM_TM19		draft: Giga Drain
 ITEM_TM68	2	ball	Fantina	MAP_HEADER_ETERNA_CITY		ITEM_TM46		draft: Giga Impact
 ITEM_TM86	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_GYM		ITEM_TM86		draft: Grass Knot
 ITEM_TM74	2	ball	Fantina	MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM		ITEM_TM90		draft: Gyro Ball
-ITEM_TM64	2	gift	Maylene	MAP_HEADER_GAME_CORNER		ITEM_TM64		draft: Haze
 ITEM_TM10	1	trainer	Roark	MAP_HEADER_ROUTE_203			TRAINER_YOUNGSTER_MICHAEL	draft: defeating youngster_michael (scale 2.3)
 ITEM_TM37	1	ball	Galactic	MAP_HEADER_ROUTE_228		ITEM_TM37		draft: Hydro Pump
 ITEM_TM15	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F		ITEM_TM67		draft: Hyper Beam

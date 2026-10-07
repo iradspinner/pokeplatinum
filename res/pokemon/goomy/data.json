@@ -89,7 +89,18 @@
                 "MOVE_DRAGON_PULSE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM03",
+            "TM07",
+            "TM24",
+            "TM36",
+            "TM41",
+            "TM42",
+            "TM59",
+            "TM70",
+            "TM80",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -50,7 +50,7 @@
             ],
             [
                 2,
-                "MOVE_SNARL"
+                "MOVE_TAUNT"
             ],
             [
                 6,
@@ -58,7 +58,7 @@
             ],
             [
                 8,
-                "MOVE_NASTY_PLOT"
+                "MOVE_BULLET_SEED"
             ],
             [
                 11,
@@ -75,6 +75,10 @@
             [
                 17,
                 "MOVE_TORMENT"
+            ],
+            [
+                19,
+                "MOVE_SNARL"
             ],
             [
                 23,
@@ -94,11 +98,15 @@
             ],
             [
                 35,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_NASTY_PLOT"
             ],
             [
                 36,
                 "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                37,
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 39,
@@ -109,7 +117,21 @@
                 "MOVE_PLAY_ROUGH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM12",
+            "TM23",
+            "TM30",
+            "TM41",
+            "TM42",
+            "TM64",
+            "TM65",
+            "TM66",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

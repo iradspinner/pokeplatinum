@@ -1,11 +1,11 @@
 {
     "name": "Thrash",
     "description": [
-        "The user rampages\n",
-        "and attacks for two\n",
-        "to three turns.\n",
-        "It then becomes\n",
-        "confused, however."
+        "A thrashing slam that\n",
+        "may paralyze the foe.\n",
+        "The user is hurt by a\n",
+        "third of the damage it\n",
+        "deals."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",
@@ -13,10 +13,10 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RECOIL_PARALYZE_HIT",
+        "chance": 20
     },
-    "range": "RANGE_RANDOM_OPPONENT",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_MAKES_CONTACT",

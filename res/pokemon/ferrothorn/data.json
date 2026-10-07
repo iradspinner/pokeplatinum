@@ -85,10 +85,6 @@
                 "MOVE_KNOCK_OFF"
             ],
             [
-                46,
-                "MOVE_BULLDOZE"
-            ],
-            [
                 48,
                 "MOVE_SEED_BOMB"
             ],
@@ -97,12 +93,12 @@
                 "MOVE_IRON_HEAD"
             ],
             [
-                54,
-                "MOVE_POISON_JAB"
+                53,
+                "MOVE_BULLDOZE"
             ],
             [
-                56,
-                "MOVE_BODY_PRESS"
+                55,
+                "MOVE_POISON_JAB"
             ],
             [
                 61,
@@ -117,7 +113,27 @@
                 "MOVE_PETAL_BLIZZARD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM09",
+            "TM15",
+            "TM19",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM74",
+            "TM76",
+            "TM84",
+            "TM86",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -388,7 +388,12 @@ function calculateDPP(gen, attacker, defender, move, field) {
             
             desc.attackerItem = attacker.item;
         }
-        if ((attacker.hasAbility('Reckless') && (move.recoil || move.hasCrashDamage)) ||
+        // Oxide patch: a profile may say which moves Reckless raises, since
+        // a hack's recoil moves need not be the calculator's (Oxide's one-turn
+        // reworks recoil, and its game reads the effect scripts).
+        var recklessMove = (0, romhack_helpers_1.applyValueHooks)(profile, "recklessMove", ctx,
+            !!(move.recoil || move.hasCrashDamage));
+        if ((attacker.hasAbility('Reckless') && recklessMove) ||
             (attacker.hasAbility('Iron Fist') && move.flags.punch)) {
             basePower = Math.floor(basePower * 1.2);
             desc.attackerAbility = attacker.ability;

@@ -3,13 +3,13 @@
   "plural": "TM11s",
   "article": "a",
   "description": [
-    "The user intensifies the sun for\n",
-    "five turns, powering up Fire-type\n",
-    "moves."
+    "The user looses its grudge on the move\n",
+    "last used by the foe by cutting 4 PP\n",
+    "from it."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_fire_NCLR"
+    "palette": "tm_ghost_NCLR"
   },
   "gbaID": "GBA_ITEM_TM11",
   "price": 2000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_SUNNY_DAY"
+  "teachesMove": "MOVE_SPITE"
 }

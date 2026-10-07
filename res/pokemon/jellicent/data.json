@@ -86,7 +86,7 @@
             ],
             [
                 45,
-                "MOVE_MUDDY_WATER"
+                "MOVE_DARK_PULSE"
             ],
             [
                 51,
@@ -94,7 +94,7 @@
             ],
             [
                 53,
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 55,
@@ -102,7 +102,7 @@
             ],
             [
                 61,
-                "MOVE_ENERGY_BALL"
+                "MOVE_SLUDGE_BOMB"
             ],
             [
                 65,
@@ -114,10 +114,33 @@
             ],
             [
                 72,
-                "MOVE_ICE_BEAM"
+                "MOVE_ENERGY_BALL"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM05",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM19",
+            "TM20",
+            "TM29",
+            "TM30",
+            "TM36",
+            "TM42",
+            "TM53",
+            "TM55",
+            "TM56",
+            "TM61",
+            "TM68",
+            "TM79",
+            "TM92",
+            "HM03",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -200,8 +200,8 @@ EternaCityGym_0299:
     ReleaseAll
     End
 EternaCityGym_029F:
-    SetVarFromValue VAR_0x8004, 413
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM43
+    SetVarFromValue VAR_0x8005, 2
     SetVarFromValue VAR_OBJ_GFX_ID_6, 33
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
@@ -248,8 +248,8 @@ EternaCityGym_033A:
     ReleaseAll
     End
 EternaCityGym_0345:
-    SetVarFromValue VAR_0x8004, 413
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM43
+    SetVarFromValue VAR_0x8005, 2
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, EternaCityGym_03C7

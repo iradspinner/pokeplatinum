@@ -93,7 +93,23 @@
                 "MOVE_POWER_WHIP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM33",
+            "TM34",
+            "TM42",
+            "TM44",
+            "TM53",
+            "TM68",
+            "TM73",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

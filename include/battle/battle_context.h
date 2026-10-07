@@ -73,7 +73,8 @@ typedef struct TurnFlags {
     u32 sideGuard : 3; // Oxide, one of SIDE_GUARD_*, from the padding
     u32 statLowered : 1; // Oxide: one of its stats fell this turn, for Lash Out, from the padding
     u32 beakBlastHeating : 1; // Oxide: it chose Beak Blast and heated its beak at the start of this turn, from the padding
-    u32 padding00_0F : 17;
+    u32 statRaised : 1; // Oxide: one of its stats rose this turn, for Burning Jealousy, from the padding
+    u32 padding00_10 : 16;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

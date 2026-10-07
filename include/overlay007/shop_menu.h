@@ -100,7 +100,8 @@ typedef struct {
     BOOL incBuyCount;
     u16 *itemsPtr;
     u8 itemsCount;
-    u8 unused[2];
+    u8 removeBoughtItem; // Platinum Oxide: a TM sold once was just bought, so it leaves the list
+    u8 unused;
     u8 state;
     String *string;
     u8 bgPriorities[4];

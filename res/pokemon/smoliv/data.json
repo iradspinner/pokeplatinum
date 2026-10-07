@@ -50,7 +50,7 @@
             ],
             [
                 5,
-                "MOVE_TERRAIN_PULSE"
+                "MOVE_MEGA_DRAIN"
             ],
             [
                 10,
@@ -65,8 +65,12 @@
                 "MOVE_FLAIL"
             ],
             [
+                18,
+                "MOVE_STRENGTH_SAP"
+            ],
+            [
                 20,
-                "MOVE_MEGA_DRAIN"
+                "MOVE_MUD_SHOT"
             ],
             [
                 27,
@@ -79,9 +83,21 @@
             [
                 34,
                 "MOVE_LEECH_SEED"
+            ],
+            [
+                38,
+                "MOVE_TERRAIN_PULSE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM19",
+            "TM22",
+            "TM41",
+            "TM42",
+            "TM53",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

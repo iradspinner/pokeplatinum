@@ -1,0 +1,168 @@
+# The reward table, step 6 of docs/oxide/alpha-readiness.md: a draft for Ian (step 7).
+# Written by tools/oxide/balance/rewards.py; docs/oxide/reward-table.md explains it.
+reward	copies	kind	split	map	place	replaces	trainer_id	badges	note
+ITEM_TM39	2	ball	Roark	MAP_HEADER_JUBILIFE_CITY		ITEM_POTION			Rock Tomb, utility; a ball that holds ITEM_POTION today
+ITEM_TM06	1	gift	Roark	MAP_HEADER_OREBURGH_CITY_GYM		ITEM_TM76			Toxic, strong; a TM place today (ITEM_TM76)
+ITEM_TM90	1	gift	Roark	MAP_HEADER_OREBURGH_GATE_1F		ITEM_HM06			Block, strong; a TM place today (ITEM_HM06)
+ITEM_TM51	1	gift	Roark	MAP_HEADER_SANDGEM_TOWN		ITEM_TM10			Roost, strong; a TM place today (ITEM_TM10)
+ITEM_TM76	2	ball	Gardenia	MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1		ITEM_TM02			Stealth Rock, utility; a TM place today (ITEM_TM02)
+ITEM_SITRUS_BERRY	1	ball	Gardenia	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM70			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Gardenia	MAP_HEADER_RAVAGED_PATH		ITEM_TM39			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM09			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Gardenia	MAP_HEADER_ROUTE_211_WEST		ITEM_TM12			a TM place the spread leaves to another item
+ITEM_TM31	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY		ITEM_HM01			Brick Break, utility; a TM place today (ITEM_HM01)
+ITEM_LUM_BERRY	1	gift	Gardenia	MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F		ITEM_TM67			a TM place the spread leaves to another item
+ITEM_TM43	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_GYM		ITEM_TM86			Secret Power, utility; a TM place today (ITEM_TM86)
+ITEM_HM05	2	gift	Gardenia	MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE		ITEM_TM88			Defog, utility; a TM place today (ITEM_TM88)
+ITEM_LUM_BERRY	1	gift	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM78			a TM place the spread leaves to another item
+ITEM_ABSORB_BULB	1	trainer	Gardenia	MAP_HEADER_ETERNA_FOREST			TRAINER_BUG_CATCHER_PHILLIP		held item; reading 2.3
+ITEM_EVIOLITE	1	trainer	Gardenia	MAP_HEADER_ETERNA_FOREST			TRAINER_BUG_CATCHER_DONALD		held item; reading 2.3
+ITEM_TM88	1	trainer	Gardenia	MAP_HEADER_ROUTE_205_NORTH			TRAINER_FISHERMAN_ZACHARY		Pluck, weak; reading 2.3
+ITEM_TM57	1	trainer	Gardenia	MAP_HEADER_ROUTE_205_SOUTH			TRAINER_PICNICKER_KARINA		Charge Beam, weak; reading 2.3
+ITEM_TM62	1	trainer	Gardenia	MAP_HEADER_ROUTE_205_SOUTH			TRAINER_CAMPER_ZACKARY		Silver Wind, weak; reading 2.3
+ITEM_CELL_BATTERY	1	trainer	Gardenia	MAP_HEADER_ROUTE_211_WEST			TRAINER_BIRD_KEEPER_ALEXANDRA		held item; reading 2.3
+ITEM_TM66	1	trainer	Gardenia	MAP_HEADER_ROUTE_211_WEST			TRAINER_HIKER_LOUIS		Payback, weak; reading 2.3
+ITEM_LUM_BERRY	1	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM45			a TM place the spread leaves to another item
+ITEM_TM79	2	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM43			Dark Pulse, utility; a TM place today (ITEM_TM43)
+ITEM_TM83	2	ball	Fantina	MAP_HEADER_ETERNA_CITY		ITEM_TM46			Expanding Force, utility; a TM place today (ITEM_TM46)
+ITEM_TM84	2	ball	Fantina	MAP_HEADER_ETERNA_FOREST_OUTSIDE		ITEM_TM82			Poison Jab, utility; a TM place today (ITEM_TM82)
+ITEM_TM44	2	ball	Fantina	MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM		ITEM_TM90			Wild Charge, utility; a TM place today (ITEM_TM90)
+ITEM_TM93	2	ball	Fantina	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM31			Psychic Noise, utility; a TM place today (ITEM_TM31)
+ITEM_TM11	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM32			Spite, utility; a TM place today (ITEM_TM32)
+ITEM_TM85	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM26			Skitter Smack, utility; a TM place today (ITEM_TM26)
+ITEM_HM04	2	gift	Fantina	MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM		ITEM_TM65			Strength, utility; a TM place today (ITEM_TM65)
+ITEM_BINDING_BAND	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_KAYLA		held item; reading 2.3
+ITEM_TM03	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_HIKER_THEODORE		Water Pulse, weak; reading 2.3
+ITEM_TM28	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_HIKER_THEODORE		Dig, weak since the rework (60, one turn): one copy, a second reward from Hiker Theodore, as a weak TM is an optional trainer's (Ian, 2026-10-07)
+ITEM_FAIRY_FEATHER	1	trainer	Fantina	MAP_HEADER_ROUTE_207			TRAINER_CAMPER_ANTHONY		held item; reading 2.3
+ITEM_LOADED_DICE	1	trainer	Fantina	MAP_HEADER_ROUTE_207			TRAINER_PICNICKER_LAUREN		held item; reading 2.3
+ITEM_AIR_BALLOON	1	trainer	Fantina	MAP_HEADER_ROUTE_208			TRAINER_ARTIST_WILLIAM		held item; reading 2.3
+ITEM_ROCKY_HELMET	1	trainer	Fantina	MAP_HEADER_ROUTE_208			TRAINER_BLACK_BELT_KYLE		held item; reading 2.3
+ITEM_TM09	2	ball	Maylene	MAP_HEADER_ROUTE_209		ITEM_TM47			Bullet Seed, utility; a TM place today (ITEM_TM47)
+ITEM_TM17	2	ball	Maylene	MAP_HEADER_ROUTE_209_LOST_TOWER_4F		ITEM_TM27			StompingTantrum, utility; a TM place today (ITEM_TM27)
+ITEM_LUM_BERRY	1	ball	Maylene	MAP_HEADER_ROUTE_215		ITEM_TM34			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Maylene	MAP_HEADER_SOLACEON_RUINS_ROOM_7		ITEM_HM05			a TM place the spread leaves to another item
+ITEM_TM16	2	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM51			Light Screen, utility; a TM place today (ITEM_TM51)
+ITEM_TM55	2	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM42			Brine, utility; a TM place today (ITEM_TM42)
+ITEM_SITRUS_BERRY	1	gift	Maylene	MAP_HEADER_ROUTE_215		ITEM_TM66			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	gift	Maylene	MAP_HEADER_VEILSTONE_CITY		ITEM_TM63			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	gift	Maylene	MAP_HEADER_VEILSTONE_CITY_GYM		ITEM_TM60			a TM place the spread leaves to another item
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_SILK_SCARF		3	Silk Scarf moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_WIDE_LENS		3	Wide Lens moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_ZOOM_LENS		3	Zoom Lens moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_METRONOME		3	Metronome moves to an optional fight; its prize slot is dropped
+ITEM_PUNCHING_GLOVE	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_WAITRESS_KATI		held item; reading 2.3
+ITEM_TM34	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_COLLECTOR_EDWIN		Shock Wave, weak; reading 2.3
+ITEM_TM32	2	trainer	Maylene	MAP_HEADER_GAME_CORNER		ITEM_TM64	TRAINER_GAME_CORNER_CHALLENGER		Zen Headbutt, utility; in place of the gift for ten straight bonus rounds (ITEM_TM64), a new optional trainer
+ITEM_ASSAULT_VEST	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_YOUNG_COUPLE_TY_AND_SUE		held item; reading 2.5
+ITEM_SILK_SCARF	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_JOGGER_RAUL		held item; reading 2.3
+ITEM_SAFETY_GOGGLES	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_BREEDER_KAHLIL		held item; reading 2.4
+ITEM_TM10	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_JOGGER_WYATT		Hidden Power, weak; reading 2.3
+ITEM_TM22	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_RUIN_MANIAC_CALVIN		SolarBeam, weak; reading 2.3
+ITEM_TM40	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_JOGGER_SCOTT		Aerial Ace, weak; reading 2.3
+ITEM_TM46	2	ball	Wake	MAP_HEADER_POKEMON_MANSION_OFFICE		ITEM_TM87			Knock Off, utility; a TM place today (ITEM_TM87)
+ITEM_TM37	2	ball	Wake	MAP_HEADER_ROUTE_212_NORTH		ITEM_TM11			Signal Beam, utility; a TM place today (ITEM_TM11)
+ITEM_TM78	2	ball	Wake	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM62			Captivate, utility; a TM place today (ITEM_TM62)
+ITEM_TM89	2	ball	Wake	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM06			U-turn, utility; a TM place today (ITEM_TM06)
+ITEM_SITRUS_BERRY	1	ball	Wake	MAP_HEADER_ROUTE_213		ITEM_TM40			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Wake	MAP_HEADER_RUIN_MANIAC_CAVE_SHORT		ITEM_TM28			a TM place the spread leaves to another item
+ITEM_TM30	2	gift	Wake	MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE		ITEM_TM92			Shadow Ball, utility; a TM place today (ITEM_TM92)
+ITEM_TM81	2	gift	Wake	MAP_HEADER_PASTORIA_CITY_GYM		ITEM_TM55			X-Scissor, utility; a TM place today (ITEM_TM55)
+ITEM_TM02	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM74		4	Dragon Claw, utility; bought once, from 4 badges, giving 2
+ITEM_TM05	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM29		4	Dazzling Gleam, utility; bought once, from 4 badges, giving 2
+ITEM_TM41	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM10		4	Charm, strong; bought once, from 4 badges, giving 1
+ITEM_TM45	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM13		4	Alluring Voice, utility; bought once, from 4 badges, giving 2
+ITEM_TM59	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM21		4	Dragon Pulse, utility; bought once, from 4 badges, giving 2
+ITEM_TM61	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM24		4	Will-O-Wisp, strong; bought once, from 4 badges, giving 1
+ITEM_TM63	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM89		4	Confuse Ray, strong; bought once, from 4 badges, giving 1
+ITEM_TM73	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM35		4	Thunder Wave, strong; bought once, from 4 badges, giving 1
+ITEM_TM82	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM27		4	Bounce, utility; bought once, from 4 badges, giving 2
+ITEM_TM91	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM68		4	Flash Cannon, utility; bought once, from 4 badges, giving 2
+ITEM_WEAKNESS_POLICY	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_SCIENTIST_SHAUN		held item; reading 3.2
+ITEM_WIDE_LENS	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_FISHERMAN_JOSH		held item; reading 3.4
+ITEM_COVERT_CLOAK	1	trainer	Wake	MAP_HEADER_ROUTE_213			TRAINER_FISHERMAN_KENNETH		held item; reading 3.2
+ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_214			TRAINER_PI_CARLOS		Avalanche, weak; reading 2.3
+ITEM_EJECT_BUTTON	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_TRENTON		held item; reading 2.9
+ITEM_RED_CARD	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_MARIEL		held item; reading 2.8
+ITEM_TM80	2	ball	Byron	MAP_HEADER_CANALAVE_CITY		ITEM_TM89			Rock Slide, utility; a TM place today (ITEM_TM89)
+ITEM_LUM_BERRY	1	ball	Byron	MAP_HEADER_FUEGO_IRONWORKS_BUILDING		ITEM_TM35			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Byron	MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM		ITEM_TM23			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Byron	MAP_HEADER_LAKE_VALOR		ITEM_TM25			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Byron	MAP_HEADER_LAKE_VERITY		ITEM_TM38			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Byron	MAP_HEADER_RAVAGED_PATH		ITEM_TM03			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Byron	MAP_HEADER_ROUTE_209		ITEM_TM19			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Byron	MAP_HEADER_ROUTE_210_NORTH		ITEM_TM30			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Byron	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM84			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	Byron	MAP_HEADER_ROUTE_221		ITEM_TM81			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Byron	MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE		ITEM_TM24			a TM place the spread leaves to another item
+ITEM_TM47	2	gift	Byron	MAP_HEADER_CANALAVE_CITY_GYM		ITEM_TM91			Steel Wing, utility; a TM place today (ITEM_TM91)
+ITEM_TM12	2	gift	Byron	MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE		ITEM_TM48			Taunt, utility; a TM place today (ITEM_TM48)
+ITEM_SITRUS_BERRY	1	gift	Byron	MAP_HEADER_CELESTIC_TOWN_CAVE		ITEM_HM03			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	gift	Byron	MAP_HEADER_IRON_ISLAND		ITEM_HM04			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	gift	Byron	MAP_HEADER_ROUTE_211_EAST		ITEM_TM77			a TM place the spread leaves to another item
+ITEM_HM02	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM25		5	Fly, strong; bought once, from 5 badges, giving 1
+ITEM_TM23	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM54		5	Iron Tail, strong; bought once, from 5 badges, giving 1
+ITEM_TM26	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM17		5	Earthquake, strong; bought once, from 5 badges, giving 1
+ITEM_TM29	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM22		5	Psychic, strong; bought once, from 5 badges, giving 1
+ITEM_TM35	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM38		5	Flamethrower, strong; bought once, from 5 badges, giving 1
+ITEM_TM53	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM70		5	Energy Ball, strong; bought once, from 5 badges, giving 1
+ITEM_TM67	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM16		5	Ice Punch, strong; bought once, from 5 badges, giving 1
+ITEM_TM71	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM20		5	Stone Edge, strong; bought once, from 5 badges, giving 1
+ITEM_TM77	1	mart	Byron	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM33		5	Foul Play, strong; bought once, from 5 badges, giving 1
+ITEM_TM07	1	prize	Byron	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM32		5	Curse, strong; bought once, from 5 badges, giving 1
+ITEM_TM24	1	prize	Byron	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM90		5	Thunderbolt, strong; bought once, from 5 badges, giving 1
+ITEM_MIRROR_HERB	1	trainer	Byron	MAP_HEADER_ROUTE_220			TRAINER_SWIMMER_JESSICA		held item; reading 2.7
+ITEM_ZOOM_LENS	1	trainer	Byron	MAP_HEADER_ROUTE_220			TRAINER_SWIMMER_ADRIAN		held item; reading 2.7
+ITEM_CLEAR_AMULET	1	trainer	Byron	MAP_HEADER_ROUTE_221			TRAINER_FISHERMAN_CORY		held item; reading 2.7
+ITEM_TM42	2	ball	Candice	MAP_HEADER_LAKE_ACUITY		ITEM_TM14			Facade, utility; a TM place today (ITEM_TM14)
+ITEM_TM94	2	ball	Candice	MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1		ITEM_TM69			Psybeam, utility; a TM place today (ITEM_TM69)
+ITEM_TM20	2	ball	Candice	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM01			Safeguard, utility; a TM place today (ITEM_TM01)
+ITEM_LUM_BERRY	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_HM08			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_TM07			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	gift	Candice	MAP_HEADER_SNOWPOINT_CITY_GYM		ITEM_TM72			a TM place the spread leaves to another item
+ITEM_HM08	1	mart	Candice	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM52		6	Rock Climb, strong; bought once, from 6 badges, giving 1
+ITEM_TM13	1	mart	Candice	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM14		6	Ice Beam, strong; bought once, from 6 badges, giving 1
+ITEM_TM49	1	prize	Candice	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM58		6	Agility, strong; bought once, from 6 badges, giving 1
+ITEM_TM69	1	prize	Candice	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM44		6	Rock Polish, strong; bought once, from 6 badges, giving 1
+ITEM_METRONOME	1	trainer	Candice	MAP_HEADER_LAKE_VALOR_DRAINED			TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3		held item; reading 2.3
+ITEM_RING_TARGET	1	trainer	Candice	MAP_HEADER_ROUTE_216			TRAINER_ACE_TRAINER_BLAKE		held item; reading 2.4
+ITEM_ABILITY_SHIELD	1	trainer	Candice	MAP_HEADER_ROUTE_217			TRAINER_SKIER_LEXIE		held item; reading 2.4
+ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_1F		ITEM_TM49			a TM place the spread leaves to another item
+ITEM_TM56	2	ball	HQ	MAP_HEADER_GALACTIC_HQ_3F		ITEM_TM21			Hex, utility; a TM place today (ITEM_TM21)
+ITEM_TM33	2	ball	HQ	MAP_HEADER_GALACTIC_HQ_B2F		ITEM_TM36			Reflect, utility; a TM place today (ITEM_TM36)
+ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_ROUTE_211_EAST		ITEM_TM29			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	HQ	MAP_HEADER_ROUTE_213		ITEM_TM05			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_ROUTE_216		ITEM_TM13			a TM place the spread leaves to another item
+ITEM_LUM_BERRY	1	ball	HQ	MAP_HEADER_VALOR_LAKEFRONT		ITEM_TM85			a TM place the spread leaves to another item
+ITEM_SITRUS_BERRY	1	ball	HQ	MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE		ITEM_HM02			a TM place the spread leaves to another item
+ITEM_TM58	1	ball	Galactic	MAP_HEADER_MT_CORONET_2F		ITEM_ESCAPE_ROPE			Triple Axel, strong; a ball that holds ITEM_ESCAPE_ROPE today
+ITEM_TM75	1	ball	Galactic	MAP_HEADER_MT_CORONET_2F		ITEM_TM80			Meteor Beam, strong; a TM place today (ITEM_TM80)
+ITEM_TM14	1	ball	Galactic	MAP_HEADER_ROUTE_226		ITEM_TM53			Blizzard, strong; a TM place today (ITEM_TM53)
+ITEM_TM38	1	ball	Galactic	MAP_HEADER_ROUTE_228		ITEM_TM37			Fire Blast, strong; a TM place today (ITEM_TM37)
+ITEM_TM50	1	ball	Galactic	MAP_HEADER_STARK_MOUNTAIN_ROOM_1		ITEM_ESCAPE_ROPE			Overheat, strong; a ball that holds ITEM_ESCAPE_ROPE today
+ITEM_TM01	1	ball	Galactic	MAP_HEADER_STARK_MOUNTAIN_ROOM_2		ITEM_TM50			Hydro Pump, strong; a TM place today (ITEM_TM50)
+ITEM_TM25	1	gift	Galactic	MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE		ITEM_TM42			Thunder, strong; a TM place today (ITEM_TM42)
+ITEM_TM21	1	trainer	Galactic	MAP_HEADER_ROUTE_225			TRAINER_ACE_TRAINER_DEANNA		Frustration, strong; an optional trainer late in the game; reading 3.2
+ITEM_TM27	1	trainer	Galactic	MAP_HEADER_ROUTE_225			TRAINER_ACE_TRAINER_QUINN		Return, strong; an optional trainer late in the game; reading 3.2
+ITEM_TM70	1	trainer	Galactic	MAP_HEADER_ROUTE_225			TRAINER_ACE_TRAINER_DEANNA		Outrage, strong since the rework (140, one turn, half as recoil): one copy, a second reward from Ace Trainer Deanna in Galactic's split, the first its power allows (Ian, 2026-10-07)
+ITEM_TM86	2	trainer	Galactic	MAP_HEADER_ROUTE_226			TRAINER_BIRD_KEEPER_GENEVA		Grass Knot, utility; an optional trainer late in the game; reading 2.8
+ITEM_TM87	1	trainer	Galactic	MAP_HEADER_ROUTE_227			TRAINER_ACE_TRAINER_MIKAYLA		Swagger, strong; an optional trainer late in the game; reading 2.7
+ITEM_TM64	1	trainer	Galactic	MAP_HEADER_ROUTE_228			TRAINER_ACE_TRAINER_JOSE		Play Rough, strong; an optional trainer late in the game; reading 3.2
+ITEM_TM60	2	trainer	Galactic	MAP_HEADER_ROUTE_229			TRAINER_RANGER_DESHAWN		Drain Punch, utility; an optional trainer late in the game; reading 2.9
+ITEM_TM92	2	trainer	Galactic	MAP_HEADER_ROUTE_229			TRAINER_ACE_TRAINER_DANA		Trick Room, utility; an optional trainer late in the game; reading 2.7
+ITEM_HM07	1	trainer	Galactic	MAP_HEADER_ROUTE_230			TRAINER_SWIMMER_SAM		Waterfall, strong; an optional trainer late in the game; reading 3.0
+ITEM_TM36	1	trainer	Galactic	MAP_HEADER_ROUTE_230			TRAINER_SWIMMER_MALLORY		Sludge Bomb, strong; an optional trainer late in the game; reading 3.1
+ITEM_TM08	1	gift	Volkner	MAP_HEADER_ROUTE_222		ITEM_TM56			Bulk Up, strong; a TM place today (ITEM_TM56)
+ITEM_TM19	2	gift	Volkner	MAP_HEADER_SUNYSHORE_CITY		ITEM_HM07			Giga Drain, utility; a TM place today (ITEM_HM07)
+ITEM_TM74	2	gift	Volkner	MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3		ITEM_TM57			Gyro Ball, utility; a TM place today (ITEM_TM57)
+ITEM_PIXIE_PLATE	1	trainer	Volkner	MAP_HEADER_ROUTE_222			TRAINER_BEAUTY_NICOLA		held item; reading 2.3
+ITEM_TM48	1	trainer	Volkner	MAP_HEADER_ROUTE_222			TRAINER_TUBER_HOLLY		Iron Defense, strong; an optional trainer late in the game; reading 2.3
+ITEM_TM15	1	ball	Barry	MAP_HEADER_ROUTE_223		ITEM_TM18			Hyper Beam, strong since the rework (180, no recharge, half as recoil): one copy
+ITEM_TM65	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_1F		ITEM_TM41			Shadow Claw, utility; a TM place today (ITEM_TM41)
+ITEM_TM18	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM71			Scary Face, utility; a TM place today (ITEM_TM71)
+ITEM_TM68	1	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM79			Giga Impact, strong since the rework (180, no recharge, half as recoil): one copy, in Barry's split, the first its power allows; a TM place today (ITEM_TM79)
+ITEM_SITRUS_BERRY	1	ball	Barry	MAP_HEADER_VICTORY_ROAD_B1F		ITEM_TM59			a TM place the spread leaves to another item
+ITEM_HM03	1	mart	Barry	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN	ITEM_TM15		8	Surf, strong; bought once, from 8 badges, giving 1
+ITEM_TM52	1	mart	Barry	MAP_HEADER_VEILSTONE_STORE_3F	MART_SPECIALTIES_ID_VEILSTONE_3F_UP	ITEM_TM83		8	Focus Blast, strong; bought once, from 8 badges, giving 1
+ITEM_TM04	1	prize	Barry	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM75		8	Calm Mind, strong; bought once, from 8 badges, giving 1
+ITEM_TM54	2	trainer	Barry	MAP_HEADER_ROUTE_223			TRAINER_SWIMMER_CRYSTAL		False Swipe, utility; an optional trainer late in the game; reading 2.6

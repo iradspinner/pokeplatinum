@@ -1,22 +1,22 @@
 {
     "name": "Petal Dance",
     "description": [
-        "The user attacks by\n",
-        "scattering petals for\n",
-        "two to three turns.\n",
-        "The user then\n",
-        "becomes confused."
+        "The user scatters\n",
+        "petals in a dance that\n",
+        "strikes both foes. It\n",
+        "may also leave them\n",
+        "confused."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
-    "power": 120,
+    "power": 100,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF",
-        "chance": 0
+        "type": "BATTLE_EFFECT_CONFUSE_HIT",
+        "chance": 20
     },
-    "range": "RANGE_RANDOM_OPPONENT",
+    "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_MAKES_CONTACT",

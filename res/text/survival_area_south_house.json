@@ -4,20 +4,19 @@
     {
       "id": "SurvivalAreaSouthHouse_Text_YouWantTM",
       "en_US": [
-        "There’s a move that doubles in power\n",
-        "if the Pokémon using it is poisoned,\f",
-        "paralyzed, or burned.\r",
+        "There’s a move that calls down a\n",
+        "huge bolt of lightning on the foe.\r",
         "I’ve got the Technical Machine for\n",
-        "it right here. You want it?\r"
+        "it right here. It’s yours!\r"
       ]
     },
     {
       "id": "SurvivalAreaSouthHouse_Text_ExplainFacade",
       "en_US": [
-        "Facade’s a good move for your Pokémon\n",
-        "to have.\r",
-        "Your opponent will think twice about\n",
-        "poisoning or paralyzing your Pokémon."
+        "Thunder’s a good move for your\n",
+        "Pokémon to have.\r",
+        "It doesn’t always hit, but when it\n",
+        "does, it may paralyze the foe, too."
       ]
     },
     {

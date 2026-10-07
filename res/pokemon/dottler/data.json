@@ -81,6 +81,10 @@
                 "MOVE_PSYBEAM"
             ],
             [
+                27,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
                 36,
                 "MOVE_BODY_PRESS"
             ],
@@ -93,7 +97,22 @@
                 "MOVE_STICKY_WEB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM16",
+            "TM20",
+            "TM22",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM66",
+            "TM83",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

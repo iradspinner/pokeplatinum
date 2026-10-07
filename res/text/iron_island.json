@@ -16,12 +16,10 @@
     {
       "id": "IronIsland_Text_YouCanJoinMeInside",
       "en_US": [
-        "Riley: That Hidden Machine contains\n",
-        "the move Strength.\r",
-        "To use it out of battle, you need the\n",
-        "Badge from Canalave Gym...\r",
-        "Oh, never mind, you’ve already got the\n",
-        "Mine Badge. My bad.\r",
+        "Riley: A Pokémon holding that Berry\n",
+        "eats it when its HP falls to half.\r",
+        "It’s a long way through the island,\n",
+        "so keep it handy.\r",
         "I’ll be training inside.\n",
         "You can join me if you’d like.\r"
       ]
@@ -29,10 +27,10 @@
     {
       "id": "IronIsland_Text_YouNeedMineBadge",
       "en_US": [
-        "Riley: That Hidden Machine contains\n",
-        "the move Strength.\r",
-        "To use it out of battle, you need the\n",
-        "Mine Badge from Canalave Gym.\r",
+        "Riley: A Pokémon holding that Berry\n",
+        "eats it when its HP falls to half.\r",
+        "It’s a long way through the island,\n",
+        "so keep it handy.\r",
         "I’ll be training inside.\n",
         "You can join me if you’d like.\r"
       ]

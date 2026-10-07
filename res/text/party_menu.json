@@ -1048,6 +1048,13 @@
         "Change {STRVAR_1 1, 0, 0}’s Ability\n",
         "to {STRVAR_1 5, 1, 0}?"
       ]
+    },
+    {
+      "id": "PartyMenu_Text_CantUseInGauntlet",
+      "en_US": [
+        "You can’t use that here yet!\n",
+        "Press on, or beat the Trainers here."
+      ]
     }
   ]
 }

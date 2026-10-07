@@ -54,8 +54,8 @@
         "That {STRVAR_1 8, 0, 0} contains\n",
         "the move {STRVAR_1 6, 1, 0}.\r",
         "It’s one of my favorite moves.\r",
-        "The heavier the foe, the more\n",
-        "damage this move will cause."
+        "What else it does to the foe\n",
+        "depends on where you battle."
       ]
     },
     {

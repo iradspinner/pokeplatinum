@@ -25,7 +25,8 @@ var HOOK_NAMES = [
     "criticalDamage",
     "firstHitDamage",
     "attackSource",
-    "defenseSource"
+    "defenseSource",
+    "recklessMove"
 ];
 exports.HOOK_NAMES = HOOK_NAMES;
 

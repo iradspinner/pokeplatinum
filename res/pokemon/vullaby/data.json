@@ -54,15 +54,15 @@
             ],
             [
                 2,
-                "MOVE_FAINT_ATTACK"
+                "MOVE_SNARL"
             ],
             [
                 4,
-                "MOVE_TAILWIND"
+                "MOVE_BONE_RUSH"
             ],
             [
                 6,
-                "MOVE_MUD_SHOT"
+                "MOVE_TAILWIND"
             ],
             [
                 11,
@@ -73,8 +73,8 @@
                 "MOVE_FLATTER"
             ],
             [
-                17,
-                "MOVE_LASH_OUT"
+                23,
+                "MOVE_FAINT_ATTACK"
             ],
             [
                 24,
@@ -125,7 +125,23 @@
                 "MOVE_ATTRACT"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM06",
+            "TM11",
+            "TM12",
+            "TM18",
+            "TM30",
+            "TM39",
+            "TM42",
+            "TM46",
+            "TM48",
+            "TM77",
+            "TM79",
+            "TM88",
+            "TM89",
+            "HM02",
+            "HM05"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

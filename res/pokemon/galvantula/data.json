@@ -86,7 +86,7 @@
             ],
             [
                 31,
-                "MOVE_SNARL"
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 35,
@@ -102,7 +102,7 @@
             ],
             [
                 45,
-                "MOVE_GIGA_DRAIN"
+                "MOVE_SWIFT"
             ],
             [
                 48,
@@ -118,7 +118,7 @@
             ],
             [
                 58,
-                "MOVE_SCREECH"
+                "MOVE_SLUDGE_BOMB"
             ],
             [
                 65,
@@ -126,14 +126,34 @@
             ],
             [
                 67,
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_DARK_PULSE"
             ],
             [
                 69,
+                "MOVE_SCREECH"
+            ],
+            [
+                74,
                 "MOVE_STICKY_WEB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM24",
+            "TM25",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM53",
+            "TM57",
+            "TM68",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

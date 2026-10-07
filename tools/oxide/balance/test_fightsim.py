@@ -138,6 +138,46 @@ def check_permanent_trick_room(results):
                     f"permanent {kept}; a move's {set_to}, then {b2.trick_room}"))
 
 
+def check_move_reworks(results):
+    """The move reworks (2026-10-06) in fightsim's own attack, which double
+    battles use: Hyper Beam's half recoil with no recharge, a two to five
+    hit move's count, Upper Hand and Shell Trap failing when their condition
+    is not met, and Burning Jealousy's burn on a raised target only."""
+    b, p, foe = battle(["Hyper Beam"], ["Tackle"], {("p", "Hyper Beam"): [40] * 16})
+    foe.ability = "Battle Armor"
+    fs.attack(b, p, fs.move("Hyper Beam"), foe, True)
+    beam = (100 - foe.hp, 100 - p.hp, p.recharge)
+    seen = set()
+    for s in range(200):
+        b, p, foe = battle(["Bullet Seed"], ["Tackle"], {("p", "Bullet Seed"): [30] * 16}, hp=200, seed=s)
+        foe.ability = "Battle Armor"
+        fs.attack(b, p, fs.move("Bullet Seed"), foe, True)
+        seen.add((200 - foe.hp) // 10)
+    b, p, foe = battle(["Upper Hand"], ["Tackle"], {("p", "Upper Hand"): [20] * 16})
+    foe.chosen = fs.move("Tackle")
+    fs.attack(b, p, fs.move("Upper Hand"), foe, True)
+    upper_no = 100 - foe.hp
+    foe.chosen = fs.move("Quick Attack")
+    fs.attack(b, p, fs.move("Upper Hand"), foe, True)
+    upper_yes = 100 - foe.hp - upper_no
+    b, p, foe = battle(["Shell Trap"], ["Tackle"], {("p", "Shell Trap"): [25] * 16})
+    fs.attack(b, p, fs.move("Shell Trap"), foe, True)
+    trap_no = 100 - foe.hp
+    p.hit_this_turn = ("Physical", 10)
+    fs.attack(b, p, fs.move("Shell Trap"), foe, True)
+    trap_yes = 100 - foe.hp - trap_no
+    b, p, foe = battle(["Burning Jealousy"], ["Tackle"], {("p", "Burning Jealousy"): [10] * 16})
+    fs.attack(b, p, fs.move("Burning Jealousy"), foe, True)
+    calm = foe.status
+    fs.change_stages(foe, {"atk": 1})
+    fs.attack(b, p, fs.move("Burning Jealousy"), foe, True)
+    ok = (beam == (40, 20, False) and seen == {2, 3, 4, 5} and (upper_no, upper_yes) == (0, 20)
+          and (trap_no, trap_yes) == (0, 25) and (calm, foe.status) == (None, "brn"))
+    results.append(("the move reworks in fightsim's own attack", ok,
+                    f"Hyper Beam {beam}; Bullet Seed hits {sorted(seen)}; Upper Hand {upper_no}/{upper_yes}; "
+                    f"Shell Trap {trap_no}/{trap_yes}; Burning Jealousy {calm} then {foe.status}"))
+
+
 def check_status(results):
     """Paralysis quarters Speed; sleep lasts one to four turns; a Fire type
     cannot burn; a statused Pokemon takes no second status."""
@@ -347,7 +387,8 @@ def check_sure(results):
 def main():
     results = []
     for check in (check_damage, check_crit_odds, check_status_immunity, check_item_moves,
-                  check_weather_rock, check_map_weather_replaced, check_permanent_trick_room, check_status,
+                  check_weather_rock, check_map_weather_replaced, check_permanent_trick_room,
+                  check_move_reworks, check_status,
                   check_sleep_turns, check_ai_kill, check_ai_status,
                   check_battle, check_doubles, check_pivot, check_stall, check_pp_stall, check_setup,
                   check_self_risk, check_sure):

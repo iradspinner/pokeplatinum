@@ -93,10 +93,6 @@
                 "MOVE_SUPER_FANG"
             ],
             [
-                35,
-                "MOVE_BODY_PRESS"
-            ],
-            [
                 39,
                 "MOVE_ENTRAINMENT"
             ],
@@ -122,22 +118,42 @@
             ],
             [
                 63,
-                "MOVE_KNOCK_OFF"
-            ],
-            [
-                65,
                 "MOVE_LOW_SWEEP"
             ],
             [
-                70,
+                65,
                 "MOVE_FIRE_PUNCH"
             ],
             [
+                70,
+                "MOVE_AGILITY"
+            ],
+            [
                 72,
-                "MOVE_THROAT_CHOP"
+                "MOVE_THUNDER_WAVE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM08",
+            "TM15",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM49",
+            "TM52",
+            "TM57",
+            "TM64",
+            "TM67",
+            "TM68",
+            "TM73",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -511,6 +511,39 @@ MOVES_DIVERGED.setdefault("poison_fang", {})["effect"] = (
 # use; the 2026-09-22 review found it, and it goes (element 4's QA leftovers).
 MOVES_DIVERGED.setdefault("fire_fang", {})["flags"] = (
     "the base ROM's stray Snatch flag removed (2026-09-30)")
+# The move reworks Ian accepted on 2026-10-06 (docs/oxide/learnset-rewrite.md,
+# "1. The move reworks"; the numbers are in the standing rulings). Each move
+# lists the fields it changed; "effect" covers the chance as well. Their
+# descriptions are rewritten to match, in TEXT_ENTRIES_DIVERGED below.
+# MOVE_REWORK_DESCRIBED holds the move ids whose description was rewritten.
+MOVE_REWORKS = {}
+MOVE_REWORK_DESCRIBED = set()
+for _move in ("hyper_beam", "giga_impact", "rock_wrecker", "roar_of_time"):
+    MOVE_REWORKS[_move] = ("power", "accuracy", "effect")
+MOVE_REWORK_DESCRIBED |= {63, 416, 439, 459}
+for _move in ("blast_burn", "frenzy_plant", "hydro_cannon"):
+    MOVE_REWORKS[_move] = ("accuracy", "effect")
+MOVE_REWORK_DESCRIBED |= {307, 308, 338}
+MOVE_REWORKS["sky_attack"] = ("power", "effect")
+MOVE_REWORK_DESCRIBED |= {143}
+MOVE_REWORKS["dig"] = ("power", "effect")
+MOVE_REWORKS["dive"] = ("effect",)
+MOVE_REWORK_DESCRIBED |= {91, 291}
+for _move in ("double_slap", "comet_punch", "fury_attack", "spike_cannon", "barrage",
+              "fury_swipes", "arm_thrust"):
+    MOVE_REWORKS[_move] = ("power",)
+MOVE_REWORKS["fury_cutter"] = ("power", "accuracy", "effect")
+MOVE_REWORK_DESCRIBED |= {210}
+MOVE_REWORKS["spite"] = ("pp",)
+MOVE_REWORKS["thrash"] = ("effect", "range")
+for _move in ("petal_dance", "outrage", "uproar"):
+    MOVE_REWORKS[_move] = ("power", "effect", "range")
+MOVE_REWORK_DESCRIBED |= {37, 80, 200, 253}
+MOVE_REWORKS["bone_rush"] = ("accuracy",)  # Ian's answer to the report, relayed 2026-10-07
+_MOVE_REWORK_WHY = "the move reworks (Ian, 2026-10-06)"
+for _move, _fields in MOVE_REWORKS.items():
+    for _field in _fields:
+        MOVES_DIVERGED.setdefault(_move, {})[_field] = _MOVE_REWORK_WHY
 
 # Trainer fields Oxide has changed on purpose, so the base ROM's value is no
 # longer the truth: trainer file -> {field: why}. A party field ("level")
@@ -530,6 +563,14 @@ TRAINERS_DIVERGED = {
     "galactic_grunt_celestic_town": {"name": _NAME_FIX + " (Officert Argo)"},
     "galactic_grunt_lake_valor_2": {"name": _NAME_FIX + " (Officer Hisperid)"},
 }
+# The Game Corner's challenger (Ian, 2026-10-06): vanilla's unused trainer 6
+# (TRAINER_DUMMY_006, a level 5 Rattata) is the optional trainer whose win
+# gives the TM the coins clerk gave for ten straight bonus rounds. His team
+# is a placeholder for Maylene's split until the Kaizo study builds his.
+_CHALLENGER = ("the Game Corner's challenger, in vanilla's unused trainer slot 6 "
+               "(Ian, 2026-10-06); a placeholder team until the Kaizo study builds his")
+TRAINERS_DIVERGED["game_corner_challenger"] = {
+    field: _CHALLENGER for field in ("party", "name", "class", "ai_flags", "items")}
 # The Battle Zone opens before the League, in the Galactic split (cap 65), so
 # every level of its route and Stark Mountain trainers came down 18 (Ian,
 # 2026-09-25; docs/oxide/balance-plan.md). "level" is left alone on every
@@ -1318,10 +1359,23 @@ TEXT_ENTRIES_DIVERGED.update({
 # which put its shared entries under comparison.
 TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_NAMES_WITH_ARTICLES][443] = (
     "the Pocket PC, which the base ROM named in the item names only")
+# The move reworks of 2026-10-06 rewrite the descriptions of the native moves
+# they change (MOVE_REWORKS above).
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_MOVE_DESCRIPTIONS].update({
+    _id: "the move reworks changed what the move does (Ian, 2026-10-06)"
+    for _id in MOVE_REWORK_DESCRIBED
+})
 # Sturdy leaves its holder at 1 HP from a hit taken at full HP, as in the
 # later games, so its description says so (Ian, 2026-09-29).
 TEXT_ENTRIES_DIVERGED.setdefault(TEXT_BANK_ABILITY_DESCRIPTIONS, {})[5] = (
     "Sturdy's description gives its later-games rule, which Oxide has")
+# The TM pass (2026-10-06) gives TM and HM numbers new moves, and a TM's
+# description is its move's (tools/oxide/tm_items.py writes both from the TM
+# list). Item ids 328 to 427 are ITEM_TM01 to ITEM_HM08, unchanged since
+# vanilla.
+TEXT_ENTRIES_DIVERGED[TEXT_BANK_ITEM_DESCRIPTIONS].update({
+    entry: "a TM or HM's description follows its move, which the TM pass sets"
+    for entry in range(328, 428)})
 
 # Banks with an unchanged message count that this importer deliberately leaves
 # alone, with why.
@@ -1383,6 +1437,14 @@ TEXT_BANKS_SKIPPED[220] = "the UNLOCK FPS description rewritten for its two choi
 # Fossils wait for Cycling Road (Ian, 2026-09-30): the researcher's unreachable
 # "not yet" line, vanilla's wait for the Explorer Kit, now says why he waits.
 TEXT_BANKS_SKIPPED[79] = "the Mining Museum's reviver waits for Cycling Road, and his line says so (2026-09-30)"
+# The reward table (step 10 of docs/oxide/alpha-readiness.md, 2026-10-07)
+# changed what 25 givers hand over, and each one's lines now name and explain
+# the new item. Two of these banks were already skipped for other reasons.
+for _i in (56, 61, 67, 85, 87, 98, 109, 133, 143, 144, 162, 165, 178, 257, 276, 470, 483,
+           488, 500, 504, 517, 561, 574, 589, 594):
+    _why = "a gift the reward table changed (2026-10-07), and its lines name the new item"
+    TEXT_BANKS_SKIPPED[_i] = (TEXT_BANKS_SKIPPED[_i] + "; then " + _why
+                              if _i in TEXT_BANKS_SKIPPED else _why)
 
 
 def text_bank_names():
@@ -1610,6 +1672,11 @@ def main():
     # test_learnrewrite.py), so no re-import touches one.
     LEARNSETS_AUTHORED = True
     LEARNSETS_AUTHORED_WHY = "authored by the learnset rewrite of 2026-10-06"
+    # Since the TM pass of 2026-10-06 every species' TM list is authored on
+    # the new TM list (tools/oxide/balance/tmcompat.py), so no re-import
+    # touches one either.
+    TMS_AUTHORED = True
+    TMS_AUTHORED_WHY = "authored by the TM pass of 2026-10-06"
 
     # The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm): a record whose
     # TM list carries none of them keeps none on a re-import, since no species
@@ -1772,6 +1839,11 @@ def main():
             why = LEARNSETS_DIVERGED.get(i, LEARNSETS_AUTHORED_WHY)
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({why})"]))
+        if TMS_AUTHORED:
+            new["learnset"].pop("by_tm")
+            old["learnset"].pop("by_tm")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"learnset.by_tm: diverged, left alone ({TMS_AUTHORED_WHY})"]))
         if i in BASE_STATS_DIVERGED:
             new.pop("base_stats")
             old.pop("base_stats")

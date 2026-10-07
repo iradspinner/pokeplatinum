@@ -54,7 +54,7 @@
             ],
             [
                 5,
-                "MOVE_ELECTROWEB"
+                "MOVE_SPARK"
             ],
             [
                 6,
@@ -62,19 +62,15 @@
             ],
             [
                 8,
-                "MOVE_MACH_PUNCH"
+                "MOVE_BITE"
+            ],
+            [
+                10,
+                "MOVE_BULK_UP"
             ],
             [
                 12,
                 "MOVE_NUZZLE"
-            ],
-            [
-                19,
-                "MOVE_BITE"
-            ],
-            [
-                23,
-                "MOVE_SPARK"
             ],
             [
                 25,
@@ -97,7 +93,18 @@
                 "MOVE_WILD_CHARGE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM57",
+            "TM64",
+            "TM73"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

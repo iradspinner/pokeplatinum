@@ -57,10 +57,6 @@
                 "MOVE_NUZZLE"
             ],
             [
-                8,
-                "MOVE_TWINEEDLE"
-            ],
-            [
                 12,
                 "MOVE_FAKE_OUT"
             ],
@@ -86,11 +82,15 @@
             ],
             [
                 33,
-                "MOVE_METAL_CLAW"
+                "MOVE_TWINEEDLE"
             ],
             [
                 34,
                 "MOVE_ZING_ZAP"
+            ],
+            [
+                35,
+                "MOVE_METAL_CLAW"
             ],
             [
                 38,
@@ -99,10 +99,6 @@
             [
                 42,
                 "MOVE_ELECTROWEB"
-            ],
-            [
-                45,
-                "MOVE_U_TURN"
             ],
             [
                 48,
@@ -118,18 +114,36 @@
             ],
             [
                 62,
-                "MOVE_TICKLE"
+                "MOVE_BOUNCE"
             ],
             [
                 64,
-                "MOVE_ASSURANCE"
+                "MOVE_TICKLE"
             ],
             [
                 70,
-                "MOVE_THUNDER_PUNCH"
+                "MOVE_THUNDER_FANG"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM32",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

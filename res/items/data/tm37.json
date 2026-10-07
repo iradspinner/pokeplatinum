@@ -3,13 +3,12 @@
   "plural": "TM37s",
   "article": "a",
   "description": [
-    "A five-turn sandstorm is summoned\n",
-    "to hurt all combatants except the\n",
-    "Rock, Ground, and Steel types."
+    "The user attacks with a sinister beam of\n",
+    "light. It may also confuse the target."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_rock_NCLR"
+    "palette": "tm_bug_NCLR"
   },
   "gbaID": "GBA_ITEM_TM37",
   "price": 2000,
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_SANDSTORM"
+  "teachesMove": "MOVE_SIGNAL_BEAM"
 }

@@ -114,6 +114,7 @@
 #include "field_script_context.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "gauntlet.h"
 #include "field_transition.h"
 #include "game_records.h"
 #include "great_marsh_lookout.h"
@@ -442,6 +443,7 @@ static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 static BOOL ScrCmd_TestKitStartWildBattle(ScriptContext *ctx);
 #endif
 static BOOL ScrCmd_RaiseLevelCap(ScriptContext *ctx);
+static BOOL ScrCmd_GauntletStepOnLine(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
@@ -7165,5 +7167,14 @@ static BOOL ScrCmd_RaiseLevelCap(ScriptContext *ctx)
     u16 split = ScriptContext_GetVar(ctx);
 
     SystemVars_RaiseLevelCapSplit(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), split);
+    return FALSE;
+}
+
+// Platinum Oxide: a step onto a gauntlet line's tile (src/gauntlet.c).
+static BOOL ScrCmd_GauntletStepOnLine(ScriptContext *ctx)
+{
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = Gauntlet_StepOnLine(ctx->fieldSystem);
     return FALSE;
 }

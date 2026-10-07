@@ -59,9 +59,40 @@
             [
                 27,
                 "MOVE_FAIRY_WIND"
+            ],
+            [
+                29,
+                "MOVE_ICY_WIND"
+            ],
+            [
+                34,
+                "MOVE_QUIVER_DANCE"
+            ],
+            [
+                36,
+                "MOVE_TAILWIND"
+            ],
+            [
+                42,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                44,
+                "MOVE_SWIFT"
+            ],
+            [
+                50,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
+                52,
+                "MOVE_AIR_SLASH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM42",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

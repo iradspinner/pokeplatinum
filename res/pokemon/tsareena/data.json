@@ -58,7 +58,7 @@
             ],
             [
                 1,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_BULLET_SEED"
             ],
             [
                 9,
@@ -77,16 +77,16 @@
                 "MOVE_TEETER_DANCE"
             ],
             [
-                32,
-                "MOVE_LOW_SWEEP"
+                26,
+                "MOVE_DOUBLE_KICK"
             ],
             [
-                33,
+                27,
                 "MOVE_SWAGGER"
             ],
             [
-                35,
-                "MOVE_BITE"
+                32,
+                "MOVE_LOW_SWEEP"
             ],
             [
                 38,
@@ -97,19 +97,19 @@
                 "MOVE_TROP_KICK"
             ],
             [
-                42,
-                "MOVE_ZEN_HEADBUTT"
-            ],
-            [
                 44,
                 "MOVE_LEAF_STORM"
+            ],
+            [
+                46,
+                "MOVE_ZEN_HEADBUTT"
             ],
             [
                 48,
                 "MOVE_PETAL_BLIZZARD"
             ],
             [
-                50,
+                51,
                 "MOVE_U_TURN"
             ],
             [
@@ -117,19 +117,35 @@
                 "MOVE_HI_JUMP_KICK"
             ],
             [
-                58,
+                59,
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                60,
-                "MOVE_KNOCK_OFF"
-            ],
-            [
-                66,
+                67,
                 "MOVE_CHARM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM09",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM32",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM86",
+            "TM87",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

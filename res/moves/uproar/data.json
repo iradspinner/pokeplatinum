@@ -1,22 +1,22 @@
 {
     "name": "Uproar",
     "description": [
-        "The user attacks in\n",
-        "an uproar for two to\n",
-        "five turns. Over that\n",
-        "time, no one can fall\n",
-        "asleep."
+        "The user attacks the\n",
+        "foe with a deafening\n",
+        "uproar. It may also\n",
+        "leave the foe\n",
+        "confused."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_NORMAL",
-    "power": 90,
+    "power": 100,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_UPROAR",
-        "chance": 0
+        "type": "BATTLE_EFFECT_CONFUSE_HIT",
+        "chance": 20
     },
-    "range": "RANGE_RANDOM_OPPONENT",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

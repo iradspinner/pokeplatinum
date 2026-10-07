@@ -86,8 +86,8 @@
 // learnset bits move up past the last TM. Everything that depends on the count
 // is sized from NUM_TMHMS: the species learnset masks, the Bag's TM pocket and
 // the move table. While there are none, the run is empty.
-#define NUM_EXTRA_TMS      0
-#define FIRST_EXTRA_TM_IDX MAX_ITEMS
+#define NUM_EXTRA_TMS      2
+#define FIRST_EXTRA_TM_IDX ITEM_TM93
 #define LAST_EXTRA_TM_IDX  (FIRST_EXTRA_TM_IDX + NUM_EXTRA_TMS - 1)
 
 #define NUM_BASE_TMS (LAST_BASE_TM_IDX - FIRST_TM_IDX + 1)

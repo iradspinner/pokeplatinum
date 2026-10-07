@@ -61,14 +61,6 @@
                 "MOVE_LOW_KICK"
             ],
             [
-                25,
-                "MOVE_DOUBLE_KICK"
-            ],
-            [
-                30,
-                "MOVE_TRIPLE_KICK"
-            ],
-            [
                 35,
                 "MOVE_STOMP"
             ],
@@ -89,6 +81,14 @@
                 "MOVE_BUG_BITE"
             ],
             [
+                52,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                53,
+                "MOVE_TRIPLE_KICK"
+            ],
+            [
                 60,
                 "MOVE_BUG_BUZZ"
             ],
@@ -97,23 +97,33 @@
                 "MOVE_QUIVER_DANCE"
             ],
             [
-                66,
-                "MOVE_THROAT_CHOP"
-            ],
-            [
-                67,
+                70,
                 "MOVE_HI_JUMP_KICK"
             ],
             [
-                69,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
-                71,
-                "MOVE_SKITTER_SMACK"
+                72,
+                "MOVE_THROAT_CHOP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM31",
+            "TM42",
+            "TM49",
+            "TM52",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM70",
+            "TM77",
+            "TM82",
+            "TM84",
+            "TM85",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

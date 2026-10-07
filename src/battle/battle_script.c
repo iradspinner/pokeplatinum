@@ -330,6 +330,7 @@ static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx,
 static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryUpperHand(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -2824,11 +2825,18 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
             } else {
-                hits = BattleSystem_RandNext(battleSys) & 3;
-                if (hits < 2) { // 2 or 3 hits
-                    hits += 2;
-                } else { // 4 or 5 hits
-                    hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
+                // Oxide: Generation 5's spread of hits (the move reworks,
+                // Ian, 2026-10-06), 2 and 3 hits 35% each, 4 and 5 hits 15%
+                // each, where Platinum's gave 37.5%, 37.5%, 12.5%, 12.5%.
+                hits = BattleSystem_RandNext(battleSys) % 100;
+                if (hits < 35) {
+                    hits = 2;
+                } else if (hits < 70) {
+                    hits = 3;
+                } else if (hits < 85) {
+                    hits = 4;
+                } else {
+                    hits = 5;
                 }
             }
         }
@@ -3136,6 +3144,10 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MAX_STAT_STAGE;
             }
 
+            if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > stageBefore) {
+                battleCtx->turnFlags[battleCtx->sideEffectMon].statRaised = TRUE; // Oxide, for Burning Jealousy
+            }
+
             // Oxide, element 7: a rise a move made is kept for a foe's Mirror
             // Herb, which copies it once the move is over.
             if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT
@@ -3417,8 +3429,20 @@ static BOOL BtlCmd_UpdateMonData(BattleSystem *battleSys, BattleContext *battleC
         BattleAI_SetAbility(battleCtx, battler, monData);
     }
 
+    // Oxide: a stage a script raises directly (Belly Drum, Lightning Rod's
+    // and the other absorbing abilities' rises) counts for Burning Jealousy.
+    int stageBefore = 0;
+    if (paramID >= BATTLEMON_HP_STAGE && paramID <= BATTLEMON_EVASION_STAGE) {
+        stageBefore = battleCtx->battleMons[battler].statBoosts[paramID - BATTLEMON_HP_STAGE];
+    }
+
     BattleMon_Set(battleCtx, battler, paramID, &monData);
     BattleMon_CopyToParty(battleSys, battleCtx, battler);
+
+    if (paramID >= BATTLEMON_HP_STAGE && paramID <= BATTLEMON_EVASION_STAGE
+        && battleCtx->battleMons[battler].statBoosts[paramID - BATTLEMON_HP_STAGE] > stageBefore) {
+        battleCtx->turnFlags[battler].statRaised = TRUE;
+    }
 
     return FALSE;
 }
@@ -6524,6 +6548,11 @@ static BOOL BtlCmd_CopyStatStages(BattleSystem *battleSys, BattleContext *battle
     BattleScript_Iter(battleCtx, 1);
 
     for (int i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
+        // Oxide: a stage the copy raises counts for Burning Jealousy.
+        if (DEFENDING_MON.statBoosts[i] > ATTACKING_MON.statBoosts[i]) {
+            ATTACKER_TURN_FLAGS.statRaised = TRUE;
+        }
+
         ATTACKING_MON.statBoosts[i] = DEFENDING_MON.statBoosts[i];
     }
 
@@ -7524,6 +7553,12 @@ static BOOL BtlCmd_IfTurnFlag(BattleSystem *battleSys, BattleContext *battleCtx)
 
     case TURN_FLAG_ROOSTING:
         if (battleCtx->turnFlags[battler].roosting == compareTo) {
+            result = TRUE;
+        }
+        break;
+
+    case TURN_FLAG_STAT_RAISED: // Oxide, for Burning Jealousy
+        if (battleCtx->turnFlags[battler].statRaised == compareTo) {
             result = TRUE;
         }
         break;
@@ -10235,6 +10270,7 @@ static BOOL BtlCmd_CheckStickyWeb(BattleSystem *battleSys, BattleContext *battle
         } else {
             SetupNicknameStatMsg(battleCtx, BattleStrings_Text_PokemonsStatRose_Ally, BATTLE_STAT_SPEED - BATTLE_STAT_ATTACK); // "{0}'s {1} rose!"
             mon->statBoosts[BATTLE_STAT_SPEED]++;
+            battleCtx->turnFlags[battler].statRaised = TRUE; // Oxide, for Burning Jealousy
             battleCtx->calcTemp = 3;
         }
     } else if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_CLEAR_AMULET) {
@@ -10555,6 +10591,8 @@ static BOOL BtlCmd_TryDefiant(BattleSystem *battleSys, BattleContext *battleCtx)
         mon->statBoosts[stat] = MAX_STAT_STAGE;
     }
 
+    battleCtx->turnFlags[battler].statRaised = TRUE; // Oxide, for Burning Jealousy
+
     SetupNicknameAbilityStatMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySharplyRaisedItsStat_Ally, stat - BATTLE_STAT_ATTACK); // "{0}'s {1} sharply raised its {2}!"
 
     return FALSE;
@@ -10707,6 +10745,8 @@ static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx,
     mon->statBoosts[stat] = stage;
     if (stages < 0) {
         battleCtx->turnFlags[target].statLowered = TRUE; // Oxide, for Lash Out
+    } else {
+        battleCtx->turnFlags[target].statRaised = TRUE; // Oxide, for Burning Jealousy
     }
     battleCtx->scriptTemp = stages > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
     battleCtx->msgBattlerTemp = target;
@@ -10964,6 +11004,42 @@ static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battle
     if ((battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battler)] & SIDE_CONDITION_SAFEGUARD)
         && BattleSystem_InfiltratorPassesEffect(battleCtx, battler) == FALSE) {
         BattleScript_Iter(battleCtx, jumpSafeguardUp);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: Upper Hand (the move reworks, Ian, 2026-10-06). GoTo ahead,
+ * so the move fails, unless the target has yet to act this turn and has
+ * chosen a move of raised priority, counting the priority Prankster and Gale
+ * Wings give (Battler_MovePriority). An Encore is followed as Sucker Punch
+ * follows it.
+ *
+ * Inputs:
+ * 1. GoTo distance if the move fails
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryUpperHand(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int move;
+    if (DEFENDING_MON.moveEffectsData.encoredMove
+        && DEFENDING_MON.moveEffectsData.encoredMove == DEFENDING_MON.moves[DEFENDING_MON.moveEffectsData.encoredMoveSlot]) {
+        move = DEFENDING_MON.moveEffectsData.encoredMove;
+    } else {
+        move = Battler_SelectedMove(battleCtx, battleCtx->defender);
+    }
+
+    if (DEFENDER_ACTION[BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END
+        || move == MOVE_NONE
+        || Battler_MovePriority(battleCtx, battleCtx->defender, move) <= 0) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
     return FALSE;

@@ -89,10 +89,6 @@
                 "MOVE_DRILL_PECK"
             ],
             [
-                36,
-                "MOVE_FACADE"
-            ],
-            [
                 40,
                 "MOVE_BULLET_SEED"
             ],
@@ -110,30 +106,37 @@
             ],
             [
                 52,
-                "MOVE_TAKE_DOWN"
+                "MOVE_BOUNCE"
             ],
             [
                 58,
-                "MOVE_SEED_BOMB"
+                "MOVE_TAKE_DOWN"
             ],
             [
                 60,
-                "MOVE_BRICK_BREAK"
+                "MOVE_BODY_SLAM"
             ],
             [
                 66,
-                "MOVE_BEAK_BLAST"
-            ],
-            [
-                68,
-                "MOVE_TEMPER_FLARE"
-            ],
-            [
-                74,
                 "MOVE_ROCK_CLIMB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM15",
+            "TM18",
+            "TM31",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM50",
+            "TM51",
+            "TM68",
+            "TM88",
+            "TM89",
+            "TM91",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

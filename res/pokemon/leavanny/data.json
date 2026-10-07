@@ -110,7 +110,7 @@
             ],
             [
                 48,
-                "MOVE_POISON_JAB"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 50,
@@ -118,30 +118,44 @@
             ],
             [
                 54,
-                "MOVE_SLASH"
-            ],
-            [
-                58,
-                "MOVE_SHADOW_CLAW"
-            ],
-            [
-                60,
                 "MOVE_LUNGE"
             ],
             [
-                66,
+                58,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                60,
                 "MOVE_SKITTER_SMACK"
             ],
             [
-                68,
-                "MOVE_THROAT_CHOP"
-            ],
-            [
-                74,
-                "MOVE_TAKE_DOWN"
+                66,
+                "MOVE_SHADOW_CLAW"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM09",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM46",
+            "TM48",
+            "TM49",
+            "TM53",
+            "TM54",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM81",
+            "TM84",
+            "TM85",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

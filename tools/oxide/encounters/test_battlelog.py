@@ -53,7 +53,9 @@ def main():
                       mint=T.S.NATURES.index("Adamant") + 1),
              T.record(0x0000AB42, starly, [T.move_id("MOVE_TACKLE")],
                       T.ability_id("ABILITY_KEEN_EYE"), party_level=12)]
-    base = T.make_save(party, {})
+    # The normal block's layout is this build's, which has only the 30-box
+    # save (main-tm-items grew the Bag; the 18-box block no longer exists).
+    base = T.make_save(party, {}, box_size=T.BOX_SIZE_30)
     tristan = trainer_id("TRAINER_YOUNGSTER_TRISTAN")
     roark = trainer_id("TRAINER_LEADER_ROARK")
     battles = [

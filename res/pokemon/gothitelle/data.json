@@ -73,10 +73,6 @@
                 "MOVE_PSYBEAM"
             ],
             [
-                14,
-                "MOVE_DOUBLE_SLAP"
-            ],
-            [
                 18,
                 "MOVE_EMBARGO"
             ],
@@ -125,19 +121,49 @@
                 "MOVE_FUTURE_SIGHT"
             ],
             [
-                61,
-                "MOVE_MAGIC_ROOM"
+                46,
+                "MOVE_DARK_PULSE"
             ],
             [
-                63,
+                48,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                69,
+                53,
                 "MOVE_THUNDERBOLT"
+            ],
+            [
+                61,
+                "MOVE_MAGIC_ROOM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM24",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM33",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM52",
+            "TM53",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM80",
+            "TM83",
+            "TM86",
+            "TM92",
+            "TM93",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

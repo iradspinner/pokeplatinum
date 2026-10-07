@@ -39,8 +39,13 @@ The exam's lines, read again as a regression check (not a fresh exam):
   it. Drapion learns Fire, Ice and Thunder Fang by level-up at 45, 53 and
   63, where Oxide had them only at level 1. Gunk Shot is on neither list.
 - **Eevee.** Each stone form has its own list from 20, with no quiet
-  splits after the stone. Leafeon, Glaceon and Sylveon evolve by level in
-  Oxide (30, 30 and 32), so their lists start there. Last Resort, Moonlight,
+  splits after the stone. Leafeon evolves on a level-up at the Moss Rock
+  (Eterna Forest) and Glaceon at the Ice Rock (Route 217), so each has a
+  list from 21, Glaceon's in Candice's split; Sylveon evolves on a level-up
+  once Eevee knows Charm (27), so its list starts at 28. (Corrected
+  2026-10-06 in the TM pass: the first version read these three as level
+  evolutions at 30, 30 and 32, the encounter tool's judged levels for wild
+  slots.) Last Resort, Moonlight,
   Mean Look, Morning Sun and Confuse Ray no longer sit on every branch;
   Quick Attack stays on all eight as a priority move. No list carries more
   than two recovery moves, and Baton Pass is off Eevee.
