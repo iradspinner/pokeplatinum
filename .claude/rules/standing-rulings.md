@@ -163,7 +163,10 @@ read, so they are written here too. Each is a standing instruction.
   and Focus Band roll against the player too (Ian, 2026-10-06). Its three
   numbers are reported beside the real-odds ones, as a very unlucky fight.
   Each trainer is read on 100 simulated fights: 75 at real odds and 25 very
-  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). The
+  unlucky (Ian, 2026-10-02, replacing 200 of each as too costly). A fight's
+  single difficulty number, shown in the OxiDex's Trainers tab, is its
+  average faints plus 40 times its losing rate at real odds (Ian,
+  2026-10-07, relayed by the encounter track). The
   scorer's job is to order every fight in the game correctly by difficulty;
   it need not win as a person would, and close enough is good enough while
   that order is broadly right (Ian, 2026-10-02). For a boss the scorer

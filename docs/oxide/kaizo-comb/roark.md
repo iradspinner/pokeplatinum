@@ -15,6 +15,49 @@ None of these teams has been read by the scorer. The expected numbers come
 from a rough simulator of my own (`../tools/sim.py`), checked against three
 fights the scorer has read; the last section says how far to trust it.
 
+**The legality sweep (2026-10-07).** The files were checked against the final
+learnsets and TM list (origin/balance-tm-pass at 377312dbf0), with the moves
+cut from the TM list kept in each species' trainer palette as Ian ruled. 39
+moves the lists no longer hold (33 distinct swaps, Barry 2's three files
+sharing some) were swapped for legal ones doing the same job, nearly all small
+level-up moves; the tables below show the swept sets. The
+expected numbers date from before the sweep, and the scorer's step 15 reading
+gives the real ones. The swaps:
+
+- Youngster Tristan's Starly: Growl to Feather Dance.
+- Youngster Logan's Wurmple: String Shot to Stun Spore.
+- Youngster Logan's Beedrill: Fury Attack to Swift.
+- Lass Natalie's Phanpy: Defense Curl to Focus Energy.
+- Lass Natalie's Bidoof: Growl to Odor Sleuth.
+- School Kid Harrison's Shroomish: Absorb to Bullet Seed.
+- School Kid Christine's Meditite: Meditate to Foresight.
+- School Kid Christine's Meditite: Bide to Swift.
+- Barry 2's Buizel: Water Gun to Chilling Water.
+- Barry 2's Buizel: Growl to Scary Face.
+- Barry 2's Munchlax: Defense Curl to Charm.
+- Barry 2's Turtwig: Withdraw to Amnesia.
+- Barry 2's Piplup: Growl to Charm.
+- Youngster Michael's Budew: Absorb to Bullet Seed.
+- Youngster Michael's Budew: Growth to Cotton Spore.
+- Youngster Michael's Oddish: Absorb to Bullet Seed.
+- Youngster Dallas's Shinx: Leer to Scary Face.
+- Youngster Dallas's Mareep: Growl to Sand Attack.
+- Camper Curtis's Nidoran F: Tail Whip to Charm.
+- Camper Curtis's Roselia: Growth to Cotton Spore.
+- Picnicker Diana's Skitty: Tail Whip to Baby Doll Eyes.
+- Picnicker Diana's Skitty: Growl to Baby Doll Eyes.
+- Picnicker Diana's Kricketune: Rock Smash to Karate Chop.
+- Worker Colin's Geodude: Defense Curl to Block.
+- Worker Colin's Nacli: Harden to Rock Slide.
+- Worker Mason's Geodude: Defense Curl to Block.
+- Youngster Jonathon's Nosepass: Rock Throw to Ancient Power.
+- Youngster Jonathon's Geodude: Defense Curl to Block.
+- Youngster Darius's Kabuto: Harden to Confuse Ray.
+- Youngster Darius's Anorith: Harden to Screech.
+- Roark's Geodude: Defense Curl to Block.
+- Galactic Grunt and Galactic Grunt's Stunky: Poison Gas to Leer.
+- Worker Colin's Whismur: Uproar to Facade (Uproar is now 100 power, over the ceiling).
+
 Oreburgh's gym fights in permanent sand (Ian, 2026-10-06: a map's weather is
 battle weather for every fight on it), so Youngsters Jonathon and Darius and
 Roark himself fight in sand. Their teams are Rock types, which take no chip
@@ -102,10 +145,12 @@ rehearse Roark's Stealth Rock, Block and Pursuit. Status runs to two moves a
 team at most, and no team pairs paralysis with confusion. About one Pokemon
 in six has a priority move.
 
-Every tool Roark uses appears earlier in the split, alone: Rollout behind Defense Curl
-(Natalie), Thunder Wave (Harrison), a Grass answer to Water types (Michael),
-a resist berry (Darius), Pursuit and Block (the gym trainers), Stealth Rock
-(Jonathon). The gym's two trainers show them together.
+Every tool Roark uses appears earlier in the split, alone: Rollout (Natalie
+and the curl-then-roll trainer), Thunder Wave (Harrison), a Grass answer to
+Water types (Michael), a resist berry (Darius), Pursuit and Block (the gym
+trainers), Stealth Rock (Jonathon). The gym's two trainers show them together.
+Since the legality sweep, Roark's and his gym's Geodudes carry Block instead of
+Defense Curl, which their lists no longer hold.
 
 ## Trainer by trainer
 
@@ -121,7 +166,7 @@ for Starly; it is the softest fight of the split by design.
 |---|---|---|---|---|---|
 | Zigzagoon | 9 | none | Gluttony | default | Secret Power, Tackle, Tail Whip, Growl |
 | Sentret | 9 | none | Adaptability | Jolly | Quick Attack, Scratch, Defense Curl, Charm |
-| Starly | 9 | Oran Berry | Keen Eye | Jolly | Quick Attack, Wing Attack, Growl, Tackle |
+| Starly | 9 | Oran Berry | Keen Eye | Jolly | Quick Attack, Wing Attack, FeatherDance, Tackle |
 
 Today's team: Starly 7 (default moves). Expected: 100 / 0.10 / 89.
 
@@ -136,9 +181,9 @@ drops before it comes. Weedle and Wurmple know only what their lists hold.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Weedle | 8 | none | Shield Dust | default | Poison Sting, String Shot |
-| Wurmple | 8 | none | Shield Dust | default | Poison Sting, Tackle, String Shot |
+| Wurmple | 8 | none | Shield Dust | default | Poison Sting, Tackle, Stun Spore |
 | Kakuna | 9 | none | Shed Skin | default | Poison Sting, Harden, String Shot |
-| Beedrill | 10 | none | Swarm | default | Fury Attack, Poison Sting, String Shot, Harden |
+| Beedrill | 10 | none | Swarm | default | Swift, Poison Sting, String Shot, Harden |
 
 Today's team: Burmy 7 (Protect, Bug Bite, String Shot). Expected: 100 / 0.15 / 83.
 
@@ -152,8 +197,8 @@ chain; Vulpix and Dottler, weak to Rock, should stay out of it.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Spheal | 10 | none | Thick Fat | default | Defense Curl, Rollout, Powder Snow, Water Gun |
-| Phanpy | 10 | none | Pickup | default | Defense Curl, Rollout, Tackle, Ice Shard |
-| Bidoof | 10 | Oran Berry | Simple | Impish | Defense Curl, Rollout, Tackle, Growl |
+| Phanpy | 10 | none | Pickup | default | Focus Energy, Rollout, Tackle, Ice Shard |
+| Bidoof | 10 | Oran Berry | Simple | Impish | Defense Curl, Rollout, Tackle, Odor Sleuth |
 
 Today's team: Bidoof 7 (default moves). Expected: 100 / 0.15 / 81.
 
@@ -166,7 +211,7 @@ with Encore to lock a careless player into a status move. Abra is frail
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Shroomish | 9 | none | Poison Heal | default | Stun Spore, Absorb, Tackle, Fake Tears |
+| Shroomish | 9 | none | Poison Heal | default | Stun Spore, Bullet Seed, Tackle, Fake Tears |
 | Pichu | 10 | none | Static | default | ThunderShock, Charm, Encore, Tail Whip |
 | Abra | 10 | Oran Berry | Inner Focus | Timid | Charge Beam, Thunder Wave, Encore, Knock Off |
 
@@ -185,7 +230,7 @@ for double.
 | Chingling | 9 | none | Levitate | default | Astonish, Disable, Growl, Wish |
 | Natu | 9 | none | Magic Guard | default | Peck, Night Shade, Leer, Faint Attack |
 | Ralts | 9 | none | Synchronize | default | Confusion, Disable, Growl, Shadow Sneak |
-| Meditite | 9 | Oran Berry | Pure Power | default | Bullet Punch, Confusion, Meditate, Bide |
+| Meditite | 9 | Oran Berry | Pure Power | default | Bullet Punch, Confusion, Foresight, Swift |
 
 Today's team: Ralts 8 (Confusion, Growl, Hidden Power). The Potion stays in the bag.
 Expected: 100 / 0.15 / 85.
@@ -204,13 +249,13 @@ Piplup; the other two files differ only in the starter.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Starly | 10 | Sharp Beak | Keen Eye | Jolly | Wing Attack, Quick Attack, Pursuit, Steel Wing |
-| Buizel | 10 | Oran Berry | Swift Swim | Adamant | Water Gun, Quick Attack, Brick Break, Growl |
-| Munchlax | 10 | Oran Berry | Thick Fat | Careful | Tackle, Lick, Defense Curl, Rock Tomb |
-| Turtwig | 11 | Oran Berry | Shell Armor | Adamant | Giga Drain, Tackle, Withdraw, Growth |
+| Buizel | 10 | Oran Berry | Swift Swim | Adamant | Chilling Water, Quick Attack, Brick Break, Scary Face |
+| Munchlax | 10 | Oran Berry | Thick Fat | Careful | Tackle, Lick, Charm, Rock Tomb |
+| Turtwig | 11 | Oran Berry | Shell Armor | Adamant | Giga Drain, Tackle, Amnesia, Growth |
 
 The other two files: Barry's Chimchar (Ember, Double Kick, Scratch, Leer;
 Naive) against a player who took Turtwig, and his Piplup (Water Pulse, Double
-Hit, Pound, Growl; Modest) against one who took Chimchar, each level 11 with
+Hit, Pound, Charm; Modest) against one who took Chimchar, each level 11 with
 an Oran Berry.
 
 Today's team: Starly 10 (Quick Attack, Growl, Wing Attack), Turtwig 11 (Tackle, Withdraw, Absorb). Expected: about 93 / 3.0 / 0;
@@ -227,8 +272,8 @@ struggles to break it, so the player should bring Charmander or Nidorino.
 |---|---|---|---|---|---|
 | Zubat | 15 | none | Inner Focus | default | Leech Life, Bite, Astonish, Quick Attack |
 | Paras | 15 | Oran Berry | Dry Skin | Adamant | Leech Life, Metal Claw, Giga Drain, Stun Spore |
-| Budew | 14 | none | Natural Cure | default | Razor Leaf, Absorb, Growth, Synthesis |
-| Oddish | 14 | Oran Berry | Chlorophyll | default | Giga Drain, Acid, PoisonPowder, Absorb |
+| Budew | 14 | none | Natural Cure | default | Razor Leaf, Bullet Seed, Cotton Spore, Synthesis |
+| Oddish | 14 | Oran Berry | Chlorophyll | default | Giga Drain, Acid, PoisonPowder, Bullet Seed |
 
 Today's team: Kricketot 9 (Growl, Bide, Bug Bite), Zubat 9 (Leech Life, Supersonic, Astonish, Pluck). Expected: 100 / 0.20 / 90, on the
 soft side on average, though my simulator lost two blind sixes in a hundred
@@ -277,8 +322,8 @@ Fighting neutrally, so it is the safest answer.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Shinx | 15 | none | Rivalry | default | Spark, Tackle, Leer, Quick Attack |
-| Mareep | 14 | none | Static | default | ThunderShock, Thunder Wave, Tackle, Growl |
+| Shinx | 15 | none | Rivalry | default | Spark, Tackle, Scary Face, Quick Attack |
+| Mareep | 14 | none | Static | default | ThunderShock, Thunder Wave, Tackle, Sand-Attack |
 | Pikachu | 15 | none | Reckless | default | Shock Wave, Quick Attack, Brick Break, Charm |
 | Elekid | 15 | Oran Berry | Static | Naive | Shock Wave, Low Kick, Brick Break, Quick Attack |
 
@@ -309,9 +354,9 @@ is the danger even at 13.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Nidoran♀ | 14 | none | Poison Point | default | Double Kick, Poison Sting, Scratch, Tail Whip |
+| Nidoran♀ | 14 | none | Poison Point | default | Double Kick, Poison Sting, Scratch, Charm |
 | Nidoran♂ | 14 | Oran Berry | Poison Point | default | Double Kick, Poison Sting, Peck, Leer |
-| Roselia | 14 | none | Natural Cure | default | Mega Drain, Poison Sting, Stun Spore, Growth |
+| Roselia | 14 | none | Natural Cure | default | Mega Drain, Poison Sting, Stun Spore, Cotton Spore |
 | Qwilfish | 13 | none | Poison Point | default | Poison Sting, Water Gun, Tackle, Harden |
 
 Today's team: Doduo 10 (Peck, Growl, Quick Attack, Rage), Nidoran♂ 10 (Leer, Peck, Focus Energy, Double Kick). Expected: 100 / 0.20 / 79.
@@ -325,9 +370,9 @@ resist most of it; Wartortle's bulk takes the rest.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Skitty | 13 | none | Cute Charm | default | Tackle, Shock Wave, Tail Whip, Growl |
+| Skitty | 13 | none | Cute Charm | default | Tackle, Shock Wave, Baby-Doll Eyes, Baby-Doll Eyes |
 | Meowth | 15 | none | Technician | default | Scratch, Bite, Thief, Growl |
-| Kricketune | 15 | none | Technician | default | Fury Cutter, Aerial Ace, Rock Smash, Growl |
+| Kricketune | 15 | none | Technician | default | Fury Cutter, Aerial Ace, Karate Chop, Growl |
 | Aipom | 15 | Silk Scarf | Technician | Jolly | Covet, Astonish, Scratch, Tail Whip |
 
 Today's team: Nidoran♀ 10 (Growl, Scratch, Tail Whip, Double Kick). Expected: 100 / 0.25 / 82.
@@ -341,9 +386,9 @@ twice cleanly (Water and Grass types).
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Whismur | 14 | none | Scrappy | default | Uproar, Shock Wave, Astonish, Pound |
-| Geodude | 15 | none | Sturdy | default | Rock Throw, Rollout, Defense Curl, Rock Tomb |
-| Nacli | 15 | none | Sturdy | default | Rock Throw, Mud Shot, Smack Down, Harden |
+| Whismur | 14 | none | Scrappy | default | Facade, Shock Wave, Astonish, Pound |
+| Geodude | 15 | none | Sturdy | default | Rock Throw, Rollout, Block, Rock Tomb |
+| Nacli | 15 | none | Sturdy | default | Rock Throw, Mud Shot, Smack Down, Rock Slide |
 | Machop | 15 | none | Guts | default | Karate Chop, Low Kick, Rock Tomb, Leer |
 
 Today's team: Geodude 12 (Tackle, Defense Curl, Mud Sport, Rock Throw), Whismur 12 (Uproar, Astonish, Pound). Expected: 100 / 0.15 / 83.
@@ -358,7 +403,7 @@ it outright, which is why it reads the softest of the split (decision 4).
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Diglett | 15 | none | Sand Veil | default | Magnitude, Mud Bomb, Astonish, Sucker Punch |
-| Geodude | 15 | none | Sturdy | default | Rollout, Defense Curl, Rock Throw, Rock Tomb |
+| Geodude | 15 | none | Sturdy | default | Rollout, Block, Rock Throw, Rock Tomb |
 | Rhyhorn | 15 | none | Rock Head | default | Horn Attack, Rock Slide, Stomp, Tail Whip |
 | Makuhita | 15 | Oran Berry | Thick Fat | Adamant | Arm Thrust, Vital Throw, Rock Tomb, Knock Off |
 | Larvitar | 15 | none | Guts | Adamant | Rock Slide, Bite, Leer, Screech |
@@ -374,8 +419,8 @@ too often into the rocks is the trap.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Nosepass | 15 | Oran Berry | Solid Rock | Relaxed | Stealth Rock, Block, Rock Throw, Shock Wave |
-| Geodude | 15 | none | Sturdy | default | Rock Throw, Rock Tomb, Rollout, Defense Curl |
+| Nosepass | 15 | Oran Berry | Solid Rock | Relaxed | Stealth Rock, Block, AncientPower, Shock Wave |
+| Geodude | 15 | none | Sturdy | default | Rock Throw, Rock Tomb, Rollout, Block |
 | Lileep | 13 | none | Solid Rock | default | Bullet Seed, Acid, AncientPower, Astonish |
 
 Today's team: Rhyhorn 13 (Fury Attack, Rock Tomb). Expected: 100 / 0.15 / 77.
@@ -389,9 +434,9 @@ needs two, or a Fighting or Ground type.
 
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
-| Kabuto | 15 | Oran Berry | Battle Armor | default | Giga Drain, Mud Shot, Aurora Beam, Harden |
+| Kabuto | 15 | Oran Berry | Battle Armor | default | Giga Drain, Mud Shot, Aurora Beam, Confuse Ray |
 | Shieldon | 15 | none | Solid Rock | default | Headbutt, Rock Tomb, Protect, Taunt |
-| Anorith | 14 | none | Swift Swim | default | Rock Slide, Knock Off, Fury Cutter, Harden |
+| Anorith | 14 | none | Swift Swim | default | Rock Slide, Knock Off, Fury Cutter, Screech |
 | Cranidos | 15 | Passho Berry | Rock Head | Adamant | Headbutt, Pursuit, Rock Slide, Leer |
 
 Today's team: Aron 13 (Headbutt, Rock Tomb), Onix 13 (Rock Throw, Tackle, Harden). Expected: 100 / 0.15 / 84.
@@ -407,7 +452,7 @@ switches out of it.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Nosepass | 14 | Leftovers | Solid Rock | Relaxed | Stealth Rock, Thunder Wave, Rock Tomb, Block |
-| Geodude | 14 | Passho Berry | Sturdy | Adamant | Rock Throw, Rollout, Defense Curl, Rock Tomb |
+| Geodude | 14 | Passho Berry | Sturdy | Adamant | Rock Throw, Rollout, Block, Rock Tomb |
 | Lileep | 15 | Big Root | Solid Rock | Calm | Giga Drain, AncientPower, Recover, Acid |
 | Larvitar | 15 | Sitrus Berry | Guts | Adamant | Rock Slide, Bite, Screech, Dig |
 | Cranidos | 16 | Lum Berry | Rock Head | Adamant | Rock Slide, Zen Headbutt, Pursuit, Rock Polish |
@@ -457,7 +502,7 @@ read a double yet. Today's files have one Pokemon each at 13.
 | Pokemon | Level | Item | Ability | Nature | Moves |
 |---|---|---|---|---|---|
 | Zubat | 16 | none | Inner Focus | default | Air Cutter, Bite, Leech Life, Supersonic |
-| Stunky | 16 | none | Aftermath | default | Poison Gas, Smog, Fury Swipes, Screech |
+| Stunky | 16 | none | Aftermath | default | Leer, Smog, Fury Swipes, Screech |
 | Croagunk | 17 | Oran Berry | Dry Skin | Adamant | Icy Wind, Faint Attack, Poison Sting, Brick Break |
 
 Today's team: Stunky 13 (Scratch, Poison Gas, Screech, Fury Swipes). Expected: not readable
