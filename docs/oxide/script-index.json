@@ -116,8 +116,8 @@
     "items": [
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_RING_TARGET", "value": 121, "when": ""}], "line": 1248, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM92", "value": 419, "when": ""}], "line": 1259, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM21", "value": 348, "when": ""}], "line": 1275, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM70", "value": 397, "when": ""}], "line": 1278, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "b77848cce", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM21", "value": 348, "when": ""}], "line": 1275, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "b77848cce", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM70", "value": 397, "when": ""}], "line": 1278, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM64", "value": 391, "when": ""}], "line": 1289, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM87", "value": 414, "when": ""}], "line": 1300, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM27", "value": 354, "when": ""}], "line": 1311, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
@@ -140,8 +140,8 @@
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_METRONOME", "value": 277, "when": ""}], "line": 1498, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "2", "value": 2, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM32", "value": 359, "when": ""}], "line": 1509, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM66", "value": 393, "when": ""}], "line": 1520, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM03", "value": 330, "when": ""}], "line": 1536, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM28", "value": 355, "when": ""}], "line": 1539, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "b77848cce", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM03", "value": 330, "when": ""}], "line": 1536, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "Common_GiveItemQuantity", "commit": "b77848cce", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM28", "value": 355, "when": ""}], "line": 1539, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_SILK_SCARF", "value": 251, "when": ""}], "line": 1550, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM40", "value": 367, "when": ""}], "line": 1561, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
      {"command": "Common_GiveItemQuantity", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_battles", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM10", "value": 337, "when": ""}], "line": 1572, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
@@ -201,42 +201,42 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_common:1116", "scripts_common:1118", "scripts_common:1549"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:551"], "daily": false, "flag": 105, "name": "FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:585"], "daily": false, "flag": 106, "name": "FLAG_POKECENTER_IDENTIFIED_POKERUS", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:485"], "daily": false, "flag": 137, "name": "FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:230", "scripts_common:232"], "daily": false, "flag": 144, "name": "FLAG_HAS_POKEDEX", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:973"], "daily": false, "flag": 286, "name": "FLAG_CAUGHT_ARCEUS", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:1256"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:1456"], "daily": false, "flag": 2424, "name": "FLAG_CONTEST_HALL_VISITED", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:798", "scripts_common:801", "scripts_common:1244"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_common:138", "scripts_common:1736"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:203"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "clear", "origin": "added", "reached": true, "source": "Oxide"},
-     {"at": ["scripts_common:144"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:553"], "daily": false, "flag": 105, "name": "FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:1386"], "daily": false, "flag": 106, "name": "FLAG_POKECENTER_IDENTIFIED_POKERUS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:497"], "daily": false, "flag": 137, "name": "FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_common:514"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "set", "origin": "added", "reached": true, "source": "Oxide"}
+     {"at": ["scripts_common:1121", "scripts_common:1123", "scripts_common:1554"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:552"], "daily": false, "flag": 105, "name": "FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:586"], "daily": false, "flag": 106, "name": "FLAG_POKECENTER_IDENTIFIED_POKERUS", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:486"], "daily": false, "flag": 137, "name": "FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:231", "scripts_common:233"], "daily": false, "flag": 144, "name": "FLAG_HAS_POKEDEX", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:978"], "daily": false, "flag": 286, "name": "FLAG_CAUGHT_ARCEUS", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:1261"], "daily": false, "flag": 2404, "name": "FLAG_GAME_COMPLETED", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:1461"], "daily": false, "flag": 2424, "name": "FLAG_CONTEST_HALL_VISITED", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:799", "scripts_common:802", "scripts_common:1249"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "check", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_common:139", "scripts_common:1741"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "clear", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:204"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "clear", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["scripts_common:145"], "daily": false, "flag": 31, "name": "FLAG_MAP_LOCAL_SAVE_EXTRA_BLOCK", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:554"], "daily": false, "flag": 105, "name": "FLAG_POKECENTER_GOLD_TRAINER_CARD_SEEN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:1391"], "daily": false, "flag": 106, "name": "FLAG_POKECENTER_IDENTIFIED_POKERUS", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:498"], "daily": false, "flag": 137, "name": "FLAG_OBTAINED_ALL_BATTLE_FRONTIER_GOLD_PRINTS", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_common:515"], "commit": "4e6209dab", "daily": false, "flag": 2656, "name": "FLAG_POCKET_PC_OPEN", "op": "set", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "items": [
-     {"command": "AddItem", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 771, "mode": "variable", "origin": "vanilla", "reached": true},
-     {"command": "AddItem", "commit": "a09cb6669", "count": [{"by": [], "name": "set by SubVar", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"name": "ITEM_RARE_CANDY", "value": 50, "when": ""}], "line": 834, "mode": "name", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "AddItem", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 1011, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "AddItem", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 772, "mode": "variable", "origin": "vanilla", "reached": true},
+     {"command": "AddItem", "commit": "a09cb6669", "count": [{"by": [], "name": "set by SubVar", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"name": "ITEM_RARE_CANDY", "value": 50, "when": ""}], "line": 835, "mode": "name", "origin": "added", "reached": true, "source": "Oxide"},
+     {"command": "AddItem", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_common", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 1016, "mode": "variable", "origin": "vanilla", "reached": true}
     ],
     "statics": [
-     {"command": "StartHoneyTreeBattle", "file": "scripts_common", "how": "StartHoneyTreeBattle", "level": [], "line": 672, "mode": "engine", "origin": "vanilla", "reached": true, "species": [{"name": "the honey tree's Pokemon", "value": null, "when": ""}]}
+     {"command": "StartHoneyTreeBattle", "file": "scripts_common", "how": "StartHoneyTreeBattle", "level": [], "line": 673, "mode": "engine", "origin": "vanilla", "reached": true, "species": [{"name": "the honey tree's Pokemon", "value": null, "when": ""}]}
     ],
     "vars": [
-     {"at": ["scripts_common:968", "scripts_common:971"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_common:495"], "name": "VAR_BATTLE_TOWER_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16463},
-     {"at": ["scripts_common:487"], "name": "VAR_BATTLE_FACTORY_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16464},
-     {"at": ["scripts_common:489"], "name": "VAR_BATTLE_HALL_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16465},
-     {"at": ["scripts_common:491"], "name": "VAR_BATTLE_CASTLE_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16466},
-     {"at": ["scripts_common:493"], "name": "VAR_BATTLE_ARCADE_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16467},
-     {"at": ["scripts_common:942", "scripts_common:944", "scripts_common:946", "scripts_common:948", "scripts_common:950", "scripts_common:952", "scripts_common:954", "scripts_common:956", "scripts_common:958"], "name": "VAR_NUM_PLATES_OBTAINED", "op": "check", "origin": "vanilla", "reached": true, "var": 16661},
-     {"at": ["scripts_common:987", "scripts_common:990"], "commit": "81d02e28e", "name": "32767", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 32767},
-     {"at": ["scripts_common:146", "scripts_common:967", "scripts_common:970"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
-     {"at": ["scripts_common:941", "scripts_common:1351"], "name": "VAR_NUM_PLATES_OBTAINED", "op": "set", "origin": "vanilla", "reached": true, "var": 16661}
+     {"at": ["scripts_common:973", "scripts_common:976"], "name": "VAR_MAP_LOCAL_0x00", "op": "check", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_common:496"], "name": "VAR_BATTLE_TOWER_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16463},
+     {"at": ["scripts_common:488"], "name": "VAR_BATTLE_FACTORY_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16464},
+     {"at": ["scripts_common:490"], "name": "VAR_BATTLE_HALL_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16465},
+     {"at": ["scripts_common:492"], "name": "VAR_BATTLE_CASTLE_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16466},
+     {"at": ["scripts_common:494"], "name": "VAR_BATTLE_ARCADE_PRINT_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16467},
+     {"at": ["scripts_common:947", "scripts_common:949", "scripts_common:951", "scripts_common:953", "scripts_common:955", "scripts_common:957", "scripts_common:959", "scripts_common:961", "scripts_common:963"], "name": "VAR_NUM_PLATES_OBTAINED", "op": "check", "origin": "vanilla", "reached": true, "var": 16661},
+     {"at": ["scripts_common:992", "scripts_common:995"], "commit": "81d02e28e", "name": "32767", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 32767},
+     {"at": ["scripts_common:147", "scripts_common:972", "scripts_common:975"], "name": "VAR_MAP_LOCAL_0x00", "op": "set", "origin": "vanilla", "reached": true, "var": 16384},
+     {"at": ["scripts_common:946", "scripts_common:1356"], "name": "VAR_NUM_PLATES_OBTAINED", "op": "set", "origin": "vanilla", "reached": true, "var": 16661}
     ]
    },
    "file": "scripts_common",
@@ -255,42 +255,42 @@
    "unreached": [
     {
      "label": "Common_Entry4",
-     "line": 130,
+     "line": 131,
      "number": 5
     },
     {
      "label": "Common_Entry7",
-     "line": 149,
+     "line": 150,
      "number": 8
     },
     {
      "label": "Common_Entry10",
-     "line": 169,
+     "line": 170,
      "number": 11
     },
     {
      "label": "Common_Entry11",
-     "line": 171,
+     "line": 172,
      "number": 12
     },
     {
      "label": "Common_Entry22",
-     "line": 264,
+     "line": 265,
      "number": 23
     },
     {
      "label": "Common_Entry23",
-     "line": 266,
+     "line": 267,
      "number": 24
     },
     {
      "label": "Common_Entry24",
-     "line": 273,
+     "line": 274,
      "number": 25
     },
     {
      "label": "Common_Entry26",
-     "line": 286,
+     "line": 287,
      "number": 27
     }
    ]
@@ -15003,32 +15003,6 @@
   },
   {
    "entries": {
-    "items": [
-     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_solaceon_town_north_house", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_RESULT"], "name": "ITEM_OVAL_STONE", "value": 110, "when": "VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_WHITE_HERB", "value": 214, "when": "VAR_RESULT (InitLocalTextListMenu) == 7"}, {"by": ["VAR_RESULT"], "name": "ITEM_MENTAL_HERB", "value": 219, "when": "VAR_RESULT (InitLocalTextListMenu) == 8"}, {"by": ["VAR_RESULT"], "name": "ITEM_KINGS_ROCK", "value": 221, "when": "VAR_RESULT (InitLocalTextListMenu) == 0"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEATOOTH", "value": 226, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEASCALE", "value": 227, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_EVERSTONE", "value": 229, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_0x8002 == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_METAL_COAT", "value": 233, "when": "VAR_RESULT (InitLocalTextListMenu) == 1"}, {"by": ["VAR_RESULT"], "name": "ITEM_DRAGON_SCALE", "value": 235, "when": "VAR_RESULT (InitLocalTextListMenu) == 2"}, {"by": ["VAR_RESULT"], "name": "ITEM_UPGRADE", "value": 252, "when": "VAR_RESULT (InitLocalTextListMenu) == 3"}, {"by": ["VAR_RESULT"], "name": "ITEM_POWER_HERB", "value": 271, "when": "VAR_RESULT (InitLocalTextListMenu) == 9"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_HEART_SCALE", "value": 93, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_0x8002 == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "set by AddVar", "value": null, "when": "VAR_RESULT (InitLocalTextListMenu) < 26 or VAR_RESULT (InitLocalTextListMenu) < 13 or VAR_RESULT (InitLocalTextListMenu) < 6 or VAR_RESULT (InitLocalTextListMenu) < 9 or VAR_RESULT (InitLocalTextListMenu) < 16 or VAR_0x8002 == 6"}], "line": 329, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
-    ],
-    "vars": [
-     {"at": ["scripts_solaceon_town_north_house:421", "scripts_solaceon_town_north_house:424"], "commit": "81d02e28e", "name": "25000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 25000},
-     {"at": ["scripts_solaceon_town_north_house:409", "scripts_solaceon_town_north_house:412"], "commit": "81d02e28e", "name": "30000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 30000}
-    ]
-   },
-   "events": "events_solaceon_town_north_house",
-   "gone_from_vanilla": {},
-   "header": "MAP_HEADER_SOLACEON_TOWN_NORTH_HOUSE",
-   "init": "scripts_init_solaceon_town_north_house",
-   "location": "Solaceon Town",
-   "missing": [],
-   "scripts": "scripts_solaceon_town_north_house",
-   "split": "Maylene",
-   "split_basis": "its location name",
-   "title": "Solaceon Town North House",
-   "undecoded": {
-    "commands with no name": 1,
-    "variables set elsewhere": 3
-   },
-   "unreached": []
-  },
-  {
-   "entries": {
     "flags": [
      {"at": ["scripts_solaceon_town_east_house:15"], "daily": false, "flag": 1, "name": "FLAG_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["scripts_solaceon_town_east_house:14", "scripts_solaceon_town_east_house:81"], "daily": false, "flag": 279, "name": "FLAG_RECEIVED_SOLACEON_TOWN_EAST_HOUSE_SEAL_CASE", "op": "check", "origin": "vanilla", "reached": true},
@@ -15572,16 +15546,11 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_survival_area_south_house:18"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_survival_area_south_house:27"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_survival_area_south_house:12"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_survival_area_south_house:18"], "daily": false, "flag": 203, "name": "FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "CallCommonScript", "commit": "2f5fc736c", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 26, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"},
-     {"command": "CallCommonScript", "commit": "81d02e28e", "count": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": ["VAR_RESULT"], "name": "ITEM_OVAL_STONE", "value": 110, "when": "VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_WHITE_HERB", "value": 214, "when": "VAR_RESULT (InitLocalTextListMenu) == 7"}, {"by": ["VAR_RESULT"], "name": "ITEM_MENTAL_HERB", "value": 219, "when": "VAR_RESULT (InitLocalTextListMenu) == 8"}, {"by": ["VAR_RESULT"], "name": "ITEM_KINGS_ROCK", "value": 221, "when": "VAR_RESULT (InitLocalTextListMenu) == 0"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEATOOTH", "value": 226, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_DEEPSEASCALE", "value": 227, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_RESULT (InitLocalTextListMenu) == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_EVERSTONE", "value": 229, "when": "VAR_RESULT (InitLocalTextListMenu) == 5; VAR_0x8002 == 6"}, {"by": ["VAR_RESULT"], "name": "ITEM_METAL_COAT", "value": 233, "when": "VAR_RESULT (InitLocalTextListMenu) == 1"}, {"by": ["VAR_RESULT"], "name": "ITEM_DRAGON_SCALE", "value": 235, "when": "VAR_RESULT (InitLocalTextListMenu) == 2"}, {"by": ["VAR_RESULT"], "name": "ITEM_UPGRADE", "value": 252, "when": "VAR_RESULT (InitLocalTextListMenu) == 3"}, {"by": ["VAR_RESULT"], "name": "ITEM_POWER_HERB", "value": 271, "when": "VAR_RESULT (InitLocalTextListMenu) == 9"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "ITEM_HEART_SCALE", "value": 93, "when": "VAR_RESULT (InitLocalTextListMenu) == 4; VAR_0x8002 == 6"}, {"by": ["VAR_0x8002", "VAR_RESULT"], "name": "set by AddVar", "value": null, "when": "VAR_RESULT (InitLocalTextListMenu) < 26 or VAR_RESULT (InitLocalTextListMenu) < 6 or VAR_0x8002 == 6 or VAR_RESULT (InitLocalTextListMenu) < 9 or VAR_RESULT (InitLocalTextListMenu) < 16 or VAR_RESULT (InitLocalTextListMenu) < 13"}], "line": 365, "mode": "variable", "origin": "added", "reached": true, "source": "base ROM"}
-    ],
-    "vars": [
-     {"at": ["scripts_survival_area_south_house:489", "scripts_survival_area_south_house:492"], "commit": "81d02e28e", "name": "25000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 25000},
-     {"at": ["scripts_survival_area_south_house:525", "scripts_survival_area_south_house:528"], "commit": "81d02e28e", "name": "30000", "op": "check", "origin": "added", "reached": true, "source": "base ROM", "var": 30000}
+     {"command": "Common_GiveItemQuantity", "commit": "uncommitted", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_survival_area_south_house", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM25", "value": 352, "when": ""}], "line": 17, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ]
    },
    "events": "events_survival_area_south_house",
@@ -15598,10 +15567,7 @@
    "split": null,
    "split_basis": null,
    "title": "Survival Area South House",
-   "undecoded": {
-    "commands with no name": 1,
-    "variables set elsewhere": 3
-   },
+   "undecoded": {},
    "unreached": []
   },
   {
@@ -19289,9 +19255,9 @@
   },
   "items": {
    "Oxide": 78,
-   "base ROM": 33,
+   "base ROM": 31,
    "gone": 33,
-   "total": 214,
+   "total": 212,
    "vanilla": 103
   },
   "pokemon": {
@@ -19322,9 +19288,9 @@
   },
   "vars": {
    "Oxide": 12,
-   "base ROM": 31,
+   "base ROM": 27,
    "gone": 32,
-   "total": 1125,
+   "total": 1121,
    "vanilla": 1082
   }
  }

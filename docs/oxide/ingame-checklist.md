@@ -365,6 +365,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   PC, Oak's PC, Healing Waves and Misc., with the Hall of Fame in Misc. only
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
+- [ ] **The Pocket PC's own lines** (fixed 2026-10-07, `main-tm-items`). The
+  menu's fourth entry reads "Rare Candy", not a blank. Choosing it says "Your
+  Rare Candy stock was filled to 999.", and the Hidden Power APP says "This
+  Pokémon's Hidden Power is the" a type "type, with" a number "power."
+  Before the fix the first printed the Pokemon Center nurse's greeting and
+  the second "OK, I'll take your Pokémon for a few seconds."
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
 - [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
   Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
@@ -495,6 +501,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 4. The ordinary ROM, mid-game
 
+- [ ] **Solaceon's north house** (2026-10-07, `main-tm-items`): only the old
+  woman and the lass, who talk about the Day Care's Eggs. The Utility Stop's
+  three vendors, selling Berries, evolution items, Heart Scales, herbs and
+  shards, are gone. The Survival Area's south house likewise holds only the
+  Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
+  vendors are gone too.
 - [ ] **Pastel Veil and Unnerve** (`main-element5-gaps`), whenever they come
   up, since the kit cannot run a double battle or give a foe an item. A
   Galarian Rapidash (Pastel Veil) sent in during a double battle beside a
