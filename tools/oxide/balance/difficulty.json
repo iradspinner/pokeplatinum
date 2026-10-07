@@ -1,0 +1,739 @@
+{
+ "about": "The scorer's readings of each fight, for the OxiDex Trainers tab (Ian, 2026-10-07). A key is a trainer constant, or a story fight's key where the fight has several (a rival's starter teams, Lucas and Dawn). Each reading: team 'oxide' (the trainer's own file), 'study' (the Kaizo study's rewrite) or 'kaizo' (Kaizo's own team on Oxide's box); trainer, the constant whose team was read; won, clean and faints at real odds over 'fights' simulated fights, and the same under 'unlucky' (the stress test); date read; stale, null or why a re-read would differ. 'sections' holds gauntlet sections read as a whole. Goal 3 writes here through tools/oxide/balance/pldifficulty.py.",
+ "formula": "difficulty = faints + 40 * (1 - won), at real odds (Ian, 2026-10-07); the reader applies it",
+ "fights": {
+  "TRAINER_ACE_TRAINER_CATHERINE": [
+   {
+    "label": "Ace Trainer Catherine",
+    "team": "study",
+    "source": "the study's worked example",
+    "trainer": "TRAINER_ACE_TRAINER_CATHERINE",
+    "won": 1.0,
+    "clean": 0.8267,
+    "faints": 0.2667,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.84,
+     "faints": 0.28,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_AROMA_LADY_TAYLOR": [
+   {
+    "label": "Aroma Lady Taylor",
+    "team": "study",
+    "source": "the study's worked example",
+    "trainer": "TRAINER_AROMA_LADY_TAYLOR",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_CAMPER_CURTIS": [
+   {
+    "label": "Camper Curtis",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_CAMPER_CURTIS",
+    "won": 0.9333,
+    "clean": 0.32,
+    "faints": 1.44,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.88,
+     "clean": 0.24,
+     "faints": 1.96,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING": [
+   {
+    "label": "Jupiter 1",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING",
+    "won": 1.0,
+    "clean": 0.9067,
+    "faints": 0.1867,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.88,
+     "faints": 0.2,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   },
+   {
+    "label": "Jupiter 1, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 0.8,
+    "clean": 0.0,
+    "faints": 4.1733,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.44,
+     "clean": 0.0,
+     "faints": 5.32,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS": [
+   {
+    "label": "Mars 1",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS",
+    "won": 1.0,
+    "clean": 0.8667,
+    "faints": 0.16,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.96,
+     "clean": 0.76,
+     "faints": 0.56,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_1": [
+   {
+    "label": "Eterna Building grunt",
+    "team": "study",
+    "source": "the study's worked example",
+    "trainer": "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_1",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_LASS_KAITLIN": [
+   {
+    "label": "Lass Kaitlin",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_LASS_KAITLIN",
+    "won": 1.0,
+    "clean": 0.8667,
+    "faints": 0.1467,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.84,
+     "faints": 0.2,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_LASS_MADELINE": [
+   {
+    "label": "Lass Madeline",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_LASS_MADELINE",
+    "won": 1.0,
+    "clean": 0.8667,
+    "faints": 0.2,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.96,
+     "clean": 0.72,
+     "faints": 0.6,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_LASS_NATALIE": [
+   {
+    "label": "Lass Natalie",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_LASS_NATALIE",
+    "won": 1.0,
+    "clean": 0.9733,
+    "faints": 0.0267,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.88,
+     "faints": 0.2,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_LEADER_FANTINA": [
+   {
+    "label": "Fantina",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_LEADER_FANTINA",
+    "won": 0.9067,
+    "clean": 0.0133,
+    "faints": 3.04,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.76,
+     "clean": 0.0,
+     "faints": 3.92,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": null
+   },
+   {
+    "label": "Fantina's second team, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 1.0,
+    "clean": 0.92,
+    "faints": 0.1067,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.72,
+     "faints": 0.36,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   },
+   {
+    "label": "Fantina, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 0.4,
+    "clean": 0.1067,
+    "faints": 4.56,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.4,
+     "clean": 0.0,
+     "faints": 4.56,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_LEADER_GARDENIA": [
+   {
+    "label": "Gardenia",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_LEADER_GARDENIA",
+    "won": 0.9733,
+    "clean": 0.44,
+    "faints": 1.0667,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.88,
+     "clean": 0.24,
+     "faints": 2.0,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": null
+   },
+   {
+    "label": "Gardenia",
+    "team": "study",
+    "source": "the study's worked example",
+    "trainer": "TRAINER_LEADER_GARDENIA",
+    "won": 1.0,
+    "clean": 0.9467,
+    "faints": 0.0533,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.92,
+     "faints": 0.08,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "the simulator's handling of a move or ability changed"
+   },
+   {
+    "label": "Gardenia, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 0.24,
+    "clean": 0.0133,
+    "faints": 5.36,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.24,
+     "clean": 0.0,
+     "faints": 5.48,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_LEADER_MAYLENE": [
+   {
+    "label": "Maylene",
+    "team": "study",
+    "source": "the study's worked example",
+    "trainer": "TRAINER_LEADER_MAYLENE",
+    "won": 0.9867,
+    "clean": 0.0,
+    "faints": 2.7467,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.96,
+     "clean": 0.0,
+     "faints": 3.32,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_LEADER_ROARK": [
+   {
+    "label": "Roark",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_LEADER_ROARK",
+    "won": 1.0,
+    "clean": 0.9467,
+    "faints": 0.0533,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.84,
+     "faints": 0.16,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": null
+   },
+   {
+    "label": "Roark",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_LEADER_ROARK",
+    "won": 0.9867,
+    "clean": 0.04,
+    "faints": 1.9067,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.92,
+     "clean": 0.0,
+     "faints": 2.48,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed; read without the gym's sand"
+   },
+   {
+    "label": "Roark, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 0.8133,
+    "clean": 0.0,
+    "faints": 4.3067,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.68,
+     "clean": 0.0,
+     "faints": 4.72,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "the simulator's handling of a move or ability changed"
+   }
+  ],
+  "TRAINER_PICNICKER_DIANA": [
+   {
+    "label": "Picnicker Diana",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_PICNICKER_DIANA",
+    "won": 1.0,
+    "clean": 0.7467,
+    "faints": 0.3467,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.8,
+     "faints": 0.36,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_SCHOOL_KID_CHRISTINE": [
+   {
+    "label": "School Kid Christine",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_SCHOOL_KID_CHRISTINE",
+    "won": 1.0,
+    "clean": 0.9867,
+    "faints": 0.0133,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_SCHOOL_KID_HARRISON": [
+   {
+    "label": "School Kid Harrison",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_SCHOOL_KID_HARRISON",
+    "won": 0.92,
+    "clean": 0.7333,
+    "faints": 0.72,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.88,
+     "clean": 0.88,
+     "faints": 0.72,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_WORKER_COLIN": [
+   {
+    "label": "Worker Colin",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_WORKER_COLIN",
+    "won": 1.0,
+    "clean": 0.9333,
+    "faints": 0.0667,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.96,
+     "faints": 0.04,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_WORKER_MASON": [
+   {
+    "label": "Worker Mason",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_WORKER_MASON",
+    "won": 1.0,
+    "clean": 0.8933,
+    "faints": 0.1067,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_YOUNGSTER_DALLAS": [
+   {
+    "label": "Youngster Dallas",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_DALLAS",
+    "won": 1.0,
+    "clean": 0.8267,
+    "faints": 0.36,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.88,
+     "clean": 0.56,
+     "faints": 1.32,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "the simulator's handling of a move or ability changed"
+   }
+  ],
+  "TRAINER_YOUNGSTER_DARIUS": [
+   {
+    "label": "Youngster Darius",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_DARIUS",
+    "won": 1.0,
+    "clean": 0.6533,
+    "faints": 0.5733,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.96,
+     "clean": 0.64,
+     "faints": 0.72,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed; read without the gym's sand"
+   }
+  ],
+  "TRAINER_YOUNGSTER_JONATHON": [
+   {
+    "label": "Youngster Jonathon",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_JONATHON",
+    "won": 1.0,
+    "clean": 0.8667,
+    "faints": 0.1467,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.84,
+     "faints": 0.36,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "read without the gym's sand"
+   }
+  ],
+  "TRAINER_YOUNGSTER_LOGAN": [
+   {
+    "label": "Youngster Logan",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_LOGAN",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.96,
+     "faints": 0.04,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_YOUNGSTER_MICHAEL": [
+   {
+    "label": "Youngster Michael",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_MICHAEL",
+    "won": 0.96,
+    "clean": 0.7867,
+    "faints": 0.4933,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.88,
+     "faints": 0.16,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   }
+  ],
+  "TRAINER_YOUNGSTER_SEBASTIAN": [
+   {
+    "label": "Youngster Sebastian",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_SEBASTIAN",
+    "won": 1.0,
+    "clean": 0.9867,
+    "faints": 0.0133,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "TRAINER_YOUNGSTER_TRISTAN": [
+   {
+    "label": "Youngster Tristan",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_YOUNGSTER_TRISTAN",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 0.92,
+     "faints": 0.08,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": "a move's data changed"
+   }
+  ],
+  "barry_2": [
+   {
+    "label": "Barry 2",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_RIVAL_ROUTE_203_PIPLUP",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   },
+   {
+    "label": "Barry 2",
+    "team": "study",
+    "source": "the study's comb",
+    "trainer": "TRAINER_RIVAL_ROUTE_203_PIPLUP",
+    "won": 1.0,
+    "clean": 0.0,
+    "faints": 2.72,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.92,
+     "clean": 0.0,
+     "faints": 2.76,
+     "fights": 25
+    },
+    "date": "2026-10-06",
+    "stale": null
+   },
+   {
+    "label": "Barry 2, Kaizo's own team",
+    "team": "kaizo",
+    "source": "the Kaizo anchor, Kaizo's own team on Oxide's box",
+    "trainer": null,
+    "won": 0.0,
+    "clean": 0.0,
+    "faints": 6.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 0.0,
+     "clean": 0.0,
+     "faints": 6.0,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed; the simulator's handling of a move or ability changed"
+   }
+  ],
+  "lucas_dawn_2": [
+   {
+    "label": "Lucas and Dawn 2",
+    "team": "oxide",
+    "source": "goal 2",
+    "trainer": "TRAINER_DUMMY_794",
+    "won": 1.0,
+    "clean": 1.0,
+    "faints": 0.0,
+    "fights": 75,
+    "unlucky": {
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 25
+    },
+    "date": "2026-10-03",
+    "stale": "a move's data changed"
+   }
+  ]
+ },
+ "sections": {
+  "galactic_eterna_building_1f_2f": {
+   "label": "Eterna Building, the four grunts of 1F and 2F in a row",
+   "trainers": [
+    "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_1",
+    "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_1F_2",
+    "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_2F_1",
+    "TRAINER_GALACTIC_GRUNT_TEAM_GALACTIC_ETERNA_BUILDING_2F_2"
+   ],
+   "readings": [
+    {
+     "label": "Eterna Building section (four grunts)",
+     "team": "study",
+     "source": "the study's worked example (first grunt rewritten, three as Oxide has them)",
+     "trainer": null,
+     "won": 1.0,
+     "clean": 1.0,
+     "faints": 0.0,
+     "fights": 75,
+     "unlucky": {
+      "won": 1.0,
+      "clean": 1.0,
+      "faints": 0.0,
+      "fights": 25
+     },
+     "date": "2026-10-06",
+     "stale": "a move's data changed"
+    }
+   ]
+  }
+ }
+}
