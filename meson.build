@@ -191,6 +191,11 @@ trainer_ai_o = custom_target(
         '@INPUT@',
     ],
     depfile: '@BASENAME@.d',
+    # Oxide: the script reads the generated enums (battle effects among them),
+    # which the depfile only records once they exist; without this, an effect
+    # appended to generated/move_battle_effects.txt could be assembled against
+    # the old header and fail to link (2026-10-07).
+    depends: c_consts_generators,
 )
 
 libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
