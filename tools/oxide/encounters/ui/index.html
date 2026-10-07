@@ -408,6 +408,15 @@ tr.got .spname { font-weight: 600; }
 .trrow .party { grid-column: 1 / -1; display: flex; }
 .trrow .trscore { color: var(--act); font-family: var(--mono); display: inline-block;
   min-width: 2.4em; text-align: right; }
+/* A stale difficulty reads faint and struck through until goal 3 reads the
+   fight again; a fight never read says so. */
+.trscore.stale, .scorenum.stale { color: var(--faint); text-decoration: line-through;
+  text-decoration-thickness: 1px; }
+.trrow .notread { font-size: 13px; }
+/* A study reading (the Kaizo study's rewrite, not the file's team) is italic. */
+.trscore.study { font-style: italic; }
+.stalenote { color: var(--warn); margin: 2px 0 0; }
+h3.oldscale { margin: 12px 0 0; font-size: 14px; color: var(--dim); }
 /* A pair (two trainers fought as one double): its row, a gap between the two
    parties, and its trainers folded under it, indented. */
 .trrow.pair .fold-pair { text-decoration: none; margin-right: 2px; }
@@ -1087,7 +1096,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
   <section id="trainlist">
     <div class="listhead">
       <input id="trainfilter" placeholder="Find a trainer, a class or a species">
-      <div class="sortbar"><button data-k="score" class="on" title="The stored score on Ian's fight scale, hardest first">By score</button>
+      <div class="sortbar"><button data-k="score" class="on" title="The difficulty number, hardest first: average faints plus 40 times the losing rate; fights not read yet after">By difficulty</button>
         <button data-k="order">Play order</button>
         <select id="trainsplit"><option value="">Every split</option></select></div>
     </div>
@@ -2470,9 +2479,25 @@ function sortTrainers() {
   const play = (a, b) => (order.has(a.split) ? order.get(a.split) : 99)
     - (order.has(b.split) ? order.get(b.split) : 99) || a.top - b.top
     || a.label.localeCompare(b.label);
-  const scale = r => r.score ? r.score.scale : -Infinity;
-  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => scale(b) - scale(a) || play(a, b) : play);
+  // Hardest first by the difficulty number; a trainer not read yet after
+  // every one that has been, in play order.
+  const hard = r => r.difficulty ? r.difficulty.difficulty : -Infinity;
+  TRAINERS.items.sort(TRSORT === "score" ? (a, b) => hard(b) - hard(a) || play(a, b) : play);
 }
+
+// The difficulty number (Ian, 2026-10-07): average faints plus 40 times the
+// losing rate, from the scoring track's readings (trainers.stored_difficulty).
+const fmtHard = v => v < 10 ? v.toFixed(2) : v.toFixed(1);
+const hardTitle = d => `Difficulty: average faints ${d.faints.toFixed(2)} plus 40 times the losing rate `
+  + `${(1 - d.won).toFixed(2)}; won ${Math.round(d.won * 100)}%${d.clean != null
+  ? `, clean ${Math.round(d.clean * 100)}%` : ""}${d.fights ? `, over ${d.fights} fights` : ""}${
+  d.date ? `, read ${d.date}` : ""}${d.unlucky != null ? `; very unlucky ${fmtHard(d.unlucky)}` : ""}${
+  d.team === "study" ? ". Read on the Kaizo study's rewrite of this team, not the team in the file" : ""}${
+  d.stale ? `. Stale: ${d.stale}` : ""}`;
+const hardNum = d => d
+  ? ` <b class="num trscore${d.stale ? " stale" : ""}${d.team === "study" ? " study" : ""}" title="${
+      esc(hardTitle(d))}">${fmtHard(d.difficulty)}</b>`
+  : ` <span class="sub notread" title="The scorer has not read this fight yet">not read</span>`;
 
 function trainerMatch(r) {
   const q = ($("#trainfilter").value || "").trim().toLowerCase();
@@ -2497,8 +2522,6 @@ function pairHow(p) {
   return "both see you at once" + (p.each_alone ? ", or one at a time" : "");
 }
 
-const scoreTitle = s => `Stored score on Ian's fight scale (${s.band})${s.fight
-  ? ", the story fight " + s.fight : ""}; a team saved since the last rescore still shows the old one`;
 
 function trainerRow(r, sub) {
   return `
@@ -2507,24 +2530,20 @@ function trainerRow(r, sub) {
         ? ' <span class="tag" title="One trainer whose own team fights as a double">one-team double</span>' : ""}${
         r.version ? `<span class="ver" title="Which version of the fight this is">${esc(r.version)}</span>` : ""}</span>
       <span>${sub ? "" : splitTag(r.split)} <span class="num sub" title="The team's highest level, and the split's level cap">${
-        r.top}${r.cap ? " / " + r.cap : ""}</span>${r.score ? ` <b class="num trscore" title="${esc(
-        scoreTitle(r.score))}">${r.score.scale.toFixed(1)}</b>` : ""}</span>
+        r.top}${r.cap ? " / " + r.cap : ""}</span>${hardNum(r.difficulty)}</span>
       <span class="party">${r.party.map(m => icon(m.species)).join("")}</span>
     </div>`;
 }
 
 function pairRow(p) {
   const open = TROPEN.has(p.key);
-  const scores = p.scores.map(s => s ? s.scale.toFixed(1) : "none").join(" and ");
   return `
     <div class="trrow pair${TRPAIR && TRPAIR.key === p.key ? " on" : ""}" data-pair="${esc(p.key)}">
       <span class="nm"><button class="linkish fold-pair" data-open="${esc(p.key)}"
           title="${open ? "Fold" : "Show"} its two trainers">${open ? "▾" : "▸"}</button>
         ${esc(p.label)}</span>
       <span><span class="tag" title="${esc(pairHow(p))}">double</span> ${splitTag(p.split)} <span class="num sub" title="The higher of the two teams' highest levels, and the split's level cap">${
-        p.top}${p.cap ? " / " + p.cap : ""}</span>${p.score ? ` <b class="num trscore" title="${esc(
-        `Each trainer's own stored score, ${scores}, until the balance track scores the pair as one fight`)}">${
-        p.score.scale.toFixed(1)}</b>` : ""}</span>
+        p.top}${p.cap ? " / " + p.cap : ""}</span>${hardNum(p.difficulty)}</span>
       <span class="party">${p.parties.map(party => party.map(m => icon(m.species)).join("")).join(
         '<span class="pairgap" title="and"></span>')}</span>
     </div>${open ? p.members.map(m => trainerRow(m, true)).join("") : ""}`;
@@ -2682,10 +2701,29 @@ async function scoreTrainer() {
 // estimate, `scored` the last full score ({result, team}), and `team` what
 // is being edited now, which says whether that full score is stale. The
 // stored score is the list's, from the last rescore.
+// The difficulty number first (Ian, 2026-10-07): the scorer's reading of this
+// fight as one number, with the three it comes from and whether it is stale.
+function hardBlock() {
+  const row = TRAINERS && (TRPAIR ? TRAINERS.items.find(r => r.key === TRPAIR.key)
+    : TRAINERS.rows.find(r => r.stem === TRSEL));
+  const d = row && row.difficulty;
+  if (!d) return `<h2>Difficulty</h2><p class="sub">Not read yet: the scorer has no reading of this
+    fight. Goal 3 reads every fight; until then only the fights already read have a number.</p>`;
+  const pc = v => Math.round(v * 100) + "%";
+  return `<h2>Difficulty</h2><div class="scorebig"><b class="scorenum big${d.stale ? " stale" : ""}">${
+      fmtHard(d.difficulty)}</b><span class="sub">average faints plus 40 times the losing rate, at real odds</span></div>
+    <p class="sub">Won ${pc(d.won)}${d.clean != null ? `, clean ${pc(d.clean)}` : ""}, ${d.faints.toFixed(2)} faints
+      a fight${d.fights ? `, over ${d.fights} fights` : ""}${d.date ? `; read ${esc(d.date)}` : ""}.${
+      d.unlucky != null ? ` Very unlucky, ${fmtHard(d.unlucky)}.` : ""}</p>
+    ${d.team === "study" ? `<p class="stalenote">Read on the Kaizo study's rewrite of this team, not the team
+      in the file; the file's own team is not read yet.</p>` : ""}
+    ${d.stale ? `<p class="stalenote">Stale: ${esc(d.stale)}. Goal 3 reads it again.</p>` : ""}`;
+}
+
 function scoreBlock(e = TRESTIMATE, scored = TRSCORE, team = JSON.stringify(TREDIT)) {
   const errors = TRPAIR ? (stashSide(), TRPAIR.sides.some(s => s.findings.some(f => f.severity === "error")))
     : TRFINDINGS.some(f => f.severity === "error");
-  const head = `<h2>Score${TRPAIR ? ", the pair as one fight" : ""}</h2>`;
+  const head = hardBlock() + `<h3 class="oldscale">The old fight scale${TRPAIR ? ", the pair as one fight" : ""}</h3>`;
   if (!e) return head + `<p class="sub">${errors ? "Fix the errors to see the score." : "Working out the score."}</p>`;
   if (e.error) return head + `<p class="sub">Not scored: ${esc(e.error)}.</p>`;
   const pc = v => Math.round(v * 100) + "%";
