@@ -46,23 +46,23 @@
         "by_level": [
             [
                 1,
-                "MOVE_EMBER"
+                "MOVE_TACKLE"
             ],
             [
                 1,
                 "MOVE_GROWL"
             ],
             [
-                5,
-                "MOVE_FLAME_CHARGE"
-            ],
-            [
                 6,
                 "MOVE_QUICK_ATTACK"
             ],
             [
-                8,
-                "MOVE_TAUNT"
+                7,
+                "MOVE_EMBER"
+            ],
+            [
+                9,
+                "MOVE_FLAME_CHARGE"
             ],
             [
                 11,
@@ -71,6 +71,10 @@
             [
                 14,
                 "MOVE_DOUBLE_KICK"
+            ],
+            [
+                16,
+                "MOVE_TAUNT"
             ],
             [
                 20,

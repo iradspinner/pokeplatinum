@@ -944,6 +944,8 @@ SPECIES_SCEPTILE	51	Detect	removed	R24	out of every player list
 SPECIES_SCEPTILE	59	False Swipe	removed	catch-only	it helps only to catch: early or not at all (Ian, 2026-10-06)
 SPECIES_SCIZOR	33	Razor Wind	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SCIZOR	61	Feint	removed	removed	leaves the game or every player list
+SPECIES_SCORBUNNY	7	Ember	moved from 1	Ian's ruling	a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)
+SPECIES_SCORBUNNY	1	Tackle	added	Ian's ruling	a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)
 SPECIES_SCYTHER	33	Razor Wind	removed	dead weight	a weak attack that goes from every list (2026-09-27)
 SPECIES_SCYTHER	37	Double Team	removed	R24	out of every player list
 SPECIES_SCYTHER	61	Feint	removed	removed	leaves the game or every player list
@@ -1684,22 +1686,22 @@ SPECIES_CRUSTLE	56	Shell Smash	added	R2	Candice's split; score 63
 SPECIES_CRUSTLE	64	Skitter Smack	added	R2	Galactic's split; score 54
 SPECIES_CRUSTLE	66	Poison Jab	added	R5	Galactic's split; score 50
 SPECIES_CRUSTLE	72	Bulldoze	added	R2	League's split; score 40
-SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	5	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	48	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	20	Confusion	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_FLAREON	20	Ember	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_GLACEON	21	Icy Wind	moved from 15	R25	was below 21, the lowest level it is had at
@@ -2532,8 +2534,8 @@ SPECIES_PIPLUP	11	Water Sport	removed	R1	filler past the one a first split may c
 SPECIES_PRINPLUP	4	Growl	removed	R25	below 16, the lowest level it is had at
 SPECIES_PRINPLUP	11	Water Sport	removed	R25	below 16, the lowest level it is had at
 SPECIES_EMPOLEON	4	Growl	removed	R25	below 36, the lowest level it is had at
-SPECIES_PIPLUP	5	Chilling Water	added	check 1, R16	Roark's split; score 178
-SPECIES_PIPLUP	4	Scary Face	added	R7	Roark's split; score 132
+SPECIES_PIPLUP	6	Chilling Water	added	check 1, R16	Roark's split; score 178
+SPECIES_PIPLUP	10	Scary Face	added	R7	Roark's split; score 132
 SPECIES_PRINPLUP	26	Aurora Beam	added	R5	Gardenia's split; score 67
 SPECIES_PRINPLUP	28	Aqua Cutter	added	R2	Gardenia's split; score 52
 SPECIES_EMPOLEON	41	X-Scissor	added	R5	Wake's split; score 125
@@ -2722,8 +2724,9 @@ SPECIES_PALOSSAND	46	Flash Cannon	added	R5	Byron's split; score 48
 SPECIES_PALOSSAND	53	Sludge Bomb	added	R5	Byron's split; score 54
 SPECIES_PALOSSAND	61	Psychic	added	R5, late move	Galactic's split; score 95
 SPECIES_PALOSSAND	63	Energy Ball	added	R2	Galactic's split; score 39
-SPECIES_SCORBUNNY	5	Flame Charge	added	check 1, R16	Roark's split; score 225
-SPECIES_SCORBUNNY	8	Taunt	added	R7	Roark's split; score 132
+SPECIES_SCORBUNNY	1	Growl	removed	R1	filler past the one a first split may carry
+SPECIES_SCORBUNNY	9	Flame Charge	added	check 1, R16	Roark's split; score 225
+SPECIES_SCORBUNNY	16	Taunt	added	R7	Roark's split; score 132
 SPECIES_RABOOT	20	Agility	added	R2	Gardenia's split; score 52
 SPECIES_CINDERACE	48	U-turn	added	R5, relearner-only	Byron's split; score 85
 SPECIES_CINDERACE	57	Iron Head	added	R5	Candice's split; score 50
@@ -3194,9 +3197,9 @@ SPECIES_TURTONATOR	72	Rock Tomb	added	R5	Barry's split; score 49
 SPECIES_TURTWIG	5	Withdraw	removed	R1	filler past the one a first split may carry
 SPECIES_GROTLE	5	Withdraw	removed	R25	below 18, the lowest level it is had at
 SPECIES_TORTERRA	5	Withdraw	removed	R25	below 32, the lowest level it is had at
-SPECIES_TURTWIG	5	Curse	moved from 17	R7	brought into Roark's split; score 165
-SPECIES_TURTWIG	4	Rock Blast	added	R4, R5	Roark's split; score 142
-SPECIES_TURTWIG	7	Bullet Seed	added	R1	Roark's split; score 35
+SPECIES_TURTWIG	6	Curse	moved from 17	R7	brought into Roark's split; score 165
+SPECIES_TURTWIG	8	Rock Blast	added	R4, R5	Roark's split; score 142
+SPECIES_TURTWIG	10	Bullet Seed	added	R1	Roark's split; score 35
 SPECIES_GROTLE	29	Bulldoze	added	R5, R16 due	Fantina's split; score 103
 SPECIES_TORTERRA	35	Iron Head	added	R5	Maylene's split; score 69
 SPECIES_TORTERRA	42	Headlong Rush	added	R2	Wake's split; score 63
@@ -3444,6 +3447,9 @@ SPECIES_CROBAT	40	Wing Attack	moved from 17	R25	was below 40, the lowest level i
 SPECIES_CROBAT	40	Wing Attack	removed	R6	weaker than Dual Wingbeat, already had
 SPECIES_MIME_JR	26	Encore	moved from 23	every catch knows an attack	to make room at 23
 SPECIES_MIME_JR	23	Zen Headbutt	added	every catch knows an attack	caught at 23 in Wake's split
+SPECIES_PIPLUP	4	Growl	added	Ian's ruling	a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)
 SPECIES_RALTS	1	Disarming Voice	added	every catch knows an attack	caught at 1 in Byron's split
+SPECIES_SCORBUNNY	1	Growl	added	Ian's ruling	a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)
 SPECIES_TOGEPI	1	Fairy Wind	added	every catch knows an attack	caught at 1 in Fantina's split
+SPECIES_TURTWIG	5	Withdraw	added	Ian's ruling	a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)
 SPECIES_DARKRAI	0	Dark Void	egg list	Ian's ruling	Ian, 2026-10-06: Officer Somnu's Darkrai keeps Dark Void, which Darkrai learns only at 66, above Somnu's levels; the player never reaches an egg list

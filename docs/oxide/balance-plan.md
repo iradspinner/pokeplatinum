@@ -70,6 +70,12 @@ hour). No boss is read until the TM pass has landed (Ian, 2026-10-06;
   inside 1F's locks, not sections (Ian's ruling of 2026-09-29, restated),
   so their eight trainers are optional. 1F's near half holds Bryce, Hana
   and Mariah, and its far half Miles, Clinton and Edgar.
+- **Starters start with Tackle and Growl or their equivalents.** Rowan's
+  three know exactly a basic attack and a basic status move at 5: Turtwig
+  Tackle and Withdraw, Scorbunny Tackle and Growl, Piplup Pound and Growl.
+  Their own type comes after: Scorbunny's Ember at 7 and Flame Charge at 9,
+  still inside Roark's split. The generator holds it as a rule, and
+  learncheck's check 25 holds it in the gate.
 
 **The early kits on type ladders (Ian, 2026-10-06).** "It entirely
 depends on the pokemon, and keeping it to hard rules destroys the

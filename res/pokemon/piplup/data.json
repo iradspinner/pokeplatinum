@@ -39,9 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 4, "MOVE_SCARY_FACE" ],
-            [ 5, "MOVE_CHILLING_WATER" ],
+            [ 4, "MOVE_GROWL" ],
+            [ 6, "MOVE_CHILLING_WATER" ],
             [ 8, "MOVE_BUBBLE" ],
+            [ 10, "MOVE_SCARY_FACE" ],
             [ 15, "MOVE_PECK" ],
             [ 18, "MOVE_BUBBLE_BEAM" ],
             [ 29, "MOVE_BRINE" ],
