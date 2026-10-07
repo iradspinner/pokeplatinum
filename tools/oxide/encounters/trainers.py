@@ -134,30 +134,25 @@ def summary(root=None):
 # score: average faints plus 40 times the losing rate, at real odds, so
 # losing one fight in ten weighs as four Pokemon lost and the win rate leads
 # (docs/oxide/fight-difficulty-ranking.md has why 40; Ian approved it). The
-# readings are the scoring track's, in tools/oxide/balance/difficulty.json:
-# {"readings": {key: {"won", "faints", "clean", "fights", "date", "team",
-# "stale"}}}, a key being a trainer constant or a story fight's key (which
-# covers each of its versions), "won" and "clean" rates from 0 to 1, and
-# "stale" the reason a reading no longer holds, or null. This tab applies
-# the formula and never stores a number of its own.
+# readings and the formula are the scoring track's (balance/pldifficulty.py
+# and difficulty.json beside it): each key, a trainer constant or a story
+# fight's key, holds one reading per team read, "oxide" (the trainer's own
+# file), "study" (the Kaizo study's rewrite) or "kaizo" (Kaizo's own team).
+# A reading counts for the trainer whose team it read; the tab shows the
+# Oxide team's reading, else the study's, and never stores a number itself.
 
-DIFFICULTY = ("tools", "oxide", "balance", "difficulty.json")
-LOSS_WEIGHT = 40
-
-
-def difficulty_of(won, faints):
-    """Average faints plus 40 times the losing rate."""
-    return round(faints + LOSS_WEIGHT * (1 - won), 2)
+TEAM_ORDER = ("oxide", "study")
 
 
 def difficulty_path(root):
-    return os.environ.get("OXIDE_DIFFICULTY_FILE") or os.path.join(root, *DIFFICULTY)
+    from ..balance import pldifficulty
+    return os.environ.get("OXIDE_DIFFICULTY_FILE") or pldifficulty.PATH
 
 
 def stored_difficulty(root=None):
-    """{stem: {"difficulty", "won", "faints", "clean", "fights", "date",
-    "team", "stale", "key"}} for every trainer with a reading; {} while the
-    scoring track's file does not exist."""
+    """{stem: {"difficulty", "unlucky", "won", "faints", "clean", "fights",
+    "date", "team", "stale", "label", "key"}} for every trainer with an Oxide
+    or study reading; {} while the scoring track's store does not exist."""
     root = root or model.repo_root()
     path = difficulty_path(root)
     if not os.path.exists(path):
@@ -167,25 +162,23 @@ def stored_difficulty(root=None):
 
 @functools.lru_cache(maxsize=2)
 def _stored_difficulty(root, path, stamp):
-    from . import alpha
-    with open(path, encoding="utf-8") as f:
-        data = json.load(f)
-    readings = data.get("readings", data)
-    with open(os.path.join(root, alpha.FIGHTS), encoding="utf-8") as f:
-        fights = {fight["key"]: fight["trainers"] for fight in json.load(f)["fights"]}
-    stem = lambda c: c[len("TRAINER_"):].lower()
+    from ..balance import pldifficulty
+    store = pldifficulty.load(path)
     out = {}
-    for key, r in readings.items():
-        if key.startswith("_") or not isinstance(r, dict) or r.get("won") is None or r.get("faints") is None:
-            continue
-        won = r["won"] / 100 if r["won"] > 1 else r["won"]
-        entry = {"difficulty": difficulty_of(won, r["faints"]), "won": won, "faints": r["faints"],
-                 "clean": r.get("clean"), "fights": r.get("fights"), "date": r.get("date"),
-                 "team": r.get("team"), "stale": r.get("stale"), "key": key}
-        stems = [stem(c) for c in fights[key]] if key in fights else \
-            [stem(key)] if key.startswith("TRAINER_") else [key]
-        for s in stems:
-            out[s] = entry
+    for key, readings in (store.get("fights") or {}).items():
+        for r in readings:
+            if r.get("team") not in TEAM_ORDER or not r.get("trainer"):
+                continue
+            stem = r["trainer"][len("TRAINER_"):].lower()
+            held = out.get(stem)
+            if held and TEAM_ORDER.index(held["team"]) <= TEAM_ORDER.index(r["team"]):
+                continue
+            unlucky = r.get("unlucky")
+            out[stem] = {"difficulty": round(pldifficulty.difficulty(r), 2),
+                         "unlucky": round(pldifficulty.difficulty(unlucky), 2) if unlucky else None,
+                         "won": r["won"], "faints": r["faints"], "clean": r.get("clean"),
+                         "fights": r.get("fights"), "date": r.get("date"), "team": r["team"],
+                         "stale": r.get("stale"), "label": r.get("label"), "key": key}
     return out
 
 

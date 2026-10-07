@@ -398,6 +398,8 @@ tr.got .spname { font-weight: 600; }
 .trscore.stale, .scorenum.stale { color: var(--faint); text-decoration: line-through;
   text-decoration-thickness: 1px; }
 .trrow .notread { font-size: 13px; }
+/* A study reading (the Kaizo study's rewrite, not the file's team) is italic. */
+.trscore.study { font-style: italic; }
 .stalenote { color: var(--warn); margin: 2px 0 0; }
 h3.oldscale { margin: 12px 0 0; font-size: 14px; color: var(--dim); }
 /* A pair (two trainers fought as one double): its row, a gap between the two
@@ -2474,9 +2476,12 @@ const fmtHard = v => v < 10 ? v.toFixed(2) : v.toFixed(1);
 const hardTitle = d => `Difficulty: average faints ${d.faints.toFixed(2)} plus 40 times the losing rate `
   + `${(1 - d.won).toFixed(2)}; won ${Math.round(d.won * 100)}%${d.clean != null
   ? `, clean ${Math.round(d.clean * 100)}%` : ""}${d.fights ? `, over ${d.fights} fights` : ""}${
-  d.date ? `, read ${d.date}` : ""}${d.stale ? `. Stale: ${d.stale}` : ""}`;
+  d.date ? `, read ${d.date}` : ""}${d.unlucky != null ? `; very unlucky ${fmtHard(d.unlucky)}` : ""}${
+  d.team === "study" ? ". Read on the Kaizo study's rewrite of this team, not the team in the file" : ""}${
+  d.stale ? `. Stale: ${d.stale}` : ""}`;
 const hardNum = d => d
-  ? ` <b class="num trscore${d.stale ? " stale" : ""}" title="${esc(hardTitle(d))}">${fmtHard(d.difficulty)}</b>`
+  ? ` <b class="num trscore${d.stale ? " stale" : ""}${d.team === "study" ? " study" : ""}" title="${
+      esc(hardTitle(d))}">${fmtHard(d.difficulty)}</b>`
   : ` <span class="sub notread" title="The scorer has not read this fight yet">not read</span>`;
 
 function trainerMatch(r) {
@@ -2693,8 +2698,10 @@ function hardBlock() {
   return `<h2>Difficulty</h2><div class="scorebig"><b class="scorenum big${d.stale ? " stale" : ""}">${
       fmtHard(d.difficulty)}</b><span class="sub">average faints plus 40 times the losing rate, at real odds</span></div>
     <p class="sub">Won ${pc(d.won)}${d.clean != null ? `, clean ${pc(d.clean)}` : ""}, ${d.faints.toFixed(2)} faints
-      a fight${d.fights ? `, over ${d.fights} fights` : ""}${d.date ? `; read ${esc(d.date)}` : ""}${
-      d.team && d.team !== "oxide" ? `, on ${esc(d.team)}'s team` : ""}.</p>
+      a fight${d.fights ? `, over ${d.fights} fights` : ""}${d.date ? `; read ${esc(d.date)}` : ""}.${
+      d.unlucky != null ? ` Very unlucky, ${fmtHard(d.unlucky)}.` : ""}</p>
+    ${d.team === "study" ? `<p class="stalenote">Read on the Kaizo study's rewrite of this team, not the team
+      in the file; the file's own team is not read yet.</p>` : ""}
     ${d.stale ? `<p class="stalenote">Stale: ${esc(d.stale)}. Goal 3 reads it again.</p>` : ""}`;
 }
 

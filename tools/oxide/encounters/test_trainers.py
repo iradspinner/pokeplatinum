@@ -32,44 +32,27 @@ def get(port, path):
 
 def check_difficulty(results, root):
     """The difficulty number (Ian, 2026-10-07): average faints plus 40 times
-    the losing rate, read from the scoring track's store. A story fight's key
-    gives every version its reading, a rate given as a percentage reads the
-    same, a stale reading keeps its reason, and a trainer with no reading
-    has none. Run on a scratch store, since the real one is the scoring
-    track's to write."""
-    import tempfile
-    store = {"readings": {
-        "gardenia": {"won": 0.97, "faints": 1.07, "clean": 0.44, "fights": 75, "date": "2026-10-03",
-                     "team": "oxide", "stale": None},
-        "barry_2": {"won": 100, "faints": 0.0, "clean": 1.0, "fights": 75, "date": "2026-10-03",
-                    "team": "oxide", "stale": "a move's data changed"},
-        "TRAINER_YOUNGSTER_MICHAEL": {"won": 0.96, "faints": 0.49, "clean": 0.79, "fights": 75,
-                                      "date": "2026-10-06", "team": "study", "stale": None}}}
-    old = os.environ.get("OXIDE_DIFFICULTY_FILE")
-    with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as f:
-        json.dump(store, f)
-    os.environ["OXIDE_DIFFICULTY_FILE"] = f.name
-    try:
-        rows = {r["stem"]: r for r in trainers.summary(root)}
-    finally:
-        os.remove(f.name)
-        if old is None:
-            os.environ.pop("OXIDE_DIFFICULTY_FILE", None)
-        else:
-            os.environ["OXIDE_DIFFICULTY_FILE"] = old
+    the losing rate, the scoring track's formula on its store's readings
+    (balance/pldifficulty.py). A reading counts for the trainer whose team it
+    read, the Oxide team's reading before the study's, so Gardenia shows her
+    own team's 2.13, not the study rewrite's; Youngster Michael, read only on
+    the study's team, shows that one, marked; Barry 2's reading is the
+    Piplup player's version's alone; and a trainer never read has none. The
+    numbers are docs/oxide/fight-difficulty-ranking.md's."""
+    rows = {r["stem"]: r for r in trainers.summary(root)}
     d = lambda stem: (rows[stem].get("difficulty") or {})
-    barry = [d(s) for s in ("rival_route_203_turtwig", "rival_route_203_chimchar", "rival_route_203_piplup")]
-    results.append(("the difficulty is faints plus 40 times the losing rate, from the scoring "
-                    "track's store, a fight's reading on each of its versions",
-                    d("leader_gardenia").get("difficulty") == 2.27
-                    and d("youngster_michael").get("difficulty") == 2.09
-                    and all(b.get("difficulty") == 0.0 and b.get("stale") for b in barry)
-                    and rows["leader_roark"].get("difficulty") is None
-                    and trainers.difficulty_of(0.9, 0.0) == 4.0 and trainers.difficulty_of(1.0, 1.0) == 1.0,
-                    f"Gardenia {d('leader_gardenia').get('difficulty')}, Michael "
-                    f"{d('youngster_michael').get('difficulty')}, Barry 2 {[b.get('difficulty') for b in barry]}"))
-
-
+    ok = (d("leader_gardenia").get("difficulty") == 2.13 and d("leader_gardenia")["team"] == "oxide"
+          and d("youngster_michael").get("difficulty") == 2.09 and d("youngster_michael")["team"] == "study"
+          and d("leader_roark").get("difficulty") == 0.05
+          and d("rival_route_203_piplup").get("difficulty") == 0.0 and d("rival_route_203_piplup")["stale"]
+          and rows["rival_route_203_turtwig"].get("difficulty") is None
+          and rows["leader_byron"].get("difficulty") is None
+          and all(v["unlucky"] is not None for v in trainers.stored_difficulty(root).values()))
+    results.append(("the difficulty is faints plus 40 times the losing rate on the trainer's own "
+                    "reading, the study's when it has no other",
+                    ok, f"Gardenia {d('leader_gardenia').get('difficulty')}, Michael "
+                    f"{d('youngster_michael').get('difficulty')}, Roark {d('leader_roark').get('difficulty')}, "
+                    f"{len(trainers.stored_difficulty(root))} trainers read"))
 def check_read(results, root):
     rows = trainers.summary(root)
     files = [f for f in os.listdir(os.path.join(root, *trainers.DATA)) if f.endswith(".json")]
