@@ -3,13 +3,13 @@
   "plural": "TM82s",
   "article": "a",
   "description": [
-    "While it is asleep, the user\n",
-    "randomly uses one of the moves\n",
-    "it knows."
+    "The user bounces up high, then drops on\n",
+    "the foe on the second turn. It may also\n",
+    "paralyze the foe."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_flying_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_SLEEP_TALK"
+  "teachesMove": "MOVE_BOUNCE"
 }

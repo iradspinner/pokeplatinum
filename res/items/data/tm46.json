@@ -3,9 +3,9 @@
   "plural": "TM46s",
   "article": "a",
   "description": [
-    "The user attacks and steals the foe’s\n",
-    "held item simultaneously. It can’t\n",
-    "steal if the user holds an item."
+    "The user slaps down the foe’s held item,\n",
+    "preventing the item from being used\n",
+    "during the battle."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_THIEF"
+  "teachesMove": "MOVE_KNOCK_OFF"
 }

@@ -3,13 +3,13 @@
   "plural": "TM70s",
   "article": "a",
   "description": [
-    "The user flashes a light that cuts the\n",
-    "foe’s accuracy. It can also be used to\n",
-    "illuminate caves."
+    "The user rampages and attacks for two\n",
+    "to three turns. However, it then\n",
+    "becomes confused."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_dragon_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_FLASH"
+  "teachesMove": "MOVE_OUTRAGE"
 }
