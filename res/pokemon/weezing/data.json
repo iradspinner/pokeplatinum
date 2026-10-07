@@ -45,13 +45,14 @@
             [ 6, "MOVE_SMOG" ],
             [ 15, "MOVE_ASSURANCE" ],
             [ 24, "MOVE_SLUDGE" ],
+            [ 35, "MOVE_DOUBLE_HIT" ],
             [ 40, "MOVE_SLUDGE_WAVE" ],
             [ 42, "MOVE_PSYBEAM" ],
             [ 48, "MOVE_SLUDGE_BOMB" ],
             [ 50, "MOVE_HEAT_WAVE" ],
             [ 56, "MOVE_SHADOW_BALL" ],
             [ 58, "MOVE_POISON_FANG" ],
-            [ 64, "MOVE_THUNDERBOLT" ],
+            [ 64, "MOVE_TRIPLE_AXEL" ],
             [ 66, "MOVE_FLAMETHROWER" ],
             [ 72, "MOVE_DARK_PULSE" ]
         ],
@@ -80,7 +81,8 @@
             "TM74",
             "TM78",
             "TM79",
-            "TM87"
+            "TM87",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_ROLLOUT",

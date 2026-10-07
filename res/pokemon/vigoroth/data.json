@@ -39,10 +39,10 @@
             [ 1, "MOVE_ENCORE" ],
             [ 1, "MOVE_UPROAR" ],
             [ 7, "MOVE_ENCORE" ],
-            [ 13, "MOVE_UPROAR" ],
             [ 19, "MOVE_FURY_SWIPES" ],
             [ 25, "MOVE_ENDURE" ],
             [ 31, "MOVE_SLASH" ],
+            [ 34, "MOVE_UPROAR" ],
             [ 37, "MOVE_COUNTER" ],
             [ 43, "MOVE_FOCUS_PUNCH" ],
             [ 49, "MOVE_REVERSAL" ]

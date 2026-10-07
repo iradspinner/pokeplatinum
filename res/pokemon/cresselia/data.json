@@ -43,10 +43,10 @@
             [ 47, "MOVE_SLASH" ],
             [ 57, "MOVE_MOONLIGHT" ],
             [ 66, "MOVE_PSYCHO_CUT" ],
-            [ 68, "MOVE_CONFUSE_RAY" ],
-            [ 70, "MOVE_MOONBLAST" ],
+            [ 68, "MOVE_BLOCK" ],
+            [ 70, "MOVE_SKITTER_SMACK" ],
             [ 75, "MOVE_PSYCHO_SHIFT" ],
-            [ 77, "MOVE_SWAGGER" ]
+            [ 77, "MOVE_CONFUSE_RAY" ]
         ],
         "by_tm": [
             "TM04",
@@ -79,7 +79,8 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",

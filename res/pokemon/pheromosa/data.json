@@ -61,14 +61,6 @@
                 "MOVE_LOW_KICK"
             ],
             [
-                25,
-                "MOVE_DOUBLE_KICK"
-            ],
-            [
-                30,
-                "MOVE_TRIPLE_KICK"
-            ],
-            [
                 35,
                 "MOVE_STOMP"
             ],
@@ -89,6 +81,14 @@
                 "MOVE_BUG_BITE"
             ],
             [
+                52,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                53,
+                "MOVE_TRIPLE_KICK"
+            ],
+            [
                 60,
                 "MOVE_BUG_BUZZ"
             ],
@@ -97,20 +97,12 @@
                 "MOVE_QUIVER_DANCE"
             ],
             [
-                66,
-                "MOVE_THROAT_CHOP"
-            ],
-            [
-                67,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
                 70,
                 "MOVE_HI_JUMP_KICK"
             ],
             [
                 72,
-                "MOVE_SKITTER_SMACK"
+                "MOVE_THROAT_CHOP"
             ]
         ],
         "by_tm": [

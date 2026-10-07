@@ -47,16 +47,16 @@
             [ 23, "MOVE_SCREECH" ],
             [ 29, "MOVE_LEAF_BLADE" ],
             [ 35, "MOVE_AGILITY" ],
-            [ 37, "MOVE_LOW_SWEEP" ],
+            [ 37, "MOVE_DIG" ],
             [ 40, "MOVE_X_SCISSOR" ],
             [ 43, "MOVE_SLAM" ],
-            [ 48, "MOVE_ROCK_SLIDE" ],
-            [ 50, "MOVE_THUNDER_PUNCH" ],
+            [ 48, "MOVE_BRICK_BREAK" ],
+            [ 50, "MOVE_ROCK_SLIDE" ],
             [ 56, "MOVE_GIGA_DRAIN" ],
             [ 58, "MOVE_DRAGON_CLAW" ],
-            [ 64, "MOVE_DRAGON_PULSE" ],
+            [ 64, "MOVE_SCALE_SHOT" ],
             [ 67, "MOVE_LEAF_STORM" ],
-            [ 72, "MOVE_ROCK_TOMB" ]
+            [ 72, "MOVE_LOW_SWEEP" ]
         ],
         "by_tm": [
             "TM02",

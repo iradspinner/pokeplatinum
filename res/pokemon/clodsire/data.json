@@ -69,10 +69,6 @@
                 "MOVE_SLAM"
             ],
             [
-                18,
-                "MOVE_ROCK_SLIDE"
-            ],
-            [
                 21,
                 "MOVE_YAWN"
             ],
@@ -94,7 +90,7 @@
             ],
             [
                 42,
-                "MOVE_BODY_PRESS"
+                "MOVE_IRON_HEAD"
             ],
             [
                 48,
@@ -102,7 +98,7 @@
             ],
             [
                 50,
-                "MOVE_IRON_HEAD"
+                "MOVE_BOUNCE"
             ],
             [
                 55,
@@ -110,15 +106,11 @@
             ],
             [
                 58,
-                "MOVE_ROCK_TOMB"
-            ],
-            [
-                60,
                 "MOVE_TOXIC_SPIKES"
             ],
             [
                 66,
-                "MOVE_SWAGGER"
+                "MOVE_BLOCK"
             ]
         ],
         "by_tm": [

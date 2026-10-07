@@ -44,7 +44,7 @@
             [ 8, "MOVE_TAUNT" ],
             [ 10, "MOVE_OMINOUS_WIND" ],
             [ 15, "MOVE_WING_ATTACK" ],
-            [ 17, "MOVE_SNARL" ],
+            [ 17, "MOVE_DUAL_WINGBEAT" ],
             [ 19, "MOVE_SWAGGER" ],
             [ 21, "MOVE_NIGHT_SHADE" ],
             [ 25, "MOVE_ASSURANCE" ],
@@ -81,6 +81,7 @@
             "TM87",
             "TM88",
             "TM89",
+            "TM93",
             "HM02",
             "HM05"
         ],

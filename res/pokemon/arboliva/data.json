@@ -94,7 +94,7 @@
             ],
             [
                 48,
-                "MOVE_LEAF_STORM"
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 52,
@@ -110,7 +110,7 @@
             ],
             [
                 64,
-                "MOVE_CHARM"
+                "MOVE_LEAF_STORM"
             ]
         ],
         "by_tm": [

@@ -117,12 +117,8 @@
                 "MOVE_OUTRAGE"
             ],
             [
-                68,
-                "MOVE_ICE_BEAM"
-            ],
-            [
                 70,
-                "MOVE_DRAGON_RUSH"
+                "MOVE_ICE_BEAM"
             ]
         ],
         "by_tm": [

@@ -73,10 +73,6 @@
                 "MOVE_PSYBEAM"
             ],
             [
-                14,
-                "MOVE_DOUBLE_SLAP"
-            ],
-            [
                 18,
                 "MOVE_EMBARGO"
             ],
@@ -144,7 +140,9 @@
             "TM80",
             "TM83",
             "TM86",
-            "TM92"
+            "TM92",
+            "TM93",
+            "TM94"
         ],
         "by_tutor": [],
         "egg_moves": []

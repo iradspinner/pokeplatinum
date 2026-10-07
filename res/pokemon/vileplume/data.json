@@ -42,7 +42,7 @@
             [ 1, "MOVE_AROMATHERAPY" ],
             [ 1, "MOVE_STUN_SPORE" ],
             [ 1, "MOVE_POISON_POWDER" ],
-            [ 54, "MOVE_PETAL_DANCE" ],
+            [ 53, "MOVE_PETAL_DANCE" ],
             [ 65, "MOVE_SOLAR_BEAM" ]
         ],
         "by_tm": [

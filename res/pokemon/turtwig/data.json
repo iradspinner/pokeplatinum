@@ -39,12 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_LEECH_SEED" ],
+            [ 4, "MOVE_ROCK_BLAST" ],
             [ 5, "MOVE_CURSE" ],
+            [ 7, "MOVE_BULLET_SEED" ],
             [ 13, "MOVE_RAZOR_LEAF" ],
-            [ 17, "MOVE_ROCK_THROW" ],
             [ 21, "MOVE_BITE" ],
             [ 25, "MOVE_MEGA_DRAIN" ],
+            [ 29, "MOVE_LEECH_SEED" ],
             [ 33, "MOVE_SYNTHESIS" ],
             [ 37, "MOVE_CRUNCH" ],
             [ 41, "MOVE_GIGA_DRAIN" ],

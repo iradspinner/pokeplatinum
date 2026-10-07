@@ -50,12 +50,15 @@
             [ 28, "MOVE_SPIT_UP" ],
             [ 32, "MOVE_OMINOUS_WIND" ],
             [ 37, "MOVE_BATON_PASS" ],
-            [ 40, "MOVE_TEMPER_FLARE" ],
+            [ 40, "MOVE_SKITTER_SMACK" ],
             [ 44, "MOVE_SHADOW_BALL" ],
-            [ 48, "MOVE_BODY_SLAM" ],
-            [ 50, "MOVE_SUCKER_PUNCH" ],
-            [ 64, "MOVE_PSYCHIC" ],
-            [ 66, "MOVE_THUNDERBOLT" ]
+            [ 48, "MOVE_BOUNCE" ],
+            [ 50, "MOVE_PLAY_ROUGH" ],
+            [ 56, "MOVE_AIR_SLASH" ],
+            [ 58, "MOVE_EXPANDING_FORCE" ],
+            [ 64, "MOVE_THUNDERBOLT" ],
+            [ 66, "MOVE_PSYCHIC" ],
+            [ 72, "MOVE_SUCKER_PUNCH" ]
         ],
         "by_tm": [
             "TM04",
@@ -86,6 +89,7 @@
             "TM78",
             "TM87",
             "TM92",
+            "TM94",
             "HM02",
             "HM05"
         ],

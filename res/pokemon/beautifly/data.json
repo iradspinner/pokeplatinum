@@ -42,7 +42,7 @@
             [ 13, "MOVE_GUST" ],
             [ 17, "MOVE_STUN_SPORE" ],
             [ 20, "MOVE_MORNING_SUN" ],
-            [ 22, "MOVE_ICY_WIND" ],
+            [ 22, "MOVE_SNARL" ],
             [ 26, "MOVE_AIR_SLASH" ],
             [ 31, "MOVE_ATTRACT" ],
             [ 34, "MOVE_SILVER_WIND" ],
@@ -52,7 +52,7 @@
             [ 49, "MOVE_PSYCHIC" ],
             [ 51, "MOVE_ENERGY_BALL" ],
             [ 57, "MOVE_QUIVER_DANCE" ],
-            [ 65, "MOVE_SWAGGER" ]
+            [ 65, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM06",

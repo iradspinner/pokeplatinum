@@ -89,10 +89,6 @@
                 "MOVE_RECOVER"
             ],
             [
-                29,
-                "MOVE_SPIKE_CANNON"
-            ],
-            [
                 37,
                 "MOVE_PIN_MISSILE"
             ],
@@ -114,14 +110,10 @@
             ],
             [
                 48,
-                "MOVE_LUNGE"
-            ],
-            [
-                50,
                 "MOVE_SLUDGE_BOMB"
             ],
             [
-                56,
+                50,
                 "MOVE_ICE_BEAM"
             ],
             [

@@ -50,12 +50,12 @@
             [ 42, "MOVE_SLASH" ],
             [ 43, "MOVE_SWIFT" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
-            [ 54, "MOVE_BODY_PRESS" ],
-            [ 56, "MOVE_DRILL_PECK" ],
-            [ 62, "MOVE_BRAVE_BIRD" ],
-            [ 64, "MOVE_IRON_HEAD" ],
-            [ 70, "MOVE_ROCK_TOMB" ],
-            [ 72, "MOVE_DRILL_RUN" ]
+            [ 54, "MOVE_DUAL_WINGBEAT" ],
+            [ 56, "MOVE_IRON_HEAD" ],
+            [ 62, "MOVE_TRIPLE_AXEL" ],
+            [ 64, "MOVE_ROCK_TOMB" ],
+            [ 70, "MOVE_ZEN_HEADBUTT" ],
+            [ 72, "MOVE_IRON_DEFENSE" ]
         ],
         "by_tm": [
             "TM06",

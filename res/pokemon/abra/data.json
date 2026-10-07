@@ -38,9 +38,9 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 2, "MOVE_CHARGE_BEAM" ],
+            [ 2, "MOVE_WATER_GUN" ],
             [ 3, "MOVE_CALM_MIND" ],
-            [ 4, "MOVE_CONFUSION" ]
+            [ 4, "MOVE_STORED_POWER" ]
         ],
         "by_tm": [
             "TM04",

@@ -50,7 +50,8 @@
             [ 57, "MOVE_ROOST" ],
             [ 64, "MOVE_TAILWIND" ],
             [ 66, "MOVE_AIR_SLASH" ],
-            [ 69, "MOVE_SIGNAL_BEAM" ]
+            [ 69, "MOVE_DAZZLING_GLEAM" ],
+            [ 71, "MOVE_EXPANDING_FORCE" ]
         ],
         "by_tm": [
             "TM03",

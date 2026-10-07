@@ -59,7 +59,7 @@
             [ 47, "MOVE_AERIAL_ACE" ],
             [ 50, "MOVE_FORCE_PALM" ],
             [ 58, "MOVE_LOW_SWEEP" ],
-            [ 66, "MOVE_SWAGGER" ]
+            [ 66, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM03",

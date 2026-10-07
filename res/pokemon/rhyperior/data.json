@@ -47,11 +47,11 @@
             [ 25, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 42, "MOVE_HAMMER_ARM" ],
-            [ 45, "MOVE_ROCK_SLIDE" ],
             [ 49, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_MEGAHORN" ],
             [ 61, "MOVE_ROCK_WRECKER" ],
-            [ 63, "MOVE_ROCK_TOMB" ]
+            [ 63, "MOVE_TRIPLE_AXEL" ],
+            [ 69, "MOVE_ROCK_TOMB" ]
         ],
         "by_tm": [
             "TM01",

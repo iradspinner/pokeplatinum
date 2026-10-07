@@ -48,7 +48,7 @@
             [ 37, "MOVE_FURY_CUTTER" ],
             [ 46, "MOVE_SLASH" ],
             [ 48, "MOVE_NIGHT_SLASH" ],
-            [ 53, "MOVE_CROSS_POISON" ],
+            [ 53, "MOVE_PIN_MISSILE" ],
             [ 55, "MOVE_ROCK_BLAST" ],
             [ 67, "MOVE_CRUSH_CLAW" ],
             [ 73, "MOVE_X_SCISSOR" ]

@@ -117,16 +117,12 @@
                 "MOVE_OUTRAGE"
             ],
             [
-                68,
-                "MOVE_FLAMETHROWER"
-            ],
-            [
                 70,
-                "MOVE_SCALD"
+                "MOVE_DRACO_METEOR"
             ],
             [
                 72,
-                "MOVE_CURSE"
+                "MOVE_FLAMETHROWER"
             ]
         ],
         "by_tm": [

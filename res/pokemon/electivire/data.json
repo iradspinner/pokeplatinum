@@ -56,9 +56,9 @@
             [ 54, "MOVE_FIRE_PUNCH" ],
             [ 56, "MOVE_ICE_PUNCH" ],
             [ 62, "MOVE_ROCK_TOMB" ],
-            [ 64, "MOVE_THUNDER_WAVE" ],
             [ 67, "MOVE_GIGA_IMPACT" ],
-            [ 70, "MOVE_ROLLING_KICK" ]
+            [ 70, "MOVE_THUNDER_WAVE" ],
+            [ 72, "MOVE_ROLLING_KICK" ]
         ],
         "by_tm": [
             "TM06",

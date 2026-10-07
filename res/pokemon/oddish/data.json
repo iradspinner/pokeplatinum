@@ -48,7 +48,7 @@
             [ 29, "MOVE_NATURAL_GIFT" ],
             [ 33, "MOVE_MOONLIGHT" ],
             [ 37, "MOVE_GIGA_DRAIN" ],
-            [ 45, "MOVE_PETAL_DANCE" ]
+            [ 41, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",

@@ -47,7 +47,6 @@
             [ 5, "MOVE_SUPERSONIC" ],
             [ 9, "MOVE_ASTONISH" ],
             [ 13, "MOVE_BITE" ],
-            [ 17, "MOVE_WING_ATTACK" ],
             [ 21, "MOVE_CONFUSE_RAY" ],
             [ 27, "MOVE_AIR_CUTTER" ],
             [ 33, "MOVE_MEAN_LOOK" ],

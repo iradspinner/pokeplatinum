@@ -51,7 +51,7 @@
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 39, "MOVE_NASTY_PLOT" ],
-            [ 41, "MOVE_AURORA_BEAM" ],
+            [ 41, "MOVE_MUD_SHOT" ],
             [ 43, "MOVE_SWAGGER" ],
             [ 48, "MOVE_PSYCHIC" ],
             [ 53, "MOVE_TRUMP_CARD" ],
@@ -105,6 +105,8 @@
             "TM87",
             "TM90",
             "TM92",
+            "TM93",
+            "TM94",
             "HM03",
             "HM04",
             "HM07"

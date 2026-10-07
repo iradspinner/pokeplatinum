@@ -85,6 +85,10 @@
                 "MOVE_ASSURANCE"
             ],
             [
+                30,
+                "MOVE_THRASH"
+            ],
+            [
                 39,
                 "MOVE_CLOSE_COMBAT"
             ],
@@ -98,7 +102,7 @@
             ],
             [
                 54,
-                "MOVE_POISON_JAB"
+                "MOVE_BOUNCE"
             ],
             [
                 56,
@@ -113,16 +117,12 @@
                 "MOVE_LASH_OUT"
             ],
             [
-                66,
-                "MOVE_THRASH"
-            ],
-            [
-                69,
-                "MOVE_OUTRAGE"
-            ],
-            [
-                71,
+                70,
                 "MOVE_THROAT_CHOP"
+            ],
+            [
+                72,
+                "MOVE_OUTRAGE"
             ]
         ],
         "by_tm": [

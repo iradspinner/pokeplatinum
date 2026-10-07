@@ -55,8 +55,7 @@
             [ 51, "MOVE_GIGA_DRAIN" ],
             [ 57, "MOVE_LEAF_STORM" ],
             [ 59, "MOVE_SEED_BOMB" ],
-            [ 61, "MOVE_ZEN_HEADBUTT" ],
-            [ 66, "MOVE_ROCK_TOMB" ]
+            [ 61, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM06",

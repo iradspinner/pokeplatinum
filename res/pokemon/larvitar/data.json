@@ -48,8 +48,8 @@
             [ 32, "MOVE_PAYBACK" ],
             [ 37, "MOVE_CRUNCH" ],
             [ 41, "MOVE_EARTHQUAKE" ],
-            [ 50, "MOVE_HYPER_BEAM" ],
-            [ 61, "MOVE_THRASH" ]
+            [ 54, "MOVE_THRASH" ],
+            [ 57, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM06",

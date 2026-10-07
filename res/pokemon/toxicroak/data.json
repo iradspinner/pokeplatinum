@@ -55,7 +55,7 @@
             [ 49, "MOVE_SLUDGE_BOMB" ],
             [ 51, "MOVE_LOW_SWEEP" ],
             [ 54, "MOVE_FLATTER" ],
-            [ 56, "MOVE_X_SCISSOR" ],
+            [ 56, "MOVE_TWINEEDLE" ],
             [ 58, "MOVE_ROCK_TOMB" ],
             [ 64, "MOVE_BULLDOZE" ],
             [ 66, "MOVE_TOXIC" ]

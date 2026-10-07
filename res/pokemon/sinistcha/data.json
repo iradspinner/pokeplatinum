@@ -110,15 +110,15 @@
             ],
             [
                 64,
-                "MOVE_SHELL_SMASH"
+                "MOVE_UPROAR"
             ],
             [
                 69,
-                "MOVE_NASTY_PLOT"
+                "MOVE_SHELL_SMASH"
             ],
             [
                 71,
-                "MOVE_STUN_SPORE"
+                "MOVE_NASTY_PLOT"
             ]
         ],
         "by_tm": [

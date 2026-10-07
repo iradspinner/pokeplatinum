@@ -57,7 +57,6 @@
             [ 49, "MOVE_DOUBLE_EDGE" ],
             [ 54, "MOVE_ROCK_SLIDE" ],
             [ 56, "MOVE_FIRE_FANG" ],
-            [ 58, "MOVE_ICE_FANG" ],
             [ 64, "MOVE_BLOCK" ]
         ],
         "by_tm": [

@@ -49,12 +49,13 @@
             [ 25, "MOVE_VITAL_THROW" ],
             [ 36, "MOVE_WAKE_UP_SLAP" ],
             [ 40, "MOVE_CLOSE_COMBAT" ],
+            [ 42, "MOVE_ROCK_SLIDE" ],
             [ 44, "MOVE_SCARY_FACE" ],
             [ 46, "MOVE_THROAT_CHOP" ],
-            [ 48, "MOVE_LOW_SWEEP" ],
+            [ 48, "MOVE_FIRE_PUNCH" ],
             [ 53, "MOVE_ROCK_TOMB" ],
             [ 55, "MOVE_BULK_UP" ],
-            [ 61, "MOVE_SWAGGER" ]
+            [ 61, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM06",

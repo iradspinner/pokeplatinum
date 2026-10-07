@@ -54,9 +54,9 @@
             [ 42, "MOVE_ZEN_HEADBUTT" ],
             [ 45, "MOVE_EARTHQUAKE" ],
             [ 51, "MOVE_FUTURE_SIGHT" ],
-            [ 53, "MOVE_WILD_CHARGE" ],
-            [ 58, "MOVE_SPARK" ],
-            [ 66, "MOVE_SWAGGER" ]
+            [ 53, "MOVE_BOUNCE" ],
+            [ 58, "MOVE_TRIPLE_AXEL" ],
+            [ 66, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",

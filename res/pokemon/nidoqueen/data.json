@@ -42,7 +42,7 @@
             [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_DOUBLE_KICK" ],
             [ 1, "MOVE_POISON_STING" ],
-            [ 16, "MOVE_ICY_WIND" ],
+            [ 17, "MOVE_MUD_SHOT" ],
             [ 23, "MOVE_BODY_SLAM" ],
             [ 42, "MOVE_CRUNCH" ],
             [ 43, "MOVE_EARTH_POWER" ],
@@ -50,8 +50,8 @@
             [ 50, "MOVE_SHADOW_BALL" ],
             [ 56, "MOVE_TOXIC" ],
             [ 58, "MOVE_SUPERPOWER" ],
-            [ 64, "MOVE_HIGH_HORSEPOWER" ],
-            [ 66, "MOVE_BULLDOZE" ],
+            [ 64, "MOVE_ICE_BEAM" ],
+            [ 66, "MOVE_HIGH_HORSEPOWER" ],
             [ 72, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [

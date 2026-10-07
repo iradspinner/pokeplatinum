@@ -48,16 +48,14 @@
             [ 19, "MOVE_BUBBLE_BEAM" ],
             [ 23, "MOVE_FOCUS_ENERGY" ],
             [ 25, "MOVE_OCTAZOOKA" ],
-            [ 27, "MOVE_SKITTER_SMACK" ],
+            [ 27, "MOVE_ROCK_BLAST" ],
             [ 29, "MOVE_BULLET_SEED" ],
-            [ 31, "MOVE_MUD_SHOT" ],
-            [ 35, "MOVE_SEED_BOMB" ],
+            [ 35, "MOVE_SCALD" ],
             [ 42, "MOVE_SIGNAL_BEAM" ],
-            [ 44, "MOVE_SCALD" ],
+            [ 44, "MOVE_SKITTER_SMACK" ],
             [ 48, "MOVE_ICE_BEAM" ],
-            [ 51, "MOVE_ENERGY_BALL" ],
             [ 55, "MOVE_HYPER_BEAM" ],
-            [ 67, "MOVE_SWAGGER" ]
+            [ 67, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",
@@ -88,6 +86,7 @@
             "TM85",
             "TM87",
             "TM91",
+            "TM94",
             "HM03",
             "HM07"
         ],

@@ -55,9 +55,8 @@
             [ 56, "MOVE_DISCHARGE" ],
             [ 60, "MOVE_DOUBLE_EDGE" ],
             [ 64, "MOVE_VOLT_TACKLE" ],
-            [ 66, "MOVE_SUPERPOWER" ],
-            [ 68, "MOVE_THROAT_CHOP" ],
-            [ 74, "MOVE_THUNDER_WAVE" ]
+            [ 66, "MOVE_THROAT_CHOP" ],
+            [ 68, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM06",

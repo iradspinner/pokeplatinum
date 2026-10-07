@@ -58,7 +58,7 @@
             [ 51, "MOVE_WOOD_HAMMER" ],
             [ 54, "MOVE_LOW_SWEEP" ],
             [ 58, "MOVE_DRAIN_PUNCH" ],
-            [ 66, "MOVE_SWAGGER" ]
+            [ 66, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM04",

@@ -119,6 +119,10 @@
             [
                 68,
                 "MOVE_BODY_PRESS"
+            ],
+            [
+                74,
+                "MOVE_PHANTOM_FORCE"
             ]
         ],
         "by_tm": [

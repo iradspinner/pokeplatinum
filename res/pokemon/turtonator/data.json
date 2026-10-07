@@ -102,7 +102,7 @@
             ],
             [
                 54,
-                "MOVE_BODY_PRESS"
+                "MOVE_SCALE_SHOT"
             ],
             [
                 61,
@@ -110,7 +110,7 @@
             ],
             [
                 63,
-                "MOVE_EARTHQUAKE"
+                "MOVE_BODY_PRESS"
             ],
             [
                 66,
@@ -118,11 +118,11 @@
             ],
             [
                 70,
-                "MOVE_ROCK_TOMB"
+                "MOVE_EARTHQUAKE"
             ],
             [
                 72,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_ROCK_TOMB"
             ]
         ],
         "by_tm": [

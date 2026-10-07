@@ -45,20 +45,16 @@
     "learnset": {
         "by_level": [
             [
+                3,
+                "MOVE_TAUNT"
+            ],
+            [
                 4,
-                "MOVE_TACKLE"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 5,
-                "MOVE_MEGA_DRAIN"
-            ],
-            [
-                6,
                 "MOVE_PLAY_NICE"
-            ],
-            [
-                7,
-                "MOVE_TAUNT"
             ],
             [
                 9,

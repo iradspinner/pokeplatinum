@@ -50,7 +50,7 @@
             [ 28, "MOVE_CRUNCH" ],
             [ 30, "MOVE_SLASH" ],
             [ 34, "MOVE_AQUA_JET" ],
-            [ 36, "MOVE_BULLDOZE" ],
+            [ 36, "MOVE_WILD_CHARGE" ],
             [ 40, "MOVE_TAUNT" ],
             [ 42, "MOVE_POISON_FANG" ],
             [ 45, "MOVE_AGILITY" ],
@@ -58,7 +58,8 @@
             [ 56, "MOVE_NIGHT_SLASH" ],
             [ 58, "MOVE_FIRE_FANG" ],
             [ 60, "MOVE_POISON_JAB" ],
-            [ 66, "MOVE_THROAT_CHOP" ]
+            [ 66, "MOVE_BLOCK" ],
+            [ 68, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM01",

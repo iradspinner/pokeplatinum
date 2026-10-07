@@ -110,15 +110,15 @@
             ],
             [
                 40,
-                "MOVE_NIGHT_SLASH"
+                "MOVE_DUAL_CHOP"
             ],
             [
                 42,
-                "MOVE_LOW_SWEEP"
+                "MOVE_NIGHT_SLASH"
             ],
             [
                 48,
-                "MOVE_POISON_JAB"
+                "MOVE_LOW_SWEEP"
             ],
             [
                 55,

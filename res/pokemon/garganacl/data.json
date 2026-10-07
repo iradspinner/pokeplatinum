@@ -117,8 +117,8 @@
                 "MOVE_EARTHQUAKE"
             ],
             [
-                51,
-                "MOVE_IRON_HEAD"
+                54,
+                "MOVE_ROCK_BLAST"
             ],
             [
                 56,
@@ -126,10 +126,14 @@
             ],
             [
                 58,
-                "MOVE_BODY_PRESS"
+                "MOVE_ICE_PUNCH"
             ],
             [
                 64,
+                "MOVE_BODY_PRESS"
+            ],
+            [
+                66,
                 "MOVE_BLOCK"
             ]
         ],

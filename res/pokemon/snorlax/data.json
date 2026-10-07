@@ -48,7 +48,7 @@
             [ 44, "MOVE_CRUNCH" ],
             [ 49, "MOVE_GIGA_IMPACT" ],
             [ 51, "MOVE_BODY_PRESS" ],
-            [ 64, "MOVE_CRUSH_CLAW" ]
+            [ 64, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM03",

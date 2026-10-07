@@ -41,9 +41,9 @@
             [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_FORESIGHT" ],
             [ 1, "MOVE_ENDURE" ],
-            [ 2, "MOVE_CRUNCH" ],
             [ 6, "MOVE_COUNTER" ],
             [ 11, "MOVE_FORCE_PALM" ],
+            [ 18, "MOVE_BONE_RUSH" ],
             [ 19, "MOVE_REVERSAL" ],
             [ 24, "MOVE_SCREECH" ]
         ],

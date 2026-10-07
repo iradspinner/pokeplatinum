@@ -40,6 +40,7 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 6, "MOVE_SUPERSONIC" ],
+            [ 9, "MOVE_PIN_MISSILE" ],
             [ 13, "MOVE_REFLECT" ],
             [ 14, "MOVE_LIGHT_SCREEN" ],
             [ 15, "MOVE_SAFEGUARD" ],

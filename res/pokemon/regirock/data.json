@@ -48,7 +48,7 @@
             [ 49, "MOVE_CHARGE_BEAM" ],
             [ 57, "MOVE_LOCK_ON" ],
             [ 65, "MOVE_THUNDERBOLT" ],
-            [ 73, "MOVE_ROCK_SLIDE" ]
+            [ 73, "MOVE_ROCK_BLAST" ]
         ],
         "by_tm": [
             "TM06",

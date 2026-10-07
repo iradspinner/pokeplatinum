@@ -49,7 +49,7 @@
             [ 28, "MOVE_FIRE_PUNCH" ],
             [ 36, "MOVE_LAVA_PLUME" ],
             [ 41, "MOVE_FLAMETHROWER" ],
-            [ 54, "MOVE_OVERHEAT" ]
+            [ 54, "MOVE_BLAST_BURN" ]
         ],
         "by_tm": [
             "TM06",

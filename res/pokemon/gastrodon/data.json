@@ -53,14 +53,14 @@
             [ 34, "MOVE_CLEAR_SMOG" ],
             [ 41, "MOVE_MUDDY_WATER" ],
             [ 43, "MOVE_EARTH_POWER" ],
-            [ 45, "MOVE_BULLDOZE" ],
+            [ 45, "MOVE_BOUNCE" ],
             [ 50, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_RECOVER" ],
-            [ 58, "MOVE_SKITTER_SMACK" ],
-            [ 60, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_BULLDOZE" ],
+            [ 60, "MOVE_SKITTER_SMACK" ],
             [ 66, "MOVE_BLOCK" ],
-            [ 68, "MOVE_SLUDGE" ],
-            [ 74, "MOVE_SLUDGE_BOMB" ]
+            [ 68, "MOVE_ROCK_TOMB" ],
+            [ 74, "MOVE_SLUDGE" ]
         ],
         "by_tm": [
             "TM01",

@@ -85,10 +85,6 @@
                 "MOVE_DARKEST_LARIAT"
             ],
             [
-                38,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
                 40,
                 "MOVE_FLAMETHROWER"
             ],
@@ -129,7 +125,7 @@
                 "MOVE_U_TURN"
             ],
             [
-                69,
+                72,
                 "MOVE_OUTRAGE"
             ]
         ],

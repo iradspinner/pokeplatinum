@@ -62,7 +62,7 @@
             ],
             [
                 17,
-                "MOVE_SWAGGER"
+                "MOVE_DUAL_WINGBEAT"
             ],
             [
                 20,
@@ -75,10 +75,6 @@
             [
                 32,
                 "MOVE_FEATHER_DANCE"
-            ],
-            [
-                34,
-                "MOVE_BODY_PRESS"
             ],
             [
                 38,

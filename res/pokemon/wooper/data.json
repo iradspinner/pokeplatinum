@@ -40,7 +40,7 @@
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_TAIL_WHIP" ],
-            [ 4, "MOVE_POISON_STING" ],
+            [ 4, "MOVE_DOUBLE_KICK" ],
             [ 9, "MOVE_MUD_SHOT" ],
             [ 15, "MOVE_SLAM" ],
             [ 19, "MOVE_MUD_BOMB" ],

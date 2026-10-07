@@ -39,18 +39,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_BITE" ],
-            [ 5, "MOVE_BULLDOZE" ],
+            [ 4, "MOVE_TRIPLE_AXEL" ],
+            [ 5, "MOVE_SAND_TOMB" ],
             [ 6, "MOVE_SCREECH" ],
             [ 9, "MOVE_ROCK_THROW" ],
             [ 17, "MOVE_ROCK_TOMB" ],
-            [ 19, "MOVE_BREAKING_SWIPE" ],
+            [ 19, "MOVE_BULLDOZE" ],
             [ 25, "MOVE_SLAM" ],
             [ 30, "MOVE_ROCK_POLISH" ],
             [ 33, "MOVE_DRAGON_BREATH" ],
             [ 38, "MOVE_CURSE" ],
             [ 41, "MOVE_IRON_HEAD" ],
-            [ 46, "MOVE_SAND_TOMB" ],
             [ 49, "MOVE_DOUBLE_EDGE" ],
             [ 54, "MOVE_ROCK_SLIDE" ]
         ],

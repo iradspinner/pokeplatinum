@@ -69,7 +69,7 @@
             [ 20, "MOVE_PSYCHO_CUT" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
             [ 40, "MOVE_PSYCHIC" ],
-            [ 64, "MOVE_DOUBLE_EDGE" ]
+            [ 64, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM10"

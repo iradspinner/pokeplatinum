@@ -48,12 +48,12 @@
             [ 30, "MOVE_RECOVER" ],
             [ 34, "MOVE_PSYCHO_CUT" ],
             [ 40, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_ALLURING_VOICE" ],
             [ 42, "MOVE_FUTURE_SIGHT" ],
             [ 44, "MOVE_SHADOW_BALL" ],
             [ 46, "MOVE_TRICK" ],
-            [ 48, "MOVE_DAZZLING_GLEAM" ],
-            [ 53, "MOVE_SIGNAL_BEAM" ],
-            [ 61, "MOVE_SWAGGER" ]
+            [ 48, "MOVE_SIGNAL_BEAM" ],
+            [ 61, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM04",
@@ -88,7 +88,8 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_THUNDER_PUNCH",

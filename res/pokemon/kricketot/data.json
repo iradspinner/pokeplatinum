@@ -39,9 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 2, "MOVE_KARATE_CHOP" ],
-            [ 3, "MOVE_STRUGGLE_BUG" ],
-            [ 5, "MOVE_SCREECH" ],
+            [ 2, "MOVE_STRUGGLE_BUG" ],
+            [ 3, "MOVE_FURY_CUTTER" ],
+            [ 5, "MOVE_KARATE_CHOP" ],
+            [ 7, "MOVE_SCREECH" ],
             [ 16, "MOVE_BUG_BITE" ]
         ],
         "by_tm": [

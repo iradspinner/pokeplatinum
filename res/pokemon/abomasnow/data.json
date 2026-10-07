@@ -54,8 +54,8 @@
             [ 47, "MOVE_ICE_BEAM" ],
             [ 53, "MOVE_LEAF_STORM" ],
             [ 55, "MOVE_ICE_PUNCH" ],
-            [ 61, "MOVE_GIGA_DRAIN" ],
-            [ 63, "MOVE_SHADOW_BALL" ]
+            [ 61, "MOVE_BOUNCE" ],
+            [ 63, "MOVE_GIGA_DRAIN" ]
         ],
         "by_tm": [
             "TM03",

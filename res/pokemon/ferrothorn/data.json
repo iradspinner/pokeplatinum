@@ -102,7 +102,7 @@
             ],
             [
                 61,
-                "MOVE_BODY_PRESS"
+                "MOVE_CURSE"
             ],
             [
                 65,
@@ -111,10 +111,6 @@
             [
                 70,
                 "MOVE_PETAL_BLIZZARD"
-            ],
-            [
-                72,
-                "MOVE_CURSE"
             ]
         ],
         "by_tm": [

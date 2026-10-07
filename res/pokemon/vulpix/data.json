@@ -52,7 +52,8 @@
             [ 34, "MOVE_FIRE_SPIN" ],
             [ 37, "MOVE_CAPTIVATE" ],
             [ 40, "MOVE_FLARE_BLITZ" ],
-            [ 44, "MOVE_EXTRASENSORY" ]
+            [ 44, "MOVE_EXTRASENSORY" ],
+            [ 47, "MOVE_BLAST_BURN" ]
         ],
         "by_tm": [
             "TM06",

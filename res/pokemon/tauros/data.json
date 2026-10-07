@@ -49,7 +49,7 @@
             [ 35, "MOVE_TAKE_DOWN" ],
             [ 41, "MOVE_SWAGGER" ],
             [ 55, "MOVE_GIGA_IMPACT" ],
-            [ 61, "MOVE_THRASH" ]
+            [ 57, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM03",

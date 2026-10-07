@@ -47,14 +47,14 @@
             [ 25, "MOVE_MUD_SHOT" ],
             [ 28, "MOVE_BRINE" ],
             [ 37, "MOVE_ANCIENT_POWER" ],
-            [ 40, "MOVE_SPIKE_CANNON" ],
+            [ 40, "MOVE_ROCK_BLAST" ],
             [ 45, "MOVE_SCALD" ],
             [ 48, "MOVE_TICKLE" ],
-            [ 53, "MOVE_POWER_GEM" ],
-            [ 56, "MOVE_ROCK_BLAST" ],
+            [ 53, "MOVE_ALLURING_VOICE" ],
+            [ 55, "MOVE_EXPANDING_FORCE" ],
             [ 61, "MOVE_ICE_BEAM" ],
-            [ 63, "MOVE_FLASH_CANNON" ],
-            [ 67, "MOVE_MUDDY_WATER" ]
+            [ 67, "MOVE_MUDDY_WATER" ],
+            [ 69, "MOVE_POWER_GEM" ]
         ],
         "by_tm": [
             "TM01",

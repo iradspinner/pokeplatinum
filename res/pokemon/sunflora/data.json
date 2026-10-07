@@ -48,7 +48,7 @@
             [ 29, "MOVE_RAZOR_LEAF" ],
             [ 41, "MOVE_SOLAR_BEAM" ],
             [ 43, "MOVE_LEAF_STORM" ],
-            [ 54, "MOVE_PETAL_DANCE" ]
+            [ 45, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM05",

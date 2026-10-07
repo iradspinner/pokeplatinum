@@ -85,16 +85,12 @@
                 "MOVE_JUMP_KICK"
             ],
             [
-                42,
-                "MOVE_U_TURN"
-            ],
-            [
                 45,
                 "MOVE_BOUNCE"
             ],
             [
                 48,
-                "MOVE_IRON_HEAD"
+                "MOVE_U_TURN"
             ],
             [
                 55,
@@ -102,6 +98,10 @@
             ],
             [
                 57,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                59,
                 "MOVE_LOW_SWEEP"
             ],
             [

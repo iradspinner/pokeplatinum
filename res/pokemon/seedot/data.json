@@ -38,10 +38,11 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 2, "MOVE_SCARY_FACE" ],
+            [ 2, "MOVE_CURSE" ],
             [ 3, "MOVE_HARDEN" ],
-            [ 4, "MOVE_MEGA_DRAIN" ],
-            [ 6, "MOVE_FAKE_OUT" ],
+            [ 4, "MOVE_BULLET_SEED" ],
+            [ 6, "MOVE_TRIPLE_AXEL" ],
+            [ 8, "MOVE_FAKE_OUT" ],
             [ 21, "MOVE_SYNTHESIS" ]
         ],
         "by_tm": [

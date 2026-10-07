@@ -49,7 +49,7 @@
             [ 29, "MOVE_SLASH" ],
             [ 38, "MOVE_SCARY_FACE" ],
             [ 47, "MOVE_REST" ],
-            [ 61, "MOVE_THRASH" ],
+            [ 58, "MOVE_THRASH" ],
             [ 67, "MOVE_HAMMER_ARM" ]
         ],
         "by_tm": [

@@ -39,8 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_SCARY_FACE" ],
-            [ 4, "MOVE_PURSUIT" ],
+            [ 2, "MOVE_DOUBLE_KICK" ],
+            [ 4, "MOVE_SCARY_FACE" ],
             [ 9, "MOVE_CHARGE" ],
             [ 13, "MOVE_SPARK" ],
             [ 17, "MOVE_BITE" ],

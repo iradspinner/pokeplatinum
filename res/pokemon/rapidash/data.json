@@ -52,13 +52,12 @@
             [ 33, "MOVE_AGILITY" ],
             [ 37, "MOVE_HEAT_WAVE" ],
             [ 40, "MOVE_BLAZE_KICK" ],
-            [ 42, "MOVE_POISON_JAB" ],
-            [ 45, "MOVE_DRILL_RUN" ],
-            [ 47, "MOVE_BOUNCE" ],
-            [ 49, "MOVE_OVERHEAT" ],
-            [ 53, "MOVE_JUMP_KICK" ],
+            [ 42, "MOVE_BOUNCE" ],
+            [ 45, "MOVE_POISON_JAB" ],
+            [ 47, "MOVE_DRILL_RUN" ],
+            [ 53, "MOVE_OVERHEAT" ],
             [ 56, "MOVE_FLARE_BLITZ" ],
-            [ 61, "MOVE_CHARM" ]
+            [ 61, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM06",

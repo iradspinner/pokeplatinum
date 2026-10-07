@@ -39,8 +39,10 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_GROWL" ],
             [ 4, "MOVE_ENCORE" ],
             [ 7, "MOVE_SING" ],
+            [ 14, "MOVE_FURY_SWIPES" ],
             [ 16, "MOVE_FOLLOW_ME" ],
             [ 17, "MOVE_DISARMING_VOICE" ],
             [ 18, "MOVE_ICY_WIND" ],
@@ -49,7 +51,6 @@
             [ 21, "MOVE_CHARGE_BEAM" ],
             [ 22, "MOVE_WAKE_UP_SLAP" ],
             [ 23, "MOVE_CHARM" ],
-            [ 24, "MOVE_SWEET_KISS" ],
             [ 25, "MOVE_COSMIC_POWER" ],
             [ 28, "MOVE_LUCKY_CHANT" ],
             [ 30, "MOVE_ALLURING_VOICE" ],
@@ -100,6 +101,7 @@
             "TM82",
             "TM86",
             "TM87",
+            "TM94",
             "HM04"
         ],
         "by_tutor": [

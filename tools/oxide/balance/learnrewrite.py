@@ -476,14 +476,28 @@ RAW_MARGIN = 15   # an off-stat attack may exceed the ceiling by its stat share,
 FIRST_RUNG = 40     # a line's first attacks come from the ladder's foot; below it is dead weight
 
 
+# The multi-hit moves stand on a ladder by their power a hit, as Ian's Grass
+# ladder has it ("Bullet Seed 25 a hit", near the foot, 2026-10-06), not by
+# their average total, which the checks read.
+MULTI_HIT = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TIMES", "HIT_THREE_TIMES_RISING_10",
+             "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
+             "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH"}
+
+
+def ladder_power(const):
+    """A move's power for the ladders: a hit's for a multi-hit move, else effective power."""
+    m = M()[const]
+    return float(m["power"] or 0) if m["effect"] in MULTI_HIT else lc.effective_power(const)
+
+
 @functools.lru_cache(maxsize=None)
 def ladder(typ, side=None):
     """The type's rungs on one side (PHYSICAL or SPECIAL; both when None):
-    the distinct effective powers of the attacks a list may rely on, lowest
+    the distinct ladder powers of the attacks a list may rely on, lowest
     first. A line climbs the side of its better attacking stat; a side with
     no attack of the type falls back to both."""
-    out = tuple(sorted({round(lc.effective_power(c)) for c, m in M().items()
-                        if m["type"] == typ and is_attack(c) and lc.reliable(c) and lc.effective_power(c) >= 20
+    out = tuple(sorted({round(ladder_power(c)) for c, m in M().items()
+                        if m["type"] == typ and is_attack(c) and lc.reliable(c) and ladder_power(c) >= 20
                         and (side is None or m["class"] == side)}))
     return out if out or side is None else ladder(typ)
 
@@ -531,7 +545,8 @@ def standing(const, holder):
     (Flip Turn, U-turn, Volt Switch) stands at least at the middle of its
     type's ladder: Ian, 2026-10-06, "pivoting is incredibly strong", so it
     is never a first move."""
-    s = (lc.effective_power(const) + felt(const, holder)) / 2
+    power = ladder_power(const)
+    s = (power + power * ratio(const, holder)) / 2
     if M()[const]["effect"] in PIVOT_EFFECTS:
         steps = ladder(M()[const]["type"])
         s = max(s, steps[len(steps) // 2] if steps else s)
@@ -775,37 +790,135 @@ def accurate_twin(const, species, fam):
     return best[1] if best else None
 
 
-def place_rampage(d, species, entry):
-    """R9: Thrash, Petal Dance and Outrage become one-turn moves (Ian,
-    2026-10-06), so a list places them at their one-turn worth: an entry
-    whose one-turn power exceeds its split's ceiling moves to the first split
-    whose ceiling holds it, so the engine change brings no early spike
-    (Larvitar's Thrash at 23 would be a 120-power move in Gardenia's split)."""
+# The moves the rework Ian accepted made stronger (2026-10-06, cloud/main-
+# move-reworks): the rampage moves in one turn, the recharge and charge-turn
+# moves without their lost turn, and every multi-hit move at 25 a hit. An
+# entry of one on a list Oxide had would be an early spike where it stands
+# (Larvitar's Thrash at 23, a one-turn 120 in Gardenia's split), so it moves
+# to where the line can climb to it.
+REWORKED = {"MOVE_THRASH", "MOVE_PETAL_DANCE", "MOVE_OUTRAGE", "MOVE_UPROAR", "MOVE_RAGING_FURY",
+            "MOVE_HYPER_BEAM", "MOVE_GIGA_IMPACT", "MOVE_ROCK_WRECKER", "MOVE_ROAR_OF_TIME",
+            "MOVE_BLAST_BURN", "MOVE_FRENZY_PLANT", "MOVE_HYDRO_CANNON", "MOVE_SKY_ATTACK"}
+
+
+def reworked(const):
+    """A move the rework made stronger in one turn. The multi-hit moves are
+    not among them: the ladders read them by their power a hit (Ian's Grass
+    ladder puts Bullet Seed, 25 a hit, near the foot), so they stay put."""
+    return const in REWORKED
+
+
+def place_reworked(d, species, entry):
+    """R9 after the rework: an entry of a move the rework made stronger stays
+    where the line can climb to it on the type ladders by its level's split,
+    with what the stage and those it evolves from know by then, and else
+    moves to the first split where it can, at its new numbers, so the rework
+    brings no early spike. An entry below the level the stage is first had
+    at is left to R25."""
     lv, mv = entry
-    stab = M()[mv]["type"] in lc.types_of(species)
-    worth = ONE_TURN[mv] * ratio(mv, species)
-    x = si(lc.split_of_level(lv))
-    while x < len(SPLITS) - 1 and worth > ceiling(species, x, not stab):
-        x += 1
-    if x == si(lc.split_of_level(lv)):
+    if lv < lowest_had().get(species, 2):
         return
-    lo, hi = lc.window(SPLITS[x])
-    free = next((l for l in range(max(lo, lv), top() + 1) if l not in d.levels(species)), None)
+    own = [species] + list(pool.pre_evolutions().get(species) or [])
+    x0 = si(lc.split_of_level(lv))
+    for x in range(x0, len(SPLITS)):
+        level = max(lv, lc.window(SPLITS[x])[0])
+        before = [m for s in own for l, m in d.lists[s] if 2 <= l < level and m != mv]
+        if climbs(mv, species, before, x):
+            break
+    else:
+        return
+    if x == x0:
+        return
+    free = next((l for l in range(max(lv, lc.window(SPLITS[x])[0]), top() + 1) if l not in d.levels(species)), None)
     if free is not None:
-        d.move(species, entry, free, "R9", f"at its one-turn worth ({worth:.0f}) it fits {SPLITS[x]}'s split; "
-                                          "waits on the engine change")
+        d.move(species, entry, free, "R9", f"at its reworked numbers the line climbs to it in {SPLITS[x]}'s split")
+
+
+@functools.lru_cache(maxsize=None)
+def type_multi_hit():
+    """{TYPE: MOVE_X}: the one physical two-to-five-hit move each type keeps
+    (Ian, 2026-10-06), Normal's being Fury Swipes. Water Shuriken, Water's
+    only one, is left out: it is special and strikes first, so it would not
+    stand in for a physical slap like for like."""
+    out = {"NORMAL": "MOVE_FURY_SWIPES"}
+    for c, m in sorted(M().items()):
+        if m["effect"] == "MULTI_HIT" and m["class"] == "PHYSICAL" and m["type"] != "NORMAL" \
+                and c not in lc.REMOVED and not lc.not_working(c):
+            if m["type"] in out:
+                raise SystemExit(f"two multi-hit moves for {m['type']}: {out[m['type']]} and {c}")
+            out[m["type"]] = c
+    return out
+
+
+@functools.lru_cache(maxsize=None)
+def ordered_types(species):
+    return tuple((pokedex.load(data.ROOT, species) or {}).get("types") or [])
+
+
+@functools.lru_cache(maxsize=None)
+def line_members(species):
+    fam = lc.family(species)
+    return tuple(sp for sp in sorted(lc.species_set()) if lc.family(sp) == fam)
+
+
+def multi_hit_pick(species):
+    """The stand-in for a cut multi-hit move: the stage's own type's, first
+    type first, else Fury Swipes."""
+    return next((type_multi_hit()[t] for t in ordered_types(species) if t in type_multi_hit()),
+                "MOVE_FURY_SWIPES")
+
+
+def multi_hit_stand_in(d, species, entry):
+    """Ian's ruling of 2026-10-06 on one list entry of a cut multi-hit move.
+    A stage that already learns a multi-hit move of its line's types by that
+    level, or whose earlier stages do, needs no stand-in (Shellder has Icicle
+    Spear from 13, so Cloyster has it too). One that learns the stand-in
+    later has it brought down to this level, so the line keeps one multi-hit
+    move where it had it (Omastar's Rock Blast). Else the stand-in takes the
+    level."""
+    lv, mv = entry
+    pick = multi_hit_pick(species)
+    line = {t for sp in line_members(species) for t in ordered_types(sp)}
+    covering = {type_multi_hit()[t] for t in line if t in type_multi_hit()} | {pick}
+    why = "one two-to-five-hit move per type (Ian, 2026-10-06)"
+    d.remove(species, entry, "Ian's ruling", f"{name(mv)} leaves the game: {why}")
+    have = [(l, m, species) for l, m in d.lists[species] if m in covering and (2 <= l <= lv or l == lv == 1)]
+    # An earlier stage's entry counts as what it will be once its own cut
+    # moves have their stand-ins, so the order the species are walked in
+    # does not matter.
+    for pre in pool.pre_evolutions().get(species) or []:
+        for l, m in d.lists[pre]:
+            if m in lc.MULTI_HIT_CUT and m not in DEAD_WEIGHT:
+                m = multi_hit_pick(pre)
+            if m in covering and 2 <= l <= lv:
+                have.append((l, m, pre))
+    if have:
+        l, m, who = have[0]
+        whose = "" if who == species else f"{lc.species_name(who)} "
+        d.note(species, lv, mv, "no stand-in", "Ian's ruling", f"{whose}learns {name(m)} at {l}")
+        return
+    later = [e for e in d.lists[species] if e[1] == pick and e[0] > lv]
+    if later and lv >= 2:
+        d.move(species, later[0], lv, "Ian's ruling", f"in place of {name(mv)}: {why}")
+    else:
+        d.add(species, lv, pick, "Ian's ruling", f"in place of {name(mv)}: {why}")
 
 
 def clean(d, species):
     fam = lc.family(species)
     # The egg list, the trainers' palette, takes the same swap.
     eggs = d.eggs[species]
-    if any(m in lc.REPLACED for m in eggs):
-        d.eggs[species] = list(dict.fromkeys(lc.REPLACED.get(m, m) for m in eggs))
-        for m in eggs:
-            if m in lc.REPLACED:
-                d.note(species, 0, m, "egg list", "Ian's rework", f"{name(lc.REPLACED[m])} in its place")
+    if any(m in lc.REPLACED or m in lc.MULTI_HIT_CUT for m in eggs):
+        swap = {m: lc.REPLACED.get(m) or multi_hit_pick(species) for m in eggs
+                if m in lc.REPLACED or m in lc.MULTI_HIT_CUT}
+        d.eggs[species] = list(dict.fromkeys(swap.get(m, m) for m in eggs))
+        for m, new in swap.items():
+            d.note(species, 0, m, "egg list", "Ian's ruling" if m in lc.MULTI_HIT_CUT else "Ian's rework",
+                   f"{name(new)} in its place")
     for entry in list(d.lists[species]):
+        # A stand-in can move a later entry down, ahead of the walk.
+        if entry not in d.lists[species]:
+            continue
         lv, mv = entry
         m = M().get(mv)
         if m is None:
@@ -817,6 +930,9 @@ def clean(d, species):
             d.remove(species, entry, "Ian's rework", f"{name(mv)} leaves the game; {name(new)} takes its place")
             if not any(m == new for _l, m in d.lists[species]):
                 d.add(species, lv, new, "Ian's rework", f"in place of {name(mv)} (2026-10-06)")
+        elif mv in lc.MULTI_HIT_CUT and mv not in DEAD_WEIGHT:
+            # Barrage went as dead weight on 2026-09-27, with nothing in its place.
+            multi_hit_stand_in(d, species, entry)
         elif mv in lc.REMOVED:
             d.remove(species, entry, "removed", "leaves the game or every player list")
         elif mv in weather_moves.WEATHER_MOVES:
@@ -854,8 +970,8 @@ def clean(d, species):
                 d.remove(species, entry, "R37", "under 90% accuracy, beside an accurate move of its type")
             else:
                 d.note(species, lv, mv, "kept for Ian", "R37", "under 90% accuracy, no accurate twin fits")
-        elif mv in ONE_TURN and 2 <= lv <= top():
-            place_rampage(d, species, entry)
+        elif reworked(mv) and 2 <= lv <= top():
+            place_reworked(d, species, entry)
         elif lv > top():
             free = [l for l in range(top(), caps()[SPLITS[-2]], -1) if l not in d.levels(species)]
             if lc.counts(mv) and free and not d.has(species, mv):
@@ -1658,11 +1774,6 @@ def settle_family(d, fam):
 # late into a strong final form, held past about 66, earns payoff moves the
 # early evolver never gets by level-up, a top setup move among the prizes.
 DEMON_LEVEL, DEMON_BST, DEMON_LEVELS, DEMON_POWER = 30, 530, (66, 69), 100
-# The rampage moves at their one-turn worth as Ian took them from Kaizo
-# (standing rulings, 2026-10-06): Thrash 120 with a third as recoil, Petal
-# Dance 100, Outrage 140 with half as recoil. Uproar and Raging Fury wait on
-# his word on their versions.
-ONE_TURN = {"MOVE_THRASH": 120 * 0.85, "MOVE_PETAL_DANCE": 100.0, "MOVE_OUTRAGE": 140 * 0.8}
 
 
 def delay_demons(d, fam):
@@ -1685,11 +1796,10 @@ def delay_demons(d, fam):
                               if is_attack(m) and M()[m]["type"] == t), default=0)
                       for t in lc.types_of(pre)}
         prizes = []
-        # A rampage move may be the prize at its one-turn worth (the brief:
-        # placed, and named as waiting on the engine change).
-        power = lambda c: ONE_TURN.get(c, lc.effective_power(c) if is_attack(c) else 0)
+        # A rampage move may be the prize at its reworked, one-turn numbers.
+        power = lambda c: lc.effective_power(c) if is_attack(c) else 0
         value = lambda c, sp: power(c) * (1.5 if M()[c]["type"] in lc.types_of(sp) else 1.0) * ratio(c, sp)
-        attacks = sorted((c for c in branch_links(pre) if (c in ONE_TURN or (is_attack(c) and not never_added(c)))
+        attacks = sorted((c for c in branch_links(pre) if is_attack(c) and not never_added(c)
                           and M()[c]["type"] in lc.types_of(pre) and lc.fits(c, pre)
                           and power(c) >= DEMON_POWER
                           and value(c, target) > final_best.get(M()[c]["type"], 0)

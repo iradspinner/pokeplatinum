@@ -56,10 +56,9 @@
             [ 49, "MOVE_POISON_JAB" ],
             [ 51, "MOVE_THROAT_CHOP" ],
             [ 57, "MOVE_SURF" ],
-            [ 59, "MOVE_FLIP_TURN" ],
-            [ 64, "MOVE_HEADBUTT" ],
-            [ 66, "MOVE_SECRET_POWER" ],
-            [ 72, "MOVE_SKITTER_SMACK" ]
+            [ 59, "MOVE_SCALE_SHOT" ],
+            [ 64, "MOVE_FLIP_TURN" ],
+            [ 66, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM01",

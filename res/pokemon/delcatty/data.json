@@ -41,15 +41,15 @@
             [ 1, "MOVE_FAKE_OUT" ],
             [ 1, "MOVE_ATTRACT" ],
             [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 16, "MOVE_DISARMING_VOICE" ],
+            [ 1, "MOVE_FURY_SWIPES" ],
             [ 27, "MOVE_CHARM" ],
-            [ 29, "MOVE_ICY_WIND" ],
             [ 35, "MOVE_HYPER_VOICE" ],
             [ 40, "MOVE_WAKE_UP_SLAP" ],
-            [ 42, "MOVE_SUCKER_PUNCH" ],
-            [ 48, "MOVE_SHADOW_BALL" ],
-            [ 64, "MOVE_WISH" ]
+            [ 46, "MOVE_PLAY_ROUGH" ],
+            [ 48, "MOVE_SKITTER_SMACK" ],
+            [ 50, "MOVE_SUCKER_PUNCH" ],
+            [ 56, "MOVE_THRASH" ],
+            [ 64, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM03",

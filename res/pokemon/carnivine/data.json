@@ -38,12 +38,12 @@
             [ 7, "MOVE_BITE" ],
             [ 11, "MOVE_VINE_WHIP" ],
             [ 27, "MOVE_FAINT_ATTACK" ],
-            [ 29, "MOVE_MAGICAL_LEAF" ],
+            [ 29, "MOVE_BULLET_SEED" ],
             [ 30, "MOVE_SPIT_UP" ],
             [ 31, "MOVE_STOCKPILE" ],
             [ 32, "MOVE_SWALLOW" ],
             [ 33, "MOVE_SWAGGER" ],
-            [ 35, "MOVE_LEAF_TORNADO" ],
+            [ 35, "MOVE_HEX" ],
             [ 37, "MOVE_CRUNCH" ],
             [ 42, "MOVE_LEECH_LIFE" ],
             [ 47, "MOVE_PETAL_BLIZZARD" ],
@@ -51,7 +51,7 @@
             [ 52, "MOVE_GIGA_DRAIN" ],
             [ 58, "MOVE_SLUDGE_BOMB" ],
             [ 60, "MOVE_LEAF_STORM" ],
-            [ 66, "MOVE_LEECH_SEED" ]
+            [ 66, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM06",

@@ -51,7 +51,8 @@
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 48, "MOVE_SHADOW_BALL" ],
             [ 53, "MOVE_ALLURING_VOICE" ],
-            [ 61, "MOVE_FLAMETHROWER" ]
+            [ 55, "MOVE_EXPANDING_FORCE" ],
+            [ 61, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM03",

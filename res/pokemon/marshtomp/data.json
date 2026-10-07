@@ -49,7 +49,6 @@
             [ 20, "MOVE_FORESIGHT" ],
             [ 25, "MOVE_MUD_BOMB" ],
             [ 31, "MOVE_TAKE_DOWN" ],
-            [ 33, "MOVE_BODY_PRESS" ],
             [ 37, "MOVE_MUDDY_WATER" ],
             [ 46, "MOVE_EARTHQUAKE" ],
             [ 53, "MOVE_ENDEAVOR" ]

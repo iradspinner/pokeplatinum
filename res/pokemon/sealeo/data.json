@@ -48,7 +48,8 @@
             [ 25, "MOVE_AURORA_BEAM" ],
             [ 32, "MOVE_SWAGGER" ],
             [ 39, "MOVE_REST" ],
-            [ 47, "MOVE_ICE_BEAM" ]
+            [ 47, "MOVE_ICE_BEAM" ],
+            [ 66, "MOVE_TRIPLE_AXEL" ]
         ],
         "by_tm": [
             "TM03",

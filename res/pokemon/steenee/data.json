@@ -46,7 +46,7 @@
         "by_level": [
             [
                 1,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_BULLET_SEED"
             ],
             [
                 5,
@@ -59,10 +59,6 @@
             [
                 12,
                 "MOVE_RAZOR_LEAF"
-            ],
-            [
-                14,
-                "MOVE_DRAINING_KISS"
             ],
             [
                 21,

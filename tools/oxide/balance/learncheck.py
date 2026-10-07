@@ -132,34 +132,38 @@ def usable(const, types):
 
 # ---- the moves the rulings of 2026-10-06 single out ----------------------------------
 
-# The rampage moves lock the user in for two or three turns (R9): they count
-# for nothing until the engine makes them one-turn moves (the tracker), and
-# Uproar and Raging Fury wait on Ian's word on a one-turn version too.
+# The rampage moves locked the user in for two or three turns (R9) and counted
+# for nothing; the move rework Ian accepted (2026-10-06, cloud/main-move-
+# reworks) made Thrash, Petal Dance, Outrage, Uproar and Raging Fury one-turn
+# moves, so no move carries these effects now. Kept so an older list's
+# version still reads.
 RAMPAGE_EFFECTS = {"CONTINUE_AND_CONFUSE_SELF", "UPROAR"}
-# Moves waiting on a rework Ian has not ruled on (the tracker's move reworks):
-# Fury Cutter, Psywave, every two-turn attack that is neither setup nor made
-# worthwhile by circumstance (Solar Beam and Solar Blade in sun; Skull Bash,
-# Meteor Beam and Electro Shot raise a stat on the charging turn), and every
-# multi-hit move, which the multi-hit review may merge or cut. A list may keep
-# one where it stands, but none counts toward a check, so no list relies on one.
-TWO_TURN_EFFECTS = {"RECHARGE_AFTER", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
-                    "CHARGE_TURN_PARALYZE_HIT", "CHARGE_TURN_BURN_HIT", "FLY", "DIG", "DIVE",
-                    "BOUNCE", "SHADOW_FORCE", "SKY_DROP"}
-MULTI_HIT_EFFECTS = {"MULTI_HIT", "HIT_TWICE", "POISON_MULTI_HIT", "HIT_THREE_TIMES",
-                     "HIT_THREE_TIMES_INCREMENT_BASE_POWER_20", "HIT_THREE_TIMES_FIXED_POWER",
-                     "HIT_THREE_TIMES_ALWAYS_CRITICAL", "UP_TO_10_HITS", "HIT_TWICE_AND_FLINCH",
-                     "BEAT_UP"}
-PENDING_BY_NAME = {"MOVE_FURY_CUTTER"}
+# Moves waiting on a rework Ian has not ruled on. The rework settled the
+# recharge and charge-turn moves he named, Dig and Dive, every multi-hit move
+# (25 a hit) and Fury Cutter, and Fly, Bounce, Phantom Force and Shadow Force
+# keep their two turns, ruled so; all of those count now. What stays pending
+# is the charge-turn attacks no ruling named (Freeze Shock, Ice Burn, Sky
+# Drop, and Razor Wind, dead weight anyway): a list may keep one where it
+# stands, but none counts toward a check.
+TWO_TURN_EFFECTS = {"CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH", "CHARGE_TURN_PARALYZE_HIT",
+                    "CHARGE_TURN_BURN_HIT", "SKY_DROP"}
+PENDING_BY_NAME = set()
 # Moves leaving every player list or the game: Fury Attack and Feint (Ian,
 # 2026-10-06, "useless"), the first cut of the move pool (2026-09-27: twelve
 # moves, Splash and Teleport), the terrain moves that stay dead with terrain
-# (2026-09-27: Steel Roller and Ice Spinner), and Psywave (Ian's answer on the
-# move reworks, 2026-10-06: cut, its lines given Psybeam at the same level).
+# (2026-09-27: Steel Roller and Ice Spinner), Psywave (Ian's answer on the
+# move reworks, 2026-10-06: cut, its lines given Psybeam at the same level),
+# and the Normal two-to-five-hit moves other than Fury Swipes and Tail Slap
+# (MULTI_HIT_CUT below).
+# Ian, 2026-10-06, relayed by the Overseer: one two-to-five-hit move per type.
+# These four leave the game, their learners taking Fury Swipes or their own
+# type's multi-hit move (the generator's multi_hit_stand_in picks which).
+MULTI_HIT_CUT = {"MOVE_DOUBLE_SLAP", "MOVE_COMET_PUNCH", "MOVE_BARRAGE", "MOVE_SPIKE_CANNON"}
 REMOVED = {"MOVE_FURY_ATTACK", "MOVE_FEINT", "MOVE_TELEKINESIS", "MOVE_ALLY_SWITCH",
            "MOVE_TOPSY_TURVY", "MOVE_FLOWER_SHIELD", "MOVE_FAIRY_LOCK", "MOVE_AROMATIC_MIST",
            "MOVE_MAGNETIC_FLUX", "MOVE_SPEED_SWAP", "MOVE_ELECTRIC_TERRAIN", "MOVE_GRASSY_TERRAIN",
            "MOVE_MISTY_TERRAIN", "MOVE_PSYCHIC_TERRAIN", "MOVE_SPLASH", "MOVE_TELEPORT",
-           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER", "MOVE_PSYWAVE"}
+           "MOVE_STEEL_ROLLER", "MOVE_ICE_SPINNER", "MOVE_PSYWAVE"} | MULTI_HIT_CUT
 # A removed move whose lines get another in its place, at the same level.
 REPLACED = {"MOVE_PSYWAVE": "MOVE_PSYBEAM"}
 # Moves whose effect the engine does not run as designed, found after the
@@ -194,8 +198,7 @@ def rampage(const):
 def pending(const):
     """Waiting on Ian's rework ruling: counted by no check."""
     m = moves().get(const)
-    return bool(m) and (const in PENDING_BY_NAME or m["effect"] in TWO_TURN_EFFECTS
-                        or m["effect"] in MULTI_HIT_EFFECTS)
+    return bool(m) and (const in PENDING_BY_NAME or m["effect"] in TWO_TURN_EFFECTS)
 
 
 def out_of_lists(const):

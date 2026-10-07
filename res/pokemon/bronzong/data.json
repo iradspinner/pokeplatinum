@@ -52,12 +52,14 @@
             [ 35, "MOVE_BULLDOZE" ],
             [ 38, "MOVE_GYRO_BALL" ],
             [ 43, "MOVE_FUTURE_SIGHT" ],
-            [ 45, "MOVE_IRON_HEAD" ],
+            [ 45, "MOVE_MIRROR_SHOT" ],
             [ 50, "MOVE_FAINT_ATTACK" ],
-            [ 52, "MOVE_ROCK_TOMB" ],
-            [ 58, "MOVE_BODY_PRESS" ],
+            [ 52, "MOVE_IRON_HEAD" ],
+            [ 58, "MOVE_ICE_PUNCH" ],
             [ 61, "MOVE_PAYBACK" ],
-            [ 67, "MOVE_HEAL_BLOCK" ]
+            [ 67, "MOVE_HEAL_BLOCK" ],
+            [ 69, "MOVE_ROCK_TOMB" ],
+            [ 74, "MOVE_WILD_CHARGE" ]
         ],
         "by_tm": [
             "TM04",
@@ -96,6 +98,8 @@
             "TM90",
             "TM91",
             "TM92",
+            "TM93",
+            "TM94",
             "HM04"
         ],
         "by_tutor": [

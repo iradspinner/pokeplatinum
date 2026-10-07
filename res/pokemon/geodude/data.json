@@ -39,16 +39,15 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_KARATE_CHOP" ],
-            [ 4, "MOVE_BULLDOZE" ],
+            [ 3, "MOVE_SAND_TOMB" ],
+            [ 4, "MOVE_TRIPLE_AXEL" ],
+            [ 8, "MOVE_ROCK_POLISH" ],
             [ 11, "MOVE_ROCK_THROW" ],
             [ 15, "MOVE_MAGNITUDE" ],
-            [ 17, "MOVE_ROCK_POLISH" ],
             [ 22, "MOVE_ROLLOUT" ],
             [ 25, "MOVE_ROCK_BLAST" ],
             [ 29, "MOVE_EARTHQUAKE" ],
-            [ 36, "MOVE_DOUBLE_EDGE" ],
-            [ 39, "MOVE_ROCK_SLIDE" ]
+            [ 36, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM06",

@@ -45,8 +45,8 @@
             [ 14, "MOVE_SMOKE_SCREEN" ],
             [ 22, "MOVE_SLASH" ],
             [ 27, "MOVE_TOXIC" ],
-            [ 28, "MOVE_VENOSHOCK" ],
-            [ 30, "MOVE_METAL_CLAW" ],
+            [ 28, "MOVE_METAL_CLAW" ],
+            [ 29, "MOVE_ACID_SPRAY" ],
             [ 32, "MOVE_NIGHT_SLASH" ]
         ],
         "by_tm": [

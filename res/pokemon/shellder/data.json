@@ -40,18 +40,18 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 13, "MOVE_ICICLE_SPEAR" ],
-            [ 24, "MOVE_POISON_JAB" ],
             [ 25, "MOVE_RAZOR_SHELL" ],
             [ 28, "MOVE_ICE_SHARD" ],
             [ 32, "MOVE_AURORA_BEAM" ],
             [ 37, "MOVE_WHIRLPOOL" ],
             [ 40, "MOVE_IRON_DEFENSE" ],
             [ 44, "MOVE_BRINE" ],
-            [ 45, "MOVE_SMART_STRIKE" ],
-            [ 46, "MOVE_TOXIC" ],
+            [ 45, "MOVE_ZEN_HEADBUTT" ],
+            [ 46, "MOVE_POISON_JAB" ],
+            [ 47, "MOVE_DRILL_RUN" ],
             [ 49, "MOVE_ICE_BEAM" ],
-            [ 51, "MOVE_POISON_FANG" ],
-            [ 53, "MOVE_DRILL_RUN" ]
+            [ 51, "MOVE_TOXIC" ],
+            [ 53, "MOVE_ROCK_BLAST" ]
         ],
         "by_tm": [
             "TM01",

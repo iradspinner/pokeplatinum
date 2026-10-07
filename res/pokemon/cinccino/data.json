@@ -110,11 +110,15 @@
             ],
             [
                 54,
-                "MOVE_PLAY_ROUGH"
+                "MOVE_ROCK_BLAST"
             ],
             [
                 57,
-                "MOVE_U_TURN"
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                59,
+                "MOVE_THRASH"
             ],
             [
                 65,

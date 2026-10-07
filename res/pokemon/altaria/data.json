@@ -56,10 +56,9 @@
             [ 54, "MOVE_DRAGON_PULSE" ],
             [ 56, "MOVE_DRACO_METEOR" ],
             [ 62, "MOVE_PERISH_SONG" ],
-            [ 64, "MOVE_FLAMETHROWER" ],
-            [ 66, "MOVE_PLAY_ROUGH" ],
+            [ 66, "MOVE_DRAGON_DANCE" ],
             [ 70, "MOVE_SKY_ATTACK" ],
-            [ 72, "MOVE_MOONBLAST" ]
+            [ 72, "MOVE_FLAMETHROWER" ]
         ],
         "by_tm": [
             "TM02",

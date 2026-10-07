@@ -55,9 +55,9 @@
             [ 46, "MOVE_IRON_DEFENSE" ],
             [ 48, "MOVE_AURA_SPHERE" ],
             [ 50, "MOVE_SHELL_SMASH" ],
-            [ 56, "MOVE_SIGNAL_BEAM" ],
+            [ 56, "MOVE_ALLURING_VOICE" ],
             [ 60, "MOVE_MUDDY_WATER" ],
-            [ 64, "MOVE_SWAGGER" ]
+            [ 64, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",

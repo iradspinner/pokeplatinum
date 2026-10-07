@@ -93,12 +93,12 @@
                 "MOVE_SCALE_SHOT"
             ],
             [
-                60,
-                "MOVE_CLOSE_COMBAT"
+                55,
+                "MOVE_OUTRAGE"
             ],
             [
-                61,
-                "MOVE_OUTRAGE"
+                60,
+                "MOVE_CLOSE_COMBAT"
             ],
             [
                 66,

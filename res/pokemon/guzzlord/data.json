@@ -105,12 +105,12 @@
                 "MOVE_BELCH"
             ],
             [
-                66,
-                "MOVE_THRASH"
-            ],
-            [
                 70,
                 "MOVE_GIGA_IMPACT"
+            ],
+            [
+                72,
+                "MOVE_THRASH"
             ]
         ],
         "by_tm": [

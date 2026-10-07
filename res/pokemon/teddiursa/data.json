@@ -49,8 +49,8 @@
             [ 29, "MOVE_SLASH" ],
             [ 36, "MOVE_CHARM" ],
             [ 43, "MOVE_REST" ],
-            [ 57, "MOVE_FLING" ],
-            [ 58, "MOVE_THRASH" ]
+            [ 50, "MOVE_THRASH" ],
+            [ 57, "MOVE_FLING" ]
         ],
         "by_tm": [
             "TM06",

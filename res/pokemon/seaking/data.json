@@ -47,7 +47,7 @@
             [ 17, "MOVE_WATER_PULSE" ],
             [ 21, "MOVE_FLAIL" ],
             [ 27, "MOVE_AQUA_RING" ],
-            [ 33, "MOVE_BULLDOZE" ],
+            [ 33, "MOVE_SCALE_SHOT" ],
             [ 35, "MOVE_SKULL_BASH" ],
             [ 40, "MOVE_WATERFALL" ],
             [ 42, "MOVE_POISON_JAB" ],

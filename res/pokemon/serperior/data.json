@@ -110,11 +110,15 @@
             ],
             [
                 57,
+                "MOVE_SCALE_SHOT"
+            ],
+            [
+                59,
                 "MOVE_PSYCHIC"
             ],
             [
                 64,
-                "MOVE_SCARY_FACE"
+                "MOVE_LEECH_SEED"
             ]
         ],
         "by_tm": [

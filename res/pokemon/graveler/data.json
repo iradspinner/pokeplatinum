@@ -46,11 +46,10 @@
             [ 15, "MOVE_MAGNITUDE" ],
             [ 22, "MOVE_ROLLOUT" ],
             [ 27, "MOVE_ROCK_BLAST" ],
-            [ 29, "MOVE_ROCK_TOMB" ],
+            [ 29, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_EARTHQUAKE" ],
             [ 35, "MOVE_FIRE_PUNCH" ],
-            [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 49, "MOVE_ROCK_SLIDE" ]
+            [ 44, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM06",

@@ -48,14 +48,14 @@
             [ 27, "MOVE_TOXIC" ],
             [ 32, "MOVE_NIGHT_SLASH" ],
             [ 34, "MOVE_FLAMETHROWER" ],
-            [ 40, "MOVE_SLUDGE_BOMB" ],
-            [ 42, "MOVE_THROAT_CHOP" ],
-            [ 48, "MOVE_SUCKER_PUNCH" ],
-            [ 50, "MOVE_POISON_JAB" ],
-            [ 56, "MOVE_SHADOW_BALL" ],
-            [ 58, "MOVE_TAKE_DOWN" ],
-            [ 64, "MOVE_PLAY_ROUGH" ],
-            [ 66, "MOVE_BODY_SLAM" ]
+            [ 40, "MOVE_THROAT_CHOP" ],
+            [ 42, "MOVE_SUCKER_PUNCH" ],
+            [ 48, "MOVE_BOUNCE" ],
+            [ 50, "MOVE_SLUDGE" ],
+            [ 56, "MOVE_SLUDGE_BOMB" ],
+            [ 58, "MOVE_POISON_JAB" ],
+            [ 64, "MOVE_TRIPLE_AXEL" ],
+            [ 66, "MOVE_PLAY_ROUGH" ]
         ],
         "by_tm": [
             "TM06",

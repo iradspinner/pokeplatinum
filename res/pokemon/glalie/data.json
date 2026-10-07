@@ -47,14 +47,15 @@
             [ 28, "MOVE_ICE_FANG" ],
             [ 31, "MOVE_CRUNCH" ],
             [ 37, "MOVE_ICE_BEAM" ],
-            [ 42, "MOVE_ROCK_SLIDE" ],
+            [ 42, "MOVE_ROCK_BLAST" ],
             [ 44, "MOVE_POWER_GEM" ],
             [ 46, "MOVE_SHADOW_BALL" ],
             [ 48, "MOVE_BULLDOZE" ],
             [ 53, "MOVE_ICICLE_CRASH" ],
             [ 55, "MOVE_DARK_PULSE" ],
             [ 61, "MOVE_BLOCK" ],
-            [ 63, "MOVE_ICE_PUNCH" ]
+            [ 63, "MOVE_ALLURING_VOICE" ],
+            [ 69, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM03",

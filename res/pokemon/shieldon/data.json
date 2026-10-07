@@ -44,7 +44,7 @@
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_IRON_DEFENSE" ],
             [ 24, "MOVE_SWAGGER" ],
-            [ 27, "MOVE_SMART_STRIKE" ],
+            [ 27, "MOVE_METAL_CLAW" ],
             [ 28, "MOVE_ANCIENT_POWER" ],
             [ 30, "MOVE_BULLDOZE" ],
             [ 33, "MOVE_ENDURE" ],

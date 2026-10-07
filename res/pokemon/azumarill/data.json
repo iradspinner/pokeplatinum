@@ -50,11 +50,11 @@
             [ 29, "MOVE_PLAY_ROUGH" ],
             [ 33, "MOVE_DOUBLE_EDGE" ],
             [ 35, "MOVE_BRICK_BREAK" ],
-            [ 39, "MOVE_ICE_PUNCH" ],
-            [ 43, "MOVE_BULLDOZE" ],
+            [ 37, "MOVE_BOUNCE" ],
+            [ 43, "MOVE_ICE_PUNCH" ],
             [ 47, "MOVE_AQUA_TAIL" ],
             [ 54, "MOVE_MUDDY_WATER" ],
-            [ 67, "MOVE_SWAGGER" ]
+            [ 67, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",

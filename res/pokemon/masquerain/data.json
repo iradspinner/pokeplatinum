@@ -59,7 +59,7 @@
             [ 61, "MOVE_WATERFALL" ],
             [ 67, "MOVE_LIQUIDATION" ],
             [ 69, "MOVE_U_TURN" ],
-            [ 75, "MOVE_ACROBATICS" ]
+            [ 75, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM01",
@@ -89,6 +89,7 @@
             "TM85",
             "TM87",
             "TM89",
+            "TM94",
             "HM03",
             "HM05",
             "HM07"

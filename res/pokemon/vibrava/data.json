@@ -42,9 +42,8 @@
             [ 17, "MOVE_FAINT_ATTACK" ],
             [ 25, "MOVE_SAND_TOMB" ],
             [ 35, "MOVE_DRAGON_BREATH" ],
-            [ 37, "MOVE_AIR_SLASH" ],
+            [ 37, "MOVE_DUAL_WINGBEAT" ],
             [ 41, "MOVE_SCREECH" ],
-            [ 45, "MOVE_BULLDOZE" ],
             [ 57, "MOVE_HYPER_BEAM" ],
             [ 66, "MOVE_FIRST_IMPRESSION" ]
         ],

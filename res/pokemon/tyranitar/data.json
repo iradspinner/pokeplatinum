@@ -47,16 +47,16 @@
             [ 10, "MOVE_SCREECH" ],
             [ 14, "MOVE_ROCK_SLIDE" ],
             [ 19, "MOVE_SCARY_FACE" ],
+            [ 23, "MOVE_THRASH" ],
             [ 28, "MOVE_DARK_PULSE" ],
             [ 34, "MOVE_PAYBACK" ],
             [ 41, "MOVE_CRUNCH" ],
             [ 47, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_ROCK_TOMB" ],
             [ 59, "MOVE_IRON_DEFENSE" ],
-            [ 66, "MOVE_THRASH" ],
-            [ 68, "MOVE_FIRE_PUNCH" ],
+            [ 65, "MOVE_FIRE_PUNCH" ],
             [ 70, "MOVE_HYPER_BEAM" ],
-            [ 72, "MOVE_THROAT_CHOP" ]
+            [ 73, "MOVE_THROAT_CHOP" ]
         ],
         "by_tm": [
             "TM01",

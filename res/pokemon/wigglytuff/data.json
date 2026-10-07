@@ -41,7 +41,7 @@
             [ 1, "MOVE_SING" ],
             [ 1, "MOVE_DISABLE" ],
             [ 1, "MOVE_DEFENSE_CURL" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ]
+            [ 1, "MOVE_FURY_SWIPES" ]
         ],
         "by_tm": [
             "TM03",
@@ -91,6 +91,7 @@
             "TM83",
             "TM86",
             "TM87",
+            "TM93",
             "HM04"
         ],
         "by_tutor": [

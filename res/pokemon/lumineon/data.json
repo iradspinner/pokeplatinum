@@ -53,12 +53,11 @@
             [ 48, "MOVE_U_TURN" ],
             [ 50, "MOVE_CRUNCH" ],
             [ 53, "MOVE_BOUNCE" ],
-            [ 55, "MOVE_SCALD" ],
             [ 59, "MOVE_SILVER_WIND" ],
-            [ 61, "MOVE_WATERFALL" ],
-            [ 66, "MOVE_AQUA_TAIL" ],
-            [ 68, "MOVE_FLIP_TURN" ],
-            [ 74, "MOVE_CONFUSE_RAY" ]
+            [ 61, "MOVE_FOUL_PLAY" ],
+            [ 66, "MOVE_SCALD" ],
+            [ 68, "MOVE_CONFUSE_RAY" ],
+            [ 74, "MOVE_DIVE" ]
         ],
         "by_tm": [
             "TM01",
@@ -86,6 +85,7 @@
             "TM82",
             "TM87",
             "TM89",
+            "TM94",
             "HM03",
             "HM05",
             "HM07"

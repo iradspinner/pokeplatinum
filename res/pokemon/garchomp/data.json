@@ -52,7 +52,7 @@
             [ 48, "MOVE_CRUNCH" ],
             [ 55, "MOVE_DRAGON_RUSH" ],
             [ 57, "MOVE_ROCK_TOMB" ],
-            [ 62, "MOVE_SWAGGER" ]
+            [ 62, "MOVE_FIRE_FANG" ]
         ],
         "by_tm": [
             "TM02",

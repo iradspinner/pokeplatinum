@@ -42,13 +42,12 @@
             [ 1, "MOVE_RAPID_SPIN" ],
             [ 1, "MOVE_RECOVER" ],
             [ 1, "MOVE_SWIFT" ],
-            [ 17, "MOVE_ICY_WIND" ],
+            [ 17, "MOVE_SKITTER_SMACK" ],
             [ 24, "MOVE_PSYBEAM" ],
             [ 28, "MOVE_CONFUSE_RAY" ],
-            [ 45, "MOVE_SKITTER_SMACK" ],
             [ 54, "MOVE_POWER_GEM" ],
             [ 56, "MOVE_FLASH_CANNON" ],
-            [ 62, "MOVE_SWAGGER" ]
+            [ 62, "MOVE_ICE_BEAM" ]
         ],
         "by_tm": [
             "TM01",
@@ -82,6 +81,7 @@
             "TM87",
             "TM91",
             "TM92",
+            "TM94",
             "HM03",
             "HM07"
         ],

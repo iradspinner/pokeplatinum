@@ -43,7 +43,6 @@
             [ 1, "MOVE_BONE_CLUB" ],
             [ 1, "MOVE_HEADBUTT" ],
             [ 3, "MOVE_TAIL_WHIP" ],
-            [ 7, "MOVE_EARTHQUAKE" ],
             [ 11, "MOVE_HEADBUTT" ],
             [ 13, "MOVE_LEER" ],
             [ 17, "MOVE_FOCUS_ENERGY" ],
@@ -51,9 +50,9 @@
             [ 27, "MOVE_FALSE_SWIPE" ],
             [ 37, "MOVE_FLING" ],
             [ 43, "MOVE_BONE_RUSH" ],
+            [ 45, "MOVE_THRASH" ],
             [ 49, "MOVE_ENDEAVOR" ],
-            [ 53, "MOVE_DOUBLE_EDGE" ],
-            [ 61, "MOVE_THRASH" ]
+            [ 53, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM06",

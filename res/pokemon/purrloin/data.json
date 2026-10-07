@@ -57,6 +57,10 @@
                 "MOVE_SAND_ATTACK"
             ],
             [
+                8,
+                "MOVE_BULLET_SEED"
+            ],
+            [
                 11,
                 "MOVE_FURY_SWIPES"
             ],

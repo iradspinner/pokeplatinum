@@ -48,6 +48,7 @@
             [ 31, "MOVE_LIGHT_SCREEN" ],
             [ 34, "MOVE_SILVER_WIND" ],
             [ 38, "MOVE_TOXIC" ],
+            [ 40, "MOVE_QUIVER_DANCE" ],
             [ 41, "MOVE_BUG_BUZZ" ],
             [ 43, "MOVE_GIGA_DRAIN" ],
             [ 49, "MOVE_SHADOW_BALL" ],
@@ -78,6 +79,7 @@
             "TM78",
             "TM87",
             "TM89",
+            "TM94",
             "HM05"
         ],
         "by_tutor": [

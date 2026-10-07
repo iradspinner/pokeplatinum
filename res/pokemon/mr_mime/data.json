@@ -46,7 +46,6 @@
             [ 1, "MOVE_CONFUSION" ],
             [ 8, "MOVE_MEDITATE" ],
             [ 11, "MOVE_ENCORE" ],
-            [ 15, "MOVE_DOUBLE_SLAP" ],
             [ 18, "MOVE_MIMIC" ],
             [ 21, "MOVE_REFLECT" ],
             [ 22, "MOVE_LIGHT_SCREEN" ],
@@ -104,7 +103,8 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",

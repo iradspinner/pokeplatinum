@@ -48,6 +48,7 @@
             [ 21, "MOVE_HEADBUTT" ],
             [ 23, "MOVE_MACH_PUNCH" ],
             [ 25, "MOVE_COUNTER" ],
+            [ 27, "MOVE_BULLDOZE" ],
             [ 29, "MOVE_FORCE_PALM" ],
             [ 33, "MOVE_SKY_UPPERCUT" ],
             [ 37, "MOVE_MIND_READER" ],
@@ -55,8 +56,8 @@
             [ 43, "MOVE_POISON_JAB" ],
             [ 45, "MOVE_SPORE" ],
             [ 51, "MOVE_LOW_SWEEP" ],
-            [ 53, "MOVE_BULLDOZE" ],
-            [ 59, "MOVE_ROCK_TOMB" ],
+            [ 53, "MOVE_ROCK_TOMB" ],
+            [ 59, "MOVE_BOUNCE" ],
             [ 61, "MOVE_DRAIN_PUNCH" ],
             [ 67, "MOVE_TOXIC" ]
         ],

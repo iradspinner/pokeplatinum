@@ -126,6 +126,10 @@
             ],
             [
                 21,
+                "MOVE_ICICLE_SPEAR"
+            ],
+            [
+                23,
                 "MOVE_SPITE"
             ],
             [
@@ -142,22 +146,26 @@
             ],
             [
                 37,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 43,
-                "MOVE_CHILLING_WATER"
+                "MOVE_EXPANDING_FORCE"
             ],
             [
                 45,
-                "MOVE_INCINERATE"
+                "MOVE_BOUNCE"
             ],
             [
                 51,
-                "MOVE_CONFUSE_RAY"
+                "MOVE_INCINERATE"
             ],
             [
                 53,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
+                59,
                 "MOVE_WILL_O_WISP"
             ],
             [

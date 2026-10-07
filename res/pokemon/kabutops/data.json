@@ -52,7 +52,7 @@
             [ 47, "MOVE_ROCK_TOMB" ],
             [ 54, "MOVE_ANCIENT_POWER" ],
             [ 56, "MOVE_CROSS_POISON" ],
-            [ 61, "MOVE_ICE_FANG" ],
+            [ 61, "MOVE_LEECH_LIFE" ],
             [ 63, "MOVE_POISON_JAB" ],
             [ 72, "MOVE_NIGHT_SLASH" ]
         ],

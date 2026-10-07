@@ -50,7 +50,7 @@
             ],
             [
                 2,
-                "MOVE_POUNCE"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 3,
@@ -63,10 +63,6 @@
             [
                 12,
                 "MOVE_RAZOR_LEAF"
-            ],
-            [
-                17,
-                "MOVE_BITE"
             ],
             [
                 22,

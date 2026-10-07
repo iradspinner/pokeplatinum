@@ -43,14 +43,14 @@
             [ 1, "MOVE_EMBER" ],
             [ 7, "MOVE_EMBER" ],
             [ 17, "MOVE_SHADOW_CLAW" ],
-            [ 19, "MOVE_STEEL_WING" ],
+            [ 19, "MOVE_BULLDOZE" ],
             [ 21, "MOVE_SCARY_FACE" ],
             [ 28, "MOVE_FIRE_FANG" ],
             [ 32, "MOVE_SLASH" ],
-            [ 33, "MOVE_FIRE_PLEDGE" ],
+            [ 34, "MOVE_FIRE_PLEDGE" ],
             [ 39, "MOVE_FLAMETHROWER" ],
             [ 43, "MOVE_FIRE_SPIN" ],
-            [ 66, "MOVE_OVERHEAT" ]
+            [ 66, "MOVE_BLAST_BURN" ]
         ],
         "by_tm": [
             "TM02",

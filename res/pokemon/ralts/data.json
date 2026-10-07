@@ -39,7 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_ZEN_HEADBUTT" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
             [ 6, "MOVE_CONFUSION" ],
             [ 17, "MOVE_LUCKY_CHANT" ],
             [ 19, "MOVE_DRAINING_KISS" ],
@@ -83,7 +83,8 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",

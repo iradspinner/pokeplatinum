@@ -93,20 +93,20 @@
                 "MOVE_DIVE"
             ],
             [
-                38,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
                 41,
                 "MOVE_LUNGE"
             ],
             [
                 43,
-                "MOVE_POISON_JAB"
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 48,
                 "MOVE_SCALD"
+            ],
+            [
+                51,
+                "MOVE_POISON_JAB"
             ],
             [
                 55,

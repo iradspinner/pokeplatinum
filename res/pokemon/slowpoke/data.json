@@ -48,7 +48,8 @@
             [ 25, "MOVE_HEADBUTT" ],
             [ 29, "MOVE_WATER_PULSE" ],
             [ 34, "MOVE_ZEN_HEADBUTT" ],
-            [ 36, "MOVE_BULLDOZE" ],
+            [ 35, "MOVE_SWAGGER" ],
+            [ 36, "MOVE_TRIPLE_AXEL" ],
             [ 39, "MOVE_SLACK_OFF" ],
             [ 43, "MOVE_AMNESIA" ],
             [ 48, "MOVE_PSYCHIC" ],
@@ -88,6 +89,7 @@
             "TM87",
             "TM90",
             "TM92",
+            "TM94",
             "HM03",
             "HM04",
             "HM07"

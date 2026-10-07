@@ -58,7 +58,7 @@
             ],
             [
                 1,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_BULLET_SEED"
             ],
             [
                 9,
@@ -78,15 +78,11 @@
             ],
             [
                 26,
-                "MOVE_VACUUM_WAVE"
+                "MOVE_DOUBLE_KICK"
             ],
             [
                 27,
                 "MOVE_SWAGGER"
-            ],
-            [
-                29,
-                "MOVE_BITE"
             ],
             [
                 32,
@@ -122,7 +118,7 @@
             ],
             [
                 59,
-                "MOVE_ACROBATICS"
+                "MOVE_PLAY_ROUGH"
             ],
             [
                 67,

@@ -57,8 +57,8 @@
             [ 62, "MOVE_ZEN_HEADBUTT" ],
             [ 64, "MOVE_ICE_PUNCH" ],
             [ 66, "MOVE_LOW_SWEEP" ],
-            [ 71, "MOVE_HYPER_BEAM" ],
-            [ 73, "MOVE_BITE" ]
+            [ 70, "MOVE_BITE" ],
+            [ 72, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM06",
@@ -98,6 +98,7 @@
             "TM87",
             "TM90",
             "TM91",
+            "TM93",
             "HM04"
         ],
         "by_tutor": [

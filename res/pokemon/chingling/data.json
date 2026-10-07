@@ -38,9 +38,9 @@
             [ 9, "MOVE_ASTONISH" ],
             [ 13, "MOVE_YAWN" ],
             [ 14, "MOVE_CONFUSION" ],
-            [ 17, "MOVE_UPROAR" ],
-            [ 19, "MOVE_SNARL" ],
-            [ 22, "MOVE_LAST_RESORT" ]
+            [ 17, "MOVE_SNARL" ],
+            [ 22, "MOVE_LAST_RESORT" ],
+            [ 61, "MOVE_UPROAR" ]
         ],
         "by_tm": [
             "TM04",
@@ -68,7 +68,8 @@
             "TM78",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM93"
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",

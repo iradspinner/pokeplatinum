@@ -54,7 +54,7 @@
             [ 47, "MOVE_SAFEGUARD" ],
             [ 53, "MOVE_DRAGON_DANCE" ],
             [ 55, "MOVE_WING_ATTACK" ],
-            [ 66, "MOVE_OUTRAGE" ],
+            [ 64, "MOVE_OUTRAGE" ],
             [ 73, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [

@@ -80,7 +80,9 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM93",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",

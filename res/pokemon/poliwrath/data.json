@@ -40,15 +40,15 @@
         "by_level": [
             [ 1, "MOVE_BUBBLE_BEAM" ],
             [ 1, "MOVE_HYPNOSIS" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
+            [ 1, "MOVE_ARM_THRUST" ],
             [ 35, "MOVE_WAKE_UP_SLAP" ],
             [ 40, "MOVE_THROAT_CHOP" ],
             [ 43, "MOVE_BRICK_BREAK" ],
             [ 45, "MOVE_BODY_PRESS" ],
             [ 53, "MOVE_MIND_READER" ],
-            [ 55, "MOVE_ROCK_TOMB" ],
+            [ 55, "MOVE_TRIPLE_AXEL" ],
             [ 57, "MOVE_LOW_SWEEP" ],
-            [ 62, "MOVE_ICE_PUNCH" ],
+            [ 62, "MOVE_ROCK_TOMB" ],
             [ 64, "MOVE_DRAIN_PUNCH" ],
             [ 70, "MOVE_BELLY_DRUM" ]
         ],

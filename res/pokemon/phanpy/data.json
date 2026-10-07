@@ -40,10 +40,11 @@
         "by_level": [
             [ 1, "MOVE_ODOR_SLEUTH" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_BULLDOZE" ],
+            [ 4, "MOVE_SAND_TOMB" ],
             [ 6, "MOVE_FLAIL" ],
-            [ 8, "MOVE_ROCK_THROW" ],
+            [ 8, "MOVE_MUD_SHOT" ],
             [ 10, "MOVE_TAKE_DOWN" ],
+            [ 12, "MOVE_ICE_SHARD" ],
             [ 15, "MOVE_ROLLOUT" ],
             [ 19, "MOVE_NATURAL_GIFT" ],
             [ 24, "MOVE_SLAM" ],

@@ -129,12 +129,12 @@
                 "MOVE_PHANTOM_FORCE"
             ],
             [
-                67,
-                "MOVE_IRON_HEAD"
-            ],
-            [
                 70,
                 "MOVE_PETAL_BLIZZARD"
+            ],
+            [
+                72,
+                "MOVE_IRON_HEAD"
             ]
         ],
         "by_tm": [

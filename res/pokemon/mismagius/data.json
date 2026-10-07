@@ -46,7 +46,8 @@
             [ 45, "MOVE_MEAN_LOOK" ],
             [ 61, "MOVE_POWER_GEM" ],
             [ 63, "MOVE_MYSTICAL_FIRE" ],
-            [ 69, "MOVE_ENERGY_BALL" ]
+            [ 69, "MOVE_UPROAR" ],
+            [ 71, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM04",
@@ -82,7 +83,9 @@
             "TM79",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM93",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",

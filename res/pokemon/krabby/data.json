@@ -43,7 +43,7 @@
             [ 5, "MOVE_VICE_GRIP" ],
             [ 9, "MOVE_LEER" ],
             [ 15, "MOVE_BUBBLE_BEAM" ],
-            [ 17, "MOVE_AQUA_JET" ],
+            [ 17, "MOVE_TRIPLE_AXEL" ],
             [ 19, "MOVE_MUD_SHOT" ],
             [ 25, "MOVE_STOMP" ],
             [ 27, "MOVE_BRUTAL_SWING" ],

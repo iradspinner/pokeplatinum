@@ -91,6 +91,10 @@
             [
                 40,
                 "MOVE_EARTHQUAKE"
+            ],
+            [
+                45,
+                "MOVE_ROCK_BLAST"
             ]
         ],
         "by_tm": [

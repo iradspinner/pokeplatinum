@@ -121,24 +121,20 @@
                 "MOVE_SHELL_SMASH"
             ],
             [
-                58,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
                 61,
                 "MOVE_ROCK_WRECKER"
             ],
             [
                 64,
-                "MOVE_POISON_JAB"
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 66,
-                "MOVE_BULLDOZE"
+                "MOVE_POISON_JAB"
             ],
             [
                 72,
-                "MOVE_ROCK_POLISH"
+                "MOVE_BULLDOZE"
             ]
         ],
         "by_tm": [

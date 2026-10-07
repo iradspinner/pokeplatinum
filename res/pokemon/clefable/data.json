@@ -39,9 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
             [ 1, "MOVE_MINIMIZE" ],
             [ 1, "MOVE_METRONOME" ],
+            [ 1, "MOVE_FURY_SWIPES" ],
             [ 14, "MOVE_CHILLING_WATER" ],
             [ 27, "MOVE_DRAINING_KISS" ],
             [ 40, "MOVE_ALLURING_VOICE" ],
@@ -98,6 +98,7 @@
             "TM82",
             "TM86",
             "TM87",
+            "TM94",
             "HM04"
         ],
         "by_tutor": [

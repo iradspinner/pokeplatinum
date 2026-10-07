@@ -121,6 +121,10 @@
                 "MOVE_DARK_PULSE"
             ],
             [
+                41,
+                "MOVE_BOUNCE"
+            ],
+            [
                 43,
                 "MOVE_EXTRASENSORY"
             ],
@@ -130,19 +134,19 @@
             ],
             [
                 49,
-                "MOVE_THROAT_CHOP"
+                "MOVE_WATER_SHURIKEN"
             ],
             [
                 51,
                 "MOVE_GUNK_SHOT"
             ],
             [
-                65,
-                "MOVE_HYDRO_CANNON"
+                56,
+                "MOVE_THROAT_CHOP"
             ],
             [
-                67,
-                "MOVE_TAUNT"
+                65,
+                "MOVE_HYDRO_CANNON"
             ]
         ],
         "by_tm": [

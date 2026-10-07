@@ -102,7 +102,7 @@
             ],
             [
                 40,
-                "MOVE_MYSTICAL_FIRE"
+                "MOVE_QUICK_ATTACK"
             ],
             [
                 43,
@@ -110,11 +110,11 @@
             ],
             [
                 48,
-                "MOVE_THROAT_CHOP"
+                "MOVE_STOMPING_TANTRUM"
             ],
             [
                 50,
-                "MOVE_WILD_CHARGE"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 56,
@@ -122,15 +122,19 @@
             ],
             [
                 58,
-                "MOVE_MOONBLAST"
+                "MOVE_MYSTICAL_FIRE"
             ],
             [
                 64,
-                "MOVE_PLAY_ROUGH"
+                "MOVE_BLOCK"
             ],
             [
                 66,
                 "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                72,
+                "MOVE_MOONBLAST"
             ]
         ],
         "by_tm": [
@@ -148,7 +152,8 @@
             "TM68",
             "TM82",
             "TM83",
-            "TM92"
+            "TM92",
+            "TM94"
         ],
         "by_tutor": [],
         "egg_moves": []

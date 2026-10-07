@@ -46,7 +46,7 @@
             [ 19, "MOVE_SCARY_FACE" ],
             [ 24, "MOVE_ICE_FANG" ],
             [ 28, "MOVE_BRINE" ],
-            [ 34, "MOVE_BULLDOZE" ],
+            [ 34, "MOVE_STOMPING_TANTRUM" ],
             [ 37, "MOVE_DIVE" ],
             [ 42, "MOVE_CRUNCH" ],
             [ 46, "MOVE_AQUA_TAIL" ],
@@ -54,7 +54,7 @@
             [ 51, "MOVE_MUDDY_WATER" ],
             [ 56, "MOVE_ROCK_TOMB" ],
             [ 58, "MOVE_SUCKER_PUNCH" ],
-            [ 64, "MOVE_CONFUSE_RAY" ]
+            [ 64, "MOVE_BLOCK" ]
         ],
         "by_tm": [
             "TM01",

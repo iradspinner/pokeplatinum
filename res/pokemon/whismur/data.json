@@ -41,14 +41,14 @@
             [ 1, "MOVE_SLEEP_TALK" ],
             [ 1, "MOVE_ROAR" ],
             [ 1, "MOVE_POUND" ],
-            [ 5, "MOVE_UPROAR" ],
             [ 11, "MOVE_ASTONISH" ],
             [ 15, "MOVE_HOWL" ],
             [ 21, "MOVE_SUPERSONIC" ],
             [ 25, "MOVE_STOMP" ],
             [ 31, "MOVE_SCREECH" ],
             [ 41, "MOVE_REST" ],
-            [ 45, "MOVE_HYPER_VOICE" ]
+            [ 45, "MOVE_HYPER_VOICE" ],
+            [ 54, "MOVE_UPROAR" ]
         ],
         "by_tm": [
             "TM03",

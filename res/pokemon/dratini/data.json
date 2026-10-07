@@ -48,8 +48,8 @@
             [ 35, "MOVE_DRAGON_RUSH" ],
             [ 41, "MOVE_SAFEGUARD" ],
             [ 45, "MOVE_DRAGON_DANCE" ],
-            [ 55, "MOVE_HYPER_BEAM" ],
-            [ 61, "MOVE_OUTRAGE" ]
+            [ 51, "MOVE_OUTRAGE" ],
+            [ 55, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM01",

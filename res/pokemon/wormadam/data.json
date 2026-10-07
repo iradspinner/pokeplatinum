@@ -43,10 +43,10 @@
             [ 20, "MOVE_HIDDEN_POWER" ],
             [ 23, "MOVE_CONFUSION" ],
             [ 26, "MOVE_RAZOR_LEAF" ],
-            [ 28, "MOVE_BUG_BUZZ" ],
+            [ 28, "MOVE_SKITTER_SMACK" ],
             [ 32, "MOVE_PSYBEAM" ],
             [ 35, "MOVE_CAPTIVATE" ],
-            [ 36, "MOVE_QUIVER_DANCE" ],
+            [ 36, "MOVE_BLOCK" ],
             [ 38, "MOVE_FLAIL" ],
             [ 40, "MOVE_GROWTH" ],
             [ 41, "MOVE_ATTRACT" ],
@@ -54,9 +54,11 @@
             [ 47, "MOVE_LEAF_STORM" ],
             [ 51, "MOVE_EARTH_POWER" ],
             [ 53, "MOVE_IRON_HEAD" ],
-            [ 59, "MOVE_LEECH_LIFE" ],
-            [ 61, "MOVE_SUCKER_PUNCH" ],
-            [ 67, "MOVE_GIGA_DRAIN" ]
+            [ 59, "MOVE_TRIPLE_AXEL" ],
+            [ 61, "MOVE_BUG_BUZZ" ],
+            [ 67, "MOVE_LEECH_LIFE" ],
+            [ 69, "MOVE_GIGA_DRAIN" ],
+            [ 75, "MOVE_QUIVER_DANCE" ]
         ],
         "by_tm": [
             "TM06",
@@ -78,7 +80,8 @@
             "TM68",
             "TM78",
             "TM86",
-            "TM87"
+            "TM87",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_SNORE",

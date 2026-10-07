@@ -81,10 +81,6 @@
                 "MOVE_DUAL_WINGBEAT"
             ],
             [
-                30,
-                "MOVE_ACCELEROCK"
-            ],
-            [
                 32,
                 "MOVE_ROCK_BLAST"
             ],
@@ -101,10 +97,6 @@
                 "MOVE_ACROBATICS"
             ],
             [
-                48,
-                "MOVE_ROCK_SLIDE"
-            ],
-            [
                 51,
                 "MOVE_LEECH_LIFE"
             ],
@@ -114,15 +106,19 @@
             ],
             [
                 55,
-                "MOVE_STEEL_WING"
+                "MOVE_ACCELEROCK"
             ],
             [
                 57,
-                "MOVE_LUNGE"
+                "MOVE_STEEL_WING"
             ],
             [
                 62,
-                "MOVE_ROCK_TOMB"
+                "MOVE_LUNGE"
+            ],
+            [
+                64,
+                "MOVE_BOUNCE"
             ]
         ],
         "by_tm": [

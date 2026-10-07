@@ -101,12 +101,8 @@
                 "MOVE_BODY_PRESS"
             ],
             [
-                57,
-                "MOVE_BODY_SLAM"
-            ],
-            [
                 61,
-                "MOVE_ACROBATICS"
+                "MOVE_BODY_SLAM"
             ],
             [
                 65,
@@ -114,11 +110,11 @@
             ],
             [
                 69,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_ACROBATICS"
             ],
             [
                 71,
-                "MOVE_SCARY_FACE"
+                "MOVE_SWAGGER"
             ]
         ],
         "by_tm": [

@@ -53,9 +53,9 @@
             [ 40, "MOVE_AERIAL_ACE" ],
             [ 42, "MOVE_METAL_CLAW" ],
             [ 49, "MOVE_ICE_SHARD" ],
-            [ 51, "MOVE_LOW_SWEEP" ],
-            [ 56, "MOVE_POISON_JAB" ],
-            [ 58, "MOVE_BITE" ]
+            [ 51, "MOVE_SKITTER_SMACK" ],
+            [ 56, "MOVE_TRIPLE_AXEL" ],
+            [ 58, "MOVE_LOW_SWEEP" ]
         ],
         "by_tm": [
             "TM03",

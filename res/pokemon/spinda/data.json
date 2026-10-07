@@ -40,7 +40,6 @@
         "by_level": [
             [ 1, "MOVE_COPYCAT" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_UPROAR" ],
             [ 14, "MOVE_FAINT_ATTACK" ],
             [ 19, "MOVE_PSYBEAM" ],
             [ 23, "MOVE_HYPNOSIS" ],
@@ -50,7 +49,8 @@
             [ 41, "MOVE_PSYCH_UP" ],
             [ 46, "MOVE_DOUBLE_EDGE" ],
             [ 50, "MOVE_FLAIL" ],
-            [ 57, "MOVE_THRASH" ]
+            [ 54, "MOVE_UPROAR" ],
+            [ 55, "MOVE_THRASH" ]
         ],
         "by_tm": [
             "TM03",
@@ -75,6 +75,7 @@
             "TM80",
             "TM87",
             "TM92",
+            "TM94",
             "HM04"
         ],
         "by_tutor": [

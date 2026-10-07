@@ -62,7 +62,7 @@
             ],
             [
                 8,
-                "MOVE_SMACK_DOWN"
+                "MOVE_TAUNT"
             ],
             [
                 11,
@@ -71,10 +71,6 @@
             [
                 14,
                 "MOVE_DOUBLE_KICK"
-            ],
-            [
-                16,
-                "MOVE_TAUNT"
             ],
             [
                 20,

@@ -51,7 +51,7 @@
             [ 43, "MOVE_FUTURE_SIGHT" ],
             [ 45, "MOVE_POWER_GEM" ],
             [ 47, "MOVE_MAGICAL_LEAF" ],
-            [ 52, "MOVE_DAZZLING_GLEAM" ],
+            [ 52, "MOVE_ALLURING_VOICE" ],
             [ 57, "MOVE_PSYCH_UP" ],
             [ 64, "MOVE_PSYCHIC" ],
             [ 71, "MOVE_MORNING_SUN" ],
@@ -85,7 +85,9 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM92"
+            "TM92",
+            "TM93",
+            "TM94"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",

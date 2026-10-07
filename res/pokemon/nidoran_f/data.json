@@ -39,9 +39,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 3, "MOVE_MUD_SHOT" ],
+            [ 3, "MOVE_CLEAR_SMOG" ],
             [ 4, "MOVE_TOXIC_SPIKES" ],
-            [ 6, "MOVE_CLEAR_SMOG" ],
             [ 9, "MOVE_DOUBLE_KICK" ],
             [ 13, "MOVE_POISON_STING" ],
             [ 19, "MOVE_FURY_SWIPES" ],

@@ -52,7 +52,7 @@
             [ 44, "MOVE_AGILITY" ],
             [ 48, "MOVE_METEOR_MASH" ],
             [ 52, "MOVE_ZEN_HEADBUTT" ],
-            [ 56, "MOVE_HYPER_BEAM" ]
+            [ 66, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM06",
@@ -87,6 +87,7 @@
             "TM86",
             "TM87",
             "TM91",
+            "TM93",
             "HM04"
         ],
         "by_tutor": [

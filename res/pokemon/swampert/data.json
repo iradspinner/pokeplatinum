@@ -50,7 +50,7 @@
             [ 31, "MOVE_TAKE_DOWN" ],
             [ 39, "MOVE_MUDDY_WATER" ],
             [ 41, "MOVE_LIQUIDATION" ],
-            [ 43, "MOVE_AVALANCHE" ],
+            [ 43, "MOVE_BRICK_BREAK" ],
             [ 48, "MOVE_POISON_JAB" ],
             [ 52, "MOVE_EARTHQUAKE" ],
             [ 56, "MOVE_FLIP_TURN" ],

@@ -46,8 +46,8 @@
             [ 34, "MOVE_DRAGON_DANCE" ],
             [ 35, "MOVE_BUG_BITE" ],
             [ 41, "MOVE_DIG" ],
-            [ 57, "MOVE_HYPER_BEAM" ],
             [ 65, "MOVE_EARTH_POWER" ],
+            [ 66, "MOVE_HYPER_BEAM" ],
             [ 73, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [

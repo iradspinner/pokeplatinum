@@ -79,10 +79,14 @@
             ],
             [
                 30,
-                "MOVE_HEAL_PULSE"
+                "MOVE_FURY_SWIPES"
             ],
             [
                 31,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                32,
                 "MOVE_WAKE_UP_SLAP"
             ],
             [
@@ -107,7 +111,7 @@
             ],
             [
                 43,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_SCALE_SHOT"
             ],
             [
                 45,
@@ -123,11 +127,7 @@
             ],
             [
                 55,
-                "MOVE_BODY_SLAM"
-            ],
-            [
-                58,
-                "MOVE_SHADOW_CLAW"
+                "MOVE_BOUNCE"
             ],
             [
                 61,
@@ -139,7 +139,7 @@
             ],
             [
                 67,
-                "MOVE_ACROBATICS"
+                "MOVE_FOUL_PLAY"
             ],
             [
                 69,

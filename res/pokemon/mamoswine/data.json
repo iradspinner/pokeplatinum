@@ -49,15 +49,16 @@
             [ 20, "MOVE_MUD_BOMB" ],
             [ 28, "MOVE_ICE_FANG" ],
             [ 32, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_DOUBLE_HIT" ],
             [ 40, "MOVE_EARTHQUAKE" ],
             [ 42, "MOVE_BRICK_BREAK" ],
             [ 48, "MOVE_MIST" ],
-            [ 50, "MOVE_BULLDOZE" ],
+            [ 50, "MOVE_ICICLE_SPEAR" ],
             [ 56, "MOVE_ICE_BEAM" ],
-            [ 58, "MOVE_IRON_HEAD" ],
+            [ 58, "MOVE_TRIPLE_AXEL" ],
             [ 65, "MOVE_SCARY_FACE" ],
             [ 67, "MOVE_ICICLE_CRASH" ],
-            [ 72, "MOVE_ROCK_TOMB" ]
+            [ 72, "MOVE_BULLDOZE" ]
         ],
         "by_tm": [
             "TM06",

@@ -102,7 +102,7 @@
             ],
             [
                 39,
-                "MOVE_U_TURN"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 42,
@@ -117,16 +117,16 @@
                 "MOVE_PLAY_ROUGH"
             ],
             [
-                49,
-                "MOVE_SUCKER_PUNCH"
-            ],
-            [
                 51,
                 "MOVE_KNOCK_OFF"
             ],
             [
-                56,
-                "MOVE_SHADOW_CLAW"
+                55,
+                "MOVE_U_TURN"
+            ],
+            [
+                57,
+                "MOVE_SUCKER_PUNCH"
             ],
             [
                 61,

@@ -49,7 +49,8 @@
             [ 34, "MOVE_GRASS_PLEDGE" ],
             [ 35, "MOVE_AGILITY" ],
             [ 41, "MOVE_SLAM" ],
-            [ 59, "MOVE_LEAF_STORM" ]
+            [ 59, "MOVE_LEAF_STORM" ],
+            [ 66, "MOVE_FRENZY_PLANT" ]
         ],
         "by_tm": [
             "TM06",
