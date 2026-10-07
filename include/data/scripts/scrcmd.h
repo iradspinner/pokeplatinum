@@ -853,6 +853,9 @@ ScriptCommand(SCRCMD_GIVEDESIGNEDPOKEMON,                                  ScrCm
 ScriptCommand(SCRCMD_CALCHIDDENPOWERPOWER,                                 ScrCmd_CalcHiddenPowerPower)
 ScriptCommand(SCRCMD_RAISELEVELCAP,                                        ScrCmd_RaiseLevelCap)
 ScriptCommand(SCRCMD_SETPARTYMONMETLOCATION,                               ScrCmd_SetPartyMonMetLocation)
+ScriptCommand(SCRCMD_GETGAMECORNERPRIZECOUNT,                              ScrCmd_GetGameCornerPrizeCount)
+ScriptCommand(SCRCMD_GETSOLDTMCOPIES,                                      ScrCmd_GetSoldTMCopies)
+ScriptCommand(SCRCMD_MARKSOLDTMBOUGHT,                                     ScrCmd_MarkSoldTMBought)
 
 #ifdef OXIDE_TESTKIT
 // The test kit's own commands, built only by `make testkit` (docs/oxide/test-kit.md).
