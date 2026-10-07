@@ -289,6 +289,8 @@ Left for want of a command: Octolock into an already octolocked target, whose st
 | Shell Trap | strikes only after a physical hit this turn (419, new) | a new Expert routine, `Expert_ShellTrap`: -1 into a resisting or immune target, and -2 when the target's last move was not physical, since then it is likely to fail. It is costed in full as a 150 power attack otherwise. A new routine for a move that only now works, so it is listed for Ian with the other judgment calls |
 | Burning Jealousy | burns a target whose stats rose this turn (420, new) | the ordinary handling of a damaging move. The AI does not foresee the burn, which needs the target to raise a stat before it moves; where Burning Jealousy burned every target, the effect was Ember's, which no routine reads either. No AI change. The engine's new `statRaised` turn flag (TurnFlags' padding) is set wherever a stage rises: the stat change command, Belly Drum and the absorbing abilities' direct rises, ability rises, Defiant and Competitive, Psych Up, Rage, Sticky Web under Contrary, the X items and the Mirror Herb |
 
+The three new effects that carry a secondary effect (417, 418, 420) are on the engine's Sheer Force list, so Sheer Force strips Raging Fury's confusion (keeping its recoil), Upper Hand's flinch and Burning Jealousy's burn, and strengthens each, as it does Volt Tackle, Fake Out and Ember. The reworked moves that moved onto effects already on that list (Blast Burn, Frenzy Plant, Sky Attack, Thrash, Petal Dance, Uproar) came with it.
+
 ## The parts
 
 | File | Covers |

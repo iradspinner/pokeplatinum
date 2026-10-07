@@ -10285,6 +10285,13 @@ static const u16 sSheerForceEffects[] = {
     BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT,
     BATTLE_EFFECT_RECOIL_BURN_HIT,
     BATTLE_EFFECT_RECOIL_PARALYZE_HIT,
+    // Oxide: the move reworks' new effects that carry a secondary effect
+    // (2026-10-06): Raging Fury's confusion (its recoil stays, as Volt
+    // Tackle's does), Upper Hand's flinch (as Fake Out's) and Burning
+    // Jealousy's burn.
+    BATTLE_EFFECT_RECOIL_CONFUSE_HIT,
+    BATTLE_EFFECT_UPPER_HAND,
+    BATTLE_EFFECT_BURN_HIT_IF_STATS_ROSE,
 };
 
 // Oxide: moves Sheer Force strengthens that keep their effect, as in
