@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_TORKOAL",
             "form": 0,
-            "level": 76,
+            "level": 72,
             "item": "ITEM_HEAT_ROCK",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 77,
+            "level": 73,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_FIRE_BLAST",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 76,
+            "level": 72,
             "item": "ITEM_CHARCOAL",
             "moves": [
                 "MOVE_FIRE_BLAST",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_ARCANINE",
             "form": 0,
-            "level": 76,
+            "level": 72,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_FLARE_BLITZ",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 77,
+            "level": 73,
             "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_FIRE_BLAST",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 78,
+            "level": 74,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_FLARE_BLITZ",

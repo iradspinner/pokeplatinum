@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_MESPRIT",
             "form": 0,
-            "level": 54,
+            "level": 51,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_SHARP_BEAK",
             "moves": [
                 "MOVE_BRAVE_BIRD",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_GYRO_BALL",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_SILK_SCARF",
             "moves": [
                 "MOVE_FAKE_OUT",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_UMBREON",
             "form": 0,
-            "level": 55,
+            "level": 52,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_PAYBACK",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 56,
+            "level": 53,
             "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_THUNDER_FANG",

@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 76,
+            "level": 73,
             "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_SLOWKING",
             "form": 0,
-            "level": 76,
+            "level": 73,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_SURF",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_ESPEON",
             "form": 0,
-            "level": 77,
+            "level": 74,
             "item": "ITEM_TWISTEDSPOON",
             "moves": [
                 "MOVE_PSYCHIC",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_METAGROSS",
             "form": 0,
-            "level": 76,
+            "level": 73,
             "item": "ITEM_SHUCA_BERRY",
             "moves": [
                 "MOVE_METEOR_MASH",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_ALAKAZAM",
             "form": 0,
-            "level": 77,
+            "level": 74,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_PSYCHIC",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 78,
+            "level": 75,
             "item": "ITEM_LUM_BERRY",
             "moves": [
                 "MOVE_PSYCHO_CUT",

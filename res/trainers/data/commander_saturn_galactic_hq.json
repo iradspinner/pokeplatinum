@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_UXIE",
             "form": 0,
-            "level": 58,
+            "level": 55,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 59,
+            "level": 56,
             "item": "ITEM_TOXIC_ORB",
             "moves": [
                 "MOVE_BODY_SLAM",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_WOBBUFFET",
             "form": 0,
-            "level": 59,
+            "level": 56,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_COUNTER",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 59,
+            "level": 56,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_WATER_SPOUT",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_RHYPERIOR",
             "form": 0,
-            "level": 59,
+            "level": 56,
             "item": "ITEM_PASSHO_BERRY",
             "moves": [
                 "MOVE_EARTHQUAKE",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 60,
+            "level": 57,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_GUNK_SHOT",

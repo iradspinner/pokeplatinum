@@ -13,7 +13,7 @@
         {
             "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 76,
+            "level": 70,
             "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_STEALTH_ROCK",
@@ -30,7 +30,7 @@
         {
             "species": "SPECIES_VESPIQUEN",
             "form": 0,
-            "level": 76,
+            "level": 70,
             "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_ATTACK_ORDER",
@@ -47,7 +47,7 @@
         {
             "species": "SPECIES_YANMEGA",
             "form": 0,
-            "level": 76,
+            "level": 70,
             "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_BUG_BUZZ",
@@ -64,7 +64,7 @@
         {
             "species": "SPECIES_HERACROSS",
             "form": 0,
-            "level": 77,
+            "level": 71,
             "item": "ITEM_FLAME_ORB",
             "moves": [
                 "MOVE_MEGAHORN",
@@ -81,7 +81,7 @@
         {
             "species": "SPECIES_SCIZOR",
             "form": 0,
-            "level": 77,
+            "level": 71,
             "item": "ITEM_OCCA_BERRY",
             "moves": [
                 "MOVE_BULLET_PUNCH",
@@ -98,7 +98,7 @@
         {
             "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 78,
+            "level": 72,
             "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_CROSS_POISON",
