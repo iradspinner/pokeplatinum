@@ -286,6 +286,23 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
     works on the League's side.
   A whiteout inside a section closes it too: the Pocket PC works from the
   Pokemon Center.
+- [ ] **Step 10's rewards** (2026-10-07, `main-tm-items`; the table is
+  `docs/oxide/reward-placements.tsv`), on the test kit ROM after "Route 208,
+  all badges", then the Warp menu's Veilstone. One of each kind:
+  - A gift: the roughneck who says Veilstone is the city of stone ends "take
+    this Berry!", gives a Sitrus Berry and explains it. Talking again gives
+    only the explanation.
+  - The TMs sold once: the Department Store's 3F counters list each TM once,
+    with all eight badges every one of them. Buy Earthquake (TM26): one copy
+    comes, and the counter no longer lists it, after leaving the floor too.
+  - The Game Corner challenger: Rocco, beside the coins clerk, battles once.
+    Straight after the win, with no talk, two TM32 (Zen Headbutt) come.
+    Talking to him again gives nothing more, and the clerk gives no TM.
+  - A trainer reward: on Route 215, west of Veilstone, Jogger Scott gives
+    TM40 (Aerial Ace) straight after the win.
+  - A ball: Route 215's ball that held TM34 holds a Lum Berry.
+  A trainer with two rewards is checked in normal play (section 3, Hiker
+  Theodore).
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -331,6 +348,15 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Sandgem lab name Chimchar, as his team shows. With Piplup, Dawn or Lucas
   names Chimchar in the lab and as a partner, and the catching demo on Route
   202 uses a Chimchar. Before this fix both said Scorbunny.
+- [ ] **Step 10's gifts and rewards, early game** (2026-10-07,
+  `main-tm-items`). Each giver names and explains what it now hands over:
+  Rowan a Roost TM, Roark Toxic, the Oreburgh Gate man Block (and, seeing
+  the Coal Badge, says Pokemon can now smash boulders), Cynthia in Eterna two
+  Brick Breaks, Gardenia two Secret Powers, the Eterna Condominiums 2F woman
+  a Lum Berry, the Floaroma middle house woman two Defog HMs, the Route 204
+  teacher a Lum Berry, and Fantina two Strength HMs. No line names the old
+  item. On Route 206, Hiker Theodore gives TM03 (Water Pulse) and then TM28
+  (Dig) straight after the win, and nothing more when talked to again.
 - [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
