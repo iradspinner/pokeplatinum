@@ -91,10 +91,6 @@ CHARGE_TURN = {"BIDE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
 # Move_FailsInHighGravity and Move_HealBlocked (battle_lib.c 3757 to 3816).
 GRAVITY_FAILS = {"MOVE_FLY", "MOVE_BOUNCE", "MOVE_JUMP_KICK", "MOVE_HI_JUMP_KICK", "MOVE_SPLASH",
                  "MOVE_MAGNET_RISE"}
-HEAL_BLOCKED = {"MOVE_RECOVER", "MOVE_SOFTBOILED", "MOVE_REST", "MOVE_MILK_DRINK",
-                "MOVE_MORNING_SUN", "MOVE_SYNTHESIS", "MOVE_MOONLIGHT", "MOVE_SWALLOW",
-                "MOVE_HEAL_ORDER", "MOVE_SLACK_OFF", "MOVE_ROOST", "MOVE_LUNAR_DANCE",
-                "MOVE_HEALING_WISH", "MOVE_WISH", "MOVE_LUNAR_BLESSING", "MOVE_JUNGLE_HEALING"}
 # Basic's raising handlers: (the stat at +6 that scores -10, the stats at
 # +6 that score -8, refused under Trick Room).
 RAISES = {
@@ -406,7 +402,7 @@ def invalid(b, u, mv):
         return True
     if getattr(b, "gravity", 0) and mv.const in GRAVITY_FAILS:
         return True
-    if getattr(u, "heal_block", 0) and mv.const in HEAL_BLOCKED:
+    if fs.move_heal_blocked(u, mv):                           # Move_HealBlocked, the engine's own list
         return True
     if mv.const == "MOVE_BELCH" and not getattr(u, "ate_berry", False):
         return True
@@ -982,7 +978,9 @@ def evaluate_attack(b, u, t, mv, f, best):
             return -1
     s = 0
     # EvalAttack_MaybeDeprioritize: a move with no comparison reaches it too.
-    if mv.effect in ("HALVE_DEFENSE", "HIT_LAST_WHIFF_IF_HIT", "HIT_FIRST_IF_TARGET_ATTACKING") \
+    # The effects that jump there are the script's (Explosion's, Counter's,
+    # Sucker Punch's, and Final Gambit's since the other flags' routing).
+    if mv.effect in script_jumps("EvalAttack_MaybeDeprioritize") \
             and chance(b, 80.1):                                    # IfRandomLessThan 51 skips it
         s -= 2
     # EvalAttack_CheckQuadEffective, status moves included (vanilla O12).
@@ -2937,6 +2935,21 @@ def script_table(label):
 
 
 @functools.lru_cache(maxsize=None)
+def script_jumps(label):
+    """What script.s sends to a label by an If line: the battle effects
+    (IfCurrentMoveEffectEqualTo) and move ids (IfMoveEqualTo) that jump to
+    it, so a flag that names moves or effects in its dispatch reads the
+    script's own list (the other flags' routing, Ian, 2026-10-07, added Final
+    Gambit to Evaluate Attack's and five boosts to Baton Pass's)."""
+    out = set()
+    for line in _script_lines():
+        m = re.match(r"\s*If(?:CurrentMoveEffect|Move)EqualTo (?:BATTLE_EFFECT_)?(\w+), (\w+)\s*(?://.*)?$", line)
+        if m and m.group(2) == label:
+            out.add(m.group(1))
+    return frozenset(out)
+
+
+@functools.lru_cache(maxsize=None)
 def expert_routes():
     """{effect: label} from Expert_Main's jump table in script.s, first
     match winning, as the script runs it."""
@@ -2980,8 +2993,12 @@ def check_hp(b, u, t, mv):
     return s
 
 
-# BatonPass_EvalMove names these by move id.
-BATON_BOOSTS = {"MOVE_SWORDS_DANCE", "MOVE_DRAGON_DANCE", "MOVE_CALM_MIND", "MOVE_NASTY_PLOT"}
+def baton_boosts():
+    """The boosts BatonPass_EvalMove names by move id (Swords Dance, Dragon
+    Dance, Calm Mind, Nasty Plot, and since 2026-10-07 the moves Expert
+    scores as Dragon Dance), read from the script."""
+    return script_jumps("BatonPass_SetupAtHighHP")
+
 
 
 def baton_pass(b, u, t, mv, f):
@@ -2997,7 +3014,7 @@ def baton_pass(b, u, t, mv, f):
     if not any(m.effect == "PASS_STATS_AND_STATUS" for m in u.moves) and not chance(b, 68.75):
         return 0
     s = 0
-    if mv.const in BATON_BOOSTS:
+    if mv.const in baton_boosts():
         pass
     elif mv.effect == "PROTECT":
         return -2 if u.last is not None and u.last.const in ("MOVE_PROTECT", "MOVE_DETECT") else 2

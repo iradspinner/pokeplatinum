@@ -200,8 +200,13 @@ MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
+# The share of its damage a draining move restores: half (Giga Drain, Dream
+# Eater, Horn Leech), three quarters (Draining Kiss, Oblivion Wing).
+DRAIN = {"RECOVER_HALF_DAMAGE_DEALT": 1 / 2, "RECOVER_DAMAGE_SLEEP": 1 / 2,
+         "RECOVER_THREE_QUARTERS_DAMAGE_DEALT": 3 / 4}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
-            "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN"}
+            "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN",
+            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 WEATHER_OF = {"WEATHER_RAIN": "Rain", "WEATHER_SUN": "Sun", "WEATHER_SANDSTORM": "Sand",
@@ -320,6 +325,7 @@ class Mon:
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
+        self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
         self.curled = False
         self.confused = 0
@@ -540,7 +546,9 @@ def stage_mult(s):
 # ---- the rules of a turn --------------------------------------------------------------------
 
 def can_status(b, target, status):
-    if target.status or not target.alive() or target.sub:
+    # A Substitute stops a status unless a move's own effect passes it
+    # (give_status_by_move, for an Infiltrator attacker).
+    if target.status or not target.alive() or (target.sub and getattr(b, "passing_sub", None) is not target):
         return False
     side = b.p if target.side == "p" else b.b
     if side.safeguard:
@@ -865,7 +873,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
         return could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and b.rng.random() < 0.5:
         return could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv):
+    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -877,16 +885,10 @@ def use_move(b, att, mv, dfn, first, targets=None):
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     # Charging moves: the first turn only charges (Fly and Dig vanish).
-    if mv.effect in TWO_TURN and att.charging is None:
-        if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
-            pass
-        elif att.item == "Power Herb":
-            consume(att)
-        else:
-            att.charging = mv
-            if mv.effect == "CHARGE_TURN_DEF_UP":
-                change_stages(att, {"def": 1})
-            return
+    if mv.effect in TWO_TURN and att.charging is None and not charge_skipped(b, att, mv):
+        att.charging = mv
+        change_stages(att, CHARGE_STAGES.get(mv.effect, {}))     # Skull Bash, Meteor Beam, Electro Shot
+        return
     att.charging = None
     if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
         # Sleep Talk works only asleep, and then uses one of its other moves.
@@ -1018,7 +1020,7 @@ def attack(b, att, mv, dfn, first):
                 dfn.flash_fire = True
         return
     # The hit lands: Substitute, Focus Sash and Sturdy, then the damage.
-    if dfn.sub:
+    if sub_blocks(att, dfn, mv):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
@@ -1043,8 +1045,10 @@ def attack(b, att, mv, dfn, first):
     e = mv.effect
     if e in RECOIL and att.ability != "Rock Head":
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
-    if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
-        heal(att, dealt // 2)
+    # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
+    # on the user stops the heal, not the damage.
+    if e in DRAIN and not heal_blocked(att):
+        heal(att, int(dealt * DRAIN[e]))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -1064,7 +1068,7 @@ def attack(b, att, mv, dfn, first):
             change_stages(att, ch)
     if e in ("REMOVE_HAZARDS_AND_BINDING", "MORTAL_SPIN"):
         spin(b, att, dfn, e)
-    if not dfn.alive() or dfn.sub:
+    if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
@@ -1072,11 +1076,11 @@ def attack(b, att, mv, dfn, first):
     if att.ability == "Serene Grace":
         chance *= 2
     if e in HIT_STATUS and b.rng.random() * 100 < chance:
-        give_status(b, dfn, HIT_STATUS[e])
+        give_status_by_move(b, att, dfn, mv, HIT_STATUS[e])
     if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and b.rng.random() * 100 < chance:
-        give_status(b, dfn, "brn")
+        give_status_by_move(b, att, dfn, mv, "brn")
     if e == "TRI_ATTACK" and b.rng.random() * 100 < chance:
-        give_status(b, dfn, b.rng.choice(["brn", "par", "frz"]))
+        give_status_by_move(b, att, dfn, mv, b.rng.choice(["brn", "par", "frz"]))
     if e in FLINCH_HIT and first and b.rng.random() * 100 < chance:
         dfn.flinch = True
     if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
@@ -1090,6 +1094,8 @@ def attack(b, att, mv, dfn, first):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
+    if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
+        start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound = b.rng.randint(2, 5)
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
@@ -1170,7 +1176,7 @@ def pain_split(b, att, dfn):
     """Pain Split (subscript_pain_split): both Pokemon's HP become half
     their sum, each capped at its maximum (a berry fires on the drop as on
     any other); it fails on a Substitute."""
-    if dfn.sub:
+    if sub_blocks(att, dfn):
         return
     avg = (att.hp + dfn.hp) // 2
     for m in (att, dfn):
@@ -1361,9 +1367,9 @@ def spin(b, att, dfn, e):
     stage (subscript_rapid_spin); Mortal Spin first poisons its target
     (subscript_mortal_spin) as a secondary effect, which a Substitute,
     Shield Dust and Covert Cloak stop."""
-    if (e == "MORTAL_SPIN" and dfn.alive() and not dfn.sub and dfn.ability != "Shield Dust"
+    if (e == "MORTAL_SPIN" and dfn.alive() and not sub_blocks(att, dfn) and dfn.ability != "Shield Dust"
             and dfn.item != "Covert Cloak"):
-        give_status(b, dfn, "psn")
+        give_status_by_move(b, att, dfn, None, "psn")
     att.bound = 0
     att.seeded = False
     side = b.p if att.side == "p" else b.b
@@ -1488,6 +1494,89 @@ def move_priority(mon, mv):
     if mon.ability == "Gale Wings" and mv.type == "Flying" and mon.hp == mon.maxhp:
         pri += 1
     return pri
+
+
+def sub_blocks(att, dfn, mv=None):
+    """Whether dfn's Substitute stands between att's move and dfn: its hit,
+    its status move and the move's own added effects. An Infiltrator
+    attacker passes another Pokemon's Substitute with any move but Transform
+    and Sky Drop (BattleSystem_InfiltratorPasses, on main-engine-cleanups);
+    a Pokemon's own Substitute is never passed, and an ability's, an item's
+    or Toxic Spikes' effect never passes (give_status_by_move)."""
+    if not dfn.sub:
+        return False
+    passes = (att is not dfn and att.ability == "Infiltrator"
+              and (mv is None or mv.name not in ("Transform", "Sky Drop")))
+    return not passes
+
+
+# The stage a charging move raises, on its charge turn or when its charge is
+# skipped (effect scripts 145, 324 and 325, and their Power Herb and rain
+# subscripts, which raise it too): Skull Bash's Defense, Meteor Beam's and
+# Electro Shot's Sp. Atk.
+CHARGE_STAGES = {"CHARGE_TURN_DEF_UP": {"def": 1}, "CHARGE_TURN_SP_ATK_UP": {"spa": 1},
+                 "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS": {"spa": 1}}
+
+
+def weather_ignored(b):
+    """Cloud Nine or Air Lock on the field (CheckIgnoreWeather)."""
+    return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
+
+
+def charge_skipped(b, att, mv):
+    """Whether a two-turn move strikes at once: SolarBeam in sun; Electro
+    Shot in rain unless Cloud Nine or Air Lock is out, raising Sp. Atk
+    (subscript_sp_atk_up_rain_skip); else a Power Herb, spent, raising the
+    move's charge stage (subscript_power_herb_skull_bash and _meteor_beam)."""
+    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
+        return True
+    if mv.effect == "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS" and b.weather == "Rain" and not weather_ignored(b):
+        change_stages(att, CHARGE_STAGES[mv.effect])
+        return True
+    if att.item == "Power Herb":
+        consume(att)
+        change_stages(att, CHARGE_STAGES.get(mv.effect, {}))
+        return True
+    return False
+
+
+@functools.lru_cache(maxsize=None)
+def heal_blocked_moves():
+    """The moves Heal Block stops (battle_lib.c, sMovesAffectedByHealBlock):
+    they cannot be chosen and fail if used (Move_HealBlocked)."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sMovesAffectedByHealBlock\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    return frozenset(re.findall(r"MOVE_\w+", body))
+
+
+def heal_blocked(mon):
+    """Whether Heal Block runs on mon (moveEffectsData.healBlockTurns): its
+    healing moves, its draining, Leech Seed's heal for it, Wish's, Ingrain's
+    and Aqua Ring's all fail; held items and abilities still heal."""
+    return getattr(mon, "heal_block", 0) > 0
+
+
+def move_heal_blocked(mon, mv):
+    return heal_blocked(mon) and mv.const in heal_blocked_moves()
+
+
+def start_heal_block(att, dfn, mv):
+    """Heal Block, and Psychic Noise's added effect (subscript_heal_block_start):
+    five turns, failing on a Substitute (an Infiltrator's passes) or on a
+    Pokemon already blocked."""
+    if dfn.alive() and not heal_blocked(dfn) and not sub_blocks(att, dfn, mv):
+        dfn.heal_block = 5
+
+
+def give_status_by_move(b, att, dfn, mv, status):
+    """give_status for a status that att's move gives dfn, the one path on
+    which an Infiltrator passes dfn's Substitute (can_status reads
+    b.passing_sub, set only here and only for the call)."""
+    b.passing_sub = dfn if dfn.sub and not sub_blocks(att, dfn, mv) else None
+    try:
+        return give_status(b, dfn, status)
+    finally:
+        b.passing_sub = None
 
 
 def move_fails_first(att, mv, dfn, first):
@@ -1726,29 +1815,31 @@ def status_move(b, att, mv, dfn, first):
         if not b.accuracy_hits(att, dfn, mv):
             return
     if e in STATUS_OF:
-        if dfn.sub:
+        if sub_blocks(att, dfn, mv):
             return
-        give_status(b, dfn, STATUS_OF[e])
+        give_status_by_move(b, att, dfn, mv, STATUS_OF[e])
     elif e == "STATUS_CONFUSE":
-        if not dfn.sub and not dfn.confused and dfn.ability != "Own Tempo":
+        if not sub_blocks(att, dfn, mv) and not dfn.confused and dfn.ability != "Own Tempo":
             dfn.confused = b.rng.randint(2, 5)
     elif e in ("ATK_UP_2_STATUS_CONFUSION", "SP_ATK_UP_CAUSE_CONFUSION"):
-        if not dfn.sub:
+        if not sub_blocks(att, dfn, mv):
             change_stages(dfn, {"atk": 2} if e.startswith("ATK") else {"spa": 1})
             if not dfn.confused and dfn.ability != "Own Tempo":
                 dfn.confused = b.rng.randint(2, 5)
     elif e == "STATUS_SLEEP_NEXT_TURN":
-        if not dfn.status and not dfn.yawn and not dfn.sub:
+        if not dfn.status and not dfn.yawn and not sub_blocks(att, dfn, mv):
             dfn.yawn = 2
     elif e == "STATUS_LEECH_SEED":
-        if "Grass" not in dfn.types and not dfn.sub:
+        if "Grass" not in dfn.types and not sub_blocks(att, dfn, mv):
             dfn.seeded = True
+    elif e == "PREVENT_HEALING":                             # Heal Block
+        start_heal_block(att, dfn, mv)
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
             att.curled = True
     elif e in FOE_STAGES:
-        if not dfn.sub and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
+        if not sub_blocks(att, dfn, mv) and not stat_drop_blocked(b, dfn, FOE_STAGES[e]):
             change_stages(dfn, FOE_STAGES[e])
     elif e == "CURSE":
         if "Ghost" in att.types:
@@ -1908,18 +1999,83 @@ def end_of_turn(b):
     b.mid_turn = False
 
 
+def battle_over(b):
+    """A side has no Pokemon left: the engine checks it between every step
+    of the turn's end (BattleControllerPlayer_CheckBattleOver), so the first
+    side to run out loses, whatever would have come after."""
+    return not b.p.alive() or not b.b.alive()
+
+
+def coin(b, kind="tie"):
+    """A fair coin through the battle's dice (so the planner enumerates it),
+    or its own rng for a battle fightsim plays alone."""
+    dice = getattr(b, "dice", None)
+    return dice.choice(kind, 2) == 1 if dice is not None else b.rng.random() < 0.5
+
+
+def end_order(b):
+    """The Pokemon on the field in the order the engine runs the turn's end:
+    BattleSystem_SortMonSpeedOrder, re-run once the moves are done
+    (battle_controller_player.c 907), an exchange sort from battler 0 (the
+    player's first slot, then the trainer's, then the second slots) on
+    BattleSystem_CompareBattlerSpeed with ignoreQuickClaw (battle_lib.c 1207
+    to 1470). A fainted Pokemon goes after a standing one; then a Quick Claw
+    that fired this turn, or a Custap Berry in its pinch, goes first; a
+    Lagging Tail or Full Incense, then Stall, goes last; then Speed, the
+    slower first under Trick Room; a tie swaps on a coin flip."""
+    order = []
+    for pair in zip(b.p.on_field() + [None], b.b.on_field() + [None]):
+        order += [m for m in pair if m is not None]
+    quick = getattr(b, "quick", None) or {}
+
+    def after(m1, m2):
+        """Whether m1 goes after m2 (the comparison's nonzero result)."""
+        if not m1.alive() or not m2.alive():
+            return not m1.alive() and m2.alive()
+        q1, q2 = quick.get(m1.key) or custap_fires(m1), quick.get(m2.key) or custap_fires(m2)
+        s1, s2 = b.speed(m1), b.speed(m2)
+        if q1 != q2:
+            return q2
+        if q1 and q2:
+            return s1 < s2 or (s1 == s2 and coin(b))
+        lag1, lag2 = m1.item in ("Lagging Tail", "Full Incense"), m2.item in ("Lagging Tail", "Full Incense")
+        if lag1 or lag2:
+            return (lag1 and not lag2) or (lag1 and lag2 and (s1 > s2 or (s1 == s2 and coin(b))))
+        st1, st2 = m1.ability == "Stall", m2.ability == "Stall"
+        if st1 or st2:
+            return (st1 and not st2) or (st1 and st2 and (s1 > s2 or (s1 == s2 and coin(b))))
+        if b.trick_room:
+            return s1 > s2 or (s1 == s2 and coin(b))
+        return s1 < s2 or (s1 == s2 and coin(b))
+
+    for j in range(len(order) - 1):
+        for k in range(j + 1, len(order)):
+            if after(order[j], order[k]):
+                order[j], order[k] = order[k], order[j]
+    return order
+
+
 def _end_of_turn(b):
+    """The turn's end in the engine's three stages, each over the Pokemon in
+    end_order, stopping the moment a side has no Pokemon left (battle_over).
+    Field conditions (BattleControllerPlayer_CheckFieldConditions): the
+    sides' screens, Tailwind and Safeguard count down, Wish lands, then a
+    move's weather counts down (ending before it acts on its last turn) and
+    sand and hail strike each Pokemon (subscript_weather_continues, by
+    GetMonBySpeedOrder). Each Pokemon's own conditions (_end_of_turn_mon).
+    Side conditions: Perish Song, then Trick Room's count."""
     b.status_src = None          # no foe gives what the turn's end gives
+    order = end_order(b)
     for side in (b.p, b.b):
-        if side.wish:
-            side.wish -= 1
-            if side.wish == 0 and side.cur().alive():
-                heal(side.cur(), side.cur().maxhp // 2)
-        for m in side.on_field():
-            _end_of_turn_mon(b, side, m)
         side.screens = {k: max(0, v - 1) for k, v in side.screens.items()}
         side.tailwind = max(0, side.tailwind - 1)
         side.safeguard = max(0, side.safeguard - 1)
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        if side.wish and m is side.cur():
+            side.wish -= 1
+            if side.wish == 0 and m.alive() and not heal_blocked(m):
+                heal(m, m.maxhp // 2)
     if b.weather_turns:
         b.weather_turns -= 1
         if b.weather_turns == 0:
@@ -1928,24 +2084,73 @@ def _end_of_turn(b):
             # flag), and only the move's own flag clears now, so the
             # field is left clear rather than returning to the map's.
             b.weather = None
+    if b.weather in ("Sand", "Hail"):
+        safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
+        shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
+        for m in order:
+            if m.alive() and not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
+                hurt(b, m, m.maxhp // 16)
+                if battle_over(b):
+                    return
+    for m in order:
+        side = b.p if m.side == "p" else b.b
+        if not _end_of_turn_mon(b, side, m):
+            return
+    for m in order:
+        if m.alive() and m.perish:
+            m.perish -= 1
+            if m.perish == 0:
+                m.hp = 0
+                if battle_over(b):
+                    return
     if 0 < b.trick_room < 999:
         b.trick_room -= 1
+    for m in order:
+        if m.alive():
+            m.protecting = False
+            m.enduring = False
+            m.flinch = False        # a flinch lasts only the turn it is dealt
+            m.hit_this_turn = None
+            m.hurt_this_turn = False
+            m.stat_raised = False
+            m.turns_in += 1
     b.turn += 1
 
 
 def _end_of_turn_mon(b, side, m):
+    """One Pokemon's own conditions, in the engine's order
+    (MON_COND_CHECK_STATE_*, battle_controller_player.c 1308 to 1335):
+    Ingrain, Aqua Ring, its ability, its berry, Leftovers, Leech Seed, poison
+    and burn, Curse, binding, the counts (Taunt, Magnet Rise, Heal Block),
+    Yawn, then the Orbs. False once the battle is over."""
+    if not m.alive():
+        return True
+    if m.ingrained and m.hp < m.maxhp and not heal_blocked(m):
+        gain = m.maxhp // 16
+        heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
+    if m.aqua_ring and not heal_blocked(m):
+        heal(m, m.maxhp // 16)
+    # Speed Boost (BattleSystem_TriggerTurnEndAbility): +1 Speed at each
+    # turn's end but the one it came in on.
+    if m.ability == "Speed Boost" and m.turns_in > 0:
+        change_stages(m, {"spe": 1})
+    if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
+        heal(m, m.maxhp // 4)
+        consume(m)
+    if m.item == "Lum Berry" and (m.status or m.confused):
+        m.status, m.confused = None, 0
+        consume(m)
+    if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
+        heal(m, m.maxhp // 16)
+    if m.seeded:
+        foe = foe_of(b, m)
+        amount = m.maxhp // 8
+        hurt(b, m, amount)
+        if foe.alive() and not heal_blocked(foe):     # Leech Seed heals no blocked seeder
+            heal(foe, amount)
+        if battle_over(b):
+            return False
     if m.alive():
-        if b.weather in ("Sand", "Hail"):
-            safe = {"Sand": {"Rock", "Ground", "Steel"}, "Hail": {"Ice"}}[b.weather]
-            shield = {"Sand": "Sand Veil", "Hail": "Snow Cloak"}[b.weather]
-            if not set(m.types) & safe and m.ability not in (shield, "Magic Guard"):
-                hurt(b, m, m.maxhp // 16)
-        if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
-            heal(m, m.maxhp // 16)
-        if m.aqua_ring:
-            heal(m, m.maxhp // 16)
-        if m.magnet_rise:
-            m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
         if m.status in ("psn", "tox") and m.ability == "Poison Heal":
             heal(m, m.maxhp // 8)        # Poison Heal: poison heals it an eighth instead
         elif m.status in ("brn", "psn") and m.ability != "Magic Guard":
@@ -1954,50 +2159,33 @@ def _end_of_turn_mon(b, side, m):
         elif m.status == "tox" and m.ability != "Magic Guard":
             m.toxic += 1
             hurt(b, m, m.maxhp * m.toxic // 16)
-        if m.seeded:
-            foe = foe_of(b, m)
-            amount = m.maxhp // 8
-            hurt(b, m, amount)
-            if foe.alive():
-                heal(foe, amount)
-        if m.bound:
-            m.bound -= 1
-            hurt(b, m, m.maxhp // 16)
-        if m.yawn:
-            m.yawn -= 1
-            if m.yawn == 0:
-                give_status(b, m, "slp")
-        if m.ingrained and m.alive() and m.hp < m.maxhp:
-            gain = m.maxhp // 16
-            heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
-        if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
-            heal(m, m.maxhp // 4)
-            consume(m)
-        if m.item == "Lum Berry" and (m.status or m.confused):
-            m.status, m.confused = None, 0
-            consume(m)
-        if m.taunt:
-            m.taunt -= 1
-        if m.cursed and m.ability != "Magic Guard":
-            hurt(b, m, m.maxhp // 4)
-        if m.perish:
-            m.perish -= 1
-            if m.perish == 0:
-                m.hp = 0
-        # Speed Boost: +1 Speed at each turn's end but the one it came in on.
-        if m.ability == "Speed Boost" and m.alive() and m.turns_in > 0:
-            change_stages(m, {"spe": 1})
-        # Toxic Orb and Flame Orb give their holder their status.
-        if m.alive() and m.item in ("Toxic Orb", "Flame Orb") and not m.status:
-            b.status_src = None
-            give_status(b, m, "tox" if m.item == "Toxic Orb" else "brn")
-        m.protecting = False
-        m.enduring = False
-        m.flinch = False        # a flinch lasts only the turn it is dealt
-        m.hit_this_turn = None
-        m.hurt_this_turn = False
-        m.stat_raised = False
-        m.turns_in += 1
+        if battle_over(b):
+            return False
+    if m.alive() and m.cursed and m.ability != "Magic Guard":
+        hurt(b, m, m.maxhp // 4)
+        if battle_over(b):
+            return False
+    if m.alive() and m.bound:
+        m.bound -= 1
+        hurt(b, m, m.maxhp // 16)
+        if battle_over(b):
+            return False
+    if m.taunt:
+        m.taunt -= 1
+    if m.magnet_rise:
+        m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
+    if getattr(m, "heal_block", 0):
+        m.heal_block -= 1           # Heal Block counts down at the turn's end
+    if m.alive() and m.yawn:
+        m.yawn -= 1
+        if m.yawn == 0:
+            give_status(b, m, "slp")
+    # Toxic Orb and Flame Orb give their holder their status
+    # (BattleSystem_TriggerDetrimentalHeldItem, the last step).
+    if m.alive() and m.item in ("Toxic Orb", "Flame Orb") and not m.status:
+        b.status_src = None
+        give_status(b, m, "tox" if m.item == "Toxic Orb" else "brn")
+    return True
 
 
 # ---- the player's policy -----------------------------------------------------------------------
@@ -2445,7 +2633,8 @@ def player_choice_doubles(b, me):
     ally = ally_of(b, me)
     best = None
     for mv in me.moves:
-        if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status"):
+        if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
+                or move_heal_blocked(me, mv):
             continue
         if not mv.damaging():
             for f in foes:
