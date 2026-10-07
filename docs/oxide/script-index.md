@@ -14,11 +14,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Eggs given | 3 | 1 | 1 | 1 | 0 | 1 |
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
-| Trainer battles | 591 | 513 | 72 | 6 | 0 | 8 |
-| Items given | 167 | 131 | 35 | 1 | 0 | 5 |
+| Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
+| Items given | 166 | 129 | 35 | 2 | 0 | 7 |
 | Item balls | 332 | 327 | 0 | 5 | 0 | 2 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
-| Flags | 3236 | 2976 | 215 | 45 | 0 | 93 |
+| Flags | 3232 | 2972 | 215 | 45 | 0 | 97 |
 | Variables | 1124 | 1082 | 31 | 11 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -2707,7 +2707,7 @@ Variables:
 
 Items given:
 
-- set elsewhere x1. Vanilla. `scripts_veilstone_city_prize_exchange.s:37`
+- set elsewhere xset by GetSoldTMCopies. Added by Oxide (5030153cd). `scripts_veilstone_city_prize_exchange.s:40`
 
 Flags:
 
@@ -2718,6 +2718,8 @@ Variables:
 
 - Set: VAR_MAP_LOCAL_0x01.
 - Checked: VAR_MAP_LOCAL_0x01.
+
+Gone from vanilla: set elsewhere x1.
 
 Could not read: 1 variables set elsewhere.
 
@@ -7457,19 +7459,21 @@ Flags:
 
 `MAP_HEADER_GAME_CORNER`: scripts `scripts_game_corner`, events `events_game_corner`, init scripts `scripts_init_game_corner`. Location name Game Corner. The encounter tool does not place it in a split.
 
-Items given:
+Trainer battles:
 
-- ITEM_TM64 x1. Vanilla. `scripts_game_corner.s:216`
+- TRAINER_GAME_CORNER_CHALLENGER (Rocco, level 38, 3 Pokemon), sees the player. Added by Oxide (483932033). `events_game_corner.json:250`
 
 Flags:
 
-- Set: FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN, FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER, FLAG_RECEIVED_GAME_CORNER_TM64, FLAG_SAVED_GAME_CORNER_TM64.
-- Checked: FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN, FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER, FLAG_RECEIVED_GAME_CORNER_TM64, FLAG_SAVED_GAME_CORNER_TM64.
+- Set: FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN, FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER.
+- Checked: FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN, FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER.
 - Hide an object: FLAG_HIDE_GAME_CORNER_LOOKER.
 
 Variables:
 
 - Checked: VAR_CONSECUTIVE_BONUS_ROUND_WINS.
+
+Gone from vanilla: ITEM_TM64 x1; flag FLAG_RECEIVED_GAME_CORNER_TM64 (check); flag FLAG_SAVED_GAME_CORNER_TM64 (check); flag FLAG_RECEIVED_GAME_CORNER_TM64 (set); flag FLAG_SAVED_GAME_CORNER_TM64 (set).
 
 Could not read: 1 commands with no name.
 

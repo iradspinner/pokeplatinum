@@ -369,6 +369,17 @@ its test's sizes. The list comes from `tools/oxide/tm_items.py`, which also
 writes the ids; a later list with a different number of TMs past TM92 moves
 the save again, by 4 bytes a TM.
 
+## Two spare variables hold the shops' purchases (2026-10-06)
+
+The TMs the Veilstone counters and the Game Corner sell once (Ian,
+2026-10-06; `include/data/sold_tms.h`) record each purchase as a bit in two
+saved variables vanilla never used, renamed from `VAR_UNUSED_0x4031` and
+`VAR_UNUSED_0x40A2` to `VAR_SOLD_TMS_0` and `VAR_SOLD_TMS_1`: 32 bits, one
+per sold TM, given by `place_rewards.py` and kept by its TM. Nothing moves:
+the variables were already in the save, and a save from before reads them
+as zero, nothing bought. The Game Corner challenger takes vanilla's unused
+trainer slot 6, so his defeated flag is that slot's, already in the save.
+
 ## Not yet moved, but expected to
 
 Listed so the next change can be planned rather than discovered:

@@ -5388,26 +5388,32 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_game_corner:330"], "daily": false, "flag": 214, "name": "FLAG_ARRESTED_CHARON_STARK_MOUNTAIN", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:239"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:272"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:109"], "daily": false, "flag": 304, "name": "FLAG_RECEIVED_GAME_CORNER_TM64", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:110", "scripts_game_corner:205"], "daily": false, "flag": 357, "name": "FLAG_SAVED_GAME_CORNER_TM64", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:296"], "daily": false, "flag": 214, "name": "FLAG_ARRESTED_CHARON_STARK_MOUNTAIN", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:205"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:238"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "check", "origin": "vanilla", "reached": true},
      {"at": ["events_game_corner:234"], "daily": false, "flag": 419, "name": "FLAG_HIDE_GAME_CORNER_LOOKER", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:241"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:274"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:217"], "daily": false, "flag": 304, "name": "FLAG_RECEIVED_GAME_CORNER_TM64", "op": "set", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_game_corner:225"], "daily": false, "flag": 357, "name": "FLAG_SAVED_GAME_CORNER_TM64", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_game_corner:207"], "daily": false, "flag": 302, "name": "FLAG_RECEIVED_GAME_CORNER_20_COINS_OLD_MAN", "op": "set", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_game_corner:240"], "daily": false, "flag": 303, "name": "FLAG_RECEIVED_GAME_CORNER_50_COINS_FARMER", "op": "set", "origin": "vanilla", "reached": true}
     ],
-    "items": [
-     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_game_corner", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM64", "value": 391, "when": ""}], "line": 216, "mode": "variable", "origin": "vanilla", "reached": true}
+    "trainers": [
+     {"commit": "483932033", "event": "object_events", "file": "events_game_corner", "how": "sees the player", "line": 250, "origin": "added", "reached": true, "slots": [{"mode": "event", "role": "event", "values": [{"name": "TRAINER_GAME_CORNER_CHALLENGER", "value": 6, "when": ""}]}], "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_game_corner:316", "scripts_game_corner:317"], "name": "VAR_CONSECUTIVE_BONUS_ROUND_WINS", "op": "check", "origin": "vanilla", "reached": true, "var": 16448}
+     {"at": ["scripts_game_corner:282", "scripts_game_corner:283"], "name": "VAR_CONSECUTIVE_BONUS_ROUND_WINS", "op": "check", "origin": "vanilla", "reached": true, "var": 16448}
     ]
    },
    "events": "events_game_corner",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "flags": [
+     {"at": ["scripts_game_corner:109"], "daily": false, "flag": 304, "name": "FLAG_RECEIVED_GAME_CORNER_TM64", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_game_corner:110"], "daily": false, "flag": 357, "name": "FLAG_SAVED_GAME_CORNER_TM64", "op": "check", "origin": null, "reached": true},
+     {"at": ["scripts_game_corner:217"], "daily": false, "flag": 304, "name": "FLAG_RECEIVED_GAME_CORNER_TM64", "op": "set", "origin": null, "reached": true},
+     {"at": ["scripts_game_corner:225"], "daily": false, "flag": 357, "name": "FLAG_SAVED_GAME_CORNER_TM64", "op": "set", "origin": null, "reached": true}
+    ],
+    "items": [
+     {"command": "Common_GiveItemQuantity", "count": [{"by": [], "name": "1", "value": 1, "when": ""}], "file": "scripts_game_corner", "how": "Common_GiveItemQuantity", "item": [{"by": [], "name": "ITEM_TM64", "value": 391, "when": ""}], "line": 216, "mode": "variable", "reached": true}
+    ]
+   },
    "header": "MAP_HEADER_GAME_CORNER",
    "init": "scripts_init_game_corner",
    "location": "Game Corner",
@@ -5554,19 +5560,23 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_veilstone_city_prize_exchange:101"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "check", "origin": "vanilla", "reached": true},
-     {"at": ["scripts_veilstone_city_prize_exchange:102"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_veilstone_city_prize_exchange:109"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "check", "origin": "vanilla", "reached": true},
+     {"at": ["scripts_veilstone_city_prize_exchange:110"], "daily": false, "flag": 196, "name": "FLAG_TALKED_TO_VEILSTONE_CITY_PRIZE_EXCHANGE_GUITARIST", "op": "set", "origin": "vanilla", "reached": true}
     ],
     "items": [
-     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_veilstone_city_prize_exchange", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 37, "mode": "variable", "origin": "vanilla", "reached": true}
+     {"command": "AddItem", "commit": "5030153cd", "count": [{"by": [], "name": "set by GetSoldTMCopies", "value": null, "when": ""}], "file": "scripts_veilstone_city_prize_exchange", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 40, "mode": "variable", "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "vars": [
-     {"at": ["scripts_veilstone_city_prize_exchange:27", "scripts_veilstone_city_prize_exchange:88"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
+     {"at": ["scripts_veilstone_city_prize_exchange:27", "scripts_veilstone_city_prize_exchange:96"], "name": "VAR_MAP_LOCAL_0x01", "op": "check", "origin": "vanilla", "reached": true, "var": 16385},
      {"at": ["scripts_veilstone_city_prize_exchange:15"], "name": "VAR_MAP_LOCAL_0x01", "op": "set", "origin": "vanilla", "reached": true, "var": 16385}
     ]
    },
    "events": "events_veilstone_city_prize_exchange",
-   "gone_from_vanilla": {},
+   "gone_from_vanilla": {
+    "items": [
+     {"command": "AddItem", "count": [{"name": "1", "value": 1, "when": ""}], "file": "scripts_veilstone_city_prize_exchange", "how": "AddItem", "item": [{"by": [], "match": "set elsewhere", "name": "set elsewhere", "value": null, "when": ""}], "line": 37, "mode": "variable", "reached": true}
+    ]
+   },
    "header": "MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE",
    "init": "scripts_init_veilstone_city_prize_exchange",
    "location": "Veilstone City",
@@ -18809,9 +18819,9 @@
   "flags": {
    "Oxide": 45,
    "base ROM": 215,
-   "gone": 93,
-   "total": 3236,
-   "vanilla": 2976
+   "gone": 97,
+   "total": 3232,
+   "vanilla": 2972
   },
   "hidden_items": {
    "Oxide": 1,
@@ -18826,11 +18836,11 @@
    "vanilla": 327
   },
   "items": {
-   "Oxide": 1,
+   "Oxide": 2,
    "base ROM": 35,
-   "gone": 5,
-   "total": 167,
-   "vanilla": 131
+   "gone": 7,
+   "total": 166,
+   "vanilla": 129
   },
   "pokemon": {
    "Oxide": 3,
@@ -18852,10 +18862,10 @@
    "vanilla": 4
   },
   "trainers": {
-   "Oxide": 6,
+   "Oxide": 7,
    "base ROM": 72,
    "gone": 8,
-   "total": 591,
+   "total": 592,
    "vanilla": 513
   },
   "vars": {
