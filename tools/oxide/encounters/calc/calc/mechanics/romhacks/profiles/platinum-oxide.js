@@ -216,6 +216,14 @@ var platinumOxideProfile = (0, helpers_1.makeProfile)({
                 return basePower;
             }
         ],
+        // Reckless raises exactly the moves whose effect scripts set its 1.2
+        // (make_calc_mechanics reads them): the recoil and crash moves, and
+        // Oxide's one-turn reworks, Chloroblast among them.
+        recklessMove: [
+            function (ctx) {
+                return inList("reckless", ctx.move);
+            }
+        ],
         // Beside Thick Fat: Purifying Salt halves Ghost moves and Water Bubble
         // Fire moves against its holder.
         defenderPowerMods: [
