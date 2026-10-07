@@ -30,6 +30,7 @@ import threading
 import urllib.parse
 import zlib
 
+from . import alpha
 from . import analysis as A
 from . import calc_export
 from . import canon
@@ -1051,6 +1052,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                    next(src["pool"] for src in st.scripted
                                         if src["kind"] == "starter")]
                 return self._send(out)
+            # The alpha checklist (alpha readiness step 17): every zone in
+            # walking order with what the player meets there (alpha.py).
+            if parts[1] == "alpha" and len(parts) == 2:
+                return self._send(alpha.build(model.repo_root()))
             if parts[1] == "caught":
                 return self._send({
                     "encounters": st.encounters,

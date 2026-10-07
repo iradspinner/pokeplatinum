@@ -175,6 +175,25 @@ def team(root, constant):
     return out
 
 
+def _variant_label(root, constant, tag):
+    """What tells one of a fight's teams from the others: in a tag fight,
+    the trainer ("Commander Mars"); in a fight kept once per starter, the
+    starter its constant names (TRAINER_RIVAL_ROUTE_201_PIPLUP), else its
+    ace, since Lucas's and Dawn's slots are numbered dummies."""
+    if tag:
+        return _trainer_name(root, constant)
+    last = constant.rsplit("_", 1)[-1]
+    if last.isalpha():
+        return last.title()
+    members = team(root, constant)
+    try:
+        who = trainers.load(root, _stem(constant)).get("name") or ""
+    except (KeyError, FileNotFoundError):
+        who = ""
+    ace = members[-1]["label"] if members else ""
+    return f"{who}, {ace}".strip(", ") or constant
+
+
 def _trainer_name(root, constant):
     try:
         data = trainers.load(root, _stem(constant))
@@ -182,7 +201,43 @@ def _trainer_name(root, constant):
         return constant
     cls = (data.get("class") or "").replace("TRAINER_CLASS_", "").replace("_", " ").title()
     name = data.get("name") or ""
+    # A named class already holds the name ("Commander Mars", "Leader Volkner").
+    if name and name.lower() in cls.lower().split():
+        return cls
     return f"{cls} {name}".strip() or constant
+
+
+@functools.lru_cache(maxsize=None)
+def _item_records(root):
+    """{item constant: (its name, the move a TM or HM teaches)} from
+    res/items/data, whose file names are the constants in lower case."""
+    base = os.path.join(root, "res", "items", "data")
+    out = {}
+    for f in os.listdir(base):
+        if f.endswith(".json"):
+            with open(os.path.join(base, f), encoding="utf-8") as fh:
+                d = json.load(fh)
+            out["ITEM_" + f[:-5].upper()] = (d.get("name"), d.get("teachesMove"))
+    return out
+
+
+def item_label(root, item, tm_moves=None):
+    """An item as the game names it, a TM or HM with its move ("TM39 Rock
+    Tomb"). `tm_moves` ({"TM39": MOVE_X}, the TM list's numbering) wins over
+    the tree's for a reward-table TM, since the table and the list are drawn
+    up together and the tree takes their numbering only when step 10 lands."""
+    if not item:
+        return None
+    from . import pokedex
+    name, move = _item_records(root).get(item, (None, None))
+    m = re.fullmatch(r"ITEM_((?:TM|HM)\d+)", item)
+    if m and tm_moves and tm_moves.get(m.group(1)):
+        move = tm_moves[m.group(1)]
+    name = name or item[len("ITEM_"):].replace("_", " ").title()
+    if move:
+        rec = pokedex.moves(root).get(move)
+        name += " " + (rec["name"] if rec else move[len("MOVE_"):].replace("_", " ").title())
+    return name
 
 
 # ---- the in-game checklist ------------------------------------------------
@@ -329,6 +384,9 @@ def build(root=None):
     root = root or model.repo_root()
     tabs = tables(root)
     roles, roles_from = tabs["roles"]
+    tm_moves = {r["tm"]: r["move"] for r in tabs["tms"][0] if r.get("tm")}
+    tree_label = functools.partial(item_label, root)
+    table_label = functools.partial(item_label, root, tm_moves=tm_moves)
     rewards, rewards_from = tabs["rewards"]
     caps = trainers.caps()
     smap = trainers.split_map(root)
@@ -345,7 +403,8 @@ def build(root=None):
     reward_of = collections.defaultdict(list)
     for r in rewards:
         if r.get("kind") == "trainer" and r.get("trainer_id"):
-            reward_of[r["trainer_id"]].append({"item": r["reward"], "copies": int(r.get("copies") or 1)})
+            reward_of[r["trainer_id"]].append({"item": r["reward"], "label": table_label(r["reward"]),
+                                               "copies": int(r.get("copies") or 1)})
 
     # The story bosses, one row a fight; a rival fight's three starter
     # variants are one row, each variant's team kept.
@@ -361,7 +420,8 @@ def build(root=None):
         put(fight["split"], zone_of(header), "trainers", {
             "key": fight["key"], "name": fight["label"], "kind": "boss", "required": True,
             "constants": consts, "map": header, "tag": bool(fight.get("tag")),
-            "teams": [{"constant": c, "team": team(root, c)} for c in consts],
+            "teams": [{"constant": c, "team": team(root, c),
+                       "label": _variant_label(root, c, bool(fight.get("tag")))} for c in consts],
             "rewards": [x for c in consts for x in reward_of.get(c, [])], "rated": True})
 
     # Every ordinary trainer the census places.
@@ -398,12 +458,14 @@ def build(root=None):
             flag_name = key if isinstance(key, str) else None
             flag = flags.get(flag_name) if flag_name else None
         put(split, zone_of(header), "pickups", {
-            "item": item, "how": how, "needs": needs, "map": "MAP_HEADER_" + header,
+            "item": item, "label": tree_label(item), "how": how, "needs": needs,
+            "map": "MAP_HEADER_" + header,
             "flag": flag, "flag_name": flag_name, "placed": None})
 
     # Items NPC scripts give.
     for split, header, item in bsplits.gifts():
-        put(split, zone_of(header), "gifts", {"item": item, "map": "MAP_HEADER_" + header, "placed": None})
+        put(split, zone_of(header), "gifts", {"item": item, "label": tree_label(item),
+                                              "map": "MAP_HEADER_" + header, "placed": None})
 
     # The reward table: balls and gifts matched to the place they replace
     # (or, once step 10 has placed them, to the place that holds them),
@@ -413,11 +475,14 @@ def build(root=None):
         if kind == "trainer":
             continue
         zone, split = zone_of(r.get("map")), r.get("split")
-        reward = {"item": r["reward"], "copies": int(r.get("copies") or 1),
+        reward = {"item": r["reward"], "label": table_label(r["reward"]), "copies": int(r.get("copies") or 1),
                   "badges": int(r["badges"]) if (r.get("badges") or "").isdigit() else None,
                   "replaces": r.get("replaces") or None, "note": r.get("note") or ""}
         if kind in ("mart", "prize"):
-            put(split, zone, "shop", dict(reward, kind=kind))
+            # A slot the table drops (ITEM_NONE: the Game Corner's held-item
+            # prizes, Ian, 2026-10-06) sells nothing, so nothing is listed.
+            if r["reward"] != "ITEM_NONE":
+                put(split, zone, "shop", dict(reward, kind=kind))
             continue
         bucket = "pickups" if kind == "ball" else "gifts"
         rows = [x for z in [zones.get((s, zone)) for s in SPLITS] if z for x in z[bucket]
@@ -427,7 +492,7 @@ def build(root=None):
         if hit:
             hit["placed"] = reward
         else:
-            put(split, zone, bucket, {"item": None, "how": kind, "needs": None, "map": r.get("map"),
+            put(split, zone, bucket, {"item": None, "label": None, "how": kind, "needs": None, "map": r.get("map"),
                                       "flag": None, "flag_name": None, "placed": reward})
 
     for split, zone, row in _wild(root):

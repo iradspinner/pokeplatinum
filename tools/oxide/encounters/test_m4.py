@@ -25,7 +25,8 @@ AREA = "encounters_route_214"
 
 
 def get(path):
-    with urllib.request.urlopen(BASE + path, timeout=10) as r:
+    # A cold /api/alpha reads the census and every trainer, about 8 seconds.
+    with urllib.request.urlopen(BASE + path, timeout=60) as r:
         return json.loads(r.read())
 
 
@@ -419,6 +420,19 @@ def check_time_layer_catch(results):
                     and page.count("await reloadAfterCatch()") == 2, ""))
 
 
+def check_alpha(results):
+    """The alpha checklist (step 17) answers over HTTP, and the page has
+    its view; test_alpha checks the counts."""
+    d = get("/api/alpha")
+    splits = [s["split"] for s in d.get("splits", [])]
+    page = open(os.path.join(os.path.dirname(__file__), "ui", "index.html"),
+                encoding="utf-8").read()
+    results.append(("/api/alpha answers with every split, and the page has the Alpha view",
+                    splits[:1] == ["Roark"] and "League" in splits and d["splits"][0]["zones"]
+                    and 'data-view="alpha"' in page and 'id="alphamain"' in page,
+                    f"{len(splits)} splits, {sum(len(s['zones']) for s in d['splits'])} zone visits"))
+
+
 def check_water_tables(results):
     """Surf and the three rods, with the fractional repel their level ranges
     require."""
@@ -640,7 +654,7 @@ def main():
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_time_layer_catch, check_rejections,
                       check_edit_is_local, check_no_colour_literals, check_dim_theme,
-                      check_faces_and_switch, check_team_sheet):
+                      check_faces_and_switch, check_team_sheet, check_alpha):
             check(results)
     finally:
         httpd.shutdown()

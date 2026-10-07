@@ -864,6 +864,58 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 .peer:hover { background: var(--sunken); }
 .peer.me { background: var(--place-bg); font-weight: 700; }
 .peer .num { color: var(--dim); }
+
+/* ---- the alpha checklist ----------------------------------------------- */
+/* The splits and their zones in a rail, the chosen split's zones as cards. */
+#alphamain { grid-template-columns: 320px minmax(640px, 1fr); }
+#alphanav { border-right: 1px solid var(--rule); background: var(--panel); padding: 10px 0 40px; }
+#alphanav .asplit { display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  border: 0; border-radius: 0; background: none; padding: 8px 16px; font-size: 16px; font-weight: 700; }
+#alphanav .asplit.on { background: var(--place-bg); color: var(--place-ink); }
+#alphanav .asplit .sub { font-weight: 400; margin-left: auto; }
+#alphanav .azlink { display: flex; justify-content: space-between; gap: 8px; padding: 3px 16px 3px 30px;
+  font-size: 14.5px; color: var(--ink); cursor: pointer; }
+#alphanav .azlink:hover { background: var(--sunken); }
+#alphanav .azlink .num { color: var(--dim); font-size: 13px; }
+#alphamid { padding: 18px 22px 60px; display: flex; flex-direction: column; gap: 14px; font-size: 16px; }
+#alphamid > * { flex-shrink: 0; }
+#alphamid h1 { margin: 0; font-size: 22px; }
+#alphamid .asrc { color: var(--dim); font-size: 14px; margin: 0; }
+.azone { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; scroll-margin-top: 12px; }
+.azone h2 { margin: 0; font-size: 19px; }
+.azone .azsum { color: var(--dim); font-size: 14.5px; }
+.azone h3 { margin: 4px 0 0; font-size: 14px; color: var(--dim); text-transform: uppercase;
+  letter-spacing: .04em; font-weight: 700; }
+.atr { display: grid; grid-template-columns: 96px minmax(170px, 230px) minmax(0, 1fr) minmax(120px, 220px);
+  column-gap: 12px; align-items: center; padding: 3px 0; border-top: 1px solid var(--rule); }
+.atr:first-of-type { border-top: 0; }
+.atr .who a { font-weight: 650; color: var(--ink); }
+.atr .who .sub { display: block; font-size: 13px; }
+.ateam { display: flex; flex-wrap: wrap; gap: 2px 6px; align-items: center; }
+.ateam .mon { display: inline-flex; align-items: center; gap: 1px; font-size: 13px; color: var(--dim); }
+.ateam .ico { width: 32px; height: 32px; }
+.ateam .ico img { width: 32px; height: 64px; }
+.ateam .alt { width: 100%; font-size: 12.5px; color: var(--faint); }
+.areward { font-size: 14px; }
+.chip.req { --t: var(--type-fire); }
+.chip.opt { background: var(--panel); border-color: var(--rule); font-weight: 400; }
+.chip.boss { --t: var(--type-dragon); }
+.agaunt { border: 1px solid var(--rule); border-radius: 10px; padding: 6px 12px; }
+.agaunt .ghead { font-weight: 700; font-size: 15px; }
+.alist { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2px 18px;
+  font-size: 15px; }
+.alist .it { display: flex; gap: 6px; align-items: baseline; }
+.alist .it .sub { font-size: 13px; }
+.alist .it .becomes { color: var(--place-ink); font-size: 13.5px; }
+.awild { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 2px 12px; font-size: 15px; }
+.awild a { color: var(--ink); font-weight: 600; }
+.awild .sp { color: var(--dim); }
+.achecks details { font-size: 15px; padding: 2px 0; }
+.achecks summary { cursor: pointer; }
+.achecks .done summary { color: var(--faint); text-decoration: line-through; }
+.achecks details p { margin: 4px 0 6px 18px; color: var(--dim); font-size: 14px; }
+.planned { color: var(--faint); font-style: italic; }
 </style>
 </head>
 <body>
@@ -877,6 +929,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <button data-view="trainers">Trainers</button>
     <button data-view="calc">Calc</button>
     <button data-view="sim">Box sim</button>
+    <button data-view="alpha" title="Every zone in walking order, with what to check there in the alpha run">Alpha</button>
   </nav>
   <div class="strip">
     <span class="metric">Source <b id="h-ref">—</b></span>
@@ -990,6 +1043,14 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
     <span id="save-state">No save file set.</span>
   </div>
   <iframe id="calcframe" title="Damage calculator"></iframe>
+</main>
+<!-- The alpha checklist (alpha readiness step 17, alpha.py): every zone in
+     walking order, split by split, with its trainers, items, rewards, wild
+     tables and in-game checks. The splits and zones on the left; the chosen
+     split's zones in the middle. -->
+<main id="alphamain" hidden>
+  <section id="alphanav"></section>
+  <section id="alphamid"><p class="sub">Loading the checklist…</p></section>
 </main>
 <!-- The box simulator: one nuzlocke run to a chosen split, played to make
      the box worth as much as it can (tools/oxide/encounters/simulate.py). -->
@@ -1715,7 +1776,7 @@ function parseHash() {
   if (view === "dex") return { view, species: key };
   if (view === "moves") return { view, move: key };
   if (view === "trainers") return { view, trainer: key };
-  if (view === "calc" || view === "sim") return { view };
+  if (view === "calc" || view === "sim" || view === "alpha") return { view };
   return null;
 }
 
@@ -1748,6 +1809,165 @@ async function restore(p) {
 
 // Resolves once the view's list is loaded, so a jump from one view to a
 // row of another can select that row and scroll to it.
+// ---- the alpha checklist -----------------------------------------------
+// Every zone in walking order with what to check there (alpha.py). The
+// server rebuilds it from the tree on each load, so it follows the reward
+// placements and the combed teams as they land.
+
+let ALPHA = null, ALPHASPLIT = null;
+const ANYWHERE = "Anywhere";
+
+async function loadAlpha() {
+  try {
+    ALPHA = await api("/api/alpha");
+    if (!ALPHASPLIT) ALPHASPLIT = (ALPHA.splits.find(s => s.zones.length) || {}).split;
+    drawAlphaNav();
+    drawAlphaMid();
+  } catch (e) {
+    toast(e.message, true);
+    $("#alphamid").innerHTML = `<p class="sub">${esc(e.message)}</p>`;
+  }
+}
+
+const zoneId = z => "az-" + z.replace(/[^A-Za-z0-9]+/g, "-");
+const plural = (n, one, many) => `${n} ${n === 1 ? one : (many || one + "s")}`;
+const copiesOf = r => r.copies > 1 ? ` ×${r.copies}` : "";
+
+// A zone's numbers as one line of words, the things Ian ticks off there.
+function zoneSummary(c) {
+  const out = [];
+  if (c.mandatory) out.push(plural(c.mandatory, "mandatory trainer"));
+  if (c.optional) out.push(plural(c.optional, "optional trainer"));
+  if (c.rewards) out.push(plural(c.rewards, "trainer reward"));
+  if (c.gauntlet) out.push(plural(c.gauntlet, "gauntlet trainer"));
+  if (c.balls) out.push(plural(c.balls, "ball"));
+  if (c.hidden) out.push(plural(c.hidden, "hidden item"));
+  if (c.gifts) out.push(plural(c.gifts, "gift"));
+  if (c.shop) out.push(plural(c.shop, "shop TM"));
+  if (c.wild) out.push(plural(c.wild, "wild table"));
+  if (c.checks) out.push(plural(c.checks, "in-game check"));
+  return out.join(", ") || "nothing new to check";
+}
+
+function drawAlphaNav() {
+  const d = ALPHA;
+  const head = (split, label, sub) => `<button class="asplit ${split === ALPHASPLIT ? "on" : ""}"
+      data-split="${esc(split)}">${label}<span class="sub">${esc(sub)}</span></button>`;
+  let html = head(ANYWHERE, "Anywhere", plural(d.anywhere.length, "check"));
+  d.splits.forEach(s => {
+    if (!s.zones.length) return;
+    html += head(s.split, splitTag(s.split), s.cap ? `cap ${s.cap}, ${plural(s.zones.length, "zone")}`
+                                                   : plural(s.zones.length, "zone"));
+    if (s.split !== ALPHASPLIT) return;
+    html += s.zones.map(z => {
+      const c = z.counts, n = c.mandatory + c.optional + c.gauntlet;
+      return `<div class="azlink" data-zone="${esc(z.zone)}"><span>${esc(z.zone)}</span>
+        <span class="num">${n ? plural(n, "trainer") : ""}</span></div>`;
+    }).join("");
+  });
+  $("#alphanav").innerHTML = html;
+}
+
+// One trainer: its standing (boss, mandatory, optional), its name opening the
+// Trainers tab, its team as icons and levels (a rival's three teams, one a
+// line, named by the starter each leads with), and its reward.
+function alphaTrainer(t) {
+  const chip = t.kind === "boss" ? `<span class="chip boss">Boss</span>`
+    : t.required ? `<span class="chip req">Mandatory</span>` : `<span class="chip opt">Optional</span>`;
+  const stem = c => c.replace(/^TRAINER_/, "").toLowerCase();
+  const mons = team => team.map(m => `<span class="mon">${icon(m.species, true)}${m.level ?? ""}</span>`).join("");
+  const teams = t.planned ? `<span class="planned">planned; the main track creates it in step 10</span>`
+    : t.teams.length === 1 ? mons(t.teams[0].team)
+    : t.teams.map(x => `<span class="alt">${esc(x.label || x.constant)}</span>${mons(x.team)}`).join("");
+  const sub = [t.section ? "gauntlet " + t.section : "", t.tag ? "tag battle" : ""].filter(Boolean).join(", ");
+  return `<div class="atr"><span>${chip}</span>
+    <span class="who">${t.planned ? esc(t.name)
+      : `<a href="#" data-tr="${esc(stem(t.constants[0]))}" title="Open in the Trainers tab">${esc(t.name)}</a>`}
+      ${sub ? `<span class="sub">${esc(sub)}</span>` : ""}</span>
+    <span class="ateam">${teams}</span>
+    <span class="areward">${t.rewards.map(r => esc(r.label + copiesOf(r))).join(", ")}</span></div>`;
+}
+
+// A ball, hidden item or gift: what the tree holds there, what opens it, and
+// what the reward table puts there instead (until step 10 places it).
+function alphaItem(p) {
+  const what = p.item ? esc(p.label) : `<span class="planned">a new ${esc(p.how)}</span>`;
+  const how = p.how === "hidden" ? "hidden" : p.how === "ball" ? "ball" : "";
+  const needs = p.needs && p.needs !== "foot" ? `needs ${p.needs}` : "";
+  const sub = [how, needs].filter(Boolean).join(", ");
+  const r = p.placed;
+  const becomes = !r ? "" : r.item === p.item ? `<span class="becomes">reward${esc(copiesOf(r))}</span>`
+    : `<span class="becomes">becomes ${esc(r.label + copiesOf(r))}</span>`;
+  return `<span class="it">${what}${sub ? ` <span class="sub">${esc(sub)}</span>` : ""} ${becomes}</span>`;
+}
+
+function alphaChecks(list) {
+  return `<div class="achecks">${list.map(c => `<details class="${c.done ? "done" : ""}">
+    <summary>${esc(c.key)}${c.live ? ` <span class="tag" title="Read by an agent attached to melonDS">live</span>` : ""}
+      <span class="sub">${esc(c.section)}</span></summary><p>${esc(c.text)}</p></details>`).join("")}</div>`;
+}
+
+function alphaZone(z) {
+  const parts = [`<div class="azone" id="${zoneId(z.zone)}">
+    <div><h2>${esc(z.zone)}</h2><span class="azsum">${esc(zoneSummary(z.counts))}</span></div>`];
+  if (z.trainers.length) parts.push(`<h3>Trainers</h3><div>${z.trainers.map(alphaTrainer).join("")}</div>`);
+  z.gauntlets.forEach(g => parts.push(`<div class="agaunt"><div class="ghead">Gauntlet section: ${esc(g.section)}</div>
+    ${g.trainers.map(alphaTrainer).join("")}</div>`));
+  const items = z.pickups.concat(z.gifts.map(g => Object.assign({ how: "gift" }, g)));
+  if (items.length) parts.push(`<h3>Items</h3><div class="alist">${items.map(alphaItem).join("")}</div>`);
+  if (z.shop.length) parts.push(`<h3>Shop TMs</h3><div class="alist">${z.shop.map(s =>
+    `<span class="it">${esc(s.label + copiesOf(s))} <span class="sub">${s.kind === "prize" ? "Game Corner prize" : "shop"}, ${
+      plural(s.badges, "badge")}</span></span>`).join("")}</div>`);
+  if (z.wild.length || z.scripted.length) parts.push(`<h3>Encounters</h3><div class="awild">${
+    z.wild.map(w => `<a href="#" data-area="${esc(w.area)}" title="Open in the Tables tab">${esc(w.label)}</a>
+      <span class="sp">${esc(w.species.join(", "))}</span>`).join("")}${
+    z.scripted.map(s => `<span>${esc(s.label)} <span class="sub">${esc(s.kind)}${s.planned ? ", planned" : ""}</span></span>
+      <span class="sp">${esc(s.pool.join(", "))}${s.level ? ", level " + s.level : ""}</span>`).join("")}</div>`);
+  if (z.checks.length) parts.push(`<h3>In-game checks</h3>${alphaChecks(z.checks)}`);
+  parts.push(`</div>`);
+  return parts.join("");
+}
+
+function drawAlphaMid() {
+  const d = ALPHA, src = d.sources;
+  const from = src.roles === "working tree" ? ""
+    : `<p class="asrc">The trainer roles and the reward table are read from ${esc(src.roles || "nowhere")} until they land.</p>`;
+  if (ALPHASPLIT === ANYWHERE) {
+    $("#alphamid").innerHTML = `<h1>Anywhere</h1>${from}
+      <p class="asrc">The in-game checks no zone holds: the test kit's, and the ones checked wherever you are.</p>
+      <div class="azone">${alphaChecks(d.anywhere)}</div>`;
+    return;
+  }
+  const s = d.splits.find(x => x.split === ALPHASPLIT);
+  if (!s) return;
+  $("#alphamid").innerHTML = `<h1>${esc(s.split)}'s split${s.cap ? `, cap ${s.cap}` : ""}</h1>${from}`
+    + s.zones.map(alphaZone).join("");
+  $("#alphamid").scrollTop = 0;
+}
+
+$("#alphanav").addEventListener("click", ev => {
+  const sp = ev.target.closest("[data-split]");
+  if (sp) {
+    ALPHASPLIT = sp.dataset.split;
+    drawAlphaNav();
+    drawAlphaMid();
+    return;
+  }
+  const z = ev.target.closest("[data-zone]");
+  if (z) {
+    const card = document.getElementById(zoneId(z.dataset.zone));
+    if (card) card.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+});
+$("#alphamid").addEventListener("click", ev => {
+  const hit = ev.target.closest("[data-sp], [data-tr], [data-area]");
+  if (!hit) return;
+  ev.preventDefault();
+  if (hit.dataset.sp) openSpecies(hit.dataset.sp);
+  else if (hit.dataset.tr) openTrainer(hit.dataset.tr);
+  else if (hit.dataset.area) openTable(hit.dataset.area);
+});
+
 // ---- the box simulator -------------------------------------------------
 
 let SIM = null;
@@ -2689,8 +2909,10 @@ async function setView(view) {
   VIEW = view;
   $("nav#views").querySelectorAll("button").forEach(b =>
     b.classList.toggle("on", b.dataset.view === view));
-  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain)").hidden = view !== "tables";
+  $("main:not(#dexmain):not(#movemain):not(#calcmain):not(#simmain):not(#trainmain):not(#alphamain)").hidden = view !== "tables";
   $("#simmain").hidden = view !== "sim";
+  $("#alphamain").hidden = view !== "alpha";
+  if (view === "alpha" && !ALPHA) loadAlpha();
   $("#trainmain").hidden = view !== "trainers";
   if (view === "sim" && !SIM) simulate(true);
   $("#dexmain").hidden = view !== "dex";
