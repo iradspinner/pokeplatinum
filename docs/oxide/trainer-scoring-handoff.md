@@ -65,7 +65,17 @@ Substitute, as on the main track's engine branch: the hit, its added
 effects and status moves reach the Pokemon behind it. The AI mirror
 follows the other flags' routing of 21 new moves (Ian, 2026-10-07,
 alpha-readiness step 18): its tables come from the script, and Evaluate
-Attack's and Baton Pass's named lists now do too. Every stored
+Attack's and Baton Pass's named lists now do too.
+In progress, paused for usage (2026-10-07): Meteor Beam and Electro Shot
+charge with their Sp. Atk rise (Power Herb and, for Electro Shot, rain skip
+the charge and still raise it; Skull Bash's Power Herb now raises Defense
+too), and Heal Block and Psychic Noise block healing for five turns as the
+engine does (the listed healing moves, draining, Leech Seed's heal, Wish,
+Ingrain and Aqua Ring; not held items or abilities), in both attack
+routines and the planner; the three-quarters drain (Draining Kiss) now
+heals. Still to do: the AI's invalid-move check for a heal-blocked move
+(fightai.invalid), tests for both fixes, and the full suites (only
+test_fightsim, 21/21, was run). Every stored
 reading is stale for these moves and is redone in goal 3. Left out, as
 small: contact effects per hit of a multi-hit move. Goal 3's preflight
 passed (2026-10-07): with a learnset change planted in an extracted copy,

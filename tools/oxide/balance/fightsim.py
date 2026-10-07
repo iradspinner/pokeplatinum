@@ -200,8 +200,13 @@ MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
+# The share of its damage a draining move restores: half (Giga Drain, Dream
+# Eater, Horn Leech), three quarters (Draining Kiss, Oblivion Wing).
+DRAIN = {"RECOVER_HALF_DAMAGE_DEALT": 1 / 2, "RECOVER_DAMAGE_SLEEP": 1 / 2,
+         "RECOVER_THREE_QUARTERS_DAMAGE_DEALT": 3 / 4}
 TWO_TURN = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE", "CHARGE_TURN_HIGH_CRIT", "CHARGE_TURN_HIGH_CRIT_FLINCH",
-            "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN"}
+            "CHARGE_TURN_DEF_UP", "SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN",
+            "CHARGE_TURN_SP_ATK_UP", "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS"}  # Meteor Beam, Electro Shot
 INVULNERABLE = {"FLY", "DIG", "DIVE", "BOUNCE", "SHADOW_FORCE"}
 SELF_KO = {"HALVE_DEFENSE", "EXPLOSION", "FAINT_AND_ATK_SP_ATK_DOWN_2"}
 WEATHER_OF = {"WEATHER_RAIN": "Rain", "WEATHER_SUN": "Sun", "WEATHER_SANDSTORM": "Sand",
@@ -320,6 +325,7 @@ class Mon:
     def reset_volatile(self):
         self.stages = dict.fromkeys(STAGE_KEYS, 0)
         self.stat_raised = False         # a stage rose this turn (Burning Jealousy)
+        self.heal_block = 0              # Heal Block's turns left
         self.rollout = 0
         self.curled = False
         self.confused = 0
@@ -867,7 +873,7 @@ def use_move(b, att, mv, dfn, first, targets=None):
         return could_not_act(b, att, mv, dfn, targets)
     if att.infatuated and b.rng.random() < 0.5:
         return could_not_act(b, att, mv, dfn, targets)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv):
+    if (att.taunt and mv.cat == "Status") or tormented_out(att, mv) or move_heal_blocked(att, mv):
         return could_not_act(b, att, mv, dfn, targets)
     mark_hit(b, mv, dfn, True, targets)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -879,16 +885,10 @@ def use_move(b, att, mv, dfn, first, targets=None):
     if commit_move(att, mv):
         return                   # Last Resort before every other move was used
     # Charging moves: the first turn only charges (Fly and Dig vanish).
-    if mv.effect in TWO_TURN and att.charging is None:
-        if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
-            pass
-        elif att.item == "Power Herb":
-            consume(att)
-        else:
-            att.charging = mv
-            if mv.effect == "CHARGE_TURN_DEF_UP":
-                change_stages(att, {"def": 1})
-            return
+    if mv.effect in TWO_TURN and att.charging is None and not charge_skipped(b, att, mv):
+        att.charging = mv
+        change_stages(att, CHARGE_STAGES.get(mv.effect, {}))     # Skull Bash, Meteor Beam, Electro Shot
+        return
     att.charging = None
     if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
         # Sleep Talk works only asleep, and then uses one of its other moves.
@@ -1045,8 +1045,10 @@ def attack(b, att, mv, dfn, first):
     e = mv.effect
     if e in RECOIL and att.ability != "Rock Head":
         hurt(b, att, max(1, int(dealt * RECOIL[e])))
-    if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
-        heal(att, dealt // 2)
+    # Draining (subscript_drain_half_damage_dealt, _three_quarters): Heal Block
+    # on the user stops the heal, not the damage.
+    if e in DRAIN and not heal_blocked(att):
+        heal(att, int(dealt * DRAIN[e]))
     if e == "RECHARGE_AFTER":
         att.recharge = True
     if e in SELF_KO or e == "FINAL_GAMBIT":
@@ -1092,6 +1094,8 @@ def attack(b, att, mv, dfn, first):
         change_stages(dfn, HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
+    if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
+        start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound = b.rng.randint(2, 5)
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
@@ -1506,6 +1510,64 @@ def sub_blocks(att, dfn, mv=None):
     return not passes
 
 
+# The stage a charging move raises, on its charge turn or when its charge is
+# skipped (effect scripts 145, 324 and 325, and their Power Herb and rain
+# subscripts, which raise it too): Skull Bash's Defense, Meteor Beam's and
+# Electro Shot's Sp. Atk.
+CHARGE_STAGES = {"CHARGE_TURN_DEF_UP": {"def": 1}, "CHARGE_TURN_SP_ATK_UP": {"spa": 1},
+                 "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS": {"spa": 1}}
+
+
+def weather_ignored(b):
+    """Cloud Nine or Air Lock on the field (CheckIgnoreWeather)."""
+    return any(m.alive() and m.ability in ("Cloud Nine", "Air Lock") for m in b.p.on_field() + b.b.on_field())
+
+
+def charge_skipped(b, att, mv):
+    """Whether a two-turn move strikes at once: SolarBeam in sun; Electro
+    Shot in rain unless Cloud Nine or Air Lock is out, raising Sp. Atk
+    (subscript_sp_atk_up_rain_skip); else a Power Herb, spent, raising the
+    move's charge stage (subscript_power_herb_skull_bash and _meteor_beam)."""
+    if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
+        return True
+    if mv.effect == "CHARGE_TURN_SP_ATK_UP_RAIN_SKIPS" and b.weather == "Rain" and not weather_ignored(b):
+        change_stages(att, CHARGE_STAGES[mv.effect])
+        return True
+    if att.item == "Power Herb":
+        consume(att)
+        change_stages(att, CHARGE_STAGES.get(mv.effect, {}))
+        return True
+    return False
+
+
+@functools.lru_cache(maxsize=None)
+def heal_blocked_moves():
+    """The moves Heal Block stops (battle_lib.c, sMovesAffectedByHealBlock):
+    they cannot be chosen and fail if used (Move_HealBlocked)."""
+    with open(os.path.join(data.ROOT, "src", "battle", "battle_lib.c"), encoding="utf-8") as fh:
+        body = re.search(r"sMovesAffectedByHealBlock\[\] = \{(.*?)\};", fh.read(), re.S).group(1)
+    return frozenset(re.findall(r"MOVE_\w+", body))
+
+
+def heal_blocked(mon):
+    """Whether Heal Block runs on mon (moveEffectsData.healBlockTurns): its
+    healing moves, its draining, Leech Seed's heal for it, Wish's, Ingrain's
+    and Aqua Ring's all fail; held items and abilities still heal."""
+    return getattr(mon, "heal_block", 0) > 0
+
+
+def move_heal_blocked(mon, mv):
+    return heal_blocked(mon) and mv.const in heal_blocked_moves()
+
+
+def start_heal_block(att, dfn, mv):
+    """Heal Block, and Psychic Noise's added effect (subscript_heal_block_start):
+    five turns, failing on a Substitute (an Infiltrator's passes) or on a
+    Pokemon already blocked."""
+    if dfn.alive() and not heal_blocked(dfn) and not sub_blocks(att, dfn, mv):
+        dfn.heal_block = 5
+
+
 def give_status_by_move(b, att, dfn, mv, status):
     """give_status for a status that att's move gives dfn, the one path on
     which an Infiltrator passes dfn's Substitute (can_status reads
@@ -1770,6 +1832,8 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STATUS_LEECH_SEED":
         if "Grass" not in dfn.types and not sub_blocks(att, dfn, mv):
             dfn.seeded = True
+    elif e == "PREVENT_HEALING":                             # Heal Block
+        start_heal_block(att, dfn, mv)
     elif e in SELF_STAGES:
         change_stages(att, SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
@@ -1940,7 +2004,7 @@ def _end_of_turn(b):
     for side in (b.p, b.b):
         if side.wish:
             side.wish -= 1
-            if side.wish == 0 and side.cur().alive():
+            if side.wish == 0 and side.cur().alive() and not heal_blocked(side.cur()):
                 heal(side.cur(), side.cur().maxhp // 2)
         for m in side.on_field():
             _end_of_turn_mon(b, side, m)
@@ -1969,7 +2033,7 @@ def _end_of_turn_mon(b, side, m):
                 hurt(b, m, m.maxhp // 16)
         if m.item == "Leftovers" or (m.item == "Black Sludge" and "Poison" in m.types):
             heal(m, m.maxhp // 16)
-        if m.aqua_ring:
+        if m.aqua_ring and not heal_blocked(m):
             heal(m, m.maxhp // 16)
         if m.magnet_rise:
             m.magnet_rise -= 1           # MON_COND_CHECK_STATE_MAGNET_RISE counts it down
@@ -1985,7 +2049,7 @@ def _end_of_turn_mon(b, side, m):
             foe = foe_of(b, m)
             amount = m.maxhp // 8
             hurt(b, m, amount)
-            if foe.alive():
+            if foe.alive() and not heal_blocked(foe):     # Leech Seed heals no blocked seeder
                 heal(foe, amount)
         if m.bound:
             m.bound -= 1
@@ -1994,7 +2058,7 @@ def _end_of_turn_mon(b, side, m):
             m.yawn -= 1
             if m.yawn == 0:
                 give_status(b, m, "slp")
-        if m.ingrained and m.alive() and m.hp < m.maxhp:
+        if m.ingrained and m.alive() and m.hp < m.maxhp and not heal_blocked(m):
             gain = m.maxhp // 16
             heal(m, int(gain * 1.3) if m.item == "Big Root" else gain)
         if m.item == "Sitrus Berry" and 0 < m.hp <= m.maxhp // 2:
@@ -2003,6 +2067,8 @@ def _end_of_turn_mon(b, side, m):
         if m.item == "Lum Berry" and (m.status or m.confused):
             m.status, m.confused = None, 0
             consume(m)
+        if getattr(m, "heal_block", 0):
+            m.heal_block -= 1           # Heal Block counts down at the turn's end
         if m.taunt:
             m.taunt -= 1
         if m.cursed and m.ability != "Magic Guard":
@@ -2472,7 +2538,8 @@ def player_choice_doubles(b, me):
     ally = ally_of(b, me)
     best = None
     for mv in me.moves:
-        if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status"):
+        if me.pp.get(mv.name, 1) <= 0 or (me.choice and mv.name != me.choice) or (me.taunt and mv.cat == "Status") \
+                or move_heal_blocked(me, mv):
             continue
         if not mv.damaging():
             for f in foes:

@@ -359,7 +359,7 @@ def use_move(b, att, mv, dfn, first):
         return fs.could_not_act(b, att, mv, dfn)
     if att.infatuated and (b.dice.bad("love", 0.5) if player(att) else b.dice.good(0.5, "love")):
         return fs.could_not_act(b, att, mv, dfn)     # immobilized by love (CHECK_STATUS_STATE_ATTRACT)
-    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv):
+    if (att.taunt and mv.cat == "Status") or fs.tormented_out(att, mv) or fs.move_heal_blocked(att, mv):
         return fs.could_not_act(b, att, mv, dfn)
     fs.mark_hit(b, mv, dfn, True)
     att.pp[mv.name] = att.pp.get(mv.name, 1) - 1
@@ -370,16 +370,10 @@ def use_move(b, att, mv, dfn, first):
         att.choice = mv.name
     if fs.commit_move(att, mv):
         return                       # Last Resort before every other move was used
-    if mv.effect in fs.TWO_TURN and att.charging is None:
-        if mv.effect in ("SOLAR_BEAM", "SKIP_CHARGE_TURN_IN_SUN") and b.weather == "Sun":
-            pass
-        elif att.item == "Power Herb":
-            fs.consume(att)
-        else:
-            att.charging = mv
-            if mv.effect == "CHARGE_TURN_DEF_UP":
-                fs.change_stages(att, {"def": 1})
-            return
+    if mv.effect in fs.TWO_TURN and att.charging is None and not fs.charge_skipped(b, att, mv):
+        att.charging = mv
+        fs.change_stages(att, fs.CHARGE_STAGES.get(mv.effect, {}))   # Skull Bash, Meteor Beam, Electro Shot
+        return
     att.charging = None
     if mv.effect == "USE_RANDOM_LEARNED_MOVE_SLEEP":
         mv = fs.sleep_talk_pick(b, att) if att.status == "slp" else None
@@ -588,9 +582,10 @@ def attack(b, att, mv, dfn, first):
         fs.hurt(b, att, max(1, att.maxhp // 4))
     if e in fs.RECOIL and att.ability != "Rock Head":
         fs.hurt(b, att, max(1, int(dealt * fs.RECOIL[e])))
-    if e in ("RECOVER_HALF_DAMAGE_DEALT", "RECOVER_DAMAGE_SLEEP"):
-        # Big Root raises what a draining move restores by 30%.
-        gain = dealt // 2
+    if e in fs.DRAIN and not fs.heal_blocked(att):
+        # Big Root raises what a draining move restores by 30%; Heal Block on
+        # the user stops the heal, not the damage.
+        gain = int(dealt * fs.DRAIN[e])
         fs.heal(att, int(gain * 1.3) if att.item == "Big Root" else gain)
     if e in ("EAT_BERRY",) and dfn.item and "Berry" in dfn.item:
         # Bug Bite and Pluck eat the target's berry and take its effect.
@@ -671,6 +666,8 @@ def attack(b, att, mv, dfn, first):
         fs.change_stages(dfn, fs.HIT_FOE_STAGES[e])
     if e == "SWITCH_HIT":
         att.u_turn = True
+    if e == "HIT_AND_PREVENT_HEALING" and not stripped:     # Psychic Noise; Shield Dust does not stop it
+        fs.start_heal_block(att, dfn, mv)
     if e in ("BIND_HIT", "WHIRLPOOL") and not dfn.bound:
         dfn.bound = b.dice.bind(dfn.side)
     if e in ("REMOVE_HELD_ITEM", "STEAL_HELD_ITEM"):
@@ -727,6 +724,8 @@ def status_move(b, att, mv, dfn, first):
     elif e == "STATUS_LEECH_SEED":
         if "Grass" not in dfn.types and not fs.sub_blocks(att, dfn, mv):
             dfn.seeded = True
+    elif e == "PREVENT_HEALING":                             # Heal Block
+        fs.start_heal_block(att, dfn, mv)
     elif e in fs.SELF_STAGES:
         fs.change_stages(att, fs.SELF_STAGES[e])
         if e == "DEF_UP_DOUBLE_ROLLOUT_POWER":
@@ -883,7 +882,7 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle)
+            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0))
 
 
 def side_key(s):
@@ -1060,7 +1059,8 @@ def player_actions(b):
     saved, b.rng = b.rng, b.rng if getattr(b, "rng", None) is not None else random.Random(0)
     try:
         for mv in me.moves:
-            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv):
+            if me.pp.get(mv.name, 1) <= 0 or (me.taunt and mv.cat == "Status") or fs.tormented_out(me, mv) \
+                    or fs.move_heal_blocked(me, mv):
                 continue
             if me.choice and mv.name != me.choice:
                 continue
