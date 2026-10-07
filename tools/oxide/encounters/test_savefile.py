@@ -77,13 +77,15 @@ def footer(body, block, save_counter, block_counter, size):
 
 
 def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4, badges=0x1F,
-              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE, flags=()):
+              money=12345, normal_size=NORMAL_SIZE, box_size=BOX_SIZE, flags=(), variables=None,
+              gender=0):
     """A 512 KB save. `boxed` is {(box, slot): record}; the counters say which
     copy of each block is newer (0 leaves that copy's block unwritten).
     `normal_size` other than this build's makes a save on an older layout,
     and `box_size` sets the box block, so the number of boxes. `flags` are
     flag ids to set (a beaten trainer, a picked-up item), for the alpha
-    checklist's ticks."""
+    checklist's ticks; `variables` ({name: value}) sets variables, and
+    `gender` the player's (0 a boy, 1 a girl)."""
     NORMAL_SIZE, BOX_SIZE = normal_size, box_size
     n_boxes = (BOX_SIZE - S.FOOTER_SIZE - 5) // S.BOX_STRIDE
     data = bytearray(b"\xff" * 0x80000)
@@ -97,6 +99,9 @@ def make_save(party, boxed, normal_counters=(2, 3), box_counters=(1, 0), split=4
     struct.pack_into("<H", normal, lay["at"] + 2 * var, split)
     for n in flags:
         normal[lay["at"] + 2 * lay["num_vars"] + n // 8] |= 1 << (n % 8)
+    for name, value in (variables or {}).items():
+        struct.pack_into("<H", normal, lay["at"] + 2 * (lay["values"][name] - lay["vars_start"]), value)
+    normal[S.PLAYER_GENDER_AT] = gender
     for i, rec in enumerate(party):
         normal[S.PARTY_AT + 8 + i * S.PARTY_RECORD:S.PARTY_AT + 8 + (i + 1) * S.PARTY_RECORD] = rec
     boxes = bytearray(BOX_SIZE - S.FOOTER_SIZE)

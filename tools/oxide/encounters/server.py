@@ -213,8 +213,13 @@ def alpha_state():
         except savefile.SaveError as e:
             out["save_error"] = str(e)
         progress = (save or {}).get("progress") or {}
+        try:
+            who = savefile.player(data) or {}
+        except savefile.SaveError:
+            who = {}
         out["save"] = {"path": path, "badges": progress.get("badges"),
                        "split": (progress.get("split") or {}).get("name"),
+                       "starter": who.get("starter"), "gender": who.get("gender"),
                        "rom": (alphanotes.ROM_NAME.search(os.path.basename(path or "")) or [None, None])[1]}
     return out
 
