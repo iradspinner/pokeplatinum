@@ -56,9 +56,25 @@ driver is `plgoal3.py`. How it reads each fight (Ian's answers of
 once on 13 workers each, under a 9 GB cap so that a first box's network
 training, about 16.5 GB, fits beside it); each box's result lands in
 `~/oxide-trials/goal3/988ff99ed/` as it finishes, and a stopped run
-resumes with the same command. When all 117 boxes are in, `plgoal3 --run
-988ff99ed --store` puts the pooled readings in the store and writes the
-summary.
+resumes with the same command. At 18:20 that evening, when the session
+wound down for the night and left it running: Barry 2's first box done
+(100% won, 0.52 faints, 39 minutes), Roark's and Mars 1's first boxes
+running, and Lucas and Dawn 1's first box failed, on purpose: its race
+hung on a seven-Pokemon box (fixed in 3173647915) and was stopped. The
+next checks, in the morning:
+
+1. `tail ~/oxide-trials/goal3/988ff99ed-run.log`: how many of the 117
+   boxes are done, and any FAILED line beyond Lucas and Dawn 1's (each
+   box's `log.txt` says why).
+2. If the driver has exited, run the same command again from the tree; it
+   reads only the boxes not done, Lucas and Dawn 1's first among them:
+
+       cd ~/oxide-trials/goal3/tree && PYTHONPATH=. tools/oxide/capped --max 9G python3 -m tools.oxide.balance.plgoal3 --run 988ff99ed --parallel 2 --procs 13 >> ~/oxide-trials/goal3/988ff99ed-run.log 2>&1
+
+3. Firm up the estimate from the first boxes' minutes and tell the
+   Overseer.
+4. When all 117 are in, from this worktree, `plgoal3 --run 988ff99ed
+   --store` puts the pooled readings in the store and writes the summary.
 
 The dry run measured one box on 14 workers: Roark by the team search in
 44 minutes, 17 of them training networks on a GPU that melonDS shares;
