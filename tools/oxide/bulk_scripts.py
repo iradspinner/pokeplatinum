@@ -249,6 +249,13 @@ for _stem in ("scripts_canalave_city_gym", "scripts_canalave_city_southeast_hous
 # alone; its text bank keeps the base ROM's lines, which nothing shows.
 DIVERGED["scripts_solaceon_town_north_house"] = (
     "the Utility Stop's three vendors removed, so the script is vanilla's (Ian, 2026-10-07)")
+# The Survival Area's south house held a second Utility Stop, its greeter
+# Strudel with the same three vendors, removed for the same reasons (the
+# Overseer on Ian's ruling, 2026-10-07). The Black Belt stays, with the gift
+# the reward table gives him.
+DIVERGED["scripts_survival_area_south_house"] += (
+    "; then the second Utility Stop's greeter and three vendors removed, so the script "
+    "is vanilla's but for the gift (2026-10-07)")
 for _stem, _why in (
         ("scripts_visible_items", "item balls the reward table changed (2026-10-07)"),
         ("scripts_battles", "the trainer rewards, each given straight after the win "

@@ -15,11 +15,11 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
-| Items given | 213 | 103 | 32 | 78 | 0 | 33 |
+| Items given | 212 | 103 | 31 | 78 | 0 | 33 |
 | Item balls | 332 | 262 | 62 | 8 | 0 | 67 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2972 | 215 | 137 | 0 | 97 |
-| Variables | 1123 | 1082 | 29 | 12 | 0 | 32 |
+| Variables | 1121 | 1082 | 27 | 12 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
 
@@ -31,9 +31,9 @@ What the tool could not read, counted rather than guessed:
 | Could not read | Count | Maps or files |
 |---|---:|---:|
 | raw data lines | 15 | 15 |
-| commands with no name | 228 | 36 |
+| commands with no name | 227 | 35 |
 | numbers no table holds | 0 | 0 |
-| variables set elsewhere | 33 | 10 |
+| variables set elsewhere | 30 | 9 |
 
 Scripts nothing reaches (no event, header, other script or `SCRIPT_ID()` in `src/` starts them): 238 numbered scripts and 66 stretches of code, listed in each section. The Villa's furniture and the Distortion World are started by the engine by number and are marked so; a few other map scripts are too (the Union Room's script 5), which the tool does not see. The shared files indexed by trainer, item or hidden item are not checked this way.
 
@@ -8085,21 +8085,14 @@ Scripts nothing reaches: script 1 `SurvivalAreaPokecenterB1F_Dummy1` (line 7).
 
 Items given:
 
-- ITEM_TM25 x1. Added by Oxide (2f5fc736c). `scripts_survival_area_south_house.s:26`
-- one of 13, ITEM_OVAL_STONE, ITEM_WHITE_HERB, ITEM_MENTAL_HERB, ITEM_KINGS_ROCK, ITEM_DEEPSEATOOTH, ITEM_DEEPSEASCALE, ITEM_EVERSTONE, ITEM_METAL_COAT, ITEM_DRAGON_SCALE, ITEM_UPGRADE, ITEM_POWER_HERB, ITEM_HEART_SCALE, set by AddVar, chosen by VAR_0x8002 and VAR_RESULT xset elsewhere. Added from the base ROM (81d02e28e). `scripts_survival_area_south_house.s:365`
+- ITEM_TM25 x1. Added by Oxide (not yet committed). `scripts_survival_area_south_house.s:17`
 
 Flags:
 
 - Set: FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42.
 - Checked: FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42.
 
-Variables:
-
-- Checked: 25000 (added, base ROM), 30000 (added, base ROM).
-
 Gone from vanilla: ITEM_TM42 x1.
-
-Could not read: 1 commands with no name, 3 variables set elsewhere.
 
 ### Team Galactic Eterna Building 1F
 

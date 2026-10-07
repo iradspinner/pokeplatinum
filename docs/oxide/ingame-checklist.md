@@ -504,7 +504,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] **Solaceon's north house** (2026-10-07, `main-tm-items`): only the old
   woman and the lass, who talk about the Day Care's Eggs. The Utility Stop's
   three vendors, selling Berries, evolution items, Heart Scales, herbs and
-  shards, are gone.
+  shards, are gone. The Survival Area's south house likewise holds only the
+  Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
+  vendors are gone too.
 - [ ] **Pastel Veil and Unnerve** (`main-element5-gaps`), whenever they come
   up, since the kit cannot run a double battle or give a foe an item. A
   Galarian Rapidash (Pastel Veil) sent in during a double battle beside a

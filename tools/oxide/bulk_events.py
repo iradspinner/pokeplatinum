@@ -143,6 +143,9 @@ for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
 # says why), so the north house's events are vanilla's again.
 DIVERGED["events_solaceon_town_north_house"] = (
     "the Utility Stop's three vendors removed, so the events are vanilla's (Ian, 2026-10-07)")
+DIVERGED["events_survival_area_south_house"] = (
+    "the second Utility Stop's greeter and three vendors removed; the Black Belt stays "
+    "where the base ROM moved him (2026-10-07)")
 
 
 def render(record, existing, index):
