@@ -63,19 +63,6 @@ def check_held_out(results):
                     f"{len(lc.held_out())} lines checked" if not named else f"named: {named}"))
 
 
-def check_starters(results):
-    """Rowan's starters know Tackle and Growl or their equivalents at 5,
-    and nothing else (Ian, 2026-10-07; learncheck's check 25), so no rerun
-    of the generator can give one a third move there."""
-    rows = lc.check25("rewrite")
-    bad = [f"{lc.species_name(sp)}: {', '.join(f'{lc.move_name(m)} {lv}' for lv, m in low)}"
-           for sp, low, verdict in rows if verdict == "fail"]
-    results.append(("Rowan's starters know a basic attack and a basic status move at 5, nothing else",
-                    not bad and len(rows) == 3, "; ".join(bad) if bad else
-                    "; ".join(f"{lc.species_name(sp)}: {', '.join(lc.move_name(m) for _lv, m in low)}"
-                              for sp, low, _v in rows)))
-
-
 def main():
     results = []
     d = lg.build()
@@ -84,7 +71,6 @@ def main():
     check_log(results, d)
     check_limits(results, d)
     check_held_out(results)
-    check_starters(results)
     width = max(len(label) for label, _, _ in results)
     failed = 0
     for label, ok, note in results:

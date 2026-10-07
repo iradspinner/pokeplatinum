@@ -1980,39 +1980,6 @@ def check24(version):
     return out
 
 
-# Rowan's three starters (Ian, 2026-10-07): "It should tackle and growl (or
-# equivalents) for starters as it always has been and always will be,
-# simple as." Given at STARTER_LEVEL, each knows exactly a basic weak attack
-# and a basic status move; nothing else sits at or below that level, so its
-# own type's first move comes after it.
-STARTERS = ("SPECIES_TURTWIG", "SPECIES_SCORBUNNY", "SPECIES_PIPLUP")
-STARTER_LEVEL = 5
-BASIC_STATUS = {"MOVE_GROWL", "MOVE_LEER", "MOVE_TAIL_WHIP", "MOVE_WITHDRAW", "MOVE_HARDEN",
-                "MOVE_DEFENSE_CURL"}
-BASIC_ATTACK_POWER = 40
-
-
-def basic_attack(const):
-    """Tackle, Scratch, Pound or the like: a plain Normal hit of the basic
-    rung's power, with no priority or added effect."""
-    m = moves().get(const) or {}
-    return (m.get("type") == "NORMAL" and m.get("class") != "STATUS" and m.get("effect") == "HIT"
-            and 0 < (m.get("power") or 0) <= BASIC_ATTACK_POWER and not (m.get("priority") or 0))
-
-
-def check25(version):
-    """[(starter, [(level, MOVE_X)] at or below STARTER_LEVEL, verdict)]: each
-    of Rowan's starters holds exactly one basic attack and one basic status
-    move at or below the level it is given at, and nothing else."""
-    out = []
-    for sp in STARTERS:
-        low = [(lv, m) for lv, m in learnset(version, sp) if lv <= STARTER_LEVEL]
-        ok = (len(low) == 2 and sum(basic_attack(m) for _l, m in low) == 1
-              and sum(m in BASIC_STATUS for _l, m in low) == 1)
-        out.append((sp, low, "pass" if ok else "fail"))
-    return out
-
-
 GEN4_LAST_ID = 467      # Shadow Force, the last move Platinum has
 
 
@@ -2061,7 +2028,6 @@ def _fails(version):
         22: (sum(len(v) for k, v in c22.items() if k != "on evolving"), None, "entries"),
         23: (sum(1 for ms in check23(version).values() if not ms), len(check23(version)), "lines"),
         24: (sum(1 for r in check24(version) if r[3] == "fail"), len(check24(version)), "choices of branch"),
-        25: (sum(1 for r in check25(version) if r[2] == "fail"), len(check25(version)), "starters"),
     }
 
 
@@ -2083,9 +2049,7 @@ RULES = {7: "R1, five or six moves by the first split's cap, at most one filler"
          22: "List hygiene and fit: one move a level, none past 78, no move twice, no trainer-only "
              "move in a wild catch's four, False Swipe early, at most two recovery moves",
          23: "R16, a move from after Generation 4 on every line",
-         24: "Branches of one line close in worth where the player chooses (Ian, 2026-10-06)",
-         25: "Rowan's starters know a basic attack and a basic status move at 5, and nothing else "
-             "(Ian, 2026-10-07)"}
+         24: "Branches of one line close in worth where the player chooses (Ian, 2026-10-06)"}
 
 
 def _names(items, n=12):
@@ -2160,8 +2124,6 @@ def rules_report(out=sys.stdout, worst=12):
         p(f"\nCheck 24: " + (_names(
             f"{_sp(st)} in {split}'s split ({', '.join(_sp(t) + ' ' + str(w) for t, w in sorted(ws.items()))})"
             for st, split, ws, verdict in check24(v) if verdict == "fail") or "none") + ".")
-        p(f"\nCheck 25: " + (_names(f"{_sp(sp)} ({', '.join(f'{move_name(m)} {lv}' for lv, m in low)})"
-                                    for sp, low, verdict in check25(v) if verdict == "fail") or "none") + ".")
     tm16 = [(sp, w, m) for sp, w, m, _r in check16(A) if not w.startswith("level")]
     p(f"\nCheck 16 on the TM and tutor lists, the same in both (for the TM pass): {len(tm16)} entries, "
       + _names(f"{_sp(sp)} {move_name(m)} ({w})" for sp, w, m in tm16) + ".")

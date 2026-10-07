@@ -837,39 +837,6 @@ def place_reworked(d, species, entry):
         d.move(species, entry, free, "R9", f"at its reworked numbers the line climbs to it in {SPLITS[x]}'s split")
 
 
-def starter_kit(d, species):
-    """Ian's ruling of 2026-10-07 on Rowan's starters: at or below the level
-    they are given at, exactly a basic weak attack and a basic status move,
-    each the one the list had before the rewrite where it had one, else
-    Tackle and Growl, at the list's own level. Any other entry there moves
-    to the first free level after it, if the list has it nowhere later, so
-    the starter's own type comes after 5 (a Fire starter's Ember)."""
-    if species not in lc.STARTERS:
-        return
-    low = lc.STARTER_LEVEL
-    base = lc.learnset(BASE, species)
-    attack = next((m for lv, m in base if lv <= low and lc.basic_attack(m)), "MOVE_TACKLE")
-    status = next((m for lv, m in base if lv <= low and m in lc.BASIC_STATUS), "MOVE_GROWL")
-    kit = {mv: next((lv for lv, m in base if m == mv and lv <= low), 1) for mv in (attack, status)}
-    why = "a starter knows a basic attack and a basic status move at 5 (Ian, 2026-10-07)"
-    kept = set()
-    for entry in [e for e in d.lists[species] if e[0] <= low]:
-        lv, mv = entry
-        if mv in kit and mv not in kept:
-            kept.add(mv)
-            if lv != kit[mv]:
-                d.move(species, entry, kit[mv], "Ian's ruling", why)
-            continue
-        if lc.counts(mv) and not d.has(species, mv, at_least=low + 1):
-            free = next(l for l in range(low + 1, top() + 1) if l not in d.levels(species))
-            d.move(species, entry, free, "Ian's ruling", why)
-        else:
-            d.remove(species, entry, "Ian's ruling", why)
-    for mv, lv in kit.items():
-        if mv not in kept:
-            d.add(species, lv, mv, "Ian's ruling", why)
-
-
 @functools.lru_cache(maxsize=None)
 def type_multi_hit():
     """{TYPE: MOVE_X}: the one physical two-to-five-hit move each type keeps
@@ -1568,10 +1535,6 @@ def pick_level(d, holder, fam, c, slot, due=False):
     move a rule makes due (`due`); a catch-only move only by Fantina's cap."""
     used = d.levels(holder)
     free = [l for l in range(slot.lo, slot.hi + 1) if l not in used]
-    starter = holder in lc.STARTERS
-    if starter:
-        # Nothing joins a starter's two basics at or below 5 (Ian, 2026-10-07).
-        free = [l for l in free if l > lc.STARTER_LEVEL]
     if flagged(holder) and lc.effective_power(c) >= 80:
         floor = kaizo_floor(fam, c)
         if floor:
@@ -1585,7 +1548,7 @@ def pick_level(d, holder, fam, c, slot, due=False):
         caught = slot.lo - 1
         known = [m for m in calc_trainers.default_moves(d.lists[holder], caught) if lc.counts(m)]
         floor = kaizo_floor(fam, c) if flagged(holder) and lc.effective_power(c) >= 80 else None
-        if len(known) < KIT_AT_CATCH and not (floor and floor > caught) and not starter:
+        if len(known) < KIT_AT_CATCH and not (floor and floor > caught):
             below = [l for l in range(caught, max(2, caught - 3) - 1, -1) if l not in used]
             if below:
                 return below[0]
@@ -2114,7 +2077,6 @@ def build():
     d = Draft()
     for sp in sorted(d.lists):
         clean(d, sp)
-        starter_kit(d, sp)
         bring_up(d, sp)
     for fam in sorted(lc.line_catches()):
         plan_family(d, fam)
@@ -2129,14 +2091,29 @@ def build():
         tidy(d, sp)
         no_wild_trainer_move(d, sp)
         ensure_attack_at_capture(d, sp)
-        # Last, so no step before it can put a third move at a starter's 5.
-        starter_kit(d, sp)
     for sp, adds in IAN_EGG_MOVES.items():
         for mv, why in adds:
             if mv not in d.eggs[sp]:
                 d.eggs[sp].append(mv)
                 d.note(sp, 0, mv, "egg list", "Ian's ruling", why)
+    # A list set by hand stays as its file holds it (learnsets_by_hand.txt).
+    for sp, why in by_hand().items():
+        d.lists[sp] = [list(e) for e in lc.learnset("rewrite", sp)]
+        d.note(sp, 0, "", "set by hand", "data", f"{why}; the rows above are not written")
     return d
+
+
+@functools.lru_cache(maxsize=None)
+def by_hand():
+    """{species: why}: the level-up lists set by hand in their files."""
+    out = {}
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "learnsets_by_hand.txt"),
+              encoding="utf-8") as f:
+        for line in f:
+            if line.strip() and not line.startswith("#"):
+                sp, why = line.split(None, 1)
+                out[sp] = why.strip()
+    return out
 
 
 def write(d):

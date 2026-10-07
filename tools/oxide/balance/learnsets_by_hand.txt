@@ -1,0 +1,8 @@
+# Species whose level-up lists are set by hand in their files, not by the
+# learnset generator (learnrewrite.py), which leaves each list as its file
+# holds it. A reported problem is fixed as data (Ian, 2026-10-07: "Each
+# change is judged for its effect on difficulty, by judgement"). One species
+# a line, then why.
+SPECIES_TURTWIG     Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07)
+SPECIES_SCORBUNNY   Tackle and Growl at 5, Ember 7 and Flame Charge 9 after (Ian's QA, 2026-10-07)
+SPECIES_PIPLUP      Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07)

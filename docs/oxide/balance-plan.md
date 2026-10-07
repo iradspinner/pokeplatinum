@@ -8,6 +8,15 @@ the same day, and his answers are recorded below as decisions.
 
 ## Summary (2026-10-06, the TM pass)
 
+**Each change is judged for its effect on difficulty, by judgement** (Ian,
+2026-10-07: "this should dictate every single decision on every single
+agent"). A change that does not materially move a fight stales nothing and
+waits on no rescore. Scores never block a landing: the gate reports stale
+ones and passes. Full readings happen only at milestones, and the
+calculator estimate runs only when asked. A reported problem is fixed as
+data, with common sense, never turned into a rule or a check unless Ian
+asks for one. The standing rulings hold the whole of it.
+
 **Outcome.** The learnset rewrite landed on `oxide` (085f72211). Step 6,
 the TM pass, is built on `balance-tm-pass`:
 - **TM list.** Ian approved it, 100 TMs, frozen with their numbers.
@@ -70,12 +79,12 @@ hour). No boss is read until the TM pass has landed (Ian, 2026-10-06;
   inside 1F's locks, not sections (Ian's ruling of 2026-09-29, restated),
   so their eight trainers are optional. 1F's near half holds Bryce, Hana
   and Mariah, and its far half Miles, Clinton and Edgar.
-- **Starters start with Tackle and Growl or their equivalents.** Rowan's
-  three know exactly a basic attack and a basic status move at 5: Turtwig
-  Tackle and Withdraw, Scorbunny Tackle and Growl, Piplup Pound and Growl.
-  Their own type comes after: Scorbunny's Ember at 7 and Flame Charge at 9,
-  still inside Roark's split. The generator holds it as a rule, and
-  learncheck's check 25 holds it in the gate.
+- **Starters start with Tackle and Growl or their equivalents**, fixed as
+  data from Ian's QA: Turtwig knows Tackle and Withdraw at 5, Scorbunny
+  Tackle and Growl, Piplup Pound and Growl. Their own type comes after:
+  Scorbunny's Ember at 7 and Flame Charge at 9, still inside Roark's
+  split. The three lists are set by hand, and the generator leaves the
+  species in `learnsets_by_hand.txt` as their files hold them.
 
 **The early kits on type ladders (Ian, 2026-10-06).** "It entirely
 depends on the pokemon, and keeping it to hard rules destroys the
