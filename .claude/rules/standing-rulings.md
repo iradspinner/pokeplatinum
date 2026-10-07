@@ -96,6 +96,12 @@ read, so they are written here too. Each is a standing instruction.
   Fury Cutter as Kaizo's three rising hits; Psywave cut for Psybeam;
   Spite at 5 PP; Uproar one turn at 100 with 20% confusion; Raging Fury
   one turn at 120 with a third as recoil and 20% confusion.
+  Later the same day: one two-to-five-hit move per type. Normal keeps Fury
+  Swipes and Cinccino's Tail Slap; Double Slap, Comet Punch, Barrage and
+  Spike Cannon leave the game, their learners taking Fury Swipes or their
+  own type's multi-hit move; Bone Rush goes to 100%. The trainer AI rates a
+  multi-hit move on its expected hits (about 3.1, or 5 with Skill Link).
+  Uproar and Raging Fury hit one chosen foe.
   Poison Fang takes Kaizo's 90 power and 40% chance to badly poison (Ian,
   2026-10-06).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
