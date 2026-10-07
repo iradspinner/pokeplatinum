@@ -299,7 +299,12 @@ read, so they are written here too. Each is a standing instruction.
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
   genuinely dangerous: two-Pokemon teams are too trivial (Ian, 2026-10-04).
-  Trainers may use TM and tutor moves freely (Ian, 2026-10-04). Protect,
+  Trainers may use TM and tutor moves freely (Ian, 2026-10-04). A move cut
+  from the TM list for the player's sake stays in the trainer palette of
+  every species that learned it by TM before the TM pass, as egg moves do,
+  and from Cyrus 3's split (Galactic) on a trainer's move need not be legal
+  for the species at all: late teams are "basically no holds barred" (Ian,
+  2026-10-07; the Overseer set the line at that split). Protect,
   Detect, Double Team and every one-hit KO move leave every player-accessible list,
   level-up, TM and tutor alike, and the one-hit KO moves leave every
   moveset or become other moves (Ian, 2026-10-06). Teams
