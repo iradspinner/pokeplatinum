@@ -1,0 +1,12 @@
+{
+  "_comment": "The alpha checklist (tools/oxide/encounters/alpha.py) places each item of docs/oxide/ingame-checklist.md in the zone of the first place, town or trainer its text names, else 'anywhere'. These override that, by the item's key (its bold title, else its first eight words): a zone, 'zone|split' for a later visit, or 'anywhere'. test_alpha fails on a key that no longer matches an item.",
+  "overrides": {
+    "The battle log": "anywhere",
+    "Rare Candy chaining works, up to the level": "anywhere",
+    "Fossils wait for Cycling Road (`main-production`, Ian, 2026-09-30).": "Mining Museum",
+    "Field moves by badge": "anywhere",
+    "Level caps through the story: beating Gardenia lifts": "anywhere",
+    "No evolution waits on friendship: Pichu, Cleffa, Igglybuff,": "anywhere",
+    "Verity Cavern: Mesprit's sprite, but the preview, the": "Lake Verity|Candice"
+  }
+}
