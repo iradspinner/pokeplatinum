@@ -1,0 +1,123 @@
+# The reward table, step 6 of docs/oxide/alpha-readiness.md: a draft for Ian (step 7).
+# Written by tools/oxide/balance/rewards.py; docs/oxide/reward-table.md explains it.
+reward	copies	kind	split	map	place	replaces	trainer_id	note
+ITEM_TM76	2	gift	Roark	MAP_HEADER_OREBURGH_CITY_GYM		ITEM_TM76		Stealth Rock, utility; its own place today
+ITEM_TM48	1	gift	Roark	MAP_HEADER_OREBURGH_GATE_1F		ITEM_HM06		Iron Defense, strong; a TM place today (ITEM_HM06)
+ITEM_TM63	1	gift	Roark	MAP_HEADER_SANDGEM_TOWN		ITEM_TM10		Confuse Ray, strong; a TM place today (ITEM_TM10)
+ITEM_TM41	1	ball	Gardenia	MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1		ITEM_TM02		Charm, strong; a TM place today (ITEM_TM02)
+ITEM_TM46	2	ball	Gardenia	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM70		Knock Off, utility; a TM place today (ITEM_TM70)
+ITEM_TM39	2	ball	Gardenia	MAP_HEADER_RAVAGED_PATH		ITEM_TM39		Rock Tomb, utility; its own place today
+ITEM_TM09	2	ball	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM09		Bullet Seed, utility; its own place today
+ITEM_TM12	2	ball	Gardenia	MAP_HEADER_ROUTE_211_WEST		ITEM_TM12		Taunt, utility; its own place today
+ITEM_TM11	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY		ITEM_HM01		Spite, utility; a TM place today (ITEM_HM01)
+ITEM_TM17	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_CONDOMINIUMS_2F		ITEM_TM67		StompingTantrum, utility; a TM place today (ITEM_TM67)
+ITEM_TM86	2	gift	Gardenia	MAP_HEADER_ETERNA_CITY_GYM		ITEM_TM86		Grass Knot, utility; its own place today
+ITEM_TM18	2	gift	Gardenia	MAP_HEADER_FLOAROMA_TOWN_MIDDLE_HOUSE		ITEM_TM88		Scary Face, utility; a TM place today (ITEM_TM88)
+ITEM_TM78	2	gift	Gardenia	MAP_HEADER_ROUTE_204_NORTH		ITEM_TM78		Captivate, utility; its own place today
+ITEM_ABSORB_BULB	1	trainer	Gardenia	MAP_HEADER_ETERNA_FOREST			TRAINER_BUG_CATCHER_PHILLIP	held item; reading 2.3
+ITEM_EVIOLITE	1	trainer	Gardenia	MAP_HEADER_ETERNA_FOREST			TRAINER_BUG_CATCHER_DONALD	held item; reading 2.3
+ITEM_TM62	1	trainer	Gardenia	MAP_HEADER_ROUTE_205_SOUTH			TRAINER_PICNICKER_KARINA	Silver Wind, weak; reading 2.3
+ITEM_TM66	1	trainer	Gardenia	MAP_HEADER_ROUTE_205_SOUTH			TRAINER_CAMPER_ZACKARY	Payback, weak; reading 2.3
+ITEM_CELL_BATTERY	1	trainer	Gardenia	MAP_HEADER_ROUTE_211_WEST			TRAINER_BIRD_KEEPER_ALEXANDRA	held item; reading 2.3
+ITEM_TM88	1	trainer	Gardenia	MAP_HEADER_ROUTE_211_WEST			TRAINER_HIKER_LOUIS	Pluck, weak; reading 2.3
+ITEM_TM16	2	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM45		Light Screen, utility; a TM place today (ITEM_TM45)
+ITEM_TM43	2	ball	Fantina	MAP_HEADER_AMITY_SQUARE		ITEM_TM43		Secret Power, utility; its own place today
+ITEM_TM20	2	ball	Fantina	MAP_HEADER_ETERNA_CITY		ITEM_TM46		Safeguard, utility; a TM place today (ITEM_TM46)
+ITEM_TM33	2	ball	Fantina	MAP_HEADER_ETERNA_FOREST_OUTSIDE		ITEM_TM82		Reflect, utility; a TM place today (ITEM_TM82)
+ITEM_TM61	1	ball	Fantina	MAP_HEADER_OLD_CHATEAU_BACK_EAST_ROOM		ITEM_TM90		Will-O-Wisp, strong; a TM place today (ITEM_TM90)
+ITEM_TM31	2	ball	Fantina	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM31		Brick Break, utility; its own place today
+ITEM_TM85	2	ball	Fantina	MAP_HEADER_ROUTE_206		ITEM_BURN_HEAL		Skitter Smack, utility; a ball that holds ITEM_BURN_HEAL today
+ITEM_TM90	1	ball	Fantina	MAP_HEADER_ROUTE_206		ITEM_SUPER_REPEL		Block, strong; a ball that holds ITEM_SUPER_REPEL today
+ITEM_TM93	2	ball	Fantina	MAP_HEADER_ROUTE_208		ITEM_GREAT_BALL		Psychic Noise, utility; a ball that holds ITEM_GREAT_BALL today
+ITEM_TM94	2	ball	Fantina	MAP_HEADER_TEAM_GALACTIC_ETERNA_BUILDING_2F		ITEM_X_SPEED		Psybeam, utility; a ball that holds ITEM_X_SPEED today
+ITEM_TM05	2	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM32		Dazzling Gleam, utility; a TM place today (ITEM_TM32)
+ITEM_TM73	1	ball	Fantina	MAP_HEADER_WAYWARD_CAVE_1F		ITEM_TM26		Thunder Wave, strong; a TM place today (ITEM_TM26)
+ITEM_TM65	2	gift	Fantina	MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM		ITEM_TM65		Shadow Claw, utility; its own place today
+ITEM_BINDING_BAND	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_CYCLIST_KAYLA	held item; reading 2.3
+ITEM_TM03	1	trainer	Fantina	MAP_HEADER_ROUTE_206			TRAINER_HIKER_THEODORE	Water Pulse, weak; reading 2.3
+ITEM_FAIRY_FEATHER	1	trainer	Fantina	MAP_HEADER_ROUTE_207			TRAINER_CAMPER_ANTHONY	held item; reading 2.3
+ITEM_LOADED_DICE	1	trainer	Fantina	MAP_HEADER_ROUTE_207			TRAINER_PICNICKER_LAUREN	held item; reading 2.3
+ITEM_AIR_BALLOON	1	trainer	Fantina	MAP_HEADER_ROUTE_208			TRAINER_ARTIST_WILLIAM	held item; reading 2.3
+ITEM_ROCKY_HELMET	1	trainer	Fantina	MAP_HEADER_ROUTE_208			TRAINER_BLACK_BELT_KYLE	held item; reading 2.3
+ITEM_TM47	2	ball	Maylene	MAP_HEADER_ROUTE_209		ITEM_TM47		Steel Wing, utility; its own place today
+ITEM_TM82	2	ball	Maylene	MAP_HEADER_ROUTE_209		ITEM_GREAT_BALL		Bounce, utility; a ball that holds ITEM_GREAT_BALL today
+ITEM_TM15	2	ball	Maylene	MAP_HEADER_ROUTE_209_LOST_TOWER_4F		ITEM_TM27		Hyper Beam, utility; a TM place today (ITEM_TM27)
+ITEM_TM83	2	ball	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_SUPER_REPEL		Expanding Force, utility; a ball that holds ITEM_SUPER_REPEL today
+ITEM_TM54	2	ball	Maylene	MAP_HEADER_ROUTE_215		ITEM_TM34		False Swipe, utility; a TM place today (ITEM_TM34)
+ITEM_HM05	2	ball	Maylene	MAP_HEADER_SOLACEON_RUINS_ROOM_7		ITEM_HM05		Defog, utility; its own place today
+ITEM_TM02	2	gift	Maylene	MAP_HEADER_GAME_CORNER		ITEM_TM64		Dragon Claw, utility; a TM place today (ITEM_TM64)
+ITEM_TM42	2	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM42		Facade, utility; its own place today
+ITEM_TM51	1	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM51		Roost, strong; its own place today
+ITEM_TM68	2	gift	Maylene	MAP_HEADER_ROUTE_215		ITEM_TM66		Giga Impact, utility; a TM place today (ITEM_TM66)
+ITEM_TM74	2	gift	Maylene	MAP_HEADER_VEILSTONE_CITY		ITEM_TM63		Gyro Ball, utility; a TM place today (ITEM_TM63)
+ITEM_TM60	2	gift	Maylene	MAP_HEADER_VEILSTONE_CITY_GYM		ITEM_TM60		Drain Punch, utility; its own place today
+ITEM_PUNCHING_GLOVE	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_WAITRESS_KATI	held item; reading 2.3
+ITEM_TM40	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_COLLECTOR_EDWIN	Aerial Ace, weak; reading 2.3
+ITEM_ASSAULT_VEST	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_YOUNG_COUPLE_TY_AND_SUE	held item; reading 2.5
+ITEM_TM10	1	trainer	Maylene	MAP_HEADER_ROUTE_209			TRAINER_JOGGER_RAUL	Hidden Power, weak; reading 2.3
+ITEM_SAFETY_GOGGLES	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_BREEDER_KAHLIL	held item; reading 2.4
+ITEM_TM22	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_JOGGER_WYATT	SolarBeam, weak; reading 2.3
+ITEM_TM34	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_RUIN_MANIAC_CALVIN	Shock Wave, weak; reading 2.3
+ITEM_TM57	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_JOGGER_SCOTT	Charge Beam, weak; reading 2.3
+ITEM_TM87	1	ball	Wake	MAP_HEADER_POKEMON_MANSION_OFFICE		ITEM_TM87		Swagger, strong; its own place today
+ITEM_TM32	2	ball	Wake	MAP_HEADER_ROUTE_212_NORTH		ITEM_TM11		Zen Headbutt, utility; a TM place today (ITEM_TM11)
+ITEM_TM06	1	ball	Wake	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM06		Toxic, strong; its own place today
+ITEM_TM37	2	ball	Wake	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM62		Signal Beam, utility; a TM place today (ITEM_TM62)
+ITEM_TM44	2	ball	Wake	MAP_HEADER_ROUTE_213		ITEM_TM40		Wild Charge, utility; a TM place today (ITEM_TM40)
+ITEM_TM28	2	ball	Wake	MAP_HEADER_RUIN_MANIAC_CAVE_SHORT		ITEM_TM28		Dig, utility; its own place today
+ITEM_TM92	2	gift	Wake	MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE		ITEM_TM92		Trick Room, utility; its own place today
+ITEM_TM55	2	gift	Wake	MAP_HEADER_PASTORIA_CITY_GYM		ITEM_TM55		Brine, utility; its own place today
+ITEM_TM72	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_COLLECTOR_DEAN	Avalanche, weak; reading 2.3
+ITEM_WEAKNESS_POLICY	1	trainer	Wake	MAP_HEADER_ROUTE_212_SOUTH			TRAINER_SCIENTIST_SHAUN	held item; reading 3.2
+ITEM_COVERT_CLOAK	1	trainer	Wake	MAP_HEADER_ROUTE_213			TRAINER_FISHERMAN_KENNETH	held item; reading 3.2
+ITEM_EJECT_BUTTON	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_TRENTON	held item; reading 2.9
+ITEM_RED_CARD	1	trainer	Wake	MAP_HEADER_ROUTE_219			TRAINER_TUBER_MARIEL	held item; reading 2.8
+ITEM_TM89	2	ball	Byron	MAP_HEADER_CANALAVE_CITY		ITEM_TM89		U-turn, utility; its own place today
+ITEM_TM35	1	ball	Byron	MAP_HEADER_FUEGO_IRONWORKS_BUILDING		ITEM_TM35		Flamethrower, strong; its own place today
+ITEM_TM77	1	ball	Byron	MAP_HEADER_IRON_ISLAND_B1F_RIGHT_ROOM		ITEM_ESCAPE_ROPE		Foul Play, strong; a ball that holds ITEM_ESCAPE_ROPE today
+ITEM_TM23	1	ball	Byron	MAP_HEADER_IRON_ISLAND_B2F_RIGHT_ROOM		ITEM_TM23		Iron Tail, strong; its own place today
+ITEM_TM08	1	ball	Byron	MAP_HEADER_LAKE_VALOR		ITEM_TM25		Bulk Up, strong; a TM place today (ITEM_TM25)
+ITEM_TM26	1	ball	Byron	MAP_HEADER_LAKE_VERITY		ITEM_TM38		Earthquake, strong; a TM place today (ITEM_TM38)
+ITEM_TM07	1	ball	Byron	MAP_HEADER_RAVAGED_PATH		ITEM_TM03		Curse, strong; a TM place today (ITEM_TM03)
+ITEM_TM19	2	ball	Byron	MAP_HEADER_ROUTE_209		ITEM_TM19		Giga Drain, utility; its own place today
+ITEM_TM30	2	ball	Byron	MAP_HEADER_ROUTE_210_NORTH		ITEM_TM30		Shadow Ball, utility; its own place today
+ITEM_TM84	2	ball	Byron	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM84		Poison Jab, utility; its own place today
+ITEM_TM81	2	ball	Byron	MAP_HEADER_ROUTE_221		ITEM_TM81		X-Scissor, utility; its own place today
+ITEM_TM24	1	ball	Byron	MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE		ITEM_TM24		Thunderbolt, strong; its own place today
+ITEM_TM91	2	gift	Byron	MAP_HEADER_CANALAVE_CITY_GYM		ITEM_TM91		Flash Cannon, utility; its own place today
+ITEM_TM04	1	gift	Byron	MAP_HEADER_CANALAVE_CITY_SOUTHEAST_HOUSE		ITEM_TM48		Calm Mind, strong; a TM place today (ITEM_TM48)
+ITEM_HM03	1	gift	Byron	MAP_HEADER_CELESTIC_TOWN_CAVE		ITEM_HM03		Surf, strong; its own place today
+ITEM_HM04	2	gift	Byron	MAP_HEADER_IRON_ISLAND		ITEM_HM04		Strength, utility; its own place today
+ITEM_TM45	2	gift	Byron	MAP_HEADER_ROUTE_211_EAST		ITEM_TM77		Alluring Voice, utility; a TM place today (ITEM_TM77)
+ITEM_MIRROR_HERB	1	trainer	Byron	MAP_HEADER_ROUTE_220			TRAINER_SWIMMER_JESSICA	held item; reading 2.7
+ITEM_CLEAR_AMULET	1	trainer	Byron	MAP_HEADER_ROUTE_221			TRAINER_FISHERMAN_CORY	held item; reading 2.7
+ITEM_TM49	1	ball	Candice	MAP_HEADER_LAKE_ACUITY		ITEM_TM14		Agility, strong; a TM place today (ITEM_TM14)
+ITEM_TM69	1	ball	Candice	MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1		ITEM_TM69		Rock Polish, strong; its own place today
+ITEM_TM56	2	ball	Candice	MAP_HEADER_OREBURGH_GATE_B1F		ITEM_TM01		Hex, utility; a TM place today (ITEM_TM01)
+ITEM_HM08	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_HM08		Rock Climb, strong; its own place today
+ITEM_TM64	1	ball	Candice	MAP_HEADER_ROUTE_217		ITEM_TM07		Play Rough, strong; a TM place today (ITEM_TM07)
+ITEM_TM67	1	gift	Candice	MAP_HEADER_SNOWPOINT_CITY_GYM		ITEM_TM72		Ice Punch, strong; a TM place today (ITEM_TM72)
+ITEM_RING_TARGET	1	trainer	Candice	MAP_HEADER_ROUTE_216			TRAINER_ACE_TRAINER_BLAKE	held item; reading 2.4
+ITEM_ABILITY_SHIELD	1	trainer	Candice	MAP_HEADER_ROUTE_217			TRAINER_SKIER_LEXIE	held item; reading 2.4
+ITEM_TM14	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_1F		ITEM_TM49		Blizzard, strong; a TM place today (ITEM_TM49)
+ITEM_TM21	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_3F		ITEM_TM21		Frustration, strong; its own place today
+ITEM_TM36	1	ball	HQ	MAP_HEADER_GALACTIC_HQ_B2F		ITEM_TM36		Sludge Bomb, strong; its own place today
+ITEM_TM29	1	ball	HQ	MAP_HEADER_ROUTE_211_EAST		ITEM_TM29		Psychic, strong; its own place today
+ITEM_TM25	1	ball	HQ	MAP_HEADER_ROUTE_213		ITEM_TM05		Thunder, strong; a TM place today (ITEM_TM05)
+ITEM_TM13	1	ball	HQ	MAP_HEADER_ROUTE_216		ITEM_TM13		Ice Beam, strong; its own place today
+ITEM_TM27	1	ball	HQ	MAP_HEADER_VALOR_LAKEFRONT		ITEM_TM85		Return, strong; a TM place today (ITEM_TM85)
+ITEM_HM02	1	ball	HQ	MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE		ITEM_HM02		Fly, strong; its own place today
+ITEM_TM80	2	ball	Galactic	MAP_HEADER_MT_CORONET_2F		ITEM_TM80		Rock Slide, utility; its own place today
+ITEM_TM53	1	ball	Galactic	MAP_HEADER_ROUTE_226		ITEM_TM53		Energy Ball, strong; its own place today
+ITEM_TM38	1	ball	Galactic	MAP_HEADER_ROUTE_228		ITEM_TM37		Fire Blast, strong; a TM place today (ITEM_TM37)
+ITEM_TM50	1	ball	Galactic	MAP_HEADER_STARK_MOUNTAIN_ROOM_2		ITEM_TM50		Overheat, strong; its own place today
+ITEM_TM01	1	gift	Galactic	MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE		ITEM_TM42		Hydro Pump, strong; a TM place today (ITEM_TM42)
+ITEM_TM52	1	gift	Volkner	MAP_HEADER_ROUTE_222		ITEM_TM56		Focus Blast, strong; a TM place today (ITEM_TM56)
+ITEM_HM07	1	gift	Volkner	MAP_HEADER_SUNYSHORE_CITY		ITEM_HM07		Waterfall, strong; its own place today
+ITEM_TM58	1	gift	Volkner	MAP_HEADER_SUNYSHORE_CITY_GYM_ROOM_3		ITEM_TM57		Triple Axel, strong; a TM place today (ITEM_TM57)
+ITEM_PIXIE_PLATE	1	trainer	Volkner	MAP_HEADER_ROUTE_222			TRAINER_BEAUTY_NICOLA	held item; reading 2.3
+ITEM_TM70	2	ball	Barry	MAP_HEADER_ROUTE_223		ITEM_TM18		Outrage, utility; a TM place today (ITEM_TM18)
+ITEM_TM75	1	ball	Barry	MAP_HEADER_VICTORY_ROAD_1F		ITEM_TM41		Meteor Beam, strong; a TM place today (ITEM_TM41)
+ITEM_TM71	1	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM71		Stone Edge, strong; its own place today
+ITEM_TM79	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_2F		ITEM_TM79		Dark Pulse, utility; its own place today
+ITEM_TM59	2	ball	Barry	MAP_HEADER_VICTORY_ROAD_B1F		ITEM_TM59		Dragon Pulse, utility; its own place today

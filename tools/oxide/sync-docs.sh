@@ -70,6 +70,9 @@ copy "learnset-rewrite.md" "notes/learnset-rewrite.md"
 for split in roark gardenia fantina maylene wake byron candice hq galactic volkner barry league; do
     copy "learnset-sheets/$split.md" "notes/learnset-sheets/$split.md"
 done
+copy "reward-table.md" "notes/reward-table.md"
+copy "reward-placements.tsv" "notes/reward-placements.tsv"
+copy "trainer-roles.tsv" "notes/trainer-roles.tsv"
 copy "species-pick-list.md" "notes/species-pick-list.md"
 copy "species-pick-list.csv" "notes/species-pick-list.csv"
 copy "species-id-scheme.md" "notes/species-id-scheme.md"
