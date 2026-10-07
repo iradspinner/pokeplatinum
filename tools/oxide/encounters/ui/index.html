@@ -916,6 +916,30 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 .achecks .done summary { color: var(--faint); text-decoration: line-through; }
 .achecks details p { margin: 4px 0 6px 18px; color: var(--dim); font-size: 14px; }
 .planned { color: var(--faint); font-style: italic; }
+/* The feedback each trainer, gauntlet section and zone carries (stage B):
+   fought, a rating for a boss or a section, and a note with a death. */
+#alphabar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 8px 14px;
+  border: 1px solid var(--rule); border-radius: 10px; background: var(--panel); color: var(--dim);
+  font-size: 14.5px; }
+#alphabar span { flex: 1 1 360px; }
+.atr { grid-template-columns: 96px minmax(170px, 220px) minmax(0, 1fr) minmax(110px, 190px) 220px; }
+.atr.beaten .who a { text-decoration: line-through; text-decoration-color: var(--faint); }
+.afb { display: flex; align-items: center; gap: 6px; justify-content: flex-end; font-size: 14px; }
+.afb label { display: flex; align-items: center; gap: 4px; color: var(--dim); }
+.afb select { font-size: 13.5px; padding: 1px 2px; }
+.afb button { font-size: 13.5px; padding: 1px 8px; }
+.afbtext { display: flex; flex-direction: column; gap: 2px; margin: 0 0 4px 108px; font-size: 14px; }
+.afbtext .death { color: var(--error); }
+.afbedit { display: flex; flex-direction: column; gap: 6px; margin: 2px 0 8px 108px; padding: 8px 10px;
+  border: 1px solid var(--rule); border-radius: 8px; background: var(--sunken); }
+.afbedit textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 14.5px; }
+.afbedit .fbdeath { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 14px; }
+.afbedit .fbdeath input { flex: 1 1 160px; font-size: 14px; }
+.azhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.agaunt .ghead { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.azone .afbrow + .afbrow .atr { border-top: 1px solid var(--rule); }
+#alphanav .azlink.alldone span:first-child { color: var(--faint); text-decoration: line-through; }
+.alist .it input[type=checkbox] { margin: 0 2px 0 0; }
 </style>
 </head>
 <body>

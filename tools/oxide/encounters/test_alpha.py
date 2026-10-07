@@ -166,12 +166,112 @@ def check_checklist(results, data, root):
     results.append(("no item falls to anywhere because its zone is missing", not lost, f"{lost[:3]}"))
 
 
+def check_ticks(results, data, root):
+    """Check 4: a save with two trainers beaten (a rival fight's variant and
+    an ordinary trainer) and two items taken (a ball and a hidden item) ticks
+    those four rows and no other."""
+    from . import savefile
+    from . import test_savefile as T
+    targets = alpha.tick_targets(root)
+    start = savefile._vars_layout()["values"]["TRAINER_DEFEATED_FLAGS_START"]
+    ids = alpha._trainer_ids(root)
+    flags = bsplits.flag_values()
+    ball = flags["FLAG_OBTAINED_ROUTE_202_POTION"]
+    hidden = next(p["flag"] for _s, _z, p in _all(data, "pickups") if p["how"] == "hidden")
+    set_ = [start + ids["TRAINER_RIVAL_ROUTE_201_TURTWIG"], start + ids["TRAINER_YOUNGSTER_TRISTAN"],
+            ball, hidden]
+    save = T.make_save([], {}, box_size=T.BOX_SIZE_30, flags=set_)
+    got = alpha.ticks(root, save)
+    beaten = sorted(k for k, v in got["trainers"].items() if v)
+    taken = sorted(int(k) for k, v in got["pickups"].items() if v)
+    results.append(("a test save ticks the rows its flags name and no other",
+                    beaten == sorted(["barry_1", "TRAINER_YOUNGSTER_TRISTAN"])
+                    and taken == sorted([ball, hidden])
+                    and len(got["trainers"]) == len(targets["trainers"]),
+                    f"beaten {beaten}, taken {taken}"))
+    empty = alpha.ticks(root, T.make_save([], {}, box_size=T.BOX_SIZE_30))
+    # A planned trainer (the Game Corner challenger before step 10) has no id
+    # yet, so nothing in the save can tick it.
+    page_keys = {t["key"] for _s, _z, t in _all(data, "trainers") if not t.get("planned")}
+    results.append(("an unplayed save ticks nothing, and every trainer row but a planned one has a tick",
+                    not any(empty["trainers"].values()) and not any(empty["pickups"].values())
+                    and page_keys == set(empty["trainers"]),
+                    f"{len(empty['trainers'])} trainer rows, {len(empty['pickups'])} pickups"))
+    old = T.make_save([], {}, box_size=T.BOX_SIZE_30, normal_size=T.NORMAL_SIZE - 4)
+    try:
+        alpha.ticks(root, old)
+        refused = False
+    except savefile.SaveError:
+        refused = True
+    results.append(("a save on an older layout is refused rather than ticked at the wrong place",
+                    refused, ""))
+
+
+def check_notes(results, data, root):
+    """Checks 3 and 6: a note is stamped from the save, a bad rating is
+    refused, the export writes JSON and Markdown in the repo's folder, and
+    with the local file gone the export is read back; a new run sets the
+    run aside. All under OXIDE_ALPHA_DIR, so Ian's notes are never touched."""
+    import tempfile
+    from . import alphanotes
+    from . import savefile
+    from . import test_savefile as T
+    old_env = os.environ.get("OXIDE_ALPHA_DIR")
+    with tempfile.TemporaryDirectory() as tmp:
+        os.environ["OXIDE_ALPHA_DIR"] = tmp
+        try:
+            monferno = T.species_id("SPECIES_MONFERNO")
+            party = [T.record(0x12345678, monferno, [T.move_id("MOVE_SCRATCH")],
+                              T.ability_id("ABILITY_BLAZE"), party_level=16)]
+            raw_bytes = T.make_save(party, {}, box_size=T.BOX_SIZE_30, badges=0x03)
+            raw = (raw_bytes, savefile.parse(raw_bytes), 7,
+                   "/mnt/c/Users/Ian/oxide-playtest/pokeplatinum-oxide-085f72211.sav")
+            e = alphanotes.record(root, "roark", {"fought": True, "rating": 7, "note": "Onix hit hard",
+                                                  "death": {"mon": "Starly", "killer": "Rock Tomb", "saw": "no"}},
+                                  label="Roark", zone="Oreburgh City", split="Roark", raw=raw, bridge=False)
+            s = e["stamp"]
+            stamped = (s["rom"] == "085f72211" and s["badges"] == 2 and s["zone"] == "Oreburgh City"
+                       and s["save_split"] and len(s["party"]) == 1 and "Monferno" in s["party"][0])
+            try:
+                alphanotes.record(root, "roark", {"rating": 11}, raw=raw, bridge=False)
+                bad = False
+            except ValueError:
+                bad = True
+            alphanotes.record(root, "zone:Roark:Route 202", {"note": "the Potion ball moved"},
+                              label="Route 202", zone="Route 202", split="Roark", raw=None, bridge=False)
+            results.append(("a note is stamped with the ROM, badges, split, party and zone; a rating "
+                            "of 11 is refused", stamped and bad, f"{s['rom']}, {s['badges']} badges, {s['party']}"))
+            before = alphanotes.load(root)["notes"]
+            paths = alphanotes.export(root, [("Roark", "Route 202"), ("Roark", "Oreburgh City")])
+            md = open(paths[1], encoding="utf-8").read()
+            os.remove(os.path.join(tmp, alphanotes.LOCAL))
+            back = alphanotes.load(root)
+            results.append(("the export writes JSON and Markdown, and is read back in the local "
+                            "file's place",
+                            back["notes"] == before and back["from"] == "export"
+                            and md.index("Route 202") < md.index("Oreburgh City")
+                            and "rated 7 of 10" in md and "killed by Rock Tomb" in md
+                            and all(os.path.dirname(p) == tmp for p in paths),
+                            f"{len(back['notes'])} notes back"))
+            alphanotes.record(root, "barry_1", {"fought": True}, raw=None, bridge=False)
+            fresh = alphanotes.new_run(root, "run two")
+            aside = [f for f in os.listdir(tmp) if f.startswith("alpha-feedback-")]
+            results.append(("a new run starts empty and keeps the old one aside",
+                            fresh["notes"] == {} and fresh["run"] == "run two" and len(aside) == 1,
+                            f"{aside}"))
+        finally:
+            if old_env is None:
+                os.environ.pop("OXIDE_ALPHA_DIR", None)
+            else:
+                os.environ["OXIDE_ALPHA_DIR"] = old_env
+
+
 def main():
     root = model.repo_root()
     data = alpha.build(root)
     results = []
     for check in (check_trainers, check_items, check_rewards, check_wild, check_zones,
-                  check_checklist):
+                  check_checklist, check_ticks, check_notes):
         check(results, data, root)
     width = max(len(l) for l, _, _ in results)
     failed = 0

@@ -35,7 +35,8 @@ def post(path, body):
         BASE + path, data=json.dumps(body).encode(),
         headers={"Content-Type": "application/json"}, method="POST")
     try:
-        with urllib.request.urlopen(req, timeout=10) as r:
+        # The alpha export rebuilds the checklist, a few seconds cold.
+        with urllib.request.urlopen(req, timeout=60) as r:
             return r.status, json.loads(r.read())
     except urllib.error.HTTPError as e:
         return e.code, json.loads(e.read())
@@ -433,6 +434,37 @@ def check_alpha(results):
                     f"{len(splits)} splits, {sum(len(s['zones']) for s in d['splits'])} zone visits"))
 
 
+def check_alpha_notes(results):
+    """The alpha checklist's notes over HTTP (stage B): the state answers,
+    a note is saved and comes back stamped, a bad rating is a 400, and the
+    export writes its two files. Under OXIDE_ALPHA_DIR, so Ian's notes are
+    never touched."""
+    import tempfile
+    old = os.environ.get("OXIDE_ALPHA_DIR")
+    with tempfile.TemporaryDirectory() as tmp:
+        os.environ["OXIDE_ALPHA_DIR"] = tmp
+        try:
+            state = get("/api/alpha/state")
+            code, saved = post("/api/alpha/feedback", {
+                "key": "roark", "label": "Roark", "zone": "Oreburgh City", "split": "Roark",
+                "fields": {"fought": True, "rating": 8, "note": "close"}})
+            bad, _ = post("/api/alpha/feedback", {"key": "roark", "fields": {"rating": 0}})
+            after = get("/api/alpha/state")["feedback"]["notes"].get("roark") or {}
+            ecode, exported = post("/api/alpha/export", {})
+            files = sorted(os.listdir(tmp))
+        finally:
+            if old is None:
+                os.environ.pop("OXIDE_ALPHA_DIR", None)
+            else:
+                os.environ["OXIDE_ALPHA_DIR"] = old
+    results.append(("the alpha notes: state, a stamped note, a refused rating, the export",
+                    "feedback" in state and code == 200 and saved["entry"]["rating"] == 8
+                    and saved["entry"]["stamp"]["zone"] == "Oreburgh City" and bad == 400
+                    and after.get("note") == "close" and ecode == 200
+                    and {"alpha-feedback.json", "alpha-notes.json", "alpha-notes.md"} <= set(files),
+                    f"{code}, {bad}, {ecode}, {files}"))
+
+
 def check_water_tables(results):
     """Surf and the three rods, with the fractional repel their level ranges
     require."""
@@ -654,7 +686,7 @@ def main():
                       check_caught_is_global, check_lines_dupe_out,
                       check_water_tables, check_time_layers, check_time_layer_catch, check_rejections,
                       check_edit_is_local, check_no_colour_literals, check_dim_theme,
-                      check_faces_and_switch, check_team_sheet, check_alpha):
+                      check_faces_and_switch, check_team_sheet, check_alpha, check_alpha_notes):
             check(results)
     finally:
         httpd.shutdown()
