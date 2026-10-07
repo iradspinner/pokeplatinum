@@ -27,17 +27,26 @@ the TM pass, is built on `balance-tm-pass`:
 The reports are `docs/oxide/reward-table.md` and
 `docs/oxide/early-kits-read.md`.
 
-**Waiting.** The TM compatibility lands with or after the main track's
-`main-tm-items`, whose item records say what each TM number teaches;
-TM93 and TM94 are added once it raises `NUM_EXTRA_TMS`. The one rescore
-(stale since the pool's evolution reading changed) runs after the
-move-rework cloud job merges, so it covers the reworks, the TM pass and
-the evolution fix together.
+**Where it stopped (2026-10-06, paused for Ian's usage limit).** The
+branch has merged the rework job (`cloud/main-move-reworks`) and
+`main-tm-items` at 58630f941d, and both merges are pushed. The work since
+is uncommitted in the balance worktree and not yet built:
+- **tmcompat rerun.** Done: 109 species gain TM93 or TM94, and the item
+  records agree with the TM list.
+- **Reworked moves.** The generator places the reworked moves on the type
+  ladders (23 entries moved later) and reads multi-hit moves by a hit.
+- **Multi-hit swaps.** Ian's ruling (one two-to-five-hit move per type) is
+  in the generator, which settles and passes its tests; the swaps still
+  need a read as a player before the report.
+- **Rewards check.** It fails: TM93 and TM94 are placed twice now that
+  `main-tm-items` gives them item records.
 
-**Next steps.** Merge `main-tm-items` and rerun `tmcompat`; merge the
-rework job, rerun the generator and the TM set's tiers, then the rescore
-and the gate (about 1.5 hours of machine time). No boss is read until
-the TM pass has landed (Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+**Next steps.** Fix the double placement in `rewards.py`; add the TM
+read-back check (the built ROM's TM bits against each species' JSON
+through `tm-list.tsv`); build and run the verify tools; commit and push;
+then the one rescore and the gate (about 1.5 hours of machine time). No
+boss is read until the TM pass has landed (Ian, 2026-10-06;
+`alpha-readiness.md`, step 15).
 
 **The early kits on type ladders (Ian, 2026-10-06).** "It entirely
 depends on the pokemon, and keeping it to hard rules destroys the
