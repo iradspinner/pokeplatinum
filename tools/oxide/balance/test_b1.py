@@ -129,7 +129,7 @@ def check_roark(results):
     roark = next(f for f in data.fights()["fights"] if f["key"] == "roark")
     got = {h: len(data.fight_trainers(h, roark)[0]["party"])
            for h in ("oxide", "vanilla", "renegade", "kaizo")}
-    want = {"oxide": 4, "vanilla": 3, "renegade": 6, "kaizo": 6}
+    want = {"oxide": 5, "vanilla": 3, "renegade": 6, "kaizo": 6}    # Oxide 5 since the comb (step 12)
     results.append(("Roark's party sizes", got == want, str(got)))
 
 
