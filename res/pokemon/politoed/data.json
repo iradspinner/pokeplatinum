@@ -48,7 +48,7 @@
             [ 48, "MOVE_HYPER_VOICE" ],
             [ 57, "MOVE_ICE_BEAM" ],
             [ 59, "MOVE_MUDDY_WATER" ],
-            [ 65, "MOVE_BLOCK" ]
+            [ 65, "MOVE_BELLY_DRUM" ]
         ],
         "by_tm": [
             "TM01",

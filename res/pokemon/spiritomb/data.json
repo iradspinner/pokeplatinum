@@ -54,11 +54,11 @@
             [ 42, "MOVE_HEX" ],
             [ 49, "MOVE_DARK_PULSE" ],
             [ 51, "MOVE_CONFUSE_RAY" ],
-            [ 56, "MOVE_STOMPING_TANTRUM" ],
-            [ 58, "MOVE_ROCK_TOMB" ],
+            [ 56, "MOVE_ROCK_TOMB" ],
+            [ 58, "MOVE_PSYSHOCK" ],
             [ 64, "MOVE_EARTH_POWER" ],
-            [ 66, "MOVE_PSYCHIC" ],
-            [ 72, "MOVE_AURA_SPHERE" ]
+            [ 66, "MOVE_AURA_SPHERE" ],
+            [ 72, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM03",

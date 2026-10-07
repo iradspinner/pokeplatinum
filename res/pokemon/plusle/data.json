@@ -44,7 +44,7 @@
             [ 10, "MOVE_HELPING_HAND" ],
             [ 15, "MOVE_SPARK" ],
             [ 17, "MOVE_ENCORE" ],
-            [ 19, "MOVE_TRIPLE_AXEL" ],
+            [ 19, "MOVE_TRAILBLAZE" ],
             [ 21, "MOVE_FAKE_TEARS" ],
             [ 27, "MOVE_ELECTROWEB" ],
             [ 29, "MOVE_SWIFT" ],
@@ -55,10 +55,10 @@
             [ 46, "MOVE_FIRE_PUNCH" ],
             [ 48, "MOVE_LAST_RESORT" ],
             [ 51, "MOVE_NASTY_PLOT" ],
-            [ 53, "MOVE_DISCHARGE" ],
-            [ 59, "MOVE_ALLURING_VOICE" ],
+            [ 53, "MOVE_ICE_PUNCH" ],
+            [ 59, "MOVE_DISCHARGE" ],
             [ 61, "MOVE_VOLT_SWITCH" ],
-            [ 67, "MOVE_EXPANDING_FORCE" ]
+            [ 67, "MOVE_ALLURING_VOICE" ]
         ],
         "by_tm": [
             "TM06",

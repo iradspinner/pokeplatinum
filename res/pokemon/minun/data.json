@@ -58,7 +58,7 @@
             [ 53, "MOVE_DISCHARGE" ],
             [ 59, "MOVE_ALLURING_VOICE" ],
             [ 61, "MOVE_VOLT_SWITCH" ],
-            [ 67, "MOVE_EXPANDING_FORCE" ]
+            [ 67, "MOVE_SIGNAL_BEAM" ]
         ],
         "by_tm": [
             "TM06",

@@ -45,10 +45,11 @@
             [ 6, "MOVE_MUD_SLAP" ],
             [ 10, "MOVE_WATER_GUN" ],
             [ 16, "MOVE_MUD_SHOT" ],
-            [ 18, "MOVE_ROCK_THROW" ],
+            [ 18, "MOVE_BULLDOZE" ],
             [ 20, "MOVE_FORESIGHT" ],
             [ 25, "MOVE_MUD_BOMB" ],
             [ 31, "MOVE_TAKE_DOWN" ],
+            [ 34, "MOVE_BODY_PRESS" ],
             [ 37, "MOVE_MUDDY_WATER" ],
             [ 46, "MOVE_EARTHQUAKE" ],
             [ 53, "MOVE_ENDEAVOR" ]

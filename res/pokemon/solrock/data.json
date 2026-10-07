@@ -49,10 +49,10 @@
             [ 47, "MOVE_BULLDOZE" ],
             [ 53, "MOVE_SOLAR_BEAM" ],
             [ 55, "MOVE_ROCK_TOMB" ],
-            [ 57, "MOVE_SKITTER_SMACK" ],
-            [ 62, "MOVE_PLAY_ROUGH" ],
-            [ 64, "MOVE_BOUNCE" ],
-            [ 70, "MOVE_MORNING_SUN" ],
+            [ 57, "MOVE_IRON_HEAD" ],
+            [ 62, "MOVE_BODY_SLAM" ],
+            [ 64, "MOVE_MORNING_SUN" ],
+            [ 70, "MOVE_ACROBATICS" ],
             [ 72, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [

@@ -55,7 +55,7 @@
             [ 44, "MOVE_SKITTER_SMACK" ],
             [ 48, "MOVE_ICE_BEAM" ],
             [ 55, "MOVE_HYPER_BEAM" ],
-            [ 67, "MOVE_BLOCK" ]
+            [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

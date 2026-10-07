@@ -50,15 +50,14 @@
             [ 25, "MOVE_CONFUSE_RAY" ],
             [ 28, "MOVE_FIRE_PUNCH" ],
             [ 37, "MOVE_LAVA_PLUME" ],
-            [ 40, "MOVE_EXPANDING_FORCE" ],
+            [ 40, "MOVE_SCORCHING_SANDS" ],
             [ 43, "MOVE_FLAMETHROWER" ],
-            [ 45, "MOVE_THUNDERBOLT" ],
-            [ 47, "MOVE_MILK_DRINK" ],
-            [ 53, "MOVE_ALLURING_VOICE" ],
+            [ 45, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_THUNDERBOLT" ],
+            [ 53, "MOVE_MILK_DRINK" ],
             [ 58, "MOVE_BLAST_BURN" ],
             [ 61, "MOVE_OVERHEAT" ],
-            [ 67, "MOVE_HYPER_BEAM" ],
-            [ 69, "MOVE_PSYCHIC" ]
+            [ 67, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM06",

@@ -49,10 +49,11 @@
             [ 49, "MOVE_AQUA_RING" ],
             [ 51, "MOVE_ALLURING_VOICE" ],
             [ 54, "MOVE_MUDDY_WATER" ],
-            [ 58, "MOVE_EXPANDING_FORCE" ],
-            [ 60, "MOVE_SCALD" ],
-            [ 66, "MOVE_DRAGON_BREATH" ],
-            [ 74, "MOVE_DRAGON_PULSE" ]
+            [ 58, "MOVE_SCALD" ],
+            [ 60, "MOVE_DRAGON_BREATH" ],
+            [ 62, "MOVE_EARTH_POWER" ],
+            [ 66, "MOVE_DRAGON_PULSE" ],
+            [ 74, "MOVE_DRACO_METEOR" ]
         ],
         "by_tm": [
             "TM01",

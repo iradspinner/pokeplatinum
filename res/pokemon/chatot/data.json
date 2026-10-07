@@ -53,10 +53,10 @@
             [ 48, "MOVE_HEAT_WAVE" ],
             [ 54, "MOVE_UPROAR" ],
             [ 56, "MOVE_AIR_SLASH" ],
-            [ 58, "MOVE_BOUNCE" ],
-            [ 64, "MOVE_TRIPLE_AXEL" ],
-            [ 66, "MOVE_ALLURING_VOICE" ],
-            [ 72, "MOVE_EXPANDING_FORCE" ]
+            [ 58, "MOVE_U_TURN" ],
+            [ 64, "MOVE_STEEL_WING" ],
+            [ 66, "MOVE_BOUNCE" ],
+            [ 72, "MOVE_PARTING_SHOT" ]
         ],
         "by_tm": [
             "TM06",

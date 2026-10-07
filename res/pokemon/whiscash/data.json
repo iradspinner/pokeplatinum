@@ -55,8 +55,7 @@
             [ 45, "MOVE_EARTHQUAKE" ],
             [ 51, "MOVE_FUTURE_SIGHT" ],
             [ 53, "MOVE_BOUNCE" ],
-            [ 58, "MOVE_TRIPLE_AXEL" ],
-            [ 66, "MOVE_BLOCK" ]
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

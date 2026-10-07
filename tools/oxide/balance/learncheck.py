@@ -61,6 +61,25 @@ V3_TM_SET = "docs/oxide/tm-pass-set.tsv"
 SHEETS = os.path.join(data.ROOT, "docs", "oxide", "learnset-sheets")
 
 
+@functools.lru_cache(maxsize=None)
+def base_machines():
+    """{"TM02": MOVE_X}: what each TM and HM taught at BASE_REF, before the
+    TM pass. A species' TM list read at BASE_REF names its machines by those
+    numbers, so it must be read through these records: today's (from
+    main-tm-items) teach the new list, and read through them a line that
+    had Sleep Talk by TM82 would read as linked to Bounce."""
+    listing = subprocess.run(["git", "-C", data.ROOT, "ls-tree", "--name-only", BASE_REF, "res/items/data/"],
+                             capture_output=True, text=True, check=True).stdout.split()
+    out = {}
+    for path in listing:
+        label = os.path.basename(path)[:-len(".json")]
+        if label[:2] in ("tm", "hm") and label[2:].isdigit():
+            raw = pokedex._read(data.ROOT, path, ref=BASE_REF) or {}
+            if raw.get("teachesMove"):
+                out[label.upper()] = raw["teachesMove"]
+    return out
+
+
 def si(split):
     """A split's position, the post-game and anything unknown last."""
     return pool.split_index(split)

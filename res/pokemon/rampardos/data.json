@@ -53,7 +53,7 @@
             [ 45, "MOVE_IRON_HEAD" ],
             [ 52, "MOVE_HEAD_SMASH" ],
             [ 58, "MOVE_ROCK_TOMB" ],
-            [ 66, "MOVE_BLOCK" ]
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM02",

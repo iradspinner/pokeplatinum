@@ -50,12 +50,11 @@
             [ 31, "MOVE_TAKE_DOWN" ],
             [ 39, "MOVE_MUDDY_WATER" ],
             [ 41, "MOVE_LIQUIDATION" ],
-            [ 43, "MOVE_BRICK_BREAK" ],
+            [ 43, "MOVE_AVALANCHE" ],
             [ 48, "MOVE_POISON_JAB" ],
             [ 52, "MOVE_EARTHQUAKE" ],
             [ 56, "MOVE_FLIP_TURN" ],
             [ 61, "MOVE_ENDEAVOR" ],
-            [ 64, "MOVE_ROCK_TOMB" ],
             [ 69, "MOVE_HAMMER_ARM" ]
         ],
         "by_tm": [

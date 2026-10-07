@@ -52,10 +52,10 @@
             [ 43, "MOVE_SAFEGUARD" ],
             [ 49, "MOVE_MUDDY_WATER" ],
             [ 54, "MOVE_DRILL_RUN" ],
-            [ 57, "MOVE_SKITTER_SMACK" ],
-            [ 59, "MOVE_BOUNCE" ],
-            [ 65, "MOVE_PSYCHIC" ],
-            [ 67, "MOVE_THUNDERBOLT" ],
+            [ 57, "MOVE_PSYCHIC" ],
+            [ 59, "MOVE_THUNDERBOLT" ],
+            [ 65, "MOVE_IRON_HEAD" ],
+            [ 67, "MOVE_DRAGON_PULSE" ],
             [ 73, "MOVE_BULLDOZE" ]
         ],
         "by_tm": [

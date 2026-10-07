@@ -57,8 +57,8 @@
             [ 45, "MOVE_SPORE" ],
             [ 51, "MOVE_LOW_SWEEP" ],
             [ 53, "MOVE_ROCK_TOMB" ],
-            [ 59, "MOVE_BOUNCE" ],
-            [ 61, "MOVE_DRAIN_PUNCH" ],
+            [ 59, "MOVE_DRAIN_PUNCH" ],
+            [ 61, "MOVE_ZEN_HEADBUTT" ],
             [ 67, "MOVE_TOXIC" ]
         ],
         "by_tm": [

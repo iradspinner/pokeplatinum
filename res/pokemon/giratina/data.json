@@ -49,7 +49,7 @@
             [ 62, "MOVE_SCARY_FACE" ],
             [ 66, "MOVE_SPACIAL_REND" ],
             [ 70, "MOVE_SLASH" ],
-            [ 74, "MOVE_FOUL_PLAY" ]
+            [ 74, "MOVE_SKITTER_SMACK" ]
         ],
         "by_tm": [
             "TM02",

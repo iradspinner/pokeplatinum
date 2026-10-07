@@ -39,10 +39,10 @@
             [ 10, "MOVE_WATER_GUN" ],
             [ 11, "MOVE_POWDER_SNOW" ],
             [ 30, "MOVE_WEATHER_BALL" ],
-            [ 34, "MOVE_BLOCK" ],
+            [ 34, "MOVE_SWAGGER" ],
             [ 40, "MOVE_CLEAR_SMOG" ],
             [ 42, "MOVE_SWIFT" ],
-            [ 64, "MOVE_SWAGGER" ]
+            [ 64, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM01",

@@ -46,9 +46,9 @@
             [ 43, "MOVE_BRICK_BREAK" ],
             [ 45, "MOVE_BODY_PRESS" ],
             [ 53, "MOVE_MIND_READER" ],
-            [ 55, "MOVE_TRIPLE_AXEL" ],
+            [ 55, "MOVE_ROCK_TOMB" ],
             [ 57, "MOVE_LOW_SWEEP" ],
-            [ 62, "MOVE_ROCK_TOMB" ],
+            [ 62, "MOVE_ICE_PUNCH" ],
             [ 64, "MOVE_DRAIN_PUNCH" ],
             [ 70, "MOVE_BELLY_DRUM" ]
         ],

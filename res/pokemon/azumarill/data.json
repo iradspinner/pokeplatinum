@@ -54,7 +54,7 @@
             [ 43, "MOVE_ICE_PUNCH" ],
             [ 47, "MOVE_AQUA_TAIL" ],
             [ 54, "MOVE_MUDDY_WATER" ],
-            [ 67, "MOVE_BLOCK" ]
+            [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

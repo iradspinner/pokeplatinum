@@ -55,10 +55,10 @@
             [ 48, "MOVE_MIST" ],
             [ 50, "MOVE_ICICLE_SPEAR" ],
             [ 56, "MOVE_ICE_BEAM" ],
-            [ 58, "MOVE_TRIPLE_AXEL" ],
+            [ 58, "MOVE_BULLDOZE" ],
             [ 65, "MOVE_SCARY_FACE" ],
             [ 67, "MOVE_ICICLE_CRASH" ],
-            [ 72, "MOVE_BULLDOZE" ]
+            [ 72, "MOVE_IRON_HEAD" ]
         ],
         "by_tm": [
             "TM06",

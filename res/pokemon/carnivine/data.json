@@ -43,15 +43,14 @@
             [ 31, "MOVE_STOCKPILE" ],
             [ 32, "MOVE_SWALLOW" ],
             [ 33, "MOVE_SWAGGER" ],
-            [ 35, "MOVE_HEX" ],
+            [ 35, "MOVE_BUG_BITE" ],
             [ 37, "MOVE_CRUNCH" ],
-            [ 42, "MOVE_LEECH_LIFE" ],
+            [ 42, "MOVE_SLUDGE_BOMB" ],
             [ 47, "MOVE_PETAL_BLIZZARD" ],
             [ 50, "MOVE_FIRE_FANG" ],
             [ 52, "MOVE_GIGA_DRAIN" ],
-            [ 58, "MOVE_SLUDGE_BOMB" ],
-            [ 60, "MOVE_LEAF_STORM" ],
-            [ 66, "MOVE_BLOCK" ]
+            [ 58, "MOVE_LEAF_STORM" ],
+            [ 66, "MOVE_LEECH_SEED" ]
         ],
         "by_tm": [
             "TM06",

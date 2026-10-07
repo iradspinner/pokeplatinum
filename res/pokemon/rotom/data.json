@@ -48,10 +48,10 @@
             [ 43, "MOVE_CHARGE" ],
             [ 45, "MOVE_DARK_PULSE" ],
             [ 50, "MOVE_DISCHARGE" ],
-            [ 52, "MOVE_EXPANDING_FORCE" ],
             [ 58, "MOVE_THUNDERBOLT" ],
             [ 60, "MOVE_VOLT_SWITCH" ],
-            [ 66, "MOVE_BLOCK" ]
+            [ 66, "MOVE_SWAGGER" ],
+            [ 68, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM06",

@@ -50,7 +50,7 @@
             [ 31, "MOVE_TRAILBLAZE" ],
             [ 36, "MOVE_FIRE_SPIN" ],
             [ 43, "MOVE_FIRE_FANG" ],
-            [ 45, "MOVE_ZEN_HEADBUTT" ],
+            [ 45, "MOVE_DIG" ],
             [ 47, "MOVE_FIRE_PUNCH" ],
             [ 57, "MOVE_SMOG" ],
             [ 64, "MOVE_SCARY_FACE" ],

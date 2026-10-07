@@ -47,8 +47,8 @@
             [ 56, "MOVE_SURF" ],
             [ 62, "MOVE_SWEET_KISS" ],
             [ 64, "MOVE_PLAY_ROUGH" ],
-            [ 70, "MOVE_TRIPLE_AXEL" ],
-            [ 72, "MOVE_VOLT_SWITCH" ]
+            [ 70, "MOVE_VOLT_SWITCH" ],
+            [ 72, "MOVE_EXTREME_SPEED" ]
         ],
         "by_tm": [
             "TM06",

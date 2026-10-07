@@ -57,7 +57,7 @@
             [ 61, "MOVE_FLAMETHROWER" ],
             [ 64, "MOVE_ENERGY_BALL" ],
             [ 66, "MOVE_EARTH_POWER" ],
-            [ 72, "MOVE_ALLURING_VOICE" ]
+            [ 72, "MOVE_YAWN" ]
         ],
         "by_tm": [
             "TM06",

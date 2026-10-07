@@ -43,8 +43,7 @@
             [ 5, "MOVE_ROCK_BLAST" ],
             [ 8, "MOVE_BUBBLE" ],
             [ 13, "MOVE_RECOVER" ],
-            [ 17, "MOVE_TRIPLE_AXEL" ],
-            [ 19, "MOVE_AQUA_JET" ],
+            [ 17, "MOVE_AQUA_JET" ],
             [ 25, "MOVE_BUBBLE_BEAM" ],
             [ 28, "MOVE_LUCKY_CHANT" ],
             [ 32, "MOVE_ANCIENT_POWER" ],
@@ -58,7 +57,7 @@
             [ 55, "MOVE_THROAT_CHOP" ],
             [ 57, "MOVE_LIQUIDATION" ],
             [ 59, "MOVE_ROCK_TOMB" ],
-            [ 65, "MOVE_PLAY_ROUGH" ],
+            [ 65, "MOVE_CONFUSE_RAY" ],
             [ 67, "MOVE_ROCK_SLIDE" ],
             [ 73, "MOVE_SUCKER_PUNCH" ]
         ],

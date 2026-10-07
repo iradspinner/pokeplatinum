@@ -47,10 +47,10 @@
             [ 17, "MOVE_AGILITY" ],
             [ 21, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_FURY_CUTTER" ],
-            [ 27, "MOVE_STRENGTH" ],
-            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 27, "MOVE_PIN_MISSILE" ],
+            [ 28, "MOVE_SECRET_POWER" ],
             [ 29, "MOVE_SLASH" ],
-            [ 34, "MOVE_PIN_MISSILE" ],
+            [ 34, "MOVE_ROCK_BLAST" ],
             [ 37, "MOVE_IRON_DEFENSE" ],
             [ 41, "MOVE_X_SCISSOR" ],
             [ 43, "MOVE_DUAL_WINGBEAT" ],
@@ -61,8 +61,8 @@
             [ 57, "MOVE_SWORDS_DANCE" ],
             [ 62, "MOVE_LUNGE" ],
             [ 64, "MOVE_SKITTER_SMACK" ],
-            [ 70, "MOVE_TRIPLE_AXEL" ],
-            [ 72, "MOVE_U_TURN" ]
+            [ 70, "MOVE_U_TURN" ],
+            [ 72, "MOVE_STRENGTH" ]
         ],
         "by_tm": [
             "TM06",

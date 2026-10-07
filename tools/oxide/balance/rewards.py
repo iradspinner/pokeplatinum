@@ -29,7 +29,9 @@ import csv
 import functools
 import json
 import os
+import re
 import statistics
+import subprocess
 import sys
 
 from ..encounters import learnsets as canon_ls, pokedex
@@ -225,12 +227,19 @@ def canon_tm_moves():
     return frozenset(c for got in _canon_moves("MT").values() for c in got)
 
 
+def base_machines():
+    """The TM list before the TM pass. Today's item records already teach the
+    new list (main-tm-items), so reading them would count each new TM as a
+    kept one and place it twice."""
+    return lc.base_machines()
+
+
 @functools.lru_cache(maxsize=None)
 def compat(species):
-    """{MOVE_X} a species may learn from a TM: its TM and tutor lists today,
-    and what canon teaches it by TM, tutor or level-up."""
-    rec = pokedex.load(data.ROOT, species) or {}
-    machines = pokedex.machines(data.ROOT)
+    """{MOVE_X} a species may learn from a TM: its TM and tutor lists before
+    the TM pass, and what canon teaches it by TM, tutor or level-up."""
+    rec = pokedex.load(data.ROOT, species, ref=lc.BASE_REF) or {}
+    machines = base_machines()
     have = {machines[m] for m in rec.get("by_tm") or [] if m in machines}
     have |= set(rec.get("by_tutor") or [])
     have |= canon_compat().get(lr.canon_key(species), set())
@@ -305,7 +314,7 @@ Set = collections.namedtuple("Set", "kept dropped hms hm_dropped new below dupes
 
 @functools.lru_cache(maxsize=None)
 def build_set():
-    machines = pokedex.machines(data.ROOT)
+    machines = base_machines()
     tms = sorted((k, c) for k, c in machines.items() if k.startswith("TM"))
     hms = sorted((k, c) for k, c in machines.items() if k.startswith("HM"))
     kept, dropped = [], []
@@ -751,6 +760,47 @@ def build():
     return st, item, rows, facts
 
 
+# Ian approved the table's timing as pushed at FROZEN_REF (2026-10-07,
+# relayed by the Overseer). Its rows stay as they are, since the spread
+# reshuffles 33 other TMs when a few tiers change, and some of those moves
+# went against his ladder (Drain Punch into Gardenia's split). Only the TMs
+# the move rework changed are repriced, each by hand here: {reward: (copies,
+# the (map, replaces) of the row it trades places with, or None to stay,
+# why)}. The row it trades with takes the TM's old place.
+FROZEN_REF = "fc06095a8e"
+REPRICED = {
+    "ITEM_TM15": (1, None, "Hyper Beam, strong since the rework (180, no recharge, half as recoil): one copy"),
+    "ITEM_TM68": (1, ("MAP_HEADER_VICTORY_ROAD_2F", "ITEM_TM79"),
+                  "Giga Impact, strong since the rework (180, no recharge, half as recoil): one copy, "
+                  "in Barry's split, the first its power allows"),
+    "ITEM_TM70": (1, ("MAP_HEADER_VICTORY_ROAD_B1F", "ITEM_TM59"),
+                  "Outrage, strong since the rework (140, one turn, half as recoil): one copy, no earlier "
+                  "than Galactic's split; the first free place is Victory Road"),
+    "ITEM_TM28": (1, None, "Dig, weak since the rework (60, one turn): one copy; a weak TM is an optional "
+                           "trainer's reward, but all 46 spare flags are used, so it keeps its place"),
+}
+
+
+def frozen_rows():
+    """The approved table's rows, with REPRICED applied."""
+    out = subprocess.run(["git", "-C", data.ROOT, "show", f"{FROZEN_REF}:docs/oxide/reward-placements.tsv"],
+                         capture_output=True, text=True, check=True).stdout
+    lines = [line for line in out.splitlines() if not line.startswith("#")]
+    rows = [Row(**r) for r in csv.DictReader(lines, delimiter="\t")]
+    for it, (copies, target, why) in REPRICED.items():
+        old = next(r for r in rows if r.reward == it)
+        if target is None:
+            rows[rows.index(old)] = old._replace(copies=str(copies), note=why)
+            continue
+        other = next(r for r in rows if (r.map, r.replaces) == target)
+        place = ("kind", "split", "map", "place", "replaces", "trainer_id", "badges")
+        rows[rows.index(old)] = other._replace(**{f: getattr(old, f) for f in place})
+        rows[rows.index(other)] = old._replace(copies=str(copies), note=f"{why}; a TM place today ({other.replaces})",
+                                               **{f: getattr(other, f) for f in place})
+    rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
+    return rows
+
+
 def _key(st, c):
     return next(k for k, m in st.kept + st.hms if m == c) if any(m == c for _k, m in st.kept + st.hms) else ""
 
@@ -1001,7 +1051,7 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     p()
     p("| Number | Vanilla | Now | Split | Why it changed |")
     p("|---|---|---|---|---|")
-    machines = pokedex.machines(data.ROOT)
+    machines = base_machines()
     dropped_why = {k: why for k, _c, why in st.dropped + st.hm_dropped}
     new_why = {}
     for c, lf, gn, _w in st.new:
@@ -1173,10 +1223,16 @@ def main(argv=None):
     ap.add_argument("what", nargs="?", default="write", choices=["write", "check"])
     ap.add_argument("--no-gauntlets", action="store_true", help="leave the gauntlet readings out (faster)")
     ap.add_argument("--gauntlet-reading", help="gauntlet.py's printed reading, used instead of running it again")
+    ap.add_argument("--reshuffle", action="store_true",
+                    help="write the spread's own table instead of the approved one (FROZEN_REF)")
     args = ap.parse_args(argv)
     if args.what == "check":
         return 1 if check() else 0
     st, item, rows, facts = build()
+    # The spread above still runs for its facts; the table written is the
+    # approved one (FROZEN_REF) unless asked to reshuffle.
+    if not args.reshuffle:
+        rows = frozen_rows()
     write(st, item, rows, facts)
     readings_ = (parse_section_readings(args.gauntlet_reading) if args.gauntlet_reading
                  else None if args.no_gauntlets else section_readings())

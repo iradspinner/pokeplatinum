@@ -42,7 +42,7 @@
             [ 5, "MOVE_HOWL" ],
             [ 6, "MOVE_SCARY_FACE" ],
             [ 9, "MOVE_SAND_ATTACK" ],
-            [ 11, "MOVE_TRIPLE_AXEL" ],
+            [ 11, "MOVE_BULLET_SEED" ],
             [ 13, "MOVE_BITE" ],
             [ 17, "MOVE_ODOR_SLEUTH" ],
             [ 25, "MOVE_SWAGGER" ],

@@ -47,13 +47,14 @@
             [ 21, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_STOMP" ],
             [ 34, "MOVE_ROCK_TOMB" ],
-            [ 36, "MOVE_AQUA_JET" ],
+            [ 36, "MOVE_SECRET_POWER" ],
             [ 44, "MOVE_SLAM" ],
             [ 51, "MOVE_BRINE" ],
             [ 56, "MOVE_CRABHAMMER" ],
-            [ 58, "MOVE_RAZOR_SHELL" ],
+            [ 58, "MOVE_ICE_PUNCH" ],
             [ 63, "MOVE_FLAIL" ],
-            [ 66, "MOVE_LIQUIDATION" ]
+            [ 66, "MOVE_RAZOR_SHELL" ],
+            [ 68, "MOVE_LIQUIDATION" ]
         ],
         "by_tm": [
             "TM01",

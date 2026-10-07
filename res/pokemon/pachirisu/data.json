@@ -39,8 +39,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 4, "MOVE_TRIPLE_AXEL" ],
+            [ 4, "MOVE_ELECTROWEB" ],
             [ 5, "MOVE_QUICK_ATTACK" ],
+            [ 7, "MOVE_MUD_SHOT" ],
             [ 9, "MOVE_CHARM" ],
             [ 13, "MOVE_SPARK" ],
             [ 17, "MOVE_ENDURE" ],
@@ -53,11 +54,10 @@
             [ 41, "MOVE_THUNDER_FANG" ],
             [ 43, "MOVE_THUNDER_PUNCH" ],
             [ 49, "MOVE_FIRE_FANG" ],
-            [ 51, "MOVE_PLAY_ROUGH" ],
+            [ 51, "MOVE_ICE_FANG" ],
             [ 57, "MOVE_VOLT_SWITCH" ],
             [ 59, "MOVE_FOLLOW_ME" ],
-            [ 65, "MOVE_BLOCK" ],
-            [ 67, "MOVE_THUNDER_WAVE" ]
+            [ 65, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM06",

@@ -50,8 +50,7 @@
             [ 58, "MOVE_DARK_PULSE" ],
             [ 62, "MOVE_ENERGY_BALL" ],
             [ 64, "MOVE_LEECH_SEED" ],
-            [ 70, "MOVE_LEAF_STORM" ],
-            [ 72, "MOVE_ALLURING_VOICE" ]
+            [ 70, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
             "TM01",

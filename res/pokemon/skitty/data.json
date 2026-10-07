@@ -42,7 +42,7 @@
             [ 1, "MOVE_TACKLE" ],
             [ 3, "MOVE_BABY_DOLL_EYES" ],
             [ 4, "MOVE_FORESIGHT" ],
-            [ 6, "MOVE_TRIPLE_AXEL" ],
+            [ 6, "MOVE_BULLET_SEED" ],
             [ 8, "MOVE_ATTRACT" ],
             [ 11, "MOVE_SING" ],
             [ 15, "MOVE_FURY_SWIPES" ],

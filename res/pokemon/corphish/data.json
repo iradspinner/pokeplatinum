@@ -39,7 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_BUBBLE" ],
-            [ 2, "MOVE_TRIPLE_AXEL" ],
+            [ 2, "MOVE_DUAL_WINGBEAT" ],
             [ 3, "MOVE_TAUNT" ],
             [ 10, "MOVE_VICE_GRIP" ],
             [ 13, "MOVE_LEER" ],

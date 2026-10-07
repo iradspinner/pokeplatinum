@@ -46,7 +46,6 @@
             [ 25, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 42, "MOVE_HAMMER_ARM" ],
-            [ 45, "MOVE_TRIPLE_AXEL" ],
             [ 49, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_MEGAHORN" ]
         ],

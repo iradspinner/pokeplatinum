@@ -54,9 +54,8 @@
             [ 40, "MOVE_KNOCK_OFF" ],
             [ 43, "MOVE_FIRE_FANG" ],
             [ 46, "MOVE_EARTHQUAKE" ],
-            [ 51, "MOVE_TRIPLE_AXEL" ],
+            [ 51, "MOVE_CHARM" ],
             [ 54, "MOVE_GIGA_IMPACT" ],
-            [ 59, "MOVE_CHARM" ],
             [ 67, "MOVE_BLOCK" ]
         ],
         "by_tm": [

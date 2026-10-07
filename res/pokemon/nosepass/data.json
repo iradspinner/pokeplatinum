@@ -39,13 +39,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_TRIPLE_AXEL" ],
+            [ 3, "MOVE_ROCK_BLAST" ],
             [ 4, "MOVE_TAUNT" ],
-            [ 6, "MOVE_ROCK_BLAST" ],
-            [ 17, "MOVE_ROCK_TOMB" ],
+            [ 17, "MOVE_MUD_SHOT" ],
             [ 19, "MOVE_BLOCK" ],
             [ 25, "MOVE_THUNDER_WAVE" ],
             [ 31, "MOVE_ROCK_SLIDE" ],
+            [ 33, "MOVE_BULLDOZE" ],
             [ 43, "MOVE_REST" ],
             [ 49, "MOVE_POWER_GEM" ],
             [ 55, "MOVE_DISCHARGE" ],

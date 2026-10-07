@@ -57,9 +57,9 @@
             [ 52, "MOVE_DRILL_PECK" ],
             [ 56, "MOVE_FLIP_TURN" ],
             [ 59, "MOVE_SURF" ],
-            [ 64, "MOVE_BOUNCE" ],
-            [ 66, "MOVE_TRIPLE_AXEL" ],
-            [ 72, "MOVE_CHARM" ]
+            [ 64, "MOVE_TRIPLE_AXEL" ],
+            [ 66, "MOVE_CHARM" ],
+            [ 72, "MOVE_YAWN" ]
         ],
         "by_tm": [
             "TM01",

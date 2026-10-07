@@ -57,7 +57,7 @@
             [ 60, "MOVE_POWER_GEM" ],
             [ 66, "MOVE_THROAT_CHOP" ],
             [ 68, "MOVE_FLIP_TURN" ],
-            [ 74, "MOVE_ZEN_HEADBUTT" ]
+            [ 74, "MOVE_TOXIC" ]
         ],
         "by_tm": [
             "TM01",

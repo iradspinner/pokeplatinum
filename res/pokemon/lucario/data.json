@@ -54,9 +54,9 @@
             [ 51, "MOVE_EXTREME_SPEED" ],
             [ 54, "MOVE_DARK_PULSE" ],
             [ 56, "MOVE_ICE_PUNCH" ],
-            [ 62, "MOVE_EXPANDING_FORCE" ],
-            [ 64, "MOVE_IRON_HEAD" ],
-            [ 70, "MOVE_LOW_SWEEP" ],
+            [ 62, "MOVE_LOW_SWEEP" ],
+            [ 64, "MOVE_THUNDER_PUNCH" ],
+            [ 70, "MOVE_IRON_HEAD" ],
             [ 72, "MOVE_DRAIN_PUNCH" ]
         ],
         "by_tm": [

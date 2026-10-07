@@ -54,8 +54,7 @@
             [ 53, "MOVE_ICICLE_CRASH" ],
             [ 55, "MOVE_DARK_PULSE" ],
             [ 61, "MOVE_BLOCK" ],
-            [ 63, "MOVE_ALLURING_VOICE" ],
-            [ 69, "MOVE_ICE_PUNCH" ]
+            [ 63, "MOVE_ICE_PUNCH" ]
         ],
         "by_tm": [
             "TM03",

@@ -55,8 +55,8 @@
             [ 57, "MOVE_BLOCK" ],
             [ 59, "MOVE_BRICK_BREAK" ],
             [ 64, "MOVE_ENERGY_BALL" ],
-            [ 66, "MOVE_BOUNCE" ],
-            [ 72, "MOVE_GIGA_DRAIN" ]
+            [ 66, "MOVE_GIGA_DRAIN" ],
+            [ 72, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM06",

@@ -58,11 +58,11 @@
             [ 52, "MOVE_ROOST" ],
             [ 54, "MOVE_BODY_SLAM" ],
             [ 57, "MOVE_DREAM_EATER" ],
-            [ 59, "MOVE_BOUNCE" ],
-            [ 61, "MOVE_ICE_PUNCH" ],
-            [ 67, "MOVE_SKY_ATTACK" ],
-            [ 69, "MOVE_FOUL_PLAY" ],
-            [ 75, "MOVE_PSYCHIC" ]
+            [ 59, "MOVE_DUAL_WINGBEAT" ],
+            [ 61, "MOVE_HEAT_WAVE" ],
+            [ 67, "MOVE_SHADOW_BALL" ],
+            [ 69, "MOVE_PSYCHIC" ],
+            [ 75, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM04",

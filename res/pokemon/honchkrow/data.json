@@ -42,15 +42,14 @@
             [ 1, "MOVE_PURSUIT" ],
             [ 1, "MOVE_WING_ATTACK" ],
             [ 25, "MOVE_SWAGGER" ],
-            [ 40, "MOVE_SKITTER_SMACK" ],
+            [ 40, "MOVE_U_TURN" ],
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 46, "MOVE_NASTY_PLOT" ],
             [ 53, "MOVE_SUCKER_PUNCH" ],
             [ 55, "MOVE_DARK_PULSE" ],
             [ 61, "MOVE_HEAT_WAVE" ],
             [ 63, "MOVE_MEAN_LOOK" ],
-            [ 69, "MOVE_SUPERPOWER" ],
-            [ 71, "MOVE_U_TURN" ]
+            [ 69, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM04",

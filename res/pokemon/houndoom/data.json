@@ -58,8 +58,8 @@
             [ 54, "MOVE_CRUNCH" ],
             [ 58, "MOVE_SHADOW_BALL" ],
             [ 60, "MOVE_NASTY_PLOT" ],
-            [ 62, "MOVE_ALLURING_VOICE" ],
-            [ 66, "MOVE_TOXIC" ],
+            [ 62, "MOVE_TOXIC" ],
+            [ 66, "MOVE_UPROAR" ],
             [ 68, "MOVE_WILL_O_WISP" ]
         ],
         "by_tm": [

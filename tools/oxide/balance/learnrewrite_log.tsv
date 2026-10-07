@@ -1282,20 +1282,21 @@ SPECIES_ALAKAZAM	36	Calm Mind	removed	R25	below 40; onto Kadabra's list
 SPECIES_KADABRA	35	Calm Mind	added	R25	from Alakazam's 36, below its 40
 SPECIES_ABRA	4	Stored Power	added	R11, R16	Roark's split; score 200
 SPECIES_ABRA	3	Calm Mind	added	R7	Roark's split; score 155
-SPECIES_ABRA	2	Water Gun	added	R4	Roark's split; score 35
+SPECIES_KADABRA	20	Charge Beam	added	R4, R5	Gardenia's split; score 174
 SPECIES_ALAKAZAM	44	Shadow Ball	added	R5	Wake's split; score 87
-SPECIES_ALAKAZAM	41	Alluring Voice	added	R5	Wake's split; score 85
-SPECIES_ALAKAZAM	48	Signal Beam	added	R5	Byron's split; score 46
-SPECIES_ALAKAZAM	61	Block	added	late move	Galactic's split; score 56
-SPECIES_ABSOL	46	Skitter Smack	added	R5, R16	Byron's split; score 90
+SPECIES_ALAKAZAM	48	Dazzling Gleam	added	R5	Byron's split; score 47
+SPECIES_ALAKAZAM	53	Signal Beam	added	R5	Byron's split; score 46
+SPECIES_ALAKAZAM	61	Swagger	added	late move	Galactic's split; score 50
+SPECIES_ABSOL	46	X-Scissor	added	R5	Byron's split; score 80
 SPECIES_ABSOL	54	Shadow Ball	added	R5	Byron's split; score 78
-SPECIES_ABSOL	62	Superpower	added	R5	Galactic's split; score 89
-SPECIES_ABSOL	69	Rock Slide	added	R5	Barry's split; score 77
+SPECIES_ABSOL	62	Play Rough	added	R5, R16 due	Galactic's split; score 103
+SPECIES_ABSOL	69	Superpower	added	R5	Barry's split; score 91
 SPECIES_ABSOL	71	Close Combat	added	R2	Barry's split; score 46
 SPECIES_AERODACTYL	27	Wing Attack	added	R11	Fantina's split; score 245
 SPECIES_AERODACTYL	35	Bulldoze	added	R5, R16	Maylene's split; score 69
 SPECIES_AERODACTYL	43	Dual Wingbeat	added	R2	Wake's split; score 51
-SPECIES_AERODACTYL	51	Zen Headbutt	added	R5	Byron's split; score 49
+SPECIES_AERODACTYL	51	Rock Blast	added	R2	Byron's split; score 48
+SPECIES_AERODACTYL	59	Fire Fang	added	R5	HQ's split; score 61
 SPECIES_AERODACTYL	67	Rock Tomb	added	R2	Volkner's split; score 52
 SPECIES_AIPOM	20	Karate Chop	added	R4, R5	Gardenia's split; score 195
 SPECIES_AMBIPOM	34	Smack Down	added	R5, R16 due	Maylene's split; score 100
@@ -1303,7 +1304,7 @@ SPECIES_AMBIPOM	45	Bite	added	R5	Wake's split; score 73
 SPECIES_AMBIPOM	47	Aerial Ace	added	R5	Wake's split; score 70
 SPECIES_AMBIPOM	50	Force Palm	added	R2	Byron's split; score 33
 SPECIES_AMBIPOM	58	Low Sweep	added	R2	HQ's split; score 42
-SPECIES_AMBIPOM	66	Block	added	late move	Volkner's split; score 56
+SPECIES_AMBIPOM	66	Swagger	added	late move	Volkner's split; score 50
 SPECIES_ANORITH	1	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_ANORITH	27	Fury Cutter	moved from 37	R11	brought into Fantina's split; score 232
 SPECIES_ANORITH	29	Block	added	R7	Fantina's split; score 150
@@ -1312,8 +1313,7 @@ SPECIES_ANORITH	34	Aerial Ace	added	R5	Maylene's split; score 70
 SPECIES_ARMALDO	48	Night Slash	added	R5	Byron's split; score 50
 SPECIES_ARMALDO	53	Pin Missile	added	R2	Byron's split; score 20
 SPECIES_ARTICUNO	66	Air Slash	added	R11	Volkner's split; score 267
-SPECIES_ARTICUNO	69	Dazzling Gleam	added	R5, R16	Barry's split; score 72
-SPECIES_ARTICUNO	71	Expanding Force	added	R5	Barry's split; score 47
+SPECIES_ARTICUNO	69	Signal Beam	added	R5	Barry's split; score 54
 SPECIES_MARILL	2	Defense Curl	removed	R25	below 14, the lowest level it is had at
 SPECIES_AZUMARILL	2	Defense Curl	removed	R25	below 18, the lowest level it is had at
 SPECIES_MARILL	7	Tail Whip	removed	R1	filler past the one a first split may carry
@@ -1323,15 +1323,14 @@ SPECIES_AZUMARILL	29	Play Rough	added	R11	Fantina's split; score 264
 SPECIES_AZUMARILL	35	Brick Break	added	R5	Maylene's split; score 68
 SPECIES_AZUMARILL	37	Bounce	added	R5	Maylene's split; score 66
 SPECIES_AZUMARILL	43	Ice Punch	added	R5	Wake's split; score 74
-SPECIES_AZUMARILL	67	Block	added	late move	Volkner's split; score 90
+SPECIES_AZUMARILL	67	Swagger	added	late move	Volkner's split; score 84
 SPECIES_BARBOACH	3	Icy Wind	added	R4, R5	Roark's split; score 142
 SPECIES_BARBOACH	28	Tickle	added	R7	Fantina's split; score 162
 SPECIES_BARBOACH	27	Bulldoze	added	R16 due	Fantina's split; score 103
 SPECIES_WHISCASH	35	Rock Tomb	added	R5	Maylene's split; score 74
 SPECIES_WHISCASH	42	Zen Headbutt	added	R5, relearner-only	Wake's split; score 112
 SPECIES_WHISCASH	53	Bounce	added	R5	Byron's split; score 86
-SPECIES_WHISCASH	58	Triple Axel	added	R2	HQ's split; score 36
-SPECIES_WHISCASH	66	Block	added	late move	Volkner's split; score 56
+SPECIES_WHISCASH	66	Swagger	added	late move	Volkner's split; score 50
 SPECIES_METANG	31	Confusion	moved from 20	R25	was below 31, the lowest level it is had at
 SPECIES_METANG	33	Metal Claw	moved from 20	R25	was below 31, the lowest level it is had at
 SPECIES_METANG	34	Scary Face	moved from 24	R25	was below 31, the lowest level it is had at
@@ -1348,9 +1347,9 @@ SPECIES_BIBAREL	9	Defense Curl	removed	R25	below 15, the lowest level it is had 
 SPECIES_BIDOOF	3	Taunt	added	R7	Roark's split; score 165
 SPECIES_BIDOOF	2	Fury Swipes	added	check 1	Roark's split; score 163
 SPECIES_BIDOOF	5	Aqua Jet	added	R4	Roark's split; score 148
-SPECIES_BIBAREL	20	Triple Axel	added	R4, R5, R16	Gardenia's split; score 193
+SPECIES_BIBAREL	20	Smack Down	added	R4, R5, R16	Gardenia's split; score 58
 SPECIES_BIBAREL	30	Bulldoze	added	R5	Gardenia's split; score 74
-SPECIES_BIBAREL	50	Crunch	added	R5	Byron's split; score 82
+SPECIES_BIBAREL	50	Ice Fang	added	R5	Byron's split; score 86
 SPECIES_BIBAREL	57	Rock Climb	added	R2	HQ's split; score 60
 SPECIES_BIBAREL	65	Double-Edge	added	late move	Galactic's split; score 108
 SPECIES_ORBEETLE	30	Struggle Bug	moved from 4	R25	was below 30, the lowest level it is had at
@@ -1372,7 +1371,7 @@ SPECIES_BONSLY	19	Bulldoze	added	R4, R5, R16	Fantina's split; score 201
 SPECIES_SUDOWOODO	51	Wood Hammer	added	R5, relearner-only	Byron's split; score 99
 SPECIES_SUDOWOODO	54	Low Sweep	added	R2	Byron's split; score 42
 SPECIES_SUDOWOODO	58	Drain Punch	added	R2	HQ's split; score 35
-SPECIES_SUDOWOODO	66	Charm	added	late move	Volkner's split; score 84
+SPECIES_SUDOWOODO	66	Swagger	added	late move	Volkner's split; score 84
 SPECIES_TSAREENA	27	Swagger	moved from 5	R25	was below 26, the lowest level it is had at
 SPECIES_TSAREENA	40	Trop Kick	moved from 25	R25	was below 26, the lowest level it is had at
 SPECIES_BOUNSWEET	4	Triple Axel	added	R4, R5, relearner-only	Roark's split; score 152
@@ -1387,9 +1386,8 @@ SPECIES_BRONZOR	21	Metal Claw	added	R11	Gardenia's split; score 83
 SPECIES_BRONZONG	35	Bulldoze	added	R5, R16 due	Maylene's split; score 133
 SPECIES_BRONZONG	45	Mirror Shot	added	R2	Wake's split; score 58
 SPECIES_BRONZONG	52	Iron Head	added	R2	Byron's split; score 64
-SPECIES_BRONZONG	58	Ice Punch	added	R5	HQ's split; score 54
-SPECIES_BRONZONG	69	Rock Tomb	added	R5	Volkner's split; score 52
-SPECIES_BRONZONG	74	Wild Charge	added	R2	League's split; score 33
+SPECIES_BRONZONG	58	Rock Tomb	added	R5	HQ's split; score 52
+SPECIES_BRONZONG	69	Body Press	added	R5	Volkner's split; score 47
 SPECIES_ROSELIA	11	Poison Sting	moved from 7	R25	was below 10, the lowest level it is had at
 SPECIES_BUDEW	4	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_ROSELIA	4	Growth	removed	R25	below 10, the lowest level it is had at
@@ -1403,9 +1401,9 @@ SPECIES_BUDEW	28	Toxic Spikes	added	R2	Gardenia's split; score 45
 SPECIES_ROSELIA	30	Weather Ball	added	relearner-only	Fantina's split; score 55
 SPECIES_ROSERADE	39	Signal Beam	added	R5	Wake's split; score 31
 SPECIES_ROSERADE	54	Shadow Ball	added	R5	Candice's split; score 87
-SPECIES_ROSERADE	57	Alluring Voice	added	R5	HQ's split; score 47
+SPECIES_ROSERADE	57	Dazzling Gleam	added	R5	HQ's split; score 47
 SPECIES_ROSERADE	59	Leech Seed	added	R2	HQ's split; score -5
-SPECIES_ROSERADE	65	Block	added	late move	Galactic's split; score 56
+SPECIES_ROSERADE	65	Swagger	added	late move	Galactic's split; score 50
 SPECIES_BUIZEL	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_FLOATZEL	29	Agility	removed	R32	no strong attack it boosts on the line; a catch would know it at level 1
 SPECIES_BUIZEL	2	Chilling Water	added	check 1, R16	Roark's split; score 180
@@ -1415,8 +1413,7 @@ SPECIES_FLOATZEL	30	Icy Wind	added	R5	Fantina's split; score 65
 SPECIES_FLOATZEL	35	Rock Tomb	added	R5	Maylene's split; score 52
 SPECIES_FLOATZEL	43	BubbleBeam	added	R2	Wake's split; score 40
 SPECIES_FLOATZEL	45	Agility	added	R2	Wake's split; score 52
-SPECIES_FLOATZEL	51	Triple Axel	added	R2	Byron's split; score 19
-SPECIES_FLOATZEL	67	Block	added	late move	Volkner's split; score 90
+SPECIES_FLOATZEL	67	Swagger	added	late move	Volkner's split; score 84
 SPECIES_BUIZEL	6	Water Gun	removed	R6	weaker than Chilling Water, already had
 SPECIES_FLOATZEL	6	Water Gun	removed	R25	below 20; onto Buizel's list
 SPECIES_BUIZEL	6	Water Gun	added	R25	from Floatzel's 6, below its 20
@@ -1437,23 +1434,23 @@ SPECIES_WORMADAM	29	Growth	removed	R32	too early: strong attacks it boosts come 
 SPECIES_WORMADAM	40	Growth	added	R32	moved from Wormadam's 29, beside the attacks it boosts
 SPECIES_BURMY	9	Confusion	added	R4, R5	Gardenia's split; score 171
 SPECIES_BURMY	8	Roost	added	R7	Gardenia's split; score 169
-SPECIES_WORMADAM	28	Skitter Smack	added	R16	Fantina's split; score 71
-SPECIES_WORMADAM	36	Block	added	R7	Maylene's split; score 116
-SPECIES_WORMADAM	51	Earth Power	added	R5	Byron's split; score 131
-SPECIES_WORMADAM	53	Iron Head	added	R5	Byron's split; score 84
-SPECIES_WORMADAM	59	Triple Axel	added	R5	HQ's split; score 70
-SPECIES_WORMADAM	61	Bug Buzz	added	R2	HQ's split; score 69
-SPECIES_WORMADAM	67	Leech Life	added	R2	Volkner's split; score 64
-SPECIES_WORMADAM	69	Giga Drain	added	R2	Volkner's split; score 51
-SPECIES_WORMADAM	75	Quiver Dance	added	R2	League's split; score 23
+SPECIES_WORMADAM	28	Dig	added	R5	Fantina's split; score 60
+SPECIES_WORMADAM	36	Swagger	added	R7	Maylene's split; score 110
+SPECIES_WORMADAM	37	Pollen Puff	added	R16 due	Maylene's split; score 45
+SPECIES_WORMADAM	51	Iron Head	added	R5	Byron's split; score 84
+SPECIES_WORMADAM	53	Leech Life	added	R2	Byron's split; score 64
+SPECIES_WORMADAM	59	Sucker Punch	added	R5	HQ's split; score 58
+SPECIES_WORMADAM	61	Giga Drain	added	R2	HQ's split; score 51
+SPECIES_WORMADAM	67	Lunge	added	R2	Volkner's split; score 25
+SPECIES_WORMADAM	69	Quiver Dance	added	R2	Volkner's split; score 23
 SPECIES_MOTHIM	36	Quiver Dance	added	R16 due	Maylene's split; score 123
 SPECIES_MOTHIM	51	Giga Drain	added	R5	Byron's split; score 126
-SPECIES_MOTHIM	53	Lunge	added	R2	Byron's split; score 82
-SPECIES_MOTHIM	59	Triple Axel	added	R5	HQ's split; score 87
-SPECIES_MOTHIM	61	U-turn	added	R2	HQ's split; score 58
-SPECIES_MOTHIM	67	Bounce	added	R2	Volkner's split; score 57
-SPECIES_MOTHIM	69	Foul Play	added	R5	Volkner's split; score 53
-SPECIES_MOTHIM	75	Shadow Ball	added	R5	League's split; score 49
+SPECIES_MOTHIM	53	U-turn	added	R2	Byron's split; score 58
+SPECIES_MOTHIM	59	Shadow Ball	added	R5	HQ's split; score 87
+SPECIES_MOTHIM	61	Energy Ball	added	R2	HQ's split; score 39
+SPECIES_MOTHIM	67	Bounce	added	R2	Volkner's split; score 24
+SPECIES_MOTHIM	69	Stun Spore	added	R2	Volkner's split; score -5
+SPECIES_MOTHIM	75	Sky Attack	added	R2	League's split; score 28
 SPECIES_CARBINK	1	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_CARBINK	8	Sharpen	removed	R1	filler past the one a first split may carry
 SPECIES_CARBINK	8	Draining Kiss	added	R11	Gardenia's split; score 85
@@ -1466,24 +1463,22 @@ SPECIES_CARBINK	61	Body Press	added	R5	HQ's split; score 47
 SPECIES_CARNIVINE	1	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_CARNIVINE	29	Bullet Seed	added	check 1	Fantina's split; score 175
 SPECIES_CARNIVINE	33	Swagger	added	R7	Fantina's split; score 144
-SPECIES_CARNIVINE	35	Hex	added	R5, R16	Maylene's split; score 56
-SPECIES_CARNIVINE	42	Leech Life	added	R5	Wake's split; score 59
+SPECIES_CARNIVINE	35	Bug Bite	added	R5	Maylene's split; score 38
+SPECIES_CARNIVINE	42	Sludge Bomb	added	R5	Wake's split; score 48
 SPECIES_CARNIVINE	50	Fire Fang	added	R5	Byron's split; score 76
 SPECIES_CARNIVINE	52	Giga Drain	added	R2	Byron's split; score 58
-SPECIES_CARNIVINE	58	Sludge Bomb	added	R5	HQ's split; score 53
-SPECIES_CARNIVINE	60	Leaf Storm	added	R2	HQ's split; score 28
-SPECIES_CARNIVINE	66	Block	added	late move	Volkner's split; score 90
+SPECIES_CARNIVINE	58	Leaf Storm	added	R2	HQ's split; score 28
+SPECIES_CARNIVINE	66	Leech Seed	added	late move	Volkner's split; score 72
 SPECIES_CARVANHA	23	Aqua Jet	moved from 31	R11	brought into Gardenia's split; score 258
-SPECIES_SHARPEDO	36	Wild Charge	added	R5, R16 due	Maylene's split; score 108
+SPECIES_SHARPEDO	36	Bulldoze	added	R5, R16 due	Maylene's split; score 103
 SPECIES_SHARPEDO	42	Poison Fang	added	R5	Wake's split; score 80
 SPECIES_SHARPEDO	58	Fire Fang	added	R5	HQ's split; score 86
 SPECIES_SHARPEDO	60	Poison Jab	added	R2	HQ's split; score 37
-SPECIES_SHARPEDO	66	Block	added	late move	Volkner's split; score 56
-SPECIES_SHARPEDO	68	Throat Chop	added	R2	Volkner's split; score 25
-SPECIES_CASTFORM	34	Block	added	R7	Maylene's split; score 150
+SPECIES_SHARPEDO	66	Throat Chop	added	late move	Volkner's split; score 43
+SPECIES_CASTFORM	34	Swagger	added	R7	Maylene's split; score 144
 SPECIES_CASTFORM	40	Clear Smog	added	R5, R16	Wake's split; score 96
 SPECIES_CASTFORM	42	Swift	added	R2	Wake's split; score 38
-SPECIES_CASTFORM	64	Swagger	added	late move	Galactic's split; score 84
+SPECIES_CASTFORM	64	Thunder Wave	added	late move	Galactic's split; score 78
 SPECIES_ARMAROUGE	29	Clear Smog	moved from 8	R25	was below 28, the lowest level it is had at
 SPECIES_ARMAROUGE	30	Fire Spin	moved from 12	R25	was below 28, the lowest level it is had at
 SPECIES_ARMAROUGE	24	Flame Charge	removed	R25	below 28; onto Charcadet's list
@@ -1517,26 +1512,26 @@ SPECIES_CHARMELEON	17	Shadow Claw	added	R5, relearner-only	Gardenia's split; sco
 SPECIES_CHARMELEON	19	Bulldoze	added	R5, R16	Gardenia's split; score 64
 SPECIES_CHARIZARD	38	DragonBreath	added	R11	Maylene's split; score 248
 SPECIES_CHARIZARD	37	Air Slash	added	R5, relearner-only	Maylene's split; score 144
-SPECIES_CHARIZARD	40	Alluring Voice	added	R5	Wake's split; score 85
-SPECIES_CHARIZARD	51	Expanding Force	added	R5	Byron's split; score 47
+SPECIES_CHARIZARD	40	AncientPower	added	R5	Wake's split; score 77
+SPECIES_CHARIZARD	56	Flash Cannon	added	R5	Candice's split; score 32
 SPECIES_CHARMELEON	66	Blast Burn	added	R19	payoff for holding past 66; Charizard comes at 36
 SPECIES_CHATOT	37	Echoed Voice	added	R11, R16	Maylene's split; score 270
 SPECIES_CHATOT	35	Ominous Wind	added	R4, R5	Maylene's split; score 150
 SPECIES_CHATOT	48	Heat Wave	added	R5	Byron's split; score 79
 SPECIES_CHATOT	56	Air Slash	added	R2	Candice's split; score 57
-SPECIES_CHATOT	58	Bounce	added	R2	Candice's split; score 52
-SPECIES_CHATOT	64	Triple Axel	added	R5, late move	Galactic's split; score 91
-SPECIES_CHATOT	66	Alluring Voice	added	R5	Galactic's split; score 47
-SPECIES_CHATOT	72	Expanding Force	added	R5	League's split; score 47
+SPECIES_CHATOT	58	U-turn	added	R5	Candice's split; score 44
+SPECIES_CHATOT	64	Steel Wing	added	R5, late move	Galactic's split; score 80
+SPECIES_CHATOT	66	Bounce	added	R2	Galactic's split; score 21
+SPECIES_CHATOT	72	Parting Shot	added	R2	League's split; score -5
 SPECIES_CHERUBI	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_CHERRIM	7	Growth	removed	R25	below 25, the lowest level it is had at
 SPECIES_CHERUBI	9	Draining Kiss	added	R4, R5, R16	Gardenia's split; score 156
 SPECIES_CHERUBI	17	Stun Spore	added	R7	Gardenia's split; score 155
 SPECIES_CHERRIM	27	Flame Wheel	added	R5	Fantina's split; score 71
 SPECIES_CHERRIM	37	Rock Slide	added	R5	Maylene's split; score 77
-SPECIES_CHERRIM	51	Bounce	added	R5	Byron's split; score 52
-SPECIES_CHERRIM	53	Giga Drain	added	R2	Byron's split; score 51
-SPECIES_CHERRIM	59	Pollen Puff	added	R5	HQ's split; score 51
+SPECIES_CHERRIM	51	Giga Drain	added	R2	Byron's split; score 51
+SPECIES_CHERRIM	53	Pollen Puff	added	R5	Byron's split; score 51
+SPECIES_CHERRIM	59	Body Slam	added	R2	HQ's split; score 46
 SPECIES_CHERRIM	61	Play Rough	added	R2	HQ's split; score 39
 SPECIES_CHERRIM	67	Leaf Storm	added	R2	Volkner's split; score 29
 SPECIES_CHERRIM	69	Morning Sun	added	R2	Volkner's split; score 9
@@ -1548,7 +1543,7 @@ SPECIES_LANTURN	42	Thunderbolt	added	R2	Wake's split; score 59
 SPECIES_LANTURN	59	Flash Cannon	added	R5	HQ's split; score 101
 SPECIES_LANTURN	61	Scald	added	R2	HQ's split; score 54
 SPECIES_LANTURN	66	Volt Switch	added	R2	Volkner's split; score 49
-SPECIES_LANTURN	68	Alluring Voice	added	R5	Volkner's split; score 47
+SPECIES_LANTURN	68	Dazzling Gleam	added	R5	Volkner's split; score 47
 SPECIES_CHINGLING	13	Yawn	added	R7	Gardenia's split; score 179
 SPECIES_CHINGLING	17	Snarl	added	R4, R5, R16	Gardenia's split; score 162
 SPECIES_CHIMECHO	43	Signal Beam	added	R5	Wake's split; score 79
@@ -1561,16 +1556,15 @@ SPECIES_HUNTAIL	1	Baton Pass	moved from 33 to level 1	R21	no boost of its own to
 SPECIES_CLAMPERL	17	Bite	added	R4, R5	Gardenia's split; score 199
 SPECIES_CLAMPERL	19	Chilling Water	added	check 1, R16	Gardenia's split; score 75
 SPECIES_CLAMPERL	27	Ice Fang	added	R5	Fantina's split; score 77
-SPECIES_HUNTAIL	34	StompingTantrum	added	R5, R16 due	Maylene's split; score 87
+SPECIES_HUNTAIL	34	Bulldoze	added	R5, R16 due	Maylene's split; score 30
 SPECIES_HUNTAIL	50	Shell Smash	added	R2	Byron's split; score 73
 SPECIES_HUNTAIL	56	Rock Tomb	added	R5	Candice's split; score 52
 SPECIES_HUNTAIL	58	Sucker Punch	added	R2	Candice's split; score 42
-SPECIES_HUNTAIL	64	Block	added	late move	Galactic's split; score 56
+SPECIES_HUNTAIL	64	Confuse Ray	added	late move	Galactic's split; score 56
 SPECIES_GOREBYSS	35	Draining Kiss	added	R5, R16 due	Maylene's split; score 104
 SPECIES_GOREBYSS	40	Scald	added	R30	Wake's split; score 139
 SPECIES_GOREBYSS	48	Shadow Ball	added	R5	Byron's split; score 82
 SPECIES_GOREBYSS	56	Ice Beam	added	R5	Candice's split; score 86
-SPECIES_GOREBYSS	58	Alluring Voice	added	R2	Candice's split; score 34
 SPECIES_GOREBYSS	64	Shell Smash	added	late move	Galactic's split; score 73
 SPECIES_CLEFAIRY	14	Fury Swipes	moved from 10	R25	was below 14, the lowest level it is had at
 SPECIES_CLEFAIRY	13	Defense Curl	removed	R25	below 14, the lowest level it is had at
@@ -1606,15 +1600,17 @@ SPECIES_COMBEE	10	Swagger	added	R7	Gardenia's split; score 179
 SPECIES_COMBEE	9	Pursuit	added	R4	Gardenia's split; score 150
 SPECIES_VESPIQUEN	41	Dual Wingbeat	added	R16 due	Maylene's split; score 102
 SPECIES_VESPIQUEN	43	U-turn	added	R2	Wake's split; score 49
-SPECIES_VESPIQUEN	45	Zen Headbutt	added	R5	Wake's split; score 49
-SPECIES_VESPIQUEN	51	Alluring Voice	added	R5	Byron's split; score 47
-SPECIES_VESPIQUEN	67	Block	added	late move	Volkner's split; score 56
+SPECIES_VESPIQUEN	45	Pounce	added	R2	Wake's split; score 45
+SPECIES_VESPIQUEN	51	Psychic Noise	added	R5	Byron's split; score 83
+SPECIES_VESPIQUEN	53	Secret Power	added	R2	Byron's split; score 32
+SPECIES_VESPIQUEN	59	Low Sweep	added	R5	HQ's split; score 27
+SPECIES_VESPIQUEN	67	Agility	added	late move	Volkner's split; score 44
 SPECIES_CORPHISH	7	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_CRAWDAUNT	7	Harden	removed	R25	below 30, the lowest level it is had at
 SPECIES_CORPHISH	3	Taunt	moved from 32	R7	brought into Roark's split; score 165
-SPECIES_CORPHISH	2	Triple Axel	added	R4, R5, R16	Roark's split; score 142
+SPECIES_CORPHISH	2	Dual Wingbeat	added	R4, R5, R16	Roark's split; score 46
 SPECIES_CORPHISH	17	Metal Claw	added	R5	Gardenia's split; score 64
-SPECIES_CRAWDAUNT	36	Aerial Ace	added	R5	Maylene's split; score 70
+SPECIES_CRAWDAUNT	36	Avalanche	added	R5	Maylene's split; score 60
 SPECIES_CRAWDAUNT	42	Rock Tomb	added	R5	Wake's split; score 52
 SPECIES_CRAWDAUNT	59	Razor Shell	added	R2	HQ's split; score 62
 SPECIES_CRAWDAUNT	61	Throat Chop	added	R2	HQ's split; score 25
@@ -1622,24 +1618,23 @@ SPECIES_CORSOLA	4	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_CORSOLA	16	Refresh	removed	R1	filler past the one a first split may carry
 SPECIES_CORSOLA	5	Rock Blast	moved from 20	R11, check 1	brought into Roark's split; score 401
 SPECIES_CORSOLA	4	Icicle Spear	added	R4, R5	Roark's split; score 168
-SPECIES_CORSOLA	17	Triple Axel	added	R16	Gardenia's split; score 19
-SPECIES_CORSOLA	19	Aqua Jet	added	R2	Gardenia's split; score 13
-SPECIES_CORSOLA	34	Aqua Cutter	added	R2	Fantina's split; score 52
+SPECIES_CORSOLA	17	Aqua Jet	added	R2	Gardenia's split; score 13
+SPECIES_CORSOLA	34	Aqua Cutter	added	R16 due	Fantina's split; score 112
 SPECIES_CORSOLA	41	Bulldoze	added	R5	Wake's split; score 91
 SPECIES_CORSOLA	46	Waterfall	added	R30	Wake's split; score 57
 SPECIES_CORSOLA	55	Throat Chop	added	R5	Byron's split; score 57
 SPECIES_CORSOLA	57	Liquidation	added	R2	HQ's split; score 56
 SPECIES_CORSOLA	59	Rock Tomb	added	R2	HQ's split; score 52
-SPECIES_CORSOLA	65	Play Rough	added	R5, late move	Galactic's split; score 95
+SPECIES_CORSOLA	65	Confuse Ray	added	late move	Galactic's split; score 90
 SPECIES_CORSOLA	67	Rock Slide	added	R2	Galactic's split; score 46
 SPECIES_CORSOLA	73	Sucker Punch	added	R2	League's split; score 36
 SPECIES_RAMPARDOS	34	Bulldoze	added	R5, R16	Maylene's split; score 91
 SPECIES_RAMPARDOS	45	Iron Head	added	R5	Wake's split; score 84
 SPECIES_RAMPARDOS	58	Rock Tomb	added	R2	HQ's split; score 52
-SPECIES_RAMPARDOS	66	Block	added	late move	Volkner's split; score 90
-SPECIES_CRESSELIA	68	Block	added	R7	Volkner's split; score 150
-SPECIES_CRESSELIA	70	Skitter Smack	added	R5, R16	Barry's split; score 88
-SPECIES_CRESSELIA	77	Confuse Ray	added	R7	League's split; score 116
+SPECIES_RAMPARDOS	66	Swagger	added	late move	Volkner's split; score 84
+SPECIES_CRESSELIA	68	Confuse Ray	added	R7	Volkner's split; score 150
+SPECIES_CRESSELIA	70	Moonblast	added	R5, R16	Barry's split; score 84
+SPECIES_CRESSELIA	77	Swagger	added	R7	League's split; score 110
 SPECIES_CROAGUNK	36	Nasty Plot	removed	R32	too early: strong attacks it boosts come at 49
 SPECIES_TOXICROAK	40	Nasty Plot	added	R32	moved from Croagunk's 36, beside the attacks it boosts
 SPECIES_TOXICROAK	51	Low Sweep	added	R16 due	Byron's split; score 107
@@ -1651,12 +1646,12 @@ SPECIES_TOXICROAK	36	Nasty Plot	removed	R25	below 37, the lowest level it is had
 SPECIES_DELIBIRD	33	Ice Beam	added	R11, check 1	Candice's split; score 415
 SPECIES_DELIBIRD	32	Drill Peck	added	R11	Candice's split; score 260
 SPECIES_DELIBIRD	54	Drill Run	added	R4, R5, R16	Candice's split; score 220
-SPECIES_DELIBIRD	56	Block	added	R7	Candice's split; score 150
+SPECIES_DELIBIRD	56	Swagger	added	R7	Candice's split; score 144
 SPECIES_DELIBIRD	58	Ice Punch	added	R2	HQ's split; score 62
 SPECIES_DELIBIRD	60	Bounce	added	R2	HQ's split; score 57
 SPECIES_DELIBIRD	65	Sky Attack	added	late move	Galactic's split; score 110
 SPECIES_DELIBIRD	67	Foul Play	added	R5	Galactic's split; score 53
-SPECIES_DELIBIRD	73	Zen Headbutt	added	R5	League's split; score 49
+SPECIES_DELIBIRD	73	Seed Bomb	added	R5	League's split; score 47
 SPECIES_DEWPIDER	19	Sticky Web	added	R7	Gardenia's split; score 155
 SPECIES_ARAQUANID	28	Spider Web	added	R2	Fantina's split; score 56
 SPECIES_ARAQUANID	43	Skitter Smack	added	R2	Wake's split; score 54
@@ -1670,41 +1665,41 @@ SPECIES_DHELMISE	59	Rock Slide	added	R5	Candice's split; score 44
 SPECIES_DHELMISE	72	Iron Head	added	R2	League's split; score 37
 SPECIES_DRIFLOON	19	Ominous Wind	moved from 30	check 1	brought into Maylene's split; score 206
 SPECIES_DRIFLOON	24	Tailwind	added	R7	Maylene's split; score 155
-SPECIES_DRIFBLIM	40	Skitter Smack	added	R5, R16	Wake's split; score 65
-SPECIES_DRIFBLIM	48	Bounce	added	R2	Byron's split; score 51
-SPECIES_DRIFBLIM	50	Play Rough	added	R5	Byron's split; score 48
-SPECIES_DRIFBLIM	56	Air Slash	added	R2	Candice's split; score 57
-SPECIES_DRIFBLIM	58	Expanding Force	added	R5	Candice's split; score 47
-SPECIES_DRIFBLIM	64	Thunderbolt	added	R5, late move	Galactic's split; score 95
-SPECIES_DRIFBLIM	66	Psychic	added	R2	Galactic's split; score 39
-SPECIES_DRIFBLIM	72	Sucker Punch	added	R2	League's split; score 33
+SPECIES_DRIFBLIM	40	Temper Flare	added	R5, R16	Wake's split; score 58
+SPECIES_DRIFBLIM	48	Body Slam	added	R2	Byron's split; score 35
+SPECIES_DRIFBLIM	50	Sucker Punch	added	R2	Byron's split; score 33
+SPECIES_DRIFBLIM	56	Bounce	added	R2	Candice's split; score 21
+SPECIES_DRIFBLIM	64	Air Slash	added	late move	Galactic's split; score 107
+SPECIES_DRIFBLIM	66	Psychic	added	R5	Galactic's split; score 52
+SPECIES_DRIFBLIM	72	Thunderbolt	added	R5	League's split; score 52
 SPECIES_DUSKULL	35	Rock Tomb	added	R5	Maylene's split; score 120
 SPECIES_DUSKULL	34	Shadow Claw	added	check 1	Maylene's split; score 74
-SPECIES_DUSCLOPS	40	StompingTantrum	added	R5, R16 due	Wake's split; score 117
+SPECIES_DUSCLOPS	40	Skitter Smack	added	R5, R16 due	Wake's split; score 102
 SPECIES_DUSCLOPS	48	Fire Punch	added	R5, relearner-only	Byron's split; score 89
-SPECIES_DUSCLOPS	56	Sucker Punch	added	R2	Candice's split; score 36
-SPECIES_DUSKNOIR	66	Sucker Punch	added	R2	Volkner's split; score 36
+SPECIES_DUSCLOPS	56	Leech Life	added	R2	Candice's split; score 37
+SPECIES_DUSKNOIR	66	Leech Life	added	R2	Volkner's split; score 37
+SPECIES_DUSKNOIR	68	Sucker Punch	added	R2	Volkner's split; score 36
 SPECIES_CRUSTLE	50	Body Press	added	R5, relearner-only	Byron's split; score 85
 SPECIES_CRUSTLE	56	Shell Smash	added	R2	Candice's split; score 63
 SPECIES_CRUSTLE	64	Skitter Smack	added	R2	Galactic's split; score 54
 SPECIES_CRUSTLE	66	Poison Jab	added	R5	Galactic's split; score 50
 SPECIES_CRUSTLE	72	Bulldoze	added	R2	League's split; score 40
-SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_VAPOREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_VAPOREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
-SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	5	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_SYLVEON	48	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_JOLTEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_FLAREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_LEAFEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_UMBREON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_GLACEON	8	Sand-Attack	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
+SPECIES_GLACEON	50	Last Resort	removed	R10 exception	a copy of Eevee's list; each form gets its own (Ian, 2026-10-06)
 SPECIES_ESPEON	20	Confusion	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_FLAREON	20	Ember	moved from 15	R25	was below 20, the lowest level it is had at
 SPECIES_GLACEON	21	Icy Wind	moved from 15	R25	was below 21, the lowest level it is had at
@@ -1724,10 +1719,9 @@ SPECIES_LEAFEON	25	Double Kick	added	R4, R5	Fantina's split; score 200
 SPECIES_LEAFEON	27	Baby-Doll Eyes	added	R7, R16	Gardenia's split; score 175
 SPECIES_LEAFEON	38	Bite	added	R5	Maylene's split; score 73
 SPECIES_LEAFEON	45	Bullet Seed	added	R2	Byron's split; score 48
-SPECIES_LEAFEON	47	Triple Axel	added	R5	Byron's split; score 32
-SPECIES_LEAFEON	53	Charm	added	R2	Byron's split; score 9
-SPECIES_LEAFEON	61	X-Scissor	added	R5	Galactic's split; score 80
-SPECIES_LEAFEON	63	Leech Seed	added	R2	Galactic's split; score -5
+SPECIES_LEAFEON	46	Charm	added	R2	Byron's split; score 19
+SPECIES_LEAFEON	53	Leech Seed	added	R2	Byron's split; score -5
+SPECIES_LEAFEON	61	X-Scissor	added	R5	Galactic's split; score 125
 SPECIES_GLACEON	24	Alluring Voice	added	R5, R16 due	Candice's split; score 136
 SPECIES_GLACEON	53	Shadow Ball	added	R5	Candice's split; score 127
 SPECIES_GLACEON	38	Water Pulse	added	R5	Maylene's split; score 72
@@ -1741,7 +1735,6 @@ SPECIES_JOLTEON	31	Charge Beam	added	check 1	Fantina's split; score 164
 SPECIES_JOLTEON	45	Electroweb	added	R2	Wake's split; score 48
 SPECIES_JOLTEON	60	Shadow Ball	added	R5	HQ's split; score 87
 SPECIES_JOLTEON	68	Alluring Voice	added	R5	Volkner's split; score 85
-SPECIES_JOLTEON	70	Expanding Force	added	R5	Volkner's split; score 47
 SPECIES_VAPOREON	24	Baby-Doll Eyes	added	R7, R16	Maylene's split; score 185
 SPECIES_VAPOREON	31	Icy Wind	added	R4, R5	Fantina's split; score 171
 SPECIES_VAPOREON	33	Chilling Water	added	check 1	Fantina's split; score 166
@@ -1751,7 +1744,7 @@ SPECIES_FLAREON	24	Baby-Doll Eyes	added	R7, R16	Maylene's split; score 185
 SPECIES_FLAREON	26	Flame Charge	added	check 1	Maylene's split; score 166
 SPECIES_FLAREON	27	Double Kick	added	R4, R5	Gardenia's split; score 185
 SPECIES_FLAREON	31	Trailblaze	added	R5	Fantina's split; score 40
-SPECIES_FLAREON	45	Zen Headbutt	added	R5	Wake's split; score 49
+SPECIES_FLAREON	45	Dig	added	R5	Wake's split; score 38
 SPECIES_FLAREON	47	Fire Punch	added	R2	Wake's split; score 24
 SPECIES_ESPEON	24	Baby-Doll Eyes	added	R16 due	Byron's split; score 105
 SPECIES_ESPEON	26	Water Gun	added	R4	Gardenia's split; score 38
@@ -1766,8 +1759,8 @@ SPECIES_UMBREON	31	Dark Pulse	added	R2	Fantina's split; score 68
 SPECIES_UMBREON	45	Crunch	added	R2	Wake's split; score 62
 SPECIES_UMBREON	47	Throat Chop	added	R2	Wake's split; score 61
 SPECIES_UMBREON	52	Psychic	added	R5	Byron's split; score 58
-SPECIES_UMBREON	60	Bounce	added	R5	HQ's split; score 52
-SPECIES_UMBREON	68	Skitter Smack	added	R5	Volkner's split; score 51
+SPECIES_UMBREON	60	Sucker Punch	added	R2	HQ's split; score 51
+SPECIES_UMBREON	68	Shadow Ball	added	R5	Volkner's split; score 84
 SPECIES_SYLVEON	35	Snarl	added	R4, R5	Fantina's split; score 51
 SPECIES_SYLVEON	47	Psyshock	added	R5	Wake's split; score 55
 SPECIES_SYLVEON	53	Shadow Ball	added	R5	Byron's split; score 49
@@ -1777,12 +1770,14 @@ SPECIES_EEVEE	24	Fury Swipes	moved from 31	check 1	brought into Fantina's split;
 SPECIES_VAPOREON	34	Water Pulse	added	check 24	branch parity by Candice's cap; adds 35 to its kit
 SPECIES_VAPOREON	35	Brine	added	check 24	branch parity by Candice's cap; adds 38 to its kit
 SPECIES_JOLTEON	27	Shock Wave	added	check 24	branch parity by Candice's cap; adds 30 to its kit
+SPECIES_LEAFEON	28	Grassy Glide	added	check 24	branch parity by Candice's cap; adds 22 to its kit
 SPECIES_GLACEON	27	Freeze-Dry	added	check 24	branch parity by Candice's cap; adds 30 to its kit
-SPECIES_JOLTEON	54	Dazzling Gleam	added	check 24	branch parity by Candice's cap; adds 5 to its kit
+SPECIES_JOLTEON	34	Dark Pulse	added	check 24	branch parity by Candice's cap; adds 5 to its kit
 SPECIES_VAPOREON	40	Scald	added	check 24	branch parity by Candice's cap; adds 55 to its kit
-SPECIES_JOLTEON	34	Psyshock	added	check 24	branch parity by Candice's cap; adds 0 to its kit
+SPECIES_JOLTEON	35	Psyshock	added	check 24	branch parity by Candice's cap; adds 0 to its kit
+SPECIES_LEAFEON	34	Trailblaze	added	check 24	branch parity by Candice's cap; adds 14 to its kit
 SPECIES_GLACEON	28	Aurora Beam	added	check 24	branch parity by Candice's cap; adds 18 to its kit
-SPECIES_LEAFEON	28	Grassy Glide	added	check 24	branch parity by Candice's cap; adds 21 to its kit
+SPECIES_LEAFEON	40	Dual Wingbeat	added	check 24	branch parity by Candice's cap; adds 5 to its kit
 SPECIES_ELEKID	30	Bulldoze	added	R4, R5, R16	Maylene's split; score 192
 SPECIES_ELECTIVIRE	30	Karate Chop	added	R11	Maylene's split; score 238
 SPECIES_ELECTIVIRE	54	Fire Punch	added	R5, relearner-only	Candice's split; score 114
@@ -1812,10 +1807,11 @@ SPECIES_FEEBAS	5	Swagger	added	R7	Gardenia's split; score 144
 SPECIES_MILOTIC	33	Icy Wind	added	R4, R5	Fantina's split; score 209
 SPECIES_MILOTIC	51	Alluring Voice	added	R5	Byron's split; score 85
 SPECIES_MILOTIC	54	Muddy Water	added	R2	Byron's split; score 61
-SPECIES_MILOTIC	58	Expanding Force	added	R5	HQ's split; score 85
-SPECIES_MILOTIC	60	Scald	added	R2	HQ's split; score 54
-SPECIES_MILOTIC	66	DragonBreath	added	late move	Volkner's split; score 98
-SPECIES_MILOTIC	74	Dragon Pulse	added	R2	League's split; score 64
+SPECIES_MILOTIC	58	Scald	added	R2	HQ's split; score 54
+SPECIES_MILOTIC	60	DragonBreath	added	R2	HQ's split; score 48
+SPECIES_MILOTIC	62	Earth Power	added	R5	HQ's split; score 27
+SPECIES_MILOTIC	66	Dragon Pulse	added	R2	Volkner's split; score 64
+SPECIES_MILOTIC	74	Draco Meteor	added	R2	League's split; score 29
 SPECIES_FENNEKIN	1	Tail Whip	removed	R1	filler past the one a first split may carry
 SPECIES_DELPHOX	72	Expanding Force	removed	R6	weaker than Psychic, already had
 SPECIES_FENNEKIN	8	Incinerate	added	check 1, R16	Roark's split; score 78
@@ -1833,14 +1829,15 @@ SPECIES_FERROTHORN	55	Poison Jab	added	R5	Byron's split; score 50
 SPECIES_FERROTHORN	61	Curse	added	R2	Galactic's split; score 35
 SPECIES_FINNEON	4	Tailwind	added	R7	Roark's split; score 155
 SPECIES_FINNEON	3	Gust	moved from 17	R4	brought into Roark's split; score 150
-SPECIES_FINNEON	31	Triple Axel	added	R5, R16 due	Fantina's split; score 130
-SPECIES_FINNEON	17	Icy Wind	added	R5	Gardenia's split; score 126
+SPECIES_FINNEON	31	Icy Wind	added	R5	Fantina's split; score 126
+SPECIES_FINNEON	27	Chilling Water	added	R16 due	Fantina's split; score 89
+SPECIES_FINNEON	17	Icy Wind	moved from 31	R5	brought into Gardenia's split; score 126
 SPECIES_LUMINEON	37	Signal Beam	added	R5	Maylene's split; score 74
 SPECIES_LUMINEON	50	Crunch	added	R5	Byron's split; score 82
-SPECIES_LUMINEON	61	Foul Play	added	R2	HQ's split; score 40
-SPECIES_LUMINEON	66	Scald	added	R2	Volkner's split; score 20
-SPECIES_LUMINEON	68	Confuse Ray	added	R2	Volkner's split; score 16
-SPECIES_LUMINEON	74	Dive	added	R30	League's split; score 160
+SPECIES_LUMINEON	61	Scald	added	R2	HQ's split; score 20
+SPECIES_LUMINEON	66	Dive	added	R30	Volkner's split; score 160
+SPECIES_LUMINEON	68	Flip Turn	added	R2	Volkner's split; score 42
+SPECIES_LUMINEON	74	Aqua Tail	added	R2	League's split; score 68
 SPECIES_FLOETTE	34	Charm	added	R7	Maylene's split; score 144
 SPECIES_FLORGES	59	Psychic Noise	added	R5	HQ's split; score 83
 SPECIES_FLORGES	65	Pollen Puff	added	R5, late move	Galactic's split; score 94
@@ -1886,17 +1883,18 @@ SPECIES_GASTLY	17	Acid Spray	added	R11, R16	Fantina's split; score 226
 SPECIES_GASTLY	24	Ominous Wind	added	check 1	Fantina's split; score 206
 SPECIES_GASTLY	16	Icy Wind	added	R4, R5	Fantina's split; score 171
 SPECIES_HAUNTER	35	Giga Drain	added	R5	Maylene's split; score 40
-SPECIES_GENGAR	46	Alluring Voice	added	R5	Byron's split; score 47
+SPECIES_GENGAR	46	Dazzling Gleam	added	R5	Byron's split; score 47
 SPECIES_GENGAR	48	Toxic	added	R2	Byron's split; score 23
-SPECIES_GENGAR	61	Block	added	late move	Galactic's split; score 56
+SPECIES_GENGAR	61	Swagger	added	late move	Galactic's split; score 50
 SPECIES_GEODUDE	1	Defense Curl	removed	R1	filler past the one a first split may carry
-SPECIES_GEODUDE	4	Triple Axel	added	R4, R5, R16	Roark's split; score 121
-SPECIES_GEODUDE	3	Sand Tomb	added	R11	Roark's split; score 79
-SPECIES_GRAVELER	29	Bulldoze	added	R2	Fantina's split; score 72
+SPECIES_GEODUDE	4	Sand Tomb	added	R11	Roark's split; score 79
+SPECIES_GEODUDE	17	Karate Chop	added	R4, R5	Gardenia's split; score 230
+SPECIES_GRAVELER	40	Bulldoze	added	R16 due	Wake's split; score 122
+SPECIES_GRAVELER	29	Bulldoze	moved from 40	R16 due	brought into Fantina's split; score 132
 SPECIES_GRAVELER	35	Fire Punch	added	R5	Maylene's split; score 74
-SPECIES_GOLEM	46	Hammer Arm	added	R5	Byron's split; score 72
-SPECIES_GOLEM	48	Rock Tomb	added	R2	Byron's split; score 52
-SPECIES_GOLEM	53	Iron Head	added	R5	Byron's split; score 50
+SPECIES_GOLEM	46	Rock Tomb	added	R2	Byron's split; score 52
+SPECIES_GOLEM	48	Iron Head	added	R5	Byron's split; score 50
+SPECIES_GOLEM	53	ThunderPunch	added	R5	Byron's split; score 49
 SPECIES_GOLEM	61	Block	added	late move	Galactic's split; score 90
 SPECIES_GIBLE	21	Scale Shot	added	R11, check 1, R16	Fantina's split; score 372
 SPECIES_GIBLE	23	Bite	added	R4, R5	Fantina's split; score 203
@@ -1906,23 +1904,23 @@ SPECIES_GARCHOMP	57	Rock Tomb	added	R5	Candice's split; score 91
 SPECIES_GARCHOMP	62	Fire Fang	added	R5, relearner-only, late move	Galactic's split; score 166
 SPECIES_GABITE	66	Earthquake	added	R19	payoff for holding past 66; Garchomp comes at 48
 SPECIES_GIRAFARIG	48	Bulldoze	added	R5, R16 due	Byron's split; score 122
-SPECIES_GIRAFARIG	50	Bounce	added	R5	Byron's split; score 49
+SPECIES_GIRAFARIG	50	Shadow Ball	added	R5	Byron's split; score 49
 SPECIES_GIRAFARIG	56	Energy Ball	added	R5	Candice's split; score 52
 SPECIES_GIRAFARIG	58	Thunderbolt	added	R5	Candice's split; score 52
-SPECIES_GIRAFARIG	64	Block	added	late move	Galactic's split; score 90
+SPECIES_GIRAFARIG	64	Confuse Ray	added	late move	Galactic's split; score 90
 SPECIES_GIRAFARIG	66	Headbutt	added	R2	Galactic's split; score 43
 SPECIES_GIRAFARIG	72	Take Down	added	R2	League's split; score 47
 SPECIES_GIRATINA	62	Scary Face	added	R7	Galactic's split; score 155
 SPECIES_GIRATINA	66	Spacial Rend	added	R2	Volkner's split; score 71
-SPECIES_GIRATINA	74	Foul Play	added	R5, R16 due	League's split; score 104
+SPECIES_GIRATINA	74	Skitter Smack	added	R5, R16 due	League's split; score 102
 SPECIES_GLAMEOW	6	Fury Swipes	moved from 20	check 1	brought into Roark's split; score 201
 SPECIES_GLAMEOW	10	Taunt	added	R7	Roark's split; score 155
-SPECIES_GLAMEOW	15	Triple Axel	added	R4, R5, R16	Roark's split; score 121
+SPECIES_GLAMEOW	15	Dual Wingbeat	added	R4, R5, R16	Roark's split; score 46
 SPECIES_GLAMEOW	19	Metal Claw	added	R5	Gardenia's split; score 64
 SPECIES_PURUGLY	39	Strength	added	R30	Maylene's split; score 56
 SPECIES_PURUGLY	41	Shadow Claw	added	R5	Wake's split; score 75
 SPECIES_PURUGLY	48	Bite	added	R2	Byron's split; score 33
-SPECIES_PURUGLY	64	Block	added	late move	Galactic's split; score 56
+SPECIES_PURUGLY	64	Crush Claw	added	late move	Galactic's split; score 41
 SPECIES_GLIGAR	34	Swords Dance	removed	R32	no strong attack it boosts on the line; a catch would know it at level 1
 SPECIES_GLIGAR	8	Dual Wingbeat	added	R11, check 1, R16	Roark's split; score 348
 SPECIES_GLIGAR	14	Sand Tomb	added	R11	Roark's split; score 226
@@ -1933,9 +1931,9 @@ SPECIES_GLIGAR	44	Lunge	added	R2	Wake's split; score 44
 SPECIES_GLIGAR	49	Throat Chop	added	R2	Byron's split; score 44
 SPECIES_GLISCOR	57	Lunge	added	R2	HQ's split; score 44
 SPECIES_GLISCOR	59	Throat Chop	added	R2	HQ's split; score 44
-SPECIES_GLISCOR	65	Block	added	late move	Galactic's split; score 90
+SPECIES_GLISCOR	65	Cross Poison	added	late move	Galactic's split; score 86
 SPECIES_GLISCOR	67	Skitter Smack	added	R2	Galactic's split; score 39
-SPECIES_GLISCOR	73	Cross Poison	added	R2	League's split; score 36
+SPECIES_GLISCOR	73	Poison Jab	added	relearner-only	League's split; score 74
 SPECIES_GLIMMET	27	Mud Shot	added	R4, R5	Fantina's split; score 190
 SPECIES_GLIMMORA	41	Sludge Bomb	added	R2	Wake's split; score 61
 SPECIES_GLIMMORA	48	Flash Cannon	added	R5	Byron's split; score 86
@@ -1990,8 +1988,7 @@ SPECIES_HAPPINY	34	Weather Ball	added	check 1	Maylene's split; score 69
 SPECIES_CHANSEY	29	Chilling Water	added	R4, R5, R16	Fantina's split; score 174
 SPECIES_BLISSEY	48	Shadow Ball	added	R5	Byron's split; score 59
 SPECIES_BLISSEY	53	Alluring Voice	added	R5	Byron's split; score 55
-SPECIES_BLISSEY	55	Expanding Force	added	R5	Byron's split; score 47
-SPECIES_BLISSEY	61	Psychic	added	late move	Galactic's split; score 83
+SPECIES_BLISSEY	61	Flamethrower	added	R5, late move	Galactic's split; score 96
 SPECIES_CHANSEY	66	Hyper Voice	added	R19	payoff for holding past 66; Blissey comes at 40
 SPECIES_HAWLUCHA	45	Lunge	added	R4, R5	Byron's split; score 159
 SPECIES_HAWLUCHA	62	Throat Chop	added	R5, late move	Galactic's split; score 99
@@ -2007,21 +2004,21 @@ SPECIES_HERACROSS	45	Rock Tomb	added	R2	Wake's split; score 40
 SPECIES_HERACROSS	59	Leech Life	added	R2	HQ's split; score 64
 SPECIES_HERACROSS	61	Lunge	added	R2	HQ's split; score 61
 SPECIES_HIPPOPOTAS	27	Dig	added	check 1	Fantina's split; score 205
-SPECIES_HIPPOWDON	42	Triple Axel	added	R5, R16 due	Wake's split; score 104
-SPECIES_HIPPOWDON	48	Fire Fang	added	R5, relearner-only	Byron's split; score 81
-SPECIES_HIPPOWDON	56	Thunder Fang	added	R5, relearner-only	Candice's split; score 91
-SPECIES_HIPPOWDON	62	Slack Off	added	R2	Candice's split; score 59
-SPECIES_HIPPOWDON	64	Bulldoze	added	R2	Galactic's split; score 52
+SPECIES_HIPPOWDON	42	Bulldoze	added	R16 due	Wake's split; score 103
+SPECIES_HIPPOWDON	48	Ice Fang	added	R5, relearner-only	Byron's split; score 106
+SPECIES_HIPPOWDON	56	Fire Fang	added	R5, relearner-only	Candice's split; score 91
+SPECIES_HIPPOWDON	58	Thunder Fang	added	R5, relearner-only	Candice's split; score 91
+SPECIES_HIPPOWDON	64	Slack Off	added	late move	Galactic's split; score 109
 SPECIES_HOOTHOOT	19	Confusion	moved from 21	R4, R5	brought into Gardenia's split; score 206
 SPECIES_HOOTHOOT	18	Swagger	added	R7	Gardenia's split; score 144
 SPECIES_NOCTOWL	35	Moonblast	added	R5, R16 due	Maylene's split; score 119
 SPECIES_NOCTOWL	44	Steel Wing	added	R5	Wake's split; score 72
 SPECIES_NOCTOWL	54	Body Slam	added	R2	Byron's split; score 57
-SPECIES_NOCTOWL	59	Bounce	added	R2	HQ's split; score 57
-SPECIES_NOCTOWL	61	Ice Punch	added	R5	HQ's split; score 54
-SPECIES_NOCTOWL	67	Sky Attack	added	R2	Volkner's split; score 80
-SPECIES_NOCTOWL	69	Foul Play	added	R5	Volkner's split; score 53
-SPECIES_NOCTOWL	75	Psychic	added	R2	League's split; score 39
+SPECIES_NOCTOWL	59	Dual Wingbeat	added	R2	HQ's split; score 51
+SPECIES_NOCTOWL	61	Heat Wave	added	R5	HQ's split; score 50
+SPECIES_NOCTOWL	67	Shadow Ball	added	R5	Volkner's split; score 49
+SPECIES_NOCTOWL	69	Psychic	added	R2	Volkner's split; score 39
+SPECIES_NOCTOWL	75	Bounce	added	R2	League's split; score 24
 SPECIES_HOPPIP	12	PoisonPowder	removed	R1	filler past the one a first split may carry
 SPECIES_HOPPIP	7	Tail Whip	removed	R1	filler past the one a first split may carry
 SPECIES_SKIPLOOM	7	Tail Whip	removed	R25	below 18, the lowest level it is had at
@@ -2031,15 +2028,15 @@ SPECIES_JUMPLUFF	12	PoisonPowder	removed	R25	below 27, the lowest level it is ha
 SPECIES_HOPPIP	12	Bullet Seed	moved from 19	R11, check 1	brought into Gardenia's split; score 426
 SPECIES_HOPPIP	18	Gust	added	R11	Gardenia's split; score 240
 SPECIES_HOPPIP	17	Confusion	added	R4, R5	Gardenia's split; score 186
-SPECIES_JUMPLUFF	34	Triple Axel	added	R5, R16 due	Maylene's split; score 70
-SPECIES_JUMPLUFF	50	Alluring Voice	added	R5	Byron's split; score 47
+SPECIES_JUMPLUFF	34	Dual Wingbeat	added	R16 due	Maylene's split; score 42
+SPECIES_JUMPLUFF	50	Dazzling Gleam	added	R5	Byron's split; score 47
 SPECIES_JUMPLUFF	52	Lunge	added	R2	Byron's split; score 44
-SPECIES_JUMPLUFF	66	Block	added	late move	Volkner's split; score 56
+SPECIES_JUMPLUFF	66	Charm	added	late move	Volkner's split; score 50
 SPECIES_HORSEA	8	Leer	removed	R1	filler past the one a first split may carry
 SPECIES_SEADRA	8	Leer	removed	R25	below 32, the lowest level it is had at
 SPECIES_KINGDRA	8	Leer	removed	R25	below 32, the lowest level it is had at
 SPECIES_KINGDRA	48	Dragon Dance	removed	R32	no strong attack it boosts on the line; a catch would know it at level 1
-SPECIES_SEADRA	45	Alluring Voice	added	R5, R16	Byron's split; score 102
+SPECIES_SEADRA	45	Flash Cannon	added	R5	Byron's split; score 86
 SPECIES_KINGDRA	32	Aurora Beam	added	R4, R5	Wake's split; score 193
 SPECIES_KINGDRA	54	Scale Shot	added	R16 due	Candice's split; score 108
 SPECIES_KINGDRA	58	Dragon Dance	added	R2	HQ's split; score 73
@@ -2053,8 +2050,8 @@ SPECIES_HOUNDOOM	34	Fire Pledge	added	R30	Maylene's split; score 56
 SPECIES_HOUNDOOM	42	Mud Shot	added	R5	Wake's split; score 88
 SPECIES_HOUNDOOM	50	Dark Pulse	added	R2	Byron's split; score 62
 SPECIES_HOUNDOOM	58	Shadow Ball	added	R5	HQ's split; score 87
-SPECIES_HOUNDOOM	62	Alluring Voice	added	R5	HQ's split; score 47
-SPECIES_HOUNDOOM	66	Toxic	added	R2	Volkner's split; score 23
+SPECIES_HOUNDOOM	62	Toxic	added	R2	HQ's split; score 23
+SPECIES_HOUNDOOM	66	Uproar	added	R2	Volkner's split; score 45
 SPECIES_HOUNDOOM	68	Will-O-Wisp	added	R2	Volkner's split; score 2
 SPECIES_JANGMO_O	31	Aura Sphere	added	R4, R5, relearner-only	Byron's split; score 198
 SPECIES_HAKAMO_O	45	Throat Chop	added	R4, R5	Byron's split; score 159
@@ -2075,10 +2072,10 @@ SPECIES_KABUTO	11	Leer	removed	R1	filler past the one a first split may carry
 SPECIES_KABUTOPS	11	Leer	removed	R25	below 40, the lowest level it is had at
 SPECIES_KABUTO	20	Rock Throw	added	R11, check 1	Fantina's split; score 388
 SPECIES_KABUTO	28	Bite	added	R4, R5	Fantina's split; score 193
-SPECIES_KABUTO	40	Triple Axel	added	R5, R16 due	Wake's split; score 104
+SPECIES_KABUTO	40	Low Sweep	added	R5, R16 due	Wake's split; score 37
 SPECIES_KABUTOPS	47	Rock Tomb	added	R2	Byron's split; score 52
 SPECIES_KABUTOPS	56	Cross Poison	added	R5	Byron's split; score 43
-SPECIES_KABUTOPS	61	Leech Life	added	R5	Galactic's split; score 84
+SPECIES_KABUTOPS	61	Ice Fang	added	R5	Galactic's split; score 86
 SPECIES_KABUTOPS	63	Poison Jab	added	R2	Galactic's split; score 44
 SPECIES_KLEFKI	16	Metal Sound	removed	R1	filler past the one a first split may carry
 SPECIES_KLEFKI	35	Iron Defense	added	R7	Maylene's split; score 104
@@ -2099,39 +2096,40 @@ SPECIES_WEEZING	42	Psybeam	added	R5	Wake's split; score 73
 SPECIES_WEEZING	50	Heat Wave	added	R5, relearner-only	Byron's split; score 84
 SPECIES_WEEZING	56	Shadow Ball	added	R5	Candice's split; score 82
 SPECIES_WEEZING	58	Poison Fang	added	R2	Candice's split; score 73
-SPECIES_WEEZING	64	Triple Axel	added	R5, late move	Galactic's split; score 95
+SPECIES_WEEZING	64	Thunderbolt	added	R5, late move	Galactic's split; score 95
 SPECIES_WEEZING	66	Flamethrower	added	R2	Galactic's split; score 39
 SPECIES_WEEZING	72	Dark Pulse	added	R2	League's split; score 36
-SPECIES_GALARIAN_WEEZING	21	Alluring Voice	added	R11	Maylene's split; score 218
-SPECIES_GALARIAN_WEEZING	54	Zen Headbutt	added	R5	Candice's split; score 70
-SPECIES_GALARIAN_WEEZING	56	Bounce	added	R5	Candice's split; score 52
+SPECIES_GALARIAN_WEEZING	21	Dazzling Gleam	added	R11	Maylene's split; score 218
+SPECIES_GALARIAN_WEEZING	54	Thunderbolt	added	R5	Candice's split; score 50
+SPECIES_GALARIAN_WEEZING	56	Double Hit	added	R2	Candice's split; score 35
 SPECIES_GALARIAN_WEEZING	62	Heat Wave	added	R5, relearner-only, late move	Galactic's split; score 137
-SPECIES_GALARIAN_WEEZING	64	Triple Axel	added	R5	Galactic's split; score 53
-SPECIES_GALARIAN_WEEZING	70	Overheat	added	R2	Barry's split; score 50
+SPECIES_GALARIAN_WEEZING	64	Overheat	added	R2	Galactic's split; score 50
 SPECIES_KRABBY	11	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_KINGLER	11	Harden	removed	R25	below 28, the lowest level it is had at
 SPECIES_KRABBY	4	Metal Claw	moved from 21	R4, R5	brought into Roark's split; score 189
 SPECIES_KRABBY	27	Brutal Swing	added	R5, R16 due	Fantina's split; score 110
-SPECIES_KRABBY	17	Triple Axel	added	R5, R16	Gardenia's split; score 40
+SPECIES_KRABBY	17	Aqua Jet	added	R2	Gardenia's split; score 13
 SPECIES_KINGLER	34	Rock Tomb	added	R5	Maylene's split; score 74
-SPECIES_KINGLER	36	Aqua Jet	added	R2	Maylene's split; score 13
-SPECIES_KINGLER	58	Razor Shell	added	R2	HQ's split; score 73
-SPECIES_KINGLER	66	Liquidation	added	R2	Volkner's split; score 70
+SPECIES_KINGLER	36	Secret Power	added	R2	Maylene's split; score 39
+SPECIES_KINGLER	58	Ice Punch	added	R5	HQ's split; score 97
+SPECIES_KINGLER	66	Razor Shell	added	R2	Volkner's split; score 73
+SPECIES_KINGLER	68	Liquidation	added	R2	Volkner's split; score 70
 SPECIES_KRICKETOT	3	Fury Cutter	added	R11	Roark's split; score 242
 SPECIES_KRICKETOT	2	Struggle Bug	added	check 1, R16	Roark's split; score 225
 SPECIES_KRICKETOT	5	Karate Chop	added	R4, R5	Roark's split; score 180
 SPECIES_KRICKETOT	7	Screech	added	R7	Roark's split; score 155
 SPECIES_KRICKETUNE	36	Throat Chop	added	R5	Fantina's split; score 61
 SPECIES_KRICKETUNE	52	Lunge	added	R2	Byron's split; score 61
-SPECIES_KRICKETUNE	57	Zen Headbutt	added	R5	HQ's split; score 87
-SPECIES_KRICKETUNE	59	Skitter Smack	added	R2	HQ's split; score 54
-SPECIES_KRICKETUNE	65	Bounce	added	R5, late move	Galactic's split; score 95
+SPECIES_KRICKETUNE	57	Skitter Smack	added	R2	HQ's split; score 54
+SPECIES_KRICKETUNE	59	Strength	added	R2	HQ's split; score 34
+SPECIES_KRICKETUNE	61	Bulldoze	added	R5	HQ's split; score 27
+SPECIES_KRICKETUNE	65	Secret Power	added	R2	Galactic's split; score 32
 SPECIES_KRICKETUNE	67	Sticky Web	added	R2	Galactic's split; score -5
 SPECIES_LAPRAS	54	Drill Run	added	R4, R5, R16	Candice's split; score 220
-SPECIES_LAPRAS	57	Skitter Smack	added	R5	HQ's split; score 60
-SPECIES_LAPRAS	59	Bounce	added	R5	HQ's split; score 55
-SPECIES_LAPRAS	65	Psychic	added	R5, late move	Galactic's split; score 96
-SPECIES_LAPRAS	67	Thunderbolt	added	R5	Galactic's split; score 53
+SPECIES_LAPRAS	57	Psychic	added	R5	HQ's split; score 53
+SPECIES_LAPRAS	59	Thunderbolt	added	R5	HQ's split; score 53
+SPECIES_LAPRAS	65	Iron Head	added	R5, late move	Galactic's split; score 95
+SPECIES_LAPRAS	67	Dragon Pulse	added	R5	Galactic's split; score 49
 SPECIES_LAPRAS	73	Bulldoze	added	R2	League's split; score 47
 SPECIES_VOLCARONA	59	Mystical Fire	moved from 20	R25	was below 59, the lowest level it is had at
 SPECIES_VOLCARONA	30	U-turn	removed	R25	below 59; onto Larvesta's list
@@ -2155,11 +2153,11 @@ SPECIES_PUPITAR	66	Dragon Dance	added	R19	setup prize for holding past 66; Tyran
 SPECIES_LICKITUNG	9	Defense Curl	removed	R1	filler past the one a first split may carry
 SPECIES_LICKILICKY	9	Defense Curl	removed	R25	below 34, the lowest level it is had at
 SPECIES_LICKITUNG	34	Toxic	added	R7	Maylene's split; score 183
-SPECIES_LICKILICKY	51	Expanding Force	added	R5, R16 due	Byron's split; score 117
+SPECIES_LICKILICKY	51	Bulldoze	added	R5, R16 due	Byron's split; score 103
 SPECIES_LICKILICKY	59	Sludge Bomb	added	R5	Candice's split; score 86
 SPECIES_LICKILICKY	64	Body Slam	added	late move	Galactic's split; score 118
 SPECIES_LICKILICKY	66	Thrash	added	R2	Galactic's split; score 68
-SPECIES_LICKILICKY	72	Zen Headbutt	added	R2	League's split; score 42
+SPECIES_LICKILICKY	72	Belly Drum	added	R2	League's split; score -5
 SPECIES_LILEEP	20	AncientPower	moved from 43	R11, check 1	brought into Fantina's split; score 406
 SPECIES_LILEEP	27	Mega Drain	added	R11	Fantina's split; score 244
 SPECIES_LILEEP	40	Block	added	R7	Wake's split; score 150
@@ -2167,10 +2165,10 @@ SPECIES_CRADILY	40	Bulldoze	added	R5, R16 due	Wake's split; score 163
 SPECIES_CRADILY	48	Power Gem	added	R30	Byron's split; score 56
 SPECIES_CRADILY	50	Rock Slide	added	R2	Byron's split; score 54
 SPECIES_CRADILY	54	Rock Tomb	added	R2	Byron's split; score 52
-SPECIES_CRADILY	61	Triple Axel	added	R5	Galactic's split; score 91
-SPECIES_CRADILY	63	Bounce	added	R5	Galactic's split; score 90
+SPECIES_CRADILY	61	Liquidation	added	R5	Galactic's split; score 33
+SPECIES_CRADILY	63	Low Sweep	added	R5	Galactic's split; score 27
 SPECIES_CRADILY	69	Giga Drain	added	R2	Barry's split; score 60
-SPECIES_CRADILY	71	Zen Headbutt	added	R5	Barry's split; score 49
+SPECIES_CRADILY	71	Body Slam	added	R2	Barry's split; score 39
 SPECIES_INCINEROAR	10	Leer	removed	R25	below 36, the lowest level it is had at
 SPECIES_LITTEN	7	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_TORRACAT	7	Growl	removed	R25	below 16, the lowest level it is had at
@@ -2203,7 +2201,6 @@ SPECIES_LUDICOLO	58	Dark Pulse	added	R5	Candice's split; score 26
 SPECIES_LUDICOLO	62	Energy Ball	added	late move	Galactic's split; score 129
 SPECIES_LUDICOLO	64	Leech Seed	added	R2	Galactic's split; score 35
 SPECIES_LUDICOLO	70	Leaf Storm	added	R2	Barry's split; score 72
-SPECIES_LUDICOLO	72	Alluring Voice	added	R2	Barry's split; score 34
 SPECIES_LUNATONE	55	Earth Power	added	R4, R5	Candice's split; score 261
 SPECIES_LUNATONE	57	Aura Sphere	added	R5	Candice's split; score 80
 SPECIES_LUNATONE	62	Moonblast	added	R5, late move, R16 due	Galactic's split; score 174
@@ -2223,7 +2220,7 @@ SPECIES_ALOMOMOLA	32	Wake-Up Slap	moved from 34	R5	brought into Fantina's split;
 SPECIES_ALOMOMOLA	39	Play Rough	added	R30	Maylene's split; score 144
 SPECIES_ALOMOMOLA	43	Scale Shot	added	R5	Wake's split; score 92
 SPECIES_ALOMOMOLA	55	Bounce	added	R5	Byron's split; score 52
-SPECIES_ALOMOMOLA	67	Foul Play	added	R5	Volkner's split; score 53
+SPECIES_ALOMOMOLA	67	Zen Headbutt	added	R5	Volkner's split; score 49
 SPECIES_ALOMOMOLA	69	Baby-Doll Eyes	added	R2	Volkner's split; score -5
 SPECIES_MACHOP	5	Dual Chop	added	R4, R5, R16	Roark's split; score 170
 SPECIES_MACHOP	15	Scary Face	moved from 43	R7	brought into Roark's split; score 150
@@ -2233,23 +2230,21 @@ SPECIES_MACHAMP	46	Throat Chop	added	R5	Byron's split; score 78
 SPECIES_MACHAMP	48	Fire Punch	added	R5	Byron's split; score 74
 SPECIES_MACHAMP	53	Rock Tomb	added	R2	Byron's split; score 40
 SPECIES_MACHAMP	55	Bulk Up	added	R2	Byron's split; score -5
-SPECIES_MACHAMP	61	Block	added	late move	Galactic's split; score 56
+SPECIES_MACHAMP	61	Swagger	added	late move	Galactic's split; score 50
 SPECIES_MAGBY	1	Leer	removed	R1	filler past the one a first split may carry
 SPECIES_MAGBY	8	Flame Charge	added	check 1, R16	Roark's split; score 183
 SPECIES_MAGBY	12	Scary Face	added	R7	Roark's split; score 155
 SPECIES_MAGBY	21	Karate Chop	added	R5	Gardenia's split; score 65
-SPECIES_MAGMORTAR	40	Expanding Force	added	R5	Wake's split; score 106
-SPECIES_MAGMORTAR	45	Thunderbolt	added	R5	Byron's split; score 76
-SPECIES_MAGMORTAR	47	Milk Drink	added	R2	Byron's split; score 49
-SPECIES_MAGMORTAR	53	Alluring Voice	added	R5	Byron's split; score 47
+SPECIES_MAGMORTAR	40	Scorching Sands	added	R5	Wake's split; score 83
+SPECIES_MAGMORTAR	45	Psychic	added	R5	Byron's split; score 76
+SPECIES_MAGMORTAR	47	Thunderbolt	added	R5	Byron's split; score 76
+SPECIES_MAGMORTAR	53	Milk Drink	added	R2	Byron's split; score 49
 SPECIES_MAGMORTAR	61	Overheat	added	R2	Galactic's split; score 84
-SPECIES_MAGMORTAR	69	Psychic	added	R2	Barry's split; score 46
 SPECIES_MAGNETON	48	Signal Beam	added	R4, R5	Byron's split; score 199
 SPECIES_MAGNEZONE	56	Signal Beam	added	R4, R5	Candice's split; score 244
 SPECIES_MAGNEZONE	58	Volt Switch	added	R16 due	HQ's split; score 100
 SPECIES_MAGNEZONE	62	Tri Attack	added	relearner-only, late move	Galactic's split; score 122
-SPECIES_MAGNEZONE	64	Expanding Force	added	R5	Galactic's split; score 47
-SPECIES_MAGNEZONE	77	Earth Power	added	R5	League's split; score 27
+SPECIES_MAGNEZONE	69	Psychic	added	R5	Barry's split; score 27
 SPECIES_MAKUHITA	5	Belly Drum	moved from 25	R7	brought into Roark's split; score 155
 SPECIES_MAKUHITA	6	Bullet Punch	added	R4	Roark's split; score 125
 SPECIES_HARIYAMA	29	Low Sweep	added	R16 due	Fantina's split; score 107
@@ -2260,18 +2255,18 @@ SPECIES_HARIYAMA	61	Lash Out	added	R2	HQ's split; score 32
 SPECIES_HARIYAMA	67	Throat Chop	added	R2	Volkner's split; score 44
 SPECIES_HARIYAMA	69	Bulk Up	added	R2	Volkner's split; score -5
 SPECIES_MANAPHY	16	Supersonic	removed	R1	filler past the one a first split may carry
-SPECIES_MANAPHY	41	Triple Axel	added	R4, R5, R16	Wake's split; score 181
+SPECIES_MANAPHY	41	Icy Wind	added	R4, R5	Wake's split; score 179
 SPECIES_MANAPHY	48	Aura Sphere	added	R5	Byron's split; score 80
 SPECIES_MANAPHY	56	Signal Beam	added	R5	Byron's split; score 79
-SPECIES_MANAPHY	63	Earth Power	added	R5	Galactic's split; score 86
-SPECIES_MANAPHY	69	Aqua Tail	added	R2	Barry's split; score 68
+SPECIES_MANAPHY	63	Scald	added	R16 due	Galactic's split; score 105
+SPECIES_MANAPHY	69	Earth Power	added	R5	Barry's split; score 86
 SPECIES_ANNIHILAPE	50	Low Kick	moved from 8	R25	was below 50, the lowest level it is had at
 SPECIES_ANNIHILAPE	35	Rage Fist	removed	R25	below 50; onto Primeape's list
 SPECIES_PRIMEAPE	34	Rage Fist	added	R25	from Annihilape's 35, below its 50
 SPECIES_ANNIHILAPE	48	StompingTantrum	removed	R25	below 50; onto Primeape's list
 SPECIES_PRIMEAPE	48	StompingTantrum	added	R25	from Annihilape's 48, below its 50
 SPECIES_PRIMEAPE	40	Rock Tomb	added	R5	Wake's split; score 74
-SPECIES_ANNIHILAPE	54	Bounce	added	R5	Candice's split; score 52
+SPECIES_ANNIHILAPE	54	Fire Punch	added	R5	Candice's split; score 50
 SPECIES_ANNIHILAPE	56	Shadow Claw	added	R2	Candice's split; score 45
 SPECIES_ANNIHILAPE	62	Bulldoze	added	R2	Galactic's split; score 40
 SPECIES_ANNIHILAPE	64	Lash Out	added	R2	Galactic's split; score 32
@@ -2281,12 +2276,11 @@ SPECIES_MANTINE	4	Supersonic	removed	R25	below 30, the lowest level it is had at
 SPECIES_MANTYKE	8	Icy Wind	added	R4, R5	Gardenia's split; score 171
 SPECIES_MANTINE	34	Scald	moved from 49	R16 due	brought into Maylene's split; score 124
 SPECIES_MANTINE	42	Signal Beam	added	R5, relearner-only	Wake's split; score 109
-SPECIES_MANTINE	50	Expanding Force	added	R5	Byron's split; score 68
-SPECIES_MANTINE	52	Surf	added	R2	Byron's split; score 57
-SPECIES_MANTINE	58	Air Slash	added	R2	HQ's split; score 57
-SPECIES_MANTINE	60	Alluring Voice	added	R5	HQ's split; score 47
-SPECIES_MANTINE	66	Block	added	late move	Volkner's split; score 90
-SPECIES_MANTINE	68	Muddy Water	added	R2	Volkner's split; score 25
+SPECIES_MANTINE	50	Surf	added	R2	Byron's split; score 57
+SPECIES_MANTINE	52	Air Slash	added	R2	Byron's split; score 57
+SPECIES_MANTINE	58	Psychic	added	R5	HQ's split; score 33
+SPECIES_MANTINE	60	Muddy Water	added	R2	HQ's split; score 25
+SPECIES_MANTINE	66	Swagger	added	late move	Volkner's split; score 84
 SPECIES_MAREANIE	38	Water Pulse	added	R11	Maylene's split; score 203
 SPECIES_TOXAPEX	48	Sludge Bomb	added	R2	Byron's split; score 52
 SPECIES_TOXAPEX	50	Ice Beam	added	R5	Byron's split; score 46
@@ -2354,7 +2348,7 @@ SPECIES_MINUN	40	Snarl	added	R5, R16 due	Maylene's split; score 30
 SPECIES_MINUN	53	Discharge	added	R2	Byron's split; score 74
 SPECIES_MINUN	59	Alluring Voice	added	R5	HQ's split; score 94
 SPECIES_MINUN	61	Volt Switch	added	R2	HQ's split; score 57
-SPECIES_MINUN	67	Expanding Force	added	R5	Volkner's split; score 55
+SPECIES_MINUN	67	Signal Beam	added	R5	Volkner's split; score 54
 SPECIES_MISDREAVUS	30	Ominous Wind	added	check 1	Fantina's split; score 206
 SPECIES_MISDREAVUS	27	Magical Leaf	added	R5, relearner-only	Fantina's split; score 85
 SPECIES_MISDREAVUS	29	Draining Kiss	added	R5, R16	Fantina's split; score 54
@@ -2369,13 +2363,13 @@ SPECIES_MISMAGIUS	69	Uproar	added	R2	Barry's split; score 53
 SPECIES_MISMAGIUS	71	Energy Ball	added	R5	Barry's split; score 52
 SPECIES_MUDKIP	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_MUDKIP	3	Screech	added	R7	Roark's split; score 155
-SPECIES_MUDKIP	2	Triple Axel	added	R4, R5, R16	Roark's split; score 142
-SPECIES_MARSHTOMP	18	Rock Throw	added	R5	Gardenia's split; score 65
+SPECIES_MUDKIP	2	Rock Blast	added	R4, R5	Roark's split; score 42
+SPECIES_MARSHTOMP	34	Body Press	added	R5, R16 due	Maylene's split; score 119
+SPECIES_MARSHTOMP	18	Bulldoze	added	R16	Gardenia's split; score 69
 SPECIES_SWAMPERT	41	Liquidation	added	R30	Wake's split; score 141
-SPECIES_SWAMPERT	43	Brick Break	added	R5	Wake's split; score 78
+SPECIES_SWAMPERT	43	Avalanche	added	R5	Wake's split; score 60
 SPECIES_SWAMPERT	48	Poison Jab	added	R5	Byron's split; score 50
 SPECIES_SWAMPERT	56	Flip Turn	added	R2	Candice's split; score 42
-SPECIES_SWAMPERT	64	Rock Tomb	added	R2	Galactic's split; score 40
 SPECIES_SNORLAX	17	Belly Drum	removed	R25	below 32; onto Munchlax's list
 SPECIES_MUNCHLAX	18	Belly Drum	added	R25	from Snorlax's 17, below its 32
 SPECIES_SNORLAX	32	Yawn	moved from 20	R25	was below 32, the lowest level it is had at
@@ -2394,12 +2388,11 @@ SPECIES_MURKROW	10	Ominous Wind	added	R4, R5	Roark's split; score 128
 SPECIES_MURKROW	17	Dual Wingbeat	added	R16	Gardenia's split; score 64
 SPECIES_MURKROW	19	Swagger	added	R2	Gardenia's split; score 59
 SPECIES_MURKROW	27	Dark Pulse	added	R2	Gardenia's split; score 57
-SPECIES_HONCHKROW	40	Skitter Smack	added	R5	Wake's split; score 90
+SPECIES_HONCHKROW	40	U-turn	added	R5	Wake's split; score 85
 SPECIES_HONCHKROW	53	Sucker Punch	added	R2	Byron's split; score 70
 SPECIES_HONCHKROW	61	Heat Wave	added	R5, late move	Galactic's split; score 170
 SPECIES_HONCHKROW	63	Mean Look	added	R2	Galactic's split; score 56
 SPECIES_HONCHKROW	69	Superpower	added	R5	Barry's split; score 91
-SPECIES_HONCHKROW	71	U-turn	added	R2	Barry's split; score 34
 SPECIES_GARGANACL	38	Rock Tomb	moved from 10	R25	was below 38, the lowest level it is had at
 SPECIES_GARGANACL	39	Salt Cure	moved from 24	R25	was below 38, the lowest level it is had at
 SPECIES_NACLI	1	Harden	removed	R1	filler past the one a first split may carry
@@ -2447,43 +2440,48 @@ SPECIES_PROBOPASS	16	Iron Defense	moved from 7	R25	was below 16, the lowest leve
 SPECIES_PROBOPASS	27	Magnet Bomb	moved from 13	R25	was below 16, the lowest level it is had at
 SPECIES_NOSEPASS	7	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_NOSEPASS	4	Taunt	added	R7	Roark's split; score 132
-SPECIES_NOSEPASS	3	Triple Axel	added	R4, R5, R16	Roark's split; score 121
-SPECIES_NOSEPASS	6	Rock Blast	moved from 61	R1	brought into Roark's split; score 41
-SPECIES_NOSEPASS	17	Rock Tomb	added	R2	Gardenia's split; score 52
+SPECIES_NOSEPASS	3	Rock Blast	moved from 61	R1	brought into Roark's split; score 41
+SPECIES_NOSEPASS	17	Mud Shot	added	R4, R5	Gardenia's split; score 62
+SPECIES_NOSEPASS	33	Bulldoze	added	R16 due	Fantina's split; score 91
 SPECIES_PROBOPASS	21	Metal Claw	added	R11	Gardenia's split; score 83
+SPECIES_PROBOPASS	29	Bulldoze	added	R16 due	Fantina's split; score 91
 SPECIES_PROBOPASS	40	Discharge	moved from 55	R5	brought into Wake's split; score 139
-SPECIES_PROBOPASS	51	Bulldoze	added	R5	Byron's split; score 74
-SPECIES_PROBOPASS	56	Iron Head	added	R2	Candice's split; score 64
-SPECIES_PROBOPASS	58	Zen Headbutt	added	R5	Candice's split; score 49
-SPECIES_PROBOPASS	64	ThunderPunch	added	R2	Galactic's split; score 42
-SPECIES_PROBOPASS	66	Volt Switch	added	R2	Galactic's split; score 34
+SPECIES_PROBOPASS	51	Iron Head	added	R2	Byron's split; score 64
+SPECIES_PROBOPASS	56	Body Press	added	R5	Candice's split; score 85
+SPECIES_PROBOPASS	58	Rock Tomb	added	R2	Candice's split; score 52
+SPECIES_PROBOPASS	64	Fire Punch	added	R5	Galactic's split; score 54
+SPECIES_PROBOPASS	66	ThunderPunch	added	R2	Galactic's split; score 42
 SPECIES_NOSEPASS	13	Rock Throw	removed	R6	weaker than Rock Blast, already had
 SPECIES_OMANYTE	40	Shell Smash	added	R16 due	Wake's split; score 123
 SPECIES_OMASTAR	45	Scald	added	R30	Byron's split; score 139
-SPECIES_OMASTAR	53	Alluring Voice	added	R5	Byron's split; score 47
-SPECIES_OMASTAR	55	Expanding Force	added	R5	Byron's split; score 47
-SPECIES_OMASTAR	61	Ice Beam	added	R5	Galactic's split; score 86
-SPECIES_OMASTAR	69	Power Gem	added	R2	Barry's split; score 21
+SPECIES_OMASTAR	53	Power Gem	added	R2	Byron's split; score 21
+SPECIES_OMASTAR	61	Ice Beam	added	R5	Galactic's split; score 131
+SPECIES_OMASTAR	63	Flash Cannon	added	R5	Galactic's split; score 25
 SPECIES_ONIX	1	Harden	removed	R1	filler past the one a first split may carry
 SPECIES_ONIX	1	Bind	removed	R1	filler past the one a first split may carry
 SPECIES_STEELIX	30	Rock Polish	removed	R32	too early: strong attacks it boosts come at 41
 SPECIES_STEELIX	34	Rock Polish	added	R32	moved from Steelix's 30, beside the attacks it boosts
 SPECIES_ONIX	5	Sand Tomb	moved from 46	R11	brought into Roark's split; score 226
-SPECIES_ONIX	4	Triple Axel	added	R4, R5, R16	Roark's split; score 121
-SPECIES_ONIX	19	Bulldoze	added	R2	Gardenia's split; score 52
+SPECIES_ONIX	4	Rock Blast	added	R1	Roark's split; score 35
+SPECIES_ONIX	19	Bulldoze	added	R16	Gardenia's split; score 69
+SPECIES_ONIX	27	Bite	added	R4, R5	Gardenia's split; score 238
 SPECIES_STEELIX	19	Metal Claw	added	R11, check 1	Gardenia's split; score 135
-SPECIES_STEELIX	56	Fire Fang	added	R5, relearner-only	Candice's split; score 91
+SPECIES_STEELIX	27	Brutal Swing	added	R5, R16 due	Fantina's split; score 110
+SPECIES_STEELIX	56	Fire Fang	added	R5, relearner-only	Candice's split; score 136
+SPECIES_STEELIX	58	Ice Fang	added	R5, relearner-only	Candice's split; score 91
 SPECIES_STEELIX	64	Block	added	late move	Galactic's split; score 90
-SPECIES_PACHIRISU	4	Triple Axel	added	R4, R5, R16	Roark's split; score 142
+SPECIES_ONIX	9	Rock Throw	removed	R6	weaker than Rock Blast, already had
+SPECIES_ONIX	16	Curse	moved from 38	R1	brought into Roark's split; score 45
+SPECIES_PACHIRISU	4	Electroweb	added	R16	Roark's split; score 65
+SPECIES_PACHIRISU	7	Mud Shot	added	R4, R5	Roark's split; score 143
 SPECIES_PACHIRISU	35	Bite	added	R5	Fantina's split; score 73
 SPECIES_PACHIRISU	41	Thunder Fang	added	R2	Wake's split; score 69
 SPECIES_PACHIRISU	43	ThunderPunch	added	R2	Wake's split; score 58
 SPECIES_PACHIRISU	49	Fire Fang	added	R5	Byron's split; score 86
-SPECIES_PACHIRISU	51	Play Rough	added	R5	Byron's split; score 52
+SPECIES_PACHIRISU	51	Ice Fang	added	R5	Byron's split; score 86
 SPECIES_PACHIRISU	57	Volt Switch	added	R2	HQ's split; score 49
 SPECIES_PACHIRISU	59	Follow Me	added	R2	HQ's split; score 23
-SPECIES_PACHIRISU	65	Block	added	late move	Galactic's split; score 56
-SPECIES_PACHIRISU	67	Thunder Wave	added	R2	Galactic's split; score 2
+SPECIES_PACHIRISU	65	Thunder Wave	added	late move	Galactic's split; score 52
 SPECIES_PAWMI	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_PAWMI	5	Spark	moved from 23	check 1	brought into Roark's split; score 197
 SPECIES_PAWMI	8	Bite	moved from 19	R4, R5	brought into Roark's split; score 163
@@ -2503,8 +2501,7 @@ SPECIES_PHANPY	8	Mud Shot	added	check 1	Roark's split; score 164
 SPECIES_PHANPY	12	Ice Shard	added	R4	Roark's split; score 125
 SPECIES_DONPHAN	28	Trailblaze	added	R5, R16 due	Fantina's split; score 91
 SPECIES_DONPHAN	43	Fire Fang	added	R5, relearner-only	Wake's split; score 81
-SPECIES_DONPHAN	51	Triple Axel	added	R2	Byron's split; score 19
-SPECIES_DONPHAN	59	Charm	added	R2	HQ's split; score 9
+SPECIES_DONPHAN	51	Charm	added	R2	Byron's split; score 9
 SPECIES_DONPHAN	67	Block	added	late move	Volkner's split; score 56
 SPECIES_PHEROMOSA	72	Throat Chop	added	R5	Barry's split; score 57
 SPECIES_PIKACHU	1	Growl	removed	R1	filler past the one a first split may carry
@@ -2516,8 +2513,8 @@ SPECIES_RAICHU	54	Volt Tackle	added	R2	Candice's split; score 76
 SPECIES_RAICHU	56	Surf	added	R5	Candice's split; score 60
 SPECIES_RAICHU	62	Sweet Kiss	added	late move	Galactic's split; score 99
 SPECIES_RAICHU	64	Play Rough	added	R5	Galactic's split; score 52
-SPECIES_RAICHU	70	Triple Axel	added	R5	Barry's split; score 53
-SPECIES_RAICHU	72	Volt Switch	added	R2	Barry's split; score 49
+SPECIES_RAICHU	70	Volt Switch	added	R2	Barry's split; score 49
+SPECIES_RAICHU	72	ExtremeSpeed	added	R2	Barry's split; score 48
 SPECIES_PIKIPEK	3	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_PIKIPEK	3	Pluck	moved from 15	check 1	brought into Roark's split; score 205
 SPECIES_PIKIPEK	2	Screech	moved from 25	R7	brought into Roark's split; score 155
@@ -2543,17 +2540,17 @@ SPECIES_EMPOLEON	41	X-Scissor	added	R5	Wake's split; score 125
 SPECIES_EMPOLEON	43	Icicle Spear	added	R5	Wake's split; score 122
 SPECIES_EMPOLEON	48	Throat Chop	added	R5	Byron's split; score 78
 SPECIES_EMPOLEON	56	Flip Turn	added	R2	Candice's split; score 42
-SPECIES_EMPOLEON	64	Bounce	added	late move	Galactic's split; score 82
-SPECIES_EMPOLEON	66	Triple Axel	added	R2	Galactic's split; score 36
-SPECIES_EMPOLEON	72	Charm	added	R2	League's split; score 9
+SPECIES_EMPOLEON	64	Triple Axel	added	late move	Galactic's split; score 79
+SPECIES_EMPOLEON	66	Charm	added	R2	Galactic's split; score 9
+SPECIES_EMPOLEON	72	Yawn	added	R2	League's split; score 9
 SPECIES_PRINPLUP	66	Wave Crash	added	R19	payoff for holding past 66; Empoleon comes at 36
-SPECIES_PLUSLE	19	Triple Axel	added	R4, R5, R16	Gardenia's split; score 178
+SPECIES_PLUSLE	19	Trailblaze	added	R4, R5, R16	Gardenia's split; score 164
 SPECIES_PLUSLE	27	Electroweb	added	R2	Fantina's split; score 57
 SPECIES_PLUSLE	46	Fire Punch	added	R5	Wake's split; score 89
-SPECIES_PLUSLE	53	Discharge	added	R2	Byron's split; score 74
-SPECIES_PLUSLE	59	Alluring Voice	added	R5	HQ's split; score 94
+SPECIES_PLUSLE	53	Ice Punch	added	R5	Byron's split; score 89
+SPECIES_PLUSLE	59	Discharge	added	R2	HQ's split; score 74
 SPECIES_PLUSLE	61	Volt Switch	added	R2	HQ's split; score 49
-SPECIES_PLUSLE	67	Expanding Force	added	R5	Volkner's split; score 47
+SPECIES_PLUSLE	67	Alluring Voice	added	R5	Volkner's split; score 47
 SPECIES_POLIWHIRL	37	Belly Drum	removed	R32	no strong attack it boosts on the line; a catch would know it at level 1
 SPECIES_POLIWAG	4	Mud Shot	moved from 28	R4, R5	brought into Roark's split; score 208
 SPECIES_POLIWAG	3	Chilling Water	added	check 1, R16	Roark's split; score 176
@@ -2565,15 +2562,15 @@ SPECIES_POLIWHIRL	39	Throat Chop	added	R5	Maylene's split; score 57
 SPECIES_POLIWRATH	35	Wake-Up Slap	added	R11	Maylene's split; score 262
 SPECIES_POLIWRATH	40	Throat Chop	added	R5	Wake's split; score 95
 SPECIES_POLIWRATH	45	Body Press	added	R30	Byron's split; score 56
-SPECIES_POLIWRATH	55	Triple Axel	added	R5	Candice's split; score 100
+SPECIES_POLIWRATH	55	Rock Tomb	added	R5	Candice's split; score 91
 SPECIES_POLIWRATH	57	Low Sweep	added	R2	Candice's split; score 56
-SPECIES_POLIWRATH	62	Rock Tomb	added	R5, late move	Galactic's split; score 95
+SPECIES_POLIWRATH	62	Ice Punch	added	R5, late move	Galactic's split; score 139
 SPECIES_POLIWRATH	64	Drain Punch	added	R2	Galactic's split; score 51
 SPECIES_POLIWRATH	70	Belly Drum	added	R2	Barry's split; score -5
 SPECIES_POLITOED	39	Scald	added	R30	Wake's split; score 57
 SPECIES_POLITOED	57	Ice Beam	added	R5	HQ's split; score 86
 SPECIES_POLITOED	59	Muddy Water	added	R2	HQ's split; score 61
-SPECIES_POLITOED	65	Block	added	late move	Galactic's split; score 90
+SPECIES_POLITOED	65	Belly Drum	added	late move	Galactic's split; score 85
 SPECIES_POLIWAG	11	Water Gun	removed	R6	weaker than Chilling Water, already had
 SPECIES_POLIWHIRL	11	Water Gun	removed	R25	below 25; onto Poliwag's list
 SPECIES_POLIWAG	11	Water Gun	added	R25	from Poliwhirl's 11, below its 25
@@ -2590,23 +2587,23 @@ SPECIES_RAPIDASH	42	Bounce	moved from 47	R5	brought into Wake's split; score 136
 SPECIES_RAPIDASH	45	Poison Jab	added	R5, relearner-only	Byron's split; score 89
 SPECIES_RAPIDASH	47	Drill Run	added	R5	Byron's split; score 80
 SPECIES_RAPIDASH	53	Overheat	added	R2	Byron's split; score 60
-SPECIES_RAPIDASH	61	Block	added	late move	Galactic's split; score 90
+SPECIES_RAPIDASH	61	Charm	added	late move	Galactic's split; score 84
 SPECIES_GALARIAN_RAPIDASH	17	Dazzling Gleam	moved from 49	R11	brought into Gardenia's split; score 244
 SPECIES_GALARIAN_RAPIDASH	40	Quick Attack	added	relearner-only	Wake's split; score 58
-SPECIES_GALARIAN_RAPIDASH	48	StompingTantrum	added	R5	Byron's split; score 66
-SPECIES_GALARIAN_RAPIDASH	50	Throat Chop	added	R5	Byron's split; score 57
-SPECIES_GALARIAN_RAPIDASH	58	Mystical Fire	added	R2	Candice's split; score 48
-SPECIES_GALARIAN_RAPIDASH	64	Block	added	late move	Galactic's split; score 90
+SPECIES_GALARIAN_RAPIDASH	48	Throat Chop	added	R5	Byron's split; score 57
+SPECIES_GALARIAN_RAPIDASH	50	Mystical Fire	added	R2	Byron's split; score 48
+SPECIES_GALARIAN_RAPIDASH	58	Wild Charge	added	R5	Candice's split; score 45
+SPECIES_GALARIAN_RAPIDASH	64	Charm	added	late move	Galactic's split; score 84
 SPECIES_GALARIAN_RAPIDASH	66	Zen Headbutt	added	R2	Galactic's split; score 36
 SPECIES_GALARIAN_RAPIDASH	72	Moonblast	added	R2	League's split; score 21
 SPECIES_POOCHYENA	6	Scary Face	moved from 33	R7	brought into Roark's split; score 155
-SPECIES_POOCHYENA	11	Triple Axel	added	R4, R5, R16	Roark's split; score 130
-SPECIES_MIGHTYENA	39	Wild Charge	added	R5	Maylene's split; score 75
-SPECIES_MIGHTYENA	44	Throat Chop	added	R2	Wake's split; score 70
+SPECIES_POOCHYENA	11	Bullet Seed	added	R4, R5	Roark's split; score 38
+SPECIES_MIGHTYENA	29	Bulldoze	added	R5, R16 due	Fantina's split; score 33
+SPECIES_MIGHTYENA	39	Throat Chop	added	R2	Maylene's split; score 70
+SPECIES_MIGHTYENA	44	Quick Attack	added	R2	Wake's split; score 38
 SPECIES_MIGHTYENA	59	Poison Fang	added	R5	HQ's split; score 135
 SPECIES_MIGHTYENA	67	Fire Fang	added	R5	Volkner's split; score 86
-SPECIES_MIGHTYENA	69	Thunder Fang	added	R2	Volkner's split; score 46
-SPECIES_MIGHTYENA	75	Yawn	added	R2	League's split; score 9
+SPECIES_MIGHTYENA	69	Yawn	added	R2	Volkner's split; score 9
 SPECIES_POPPLIO	2	Chilling Water	added	check 1	Gardenia's split; score 166
 SPECIES_PRIMARINA	48	Shadow Ball	added	R5	Byron's split; score 87
 SPECIES_PRIMARINA	58	Energy Ball	added	R5	Candice's split; score 52
@@ -2616,12 +2613,13 @@ SPECIES_PSYDUCK	5	Tail Whip	removed	R1	filler past the one a first split may car
 SPECIES_PSYDUCK	1	Water Sport	removed	R1	filler past the one a first split may carry
 SPECIES_GOLDUCK	5	Tail Whip	removed	R25	below 33, the lowest level it is had at
 SPECIES_PSYDUCK	3	Screech	moved from 31	R7	brought into Roark's split; score 165
-SPECIES_PSYDUCK	2	Triple Axel	added	R4, R5, R16	Roark's split; score 152
-SPECIES_GOLDUCK	34	Low Sweep	added	R5	Maylene's split; score 73
+SPECIES_PSYDUCK	2	Aerial Ace	added	R4, R5	Roark's split; score 133
+SPECIES_PSYDUCK	29	Low Sweep	added	R5, R16 due	Fantina's split; score 122
+SPECIES_GOLDUCK	34	Aurora Beam	added	R5	Maylene's split; score 73
 SPECIES_GOLDUCK	39	Scald	added	R30	Maylene's split; score 57
 SPECIES_GOLDUCK	42	Surf	added	R2	Wake's split; score 57
-SPECIES_GOLDUCK	58	Foul Play	added	R5	HQ's split; score 48
-SPECIES_GOLDUCK	60	Bounce	added	R5	HQ's split; score 47
+SPECIES_GOLDUCK	58	Power Gem	added	R5	HQ's split; score 47
+SPECIES_GOLDUCK	60	Ice Beam	added	R2	HQ's split; score 46
 SPECIES_GOLDUCK	66	Psychic	added	late move	Volkner's split; score 96
 SPECIES_GOLDUCK	68	Flip Turn	added	R2	Volkner's split; score 37
 SPECIES_PURRLOIN	1	Growl	removed	R1	filler past the one a first split may carry
@@ -2658,15 +2656,15 @@ SPECIES_GALLADE	63	Aqua Cutter	added	R5	Galactic's split; score 75
 SPECIES_GALLADE	69	Zen Headbutt	added	R2	Barry's split; score 62
 SPECIES_GALLADE	71	Low Sweep	added	R2	Barry's split; score 56
 SPECIES_RELICANTH	45	Bulldoze	added	R4, R5, R16	Byron's split; score 193
-SPECIES_RELICANTH	54	Triple Axel	added	R5	Candice's split; score 62
+SPECIES_RELICANTH	54	Scale Shot	added	R5	Candice's split; score 54
 SPECIES_RELICANTH	62	Aqua Tail	added	R2	Galactic's split; score 68
-SPECIES_RELICANTH	73	Scale Shot	added	R5	Barry's split; score 54
+SPECIES_RELICANTH	73	Rock Slide	added	R2	Barry's split; score 54
 SPECIES_REMORAID	4	Screech	added	R7	Roark's split; score 132
 SPECIES_REMORAID	3	Chilling Water	added	check 1, R16	Roark's split; score 75
 SPECIES_OCTILLERY	27	Rock Blast	added	R5, relearner-only	Fantina's split; score 92
 SPECIES_OCTILLERY	35	Scald	added	R2	Maylene's split; score 54
 SPECIES_OCTILLERY	44	Skitter Smack	added	R2	Wake's split; score 39
-SPECIES_OCTILLERY	67	Block	added	late move	Volkner's split; score 90
+SPECIES_OCTILLERY	67	Swagger	added	late move	Volkner's split; score 84
 SPECIES_RHYHORN	7	Rock Blast	moved from 25	R11, check 1	brought into Roark's split; score 391
 SPECIES_RHYHORN	11	Bite	added	R4, R5	Roark's split; score 178
 SPECIES_RHYHORN	13	Scary Face	moved from 21	R7	brought into Roark's split; score 165
@@ -2677,18 +2675,16 @@ SPECIES_RHYHORN	17	Breaking Swipe	added	R5, R16	Gardenia's split; score 63
 SPECIES_RHYHORN	19	Dig	added	R2	Gardenia's split; score 45
 SPECIES_RHYHORN	25	StompingTantrum	added	R2	Gardenia's split; score 48
 SPECIES_RHYHORN	27	Avalanche	added	R5	Gardenia's split; score 38
-SPECIES_RHYDON	45	Triple Axel	added	R2	Byron's split; score 19
-SPECIES_RHYPERIOR	63	Triple Axel	added	R2	Galactic's split; score 36
 SPECIES_RHYPERIOR	69	Rock Tomb	added	R2	Barry's split; score 52
 SPECIES_LUCARIO	28	Bone Rush	moved from 19	R25	was below 28, the lowest level it is had at
 SPECIES_LUCARIO	24	Metal Sound	removed	R25	below 28, the lowest level it is had at
-SPECIES_RIOLU	18	Bone Rush	added	R4, R5	Byron's split; score 214
+SPECIES_RIOLU	18	Bone Rush	added	R4, R5	Byron's split; score 218
 SPECIES_LUCARIO	48	Meteor Mash	added	R11	Byron's split; score 271
 SPECIES_LUCARIO	54	Dark Pulse	added	R5, relearner-only	Candice's split; score 112
 SPECIES_LUCARIO	56	Ice Punch	added	R5	Candice's split; score 86
-SPECIES_LUCARIO	62	Expanding Force	added	R5, late move, R16 due	Galactic's split; score 162
-SPECIES_LUCARIO	64	Iron Head	added	R2	Galactic's split; score 61
-SPECIES_LUCARIO	70	Low Sweep	added	R2	Barry's split; score 54
+SPECIES_LUCARIO	62	Low Sweep	added	late move, R16 due	Galactic's split; score 148
+SPECIES_LUCARIO	64	ThunderPunch	added	R5	Galactic's split; score 87
+SPECIES_LUCARIO	70	Iron Head	added	R2	Barry's split; score 61
 SPECIES_LUCARIO	72	Drain Punch	added	R2	Barry's split; score 49
 SPECIES_ROOKIDEE	3	Taunt	added	R7	Roark's split; score 165
 SPECIES_CORVISQUIRE	40	Throat Chop	added	R5, R16 due	Wake's split; score 32
@@ -2701,10 +2697,10 @@ SPECIES_CORVIKNIGHT	71	Swagger	added	R2	Barry's split; score 9
 SPECIES_ROTOM	27	Signal Beam	added	R4, R5	Fantina's split; score 184
 SPECIES_ROTOM	35	Hex	added	R16	Maylene's split; score 79
 SPECIES_ROTOM	45	Dark Pulse	added	R5	Wake's split; score 82
-SPECIES_ROTOM	52	Expanding Force	added	R5	Byron's split; score 47
 SPECIES_ROTOM	58	Thunderbolt	added	R2	HQ's split; score 59
 SPECIES_ROTOM	60	Volt Switch	added	R2	HQ's split; score 49
-SPECIES_ROTOM	66	Block	added	late move	Volkner's split; score 56
+SPECIES_ROTOM	66	Swagger	added	late move	Volkner's split; score 50
+SPECIES_ROTOM	68	Earth Power	added	R5	Volkner's split; score 27
 SPECIES_DECIDUEYE	40	Spirit Shackle	moved from 34	R25	was below 36, the lowest level it is had at
 SPECIES_ROWLET	4	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_DARTRIX	4	Growl	removed	R25	below 16, the lowest level it is had at
@@ -2738,28 +2734,27 @@ SPECIES_SCIZOR	43	Dual Wingbeat	added	R5, R16	Wake's split; score 123
 SPECIES_SCIZOR	55	Brick Break	added	R5	Candice's split; score 78
 SPECIES_SCIZOR	62	Lunge	added	late move	Galactic's split; score 104
 SPECIES_SCIZOR	64	Skitter Smack	added	R2	Galactic's split; score 54
-SPECIES_SCIZOR	70	Triple Axel	added	R5	Barry's split; score 53
-SPECIES_SCIZOR	72	U-turn	added	R2	Barry's split; score 49
+SPECIES_SCIZOR	70	U-turn	added	R2	Barry's split; score 49
+SPECIES_SCIZOR	72	Strength	added	R2	Barry's split; score 34
 SPECIES_KLEAVOR	57	Steel Wing	added	R5	Candice's split; score 81
 SPECIES_KLEAVOR	62	Lunge	added	late move	Galactic's split; score 109
-SPECIES_KLEAVOR	64	Bounce	added	R2	Galactic's split; score 47
-SPECIES_SCIZOR	27	Strength	added	check 24	branch parity by Maylene's cap; adds 38 to its kit
-SPECIES_SCIZOR	28	Take Down	added	check 24	branch parity by Maylene's cap; adds 36 to its kit
-SPECIES_SCIZOR	34	Pin Missile	added	check 24	branch parity by Maylene's cap; adds 42 to its kit
+SPECIES_SCIZOR	27	Pin Missile	added	check 24	branch parity by Maylene's cap; adds 70 to its kit
+SPECIES_SCIZOR	28	Secret Power	added	check 24	branch parity by Maylene's cap; adds 25 to its kit
+SPECIES_SCIZOR	34	Rock Blast	added	check 24	branch parity by Maylene's cap; adds 5 to its kit
 SPECIES_SEEDOT	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_NUZLEAF	7	Growth	removed	R25	below 14, the lowest level it is had at
 SPECIES_SEEDOT	4	Bullet Seed	added	R11, check 1	Roark's split; score 341
 SPECIES_SEEDOT	2	Curse	added	R7	Roark's split; score 132
-SPECIES_SEEDOT	6	Triple Axel	added	R4, R5, R16	Roark's split; score 130
-SPECIES_SEEDOT	8	Fake Out	added	R1	Roark's split; score 44
-SPECIES_NUZLEAF	14	Snarl	added	R11	Roark's split; score 207
+SPECIES_SEEDOT	6	Fake Out	added	R1	Roark's split; score 54
+SPECIES_SEEDOT	8	Rock Blast	added	R4, R5	Roark's split; score 42
+SPECIES_NUZLEAF	14	Snarl	added	R11, R16	Roark's split; score 224
 SPECIES_NUZLEAF	17	Silver Wind	added	R5	Gardenia's split; score 67
 SPECIES_SHIFTRY	40	Silver Wind	added	R5	Wake's split; score 113
-SPECIES_SHIFTRY	42	Rock Tomb	added	R5	Wake's split; score 74
+SPECIES_SHIFTRY	43	Swagger	added	R2	Wake's split; score 59
 SPECIES_SHIFTRY	48	Extrasensory	added	R5	Byron's split; score 87
 SPECIES_SHIFTRY	56	Low Sweep	added	R5	Candice's split; score 55
-SPECIES_SHIFTRY	58	Giga Drain	added	R2	Candice's split; score 55
-SPECIES_SHIFTRY	64	Swagger	added	late move	Galactic's split; score 99
+SPECIES_SHIFTRY	58	Heat Wave	added	R5	Candice's split; score 55
+SPECIES_SHIFTRY	64	Giga Drain	added	late move	Galactic's split; score 105
 SPECIES_SHIFTRY	66	Dark Pulse	added	R2	Galactic's split; score 48
 SPECIES_SHIFTRY	72	Crunch	added	R2	League's split; score 62
 SPECIES_DEWGONG	34	Signal Beam	moved from 7	R25	was below 34, the lowest level it is had at
@@ -2777,9 +2772,8 @@ SPECIES_FURRET	34	Body Slam	added	R2	Fantina's split; score 63
 SPECIES_FURRET	49	Play Rough	added	R5	Byron's split; score 52
 SPECIES_FURRET	58	Fire Punch	added	R5	HQ's split; score 54
 SPECIES_FURRET	60	Thrash	added	R2	HQ's split; score 28
-SPECIES_FURRET	65	Block	added	late move	Galactic's split; score 56
-SPECIES_FURRET	67	Agility	added	R2	Galactic's split; score 2
-SPECIES_FURRET	73	Thunder Wave	added	R2	League's split; score 2
+SPECIES_FURRET	65	Agility	added	late move	Galactic's split; score 52
+SPECIES_FURRET	67	Thunder Wave	added	R2	Galactic's split; score 2
 SPECIES_LEAVANNY	30	Fell Stinger	moved from 29	R25	was below 30, the lowest level it is had at
 SPECIES_SEWADDLE	1	String Shot	removed	R1	filler past the one a first split may carry
 SPECIES_SEWADDLE	3	Sticky Web	moved from 31	R7, R16	brought into Roark's split; score 175
@@ -2794,36 +2788,34 @@ SPECIES_SHELLDER	8	Supersonic	removed	R1	filler past the one a first split may c
 SPECIES_SHELLDER	46	Poison Jab	added	R5	Byron's split; score 71
 SPECIES_SHELLDER	51	Toxic	added	R1	Byron's split; score 63
 SPECIES_SHELLDER	53	Rock Blast	added	R5	Byron's split; score 52
-SPECIES_SHELLDER	45	Zen Headbutt	added	R5	Byron's split; score 49
-SPECIES_SHELLDER	47	Drill Run	added	R5	Byron's split; score 47
+SPECIES_SHELLDER	45	Drill Run	added	R5	Byron's split; score 47
+SPECIES_SHELLDER	47	Smart Strike	added	R5	Byron's split; score 42
 SPECIES_CLOYSTER	24	Toxic	added	R7	Byron's split; score 183
 SPECIES_CLOYSTER	26	Rock Blast	added	R4, R5	Byron's split; score 182
-SPECIES_CLOYSTER	57	Triple Axel	added	R16 due	HQ's split; score 111
-SPECIES_CLOYSTER	61	Poison Fang	added	R5, late move	Galactic's split; score 140
-SPECIES_CLOYSTER	63	Shell Smash	added	R2	Galactic's split; score 63
-SPECIES_CLOYSTER	69	Razor Shell	added	R2	Barry's split; score 62
-SPECIES_CLOYSTER	71	Liquidation	added	R2	Barry's split; score 56
-SPECIES_CLOYSTER	77	Play Rough	added	R5	League's split; score 90
+SPECIES_CLOYSTER	57	Drill Run	added	R5, R16 due	HQ's split; score 98
+SPECIES_CLOYSTER	61	Waterfall	added	R30, late move	Galactic's split; score 181
+SPECIES_CLOYSTER	63	Poison Fang	added	R5	Galactic's split; score 90
+SPECIES_CLOYSTER	69	Shell Smash	added	R2	Barry's split; score 63
+SPECIES_CLOYSTER	71	Razor Shell	added	R2	Barry's split; score 62
 SPECIES_SHELLDER	4	Withdraw	removed	R1	filler past the one a first split may carry
 SPECIES_SHELLOS	6	Swagger	added	R7	Gardenia's split; score 144
 SPECIES_GASTRODON	31	AncientPower	added	R4, R5	Fantina's split; score 236
 SPECIES_GASTRODON	34	Clear Smog	added	R5, R16 due	Maylene's split; score 113
 SPECIES_GASTRODON	43	Earth Power	added	R2	Wake's split; score 79
-SPECIES_GASTRODON	45	Bounce	added	R5	Wake's split; score 49
+SPECIES_GASTRODON	45	Bulldoze	added	R2	Wake's split; score 49
 SPECIES_GASTRODON	50	Ice Beam	added	R5	Byron's split; score 52
-SPECIES_GASTRODON	58	Bulldoze	added	R2	HQ's split; score 49
-SPECIES_GASTRODON	60	Skitter Smack	added	R5	HQ's split; score 49
+SPECIES_GASTRODON	58	Skitter Smack	added	R5	HQ's split; score 49
+SPECIES_GASTRODON	60	Rock Tomb	added	R2	HQ's split; score 37
 SPECIES_GASTRODON	66	Block	added	late move	Volkner's split; score 90
-SPECIES_GASTRODON	68	Rock Tomb	added	R2	Volkner's split; score 37
-SPECIES_GASTRODON	74	Sludge	added	R2	League's split; score 30
+SPECIES_GASTRODON	68	Sludge	added	R2	Volkner's split; score 30
+SPECIES_GASTRODON	74	Sludge Bomb	added	R2	League's split; score 49
 SPECIES_SHIELDON	30	Bulldoze	added	R4, R5, R16	Fantina's split; score 201
 SPECIES_SHIELDON	27	Metal Claw	added	R11	Fantina's split; score 86
 SPECIES_BASTIODON	34	Zen Headbutt	added	R5	Maylene's split; score 92
 SPECIES_BASTIODON	45	Body Slam	added	R2	Wake's split; score 56
-SPECIES_BASTIODON	50	Bounce	added	R5	Byron's split; score 52
-SPECIES_BASTIODON	58	Triple Axel	added	R5	HQ's split; score 49
-SPECIES_BASTIODON	60	Rock Blast	added	R2	HQ's split; score 48
-SPECIES_BASTIODON	66	Charm	added	late move	Volkner's split; score 50
+SPECIES_BASTIODON	50	Rock Blast	added	R2	Byron's split; score 48
+SPECIES_BASTIODON	58	Body Press	added	R5	HQ's split; score 47
+SPECIES_BASTIODON	66	Foul Play	added	R5, late move	Volkner's split; score 96
 SPECIES_LUXRAY	23	Roar	removed	R25	below 30, the lowest level it is had at
 SPECIES_SHINX	5	Leer	removed	R1	filler past the one a first split may carry
 SPECIES_LUXIO	5	Leer	removed	R25	below 15, the lowest level it is had at
@@ -2844,8 +2836,8 @@ SPECIES_BRELOOM	43	Poison Jab	added	R5	Wake's split; score 109
 SPECIES_BRELOOM	45	Spore	added	R2	Wake's split; score 66
 SPECIES_BRELOOM	51	Low Sweep	added	R2	Byron's split; score 56
 SPECIES_BRELOOM	53	Rock Tomb	added	R5	Byron's split; score 52
-SPECIES_BRELOOM	59	Bounce	added	R5	HQ's split; score 52
-SPECIES_BRELOOM	61	Drain Punch	added	R2	HQ's split; score 51
+SPECIES_BRELOOM	59	Drain Punch	added	R2	HQ's split; score 51
+SPECIES_BRELOOM	61	Zen Headbutt	added	R5	HQ's split; score 49
 SPECIES_BRELOOM	67	Toxic	added	R2	Volkner's split; score 23
 SPECIES_SINISTCHA	15	Life Dew	moved from 12	R25	was below 15, the lowest level it is had at
 SPECIES_SINISTEA	27	Strength Sap	added	R7, R16	Fantina's split; score 189
@@ -2866,36 +2858,35 @@ SPECIES_SINISTCHA	71	Nasty Plot	added	R2	Barry's split; score -5
 SPECIES_POLTEAGEIST	27	Magical Leaf	added	check 24	branch parity by Fantina's cap; adds 26 to its kit
 SPECIES_SKARMORY	54	Dual Wingbeat	added	R16	Candice's split; score 68
 SPECIES_SKARMORY	56	Iron Head	added	R2	Candice's split; score 54
-SPECIES_SKARMORY	62	Triple Axel	added	R5, late move	Galactic's split; score 95
-SPECIES_SKARMORY	64	Rock Tomb	added	R5	Galactic's split; score 52
-SPECIES_SKARMORY	70	Zen Headbutt	added	R5	Barry's split; score 49
+SPECIES_SKARMORY	62	Rock Tomb	added	R5, late move	Galactic's split; score 95
+SPECIES_SKARMORY	64	Body Press	added	R5	Galactic's split; score 47
+SPECIES_SKARMORY	70	Drill Run	added	R5	Barry's split; score 47
 SPECIES_SKARMORY	72	Iron Defense	added	R2	Barry's split; score 42
 SPECIES_SKITTY	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_SKITTY	1	Tail Whip	removed	R1	filler past the one a first split may carry
 SPECIES_SKITTY	3	Baby-Doll Eyes	added	R7, R16	Roark's split; score 175
-SPECIES_SKITTY	6	Triple Axel	added	R4, R5	Roark's split; score 113
+SPECIES_SKITTY	6	Bullet Seed	added	R4, R5	Roark's split; score 38
 SPECIES_DELCATTY	27	Charm	added	R7	Fantina's split; score 139
 SPECIES_DELCATTY	40	Wake-Up Slap	added	R5	Wake's split; score 120
 SPECIES_DELCATTY	46	Play Rough	added	R5	Wake's split; score 61
-SPECIES_DELCATTY	48	Skitter Smack	added	R5	Byron's split; score 51
-SPECIES_DELCATTY	50	Sucker Punch	added	R5	Byron's split; score 49
+SPECIES_DELCATTY	48	Sucker Punch	added	R5	Byron's split; score 49
+SPECIES_DELCATTY	50	Shadow Ball	added	R5	Byron's split; score 49
 SPECIES_DELCATTY	56	Thrash	added	R2	Candice's split; score 27
-SPECIES_DELCATTY	64	Block	added	late move	Galactic's split; score 56
+SPECIES_DELCATTY	64	Wish	added	late move	Galactic's split; score 56
 SPECIES_DRAPION	45	Fire Fang	added	R5, relearner-only	Byron's split; score 91
 SPECIES_DRAPION	53	Ice Fang	added	R5, relearner-only	Byron's split; score 91
 SPECIES_DRAPION	61	Throat Chop	added	late move, R16 due	Galactic's split; score 155
 SPECIES_DRAPION	63	Thunder Fang	added	R5, relearner-only	Galactic's split; score 91
 SPECIES_DRAPION	69	Poison Jab	added	R2	Barry's split; score 64
 SPECIES_DRAPION	71	Toxic	added	R2	Barry's split; score 63
-SPECIES_SLOWPOKE	36	Triple Axel	added	R4, R5, R16	Maylene's split; score 172
-SPECIES_SLOWPOKE	35	Swagger	added	R7	Maylene's split; score 169
+SPECIES_SLOWPOKE	36	Bulldoze	added	R4, R5, R16	Maylene's split; score 171
 SPECIES_SLOWBRO	39	Icy Wind	added	R4, R5	Maylene's split; score 171
 SPECIES_SLOWBRO	49	Scald	added	R2	Byron's split; score 54
 SPECIES_SLOWBRO	56	Surf	added	R2	Candice's split; score 68
 SPECIES_SLOWBRO	58	Muddy Water	added	R2	Candice's split; score 61
 SPECIES_SLOWBRO	64	Signal Beam	added	R5	Galactic's split; score 99
 SPECIES_SLOWBRO	72	Flamethrower	added	R5	League's split; score 90
-SPECIES_SLOWKING	41	Mud Shot	added	R4, R5	Wake's split; score 190
+SPECIES_SLOWKING	41	Aurora Beam	added	R4, R5	Wake's split; score 213
 SPECIES_SLOWKING	59	Power Gem	added	R5, relearner-only	HQ's split; score 155
 SPECIES_SLOWKING	65	Scald	added	late move	Galactic's split; score 97
 SPECIES_SLOWKING	67	Flamethrower	added	R5	Galactic's split; score 52
@@ -2904,7 +2895,7 @@ SPECIES_MAGCARGO	42	Scorching Sands	added	R5, R16	Wake's split; score 83
 SPECIES_MAGCARGO	48	Shell Smash	added	R2	Byron's split; score 63
 SPECIES_MAGCARGO	56	Power Gem	added	R2	Candice's split; score 51
 SPECIES_MAGCARGO	64	Energy Ball	added	R5	Galactic's split; score 86
-SPECIES_MAGCARGO	72	Alluring Voice	added	R5	League's split; score 47
+SPECIES_MAGCARGO	72	Yawn	added	R2	League's split; score 9
 SPECIES_SMOLIV	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_DOLLIV	7	Growth	removed	R25	below 25, the lowest level it is had at
 SPECIES_ARBOLIVA	7	Growth	removed	R25	below 35, the lowest level it is had at
@@ -2920,19 +2911,19 @@ SPECIES_JYNX	31	Icicle Spear	moved from 15	R25	was below 30, the lowest level it
 SPECIES_JYNX	32	Ice Punch	moved from 18	R25	was below 30, the lowest level it is had at
 SPECIES_JYNX	34	Wake-Up Slap	moved from 28	R25	was below 30, the lowest level it is had at
 SPECIES_SMOOCHUM	23	Icy Wind	added	R11	Maylene's split; score 225
-SPECIES_SMOOCHUM	24	Hex	added	R4, R5, R16	Maylene's split; score 168
+SPECIES_SMOOCHUM	24	Draining Kiss	added	R4, R5, R16	Maylene's split; score 165
 SPECIES_JYNX	41	Psybeam	added	R2	Wake's split; score 50
 SPECIES_JYNX	43	Water Pulse	added	R5	Wake's split; score 40
 SPECIES_JYNX	57	Energy Ball	added	R5	Candice's split; score 52
-SPECIES_JYNX	59	Alluring Voice	added	R5	Candice's split; score 47
-SPECIES_JYNX	64	Block	added	late move	Galactic's split; score 56
+SPECIES_JYNX	59	Shadow Ball	added	R5	Candice's split; score 49
+SPECIES_JYNX	64	Wish	added	late move	Galactic's split; score 56
 SPECIES_WEAVILE	24	Nasty Plot	removed	R25	below 37; onto Sneasel's list
 SPECIES_SNEASEL	23	Nasty Plot	added	R25	from Weavile's 24, below its 37
 SPECIES_WEAVILE	37	Night Slash	moved from 35	R25	was below 37, the lowest level it is had at
 SPECIES_SNEASEL	37	Revenge	added	R4, R5, relearner-only	Maylene's split; score 220
 SPECIES_SNEASEL	40	Aerial Ace	added	R5	Wake's split; score 70
-SPECIES_SNEASEL	51	Skitter Smack	added	R5, R16 due	Byron's split; score 102
-SPECIES_SNEASEL	56	Triple Axel	added	R30	Candice's split; score 141
+SPECIES_SNEASEL	51	Triple Axel	added	R16 due	Byron's split; score 99
+SPECIES_SNEASEL	56	Poison Jab	added	R5	Candice's split; score 84
 SPECIES_SNEASEL	58	Low Sweep	added	R2	Candice's split; score 42
 SPECIES_WEAVILE	61	Low Sweep	added	late move	Galactic's split; score 85
 SPECIES_WEAVILE	69	Bite	added	R2	Barry's split; score 41
@@ -2973,8 +2964,7 @@ SPECIES_GLALIE	48	Bulldoze	added	R5	Byron's split; score 68
 SPECIES_GLALIE	53	Icicle Crash	added	R2	Byron's split; score 47
 SPECIES_GLALIE	55	Dark Pulse	added	R2	Byron's split; score 36
 SPECIES_GLALIE	61	Block	added	late move	Galactic's split; score 90
-SPECIES_GLALIE	63	Alluring Voice	added	R2	Galactic's split; score 34
-SPECIES_GLALIE	69	Ice Punch	added	R2	Barry's split; score 20
+SPECIES_GLALIE	63	Ice Punch	added	R2	Galactic's split; score 20
 SPECIES_FROSLASS	44	Signal Beam	added	R5	Byron's split; score 84
 SPECIES_FROSLASS	54	Shadow Ball	added	R11	Candice's split; score 272
 SPECIES_FROSLASS	57	Aura Sphere	added	R5	HQ's split; score 125
@@ -2988,18 +2978,18 @@ SPECIES_SNOVER	30	Rock Tomb	added	R5	Fantina's split; score 74
 SPECIES_ABOMASNOW	45	Hammer Arm	added	R5	Byron's split; score 82
 SPECIES_ABOMASNOW	53	Leaf Storm	added	R2	Byron's split; score 80
 SPECIES_ABOMASNOW	55	Ice Punch	added	R2	Byron's split; score 73
-SPECIES_ABOMASNOW	61	Bounce	added	R5, late move	Galactic's split; score 95
-SPECIES_ABOMASNOW	63	Giga Drain	added	R2	Galactic's split; score 51
-SPECIES_SNUBBULL	17	Alluring Voice	added	R11, check 1, R16	Gardenia's split; score 340
+SPECIES_ABOMASNOW	61	Giga Drain	added	late move	Galactic's split; score 94
+SPECIES_ABOMASNOW	63	Shadow Ball	added	R5	Galactic's split; score 49
+SPECIES_SNUBBULL	17	Dazzling Gleam	added	R11, check 1, R16	Gardenia's split; score 340
 SPECIES_GRANBULL	27	Bulldoze	added	R5	Fantina's split; score 74
 SPECIES_GRANBULL	29	Low Sweep	added	R5	Fantina's split; score 72
-SPECIES_GRANBULL	67	Block	added	late move	Volkner's split; score 90
+SPECIES_GRANBULL	67	Swagger	added	late move	Volkner's split; score 84
 SPECIES_SOLROCK	47	Bulldoze	added	R4, R5, R16	Byron's split; score 193
 SPECIES_SOLROCK	55	Rock Tomb	added	R2	Candice's split; score 52
-SPECIES_SOLROCK	57	Skitter Smack	added	R5	Candice's split; score 51
-SPECIES_SOLROCK	62	Play Rough	added	R5, late move	Galactic's split; score 95
-SPECIES_SOLROCK	64	Bounce	added	R5	Galactic's split; score 52
-SPECIES_SOLROCK	70	Morning Sun	added	R2	Barry's split; score 9
+SPECIES_SOLROCK	57	Iron Head	added	R5	Candice's split; score 50
+SPECIES_SOLROCK	62	Body Slam	added	late move	Galactic's split; score 82
+SPECIES_SOLROCK	64	Morning Sun	added	R2	Galactic's split; score 9
+SPECIES_SOLROCK	70	Acrobatics	added	R5	Barry's split; score 60
 SPECIES_SOLROCK	72	Will-O-Wisp	added	R2	Barry's split; score 2
 SPECIES_SPHEAL	27	Snarl	added	R4, R5, R16	Wake's split; score 54
 SPECIES_WALREIN	46	Bounce	added	R5	Byron's split; score 86
@@ -3009,16 +2999,15 @@ SPECIES_WALREIN	61	Yawn	added	late move	Galactic's split; score 99
 SPECIES_WALREIN	63	Rock Tomb	added	R5	Galactic's split; score 52
 SPECIES_WALREIN	69	Body Press	added	R2	Barry's split; score 34
 SPECIES_WALREIN	71	Bite	added	R2	Barry's split; score 33
-SPECIES_SEALEO	66	Triple Axel	added	R19	payoff for holding past 66; Walrein comes at 44
 SPECIES_SPIRITOMB	34	Silver Wind	added	R4, R5	Maylene's split; score 191
 SPECIES_SPIRITOMB	40	Revenge	added	R5	Wake's split; score 70
 SPECIES_SPIRITOMB	42	Hex	added	R16	Wake's split; score 69
 SPECIES_SPIRITOMB	51	Confuse Ray	added	R2	Byron's split; score 56
-SPECIES_SPIRITOMB	56	StompingTantrum	added	R5	Candice's split; score 66
-SPECIES_SPIRITOMB	58	Rock Tomb	added	R5	Candice's split; score 52
-SPECIES_SPIRITOMB	64	Earth Power	added	late move	Galactic's split; score 96
-SPECIES_SPIRITOMB	66	Psychic	added	R5	Galactic's split; score 52
-SPECIES_SPIRITOMB	72	Aura Sphere	added	R2	League's split; score 40
+SPECIES_SPIRITOMB	56	Rock Tomb	added	R5	Candice's split; score 52
+SPECIES_SPIRITOMB	58	Psyshock	added	R5	Candice's split; score 47
+SPECIES_SPIRITOMB	64	Earth Power	added	R5, late move	Galactic's split; score 136
+SPECIES_SPIRITOMB	66	Aura Sphere	added	R2	Galactic's split; score 40
+SPECIES_SPIRITOMB	72	Psychic	added	R2	League's split; score 39
 SPECIES_MEOWSCARADA	37	Night Slash	moved from 33	R25	was below 36, the lowest level it is had at
 SPECIES_FLORAGATO	34	Charm	added	R7	Maylene's split; score 144
 SPECIES_MEOWSCARADA	39	Triple Axel	added	R4, R5, relearner-only	Maylene's split; score 172
@@ -3037,37 +3026,39 @@ SPECIES_BLASTOISE	36	Water Pledge	added	R30	Maylene's split; score 136
 SPECIES_BLASTOISE	41	Flash Cannon	added	R5, relearner-only	Wake's split; score 156
 SPECIES_BLASTOISE	48	Aura Sphere	added	R5	Byron's split; score 68
 SPECIES_BLASTOISE	50	Shell Smash	added	R2	Byron's split; score 63
-SPECIES_BLASTOISE	56	Alluring Voice	added	R5	Candice's split; score 47
-SPECIES_BLASTOISE	64	Block	added	late move	Galactic's split; score 90
+SPECIES_BLASTOISE	56	Signal Beam	added	R5	Candice's split; score 46
+SPECIES_BLASTOISE	64	Swagger	added	late move	Galactic's split; score 84
 SPECIES_STARLY	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_STARLY	2	Pursuit	added	R4	Roark's split; score 140
 SPECIES_STARLY	7	Tailwind	added	R7	Roark's split; score 132
-SPECIES_STARAVIA	34	Wild Charge	added	R5, R16 due	Maylene's split; score 135
-SPECIES_STARAVIA	20	Triple Axel	added	R5, R16	Gardenia's split; score 70
-SPECIES_STARAVIA	25	Bounce	added	R2	Gardenia's split; score 49
-SPECIES_STARAPTOR	43	Headbutt	added	R2	Wake's split; score 56
-SPECIES_STARAPTOR	51	Secret Power	added	R2	Byron's split; score 56
-SPECIES_STARAPTOR	56	Bite	added	R2	Candice's split; score 33
+SPECIES_STARAVIA	34	Steel Wing	added	R5	Maylene's split; score 117
+SPECIES_STARAVIA	20	Dual Wingbeat	added	R16	Gardenia's split; score 64
+SPECIES_STARAVIA	25	Bite	added	R2	Gardenia's split; score 33
+SPECIES_STARAPTOR	43	Blaze Kick	added	R5	Wake's split; score 74
+SPECIES_STARAPTOR	51	Headbutt	added	R2	Byron's split; score 56
+SPECIES_STARAPTOR	56	Secret Power	added	R2	Candice's split; score 56
 SPECIES_STARAPTOR	58	Body Slam	added	R2	Candice's split; score 24
-SPECIES_STARAPTOR	64	Block	added	late move	Galactic's split; score 90
+SPECIES_STARAPTOR	64	Roost	added	late move	Galactic's split; score 84
 SPECIES_STARYU	34	Psybeam	added	R4, R5	Maylene's split; score 178
 SPECIES_STARMIE	24	Psybeam	added	R11, check 1	Maylene's split; score 420
-SPECIES_STARMIE	17	Skitter Smack	added	R4, R5, R16	Maylene's split; score 186
+SPECIES_STARMIE	17	Icy Wind	added	R4, R5	Maylene's split; score 150
+SPECIES_STARMIE	45	Skitter Smack	added	R5, R16 due	Byron's split; score 35
 SPECIES_STARMIE	54	Power Gem	added	R5	Candice's split; score 80
 SPECIES_STARMIE	56	Flash Cannon	added	R5	Candice's split; score 48
-SPECIES_STARMIE	62	Ice Beam	added	R5, late move	Galactic's split; score 95
+SPECIES_STARMIE	62	Swagger	added	late move	Galactic's split; score 84
 SPECIES_STUNKY	4	Poison Gas	removed	R1	filler past the one a first split may carry
 SPECIES_SKUNTANK	4	Poison Gas	removed	R25	below 34, the lowest level it is had at
 SPECIES_STUNKY	29	Acid Spray	added	R11, R16	Fantina's split; score 265
 SPECIES_STUNKY	28	Metal Claw	added	R4, R5	Fantina's split; score 184
 SPECIES_SKUNTANK	40	Throat Chop	added	R2	Wake's split; score 61
 SPECIES_SKUNTANK	42	Sucker Punch	added	R2	Wake's split; score 60
-SPECIES_SKUNTANK	48	Bounce	added	R5	Byron's split; score 52
-SPECIES_SKUNTANK	50	Sludge	added	R2	Byron's split; score 51
+SPECIES_SKUNTANK	48	Sludge	added	R2	Byron's split; score 51
+SPECIES_SKUNTANK	50	Shadow Ball	added	R5	Byron's split; score 48
 SPECIES_SKUNTANK	56	Sludge Bomb	added	R2	Candice's split; score 70
 SPECIES_SKUNTANK	58	Poison Jab	added	R2	Candice's split; score 54
-SPECIES_SKUNTANK	64	Triple Axel	added	R5, late move	Galactic's split; score 95
-SPECIES_SKUNTANK	66	Play Rough	added	R5	Galactic's split; score 52
+SPECIES_SKUNTANK	64	Play Rough	added	R5, late move	Galactic's split; score 95
+SPECIES_SKUNTANK	66	Take Down	added	R2	Galactic's split; score 34
+SPECIES_SKUNTANK	72	Body Slam	added	R2	League's split; score 39
 SPECIES_SUICUNE	1	Leer	removed	R1	filler past the one a first split may carry
 SPECIES_SUICUNE	54	Calm Mind	moved from 78	R7	brought into Candice's split; score 165
 SPECIES_SUICUNE	66	Scald	added	R16 due	Galactic's split; score 105
@@ -3085,7 +3076,7 @@ SPECIES_MASQUERAIN	59	Leech Life	added	R2	HQ's split; score 44
 SPECIES_MASQUERAIN	61	Waterfall	added	R2	HQ's split; score 43
 SPECIES_MASQUERAIN	67	Liquidation	added	R2	Volkner's split; score 46
 SPECIES_MASQUERAIN	69	U-turn	added	R2	Volkner's split; score 40
-SPECIES_MASQUERAIN	75	Bounce	added	R2	League's split; score 32
+SPECIES_MASQUERAIN	75	Scald	added	R2	League's split; score 22
 SPECIES_SWABLU	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_ALTARIA	39	Dragon Dance	removed	R32	too early: strong attacks it boosts come at 70
 SPECIES_ALTARIA	66	Dragon Dance	added	R32	moved from Altaria's 39, beside the attacks it boosts
@@ -3104,17 +3095,17 @@ SPECIES_SWINUB	18	Rock Throw	added	R4, R5	Gardenia's split; score 185
 SPECIES_PILOSWINE	34	Throat Chop	added	R5, R16 due	Maylene's split; score 116
 SPECIES_MAMOSWINE	42	Brick Break	added	R5	Wake's split; score 78
 SPECIES_MAMOSWINE	50	Icicle Spear	added	R2	Byron's split; score 56
-SPECIES_MAMOSWINE	58	Triple Axel	added	R2	Candice's split; score 56
+SPECIES_MAMOSWINE	58	Bulldoze	added	R2	Candice's split; score 52
 SPECIES_MAMOSWINE	67	Icicle Crash	added	R2	Galactic's split; score 57
-SPECIES_MAMOSWINE	72	Bulldoze	added	R2	League's split; score 52
+SPECIES_MAMOSWINE	72	Iron Head	added	R5	League's split; score 50
 SPECIES_TANGELA	12	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_TANGROWTH	12	Growth	removed	R25	below 34, the lowest level it is had at
 SPECIES_TANGROWTH	38	Bullet Seed	added	check 1	Maylene's split; score 171
 SPECIES_TANGROWTH	49	Poison Jab	added	R5	Byron's split; score 80
 SPECIES_TANGROWTH	59	Brick Break	added	R5	Candice's split; score 74
 SPECIES_TANGROWTH	64	Energy Ball	added	late move	Galactic's split; score 119
-SPECIES_TANGROWTH	66	Bounce	added	R5	Galactic's split; score 70
-SPECIES_TANGROWTH	72	Giga Drain	added	R2	League's split; score 60
+SPECIES_TANGROWTH	66	Giga Drain	added	R2	Galactic's split; score 60
+SPECIES_TANGROWTH	72	Earthquake	added	R5	League's split; score 51
 SPECIES_TENTACOOL	4	Water Gun	added	R11	Roark's split; score 230
 SPECIES_TENTACOOL	3	Chilling Water	added	check 1, R16	Roark's split; score 183
 SPECIES_TENTACOOL	7	Pounce	added	R4, R5	Roark's split; score 166
@@ -3127,7 +3118,7 @@ SPECIES_TENTACRUEL	58	Muddy Water	added	R2	HQ's split; score 61
 SPECIES_TENTACRUEL	60	Power Gem	added	R5	HQ's split; score 55
 SPECIES_TENTACRUEL	66	Throat Chop	added	R5, late move	Volkner's split; score 96
 SPECIES_TENTACRUEL	68	Flip Turn	added	R2	Volkner's split; score 38
-SPECIES_TENTACRUEL	74	Zen Headbutt	added	R2	League's split; score 32
+SPECIES_TENTACRUEL	74	Toxic	added	R2	League's split; score 23
 SPECIES_TOGEDEMARU	54	Poison Jab	added	R5	Candice's split; score 50
 SPECIES_TOGEDEMARU	56	Zen Headbutt	added	R5	Candice's split; score 49
 SPECIES_TOGEDEMARU	62	Bounce	added	R5, late move	Galactic's split; score 95
@@ -3135,14 +3126,14 @@ SPECIES_TOGEDEMARU	64	Tickle	added	R2	Galactic's split; score 42
 SPECIES_TOGEDEMARU	70	Thunder Fang	added	R2	Barry's split; score 24
 SPECIES_TOGEPI	42	Baton Pass	removed	R21	no boost of its own to pass; a catch would know it at level 1
 SPECIES_TOGETIC	1	Baton Pass	moved from 42 to level 1	R21	no boost of its own to pass
-SPECIES_TOGEPI	2	Alluring Voice	added	R11, check 1, R16	Fantina's split; score 374
+SPECIES_TOGEPI	2	Dazzling Gleam	added	R11, check 1, R16	Fantina's split; score 374
 SPECIES_TOGEPI	4	Magical Leaf	added	R4, R5, relearner-only	Fantina's split; score 230
 SPECIES_TOGETIC	30	Air Cutter	added	R11	Fantina's split; score 217
 SPECIES_TOGETIC	35	Aura Sphere	added	R5, relearner-only	Maylene's split; score 120
 SPECIES_TOGETIC	42	Shadow Ball	added	R5	Wake's split; score 95
 SPECIES_TOGETIC	53	Air Slash	added	R2	Byron's split; score 70
 SPECIES_TOGEKISS	57	Shadow Ball	added	R5	HQ's split; score 95
-SPECIES_TOGEKISS	65	Block	added	late move	Galactic's split; score 43
+SPECIES_TOGEKISS	65	Swagger	added	late move	Galactic's split; score 37
 SPECIES_TORCHIC	1	Growl	removed	R1	filler past the one a first split may carry
 SPECIES_TORCHIC	9	Flame Charge	added	check 1, R16	Gardenia's split; score 220
 SPECIES_TORCHIC	12	Bulk Up	added	R7	Gardenia's split; score 155
@@ -3187,13 +3178,14 @@ SPECIES_SCEPTILE	72	Low Sweep	added	R2	League's split; score 42
 SPECIES_GROVYLE	66	Frenzy Plant	added	R19	payoff for holding past 66; Sceptile comes at 36
 SPECIES_TROPIUS	7	Growth	removed	R1	filler past the one a first split may carry
 SPECIES_TROPIUS	19	Swagger	added	R7	Gardenia's split; score 144
-SPECIES_TROPIUS	21	Triple Axel	added	R4, R5, R16	Gardenia's split; score 134
+SPECIES_TROPIUS	21	Twister	added	R4	Gardenia's split; score 120
+SPECIES_TROPIUS	29	Bulldoze	added	R5, R16	Fantina's split; score 129
 SPECIES_TROPIUS	43	Dual Wingbeat	added	R30	Wake's split; score 136
-SPECIES_TROPIUS	53	Dragon Pulse	added	R5	Byron's split; score 128
-SPECIES_TROPIUS	59	Earth Power	added	R5	HQ's split; score 131
-SPECIES_TROPIUS	67	Bounce	added	R2	Volkner's split; score 57
-SPECIES_TROPIUS	69	Giga Drain	added	R2	Volkner's split; score 51
-SPECIES_TROPIUS	75	Earthquake	added	R2	League's split; score 50
+SPECIES_TROPIUS	53	Zen Headbutt	added	R5	Byron's split; score 87
+SPECIES_TROPIUS	59	Body Press	added	R5	HQ's split; score 85
+SPECIES_TROPIUS	67	Giga Drain	added	R2	Volkner's split; score 51
+SPECIES_TROPIUS	69	U-turn	added	R5	Volkner's split; score 47
+SPECIES_TROPIUS	75	Bounce	added	R2	League's split; score 24
 SPECIES_TURTONATOR	45	Shell Smash	added	R7	Byron's split; score 193
 SPECIES_TURTONATOR	54	Scale Shot	added	R2	Candice's split; score 51
 SPECIES_TURTONATOR	63	Body Press	added	R5	Galactic's split; score 49
@@ -3209,7 +3201,7 @@ SPECIES_GROTLE	29	Bulldoze	added	R5, R16 due	Fantina's split; score 103
 SPECIES_TORTERRA	35	Iron Head	added	R5	Maylene's split; score 69
 SPECIES_TORTERRA	42	Headlong Rush	added	R2	Wake's split; score 63
 SPECIES_TORTERRA	59	Seed Bomb	added	R2	HQ's split; score 60
-SPECIES_TORTERRA	61	Bounce	added	R5	HQ's split; score 52
+SPECIES_TORTERRA	61	Zen Headbutt	added	R5	HQ's split; score 49
 SPECIES_GROTLE	66	Wood Hammer	added	R19	payoff for holding past 66; Torterra comes at 32
 SPECIES_GROTLE	69	Shell Smash	added	R19	setup prize for holding past 66; Torterra comes at 32
 SPECIES_UNOWN	20	Psycho Cut	added	R11, check 1	Maylene's split; score 141
@@ -3218,7 +3210,7 @@ SPECIES_UNOWN	34	Zen Headbutt	added	R1	Maylene's split; score 22
 SPECIES_UNOWN	40	Psychic	added	R2	Wake's split; score 24
 SPECIES_UNOWN	64	Thrash	added	late move	Galactic's split; score 26
 SPECIES_VULLABY	2	Snarl	added	R11, R16	Roark's split; score 223
-SPECIES_VULLABY	4	Bone Rush	added	R4, R5, relearner-only	Roark's split; score 169
+SPECIES_VULLABY	4	Bone Rush	added	R4, R5, relearner-only	Roark's split; score 172
 SPECIES_VULLABY	6	Tailwind	moved from 26	R7	brought into Roark's split; score 165
 SPECIES_VULLABY	33	Throat Chop	added	R2	Fantina's split; score 61
 SPECIES_MANDIBUZZ	54	Rock Tomb	added	R5	Candice's split; score 91
@@ -3229,7 +3221,7 @@ SPECIES_MANDIBUZZ	74	Acrobatics	added	R2	League's split; score 70
 SPECIES_VULPIX	7	Roar	removed	R1	filler past the one a first split may carry
 SPECIES_VULPIX	3	Incinerate	added	check 1, R16	Roark's split; score 234
 SPECIES_VULPIX	6	Icy Wind	added	R4, R5, relearner-only	Roark's split; score 221
-SPECIES_NINETALES	33	Alluring Voice	added	R11	Maylene's split; score 221
+SPECIES_NINETALES	33	Alluring Voice	added	R11	Maylene's split; score 91
 SPECIES_NINETALES	54	Energy Ball	added	R5	Candice's split; score 131
 SPECIES_NINETALES	56	Extrasensory	added	R5	Candice's split; score 81
 SPECIES_NINETALES	62	Mystical Fire	added	late move	Galactic's split; score 118
@@ -3244,8 +3236,8 @@ SPECIES_ALOLAN_NINETALES	27	Play Rough	added	R2	Fantina's split; score 48
 SPECIES_ALOLAN_NINETALES	29	Flame Wheel	added	R5	Fantina's split; score 40
 SPECIES_ALOLAN_NINETALES	35	Dazzling Gleam	added	R30	Maylene's split; score 160
 SPECIES_ALOLAN_NINETALES	37	Triple Axel	added	R2	Maylene's split; score 44
-SPECIES_ALOLAN_NINETALES	43	Expanding Force	added	R5	Wake's split; score 47
-SPECIES_ALOLAN_NINETALES	45	Bounce	added	R5	Wake's split; score 45
+SPECIES_ALOLAN_NINETALES	43	Psyshock	added	R5	Wake's split; score 47
+SPECIES_ALOLAN_NINETALES	45	Chilling Water	added	R5	Wake's split; score 40
 SPECIES_ALOLAN_NINETALES	51	Incinerate	added	R2	Byron's split; score 39
 SPECIES_ALOLAN_NINETALES	53	Confuse Ray	added	R2	Byron's split; score 16
 SPECIES_ALOLAN_NINETALES	59	Will-O-Wisp	added	R2	HQ's split; score 2
@@ -3262,12 +3254,12 @@ SPECIES_WINGULL	16	Mist	removed	R1	filler past the one a first split may carry
 SPECIES_PELIPPER	16	Mist	removed	R25	below 25, the lowest level it is had at
 SPECIES_WINGULL	5	Tailwind	added	R7	Roark's split; score 155
 SPECIES_WINGULL	4	Twister	added	R4	Roark's split; score 120
-SPECIES_PELIPPER	27	Triple Axel	added	R5, R16 due	Fantina's split; score 99
+SPECIES_PELIPPER	27	Liquidation	added	R16 due	Fantina's split; score 99
 SPECIES_PELIPPER	35	Scald	added	R30	Maylene's split; score 57
-SPECIES_PELIPPER	45	Surf	added	R2	Wake's split; score 57
-SPECIES_PELIPPER	52	Bounce	added	R2	Byron's split; score 49
-SPECIES_PELIPPER	59	Alluring Voice	added	R5	HQ's split; score 85
-SPECIES_PELIPPER	61	Air Slash	added	R2	HQ's split; score 57
+SPECIES_PELIPPER	45	Icy Wind	added	R5	Wake's split; score 107
+SPECIES_PELIPPER	52	Fly	added	R2	Byron's split; score 46
+SPECIES_PELIPPER	59	U-turn	added	R5	HQ's split; score 80
+SPECIES_PELIPPER	61	Acrobatics	added	R2	HQ's split; score 59
 SPECIES_PELIPPER	67	Bite	added	R2	Volkner's split; score 28
 SPECIES_PELIPPER	69	Knock Off	added	R2	Volkner's split; score 25
 SPECIES_PELIPPER	75	Agility	added	R2	League's split; score 2
@@ -3291,9 +3283,9 @@ SPECIES_QUAGSIRE	59	Liquidation	added	R2	HQ's split; score 56
 SPECIES_QUAGSIRE	61	Rock Tomb	added	R2	HQ's split; score 40
 SPECIES_QUAGSIRE	67	Toxic	added	R2	Volkner's split; score 23
 SPECIES_CLODSIRE	42	Iron Head	added	R5	Wake's split; score 50
-SPECIES_CLODSIRE	50	Bounce	added	R5	Byron's split; score 52
+SPECIES_CLODSIRE	50	Zen Headbutt	added	R5	Byron's split; score 49
 SPECIES_CLODSIRE	58	Toxic Spikes	added	R2	HQ's split; score -5
-SPECIES_CLODSIRE	66	Block	added	late move	Volkner's split; score 56
+SPECIES_CLODSIRE	66	Swagger	added	late move	Volkner's split; score 50
 SPECIES_WURMPLE	1	String Shot	removed	R1	filler past the one a first split may carry
 SPECIES_WURMPLE	4	Stun Spore	added	R7	Roark's split; score 155
 SPECIES_WURMPLE	3	Pin Missile	added	R11, check 1	Roark's split; score 142
@@ -3303,7 +3295,7 @@ SPECIES_BEAUTIFLY	43	Ominous Wind	added	R5	Wake's split; score 39
 SPECIES_BEAUTIFLY	49	Psychic	added	R5	Byron's split; score 52
 SPECIES_BEAUTIFLY	51	Energy Ball	added	R2	Byron's split; score 39
 SPECIES_BEAUTIFLY	57	Quiver Dance	added	R2	HQ's split; score 23
-SPECIES_BEAUTIFLY	65	Block	added	late move	Galactic's split; score 56
+SPECIES_BEAUTIFLY	65	Swagger	added	late move	Galactic's split; score 50
 SPECIES_DUSTOX	26	Air Cutter	added	R2	Gardenia's split; score 34
 SPECIES_DUSTOX	40	Quiver Dance	added	R16 due	Fantina's split; score 93
 SPECIES_DUSTOX	43	Giga Drain	added	R5	Wake's split; score 57
@@ -3328,9 +3320,9 @@ SPECIES_YANMA	34	Bug Bite	added	R11, check 1	Maylene's split; score 399
 SPECIES_YANMA	20	Aerial Ace	added	R11	Maylene's split; score 239
 SPECIES_YANMA	22	Screech	moved from 46	R7	brought into Maylene's split; score 155
 SPECIES_YANMEGA	40	Ominous Wind	added	R5	Wake's split; score 71
-SPECIES_YANMEGA	51	Alluring Voice	added	R5, R16 due	Byron's split; score 98
-SPECIES_YANMEGA	59	Psychic	added	R5	Candice's split; score 52
-SPECIES_YANMEGA	64	Block	added	late move	Galactic's split; score 90
+SPECIES_YANMEGA	51	Psychic Noise	added	R5, R16 due	Byron's split; score 96
+SPECIES_YANMEGA	59	Giga Drain	added	R5	Candice's split; score 48
+SPECIES_YANMEGA	64	Roost	added	late move	Galactic's split; score 84
 SPECIES_ZUBAT	3	Dual Wingbeat	added	R11, check 1, R16	Roark's split; score 348
 SPECIES_ZUBAT	2	Poison Sting	added	R11	Roark's split; score 232
 SPECIES_ZUBAT	7	Screech	added	R7	Roark's split; score 155

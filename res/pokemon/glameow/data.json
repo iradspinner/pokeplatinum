@@ -44,7 +44,7 @@
             [ 8, "MOVE_GROWL" ],
             [ 10, "MOVE_TAUNT" ],
             [ 13, "MOVE_HYPNOSIS" ],
-            [ 15, "MOVE_TRIPLE_AXEL" ],
+            [ 15, "MOVE_DUAL_WINGBEAT" ],
             [ 17, "MOVE_FAINT_ATTACK" ],
             [ 19, "MOVE_METAL_CLAW" ],
             [ 25, "MOVE_CHARM" ],

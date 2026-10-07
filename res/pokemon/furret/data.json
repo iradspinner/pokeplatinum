@@ -59,9 +59,8 @@
             [ 56, "MOVE_HYPER_VOICE" ],
             [ 58, "MOVE_FIRE_PUNCH" ],
             [ 60, "MOVE_THRASH" ],
-            [ 65, "MOVE_BLOCK" ],
-            [ 67, "MOVE_AGILITY" ],
-            [ 73, "MOVE_THUNDER_WAVE" ]
+            [ 65, "MOVE_AGILITY" ],
+            [ 67, "MOVE_THUNDER_WAVE" ]
         ],
         "by_tm": [
             "TM03",

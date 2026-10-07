@@ -54,10 +54,10 @@
             [ 50, "MOVE_CRUNCH" ],
             [ 53, "MOVE_BOUNCE" ],
             [ 59, "MOVE_SILVER_WIND" ],
-            [ 61, "MOVE_FOUL_PLAY" ],
-            [ 66, "MOVE_SCALD" ],
-            [ 68, "MOVE_CONFUSE_RAY" ],
-            [ 74, "MOVE_DIVE" ]
+            [ 61, "MOVE_SCALD" ],
+            [ 66, "MOVE_DIVE" ],
+            [ 68, "MOVE_FLIP_TURN" ],
+            [ 74, "MOVE_AQUA_TAIL" ]
         ],
         "by_tm": [
             "TM01",

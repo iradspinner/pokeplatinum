@@ -41,8 +41,8 @@
             [ 2, "MOVE_CURSE" ],
             [ 3, "MOVE_HARDEN" ],
             [ 4, "MOVE_BULLET_SEED" ],
-            [ 6, "MOVE_TRIPLE_AXEL" ],
-            [ 8, "MOVE_FAKE_OUT" ],
+            [ 6, "MOVE_FAKE_OUT" ],
+            [ 8, "MOVE_ROCK_BLAST" ],
             [ 21, "MOVE_SYNTHESIS" ]
         ],
         "by_tm": [

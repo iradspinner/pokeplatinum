@@ -42,12 +42,12 @@
             [ 32, "MOVE_DRILL_PECK" ],
             [ 33, "MOVE_ICE_BEAM" ],
             [ 54, "MOVE_DRILL_RUN" ],
-            [ 56, "MOVE_BLOCK" ],
+            [ 56, "MOVE_SWAGGER" ],
             [ 58, "MOVE_ICE_PUNCH" ],
             [ 60, "MOVE_BOUNCE" ],
             [ 65, "MOVE_SKY_ATTACK" ],
             [ 67, "MOVE_FOUL_PLAY" ],
-            [ 73, "MOVE_ZEN_HEADBUTT" ]
+            [ 73, "MOVE_SEED_BOMB" ]
         ],
         "by_tm": [
             "TM03",

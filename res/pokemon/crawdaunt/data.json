@@ -48,7 +48,7 @@
             [ 26, "MOVE_KNOCK_OFF" ],
             [ 30, "MOVE_SWIFT" ],
             [ 34, "MOVE_TAUNT" ],
-            [ 36, "MOVE_AERIAL_ACE" ],
+            [ 36, "MOVE_AVALANCHE" ],
             [ 39, "MOVE_NIGHT_SLASH" ],
             [ 42, "MOVE_ROCK_TOMB" ],
             [ 44, "MOVE_CRABHAMMER" ],

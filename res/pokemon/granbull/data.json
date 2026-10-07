@@ -54,7 +54,7 @@
             [ 43, "MOVE_TAKE_DOWN" ],
             [ 51, "MOVE_PAYBACK" ],
             [ 59, "MOVE_CRUNCH" ],
-            [ 67, "MOVE_BLOCK" ]
+            [ 67, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM03",

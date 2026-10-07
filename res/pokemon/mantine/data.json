@@ -56,12 +56,11 @@
             [ 40, "MOVE_BOUNCE" ],
             [ 42, "MOVE_SIGNAL_BEAM" ],
             [ 46, "MOVE_AQUA_RING" ],
-            [ 50, "MOVE_EXPANDING_FORCE" ],
-            [ 52, "MOVE_SURF" ],
-            [ 58, "MOVE_AIR_SLASH" ],
-            [ 60, "MOVE_ALLURING_VOICE" ],
-            [ 66, "MOVE_BLOCK" ],
-            [ 68, "MOVE_MUDDY_WATER" ]
+            [ 50, "MOVE_SURF" ],
+            [ 52, "MOVE_AIR_SLASH" ],
+            [ 58, "MOVE_PSYCHIC" ],
+            [ 60, "MOVE_MUDDY_WATER" ],
+            [ 66, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM01",

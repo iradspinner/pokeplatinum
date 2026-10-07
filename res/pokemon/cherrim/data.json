@@ -46,9 +46,9 @@
             [ 37, "MOVE_ROCK_SLIDE" ],
             [ 43, "MOVE_SOLAR_BEAM" ],
             [ 48, "MOVE_LUCKY_CHANT" ],
-            [ 51, "MOVE_BOUNCE" ],
-            [ 53, "MOVE_GIGA_DRAIN" ],
-            [ 59, "MOVE_POLLEN_PUFF" ],
+            [ 51, "MOVE_GIGA_DRAIN" ],
+            [ 53, "MOVE_POLLEN_PUFF" ],
+            [ 59, "MOVE_BODY_SLAM" ],
             [ 61, "MOVE_PLAY_ROUGH" ],
             [ 67, "MOVE_LEAF_STORM" ],
             [ 69, "MOVE_MORNING_SUN" ]

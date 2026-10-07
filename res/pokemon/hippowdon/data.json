@@ -51,12 +51,12 @@
             [ 25, "MOVE_SAND_TOMB" ],
             [ 31, "MOVE_CRUNCH" ],
             [ 40, "MOVE_EARTHQUAKE" ],
-            [ 42, "MOVE_TRIPLE_AXEL" ],
-            [ 48, "MOVE_FIRE_FANG" ],
+            [ 42, "MOVE_BULLDOZE" ],
+            [ 48, "MOVE_ICE_FANG" ],
             [ 50, "MOVE_DOUBLE_EDGE" ],
-            [ 56, "MOVE_THUNDER_FANG" ],
-            [ 62, "MOVE_SLACK_OFF" ],
-            [ 64, "MOVE_BULLDOZE" ]
+            [ 56, "MOVE_FIRE_FANG" ],
+            [ 58, "MOVE_THUNDER_FANG" ],
+            [ 64, "MOVE_SLACK_OFF" ]
         ],
         "by_tm": [
             "TM03",

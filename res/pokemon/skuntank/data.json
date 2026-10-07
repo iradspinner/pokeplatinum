@@ -50,12 +50,13 @@
             [ 34, "MOVE_FLAMETHROWER" ],
             [ 40, "MOVE_THROAT_CHOP" ],
             [ 42, "MOVE_SUCKER_PUNCH" ],
-            [ 48, "MOVE_BOUNCE" ],
-            [ 50, "MOVE_SLUDGE" ],
+            [ 48, "MOVE_SLUDGE" ],
+            [ 50, "MOVE_SHADOW_BALL" ],
             [ 56, "MOVE_SLUDGE_BOMB" ],
             [ 58, "MOVE_POISON_JAB" ],
-            [ 64, "MOVE_TRIPLE_AXEL" ],
-            [ 66, "MOVE_PLAY_ROUGH" ]
+            [ 64, "MOVE_PLAY_ROUGH" ],
+            [ 66, "MOVE_TAKE_DOWN" ],
+            [ 72, "MOVE_BODY_SLAM" ]
         ],
         "by_tm": [
             "TM06",

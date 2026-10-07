@@ -46,9 +46,9 @@
             [ 37, "MOVE_WHIRLPOOL" ],
             [ 40, "MOVE_IRON_DEFENSE" ],
             [ 44, "MOVE_BRINE" ],
-            [ 45, "MOVE_ZEN_HEADBUTT" ],
+            [ 45, "MOVE_DRILL_RUN" ],
             [ 46, "MOVE_POISON_JAB" ],
-            [ 47, "MOVE_DRILL_RUN" ],
+            [ 47, "MOVE_SMART_STRIKE" ],
             [ 49, "MOVE_ICE_BEAM" ],
             [ 51, "MOVE_TOXIC" ],
             [ 53, "MOVE_ROCK_BLAST" ]

@@ -55,7 +55,7 @@
             [ 45, "MOVE_BODY_SLAM" ],
             [ 48, "MOVE_BITE" ],
             [ 53, "MOVE_ATTRACT" ],
-            [ 64, "MOVE_BLOCK" ]
+            [ 64, "MOVE_CRUSH_CLAW" ]
         ],
         "by_tm": [
             "TM03",

@@ -303,8 +303,11 @@ def canon_key(species):
 
 def links(fam):
     """{MOVE_X: weight}: the moves the line is linked to by any of its
-    members: Oxide's lists (level-up 1.0; TM, tutor and egg 0.85), the
-    canon lists, and Kaizo's lists (1.0)."""
+    members: Oxide's lists before the rewrite (level-up 1.0; TM, tutor and
+    egg 0.85), the canon lists, and Kaizo's lists (1.0). The TM lists are
+    read with the TM records of the same commit, never the TM pass's: the
+    new TMs are no link (on 2026-10-07 reading them gave 136 species 203
+    entries, Block from Substitute's TM90 among them)."""
     return links_of(frozenset(lc.families()[fam]))
 
 
@@ -320,7 +323,7 @@ def links_of(members):
     per, _lv, _n = canon_index()
     kz = lc.learnstudy_kaizo()
     names = lc._by_compact_name()
-    machines = pokedex.machines(data.ROOT)
+    machines = lc.base_machines()
     out = {}
 
     def add(mv, w):
@@ -352,7 +355,7 @@ def species_links(species, const):
     if const in per.get(canon_key(species), {}):
         return True
     rec = pokedex.load(data.ROOT, species, ref=lc.BASE_REF) or {}
-    machines = pokedex.machines(data.ROOT)
+    machines = lc.base_machines()
     return (any(m == const for _l, m in lc.learnset(BASE, species))
             or const in (rec.get("by_tutor") or []) or const in (rec.get("egg_moves") or [])
             or any(machines.get(label) == const for label in rec.get("by_tm") or []))

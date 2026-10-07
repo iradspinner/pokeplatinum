@@ -48,13 +48,13 @@
             [ 36, "MOVE_SLASH" ],
             [ 41, "MOVE_FUTURE_SIGHT" ],
             [ 44, "MOVE_SUCKER_PUNCH" ],
-            [ 46, "MOVE_SKITTER_SMACK" ],
+            [ 46, "MOVE_X_SCISSOR" ],
             [ 52, "MOVE_NIGHT_SLASH" ],
             [ 54, "MOVE_SHADOW_BALL" ],
             [ 60, "MOVE_PSYCHO_CUT" ],
-            [ 62, "MOVE_SUPERPOWER" ],
+            [ 62, "MOVE_PLAY_ROUGH" ],
             [ 65, "MOVE_PERISH_SONG" ],
-            [ 69, "MOVE_ROCK_SLIDE" ],
+            [ 69, "MOVE_SUPERPOWER" ],
             [ 71, "MOVE_CLOSE_COMBAT" ]
         ],
         "by_tm": [

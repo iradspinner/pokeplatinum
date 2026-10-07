@@ -45,12 +45,11 @@
             [ 24, "MOVE_TOXIC" ],
             [ 26, "MOVE_ROCK_BLAST" ],
             [ 28, "MOVE_SPIKES" ],
-            [ 57, "MOVE_TRIPLE_AXEL" ],
-            [ 61, "MOVE_POISON_FANG" ],
-            [ 63, "MOVE_SHELL_SMASH" ],
-            [ 69, "MOVE_RAZOR_SHELL" ],
-            [ 71, "MOVE_LIQUIDATION" ],
-            [ 77, "MOVE_PLAY_ROUGH" ]
+            [ 57, "MOVE_DRILL_RUN" ],
+            [ 61, "MOVE_WATERFALL" ],
+            [ 63, "MOVE_POISON_FANG" ],
+            [ 69, "MOVE_SHELL_SMASH" ],
+            [ 71, "MOVE_RAZOR_SHELL" ]
         ],
         "by_tm": [
             "TM01",

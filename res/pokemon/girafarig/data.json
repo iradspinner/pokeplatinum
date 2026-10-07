@@ -55,10 +55,10 @@
             [ 41, "MOVE_ZEN_HEADBUTT" ],
             [ 46, "MOVE_CRUNCH" ],
             [ 48, "MOVE_BULLDOZE" ],
-            [ 50, "MOVE_BOUNCE" ],
+            [ 50, "MOVE_SHADOW_BALL" ],
             [ 56, "MOVE_ENERGY_BALL" ],
             [ 58, "MOVE_THUNDERBOLT" ],
-            [ 64, "MOVE_BLOCK" ],
+            [ 64, "MOVE_CONFUSE_RAY" ],
             [ 66, "MOVE_HEADBUTT" ],
             [ 72, "MOVE_TAKE_DOWN" ]
         ],

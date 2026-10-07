@@ -47,12 +47,12 @@
             [ 43, "MOVE_ANCIENT_POWER" ],
             [ 45, "MOVE_BULLDOZE" ],
             [ 50, "MOVE_DOUBLE_EDGE" ],
-            [ 54, "MOVE_TRIPLE_AXEL" ],
+            [ 54, "MOVE_SCALE_SHOT" ],
             [ 57, "MOVE_DIVE" ],
             [ 62, "MOVE_AQUA_TAIL" ],
             [ 64, "MOVE_REST" ],
             [ 71, "MOVE_MUDDY_WATER" ],
-            [ 73, "MOVE_SCALE_SHOT" ],
+            [ 73, "MOVE_ROCK_SLIDE" ],
             [ 78, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [

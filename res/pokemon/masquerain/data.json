@@ -59,7 +59,7 @@
             [ 61, "MOVE_WATERFALL" ],
             [ 67, "MOVE_LIQUIDATION" ],
             [ 69, "MOVE_U_TURN" ],
-            [ 75, "MOVE_BOUNCE" ]
+            [ 75, "MOVE_SCALD" ]
         ],
         "by_tm": [
             "TM01",

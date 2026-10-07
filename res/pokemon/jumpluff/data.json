@@ -49,14 +49,14 @@
             [ 24, "MOVE_LEECH_SEED" ],
             [ 28, "MOVE_MEGA_DRAIN" ],
             [ 32, "MOVE_COTTON_SPORE" ],
-            [ 34, "MOVE_TRIPLE_AXEL" ],
+            [ 34, "MOVE_DUAL_WINGBEAT" ],
             [ 36, "MOVE_U_TURN" ],
             [ 40, "MOVE_WORRY_SEED" ],
             [ 44, "MOVE_GIGA_DRAIN" ],
             [ 48, "MOVE_BOUNCE" ],
-            [ 50, "MOVE_ALLURING_VOICE" ],
+            [ 50, "MOVE_DAZZLING_GLEAM" ],
             [ 52, "MOVE_LUNGE" ],
-            [ 66, "MOVE_BLOCK" ]
+            [ 66, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM05",

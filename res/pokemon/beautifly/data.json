@@ -52,7 +52,7 @@
             [ 49, "MOVE_PSYCHIC" ],
             [ 51, "MOVE_ENERGY_BALL" ],
             [ 57, "MOVE_QUIVER_DANCE" ],
-            [ 65, "MOVE_BLOCK" ]
+            [ 65, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM06",

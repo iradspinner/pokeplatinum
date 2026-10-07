@@ -52,11 +52,10 @@
             [ 36, "MOVE_ENDURE" ],
             [ 43, "MOVE_METAL_BURST" ],
             [ 45, "MOVE_BODY_SLAM" ],
-            [ 50, "MOVE_BOUNCE" ],
+            [ 50, "MOVE_ROCK_BLAST" ],
             [ 52, "MOVE_IRON_HEAD" ],
-            [ 58, "MOVE_TRIPLE_AXEL" ],
-            [ 60, "MOVE_ROCK_BLAST" ],
-            [ 66, "MOVE_CHARM" ]
+            [ 58, "MOVE_BODY_PRESS" ],
+            [ 66, "MOVE_FOUL_PLAY" ]
         ],
         "by_tm": [
             "TM06",

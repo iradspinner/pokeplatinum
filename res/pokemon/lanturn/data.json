@@ -60,7 +60,7 @@
             [ 59, "MOVE_FLASH_CANNON" ],
             [ 61, "MOVE_SCALD" ],
             [ 66, "MOVE_VOLT_SWITCH" ],
-            [ 68, "MOVE_ALLURING_VOICE" ]
+            [ 68, "MOVE_DAZZLING_GLEAM" ]
         ],
         "by_tm": [
             "TM01",

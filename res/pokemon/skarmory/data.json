@@ -52,9 +52,9 @@
             [ 45, "MOVE_NIGHT_SLASH" ],
             [ 54, "MOVE_DUAL_WINGBEAT" ],
             [ 56, "MOVE_IRON_HEAD" ],
-            [ 62, "MOVE_TRIPLE_AXEL" ],
-            [ 64, "MOVE_ROCK_TOMB" ],
-            [ 70, "MOVE_ZEN_HEADBUTT" ],
+            [ 62, "MOVE_ROCK_TOMB" ],
+            [ 64, "MOVE_BODY_PRESS" ],
+            [ 70, "MOVE_DRILL_RUN" ],
             [ 72, "MOVE_IRON_DEFENSE" ]
         ],
         "by_tm": [

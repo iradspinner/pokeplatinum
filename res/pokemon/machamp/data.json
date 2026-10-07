@@ -55,7 +55,7 @@
             [ 48, "MOVE_FIRE_PUNCH" ],
             [ 53, "MOVE_ROCK_TOMB" ],
             [ 55, "MOVE_BULK_UP" ],
-            [ 61, "MOVE_BLOCK" ]
+            [ 61, "MOVE_SWAGGER" ]
         ],
         "by_tm": [
             "TM06",

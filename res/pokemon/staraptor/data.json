@@ -50,12 +50,12 @@
             [ 33, "MOVE_TAKE_DOWN" ],
             [ 34, "MOVE_CLOSE_COMBAT" ],
             [ 41, "MOVE_AGILITY" ],
-            [ 43, "MOVE_HEADBUTT" ],
+            [ 43, "MOVE_BLAZE_KICK" ],
             [ 49, "MOVE_BRAVE_BIRD" ],
-            [ 51, "MOVE_SECRET_POWER" ],
-            [ 56, "MOVE_BITE" ],
+            [ 51, "MOVE_HEADBUTT" ],
+            [ 56, "MOVE_SECRET_POWER" ],
             [ 58, "MOVE_BODY_SLAM" ],
-            [ 64, "MOVE_BLOCK" ]
+            [ 64, "MOVE_ROOST" ]
         ],
         "by_tm": [
             "TM06",

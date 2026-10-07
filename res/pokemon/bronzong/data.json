@@ -55,11 +55,10 @@
             [ 45, "MOVE_MIRROR_SHOT" ],
             [ 50, "MOVE_FAINT_ATTACK" ],
             [ 52, "MOVE_IRON_HEAD" ],
-            [ 58, "MOVE_ICE_PUNCH" ],
+            [ 58, "MOVE_ROCK_TOMB" ],
             [ 61, "MOVE_PAYBACK" ],
             [ 67, "MOVE_HEAL_BLOCK" ],
-            [ 69, "MOVE_ROCK_TOMB" ],
-            [ 74, "MOVE_WILD_CHARGE" ]
+            [ 69, "MOVE_BODY_PRESS" ]
         ],
         "by_tm": [
             "TM04",

@@ -66,7 +66,7 @@
             ],
             [
                 21,
-                "MOVE_ALLURING_VOICE"
+                "MOVE_DAZZLING_GLEAM"
             ],
             [
                 23,
@@ -98,11 +98,11 @@
             ],
             [
                 54,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_THUNDERBOLT"
             ],
             [
                 56,
-                "MOVE_BOUNCE"
+                "MOVE_DOUBLE_HIT"
             ],
             [
                 62,
@@ -110,10 +110,6 @@
             ],
             [
                 64,
-                "MOVE_TRIPLE_AXEL"
-            ],
-            [
-                70,
                 "MOVE_OVERHEAT"
             ]
         ],

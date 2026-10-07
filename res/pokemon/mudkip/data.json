@@ -39,7 +39,7 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_TRIPLE_AXEL" ],
+            [ 2, "MOVE_ROCK_BLAST" ],
             [ 3, "MOVE_SCREECH" ],
             [ 6, "MOVE_MUD_SLAP" ],
             [ 10, "MOVE_WATER_GUN" ],

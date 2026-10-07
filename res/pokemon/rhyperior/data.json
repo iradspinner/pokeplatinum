@@ -50,7 +50,6 @@
             [ 49, "MOVE_EARTHQUAKE" ],
             [ 57, "MOVE_MEGAHORN" ],
             [ 61, "MOVE_ROCK_WRECKER" ],
-            [ 63, "MOVE_TRIPLE_AXEL" ],
             [ 69, "MOVE_ROCK_TOMB" ]
         ],
         "by_tm": [

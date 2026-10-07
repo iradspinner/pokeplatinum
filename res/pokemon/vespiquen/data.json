@@ -55,9 +55,11 @@
             [ 39, "MOVE_SWAGGER" ],
             [ 41, "MOVE_DUAL_WINGBEAT" ],
             [ 43, "MOVE_U_TURN" ],
-            [ 45, "MOVE_ZEN_HEADBUTT" ],
-            [ 51, "MOVE_ALLURING_VOICE" ],
-            [ 67, "MOVE_BLOCK" ]
+            [ 45, "MOVE_POUNCE" ],
+            [ 51, "MOVE_PSYCHIC_NOISE" ],
+            [ 53, "MOVE_SECRET_POWER" ],
+            [ 59, "MOVE_LOW_SWEEP" ],
+            [ 67, "MOVE_AGILITY" ]
         ],
         "by_tm": [
             "TM06",

@@ -48,9 +48,9 @@
             [ 27, "MOVE_ROCK_BLAST" ],
             [ 33, "MOVE_EARTHQUAKE" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 46, "MOVE_HAMMER_ARM" ],
-            [ 48, "MOVE_ROCK_TOMB" ],
-            [ 53, "MOVE_IRON_HEAD" ],
+            [ 46, "MOVE_ROCK_TOMB" ],
+            [ 48, "MOVE_IRON_HEAD" ],
+            [ 53, "MOVE_THUNDER_PUNCH" ],
             [ 61, "MOVE_BLOCK" ]
         ],
         "by_tm": [

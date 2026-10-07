@@ -50,11 +50,10 @@
             [ 40, "MOVE_ROCK_BLAST" ],
             [ 45, "MOVE_SCALD" ],
             [ 48, "MOVE_TICKLE" ],
-            [ 53, "MOVE_ALLURING_VOICE" ],
-            [ 55, "MOVE_EXPANDING_FORCE" ],
+            [ 53, "MOVE_POWER_GEM" ],
             [ 61, "MOVE_ICE_BEAM" ],
-            [ 67, "MOVE_MUDDY_WATER" ],
-            [ 69, "MOVE_POWER_GEM" ]
+            [ 63, "MOVE_FLASH_CANNON" ],
+            [ 67, "MOVE_MUDDY_WATER" ]
         ],
         "by_tm": [
             "TM01",

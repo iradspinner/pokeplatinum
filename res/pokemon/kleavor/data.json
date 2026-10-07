@@ -115,10 +115,6 @@
             [
                 62,
                 "MOVE_LUNGE"
-            ],
-            [
-                64,
-                "MOVE_BOUNCE"
             ]
         ],
         "by_tm": [

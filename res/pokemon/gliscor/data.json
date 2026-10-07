@@ -58,9 +58,9 @@
             [ 42, "MOVE_X_SCISSOR" ],
             [ 57, "MOVE_LUNGE" ],
             [ 59, "MOVE_THROAT_CHOP" ],
-            [ 65, "MOVE_BLOCK" ],
+            [ 65, "MOVE_CROSS_POISON" ],
             [ 67, "MOVE_SKITTER_SMACK" ],
-            [ 73, "MOVE_CROSS_POISON" ]
+            [ 73, "MOVE_POISON_JAB" ]
         ],
         "by_tm": [
             "TM06",
