@@ -15,6 +15,23 @@ Then say in one or two sentences what this session will do, and do it.
 
 ## Working rules (short form; the design doc has the full list)
 
+- **Each change is judged for its effect on difficulty, by judgement.** Ian,
+  2026-10-07: "this should dictate every single decision on every single
+  agent." A change that does not materially move a fight's difficulty (a
+  starter's level 5 moves, a TM's location, a line of dialogue) stales
+  nothing and sets off no rescore or re-read; a material one names the
+  fights it moves, and only those are marked for reading. Scores never block
+  a landing: the gate reports stale scores and passes. Full readings happen
+  only at milestones (once before alpha 1, then once after each round of
+  alpha changes); between them the scorer reads only the fights Ian names,
+  and the simulator is frozen except for fixes he approves. The cheap
+  calculator estimate runs on request, in the background. A problem Ian
+  reports is fixed as data, with common sense, never turned into a standing
+  rule, a generator rule or a gate check unless he asks for one. Every
+  landing commit says, in one line, "Difficulty: not material" or
+  "Difficulty: material, <fights>". The rule exists because Roark's split
+  was re-read more than 65 times before the alpha, and the full scorer costs
+  60 to 75 hours a pass.
 - Work on `oxide` or a branch cut from it. Never commit to `main`; `main`
   tracks upstream pret.
 - Every data change is verified by rebuilding (`make rom`; see Build) and,

@@ -14,6 +14,23 @@ later dated ruling wins; say which in the report.
 
 ## Before any pass
 
+- **Each change is judged for its effect on difficulty, by judgement.** Ian,
+  2026-10-07: "this should dictate every single decision on every single
+  agent." A change that does not materially move a fight's difficulty (a
+  starter's level 5 moves, a TM's location, a line of dialogue) stales
+  nothing and sets off no rescore or re-read; a material one names the
+  fights it moves, and only those are marked for reading. Scores never block
+  a landing: the gate reports stale scores and passes. Full readings happen
+  only at milestones (once before alpha 1, then once after each round of
+  alpha changes); between them the scorer reads only the fights Ian names,
+  and the simulator is frozen except for fixes he approves. The cheap
+  calculator estimate runs on request, in the background. A problem Ian
+  reports is fixed as data, with common sense, never turned into a standing
+  rule, a generator rule or a gate check unless he asks for one. Every
+  landing commit says, in one line, "Difficulty: not material" or
+  "Difficulty: material, <fights>". The rule exists because Roark's split
+  was re-read more than 65 times before the alpha, and the full scorer costs
+  60 to 75 hours a pass.
 - A job that rewrites game data at scale (learnsets, trainers, tables, move
   data) starts with its outcome put to Ian in one plain sentence, and a yes.
   An option word such as template, source, model or base can mean "study it"
@@ -106,10 +123,6 @@ is listed for Ian.
   out.
 - Move numbers, setup PP and the no-weather rule for the player are in the
   standing rulings; they bind every learnset too.
-- **Starters start plain** (Ian, 2026-10-07): Rowan's three starters know
-  exactly a basic weak attack and a basic status move at level 5 (Tackle and
-  Growl or their equivalents), nothing else at or below 5; their own type's
-  first move comes after. A generator rule with a check, not a patch.
 - **Every line learns something late** (2026-09-28): each final stage the
   player can own gets at least one real level-up move at 61 or later.
 - **Stone and item evolutions** (2026-09-28) get their own sparser list after
