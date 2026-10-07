@@ -124,7 +124,69 @@ def summary(root=None):
     each with its stored score (or None) for the list to sort by."""
     root = root or model.repo_root()
     scores = stored_scores(root)
-    return [dict(r, score=scores.get(r["stem"])) for r in _summary(root, _stamp(root))]
+    hard = stored_difficulty(root)
+    return [dict(r, score=scores.get(r["stem"]), difficulty=hard.get(r["stem"]))
+            for r in _summary(root, _stamp(root))]
+
+
+# -- the difficulty number (Ian, 2026-10-07) ----------------------------------------
+# One number per fight from the scorer's three, replacing the old fight-scale
+# score: average faints plus 40 times the losing rate, at real odds, so
+# losing one fight in ten weighs as four Pokemon lost and the win rate leads
+# (docs/oxide/fight-difficulty-ranking.md has why 40; Ian approved it). The
+# readings are the scoring track's, in tools/oxide/balance/difficulty.json:
+# {"readings": {key: {"won", "faints", "clean", "fights", "date", "team",
+# "stale"}}}, a key being a trainer constant or a story fight's key (which
+# covers each of its versions), "won" and "clean" rates from 0 to 1, and
+# "stale" the reason a reading no longer holds, or null. This tab applies
+# the formula and never stores a number of its own.
+
+DIFFICULTY = ("tools", "oxide", "balance", "difficulty.json")
+LOSS_WEIGHT = 40
+
+
+def difficulty_of(won, faints):
+    """Average faints plus 40 times the losing rate."""
+    return round(faints + LOSS_WEIGHT * (1 - won), 2)
+
+
+def difficulty_path(root):
+    return os.environ.get("OXIDE_DIFFICULTY_FILE") or os.path.join(root, *DIFFICULTY)
+
+
+def stored_difficulty(root=None):
+    """{stem: {"difficulty", "won", "faints", "clean", "fights", "date",
+    "team", "stale", "key"}} for every trainer with a reading; {} while the
+    scoring track's file does not exist."""
+    root = root or model.repo_root()
+    path = difficulty_path(root)
+    if not os.path.exists(path):
+        return {}
+    return _stored_difficulty(root, path, os.stat(path).st_mtime_ns)
+
+
+@functools.lru_cache(maxsize=2)
+def _stored_difficulty(root, path, stamp):
+    from . import alpha
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    readings = data.get("readings", data)
+    with open(os.path.join(root, alpha.FIGHTS), encoding="utf-8") as f:
+        fights = {fight["key"]: fight["trainers"] for fight in json.load(f)["fights"]}
+    stem = lambda c: c[len("TRAINER_"):].lower()
+    out = {}
+    for key, r in readings.items():
+        if key.startswith("_") or not isinstance(r, dict) or r.get("won") is None or r.get("faints") is None:
+            continue
+        won = r["won"] / 100 if r["won"] > 1 else r["won"]
+        entry = {"difficulty": difficulty_of(won, r["faints"]), "won": won, "faints": r["faints"],
+                 "clean": r.get("clean"), "fights": r.get("fights"), "date": r.get("date"),
+                 "team": r.get("team"), "stale": r.get("stale"), "key": key}
+        stems = [stem(c) for c in fights[key]] if key in fights else \
+            [stem(key)] if key.startswith("TRAINER_") else [key]
+        for s in stems:
+            out[s] = entry
+    return out
 
 
 # -- the stored scores (Ian, 2026-09-27) ------------------------------------------
@@ -262,6 +324,11 @@ def pair_rows(root=None):
             "key": p["key"], "stems": p["stems"], "how": p["how"], "story": p.get("story"),
             "labels": [s["label"] for s in sides], "label": " & ".join(s["label"] for s in sides),
             "parties": [s["party"] for s in sides], "scores": [s["score"] for s in sides],
+            # A pair's difficulty: its own reading when the store keys the
+            # pair, else the harder of its two trainers' readings.
+            "difficulty": stored_difficulty(root).get(p["key"]) or max(
+                (s["difficulty"] for s in sides if s.get("difficulty")),
+                key=lambda d: d["difficulty"], default=None),
             "top": max(s["top"] for s in sides), "split": split, "cap": caps().get(split),
             "maps": p["maps"], "partners": [label(st) for st in p["partners"]],
             # For two trainers who see the player at once: how many tiles both
