@@ -5,7 +5,7 @@ in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
 Kaizo comb; the splits it has finished when the TM pass lands go in. The
 Overseer updates this page as each step finishes and tells Ian, step by step.
 
-**Status on 2026-10-06.** Steps 1 and 9 are done, and step 11 is built. Step 2 is under way. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
+**Status on 2026-10-06.** Steps 1, 2, 4 and 9 are done, and step 11 is built. Step 3 (Ian's rulings on the move reworks) and step 6 (the reward table) are next. The critical path is steps 2, 3, 4, 6, 7, 8, 10, 13 and 14: roughly
 two to three days, set mostly by Ian's three decision points (steps 3, 7 and
 14) and the TM pass. Every estimate is a session's own or the Overseer's
 guess, and says which.
@@ -13,20 +13,21 @@ guess, and says which.
 | # | Step | Owner | Status | Estimate | Needs |
 |---|---|---|---|---|---|
 | 1 | Learnset rewrite: the 16 new checks and the new baseline | Balance Agent | done (8b05da09c1) | | |
-| 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | done after a second loop (51b4ddeefb): rescored, checks 2 and 3 run, its gate passing; waits on Ian's yes to land | 2 to 4 hours (its estimate) | 1 |
-| 3 | Ian rules on the thresholds and the move reworks | Ian | | | 2 |
-| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); the second loop is done; the five lines read right on a regression read, with two gaps left (Leafeon and Sylveon start late) | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
-| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | | about a day (Overseer's guess), then half a session (its estimate) | 3 |
-| 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list | Balance Agent | parts that read no learnset can start | 2 to 3 hours (its estimate) | 4 for the rest |
-| 7 | Ian approves the reward table and the gauntlet list | Ian | | | 6 |
-| 8 | Item data and the bigger Bag (the save break) | Balance Agent | | 2 to 3 hours, a build and a rescore (its estimate) | 7 |
+| 2 | Learnset rewrite: the 652 lists, and its report with the checks' thresholds and the move rework proposals | Balance Agent | done: landed at 085f72211 after a second loop (Ian, 2026-10-06), gate 48 of 48 | 2 to 4 hours (its estimate) | 1 |
+| 3 | Ian rules on the thresholds and the move reworks | Ian | done: the reworks accepted as listed, the late shortfall and named cases left for after the alpha (2026-10-06) | | 2 |
+| 4 | Learnset step 5: the checks, the sealed exam, then the rewrite lands (boss bands wait for step 15) | Balance Agent, Overseer | exam judged: fails in part (`learnset-exam.md`, its last section); done: the rewrite landed at 085f72211; Leafeon's and Sylveon's late start (a rock or Charm, not a level) is fixed in the TM pass | about 3 hours and 1.5 hours of machine time (its estimate) | 3 |
+| 5 | Move reworks in the engine (rampage moves one-turn, Fury Attack and Feint out, the approved reworks, and Upper Hand, Shell Trap and Burning Jealousy made to work), then their effects in the simulator | cloud job, then Scoring Agent | the engine side done (`cloud/main-move-reworks`, 181f4ab750), merging into `balance-tm-pass`; the simulator's update waits for the Scoring Agent's session, which is not running | about a day (Overseer's guess), then half a session (its estimate) | 3 |
+| 6 | The reward table (every TM copy and held item, one source each, by split) and the gauntlet trainer list, with the Leafeon and Sylveon fix | Balance Agent | done on `balance-tm-pass` (c7e20b9064): the TM numbering final, the TMs spread by split length, Ian's timing notes in, shop and Game Corner TMs gated by badges, the early kits on type ladders; all 46 spare flags used | the table's draft within the hour, then the ladders, then one rescore after the cloud job merges (its estimate) | 4 |
+| 7 | Ian approves the reward table and the gauntlet list | Ian | the TM list read and "pretty solid" (2026-10-06), with four moves to place later (Confuse Ray, a couple of Gardenia's, Will-O-Wisp, Thunder Wave); the reward trainers and gauntlets approved (he expects the trainers to need hardening in the alpha); the TMs to be spread more evenly by split (73 of 100 come before Candice today); shop and Game Corner TMs to be gated by badge count, the copy limit his to decide | | 6 |
+| 8 | Item data and the bigger Bag (the save break) | the main-track session (the Bag and the TM item records, from 2026-10-06), the Balance Agent (each species' TM compatibility and the rescore) | the Bag, the TM items and single-use HMs done on `main-tm-items` (58630f941d), merging into `balance-tm-pass`; the shop gating next on the same branch; every species' TM compatibility written on `balance-tm-pass` (16c0126e43), finished once `main-tm-items` merges into it; then the cloud job merges and the one rescore runs | 2 to 3 hours, a build and a rescore (its estimate) | 7 |
 | 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | done: the tool landed (c82ffe884) and its test is in the gate; `main-gauntlets` is up to date (a82e550cb) and held for step 10 | 3 to 4 hours (Overseer's guess) | |
-| 10 | Rewards placed in the maps, gauntlet trainers filled in, both landed | main-track session | | 3 to 6 hours (Overseer's guess) | 7, 8, 9 |
+| 10 | Rewards placed in the maps, gauntlet trainers filled in, the shop and Game Corner TMs gated by badges and sold once each, all landed | main-track session | | 3 to 6 hours (Overseer's guess), plus the shop gating (estimate asked) | 7, 8, 9 |
 | 11 | The battle recorder logs Ian's moves (the melonDS bridge) | Overseer | built: game side landed (0a27a2b0d), the fork's `beacon-moves` (633a39c) and the recorder ready; Ian swaps in the new melonDS build, and the live check is in QA (checklist, section 1) | about half a day (Overseer's guess) | |
-| 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore | Overseer, Balance Agent | | a few hours | 8 |
-| 13 | The QA ROM and test kit, handed to Ian | Overseer | | an hour | 4, 5, 10, 12 |
+| 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore; first the Kaizo study sweeps its teams for moves the final lists no longer allow | Overseer, Balance Agent | | a few hours | 8 |
+| 13 | The QA ROM and test kit, handed to Ian, cut only after the scorer's simulator updates are on `oxide`, so step 15 reads with them | Overseer | | an hour | 4, 5, 10, 12, and the scorer's update for the move reworks |
 | 14 | Ian's QA pass, from `docs/oxide/ingame-checklist.md` | Ian | | a day or two | 13 |
 | 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | about 35 hours of machine time (its estimate): 22 to 23 for the 39 bosses by team search, 9 to 17 for the 41 Ace Trainers read blind; the 8 tag battles wait for doubles | 4, 8, 12 |
+| 17 | The alpha checklist in the OxiDex: every zone in walking order with its trainers, rewards, items and checks, a feedback spot for each trainer, ticks read from the save | encounter track | under way on `oxidex-alpha-checklist` since 2026-10-06 | 14 to 16 hours in two stages (its estimate) | data final after 10 and 12; builds now |
 | 16 | QA's hotfixes, then the alpha 1 ROM; any boss team landed after step 13 is read before the ROM is fixed | Overseer and the tracks, Scoring Agent | | depends on QA; 1 to 2 hours of machine time for one re-read boss, about 35 minutes each when several are read together (the Scoring Agent's estimate) | 14, 15 |
 
 The scorer reads only the teams in the ROM Ian plays, never the study's working files, so its boss order and Ian's ratings describe the same fights (a side agent's catch, 2026-10-06). It does so on an extraction of the ROM's commit (`git archive`), with the boxes rebuilt on it; the Scoring Agent proved the route on a planted edit the same day, with no code change. The TM pass grows the Bag, so QA starts a fresh game on step 13's ROM, and the
@@ -122,3 +123,47 @@ rules, quoted from `~/.claude/CLAUDE.md`:
 - Do not assume Ian is the expert on a question he asked. Answer it.
 - Annotate code in plain English: what it does and why, not what the syntax is.
 ```
+
+## Brief for the encounter track (step 17, the alpha checklist)
+
+Ian, 2026-10-06: "a zone-by-zone checklist of things I should verify when we
+get to the alpha test within Oxidex. For example, when I get to Route 202, I
+should fight x mandatory trainers, y optional trainers with z rewards, x
+hidden items, etc. Especially if each trainer at that location has a spot for
+feedback." It also carries the run plan's notes log (the tracker's
+first-full-run entry, items 6 and 7).
+
+Done means each of these checks passes, each verified by the session unless
+marked:
+
+1. An "Alpha checklist" page in the OxiDex lists every zone in walking order,
+   grouped by split, generated from the game's data at load time, so it
+   follows every later change (the reward placements of step 10, the combed
+   teams of step 12) without hand edits.
+2. Each zone lists its mandatory trainers, optional trainers with their
+   rewards, gauntlet sections, item balls with their contents, hidden items,
+   gifts, shop and Game Corner TMs with their badge counts, and its wild
+   encounters. A test checks each count against the data.
+3. Each trainer row shows its team (species and levels from
+   `res/trainers/data/`) and has a feedback spot: fought, a rating out of 10
+   for bosses and gauntlet sections, a free note, and a death note (which
+   fight, what killed it, whether Ian saw it coming). Each note is stamped
+   with the ROM's commit, the location, the badges and the party, from the save
+   and the live bridge where they answer.
+4. Rows tick themselves where the save can tell: trainers beaten and items
+   picked up, from the save's flags. A test save ticks the right rows.
+5. Each zone shows the in-game checks from `docs/oxide/ingame-checklist.md`
+   that belong to it; every checklist item maps to a zone or to "anywhere".
+6. Feedback saves to a local per-playthrough file (gitignored, as
+   `caught.json` is) and survives a restart. An export writes it to a notes
+   file in the repo for the other sessions, and reads back.
+7. Ian checks the page in his browser on today's data (Ian).
+
+Sources: `docs/oxide/trainer-roles.tsv` and `docs/oxide/reward-placements.tsv`
+(on `balance-tm-pass` until it lands; read them from `oxide` after),
+`docs/oxide/tm-list.tsv`, the events files and `include/data/field/hidden_items.h`
+for balls and hidden items, the tool's own scripted sources for gifts, and
+the encounter tables. Work on the track's own branch; the Overseer lands it
+and restarts Ian's server. Send the Overseer an estimate before starting, and
+a one-page summary at the end.
+

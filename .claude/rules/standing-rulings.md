@@ -86,6 +86,22 @@ read, so they are written here too. Each is a standing instruction.
   chance and a third of the damage as recoil; Petal Dance 100 with a 20%
   confusion chance; Outrage 140 with half as recoil), and Uproar and Raging
   Fury, which Kaizo lacks, get one-turn versions on the same pattern.
+  The other move reworks, as the learnset rewrite's report recommended
+  (Ian, 2026-10-06): Hyper Beam, Giga Impact, Rock Wrecker and Roar of
+  Time at 180, 100%, no recharge, half the damage as recoil; Blast Burn,
+  Frenzy Plant and Hydro Cannon without recharge, at 95% with Kaizo's
+  recoil and status; Sky Attack one turn (120, a third as recoil, 20%
+  paralysis); Dig 60 and Dive 80 one turn; Fly, Bounce, Phantom Force and
+  Shadow Force kept two-turn; every two-to-five-hit move at 25 a hit;
+  Fury Cutter as Kaizo's three rising hits; Psywave cut for Psybeam;
+  Spite at 5 PP; Uproar one turn at 100 with 20% confusion; Raging Fury
+  one turn at 120 with a third as recoil and 20% confusion.
+  Later the same day: one two-to-five-hit move per type. Normal keeps Fury
+  Swipes and Cinccino's Tail Slap; Double Slap, Comet Punch, Barrage and
+  Spike Cannon leave the game, their learners taking Fury Swipes or their
+  own type's multi-hit move; Bone Rush goes to 100%. The trainer AI rates a
+  multi-hit move on its expected hits (about 3.1, or 5 with Skill Link).
+  Uproar and Raging Fury hit one chosen foe.
   Poison Fang takes Kaizo's 90 power and 40% chance to badly poison (Ian,
   2026-10-06).
 - A doc Ian is pointed at gets a clickable link that opens it rendered in his
@@ -166,6 +182,15 @@ read, so they are written here too. Each is a standing instruction.
   fights rather than measure them absolutely, and Oxide is not meant to be
   beaten on a first run. A trainer that trends a little hard, or reads as an
   outlier, is fine while it approximates its band (Ian, 2026-10-06).
+  Cyrus 3, the biggest boss but Cynthia, may read harder than the rest
+  (Ian, 2026-10-06: "if any fight can be excused for being too hard, the
+  biggest boss fight of the game (save Cynthia) surely has that claim").
+  From about Cyrus 3 on, a boss may carry two or three legendaries where its
+  team needs them, against one before (Ian, 2026-10-06).
+  Boss levels spike by importance (Ian, 2026-10-06): gym leaders, rivals,
+  Cyrus and the League keep their aces at the cap, while officers and the
+  other mini-bosses sit a few levels under it and earn their difficulty
+  from sharper sets. Cyrus 3 is today's team raised to the cap's levels.
   Across
   the spread of boxes it reports which encounters its sixes always take and
   which they never take, since both mark encounter balance to work on (Ian,
@@ -200,7 +225,9 @@ read, so they are written here too. Each is a standing instruction.
   labels only, not intended power.
 - TMs are single-use again, as in vanilla (Ian, 2026-09-28): each placement
   gives a set number of copies (strong TMs one, utility ones two or three).
-  Weak TMs are not sold; each is the reward for beating one optional trainer
+  Weak TMs are not sold; the TMs the Veilstone Department Store and the Game
+  Corner do sell unlock by badge count in order of usefulness, and each can
+  be bought once, like any other placement (Ian, 2026-10-06); each is the reward for beating one optional trainer
   of weak-to-medium strength near its split. About 100 TMs. Ian's removals:
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
@@ -243,7 +270,13 @@ read, so they are written here too. Each is a standing instruction.
   The item pass places them; the balance census counts each from its
   fight's split. A trainer's reward, held item or TM, is given
   automatically straight after the player wins, not on talking to the
-  trainer again (Ian, 2026-10-06, relayed by the main track).
+  trainer again (Ian, 2026-10-06, relayed by the main track). The Game
+  Corner's vanilla held items (Silk Scarf, Wide Lens, Zoom Lens, Metronome)
+  move behind optional fights the same way (Ian, 2026-10-06).
+  The Game Corner's gift for ten straight slot bonus rounds, pure luck,
+  becomes the reward for beating an optional trainer there (Ian, 2026-10-06).
+  The Game Corner sells no Heart Scales or PP Ups; its prizes are its gated
+  TMs and what else it sold before (Ian, 2026-10-06).
 - Trainer design at about 6/10 of Platinum Kaizo (Ian's answers to the Kaizo
   team study, 2026-09-29). Bosses keep Kaizo's structure at reduced
   lethality; an ordinary trainer carries one idea. One-hit KO moves never go
@@ -280,6 +313,18 @@ read, so they are written here too. Each is a standing instruction.
   track's own doc, which he does not read in full; the trainer-scoring
   handoff, at its length, is unreadable for him. A track's status home may
   stay long, as long as its summary is kept current at its top.
+- Prefer judging each Pokemon over global hard rules (Ian, 2026-10-06):
+  "It entirely depends on the pokemon, and keeping it to hard rules destroys
+  the variability between pokemon... We need to stop creating this web of
+  hard rules that gets us into bad spots like this." A rule that flattens the
+  differences between lines is a defect. For learnsets, a gap is filled from
+  the rung of the type's move ladder (every working move of that type, by
+  power and effect) that fits the point in the game and the Pokemon, climbing
+  a rung or two a split, never by taking the strongest move a ceiling allows;
+  Giga Drain is far too strong for Roark's split. Pivoting moves (Flip Turn,
+  U-turn, Volt Switch and the like) are high rungs, never early first moves,
+  since pivoting is very strong; and a line's ability can set its side of
+  the ladder (Huge Power makes Marill a physical attacker) (Ian, 2026-10-06).
 - Every trainer team in the finished ROM is set by hand (Ian, 2026-09-27):
   no trainer keeps default moves, so default movesets carry no weight in any
   argument, about learnsets, level-1 order or anything else.
