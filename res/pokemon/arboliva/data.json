@@ -113,7 +113,22 @@
                 "MOVE_CHARM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM09",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM20",
+            "TM22",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM45",
+            "TM53",
+            "TM68",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

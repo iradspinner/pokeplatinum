@@ -153,7 +153,29 @@
                 "MOVE_FLARE_BLITZ"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM07",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM16",
+            "TM30",
+            "TM31",
+            "TM33",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM48",
+            "TM50",
+            "TM54",
+            "TM56",
+            "TM61",
+            "TM63",
+            "TM65",
+            "TM81",
+            "TM84"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

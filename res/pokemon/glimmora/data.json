@@ -125,7 +125,27 @@
                 "MOVE_TOXIC_SPIKES"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM06",
+            "TM15",
+            "TM16",
+            "TM22",
+            "TM33",
+            "TM36",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM63",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

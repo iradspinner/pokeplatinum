@@ -125,7 +125,27 @@
                 "MOVE_FLASH_CANNON"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM16",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM49",
+            "TM53",
+            "TM57",
+            "TM68",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85",
+            "TM91",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

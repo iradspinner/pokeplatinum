@@ -101,7 +101,17 @@
                 "MOVE_HYPER_VOICE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM31",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM51",
+            "TM88",
+            "TM89",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

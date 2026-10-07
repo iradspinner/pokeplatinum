@@ -137,7 +137,29 @@
                 "MOVE_SKITTER_SMACK"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM09",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM30",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM56",
+            "TM63",
+            "TM65",
+            "TM68",
+            "TM85",
+            "TM86",
+            "TM88",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

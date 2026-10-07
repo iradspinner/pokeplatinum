@@ -129,7 +129,25 @@
                 "MOVE_THUNDER_FANG"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM32",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

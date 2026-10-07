@@ -93,7 +93,18 @@
                 "MOVE_WILD_CHARGE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM57",
+            "TM64",
+            "TM73"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

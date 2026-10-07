@@ -113,7 +113,23 @@
                 "MOVE_BURN_UP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM16",
+            "TM22",
+            "TM29",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM49",
+            "TM50",
+            "TM61",
+            "TM77",
+            "TM86",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

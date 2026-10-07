@@ -85,7 +85,18 @@
                 "MOVE_DIG"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM16",
+            "TM24",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM57",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -877,6 +877,21 @@ def without_weather_tms(tail):
     return bytes(out)
 
 
+# The TM pass of 2026-10-06 authors every species' TM list on the new TM list
+# (tools/oxide/balance/tmcompat.py, from docs/oxide/tm-list.tsv), so a
+# record's TM bits are no longer the base ROM's; the rest of its tail still is.
+TMS_AUTHORED = True
+PERSONAL_TM_BYTES = 16      # four u32 masks (TM_LEARNSET_MASKS)
+
+
+def without_tms(tail):
+    """The tail with every TM and HM bit cleared."""
+    out = bytearray(tail)
+    for at in range(PERSONAL_TM_BITS_IN_TAIL, min(len(out), PERSONAL_TM_BITS_IN_TAIL + PERSONAL_TM_BYTES)):
+        out[at] = 0
+    return bytes(out)
+
+
 def check_personal(b, r, path):
     """Compare pl_personal field by field. The built archive holds more species
     than the reference and the ones after the natives have moved, so each
@@ -904,7 +919,9 @@ def check_personal(b, r, path):
                               and tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0])
         abilities_ok = abilities_ok or abilities_diverged
         tail_ok = bt.rstrip(b"\0") == rt.rstrip(b"\0")
-        weather_tms = not tail_ok and bt.rstrip(b"\0") == without_weather_tms(rt).rstrip(b"\0")
+        weather_tms = not tail_ok and (bt.rstrip(b"\0") == without_weather_tms(rt).rstrip(b"\0")
+                                       or (TMS_AUTHORED and without_tms(bt).rstrip(b"\0")
+                                           == without_tms(rt).rstrip(b"\0")))
         if not (tail_ok or weather_tms) or not abilities_ok or bx != rx:
             bad.append(i)
             continue
@@ -926,8 +943,10 @@ def check_personal(b, r, path):
           + (f", {extra} are new species and their forms" if extra else "")
           + (f"; {hidden} of the shared records carry a hidden ability, which the "
              f"reference has no slot for" if hidden else "")
-          + (f"; {weather_tm_records} no longer learn the weather TMs, since the player "
-             f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
+          + (f"; {weather_tm_records} carry TM lists the TM pass of 2026-10-06 authors, the weather TMs "
+             f"gone since the player never sets weather (Ian, 2026-09-30)" if weather_tm_records and TMS_AUTHORED
+             else f"; {weather_tm_records} no longer learn the weather TMs, since the player "
+                  f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))

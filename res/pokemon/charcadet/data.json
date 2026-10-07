@@ -89,7 +89,15 @@
                 "MOVE_LAVA_PLUME"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM11",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM50",
+            "TM61",
+            "TM63"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

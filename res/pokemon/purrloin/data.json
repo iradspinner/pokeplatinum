@@ -113,7 +113,21 @@
                 "MOVE_PLAY_ROUGH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM12",
+            "TM23",
+            "TM30",
+            "TM41",
+            "TM42",
+            "TM64",
+            "TM65",
+            "TM66",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

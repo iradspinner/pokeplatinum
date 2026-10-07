@@ -141,7 +141,23 @@
                 "MOVE_MOONBLAST"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM29",
+            "TM33",
+            "TM42",
+            "TM48",
+            "TM64",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM85",
+            "TM91",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

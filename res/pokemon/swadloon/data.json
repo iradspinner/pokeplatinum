@@ -65,7 +65,17 @@
                 "MOVE_RAZOR_LEAF"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM41",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM85",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

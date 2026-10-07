@@ -1610,6 +1610,11 @@ def main():
     # test_learnrewrite.py), so no re-import touches one.
     LEARNSETS_AUTHORED = True
     LEARNSETS_AUTHORED_WHY = "authored by the learnset rewrite of 2026-10-06"
+    # Since the TM pass of 2026-10-06 every species' TM list is authored on
+    # the new TM list (tools/oxide/balance/tmcompat.py), so no re-import
+    # touches one either.
+    TMS_AUTHORED = True
+    TMS_AUTHORED_WHY = "authored by the TM pass of 2026-10-06"
 
     # The weather TMs (Hail, Sunny Day, Rain Dance, Sandstorm): a record whose
     # TM list carries none of them keeps none on a re-import, since no species
@@ -1772,6 +1777,11 @@ def main():
             why = LEARNSETS_DIVERGED.get(i, LEARNSETS_AUTHORED_WHY)
             log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
                         [f"learnset.by_level: diverged, left alone ({why})"]))
+        if TMS_AUTHORED:
+            new["learnset"].pop("by_tm")
+            old["learnset"].pop("by_tm")
+            log.append((os.path.relpath(os.path.join(d, "data.json"), ROOT),
+                        [f"learnset.by_tm: diverged, left alone ({TMS_AUTHORED_WHY})"]))
         if i in BASE_STATS_DIVERGED:
             new.pop("base_stats")
             old.pop("base_stats")

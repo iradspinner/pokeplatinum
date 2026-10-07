@@ -71,7 +71,9 @@
             [ 40, "MOVE_PSYCHIC" ],
             [ 64, "MOVE_DOUBLE_EDGE" ]
         ],
-        "by_tm": [  ],
+        "by_tm": [
+            "TM10"
+        ],
         "by_tutor": [  ]
     },
     "evolutions": [  ],

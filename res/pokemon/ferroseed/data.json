@@ -101,7 +101,22 @@
                 "MOVE_IRON_HEAD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM09",
+            "TM19",
+            "TM22",
+            "TM24",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM66",
+            "TM73",
+            "TM74",
+            "TM76",
+            "TM84",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_SELFDESTRUCT",

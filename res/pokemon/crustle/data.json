@@ -141,7 +141,26 @@
                 "MOVE_ROCK_POLISH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM17",
+            "TM22",
+            "TM26",
+            "TM28",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM65",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

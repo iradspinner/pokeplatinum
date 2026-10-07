@@ -109,7 +109,21 @@
                 "MOVE_ACROBATICS"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM63",
+            "TM65",
+            "TM86",
+            "TM88"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -85,7 +85,21 @@
                 "MOVE_LEAF_STORM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM09",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM32",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM53",
+            "TM58",
+            "TM64",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -101,7 +101,17 @@
                 "MOVE_SWORDS_DANCE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM19",
+            "TM31",
+            "TM40",
+            "TM48",
+            "TM54",
+            "TM68",
+            "TM81",
+            "HM05"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

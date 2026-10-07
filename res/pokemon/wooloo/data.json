@@ -97,7 +97,13 @@
                 "MOVE_DOUBLE_EDGE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM66",
+            "TM73"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

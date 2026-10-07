@@ -121,7 +121,21 @@
                 "MOVE_STUN_SPORE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM11",
+            "TM15",
+            "TM19",
+            "TM22",
+            "TM30",
+            "TM33",
+            "TM48",
+            "TM53",
+            "TM56",
+            "TM77",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

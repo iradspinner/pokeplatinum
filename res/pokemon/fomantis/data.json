@@ -81,7 +81,17 @@
                 "MOVE_SOLAR_BEAM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM09",
+            "TM19",
+            "TM22",
+            "TM42",
+            "TM53",
+            "TM54",
+            "TM81",
+            "TM85",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

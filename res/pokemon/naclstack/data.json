@@ -101,7 +101,23 @@
                 "MOVE_EARTHQUAKE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM15",
+            "TM17",
+            "TM26",
+            "TM28",
+            "TM32",
+            "TM42",
+            "TM48",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

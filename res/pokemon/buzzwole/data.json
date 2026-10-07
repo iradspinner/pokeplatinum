@@ -105,7 +105,26 @@
                 "MOVE_FOCUS_PUNCH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM08",
+            "TM12",
+            "TM17",
+            "TM26",
+            "TM31",
+            "TM39",
+            "TM42",
+            "TM54",
+            "TM60",
+            "TM66",
+            "TM67",
+            "TM68",
+            "TM70",
+            "TM71",
+            "TM74",
+            "TM80",
+            "TM82",
+            "TM84"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

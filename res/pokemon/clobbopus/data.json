@@ -81,7 +81,17 @@
                 "MOVE_SUPERPOWER"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM08",
+            "TM12",
+            "TM31",
+            "TM42",
+            "TM52",
+            "TM55",
+            "TM66",
+            "TM67",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

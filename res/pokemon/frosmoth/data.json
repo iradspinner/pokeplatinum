@@ -109,7 +109,24 @@
                 "MOVE_CALM_MIND"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM33",
+            "TM42",
+            "TM58",
+            "TM64",
+            "TM68",
+            "TM72",
+            "TM85",
+            "TM89",
+            "HM05"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

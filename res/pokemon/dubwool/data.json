@@ -121,7 +121,17 @@
                 "MOVE_THUNDER_WAVE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM32",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM82"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

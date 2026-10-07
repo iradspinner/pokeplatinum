@@ -146,7 +146,26 @@
                 "MOVE_BABY_DOLL_EYES"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM20",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM45",
+            "TM55",
+            "TM64",
+            "TM68",
+            "HM03",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

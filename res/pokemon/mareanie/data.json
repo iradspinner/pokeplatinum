@@ -105,7 +105,18 @@
                 "MOVE_POISON_JAB"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM13",
+            "TM14",
+            "TM36",
+            "TM42",
+            "TM48",
+            "TM84",
+            "HM03"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

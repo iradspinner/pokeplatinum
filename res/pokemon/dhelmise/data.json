@@ -137,7 +137,28 @@
                 "MOVE_PETAL_BLIZZARD"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM15",
+            "TM19",
+            "TM22",
+            "TM26",
+            "TM30",
+            "TM31",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM55",
+            "TM56",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM74",
+            "TM80",
+            "TM86",
+            "TM91",
+            "HM03"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },
