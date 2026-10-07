@@ -1671,8 +1671,17 @@ def check(tree, placements, rom_path, roles, rows_only=False):
                 except TableError as e:
                     errors.append(f"trainer-roles.tsv: {e}")
                     continue
-                want = {(p.reward, str(p.copies)) for p in rows.get(tree.trainer_ids[t], [])}
-                if (tree.item(rec["reward"]), rec.get("copies", "")) not in want:
+                want = sorted((p.reward, str(p.copies)) for p in rows.get(tree.trainer_ids[t], []))
+                # A trainer with two rewards lists both, comma-separated, with
+                # their copies in the same order ("ITEM_TM03, ITEM_TM28" and
+                # "1, 1"; Ian, 2026-10-07).
+                items = [i.strip() for i in rec["reward"].split(",")]
+                copies = [c.strip() for c in rec.get("copies", "").split(",")]
+                try:
+                    have = sorted(zip([tree.item(i) for i in items], copies, strict=True))
+                except (TableError, ValueError):
+                    have = None
+                if have != want:
                     errors.append(f"trainer-roles.tsv gives {t} {rec['reward']} x{rec.get('copies')}, "
                                   "which the placements table does not")
 

@@ -15,7 +15,7 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Trades | 4 | 4 | 0 | 0 | 0 | 0 |
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
-| Items given | 212 | 103 | 33 | 76 | 0 | 33 |
+| Items given | 214 | 103 | 33 | 78 | 0 | 33 |
 | Item balls | 332 | 262 | 62 | 8 | 0 | 67 |
 | Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
 | Flags | 3324 | 2972 | 215 | 137 | 0 | 97 |
@@ -2189,7 +2189,7 @@ Items given:
 
 Item balls:
 
-- ITEM_TM28 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM45 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. `events_amity_square.json:40`
+- ITEM_LUM_BERRY x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM45 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM45. `events_amity_square.json:40`
 - ITEM_TM79 x2, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43. Added from the base ROM (9cf282b53). Replaces vanilla's ITEM_TM43 x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_TM43. `events_amity_square.json:55`
 - ITEM_SPOOKY_PLATE x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_SPOOKY_PLATE. Vanilla. `events_amity_square.json:70`
 - ITEM_AMULET_COIN x1, one time, flag FLAG_OBTAINED_AMITY_SQUARE_AMULET_COIN. Vanilla. `events_amity_square.json:220`
@@ -5961,7 +5961,7 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_TM70 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM59 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. `events_victory_road_b1f.json:27`
+- ITEM_SITRUS_BERRY x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. Added from the base ROM (03a50f7fd). Replaces vanilla's ITEM_TM59 x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_TM59. `events_victory_road_b1f.json:27`
 - ITEM_ULTRA_BALL x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_ULTRA_BALL. Vanilla. `events_victory_road_b1f.json:118`
 - ITEM_CALCIUM x1, one time, flag FLAG_OBTAINED_VICTORY_ROAD_B1F_CALCIUM. Vanilla. `events_victory_road_b1f.json:133`
 
@@ -8455,50 +8455,52 @@ Items given:
 
 - ITEM_RING_TARGET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1248`
 - ITEM_TM92 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1259`
-- ITEM_TM21 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1270`
-- ITEM_TM64 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1281`
-- ITEM_TM87 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1292`
-- ITEM_TM27 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1303`
-- ITEM_AIR_BALLOON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1314`
-- ITEM_PIXIE_PLATE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1325`
-- ITEM_CELL_BATTERY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1336`
-- ITEM_TM86 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1347`
-- ITEM_ROCKY_HELMET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1358`
-- ITEM_SAFETY_GOGGLES x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1369`
-- ITEM_EVIOLITE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1380`
-- ITEM_ABSORB_BULB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1391`
-- ITEM_FAIRY_FEATHER x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1402`
-- ITEM_TM62 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1413`
-- ITEM_TM34 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1424`
-- ITEM_BINDING_BAND x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1435`
-- ITEM_CLEAR_AMULET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1446`
-- ITEM_WIDE_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1457`
-- ITEM_COVERT_CLOAK x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1468`
-- ITEM_TM88 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1479`
-- ITEM_METRONOME x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1490`
-- ITEM_TM32 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1501`
-- ITEM_TM66 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1512`
-- ITEM_TM03 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1523`
-- ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1534`
-- ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1545`
-- ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1556`
-- ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1567`
-- ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1578`
-- ITEM_TM72 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1589`
-- ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1600`
-- ITEM_TM22 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1611`
-- ITEM_WEAKNESS_POLICY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1622`
-- ITEM_ABILITY_SHIELD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1633`
-- ITEM_ZOOM_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1644`
-- ITEM_TM54 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1655`
-- ITEM_MIRROR_HERB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1666`
-- ITEM_TM36 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1677`
-- ITEM_HM07 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1688`
-- ITEM_TM48 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1699`
-- ITEM_RED_CARD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1710`
-- ITEM_EJECT_BUTTON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1721`
-- ITEM_PUNCHING_GLOVE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1732`
-- ITEM_ASSAULT_VEST x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1743`
+- ITEM_TM21 x1. Added by Oxide (not yet committed). `scripts_battles.s:1275`
+- ITEM_TM70 x1. Added by Oxide (not yet committed). `scripts_battles.s:1278`
+- ITEM_TM64 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1289`
+- ITEM_TM87 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1300`
+- ITEM_TM27 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1311`
+- ITEM_AIR_BALLOON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1322`
+- ITEM_PIXIE_PLATE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1333`
+- ITEM_CELL_BATTERY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1344`
+- ITEM_TM86 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1355`
+- ITEM_ROCKY_HELMET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1366`
+- ITEM_SAFETY_GOGGLES x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1377`
+- ITEM_EVIOLITE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1388`
+- ITEM_ABSORB_BULB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1399`
+- ITEM_FAIRY_FEATHER x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1410`
+- ITEM_TM62 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1421`
+- ITEM_TM34 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1432`
+- ITEM_BINDING_BAND x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1443`
+- ITEM_CLEAR_AMULET x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1454`
+- ITEM_WIDE_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1465`
+- ITEM_COVERT_CLOAK x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1476`
+- ITEM_TM88 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1487`
+- ITEM_METRONOME x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1498`
+- ITEM_TM32 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1509`
+- ITEM_TM66 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1520`
+- ITEM_TM03 x1. Added by Oxide (not yet committed). `scripts_battles.s:1536`
+- ITEM_TM28 x1. Added by Oxide (not yet committed). `scripts_battles.s:1539`
+- ITEM_SILK_SCARF x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1550`
+- ITEM_TM40 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1561`
+- ITEM_TM10 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1572`
+- ITEM_TM57 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1583`
+- ITEM_LOADED_DICE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1594`
+- ITEM_TM72 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1605`
+- ITEM_TM60 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1616`
+- ITEM_TM22 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1627`
+- ITEM_WEAKNESS_POLICY x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1638`
+- ITEM_ABILITY_SHIELD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1649`
+- ITEM_ZOOM_LENS x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1660`
+- ITEM_TM54 x2. Added by Oxide (2f5fc736c). `scripts_battles.s:1671`
+- ITEM_MIRROR_HERB x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1682`
+- ITEM_TM36 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1693`
+- ITEM_HM07 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1704`
+- ITEM_TM48 x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1715`
+- ITEM_RED_CARD x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1726`
+- ITEM_EJECT_BUTTON x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1737`
+- ITEM_PUNCHING_GLOVE x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1748`
+- ITEM_ASSAULT_VEST x1. Added by Oxide (2f5fc736c). `scripts_battles.s:1759`
 
 Flags:
 

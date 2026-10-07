@@ -1967,7 +1967,7 @@ VisibleItems_Entry371:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry372:
-    SetVarFromValue VAR_0x8008, ITEM_TM28
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry373:
@@ -2023,7 +2023,7 @@ VisibleItems_Entry385:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry386:
-    SetVarFromValue VAR_0x8008, ITEM_TM70
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry387:

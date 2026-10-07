@@ -1261,12 +1261,20 @@ Battles_TrainerReward_AceTrainerDana:
     CloseMessage
     Return
 
-@ TRAINER_ACE_TRAINER_DEANNA: ITEM_TM21 x1, under FLAG_UNUSED_0x0095
+@ TRAINER_ACE_TRAINER_DEANNA: ITEM_TM21 x1, ITEM_TM70 x1, under FLAG_UNUSED_0x0095
 Battles_TrainerReward_AceTrainerDeanna:
     GoToIfSet FLAG_UNUSED_0x0095, Battles_TrainerRewardsDone
     SetVar VAR_0x8004, ITEM_TM21
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM70
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM21
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TM70
+    SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_UNUSED_0x0095
     CloseMessage
@@ -1514,12 +1522,20 @@ Battles_TrainerReward_HikerLouis:
     CloseMessage
     Return
 
-@ TRAINER_HIKER_THEODORE: ITEM_TM03 x1, under FLAG_UNUSED_0x0193
+@ TRAINER_HIKER_THEODORE: ITEM_TM03 x1, ITEM_TM28 x1, under FLAG_UNUSED_0x0193
 Battles_TrainerReward_HikerTheodore:
     GoToIfSet FLAG_UNUSED_0x0193, Battles_TrainerRewardsDone
     SetVar VAR_0x8004, ITEM_TM03
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM28
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM03
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TM28
+    SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_UNUSED_0x0193
     CloseMessage
