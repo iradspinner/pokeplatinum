@@ -5,7 +5,7 @@ the placement tool applies the approved table in step 10.
 
 ## Summary
 
-**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take 46 of the 46 spare story flags. The table's own check passes.
+**Outcome.** The TM list Ian approved on 2026-10-06 has 100 TMs: 66 of vanilla's 92 kept, the six HMs less Cut and Rock Smash as single-use TMs, and 28 new moves, their numbers fixed. 43 are strong (one copy), 46 utility (two copies) and 11 weak (one copy, each the reward for one optional trainer). This version carries Ian's answers of the same day: his four timing notes; an even spread across the splits by their length (62 TMs by the end of Byron's split, where the first draft had 73); and the Department Store's and the Game Corner's 28 TMs sold once each, unlocked by badge count in order of usefulness. Every TM and each of element 7's 24 held items has exactly one place, every vanilla TM ball, gift and shop TM is repointed, and the reward trainers take 48 of the 46 spare story flags. The table's own check passes.
 
 **What can still move.** The move-rework cloud job changes the numbers of Hyper Beam, Giga Impact and the multi-hit moves, so their tiers, and with them their copies and places, are read on today's data. The numbers and moves stay as they are.
 
@@ -94,7 +94,7 @@ Every number from TM01, then the HMs: the move vanilla teaches by it, the move i
 | TM67 | Recycle | Ice Punch | Byron | Recycle left (a status move Ian rates under pretty solid); new: 40 lines gain it that cannot learn it by level-up, 2 of them lines no boss takes |
 | TM68 | Giga Impact | Giga Impact | Barry |  |
 | TM69 | Rock Polish | Rock Polish | Candice |  |
-| TM70 | Flash | Outrage | Barry | Flash left (Ian's removal); new: 30 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes |
+| TM70 | Flash | Outrage | Galactic | Flash left (Ian's removal); new: 30 lines gain it that cannot learn it by level-up, 4 of them lines no boss takes |
 | TM71 | Stone Edge | Stone Edge | Byron |  |
 | TM72 | Avalanche | Avalanche | Wake |  |
 | TM73 | Thunder Wave | Thunder Wave | Wake |  |
@@ -144,9 +144,9 @@ TMs by the split they first come in, against each split's share by its length (t
 | Byron | 14.3 | 14 | 17 |
 | Candice | 6.8 | 7 | 6 |
 | HQ | 2.8 | 2 | 8 |
-| Galactic | 15.7 | 16 | 5 |
+| Galactic | 15.7 | 17 | 5 |
 | Volkner | 4.7 | 4 | 3 |
-| Barry | 6.3 | 9 | 5 |
+| Barry | 6.3 | 8 | 5 |
 | League | 0.0 | 0 | 0 |
 
 Ian's timing notes (2026-10-06), each kept as judgement, not a rule:
@@ -174,7 +174,7 @@ The TMs whose split or source changed from the first draft:
 | TM88 | Pluck | Gardenia, reward trainer | Gardenia, reward trainer |
 | HM04 | Strength | Byron, gift | Fantina, gift |
 | TM11 | Spite | Gardenia, gift | Fantina, ball |
-| TM28 | Dig | Wake, ball | Fantina, ball |
+| TM28 | Dig | Wake, ball | Fantina, reward trainer |
 | TM44 | Wild Charge | Wake, ball | Fantina, ball |
 | TM79 | Dark Pulse | Barry, ball | Fantina, ball |
 | TM83 | Expanding Force | Maylene, ball | Fantina, ball |
@@ -241,6 +241,7 @@ The TMs whose split or source changed from the first draft:
 | TM58 | Triple Axel | Volkner, gift | Galactic, ball |
 | TM60 | Drain Punch | Maylene, gift | Galactic, reward trainer |
 | TM64 | Play Rough | Candice, ball | Galactic, reward trainer |
+| TM70 | Outrage | Barry, ball | Galactic, reward trainer |
 | TM75 | Meteor Beam | Barry, ball | Galactic, ball |
 | TM86 | Grass Knot | Gardenia, gift | Galactic, reward trainer |
 | TM87 | Swagger | Wake, ball | Galactic, reward trainer |
@@ -257,7 +258,6 @@ The TMs whose split or source changed from the first draft:
 | TM54 | False Swipe | Maylene, ball | Barry, reward trainer |
 | TM65 | Shadow Claw | Fantina, gift | Barry, ball |
 | TM68 | Giga Impact | Maylene, gift | Barry, ball |
-| TM70 | Outrage | Barry, ball | Barry, ball |
 
 ## The TM list
 
@@ -280,7 +280,7 @@ One row per TM, by the split it first comes in. A number past 92 is new; a numbe
 | HM04 | Strength | Normal | Physical | 80 | 100 | utility | 2 | Fantina | gift, Hearthome City Gym Leader Room |
 | TM03 | Water Pulse | Water | Special | 60 | 100 | weak | 1 | Fantina | reward trainer |
 | TM11 | Spite | Ghost | Status | - | 100 | utility | 2 | Fantina | ball, Wayward Cave 1F |
-| TM28 | Dig | Ground | Physical | 60 | 100 | weak | 1 | Fantina | ball, Amity Square |
+| TM28 | Dig | Ground | Physical | 60 | 100 | weak | 1 | Fantina | reward trainer |
 | TM44 | Wild Charge | Electric | Physical | 90 | 100 | utility | 2 | Fantina | ball, Old Chateau Back East Room |
 | TM79 | Dark Pulse | Dark | Special | 80 | 100 | utility | 2 | Fantina | ball, Amity Square |
 | TM83 | Expanding Force | Psychic | Special | 80 | 100 | utility | 2 | Fantina | ball, Eterna City |
@@ -348,6 +348,7 @@ One row per TM, by the split it first comes in. A number past 92 is new; a numbe
 | TM58 | Triple Axel | Ice | Physical | 20 | 90 | strong | 1 | Galactic | ball, Mt Coronet 2F |
 | TM60 | Drain Punch | Fighting | Physical | 75 | 100 | utility | 2 | Galactic | reward trainer |
 | TM64 | Play Rough | Fairy | Physical | 90 | 100 | strong | 1 | Galactic | reward trainer |
+| TM70 | Outrage | Dragon | Physical | 140 | 100 | strong | 1 | Galactic | reward trainer |
 | TM75 | Meteor Beam | Rock | Special | 120 | 100 | strong | 1 | Galactic | ball, Mt Coronet 2F |
 | TM86 | Grass Knot | Grass | Special | varies | 100 | utility | 2 | Galactic | reward trainer |
 | TM87 | Swagger | Normal | Status | - | 90 | strong | 1 | Galactic | reward trainer |
@@ -364,7 +365,6 @@ One row per TM, by the split it first comes in. A number past 92 is new; a numbe
 | TM54 | False Swipe | Normal | Physical | 40 | 100 | utility | 2 | Barry | reward trainer |
 | TM65 | Shadow Claw | Ghost | Physical | 70 | 100 | utility | 2 | Barry | ball, Victory Road 1F |
 | TM68 | Giga Impact | Normal | Physical | 180 | 100 | strong | 1 | Barry | ball, Victory Road 2F |
-| TM70 | Outrage | Dragon | Physical | 140 | 100 | strong | 1 | Barry | ball, Victory Road B1F |
 
 ## What changed against vanilla
 
@@ -473,6 +473,7 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | TM62 Silver Wind | Gardenia | Camper Zackary | Route 205 South | 2.3 |
 | TM66 Payback | Gardenia | Hiker Louis | Route 211 West | 2.3 |
 | TM03 Water Pulse | Fantina | Hiker Theodore | Route 206 | 2.3 |
+| TM28 Dig | Fantina | Hiker Theodore | Route 206 | Dig, weak since the rework (60, one turn): one copy, a second reward from Hiker Theodore, as a weak TM is an optional trainer's (Ian, 2026-10-07) |
 | TM34 Shock Wave | Maylene | Collector Edwin | Cafe | 2.3 |
 | TM32 Zen Headbutt | Maylene | a new trainer (the main track) | Game Corner | Zen Headbutt, utility; in place of the gift for ten straight bonus rounds (ITEM_TM64), a new optional trainer |
 | TM10 Hidden Power | Maylene | Jogger Wyatt | Route 210 South | 2.3 |
@@ -481,6 +482,7 @@ Each is optional (the census reads it as avoidable or off the story path) and gi
 | TM72 Avalanche | Wake | PI Carlos | Route 214 | 2.3 |
 | TM21 Frustration | Galactic | Ace Trainer Deanna | Route 225 | 3.2 |
 | TM27 Return | Galactic | Ace Trainer Quinn | Route 225 | 3.2 |
+| TM70 Outrage | Galactic | Ace Trainer Deanna | Route 225 | Outrage, strong since the rework (140, one turn, half as recoil): one copy, a second reward from Ace Trainer Deanna in Galactic's split, the first its power allows (Ian, 2026-10-07) |
 | TM86 Grass Knot | Galactic | Bird Keeper Geneva | Route 226 | 2.8 |
 | TM87 Swagger | Galactic | Ace Trainer Mikayla | Route 227 | 2.7 |
 | TM64 Play Rough | Galactic | Ace Trainer Jose | Route 228 | 3.2 |
@@ -506,8 +508,6 @@ The sections of the gauntlet proposal (balance plan, "The gauntlets, reworked on
 | Mt. Coronet | 3F, 4F and Somnu on 5F | Galactic | Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Grunt, Galactic Officer Somnu | 0.95, 0.06 |
 | Victory Road | 1F, the half nearer the entrance | Barry | Psychic Bryce, Bird Keeper Hana, Ace Trainer Mariah | 0.83, 0.20 |
 | Victory Road | 1F, the far half | Barry | Black Belt Miles, Dragon Tamer Clinton, Veteran Edgar | 0.64, 0.47 |
-| Victory Road | 2F | Barry | Ace Trainer Sydney, Veteran Clayton, Ace Trainer Omar, Double Team Al & Kay | 0.44, 1.02 |
-| Victory Road | B1F | Barry | Double Team Jo & Pat, Psychic Valencia, Ace Trainer Henry, Dragon Tamer Ondrej | 0.54, 0.75 |
 
 ## The Department Store and the Game Corner
 

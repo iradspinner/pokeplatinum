@@ -87,10 +87,62 @@ def plan():
     return out
 
 
+def check(rom):
+    """[failure]: the built ROM read back against the TM pass. Every item
+    record teaches what tm-list.tsv says; every species' JSON names only TMs
+    on that list; and every species' record in the built pl_personal sets
+    exactly the TM and HM bits its JSON names. The records are in the
+    species list's order (generated/species.txt, SPECIES_NONE first)."""
+    import ndspy.narc
+    import ndspy.rom
+    from .. import verify_narcs as vn
+    fails = []
+    listed = dict(tm_list())
+    machines = pokedex.machines(data.ROOT)
+    for label, mv in listed.items():
+        if machines.get(label) != mv:
+            fails.append(f"{label}: its item record teaches {machines.get(label)}, the TM list says {mv}")
+    built = ndspy.rom.NintendoDSRom.fromFile(rom)
+    personal = ndspy.narc.NARC(built.files[vn.walk(built.filenames)["poketool/personal/pl_personal.narc"]]).files
+    with open(os.path.join(data.ROOT, "generated", "species.txt"), encoding="utf-8") as f:
+        order = [line.strip() for line in f if line.strip()]
+    have = set(pokedex.species_list(data.ROOT))
+    num_tms = vn.built_num_tms()
+    checked = 0
+    for i, sp in enumerate(order):
+        if sp not in have:
+            continue
+        with open(path_of(sp), encoding="utf-8") as f:
+            labels = current(f.read())
+        if labels is None:
+            continue
+        off = [lb for lb in labels if lb not in listed]
+        if off:
+            fails.append(f"{sp}: its JSON names {', '.join(off)}, not on the TM list")
+        if i >= len(personal):
+            fails.append(f"{sp}: no record {i} in the built pl_personal ({len(personal)} records)")
+            continue
+        _rest, bits = vn.split_tms(vn.personal_fields(personal[i])[3], num_tms)
+        if bits != set(labels):
+            gained, lost = sorted(bits - set(labels), key=label_key), sorted(set(labels) - bits, key=label_key)
+            fails.append(f"{sp}: the ROM sets {gained or 'nothing'} more and {lost or 'nothing'} fewer than its JSON")
+        checked += 1
+    print(f"tmcompat check: {checked} species' TM bits read back from {rom}, {len(listed)} TMs on the list; "
+          f"{len(fails)} failures")
+    return fails
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("what", choices=["plan", "write"])
+    ap.add_argument("what", choices=["plan", "write", "check"])
+    ap.add_argument("--rom", default=os.path.join(data.ROOT, "build", "pokeplatinum.us.nds"),
+                    help="the built ROM the check reads back")
     args = ap.parse_args(argv)
+    if args.what == "check":
+        fails = check(args.rom)
+        for x in fails[:30]:
+            print(f"  {x}")
+        return 1 if fails else 0
     changes = plan()
     waiting = [lb for lb, _m in tm_list() if not holds(lb)]
     print(f"{len(changes)} species' TM lists change; the tree holds {tm_count()} TMs"

@@ -15,7 +15,7 @@ the TM pass, is built on `balance-tm-pass`:
   Corner's 24 held items once each, spread across the splits by their
   length. The Department Store's and the Game Corner's TMs are sold once
   each, gated by badge count. The table uses all 46 spare flags.
-- **Gauntlet list.** Approved.
+- **Gauntlet list.** Approved; ten sections since 2026-10-07, as built.
 - **Early kits.** Rebuilt on per-type ladders (climb, don't jump), which
   Ian found good enough for now.
 - **Evolution reading.** The pool now reads place and known-move
@@ -27,26 +27,43 @@ the TM pass, is built on `balance-tm-pass`:
 The reports are `docs/oxide/reward-table.md` and
 `docs/oxide/early-kits-read.md`.
 
-**Where it stopped (2026-10-06, paused for Ian's usage limit).** The
-branch has merged the rework job (`cloud/main-move-reworks`) and
-`main-tm-items` at 58630f941d, and both merges are pushed. The work since
-is uncommitted in the balance worktree and not yet built:
-- **tmcompat rerun.** Done: 109 species gain TM93 or TM94, and the item
-  records agree with the TM list.
-- **Reworked moves.** The generator places the reworked moves on the type
-  ladders (23 entries moved later) and reads multi-hit moves by a hit.
-- **Multi-hit swaps.** Ian's ruling (one two-to-five-hit move per type) is
-  in the generator, which settles and passes its tests; the swaps still
-  need a read as a player before the report.
-- **Rewards check.** It fails: TM93 and TM94 are placed twice now that
-  `main-tm-items` gives them item records.
+**Where it stands (2026-10-07).** The branch has merged the rework job
+(ab8922caf2), `main-tm-items` (58630f941d), the calculator branch
+(c5aed2a7bf) and the scoring branch (d902f807e7), and it builds.
+- **New-TM leak fixed.** The generator had read old TM numbers through
+  the new item records, which gave 136 species 203 level-up entries
+  linked only by the new TMs (Block from Substitute's TM90). It now reads
+  the records of the same commit, and no entry's only link is the new TM
+  list. The same fix ends TM93 and TM94's double placement.
+- **Multi-hit swaps.** Ian's ruling (one two-to-five-hit move per type)
+  is in the generator; each learner's stand-in is in the 2026-10-07
+  report to the Overseer.
+- **TM read-back.** `tmcompat check` reads every species' TM bits from
+  the built ROM against its JSON through `tm-list.tsv`: 653 species, 0
+  failures. The gate runs it once the Overseer adds its line.
 
-**Next steps.** Fix the double placement in `rewards.py`; add the TM
-read-back check (the built ROM's TM bits against each species' JSON
-through `tm-list.tsv`); build and run the verify tools; commit and push;
-then the one rescore and the gate (about 1.5 hours of machine time). No
-boss is read until the TM pass has landed (Ian, 2026-10-06;
-`alpha-readiness.md`, step 15).
+**Next steps.** Teach the census the TM pass's two new sources (trainer
+rewards in `scripts_battles.s`, the badge-gated shop TMs in
+`sold_tms.h`) and bring test_b1 up to the new list; merge step 10's
+apply from `main-tm-items`; then the one rescore and the gate (about 1.5
+hours of machine time). No boss is read until the TM pass has landed
+(Ian, 2026-10-06; `alpha-readiness.md`, step 15).
+
+**Ian's rulings of 2026-10-07 (relayed by the Overseer).**
+- **The table is frozen.** The reward table keeps the timing Ian
+  approved (fc06095a8e): rerunning the spread moved 33 TMs only because
+  four tiers changed, some against his ladder (Drain Punch into Gardenia's
+  split). Only the four TMs the move rework changed are repriced: Hyper
+  Beam one copy where it was; Giga Impact one copy at the Victory Road 2F
+  ball; Outrage a second reward from Ace Trainer Deanna (Route 225,
+  Galactic's split); Dig a second reward from Hiker Theodore (Route 206).
+  The two balls Outrage and Dig leave (Galactic HQ 1F, Amity Square) give
+  a Sitrus and a Lum Berry, as the table's other emptied places do.
+- **The gauntlets follow the built code** (`src/gauntlet.c` on
+  `main-gauntlets`): ten sections. Victory Road's 2F and B1F are detours
+  inside 1F's locks, not sections (Ian's ruling of 2026-09-29, restated),
+  so their eight trainers are optional. 1F's near half holds Bryce, Hana
+  and Mariah, and its far half Miles, Clinton and Edgar.
 
 **The early kits on type ladders (Ian, 2026-10-06).** "It entirely
 depends on the pokemon, and keeping it to hard rules destroys the

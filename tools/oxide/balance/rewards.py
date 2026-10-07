@@ -765,20 +765,24 @@ def build():
 # reshuffles 33 other TMs when a few tiers change, and some of those moves
 # went against his ladder (Drain Punch into Gardenia's split). Only the TMs
 # the move rework changed are repriced, each by hand here: {reward: (copies,
-# the (map, replaces) of the row it trades places with, or None to stay,
-# why)}. The row it trades with takes the TM's old place.
+# where it goes, why)}. Where it goes is None to stay; the (map, replaces) of
+# a row it trades places with, that row taking the TM's old place; or a
+# reward trainer it becomes a second reward of (Ian, 2026-10-07), its old
+# place then giving VACATED's stand-in.
 FROZEN_REF = "fc06095a8e"
 REPRICED = {
     "ITEM_TM15": (1, None, "Hyper Beam, strong since the rework (180, no recharge, half as recoil): one copy"),
     "ITEM_TM68": (1, ("MAP_HEADER_VICTORY_ROAD_2F", "ITEM_TM79"),
                   "Giga Impact, strong since the rework (180, no recharge, half as recoil): one copy, "
                   "in Barry's split, the first its power allows"),
-    "ITEM_TM70": (1, ("MAP_HEADER_VICTORY_ROAD_B1F", "ITEM_TM59"),
-                  "Outrage, strong since the rework (140, one turn, half as recoil): one copy, no earlier "
-                  "than Galactic's split; the first free place is Victory Road"),
-    "ITEM_TM28": (1, None, "Dig, weak since the rework (60, one turn): one copy; a weak TM is an optional "
-                           "trainer's reward, but all 46 spare flags are used, so it keeps its place"),
+    "ITEM_TM70": (1, "TRAINER_ACE_TRAINER_DEANNA",
+                  "Outrage, strong since the rework (140, one turn, half as recoil): one copy, a second reward "
+                  "from Ace Trainer Deanna in Galactic's split, the first its power allows (Ian, 2026-10-07)"),
+    "ITEM_TM28": (1, "TRAINER_HIKER_THEODORE",
+                  "Dig, weak since the rework (60, one turn): one copy, a second reward from Hiker Theodore, "
+                  "as a weak TM is an optional trainer's (Ian, 2026-10-07)"),
 }
+VACATED = {"ITEM_TM70": "ITEM_SITRUS_BERRY", "ITEM_TM28": "ITEM_LUM_BERRY"}
 
 
 def frozen_rows():
@@ -789,11 +793,18 @@ def frozen_rows():
     rows = [Row(**r) for r in csv.DictReader(lines, delimiter="\t")]
     for it, (copies, target, why) in REPRICED.items():
         old = next(r for r in rows if r.reward == it)
+        place = ("kind", "split", "map", "place", "replaces", "trainer_id", "badges")
         if target is None:
             rows[rows.index(old)] = old._replace(copies=str(copies), note=why)
             continue
+        if isinstance(target, str):
+            trainer = next(r for r in rows if r.kind == "trainer" and r.trainer_id == target)
+            rows[rows.index(old)] = old._replace(reward=VACATED[it], copies="1",
+                                                 note="a TM place the spread leaves to another item")
+            rows.append(old._replace(copies=str(copies), note=why, place="", replaces="", badges="",
+                                     **{f: getattr(trainer, f) for f in ("kind", "split", "map", "trainer_id")}))
+            continue
         other = next(r for r in rows if (r.map, r.replaces) == target)
-        place = ("kind", "split", "map", "place", "replaces", "trainer_id", "badges")
         rows[rows.index(old)] = other._replace(**{f: getattr(old, f) for f in place})
         rows[rows.index(other)] = old._replace(copies=str(copies), note=f"{why}; a TM place today ({other.replaces})",
                                                **{f: getattr(other, f) for f in place})
@@ -808,8 +819,16 @@ def _key(st, c):
 def roles(rows):
     """[dict] one row per trainer the census places: its split, map and
     object, whether the story requires it, its role (gauntlet, reward or
-    none), section, reward, team size, reading and the flag it takes."""
-    by_trainer = {r.trainer_id: r for r in rows if r.kind == "trainer"}
+    none), section, reward, team size, reading and the flag it takes. A
+    trainer giving two items (Ian, 2026-10-07: Deanna's Outrage, Theodore's
+    Dig) lists both, its copies in the same order, under one flag."""
+    given = collections.defaultdict(list)
+    for r in rows:
+        if r.kind == "trainer":
+            given[r.trainer_id].append(r)
+    by_trainer = {t: rs[0]._replace(reward=", ".join(x.reward for x in rs),
+                                    copies=", ".join(str(x.copies) for x in rs))
+                  for t, rs in given.items()}
     section_of = {}
     for area, label, _split, ids in gauntlet_sections():
         for t in ids:
@@ -888,20 +907,29 @@ def check(out=sys.stdout):
     for it in sorted(want):
         if counts[it] != 1:
             fails.append(f"{it} is placed {counts[it]} times")
-    trainers = {r["trainer_id"]: r for r in placed if r["kind"] == "trainer"}
+    # A trainer may give two items under its one flag; the roles list them
+    # in the placements' order.
+    trainers = collections.defaultdict(list)
+    for r in placed:
+        if r["kind"] == "trainer":
+            trainers[r["trainer_id"]].append((r["reward"], str(r["copies"])))
     rewarded = {r["trainer_id"]: r for r in role_rows if r["role"] == "reward" or r["reward"]}
     for t in sorted(set(trainers) | set(rewarded)):
         a, b = trainers.get(t), rewarded.get(t)
-        if not a or not b or a["reward"] != b["reward"] or str(a["copies"]) != str(b["copies"]):
+        if not a or not b or ", ".join(x for x, _n in a) != b["reward"] \
+                or ", ".join(n for _x, n in a) != str(b["copies"]):
             fails.append(f"{t}: the placements and the roles disagree")
     new_balls = sum(1 for r in placed if r["kind"] == "ball" and "," in (r["place"] or ""))
     flags = len(trainers) + new_balls
     if flags > FLAG_POOL:
         fails.append(f"{flags} spare flags needed, {FLAG_POOL} in the pool")
     today = collections.Counter((header(p["map"]), p["item"]) for p in tm_places())
+    # Once step 10 has applied the table, a place holds its row's reward
+    # rather than the TM it replaces, and that passes too.
     repointed = collections.Counter((r["map"], r["replaces"]) for r in placed if r["replaces"])
+    applied = collections.Counter((r["map"], r["reward"]) for r in placed if r["kind"] in ("ball", "hidden", "gift"))
     for k, n in sorted(today.items()):
-        if repointed[k] < n:
+        if repointed[k] < n and applied[k] < n:
             fails.append(f"{k[1]} on {k[0]} is not repointed")
     # Every TM a counter sells today is a placement of its own, sold once
     # from a badge count (Ian, 2026-10-06), so none stays a second source.
