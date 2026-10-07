@@ -27,6 +27,7 @@ guess, and says which.
 | 13 | The QA ROM and test kit, handed to Ian | Overseer | | an hour | 4, 5, 10, 12 |
 | 14 | Ian's QA pass, from `docs/oxide/ingame-checklist.md` | Ian | | a day or two | 13 |
 | 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | about 35 hours of machine time (its estimate): 22 to 23 for the 39 bosses by team search, 9 to 17 for the 41 Ace Trainers read blind; the 8 tag battles wait for doubles | 4, 8, 12 |
+| 17 | The alpha checklist in the OxiDex: every zone in walking order with its trainers, rewards, items and checks, a feedback spot for each trainer, ticks read from the save | encounter track | under way since 2026-10-06 | estimate asked | data final after 10 and 12; builds now |
 | 16 | QA's hotfixes, then the alpha 1 ROM; any boss team landed after step 13 is read before the ROM is fixed | Overseer and the tracks, Scoring Agent | | depends on QA; 1 to 2 hours of machine time for one re-read boss, about 35 minutes each when several are read together (the Scoring Agent's estimate) | 14, 15 |
 
 The scorer reads only the teams in the ROM Ian plays, never the study's working files, so its boss order and Ian's ratings describe the same fights (a side agent's catch, 2026-10-06). It does so on an extraction of the ROM's commit (`git archive`), with the boxes rebuilt on it; the Scoring Agent proved the route on a planted edit the same day, with no code change. The TM pass grows the Bag, so QA starts a fresh game on step 13's ROM, and the
@@ -122,3 +123,47 @@ rules, quoted from `~/.claude/CLAUDE.md`:
 - Do not assume Ian is the expert on a question he asked. Answer it.
 - Annotate code in plain English: what it does and why, not what the syntax is.
 ```
+
+## Brief for the encounter track (step 17, the alpha checklist)
+
+Ian, 2026-10-06: "a zone-by-zone checklist of things I should verify when we
+get to the alpha test within Oxidex. For example, when I get to Route 202, I
+should fight x mandatory trainers, y optional trainers with z rewards, x
+hidden items, etc. Especially if each trainer at that location has a spot for
+feedback." It also carries the run plan's notes log (the tracker's
+first-full-run entry, items 6 and 7).
+
+Done means each of these checks passes, each verified by the session unless
+marked:
+
+1. An "Alpha checklist" page in the OxiDex lists every zone in walking order,
+   grouped by split, generated from the game's data at load time, so it
+   follows every later change (the reward placements of step 10, the combed
+   teams of step 12) without hand edits.
+2. Each zone lists its mandatory trainers, optional trainers with their
+   rewards, gauntlet sections, item balls with their contents, hidden items,
+   gifts, shop and Game Corner TMs with their badge counts, and its wild
+   encounters. A test checks each count against the data.
+3. Each trainer row shows its team (species and levels from
+   `res/trainers/data/`) and has a feedback spot: fought, a rating out of 10
+   for bosses and gauntlet sections, a free note, and a death note (which
+   fight, what killed it, whether Ian saw it coming). Each note is stamped
+   with the ROM's commit, the location, the badges and the party, from the save
+   and the live bridge where they answer.
+4. Rows tick themselves where the save can tell: trainers beaten and items
+   picked up, from the save's flags. A test save ticks the right rows.
+5. Each zone shows the in-game checks from `docs/oxide/ingame-checklist.md`
+   that belong to it; every checklist item maps to a zone or to "anywhere".
+6. Feedback saves to a local per-playthrough file (gitignored, as
+   `caught.json` is) and survives a restart. An export writes it to a notes
+   file in the repo for the other sessions, and reads back.
+7. Ian checks the page in his browser on today's data (Ian).
+
+Sources: `docs/oxide/trainer-roles.tsv` and `docs/oxide/reward-placements.tsv`
+(on `balance-tm-pass` until it lands; read them from `oxide` after),
+`docs/oxide/tm-list.tsv`, the events files and `include/data/field/hidden_items.h`
+for balls and hidden items, the tool's own scripted sources for gifts, and
+the encounter tables. Work on the track's own branch; the Overseer lands it
+and restarts Ian's server. Send the Overseer an estimate before starting, and
+a one-page summary at the end.
+
