@@ -23,7 +23,7 @@ guess, and says which.
 | 9 | The placement tool, and the gauntlets branch brought up to `oxide` | main-track session ("pokeplatinum-fd") | done: the tool landed (c82ffe884) and its test is in the gate; `main-gauntlets` is up to date (a82e550cb) and held for step 10 | 3 to 4 hours (Overseer's guess) | |
 | 10 | Rewards placed in the maps, gauntlet trainers filled in, both landed | main-track session | | 3 to 6 hours (Overseer's guess) | 7, 8, 9 |
 | 11 | The battle recorder logs Ian's moves (the melonDS bridge) | Overseer | built: game side landed (0a27a2b0d), the fork's `beacon-moves` (633a39c) and the recorder ready; Ian swaps in the new melonDS build, and the live check is in QA (checklist, section 1) | about half a day (Overseer's guess) | |
-| 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore | Overseer, Balance Agent | | a few hours | 8 |
+| 12 | Every team the comb has finished goes into the game, later bosses included, with one rescore; first the Kaizo study sweeps its teams for moves the final lists no longer allow | Overseer, Balance Agent | | a few hours | 8 |
 | 13 | The QA ROM and test kit, handed to Ian | Overseer | | an hour | 4, 5, 10, 12 |
 | 14 | Ian's QA pass, from `docs/oxide/ingame-checklist.md` | Ian | | a day or two | 13 |
 | 15 | Goal 3's boss reading on the final box, run during QA, of the trainer files in the QA ROM | Scoring Agent | | about 35 hours of machine time (its estimate): 22 to 23 for the 39 bosses by team search, 9 to 17 for the 41 Ace Trainers read blind; the 8 tag battles wait for doubles | 4, 8, 12 |
