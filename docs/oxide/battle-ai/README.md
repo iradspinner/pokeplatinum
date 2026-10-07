@@ -285,6 +285,7 @@ Left for want of a command: Octolock into an already octolocked target, whose st
 | Thrash, Outrage | Volt Tackle's recoil and paralysis (262), half recoil (269) | Expert's recoil routine and the ordinary damage estimate. The rampage effect (27) had no routine, so these gain one. No AI change was needed |
 | Petal Dance, Uproar | a 20% confusion (76, Psybeam's) | the ordinary handling of a damaging move, as Psybeam. Uproar keeps its place on Basic's Soundproof list, since it is still a sound move. No AI change was needed |
 | Raging Fury | recoil and confusion (417, new) | a new line in Expert's dispatch sends it to the recoil routine, as Volt Tackle's effect is sent |
+| Upper Hand | fails unless the target chose a priority move, then flinches it (418, new) | Basic gives -10 while the target has shown no move of raised priority, through a new command, `IfBattlerKnowsPriorityMove` (Prankster and Gale Wings counted), since the move cannot work then. When the target has shown one, the move is scored as an ordinary attack. This agrees the AI with the engine rather than changing how it plays |
 
 ## The parts
 

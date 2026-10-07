@@ -908,6 +908,10 @@
             "en_US": "Set 80"
         },
         {
+            "id": "TestKit_Text_MenuSet81",
+            "en_US": "Set 81"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },

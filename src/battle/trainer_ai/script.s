@@ -430,6 +430,9 @@ Basic_ScoreMoveEffectByEffect:
     // Oxide, change (Ian, 2026-09-27, the new moves' routing): Lunar Blessing and Jungle
     // Healing heal and cure, and fail only with nothing to do (2026-09-30).
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_LUNAR_BLESSING, Basic_CheckLunarBlessing
+    // Oxide: Upper Hand fails unless its target chooses a priority move (the
+    // move reworks, 2026-10-06), so -10 while the target has shown none.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UPPER_HAND, Basic_CheckUpperHand
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STRENGTH_SAP, Basic_CheckStrengthSap
     // Oxide: Sticky Web fails when the target's side already has one, and is
     // wasted on a last Pokemon, as Spikes is; Aurora Veil fails outside hail
@@ -800,6 +803,13 @@ Basic_CheckLunarBlessing:
     // double battle the partner may still gain, which Life Dew's check ignores too).
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Basic_CheckCanRecoverHP_Terminate
     GoTo Basic_CheckCanRecoverHP
+
+Basic_CheckUpperHand:
+    IfBattlerKnowsPriorityMove AI_BATTLER_DEFENDER, Basic_CheckUpperHand_Terminate
+    GoTo ScoreMinus10
+
+Basic_CheckUpperHand_Terminate:
+    PopOrEnd
 
 Basic_CheckCannotPoison:
     // If the target is immune to the usual effects of Poison for any reason, score -10.

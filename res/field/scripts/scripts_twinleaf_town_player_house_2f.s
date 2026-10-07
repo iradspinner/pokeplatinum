@@ -814,6 +814,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet78, 23
     AddListMenuEntry TestKit_Text_MenuSet79, 24
     AddListMenuEntry TestKit_Text_MenuSet80, 25
+    AddListMenuEntry TestKit_Text_MenuSet81, 26
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -841,6 +842,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 23, TestKit_MoveSet78
     GoToIfEq VAR_0x8004, 24, TestKit_MoveSet79
     GoToIfEq VAR_0x8004, 25, TestKit_MoveSet80
+    GoToIfEq VAR_0x8004, 26, TestKit_MoveSet81
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1870,6 +1872,25 @@ TestKit_MoveSet80:
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_SPLASH
     SetVar VAR_0x8006, MOVE_RAGING_FURY
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 81: Upper Hand (the move reworks, Ian, 2026-10-06), a new effect
+   (418): +3 priority, 65 power, and it fails unless the target has chosen a
+   priority move this turn, which it then flinches. Against a wild Rattata
+   that knows Quick Attack and Tackle, picking one at random: on a turn it
+   chose Quick Attack, Upper Hand hits first and "The wild RATTATA flinched!"
+   follows, so no Quick Attack lands; on a turn it chose Tackle, Upper Hand
+   says "But it failed!". Before the change it was a plain hit that always
+   worked. */
+TestKit_MoveSet81:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8003, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_UPPER_HAND
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE

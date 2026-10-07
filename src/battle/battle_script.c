@@ -330,6 +330,7 @@ static BOOL AbilityStatChange(BattleSystem *battleSys, BattleContext *battleCtx,
 static BOOL BtlCmd_TryTeatime(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_TrySkyDrop(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_TryUpperHand(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static BOOL BattleScript_PickDraggedOutMon(BattleSystem *battleSys, BattleContext *battleCtx, BOOL checkLevel);
 static void BattleScript_RecordBerryEaten(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int item);
@@ -10969,6 +10970,42 @@ static BOOL BtlCmd_CheckSafeguard(BattleSystem *battleSys, BattleContext *battle
     if ((battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battler)] & SIDE_CONDITION_SAFEGUARD)
         && BattleSystem_InfiltratorPassesEffect(battleCtx, battler) == FALSE) {
         BattleScript_Iter(battleCtx, jumpSafeguardUp);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Oxide: Upper Hand (the move reworks, Ian, 2026-10-06). GoTo ahead,
+ * so the move fails, unless the target has yet to act this turn and has
+ * chosen a move of raised priority, counting the priority Prankster and Gale
+ * Wings give (Battler_MovePriority). An Encore is followed as Sucker Punch
+ * follows it.
+ *
+ * Inputs:
+ * 1. GoTo distance if the move fails
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_TryUpperHand(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+
+    int move;
+    if (DEFENDING_MON.moveEffectsData.encoredMove
+        && DEFENDING_MON.moveEffectsData.encoredMove == DEFENDING_MON.moves[DEFENDING_MON.moveEffectsData.encoredMoveSlot]) {
+        move = DEFENDING_MON.moveEffectsData.encoredMove;
+    } else {
+        move = Battler_SelectedMove(battleCtx, battleCtx->defender);
+    }
+
+    if (DEFENDER_ACTION[BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END
+        || move == MOVE_NONE
+        || Battler_MovePriority(battleCtx, battleCtx->defender, move) <= 0) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
     return FALSE;
