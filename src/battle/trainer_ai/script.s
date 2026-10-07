@@ -7335,6 +7335,16 @@ SetupFirstTurn_SetupEffects:
     TableEntry BATTLE_EFFECT_GIVE_GROUND_IMMUNITY
     TableEntry BATTLE_EFFECT_REMOVE_HAZARDS_SCREENS_EVA_DOWN
     TableEntry BATTLE_EFFECT_WHIRLPOOL
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // whose nearest Platinum effect is above. Hone Claws as Meditate, Coil and
+    // Cotton Guard as Harden, Autotomize as Agility, Noble Roar and Tearful
+    // Look as Growl, Aurora Veil as Reflect.
+    TableEntry BATTLE_EFFECT_ATK_ACC_UP
+    TableEntry BATTLE_EFFECT_ATK_DEF_ACC_UP
+    TableEntry BATTLE_EFFECT_DEF_UP_3
+    TableEntry BATTLE_EFFECT_AUTOTOMIZE
+    TableEntry BATTLE_EFFECT_TEARFUL_LOOK
+    TableEntry BATTLE_EFFECT_SET_AURORA_VEIL
     TableEntry TABLE_END
 
 PrioritizeExtremes_Main:
