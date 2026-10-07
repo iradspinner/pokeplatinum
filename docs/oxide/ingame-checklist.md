@@ -252,7 +252,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
   Aria's stats.
 - [ ] **The move reworks** (`cloud/main-move-reworks`, 2026-10-07; Ian's
-  rulings of 2026-10-06), sets 71 to 83 on the move-set menu's third page,
+  rulings of 2026-10-06), sets 71 to 84 on the move-set menu's third page,
   each against the wild foe it names (`docs/oxide/test-kit.md` has what
   each should show). Hyper Beam and its kin hit with half recoil and no
   recharge turn (71); Blast Burn, Frenzy Plant and Hydro Cannon the same
@@ -266,9 +266,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   its recoil (80); Upper Hand flinches a Rattata that chose Quick Attack and
   fails against Tackle (81); Shell Trap strikes after a Tackle and fails
   after a Swift (82); Burning Jealousy burns a Ninjask only on a turn it
-  used Swords Dance (83). Watch the strike animations of Sky Attack, Dig and
-  Dive, which were the second halves of two-turn animations: Mew should be
-  drawn whole throughout.
+  used Swords Dance (83); Bone Rush shows 100 accuracy and never misses
+  (84). Watch the strike animations of Sky Attack, Dig and Dive, which were
+  the second halves of two-turn animations: Mew should be drawn whole
+  throughout.
 - [ ] **The move reworks, for normal play** (the kit cannot run them):
   Petal Dance hitting both foes in a double battle; Dig still digging out of
   a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage

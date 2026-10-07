@@ -717,6 +717,12 @@ DIVERGED = {
                    "Outrage as Kaizo has them, Uproar at 100 with a 20% confusion (the move "
                    "reworks, Ian, 2026-10-06)",
         },
+        {
+            "offsets": (5,),  # accuracy
+            "members": {198},
+            "why": "Bone Rush at 100 accuracy, over the base ROM's 90 (Ian's answer to the "
+                   "move reworks' report, relayed 2026-10-07)",
+        },
     ],
 }
 
