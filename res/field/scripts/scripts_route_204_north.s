@@ -17,7 +17,7 @@ Route204North_AceTrainerF:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_204_NORTH_TM78, Route204North_CaptivateOppositeGender
     Message Route204North_Text_HaveThisTM
-    SetVar VAR_0x8004, ITEM_TM78
+    SetVar VAR_0x8004, ITEM_LUM_BERRY
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route204North_BagIsFull
     Common_GiveItemQuantity

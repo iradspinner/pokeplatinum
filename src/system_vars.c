@@ -79,8 +79,11 @@ u16 SystemVars_GetRivalStarter(VarsFlags *varsFlags)
     u16 rivalStarter;
     u16 playerStarter = TryGetVarValue(varsFlags, VAR_PLAYER_STARTER);
 
+    // Oxide: Scorbunny took only Chimchar's place in the briefcase. Barry and
+    // the counterpart keep the Chimchar line (Ian, 2026-10-07), so the starter
+    // they name, and the counterpart's catching demo, match their teams.
     if (playerStarter == SPECIES_TURTWIG) {
-        rivalStarter = SPECIES_SCORBUNNY;
+        rivalStarter = SPECIES_CHIMCHAR;
     } else if (playerStarter == SPECIES_SCORBUNNY) {
         rivalStarter = SPECIES_PIPLUP;
     } else {
@@ -100,7 +103,7 @@ u16 SystemVars_GetPlayerCounterpartStarter(VarsFlags *varsFlags)
     } else if (playerStarter == SPECIES_SCORBUNNY) {
         counterpartStarter = SPECIES_TURTWIG;
     } else {
-        counterpartStarter = SPECIES_SCORBUNNY;
+        counterpartStarter = SPECIES_CHIMCHAR; // Oxide: as the rival's, above
     }
 
     return counterpartStarter;

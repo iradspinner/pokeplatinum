@@ -511,15 +511,14 @@
         "Veilstone is the city of stone.\n",
         "We even have meteorites!\r",
         "This has nothing to do with anything,\n",
-        "but take this Technical Machine!\r"
+        "but take this Berry!\r"
       ]
     },
     {
       "id": "VeilstoneCity_Text_EmbargoMakesItemsUnusable",
       "en_US": [
-        "If someone uses Embargo on your\n",
-        "Pokémon, it becomes impossible to\f",
-        "use any items on it.\r",
+        "A Pokémon holding a Sitrus Berry\n",
+        "eats it when its HP falls to half.\r",
         "Anyway, enjoy your visit to Veilstone,\n",
         "the city of...well, stone."
       ]

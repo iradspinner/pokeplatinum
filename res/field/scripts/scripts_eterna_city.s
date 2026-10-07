@@ -727,8 +727,8 @@ EternaCity_0A9B:
     CompareVarToValue VAR_0x8005, 522
     CallIf 5, EternaCity_0CCF
     Message 7
-    SetVarFromValue VAR_0x8004, 420
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM31
+    SetVarFromValue VAR_0x8005, 2
     CallCommonScript 2044
     Message 8
     CloseMessage

@@ -563,6 +563,14 @@ TRAINERS_DIVERGED = {
     "galactic_grunt_celestic_town": {"name": _NAME_FIX + " (Officert Argo)"},
     "galactic_grunt_lake_valor_2": {"name": _NAME_FIX + " (Officer Hisperid)"},
 }
+# The Game Corner's challenger (Ian, 2026-10-06): vanilla's unused trainer 6
+# (TRAINER_DUMMY_006, a level 5 Rattata) is the optional trainer whose win
+# gives the TM the coins clerk gave for ten straight bonus rounds. His team
+# is a placeholder for Maylene's split until the Kaizo study builds his.
+_CHALLENGER = ("the Game Corner's challenger, in vanilla's unused trainer slot 6 "
+               "(Ian, 2026-10-06); a placeholder team until the Kaizo study builds his")
+TRAINERS_DIVERGED["game_corner_challenger"] = {
+    field: _CHALLENGER for field in ("party", "name", "class", "ai_flags", "items")}
 # The Battle Zone opens before the League, in the Galactic split (cap 65), so
 # every level of its route and Stark Mountain trainers came down 18 (Ian,
 # 2026-09-25; docs/oxide/balance-plan.md). "level" is left alone on every
@@ -1429,6 +1437,14 @@ TEXT_BANKS_SKIPPED[220] = "the UNLOCK FPS description rewritten for its two choi
 # Fossils wait for Cycling Road (Ian, 2026-09-30): the researcher's unreachable
 # "not yet" line, vanilla's wait for the Explorer Kit, now says why he waits.
 TEXT_BANKS_SKIPPED[79] = "the Mining Museum's reviver waits for Cycling Road, and his line says so (2026-09-30)"
+# The reward table (step 10 of docs/oxide/alpha-readiness.md, 2026-10-07)
+# changed what 25 givers hand over, and each one's lines now name and explain
+# the new item. Two of these banks were already skipped for other reasons.
+for _i in (56, 61, 67, 85, 87, 98, 109, 133, 143, 144, 162, 165, 178, 257, 276, 470, 483,
+           488, 500, 504, 517, 561, 574, 589, 594):
+    _why = "a gift the reward table changed (2026-10-07), and its lines name the new item"
+    TEXT_BANKS_SKIPPED[_i] = (TEXT_BANKS_SKIPPED[_i] + "; then " + _why
+                              if _i in TEXT_BANKS_SKIPPED else _why)
 
 
 def text_bank_names():

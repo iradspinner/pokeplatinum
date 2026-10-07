@@ -34,7 +34,7 @@ Route222_RichBoy:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_222_TM56, Route222_ExplainFling
     Message Route222_Text_IGiveTMFling
-    SetVar VAR_0x8004, ITEM_TM56
+    SetVar VAR_0x8004, ITEM_TM08
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route222_BagIsFull
     Common_GiveItemQuantity

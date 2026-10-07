@@ -27,7 +27,7 @@ OreburghGate1F_Hiker:
 OreburghGate1F_HikerGiveHM:
     GoToIfSet FLAG_RECEIVED_HM06, OreburghGate1F_ThatHMContainsRockSmash
     Message OreburghGate1F_Text_MakeAGiftOfThisHM
-    SetVar VAR_0x8004, ITEM_HM06
+    SetVar VAR_0x8004, ITEM_TM90
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06
@@ -51,7 +51,7 @@ OreburghGate1F_CoordEvent_Hiker:
     ApplyMovement LOCALID_PLAYER, OreburghGate1F_Movement_PlayerFaceHiker
     WaitMovement
     Message OreburghGate1F_Text_MakeAGiftOfThisHM
-    SetVar VAR_0x8004, ITEM_HM06
+    SetVar VAR_0x8004, ITEM_TM90
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Call OreburghGate1F_SetFlagReceivedHM06

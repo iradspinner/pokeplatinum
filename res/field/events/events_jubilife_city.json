@@ -498,7 +498,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_JUBILIFE_CITY_POTION",
-            "script": 7017,
+            "script": 7469,
             "initial_dir": 0,
             "data": [  ],
             "movement_range_x": 0,

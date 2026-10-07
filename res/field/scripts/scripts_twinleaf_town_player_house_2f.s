@@ -2024,6 +2024,11 @@ TestKit_Warp:
     AddListMenuEntry TestKit_Text_MenuPastoria, 4
     AddListMenuEntry TestKit_Text_MenuVeilstone, 5
     AddListMenuEntry TestKit_Text_MenuRoute208, 6
+    AddListMenuEntry TestKit_Text_MenuGauntletEterna, 7
+    AddListMenuEntry TestKit_Text_MenuGauntletHQ, 8
+    AddListMenuEntry TestKit_Text_MenuGauntletTunnel, 9
+    AddListMenuEntry TestKit_Text_MenuGauntletClimb, 10
+    AddListMenuEntry TestKit_Text_MenuGauntletVictoryRoad, 11
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_WarpTwinleaf
     GoToIfEq VAR_0x8004, 1, TestKit_WarpSandgem
@@ -2032,6 +2037,11 @@ TestKit_Warp:
     GoToIfEq VAR_0x8004, 4, TestKit_WarpPastoria
     GoToIfEq VAR_0x8004, 5, TestKit_WarpVeilstone
     GoToIfEq VAR_0x8004, 6, TestKit_WarpRoute208
+    GoToIfEq VAR_0x8004, 7, TestKit_WarpGauntletEterna
+    GoToIfEq VAR_0x8004, 8, TestKit_WarpGauntletHQ
+    GoToIfEq VAR_0x8004, 9, TestKit_WarpGauntletTunnel
+    GoToIfEq VAR_0x8004, 10, TestKit_WarpGauntletClimb
+    GoToIfEq VAR_0x8004, 11, TestKit_WarpGauntletVictoryRoad
     GoTo TestKit_Close
 
 TestKit_WarpTwinleaf:
@@ -2085,6 +2095,44 @@ TestKit_WarpRoute208:
     GiveBadge BADGE_ID_BEACON
     CloseMessage
     Warp MAP_HEADER_ROUTE_208, 398, 719, DIR_WEST
+    ReleaseAll
+    End
+
+@ The gauntlets (main-gauntlets, docs/oxide/gauntlets.md): each lands one step
+@ from a section's way in, since a section opens only when the player arrives
+@ through it by a warp, not by a script's Warp.
+@ One step from the Galactic building's door.
+TestKit_WarpGauntletEterna:
+    CloseMessage
+    Warp MAP_HEADER_ETERNA_CITY, 305, 520, DIR_NORTH
+    ReleaseAll
+    End
+
+@ One step from the warehouse's stairs down to HQ B2F.
+TestKit_WarpGauntletHQ:
+    CloseMessage
+    Warp MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 12, 3, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from the way south into the tunnel room.
+TestKit_WarpGauntletTunnel:
+    CloseMessage
+    Warp MAP_HEADER_MT_CORONET_1F_NORTH_ROOM_1, 20, 61, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from 2F's stairs up to 3F.
+TestKit_WarpGauntletClimb:
+    CloseMessage
+    Warp MAP_HEADER_MT_CORONET_2F, 10, 4, DIR_EAST
+    ReleaseAll
+    End
+
+@ One step from the League gate's way north into Victory Road.
+TestKit_WarpGauntletVictoryRoad:
+    CloseMessage
+    Warp MAP_HEADER_POKEMON_LEAGUE, 851, 598, DIR_NORTH
     ReleaseAll
     End
 
@@ -2728,10 +2776,14 @@ TestKit_AbilityLiquidVoice:
     GoTo TestKit_GivePokemonWithMoves
 
 /* Sheer Force: a wild Chansey that knows only Growl; Flame Charge never
-   raises Toucannon's Speed, since Sheer Force strips that for more power. */
+   raises Toucannon's Speed, since Sheer Force strips that for more power.
+   Toucannon holds a Life Orb, which costs it a tenth of its HP after Bullet
+   Seed and Brave Bird but nothing after Flame Charge, the move Sheer Force
+   boosts (Ian, 2026-10-07). */
 TestKit_AbilitySheerForce:
     SetVar VAR_0x800A, SPECIES_TOUCANNON
     SetVar VAR_0x800B, ABILITY_SHEER_FORCE
+    SetVar VAR_0x8004, ITEM_LIFE_ORB
     SetVar VAR_0x8006, MOVE_FLAME_CHARGE
     SetVar VAR_0x8007, MOVE_BRAVE_BIRD
     SetVar VAR_0x8008, MOVE_BULLET_SEED
@@ -2739,7 +2791,7 @@ TestKit_AbilitySheerForce:
     SetVar VAR_0x8000, SPECIES_CHANSEY
     SetVar VAR_0x8001, ABILITY_NONE
     SetVar VAR_0x8002, MOVE_GROWL
-    GoTo TestKit_GivePokemonWithMoves
+    GoTo TestKit_GivePokemonWithItem
 
 /* Auras: a wild Yveltal with Dark Aura that knows only Dark Pulse; both
    announce their auras, Yveltal as the battle starts and Xerneas as it comes

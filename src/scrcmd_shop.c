@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/savedata/vars_flags.h"
 #include "generated/badges.h"
 #include "generated/mart_decor_id.h"
 #include "generated/mart_frontier_id.h"
@@ -10,6 +11,7 @@
 #include "generated/mart_specialties_id.h"
 
 #include "data/mart_items.h"
+#include "data/sold_tms.h"
 #include "overlay007/shop_menu.h"
 
 #include "field_script_context.h"
@@ -17,6 +19,60 @@
 #include "save_player.h"
 #include "trainer_info.h"
 #include "unk_0203D1B8.h"
+#include "vars_flags.h"
+
+// Platinum Oxide: the TMs sold once, from a badge count (Ian, 2026-10-06;
+// include/data/sold_tms.h). A purchase sets the TM's bit in one of two saved
+// variables that vanilla left unused, so no save layout moves.
+const SoldTM *SoldTMs_Find(u16 item)
+{
+    for (const SoldTM *tm = sSoldTMs; tm->item != ITEM_NONE; tm++) {
+        if (tm->item == item) {
+            return tm;
+        }
+    }
+
+    return NULL;
+}
+
+static u16 *SoldTMs_Word(SaveData *saveData, u8 bit)
+{
+    return VarsFlags_GetVarAddress(SaveData_GetVarsFlags(saveData), bit < 16 ? VAR_SOLD_TMS_0 : VAR_SOLD_TMS_1);
+}
+
+// Whether a counter lists the item now: anything not in the table always,
+// a sold TM once the player has its badges and until it is bought.
+BOOL SoldTMs_IsOffered(SaveData *saveData, u16 item)
+{
+    const SoldTM *tm = SoldTMs_Find(item);
+
+    if (tm == NULL) {
+        return TRUE;
+    }
+
+    if (TrainerInfo_BadgeCount(SaveData_GetTrainerInfo(saveData)) < tm->badges) {
+        return FALSE;
+    }
+
+    return (*SoldTMs_Word(saveData, tm->bit) & (1 << (tm->bit % 16))) == 0;
+}
+
+void SoldTMs_MarkBought(SaveData *saveData, u16 item)
+{
+    const SoldTM *tm = SoldTMs_Find(item);
+
+    if (tm != NULL) {
+        *SoldTMs_Word(saveData, tm->bit) |= 1 << (tm->bit % 16);
+    }
+}
+
+// How many one purchase gives: a sold TM's copies, or one of anything else.
+u16 SoldTMs_Copies(u16 item)
+{
+    const SoldTM *tm = SoldTMs_Find(item);
+
+    return tm != NULL ? tm->copies : 1;
+}
 
 BOOL ScrCmd_PokeMartCommon(ScriptContext *ctx)
 {
@@ -78,6 +134,19 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
 {
     u16 martID = ScriptContext_GetVar(ctx);
     BOOL incBuyCount;
+    u16 shopItems[64];
+    const u16 *stock = PokeMartSpecialties[martID];
+    u16 i, count = 0;
+
+    // Platinum Oxide: a sold TM is listed only once the player has its
+    // badges, and only until it is bought; anything else is always listed.
+    for (i = 0; stock[i] != SHOP_ITEM_END && count < NELEMS(shopItems) - 1; i++) {
+        if (SoldTMs_IsOffered(ctx->fieldSystem->saveData, stock[i])) {
+            shopItems[count++] = stock[i];
+        }
+    }
+
+    shopItems[count] = SHOP_ITEM_END;
 
     if ((martID == MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT) || (martID == MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT)
         || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_UP) || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_MID)
@@ -88,7 +157,7 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
         incBuyCount = FALSE;
     }
 
-    Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], MART_TYPE_NORMAL, incBuyCount);
+    Shop_Start(ctx->task, ctx->fieldSystem, shopItems, MART_TYPE_NORMAL, incBuyCount);
     return TRUE;
 }
 

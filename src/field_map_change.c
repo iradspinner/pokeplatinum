@@ -32,6 +32,7 @@
 #include "field_overworld_weather.h"
 #include "field_system.h"
 #include "field_task.h"
+#include "gauntlet.h"
 #include "field_transition.h"
 #include "game_overlay.h"
 #include "heap.h"
@@ -295,6 +296,10 @@ void FieldMapChange_UpdateGameData(FieldSystem *fieldSystem, BOOL noWarp)
             FieldOverworldState_SetBlackOutWarpId(fieldState, warpId);
         }
     }
+
+    // Oxide: opens a gauntlet section on its way in, and closes it on arrival
+    // anywhere past it (src/gauntlet.c).
+    Gauntlet_OnMapChange(fieldSystem, noWarp);
 
     FieldSystem_RunInitScript(fieldSystem, INIT_SCRIPT_ON_TRANSITION);
 

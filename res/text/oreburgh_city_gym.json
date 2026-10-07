@@ -50,9 +50,9 @@
       "id": "OreburghGym_Text_RoarkExplainStealthRock",
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains\n",
-        "the move Stealth Rock.\r",
-        "It’s a move that inflicts damage on\n",
-        "foes that switch into battle.\r",
+        "the move Toxic.\r",
+        "It badly poisons the foe, and the\n",
+        "poison gets worse every turn.\r",
         "Incidentally, a TM will teach its move\n",
         "to a Pokémon instantly."
       ]

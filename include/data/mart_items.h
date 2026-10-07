@@ -147,23 +147,23 @@ const u16 VeilstoneDeptStoreStock_2F_MID[] = {
 };
 
 const u16 VeilstoneDeptStoreStock_3F_UP[] = {
-    ITEM_TM83,
-    ITEM_TM17,
-    ITEM_TM54,
-    ITEM_TM20,
-    ITEM_TM33,
-    ITEM_TM16,
-    ITEM_TM70,
+    ITEM_TM52,
+    ITEM_TM26,
+    ITEM_TM23,
+    ITEM_TM71,
+    ITEM_TM77,
+    ITEM_TM67,
+    ITEM_TM53,
     SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_3F_DOWN[] = {
-    ITEM_TM38,
-    ITEM_TM25,
-    ITEM_TM14,
-    ITEM_TM22,
-    ITEM_TM52,
-    ITEM_TM15,
+    ITEM_TM35,
+    ITEM_HM02,
+    ITEM_TM13,
+    ITEM_TM29,
+    ITEM_HM08,
+    ITEM_HM03,
     SHOP_ITEM_END
 };
 

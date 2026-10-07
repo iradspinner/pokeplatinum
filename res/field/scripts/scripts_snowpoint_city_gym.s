@@ -147,7 +147,7 @@ SnowpointCityGym_01F4:
     ReleaseAll
     End
 SnowpointCityGym_01FA:
-    SetVarFromValue VAR_0x8004, 399
+    SetVarFromValue VAR_0x8004, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8005, 1
     SetVarFromValue VAR_OBJ_GFX_ID_6, 62
     CanFitItem 32772, 32773, VAR_0x800C

@@ -42,8 +42,8 @@ Route210South_Entry2:
     CheckFlag FLAG_RECEIVED_ROUTE_210_SOUTH_TM51
     GoToIf 1, Route210South_0192
     Message 7
-    SetVarFromValue VAR_0x8004, 378
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM16
+    SetVarFromValue VAR_0x8005, 2
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Route210South_019D
@@ -93,8 +93,8 @@ Route210South_Entry7:
     CheckFlag FLAG_RECEIVED_SURVIVAL_AREA_SOUTH_HOUSE_TM42
     GoToIf 1, Route210South_0343
     Message 12
-    SetVarFromValue VAR_0x8004, 369
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM55
+    SetVarFromValue VAR_0x8005, 2
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Route210South_034E

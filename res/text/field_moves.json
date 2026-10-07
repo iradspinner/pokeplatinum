@@ -160,6 +160,13 @@
     {
       "id": "FieldMoves_Text_PokemonUsedFlash",
       "en_US": "{STRVAR_1 0, 0, 0} used Flash!\r"
+    },
+    {
+      "id": "FieldMoves_Text_NoTurningBack",
+      "en_US": [
+        "There’s no turning back now!\n",
+        "Press on, or beat the Trainers here."
+      ]
     }
   ]
 }

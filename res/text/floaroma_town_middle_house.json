@@ -18,15 +18,15 @@
     {
       "id": "FloaromaTownMiddleHouse_Text_CuteHowPokemonPluckBerries",
       "en_US": [
-        "Do you think it’s cute how\n",
-        "Pokémon pluck Berries?"
+        "Do you think it’s cute how Pokémon\n",
+        "flap their wings to blow fog away?"
       ]
     },
     {
       "id": "FloaromaTownMiddleHouse_Text_HeresTMForPluck",
       "en_US": [
         "Yes! You agreed!\n",
-        "Here’s the TM for the move Pluck!\r"
+        "Here are HMs for the move Defog!\r"
       ]
     },
     {
@@ -39,10 +39,10 @@
     {
       "id": "FloaromaTownMiddleHouse_Text_UsingPluckEatsBerry",
       "en_US": [
-        "When a Pokémon uses Pluck, it eats\n",
-        "a Berry held by its foe in battle.\r",
-        "I like how it steals a Berry.\n",
-        "It’s so cute!"
+        "Defog blows away the barriers on\n",
+        "the foe’s side and lowers its evasion.\r",
+        "With the right Badge, it clears away\n",
+        "thick fog in the field, too. So cute!"
       ]
     },
     {

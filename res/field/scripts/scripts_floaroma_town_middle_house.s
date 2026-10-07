@@ -56,8 +56,8 @@ FloaromaTownMiddleHouse_00A9:
     End
 FloaromaTownMiddleHouse_00B4:
     Message 2
-    SetVarFromValue VAR_0x8004, 415
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_HM05
+    SetVarFromValue VAR_0x8005, 2
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, FloaromaTownMiddleHouse_0138
