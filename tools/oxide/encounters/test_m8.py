@@ -496,9 +496,14 @@ def check_moves_view(results):
                     and d("MOVE_MOONBLAST") == {"new": True}, ""))
 
     machines = pokedex.machines(root)
+    # Vanilla's 92 TMs and 8 HMs, and the TMs past TM92 that the TM pass
+    # adds (NUM_EXTRA_TMS in items.h, 2 on 2026-10-06), so the count follows
+    # the list rather than a number written here.
+    with open(os.path.join(root, "include", "constants", "items.h"), encoding="utf-8") as f:
+        extra = int(re.search(r"#define NUM_EXTRA_TMS\s+(\d+)", f.read()).group(1))
     results.append(("every TM and HM names the move it teaches",
-                    len(machines) == 100 and machines["TM02"] == "MOVE_DRAGON_CLAW"
-                    and machines["HM03"] == "MOVE_SURF", f"{len(machines)} machines"))
+                    len(machines) == 100 + extra and machines["TM02"] == "MOVE_DRAGON_CLAW"
+                    and machines["HM03"] == "MOVE_SURF", f"{len(machines)} machines, {extra} past TM92"))
     learnt = pokedex.learners(root)
     surf = {(r["species"], r["how"], r["machine"]) for r in learnt["MOVE_SURF"]}
     results.append(("the reverse index covers level-up, machines, tutors and eggs",
