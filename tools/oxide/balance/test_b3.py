@@ -399,14 +399,16 @@ def check_flag_numbers(results):
 
 
 def check_fingerprints(results, blob):
-    """Every stored score before B6 (the story fights, Hesperid's, the
-    reference seats, the shape grid) matches its inputs as they are now,
-    and a second run has verified it (rescore.py). test_b6 checks B6's."""
+    """Which stored scores before B6 (the story fights, Hesperid's, the
+    reference seats, the shape grid) no longer match their inputs, or wait
+    for a second run to verify them (rescore.py). Reported, never failed:
+    scores never block a landing (Ian, 2026-10-07), and the gate lists them
+    as a warning. test_b6 reports B6's."""
     problems = rescore.check(blob, ("pressure", "calibrate", "ref", "shape"))
     kinds = collections.Counter(p for _n, p in problems)
-    results.append(("every stored score matches its inputs and is verified", not problems,
-                    f"{dict(kinds)}; first {problems[:4]}; run rescore.py, then --verify"
-                    if problems else ""))
+    results.append(("stored scores read; any stale ones are reported, not failed", True,
+                    f"STALE {dict(kinds)}; first {problems[:4]}; rescore.py, then --verify, when a "
+                    "reading is due" if problems else "all current"))
 
 
 def main():
