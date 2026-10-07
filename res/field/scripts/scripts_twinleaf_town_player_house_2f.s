@@ -807,6 +807,7 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet71, 16
     AddListMenuEntry TestKit_Text_MenuSet72, 17
     AddListMenuEntry TestKit_Text_MenuSet73, 18
+    AddListMenuEntry TestKit_Text_MenuSet74, 19
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -827,6 +828,7 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 16, TestKit_MoveSet71
     GoToIfEq VAR_0x8004, 17, TestKit_MoveSet72
     GoToIfEq VAR_0x8004, 18, TestKit_MoveSet73
+    GoToIfEq VAR_0x8004, 19, TestKit_MoveSet74
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1743,6 +1745,23 @@ TestKit_MoveSet73:
     SetVar VAR_0x8007, MOVE_RECOVER
     SetVar VAR_0x8008, MOVE_SPLASH
     SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 74: Dig and Dive in one turn (the move reworks, Ian, 2026-10-06): Dig
+   60 power, Dive 80, each a plain hit with no turn out of reach. Against a
+   wild Chansey that knows only Tackle, slower than Mew, each strikes on the
+   turn it is chosen with no "burrowed its way under the ground!" or "hid
+   underwater!" line, and Chansey's Tackle lands on Mew the same turn. Dig
+   still works in the field menu. Before the change each spent a turn out of
+   reach and struck the next. */
+TestKit_MoveSet74:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_DIG
+    SetVar VAR_0x8007, MOVE_DIVE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

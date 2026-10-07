@@ -520,6 +520,8 @@ REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
 REWORK_STARTER_ULTIMATES = {307, 308, 338}
 # Sky Attack.
 REWORK_SKY_ATTACK = {143}
+# Dig and Dive.
+REWORK_DIG_DIVE = {91, 291}
 
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
@@ -677,6 +679,12 @@ DIVERGED = {
             "members": REWORK_SKY_ATTACK,
             "why": "Sky Attack in one turn at 120 power, with a third as recoil and a 20% "
                    "paralysis (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3),  # effect, power
+            "members": REWORK_DIG_DIVE,
+            "why": "Dig at 60 and Dive at 80 as plain one turn hits (the move reworks, "
+                   "Ian, 2026-10-06)",
         },
     ],
 }
