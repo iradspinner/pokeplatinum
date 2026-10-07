@@ -172,7 +172,7 @@ VeilstoneCityGym_022F:
     ReleaseAll
     End
 VeilstoneCityGym_0235:
-    SetVarFromValue VAR_0x8004, 387
+    SetVarFromValue VAR_0x8004, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8005, 1
     SetVarFromValue VAR_OBJ_GFX_ID_6, 44
     CanFitItem 32772, 32773, VAR_0x800C

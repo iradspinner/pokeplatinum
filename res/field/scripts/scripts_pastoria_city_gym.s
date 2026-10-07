@@ -169,8 +169,8 @@ PastoriaCityGym_024F:
     ReleaseAll
     End
 PastoriaCityGym_0255:
-    SetVarFromValue VAR_0x8004, 382
-    SetVarFromValue VAR_0x8005, 1
+    SetVarFromValue VAR_0x8004, ITEM_TM81
+    SetVarFromValue VAR_0x8005, 2
     SetVarFromValue VAR_OBJ_GFX_ID_6, 53
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

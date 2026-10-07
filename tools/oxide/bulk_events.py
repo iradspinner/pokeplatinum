@@ -130,6 +130,13 @@ DIVERGED["events_stark_mountain_room_2"] += (
 _why = "the optional trainer Rocco added beside the coins clerk (Ian, 2026-10-06)"
 DIVERGED["events_game_corner"] = (
     DIVERGED["events_game_corner"] + "; " + _why if "events_game_corner" in DIVERGED else _why)
+# The reward table (step 10 of docs/oxide/alpha-readiness.md, applied
+# 2026-10-07 by tools/oxide/place_rewards.py) put its items in these maps'
+# balls; regenerating would bring back the base ROM's.
+_why = "item balls the reward table changed (2026-10-07)"
+for _m in ("jubilife_city", "mt_coronet_2f", "stark_mountain_room_1"):
+    DIVERGED[f"events_{_m}"] = (DIVERGED[f"events_{_m}"] + "; " + _why
+                                if f"events_{_m}" in DIVERGED else _why)
 
 
 def render(record, existing, index):

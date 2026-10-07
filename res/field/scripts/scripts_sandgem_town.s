@@ -62,7 +62,7 @@ SandgemTown_Entry2:
     ApplyMovement 4, SandgemTown_Movement_07E8
     WaitMovement
     Message 9
-    SetVarFromValue VAR_0x8004, 337
+    SetVarFromValue VAR_0x8004, ITEM_TM51
     SetVarFromValue VAR_0x8005, 1
     CallCommonScript 2044
     Message 10

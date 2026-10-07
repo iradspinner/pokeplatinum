@@ -32,7 +32,7 @@ IronIsland_Entry2:
     CheckFlag FLAG_UNK_0x0A73
     CallIf 0, IronIsland_00BE
     Message 0
-    SetVarFromValue VAR_0x8004, 423
+    SetVarFromValue VAR_0x8004, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8005, 1
     CallCommonScript 2044
     CheckBadgeAcquired 5, VAR_0x800C

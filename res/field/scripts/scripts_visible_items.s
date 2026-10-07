@@ -473,6 +473,9 @@
     ScriptEntry VisibleItems_Entry466
     ScriptEntry VisibleItems_Entry467
     ScriptEntry VisibleItems_Entry468
+    ScriptEntry VisibleItems_Entry469
+    ScriptEntry VisibleItems_Entry470
+    ScriptEntry VisibleItems_Entry471
     ScriptEntryEnd
 
 VisibleItems_Entry0:
@@ -1788,15 +1791,15 @@ VisibleItems_Entry327:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry328:
-    SetVarFromValue VAR_0x8008, 328
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM20
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry329:
-    SetVarFromValue VAR_0x8008, 329
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM76
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry330:
-    SetVarFromValue VAR_0x8008, 330
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry331:
@@ -1804,15 +1807,15 @@ VisibleItems_Entry331:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry332:
-    SetVarFromValue VAR_0x8008, 332
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry333:
-    SetVarFromValue VAR_0x8008, 333
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM89
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry334:
-    SetVarFromValue VAR_0x8008, 334
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry335:
@@ -1820,7 +1823,7 @@ VisibleItems_Entry335:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry336:
-    SetVarFromValue VAR_0x8008, 336
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry337:
@@ -1828,20 +1831,20 @@ VisibleItems_Entry337:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry338:
-    SetVarFromValue VAR_0x8008, 338
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM37
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry339:
-    SetVarFromValue VAR_0x8008, 339
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry340:
-    SetVarFromValue VAR_0x8008, 340
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry341:
-    SetVarFromValue VAR_0x8008, 341
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM42
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry342:
     SetVarFromValue VAR_0x8008, 342
@@ -1856,11 +1859,11 @@ VisibleItems_Entry344:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry345:
-    SetVarFromValue VAR_0x8008, 345
+    SetVarFromValue VAR_0x8008, ITEM_TM15
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry346:
-    SetVarFromValue VAR_0x8008, 346
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry347:
@@ -1868,123 +1871,123 @@ VisibleItems_Entry347:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry348:
-    SetVarFromValue VAR_0x8008, 348
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM56
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry349:
     SetVarFromValue VAR_0x8008, 349
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry350:
-    SetVarFromValue VAR_0x8008, 350
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry351:
-    SetVarFromValue VAR_0x8008, 351
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry352:
-    SetVarFromValue VAR_0x8008, 352
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry353:
-    SetVarFromValue VAR_0x8008, 353
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM85
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry354:
-    SetVarFromValue VAR_0x8008, 354
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM17
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry355:
-    SetVarFromValue VAR_0x8008, 355
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry356:
-    SetVarFromValue VAR_0x8008, 356
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry357:
-    SetVarFromValue VAR_0x8008, 357
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry358:
-    SetVarFromValue VAR_0x8008, 358
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM93
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry359:
-    SetVarFromValue VAR_0x8008, 359
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM11
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry360:
     SetVarFromValue VAR_0x8008, 360
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry361:
-    SetVarFromValue VAR_0x8008, 361
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry362:
-    SetVarFromValue VAR_0x8008, 362
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry363:
-    SetVarFromValue VAR_0x8008, 363
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM33
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry364:
-    SetVarFromValue VAR_0x8008, 364
+    SetVarFromValue VAR_0x8008, ITEM_TM38
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry365:
-    SetVarFromValue VAR_0x8008, 365
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry366:
-    SetVarFromValue VAR_0x8008, 366
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry367:
-    SetVarFromValue VAR_0x8008, 367
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry368:
-    SetVarFromValue VAR_0x8008, 368
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM65
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry369:
     SetVarFromValue VAR_0x8008, 369
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry370:
-    SetVarFromValue VAR_0x8008, 370
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM79
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry371:
     SetVarFromValue VAR_0x8008, 371
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry372:
-    SetVarFromValue VAR_0x8008, 372
+    SetVarFromValue VAR_0x8008, ITEM_TM28
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry373:
-    SetVarFromValue VAR_0x8008, 373
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM83
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry374:
-    SetVarFromValue VAR_0x8008, 374
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM09
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry375:
     SetVarFromValue VAR_0x8008, 375
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry376:
-    SetVarFromValue VAR_0x8008, 376
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry377:
-    SetVarFromValue VAR_0x8008, 377
+    SetVarFromValue VAR_0x8008, ITEM_TM01
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry378:
@@ -1996,7 +1999,7 @@ VisibleItems_Entry379:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry380:
-    SetVarFromValue VAR_0x8008, 380
+    SetVarFromValue VAR_0x8008, ITEM_TM14
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry381:
@@ -2020,7 +2023,7 @@ VisibleItems_Entry385:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry386:
-    SetVarFromValue VAR_0x8008, 386
+    SetVarFromValue VAR_0x8008, ITEM_TM70
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry387:
@@ -2032,8 +2035,8 @@ VisibleItems_Entry388:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry389:
-    SetVarFromValue VAR_0x8008, 389
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM78
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry390:
     SetVarFromValue VAR_0x8008, 390
@@ -2060,16 +2063,16 @@ VisibleItems_Entry395:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry396:
-    SetVarFromValue VAR_0x8008, 396
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM94
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry397:
-    SetVarFromValue VAR_0x8008, 397
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry398:
-    SetVarFromValue VAR_0x8008, 398
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM18
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry399:
     SetVarFromValue VAR_0x8008, 399
@@ -2100,31 +2103,31 @@ VisibleItems_Entry405:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry406:
-    SetVarFromValue VAR_0x8008, 406
+    SetVarFromValue VAR_0x8008, ITEM_TM68
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry407:
-    SetVarFromValue VAR_0x8008, 407
+    SetVarFromValue VAR_0x8008, ITEM_TM75
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry408:
-    SetVarFromValue VAR_0x8008, 408
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry409:
-    SetVarFromValue VAR_0x8008, 409
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM84
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry410:
     SetVarFromValue VAR_0x8008, 410
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry411:
-    SetVarFromValue VAR_0x8008, 411
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry412:
-    SetVarFromValue VAR_0x8008, 412
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry413:
@@ -2132,20 +2135,20 @@ VisibleItems_Entry413:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry414:
-    SetVarFromValue VAR_0x8008, 414
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM46
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry415:
     SetVarFromValue VAR_0x8008, 415
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry416:
-    SetVarFromValue VAR_0x8008, 416
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM80
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry417:
-    SetVarFromValue VAR_0x8008, 417
-    SetVarFromValue VAR_0x8009, 1
+    SetVarFromValue VAR_0x8008, ITEM_TM44
+    SetVarFromValue VAR_0x8009, 2
     GoTo VisibleItems_Entry468
 VisibleItems_Entry418:
     SetVarFromValue VAR_0x8008, 418
@@ -2160,7 +2163,7 @@ VisibleItems_Entry420:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry421:
-    SetVarFromValue VAR_0x8008, 421
+    SetVarFromValue VAR_0x8008, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry422:
@@ -2172,7 +2175,7 @@ VisibleItems_Entry423:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry424:
-    SetVarFromValue VAR_0x8008, 424
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry425:
@@ -2184,7 +2187,7 @@ VisibleItems_Entry426:
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry427:
-    SetVarFromValue VAR_0x8008, 427
+    SetVarFromValue VAR_0x8008, ITEM_LUM_BERRY
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry428:
@@ -2345,6 +2348,18 @@ VisibleItems_Entry466:
     GoTo VisibleItems_Entry468
 VisibleItems_Entry467:
     SetVarFromValue VAR_0x8008, 467
+    SetVarFromValue VAR_0x8009, 1
+    GoTo VisibleItems_Entry468
+VisibleItems_Entry469:
+    SetVarFromValue VAR_0x8008, ITEM_TM39
+    SetVarFromValue VAR_0x8009, 2
+    GoTo VisibleItems_Entry468
+VisibleItems_Entry470:
+    SetVarFromValue VAR_0x8008, ITEM_TM58
+    SetVarFromValue VAR_0x8009, 1
+    GoTo VisibleItems_Entry468
+VisibleItems_Entry471:
+    SetVarFromValue VAR_0x8008, ITEM_TM50
     SetVarFromValue VAR_0x8009, 1
     GoTo VisibleItems_Entry468
 VisibleItems_Entry468:

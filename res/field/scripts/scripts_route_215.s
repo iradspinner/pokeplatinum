@@ -42,7 +42,7 @@ Route215_BlackBelt:
     FacePlayer
     GoToIfSet FLAG_RECEIVED_ROUTE_215_TM66, Route215_PaybackIsHarsh
     Message Route215_Text_YupItsPayback
-    SetVar VAR_0x8004, ITEM_TM66
+    SetVar VAR_0x8004, ITEM_SITRUS_BERRY
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route215_BagIsFull
     Common_GiveItemQuantity
