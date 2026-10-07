@@ -46,10 +46,10 @@ ITEM_TM55	2	gift	Maylene	MAP_HEADER_ROUTE_210_SOUTH		ITEM_TM42			Brine, utility;
 ITEM_SITRUS_BERRY	1	gift	Maylene	MAP_HEADER_ROUTE_215		ITEM_TM66			a TM place the spread leaves to another item
 ITEM_SITRUS_BERRY	1	gift	Maylene	MAP_HEADER_VEILSTONE_CITY		ITEM_TM63			a TM place the spread leaves to another item
 ITEM_LUM_BERRY	1	gift	Maylene	MAP_HEADER_VEILSTONE_CITY_GYM		ITEM_TM60			a TM place the spread leaves to another item
-ITEM_HEART_SCALE	1	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_WIDE_LENS		3	Wide Lens moves to an optional fight; a stand-in the main track or Ian may change
-ITEM_HEART_SCALE	1	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_METRONOME		3	Metronome moves to an optional fight; a stand-in the main track or Ian may change
-ITEM_PP_UP	1	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_SILK_SCARF		3	Silk Scarf moves to an optional fight; a stand-in the main track or Ian may change
-ITEM_PP_UP	1	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_ZOOM_LENS		3	Zoom Lens moves to an optional fight; a stand-in the main track or Ian may change
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_SILK_SCARF		3	Silk Scarf moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_WIDE_LENS		3	Wide Lens moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_ZOOM_LENS		3	Zoom Lens moves to an optional fight; its prize slot is dropped
+ITEM_NONE	0	prize	Maylene	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_METRONOME		3	Metronome moves to an optional fight; its prize slot is dropped
 ITEM_PUNCHING_GLOVE	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_WAITRESS_KATI		held item; reading 2.3
 ITEM_TM34	1	trainer	Maylene	MAP_HEADER_CAFE			TRAINER_COLLECTOR_EDWIN		Shock Wave, weak; reading 2.3
 ITEM_TM32	2	trainer	Maylene	MAP_HEADER_GAME_CORNER		ITEM_TM64	TRAINER_GAME_CORNER_CHALLENGER		Zen Headbutt, utility; in place of the gift for ten straight bonus rounds (ITEM_TM64), a new optional trainer

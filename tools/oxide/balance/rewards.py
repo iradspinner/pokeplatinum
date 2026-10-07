@@ -98,8 +98,9 @@ GAME_CORNER_HELD = {"ITEM_SILK_SCARF", "ITEM_WIDE_LENS", "ITEM_ZOOM_LENS", "ITEM
 # trainer's reward there (Ian, 2026-10-06): a trainer the main track creates.
 GAME_CORNER_GIFT = ("GAME_CORNER", "gift")
 GAME_CORNER_TRAINER = "TRAINER_GAME_CORNER_CHALLENGER"
-# What their prize slots give instead, in turn: things no shop sells.
-PRIZE_STAND_INS = ("ITEM_PP_UP", "ITEM_HEART_SCALE", "ITEM_PP_UP", "ITEM_HEART_SCALE")
+# Their prize slots are dropped, not given a stand-in (Ian, 2026-10-06): a
+# shop row with this reward removes the slot.
+DROPPED = "ITEM_NONE"
 # What a ball may give up to hold a TM with no place of its own: items a
 # mart sells, so nothing scarce leaves the game.
 CHEAP = {"ITEM_POTION", "ITEM_SUPER_POTION", "ITEM_POKE_BALL", "ITEM_GREAT_BALL", "ITEM_ANTIDOTE",
@@ -736,12 +737,14 @@ def build():
         if not p.get("used"):
             facts["unplaced"].append(f"shop slot {p['shop']} {p['item']}")
     # The held items the Game Corner sells today leave its prizes for
-    # optional fights; each prize slot gives another item.
-    for k, (_s, m, it) in enumerate((s, m, it) for s, m, it in splits.marts() if it in GAME_CORNER_HELD):
-        kind, place, h = SHOP_PLACE[m]
-        rows.append(Row(PRIZE_STAND_INS[k % len(PRIZE_STAND_INS)], 1, kind, BADGE_SPLIT[3], header(h), place, it,
-                        "", 3, f"{it.replace('ITEM_', '').replace('_', ' ').title()} moves to an optional fight; "
-                               "a stand-in the main track or Ian may change"))
+    # optional fights, and their slots are dropped (Ian, 2026-10-06): a row
+    # of reward ITEM_NONE and no copies tells the prize menu to remove one.
+    for _s, m, it in splits.marts():
+        if it in GAME_CORNER_HELD:
+            kind, place, h = SHOP_PLACE[m]
+            rows.append(Row(DROPPED, 0, kind, BADGE_SPLIT[3], header(h), place, it, "", 3,
+                            f"{it.replace('ITEM_', '').replace('_', ' ').title()} moves to an optional fight; "
+                            "its prize slot is dropped"))
     facts["third"] = [c for c in moves if tier(c) == "utility" and name(c) in HAZARDS | PIVOTS]
     facts["share"] = share
     rows.sort(key=lambda r: (si(r.split), r.kind, r.map, r.reward))
@@ -863,7 +866,7 @@ def check(out=sys.stdout):
         if resold[k] < n:
             fails.append(f"{k[1]} at {k[0]} is still sold as it is today")
     print(f"{len(placed)} placements, {len(trainers)} reward trainers, {new_balls} new balls: "
-          f"{flags} of {FLAG_POOL} spare flags; {len(shop_rows)} shop TMs; {len(fails)} failures", file=out)
+          f"{flags} of {FLAG_POOL} spare flags; {sum(1 for r in shop_rows if r["reward"] != DROPPED)} shop TMs; {len(fails)} failures", file=out)
     for f_ in fails:
         print("  " + f_, file=out)
     return fails
@@ -886,7 +889,7 @@ def shop_label(reward, move_of):
     """A shop row's reward: a TM with its move, or an item by name."""
     if reward in move_of:
         return f"{tm_label(reward)} {name(move_of[reward])}"
-    return reward.replace("ITEM_", "").replace("_", " ").title().replace("Pp ", "PP ") + " (in place of a held item)"
+    return reward.replace("ITEM_", "").replace("_", " ").title().replace("Pp ", "PP ")
 
 
 DRAFT_REF = "514910abe1"    # the first draft Ian read (2026-10-06)
@@ -1132,10 +1135,18 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     p("|---|---|---|---|")
     for b, s in BADGE_SPLIT.items():
         store = [shop_label(r.reward, move_of) for r in shop_rows if r.kind == "mart"
-                 and str(r.badges) == str(b)]
+                 and str(r.badges) == str(b) and r.reward != DROPPED]
         prize = [shop_label(r.reward, move_of) for r in shop_rows if r.kind == "prize"
-                 and str(r.badges) == str(b)]
+                 and str(r.badges) == str(b) and r.reward != DROPPED]
         p(f"| {b} | {s} | {', '.join(store) or '-'} | {', '.join(prize) or '-'} |")
+    dropped = [r.replaces for r in shop_rows if r.reward == DROPPED]
+    if dropped:
+        p()
+        p("The Game Corner's held items (" + ", ".join(d.replace("ITEM_", "").replace("_", " ").title()
+                                                    for d in dropped)
+          + ") move to optional fights, and their prize slots are dropped (Ian, 2026-10-06); the table "
+            "marks each with reward ITEM_NONE and no copies. The prizes that were neither a TM nor a held "
+            "item stay as they are.")
     if facts["early"]:
         p()
         p("## Strong TMs held back")

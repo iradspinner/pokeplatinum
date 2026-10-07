@@ -513,12 +513,14 @@ Ian, 2026-10-06: each TM they sell unlocks at a badge count, in order of usefuln
 
 | Badges | Split | Department Store | Game Corner |
 |---|---|---|---|
-| 3 | Maylene | - | Heart Scale (in place of a held item), Heart Scale (in place of a held item), PP Up (in place of a held item), PP Up (in place of a held item) |
+| 3 | Maylene | - | - |
 | 4 | Wake | - | TM02 Dragon Claw, TM05 Dazzling Gleam, TM41 Charm, TM45 Alluring Voice, TM59 Dragon Pulse, TM61 Will-O-Wisp, TM63 Confuse Ray, TM73 Thunder Wave, TM82 Bounce, TM91 Flash Cannon |
 | 5 | Byron | HM02 Fly, TM23 Iron Tail, TM26 Earthquake, TM29 Psychic, TM35 Flamethrower, TM53 Energy Ball, TM67 Ice Punch, TM71 Stone Edge, TM77 Foul Play | TM07 Curse, TM24 Thunderbolt |
 | 6 | Candice | HM08 Rock Climb, TM13 Ice Beam | TM49 Agility, TM69 Rock Polish |
 | 7 | HQ | - | - |
 | 8 | Barry | HM03 Surf, TM52 Focus Blast | TM04 Calm Mind |
+
+The Game Corner's held items (Silk Scarf, Wide Lens, Zoom Lens, Metronome) move to optional fights, and their prize slots are dropped (Ian, 2026-10-06); the table marks each with reward ITEM_NONE and no copies. The prizes that were neither a TM nor a held item stay as they are.
 
 ## Strong TMs held back
 
