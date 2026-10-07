@@ -210,7 +210,9 @@ read, so they are written here too. Each is a standing instruction.
   labels only, not intended power.
 - TMs are single-use again, as in vanilla (Ian, 2026-09-28): each placement
   gives a set number of copies (strong TMs one, utility ones two or three).
-  Weak TMs are not sold; each is the reward for beating one optional trainer
+  Weak TMs are not sold; the TMs the Veilstone Department Store and the Game
+  Corner do sell unlock by badge count in order of usefulness, and each can
+  be bought once, like any other placement (Ian, 2026-10-06); each is the reward for beating one optional trainer
   of weak-to-medium strength near its split. About 100 TMs. Ian's removals:
   Protect, Double Team, the four weather moves, Thief, Snatch, Skill Swap,
   Focus Punch, Substitute, Dream Eater, Swords Dance and Embargo; Toxic,
