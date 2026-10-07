@@ -1,5 +1,7 @@
 # Platinum Oxide: the in-game checklist
 
+For the order to work in, read `qa-plan.md` first: one page, one line per check, with the run itself covering most of what follows.
+
 Every check that waits on Ian playing the game, in one place and in the order a
 playtest day meets them (Ian, 2026-09-26: all at once when the new CPU is in).
 The tracker's "Waiting on Ian" points here; this file holds the full wording.
