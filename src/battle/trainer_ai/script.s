@@ -7436,6 +7436,13 @@ BatonPass_EvalMove:
     IfMoveEqualTo MOVE_DRAGON_DANCE, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_CALM_MIND, BatonPass_SetupAtHighHP
     IfMoveEqualTo MOVE_NASTY_PLOT, BatonPass_SetupAtHighHP
+    // Oxide, change (Ian, 2026-10-07, the other flags' routing): the new moves
+    // Expert scores as Dragon Dance.
+    IfMoveEqualTo MOVE_QUIVER_DANCE, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_SHIFT_GEAR, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_SHELL_SMASH, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_GEOMANCY, BatonPass_SetupAtHighHP
+    IfMoveEqualTo MOVE_CLANGOROUS_SOUL, BatonPass_SetupAtHighHP
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PROTECT, BatonPass_EvalProtect
 
