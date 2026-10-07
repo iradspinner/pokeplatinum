@@ -66,7 +66,7 @@
             ],
             [
                 14,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_FURY_SWIPES"
             ],
             [
                 17,
@@ -94,7 +94,7 @@
             ],
             [
                 26,
-                "MOVE_DARK_PULSE"
+                "MOVE_SNARL"
             ],
             [
                 30,
@@ -125,7 +125,29 @@
                 "MOVE_MAGIC_ROOM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM12",
+            "TM16",
+            "TM24",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM33",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM53",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM80",
+            "TM83",
+            "TM86",
+            "TM92",
+            "TM93",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

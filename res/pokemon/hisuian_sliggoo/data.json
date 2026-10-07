@@ -101,7 +101,24 @@
                 "MOVE_DRACO_METEOR"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM03",
+            "TM07",
+            "TM13",
+            "TM14",
+            "TM24",
+            "TM25",
+            "TM36",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM59",
+            "TM70",
+            "TM74",
+            "TM80",
+            "TM85",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -50,10 +50,10 @@
     {
       "id": "VeilstoneGym_Text_MayleneExplainTM60",
       "en_US": [
-        "That {STRVAR_1 8, 0, 0} contains the move\n",
-        "{STRVAR_1 6, 1, 0}.\r",
-        "Um... That move inflicts damage,\n",
-        "and it robs the target’s HP."
+        "That {STRVAR_1 8, 0, 0}...\n",
+        "I was saving it for a snack.\r",
+        "Um... It cures any status problem,\n",
+        "and confusion as well."
       ]
     },
     {

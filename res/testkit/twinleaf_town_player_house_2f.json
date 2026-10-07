@@ -34,7 +34,20 @@
                 "Two copies of TM01. Teach it to\n",
                 "any Pokémon once: the TM Case\r",
                 "should then show one TM01 left.\r",
-                "HMs are never used up."
+                "HMs are used up the same way."
+            ]
+        },
+        {
+            "id": "TestKit_Text_MenuAllTMs",
+            "en_US": "All TMs and HMs"
+        },
+        {
+            "id": "TestKit_Text_AllTMs",
+            "en_US": [
+                "Two of every TM and HM, TM93 on\n",
+                "included. Each shows its number\r",
+                "and a count of two, HMs too, and\n",
+                "teaching one leaves one."
             ]
         },
         {
@@ -872,6 +885,62 @@
             "en_US": "Set 70"
         },
         {
+            "id": "TestKit_Text_MenuSet71",
+            "en_US": "Set 71"
+        },
+        {
+            "id": "TestKit_Text_MenuSet72",
+            "en_US": "Set 72"
+        },
+        {
+            "id": "TestKit_Text_MenuSet73",
+            "en_US": "Set 73"
+        },
+        {
+            "id": "TestKit_Text_MenuSet74",
+            "en_US": "Set 74"
+        },
+        {
+            "id": "TestKit_Text_MenuSet75",
+            "en_US": "Set 75"
+        },
+        {
+            "id": "TestKit_Text_MenuSet76",
+            "en_US": "Set 76"
+        },
+        {
+            "id": "TestKit_Text_MenuSet77",
+            "en_US": "Set 77"
+        },
+        {
+            "id": "TestKit_Text_MenuSet78",
+            "en_US": "Set 78"
+        },
+        {
+            "id": "TestKit_Text_MenuSet79",
+            "en_US": "Set 79"
+        },
+        {
+            "id": "TestKit_Text_MenuSet80",
+            "en_US": "Set 80"
+        },
+        {
+            "id": "TestKit_Text_MenuSet81",
+            "en_US": "Set 81"
+        },
+        {
+            "id": "TestKit_Text_MenuSet82",
+            "en_US": "Set 82"
+        },
+        {
+            "id": "TestKit_Text_MenuSet83",
+            "en_US": "Set 83"
+        },
+        {
+            "id": "TestKit_Text_MenuSet84",
+            "en_US": "Set 84"
+        },
+        {
             "id": "TestKit_Text_MenuSetMore",
             "en_US": "More sets"
         },
@@ -974,6 +1043,26 @@
         {
             "id": "TestKit_Text_MenuRoute208",
             "en_US": "Route 208, all badges"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletEterna",
+            "en_US": "Gauntlet: Eterna"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletHQ",
+            "en_US": "Gauntlet: Galactic HQ"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletTunnel",
+            "en_US": "Gauntlet: Coronet 1F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletClimb",
+            "en_US": "Gauntlet: Coronet 3F"
+        },
+        {
+            "id": "TestKit_Text_MenuGauntletVictoryRoad",
+            "en_US": "Gauntlet: Victory Road"
         },
         {
             "id": "TestKit_Text_MenuMeisterTrade",

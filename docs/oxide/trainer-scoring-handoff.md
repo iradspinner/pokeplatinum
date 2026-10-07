@@ -43,6 +43,30 @@ two rolls does, and for the player only if both do. No reading is redone
 for it now. Saturn 2's permanent Trick Room now comes from the game's own
 list on every path, the comb's included, which had started him without it
 (2026-10-06); no reading of him is affected.
+The simulator now plays the move reworks (alpha-readiness step 5's second
+half, on the engine of cloud/main-move-reworks, merged here): Hyper Beam's
+kin at half recoil with no recharge, the starter ultimates, Sky Attack, Dig
+and Dive in one turn, two to five hits on 35/35/15/15, Fury Cutter's three
+rising hits, the one-turn rampage moves, Upper Hand, Shell Trap, Burning
+Jealousy, Sheer Force's strip read from the game's list, and turn order with
+Prankster and Gale Wings. The AI mirror follows the game: since
+2026-10-07 it rates a move of several hits on its expected hits (3.1 for a
+two to five hit move, 5 under Skill Link; Fury Cutter, Triple Kick and
+Triple Axel on their three hits), and Bone Rush is at 100%. Reckless raises
+the newly recoiling moves by 1.2, as the game's effect scripts do. The
+simulator adds it only where the calculator does not: the encounter track's
+c5aed2a7bf gives the calculator the game's own list, and once it lands the
+simulator adds nothing (test_plfixes passes 87/87 on both calculators, and
+re-measures the calculator so the two never stack). A Sheer Force user
+with a Life Orb takes no Life Orb recoil on a move Sheer Force boosts and
+keeps both boosts (Ian, 2026-10-07), as the game's fix does; the
+calculator's rows carry both 1.3s. Every stored
+reading is stale for these moves and is redone in goal 3. Left out, as
+small: contact effects per hit of a multi-hit move. Goal 3's preflight
+passed (2026-10-07): with a learnset change planted in an extracted copy,
+both box builders read it from the copy and not from this branch, once
+goal 2's builder (in `~/oxide-trials/three-gym-run`) stopped naming this
+worktree as its root. Next: nothing queued.
 
 | Step | Takes |
 |---|---|

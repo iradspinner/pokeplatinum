@@ -196,6 +196,9 @@ class RunDice:
     def roll(self, top):
         return self.rng.randrange(16)
 
+    def pick_weighted(self, items, weights):
+        return self.rng.choices(items, weights)[0]
+
     def sleep(self, side):
         return self.rng.randint(1, 4)
 
@@ -411,6 +414,29 @@ def confusion_damage(mon, roll):
     return int(base * roll / 100)
 
 
+def rolled_hits(b, att, dfn, mv, trainer):
+    """The hits this use makes: a two to five hit move's count
+    (fs.multi_hit_odds), rolled by a run's dice and enumerated at its odds by
+    the planner's; Fury Cutter's hits until its first miss, each later hit
+    checking accuracy again unless a Loaded Dice skips the check. In the
+    strict search the trainer gets its most hits and the player its fewest."""
+    odds = fs.multi_hit_odds(att, mv)
+    if odds:
+        counts, weights = [h for h, _w in odds], [w for _h, w in odds]
+        if len(counts) == 1:
+            return counts[0]
+        pick = getattr(b.dice, "pick_weighted", None)
+        if pick is None:
+            return max(counts) if trainer else min(counts)
+        return pick(counts, weights)
+    if mv.effect == fs.RISING_HITS:
+        hits = 1
+        while hits < fs.RISING_COUNT and (att.item == "Loaded Dice" or accuracy_hits(b, att, dfn, mv)):
+            hits += 1
+        return hits
+    return 1
+
+
 def attack(b, att, mv, dfn, first):
     b.last_dealt = 0                     # the HP this move took, for the contact abilities
     if not dfn.alive():
@@ -427,6 +453,8 @@ def attack(b, att, mv, dfn, first):
         nxt = getattr(dfn, "chosen", None)
         if not first or nxt is None or nxt.cat == "Status":
             return
+    if fs.move_fails_first(att, mv, dfn, first):       # Upper Hand and Shell Trap
+        return
     if mv.effect == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and att.turns_in > 0:
         return
     # Natural Gift and Fling spend the held item, and fail without one;
@@ -442,6 +470,7 @@ def attack(b, att, mv, dfn, first):
         return
     fs.rollout_after(att, mv, True)
     trainer = not player(att)
+    hits = rolled_hits(b, att, dfn, mv, trainer)
     # Fixed damage (fightsim.fixed_damage). Psywave's roll goes the
     # trainer's way in the search, as a damage roll does, and rolls in a run.
     tenths = 10
@@ -497,13 +526,15 @@ def attack(b, att, mv, dfn, first):
                 # Dice that enumerate a turn's outcomes (plplan) take the
                 # damage of every roll, so rolls that land alike count as one.
                 grouped = getattr(b.dice, "roll_grouped", None)
-                roll = grouped(lambda r: damage_of(b, att, dfn, mv, crit, top=trainer, roll=r) or 0, dfn.hp) \
+                roll = grouped(lambda r: fs.use_damage(att, mv, damage_of(b, att, dfn, mv, crit, top=trainer,
+                                                                          roll=r) or 0, hits), dfn.hp) \
                     if grouped else b.dice.roll(trainer)
             dmg = damage_of(b, att, dfn, mv, crit, top=trainer, roll=roll)
         finally:
             att.key = key
         if dmg is None:
             return
+        dmg = fs.use_damage(att, mv, dmg, hits)
         if mv.effect == "DOUBLE_POWER_IF_MOVING_SECOND" and not first:
             dmg *= 2
         if mv.effect == "HIT_BEFORE_SWITCH" and getattr(att, "pursuing", False):
@@ -528,7 +559,9 @@ def attack(b, att, mv, dfn, first):
         dfn.sub = max(0, dfn.sub - dmg)
         dealt = 0
     else:
-        full = dfn.hp == dfn.maxhp
+        # Focus Sash and Sturdy hold one hit from full HP: a move that hits
+        # twice or more lands its next hit on the 1 HP left.
+        full = dfn.hp == dfn.maxhp and hits < 2
         sturdy = dfn.ability == "Sturdy" and att.ability != "Mold Breaker"
         if dmg >= dfn.hp and full and (dfn.item == "Focus Sash" or sturdy):
             if sturdy:
@@ -575,7 +608,7 @@ def attack(b, att, mv, dfn, first):
     if e == "CONTINUE_AND_CONFUSE_SELF":
         if att.lock is None:
             att.lock = (mv, b.dice.outrage(att.side))
-    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard":
+    if att.item == "Life Orb" and dealt and att.ability != "Magic Guard" and not fs.sheer_force_active(att, mv):
         fs.hurt(b, att, att.maxhp // 10)
     if e == "REMOVE_SCREENS":
         side = b.p if player(dfn) else b.b
@@ -584,7 +617,11 @@ def attack(b, att, mv, dfn, first):
         """A secondary effect at its chance: bad luck against the player,
         good luck for it."""
         return b.dice.bad(kind, p) if trainer else b.dice.good(p, kind)
-    if e in fs.HIT_SELF_STAGES:
+    # Sheer Force strips the secondary effect of the effects the game lists
+    # (fs.sheer_force_effects); a recoil stays, and the calculator's row
+    # already carries its 1.3x.
+    stripped = fs.sheer_force_strips(att, mv)
+    if e in fs.HIT_SELF_STAGES and not (stripped and not fs.HIT_SELF_STAGES[e][1]):
         ch, certain = fs.HIT_SELF_STAGES[e]
         if certain or secondary("statup", (mv.chance or 10) / 100):
             fs.change_stages(att, ch)
@@ -593,7 +630,7 @@ def attack(b, att, mv, dfn, first):
     if not dfn.alive() or dfn.sub:
         return
     chance = mv.chance or 0
-    if dfn.ability == "Shield Dust":
+    if dfn.ability == "Shield Dust" or stripped:
         chance = 0
     if att.ability == "Serene Grace":
         chance = min(100, chance * 2)
@@ -604,6 +641,9 @@ def attack(b, att, mv, dfn, first):
         return b.dice.lands_on_player(kind, chance / 100) if trainer else b.dice.good(chance / 100, kind)
     if e in fs.HIT_STATUS and chance and status_lands("status"):
         give_status(b, dfn, fs.HIT_STATUS[e])
+    # Burning Jealousy burns only a target one of whose stats rose this turn.
+    if e == "BURN_HIT_IF_STATS_ROSE" and getattr(dfn, "stat_raised", False) and chance and status_lands("status"):
+        give_status(b, dfn, "brn")
     if e == "TRI_ATTACK" and chance and status_lands("status"):
         order = ("frz", "par", "brn")
         if b.dice.mode == "run":
@@ -615,7 +655,7 @@ def attack(b, att, mv, dfn, first):
     # at the move's chance (design.md, question 10).
     if e in fs.FLINCH_HIT and first and chance and secondary("flinch", chance / 100):
         dfn.flinch = True
-    if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first:
+    if e == "ALWAYS_FLINCH_FIRST_TURN_ONLY" and first and not stripped:
         dfn.flinch = True
     # King's Rock and Razor Fang are item procs, in the budget (question 8).
     if first and att.item in ("King's Rock", "Razor Fang") and not dfn.flinch \
@@ -623,7 +663,8 @@ def attack(b, att, mv, dfn, first):
         dfn.flinch = True
     if dfn.ability == "Inner Focus":
         dfn.flinch = False       # Inner Focus: it never flinches
-    if e in ("CONFUSE_HIT", "HURRICANE") and chance and not dfn.confused and status_lands("confusehit"):
+    if e in ("CONFUSE_HIT", "HURRICANE", "RECOIL_CONFUSE_HIT") and chance and not dfn.confused \
+            and status_lands("confusehit"):
         dfn.confused = b.dice.confusion(dfn.side)
     if e in fs.HIT_FOE_STAGES and chance and secondary("statdrop", chance / 100) \
             and not fs.stat_drop_blocked(b, dfn, fs.HIT_FOE_STAGES[e]):
@@ -1133,8 +1174,9 @@ def _turn(c, pa, aa):
         mon.chosen = mv
     if len(order) == 2:
         (a, ma), (d, md) = order
-        if ma.pri != md.pri:
-            order.sort(key=lambda o: -o[1].pri)
+        # Priority as the engine reckons it (Prankster, Gale Wings).
+        if fs.move_priority(a, ma) != fs.move_priority(d, md):
+            order.sort(key=lambda o: -fs.move_priority(o[0], o[1]))
         else:
             sa, sd = c.speed(a), c.speed(d)
             if c.trick_room:

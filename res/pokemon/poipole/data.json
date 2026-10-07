@@ -97,7 +97,15 @@
                 "MOVE_TOXIC"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM06",
+            "TM23",
+            "TM36",
+            "TM41",
+            "TM42",
+            "TM59",
+            "TM84"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

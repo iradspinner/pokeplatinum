@@ -101,7 +101,22 @@
                 "MOVE_DARK_PULSE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM20",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM56",
+            "TM61",
+            "TM66",
+            "TM79",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_DESTINY_BOND"

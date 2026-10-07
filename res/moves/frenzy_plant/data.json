@@ -1,20 +1,20 @@
 {
     "name": "Frenzy Plant",
     "description": [
-        "The foe is slammed\n",
-        "with an enormous\n",
-        "tree.\n",
-        "The user can’t move\n",
-        "on the next turn."
+        "The foe is slammed by\n",
+        "a huge tree. It may\n",
+        "paralyze the foe, and\n",
+        "the user is hurt by a\n",
+        "third of the damage."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_GRASS",
     "power": 150,
-    "accuracy": 90,
+    "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_RECHARGE_AFTER",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RECOIL_PARALYZE_HIT",
+        "chance": 20
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

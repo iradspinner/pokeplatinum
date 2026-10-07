@@ -1,19 +1,19 @@
 {
     "name": "Hydro Cannon",
     "description": [
-        "The foe is hit with\n",
-        "a watery blast.\n",
-        "The user must rest\n",
-        "on the next turn,\n",
-        "however."
+        "The foe is hit with a\n",
+        "watery blast. The\n",
+        "user is also hurt by\n",
+        "half the damage it\n",
+        "deals."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",
     "power": 150,
-    "accuracy": 90,
+    "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_RECHARGE_AFTER",
+        "type": "BATTLE_EFFECT_RECOIL_HALF",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

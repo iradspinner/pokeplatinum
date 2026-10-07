@@ -1,5 +1,13 @@
 # The comb: Byron's split
 
+**Refreshed 2026-10-07.** The expected numbers were read again after two
+changes: a fix to my simulator, which had picked the player's lead by party
+order when two choices looked equal and so skewed every earlier boss reading,
+and the legality sweep against the final lists (origin/balance-tm-pass at
+377312dbf0), which left this split unchanged. Ian ruled that every draft goes into step 12 as
+drafted; the scorer's step 15 reading gives the real numbers, and he chooses
+any retunes from them. My candidates are in `../retune-proposals-not-approved/`.
+
 The bosses of Byron's split are combed: Ace Trainers Ernest and Alyssa on
 Route 210 north, Officer Argo and Cyrus at Celestic Town, Barry 5 (three
 files) on Canalave's bridge, gym trainers Cesar and Breanna, Byron, the
@@ -12,7 +20,7 @@ scorer's box at Byron, which knows no TMs, so they read harsher than they
 will once the TM pass lands. It now models Explosion, screens, phazing,
 Perish Song and Protect, and each map's own weather, so today's files were
 read again beside mine. Each boss is a step harder than today's: Cyrus about
-88 won to today's 100, Byron about 88 to today's 100, and Argo and Barry 5
+90 won to today's 100, Byron about 89 to today's 99.6, and Argo and Barry 5
 level on wins with far more faints. No map in this split has its own
 weather. Barry's Ambipom keeps Last Resort, the split's one conditional
 attack. The new rules show in two places: Cyrus's Exploud carries Fire Blast
@@ -25,7 +33,7 @@ Absol holds a Scope Lens.
 |---|---|---|---|---|
 | 1 | Byron's six | Byron's dial is two hazards, screens and a legendary, every member Steel. Bastiodon leads with Stealth Rock and Roar behind a Focus Sash, Skarmory adds Spikes and Whirlwind, Magnezone sets both screens on a Light Clay, Bronzong carries the trade (Explosion), Heatran is the legendary, and Metagross is the ace with Agility and Bullet Punch. Today's Steelix, Forretress and Empoleon are out. My first build kept Steelix and Forretress and read 99 won, barely harder than today's, because the box's Water and Ground types walled it; Skarmory and Bronzong are immune to Ground. | `leader_byron.json`; the scorer's reading later. | Accept (recommended), or keep Steelix in Skarmory's place for a softer fight. |
 | 2 | Cyrus 1 | Gliscor leads with Stealth Rock and U-turn on Poison Heal. Honchkrow is the trapping member the dial asks of Cyrus: Mean Look, Perish Song and Protect, which is also his one trade. Exploud, Hariyama, Gyarados and a Dragon Dance Salamence ace follow, all from today's six with Vibrava and Shelgon evolved. A second Dragon Dance on Gyarados read about 72 won, so it carries Stone Edge instead. | `galactic_boss_cyrus_celestic_town_ruins.json`; the scorer's reading later. | Accept (recommended). |
-| 3 | Ace Trainers read harsh blind | Built to the dial's numbers for this split: six members, top IVs, an item on every member, one level under the cap. With a planned six they read 94 to 100 won, like Wake's and Maylene's. Met blind they win 19 to 46 percent of fights in my simulator, where Krystal read 80. Alyssa is the one required single. | My readings now; the scorer's planned reading after the TM pass; Ian's alpha run. | Keep (recommended, since Ian asked that fights not be tuned to a box without TMs), or trim Alyssa and the gym pair to five. |
+| 3 | Ace Trainers read harsh blind | Built to the dial's numbers for this split: six members, top IVs, an item on every member, one level under the cap. With a planned six they read 93 to 100 won, like Wake's and Maylene's. Met blind they win 22 to 51 percent of fights in my simulator, where Krystal reads 64. Alyssa is the one required single. | My readings now; the scorer's planned reading after the TM pass; Ian's alpha run. | Keep (recommended, since Ian asked that fights not be tuned to a box without TMs), or trim Alyssa and the gym pair to five. |
 | 4 | Iron Island tag | Jonah (Ground) and Brenda (Fighting and Psychic) bring four each at 50 to 51, beside Riley. | The scorer cannot read tag battles yet. | Nothing now. |
 
 ## What comes next
@@ -37,18 +45,18 @@ from Maylene's split on.
 
 | Trainer | Place | Path | Battle | Size | Levels | The idea | Expected |
 |---|---|---|---|---|---|---|---|
-| Ace Trainer Alyssa | Route 210 north | on the path | single, Ace Trainer | 6 | 50 to 52 | Normal types with tricks | about 99.5 / 2.5 / 0 with a planned six |
-| Ace Trainer Ernest | Route 210 north | optional | single, Ace Trainer | 6 | 50 to 52 | Steel and Electric | about 100 / 1.0 / 32 with a planned six |
-| Galactic Officer Argo | Celestic Town | on the path | single, named officer | 6 | 51 to 53 | Today's five on sharper sets plus a Drapion | about 97 / 1.7 / 10 in my simulator, where today's file reads 100 / 0.03 / 97 |
-| Cyrus 1 | Celestic Town ruins | on the path | single, boss | 6 | 51 to 53 | A hazard lead and a trap | about 88 / 2.2 / 0 in my simulator (two readings, 90 and 86), where today's file reads 100 / 0.35 / 69 |
-| Barry 5 | Canalave City bridge | on the path | single, boss | 6 | 51 to 53 | Barry 4's six grown to the cap | about 99 / 2.0 to 2.5 / 0 to 2 across the three files in my simulator, where today's file reads 100 / 0.03 / 97 |
-| Ace Trainer Cesar | Canalave Gym | gym trainer | single, Ace Trainer | 6 | 50 to 52 | Byron's tools one at a time | about 100 / 0.2 / 84 with a planned six |
-| Ace Trainer Breanna | Canalave Gym | gym trainer | single, Ace Trainer | 6 | 50 to 52 | Byron's lead and screens rehearsed | about 100 / 1.2 / 20 with a planned six |
-| Byron | Canalave Gym | on the path | single, boss | 6 | 51 to 53 | Two hazards | about 88 / 2.1 / 12 in my simulator (two readings, 90 and 86.5), where today's file reads 100 / 0.6 / 54 |
+| Ace Trainer Alyssa | Route 210 north | on the path | single, Ace Trainer | 6 | 50 to 52 | Normal types with tricks | about 100 / 2.2 / 1 with a planned six |
+| Ace Trainer Ernest | Route 210 north | optional | single, Ace Trainer | 6 | 50 to 52 | Steel and Electric | about 100 / 1.1 / 34 with a planned six |
+| Galactic Officer Argo | Celestic Town | on the path | single, named officer | 6 | 51 to 53 | Today's five on sharper sets plus a Drapion | about 98 / 2.3 / 1 in my simulator, where today's file reads 100 / 0.3 / 66 |
+| Cyrus 1 | Celestic Town ruins | on the path | single, boss | 6 | 51 to 53 | A hazard lead and a trap | about 90 / 2.7 / 0 in my simulator, where today's file reads 100 / 0.3 / 68 |
+| Barry 5 | Canalave City bridge | on the path | single, boss | 6 | 51 to 53 | Barry 4's six grown to the cap | about 98 / 2.5 / 1 in my simulator, where today's file reads 100 / 0.0 / 98 |
+| Ace Trainer Cesar | Canalave Gym | gym trainer | single, Ace Trainer | 6 | 50 to 52 | Byron's tools one at a time | about 100 / 0.2 / 87 with a planned six |
+| Ace Trainer Breanna | Canalave Gym | gym trainer | single, Ace Trainer | 6 | 50 to 52 | Byron's lead and screens rehearsed | about 100 / 1.3 / 6 with a planned six |
+| Byron | Canalave Gym | on the path | single, boss | 6 | 51 to 53 | Two hazards | about 89 / 1.9 / 16 in my simulator, where today's file reads 100 / 1.4 / 20 |
 | Ace Trainer Jonah | Iron Island B2F | on the path | tag, beside Riley | 4 | 50 to 51 | Ground types | not readable yet |
 | Ace Trainer Brenda | Iron Island B2F | on the path | tag, beside Riley | 4 | 50 to 51 | Fighting and Psychic types | not readable yet |
-| Ace Trainer Jake | Route 221 | optional | single, Ace Trainer | 6 | 50 to 52 | Ghosts and blades | about 94 / 1.6 / 26 with a planned six |
-| Ace Trainer Shannon | Route 221 | optional | single, Ace Trainer | 6 | 50 to 52 | Sun | about 94.5 / 1.7 / 10 with a planned six |
+| Ace Trainer Jake | Route 221 | optional | single, Ace Trainer | 6 | 50 to 52 | Ghosts and blades | about 94 / 1.8 / 5 with a planned six |
+| Ace Trainer Shannon | Route 221 | optional | single, Ace Trainer | 6 | 50 to 52 | Sun | about 93 / 1.7 / 10 with a planned six |
 
 Expected numbers are won / faints a fight / clean in my simulator, beside
 today's file where it was read.
@@ -68,7 +76,7 @@ Normal types with tricks: Ambipom's Fake Out and U-turn, Girafarig's two screens
 | Staraptor | 51 | Sharp Beak | Intimidate | Jolly | Brave Bird, Close Combat, U-turn, Roost |
 | Torterra | 52 | Miracle Seed | Thick Fat | Adamant | Wood Hammer, Earthquake, Stone Edge, Crunch |
 
-Today's team: Ambipom 42 (Fake Out, Fire Punch, Low Kick, Aerial Ace), Girafarig 42 (Headbutt, Zen Headbutt, Sucker Punch, Light Screen), Torterra 42 (Energy Ball, Earth Power, Giga Drain, Leech Seed). Expected: about 99.5 / 2.5 / 0 with a planned six; read blind, 41 / 5.2 / 0 (decision 3).
+Today's team: Ambipom 42 (Fake Out, Fire Punch, Low Kick, Aerial Ace), Girafarig 42 (Headbutt, Zen Headbutt, Sucker Punch, Light Screen), Torterra 42 (Energy Ball, Earth Power, Giga Drain, Leech Seed). Expected: about 100 / 2.2 / 1 with a planned six; read blind, 45 / 5.2 / 0.
 
 ### Ace Trainer Ernest: Route 210 north, optional, single, Ace Trainer, cap 53
 
@@ -83,7 +91,7 @@ Steel and Electric: Probopass leads with Stealth Rock and Thunder Wave, then Sci
 | Lucario | 51 | Life Orb | Adaptability | Timid | Aura Sphere, Flash Cannon, Dragon Pulse, Vacuum Wave |
 | Magnezone | 52 | Shuca Berry | Levitate | Modest | Thunderbolt, Flash Cannon, Tri Attack, Mirror Coat |
 
-Today's team: Scizor 41 (Bullet Punch, Night Slash, Iron Head, X-Scissor), Probopass 41 (Earth Power, Thunder Wave, Flash Cannon, Thunderbolt), Ampharos 41 (ThunderPunch, Fire Punch, Outrage, Thunder Wave). Expected: about 100 / 1.0 / 32 with a planned six; read blind, 22 / 5.2 / 0 (decision 3).
+Today's team: Scizor 41 (Bullet Punch, Night Slash, Iron Head, X-Scissor), Probopass 41 (Earth Power, Thunder Wave, Flash Cannon, Thunderbolt), Ampharos 41 (ThunderPunch, Fire Punch, Outrage, Thunder Wave). Expected: about 100 / 1.1 / 34 with a planned six; read blind, 23 / 5.2 / 0.
 
 ### Galactic Officer Argo: Celestic Town, on the path, single, named officer, cap 53
 
@@ -98,7 +106,7 @@ Today's five on sharper sets plus a Drapion: Protean Kecleon with Thunder Wave, 
 | Dugtrio | 51 | Focus Sash | Arena Trap | Jolly | Earthquake, Stone Edge, Sucker Punch, Aerial Ace |
 | Armaldo | 53 | Salac Berry | Swift Swim | Adamant | X-Scissor, Stone Edge, Earthquake, Rock Polish |
 
-Today's team: Kecleon 42 (Lum Berry; Focus Punch, Recover, Thunder Wave, Shadow Claw), Houndoom 43 (Focus Band; Thunder Fang, Sucker Punch, Fire Fang, Iron Tail), Armaldo 43 (Salac Berry; Rock Polish, X-Scissor, Cross Poison, Stone Edge), Dugtrio 42 (Focus Sash; Earthquake, Rock Slide, Pursuit, Magnitude), Rotom 43 (Wise Glasses; Will-O-Wisp, Leaf Storm, Discharge, Ominous Wind). Expected: about 97 / 1.7 / 10 in my simulator, where today's file reads 100 / 0.03 / 97.
+Today's team: Kecleon 42 (Lum Berry; Focus Punch, Recover, Thunder Wave, Shadow Claw), Houndoom 43 (Focus Band; Thunder Fang, Sucker Punch, Fire Fang, Iron Tail), Armaldo 43 (Salac Berry; Rock Polish, X-Scissor, Cross Poison, Stone Edge), Dugtrio 42 (Focus Sash; Earthquake, Rock Slide, Pursuit, Magnitude), Rotom 43 (Wise Glasses; Will-O-Wisp, Leaf Storm, Discharge, Ominous Wind). Expected: about 98 / 2.3 / 1 in my simulator, where today's file reads 100 / 0.3 / 66.
 
 ### Cyrus 1: Celestic Town ruins, on the path, single, boss, cap 53
 
@@ -113,7 +121,7 @@ A hazard lead and a trap, as the dial asks of Cyrus: Gliscor sets Stealth Rock a
 | Gyarados | 52 | Wacan Berry | Intimidate | Adamant | Waterfall, Earthquake, Ice Fang, Stone Edge |
 | Salamence | 53 | Yache Berry | Intimidate | Adamant | Dragon Dance, Dragon Claw, Earthquake, Fire Fang |
 
-Today's team: Vibrava 45 (Shell Bell; DragonBreath, Earth Power, Tailwind, U-turn), Exploud 45 (Expert Belt; Brick Break, Ice Beam, Earthquake, Uproar), Hariyama 45 (Leftovers; Counter, Revenge, Whirlwind, Fire Punch), Shelgon 45 (King’s Rock; Dragon Claw, Rock Slide, Zen Headbutt, Body Slam), Honchkrow 45 (Sitrus Berry; Drill Peck, Sucker Punch, Confuse Ray, Whirlwind), Gyarados 45 (Life Orb; Aqua Tail, Ice Fang, Earthquake, Bite). Expected: about 88 / 2.2 / 0 in my simulator (two readings, 90 and 86), where today's file reads 100 / 0.35 / 69.
+Today's team: Vibrava 45 (Shell Bell; DragonBreath, Earth Power, Tailwind, U-turn), Exploud 45 (Expert Belt; Brick Break, Ice Beam, Earthquake, Uproar), Hariyama 45 (Leftovers; Counter, Revenge, Whirlwind, Fire Punch), Shelgon 45 (King’s Rock; Dragon Claw, Rock Slide, Zen Headbutt, Body Slam), Honchkrow 45 (Sitrus Berry; Drill Peck, Sucker Punch, Confuse Ray, Whirlwind), Gyarados 45 (Life Orb; Aqua Tail, Ice Fang, Earthquake, Bite). Expected: about 90 / 2.7 / 0 in my simulator, where today's file reads 100 / 0.3 / 68.
 
 ### Barry 5: Canalave City bridge, on the path, single, boss, cap 53
 
@@ -128,7 +136,7 @@ Barry 4's six grown to the cap: the Ambipom Fake Out lead, Staraptor, Heracross,
 | Snorlax | 52 | Leftovers | Thick Fat | Careful | Body Slam, Earthquake, Curse, Ice Punch |
 | Torterra | 53 | Life Orb | Thick Fat | Adamant | Wood Hammer, Earthquake, Stone Edge, Crunch |
 
-Today's team: Staraptor 48 (White Herb; Aerial Ace, Double-Edge, Close Combat, Roost), Starmie 48 (Sea Incense; Surf, Psychic, Brine, Recover), Snorlax 48 (Leftovers; Body Slam, Brick Break, Rest, Sleep Talk), Ninetales 48 (Choice Specs; Heat Wave, Energy Ball, Extrasensory, Dark Pulse), Torterra 49 (Sitrus Berry; Earthquake, Crunch, Wood Hammer, Leech Seed). Expected: about 99 / 2.0 to 2.5 / 0 to 2 across the three files in my simulator, where today's file reads 100 / 0.03 / 97.
+Today's team: Staraptor 48 (White Herb; Aerial Ace, Double-Edge, Close Combat, Roost), Starmie 48 (Sea Incense; Surf, Psychic, Brine, Recover), Snorlax 48 (Leftovers; Body Slam, Brick Break, Rest, Sleep Talk), Ninetales 48 (Choice Specs; Heat Wave, Energy Ball, Extrasensory, Dark Pulse), Torterra 49 (Sitrus Berry; Earthquake, Crunch, Wood Hammer, Leech Seed). Expected: about 98 / 2.5 / 1 in my simulator, where today's file reads 100 / 0.0 / 98.
 
 ### Ace Trainer Cesar: Canalave Gym, gym trainer, single, Ace Trainer, cap 53
 
@@ -143,7 +151,7 @@ Byron's tools one at a time: Skarmory's Spikes and Whirlwind, Ferrothorn, a Rock
 | Lucario | 51 | Black Belt | Iron Fist | Adamant | Close Combat, ExtremeSpeed, Crunch, Stone Edge |
 | Scizor | 52 | Occa Berry | Technician | Adamant | Bullet Punch, X-Scissor, U-turn, Swords Dance |
 
-Today's team: Scizor 51 (Metal Claw, X-Scissor, Slash, Pursuit). Expected: about 100 / 0.2 / 84 with a planned six; read blind, 22 / 5.1 / 6 (decision 3).
+Today's team: Scizor 51 (Metal Claw, X-Scissor, Slash, Pursuit). Expected: about 100 / 0.2 / 87 with a planned six; read blind, 23 / 5.1 / 5.
 
 ### Ace Trainer Breanna: Canalave Gym, gym trainer, single, Ace Trainer, cap 53
 
@@ -158,7 +166,7 @@ Byron's lead and screens rehearsed: Probopass sets Stealth Rock behind a Focus S
 | Steelix | 51 | Passho Berry | Solid Rock | Adamant | Iron Head, Earthquake, Stone Edge, Crunch |
 | Corviknight | 52 | Leftovers | Mirror Armor | Impish | Brave Bird, Iron Head, Revenge, Roost |
 
-Today's team: Skarmory 50 (Steel Wing, Drill Peck, Stealth Rock, Roost), Probopass 50 (Thunderbolt, Hidden Power, Power Gem, Thunder Wave), Bronzong 50 (Gyro Ball, Zen Headbutt, Confuse Ray, Iron Defense). Expected: about 100 / 1.2 / 20 with a planned six; read blind, 46 / 4.8 / 1 (decision 3).
+Today's team: Skarmory 50 (Steel Wing, Drill Peck, Stealth Rock, Roost), Probopass 50 (Thunderbolt, Hidden Power, Power Gem, Thunder Wave), Bronzong 50 (Gyro Ball, Zen Headbutt, Confuse Ray, Iron Defense). Expected: about 100 / 1.3 / 6 with a planned six; read blind, 51 / 4.6 / 0.
 
 ### Byron: Canalave Gym, on the path, single, boss, cap 53
 
@@ -173,7 +181,7 @@ Two hazards, screens and a legendary: Bastiodon's Stealth Rock and Roar behind a
 | Heatran | 52 | Shuca Berry | Flash Fire | Modest | Flamethrower, Earth Power, Flash Cannon, Will-O-Wisp |
 | Metagross | 53 | Occa Berry | Clear Body | Adamant | Meteor Mash, Earthquake, Bullet Punch, Agility |
 
-Today's team: Forretress 52 (Sitrus Berry; Bug Bite, Toxic Spikes, Explosion, Earthquake), Steelix 52 (Passho Berry; Iron Head, Ice Fang, Earthquake, Sandstorm), Magnezone 52 (Focus Sash; Mirror Coat, Thunderbolt, Flash Cannon, Reflect), Metagross 52 (Shuca Berry; Zen Headbutt, Agility, Meteor Mash, Hammer Arm), Empoleon 52 (Chople Berry; Aqua Tail, Iron Head, Drill Peck, Earthquake), Bastiodon 53 (Leftovers; Metal Burst, Stone Edge, Iron Head, Avalanche). Expected: about 88 / 2.1 / 12 in my simulator (two readings, 90 and 86.5), where today's file reads 100 / 0.6 / 54.
+Today's team: Forretress 52 (Sitrus Berry; Bug Bite, Toxic Spikes, Explosion, Earthquake), Steelix 52 (Passho Berry; Iron Head, Ice Fang, Earthquake, Sandstorm), Magnezone 52 (Focus Sash; Mirror Coat, Thunderbolt, Flash Cannon, Reflect), Metagross 52 (Shuca Berry; Zen Headbutt, Agility, Meteor Mash, Hammer Arm), Empoleon 52 (Chople Berry; Aqua Tail, Iron Head, Drill Peck, Earthquake), Bastiodon 53 (Leftovers; Metal Burst, Stone Edge, Iron Head, Avalanche). Expected: about 89 / 1.9 / 16 in my simulator, where today's file reads 100 / 1.4 / 20.
 
 ### Ace Trainer Jonah: Iron Island B2F, on the path, tag, beside Riley, cap 53
 
@@ -214,7 +222,7 @@ Ghosts and blades: Dusknoir's Will-O-Wisp, Banette, a Super Luck Absol with a Sc
 | Mismagius | 51 | Wise Glasses | Levitate | Timid | Shadow Ball, Thunderbolt, Energy Ball, Calm Mind |
 | Gallade | 52 | Lum Berry | Justified | Adamant | Psycho Cut, Leaf Blade, Drain Punch, Night Slash |
 
-Today's team: Banette 46 (Night Slash, Shadow Sneak, Sucker Punch, Embargo), Gallade 46 (Psycho Cut, Leaf Blade, Night Slash, Aerial Ace). Expected: about 94 / 1.6 / 26 with a planned six; read blind, 19 / 5.3 / 1 (decision 3).
+Today's team: Banette 46 (Night Slash, Shadow Sneak, Sucker Punch, Embargo), Gallade 46 (Psycho Cut, Leaf Blade, Night Slash, Aerial Ace). Expected: about 94 / 1.8 / 5 with a planned six; read blind, 22 / 5.2 / 1.
 
 ### Ace Trainer Shannon: Route 221, optional, single, Ace Trainer, cap 53
 
@@ -229,5 +237,5 @@ Sun: Victreebel leads with Sunny Day on a Heat Rock and Sleep Powder, then Cherr
 | Lopunny | 51 | Lum Berry | Scrappy | Jolly | Jump Kick, Dizzy Punch, Ice Punch, Fake Out |
 | Arcanine | 52 | Sitrus Berry | Intimidate | Adamant | Flare Blitz, ExtremeSpeed, Crunch, Thunder Fang |
 
-Today's team: Cherrim 45 (Energy Ball, Weather Ball, Leech Seed, Sunny Day), Miltank 45 (Hammer Arm, Fire Punch, Headbutt, Milk Drink), Lopunny 45 (Jump Kick, Quick Attack, Fire Punch, Dizzy Punch). Expected: about 94.5 / 1.7 / 10 with a planned six; read blind, 31 / 5.0 / 2 (decision 3).
+Today's team: Cherrim 45 (Energy Ball, Weather Ball, Leech Seed, Sunny Day), Miltank 45 (Hammer Arm, Fire Punch, Headbutt, Milk Drink), Lopunny 45 (Jump Kick, Quick Attack, Fire Punch, Dizzy Punch). Expected: about 93 / 1.7 / 10 with a planned six; read blind, 31 / 4.9 / 2.
 

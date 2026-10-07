@@ -130,22 +130,38 @@
             ],
             [
                 54,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                56,
-                "MOVE_PSYCHIC"
-            ],
-            [
-                58,
                 "MOVE_SCARY_FACE"
             ],
             [
                 64,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                66,
+                "MOVE_PSYCHIC"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM15",
+            "TM18",
+            "TM20",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM48",
+            "TM53",
+            "TM56",
+            "TM61",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM79",
+            "TM86",
+            "TM92"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

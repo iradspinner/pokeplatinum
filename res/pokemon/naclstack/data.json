@@ -77,10 +77,6 @@
                 "MOVE_IRON_DEFENSE"
             ],
             [
-                24,
-                "MOVE_BULLDOZE"
-            ],
-            [
                 27,
                 "MOVE_ROCK_POLISH"
             ],
@@ -103,9 +99,29 @@
             [
                 45,
                 "MOVE_EARTHQUAKE"
+            ],
+            [
+                51,
+                "MOVE_ROCK_BLAST"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM15",
+            "TM17",
+            "TM26",
+            "TM28",
+            "TM32",
+            "TM42",
+            "TM48",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

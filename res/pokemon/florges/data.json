@@ -118,18 +118,30 @@
             ],
             [
                 59,
-                "MOVE_PSYCHIC"
+                "MOVE_PSYCHIC_NOISE"
             ],
             [
                 65,
-                "MOVE_ENERGY_BALL"
-            ],
-            [
-                67,
                 "MOVE_POLLEN_PUFF"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM20",
+            "TM22",
+            "TM29",
+            "TM41",
+            "TM42",
+            "TM45",
+            "TM53",
+            "TM68",
+            "TM86",
+            "TM93"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

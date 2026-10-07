@@ -1,5 +1,13 @@
 # The comb: Maylene's split
 
+**Refreshed 2026-10-07.** The expected numbers were read again after two
+changes: a fix to my simulator, which had picked the player's lead by party
+order when two choices looked equal and so skewed every earlier boss reading,
+and the legality sweep against the final lists (origin/balance-tm-pass at
+377312dbf0), which left this split unchanged. Ian ruled that every draft goes into step 12 as
+drafted; the scorer's step 15 reading gives the real numbers, and he chooses
+any retunes from them. My candidates are in `../retune-proposals-not-approved/`.
+
 The bosses of Maylene's split are combed: Barry 3 (three files, one per
 starter), Ace Trainers Dennis and Maya, and Maylene, all passing the checker
 and the rule audit. The split's ordinary trainers follow in a later pass, as
@@ -12,9 +20,9 @@ under.
 
 My simulator reads them against the scorer's box at Maylene (box-after-fantina.md),
 which knows no TMs, so these fights read harsher than they will once the TM
-pass lands. Bosses are set a step harder than today's files: Maylene about 81
-won to today's 94 in my simulator, Barry 3 about level on wins with far more
-faints than today's. The Ace Trainers, which goal 3 reads with a planned six,
+pass lands. Maylene now reads about 34 won to today's 96, far harder than the
+step I aimed for, and Barry 3 about 98 won with three faints to today's 100
+with none (84 in the Turtwig version). The Ace Trainers, which goal 3 reads with a planned six,
 read 99 to 100 that way; met blind they lose about one fight in fifteen in my
 simulator, which I leave as they are, since Ian asked that fights not be tuned
 against a box without TMs. The blind pool at 39 is my own reckoning by the
@@ -54,10 +62,10 @@ trainers of Maylene's split onward.
 
 | Trainer | Place | Path | Battle | Size | Levels | The idea | Expected |
 |---|---|---|---|---|---|---|---|
-| Barry 3 | Route 209, gate to Hearthome | on the path | single, boss | 5 | 37 to 39 | Barry's skeleton from his third fight | about 100 / 2.8 / 1 in my simulator, where today's file reads 100 / 0.0 / 100 |
-| Ace Trainer Dennis | Route 215 | on the path | single, Ace Trainer | 4 | 37 to 38 | Speed and coverage | about 100 / 0.2 / 84 with a planned six in Route 215's rain |
-| Ace Trainer Maya | Route 215 | on the path | single, Ace Trainer | 4 | 37 to 38 | Toxic Spikes from Roserade | about 100 / 0.95 / 12 with a planned six in Route 215's rain |
-| Maylene | Veilstone Gym | on the path | single, boss | 6 | 37 to 39 | A Stealth Rock lead with a Fake Out member behind it | about 81 / 3.7 / 1 in my simulator, where today's file reads 94 / 2.4 / 0 |
+| Barry 3 | Route 209, gate to Hearthome | on the path | single, boss | 5 | 37 to 39 | Barry's skeleton from his third fight | about 98 / 3.0 / 3 in my simulator, where today's file reads 100 / 0.0 / 100 |
+| Ace Trainer Dennis | Route 215 | on the path | single, Ace Trainer | 4 | 37 to 38 | Speed and coverage | about 100 / 0.2 / 83 with a planned six in rain |
+| Ace Trainer Maya | Route 215 | on the path | single, Ace Trainer | 4 | 37 to 38 | Toxic Spikes from Roserade | about 100 / 0.9 / 13 with a planned six in rain |
+| Maylene | Veilstone Gym | on the path | single, boss | 6 | 37 to 39 | A Stealth Rock lead with a Fake Out member behind it | about 34 / 5.3 / 0 in my simulator, where today's file reads 96 / 2.1 / 1 |
 
 Expected numbers are won / faints a fight / clean in my simulator, beside
 today's file where it was read.
@@ -76,7 +84,7 @@ Barry's skeleton from his third fight: a Fake Out lead (Technician Ambipom with 
 | Snorlax | 38 | Leftovers | Thick Fat | Careful | Body Slam, Earthquake, Curse, Ice Punch |
 | Torterra | 39 | Sitrus Berry | Thick Fat | Adamant | Wood Hammer, Earthquake, Crunch, Stone Edge |
 
-Today's team: Staravia 32 (Focus Sash; Aerial Ace, Quick Attack, Endeavor, Double Team), Staryu 32 (BubbleBeam, Signal Beam, Camouflage, Recover), Vulpix 32 (Flamethrower, Will-O-Wisp, Energy Ball, Confuse Ray), Grotle 33 (Sitrus Berry; Seed Bomb, Curse, Bite, Leech Seed). Expected: about 100 / 2.8 / 1 in my simulator, where today's file reads 100 / 0.0 / 100; read by the scorer later.
+Today's team: Staravia 32 (Focus Sash; Aerial Ace, Quick Attack, Endeavor, Double Team), Staryu 32 (BubbleBeam, Signal Beam, Camouflage, Recover), Vulpix 32 (Flamethrower, Will-O-Wisp, Energy Ball, Confuse Ray), Grotle 33 (Sitrus Berry; Seed Bomb, Curse, Bite, Leech Seed). Expected: about 98 / 3.0 / 3 in my simulator, where today's file reads 100 / 0.0 / 100.
 
 ### Ace Trainer Dennis: Route 215, on the path, single, Ace Trainer, cap 39
 
@@ -89,7 +97,7 @@ Speed and coverage: Gliscor's Ice Fang and U-turn, Floatzel's Aqua Jet, Starapto
 | Staraptor | 37 | none | Reckless | default | Brave Bird, Close Combat, Quick Attack, U-turn |
 | Drifblim | 38 | Sitrus Berry | Unburden | default | Shadow Ball, Thunderbolt, Will-O-Wisp, Stockpile |
 
-Today's team: Gligar 35 (Knock Off, U-turn, Slash, Tailwind), Floatzel 35 (Ice Punch, Crunch, Aqua Jet, Brick Break), Drifblim 35 (Thunderbolt, Weather Ball, Thunder Wave, Ominous Wind). Expected: about 100 / 0.2 / 84 with a planned six in Route 215's rain; read blind, 95 / 1.25 / 73 in the scorer's terms.
+Today's team: Gligar 35 (Knock Off, U-turn, Slash, Tailwind), Floatzel 35 (Ice Punch, Crunch, Aqua Jet, Brick Break), Drifblim 35 (Thunderbolt, Weather Ball, Thunder Wave, Ominous Wind). Expected: about 100 / 0.2 / 83 with a planned six in rain; read blind, 93 / 1.4 / 33.
 
 ### Ace Trainer Maya: Route 215, on the path, single, Ace Trainer, cap 39
 
@@ -102,7 +110,7 @@ Toxic Spikes from Roserade, then special attackers: Gastrodon's Earth Power and 
 | Lickilicky | 37 | none | Poison Heal | default | Body Slam, Knock Off, Ice Beam, Thunderbolt |
 | Gardevoir | 38 | none | Trace | default | Psychic, Thunderbolt, Energy Ball, Wish |
 
-Today's team: Roserade 35 (Toxic Spikes, Giga Drain, Leech Seed), Gardevoir 35 (Psychic, Energy Ball, Calm Mind, Thunderbolt), Lickitung 35 (Fire Punch, Ice Punch, Zen Headbutt, ThunderPunch). Expected: about 100 / 0.95 / 12 with a planned six in Route 215's rain; read blind, 94 / 2.37 / 61 in the scorer's terms.
+Today's team: Roserade 35 (Toxic Spikes, Giga Drain, Leech Seed), Gardevoir 35 (Psychic, Energy Ball, Calm Mind, Thunderbolt), Lickitung 35 (Fire Punch, Ice Punch, Zen Headbutt, ThunderPunch). Expected: about 100 / 0.9 / 13 with a planned six in rain; read blind, 96 / 2.4 / 1.
 
 ### Maylene: Veilstone Gym, on the path, single, boss, cap 39
 
@@ -117,5 +125,5 @@ A Stealth Rock lead with a Fake Out member behind it, an orb user and a priority
 | Medicham | 38 | Coba Berry | Pure Power | Jolly | Hi Jump Kick, Psycho Cut, Fire Punch, ThunderPunch |
 | Lucario | 39 | Black Belt | Adaptability | Modest | Aura Sphere, Flash Cannon, Water Pulse, Vacuum Wave |
 
-Today's team: Poliwrath 38 (Damp Rock; Brick Break, Waterfall, Rock Slide, Rain Dance), Heracross 38 (Flame Orb; Close Combat, Facade, Aerial Ace, Bug Bite), Toxicroak 38 (Payapa Berry; Sucker Punch, Poison Jab, Cross Chop, Ice Punch), Cacturne 38 (Iron Ball; Revenge, Fling, Sucker Punch, Seed Bomb), Medicham 38 (Shell Bell; Hi Jump Kick, Psycho Cut, Fire Punch, ThunderPunch), Lucario 39 (Black Belt; Water Pulse, Vacuum Wave, Flash Cannon, Aura Sphere). Expected: about 81 / 3.7 / 1 in my simulator, where today's file reads 94 / 2.4 / 0; read by the scorer later.
+Today's team: Poliwrath 38 (Damp Rock; Brick Break, Waterfall, Rock Slide, Rain Dance), Heracross 38 (Flame Orb; Close Combat, Facade, Aerial Ace, Bug Bite), Toxicroak 38 (Payapa Berry; Sucker Punch, Poison Jab, Cross Chop, Ice Punch), Cacturne 38 (Iron Ball; Revenge, Fling, Sucker Punch, Seed Bomb), Medicham 38 (Shell Bell; Hi Jump Kick, Psycho Cut, Fire Punch, ThunderPunch), Lucario 39 (Black Belt; Water Pulse, Vacuum Wave, Flash Cannon, Aura Sphere). Expected: about 34 / 5.3 / 0 in my simulator, where today's file reads 96 / 2.1 / 1.
 

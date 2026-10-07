@@ -366,6 +366,9 @@ if [ $BUILD -eq 1 ]; then
         # stops being its truth. --encounters --ref still exists for the
         # tables that have not been authored yet.
         check "verify_narcs --encounters --source" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --encounters --source
+        # Every species' TM and HM bits read back from the built pl_personal
+        # against its JSON and tm-list.tsv (the TM pass); no base ROM needed.
+        check "tmcompat check (TM bits read back)" "$PY" -m tools.oxide.balance.tmcompat check --rom "$ROM"
         refcheck "verify_narcs --text" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --text
         refcheck "verify_narcs --map-headers" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --map-headers
         refcheck "verify_narcs --land-data" "$PY" tools/oxide/verify_narcs.py --built "$ROM" --ref "$BASE" --land-data

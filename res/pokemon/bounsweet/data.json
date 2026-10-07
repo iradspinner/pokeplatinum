@@ -46,11 +46,11 @@
         "by_level": [
             [
                 3,
-                "MOVE_MAGICAL_LEAF"
+                "MOVE_TAUNT"
             ],
             [
                 4,
-                "MOVE_TAUNT"
+                "MOVE_TRIPLE_AXEL"
             ],
             [
                 5,
@@ -65,6 +65,10 @@
                 "MOVE_RAZOR_LEAF"
             ],
             [
+                21,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
                 23,
                 "MOVE_TEETER_DANCE"
             ],
@@ -73,7 +77,20 @@
                 "MOVE_FLAIL"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM09",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM32",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM53",
+            "TM64",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

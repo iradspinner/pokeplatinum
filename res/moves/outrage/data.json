@@ -1,22 +1,22 @@
 {
     "name": "Outrage",
     "description": [
-        "The user rampages\n",
-        "and attacks for two\n",
-        "to three turns.\n",
-        "However, it then\n",
-        "becomes confused."
+        "The user lashes out\n",
+        "at the foe in a rage.\n",
+        "The user is also hurt\n",
+        "by half the damage it\n",
+        "deals."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_DRAGON",
-    "power": 120,
+    "power": 140,
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF",
+        "type": "BATTLE_EFFECT_RECOIL_HALF",
         "chance": 0
     },
-    "range": "RANGE_RANDOM_OPPONENT",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_MAKES_CONTACT",

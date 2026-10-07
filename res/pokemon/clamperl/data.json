@@ -43,8 +43,8 @@
             [ 1, "MOVE_WHIRLPOOL" ],
             [ 1, "MOVE_IRON_DEFENSE" ],
             [ 17, "MOVE_BITE" ],
-            [ 19, "MOVE_BRINE" ],
-            [ 27, "MOVE_AURORA_BEAM" ]
+            [ 19, "MOVE_CHILLING_WATER" ],
+            [ 27, "MOVE_ICE_FANG" ]
         ],
         "by_tm": [
             "TM03",
@@ -52,21 +52,14 @@
             "TM10",
             "TM13",
             "TM14",
-            "TM17",
             "TM21",
             "TM27",
-            "TM32",
             "TM42",
             "TM43",
-            "TM44",
-            "TM45",
+            "TM48",
             "TM55",
-            "TM58",
             "TM78",
-            "TM82",
-            "TM83",
             "TM87",
-            "TM90",
             "HM03",
             "HM07"
         ],

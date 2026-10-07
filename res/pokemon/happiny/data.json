@@ -43,15 +43,13 @@
             [ 9, "MOVE_REFRESH" ],
             [ 12, "MOVE_SWEET_KISS" ],
             [ 27, "MOVE_CHILLING_WATER" ],
-            [ 29, "MOVE_SWIFT" ],
-            [ 34, "MOVE_ICY_WIND" ]
+            [ 34, "MOVE_WEATHER_BALL" ]
         ],
         "by_tm": [
             "TM03",
             "TM06",
             "TM10",
             "TM16",
-            "TM17",
             "TM20",
             "TM21",
             "TM22",
@@ -62,24 +60,14 @@
             "TM34",
             "TM35",
             "TM38",
+            "TM41",
             "TM42",
             "TM43",
-            "TM44",
-            "TM45",
-            "TM56",
-            "TM58",
             "TM60",
-            "TM67",
-            "TM70",
             "TM73",
-            "TM77",
             "TM78",
-            "TM82",
-            "TM83",
-            "TM85",
             "TM86",
-            "TM87",
-            "TM90"
+            "TM87"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",

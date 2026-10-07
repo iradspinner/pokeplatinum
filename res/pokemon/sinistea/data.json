@@ -65,12 +65,12 @@
                 "MOVE_STRENGTH_SAP"
             ],
             [
-                29,
-                "MOVE_HEX"
-            ],
-            [
                 30,
                 "MOVE_AROMATHERAPY"
+            ],
+            [
+                32,
+                "MOVE_OMINOUS_WIND"
             ],
             [
                 36,
@@ -89,7 +89,22 @@
                 "MOVE_SHELL_SMASH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM11",
+            "TM19",
+            "TM29",
+            "TM30",
+            "TM42",
+            "TM56",
+            "TM61",
+            "TM63",
+            "TM77",
+            "TM79",
+            "TM92",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": [
             "MOVE_MEMENTO"

@@ -390,7 +390,9 @@ def held_state_checks():
     out.append(("Inner Focus, Synchronize, Magnet Pull, Unaware",
                 not focus and synced == "par" and trapped and unaware_hit == plain_hit,
                 f"flinched {focus}, synced {synced}, trapped {trapped}, Unaware {plain_hit} then {unaware_hit}"))
-    # Flail and Water Spout by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap.
+    # Flail and Water Spout by HP, Rage, Last Resort, Hurricane in rain, Custap. Dig is a one-turn hit
+    # since the move reworks (2026-10-06), so nothing goes underground: its old check, Earthquake
+    # reaching a digger, is now that Dig never charges (Gust into Fly keeps the reach rules' check).
     m = fs.Mon.__new__(fs.Mon)
     m.hp, m.maxhp = 1, 64
     low = fs.flail_power(m)
@@ -409,15 +411,14 @@ def held_state_checks():
     b.weather = "Rain"
     rain = all(pl.accuracy_hits(b, barboach, foe, fs.move("Hurricane")) for _ in range(20))
     b.weather = None
-    foe.charging = fs.move("Dig")
-    reach = fs.reaches(fs.move("Earthquake"), foe) and not fs.reaches(gun, foe)
-    foe.charging = None
+    dig = fs.move("Dig")
+    one_turn = dig.effect not in fs.TWO_TURN and dig.effect not in fs.INVULNERABLE
     foe.item, foe.hp = "Custap Berry", foe.maxhp // 4
     custap = fs.custap_fires(foe)
-    out.append(("Flail by HP, Rage, Last Resort, Hurricane in rain, Earthquake into Dig, Custap at a quarter",
-                low == 200 and high == 20 and rage == 1 and early and not later and rain and reach and custap,
+    out.append(("Flail by HP, Rage, Last Resort, Hurricane in rain, Dig in one turn, Custap at a quarter",
+                low == 200 and high == 20 and rage == 1 and early and not later and rain and one_turn and custap,
                 f"Flail {low}/{high}, Rage +{rage}, Last Resort fails {early} then {later}, rain {rain}, "
-                f"Dig {reach}, Custap {custap}"))
+                f"Dig's effect {dig.effect}, Custap {custap}"))
     return out
 
 
@@ -462,6 +463,298 @@ def map_weather_checks():
     ok = got == {"leader_roark": "Sand", "youngster_darius": "Sand", "youngster_tristan": None} and story == "Sand"
     return [("study and blind readings start in the map's weather, as the story fight does", ok,
              f"{got}; the story fight's Roark {story}")]
+
+
+def rework_checks():
+    """The move reworks (Ian, 2026-10-06; the engine on cloud/main-move-reworks),
+    each on the planner's own attack in a one-against-one battle whose rows
+    are set (test_fightsim.battle), so every number is exact. The target has
+    Battle Armor so that no crit muddies a damage figure."""
+    from . import plplan
+    from .test_fightsim import battle as duel
+    out = []
+
+    def fresh(pm, bm=("Tackle",), roll=30, seed=1, hp=100, b_types=("Normal",)):
+        rolls = {("p", m): [roll] * 16 for m in pm}
+        rolls.update({("b", m): [roll] * 16 for m in bm})
+        b, p, foe = duel(list(pm), list(bm), rolls, hp=hp, seed=seed, b_types=b_types)
+        b.dice = pl.RunDice(random.Random(seed), True)
+        b.rng = b.dice.rng
+        foe.ability = "Battle Armor"
+        return b, p, foe
+
+    def use(name, seed=1, **kw):
+        b, p, foe = fresh([name], seed=seed, **kw)
+        pl.use_move(b, p, fs.move(name), foe, True)
+        return b, p, foe
+
+    # Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time: half the damage
+    # as recoil, no recharge; Rock Head takes no recoil.
+    beams = []
+    for name in ("Hyper Beam", "Giga Impact", "Rock Wrecker", "Roar of Time"):
+        b, p, foe = use(name, roll=40)
+        beams.append((name, 100 - foe.hp, 100 - p.hp, p.recharge))
+    b, p, foe = fresh(["Hyper Beam"], roll=40)
+    p.ability = "Rock Head"
+    pl.use_move(b, p, fs.move("Hyper Beam"), foe, True)
+    out.append(("Hyper Beam and its kin: half recoil, no recharge; none with Rock Head",
+                all(x[1:] == (40, 20, False) for x in beams) and p.hp == 100,
+                f"{beams}; Rock Head HP {p.hp}"))
+
+    # The starter ultimates and the one-turn moves: accuracy, recoil and
+    # status over 600 uses each.
+    def tally(name, n=600, roll=30):
+        hit = recoil_ok = status = confused = locked = charging = 0
+        frac = fs.RECOIL.get(fs.move(name).effect, 0)
+        for s in range(n):
+            b, p, foe = use(name, seed=s, roll=roll)
+            dealt = 100 - foe.hp
+            if dealt:
+                hit += 1
+                recoil_ok += (100 - p.hp) == (max(1, int(dealt * frac)) if frac else 0)
+                status += foe.status is not None
+                confused += bool(foe.confused)
+            locked += p.lock is not None
+            charging += p.charging is not None
+        return {"hit": hit / n, "recoil": recoil_ok == hit, "status": status / max(1, hit),
+                "confused": confused / max(1, hit), "locked": locked, "charging": charging}
+    want = {"Blast Burn": (0.95, "status", 0.30), "Frenzy Plant": (0.95, "status", 0.20),
+            "Hydro Cannon": (0.95, "status", 0.0), "Sky Attack": (1.0, "status", 0.20),
+            "Dig": (1.0, "status", 0.0), "Dive": (1.0, "status", 0.0),
+            "Thrash": (1.0, "status", 0.20), "Outrage": (1.0, "status", 0.0),
+            "Petal Dance": (1.0, "confused", 0.20), "Uproar": (1.0, "confused", 0.20),
+            "Raging Fury": (1.0, "confused", 0.20)}
+    got = {name: tally(name) for name in want}
+    bad = [name for name, (acc, kind, rate) in want.items()
+           if abs(got[name]["hit"] - acc) > 0.04 or not got[name]["recoil"]
+           or abs(got[name][kind] - rate) > 0.06 or got[name]["locked"] or got[name]["charging"]]
+    out.append(("starter ultimates, Sky Attack, Dig, Dive and the rampage moves in one turn, at their odds",
+                not bad, "; ".join(f"{n} hit {g['hit']:.2f} {want[n][1]} {g[want[n][1]]:.2f}"
+                                   + ("" if g["recoil"] else " recoil wrong") for n, g in got.items())
+                + (f"; off: {bad}" if bad else "")))
+
+    # Two to five hits on 35/35/15/15: a row of three hits at 10 each.
+    def spread(item=None, ability=None, n=4000):
+        counts = collections.Counter()
+        for s in range(n):
+            b, p, foe = fresh(["Bullet Seed"], seed=s, roll=30, hp=200)
+            p.item, p.ability = item, ability or p.ability
+            if ability == "Skill Link":
+                b.st["rows"][(None, "p0", "b0.0")]["moves"]["Bullet Seed"]["rolls"] = [50] * 16
+            pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+            counts[(200 - foe.hp) // 10] += 1
+        return {h: round(c / n, 3) for h, c in sorted(counts.items())}
+    plain, link, dice = spread(), spread(ability="Skill Link"), spread(item="Loaded Dice")
+    ok = (all(abs(plain.get(h, 0) - w / 100) < 0.025 for h, w in fs.MULTI_HIT_ODDS) and link == {5: 1.0}
+          and set(dice) == {4, 5} and abs(dice[4] - 0.5) < 0.03)
+    # The planner's dice enumerate the count at its odds.
+    b, p, foe = fresh(["Bullet Seed"])
+    b.dice = plplan.EnumDice((), random.Random(0))
+    pl.rolled_hits(b, p, foe, fs.move("Bullet Seed"), False)
+    enum = b.dice.events[0] if b.dice.events else None
+    out.append(("two to five hit moves roll 35/35/15/15; Skill Link 5, Loaded Dice 4 or 5; the planner enumerates",
+                ok and enum == (0.35, 0.35, 0.15, 0.15),
+                f"hits {plain}; Skill Link {link}; Loaded Dice {dice}; enumerated {enum}"))
+
+    # A Focus Sash holds one hit, not a two to five hit move's total.
+    b, p, foe = fresh(["Bullet Seed"], roll=150)
+    foe.item = "Focus Sash"
+    pl.attack(b, p, fs.move("Bullet Seed"), foe, True)
+    b2, p2, foe2 = fresh(["Tackle"], roll=150)
+    foe2.item = "Focus Sash"
+    pl.attack(b2, p2, fs.move("Tackle"), foe2, True)
+    out.append(("a Focus Sash holds a single hit but not a multi-hit move", foe.hp == 0 and foe2.hp == 1,
+                f"Bullet Seed leaves {foe.hp}, Tackle {foe2.hp}"))
+
+    # Fury Cutter: three hits at 30, 40 and 50 on a row of one hit at 30.
+    b, p, foe = fresh(["Fury Cutter"], roll=30, hp=200)
+    pl.attack(b, p, fs.move("Fury Cutter"), foe, True)
+    cutter = 200 - foe.hp
+    expected = fs.expected_hit_scale(fs.move("Fury Cutter"))
+    out.append(("Fury Cutter hits three times rising by 10; Spite has 5 PP",
+                cutter == 120 and abs(expected - 4.0) < 1e-9 and fs.move("Spite").pp == 5,
+                f"dealt {cutter} on a 30 row; expected scale {expected:.2f}; Spite {fs.move('Spite').pp} PP"))
+
+    # Upper Hand: only against a chosen priority move, before it acts; it flinches.
+    def upper(chosen, first=True, ability=None):
+        b, p, foe = fresh(["Upper Hand"], roll=20)
+        foe.chosen = fs.move(chosen) if chosen else None
+        foe.ability = ability or foe.ability
+        pl.attack(b, p, fs.move("Upper Hand"), foe, first)
+        return 100 - foe.hp, foe.flinch
+    ups = {"Quick Attack": upper("Quick Attack"), "Tackle": upper("Tackle"),
+           "Quick Attack, second": upper("Quick Attack", first=False),
+           "Prankster Thunder Wave": upper("Thunder Wave", ability="Prankster"),
+           "Thunder Wave": upper("Thunder Wave")}
+    out.append(("Upper Hand lands only on a chosen priority move, and flinches",
+                ups == {"Quick Attack": (20, True), "Tackle": (0, False), "Quick Attack, second": (0, False),
+                        "Prankster Thunder Wave": (20, True), "Thunder Wave": (0, False)}, str(ups)))
+
+    # Shell Trap: only after a physical hit on its user this turn.
+    traps = {}
+    for label, hit in (("none", None), ("physical", ("Physical", 10)), ("special", ("Special", 10))):
+        b, p, foe = fresh(["Shell Trap"], roll=25)
+        p.hit_this_turn = hit
+        pl.attack(b, p, fs.move("Shell Trap"), foe, True)
+        traps[label] = 100 - foe.hp
+    out.append(("Shell Trap strikes only after a physical hit on its user", traps == {"none": 0, "physical": 25,
+                                                                                     "special": 0}, str(traps)))
+
+    # Burning Jealousy: a burn only on a target whose stats rose this turn,
+    # none through Sheer Force; the flag clears at the turn's end.
+    def jealous(raised, ability=None):
+        b, p, foe = fresh(["Burning Jealousy"], roll=10)
+        p.ability = ability or p.ability
+        if raised:
+            fs.change_stages(foe, {"atk": 1})
+        pl.attack(b, p, fs.move("Burning Jealousy"), foe, True)
+        return foe.status
+    b, p, foe = fresh(["Tackle"])
+    fs.change_stages(foe, {"spe": 1})
+    raised = foe.stat_raised
+    fs.end_of_turn(b)
+    out.append(("Burning Jealousy burns only a target whose stats rose this turn",
+                (jealous(False), jealous(True), jealous(True, "Sheer Force"), raised, foe.stat_raised)
+                == (None, "brn", None, True, False),
+                f"plain {jealous(False)}, raised {jealous(True)}, Sheer Force {jealous(True, 'Sheer Force')}; "
+                f"flag {raised} then {foe.stat_raised}"))
+
+    # Sheer Force strips the new effects' secondaries and keeps the recoil.
+    sf = {}
+    for name, kind in (("Raging Fury", "confused"), ("Thrash", "status")):
+        landed = recoil = 0
+        for s in range(300):
+            b, p, foe = fresh([name], seed=s, roll=30)
+            p.ability = "Sheer Force"
+            pl.attack(b, p, fs.move(name), foe, True)
+            landed += bool(foe.confused) if kind == "confused" else foe.status is not None
+            recoil += p.hp == 90
+        sf[name] = (landed, recoil)
+    b, p, foe = fresh(["Upper Hand"], roll=20)
+    p.ability, foe.chosen = "Sheer Force", fs.move("Quick Attack")
+    pl.attack(b, p, fs.move("Upper Hand"), foe, True)
+    out.append(("Sheer Force strips Raging Fury's, Thrash's and Upper Hand's secondaries, keeping the recoil",
+                sf == {"Raging Fury": (0, 300), "Thrash": (0, 300)} and not foe.flinch
+                and {"RECOIL_CONFUSE_HIT", "UPPER_HAND", "BURN_HIT_IF_STATS_ROSE"} <= fs.sheer_force_effects(),
+                f"{sf}; Upper Hand flinch {foe.flinch}"))
+
+    # Reckless: the game raises every effect it lists by 1.2; on a row the
+    # simulator adds it only where the calculator does not (Hyper Beam, until
+    # the calculator reads the game's list), never where it does (Brave Bird),
+    # and never without Reckless.
+    reck = {}
+    for name, ability in (("Hyper Beam", "Reckless"), ("Brave Bird", "Reckless"), ("Hyper Beam", "Intimidate")):
+        b, p, foe = fresh([name], roll=40, hp=200)
+        p.ability = ability
+        pl.attack(b, p, fs.move(name), foe, True)
+        reck[f"{name} {ability}"] = 200 - foe.hp
+    beam = 40 if "Hyper Beam" in fs.calc_reckless() else 48
+    want_effects = {"RECOIL_HALF", "RECOIL_BURN_HIT", "RECOIL_PARALYZE_HIT", "RECOIL_CONFUSE_HIT", "RECOIL_THIRD",
+                    "RECOIL_QUARTER", "CRASH_ON_MISS"}
+    out.append(("Reckless: the simulator adds 1.2 where the calculator's row lacks it, and only there",
+                reck == {"Hyper Beam Reckless": beam, "Brave Bird Reckless": 40, "Hyper Beam Intimidate": 40}
+                and want_effects <= fs.reckless_effects(),
+                f"{reck}; the calculator boosts {len(fs.calc_reckless())} moves itself; "
+                f"effects {sorted(fs.reckless_effects())}"))
+
+    # Priority as the engine reckons it: Prankster on a status move, Gale
+    # Wings on a Flying move at full HP.
+    b, p, foe = fresh(["Tackle"])
+    p.ability = "Prankster"
+    prank = fs.move_priority(p, fs.move("Thunder Wave"))
+    p.ability = "Gale Wings"
+    gale = fs.move_priority(p, fs.move("Brave Bird"))
+    p.hp -= 1
+    gale_hurt = fs.move_priority(p, fs.move("Brave Bird"))
+    out.append(("Prankster and Gale Wings raise priority as Battler_MovePriority does",
+                (prank, gale, gale_hurt) == (1, 1, 0), f"Prankster Thunder Wave {prank}, Gale Wings {gale}, "
+                                                       f"hurt {gale_hurt}"))
+    return out
+
+
+def sheer_force_life_orb_checks():
+    """Ian, 2026-10-07: a Sheer Force user holding a Life Orb takes no Life
+    Orb recoil on a move Sheer Force boosts (Battler_SheerForceActive: an
+    effect it strips, or a move that keeps its effect under it), and keeps
+    both boosts. On the planner's attack with set rows, then on the
+    calculator: one level 100 Nidoking's Flamethrower into a Snorlax with
+    Sheer Force and a Life Orb, each alone, and neither (1.3, 1.3 and 1.69,
+    within rounding)."""
+    from . import pressure, teamscore
+    from .test_fightsim import battle as duel
+    out = []
+
+    def lost(name, ability, item="Life Orb"):
+        b, p, foe = duel([name], ["Tackle"], {("p", name): [20] * 16}, hp=100)
+        b.dice = pl.RunDice(random.Random(1), True)
+        b.rng = b.dice.rng
+        foe.ability = "Battle Armor"
+        p.ability, p.item = ability, item
+        pl.attack(b, p, fs.move(name), foe, True)
+        return 100 - p.hp
+    got = {"Flamethrower, Sheer Force": lost("Flamethrower", "Sheer Force"),
+           "Ceaseless Edge, Sheer Force": lost("Ceaseless Edge", "Sheer Force"),
+           "Spirit Shackle, Sheer Force": lost("Spirit Shackle", "Sheer Force"),
+           "Tackle, Sheer Force": lost("Tackle", "Sheer Force"),
+           "Flamethrower, Blaze": lost("Flamethrower", "Blaze")}
+    sf = types_ns(ability="Sheer Force")
+    strips = {n: fs.sheer_force_strips(sf, fs.move(n)) for n in ("Flamethrower", "Spirit Shackle", "Ceaseless Edge")}
+    out.append(("Sheer Force with a Life Orb: no recoil on a move it boosts, recoil on one it does not",
+                got == {"Flamethrower, Sheer Force": 0, "Ceaseless Edge, Sheer Force": 0,
+                        "Spirit Shackle, Sheer Force": 0, "Tackle, Sheer Force": 10, "Flamethrower, Blaze": 10}
+                and strips == {"Flamethrower": True, "Spirit Shackle": False, "Ceaseless Edge": False},
+                f"HP lost {got}; strips {strips}"))
+
+    ivs = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    mon = {"species": "Nidoking", "level": 100, "nature": "Modest", "ivs": ivs, "evs": dict.fromkeys(ivs, 0)}
+    pk = {"both": dict(mon, ability="Sheer Force", item="Life Orb"), "sf": dict(mon, ability="Sheer Force", item=""),
+          "lo": dict(mon, ability="Poison Point", item="Life Orb"), "none": dict(mon, ability="Poison Point", item=""),
+          # Immunity, not Thick Fat, so the Fire hit is large enough that rounding stays under 1%.
+          "t": dict(mon, species="Snorlax", level=50, nature="Hardy", ability="Immunity", item="")}
+    jobs = {"pokemon": pk, "pairs": [[k, "t", ["Flamethrower"], None] for k in ("both", "sf", "lo", "none")]}
+    rows = {r["a"]: r["moves"]["Flamethrower"]["rolls"][-1]
+            for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+    ratio = {k: round(rows[k] / rows["none"], 3) for k in ("both", "sf", "lo")}
+    out.append(("the calculator's row gives Sheer Force's 1.3 and the Life Orb's 1.3 together",
+                abs(ratio["sf"] - 1.3) < 0.03 and abs(ratio["lo"] - 1.3) < 0.03 and abs(ratio["both"] - 1.69) < 0.05,
+                f"Flamethrower {rows}; ratios to neither {ratio}"))
+    return out
+
+
+def types_ns(**kw):
+    import types
+    return types.SimpleNamespace(**kw)
+
+
+def reckless_calc_checks():
+    """Every move on an effect the game raises for Reckless deals 1.2 times
+    as much with Reckless, the calculator's own boost and the simulator's
+    (fs.reckless_fix) together: re-measured on the calculator, one level 100
+    Staraptor with Reckless against the same with Intimidate. Catches the
+    day the calculator learns a move's recoil, which would double the boost."""
+    import types
+    from . import pressure, teamscore
+    by_name = fs._by_calc_name()[0]
+    moves = sorted(n for n, r in by_name.items() if (r.get("effect") or "") in fs.reckless_effects() and r.get("power"))
+    ivs = {k: 31 for k in ("hp", "at", "df", "sp", "sa", "sd")}
+    mon = {"species": "Staraptor", "level": 100, "nature": "Hardy", "ivs": ivs, "evs": dict.fromkeys(ivs, 0), "item": ""}
+    jobs = {"pokemon": {"r": dict(mon, ability="Reckless"), "i": dict(mon, ability="Intimidate"),
+                        "t": dict(mon, species="Snorlax", level=50, ability="Thick Fat")},
+            "pairs": [["r", "t", moves, None], ["i", "t", moves, None]]}
+    rows = {r["a"]: r["moves"] for r in pressure.run_node(teamscore._blob_path(), jobs)["results"]}
+    reckless = types.SimpleNamespace(ability="Reckless")
+    off, small = [], []
+    for n in moves:
+        a, p = rows["r"].get(n, {}), rows["i"].get(n, {})
+        if not a.get("rolls") or not p.get("rolls") or p["rolls"][-1] < 60:
+            small.append(n)
+            continue
+        ratio = a["rolls"][-1] / p["rolls"][-1] * fs.reckless_fix(reckless, fs.move(n))
+        if abs(ratio - 1.2) > 0.03:
+            off.append(f"{n} {ratio:.3f}")
+    return [("Reckless: the calculator's boost and the simulator's come to 1.2 on every move it raises",
+             not off and len(moves) - len(small) >= 20,
+             f"{len(moves) - len(small)} moves measured; off {off}; too small to measure {small}")]
 
 
 def trick_room_checks():
@@ -641,6 +934,9 @@ def study_effect_checks():
     out += blind_pool_checks()
     out += map_weather_checks()
     out += trick_room_checks()
+    out += rework_checks()
+    out += reckless_calc_checks()
+    out += sheer_force_life_orb_checks()
     out.append(("Sleep Talk picks through the dice; a sleeping talker's turn enumerates",
                 picked is second and len(outcomes) > 1 and abs(total - 1) < 1e-9,
                 f"picked {picked.name}, {len(outcomes)} outcomes"))

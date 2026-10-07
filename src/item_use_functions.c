@@ -32,6 +32,7 @@
 #include "field_system.h"
 #include "field_task.h"
 #include "game_options.h"
+#include "gauntlet.h"
 #include "heap.h"
 #include "item.h"
 #include "item_use_functions.h"
@@ -750,15 +751,15 @@ static BOOL UseVsSeekerInField(ItemFieldUseContext *usageContext)
     return FALSE;
 }
 
-// Oxide: the Pocket PC works everywhere but in a gauntlet, where vanilla's
-// Vs. Seeker worked only outdoors (Ian, 2026-09-27).
+// Oxide: the Pocket PC works everywhere but in an open gauntlet section,
+// where vanilla's Vs. Seeker worked only outdoors (Ian, 2026-09-27).
 static enum ItemUseCheckResult CanUseVsSeeker(const ItemUseContext *usageContext)
 {
-    if (!MapHeader_IsGauntlet(usageContext->mapHeaderID)) {
-        return ITEM_USE_CAN_USE;
+    if (Gauntlet_IsOpen(usageContext->fieldSystem)) {
+        return ITEM_USE_CANNOT_USE_IN_GAUNTLET;
     }
 
-    return ITEM_USE_CANNOT_USE_GENERIC;
+    return ITEM_USE_CAN_USE;
 }
 
 static void UseOldRodFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
@@ -947,6 +948,11 @@ static enum ItemUseCheckResult CanUseEscapeRope(const ItemUseContext *usageConte
 {
     if (usageContext->hasPartner == TRUE) {
         return ITEM_USE_CANNOT_USE_WITH_PARTNER;
+    }
+
+    // Oxide: no escaping an open gauntlet section (Ian, 2026-09-29).
+    if (Gauntlet_IsOpen(usageContext->fieldSystem)) {
+        return ITEM_USE_CANNOT_USE_IN_GAUNTLET;
     }
 
     if ((MapHeader_IsCave(usageContext->mapHeaderID) == TRUE) && (MapHeader_IsEscapeRopeAllowed(usageContext->mapHeaderID) == TRUE)) {

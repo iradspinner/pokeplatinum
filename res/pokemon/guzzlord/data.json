@@ -105,15 +105,40 @@
                 "MOVE_BELCH"
             ],
             [
-                66,
-                "MOVE_THRASH"
-            ],
-            [
                 70,
                 "MOVE_GIGA_IMPACT"
+            ],
+            [
+                72,
+                "MOVE_THRASH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM15",
+            "TM17",
+            "TM23",
+            "TM26",
+            "TM31",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM46",
+            "TM48",
+            "TM59",
+            "TM60",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM70",
+            "TM71",
+            "TM74",
+            "TM79",
+            "TM80",
+            "TM84"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

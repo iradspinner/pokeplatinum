@@ -1,5 +1,13 @@
 # The comb: the Galactic headquarters split
 
+**Refreshed 2026-10-07.** The expected numbers were read again after two
+changes: a fix to my simulator, which had picked the player's lead by party
+order when two choices looked equal and so skewed every earlier boss reading,
+and the legality sweep against the final lists (origin/balance-tm-pass at
+377312dbf0), which left this split unchanged. Ian ruled that every draft goes into step 12 as
+drafted; the scorer's step 15 reading gives the real numbers, and he chooses
+any retunes from them. My candidates are in `../retune-proposals-not-approved/`.
+
 The two bosses of the headquarters split are combed: Cyrus on 4F and Saturn
 in the control room. Both files pass the checker and the rule audit. The
 split's grunts and scientists follow in the later pass, as the building's
@@ -10,8 +18,8 @@ bosses against the scorer's box at HQ, which knows no TMs, so they read
 harsher than they will once the TM pass lands. Saturn fights under permanent
 Trick Room for the whole battle (Ian's design of 2026-09-26, in the battle
 code), so his six is built slow and bulky, on natures that lower Speed, and
-both his file and today's are read under the room. Cyrus reads about 91 won
-to today's 98, and Saturn about 92 to today's 98. Each carries one legendary
+both his file and today's are read under the room. Cyrus reads about 95 won
+to today's 99.6, and Saturn about 93 to today's 99. Each carries one legendary
 (Suicune, Uxie) where today's Saturn carried two. No conditional attack
 appears.
 
@@ -32,8 +40,8 @@ trainers from Maylene's split on.
 
 | Trainer | Place | Path | Battle | Size | Levels | The idea | Expected |
 |---|---|---|---|---|---|---|---|
-| Cyrus 2 | Galactic HQ 4F | on the path | single, boss | 6 | 58 to 60 | Two hazards and a trap | about 91 / 1.8 / 16 in my simulator (two readings, 91 and 92), where today's file reads 98 / 1.4 / 15 |
-| Saturn 2 | Galactic HQ control room | on the path | single, boss, permanent Trick Room | 6 | 58 to 60 | Slow and bulky for his permanent Trick Room | about 92 / 2.7 / 0 in my simulator under Trick Room (two readings, 94 and 90), where today's file reads 98 / 1.6 / 1 under it |
+| Cyrus 2 | Galactic HQ 4F | on the path | single, boss | 6 | 58 to 60 | Two hazards and a trap | about 95 / 1.5 / 17 in my simulator, where today's file reads 100 / 0.9 / 21 |
+| Saturn 2 | Galactic HQ control room | on the path | single, boss, permanent Trick Room | 6 | 58 to 60 | Slow and bulky for his permanent Trick Room | about 93 / 2.7 / 0 in my simulator, where today's file reads 99 / 1.5 / 1 |
 
 Expected numbers are won / faints a fight / clean in my simulator, beside
 today's file.
@@ -53,7 +61,7 @@ Two hazards and a trap: Skarmory lays Stealth Rock and Spikes behind a Focus Sas
 | Suicune | 58 | Leftovers | Pressure | Bold | Surf, Ice Beam, Roar, Toxic |
 | Weavile | 60 | Lum Berry | Technician | Jolly | Night Slash, Ice Punch, Ice Shard, Fake Out |
 
-Today's team: Skarmory 57 (Sitrus Berry; Stealth Rock, Steel Wing, Pluck, Tailwind), Dusknoir 57 (Chesto Berry; Shadow Punch, Brick Break, Mean Look, Rest), Houndoom 57 (Charcoal; Flamethrower, Sludge Bomb, Will-O-Wisp, Dark Pulse), Suicune 57 (Leftovers; Aqua Ring, Curse, Waterfall, Avalanche), Magnezone 57 (Shuca Berry; Magnet Rise, Flash Cannon, Charge Beam, Natural Gift), Weavile 58 (NeverMeltIce; Night Slash, Ice Punch, Ice Shard, Fake Out). Expected: about 91 / 1.8 / 16 in my simulator (two readings, 91 and 92), where today's file reads 98 / 1.4 / 15.
+Today's team: Skarmory 57 (Sitrus Berry; Stealth Rock, Steel Wing, Pluck, Tailwind), Dusknoir 57 (Chesto Berry; Shadow Punch, Brick Break, Mean Look, Rest), Houndoom 57 (Charcoal; Flamethrower, Sludge Bomb, Will-O-Wisp, Dark Pulse), Suicune 57 (Leftovers; Aqua Ring, Curse, Waterfall, Avalanche), Magnezone 57 (Shuca Berry; Magnet Rise, Flash Cannon, Charge Beam, Natural Gift), Weavile 58 (NeverMeltIce; Night Slash, Ice Punch, Ice Shard, Fake Out). Expected: about 95 / 1.5 / 17 in my simulator, where today's file reads 100 / 0.9 / 21.
 
 ### Saturn 2: Galactic HQ control room, on the path, single, boss, permanent Trick Room, cap 60
 
@@ -68,5 +76,5 @@ Slow and bulky for his permanent Trick Room: Uxie leads with Stealth Rock and Th
 | Rhyperior | 59 | Passho Berry | Solid Rock | Brave | Earthquake, Stone Edge, Hammer Arm, Ice Punch |
 | Toxicroak | 60 | Life Orb | Dry Skin | Brave | Gunk Shot, Cross Chop, Sucker Punch, Swords Dance |
 
-Today's team: Uxie 57 (Lum Berry; Hypnosis, Future Sight, U-turn, Foul Play), Lickilicky 57 (Toxic Orb; Slam, Curse, Gyro Ball, ThunderPunch), Wailord 57 (Leftovers; Water Spout, Earthquake, Aqua Ring, Avalanche), Rhyperior 57 (Expert Belt; Earthquake, Stone Edge, Aqua Tail, Fire Punch), Cresselia 57 (Leftovers; Moonlight, Charge Beam, Calm Mind, Ice Beam), Toxicroak 58 (Life Orb; Gunk Shot, Cross Chop, Sucker Punch, Fire Punch). Expected: about 92 / 2.7 / 0 in my simulator under Trick Room (two readings, 94 and 90), where today's file reads 98 / 1.6 / 1 under it.
+Today's team: Uxie 57 (Lum Berry; Hypnosis, Future Sight, U-turn, Foul Play), Lickilicky 57 (Toxic Orb; Slam, Curse, Gyro Ball, ThunderPunch), Wailord 57 (Leftovers; Water Spout, Earthquake, Aqua Ring, Avalanche), Rhyperior 57 (Expert Belt; Earthquake, Stone Edge, Aqua Tail, Fire Punch), Cresselia 57 (Leftovers; Moonlight, Charge Beam, Calm Mind, Ice Beam), Toxicroak 58 (Life Orb; Gunk Shot, Cross Chop, Sucker Punch, Fire Punch). Expected: about 93 / 2.7 / 0 in my simulator, where today's file reads 99 / 1.5 / 1.
 

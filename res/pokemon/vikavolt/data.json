@@ -73,6 +73,10 @@
                 "MOVE_BITE"
             ],
             [
+                21,
+                "MOVE_MUD_SHOT"
+            ],
+            [
                 23,
                 "MOVE_SPARK"
             ],
@@ -81,47 +85,67 @@
                 "MOVE_CRUNCH"
             ],
             [
-                33,
-                "MOVE_DISCHARGE"
-            ],
-            [
                 36,
                 "MOVE_SIGNAL_BEAM"
             ],
             [
-                38,
-                "MOVE_MUD_SHOT"
-            ],
-            [
                 40,
-                "MOVE_FLASH_CANNON"
-            ],
-            [
-                55,
                 "MOVE_BUG_BUZZ"
             ],
             [
-                57,
+                42,
+                "MOVE_AIR_SLASH"
+            ],
+            [
+                48,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                50,
+                "MOVE_AGILITY"
+            ],
+            [
+                56,
                 "MOVE_ENERGY_BALL"
             ],
             [
-                62,
-                "MOVE_AGILITY"
+                57,
+                "MOVE_IRON_DEFENSE"
             ],
             [
                 65,
                 "MOVE_THUNDERBOLT"
             ],
             [
-                70,
+                67,
                 "MOVE_VOLT_SWITCH"
             ],
             [
                 72,
-                "MOVE_AIR_SLASH"
+                "MOVE_FLASH_CANNON"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM15",
+            "TM16",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM49",
+            "TM53",
+            "TM57",
+            "TM68",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85",
+            "TM91",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

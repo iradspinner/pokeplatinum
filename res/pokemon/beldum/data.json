@@ -40,7 +40,10 @@
         "by_level": [
             [ 1, "MOVE_TAKE_DOWN" ]
         ],
-        "by_tm": [  ],
+        "by_tm": [
+            "TM32",
+            "TM48"
+        ],
         "by_tutor": [
             "MOVE_IRON_HEAD",
             "MOVE_ZEN_HEADBUTT",

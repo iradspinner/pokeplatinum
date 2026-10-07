@@ -43,7 +43,9 @@
             [ 10, "MOVE_SWAGGER" ],
             [ 13, "MOVE_BUG_BITE" ]
         ],
-        "by_tm": [  ],
+        "by_tm": [
+            "TM85"
+        ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",

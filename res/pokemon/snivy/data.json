@@ -58,11 +58,11 @@
             ],
             [
                 8,
-                "MOVE_CALM_MIND"
+                "MOVE_BREAKING_SWIPE"
             ],
             [
                 10,
-                "MOVE_TWISTER"
+                "MOVE_CALM_MIND"
             ],
             [
                 14,
@@ -101,7 +101,20 @@
                 "MOVE_LEAF_STORM"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM09",
+            "TM12",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM33",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM53",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

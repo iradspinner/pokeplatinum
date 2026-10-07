@@ -3,13 +3,13 @@
   "plural": "TM64s",
   "article": "a",
   "description": [
-    "The user explodes to inflict damage on\n",
-    "all Pokémon in battle. The user faints\n",
-    "upon using this move."
+    "The user attacks by playing rough with\n",
+    "the target. This may also lower the\n",
+    "target’s Attack stat."
   ],
   "icon": {
     "sprite": "tm_NCGR",
-    "palette": "tm_normal_NCLR"
+    "palette": "tm_psychic_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 7500,
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseFunc": 0,
   "itemUseParams": null,
-  "teachesMove": "MOVE_EXPLOSION"
+  "teachesMove": "MOVE_PLAY_ROUGH"
 }

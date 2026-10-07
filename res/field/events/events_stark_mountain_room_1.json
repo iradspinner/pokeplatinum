@@ -181,7 +181,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_OBTAINED_STARK_MOUNTAIN_ROOM_1_ESCAPE_ROPE",
-            "script": 7078,
+            "script": 7471,
             "initial_dir": 0,
             "data": [  ],
             "movement_range_x": 0,

@@ -109,7 +109,26 @@
                 "MOVE_AIR_SLASH"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM22",
+            "TM29",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM50",
+            "TM61",
+            "TM68",
+            "TM84",
+            "TM85",
+            "TM89",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

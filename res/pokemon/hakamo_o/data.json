@@ -93,19 +93,38 @@
                 "MOVE_SCALE_SHOT"
             ],
             [
-                60,
-                "MOVE_CLOSE_COMBAT"
+                55,
+                "MOVE_OUTRAGE"
             ],
             [
-                61,
-                "MOVE_OUTRAGE"
+                60,
+                "MOVE_CLOSE_COMBAT"
             ],
             [
                 66,
                 "MOVE_DRAGON_DANCE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM08",
+            "TM12",
+            "TM18",
+            "TM26",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM48",
+            "TM52",
+            "TM54",
+            "TM59",
+            "TM60",
+            "TM65",
+            "TM70",
+            "TM80",
+            "TM81"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

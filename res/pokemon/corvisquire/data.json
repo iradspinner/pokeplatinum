@@ -62,7 +62,7 @@
             ],
             [
                 17,
-                "MOVE_SWAGGER"
+                "MOVE_DUAL_WINGBEAT"
             ],
             [
                 20,
@@ -77,12 +77,12 @@
                 "MOVE_FEATHER_DANCE"
             ],
             [
-                34,
-                "MOVE_LOW_SWEEP"
-            ],
-            [
                 38,
                 "MOVE_REVENGE"
+            ],
+            [
+                40,
+                "MOVE_THROAT_CHOP"
             ],
             [
                 42,
@@ -97,7 +97,18 @@
                 "MOVE_ROOST"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM18",
+            "TM40",
+            "TM42",
+            "TM49",
+            "TM87",
+            "TM88",
+            "TM89",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

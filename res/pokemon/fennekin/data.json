@@ -54,11 +54,15 @@
             ],
             [
                 8,
-                "MOVE_FLAME_CHARGE"
+                "MOVE_INCINERATE"
             ],
             [
                 9,
                 "MOVE_ROLE_PLAY"
+            ],
+            [
+                11,
+                "MOVE_CALM_MIND"
             ],
             [
                 13,
@@ -109,7 +113,23 @@
                 "MOVE_OVERHEAT"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM16",
+            "TM22",
+            "TM29",
+            "TM35",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM49",
+            "TM50",
+            "TM61",
+            "TM77",
+            "TM86",
+            "TM92",
+            "TM94"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

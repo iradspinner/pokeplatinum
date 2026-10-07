@@ -512,6 +512,24 @@ KAIZO_TRAINER_STATS = {39, 51, 83, 88, 165, 167, 174, 243, 244}
 # Houndoom's line.
 BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 337, 338, 400, 414, 444}
 
+# The move reworks Ian accepted on 2026-10-06 (docs/oxide/learnset-rewrite.md,
+# "1. The move reworks"; the numbers are in the standing rulings), by move id.
+# Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time.
+REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
+# Blast Burn, Hydro Cannon, Frenzy Plant.
+REWORK_STARTER_ULTIMATES = {307, 308, 338}
+# Sky Attack.
+REWORK_SKY_ATTACK = {143}
+# Dig and Dive.
+REWORK_DIG_DIVE = {91, 291}
+# The two to five hit moves below 25 a hit: Double Slap, Comet Punch, Fury
+# Attack, Spike Cannon, Barrage, Fury Swipes, Arm Thrust.
+REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
+# Fury Cutter.
+REWORK_FURY_CUTTER = {210}
+# The rampage moves: Thrash, Petal Dance, Outrage, Uproar.
+REWORK_RAMPAGE = {37, 80, 200, 253}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -648,6 +666,62 @@ DIVERGED = {
             "members": {305},
             "why": "Poison Fang takes Kaizo's 90 power and 40% bad-poison chance, over the "
                    "base ROM's 75 and 30% (Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_RECHARGE_TO_RECOIL,
+            "why": "Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time at 180 power and "
+                   "100 accuracy, with half the damage as recoil in place of the recharge "
+                   "turn (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 5, 7),  # effect, accuracy, effect chance
+            "members": REWORK_STARTER_ULTIMATES,
+            "why": "Blast Burn, Frenzy Plant and Hydro Cannon at 95 accuracy with Kaizo's "
+                   "recoil and status in place of the recharge turn (the move reworks, "
+                   "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7),  # effect, power, effect chance
+            "members": REWORK_SKY_ATTACK,
+            "why": "Sky Attack in one turn at 120 power, with a third as recoil and a 20% "
+                   "paralysis (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3),  # effect, power
+            "members": REWORK_DIG_DIVE,
+            "why": "Dig at 60 and Dive at 80 as plain one turn hits (the move reworks, "
+                   "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": REWORK_MULTI_HIT_25,
+            "why": "every two to five hit move at 25 a hit (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_FURY_CUTTER,
+            "why": "Fury Cutter as Kaizo's three hits of 30 rising by 10, at 100 accuracy "
+                   "(the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": {180},
+            "why": "Spite at 5 PP, inside the 3 to 6 of the stat-lowering moves (the move "
+                   "reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7, 8, 9),  # effect, power, effect chance, range
+            "members": REWORK_RAMPAGE,
+            "why": "the rampage moves in one turn with no lock: Thrash, Petal Dance and "
+                   "Outrage as Kaizo has them, Uproar at 100 with a 20% confusion (the move "
+                   "reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (5,),  # accuracy
+            "members": {198},
+            "why": "Bone Rush at 100 accuracy, over the base ROM's 90 (Ian's answer to the "
+                   "move reworks' report, relayed 2026-10-07)",
         },
     ],
 }
@@ -866,15 +940,51 @@ def personal_fields(member):
 # body colour), bit n - 1 for TM n.
 WEATHER_TMS = (7, 11, 18, 37)
 PERSONAL_TM_BITS_IN_TAIL = 2
+WEATHER_TM_LABELS = {f"TM{n:02d}" for n in WEATHER_TMS}
+# The TM bitfield: four u32 words, as in vanilla, until there are more than
+# 120 TMs (TM_LEARNSET_MASKS). Bit n - 1 is TM n; the HMs follow the last TM.
+PERSONAL_TM_BYTES = 16
+VANILLA_NUM_TMS = 92
 
 
 def without_weather_tms(tail):
-    """The tail with the weather TMs' bits cleared."""
+    """The tail with the weather TMs' bits cleared (the balance track's
+    test_weather_moves reads records through it)."""
     out = bytearray(tail)
     for tm in WEATHER_TMS:
         at = PERSONAL_TM_BITS_IN_TAIL + (tm - 1) // 8
         out[at] &= ~(1 << ((tm - 1) % 8)) & 0xFF
     return bytes(out)
+
+
+# The TM pass of 2026-10-06 authors every species' TM list on the new TM list
+# (tools/oxide/balance/tmcompat.py, from docs/oxide/tm-list.tsv), so a
+# record's TMs are no longer the base ROM's; the rest of its tail still is.
+TMS_AUTHORED = True
+
+
+def built_num_tms():
+    """TMs in the build: vanilla's 92 and the TMs past TM92 that
+    include/constants/items.h counts (the TM pass, 2026-10-06)."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                        "include", "constants", "items.h")
+    with open(path, encoding="utf-8") as f:
+        import re
+        m = re.search(r"#define NUM_EXTRA_TMS\s+(\d+)", f.read())
+    return VANILLA_NUM_TMS + int(m.group(1))
+
+
+def split_tms(tail, num_tms):
+    """(the tail without its TM bitfield, the TM and HM numbers it sets). The
+    HMs' bits sit after the last TM's, so where they are depends on the TM
+    count: TM93 and TM94 moved every HM bit up by two, which compared as
+    bytes would read as a changed learnset on every species that has an HM."""
+    field = tail[PERSONAL_TM_BITS_IN_TAIL:PERSONAL_TM_BITS_IN_TAIL + PERSONAL_TM_BYTES]
+    bits = int.from_bytes(field, "little")
+    labels = {f"TM{b + 1:02d}" if b < num_tms else f"HM{b - num_tms + 1:02d}"
+              for b in range(PERSONAL_TM_BYTES * 8) if bits >> b & 1}
+    rest = tail[:PERSONAL_TM_BITS_IN_TAIL] + tail[PERSONAL_TM_BITS_IN_TAIL + PERSONAL_TM_BYTES:]
+    return rest, labels
 
 
 def check_personal(b, r, path):
@@ -886,6 +996,7 @@ def check_personal(b, r, path):
     rules = diverged_rules(path)
     bad, intended, extra = [], [], max(0, len(b) - len(r))
     hidden = weather_tm_records = 0
+    num_tms = built_num_tms()
     for i in range(len(r)):
         j = reference_to_built(i, len(b), len(r))
         if j >= len(b):
@@ -903,8 +1014,15 @@ def check_personal(b, r, path):
         abilities_diverged = (not abilities_ok and i in PERSONAL_ABILITIES_DIVERGED
                               and tuple(ba[:2]) == PERSONAL_ABILITIES_DIVERGED[i][0])
         abilities_ok = abilities_ok or abilities_diverged
-        tail_ok = bt.rstrip(b"\0") == rt.rstrip(b"\0")
-        weather_tms = not tail_ok and bt.rstrip(b"\0") == without_weather_tms(rt).rstrip(b"\0")
+        # The TM learnset is compared by TM and HM number, each side read
+        # with its own TM count; the rest of the tail byte for byte. Since the
+        # TM pass authors every TM list (TMS_AUTHORED), a record whose TMs
+        # differ is intended while the rest of its tail agrees.
+        b_rest, b_tms = split_tms(bt, num_tms)
+        r_rest, r_tms = split_tms(rt, VANILLA_NUM_TMS)
+        rest_ok = b_rest.rstrip(b"\0") == r_rest.rstrip(b"\0")
+        tail_ok = rest_ok and b_tms == r_tms
+        weather_tms = not tail_ok and rest_ok and (TMS_AUTHORED or b_tms == r_tms - WEATHER_TM_LABELS)
         if not (tail_ok or weather_tms) or not abilities_ok or bx != rx:
             bad.append(i)
             continue
@@ -926,8 +1044,10 @@ def check_personal(b, r, path):
           + (f", {extra} are new species and their forms" if extra else "")
           + (f"; {hidden} of the shared records carry a hidden ability, which the "
              f"reference has no slot for" if hidden else "")
-          + (f"; {weather_tm_records} no longer learn the weather TMs, since the player "
-             f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
+          + (f"; {weather_tm_records} carry TM lists the TM pass of 2026-10-06 authors, the weather TMs "
+             f"gone since the player never sets weather (Ian, 2026-09-30)" if weather_tm_records and TMS_AUTHORED
+             else f"; {weather_tm_records} no longer learn the weather TMs, since the player "
+                  f"never sets weather (Ian, 2026-09-30)" if weather_tm_records else ""))
     if bad:
         i = bad[0]
         j = reference_to_built(i, len(b), len(r))

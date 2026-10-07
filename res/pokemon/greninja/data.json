@@ -121,6 +121,10 @@
                 "MOVE_DARK_PULSE"
             ],
             [
+                41,
+                "MOVE_BOUNCE"
+            ],
+            [
                 43,
                 "MOVE_EXTRASENSORY"
             ],
@@ -130,7 +134,7 @@
             ],
             [
                 49,
-                "MOVE_SURF"
+                "MOVE_WATER_SHURIKEN"
             ],
             [
                 51,
@@ -138,26 +142,36 @@
             ],
             [
                 56,
-                "MOVE_ICE_BEAM"
-            ],
-            [
-                58,
-                "MOVE_MUDDY_WATER"
+                "MOVE_THROAT_CHOP"
             ],
             [
                 65,
                 "MOVE_HYDRO_CANNON"
-            ],
-            [
-                67,
-                "MOVE_TAUNT"
-            ],
-            [
-                69,
-                "MOVE_THROAT_CHOP"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM54",
+            "TM67",
+            "TM68",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM89",
+            "HM03",
+            "HM07"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

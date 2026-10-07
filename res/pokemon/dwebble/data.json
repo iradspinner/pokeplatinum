@@ -101,7 +101,22 @@
                 "MOVE_LEECH_LIFE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM22",
+            "TM26",
+            "TM28",
+            "TM39",
+            "TM42",
+            "TM48",
+            "TM65",
+            "TM69",
+            "TM71",
+            "TM76",
+            "TM80",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

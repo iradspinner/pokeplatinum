@@ -1019,6 +1019,9 @@ Battles_0FC1:
     GetApproachingTrainerID 0, VAR_0x800C
     SetVarFromVar VAR_0x8004, VAR_0x800C
     SetTrainerFlag 32772
+    @ place_rewards.py: hook begin
+    Call Battles_TrainerRewards
+    @ place_rewards.py: hook end
     ReleaseAll
     End
 Battles_101C:
@@ -1048,6 +1051,12 @@ Battles_101C:
     GetApproachingTrainerID 1, VAR_0x800C
     SetVarFromVar VAR_0x8005, VAR_0x800C
     SetTrainerFlag 32773
+    @ place_rewards.py: hook begin
+    Call Battles_TrainerRewards
+    GetApproachingTrainerID 1, VAR_0x800C
+    SetVarFromVar VAR_0x8004, VAR_0x800C
+    Call Battles_TrainerRewards
+    @ place_rewards.py: hook end
     ReleaseAll
     End
 Battles_10A1:
@@ -1081,6 +1090,12 @@ Battles_10A1:
     GetApproachingTrainerID 1, VAR_0x800C
     SetVarFromVar VAR_0x8005, VAR_0x800C
     SetTrainerFlag 32773
+    @ place_rewards.py: hook begin
+    Call Battles_TrainerRewards
+    GetApproachingTrainerID 1, VAR_0x800C
+    SetVarFromVar VAR_0x8004, VAR_0x800C
+    Call Battles_TrainerRewards
+    @ place_rewards.py: hook end
     ReleaseAll
     End
 Battles_113C:
@@ -1110,6 +1125,9 @@ Battles_118A:
     PrintTrainerDialogue 32772, 32769
     WaitButton
     CloseMessage
+    @ place_rewards.py: hook begin
+    Call Battles_TrainerRewards
+    @ place_rewards.py: hook end
     ReleaseAll
     End
 Battles_11A2:
@@ -1120,6 +1138,9 @@ Battles_11A2:
     CompareVarToValue VAR_0x800C, 0
     GoToIf 1, Battles_11DA
     SetTrainerFlag 32772
+    @ place_rewards.py: hook begin
+    Call Battles_TrainerRewards
+    @ place_rewards.py: hook end
     ReleaseAll
     End
 Battles_11C5:
@@ -1156,7 +1177,594 @@ Battles_1232:
     PrintTrainerDialogue 32772, 32768
     SetVarFromVar VAR_0x8004, VAR_0x8007
     GoTo Battles_11A2
+    @ place_rewards.py: hook begin
+    .balign 4, 0
+    @ place_rewards.py: hook end
 Battles_Movement_1252:
     RevealTrainer 1
     EndMovement
+
+@ place_rewards.py: trainer rewards (begin)
+@ Written by tools/oxide/place_rewards.py from docs/oxide/reward-placements.tsv;
+@ change the table and rerun the tool rather than editing this block. Every won
+@ trainer battle calls Battles_TrainerRewards with the trainer in VAR_0x8004, and
+@ so does talking to a beaten trainer, which gives a reward a full Bag refused
+@ (Ian, 2026-10-06). A trainer without a branch here gets nothing.
+Battles_TrainerRewards:
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_BLAKE, Battles_TrainerReward_AceTrainerBlake
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_DANA, Battles_TrainerReward_AceTrainerDana
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_DEANNA, Battles_TrainerReward_AceTrainerDeanna
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_JOSE, Battles_TrainerReward_AceTrainerJose
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_MIKAYLA, Battles_TrainerReward_AceTrainerMikayla
+    GoToIfEq VAR_0x8004, TRAINER_ACE_TRAINER_QUINN, Battles_TrainerReward_AceTrainerQuinn
+    GoToIfEq VAR_0x8004, TRAINER_ARTIST_WILLIAM, Battles_TrainerReward_ArtistWilliam
+    GoToIfEq VAR_0x8004, TRAINER_BEAUTY_NICOLA, Battles_TrainerReward_BeautyNicola
+    GoToIfEq VAR_0x8004, TRAINER_BIRD_KEEPER_ALEXANDRA, Battles_TrainerReward_BirdKeeperAlexandra
+    GoToIfEq VAR_0x8004, TRAINER_BIRD_KEEPER_GENEVA, Battles_TrainerReward_BirdKeeperGeneva
+    GoToIfEq VAR_0x8004, TRAINER_BLACK_BELT_KYLE, Battles_TrainerReward_BlackBeltKyle
+    GoToIfEq VAR_0x8004, TRAINER_BREEDER_KAHLIL, Battles_TrainerReward_BreederKahlil
+    GoToIfEq VAR_0x8004, TRAINER_BUG_CATCHER_DONALD, Battles_TrainerReward_BugCatcherDonald
+    GoToIfEq VAR_0x8004, TRAINER_BUG_CATCHER_PHILLIP, Battles_TrainerReward_BugCatcherPhillip
+    GoToIfEq VAR_0x8004, TRAINER_CAMPER_ANTHONY, Battles_TrainerReward_CamperAnthony
+    GoToIfEq VAR_0x8004, TRAINER_CAMPER_ZACKARY, Battles_TrainerReward_CamperZackary
+    GoToIfEq VAR_0x8004, TRAINER_COLLECTOR_EDWIN, Battles_TrainerReward_CollectorEdwin
+    GoToIfEq VAR_0x8004, TRAINER_CYCLIST_KAYLA, Battles_TrainerReward_CyclistKayla
+    GoToIfEq VAR_0x8004, TRAINER_FISHERMAN_CORY, Battles_TrainerReward_FishermanCory
+    GoToIfEq VAR_0x8004, TRAINER_FISHERMAN_JOSH, Battles_TrainerReward_FishermanJosh
+    GoToIfEq VAR_0x8004, TRAINER_FISHERMAN_KENNETH, Battles_TrainerReward_FishermanKenneth
+    GoToIfEq VAR_0x8004, TRAINER_FISHERMAN_ZACHARY, Battles_TrainerReward_FishermanZachary
+    GoToIfEq VAR_0x8004, TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3, Battles_TrainerReward_GalacticGruntLakeValor3
+    GoToIfEq VAR_0x8004, TRAINER_GAME_CORNER_CHALLENGER, Battles_TrainerReward_GameCornerChallenger
+    GoToIfEq VAR_0x8004, TRAINER_HIKER_LOUIS, Battles_TrainerReward_HikerLouis
+    GoToIfEq VAR_0x8004, TRAINER_HIKER_THEODORE, Battles_TrainerReward_HikerTheodore
+    GoToIfEq VAR_0x8004, TRAINER_JOGGER_RAUL, Battles_TrainerReward_JoggerRaul
+    GoToIfEq VAR_0x8004, TRAINER_JOGGER_SCOTT, Battles_TrainerReward_JoggerScott
+    GoToIfEq VAR_0x8004, TRAINER_JOGGER_WYATT, Battles_TrainerReward_JoggerWyatt
+    GoToIfEq VAR_0x8004, TRAINER_PICNICKER_KARINA, Battles_TrainerReward_PicnickerKarina
+    GoToIfEq VAR_0x8004, TRAINER_PICNICKER_LAUREN, Battles_TrainerReward_PicnickerLauren
+    GoToIfEq VAR_0x8004, TRAINER_PI_CARLOS, Battles_TrainerReward_PiCarlos
+    GoToIfEq VAR_0x8004, TRAINER_RANGER_DESHAWN, Battles_TrainerReward_RangerDeshawn
+    GoToIfEq VAR_0x8004, TRAINER_RUIN_MANIAC_CALVIN, Battles_TrainerReward_RuinManiacCalvin
+    GoToIfEq VAR_0x8004, TRAINER_SCIENTIST_SHAUN, Battles_TrainerReward_ScientistShaun
+    GoToIfEq VAR_0x8004, TRAINER_SKIER_LEXIE, Battles_TrainerReward_SkierLexie
+    GoToIfEq VAR_0x8004, TRAINER_SWIMMER_ADRIAN, Battles_TrainerReward_SwimmerAdrian
+    GoToIfEq VAR_0x8004, TRAINER_SWIMMER_CRYSTAL, Battles_TrainerReward_SwimmerCrystal
+    GoToIfEq VAR_0x8004, TRAINER_SWIMMER_JESSICA, Battles_TrainerReward_SwimmerJessica
+    GoToIfEq VAR_0x8004, TRAINER_SWIMMER_MALLORY, Battles_TrainerReward_SwimmerMallory
+    GoToIfEq VAR_0x8004, TRAINER_SWIMMER_SAM, Battles_TrainerReward_SwimmerSam
+    GoToIfEq VAR_0x8004, TRAINER_TUBER_HOLLY, Battles_TrainerReward_TuberHolly
+    GoToIfEq VAR_0x8004, TRAINER_TUBER_MARIEL, Battles_TrainerReward_TuberMariel
+    GoToIfEq VAR_0x8004, TRAINER_TUBER_TRENTON, Battles_TrainerReward_TuberTrenton
+    GoToIfEq VAR_0x8004, TRAINER_WAITRESS_KATI, Battles_TrainerReward_WaitressKati
+    GoToIfEq VAR_0x8004, TRAINER_YOUNG_COUPLE_TY_AND_SUE, Battles_TrainerReward_YoungCoupleTyAndSue
+    Return
+
+@ TRAINER_ACE_TRAINER_BLAKE: ITEM_RING_TARGET x1, under FLAG_UNUSED_0x006F
+Battles_TrainerReward_AceTrainerBlake:
+    GoToIfSet FLAG_UNUSED_0x006F, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_RING_TARGET
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x006F
+    CloseMessage
+    Return
+
+@ TRAINER_ACE_TRAINER_DANA: ITEM_TM92 x2, under FLAG_UNUSED_0x0094
+Battles_TrainerReward_AceTrainerDana:
+    GoToIfSet FLAG_UNUSED_0x0094, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM92
+    SetVar VAR_0x8005, 2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0094
+    CloseMessage
+    Return
+
+@ TRAINER_ACE_TRAINER_DEANNA: ITEM_TM21 x1, ITEM_TM70 x1, under FLAG_UNUSED_0x0095
+Battles_TrainerReward_AceTrainerDeanna:
+    GoToIfSet FLAG_UNUSED_0x0095, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM21
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM70
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM21
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TM70
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0095
+    CloseMessage
+    Return
+
+@ TRAINER_ACE_TRAINER_JOSE: ITEM_TM64 x1, under FLAG_UNUSED_0x0096
+Battles_TrainerReward_AceTrainerJose:
+    GoToIfSet FLAG_UNUSED_0x0096, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM64
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0096
+    CloseMessage
+    Return
+
+@ TRAINER_ACE_TRAINER_MIKAYLA: ITEM_TM87 x1, under FLAG_UNUSED_0x00A4
+Battles_TrainerReward_AceTrainerMikayla:
+    GoToIfSet FLAG_UNUSED_0x00A4, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM87
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x00A4
+    CloseMessage
+    Return
+
+@ TRAINER_ACE_TRAINER_QUINN: ITEM_TM27 x1, under FLAG_UNUSED_0x00AE
+Battles_TrainerReward_AceTrainerQuinn:
+    GoToIfSet FLAG_UNUSED_0x00AE, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM27
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x00AE
+    CloseMessage
+    Return
+
+@ TRAINER_ARTIST_WILLIAM: ITEM_AIR_BALLOON x1, under FLAG_UNUSED_0x00D4
+Battles_TrainerReward_ArtistWilliam:
+    GoToIfSet FLAG_UNUSED_0x00D4, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_AIR_BALLOON
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x00D4
+    CloseMessage
+    Return
+
+@ TRAINER_BEAUTY_NICOLA: ITEM_PIXIE_PLATE x1, under FLAG_UNUSED_0x00EC
+Battles_TrainerReward_BeautyNicola:
+    GoToIfSet FLAG_UNUSED_0x00EC, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_PIXIE_PLATE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x00EC
+    CloseMessage
+    Return
+
+@ TRAINER_BIRD_KEEPER_ALEXANDRA: ITEM_CELL_BATTERY x1, under FLAG_UNUSED_0x0101
+Battles_TrainerReward_BirdKeeperAlexandra:
+    GoToIfSet FLAG_UNUSED_0x0101, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_CELL_BATTERY
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0101
+    CloseMessage
+    Return
+
+@ TRAINER_BIRD_KEEPER_GENEVA: ITEM_TM86 x2, under FLAG_UNUSED_0x0114
+Battles_TrainerReward_BirdKeeperGeneva:
+    GoToIfSet FLAG_UNUSED_0x0114, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM86
+    SetVar VAR_0x8005, 2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0114
+    CloseMessage
+    Return
+
+@ TRAINER_BLACK_BELT_KYLE: ITEM_ROCKY_HELMET x1, under FLAG_UNUSED_0x0122
+Battles_TrainerReward_BlackBeltKyle:
+    GoToIfSet FLAG_UNUSED_0x0122, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ROCKY_HELMET
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0122
+    CloseMessage
+    Return
+
+@ TRAINER_BREEDER_KAHLIL: ITEM_SAFETY_GOGGLES x1, under FLAG_UNUSED_0x015F
+Battles_TrainerReward_BreederKahlil:
+    GoToIfSet FLAG_UNUSED_0x015F, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_SAFETY_GOGGLES
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x015F
+    CloseMessage
+    Return
+
+@ TRAINER_BUG_CATCHER_DONALD: ITEM_EVIOLITE x1, under FLAG_UNUSED_0x0163
+Battles_TrainerReward_BugCatcherDonald:
+    GoToIfSet FLAG_UNUSED_0x0163, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_EVIOLITE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0163
+    CloseMessage
+    Return
+
+@ TRAINER_BUG_CATCHER_PHILLIP: ITEM_ABSORB_BULB x1, under FLAG_UNUSED_0x0167
+Battles_TrainerReward_BugCatcherPhillip:
+    GoToIfSet FLAG_UNUSED_0x0167, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ABSORB_BULB
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0167
+    CloseMessage
+    Return
+
+@ TRAINER_CAMPER_ANTHONY: ITEM_FAIRY_FEATHER x1, under FLAG_UNUSED_0x0168
+Battles_TrainerReward_CamperAnthony:
+    GoToIfSet FLAG_UNUSED_0x0168, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_FAIRY_FEATHER
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0168
+    CloseMessage
+    Return
+
+@ TRAINER_CAMPER_ZACKARY: ITEM_TM62 x1, under FLAG_UNUSED_0x0169
+Battles_TrainerReward_CamperZackary:
+    GoToIfSet FLAG_UNUSED_0x0169, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM62
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0169
+    CloseMessage
+    Return
+
+@ TRAINER_COLLECTOR_EDWIN: ITEM_TM34 x1, under FLAG_UNUSED_0x016A
+Battles_TrainerReward_CollectorEdwin:
+    GoToIfSet FLAG_UNUSED_0x016A, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM34
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016A
+    CloseMessage
+    Return
+
+@ TRAINER_CYCLIST_KAYLA: ITEM_BINDING_BAND x1, under FLAG_UNUSED_0x016B
+Battles_TrainerReward_CyclistKayla:
+    GoToIfSet FLAG_UNUSED_0x016B, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_BINDING_BAND
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016B
+    CloseMessage
+    Return
+
+@ TRAINER_FISHERMAN_CORY: ITEM_CLEAR_AMULET x1, under FLAG_UNUSED_0x016C
+Battles_TrainerReward_FishermanCory:
+    GoToIfSet FLAG_UNUSED_0x016C, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_CLEAR_AMULET
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016C
+    CloseMessage
+    Return
+
+@ TRAINER_FISHERMAN_JOSH: ITEM_WIDE_LENS x1, under FLAG_UNUSED_0x016D
+Battles_TrainerReward_FishermanJosh:
+    GoToIfSet FLAG_UNUSED_0x016D, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_WIDE_LENS
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016D
+    CloseMessage
+    Return
+
+@ TRAINER_FISHERMAN_KENNETH: ITEM_COVERT_CLOAK x1, under FLAG_UNUSED_0x016E
+Battles_TrainerReward_FishermanKenneth:
+    GoToIfSet FLAG_UNUSED_0x016E, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_COVERT_CLOAK
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016E
+    CloseMessage
+    Return
+
+@ TRAINER_FISHERMAN_ZACHARY: ITEM_TM88 x1, under FLAG_UNUSED_0x016F
+Battles_TrainerReward_FishermanZachary:
+    GoToIfSet FLAG_UNUSED_0x016F, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM88
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x016F
+    CloseMessage
+    Return
+
+@ TRAINER_GALACTIC_GRUNT_LAKE_VALOR_3: ITEM_METRONOME x1, under FLAG_UNUSED_0x0170
+Battles_TrainerReward_GalacticGruntLakeValor3:
+    GoToIfSet FLAG_UNUSED_0x0170, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_METRONOME
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0170
+    CloseMessage
+    Return
+
+@ TRAINER_GAME_CORNER_CHALLENGER: ITEM_TM32 x2, under FLAG_UNUSED_0x0171
+Battles_TrainerReward_GameCornerChallenger:
+    GoToIfSet FLAG_UNUSED_0x0171, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM32
+    SetVar VAR_0x8005, 2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0171
+    CloseMessage
+    Return
+
+@ TRAINER_HIKER_LOUIS: ITEM_TM66 x1, under FLAG_UNUSED_0x0187
+Battles_TrainerReward_HikerLouis:
+    GoToIfSet FLAG_UNUSED_0x0187, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM66
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0187
+    CloseMessage
+    Return
+
+@ TRAINER_HIKER_THEODORE: ITEM_TM03 x1, ITEM_TM28 x1, under FLAG_UNUSED_0x0193
+Battles_TrainerReward_HikerTheodore:
+    GoToIfSet FLAG_UNUSED_0x0193, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM03
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM28
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    SetVar VAR_0x8004, ITEM_TM03
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_TM28
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x0193
+    CloseMessage
+    Return
+
+@ TRAINER_JOGGER_RAUL: ITEM_SILK_SCARF x1, under FLAG_UNUSED_0x01C4
+Battles_TrainerReward_JoggerRaul:
+    GoToIfSet FLAG_UNUSED_0x01C4, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_SILK_SCARF
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x01C4
+    CloseMessage
+    Return
+
+@ TRAINER_JOGGER_SCOTT: ITEM_TM40 x1, under FLAG_UNUSED_0x01C6
+Battles_TrainerReward_JoggerScott:
+    GoToIfSet FLAG_UNUSED_0x01C6, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM40
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x01C6
+    CloseMessage
+    Return
+
+@ TRAINER_JOGGER_WYATT: ITEM_TM10 x1, under FLAG_UNUSED_0x01CE
+Battles_TrainerReward_JoggerWyatt:
+    GoToIfSet FLAG_UNUSED_0x01CE, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM10
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x01CE
+    CloseMessage
+    Return
+
+@ TRAINER_PICNICKER_KARINA: ITEM_TM57 x1, under FLAG_UNUSED_0x01CF
+Battles_TrainerReward_PicnickerKarina:
+    GoToIfSet FLAG_UNUSED_0x01CF, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM57
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x01CF
+    CloseMessage
+    Return
+
+@ TRAINER_PICNICKER_LAUREN: ITEM_LOADED_DICE x1, under FLAG_UNUSED_0x01D0
+Battles_TrainerReward_PicnickerLauren:
+    GoToIfSet FLAG_UNUSED_0x01D0, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_LOADED_DICE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x01D0
+    CloseMessage
+    Return
+
+@ TRAINER_PI_CARLOS: ITEM_TM72 x1, under FLAG_UNUSED_0x021F
+Battles_TrainerReward_PiCarlos:
+    GoToIfSet FLAG_UNUSED_0x021F, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM72
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x021F
+    CloseMessage
+    Return
+
+@ TRAINER_RANGER_DESHAWN: ITEM_TM60 x2, under FLAG_UNUSED_0x023E
+Battles_TrainerReward_RangerDeshawn:
+    GoToIfSet FLAG_UNUSED_0x023E, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM60
+    SetVar VAR_0x8005, 2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x023E
+    CloseMessage
+    Return
+
+@ TRAINER_RUIN_MANIAC_CALVIN: ITEM_TM22 x1, under FLAG_UNUSED_0x02CD
+Battles_TrainerReward_RuinManiacCalvin:
+    GoToIfSet FLAG_UNUSED_0x02CD, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM22
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02CD
+    CloseMessage
+    Return
+
+@ TRAINER_SCIENTIST_SHAUN: ITEM_WEAKNESS_POLICY x1, under FLAG_UNUSED_0x02CE
+Battles_TrainerReward_ScientistShaun:
+    GoToIfSet FLAG_UNUSED_0x02CE, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_WEAKNESS_POLICY
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02CE
+    CloseMessage
+    Return
+
+@ TRAINER_SKIER_LEXIE: ITEM_ABILITY_SHIELD x1, under FLAG_UNUSED_0x02CF
+Battles_TrainerReward_SkierLexie:
+    GoToIfSet FLAG_UNUSED_0x02CF, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ABILITY_SHIELD
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02CF
+    CloseMessage
+    Return
+
+@ TRAINER_SWIMMER_ADRIAN: ITEM_ZOOM_LENS x1, under FLAG_UNUSED_0x02D0
+Battles_TrainerReward_SwimmerAdrian:
+    GoToIfSet FLAG_UNUSED_0x02D0, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ZOOM_LENS
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D0
+    CloseMessage
+    Return
+
+@ TRAINER_SWIMMER_CRYSTAL: ITEM_TM54 x2, under FLAG_UNUSED_0x02D1
+Battles_TrainerReward_SwimmerCrystal:
+    GoToIfSet FLAG_UNUSED_0x02D1, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM54
+    SetVar VAR_0x8005, 2
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D1
+    CloseMessage
+    Return
+
+@ TRAINER_SWIMMER_JESSICA: ITEM_MIRROR_HERB x1, under FLAG_UNUSED_0x02D2
+Battles_TrainerReward_SwimmerJessica:
+    GoToIfSet FLAG_UNUSED_0x02D2, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_MIRROR_HERB
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D2
+    CloseMessage
+    Return
+
+@ TRAINER_SWIMMER_MALLORY: ITEM_TM36 x1, under FLAG_UNUSED_0x02D3
+Battles_TrainerReward_SwimmerMallory:
+    GoToIfSet FLAG_UNUSED_0x02D3, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM36
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D3
+    CloseMessage
+    Return
+
+@ TRAINER_SWIMMER_SAM: ITEM_HM07 x1, under FLAG_UNUSED_0x02D4
+Battles_TrainerReward_SwimmerSam:
+    GoToIfSet FLAG_UNUSED_0x02D4, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_HM07
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D4
+    CloseMessage
+    Return
+
+@ TRAINER_TUBER_HOLLY: ITEM_TM48 x1, under FLAG_UNUSED_0x02D5
+Battles_TrainerReward_TuberHolly:
+    GoToIfSet FLAG_UNUSED_0x02D5, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_TM48
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D5
+    CloseMessage
+    Return
+
+@ TRAINER_TUBER_MARIEL: ITEM_RED_CARD x1, under FLAG_UNUSED_0x02D6
+Battles_TrainerReward_TuberMariel:
+    GoToIfSet FLAG_UNUSED_0x02D6, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_RED_CARD
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D6
+    CloseMessage
+    Return
+
+@ TRAINER_TUBER_TRENTON: ITEM_EJECT_BUTTON x1, under FLAG_UNUSED_0x02D7
+Battles_TrainerReward_TuberTrenton:
+    GoToIfSet FLAG_UNUSED_0x02D7, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_EJECT_BUTTON
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D7
+    CloseMessage
+    Return
+
+@ TRAINER_WAITRESS_KATI: ITEM_PUNCHING_GLOVE x1, under FLAG_UNUSED_0x02D8
+Battles_TrainerReward_WaitressKati:
+    GoToIfSet FLAG_UNUSED_0x02D8, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_PUNCHING_GLOVE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D8
+    CloseMessage
+    Return
+
+@ TRAINER_YOUNG_COUPLE_TY_AND_SUE: ITEM_ASSAULT_VEST x1, under FLAG_UNUSED_0x02D9
+Battles_TrainerReward_YoungCoupleTyAndSue:
+    GoToIfSet FLAG_UNUSED_0x02D9, Battles_TrainerRewardsDone
+    SetVar VAR_0x8004, ITEM_ASSAULT_VEST
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Battles_TrainerRewardBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_UNUSED_0x02D9
+    CloseMessage
+    Return
+
+Battles_TrainerRewardBagIsFull:
+    Common_MessageBagIsFull
+    CloseMessage
+Battles_TrainerRewardsDone:
+    Return
+@ place_rewards.py: trainer rewards (end)
 

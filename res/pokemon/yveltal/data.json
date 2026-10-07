@@ -117,7 +117,26 @@
                 "MOVE_FOCUS_BLAST"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM02",
+            "TM12",
+            "TM15",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM47",
+            "TM51",
+            "TM52",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM77",
+            "TM79",
+            "TM80",
+            "TM89",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

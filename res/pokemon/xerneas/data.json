@@ -121,7 +121,26 @@
                 "MOVE_CLOSE_COMBAT"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM32",
+            "TM33",
+            "TM42",
+            "TM52",
+            "TM64",
+            "TM68",
+            "TM70",
+            "TM73",
+            "TM80",
+            "TM86",
+            "TM91"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -89,12 +89,12 @@
                 "MOVE_ALLURING_VOICE"
             ],
             [
-                43,
-                "MOVE_GIGA_DRAIN"
-            ],
-            [
                 46,
                 "MOVE_TERRAIN_PULSE"
+            ],
+            [
+                48,
+                "MOVE_GIGA_DRAIN"
             ],
             [
                 52,
@@ -109,19 +109,26 @@
                 "MOVE_PETAL_DANCE"
             ],
             [
-                60,
-                "MOVE_HYPER_VOICE"
-            ],
-            [
                 64,
                 "MOVE_LEAF_STORM"
-            ],
-            [
-                66,
-                "MOVE_EARTH_POWER"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM05",
+            "TM09",
+            "TM15",
+            "TM16",
+            "TM19",
+            "TM20",
+            "TM22",
+            "TM33",
+            "TM41",
+            "TM42",
+            "TM45",
+            "TM53",
+            "TM68",
+            "TM86"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

@@ -101,7 +101,21 @@
                 "MOVE_BUG_BUZZ"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM16",
+            "TM19",
+            "TM24",
+            "TM25",
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM53",
+            "TM57",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

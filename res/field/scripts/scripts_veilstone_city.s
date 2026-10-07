@@ -103,7 +103,7 @@ VeilstoneCity_Entry6:
     CheckFlag FLAG_RECEIVED_VEILSTONE_CITY_TM63
     GoToIf 1, VeilstoneCity_0794
     Message 50
-    SetVarFromValue VAR_0x8004, 390
+    SetVarFromValue VAR_0x8004, ITEM_SITRUS_BERRY
     SetVarFromValue VAR_0x8005, 1
     CanFitItem 32772, 32773, VAR_0x800C
     CompareVarToValue VAR_0x800C, 0

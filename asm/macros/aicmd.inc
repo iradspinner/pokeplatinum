@@ -674,6 +674,15 @@
     .long (\jump-.) / 4 - 1
     .endm
 
+    // Oxide: jump if the given battler has a move of raised priority, counting
+    // Prankster and Gale Wings: among its own moves for the AI's side, among
+    // the moves it has been seen to use for the other side. For Upper Hand.
+    .macro IfBattlerKnowsPriorityMove battler:req, jump:req
+    .long AICMD_IFBATTLERKNOWSPRIORITYMOVE
+    .long \battler
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

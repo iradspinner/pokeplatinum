@@ -65,7 +65,7 @@ def _expected(rec, mv):
     if rec is None or "error" in rec or not rec.get("rolls"):
         return 0.0
     rolls = rec["rolls"]
-    d = rolls[len(rolls) // 2]
+    d = rolls[len(rolls) // 2] * fs.expected_hit_scale(mv)     # Fury Cutter's later hits
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     if mv.effect in fs.TWO_TURN or mv.effect == "RECHARGE_AFTER":
         d /= 2

@@ -50,7 +50,11 @@
             ],
             [
                 2,
-                "MOVE_ROUND"
+                "MOVE_DOUBLE_HIT"
+            ],
+            [
+                4,
+                "MOVE_FURY_SWIPES"
             ],
             [
                 12,
@@ -59,6 +63,10 @@
             [
                 16,
                 "MOVE_DOUBLE_KICK"
+            ],
+            [
+                18,
+                "MOVE_SWAGGER"
             ],
             [
                 21,
@@ -85,7 +93,13 @@
                 "MOVE_DOUBLE_EDGE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM42",
+            "TM44",
+            "TM49",
+            "TM66",
+            "TM73"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

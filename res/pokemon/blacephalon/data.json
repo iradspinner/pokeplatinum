@@ -109,7 +109,27 @@
                 "MOVE_MIND_BLOWN"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM22",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM50",
+            "TM61",
+            "TM63",
+            "TM65",
+            "TM66",
+            "TM77",
+            "TM79",
+            "TM83"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

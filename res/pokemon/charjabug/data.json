@@ -74,23 +74,15 @@
             ],
             [
                 27,
-                "MOVE_LUNGE"
+                "MOVE_SKITTER_SMACK"
             ],
             [
                 29,
                 "MOVE_STICKY_WEB"
             ],
             [
-                31,
-                "MOVE_SKITTER_SMACK"
-            ],
-            [
                 36,
                 "MOVE_X_SCISSOR"
-            ],
-            [
-                38,
-                "MOVE_SUPERCELL_SLAM"
             ],
             [
                 43,
@@ -109,7 +101,20 @@
                 "MOVE_DISCHARGE"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM16",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM57",
+            "TM73",
+            "TM81",
+            "TM84",
+            "TM85"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

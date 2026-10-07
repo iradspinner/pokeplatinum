@@ -77,10 +77,6 @@
                 "MOVE_REVENGE"
             ],
             [
-                40,
-                "MOVE_U_TURN"
-            ],
-            [
                 42,
                 "MOVE_DEFOG"
             ],
@@ -90,7 +86,7 @@
             ],
             [
                 46,
-                "MOVE_BODY_SLAM"
+                "MOVE_U_TURN"
             ],
             [
                 49,
@@ -98,7 +94,7 @@
             ],
             [
                 53,
-                "MOVE_IRON_DEFENSE"
+                "MOVE_DOUBLE_EDGE"
             ],
             [
                 55,
@@ -106,11 +102,7 @@
             ],
             [
                 61,
-                "MOVE_DOUBLE_EDGE"
-            ],
-            [
-                63,
-                "MOVE_THROAT_CHOP"
+                "MOVE_BODY_SLAM"
             ],
             [
                 65,
@@ -122,10 +114,30 @@
             ],
             [
                 71,
-                "MOVE_SCARY_FACE"
+                "MOVE_SWAGGER"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM07",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM18",
+            "TM33",
+            "TM40",
+            "TM42",
+            "TM47",
+            "TM48",
+            "TM49",
+            "TM68",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM91",
+            "HM02"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },

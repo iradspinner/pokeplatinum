@@ -138,6 +138,11 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   shows the entry message as Weezing comes in, no extra PP is spent while the
   gas is out, and switching Weezing out prints the exit message followed by
   Chansey's Pressure message again.
+- [ ] **Sheer Force with a Life Orb** (2026-10-07, `main-tm-items`): the
+  Abilities menu's Sheer Force entry gives a Toucannon holding a Life Orb.
+  Against the wild Chansey, Flame Charge costs Toucannon no HP, while Bullet
+  Seed and Brave Bird each cost it a tenth of its HP to the Life Orb (Brave
+  Bird its own recoil too). Before this fix every move took the recoil.
 - [ ] **Element 5's hidden abilities, the Abilities menu's third page**
   (reached from "More abilities" at the end of the second; 16 entries,
   `docs/oxide/test-kit.md` has what each should show). Those with a message:
@@ -262,6 +267,83 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   nothing. Switched out as Pirouette, it comes back in as Aria. After a battle
   ended with it as Pirouette, its summary shows Aria, Normal and Psychic, and
   Aria's stats.
+- [ ] **The move reworks** (`cloud/main-move-reworks`, 2026-10-07; Ian's
+  rulings of 2026-10-06), sets 71 to 84 on the move-set menu's third page,
+  each against the wild foe it names (`docs/oxide/test-kit.md` has what
+  each should show). Hyper Beam and its kin hit with half recoil and no
+  recharge turn (71); Blast Burn, Frenzy Plant and Hydro Cannon the same
+  with their recoil and status (72); Sky Attack strikes the turn it is
+  chosen (73); Dig and Dive strike at once and Chansey's Tackle reaches Mew
+  the same turn (74); the two to five hit moves end "Hit 2 time(s)!" to
+  "Hit 5 time(s)!", mostly two or three (75), and always five on the Skill
+  Link Cloyster (76); Fury Cutter hits three times, each harder (77);
+  Spite shows 5 PP (78); Thrash, Petal Dance, Outrage and Uproar strike once
+  with no lock and no confusion of Mew (79), and Raging Fury the same with
+  its recoil (80); Upper Hand flinches a Rattata that chose Quick Attack and
+  fails against Tackle (81); Shell Trap strikes after a Tackle and fails
+  after a Swift (82); Burning Jealousy burns a Ninjask only on a turn it
+  used Swords Dance (83); Bone Rush shows 100 accuracy and never misses
+  (84). Watch the strike animations of Sky Attack, Dig and Dive, which were
+  the second halves of two-turn animations: Mew should be drawn whole
+  throughout.
+- [ ] **The move reworks, for normal play** (the kit cannot run them):
+  Petal Dance hitting both foes in a double battle; Dig still digging out of
+  a cave from the field menu; a trainer's Hyper Beam, Giga Impact or Outrage
+  used as an ordinary attack (Cynthia, Volkner and the Flint and Volkner tag
+  carry them), with no recharge turn and the recoil message.
+- [ ] **The AI rates multi-hit moves on their expected hits** (the kit cannot
+  show it, since a wild Pokemon picks its move at random and never runs the
+  trainer AI). In a trainer battle against a Pokemon with a two to five hit
+  move (Gardenia's team carries Bullet Seed), it should now use that move
+  where it is the strongest attack counted over about three hits, where it
+  used to rate it as a single 25 power hit and seldom chose it.
+- [ ] **Gauntlets** (`main-gauntlets`, `docs/oxide/gauntlets.md`), on the
+  test kit ROM. Take "Route 208, all badges" first, then the Warp menu's five
+  gauntlet entries, each of which lands one step from a section's way in; walk
+  through it. The trainers are far above the kit's Pokemon, so keep out of
+  their sight where the check does not need a fight. In each section, while it
+  is open: the Pocket PC says "You can’t use that here yet! / Press on, or beat
+  the Trainers here." in the bag; Dig, Fly and Teleport say the same in the
+  party menu; an Escape Rope in a cave says it too; and the way back says
+  "There’s no turning back now! / Press on, or beat the Trainers here.", after
+  which a staircase or warp panel stepped onto walks the player back off it.
+  Then, one per entry:
+  - Eterna: go up to 3F and beat Travon and the grunt. The Pocket PC works on
+    3F again, and the stairs down no longer refuse.
+  - Galactic HQ: the warehouse's stairs lead into B2F. Leave the Galactic Key
+    on B2F at first, and climb through 1F and 2F to 3F: its stairs back down
+    let you go. Then fetch the key and come back: the same stairs refuse.
+    1F's front doors to Veilstone refuse too, once the key has opened its
+    lobby.
+  - Coronet 1F: south into the tunnel room, then back north: refused. At the
+    far end, out onto the north ledge, the Pocket PC works again.
+  - Coronet 3F: up the stairs from 2F, then out onto the south ledge. Fly
+    refuses there, although the ledge is outdoors. On the north ledge, the
+    cave mouth into the tunnel refuses.
+  - Victory Road: north from the League's gate. The gate refuses. Walk north
+    through the one-tile corridor that passes under the long bridge west of
+    the middle (x 13, z 26 to 27), then turn back south: the player is turned
+    back north with the message. Walking out at the far end, the Pocket PC
+    works on the League's side.
+  A whiteout inside a section closes it too: the Pocket PC works from the
+  Pokemon Center.
+- [ ] **Step 10's rewards** (2026-10-07, `main-tm-items`; the table is
+  `docs/oxide/reward-placements.tsv`), on the test kit ROM after "Route 208,
+  all badges", then the Warp menu's Veilstone. One of each kind:
+  - A gift: the roughneck who says Veilstone is the city of stone ends "take
+    this Berry!", gives a Sitrus Berry and explains it. Talking again gives
+    only the explanation.
+  - The TMs sold once: the Department Store's 3F counters list each TM once,
+    with all eight badges every one of them. Buy Earthquake (TM26): one copy
+    comes, and the counter no longer lists it, after leaving the floor too.
+  - The Game Corner challenger: Rocco, beside the coins clerk, battles once.
+    Straight after the win, with no talk, two TM32 (Zen Headbutt) come.
+    Talking to him again gives nothing more, and the clerk gives no TM.
+  - A trainer reward: on Route 215, west of Veilstone, Jogger Scott gives
+    TM40 (Aerial Ace) straight after the win.
+  - A ball: Route 215's ball that held TM34 holds a Lum Berry.
+  A trainer with two rewards is checked in normal play (section 3, Hiker
+  Theodore).
 
 ## 3. The ordinary ROM, early game (Twinleaf to Hearthome)
 
@@ -294,13 +376,34 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   PC, Oak's PC, Healing Waves and Misc., with the Hall of Fame in Misc. only
   after the League, and no tutors, Teleport System, Online Shop or resets. No
   trainer ever asks for a Vs. Seeker rematch. The item's icon is a small PC.
+- [ ] **The Pocket PC's own lines** (fixed 2026-10-07, `main-tm-items`). The
+  menu's fourth entry reads "Rare Candy", not a blank. Choosing it says "Your
+  Rare Candy stock was filled to 999.", and the Hidden Power APP says "This
+  Pokémon's Hidden Power is the" a type "type, with" a number "power."
+  Before the fix the first printed the Pokemon Center nurse's greeting and
+  the second "OK, I'll take your Pokémon for a few seconds."
 - [ ] Rare Candy chaining works, up to the level cap (16 before Roark).
 - [ ] With Scorbunny as the starter (fixed 2026-09-27, `fix-rival-starter`):
   Barry leads with Piplup on Route 201 and at every later fight, and Dawn or
-  Lucas uses the Turtwig line. With Turtwig, Barry has Chimchar (Ian, 2026-10-07:
-  the rivals keep the Chimchar line), and the scenes name Chimchar too; with
-  Piplup, Barry has Turtwig and Dawn or Lucas Chimchar. The Jubilife TV mask, the Veilstone Department Store socialite's
-  mask and the Underground Man's doll are the fire starter's.
+  Lucas uses the Turtwig line. With Turtwig, Barry has the Chimchar line; with
+  Piplup, Turtwig, and Dawn or Lucas the Chimchar line (Ian, 2026-10-07:
+  Scorbunny took only Chimchar's place in the briefcase). The Jubilife TV
+  mask, the Veilstone Department Store socialite's mask and the Underground
+  Man's doll are the fire starter's.
+- [ ] The rival's and the counterpart's starter by name (2026-10-07,
+  `main-tm-items`). With Turtwig, Barry's lines on Route 201 and in the
+  Sandgem lab name Chimchar, as his team shows. With Piplup, Dawn or Lucas
+  names Chimchar in the lab and as a partner, and the catching demo on Route
+  202 uses a Chimchar. Before this fix both said Scorbunny.
+- [ ] **Step 10's gifts and rewards, early game** (2026-10-07,
+  `main-tm-items`). Each giver names and explains what it now hands over:
+  Rowan a Roost TM, Roark Toxic, the Oreburgh Gate man Block (and, seeing
+  the Coal Badge, says Pokemon can now smash boulders), Cynthia in Eterna two
+  Brick Breaks, Gardenia two Secret Powers, the Eterna Condominiums 2F woman
+  a Lum Berry, the Floaroma middle house woman two Defog HMs, the Route 204
+  teacher a Lum Berry, and Fantina two Strength HMs. No line names the old
+  item. On Route 206, Hiker Theodore gives TM03 (Water Pulse) and then TM28
+  (Dig) straight after the win, and nothing more when talked to again.
 - [x] The battle log (done 2026-09-28, section 1).
 - [ ] The Kaizo move data in normal play (`cloud/element4-kaizo-move-data`):
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
@@ -409,6 +512,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 
 ## 4. The ordinary ROM, mid-game
 
+- [ ] **Solaceon's north house** (2026-10-07, `main-tm-items`): only the old
+  woman and the lass, who talk about the Day Care's Eggs. The Utility Stop's
+  three vendors, selling Berries, evolution items, Heart Scales, herbs and
+  shards, are gone. The Survival Area's south house likewise holds only the
+  Black Belt, who gives TM25 (Thunder) once; its Utility Stop greeter and
+  vendors are gone too.
 - [ ] **Pastel Veil and Unnerve** (`main-element5-gaps`), whenever they come
   up, since the kit cannot run a double battle or give a foe an item. A
   Galarian Rapidash (Pastel Veil) sent in during a double battle beside a
@@ -448,6 +557,12 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   screen shows every battler, as Haze's does, and it feeds every Pokemon on
   the field its Berry; Core Enforcer leaves the ability of a foe that has not
   moved yet alone.
+- [ ] **The gauntlets in a real run** (`main-gauntlets`), as each comes up:
+  the Eterna building, Galactic HQ (entered from the warehouse), Mt. Coronet
+  on the way to Spear Pillar, and Victory Road. From each section's way in,
+  the Pocket PC refuses until its trainers are beaten or you move on, and
+  nothing shuts you in: the way forward always opens. Note any stretch that
+  felt like a gauntlet but let you heal, or refused where it should not.
 - [ ] The Pocket PC in places vanilla's Vs. Seeker never reached, now that it
   works everywhere but a gauntlet: the Great Marsh, the Underground, the
   Distortion World, and the Battle Frontier's lobbies. Each should either open

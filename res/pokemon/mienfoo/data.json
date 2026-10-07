@@ -58,14 +58,10 @@
             ],
             [
                 17,
-                "MOVE_DOUBLE_SLAP"
+                "MOVE_ARM_THRUST"
             ],
             [
                 18,
-                "MOVE_TRAILBLAZE"
-            ],
-            [
-                19,
                 "MOVE_AGILITY"
             ],
             [
@@ -85,16 +81,16 @@
                 "MOVE_VACUUM_WAVE"
             ],
             [
+                34,
+                "MOVE_DUAL_CHOP"
+            ],
+            [
                 38,
                 "MOVE_AURA_SPHERE"
             ],
             [
                 43,
                 "MOVE_JUMP_KICK"
-            ],
-            [
-                46,
-                "MOVE_DUAL_CHOP"
             ],
             [
                 54,
@@ -105,7 +101,25 @@
                 "MOVE_HI_JUMP_KICK"
             ]
         ],
-        "by_tm": [],
+        "by_tm": [
+            "TM04",
+            "TM08",
+            "TM12",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM46",
+            "TM49",
+            "TM52",
+            "TM60",
+            "TM71",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89"
+        ],
         "by_tutor": [],
         "egg_moves": []
     },
