@@ -2,13 +2,13 @@
 
 Ian's ruling of 2026-09-27: the moves added since Platinum follow Platinum's own Expert pattern. Each learnable move past Platinum's 467 takes the Expert routine of its nearest Platinum effect, judged by what its effect script does rather than by the effect's name, where that effect has a routine, and gets none where Platinum gives its equivalents none. Platinum's own moves without a routine stay as they are ([expert-gaps.md](expert-gaps.md)). How Expert dispatches is in [expert-1.md](expert-1.md), and element 6's earlier routing in [README.md](README.md). This is a change of play; it acts once the trainer pass gives trainers these moves.
 
-A move is counted as learnable when any species' or form's level, TM, tutor or egg list has it (the move pool survey's reading of `res/pokemon`). Expert dispatches by effect, so a move no species learns is routed too when it shares an effect with one listed here: Circle Throw, on Dragon Tail's effect, is the only one. The counts:
+A move is counted as learnable when any species' or form's level, TM, tutor or egg list has it (the move pool survey's reading of `res/pokemon`). Expert dispatches by effect, so a move no species learns is routed too when it shares an effect with one listed here: Circle Throw, on Dragon Tail's effect, is the only one. The learnset rewrite of 2026-10-06 made more moves learnable; the five on effects of their own, which Expert's dispatch did not name, are added here (Relic Song, Throat Chop, Meteor Beam, Axe Kick and Psychic Noise, 2026-10-07), and the other 22 reach Expert through a Platinum effect or an existing line of its dispatch ([other-flags-new-moves.md](other-flags-new-moves.md) names them). The counts, for the moves this page names:
 
 | | Moves |
 |---|---|
-| learnable moves past id 467 | 156 |
-| scored by an Expert routine | 65 |
-| with none | 91 |
+| learnable moves past id 467 | 161 |
+| scored by an Expert routine | 67 |
+| with none | 94 |
 | of those, judgment calls, left with none by Ian's ruling (below) | 11 |
 
 A move a routine names below is scored as that Platinum move is; the routines are described in [expert-1.md](expert-1.md) and [expert-2.md](expert-2.md), and the ones element 6 wrote in the README. Two are trimmed copies made for this pass, as element 6 made one of Thunder's for the Hisuian storms: `Expert_ClearSmog` keeps Haze's tests of the target's stages and drops those of the user's, and `Expert_MortalSpin` keeps Rapid Spin's clearing and drops its Speed raise.
@@ -64,6 +64,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Low Sweep: BubbleBeam's, by its own Platinum effect.
 - Magic Room: Embargo's; both stop held items.
 - Matcha Gotcha: Absorb's, routed by element 6.
+- Meteor Beam: Skull Bash's, which charges for a turn as it does, raising Defense where Meteor Beam raises Sp. Atk; the routine's +2 for a Power Herb applies, since Oxide's Meteor Beam takes the Herb's path (2026-10-07).
 - Mind Blown: Head Smash's (recoil). Note: the routine's +1 for Magic Guard is right, its +1 for Rock Head is not, since Rock Head does not spare Mind Blown's cost.
 - Mortal Spin: Rapid Spin's clearing half, since it clears as Rapid Spin does but raises no Speed.
 - Nature’sMadness: Super Fang's, by its own Platinum effect.
@@ -73,6 +74,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Parting Shot: U-turn's, without the resist check, routed by element 6.
 - Phantom Force: Shadow Force's, by its own Platinum effect.
 - Play Nice: Growl's, by its own Platinum effect.
+- Psychic Noise: Heal Block's, since it is a hit that puts Heal Block on its target. Note: the routine's chance of +1 when the target has no way to heal is Heal Block's own, and here it rides on a hit (2026-10-07).
 - Quiver Dance: Dragon Dance's, routed by element 6.
 - Shell Smash: Dragon Dance's, routed by element 6.
 - Shelter: Barrier's, by its own Platinum effect.
@@ -101,6 +103,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - After You: none, as Platinum's Helping Hand: partner-side support.
 - Ally Switch: none: cut from every learnset and its effect unwritten; Basic gives it -10.
 - Aromatic Mist: none: cut from every learnset and its effect unwritten; Basic gives it -10.
+- Axe Kick: none, as Platinum's Hi Jump Kick, which crashes on a miss as it does; its chance to confuse is Psybeam's, which has no routine either (2026-10-07).
 - Beak Blast: none, a plain hit, as Platinum's Tackle; it heats up first and burns an attacker that touches it, where Focus Punch fails when hit.
 - Belch: none, as Platinum's Tackle: a plain hit once its user has eaten a Berry; nothing refuses it before then.
 - Body Press: none, a plain hit, as Platinum's Tackle; it attacks with its user's Defense.
@@ -160,6 +163,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Quick Guard: none; the nearest is Platinum's Protect, whose routine would misjudge it (a judgment call, above).
 - Rage Fist: none, a plain hit, as Platinum's Tackle; its power grows each time its user is hit, as Rage's attack grows, with no routine.
 - Rage Powder: none, as Platinum's Follow Me.
+- Relic Song: none, as Platinum's ThunderPunch: a hit with a chance of a status, here sleep; its form change has no Platinum equivalent (2026-10-07).
 - Retaliate: none, a plain hit, as Platinum's Tackle; its power doubles after an ally faints.
 - Sacred Sword: none, a plain hit, as Platinum's Tackle; it ignores the target's stat changes.
 - Salt Cure: none; the nearest is Platinum's Bind, whose routine would misjudge it (a judgment call, above).
@@ -179,6 +183,7 @@ Each of these is left with none, though a Platinum routine is near, because that
 - Teatime: none: no Platinum move makes a battler eat its own Berry.
 - Telekinesis: none: cut from every learnset and its effect unwritten; Basic gives it -10.
 - Terrain Pulse: none, a plain hit, as Platinum's Tackle.
+- Throat Chop: none, a plain hit with Taunt's kind of added effect: it bars a class of the target's moves for a few turns, sound moves where Taunt bars status moves, and Platinum gives Taunt no routine (2026-10-07).
 - Thunderous Kick: none, as Platinum's Iron Tail.
 - Topsy-Turvy: none: cut from every learnset and its effect unwritten; Basic gives it -10.
 - Triple Axel: none, as Platinum's Triple Kick.
