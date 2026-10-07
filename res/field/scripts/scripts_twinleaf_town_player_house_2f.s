@@ -470,6 +470,7 @@ TestKit_Helper:
     AddListMenuEntry TestKit_Text_MenuStaples, 15
     AddListMenuEntry TestKit_Text_MenuLevelCaps, 16
     AddListMenuEntry TestKit_Text_MenuTwoTMs, 18
+    AddListMenuEntry TestKit_Text_MenuAllTMs, 21
     AddListMenuEntry TestKit_Text_MenuSpriteHeights, 17
     AddListMenuEntry TestKit_Text_MenuItems, 19
     AddListMenuEntry TestKit_Text_MenuMeisterTrade, 20
@@ -493,6 +494,7 @@ TestKit_Helper:
     GoToIfEq VAR_0x8004, 15, TestKit_Staples
     GoToIfEq VAR_0x8004, 16, TestKit_LevelCaps
     GoToIfEq VAR_0x8004, 18, TestKit_TwoTMs
+    GoToIfEq VAR_0x8004, 21, TestKit_AllTMs
     GoToIfEq VAR_0x8004, 17, TestKit_SpriteHeights
     GoToIfEq VAR_0x8004, 19, TestKit_Items
     GoToIfEq VAR_0x8004, 20, TestKit_MeisterTrade
@@ -523,6 +525,27 @@ TestKit_RareCandies:
 TestKit_TwoTMs:
     AddItem ITEM_TM01, 2, VAR_RESULT
     Message TestKit_Text_TwoTMs
+    GoTo TestKit_WaitAndClose
+
+/* The TM pass (2026-10-06): two of every TM and HM, for the TM pocket's
+   checks. TM01 to HM08 are one run of ids; the TMs past TM92 are a second
+   run, from FIRST_EXTRA_TM_IDX up to MAX_ITEMS, which tm_items.py keeps
+   them just before, so this follows the list as it changes. */
+TestKit_AllTMs:
+    SetVar VAR_0x8005, ITEM_TM01
+TestKit_AllTMsBase:
+    AddItem VAR_0x8005, 2, VAR_RESULT
+    AddVar VAR_0x8005, 1
+    GoToIfLe VAR_0x8005, ITEM_HM08, TestKit_AllTMsBase
+    SetVar VAR_0x8005, FIRST_EXTRA_TM_IDX
+TestKit_AllTMsExtra:
+    GoToIfGe VAR_0x8005, MAX_ITEMS, TestKit_AllTMsDone
+    AddItem VAR_0x8005, 2, VAR_RESULT
+    AddVar VAR_0x8005, 1
+    GoTo TestKit_AllTMsExtra
+
+TestKit_AllTMsDone:
+    Message TestKit_Text_AllTMs
     GoTo TestKit_WaitAndClose
 
 /* The party count before a gift is the slot the gift lands in. */
