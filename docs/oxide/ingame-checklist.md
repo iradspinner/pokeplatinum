@@ -96,6 +96,13 @@ The kit's NPC and menus are described in `docs/oxide/test-kit.md`, set by set,
 with what each should show. The kit cannot set up double battles, a frozen
 Pokemon, or a foe holding an item; those checks are marked for normal play.
 
+- [ ] **The kit's menus after the bank fix** (2026-10-07, `main-kit-bank`).
+  Talk to the kit NPC: the top menu responds to the D-pad and A, fits the
+  screen, and its entry before Warp reads "Meister’s trade", not "See you
+  next week". The Warp menu's last entry reads "Gauntlet: Victory Road". Move
+  sets page 3 ends with "More sets", which opens sets 82 to 84. The Items
+  menu's Ice Stone, abilities, Mints and Caps, and TMs entries, and the
+  Meister's trade, each print their own line.
 - [ ] **Element 4, the move sets.** Sets 1 to 22 passed in rounds 1 to 3
   (2026-09-22 to 23). Still to see: sets 23 to 26; sets 27 to 31 (Sticky Web,
   After You, Aurora Veil, the four side guards against the kit's two new wild

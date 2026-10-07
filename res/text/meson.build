@@ -78,8 +78,9 @@ foreach text_bank : text_bank_consts
         # the bedroom's bank (tools/oxide/testkit_merge.py, res/testkit/).
         text_bank_files += custom_target('testkit_' + text_bank_name,
             output: text_bank_name,
-            input: [ files(text_bank_name), files('../testkit/' + text_bank_name) ],
-            command: [ testkit_merge_py, '@INPUT0@', '@INPUT1@', '@OUTPUT@' ],
+            input: [ files(text_bank_name), files('../testkit/' + text_bank_name),
+                     files('../field/scripts/scripts_twinleaf_town_player_house_2f.s') ],
+            command: [ testkit_merge_py, '@INPUT0@', '@INPUT1@', '@OUTPUT@', '@INPUT2@' ],
         )
     elif not generated_text_banks.contains(text_bank_name)
         text_bank_files += files(text_bank_name)
