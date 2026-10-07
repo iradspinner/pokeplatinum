@@ -36,7 +36,14 @@ the TM pass, is built on `balance-tm-pass`:
 The reports are `docs/oxide/reward-table.md` and
 `docs/oxide/early-kits-read.md`.
 
-**Where it stands (2026-10-07, ready to land).** The branch has merged
+**Where the track stopped (2026-10-07, for the night).** The TM pass,
+step 12 (the Kaizo comb's teams, with Ian's boss levels), the starters'
+level 5 moves as data and the stale-score warning are all on `oxide`
+(623dae76a). Nothing of this track is uncommitted. The starter data
+leaves 179 scores stale, which waits for step 15's milestone reading.
+The track is idle until the Overseer sends the next job.
+
+**Where it stood before landing (2026-10-07).** The branch had merged
 the rework job (ab8922caf2), the calculator branch (c5aed2a7bf), the
 scoring branch (4042d8aecf) and `main-tm-items` with step 10's apply
 (d69dc80362), and it builds. The rescore recomputed all 1,031 stored
