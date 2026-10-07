@@ -1,11 +1,10 @@
 {
     "name": "Dive",
     "description": [
-        "A two-turn attack.\n",
-        "The user dives\n",
-        "underwater on the\n",
-        "first turn, then hits\n",
-        "on the next turn."
+        "The user dives under\n",
+        "the water and rams\n",
+        "the foe from below in\n",
+        "one motion."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_WATER",
@@ -13,7 +12,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DIVE",
+        "type": "BATTLE_EFFECT_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

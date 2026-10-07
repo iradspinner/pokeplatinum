@@ -804,6 +804,19 @@ TestKit_MoveSets3:
     AddListMenuEntry TestKit_Text_MenuSet68, 13
     AddListMenuEntry TestKit_Text_MenuSet69, 14
     AddListMenuEntry TestKit_Text_MenuSet70, 15
+    AddListMenuEntry TestKit_Text_MenuSet71, 16
+    AddListMenuEntry TestKit_Text_MenuSet72, 17
+    AddListMenuEntry TestKit_Text_MenuSet73, 18
+    AddListMenuEntry TestKit_Text_MenuSet74, 19
+    AddListMenuEntry TestKit_Text_MenuSet75, 20
+    AddListMenuEntry TestKit_Text_MenuSet76, 21
+    AddListMenuEntry TestKit_Text_MenuSet77, 22
+    AddListMenuEntry TestKit_Text_MenuSet78, 23
+    AddListMenuEntry TestKit_Text_MenuSet79, 24
+    AddListMenuEntry TestKit_Text_MenuSet80, 25
+    AddListMenuEntry TestKit_Text_MenuSet81, 26
+    AddListMenuEntry TestKit_Text_MenuSet82, 27
+    AddListMenuEntry TestKit_Text_MenuSet83, 28
     ShowListMenu
     GoToIfEq VAR_0x8004, 0, TestKit_MoveSet55
     GoToIfEq VAR_0x8004, 1, TestKit_MoveSet56
@@ -821,6 +834,19 @@ TestKit_MoveSets3:
     GoToIfEq VAR_0x8004, 13, TestKit_MoveSet68
     GoToIfEq VAR_0x8004, 14, TestKit_MoveSet69
     GoToIfEq VAR_0x8004, 15, TestKit_MoveSet70
+    GoToIfEq VAR_0x8004, 16, TestKit_MoveSet71
+    GoToIfEq VAR_0x8004, 17, TestKit_MoveSet72
+    GoToIfEq VAR_0x8004, 18, TestKit_MoveSet73
+    GoToIfEq VAR_0x8004, 19, TestKit_MoveSet74
+    GoToIfEq VAR_0x8004, 20, TestKit_MoveSet75
+    GoToIfEq VAR_0x8004, 21, TestKit_MoveSet76
+    GoToIfEq VAR_0x8004, 22, TestKit_MoveSet77
+    GoToIfEq VAR_0x8004, 23, TestKit_MoveSet78
+    GoToIfEq VAR_0x8004, 24, TestKit_MoveSet79
+    GoToIfEq VAR_0x8004, 25, TestKit_MoveSet80
+    GoToIfEq VAR_0x8004, 26, TestKit_MoveSet81
+    GoToIfEq VAR_0x8004, 27, TestKit_MoveSet82
+    GoToIfEq VAR_0x8004, 28, TestKit_MoveSet83
     GoTo TestKit_Close
 
 /* Sets 1 to 4: the first batch of effect scripts (388331c51). */
@@ -1687,6 +1713,226 @@ TestKit_MoveSet70:
     SetVar VAR_0x8007, MOVE_HEAL_BELL
     SetVar VAR_0x8008, MOVE_PROTECT
     SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 71: Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time (the move
+   reworks, Ian, 2026-10-06): 180 power, 100% accuracy, no recharge, half the
+   damage dealt as recoil. Against a wild Chansey that knows only Splash, each
+   hit brings "MEW is hit with recoil!" and costs Mew half of what it took from
+   Chansey, and on the next turn the menu opens as usual with no "must
+   recharge" turn. Before the change each was 150 power, 90% accuracy, and
+   left Mew unable to move the turn after. */
+TestKit_MoveSet71:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_HYPER_BEAM
+    SetVar VAR_0x8007, MOVE_GIGA_IMPACT
+    SetVar VAR_0x8008, MOVE_ROCK_WRECKER
+    SetVar VAR_0x8009, MOVE_ROAR_OF_TIME
+    GoTo TestKit_GiveMew
+
+/* Set 72: Blast Burn, Frenzy Plant and Hydro Cannon (the move reworks, Ian,
+   2026-10-06): 150 power, 95% accuracy, no recharge. Against a wild Chansey
+   that knows only Splash, Blast Burn and Frenzy Plant each bring "MEW is hit
+   with recoil!" for a third of what Chansey lost, and now and then burn or
+   paralyse it (30% and 20%); Hydro Cannon's recoil is half. The next turn's
+   menu opens as usual. Before the change each cost the turn after. */
+TestKit_MoveSet72:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BLAST_BURN
+    SetVar VAR_0x8007, MOVE_FRENZY_PLANT
+    SetVar VAR_0x8008, MOVE_HYDRO_CANNON
+    SetVar VAR_0x8009, MOVE_RECOVER
+    GoTo TestKit_GiveMew
+
+/* Set 73: Sky Attack in one turn (the move reworks, Ian, 2026-10-06): 120
+   power, 100% accuracy, a third of the damage dealt as recoil and a 20%
+   chance to paralyse. Against a wild Chansey that knows only Splash, Sky
+   Attack strikes on the turn it is chosen, with no "became cloaked in a
+   harsh light!" turn before it, brings "MEW is hit with recoil!", and now
+   and then paralyses Chansey. Before the change it glowed for a turn and
+   struck the next. */
+TestKit_MoveSet73:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SKY_ATTACK
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 74: Dig and Dive in one turn (the move reworks, Ian, 2026-10-06): Dig
+   60 power, Dive 80, each a plain hit with no turn out of reach. Against a
+   wild Chansey that knows only Tackle, slower than Mew, each strikes on the
+   turn it is chosen with no "burrowed its way under the ground!" or "hid
+   underwater!" line, and Chansey's Tackle lands on Mew the same turn. Dig
+   still works in the field menu. Before the change each spent a turn out of
+   reach and struck the next. */
+TestKit_MoveSet74:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_DIG
+    SetVar VAR_0x8007, MOVE_DIVE
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 75: the two to five hit moves at 25 a hit, on Generation 5's spread of
+   hits (the move reworks, Ian, 2026-10-06): two and three hits 35% of the
+   time each, four and five 15% each. Against a wild Chansey that knows only
+   Splash, each move ends with "Hit 2 time(s)!" up to "Hit 5 time(s)!", two or
+   three hits far more often than four or five, and each hit of the four moves
+   does about the same (Water Shuriken is special and goes first). Before the
+   change Fury Attack and Water Shuriken hit at 15, Fury Swipes at 18 and
+   Spike Cannon at 20. */
+TestKit_MoveSet75:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FURY_ATTACK
+    SetVar VAR_0x8007, MOVE_FURY_SWIPES
+    SetVar VAR_0x8008, MOVE_SPIKE_CANNON
+    SetVar VAR_0x8009, MOVE_WATER_SHURIKEN
+    GoTo TestKit_GiveMew
+
+/* Set 76: Skill Link keeps working with the new spread of hits. A Lv. 50
+   Cloyster given Skill Link, with Icicle Spear, Rock Blast, Spike Cannon and
+   Pin Missile, against a wild Chansey that knows only Splash: every use ends
+   with "Hit 5 time(s)!". */
+TestKit_MoveSet76:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x800A, SPECIES_CLOYSTER
+    SetVar VAR_0x800B, ABILITY_SKILL_LINK
+    SetVar VAR_0x8006, MOVE_ICICLE_SPEAR
+    SetVar VAR_0x8007, MOVE_ROCK_BLAST
+    SetVar VAR_0x8008, MOVE_SPIKE_CANNON
+    SetVar VAR_0x8009, MOVE_PIN_MISSILE
+    GoTo TestKit_GivePokemonWithMoves
+
+/* Set 77: Fury Cutter as Kaizo has it (the move reworks, Ian, 2026-10-06):
+   three hits of 30, 40 and 50 power, 100% accuracy. Against a wild Chansey
+   that knows only Splash, each use ends with "Hit 3 time(s)!", each hit
+   visibly larger than the one before, and a second use the next turn does
+   the same as the first. Before the change it was one hit of 40 that doubled
+   each turn it was used in a row. */
+TestKit_MoveSet77:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_FURY_CUTTER
+    SetVar VAR_0x8007, MOVE_X_SCISSOR
+    SetVar VAR_0x8008, MOVE_RECOVER
+    SetVar VAR_0x8009, MOVE_SPLASH
+    GoTo TestKit_GiveMew
+
+/* Set 78: Spite at 5 PP (the move reworks, Ian, 2026-10-06, inside the 3 to
+   6 PP of the stat-lowering moves). The move menu shows Spite at 5/5, where
+   it had 10. Against a wild Chansey that knows only Splash, Spite still
+   takes PP from Splash ("It reduced the PP of the wild CHANSEY's
+   SPLASH by 4!", or less). */
+TestKit_MoveSet78:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_SPITE
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 79: the rampage moves in one turn with no lock (the move reworks, Ian,
+   2026-10-06). Thrash 120 with a 20% paralysis and a third as recoil, Petal
+   Dance 100 with a 20% confusion (both foes in a double battle), Outrage 140
+   with half as recoil, Uproar 100 with a 20% confusion. Against a wild
+   Chansey that knows only Splash, each strikes once, the next turn's menu
+   opens as usual, Mew never becomes confused ("became confused due to
+   fatigue!" never shows) and Uproar brings no "caused an uproar!". Thrash
+   and Outrage bring "MEW is hit with recoil!"; Chansey is now and then
+   paralysed or confused. */
+TestKit_MoveSet79:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_THRASH
+    SetVar VAR_0x8007, MOVE_PETAL_DANCE
+    SetVar VAR_0x8008, MOVE_OUTRAGE
+    SetVar VAR_0x8009, MOVE_UPROAR
+    GoTo TestKit_GiveMew
+
+/* Set 80: Raging Fury in one turn (the move reworks, Ian, 2026-10-06), a new
+   effect (417): 120 power, a third of the damage as recoil and a 20% chance
+   to confuse. Against a wild Chansey that knows only Splash, each use brings
+   "MEW is hit with recoil!" and now and then "The wild CHANSEY became
+   confused!", Mew is never locked into it and never confused by it. */
+TestKit_MoveSet80:
+    SetVar VAR_0x8000, SPECIES_CHANSEY
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_RAGING_FURY
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 81: Upper Hand (the move reworks, Ian, 2026-10-06), a new effect
+   (418): +3 priority, 65 power, and it fails unless the target has chosen a
+   priority move this turn, which it then flinches. Against a wild Rattata
+   that knows Quick Attack and Tackle, picking one at random: on a turn it
+   chose Quick Attack, Upper Hand hits first and "The wild RATTATA flinched!"
+   follows, so no Quick Attack lands; on a turn it chose Tackle, Upper Hand
+   says "But it failed!". Before the change it was a plain hit that always
+   worked. */
+TestKit_MoveSet81:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_QUICK_ATTACK
+    SetVar VAR_0x8003, MOVE_TACKLE
+    SetVar VAR_0x8006, MOVE_UPPER_HAND
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
+    GoTo TestKit_GiveMew
+
+/* Set 82: Shell Trap (the move reworks, Ian, 2026-10-06), a new effect
+   (419): -3 priority, 150 power, and it strikes only if a physical move hit
+   its user this turn, else fails. Against a wild Rattata that knows Tackle
+   and Swift, picking one at random: on a turn Rattata used Tackle, Shell
+   Trap strikes after it; on a turn it used Swift, which is special, Shell
+   Trap says "But it failed!". Before the change it was a plain hit that
+   always worked. */
+TestKit_MoveSet82:
+    SetVar VAR_0x8000, SPECIES_RATTATA
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_TACKLE
+    SetVar VAR_0x8003, MOVE_SWIFT
+    SetVar VAR_0x8006, MOVE_SHELL_TRAP
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_PROTECT
+    GoTo TestKit_GiveMew
+
+/* Set 83: Burning Jealousy (the move reworks, Ian, 2026-10-06), a new effect
+   (420): 70 power, and it burns only a target whose stats rose this turn,
+   where it burned every target it hit. Against a wild Ninjask, always
+   faster than Mew, that knows Swords Dance and Splash and picks one at
+   random: on a turn it used Swords Dance, Burning Jealousy burns it ("The
+   wild NINJASK was burned!"); on a turn it used Splash, it does not. */
+TestKit_MoveSet83:
+    SetVar VAR_0x8000, SPECIES_NINJASK
+    SetVar VAR_0x8001, ABILITY_NONE
+    SetVar VAR_0x8002, MOVE_SWORDS_DANCE
+    SetVar VAR_0x8003, MOVE_SPLASH
+    SetVar VAR_0x8006, MOVE_BURNING_JEALOUSY
+    SetVar VAR_0x8007, MOVE_RECOVER
+    SetVar VAR_0x8008, MOVE_SPLASH
+    SetVar VAR_0x8009, MOVE_TACKLE
     GoTo TestKit_GiveMew
 
 /* As TestKit_GivePokemonWithMoves, holding the item in VAR_0x8004 (free once

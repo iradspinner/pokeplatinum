@@ -250,6 +250,7 @@ ScriptCommand(BTLCMD_TRYPICKPOCKET,               BtlCmd_TryPickpocket)
 ScriptCommand(BTLCMD_TRYTEATIME,                  BtlCmd_TryTeatime)
 ScriptCommand(BTLCMD_TRYSKYDROP,                  BtlCmd_TrySkyDrop)
 ScriptCommand(BTLCMD_CHECKSAFEGUARD,              BtlCmd_CheckSafeguard)
+ScriptCommand(BTLCMD_TRYUPPERHAND,                BtlCmd_TryUpperHand)
 
 // clang-format on
 

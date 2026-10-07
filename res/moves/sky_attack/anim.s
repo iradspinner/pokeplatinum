@@ -1,65 +1,9 @@
 #include "macros/btlanimcmd.inc"
 
+// Oxide: Sky Attack strikes in one turn since the move reworks (Ian,
+// 2026-10-06), so only the strike is played; the glow of the old charge
+// turn is gone with it.
 L_0:
-    JumpIfEffectChanceOdd L_1, L_2
-    End
-
-L_1:
-    LoadParticleResource 0, sky_attack_spa
-    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_ATTACKER
-    JumpIfFriendlyFire L_3
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
-    Delay 25
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    WaitForAnimTasks
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
-    WaitForAnimTasks
-    FreePokemonSpriteManager
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
-    End
-
-L_3:
-    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_4, L_5
-    End
-
-L_4:
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
-    Delay 25
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    WaitForAnimTasks
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
-    WaitForAnimTasks
-    FreePokemonSpriteManager
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
-    End
-
-L_5:
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 0, 10, BATTLE_COLOR_BLACK
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_BLACK, 10, 0
-    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_BLACK, 10, 30
-    PlayLoopedSoundEffectL SEQ_SE_DP_W360_sseq, 12, 2
-    Delay 25
-    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER, 0, 1, BATTLE_COLOR_WHITE, 12, 0
-    Func_Shake 1, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITE_ATTACKER
-    WaitForAnimTasks
-    Func_FadeBg FADE_BG_TYPE_BASE, 1, 10, 0, BATTLE_COLOR_BLACK
-    WaitForAnimTasks
-    FreePokemonSpriteManager
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
-    End
-
-L_2:
     LoadParticleResource 0, sky_attack_spa
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, -32
     SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 0

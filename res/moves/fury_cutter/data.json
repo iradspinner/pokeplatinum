@@ -2,18 +2,18 @@
     "name": "Fury Cutter",
     "description": [
         "The foe is slashed\n",
-        "with scythes or\n",
-        "claws. Its power\n",
-        "increases if it hits\n",
-        "in succession."
+        "three times with claws\n",
+        "or scythes, each hit\n",
+        "10 stronger than the\n",
+        "one before."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
-    "power": 40,
-    "accuracy": 95,
+    "power": 30,
+    "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_DOUBLE_POWER_EACH_TURN",
+        "type": "BATTLE_EFFECT_HIT_THREE_TIMES_RISING_10",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

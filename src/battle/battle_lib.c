@@ -971,6 +971,11 @@ void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam pa
 void Battler_AddVal(BattleContext *battleCtx, int battler, enum BattleMonParam paramID, int val)
 {
     BattleMon_AddVal(&battleCtx->battleMons[battler], paramID, val);
+
+    // Oxide: a stage raised this way (the X items) counts for Burning Jealousy.
+    if (paramID >= BATTLEMON_HP_STAGE && paramID <= BATTLEMON_EVASION_STAGE && val > 0) {
+        battleCtx->turnFlags[battler].statRaised = TRUE;
+    }
 }
 
 void BattleMon_AddVal(BattleMon *mon, enum BattleMonParam paramID, int val)
@@ -6694,6 +6699,7 @@ BOOL BattleSystem_TriggerMirrorHerb(BattleSystem *battleSys, BattleContext *batt
                 *boost = *boost - stages < MIN_STAT_STAGE ? MIN_STAT_STAGE : *boost - stages;
             } else {
                 *boost = *boost + stages > MAX_STAT_STAGE ? MAX_STAT_STAGE : *boost + stages;
+                battleCtx->turnFlags[holder].statRaised = TRUE; // Oxide, for Burning Jealousy
             }
 
             copiedFromFoe = TRUE;
@@ -10279,6 +10285,13 @@ static const u16 sSheerForceEffects[] = {
     BATTLE_EFFECT_HIGH_CRITICAL_POISON_HIT,
     BATTLE_EFFECT_RECOIL_BURN_HIT,
     BATTLE_EFFECT_RECOIL_PARALYZE_HIT,
+    // Oxide: the move reworks' new effects that carry a secondary effect
+    // (2026-10-06): Raging Fury's confusion (its recoil stays, as Volt
+    // Tackle's does), Upper Hand's flinch (as Fake Out's) and Burning
+    // Jealousy's burn.
+    BATTLE_EFFECT_RECOIL_CONFUSE_HIT,
+    BATTLE_EFFECT_UPPER_HAND,
+    BATTLE_EFFECT_BURN_HIT_IF_STATS_ROSE,
 };
 
 // Oxide: moves Sheer Force strengthens that keep their effect, as in

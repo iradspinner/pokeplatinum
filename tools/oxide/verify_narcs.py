@@ -512,6 +512,24 @@ KAIZO_TRAINER_STATS = {39, 51, 83, 88, 165, 167, 174, 243, 244}
 # Houndoom's line.
 BUFF_REVIEW_VARIANT_STATS = {67, 87, 93, 99, 111, 119, 171, 185, 229, 247, 272, 337, 338, 400, 414, 444}
 
+# The move reworks Ian accepted on 2026-10-06 (docs/oxide/learnset-rewrite.md,
+# "1. The move reworks"; the numbers are in the standing rulings), by move id.
+# Hyper Beam, Giga Impact, Rock Wrecker, Roar of Time.
+REWORK_RECHARGE_TO_RECOIL = {63, 416, 439, 459}
+# Blast Burn, Hydro Cannon, Frenzy Plant.
+REWORK_STARTER_ULTIMATES = {307, 308, 338}
+# Sky Attack.
+REWORK_SKY_ATTACK = {143}
+# Dig and Dive.
+REWORK_DIG_DIVE = {91, 291}
+# The two to five hit moves below 25 a hit: Double Slap, Comet Punch, Fury
+# Attack, Spike Cannon, Barrage, Fury Swipes, Arm Thrust.
+REWORK_MULTI_HIT_25 = {3, 4, 31, 131, 140, 154, 292}
+# Fury Cutter.
+REWORK_FURY_CUTTER = {210}
+# The rampage moves: Thrash, Petal Dance, Outrage, Uproar.
+REWORK_RAMPAGE = {37, 80, 200, 253}
+
 DIVERGED = {
     "poketool/personal/pl_personal.narc": [
         {
@@ -648,6 +666,56 @@ DIVERGED = {
             "members": {305},
             "why": "Poison Fang takes Kaizo's 90 power and 40% bad-poison chance, over the "
                    "base ROM's 75 and 30% (Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_RECHARGE_TO_RECOIL,
+            "why": "Hyper Beam, Giga Impact, Rock Wrecker and Roar of Time at 180 power and "
+                   "100 accuracy, with half the damage as recoil in place of the recharge "
+                   "turn (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 5, 7),  # effect, accuracy, effect chance
+            "members": REWORK_STARTER_ULTIMATES,
+            "why": "Blast Burn, Frenzy Plant and Hydro Cannon at 95 accuracy with Kaizo's "
+                   "recoil and status in place of the recharge turn (the move reworks, "
+                   "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7),  # effect, power, effect chance
+            "members": REWORK_SKY_ATTACK,
+            "why": "Sky Attack in one turn at 120 power, with a third as recoil and a 20% "
+                   "paralysis (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3),  # effect, power
+            "members": REWORK_DIG_DIVE,
+            "why": "Dig at 60 and Dive at 80 as plain one turn hits (the move reworks, "
+                   "Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (3,),  # power
+            "members": REWORK_MULTI_HIT_25,
+            "why": "every two to five hit move at 25 a hit (the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 5),  # effect, power, accuracy
+            "members": REWORK_FURY_CUTTER,
+            "why": "Fury Cutter as Kaizo's three hits of 30 rising by 10, at 100 accuracy "
+                   "(the move reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (6,),  # pp
+            "members": {180},
+            "why": "Spite at 5 PP, inside the 3 to 6 of the stat-lowering moves (the move "
+                   "reworks, Ian, 2026-10-06)",
+        },
+        {
+            "offsets": (0, 1, 3, 7, 8, 9),  # effect, power, effect chance, range
+            "members": REWORK_RAMPAGE,
+            "why": "the rampage moves in one turn with no lock: Thrash, Petal Dance and "
+                   "Outrage as Kaizo has them, Uproar at 100 with a 20% confusion (the move "
+                   "reworks, Ian, 2026-10-06)",
         },
     ],
 }

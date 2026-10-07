@@ -1,11 +1,11 @@
 {
     "name": "Raging Fury",
     "description": [
-        "The user rampages\n",
-        "around spewing flames\n",
-        "for two to three\n",
-        "turns. The user then\n",
-        "becomes confused."
+        "A fiery rampage that\n",
+        "may confuse the foe.\n",
+        "The user is hurt by a\n",
+        "third of the damage it\n",
+        "deals."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
@@ -13,10 +13,10 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF",
-        "chance": 0
+        "type": "BATTLE_EFFECT_RECOIL_CONFUSE_HIT",
+        "chance": 20
     },
-    "range": "RANGE_RANDOM_OPPONENT",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",
