@@ -6,3 +6,4 @@
 SPECIES_TURTWIG     Tackle and Withdraw at 5, as a starter knows (Ian's QA, 2026-10-07)
 SPECIES_SCORBUNNY   Tackle and Growl at 5, Ember 7 and Flame Charge 9 after (Ian's QA, 2026-10-07)
 SPECIES_PIPLUP      Pound and Growl at 5, Scary Face after it (Ian's QA, 2026-10-07)
+SPECIES_LILEEP      a Grass rung before Giga Drain: Mega Drain 13, Giga Drain 27 (Ian, 2026-10-12, on Roark's Lileep)
