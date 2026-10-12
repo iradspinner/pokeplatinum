@@ -80,6 +80,26 @@ def check_damage(results, blob):
                     f"IVs 31 into Gengar {dark[0]}-{dark[-1]}, IVs 30 {fighting[0]}-{fighting[-1]}"))
 
 
+def check_eviolite(results, blob):
+    """The Eviolite works by the engine's rule, on any species that can still
+    evolve: an old one (Lileep), one added after Generation 4 (Naclstack),
+    and not on a final stage (Garganacl)."""
+    iv = {k: 31 for k in ("hp", "at", "df", "sa", "sd", "sp")}
+    ev = {k: 0 for k in iv}
+    mon = lambda sp, item=None: {"species": sp, "level": 50, "nature": "Hardy", "ivs": iv, "evs": ev, "item": item}
+    defenders = ("Lileep", "Naclstack", "Garganacl")
+    pk = {"att": mon("Barboach")}
+    for sp in defenders:
+        pk[sp + "+"] = mon(sp, "Eviolite")
+        pk[sp] = mon(sp)
+    out = _run(blob, {"pokemon": pk, "pairs": [["att", d, ["Mud Bomb", "Tackle"], None] for d in pk if d != "att"]})
+    top = {r["d"]: {m: v["rolls"][-1] for m, v in r["moves"].items()} for r in out["results"]}
+    ok = all(top[sp + "+"][m] < top[sp][m] for sp in ("Lileep", "Naclstack") for m in ("Mud Bomb", "Tackle")) \
+        and top["Garganacl+"] == top["Garganacl"]
+    results.append(("the Eviolite cuts damage to a species that can still evolve, of any generation", ok,
+                    "; ".join(f"{sp} {top[sp + '+']} with, {top[sp]} without" for sp in defenders)))
+
+
 def check_ref_overrides(results, blob):
     """B3b's reference Pokemon bring their own game's species and move data.
     Oxide's own data passed that way changes nothing; a move the engine has
@@ -416,6 +436,7 @@ def main():
     blob = calc_export.build()
     check_engine(results)
     check_damage(results, blob)
+    check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_pool(results, blob)
     check_rules(results)

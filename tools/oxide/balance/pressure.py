@@ -640,8 +640,35 @@ def boss_moves(mon, blob):
             and (m not in pool.UNRELIABLE or (m in ITEM_MOVES and mon.get("item")))]
 
 
+@functools.lru_cache(maxsize=None)
+def can_evolve():
+    """{calculator name: whether the species can still evolve}, from Oxide's
+    own evolution records. The engine gives the Eviolite to a species whose
+    first evolution slot is in use (Species_CanEvolve, battle_lib.c); the
+    calculator's Generation 4 mechanics ask its Generation 4 species table
+    instead, which has no species added later (Naclstack's line), so the
+    runner is told the engine's answer for each holder."""
+    from ..encounters import pokedex
+    from . import plteam
+    out = {}
+    for sp in pokedex.species_list(data.ROOT):
+        raw = pokedex._read(data.ROOT, f"res/pokemon/{pokedex.folder_of(sp)}/data.json") or {}
+        name = plteam.species_name(sp)
+        out[name] = out.get(name, False) or bool(raw.get("evolutions"))
+    return out
+
+
 def run_node(blob_path, jobs):
     """One Node process, waited on, so nothing else runs beside it."""
+    # Each Eviolite holder carries whether its species can still evolve, by
+    # the engine's rule (can_evolve), for the runner's Generation 4 table.
+    pokemon = jobs.get("pokemon") or {}
+    if any(p.get("item") == "Eviolite" for p in pokemon.values()):
+        evolves = can_evolve()
+        jobs = dict(jobs, pokemon={
+            k: dict(p, can_evolve=evolves[p["species"]])
+            if p.get("item") == "Eviolite" and p.get("species") in evolves else p
+            for k, p in pokemon.items()})
     with tempfile.TemporaryDirectory(prefix="oxide-b3-") as tmp:
         jobs_path, out_path = os.path.join(tmp, "jobs.json"), os.path.join(tmp, "out.json")
         with open(jobs_path, "w", encoding="utf-8") as f:
