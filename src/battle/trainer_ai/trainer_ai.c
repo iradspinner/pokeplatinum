@@ -1929,6 +1929,14 @@ static void AICmd_IfBattlerUnderEffect(BattleSystem *battleSys, BattleContext *b
         }
         break;
 
+    // Oxide: for Expert_SaltCure, which gives nothing for salting a battler
+    // already salted.
+    case CHECK_SALT_CURE:
+        if (battleCtx->battleMons[battler].oxideFlags & OXIDE_MON_FLAG_SALT_CURED) {
+            AIScript_Iter(battleCtx, jump);
+        }
+        break;
+
     default:
         break;
     }

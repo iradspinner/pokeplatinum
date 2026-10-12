@@ -45,8 +45,9 @@
 #define USE_MAX_DAMAGE  0
 #define ROLL_FOR_DAMAGE 1
 
-#define CHECK_DISABLE 0
-#define CHECK_ENCORE  1
+#define CHECK_DISABLE   0
+#define CHECK_ENCORE    1
+#define CHECK_SALT_CURE 2 // Oxide: the battler is being salt cured (IfBattlerUnderEffect only)
 
 #define CHECK_HIGHER_THAN_TARGET 0
 #define CHECK_LOWER_THAN_TARGET  1

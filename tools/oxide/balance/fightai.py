@@ -2843,6 +2843,18 @@ def x_mortal_spin(c):
     return _spin_clears(c)
 
 
+def x_salt_cure(c):
+    """Expert_SaltCure (Oxide, Ian, 2026-10-12): nothing on a target already
+    salted or one Magic Guard spares; with the user or the target at half HP
+    or less, -3 at 80.5%; otherwise +2 at 72.7%, the score of a hit that
+    lowers Speed."""
+    if getattr(c.t, "salted", False) or ability_of(c.b, c.u, c.t) == "Magic Guard":
+        return 0
+    if c.hu <= 50 or c.ht <= 50:
+        return -3 if c.roll(80.5) else 0
+    return 2 if c.roll(72.7) else 0
+
+
 # Each Expert_Main label, by its routine above.
 EXPERT_ROUTINES = {
     "Expert_StatusSleep": x_status_sleep, "Expert_DrainMove": x_drain_move,
@@ -2906,7 +2918,7 @@ EXPERT_ROUTINES = {
     "Expert_RecoilMove": x_recoil_move, "Expert_Hex": x_doubled, "Expert_Venoshock": x_doubled,
     "Expert_Acrobatics": x_doubled, "Expert_BoltBeak": x_doubled,
     "Expert_RapidSpin": x_rapid_spin, "Expert_SpeedUpOnHit": x_speed_up_on_hit,
-    "Expert_MortalSpin": x_mortal_spin}
+    "Expert_MortalSpin": x_mortal_spin, "Expert_SaltCure": x_salt_cure}
 
 
 @functools.lru_cache(maxsize=None)

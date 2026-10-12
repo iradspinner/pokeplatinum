@@ -2350,6 +2350,9 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CLEAR_SMOG, Expert_ClearSmog
     // Mortal Spin clears what Rapid Spin clears, without the Speed raise.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MORTAL_SPIN, Expert_MortalSpin
+    // Salt Cure costs its target HP every turn: a routine of its own (Ian,
+    // 2026-10-12), below.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SALT_CURE, Expert_SaltCure
     // Smack Down and Thousand Arrows ground their target, as Gravity grounds
     // every battler.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SMACK_DOWN, Expert_Gravity
@@ -5630,6 +5633,40 @@ Expert_MortalSpin_ScoreMinus1:
     AddToMoveScore -1
 
 Expert_MortalSpin_End:
+    PopOrEnd
+
+Expert_SaltCure:
+    // Oxide, change (Ian, 2026-10-12). Salt Cure is a weak hit whose worth is the HP its target
+    // loses every turn after (subscript_salt_cure), and Evaluate Attack docks it a point
+    // whenever a stronger attack is known, so without a routine the AI never salted. It takes
+    // the pattern Platinum gives the hits that lower Speed (Expert_StatusSpeedDown), with the
+    // condition of Toxic and Leech Seed's routine, since damage over time pays least once
+    // either side is low:
+    //
+    // On a target already salted, or one whose Magic Guard spares it, no change.
+    //
+    // If the attacker's or the target's HP is at 50% or lower, 80.5% chance of score -3.
+    //
+    // Otherwise, 72.7% chance of score +2.
+    IfBattlerUnderEffect AI_BATTLER_DEFENDER, CHECK_SALT_CURE, Expert_SaltCure_End
+    LoadBattlerAbility AI_BATTLER_DEFENDER
+    IfLoadedEqualTo ABILITY_MAGIC_GUARD, Expert_SaltCure_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, Expert_SaltCure_CheckTargetHP
+    GoTo Expert_SaltCure_TryScoreMinus3
+
+Expert_SaltCure_CheckTargetHP:
+    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, Expert_SaltCure_TryScorePlus2
+
+Expert_SaltCure_TryScoreMinus3:
+    IfRandomLessThan 50, Expert_SaltCure_End
+    AddToMoveScore -3
+    GoTo Expert_SaltCure_End
+
+Expert_SaltCure_TryScorePlus2:
+    IfRandomLessThan 70, Expert_SaltCure_End
+    AddToMoveScore 2
+
+Expert_SaltCure_End:
     PopOrEnd
 
 Expert_HammerArm:
