@@ -78,7 +78,8 @@ def exact_odds():
             bad.append((label, "odds do not sum to 1"))
         for k in set(exact) | set(freq):
             p, f = exact.get(k, 0.0), freq.get(k, 0.0)
-            se = max((p * (1 - p) / n) ** 0.5, 1 / n)
+            q = min(max(p, 0.0), 1.0)      # a sum of odds can land a rounding hair above 1
+            se = max((q * (1 - q) / n) ** 0.5, 1 / n)
             z = abs(p - f) / se
             worst = max(worst, z)
             if z > 4 or (f > 0 and p == 0):
@@ -126,7 +127,7 @@ def turn_odds():
     """The exact enumeration of a turn agrees with the turn sampled at real
     odds: its outcomes' probabilities sum to one, and the chance that the
     target faints matches the sampled frequency (four standard errors).
-    Steenee's Razor Leaf on Lileep, and Lileep's Rock Tomb on Steenee while
+    Steenee's Razor Leaf on Lileep, and Lileep's Ancient Power on Steenee while
     Steenee Splashes, each at the first HP where the knockout is uncertain."""
     st, team, bk, flags, names = fight_state("roark")
     s_i = names.index("Steenee")
@@ -142,7 +143,7 @@ def turn_odds():
         return "move", next(m for m in mon.moves if m.name == name)
 
     cases = []
-    for side, mine, theirs in (("b", "Razor Leaf", "Ingrain"), ("p", "Splash", "Rock Tomb")):
+    for side, mine, theirs in (("b", "Razor Leaf", "Acid"), ("p", "Splash", "Ancient Power")):
         for hp in range(2, 40):
             b = start()
             target = b.b.cur() if side == "b" else b.p.cur()

@@ -251,6 +251,7 @@ def wish_spite_recycle_checks():
     target's last move; Recycle brings back the item its user used up."""
     b = battle()
     foe, barboach = b.b.cur(), b.p.cur()
+    foe.item = None         # step 12's Nosepass holds Leftovers, which would heal it too
     foe.hp = 10
     pl.status_move(b, foe, fs.move("Wish"), barboach, True)
     fs.end_of_turn(b)
@@ -1222,7 +1223,7 @@ def main():
     pl.status_move(b, nose, mv(nose, "Block"), barb, True)
     trapped = barb.trapped_by == nose.key and not fs.can_switch(barb)
     try:
-        pl._turn(b, ("switch", 1), ("move", mv(nose, "Rock Throw")))
+        pl._turn(b, ("switch", 1), ("move", mv(nose, "Rock Tomb")))
         refused = False
     except ValueError:
         refused = True
@@ -1236,6 +1237,7 @@ def main():
     # Apicot Berry: +1 Special Defense at a quarter HP, eaten.
     b = battle()
     nose = b.b.cur()
+    nose.item = "Apicot Berry"      # step 12's Nosepass holds Leftovers
     fs.hurt(b, nose, nose.hp - nose.maxhp // 4)
     results.append(("Apicot Berry raises Special Defense at a quarter HP and is eaten",
                     nose.stages["spd"] == 1 and nose.item is None, f"spd {nose.stages['spd']}, item {nose.item}"))
@@ -1243,6 +1245,7 @@ def main():
     # Sitrus fires on the hit that takes it to half, not at the end of the turn.
     b = battle()
     cran = boss(b, "Cranidos")
+    cran.item = "Sitrus Berry"      # step 12's Cranidos holds a Lum Berry
     before = cran.hp
     fs.hurt(b, cran, cran.hp - cran.maxhp // 2 + 1)
     low = cran.maxhp // 2 - 1
@@ -1256,7 +1259,9 @@ def main():
     fs.switch_in(b, b.p, 1)
     nacli = b.p.cur()
     cran.stages["atk"] = 6
-    rock = mv(cran, "Rock Throw")
+    # Step 12's Cranidos has Rock Head: the check sets the ability it tests.
+    cran.ability = "Mold Breaker"
+    rock = mv(cran, "Rock Slide")
     for _ in range(20):
         if not nacli.alive():
             break
@@ -1278,20 +1283,23 @@ def main():
     results.append(("Pursuit hits the Pokemon switching out, harder than a plain Pursuit",
                     hit_out and doubled, f"switching {barb.maxhp - barb.hp}, plain {plain.p.cur().maxhp - plain.p.cur().hp}"))
 
-    # Big Root: Mega Drain restores 30% more.
+    # Big Root: a draining move (step 12's Lileep has Giga Drain) restores 30% more.
     b = battle()
     lil = boss(b, "Lileep")
     fs.switch_in(b, b.p, 1)
     lil.hp = 10
-    pl.attack(b, lil, mv(lil, "Mega Drain"), b.p.cur(), True)
+    pl.attack(b, lil, mv(lil, "Giga Drain"), b.p.cur(), True)
     dealt = b.p.cur().maxhp - b.p.cur().hp
-    results.append(("Big Root raises Mega Drain's heal by 30%", lil.hp == min(lil.maxhp, 10 + int((dealt // 2) * 1.3)),
+    results.append(("Big Root raises a drain's heal by 30%", lil.hp == min(lil.maxhp, 10 + int((dealt // 2) * 1.3)),
                     f"dealt {dealt}, Lileep 10 -> {lil.hp}"))
 
     # Ingrain: roots the user (no switching, no second Ingrain) and heals a
-    # sixteenth a turn, 30% more with Big Root.
+    # sixteenth a turn, 30% more with Big Root. Step 12's Lileep has no
+    # Ingrain, so the check gives it one.
     b = battle()
     lil = boss(b, "Lileep")
+    lil.moves = list(lil.moves) + [fs.move("Ingrain")]
+    lil.pp["Ingrain"] = 10
     pl.status_move(b, lil, mv(lil, "Ingrain"), b.p.cur(), True)
     lil.hp = 20
     fs.end_of_turn(b)
@@ -1304,6 +1312,7 @@ def main():
     # Bug Bite eats the target's Sitrus Berry: the user heals, the berry is gone.
     b = battle()
     cran = boss(b, "Cranidos")
+    cran.item = "Sitrus Berry"      # step 12's Cranidos holds a Lum Berry
     fs.switch_in(b, b.p, 2)
     grub = b.p.cur()
     grub.hp = 10
@@ -1353,6 +1362,13 @@ def main():
     boss_keys, flags, _ = prep["variants"][0]
     b = pl.make_battle(prep["st"], ["p0"], boss_keys, flags, 0)
     lil = boss(b, "Lileep")
+    # The moves Roark's Lileep had before step 12, which this check is built on.
+    lil.moves = [fs.move(n) for n in ("Mega Drain", "Rock Tomb", "Constrict", "Ingrain")]
+    lil.pp = {m.name: 10 for m in lil.moves}
+    # ...and the Speed tie it rests on (step 12's Lileep is a point slower),
+    # set where the battle reads Speed, for this battle only.
+    row_speed, turtwig = b.row_speed, b.p.cur()
+    b.row_speed = lambda mon: row_speed(turtwig) if mon is lil else row_speed(mon)
     lil.turns_in = 1
     picks = collections.Counter()
     for i in range(400):
@@ -1363,8 +1379,12 @@ def main():
     for i in range(400):
         b.rng = random.Random(i)
         rooted[fightai.choose(b, lil, b.p.cur())[1].name] += 1
-    results.append(("Lileep against Turtwig: Ingrain first, then mostly Constrict, never Rock Tomb",
-                    picks == {"Ingrain": 400} and rooted["Constrict"] > 300 and not rooted["Rock Tomb"],
+    # With step 12's Calm Lileep, Constrict now ties Ingrain on the first
+    # turn, so the check asks only what the two rules give: never Rock Tomb
+    # at a Speed tie, and never Ingrain once rooted.
+    results.append(("Lileep against Turtwig at a Speed tie: never Rock Tomb; rooted, never Ingrain, mostly Constrict",
+                    picks["Ingrain"] > 0 and not picks["Rock Tomb"] and rooted["Constrict"] > 300
+                    and not rooted["Rock Tomb"] and not rooted["Ingrain"],
                     f"first {dict(picks)}, rooted {dict(rooted)}"))
 
     # Rollout: the first hit after Defense Curl is 60 power (2x, not 4x), and
@@ -1455,7 +1475,7 @@ def main():
         orig = pl.use_move
         pl.use_move = lambda bb, att, m, d, first, _o=orig, _l=log: (_l.append(att.side), _o(bb, att, m, d, first))
         try:
-            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Calm Mind")))
+            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Confuse Ray")))
         finally:
             pl.use_move = orig
         firsts += bool(log) and log[0] == "p"
@@ -1479,7 +1499,7 @@ def main():
         orig = pl.use_move
         pl.use_move = lambda bb, att, m, d, first, _o=orig, _l=log: (_l.append(att.side), _o(bb, att, m, d, first))
         try:
-            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Calm Mind")))
+            pl._turn(c, ("move", mv(g, "Rock Throw")), ("move", mv(bz, "Confuse Ray")))
         finally:
             pl.use_move = orig
         stressed += bool(log) and log[0] == "p"
@@ -1519,21 +1539,21 @@ def main():
     boss_keys, flags, _ = prep["variants"][0]
     b = pl.make_battle(prep["st"], ["p0", "p1"], boss_keys, flags, 0)
     b.dice = pl.RunDice(random.Random(5), True); b.rng = random.Random(5)
-    rose, tsa, gol = boss(b, "Roserade"), b.p.mons[0], b.p.mons[1]
-    spore = mv(rose, "Stun Spore")
+    brel, tsa, gol = boss(b, "Breloom"), b.p.mons[0], b.p.mons[1]
+    spore = mv(brel, "Stun Spore")
     for _ in range(20):
-        pl.status_move(b, rose, spore, tsa, True)
+        pl.status_move(b, brel, spore, tsa, True)
     results.append(("Stun Spore never paralyses a Grass type, and the AI scores it -10",
-                    tsa.status is None and fightai.basic(b, rose, tsa, spore, 0) == -10,
-                    f"{tsa.status}, {fightai.basic(b, rose, tsa, spore, 0)}"))
+                    tsa.status is None and fightai.basic(b, brel, tsa, spore, 0) == -10,
+                    f"{tsa.status}, {fightai.basic(b, brel, tsa, spore, 0)}"))
     b.weather = "Sun"
     gol.ability = "Leaf Guard"
     for _ in range(20):
-        pl.status_move(b, rose, spore, gol, True)
+        pl.status_move(b, brel, spore, gol, True)
     results.append(("Leaf Guard stops status in sun", gol.status is None, f"{gol.status}"))
     b.weather = None
     for _ in range(20):
-        pl.status_move(b, rose, spore, gol, True)
+        pl.status_move(b, brel, spore, gol, True)
     results.append(("out of sun Leaf Guard does not", gol.status == "par", f"{gol.status}"))
 
     # Switching (TrainerAI_ShouldSwitch): an asleep Natural Cure holder at
@@ -1555,15 +1575,21 @@ def main():
         left += fightai.should_switch(b, b.b, rose, vika) is not None
     results.append(("an asleep Natural Cure holder at full HP, not hit, switches about 7 in 8",
                     0.82 <= left / 800 <= 0.93, f"{left} of 800"))
-    lum = boss(b, "Lumineon")
+    # Step 12's Gardenia has no Lumineon, so her Ludicolo carries the gift
+    # and its Watmel Berry here (Spark is neutral on it, where it hit
+    # Lumineon hard, so the stay half asks less than it did).
+    lum = boss(b, "Ludicolo")
     b.b.active = b.b.mons.index(lum)
+    lum.item = "Watmel Berry"
+    lum.moves = list(lum.moves) + [fs.move("Natural Gift")]
+    lum.pp["Natural Gift"] = 10
     lum.last_hit_by = mv(vika, "Spark")
     gift = mv(lum, "Natural Gift")
     stays = 0
     for i in range(800):
         b.rng = random.Random(i)
         stays += fightai.should_switch(b, b.b, lum, vika) is None
-    results.append(("Natural Gift takes its berry's type: Watmel's Fire keeps Lumineon in about 9 in 10 against Vikavolt",
+    results.append(("Natural Gift takes its berry's type: Watmel's Fire keeps Ludicolo in about 9 in 10 against Vikavolt",
                     fightai.move_type(b, lum, gift) == "Fire" and stays / 800 >= 0.85, f"{fightai.move_type(b, lum, gift)}, stayed {stays} of 800"))
 
     results += fixed_damage_checks()
