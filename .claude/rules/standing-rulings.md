@@ -15,8 +15,11 @@ read, so they are written here too. Each is a standing instruction.
   and the simulator is frozen except for fixes he approves. The cheap
   calculator estimate runs on request, in the background. A problem Ian
   reports is fixed as data, with common sense, never turned into a standing
-  rule, a generator rule or a gate check unless he asks for one. Every
-  landing commit says, in one line, "Difficulty: not material" or
+  rule, a generator rule or a gate check unless he asks for one. What counts
+  as material is read from the fight's shape in `docs/oxide/boss-shapes.md`:
+  a change to a boss's core, or to the player's core counterpiece to it, is
+  material, and a change to a one-off Pokemon is not (Ian, 2026-10-12).
+  Every landing commit says, in one line, "Difficulty: not material" or
   "Difficulty: material, <fights>". The rule exists because Roark's split
   was re-read more than 65 times before the alpha, and the full scorer costs
   60 to 75 hours a pass.
