@@ -326,7 +326,9 @@ read, so they are written here too. Each is a standing instruction.
   (Ian, 2026-10-06); the evasion items (BrightPowder, Lax Incense) stay
   under the evasion-is-rare rule. A Focus Sash may go on a lead that carries
   the boss's trade (Ian, 2026-10-06). No level-1 Focus Sash and Endeavor sets.
-  No overlevelled optional trainers. Oxide adds some double battles. An
+  No overlevelled optional trainers. Every Pokemon on an enemy team holds
+  its own item and has its own nature, with no repeats within the team
+  (Ian, 2026-10-12). Oxide adds some double battles. An
   ordinary trainer carries 3 to 5 Pokemon (6 is fine from Gardenia's split
   on), team sizes vary from fight to fight, and ordinary trainers are
   genuinely dangerous: two-Pokemon teams are too trivial (Ian, 2026-10-04).
