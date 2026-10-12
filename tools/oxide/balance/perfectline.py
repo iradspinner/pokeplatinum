@@ -624,6 +624,8 @@ def attack(b, att, mv, dfn, first):
         fs.spin(b, att, dfn, e)
     if not dfn.alive() or fs.sub_blocks(att, dfn, mv):
         return
+    if e == "SALT_CURE":
+        dfn.salted = True        # as fightsim: salted once the hit lands, chance-free
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
         chance = 0
@@ -882,7 +884,7 @@ def mon_key(m):
             None if m.last is None else m.last.cat, min(m.turns_in, 2), _name(m.last_hit_by),
             m.crit_stage, m.bound, m.cursed, m.perish, m.item, tuple(sorted(m.pp.items())),
             m.enduring, m.protecting, m.ability, m.magnet_rise, _name(m.last) if m.tormented else None,
-            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0))
+            m.destiny_bond, m.infatuated, m.recycle, getattr(m, "heal_block", 0), getattr(m, "salted", False))
 
 
 def side_key(s):

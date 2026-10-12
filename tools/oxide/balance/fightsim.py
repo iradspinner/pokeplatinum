@@ -331,6 +331,7 @@ class Mon:
         self.confused = 0
         self.flinch = False
         self.seeded = False
+        self.salted = False           # Salt Cure: loses HP at each turn's end until it leaves
         self.yawn = 0
         self.protect_run = 0
         self.protecting = False
@@ -567,6 +568,8 @@ def can_status(b, target, status):
         return False
     if status == "par" and "Electric" in t:
         return False
+    if target.ability == "Purifying Salt":
+        return False             # Oxide: Purifying Salt allows no status at all
     return target.ability not in STATUS_ABILITIES.get(status, set())
 
 
@@ -1070,6 +1073,11 @@ def attack(b, att, mv, dfn, first):
         spin(b, att, dfn, e)
     if not dfn.alive() or sub_blocks(att, dfn, mv):
         return
+    if e == "SALT_CURE":
+        # subscript_salt_cure: the target is salted once the hit lands,
+        # until it leaves the field; a chance-free effect, so Shield Dust
+        # and Sheer Force (sSheerForceEffects) leave it alone.
+        dfn.salted = True
     chance = mv.chance or 0
     if dfn.ability == "Shield Dust" or stripped:
         chance = 0
@@ -2168,6 +2176,12 @@ def _end_of_turn_mon(b, side, m):
     if m.alive() and m.bound:
         m.bound -= 1
         hurt(b, m, m.maxhp // 16)
+        if battle_over(b):
+            return False
+    # Salt Cure (MON_COND_CHECK_STATE_SALT_CURE, after binding): an eighth
+    # of maximum HP, a quarter for a Water or Steel type; Magic Guard is spared.
+    if m.alive() and getattr(m, "salted", False) and m.ability != "Magic Guard":
+        hurt(b, m, m.maxhp // (4 if set(m.types) & {"Water", "Steel"} else 8))
         if battle_over(b):
             return False
     if m.taunt:
