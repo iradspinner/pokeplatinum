@@ -55,6 +55,7 @@ copy "reviews/encounter-review/principles.md" "notes/reviews/encounter-review/pr
 copy "save-layout.md" "notes/save-layout.md"
 copy "battle-log.md" "notes/battle-log.md"
 copy "trainer-scoring-handoff.md" "notes/trainer-scoring-handoff.md"
+copy "fight-difficulty-ranking.md" "notes/fight-difficulty-ranking.md"
 copy "scorer-speed-plan.md" "notes/scorer-speed-plan.md"
 copy "how-a-fight-is-read.md" "notes/how-a-fight-is-read.md"
 copy "restart-checks.md" "notes/restart-checks.md"
