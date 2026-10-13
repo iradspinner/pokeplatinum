@@ -435,8 +435,22 @@ done
 # rules on Oxide's lists before the rewrite, and test_learnrewrite proves the
 # species files are the rewrite's generator's output (a few minutes together).
 if [ -z "$b1_missing" ]; then
-    for t in test_b1 test_b1e test_b2 test_b3 test_b4 test_b6 test_learnstudy test_learncheck test_learnrewrite; do
+    for t in test_b1 test_b1e test_b3 test_learnstudy test_learncheck test_learnrewrite; do
         CHECK_EXPECT="passed" check "balance $t" "$PY" -m "tools.oxide.balance.$t"
+    done
+    # The first scoring system's suites (B2's structural metrics, B4's level
+    # curve and split shape, B6's audit and the team builder's estimate): the
+    # perfect-line scorer replaced that system as the judge of a fight on
+    # 2026-09-30, so they are reported and never block a landing (Ian,
+    # 2026-10-13, after test_b6 held up Roark's accepted team on its old
+    # score). test_b3 reports its own first-system checks the same way.
+    for t in test_b2 test_b4 test_b6; do
+        b_out="$("$PY" -m "tools.oxide.balance.$t" 2>&1)"; b_rc=$?
+        if [ $b_rc -eq 0 ]; then
+            ok "balance $t (first scoring system, reported only)"
+        else
+            warn "balance $t (first scoring system, reported only): $(printf '%s\n' "$b_out" | grep -m1 'FAIL' | sed 's/^ *FAIL *//' | cut -c1-120)"
+        fi
     done
     # Stale scores never block a landing (Ian, 2026-10-07): test_b3 and
     # test_b6 report them and pass, and the gate lists them as a warning.

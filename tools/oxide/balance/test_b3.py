@@ -433,27 +433,35 @@ def check_fingerprints(results, blob):
 
 def main():
     results = []
+    # The first scoring system's own rules and numbers (B3's pressure scores,
+    # B3b's reference scores, B5's readings, the stored fingerprints): the
+    # perfect-line scorer replaced it as the judge of a fight on 2026-09-30,
+    # so these are reported and never fail the run (Ian, 2026-10-13). The
+    # calculator's checks, the player's side and the flag numbers still
+    # guard what the current tools use, and they still fail it.
+    reported = []
     blob = calc_export.build()
     check_engine(results)
     check_damage(results, blob)
     check_eviolite(results, blob)
     check_ref_overrides(results, blob)
     check_pool(results, blob)
-    check_rules(results)
-    check_b5_rules(results)
-    check_scores(results, blob)
-    check_ref_scores(results, blob)
-    check_fingerprint_rules(results)
+    check_rules(reported)
+    check_b5_rules(reported)
+    check_scores(reported, blob)
+    check_ref_scores(reported, blob)
+    check_fingerprint_rules(reported)
     check_flag_numbers(results)
-    check_fingerprints(results, blob)
-    width = max(len(label) for label, _, _ in results)
+    check_fingerprints(reported, blob)
+    width = max(len(label) for label, _, _ in results + reported)
     failed = 0
     for label, ok, note in results:
         failed += not ok
         print(f"  {'ok  ' if ok else 'FAIL'}  {label:{width}}  {note}")
+    for label, ok, note in reported:
+        print(f"  {'ok  ' if ok else 'warn'}  {label:{width}}  {note} (first scoring system, reported)")
     print(f"\n{len(results) - failed}/{len(results)} passed")
     return 1 if failed else 0
-
 
 if __name__ == "__main__":
     sys.exit(main())
