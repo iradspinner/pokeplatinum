@@ -435,6 +435,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   TM08 Bulk Up shows 3 PP in a summary, and Screech 5; a Pokemon's Cotton
   Spore in a double battle lowers both foes' Speed; Drill Peck and Dragon
   Claw land critical hits noticeably more often than Peck or Scratch.
+- [ ] Roark's new team (Ian, 2026-10-13; `docs/oxide/roark-redesign.md`):
+  Naclstack leads and lays Stealth Rock; against a healthy Pokemon it uses
+  Salt Cure ("is being salt cured!", then a loss every turn, a quarter of
+  the HP on a Water type), not again on one already salted, and below about
+  70% HP it uses Recover. A Water move aimed at Lileep is drawn in by Storm
+  Drain and raises its Sp. Atk. Sandshrew moves before nearly everything in
+  the gym's sand, and its Rapid Spin raises its Speed. Cranidos's Mold
+  Breaker shows when it hits through Sturdy.
 - [ ] Level caps: before Roark nothing passes Lv. 16, from battle or candy;
   after beating him the badge message plays as before and Lv. 26 is the new
   ceiling. The Day Care man's level and price stop at the cap too.

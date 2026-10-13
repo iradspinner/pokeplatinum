@@ -10,71 +10,71 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_NOSEPASS",
+            "species": "SPECIES_NACLSTACK",
             "form": 0,
             "level": 14,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_EVIOLITE",
             "moves": [
                 "MOVE_STEALTH_ROCK",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_ROCK_TOMB",
-                "MOVE_BLOCK"
+                "MOVE_SALT_CURE",
+                "MOVE_HARDEN",
+                "MOVE_RECOVER"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_RELAXED",
+            "nature": "NATURE_CAREFUL",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "male"
-        },
-        {
-            "species": "SPECIES_GEODUDE",
-            "form": 0,
-            "level": 14,
-            "item": "ITEM_PASSHO_BERRY",
-            "moves": [
-                "MOVE_ROCK_THROW",
-                "MOVE_ROLLOUT",
-                "MOVE_BLOCK",
-                "MOVE_ROCK_TOMB"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
-            "ball_seal": 0,
-            "ability": 2,
             "gender": "male"
         },
         {
             "species": "SPECIES_LILEEP",
             "form": 0,
             "level": 15,
-            "item": "ITEM_BIG_ROOT",
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_GIGA_DRAIN",
+                "MOVE_MEGA_DRAIN",
                 "MOVE_ANCIENT_POWER",
-                "MOVE_RECOVER",
-                "MOVE_ACID"
+                "MOVE_TOXIC",
+                "MOVE_MIRROR_COAT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_BOLD",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 3,
             "gender": "male"
         },
         {
-            "species": "SPECIES_LARVITAR",
+            "species": "SPECIES_ANORITH",
             "form": 0,
-            "level": 15,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 14,
+            "item": "ITEM_ORAN_BERRY",
             "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_WATER_GUN",
                 "MOVE_ROCK_SLIDE",
-                "MOVE_BITE",
-                "MOVE_SCREECH",
-                "MOVE_DIG"
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_JOLLY",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
+            "gender": "male"
+        },
+        {
+            "species": "SPECIES_SANDSHREW",
+            "form": 0,
+            "level": 14,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_POISON_JAB",
+                "MOVE_KNOCK_OFF",
+                "MOVE_RAPID_SPIN"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_BRAVE",
+            "ball_seal": 0,
+            "ability": 3,
             "gender": "male"
         },
         {
@@ -91,7 +91,7 @@
             "iv_scale": 255,
             "nature": "NATURE_ADAMANT",
             "ball_seal": 0,
-            "ability": 1,
+            "ability": 2,
             "gender": "male"
         }
     ],
