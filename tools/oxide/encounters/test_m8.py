@@ -400,14 +400,14 @@ def check_page(results):
     hides = [line for line in style.splitlines()
              if "[hidden]" in line and "display" in line and "none" in line]
     # One toggle per view, so every view the header offers can be hidden.
+    # The count of views is not pinned: it failed the gate each time a tab
+    # was added, though a new tab with its toggle is exactly right (Ian,
+    # 2026-10-13).
     views = len(re.findall(r'<button data-view="', page))
     toggled = page.count(".hidden = view !==")
     results.append(("a hidden view is actually hidden, which `hidden` alone does "
                     "not manage against a styled display",
-                    # Five since the box simulator's tab (2026-09-26), six
-                    # since the Trainers tab (2026-09-27), seven since the
-                    # Alpha tab (2026-10-06).
-                    bool(hides) and views == 7 and toggled == views,
+                    bool(hides) and views >= 1 and toggled == views,
                     f"{hides}, {toggled} toggles for {views} views"))
 
     # Ian's notes after D4: a species in a table opens its dex page, and Back

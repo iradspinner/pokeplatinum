@@ -4,8 +4,10 @@
 # always sees the current docs. Run whenever a docs/oxide file changes this session.
 #
 # The mapping is explicit because the destination names differ from the repo
-# names. Any docs/oxide file that is not mapped is reported at the end, so a new
-# doc cannot be silently left out of the mirror.
+# names. A docs/oxide file the list does not name is still mirrored, to
+# notes/ under its own path, and named in a warning, so a new doc is never
+# left out and nothing fails for want of a line here (Ian, 2026-10-13: a new
+# doc failed the gate three times). Add a line when it belongs elsewhere.
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -164,15 +166,15 @@ copy "encounters/clown-replacements.md" "Claude outputs/encounters/clown-replace
 copy "encounters/classic-starters.md" "Claude outputs/encounters/classic-starters.md"
 copy "encounters/ability-audit.md" "Claude outputs/encounters/ability-audit.md"
 
-# Anything under docs/oxide that the list above does not name. caught.json is
+# Anything under docs/oxide that the list above does not name goes to notes/
+# under its own path, with a warning the gate shows. caught.json is
 # per-playthrough state and gitignored, so it is not a doc and is not mirrored.
-unmapped=0
 while IFS= read -r -d '' f; do
     rel="${f#$SRC/}"
     case "$rel" in encounters/caught.json|encounters/alpha-feedback*) continue ;; esac
     if [ -z "${MAPPED[$rel]:-}" ]; then
-        echo "sync-docs: NOT MIRRORED (add it to the list): $rel" >&2
-        unmapped=1
+        copy "$rel" "notes/$rel"
+        echo "gate warning: sync-docs has no line for docs/oxide/$rel, so it went to notes/$rel; add one to tools/oxide/sync-docs.sh if it belongs elsewhere"
     fi
 done < <(find "$SRC" -type f -print0)
-exit $unmapped
+exit 0
