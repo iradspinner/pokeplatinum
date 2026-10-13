@@ -35,7 +35,7 @@ import subprocess
 import sys
 
 from ..encounters import learnsets as canon_ls, pokedex
-from . import b6, data, gauntlet, learncheck as lc, learnrewrite as lr, pool, required, splits, weather_moves
+from . import data, gauntlet, learncheck as lc, learnrewrite as lr, pool, required, splits, weather_moves
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(data.ROOT, "docs", "oxide")
@@ -527,12 +527,17 @@ def trainer_objects():
 
 @functools.lru_cache(maxsize=None)
 def readings():
-    """{trainer id: its stored reading on Ian's fight scale}."""
-    with open(os.path.join(HERE, "b6.json"), encoding="utf-8") as f:
-        stored = json.load(f)["trainers"]
-    line = b6.scale_line()
-    return {int(k): round(b6.on_scale(t["safe"], line), 1) for k, t in stored.items()
-            if isinstance(t, dict) and isinstance(t.get("safe"), (int, float))}
+    """{trainer id: its reading on Ian's old fight scale}, as the approved
+    table's roles list holds it (FROZEN_REF). The first scoring system that
+    made these readings was retired on 2026-10-13; the table stays frozen
+    as Ian approved it, so the readings it was built on stay with it rather
+    than being recomputed."""
+    out = subprocess.run(["git", "-C", data.ROOT, "show", f"{FROZEN_REF}:docs/oxide/trainer-roles.tsv"],
+                         capture_output=True, text=True, check=True).stdout
+    by_constant = {t["constant"]: k for k, t in data.oxide_trainers().items()}
+    rows = csv.DictReader((line for line in out.splitlines() if not line.startswith("#")), delimiter="\t")
+    return {by_constant[r["trainer_id"]]: float(r["reading"]) for r in rows
+            if r["reading"] and r["trainer_id"] in by_constant}
 
 
 @functools.lru_cache(maxsize=None)
@@ -992,23 +997,9 @@ def move_cell(c):
     return f"{name(c)} | {m['type'].title()} | {m['class'].title()} | {power} | {acc}"
 
 
-def section_readings():
-    """{(area, label): (clean share, deaths a run)} from gauntlet.py's second
-    reading, on the lists in the tree; empty where it cannot run."""
-    out = {}
-    for area, sections in gauntlet.SECTIONS.items():
-        for section in sections:
-            try:
-                _trs, r = gauntlet.section_reading(area, section)
-            except Exception:       # a reading the tree cannot make leaves its cell empty
-                continue
-            out[(area, section[0])] = (r["clean"], r["deaths"])
-    return out
-
-
 def parse_section_readings(path):
-    """{(area, label): (clean, deaths)} from the text `gauntlet.py` prints,
-    its areas in SECTIONS' order, so a reading made once need not be rerun."""
+    """{(area, label): (clean, deaths)} from a saved printout of the retired
+    gauntlet.py reading, its areas in SECTIONS' order."""
     import re
     areas = list(gauntlet.SECTIONS)
     out, k = {}, -1
@@ -1199,8 +1190,9 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
     p()
     p("The sections of the gauntlet proposal (balance plan, \"The gauntlets, reworked on Ian's rulings\"), with "
       "their trainers in walking order. A section of 2 to 5 mandatory trainers on the easier side of its "
-      "split's average; bosses stay outside. The reading is `gauntlet.py`'s second one on the lists in the "
-      "tree: clean clears, then deaths a run.")
+      "split's average; bosses stay outside. The reading, clean clears then deaths a run, is shown when a "
+      "saved printout of `gauntlet.py`'s second reading is given; that reading ran on the first scoring "
+      "system and was retired with it on 2026-10-13, and the perfect-line scorer will read the sections.")
     p()
     p("| Area | Section | Split | Trainers | Reading |")
     p("|---|---|---|---|---|")
@@ -1250,8 +1242,8 @@ def report(st, item, rows, facts, gauntlets=None, out=None):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("what", nargs="?", default="write", choices=["write", "check"])
-    ap.add_argument("--no-gauntlets", action="store_true", help="leave the gauntlet readings out (faster)")
-    ap.add_argument("--gauntlet-reading", help="gauntlet.py's printed reading, used instead of running it again")
+    ap.add_argument("--gauntlet-reading", help="a saved printout of the retired gauntlet.py reading, for the "
+                                               "report's gauntlet column")
     ap.add_argument("--reshuffle", action="store_true",
                     help="write the spread's own table instead of the approved one (FROZEN_REF)")
     args = ap.parse_args(argv)
@@ -1263,8 +1255,7 @@ def main(argv=None):
     if not args.reshuffle:
         rows = frozen_rows()
     write(st, item, rows, facts)
-    readings_ = (parse_section_readings(args.gauntlet_reading) if args.gauntlet_reading
-                 else None if args.no_gauntlets else section_readings())
+    readings_ = parse_section_readings(args.gauntlet_reading) if args.gauntlet_reading else None
     report(st, item, rows, facts, readings_)
     print(f"set: {len(st.kept)} kept, {len(st.hms)} former HMs, {len(st.new)} new; "
           f"{len(rows)} placements; unplaced {facts['unplaced']}")
