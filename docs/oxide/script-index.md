@@ -16,9 +16,9 @@ Each entry is vanilla when the same map on `main` has it, and added when it does
 | Static and legendary battles | 31 | 15 | 15 | 1 | 0 | 2 |
 | Trainer battles | 592 | 513 | 72 | 7 | 0 | 8 |
 | Items given | 212 | 102 | 31 | 79 | 0 | 34 |
-| Item balls | 332 | 260 | 62 | 10 | 0 | 69 |
-| Hidden items | 254 | 252 | 0 | 2 | 0 | 10 |
-| Flags | 3322 | 2970 | 215 | 137 | 0 | 99 |
+| Item balls | 333 | 260 | 62 | 11 | 0 | 69 |
+| Hidden items | 253 | 252 | 0 | 1 | 0 | 10 |
+| Flags | 3323 | 2970 | 215 | 138 | 0 | 99 |
 | Variables | 1121 | 1082 | 27 | 12 | 0 | 32 |
 
 Events or init scripts that name a script number past the end of their map's script file; if one runs, the engine reads its script's address from beyond the file's table:
@@ -3141,19 +3141,19 @@ Trainer battles:
 
 Item balls:
 
-- ITEM_MYSTIC_WATER x1, one time, flag FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER. Vanilla. `events_pastoria_city.json:132`
+- ITEM_MYSTIC_WATER x1, one time, flag FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER. Vanilla. `events_pastoria_city.json:124`
+- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_UNUSED_0x03CC. Added by Oxide (not yet committed). `events_pastoria_city.json:488`
 
 Hidden items:
 
 - ITEM_ZINC x1, one time, flag FLAG_OBTAINED_HIDDEN_PASTORIA_CITY_ZINC. Vanilla. `events_pastoria_city.json:4`
-- ITEM_ABILITY_CAPSULE x1, one time, flag FLAG_OBTAINED_HIDDEN_UNUSED_NUGGET_1. Added by Oxide (dc8db120e). `events_pastoria_city.json:12`
 
 Flags:
 
 - Set: FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M, FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, FLAG_HIDE_ROUTE_212_BLOCKADE, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_VEILSTONE_CITY_GALACTIC_WAREHOUSE_LOOKER, FLAG_HIDE_PASTORIA_CITY_GYM_CRASHER_WAKE, FLAG_UNK_0x0A82 (added, base ROM).
 - Cleared: FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK.
 - Checked: FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST, FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK, FLAG_BLOCK_PASTORIA_CITY_CROAGUNK_EVENT, FLAG_UNK_0x0A7E (added, base ROM), FLAG_UNK_0x0A82 (added, base ROM), FLAG_UNK_0x0A83 (added, base ROM), FLAG_UNK_0x0A85 (added, base ROM).
-- Hide an object: FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK, FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER, FLAG_HIDE_TELEPORT_ABRA (added, Oxide).
+- Hide an object: FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL, FLAG_HIDE_PASTORIA_CITY_RIVAL, FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE, FLAG_HIDE_PASTORIA_CITY_GRUNT_M, FLAG_HIDE_PASTORIA_CITY_CROAGUNK, FLAG_UNUSED_0x03CC (added, Oxide), FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER, FLAG_HIDE_TELEPORT_ABRA (added, Oxide).
 
 Variables:
 

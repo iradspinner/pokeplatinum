@@ -61,6 +61,7 @@ ITEM_SAFETY_GOGGLES	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_BREED
 ITEM_TM10	1	trainer	Maylene	MAP_HEADER_ROUTE_210_SOUTH			TRAINER_JOGGER_WYATT		Hidden Power, weak; reading 2.3
 ITEM_TM22	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_RUIN_MANIAC_CALVIN		SolarBeam, weak; reading 2.3
 ITEM_TM40	1	trainer	Maylene	MAP_HEADER_ROUTE_215			TRAINER_JOGGER_SCOTT		Aerial Ace, weak; reading 2.3
+ITEM_ABILITY_CAPSULE	1	ball	Wake	MAP_HEADER_PASTORIA_CITY	585,855				a ball at the end of the strip between the southwest ponds, reached on foot (Ian, 2026-10-13: in Pastoria; hidden until the flag pool grew the same day)
 ITEM_TM46	2	ball	Wake	MAP_HEADER_POKEMON_MANSION_OFFICE		ITEM_TM87			Knock Off, utility; a TM place today (ITEM_TM87)
 ITEM_TM37	2	ball	Wake	MAP_HEADER_ROUTE_212_NORTH		ITEM_TM11			Signal Beam, utility; a TM place today (ITEM_TM11)
 ITEM_TM78	2	ball	Wake	MAP_HEADER_ROUTE_212_SOUTH		ITEM_TM62			Captivate, utility; a TM place today (ITEM_TM62)
@@ -69,7 +70,6 @@ ITEM_SITRUS_BERRY	1	ball	Wake	MAP_HEADER_ROUTE_213		ITEM_TM40			a TM place the s
 ITEM_LUM_BERRY	1	ball	Wake	MAP_HEADER_RUIN_MANIAC_CAVE_SHORT		ITEM_TM28			a TM place the spread leaves to another item
 ITEM_TM30	2	gift	Wake	MAP_HEADER_GRAND_LAKE_ROUTE_213_NORTHWEST_HOUSE		ITEM_TM92			Shadow Ball, utility; a TM place today (ITEM_TM92)
 ITEM_TM81	2	gift	Wake	MAP_HEADER_PASTORIA_CITY_GYM		ITEM_TM55			X-Scissor, utility; a TM place today (ITEM_TM55)
-ITEM_ABILITY_CAPSULE	1	hidden	Wake	MAP_HEADER_PASTORIA_CITY	585,855				hidden at the end of the strip between the southwest ponds, reached on foot (Ian, 2026-10-13: in Pastoria)
 ITEM_TM02	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM74		4	Dragon Claw, utility; bought once, from 4 badges, giving 2
 ITEM_TM05	2	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM29		4	Dazzling Gleam, utility; bought once, from 4 badges, giving 2
 ITEM_TM41	1	prize	Wake	MAP_HEADER_VEILSTONE_CITY_PRIZE_EXCHANGE	GameCornerPrizes	ITEM_TM10		4	Charm, strong; bought once, from 4 badges, giving 1

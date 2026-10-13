@@ -716,11 +716,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
-- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): walk down the one-tile
-  strip between the two ponds in the city's southwest corner; pressing A at
-  its southern end finds a hidden Ability Capsule, and the Dowsing app shows
-  it there. Used on a Pokemon, it asks first, naming the other regular
-  ability.
+- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): an item ball stands at
+  the southern end of the one-tile strip between the two ponds in the city's
+  southwest corner, and gives an Ability Capsule. Used on a Pokemon, it asks
+  first, naming the other regular ability.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.
