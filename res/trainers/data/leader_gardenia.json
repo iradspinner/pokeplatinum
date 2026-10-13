@@ -11,6 +11,23 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_EXEGGUTOR",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_HEAT_ROCK",
+            "moves": [
+                "MOVE_SUNNY_DAY",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_PSYCHIC",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_MILD",
+            "ball_seal": 0,
+            "ability": 0,
+            "gender": "male"
+        },
+        {
             "species": "SPECIES_ROSELIA",
             "form": 0,
             "level": 24,
@@ -18,7 +35,7 @@
             "moves": [
                 "MOVE_SPIKES",
                 "MOVE_SLEEP_POWDER",
-                "MOVE_GIGA_DRAIN",
+                "MOVE_MAGICAL_LEAF",
                 "MOVE_EXTRASENSORY"
             ],
             "iv_scale": 255,
@@ -33,33 +50,16 @@
             "level": 25,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
+                "MOVE_FAKE_OUT",
                 "MOVE_ICE_BEAM",
                 "MOVE_WATER_PULSE",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_FAKE_OUT"
+                "MOVE_KNOCK_OFF"
             ],
             "iv_scale": 255,
             "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
-        },
-        {
-            "species": "SPECIES_EXEGGUTOR",
-            "form": 0,
-            "level": 25,
-            "item": "ITEM_LEFTOVERS",
-            "moves": [
-                "MOVE_PSYCHIC",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LEECH_SEED"
-            ],
-            "iv_scale": 255,
-            "nature": "NATURE_MODEST",
-            "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
         },
         {
             "species": "SPECIES_BRELOOM",
@@ -86,8 +86,8 @@
             "moves": [
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_GIGA_DRAIN",
-                "MOVE_SHADOW_BALL",
-                "MOVE_COTTON_SPORE"
+                "MOVE_WEATHER_BALL",
+                "MOVE_SHADOW_BALL"
             ],
             "iv_scale": 255,
             "nature": "NATURE_MODEST",
