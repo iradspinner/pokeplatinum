@@ -35,7 +35,7 @@ import subprocess
 import sys
 
 from ..encounters import learnsets as canon_ls, pokedex
-from . import b6, data, gauntlet, learncheck as lc, learnrewrite as lr, pool, splits, weather_moves
+from . import b6, data, gauntlet, learncheck as lc, learnrewrite as lr, pool, required, splits, weather_moves
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(data.ROOT, "docs", "oxide")
@@ -160,7 +160,7 @@ def qualifies(c):
         return False, "the engine does not run it in full"
     if c in weather_moves.WEATHER_MOVES:
         return False, "weather: the player never sets it"
-    if c in b6.DEAD_MOVES:
+    if c in pool.DEAD_MOVES:
         return False, "the move pool's cut"
     if c in lc.TRAINER_ONLY:
         return False, "the user faints, which in a nuzlocke is a death"
@@ -249,7 +249,7 @@ def compat(species):
 @functools.lru_cache(maxsize=None)
 def learners(c):
     """The obtainable stages that may learn the move from a TM."""
-    return frozenset(s for s in b6.obtainable() if c in compat(s))
+    return frozenset(s for s in pool.obtainable() if c in compat(s))
 
 
 def lines(c):
@@ -540,7 +540,7 @@ def optional_trainers():
     """{split: [(reading, trainer id)]} of the trainers the player may pass
     by, standing on a map, with a stored reading; the split's median beside."""
     rows = collections.defaultdict(list)
-    for tr, p in b6.placements().items():
+    for tr, p in required.placements().items():
         if p["how"] in OPTIONAL and p["split"] in SPLITS and tr in readings() and tr in trainer_objects():
             rows[p["split"]].append((readings()[tr], tr))
     return {s: (sorted(r), statistics.median(x for x, _t in r)) for s, r in rows.items()}
@@ -580,7 +580,7 @@ def pick_trainer(target, used, side, gauntlet_ids):
 def gauntlet_sections():
     """[(area, label, split, [trainer ids])] from gauntlet.py's sections."""
     out = []
-    placed = b6.placements()
+    placed = required.placements()
     for area, sections in gauntlet.SECTIONS.items():
         for section in sections:
             ids = gauntlet.section_trainers(area, section)
@@ -614,7 +614,7 @@ def targets(total):
     """{split: its share of the TMs}, by the trainers the census places in
     it, the measure of a split's length (Ian, 2026-10-06: "an even spread
     across the splits, given how long each is")."""
-    weight = collections.Counter(p["split"] for p in b6.placements().values() if p["split"] in SPLITS)
+    weight = collections.Counter(p["split"] for p in required.placements().values() if p["split"] in SPLITS)
     whole = sum(weight.values())
     return {s: total * weight[s] / whole for s in SPLITS}
 
@@ -835,7 +835,7 @@ def roles(rows):
             section_of[t] = f"{area}: {label}"
     ox = data.oxide_trainers()
     out = []
-    for tr, p in sorted(b6.placements().items(), key=lambda kv: (si(kv[1]["split"]), kv[0])):
+    for tr, p in sorted(required.placements().items(), key=lambda kv: (si(kv[1]["split"]), kv[0])):
         if tr not in ox:
             continue
         const = ox[tr]["constant"]

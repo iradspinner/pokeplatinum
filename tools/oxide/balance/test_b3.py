@@ -14,7 +14,7 @@ import sys
 import tempfile
 
 from ..encounters import calc_export
-from . import data, metrics, pool, pressure, refpressure, rescore, splits
+from . import calc, data, metrics, pool, pressure, refpressure, rescore, splits
 
 # The five matchups D5 checked on the calculator (level 50, every IV 31, no
 # EVs, a neutral nature), and the range it shows for each since the encounter
@@ -50,7 +50,7 @@ def _run(blob, jobs):
         path = os.path.join(tmp, "blob.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(blob, f)
-        return pressure.run_node(path, jobs)
+        return calc.run_node(path, jobs)
 
 
 def check_damage(results, blob):

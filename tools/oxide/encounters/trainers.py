@@ -89,13 +89,13 @@ def _stamp(root):
 @functools.lru_cache(maxsize=1)
 def split_map(root):
     """{stem: split or None}, placed as teamscore.resolve places a fight."""
-    from ..balance import b6, data as bdata, splits as bsplits
+    from ..balance import data as bdata, required, splits as bsplits
     ids = calc_trainers._tables(root)["ids"]
     story = {}
     for fight in bdata.fights()["fights"]:
         for tr in fight["tr_ids"]:
             story.setdefault(tr, fight["split"])
-    placed = b6.placements()
+    placed = required.placements()
     out = {}
     for stem in stems(root):
         tr = ids.get("TRAINER_" + stem.upper())

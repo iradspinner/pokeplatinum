@@ -132,7 +132,7 @@ def roll(split, seed):
 
 def records(caught, cap):
     """The box's members as the screen reads them, at the cap."""
-    blob = fs.teamscore._blob()["poks"]
+    blob = fs.calc.blob()["poks"]
     out = []
     for sp, split in caught:
         level = 5 if split is None else catch_level(sp, split)

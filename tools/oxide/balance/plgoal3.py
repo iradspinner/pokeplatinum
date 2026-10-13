@@ -306,7 +306,7 @@ def records(caught, f, lvl, seed):
     """The box's members as the fight reads them, at this level: each with
     a gender rolled once at its catch, which a gendered evolution follows,
     and a coin that settles any choice among evolutions (Wurmple's, Eevee's)."""
-    blob = fs.teamscore._blob()["poks"]
+    blob = fs.calc.blob()["poks"]
     reached = places(f)
     out = []
     for c in caught:

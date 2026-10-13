@@ -8,7 +8,8 @@ here is the order the six are sent out in: the lead pair first, then the
 rest, which fightsim's doubles player follows when it replaces a knocked-out
 Pokemon. The search screens every lead pair and a few orders of the rest,
 confirms the best, and reports its clean-win rate, mean deaths and wipe
-chance, as plines.search does for singles.
+chance, as the September singles search (plines.search, retired on
+2026-10-13) did.
 
 The dice are fightsim's own, at the game's odds on both sides; the luck
 budget of the singles lines (every status chance against the player, one
@@ -18,7 +19,7 @@ critical hit) is not applied in doubles yet, and a reading says so
 import itertools
 import random
 
-from . import data, fightsim as fs, pressure
+from . import calc, data, fightsim as fs
 
 
 def prepare_story(fight, cap):
@@ -28,7 +29,7 @@ def prepare_story(fight, cap):
     ox = data.oxide_trainers()
     trainers = data.fight_trainers("oxide", fight)
     parties = [t["party"] for t in trainers]
-    weather = pressure.fight_weather([t["tr_id"] for t in trainers])
+    weather = calc.fight_weather([t["tr_id"] for t in trainers])
     partners = [ox[p]["party"] for p in fight.get("partner_ids", []) if p in ox]
     st = fs.prepare(fight["split"], parties, weather,
                     fs.trick_room_for([t["constant"] for t in trainers], fight.get("trick_room")), cap=cap,
@@ -41,7 +42,7 @@ def prepare_story(fight, cap):
 
 def prepare_trainer(t, split, cap):
     """The fightsim state of one trainer's double battle."""
-    st = fs.prepare(split, [t["party"]], pressure.fight_weather([t["tr_id"]]), fs.trick_room_for([t["constant"]]),
+    st = fs.prepare(split, [t["party"]], calc.fight_weather([t["tr_id"]]), fs.trick_room_for([t["constant"]]),
                     cap=cap, doubles=True)
     st["battle"] = "doubles"
     st["group_flags"] = [t["ai"]]

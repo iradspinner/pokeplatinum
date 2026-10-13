@@ -144,7 +144,7 @@ def _regular_abilities(mon):
     since the blob does not change."""
     got = _REGULAR.get(mon.species)
     if got is None:
-        ab = (fs.teamscore._blob()["poks"].get(mon.species) or {}).get("abilities") or {}
+        ab = (fs.calc.blob()["poks"].get(mon.species) or {}).get("abilities") or {}
         got = _REGULAR[mon.species] = (ab.get("0"), ab.get("1"))
     return got
 

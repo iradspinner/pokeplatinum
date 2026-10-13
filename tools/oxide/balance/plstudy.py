@@ -37,7 +37,7 @@ import sys
 import time
 
 from ..encounters import calc_trainers
-from . import data, fightsim as fs, plgoal2, plplan, plscore, plstep3, plteam, plteam_test, pressure
+from . import calc, data, fightsim as fs, plgoal2, plplan, plscore, plstep3, plteam, plteam_test
 
 EXAMPLES = os.path.expanduser("~/oxide-trials/kaizo-teams/out/examples")
 OUT = os.path.join(plteam.ROOT, "study")
@@ -77,7 +77,7 @@ def prepare(paths, split, cap, recs, stock):
     the game's permanent Trick Room when one of them is on its list."""
     parties = [trainer_party(p) for p in paths]
     stems = [os.path.basename(p)[:-len(".json")] for p in paths]
-    weather = pressure.fight_weather(trainer_ids(stems))
+    weather = calc.fight_weather(trainer_ids(stems))
     trick_room = fs.trick_room_for(["TRAINER_" + s.upper() for s in stems])
     st = fs.prepare(split, [p for p, _f in parties], weather, trick_room, cap=cap, given_side=recs)
     st["item_stock"] = dict(stock)
@@ -89,7 +89,7 @@ def fixed(recs):
     """Each member with four moves by the scorer's rule over its whole pool
     (fightsim.player_moves), the empty slots filled with its latest moves,
     as goal 2's records are made."""
-    tiers, blob = fs.status_tiers(), fs.teamscore._blob()
+    tiers, blob = fs.status_tiers(), fs.calc.blob()
     out = []
     for r in recs:
         cand = list(r["moves"])

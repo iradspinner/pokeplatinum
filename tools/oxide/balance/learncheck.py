@@ -47,7 +47,7 @@ import subprocess
 import sys
 
 from ..encounters import audit, calc_trainers, locations, model, pokedex, progression, scripted
-from . import b6, data, learnstudy as ls, pool, weather_moves
+from . import data, learnstudy as ls, pool, weather_moves
 
 SPLITS = pool.SPLITS            # Roark to League; the post-game has no cap
 VERSIONS = ("oxide", "rewrite")
@@ -603,7 +603,7 @@ def check1(version):
     "pass" (the gap is a split or less), "fail" (two or more, or never), or
     "exempt" (it can evolve by the end of Gardenia's split). Where several
     routes first have the stage in the same split, the best of them counts."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     out = {}
     for sp, routes in stage_routes(version).items():
         if sp not in owned:
@@ -686,7 +686,7 @@ def check4_early(version, until=EARLY_UNTIL):
     check's) knows or learns by level-up by then, at its earliest. A move an
     evolved stage carries from its pre-evolution is counted on the
     pre-evolution."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     limit = si(until)
     cap = caps()[until]
     found = {}
@@ -717,7 +717,7 @@ def check4_machines():
     """[(species, label, MOVE_X, split)]: fixed or level damage by TM, HM or
     tutor that a stage had by the end of Gardenia's split can take by then.
     Lists are the tree's, the same in both versions."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     machines = pokedex.machines(data.ROOT)
     tutors = pool._tutor_splits()
     had = {sp for sp, r in check1("oxide").items() if si(r["split"]) <= si(EARLY_UNTIL)}
@@ -749,7 +749,7 @@ def check4_ohko(version):
     """[(species, MOVE_X, how)]: every one-hit KO move on a list of a species
     the player can own, with how the player gets it: by level-up at a level
     and split, as the relearner's only, or by TM, HM or tutor."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     machines = pokedex.machines(data.ROOT)
     routes = stage_routes(version)
     out = []
@@ -878,7 +878,7 @@ def lint_weather(version):
     """{"moves": [(species, where, MOVE_X)], "abilities": [(species, ABILITY)]}
     for every species the player can own: a weather move on its level-up, TM
     or tutor list, and a weather ability in a regular slot."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     machines = pokedex.machines(data.ROOT)
     found, abilities = [], []
     for sp in sorted(owned):
@@ -1269,7 +1269,7 @@ def filler(const, species):
 def line_catches():
     """{family: [(split, level, species)]}, every catch of every stage of an
     obtainable line, earliest first."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     out = collections.defaultdict(set)
     for sp, split, level, _how, _place in catch_rows():
         if sp in species_set() and sp in owned:
@@ -1612,7 +1612,7 @@ def check13(version):
     evolved form does not have by the cap, so holding it costs nothing and
     is no choice. "one split": the same move at two levels on the two lists,
     both inside one split, where the later option always wins."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     out = []
     for pre, level, target in level_evolutions():
         if pre not in owned or target not in owned or not split_of_level(level):
@@ -1643,7 +1643,7 @@ def check14(version):
     (any power), known or learnt, on its best route in the split it is first
     had in, as check 1 reads it; it passes when every type's comes in that
     split or the next, and is exempt where check 1 exempts it."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     out = {}
     for sp, routes in stage_routes(version).items():
         if sp not in owned:
@@ -1696,7 +1696,7 @@ def check15(version):
     2026-10-06: Baton Pass on Eevee, which has no boost of its own)."""
     setup = set(setup_moves())
     out = []
-    for sp in sorted(b6.obtainable()):
+    for sp in sorted(pool.obtainable()):
         if not any(m == "MOVE_BATON_PASS" and lv >= 2 for lv, m in learnset(version, sp)):
             continue
         own = [sp] + list(pool.pre_evolutions().get(sp) or [])
@@ -1713,7 +1713,7 @@ def check16(version):
     tutor lists (the same in every version, for the TM pass)."""
     machines = pokedex.machines(data.ROOT)
     out = []
-    for sp in sorted(b6.obtainable()):
+    for sp in sorted(pool.obtainable()):
         rec = pokedex.load(data.ROOT, sp) or {}
         where = [(f"level {lv}", m) for lv, m in learnset(version, sp)]
         where += [(label, machines.get(label)) for label in rec.get("by_tm") or []]
@@ -1736,7 +1736,7 @@ def check17(version):
     a move only the relearner reaches."""
     routes = stage_routes(version)
     out = []
-    for sp in sorted(b6.obtainable()):
+    for sp in sorted(pool.obtainable()):
         pres = pool.pre_evolutions().get(sp) or []
         if not pres or sp not in routes:
             continue
@@ -1823,7 +1823,7 @@ def check19(version):
     R37_ACCURACY accuracy on an obtainable species' list above level 1 (the
     one-hit KO moves are check 16's)."""
     out = []
-    for sp in sorted(b6.obtainable()):
+    for sp in sorted(pool.obtainable()):
         for lv, m in learnset(version, sp):
             mm = moves().get(m)
             if lv >= 2 and mm and mm["class"] != "STATUS" and mm["accuracy"] \
@@ -1854,7 +1854,7 @@ def check20(version):
     with how the player can first have the move: by level-up (the split), by
     TM or tutor only, or not at all; it fails unless level-up reaches it or
     the target has another way in from the same stage."""
-    owned = b6.obtainable()
+    owned = pool.obtainable()
     machines = pokedex.machines(data.ROOT)
     tutors = pool._tutor_splits()
     out = []
@@ -1907,7 +1907,7 @@ def check22(version):
            "trainer-only move a wild catch knows": [], "catch-only move after Fantina's split": [],
            "more than two recovery moves": [], "on evolving": []}
     wild = {"wild", "surf", "old_rod", "good_rod", "super_rod", "honey"}
-    for sp in sorted(b6.obtainable()):
+    for sp in sorted(pool.obtainable()):
         lst = learnset(version, sp)
         lv_count = collections.Counter(lv for lv, _m in lst if lv >= 2)
         mv_count = collections.Counter(m for lv, m in lst if lv >= 2)

@@ -23,7 +23,7 @@ import time
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-from . import b6, calibrate, data, fightsim as fs, pool, pressure, splits
+from . import calc, calibrate, data, fightsim as fs, pool, required, splits
 from . import pboxes as boxes
 from . import perfectline as pl
 
@@ -152,7 +152,7 @@ def prepare(f, given_side=None):
                     "label": fight["label"], "key": key, "doubles": "tag"}
         trainers = data.fight_trainers("oxide", fight)
         parties = [with_genders(t) for t in trainers]
-        weather = pressure.fight_weather([t["tr_id"] for t in trainers])
+        weather = calc.fight_weather([t["tr_id"] for t in trainers])
         split = fight["split"]
         cap = fs.fight_cap(split, key)
         st = fs.prepare(split, parties, weather,
@@ -165,14 +165,14 @@ def prepare(f, given_side=None):
         st["first_battle"] = any(t["constant"] in fs.FIRST_BATTLE for t in trainers)
         return {"st": st, "variants": variants, "split": split, "label": fight["label"], "key": key}
     t = data.oxide_trainers()[key]
-    split = SPLIT_OVERRIDE.get(key) or (b6.placements()[key]["split"] if key in b6.placements()
+    split = SPLIT_OVERRIDE.get(key) or (required.placements()[key]["split"] if key in required.placements()
                                         else splits.trainer_split(key))
     if t.get("battle_type") == "Doubles" and len(t["party"]) > 1:
         from . import pdoubles
         st = pdoubles.prepare_trainer(t, split, fs.fight_cap(split))
         return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
                 "label": t["name"], "key": f"tr{key}", "doubles": "doubles"}
-    st = fs.prepare(split, [with_genders(t)], pressure.fight_weather([key]), fs.trick_room_for([t["constant"]]),
+    st = fs.prepare(split, [with_genders(t)], calc.fight_weather([key]), fs.trick_room_for([t["constant"]]),
                     cap=fs.fight_cap(split), given_side=given_side)
     return {"st": st, "variants": [(st["bosses"][0], t["ai"], None)], "split": split,
             "label": t["name"], "key": f"tr{key}"}

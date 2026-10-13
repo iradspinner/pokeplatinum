@@ -48,7 +48,7 @@ import statistics
 import sys
 
 from ..encounters import calc_trainers
-from . import b6, data, pressure, splits, teamscore
+from . import b6, data, pressure, required, splits, teamscore
 
 PARTIES = 1000
 SIZE = 6
@@ -101,7 +101,7 @@ def trainers(name):
     map's in id order. Only first-run trainers B6 places are taken, so a
     post-game room (Victory Road's back) stays out."""
     spec = CANDIDATES[name]
-    placed = b6.placements()
+    placed = required.placements()
     by_map = collections.defaultdict(list)
     for tr, maps in splits.trainer_maps().items():
         for h in maps:
@@ -390,7 +390,7 @@ def section_trainers(area, section):
     """A section's trainers in walking order, from the map's entrance, taken
     as the larger z. A half of a map holds the trainers it names."""
     _label, maps, half, leave_out = section
-    placed = b6.placements()
+    placed = required.placements()
     ox = data.oxide_trainers()
     out = []
     for h in maps:
