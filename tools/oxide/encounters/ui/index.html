@@ -628,6 +628,7 @@ table.facts td { padding: 1px 0; }
    rail of their own on the right. */
 #dexmain { grid-template-columns: 300px minmax(560px, 1fr) 400px; }
 #dexfilter { width: 100%; box-sizing: border-box; }
+.prevo-head { margin: 14px 0 2px; }
 #dexmid { display: flex; flex-direction: column; gap: 16px; padding: 20px 24px 40px;
   font-size: 16px; }
 /* The column scrolls, so a card keeps its height rather than shrinking to
@@ -1042,7 +1043,7 @@ table.was td.old { color: var(--dim); text-decoration: line-through; }
 <main id="dexmain" hidden>
   <section id="dexlist">
     <div class="listhead">
-      <input id="dexfilter" placeholder="Find a species, or a type">
+      <input id="dexfilter" placeholder="Find a species, a type or an ability">
       <div class="sortbar">
         <button data-f="all" class="on">All</button>
         <button data-f="tables">In tables</button>
@@ -1257,8 +1258,11 @@ const signed = n => (n > 0 ? "+" : "") + n;
 
 function dexMatch(r) {
   const q = ($("#dexfilter").value || "").trim().toLowerCase();
+  // Abilities count too, the hidden one included (Ian, 2026-10-13): "drought"
+  // finds Torkoal, Vulpix's line and Slugma's.
   if (q && !r.name.toLowerCase().includes(q)
-        && !r.types.join(" ").toLowerCase().includes(q)) return false;
+        && !r.types.join(" ").toLowerCase().includes(q)
+        && !(r.abilities || []).join(" ").toLowerCase().replace(/_/g, " ").includes(q)) return false;
   if (DEXFILTER === "tables") return r.appearances > 0;
   if (DEXFILTER === "changed") return r.changed;
   if (DEXFILTER === "new") return r.new;
@@ -1538,6 +1542,18 @@ function drawDexMoves(d) {
         <td class="num">${dot(m.power)}</td><td class="num">${dot(m.accuracy)}</td>
       </tr>`).join("")}</tbody>
     </table>` : `<p class="sub">None.</p>`}
+    ${tab[0] === "level" && (d.prevo_moves || []).length ? `
+    <h4 class="prevo-head">Only from an earlier stage</h4>
+    <p class="sub">Learnt by level-up before evolving, and on none of this species' own lists.</p>
+    <table class="learn movetab">
+      <thead><tr><th>Stage</th><th>Move</th><th>Type</th>
+        <th class="num">Pow</th><th class="num">Acc</th></tr></thead>
+      <tbody>${d.prevo_moves.map(m => `<tr>
+        <td>${esc(m.stage || "")} ${lvText(m.level)}</td><td><a href="#" data-mv="${m.move}">${esc(m.label)}</a></td>
+        <td>${m.type ? typeChip(m.type, "mini") : ""}</td>
+        <td class="num">${dot(m.power)}</td><td class="num">${dot(m.accuracy)}</td>
+      </tr>`).join("")}</tbody>
+    </table>` : ""}
     <p class="sub">Click a move to read it here; the lists come back with one click.</p>`;
   $("#dexright").querySelectorAll(".segtabs button").forEach(b =>
     b.onclick = () => { DEXMOVETAB = b.dataset.tab; drawDexMoves(d); });

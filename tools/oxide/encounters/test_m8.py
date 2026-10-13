@@ -197,6 +197,26 @@ def check_endpoints(results):
                     and detail["matchups"]["WATER"] == 2.0, ""))
     results.append(("an unknown species is an error rather than a crash",
                     "error" in server.dex_detail("SPECIES_NOT_A_POKEMON"), ""))
+    # Ian, 2026-10-13: the list is searchable by ability, the hidden one
+    # included, and a species lists the moves only an earlier stage learns.
+    drought = sorted(r["name"] for r in out["rows"] if "DROUGHT" in r["abilities"])
+    results.append(("each list row carries its abilities, the hidden one included",
+                    drought == ["Groudon", "Magcargo", "Ninetales", "Slugma", "Torkoal", "Vulpix"],
+                    f"Drought: {drought}"))
+    rose = server.dex_detail("SPECIES_ROSERADE")
+    own = ({m["move"] for m in rose["learnset"]} | {m["move"] for m in rose["machine_moves"]}
+           | {m["move"] for m in rose["tutor_moves"]})
+    pre = rose["prevo_moves"]
+    results.append(("a stone evolution lists its earlier stages' level-up moves that none of "
+                    "its own lists hold, each with its stage and level",
+                    pre and all(m["stage"] in ("Roselia", "Budew") and m["move"] not in own
+                                and isinstance(m["level"], int) for m in pre)
+                    and len({m["move"] for m in pre}) == len(pre)
+                    and any(m["label"] == "Toxic Spikes" and m["stage"] == "Roselia" for m in pre),
+                    f"{len(pre)} moves"))
+    results.append(("a species with no earlier stage lists none",
+                    server.dex_detail("SPECIES_BUDEW")["prevo_moves"] == []
+                    and server.dex_detail("SPECIES_TORKOAL")["prevo_moves"] == [], ""))
 
 
 def check_canon(results):

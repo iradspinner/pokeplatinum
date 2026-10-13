@@ -214,6 +214,31 @@ def _evolution(root, entry):
     }
 
 
+def earlier_stages(root, species):
+    """The species that evolve into this one, nearest first (Ian, 2026-10-13:
+    the Dex lists the moves only an earlier stage learns). A stage with two
+    pre-evolutions takes the first found; none in Oxide has two."""
+    pre = _pre_evolutions(root, tuple(species_list(root)))
+    out, seen = [], {species}
+    while species in pre and pre[species] not in seen:
+        species = pre[species]
+        seen.add(species)
+        out.append(species)
+    return out
+
+
+@functools.lru_cache(maxsize=4)
+def _pre_evolutions(root, species_tuple):
+    """{species: the species that evolves into it}, from every evolution."""
+    out = {}
+    for s in species_tuple:
+        rec = load(root, s)
+        for evo in (rec or {}).get("evolutions") or []:
+            if evo.get("into") and evo["into"] != s:
+                out.setdefault(evo["into"], s)
+    return out
+
+
 def delta(root, species, ref="main"):
     """What changed from vanilla: None for an unchanged species, {"new": True}
     for one this project added, otherwise only the fields that moved."""
