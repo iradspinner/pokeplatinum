@@ -84,7 +84,6 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] Youngsters Darius and Jonathon (Roark's split) were read without the gym's sand; they wait for the next full reading.
 - [ ] Mechanics the simulator leaves out, parked by the freeze: double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass and per-hit contact effects.
 - [ ] Long term: a whole-game reading in hours (`scorer-speed-plan.md`, goal 4); a compiled simulator and a cheaper opponent AI are its parked levers.
-- [ ] `tools/oxide/balance/b6.py` is a one-line shim while `~/oxide-trials/scorer-stage2/goal3_fights.py`, which plgoal3 loads, calls `b6.placements()` five times; renaming those calls to `required.placements()` lets the shim go. A scorer driver, so with Ian's say-so.
 
 **Tidying**
 - [ ] Unlanded branches whose purposes landed another way (`balance-fight-sim`, `balance-sim-example`, `balance-boxmodel`, `wip-balance-b3b`, `balance-learngen-v2`, `cloud/balance-learnset-pass`, `balance-learnset-review`): delete after a last look.
