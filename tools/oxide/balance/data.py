@@ -42,17 +42,14 @@ REFS = {
     "redux": {"file": "platredux.js", "title": "Platinum Redux", "rating": 8, "game": "platinum"},
     "redux_hc": {"file": "platreduxhc.js", "title": "Platinum Redux hardcore", "rating": 8.5, "game": "platinum"},
     "kaizo": {"file": "pkv5h.js", "title": "Platinum Kaizo", "rating": 10, "game": "platinum"},
-    # Hardlove is read from the donor ROM (hardlove_rom.py): the calculator's
-    # file predates 0.6.9's Clair and League. The file stays as a cross-check.
-    "hardlove": {"file": "hardlove.js", "title": "Hardlove Gold 0.6.9", "rating": 9.5,
-                 "game": "hgss", "source": "rom"},
     "null": {"file": "null12.js", "title": "Pokemon Null 1.2", "rating": 10, "game": "emerald"},
     "unbound": {"file": "unbound.js", "title": "Pokemon Unbound, difficult", "rating": 5.25,
                 "game": "firered", "mode": "difficult"},
-    # Run & Bun is read from Ian's sheet of its battles (run_and_bun.py).
-    "run_and_bun": {"file": "run-and-bun-trainer-battles.xlsx", "title": "Run & Bun",
-                    "rating": 10, "game": "emerald", "source": "sheet"},
 }
+# Hardlove Gold 0.6.9 (Ian's 9.5, read from the donor ROM) and Run & Bun
+# (his 10, read from his sheet of its battles) were references too; their
+# readers served only the first scoring system and were retired with it on
+# 2026-10-13. Their files stay pinned in REFS_DIR.
 
 NO_MOVE = {"", "-", "(No Move)", "None"}
 NO_ITEM = {"", "-", "None", "(No Item)"}
@@ -143,12 +140,6 @@ def calc_sets(hack):
 def ref_trainers(hack):
     """Every trainer in a reference hack, keyed by tr_id where the source has
     ids, else by trainer name. Megas are folded into their base Pokemon."""
-    if REFS[hack].get("source") == "rom":
-        from . import hardlove_rom
-        return hardlove_rom.trainers()
-    if REFS[hack].get("source") == "sheet":
-        from . import run_and_bun
-        return run_and_bun.trainers()
     return _fold_megas(_read_calc(hack))
 
 

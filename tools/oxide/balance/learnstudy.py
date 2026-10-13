@@ -24,26 +24,28 @@ at the encounter tool's stand-in level for that method.
 import argparse
 import collections
 import functools
-import json
 import os
 import re
 import statistics
 import sys
 
 from ..encounters import evolve, pokedex
-from . import data, metrics
+from . import data
 
-HERE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(data.ROOT, "docs", "oxide")
 LEARNSETS = os.path.join(DOCS, "kaizo-learnsets.tsv")
 CHANGES = os.path.join(DOCS, "kaizo-move-changes.md")
 
-# Each game's gym splits, closed by the leader's ace as its stored seats have
-# it, and the League after them. Kaizo's Galactic fights sit above Volkner's
-# level, so the splits follow the gyms.
+# Each game's gym splits, closed by the leader's ace, and the League after
+# them at its highest ace. Kaizo's Galactic fights sit above Volkner's level,
+# so the splits follow the gyms. The levels were read from the first scoring
+# system's stored reference seats (pressure_refs/, retired on 2026-10-13),
+# which took them from each game's calculator file; they are kept here as
+# they stood.
 GYMS = ["roark", "gardenia", "fantina", "maylene", "wake", "byron", "candice", "volkner"]
-LEAGUE = ["aaron", "bertha", "flint", "lucian", "cynthia"]
 SPLIT_NAMES = [g.title() for g in GYMS] + ["League"]
+SPLIT_LEVELS = {"kaizo": (16, 28, 38, 47, 54, 65, 74, 84, 100),
+                "vanilla": (14, 22, 26, 32, 37, 41, 44, 50, 62)}
 
 # Strength bands, in base power per turn.
 WEAK, FAIR, STRONG, BIG = 50, 70, 85, 100
@@ -89,6 +91,12 @@ SPELLING = {"BubbleBeam": "Bubble Beam", "Faint Attack": "Feint Attack",
             "SmellingSalt": "Smelling Salts", "SonicBoom": "Sonic Boom"}
 
 
+def _compact(name):
+    """A move name without case, spaces or punctuation, so that Generation 4
+    spellings run together (SmokeScreen) match the modern ones."""
+    return "".join(ch for ch in name.lower() if ch.isalnum())
+
+
 def resolve(name, table):
     """The key `table` uses for a move named in Gen 4 or modern spelling, or None."""
     if not name:
@@ -97,7 +105,7 @@ def resolve(name, table):
         return name
     if SPELLING.get(name) in table:
         return SPELLING[name]
-    loose = [k for k in table if metrics._compact(k) == metrics._compact(name)]
+    loose = [k for k in table if _compact(k) == _compact(name)]
     return loose[0] if len(loose) == 1 else None
 
 
@@ -105,12 +113,8 @@ def resolve(name, table):
 
 @functools.lru_cache(maxsize=None)
 def splits(hack):
-    """[(split, closing level)] for a reference hack, from its stored seats."""
-    with open(os.path.join(HERE, "pressure_refs", f"{hack}.json"), encoding="utf-8") as f:
-        seats = json.load(f)["fights"]
-    out = [(g.title(), seats[g]["ace"]) for g in GYMS]
-    out.append(("League", max(seats[k]["ace"] for k in LEAGUE if k in seats)))
-    return out
+    """[(split, closing level)] for a reference game, Kaizo or vanilla."""
+    return list(zip(SPLIT_NAMES, SPLIT_LEVELS[hack]))
 
 
 def split_of(hack, level):
@@ -488,10 +492,10 @@ def against_vanilla():
     for sp, rec in kaizo_lists().items():
         vlev = {}
         for lv, mv in (vanilla_dex(sp) or {}).get("learnset", []):
-            vlev.setdefault(metrics._compact(names.get(mv, mv)), lv)
+            vlev.setdefault(_compact(names.get(mv, mv)), lv)
         for level, name in rec["list"]:
-            key = metrics._compact(SPELLING.get(slot.get(name, name), slot.get(name, name)))
-            alt = metrics._compact(slot.get(name, name))
+            key = _compact(SPELLING.get(slot.get(name, name), slot.get(name, name)))
+            alt = _compact(slot.get(name, name))
             vl = vlev.get(key, vlev.get(alt))
             if vl is not None:
                 out.append((sp, name, vl, level))
@@ -604,10 +608,10 @@ def placement_test(k=5):
                         statistics.median(near) if near else curve_guess)
                     guesses["an unseen move, by the curve"] = curve_guess
                     guesses["a known move's usual split, damaging moves only"] = usual
-                van = {metrics._compact(names.get(mv, mv)): lv for lv, mv in
+                van = {_compact(names.get(mv, mv)): lv for lv, mv in
                        reversed((vanilla_dex(e["species"]) or {}).get("learnset", []))}
                 slot = changes().get(e["move"], {}).get("was") or e["move"]
-                vl = van.get(metrics._compact(SPELLING.get(slot, slot)))
+                vl = van.get(_compact(SPELLING.get(slot, slot)))
                 if vl is not None:
                     guesses["vanilla's split, where vanilla has the move"] = \
                         split_index("vanilla", vl)
@@ -767,7 +771,7 @@ def named_check():
 def _oxide_chances():
     """Each move's effect chance by name, from Oxide's data: Kaizo's calculator
     records carry none, and a sure stat drop is the same move in both."""
-    return {metrics._compact(m["name"]): m["effect_chance"]
+    return {_compact(m["name"]): m["effect_chance"]
             for m in pokedex.moves(data.ROOT).values()}
 
 
@@ -785,7 +789,7 @@ def kaizo_dead_weight():
             mv = moves[resolve(e["move"], moves)]
             chance = changes().get(e["move"], {}).get("chance")
             if chance is None:
-                chance = _oxide_chances().get(metrics._compact(SPELLING.get(e["move"], e["move"])))
+                chance = _oxide_chances().get(_compact(SPELLING.get(e["move"], e["move"])))
             first = e["level"] <= 1
             if dead_weight(dict(mv, chance=chance), e["split"], e["stab"], first=first):
                 (start if first else later)[e["move"]] += 1
@@ -810,8 +814,8 @@ def report(out=sys.stdout):
     print(f"change list and calculator disagree on (the list is used): "
           f"{', '.join(kaizo_moves.disagree) or 'none'}", file=out)
     # Ian's file is the source; the calculator's own lists are a cross-check.
-    same = lambda a, b: [(l, metrics._compact(SPELLING.get(m, m))) for l, m in a] == \
-        [(l, metrics._compact(m)) for l, m in b]
+    same = lambda a, b: [(l, _compact(SPELLING.get(m, m))) for l, m in a] == \
+        [(l, _compact(m)) for l, m in b]
     differ = [r["name"] for r in ks.values() if not same(r["list"], r["calc"])]
     print(f"Ian's lists and the calculator's differ for {len(differ)} species: "
           f"{', '.join(differ[:10])}{' ...' if len(differ) > 10 else ''}", file=out)
