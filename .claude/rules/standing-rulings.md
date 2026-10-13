@@ -30,16 +30,13 @@ read, so they are written here too. Each is a standing instruction.
 - A fix to a bug that is present in vanilla Platinum is its own commit, with
   "VANILLA FIX" in its subject, and is called out to Ian in the report,
   separately from fixes to Oxide's own bugs.
-- Before editing a file another track owns, stop and say so: which files, whose
-  track, and the choice of handing it over or taking it on with Ian's say-so.
-  The encounter track owns `tools/oxide/encounters/`, `res/field/encounters/`,
-  `docs/oxide/encounters/`, the `encounter-*.md` docs and one paragraph at the
-  top of the tracker. The balance track owns `tools/oxide/balance/` and
-  `docs/oxide/balance-plan.md`, except the fight simulator, its AI and the
-  perfect-line scorer in that folder (`fightsim.py`, `fightai.py`,
-  `perfectline.py`, the `pl*.py`, `pboxes.py` and `pdoubles.py` modules, their
-  tests and results), which the scoring track owns with
-  `docs/oxide/trainer-scoring-handoff.md` (Ian, 2026-09-30).
+- No session owns files any more (Ian, 2026-10-13, retiring the track
+  ownership of 2026-09-30 "for now, as the scope of changes we are making is
+  much less than previously needed"): any session edits what a task needs and
+  says in its commit what changed and why. The fight simulator, its AI and the
+  scorer (`fightsim.py`, `fightai.py`, `perfectline.py`, the `pl*.py` modules)
+  still change only with Ian's approval of each fix. If Ian starts several
+  track sessions in parallel again, ask him whether ownership comes back.
 - The cloud code review (`/code-review ultra`) is never built into a procedure;
   run it only when Ian asks for it.
 - Ian's user settings (`~/.claude/settings.json`) are his to edit. Hand him the
@@ -57,11 +54,11 @@ read, so they are written here too. Each is a standing instruction.
   absolute (Ian, 2026-09-27): no Life Orb and no Choice item is ever
   obtainable, and the best offensive items the player gets are the
   type-boosting ones (Charcoal, Mystic Water and the like).
-- Several sessions work at once, and a local session named "Oxide Overseer"
-  coordinates them: the docs outside each track's own files, pushes to
-  `oxide`, merges, and in-game testing. A local session messages it with
-  `SendMessage`. A cloud session cannot, so it reports through its branch
-  instead (CLAUDE.md, "Cloud sessions").
+- The local session named "Oxide Overseer" is the one standing session (Ian,
+  2026-10-13): it keeps the tracker, the one home of open work, lands every
+  branch on `oxide`, and coordinates in-game testing. Any other session Ian
+  starts messages it with `SendMessage`; a cloud session cannot, so it reports
+  through its branch instead (CLAUDE.md, "Cloud sessions").
 - The player has no way to set, change or end weather for the whole game (Ian,
   2026-09-26): no weather move in any player learnset, TM, tutor or egg list,
   and no weather-setting or weather-cancelling ability in an obtainable
@@ -351,10 +348,10 @@ read, so they are written here too. Each is a standing instruction.
 - Reports to Ian are one page (Ian, 2026-10-06). Any report, reading,
   study result or plan that comes to him starts with a one-page summary: the
   outcome, the action items (what he decides or does), the next steps, and
-  how long each step will take. The detail goes below that summary or in the
-  track's own doc, which he does not read in full; the trainer-scoring
-  handoff, at its length, is unreadable for him. A track's status home may
-  stay long, as long as its summary is kept current at its top.
+  how long each step will take. The detail goes below that summary or in a
+  reference doc, which he does not read in full; the trainer-scoring
+  handoff, at its length, is unreadable for him. The tracker's first page is
+  that one page for the whole project (Ian, 2026-10-13).
 - Prefer judging each Pokemon over global hard rules (Ian, 2026-10-06):
   "It entirely depends on the pokemon, and keeping it to hard rules destroys
   the variability between pokemon... We need to stop creating this web of

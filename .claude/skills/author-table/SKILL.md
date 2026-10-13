@@ -11,7 +11,7 @@ prints comes from one implementation of the maths, so the CLI, the UI and the
 linter cannot disagree. Editing the JSON by hand throws all of that away.
 
 The plan for the whole pass is `docs/oxide/encounter-authoring-plan.md`; its
-status is the "Authoring pass" section of
+open work is in the tracker (since 2026-10-13), its history in the "Authoring pass" section of
 `docs/oxide/encounter-tool-build-plan.md`, and each finished step's full entry
 is in `docs/oxide/encounter-tool-build-plan-archive.md`. The design model is
 `docs/oxide/encounter-tool-design.md` sections 2 and 7. This skill is the

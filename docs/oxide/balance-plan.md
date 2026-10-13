@@ -1,5 +1,7 @@
 # Balance plan
 
+> **Reference since 2026-10-13.** Open work for the balance track lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the balance track works and its history; its own lists of next steps are no longer kept up to date.
+
 This is the balance track's status home. Ian put this session in charge of
 balance on 2026-09-22, once element 4 had put most moves and species in the
 tree. The file covers what "balanced" means for Oxide, how it gets measured,

@@ -1,5 +1,7 @@
 # Trainer scoring: the handoff from the three-gym run
 
+> **Reference since 2026-10-13.** Open work for the fight scorer lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the fight scorer works and its history; its own lists of next steps are no longer kept up to date.
+
 ## Summary for Ian (kept current with every commit; last 2026-10-07)
 
 **Outcome.** The scorer reads a fight by playing it turn by turn in the

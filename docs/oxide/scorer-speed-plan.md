@@ -1,5 +1,7 @@
 # The scorer's speed plan
 
+> **Reference since 2026-10-13.** Open work for the scorer's speed work lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the scorer's speed work works and its history; its own lists of next steps are no longer kept up to date.
+
 Ian's goal (2026-10-02): a reading of the whole game by the fight scorer's
 planner in a matter of hours, including the spread of boxes for each boss and
 the very unlucky stress test, rather than the 500 hours he estimated from the

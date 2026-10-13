@@ -50,7 +50,7 @@ make a ruling.
 | Where | When |
 |---|---|
 | The tracker entry for the work, or a new Phase 5 entry | every design decision; delete the question from "Waiting on Ian" |
-| The owning track's plan (`balance-plan.md`, `encounter-tool-build-plan.md`) | when that track acts on it; ask the track to write it, since the file is theirs |
+| A reference doc the ruling changes (`balance-plan.md`, `encounter-tool-build-plan.md` and the like) | when it states the old fact; open work goes in the tracker, never there (Ian, 2026-10-13) |
 | `.claude/rules/standing-rulings.md` | every standing rule, because cloud sessions cannot read memory |
 | Memory (`~/.claude/projects/-home-ian-pokeplatinum/memory/`) | every standing rule, as a project memory with its reason, plus a line in `MEMORY.md` |
 | The design doc | only if it changes a fact or a working rule the design doc states |
@@ -65,8 +65,7 @@ dated history can stay, as long as it reads as history.
 ## 4. Tell the sessions it touches
 
 Send each affected session one message: the ruling, its date, what it
-changes for that track, and where it is written. Name the files if another
-track owns them. For a cloud job in flight, fold the ruling into the paste-back
+changes for that session, and where it is written. For a cloud job in flight, fold the ruling into the paste-back
 text Ian gives that session.
 
 ## 5. Commit and mirror

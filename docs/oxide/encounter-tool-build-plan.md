@@ -1,5 +1,7 @@
 # The Platinum OxiDex (the encounter tool): a build plan
 
+> **Reference since 2026-10-13.** Open work for the encounter tool lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the encounter tool works and its history; its own lists of next steps are no longer kept up to date.
+
 Written 2026-09-20, from `docs/oxide/encounter-tool-design.md` (v1.0) and the
 measurements in `docs/oxide/encounter-design-survey.md`, both of which are now
 repo-tracked rather than living only in the project folder's `Claude outputs`.

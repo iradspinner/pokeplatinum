@@ -5,7 +5,7 @@ description: Ian's rulebook for Platinum Oxide's balance passes, in one place th
 
 # The balance rulebook
 
-The balance track's status and methods live in `docs/oxide/balance-plan.md`,
+The balance track's methods live in `docs/oxide/balance-plan.md` (its open work in the tracker since 2026-10-13),
 and the rules every session follows live in
 `.claude/rules/standing-rulings.md`. This skill gathers what a balance pass
 needs from both, plus Ian's rulings that until 2026-09-27 lived only in the
@@ -146,8 +146,8 @@ is listed for Ian.
 - **A loss of any kind ends the run** (2026-09-28), so every fight is a
   first and only attempt; nothing may assume a retry.
 - **How a fight is scored** (Ian's rulings of 2026-09-30 to 2026-10-02; the
-  standing rulings hold them whole). The Scoring Agent owns the simulator,
-  its AI and the scorer (`docs/oxide/trainer-scoring-handoff.md`). The scorer
+  standing rulings hold them whole). The simulator, its AI and the scorer
+  change only with Ian's approval (`docs/oxide/trainer-scoring-handoff.md` is their reference). The scorer
   is a turn-by-turn planner whose good play arises from search over the real
   simulator and the exactly known trainer AI, never from named behaviours; a
   missed play is fixed in that general machinery. Fights run at the game's

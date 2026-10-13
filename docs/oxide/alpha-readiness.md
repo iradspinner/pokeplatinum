@@ -1,5 +1,7 @@
 # The road to QA and alpha 1
 
+> **Reference since 2026-10-13.** Open work for the road to alpha 1 lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the road to alpha 1 works and its history; its own lists of next steps are no longer kept up to date.
+
 Every step follows the rule that heads CLAUDE.md (Ian, 2026-10-07): each change is judged for its effect on difficulty, by judgement, and nothing waits on a rescore. Ian's order (2026-10-06): the move rebalance and the TM pass, then his
 in-game QA, then the first alpha run. Neither QA nor the alpha waits for the
 Kaizo comb; the splits it has finished when the TM pass lands go in. The

@@ -1,5 +1,7 @@
 # QA plan, in order
 
+> **Reference since 2026-10-13.** Open work for the QA order lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the QA order works and its history; its own lists of next steps are no longer kept up to date.
+
 The in-game checklist (`ingame-checklist.md`) holds 119 open checks, written as a reference. This page is the order to work in. Most of those checks are things you notice while playing, and the OxiDex's Alpha tab already shows each one on the card of the zone where it happens. So QA comes down to one test kit session for the systems added this week, then the run itself with the Alpha tab open. Everything else waits. Use the QA ROM and test kit in `~/oxide-playtest` (today `pokeplatinum-oxide-df365a296.nds` and `pokeplatinum-oxide-testkit-df365a296.nds`), with melonDS's Break on startup off.
 
 ## 1. The test kit: this week's systems (about 45 minutes)
