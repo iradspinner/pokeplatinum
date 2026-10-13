@@ -21,7 +21,7 @@ Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's
 - The Kaizo study's open questions: six decisions on the later ordinary trainers, three weather rocks that do nothing, and the retunes after step 15.
 - Older questions still open: element 6's four changes of play, the drafts of dialogue from `main-scripts` and `main-production`, the regional dex order, the water biome draft and the zone-by-zone land pass, the honey trees, the Box sim's ratings, the Amity Square and Snowpoint casts, one damage roll against the calculator, and the Frontier Brain teams (he builds them).
 
-**Next steps for the Overseer, in order:** the balance tools' retirement job, under way on `overseer-retire-b` (Ian approved it on 2026-10-13; 3 to 4 hours); the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
+**Next steps for the Overseer, in order:** the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
 
 **To confirm the state after a restart**, and what a clean gate looks like: `docs/oxide/restart-checks.md`. **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
@@ -71,7 +71,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] Four kept evolution stones come later than planned (Eterna's Moon Stone, Coronet 1F's Dawn Stone and Route 213's Water Stone need Surf; Valor Lakefront's Sun Stone needs Rock Climb); each goes to Ian at the item pass.
 - [ ] The tutor pass: is one still wanted? New species' tutor lists are empty, and the player's side does not read the world's Draco Meteor or starter-move tutors. Ian's question.
 - [ ] The learnset rewrite's leftovers for after the alpha: its named cases, the staple coverage question and check 8's late shortfall (`learnset-rewrite.md`, action items 1 and 2).
-- [ ] The census corrections at the next rescore: Cynthia's Togepi egg in Fantina's split, and the fossils from Fantina's split. Amity Square's table has been in use since 506b11dbec, so its correction is dropped.
+- [ ] The census corrections, due before step 15's milestone reading (the rescore that was to carry them retired on 2026-10-13): Cynthia's Togepi egg in Fantina's split, and the fossils from Fantina's split. Amity Square's table has been in use since 506b11dbec, so its correction is dropped.
 
 **Encounters**
 - [ ] Maylene's tables were designed at 38; the engine caps at 39 and the cap redesign comes after the alpha, so `cli evolve` could run at 39 now.
@@ -83,7 +83,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] Youngsters Darius and Jonathon (Roark's split) were read without the gym's sand; they wait for the next full reading.
 - [ ] Mechanics the simulator leaves out, parked by the freeze: double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass and per-hit contact effects.
 - [ ] Long term: a whole-game reading in hours (`scorer-speed-plan.md`, goal 4); a compiled simulator and a cheaper opponent AI are its parked levers.
-- [ ] The balance tools (Ian, 2026-10-13, on `balance-tools-audit.md`): the first scoring system is retired, the OxiDex's team builder estimate and old fight scale with it, and the dead modules go; the scorer's fast tests join the gate. Under way on `overseer-retire-b`.
+- [ ] `tools/oxide/balance/b6.py` is a one-line shim while `~/oxide-trials/scorer-stage2/goal3_fights.py`, which plgoal3 loads, calls `b6.placements()` five times; renaming those calls to `required.placements()` lets the shim go. A scorer driver, so with Ian's say-so.
 
 **QA checklist upkeep**
 - [ ] Four live checks name teams the comb replaced and are rewritten before the joint stub session: Volkner's Rotom (form 0 now), Camper Zackary's Castform (level 24), Worker Jackson's Wormadam-Trash, and Gardenia's Cherrim.

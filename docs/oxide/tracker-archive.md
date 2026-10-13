@@ -658,3 +658,6 @@ Ian made the tracker the one home of open work on 2026-10-13. These blocks left 
 
 - **Amity Square's encounter table** (found 2026-10-02 by the Scoring Agent's roll draft): it exists but no map header uses it, so nothing can be met there in the game; the encounter track's to wire or explain.
 
+## Finished on 2026-10-13
+
+- [x] The balance tools (Ian, 2026-10-13, on `balance-tools-audit.md`): the first scoring system is retired, the OxiDex's team builder estimate and old fight scale with it, and the dead modules go; the scorer's fast tests join the gate. Under way on `overseer-retire-b`. Landed on `oxide` with the spare flag pool (merge 312060ce0e).
