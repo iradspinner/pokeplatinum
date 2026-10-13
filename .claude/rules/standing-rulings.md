@@ -113,7 +113,8 @@ read, so they are written here too. Each is a standing instruction.
   recoil and status; Sky Attack one turn (120, a third as recoil, 20%
   paralysis); Dig 60 and Dive 80 one turn; Fly, Bounce, Phantom Force and
   Shadow Force kept two-turn; every two-to-five-hit move at 25 a hit;
-  Fury Cutter as Kaizo's three rising hits; Psywave cut for Psybeam;
+  Fury Cutter as three rising hits (10, 20 and 30 since 2026-10-12, with
+  Triple Kick on the same effect at 20, 30 and 40, Ian); Psywave cut for Psybeam;
   Spite at 5 PP; Uproar one turn at 100 with 20% confusion; Raging Fury
   one turn at 120 with a third as recoil and 20% confusion.
   Later the same day: one two-to-five-hit move per type. Normal keeps Fury

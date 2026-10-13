@@ -195,8 +195,10 @@ RECOIL = {"RECOIL_THIRD": 1 / 3, "RECOIL_QUARTER": 1 / 4, "RECOIL_HALF": 1 / 2,
 # Skill Link, and a Loaded Dice turns a roll of two or three into four or
 # five, which leaves four and five at even odds.
 MULTI_HIT_ODDS = ((2, 35), (3, 35), (4, 15), (5, 15))
-# Fury Cutter: three hits rising by 10 from the listed power, each checking
-# accuracy and the move stopping at the first miss (effect_script_0416).
+# Fury Cutter and Triple Kick: three hits rising by 10 from the listed power,
+# each checking accuracy and the move stopping at the first miss
+# (effect_script_0416). The calculator's row is all three hits added up
+# (its Oxide profile, since 2026-10-07).
 RISING_HITS = "HIT_THREE_TIMES_RISING_10"
 RISING_COUNT = 3
 HEAL_HALF = {"RESTORE_HALF_HP", "HEAL_HALF_REMOVE_FLYING_TYPE"}
@@ -1669,7 +1671,7 @@ def use_damage(att, mv, dmg, hits):
 
 def scale_hits(att, mv, dmg, hits):
     """A row's damage for the hits this use rolled: a two to five hit move's
-    row counts row_hits hits, Fury Cutter's its first."""
+    row counts row_hits hits, a rising move's all three."""
     if mv.effect == RISING_HITS:
         return int(dmg * rising_scale(mv, hits))
     rh = row_hits(att, mv)
@@ -1699,23 +1701,27 @@ def row_hits(att, mv):
 
 
 def rising_scale(mv, hits):
-    """Fury Cutter's damage over `hits` hits, as a multiple of its first hit's
-    (its row): each hit 10 more power than the last."""
+    """A rising move's damage over `hits` hits, as a share of its row, which
+    adds up all three: each hit 10 more power than the last. Until
+    2026-10-12 this read the row as the first hit alone, so once the
+    calculator began adding the three (2026-10-07) Fury Cutter dealt about
+    four times its damage (Ian approved the fix)."""
     p = max(1, mv.power)
-    return sum(p + 10 * i for i in range(hits)) / p
+    return sum(p + 10 * i for i in range(hits)) / sum(p + 10 * i for i in range(RISING_COUNT))
 
 
 def expected_hit_scale(mv):
     """A move's expected damage as a multiple of its calculator row, for the
     reckonings that read rows (exp_damage, plfeat._expected), before the
-    first hit's accuracy: Fury Cutter's later hits each need accuracy again.
-    A two to five hit move's row counts three hits, close to its expected
-    3.1, so it is left as it is."""
+    first hit's accuracy: a rising move's later hits each need accuracy
+    again, and its row adds all three. A two to five hit move's row counts
+    three hits, close to its expected 3.1, so it is left as it is."""
     if mv.effect != RISING_HITS:
         return 1.0
     acc = 1.0 if mv.acc == 0 else min(1.0, mv.acc / 100)
     p = max(1, mv.power)
-    return sum((p + 10 * i) / p * acc ** i for i in range(RISING_COUNT))
+    full = sum(p + 10 * i for i in range(RISING_COUNT))
+    return sum((p + 10 * i) * acc ** i for i in range(RISING_COUNT)) / full
 
 
 @functools.lru_cache(maxsize=None)

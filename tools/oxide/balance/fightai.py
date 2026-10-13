@@ -217,18 +217,17 @@ def expected_hits(u, mv, d):
     """TrainerAI_ExpectedHitsDamage (the move reworks, Ian's answer of
     2026-10-07): one hit's estimate at the listed power to the whole move's.
     A two to five hit move counts 3.1 hits, or 5 under Skill Link (a Loaded
-    Dice is not seen, as the AI sees no held item there); Fury Cutter its
-    power plus 10 and 20 more over its power. Triple Kick (10, 20, 30) and
-    Triple Axel (20, 40, 60) the game rates by their three hits' sum over
-    the listed power, which is what the calculator's row already adds up
-    (gen4.js), so their row stands as it is."""
+    Dice is not seen, as the AI sees no held item there). The rising moves
+    (Fury Cutter 10, 20, 30 and Triple Kick 20, 30, 40) and Triple Axel
+    (20, 40, 60) the game rates by their three hits' sum, which is what the
+    calculator's row already adds up (its Oxide profile and gen4.js), so
+    their row stands as it is. Until 2026-10-12 the rising row was taken as
+    one hit and multiplied again."""
     p = mv.power
     if p <= 0:
         return d
     if mv.effect == "MULTI_HIT":
         return d * 5 if u.ability == "Skill Link" else d * 31 // 10
-    if mv.effect == fs.RISING_HITS:
-        return d * (p * 3 + 10 + 20) // p
     return d
 
 

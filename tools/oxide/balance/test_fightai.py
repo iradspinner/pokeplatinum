@@ -944,8 +944,8 @@ def damage_figure_and_engine():
     link = ai.expected_hits(bre, fs.move("Bullet Seed"), 100)
     cutter = ai.expected_hits(bre, fs.move("Fury Cutter"), 100)
     kick = ai.expected_hits(bre, fs.move("Triple Kick"), 100)
-    out.append(("expected hits: 3.1, Skill Link 5, Fury Cutter 30+40+50 over 30, Triple Kick's row as it is; "
-                "Bone Rush at 100%", (plain, link, cutter, kick, fs.move("Bone Rush").acc) == (310, 500, 400, 100, 100),
+    out.append(("expected hits: 3.1, Skill Link 5; the rising moves' rows (Fury Cutter, Triple Kick) as they are; "
+                "Bone Rush at 100%", (plain, link, cutter, kick, fs.move("Bone Rush").acc) == (310, 500, 100, 100, 100),
                 f"{plain}, {link}, {cutter}, {kick}; Bone Rush {fs.move('Bone Rush').acc}%"))
     _to(b, b.b, "Lucario")
     luc = b.b.cur()

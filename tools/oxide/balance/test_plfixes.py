@@ -567,14 +567,25 @@ def rework_checks():
     out.append(("a Focus Sash holds a single hit but not a multi-hit move", foe.hp == 0 and foe2.hp == 1,
                 f"Bullet Seed leaves {foe.hp}, Tackle {foe2.hp}"))
 
-    # Fury Cutter: three hits at 30, 40 and 50 on a row of one hit at 30.
-    b, p, foe = fresh(["Fury Cutter"], roll=30, hp=200)
+    # The rising moves, Fury Cutter 10, 20, 30 and Triple Kick 20, 30, 40
+    # (Ian, 2026-10-12): the calculator's row adds up all three hits, and
+    # each hit after the first checks accuracy (Triple Kick's 90%).
+    b, p, foe = fresh(["Fury Cutter"], roll=60, hp=200)
     pl.attack(b, p, fs.move("Fury Cutter"), foe, True)
     cutter = 200 - foe.hp
-    expected = fs.expected_hit_scale(fs.move("Fury Cutter"))
-    out.append(("Fury Cutter hits three times rising by 10; Spite has 5 PP",
-                cutter == 120 and abs(expected - 4.0) < 1e-9 and fs.move("Spite").pp == 5,
-                f"dealt {cutter} on a 30 row; expected scale {expected:.2f}; Spite {fs.move('Spite').pp} PP"))
+    kicks = set()
+    for seed in range(1, 40):
+        b, p, foe = fresh(["Triple Kick"], roll=90, hp=200, seed=seed)
+        pl.attack(b, p, fs.move("Triple Kick"), foe, True)
+        kicks.add(200 - foe.hp)
+    fc_scale = fs.expected_hit_scale(fs.move("Fury Cutter"))
+    tk_scale = fs.expected_hit_scale(fs.move("Triple Kick"))
+    out.append(("Fury Cutter and Triple Kick: three rising hits on a row of all three; Spite has 5 PP",
+                cutter == 60 and kicks <= {0, 20, 50, 90} and 90 in kicks and 50 in kicks
+                and abs(fc_scale - 1.0) < 1e-9 and abs(tk_scale - (20 + 30 * 0.9 + 40 * 0.81) / 90) < 1e-9
+                and fs.move("Spite").pp == 5,
+                f"Fury Cutter dealt {cutter} on a 60 row; Triple Kick dealt {sorted(kicks)} on a 90 row; "
+                f"expected scales {fc_scale:.3f} and {tk_scale:.3f}; Spite {fs.move('Spite').pp} PP"))
 
     # Upper Hand: only against a chosen priority move, before it acts; it flinches.
     def upper(chosen, first=True, ability=None):

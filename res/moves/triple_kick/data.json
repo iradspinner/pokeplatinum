@@ -9,11 +9,11 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIGHTING",
-    "power": 10,
+    "power": 20,
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT_THREE_TIMES",
+        "type": "BATTLE_EFFECT_HIT_THREE_TIMES_RISING_10",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
