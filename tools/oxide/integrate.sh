@@ -448,16 +448,24 @@ fi
 # a cloud VM may lack, so without it they are skipped with a warning. The
 # first scoring system and its suites (B2's metrics, B4's level curve, B6's
 # audit, the stored-score fingerprints) were retired on 2026-10-13.
-# test_plplan stays out until its fixture, which predates Roark's redesign,
-# is updated; test_plfixes and test_plgoal3 read ~/oxide-trials, which a
-# cloud gate lacks.
+# test_plplan, the planner's exact odds and turns (about 30 seconds), came
+# back on 2026-10-13 once it found Roark's Lileep by species. test_plfixes,
+# the mechanics the Roark fight showed missing (about 45 seconds), reads its
+# Roark from a saved copy of the team before his redesign and one box from
+# ~/oxide-trials/three-gym-run, so it runs only where that folder is;
+# test_plgoal3 reads ~/oxide-trials too and stays out.
 if "$PY" -c "import numpy" 2>/dev/null; then
-    for t in test_difficulty test_weather_moves test_fightsim test_fightai test_plfeat; do
+    for t in test_difficulty test_weather_moves test_fightsim test_fightai test_plfeat test_plplan; do
         CHECK_EXPECT="passed" check "scorer $t" "$PY" -m "tools.oxide.balance.$t"
     done
+    if [ -d "$HOME/oxide-trials/three-gym-run" ]; then
+        CHECK_EXPECT="passed" check "scorer test_plfixes" "$PY" -m tools.oxide.balance.test_plfixes
+    else
+        warn "scorer test_plfixes skipped: ~/oxide-trials/three-gym-run is missing"
+    fi
 else
     CHECK_EXPECT="passed" check "scorer test_difficulty" "$PY" -m tools.oxide.balance.test_difficulty
-    warn "scorer tests skipped, numpy missing: test_weather_moves test_fightsim test_fightai test_plfeat"
+    warn "scorer tests skipped, numpy missing: test_weather_moves test_fightsim test_fightai test_plfeat test_plplan test_plfixes"
 fi
 # R12 (availability against Ian's pick-list) is ignored here: vanilla was never
 # built for that list and fails it on purpose. It runs on the working tree.
