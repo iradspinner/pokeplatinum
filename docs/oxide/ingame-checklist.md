@@ -170,9 +170,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Grass against powder, Electric against paralysis, 1.5x critical hits, Defog
   clearing hazards from both sides and screens only from the target's, Rapid
   Spin's Speed raise, and the rest the menu lists.
-- [ ] **Native moves at modern numbers.** Fury Cutter used five times in a row
-  goes 40, 80, 160, 160, 160 in power, so its damage stops growing after the
-  third hit; Roar and Whirlwind never miss.
+- [ ] **Native moves at modern numbers.** Fury Cutter hits three times in one
+  turn at 10, 20 and 30 power, and Triple Kick at 20, 30 and 40, each later
+  hit able to miss and end the move (Ian, 2026-10-12); Roar and Whirlwind
+  never miss.
 - [ ] **Fairy.** A Dragon move does nothing to Clefairy or Ralts, a Poison or
   Steel move does double, the summary screen reads FAIRY, and the Pokedex info
   page shows the NORMAL plate (the known gap) rather than garbage. The Poketch
@@ -263,8 +264,9 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   merged). In the kit ROM only, Sylveon has a stand-in evolution move. One
   Rare Candy evolves the kit's Eevee, and on evolving it learns Moonblast,
   with the forget-a-move prompt if it knows four. The Move Relearner then
-  lists Moonblast for it. No species outside the kit has an evolution move
-  until the balance track sets them.
+  lists Moonblast for it. Since 2026-10-12 fifteen lines outside the kit
+  have one; in the ordinary ROM, a Nacli reaching 24 learns Salt Cure as it
+  becomes Naclstack, and a Sewaddle evolving into Leavanny learns Slash.
 - [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
   merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
   second use empties it. An HM taught from the case stays.
