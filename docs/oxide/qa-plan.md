@@ -25,7 +25,7 @@ Start a new game on the ordinary ROM with the battle recorder running and the Ox
 
 ## 3. Waiting, not part of QA
 
-- **The older move sets 23 to 70** in the kit (48 obscure moves from element 4). Sample them later. I can first cut the list to the moves a trainer or the player's lists actually carry.
-- **The seven (live) checks**, which need me attached over the GDB stub. One joint session covers them. Three name today's teams (Camper Zackary's Castform, Worker Jackson's Wormadam, Volkner's Rotom-Mow), which the comb replaces, so they get rewritten first.
+- **The older move sets 23 to 70** in the kit (48 obscure moves from element 4). Sample them later. I can first cut the list to the moves a trainer or the player's lists actually carry. Done on 2026-10-13: 34 sets stay, and the checklist entry names them and the 14 left out.
+- **The seven (live) checks**, which need me attached over the GDB stub. One joint session covers them. Three name today's teams (Camper Zackary's Castform, Worker Jackson's Wormadam, Volkner's Rotom-Mow), which the comb replaces, so they get rewritten first. Done on 2026-10-13: Ace Trainer Shannon's Victreebel takes the weather check (Gardenia's Cherrim went too), Jackson's Wormadam stays until the comb's draft drops it, and Volkner's rematch takes the Rotom-Mow check.
 - **Section 5, after the League**: only at the end of a run.
-- **One check is out of date**: "An HM taught from the case stays" (Single-use TMs). HMs became single-use TMs in the TM pass, so an HM is now used up like any TM.
+- **One check is out of date**: "An HM taught from the case stays" (Single-use TMs). HMs became single-use TMs in the TM pass, so an HM is now used up like any TM. Fixed on 2026-10-13.
