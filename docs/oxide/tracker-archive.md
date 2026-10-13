@@ -661,3 +661,7 @@ Ian made the tracker the one home of open work on 2026-10-13. These blocks left 
 ## Finished on 2026-10-13
 
 - [x] The balance tools (Ian, 2026-10-13, on `balance-tools-audit.md`): the first scoring system is retired, the OxiDex's team builder estimate and old fight scale with it, and the dead modules go; the scorer's fast tests join the gate. Under way on `overseer-retire-b`. Landed on `oxide` with the spare flag pool (merge 312060ce0e).
+- [x] Four live checks name teams the comb replaced and are rewritten before the joint stub session: Volkner's Rotom (form 0 now), Camper Zackary's Castform (level 24), Worker Jackson's Wormadam-Trash, and Gardenia's Cherrim.
+- [x] The single-use TMs check still says "An HM taught from the case stays"; HMs are single-use TMs since the TM pass.
+- [x] The kit's older move sets 23 to 70: cut the list to moves a trainer or the player can carry before Ian samples them.
+  All three done on 2026-10-13 (`ingame-checklist.md`): the move sets cut to the 34 a trainer or the player carries; Ace Trainer Shannon's Victreebel takes the weather check, Jackson's Wormadam stays, and Volkner's rematch takes the Rotom-Mow check; the HM line fixed.

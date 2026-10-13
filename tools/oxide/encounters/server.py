@@ -584,6 +584,9 @@ def dex_list():
             "folder": rec["folder"],
             "name": rec["name"],
             "types": rec["types"],
+            # Every ability, the hidden one included, so the list can be
+            # searched by ability (Ian, 2026-10-13).
+            "abilities": rec["abilities"] + ([rec["hidden_ability"]] if rec["hidden_ability"] else []),
             "bst": rec["bst"],
             "stats": rec["stats"],
             "new": bool(d and d.get("new")),
@@ -647,6 +650,18 @@ def dex_detail(species):
                             if t in by_machine]
     out["tutor_moves"] = [brief(mv) for mv in rec["by_tutor"]]
     out["egg_moves"] = [brief(mv) for mv in rec["egg_moves"]]
+    # The moves only an earlier stage learns by level-up (Ian, 2026-10-13):
+    # kept through evolving if learnt before it, and not on this species' own
+    # level-up, machine or tutor lists. Nearest stage first, each move once.
+    own = ({mv for _lv, mv in rec["learnset"]} | {m["move"] for m in out["machine_moves"]}
+           | set(rec["by_tutor"]))
+    out["prevo_moves"] = []
+    for pre in pokedex.earlier_stages(root, species):
+        prec = pokedex.load(root, pre) or {}
+        for lv, mv in prec.get("learnset") or []:
+            if mv not in own:
+                own.add(mv)
+                out["prevo_moves"].append(dict(brief(mv), level=lv, stage=prec.get("name")))
     # A mega is entered twice, once under the day method and once under the
     # night one, which is how the tree holds an alt-evolution. That is one
     # forme, not two evolutions.

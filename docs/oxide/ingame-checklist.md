@@ -104,43 +104,37 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   menu's Ice Stone, abilities, Mints and Caps, and TMs entries, and the
   Meister's trade, each print their own line.
 - [ ] **Element 4, the move sets.** Sets 1 to 22 passed in rounds 1 to 3
-  (2026-09-22 to 23). Still to see: sets 23 to 26; sets 27 to 31 (Sticky Web,
-  After You, Aurora Veil, the four side guards against the kit's two new wild
-  foes, and Belch with the Sitrus Berry the set gives), which the paged menu
-  now reaches safely; and sets 32 to 41 on the "More sets" page (Electro Ball
-  by Speed ratio, Stored Power, Retaliate, Echoed Voice, Stomping Tantrum,
-  Last Respects, Hard Press, Pika Papow and Veevee Volley, Lash Out, Grav
-  Apple). Sets 42 to 49 on the same page: Foul Play, Body Press, Psyshock
-  (with Psystrike and Secret Sword), Sacred Sword and Darkest Lariat, Freeze-Dry,
-  Flying Press, Rage Fist (50 plus 50 per hit taken, kept through switches) and
-  Transform copying the whole ability. Set 50 on the same page: Wonder Room
-  against a Cloyster that recovers every turn, Tackle and Swift trading
-  places while the room is up and back again when it wears off five turns
-  later. Set 51 on the same page: Shore Up against a Chansey's Seismic Toss,
-  healing half Mew's HP in sun or rain and two thirds in a sandstorm. Set 52:
-  Meteor Beam charging for a turn with a Sp. Atk raise, then hitting, or
-  hitting at once holding the Power Herb the set gives. Set 53: Electro Shot
-  the same way out of rain, and raising Sp. Atk and hitting in one turn after
-  Rain Dance. Sets 54 to 67, the partly working moves (2026-09-27), set 54 on
-  the same page and the rest on the third: Mind Blown costing half Mew's HP
-  even into Protect (54) and stopped by Damp at no cost (55), Nature's
-  Madness usable under Taunt (56), Scale Shot's Defense drop and Speed rise
-  (57), Spiky Shield hurting and Baneful Bunker poisoning a Tackle but not a
-  Swift (58, 59), Salt Cure's damage each turn, doubled after Soak (60),
-  Octolock's drops each turn (61), Magic Room stopping Leftovers for five
-  turns (62), Teatime eating a Liechi Berry at full HP (63), Core Enforcer
-  against a faster Volt Absorb Jolteon (64), Beak Blast burning a Tackle
-  (65), and Sky Drop lifting a Chansey that then cannot act (66) and not
-  affecting a Skarmory (67). Set 68 (2026-09-30, `main-production`): against
-  a wild Shedinja, Freeze Shock and Ice Burn each charge on the first turn,
-  and only the second turn says "It doesn't affect". Sets 69 and 70
-  (2026-09-30, `main-production`): Lunar Blessing and Jungle Healing fail at
-  full HP with no status, and otherwise heal a quarter and cure paralysis;
-  after a Ninjask's Throat Chop, Hyper Voice fails that turn and neither it
-  nor Heal Bell can be chosen the next, then both come back. A stub
-  effect does its damage and skips its extra, or says "But
-  nothing happened!"; that is expected. Autotomize prints no "became nimble!",
-  as Ian ruled.
+  (2026-09-22 to 23). Of sets 23 to 70, sample only the 34 whose new move a
+  trainer or the player can carry (cut on 2026-10-13: a level-up list of an
+  obtainable line, a placed TM, a tutor, or a trainer's team today or in the
+  comb's drafts). Sets 23 to 26: Dragon Tail and Parting Shot, Lock-On,
+  Ingrain and Aqua Ring, Smack Down. Sets 27 to 31: Sticky Web, After You,
+  Aurora Veil, the four side guards against the kit's two new wild foes, and
+  Belch with the Sitrus Berry the set gives. On the "More sets" page: Electro
+  Ball by Speed ratio (32), Stored Power (33), Retaliate (34), Echoed Voice
+  (35), Stomping Tantrum and Temper Flare (36), Lash Out (40), Foul Play
+  (42), Body Press (43), Psyshock (44), Sacred Sword and Darkest Lariat (45),
+  Freeze-Dry and Flying Press (46 and 47), Rage Fist, 50 plus 50 per hit
+  taken and kept through switches (48), and Transform copying the whole
+  ability (49). Set 51: Shore Up against a Chansey's Seismic Toss, healing
+  half Mew's HP in sun or rain and two thirds in a sandstorm. Set 52: Meteor
+  Beam charging for a turn with a Sp. Atk raise, then hitting, or hitting at
+  once holding the Power Herb the set gives. On the third page: Scale Shot's
+  Defense drop and Speed rise (57), Salt Cure's damage each turn, doubled
+  after Soak (60), Octolock's drops each turn (61), Magic Room stopping
+  Leftovers for five turns (62), Teatime eating a Liechi Berry at full HP
+  (63), Beak Blast burning a Tackle (65), and Sky Drop lifting a Chansey that
+  then cannot act (66) and not affecting a Skarmory (67). Set 70: after a
+  Ninjask's Throat Chop, Hyper Voice fails that turn and neither it nor Heal
+  Bell can be chosen the next, then both come back. Left out, since nothing
+  in the game carries their moves: sets 37 to 39, 41, 50, 53 to 56, 58, 59,
+  64, 68 and 69 (Last Respects, Hard Press, Pika Papow and Veevee Volley,
+  Grav Apple, Wonder Room, Electro Shot, Mind Blown, Nature's Madness, Spiky
+  Shield, Baneful Bunker, Core Enforcer, Freeze Shock and Ice Burn, Lunar
+  Blessing and Jungle Healing); sample one if a team or list takes its move.
+  A stub effect does its damage and skips its extra, or says "But nothing
+  happened!"; that is expected. Autotomize prints no "became nimble!", as Ian
+  ruled.
 - [ ] **Element 5, the Abilities menu** (two pages, Neutralizing Gas last): one
   entry per ability that shows itself, each with its own wild foe. For
   Neutralizing Gas: Galarian Weezing against a wild Chansey given Pressure
@@ -269,7 +263,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   becomes Naclstack, and a Sewaddle evolving into Leavanny learns Slash.
 - [ ] **Single-use TMs** (the "Two TMs" entry, with `main-tm-single-use`
   merged). The TM Case shows TM01 x2; teaching it once leaves x1, and a
-  second use empties it. An HM taught from the case stays.
+  second use empties it. An HM is used up the same way and shows its count
+  as a TM does, since the HMs became single-use TMs in the TM pass.
 - [ ] **Meloetta's forms** (the "Form changers" entry, with `main-meloetta`
   merged). The kit gives a Lv. 50 Meloetta with Relic Song in its first slot.
   In one of the menu's wild battles, switch it in: a Relic Song that hits turns
@@ -364,7 +359,7 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   and whose Pokemon knows one of that table's routed moves (Hone Claws, Coil,
   Cotton Guard, Autotomize, Noble Roar, Tearful Look or Aurora Veil), and one
   with Check HP and a routed move. Break at the end of
-  `TrainerAI_MainSingles` and read `moveScore`, as for Camper Zackary. On the
+  `TrainerAI_MainSingles` and read `moveScore`, as for Ace Trainer Shannon. On the
   battle's first turn the Setup First Turn move should carry the same +2 as a
   Platinum setup move most turns (about two in three); the Check HP move
   should lose 2 most turns (about four in five) once its user is at 70% HP
@@ -466,10 +461,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
 - [ ] Trainer gender: the ability and gender nibble is read as 1 male, 2 female,
   which is a guess no Route 202 trainer exercises; swap it if anything reads
   wrong.
-- [ ] **(live)** The AI fix on Camper Zackary's first turn (level 15, a Castform
-  with Rain Dance, a Weather-flag trainer): break at the end of
-  `TrainerAI_MainSingles` and read `moveScore`. Rain Dance reads 105 and
-  neither attack carries the Weather flag's +5 (compare the +5, not the gap).
 - [ ] Element 6's absorber switch (`cloud/element6-changes`), Picnicker Siena
   (level 15, Zigzagoon then an Electrike with Lightning Rod): hit Zigzagoon
   with an Electric attack that does not knock it out. On about half such
@@ -580,8 +571,14 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   badges", gives all eight badges and lands at a rocky wall two tiles from
   water with a waterfall, so Rock Climb, Surf, Waterfall both ways and the
   menu's FLY, SURF and DEFOG can be checked there first.
-- [ ] **(live)** Gardenia's Cherrim with Sunny Day: the same AI check as Camper
-  Zackary's.
+- [ ] **(live)** The Weather flag's fix on Ace Trainer Shannon's first turn
+  (Route 221, optional; a Weather-flag trainer whose Victreebel leads with
+  Sunny Day and no weather ability, and keeps it in the comb's draft): break
+  at the end of `TrainerAI_MainSingles` and read `moveScore`. Sunny Day
+  carries the flag's +5 and Solar Beam, Sludge Bomb and Sleep Powder do not;
+  before the fix all four did (compare the +5, not the gap). No trainer who
+  leads with Rain Dance keeps it through the comb, so this one check covers
+  the fix, which Camper Zackary's Castform and Gardenia's Cherrim used to.
 - [ ] Honey trees at five badges: check against table 5.
 - [ ] Element 6's fixes of 2026-09-30 (`main-element6`), whenever one comes up; none needs a
   set-up of its own. A trainer never aims a status move Magic Coat would bounce at a Pokemon
@@ -619,6 +616,8 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   (where Oxide goes one step past the base ROM), to the arrival.
 - [ ] **(live)** Worker Jackson's Wormadam-Trash (level 49, Relaxed, every IV 27)
   shows 131 HP, 85 Attack, 122 Defense, 85 Sp. Atk, 111 Sp. Def and 47 Speed.
+  The comb's draft for Jackson drops it; if that lands first, the Volkner
+  rematch's Rotom-Mow in section 5 is the form check left.
 - [ ] Galactic HQ, Saturn: the battle opens with "The dimensions became
   distorted!", the slower Pokemon moves first all fight, "The twisted dimensions
   returned to normal!" never appears, a Trick Room from either side fails, and
@@ -717,11 +716,10 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   item ball outside Stark Mountain gives a PP Up, and the man in Celestic
   Town's northwest house gives BlackGlasses from 4:00 to 19:59 and Wise
   Glasses at night, never a Choice Specs.
-- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): walk down the one-tile
-  strip between the two ponds in the city's southwest corner; pressing A at
-  its southern end finds a hidden Ability Capsule, and the Dowsing app shows
-  it there. Used on a Pokemon, it asks first, naming the other regular
-  ability.
+- [ ] Pastoria's Ability Capsule (Ian, 2026-10-13): an item ball stands at
+  the southern end of the one-tile strip between the two ponds in the city's
+  southwest corner, and gives an Ability Capsule. Used on a Pokemon, it asks
+  first, naming the other regular ability.
 - [ ] The Ability Patch (Ian, 2026-10-13): beating Ace Trainer Jose on
   Route 228 gives an Ability Patch and then TM64, straight after the win.
   With a full Bag, talking to him again gives what was refused.
@@ -740,8 +738,6 @@ Pokemon, or a foe holding an item; those checks are marked for normal play.
   Lucas, for a female player) notices you, you are walked in front of her, and
   the level 71 fight uses the team for your starter (trainers 779 to 784).
   Winning fades her out for good; losing leaves her there for another try.
-- [ ] **(live)** Volkner's battle: his Rotom-Mow (level 61, Modest, every IV 29)
-  shows 149 HP, 90 Attack, 153 Defense, 165 Sp. Atk, 153 Sp. Def and 133 Speed.
 - [ ] Koffing and Ponyta take a Moon Stone (`main-galar-stones`). With either
   in the party, choose Use on a Moon Stone from the Bag. Koffing and Ponyta
   are marked ABLE, and the rest of the party NOT ABLE unless it has a Moon
@@ -796,6 +792,12 @@ On a save with the National Dex and the game beaten:
   turn off, load, and the PC's Hall of Fame viewer shows the team.
 - [ ] The colour variation in the Hall of Fame: it shows each Pokemon in the
   same colours as its summary, and so does the PC's Hall of Fame viewer.
+- [ ] **(live)** Volkner's rematch: his Rotom-Mow (level 88, Timid, every IV
+  28) reads Electric and Grass, not Electric and Ghost, and shows 210 HP, 129
+  Attack, 217 Defense, 214 Sp. Atk, 217 Sp. Def and 207 Speed. Oxide's plain
+  Rotom has the same base stats as its forms, so the types are what tell the
+  form apart; without the stub, a Fire move is super effective on it. This
+  replaces the gym fight's Rotom-Mow check, since his gym Rotom is plain now.
 
 - [ ] Acuity Lakefront's grass and the Poke Radar there give no Weavile,
   Abomasnow, Mamoswine or Glalie, and radar chains still build on the area's

@@ -2288,7 +2288,7 @@
   {
    "entries": {
     "flags": [
-     {"at": ["scripts_visible_items:2403"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
+     {"at": ["scripts_visible_items:2408"], "daily": false, "flag": 2438, "name": "FLAG_ALT_MUSIC_GALACTIC_HQ_1F", "op": "set", "origin": "vanilla", "reached": true}
     ]
    },
    "file": "scripts_visible_items",
@@ -5103,13 +5103,14 @@
      {"at": ["scripts_pastoria_city:251", "scripts_pastoria_city:293"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:516", "scripts_pastoria_city:549"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "clear", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:592"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "clear", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:326", "events_pastoria_city:357"], "daily": false, "flag": 371, "name": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:418"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:433"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:342"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:448"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:131"], "daily": false, "flag": 1088, "name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "op": "hides", "origin": "vanilla", "reached": true},
-     {"at": ["events_pastoria_city:463"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_pastoria_city:318", "events_pastoria_city:349"], "daily": false, "flag": 371, "name": "FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:410"], "daily": false, "flag": 425, "name": "FLAG_HIDE_PASTORIA_CITY_RIVAL", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:425"], "daily": false, "flag": 507, "name": "FLAG_HIDE_PASTORIA_CITY_CRASHER_WAKE", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:334"], "daily": false, "flag": 524, "name": "FLAG_HIDE_PASTORIA_CITY_GRUNT_M", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:440"], "daily": false, "flag": 669, "name": "FLAG_HIDE_PASTORIA_CITY_CROAGUNK", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:487"], "commit": "547b7d259", "daily": false, "flag": 972, "name": "FLAG_UNUSED_0x03CC", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
+     {"at": ["events_pastoria_city:123"], "daily": false, "flag": 1088, "name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "op": "hides", "origin": "vanilla", "reached": true},
+     {"at": ["events_pastoria_city:455"], "commit": "894256fe2", "daily": false, "flag": 2668, "name": "FLAG_HIDE_TELEPORT_ABRA", "op": "hides", "origin": "added", "reached": true, "source": "Oxide"},
      {"at": ["scripts_pastoria_city:581"], "daily": false, "flag": 258, "name": "FLAG_PASTORIA_CITY_GRUNT_M_MOVED_EAST", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:739"], "daily": false, "flag": 259, "name": "FLAG_TALKED_TO_PASTORIA_CITY_GRUNT_M", "op": "set", "origin": "vanilla", "reached": true},
      {"at": ["scripts_pastoria_city:143"], "daily": false, "flag": 296, "name": "FLAG_RECEIVED_PASTORIA_CITY_ACCESSORY_STARTER_MASK", "op": "set", "origin": "vanilla", "reached": true},
@@ -5120,11 +5121,11 @@
      {"at": ["scripts_pastoria_city:609"], "commit": "81d02e28e", "daily": false, "flag": 2690, "name": "FLAG_UNK_0x0A82", "op": "set", "origin": "added", "reached": true, "source": "base ROM"}
     ],
     "hidden_items": [
-     {"count": 1, "daily": false, "event": "bg_events", "file": "events_pastoria_city", "flag": 757, "flag_name": "FLAG_OBTAINED_HIDDEN_PASTORIA_CITY_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 4, "origin": "vanilla", "reached": true},
-     {"commit": "dc8db120e", "count": 1, "daily": false, "event": "bg_events", "file": "events_pastoria_city", "flag": 1007, "flag_name": "FLAG_OBTAINED_HIDDEN_UNUSED_NUGGET_1", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 12, "origin": "added", "reached": true, "source": "Oxide"}
+     {"count": 1, "daily": false, "event": "bg_events", "file": "events_pastoria_city", "flag": 757, "flag_name": "FLAG_OBTAINED_HIDDEN_PASTORIA_CITY_ZINC", "item": "ITEM_ZINC", "item_id": 52, "line": 4, "origin": "vanilla", "reached": true}
     ],
     "item_balls": [
-     {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 132, "origin": "vanilla", "reached": true}
+     {"count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 1088, "flag_name": "FLAG_OBTAINED_PASTORIA_CITY_MYSTIC_WATER", "item": "ITEM_MYSTIC_WATER", "item_id": 243, "line": 124, "origin": "vanilla", "reached": true},
+     {"commit": "547b7d259", "count": 1, "daily": false, "event": "object_events", "file": "events_pastoria_city", "flag": 972, "flag_name": "FLAG_UNUSED_0x03CC", "item": "ITEM_ABILITY_CAPSULE", "item_id": 133, "line": 488, "origin": "added", "reached": true, "source": "Oxide"}
     ],
     "trainers": [
      {"command": "StartTrainerBattle", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 490, "origin": "vanilla", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_RIVAL_PASTORIA_CITY_TURTWIG", "value": 474, "when": ""}]}]},
@@ -5133,8 +5134,8 @@
      {"command": "StartTrainerBattle", "commit": "81d02e28e", "file": "scripts_pastoria_city", "how": "StartTrainerBattle", "line": 672, "origin": "added", "reached": true, "slots": [{"mode": "number", "role": "enemyTrainer1", "values": [{"name": "TRAINER_DUMMY_212", "value": 212, "when": ""}]}], "source": "base ROM"}
     ],
     "vars": [
-     {"at": ["events_pastoria_city:574", "events_pastoria_city:584", "events_pastoria_city:594", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:197", "scripts_pastoria_city:199"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
-     {"at": ["events_pastoria_city:604"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16583},
+     {"at": ["events_pastoria_city:581", "events_pastoria_city:591", "events_pastoria_city:601", "scripts_init_pastoria_city:9", "scripts_pastoria_city:37", "scripts_pastoria_city:39", "scripts_pastoria_city:41", "scripts_pastoria_city:197", "scripts_pastoria_city:199"], "name": "VAR_PASTORIA_CITY_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16508},
+     {"at": ["events_pastoria_city:611"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "check", "origin": "vanilla", "reached": true, "var": 16583},
      {"at": ["scripts_pastoria_city:298", "scripts_pastoria_city:580", "scripts_pastoria_city:715"], "name": "VAR_PASTORIA_CITY_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16508},
      {"at": ["scripts_pastoria_city:35", "scripts_pastoria_city:367"], "name": "VAR_PASTORIA_CITY_CROAGUNK_SCENE_STATE", "op": "set", "origin": "vanilla", "reached": true, "var": 16583}
     ]
@@ -19246,23 +19247,23 @@
    "vanilla": 1
   },
   "flags": {
-   "Oxide": 137,
+   "Oxide": 138,
    "base ROM": 215,
    "gone": 99,
-   "total": 3322,
+   "total": 3323,
    "vanilla": 2970
   },
   "hidden_items": {
-   "Oxide": 2,
+   "Oxide": 1,
    "gone": 10,
-   "total": 254,
+   "total": 253,
    "vanilla": 252
   },
   "item_balls": {
-   "Oxide": 10,
+   "Oxide": 11,
    "base ROM": 62,
    "gone": 69,
-   "total": 332,
+   "total": 333,
    "vanilla": 260
   },
   "items": {
