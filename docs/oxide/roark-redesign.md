@@ -1,6 +1,6 @@
 # Roark's redesign: the comparison and what it taught
 
-The scorer read today's Roark and the new team on goal 3's boxes 1 to 3 on 2026-10-12, and the uncut team with Recover on 2026-10-13 (its section below). With the three cuts, the new team reads easier than today's, at 98 to 100 percent won, above Ian's 95 percent ceiling for a boss. The cuts overshot, because they were chosen on the Kaizo study's rough simulator, which here got even the direction wrong. The next step, and what waits on Ian, is at the end.
+The scorer read today's Roark and the new team on goal 3's boxes 1 to 3 on 2026-10-12, and the uncut team with Recover on 2026-10-13 (its section below). With the three cuts, the new team reads easier than today's, at 98 to 100 percent won, above Ian's 95 percent ceiling for a boss. The cuts overshot, because they were chosen on the Kaizo study's rough simulator, which here got even the direction wrong. Ian then accepted the uncut team with Recover, read at 86 percent won (the last sections).
 
 ## The readings
 
@@ -52,6 +52,6 @@ Ian's next pick: the three cuts undone, and Naclstack with Stealth Rock, Salt Cu
 
 Where the faints fell, over the three boxes: Cranidos 171, Lileep 169, Naclstack 117 (95 of them on box 2), Sandshrew 68 (45 on box 1), Anorith 49. Against the cut team (b), the two members that moved most are Naclstack, which Recover keeps on the field to salt, and Sandshrew, with Rapid Spin's Speed raise back. Each box is read on 75 fights at real odds and 25 very unlucky, so a box's numbers move by about five points from noise alone (box 2's very unlucky reading above its real one is that noise).
 
-## The next step
+## The decision
 
-Ian decides whether the uncut team's 86 percent (77 to 99 by box) is right for the first gym. The target proposed was today's level or a little above, high 80s to low 90s, under the 95 percent ceiling; the mean sits at its bottom edge, and two boxes sit near the 80 percent the hardest bosses are meant to top out at. If it should be softer, the faints point at two levers, each a single change: Naclstack without Recover (its fourth slot left empty or given a weaker status move), or Sandshrew's Rapid Spin back to Defense Curl. Reading both side by side takes about three hours.
+Ian accepted the uncut team with Recover on 2026-10-13 as the right difficulty for Roark, and it is in the game. Gardenia's redesign comes next, stage by stage, starting at the evidence stage.
