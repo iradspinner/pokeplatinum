@@ -33,15 +33,20 @@ A shape is written when a boss's redesign passes its evidence and diagnosis stag
 
 ## Gardenia (Eterna Gym, cap 26)
 
-**Status:** provisional, from a first look on 2026-10-12. The redesign starts after Roark's comparison.
+**Status:** evidence and diagnosis done (2026-10-13, [gardenia-redesign.md](gardenia-redesign.md)); the team shape waits on Ian. The scorer reads today's team at 100, 99 and 89 percent won on goal 3's boxes 1 to 3 (96 mean, difficulty 3.5), above the 95 percent ceiling, and a version with fixed move pools and sun at 95 percent, the same within noise.
 
-**Identity.** The base ROM's team was a sun team: Cherrim sets 8 turns of sun, Chlorophyll members double their speed, Solar Beam fires in one turn, and Weather Ball turns to Fire. Its flaw is that sun doubles the player's Fire baits. The current draft dropped the sun and lost its identity. The redesign keeps the sun and fixes the flaw.
+**Identity.** The base ROM's team was a sun team (Cherrim with Sunny Day and a Heat Rock, Solar Beam, Weather Ball); the Kaizo study's draft, in the game today, dropped the sun because the player's Fire types gained more from it. Today's five are Roselia, Ludicolo, Exeggutor, Breloom and Roserade. Sun pays only from a setter that spends no turn (Drought) and for more than one member: in the fixed version, Exeggutor's turn-one Sunny Day cost it the fight.
 
-**The player's core counterpieces** (suspected, not yet read on today's box):
-- **Fletchinder** (Fire/Flying): Grass hits it at a quarter, both its attacking types hit Grass super-effectively, and sun doubles its Fire. Rock hits it four times over.
-- **Golbat** (Poison/Flying), the classic Grass-gym wall.
+**The boss's core today** (faints made over the three boxes): Exeggutor's Psychic and Giga Drain with Leftovers (145), Breloom's Rock Tomb and Mach Punch (127), Roserade's Sludge Bomb and Shadow Ball (104), Ludicolo's Ice Beam (50). Roselia made none: its Spikes and Sleep Powder lead gives the player free turns.
+
+**The player's core counterpieces** (from the scorer's sixes):
+- **Golbat** (Poison and Flying), in every six, with Dual Wingbeat. It resists her Grass and Fighting moves four times over; only Ice Beam, Psychic and the Rock moves hit it hard.
+- **Alolan Ninetales** (Ice and Fairy), in every six whose box has it, caught wild from Route 211 West in this split. Icicle Spear hits four of her five, and Fairy turns Breloom's Fighting moves.
+- Without it, **Corvisquire** and **Vullaby** join Golbat (box 3, the only box with real losses). Steel pivots (Bronzor, Probopass) take the Poison moves.
 
 **Material for this fight:**
-- Sun mechanics: Sunny Day, Chlorophyll, Weather Ball, Solar Beam.
-- Fletchinder's and Golbat's availability, typing and moves.
-- Rock moves on Gardenia's members.
+- Golbat's and Alolan Ninetales' availability before Gardenia, their typing, Dual Wingbeat and Icicle Spear.
+- Corvisquire's and Vullaby's availability and Flying moves.
+- Sun mechanics (Drought, Sunny Day, Chlorophyll, Weather Ball, Heat Rock), if her team uses the sun.
+- Rock, Electric, Fire or Ice moves on her members, the answers to the counterpieces.
+- The moves, abilities and items of her five.
