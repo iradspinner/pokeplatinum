@@ -18,12 +18,11 @@ Before alpha 1, Ian decides: whether the comb's 271 ordinary trainers (Maylene's
 
 **Waiting on Ian**, each with its entry below:
 - QA itself, and the in-game checks (`ingame-checklist.md`; add new ones there).
-- The balance tools: keep or retire the cheap calculator estimate, and the go for the retirement job (`balance-tools-audit.md`).
 - Replacements for the Life Orb ball outside Stark Mountain and the Celestic Town Choice Specs, which break his ruling.
 - The Kaizo study's open questions: six decisions on the later ordinary trainers, three weather rocks that do nothing, and the retunes after step 15.
 - Older questions still open: element 6's four changes of play, the drafts of dialogue from `main-scripts` and `main-production`, the regional dex order, the water biome draft and the zone-by-zone land pass, the honey trees, the Box sim's ratings, the Amity Square and Snowpoint casts, one damage roll against the calculator, and the Frontier Brain teams (he builds them).
 
-**Next steps for the Overseer, in order:** the balance tools' retirement job once Ian answers (3 to 4 hours); the two item fixes once he picks replacements (half an hour); the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
+**Next steps for the Overseer, in order:** the balance tools' retirement job, under way on `overseer-retire-b` (Ian approved it on 2026-10-13; 3 to 4 hours); the two item fixes once he picks replacements (half an hour); the checklist's stale QA checks (an hour); step 15's restart at his word; Gardenia's stages as the study brings them.
 
 **To confirm the state after a restart**, and what a clean gate looks like: `docs/oxide/restart-checks.md`. **Files outside the repo that the tools need** are listed in the design doc, section 2.
 
@@ -82,7 +81,7 @@ Items the old status homes and plans held that this tracker lacked or held only 
 - [ ] Youngsters Darius and Jonathon (Roark's split) were read without the gym's sand; they wait for the next full reading.
 - [ ] Mechanics the simulator leaves out, parked by the freeze: double-battle AI partners and switch rules, Me First, Copycat, Judgment's plate, Gravity, Foresight, Embargo, Sleep Talk's choice, Baton Pass and per-hit contact effects.
 - [ ] Long term: a whole-game reading in hours (`scorer-speed-plan.md`, goal 4); a compiled simulator and a cheaper opponent AI are its parked levers.
-- [ ] The balance tools: keep or retire the first scoring system (the cheap calculator estimate, the OxiDex's team builder estimate and old fight scale), then retire 18 dead modules and put the scorer's fast tests in the gate (`balance-tools-audit.md`); waits on Ian.
+- [ ] The balance tools (Ian, 2026-10-13, on `balance-tools-audit.md`): the first scoring system is retired, the OxiDex's team builder estimate and old fight scale with it, and the dead modules go; the scorer's fast tests join the gate. Under way on `overseer-retire-b`.
 
 **QA checklist upkeep**
 - [ ] Four live checks name teams the comb replaced and are rewritten before the joint stub session: Volkner's Rotom (form 0 now), Camper Zackary's Castform (level 24), Worker Jackson's Wormadam-Trash, and Gardenia's Cherrim.
