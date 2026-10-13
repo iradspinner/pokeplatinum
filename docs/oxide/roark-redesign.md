@@ -1,6 +1,6 @@
 # Roark's redesign: the comparison and what it taught
 
-The scorer read today's Roark and the new team on goal 3's boxes 1 to 3 on 2026-10-12. With the three cuts, the new team reads easier than today's, at 98 to 100 percent won, above Ian's 95 percent ceiling for a boss. The cuts overshot, because they were chosen on the Kaizo study's rough simulator, which here got even the direction wrong. The next step, and what waits on Ian, is at the end.
+The scorer read today's Roark and the new team on goal 3's boxes 1 to 3 on 2026-10-12, and the uncut team with Recover on 2026-10-13 (its section below). With the three cuts, the new team reads easier than today's, at 98 to 100 percent won, above Ian's 95 percent ceiling for a boss. The cuts overshot, because they were chosen on the Kaizo study's rough simulator, which here got even the direction wrong. The next step, and what waits on Ian, is at the end.
 
 ## The readings
 
@@ -40,6 +40,18 @@ Nidorino is in all six of the new team's sixes, Bibarel in five and Barboach in 
 4. **A move whose worth is its side effect needs an AI routine, or it never fires.** Evaluate Attack docks every attack but the strongest by a point, so the drafted Naclstack never used Salt Cure. It now has a routine, and even so it salts a fresh Barboach only one turn in five, because Mud Shot carries Platinum's own Speed-drop routine. Before a boss is read, check that the AI uses each of its moves.
 5. **Check that the scorer reads every new piece before a long reading.** A five-minute check of the prepared fight showed the scorer dropping Naclstack's Eviolite, since its calculator knew no Generation 5+ species as able to evolve. That would have cost a whole reading.
 
+## The uncut team with Recover (read 2026-10-13)
+
+Ian's next pick: the three cuts undone, and Naclstack with Stealth Rock, Salt Cure, Harden and Recover (Recover is legal from Nacli's new egg list). Read on the same three boxes, with the Nacli line's new lists (89a1100b3).
+
+| | Box 1 | Box 2 | Box 3 | Mean |
+|---|---|---|---|---|
+| Won at real odds | 81% | 77% | 99% | 86% |
+| Faints a fight (difficulty) | 3.08 (10.5) | 3.59 (12.7) | 0.99 (1.5) | 2.55 (8.2) |
+| Very unlucky, won | 68% | 84% | 92% | 81% |
+
+Where the faints fell, over the three boxes: Cranidos 171, Lileep 169, Naclstack 117 (95 of them on box 2), Sandshrew 68 (45 on box 1), Anorith 49. Against the cut team (b), the two members that moved most are Naclstack, which Recover keeps on the field to salt, and Sandshrew, with Rapid Spin's Speed raise back. Each box is read on 75 fights at real odds and 25 very unlucky, so a box's numbers move by about five points from noise alone (box 2's very unlucky reading above its real one is that noise).
+
 ## The next step
 
-Ian decides the next reading. The proposal is to undo the three cuts, since they were chosen on the rough simulator's numbers, and read the team as the study drafted it, with Naclstack as in (b), so that the salt that was the reason for picking it lands. The target is today's level or a little above: high 80s to low 90s won, under the 95 percent ceiling. One reading of three boxes takes about 1.5 to 2 hours on the free machine.
+Ian decides whether the uncut team's 86 percent (77 to 99 by box) is right for the first gym. The target proposed was today's level or a little above, high 80s to low 90s, under the 95 percent ceiling; the mean sits at its bottom edge, and two boxes sit near the 80 percent the hardest bosses are meant to top out at. If it should be softer, the faints point at two levers, each a single change: Naclstack without Recover (its fourth slot left empty or given a weaker status move), or Sandshrew's Rapid Spin back to Defense Curl. Reading both side by side takes about three hours.
