@@ -11,55 +11,72 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ROSELIA",
+            "species": "SPECIES_SOLROCK",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_BLACK_SLUDGE",
+            "level": 25,
+            "item": "ITEM_SHUCA_BERRY",
             "moves": [
-                "MOVE_SPIKES",
-                "MOVE_SLEEP_POWDER",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_EXTRASENSORY"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_ROCK_TOMB"
             ],
             "iv_scale": 255,
             "nature": "NATURE_TIMID",
+            "ball_seal": 0,
+            "ability": 3,
+            "gender": null
+        },
+        {
+            "species": "SPECIES_CHERRIM",
+            "form": 0,
+            "level": 25,
+            "item": "ITEM_KEBIA_BERRY",
+            "moves": [
+                "MOVE_PETAL_BLIZZARD",
+                "MOVE_SYNTHESIS",
+                "MOVE_ROCK_TOMB",
+                "MOVE_WEATHER_BALL"
+            ],
+            "iv_scale": 255,
+            "nature": "NATURE_DOCILE",
             "ball_seal": 0,
             "ability": 1,
             "gender": "female"
         },
         {
-            "species": "SPECIES_LUDICOLO",
+            "species": "SPECIES_LUMINEON",
             "form": 0,
             "level": 25,
-            "item": "ITEM_SITRUS_BERRY",
+            "item": "ITEM_WACAN_BERRY",
             "moves": [
-                "MOVE_ICE_BEAM",
-                "MOVE_WATER_PULSE",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_FAKE_OUT"
+                "MOVE_AQUA_TAIL",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_U_TURN",
+                "MOVE_SWAGGER"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_CALM",
+            "nature": "NATURE_BRAVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "female"
+            "ability": 2,
+            "gender": null
         },
         {
             "species": "SPECIES_EXEGGUTOR",
             "form": 0,
             "level": 25,
-            "item": "ITEM_LEFTOVERS",
+            "item": "ITEM_OCCA_BERRY",
             "moves": [
-                "MOVE_PSYCHIC",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LEECH_SEED"
+                "MOVE_SLEEP_POWDER",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_NATURAL_GIFT",
+                "MOVE_EGG_BOMB"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_NAIVE",
             "ball_seal": 0,
-            "ability": 1,
-            "gender": "male"
+            "ability": 3,
+            "gender": null
         },
         {
             "species": "SPECIES_BRELOOM",
@@ -68,32 +85,32 @@
             "item": "ITEM_COBA_BERRY",
             "moves": [
                 "MOVE_MACH_PUNCH",
-                "MOVE_ROCK_TOMB",
                 "MOVE_BULLET_SEED",
-                "MOVE_STUN_SPORE"
+                "MOVE_ROCK_TOMB",
+                "MOVE_NATURAL_GIFT"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_ADAMANT",
+            "nature": "NATURE_HASTY",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         },
         {
             "species": "SPECIES_ROSERADE",
             "form": 0,
             "level": 26,
-            "item": "ITEM_LUM_BERRY",
+            "item": "ITEM_PAYAPA_BERRY",
             "moves": [
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_GIGA_DRAIN",
-                "MOVE_SHADOW_BALL",
-                "MOVE_COTTON_SPORE"
+                "MOVE_WEATHER_BALL",
+                "MOVE_STUN_SPORE"
             ],
             "iv_scale": 255,
-            "nature": "NATURE_MODEST",
+            "nature": "NATURE_CALM",
             "ball_seal": 0,
             "ability": 1,
-            "gender": "female"
+            "gender": null
         }
     ],
     "messages": [
