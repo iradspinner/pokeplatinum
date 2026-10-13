@@ -2,6 +2,8 @@
 
 > **Reference since 2026-10-13.** Open work for the balance track lives in the tracker's first page and its open work (`docs/oxide/tracker.md`; Ian made it the one home of open work). This doc keeps how the balance track works and its history; its own lists of next steps are no longer kept up to date.
 
+> **The first scoring system's code was retired on 2026-10-13** (Ian's decision that day). B2's structural metrics, B3's pressure scores and B3b's reference seats, B4's level curve and split shape, B5's calibration, B6's audit with its levers and pairs, the team builder's estimate, the rescore and their stored results left `tools/oxide/balance/`, with the dead experiments, and the OxiDex lost the estimate and the old fight scale. The perfect-line scorer (`plgoal3.py` and the modules it runs, with Ian's difficulty number in `pldifficulty.py`) is the one measure of a fight. The calculator runner the scorer uses moved to `calc.py`, the census's trainer placement to `required.py`, and what the player can own and the wild slots to `pool.py`. The sections below describe the retired tools as they were; the last commit that has all of them, the OxiDex's estimate included, is `af6c3f6f64` (`git show af6c3f6f64:tools/oxide/balance/<file>`).
+
 This is the balance track's status home. Ian put this session in charge of
 balance on 2026-09-22, once element 4 had put most moves and species in the
 tree. The file covers what "balanced" means for Oxide, how it gets measured,
